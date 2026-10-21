@@ -1,0 +1,332 @@
+# Inventaire de l’automatisation des données
+
+Généré le 2026-10-21T10:32:45.350Z.
+
+Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
+
+254 modules de données ; 4484 champs du catalogue ; 4211 lignes de couverture détaillée.
+
+PEA : 253/258 statuts avec preuve ; 5 non qualifiés.
+
+## Familles du catalogue
+
+| Famille | Fiches |
+|---|---:|
+| reference | 11 |
+| series | 698 |
+| insurance | 7 |
+| actor | 11 |
+| scpi | 8 |
+| household | 29 |
+| instrument | 647 |
+| index | 52 |
+| broker | 8 |
+| lexicon | 44 |
+
+## Modules et mises à jour
+
+« mixed-or-derived » signale un mélange possible de données automatiques et de valeurs éditoriales/manuelles ; ce mode ne certifie aucun champ individuel.
+
+| Module | Mode | Workflows en amont | Consommateurs directs ou indirects |
+|---|---|---|---:|
+| src/data/allocation-cases.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 5 |
+| src/data/anniversary-index-history.json | scheduled-output | .github/workflows/update-publication-observations.yml | 49 |
+| src/data/anniversary-levels.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-non-bond-expansion.yml | 12 |
+| src/data/anniversary-levels.json | scheduled-output | .github/workflows/update-market-monthly.yml, .github/workflows/update-publication-observations.yml | 12 |
+| src/data/annual-fx.json | scheduled-output | .github/workflows/collect-etf-pilot.yml | 9 |
+| src/data/annual-performance-currency.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 19 |
+| src/data/annual-window.js | manual-or-editorial |  | 112 |
+| src/data/archive-source-review.js | manual-or-editorial |  | 10 |
+| src/data/asset-labels.js | manual-or-editorial |  | 51 |
+| src/data/asset-selection.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 38 |
+| src/data/auto-history-identities.json | scheduled-output | .github/workflows/update-market-monthly.yml | 49 |
+| src/data/automated-broker-tariffs.json | scheduled-output | .github/workflows/update-regulatory-data.yml | 8 |
+| src/data/automated-characteristics.js | manual-or-editorial |  | 55 |
+| src/data/automated-economic.json | scheduled-output | .github/workflows/update-economic-data.yml | 86 |
+| src/data/automated-equity-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 49 |
+| src/data/automated-etf-monthly.json | scheduled-output | .github/workflows/update-market-monthly.yml | 49 |
+| src/data/automated-etf.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 72 |
+| src/data/automated-etf.json | scheduled-output | .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 74 |
+| src/data/automated-index-sheets.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 4 |
+| src/data/automated-indices.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 4 |
+| src/data/automated-indices.json | scheduled-output | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 10 |
+| src/data/automated-instrument-metadata.json | scheduled-output | .github/workflows/update-instrument-metadata.yml | 73 |
+| src/data/automated-insurance.json | scheduled-output | .github/workflows/update-insurance.yml | 9 |
+| src/data/automated-monthly.json | scheduled-output | .github/workflows/update-market-monthly.yml | 49 |
+| src/data/automated-portfolio-funds.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-instrument-metadata.yml | 29 |
+| src/data/automated-practical-sheets.json | scheduled-output | .github/workflows/update-practical-sheets.yml | 4 |
+| src/data/automated-presentation-actors.json | scheduled-output | .github/workflows/update-presentation-actors.yml | 7 |
+| src/data/automated-regulatory.json | scheduled-output | .github/workflows/update-regulatory-data.yml | 21 |
+| src/data/automated-scpi.json | scheduled-output | .github/workflows/update-scpi.yml | 4 |
+| src/data/automation-workflows.json | manual-or-editorial |  | 3 |
+| src/data/benchmark-changes.js | manual-or-editorial |  | 72 |
+| src/data/benchmark-changes.json | manual-or-editorial |  | 72 |
+| src/data/bitcoin-yahoo-monthly.json | scheduled-output | .github/workflows/update-bitcoin-monthly.yml | 49 |
+| src/data/bond-exposure-cases.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 3 |
+| src/data/broker-tariffs.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 8 |
+| src/data/calculator-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 12 |
+| src/data/calendar-fx.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 47 |
+| src/data/catalog-browser.js | manual-or-editorial |  | 1 |
+| src/data/catalog-search.js | manual-or-editorial |  | 3 |
+| src/data/catalog.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-practical-sheets.yml, .github/workflows/update-regulatory-data.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-insurance.yml, .github/workflows/update-scpi.yml, .github/workflows/update-presentation-actors.yml | 2 |
+| src/data/commodity-allocation.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 16 |
+| src/data/commodity-publication-data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 16 |
+| src/data/company-history-additions.js | manual-or-editorial |  | 49 |
+| src/data/company-history.js | manual-or-editorial |  | 49 |
+| src/data/comparator-return-evidence.js | manual-or-editorial |  | 24 |
+| src/data/comparison-etf-details.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 17 |
+| src/data/dca-complete-holdings.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/dca-equity-exposures.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/dca-holdings-status.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/dca-security-classifications.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/distinct-asset-selections.js | manual-or-editorial |  | 21 |
+| src/data/distinct-portfolio-assets.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-instrument-metadata.yml | 29 |
+| src/data/diversification-history.js | manual-or-editorial |  | 49 |
+| src/data/duel-assets.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-economic-data.yml | 9 |
+| src/data/economic-data.js | mixed-or-derived | .github/workflows/update-economic-data.yml | 86 |
+| src/data/editorial-calendar.js | manual-or-editorial |  | 34 |
+| src/data/editorial-cases.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-qualified-exposures.yml | 3 |
+| src/data/envelope-fees.js | mixed-or-derived | .github/workflows/update-insurance.yml | 3 |
+| src/data/equity-candidates.json | manual-or-editorial |  | 0 |
+| src/data/equity-duel-returns.json | scheduled-output | .github/workflows/update-market-monthly.yml | 29 |
+| src/data/equity-history-identities.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 23 |
+| src/data/equity-history-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 92 |
+| src/data/etf-cards.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 28 |
+| src/data/etf-completeness.json | manual-or-editorial |  | 2 |
+| src/data/etf-development.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-economic-data.yml | 2 |
+| src/data/etf-history-identities.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 49 |
+| src/data/etf-metric-copy.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml | 16 |
+| src/data/etf-monthly-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml | 49 |
+| src/data/etf-publication-data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 6 |
+| src/data/etf-ter-evidence.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 7 |
+| src/data/etf-ter.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 44 |
+| src/data/etf-themes.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml | 15 |
+| src/data/evidence.js | manual-or-editorial |  | 10 |
+| src/data/exposure-additions.js | manual-or-editorial |  | 71 |
+| src/data/exposure-etf-expansion-records.json | scheduled-output | .github/workflows/update-exposure-expansion.yml | 72 |
+| src/data/exposure-etf-expansion.js | manual-or-editorial |  | 58 |
+| src/data/exposure-observations.js | manual-or-editorial |  | 15 |
+| src/data/exposure-sleeves.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/fee-comparison-assets.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 5 |
+| src/data/financial-lexicon.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 16 |
+| src/data/french-characteristics.js | manual-or-editorial |  | 73 |
+| src/data/freshness-policy.json | manual-or-editorial |  | 0 |
+| src/data/global-equities.json | manual-or-editorial |  | 92 |
+| src/data/history-browser.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 9 |
+| src/data/history-currency.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 19 |
+| src/data/history-parameters.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 27 |
+| src/data/history-selection.js | manual-or-editorial |  | 16 |
+| src/data/history-statistics.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 2 |
+| src/data/household-editorial.js | manual-or-editorial |  | 7 |
+| src/data/household-statistics.js | mixed-or-derived | .github/workflows/update-economic-data.yml | 7 |
+| src/data/index-comparison-composition.js | manual-or-editorial |  | 2 |
+| src/data/index-comparison-editorial.js | manual-or-editorial |  | 2 |
+| src/data/index-comparison-pairs.js | manual-or-editorial |  | 2 |
+| src/data/index-comparison-performance.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 1 |
+| src/data/index-comparison-return-additions.js | manual-or-editorial |  | 5 |
+| src/data/index-comparisons.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-qualified-exposures.yml | 2 |
+| src/data/index-composition-review.js | manual-or-editorial |  | 10 |
+| src/data/index-decision-cases.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 5 |
+| src/data/index-exposure-additions.js | manual-or-editorial |  | 10 |
+| src/data/index-facts.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 10 |
+| src/data/index-factsheets.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 4 |
+| src/data/index-returns.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 5 |
+| src/data/index-source-review.js | manual-or-editorial |  | 10 |
+| src/data/inflation-monthly.js | scheduled-output | .github/workflows/update-inflation.yml | 49 |
+| src/data/instrument-aum-observations.js | manual-or-editorial |  | 2 |
+| src/data/instrument-aum.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 28 |
+| src/data/instrument-characteristic-metadata.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml | 72 |
+| src/data/instrument-comparator-returns.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 24 |
+| src/data/instrument-facts.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 55 |
+| src/data/instrument-listings.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml | 55 |
+| src/data/instrument-metadata-status.json | scheduled-output | .github/workflows/update-instrument-metadata.yml | 0 |
+| src/data/instrument-metadata.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml | 72 |
+| src/data/instrument-pea.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml | 58 |
+| src/data/instrument-performance-review.js | manual-or-editorial |  | 53 |
+| src/data/instrument-reference-evidence.js | mixed-or-derived | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 7 |
+| src/data/instrument-returns.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 53 |
+| src/data/instruments.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-instrument-metadata.yml | 58 |
+| src/data/insurance.js | mixed-or-derived | .github/workflows/update-insurance.yml | 6 |
+| src/data/investment-presets.js | manual-or-editorial |  | 52 |
+| src/data/investor-profiles.js | manual-or-editorial |  | 4 |
+| src/data/investor-roster.js | manual-or-editorial |  | 37 |
+| src/data/lifestrategy.js | mixed-or-derived | .github/workflows/update-lifestrategy.yml | 75 |
+| src/data/lifestrategy.json | scheduled-output | .github/workflows/update-lifestrategy.yml | 75 |
+| src/data/maintenance-links.js | manual-or-editorial |  | 2 |
+| src/data/market-calendar-performance.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 53 |
+| src/data/market-history-review.js | mixed-or-derived | .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 4 |
+| src/data/market-history.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 49 |
+| src/data/market-story-selection.js | manual-or-editorial |  | 4 |
+| src/data/monthly-automation.js | mixed-or-derived | .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml | 49 |
+| src/data/monthly-duel-returns.json | scheduled-output | .github/workflows/update-market-monthly.yml | 53 |
+| src/data/monthly-fx.json | scheduled-output | .github/workflows/update-market-monthly.yml | 64 |
+| src/data/monthly-history-additions.js | manual-or-editorial |  | 49 |
+| src/data/msci-history.js | manual-or-editorial |  | 49 |
+| src/data/new-index-returns.js | manual-or-editorial |  | 5 |
+| src/data/non-bond-company-histories.json | manual-or-editorial |  | 49 |
+| src/data/non-bond-etf-records.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 75 |
+| src/data/non-bond-expansion.js | mixed-or-derived | .github/workflows/update-non-bond-expansion.yml | 69 |
+| src/data/non-bond-levels.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 12 |
+| src/data/non-bond-monthly-records.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 49 |
+| src/data/non-bond-qualified-records.json | scheduled-output | .github/workflows/update-non-bond-expansion.yml | 75 |
+| src/data/official-performance-currencies.json | scheduled-output | .github/workflows/collect-etf-pilot.yml | 22 |
+| src/data/pea-group-status.js | manual-or-editorial |  | 2 |
+| src/data/pea-sector-completion.js | manual-or-editorial |  | 55 |
+| src/data/pel-rates.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 2 |
+| src/data/performance-links.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 10 |
+| src/data/performance-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 10 |
+| src/data/portfolio-asset-loader.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-economic-data.yml | 1 |
+| src/data/portfolio-assets.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-economic-data.yml | 29 |
+| src/data/portfolio-currencies.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml | 8 |
+| src/data/portfolio-equities.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 29 |
+| src/data/portfolio-exposure-data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 2 |
+| src/data/portfolio-return-evidence.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-market-monthly.yml | 17 |
+| src/data/practical-sheet-topics.js | manual-or-editorial |  | 5 |
+| src/data/practical-source-data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 2 |
+| src/data/preferred-instrument-tickers.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml | 38 |
+| src/data/presentation-actors.js | mixed-or-derived | .github/workflows/update-presentation-actors.yml | 7 |
+| src/data/presentation-etf-additions.js | manual-or-editorial |  | 68 |
+| src/data/presentation-etf-expansion.js | manual-or-editorial |  | 28 |
+| src/data/property-infrastructure-additions.js | manual-or-editorial |  | 10 |
+| src/data/purchasing-power-observations.json | scheduled-output | .github/workflows/update-publication-observations.yml | 14 |
+| src/data/purchasing-power.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 14 |
+| src/data/qualified-etf-comparisons.js | manual-or-editorial |  | 17 |
+| src/data/qualified-exposure-etfs.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 75 |
+| src/data/qualified-exposure-metrics.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml | 18 |
+| src/data/qualified-exposure-sheets.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml | 75 |
+| src/data/qualified-listing-records.json | scheduled-output | .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml | 55 |
+| src/data/qualified-listings.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-qualified-exposures.yml | 55 |
+| src/data/ranking-annual.json | scheduled-output | .github/workflows/update-market-monthly.yml | 7 |
+| src/data/ranking-ftse.json | scheduled-output | .github/workflows/update-market-monthly.yml | 7 |
+| src/data/ranking-histories.json | scheduled-output | .github/workflows/update-market-monthly.yml | 7 |
+| src/data/ranking-index-annual.json | scheduled-output | .github/workflows/update-market-monthly.yml | 9 |
+| src/data/regulatory-data.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 21 |
+| src/data/resource-selections.js | manual-or-editorial |  | 28 |
+| src/data/retired-automations.json | manual-or-editorial |  | 4 |
+| src/data/review-catalog.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-practical-sheets.yml, .github/workflows/update-regulatory-data.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-inflation.yml, .github/workflows/update-insurance.yml, .github/workflows/update-scpi.yml, .github/workflows/update-presentation-actors.yml | 2 |
+| src/data/review-projection.js | manual-or-editorial |  | 2 |
+| src/data/reviewed-broker-profiles.json | manual-or-editorial |  | 8 |
+| src/data/round3-fund-sheets.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 68 |
+| src/data/routing-presentation-facts.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 55 |
+| src/data/routing-presentations.js | manual-or-editorial |  | 55 |
+| src/data/scpi.js | mixed-or-derived | .github/workflows/update-scpi.yml | 4 |
+| src/data/search-text.js | manual-or-editorial |  | 64 |
+| src/data/security-identifier-observations.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/shared-index-history.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 49 |
+| src/data/simulation-links.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 10 |
+| src/data/simulation-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 10 |
+| src/data/simulation-proxies.js | manual-or-editorial |  | 53 |
+| src/data/supporting-evidence.js | mixed-or-derived | .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 2 |
+| src/data/tool-links.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 4 |
+| src/data/tool-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 4 |
+| src/data/vanguard-equity-underliers.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 0 |
+| src/data/verified-returns.js | manual-or-editorial |  | 53 |
+| src/data/world-factor-additions.js | manual-or-editorial |  | 10 |
+| src/data/worldbank-gold-monthly.json | scheduled-output | .github/workflows/update-gold-monthly.yml | 49 |
+| src/pages/broker-comparator/data.js | mixed-or-derived | .github/workflows/update-regulatory-data.yml | 4 |
+| src/pages/dca-profiles/catalog.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/data.js | mixed-or-derived | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/engine.js | mixed-or-derived | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 12 |
+| src/pages/dca-profiles/exposures-extra-0.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/exposures-extra-1.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/exposures-extra-2.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/exposures.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 13 |
+| src/pages/dca-profiles/holdings-0.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-1.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-10.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-11.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-12.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-13.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-14.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-15.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-16.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-17.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-18.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-19.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-2.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-20.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-21.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-22.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-23.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-24.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-25.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-26.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-27.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-28.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-29.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-3.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-30.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-31.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-4.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-5.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-6.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-7.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-8.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-9.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/dca-profiles/holdings-manifest.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 8 |
+| src/pages/dca-profiles/holdings.json | scheduled-output | .github/workflows/update-exposure-expansion.yml, .github/workflows/update-qualified-exposures.yml | 0 |
+| src/pages/etf-sheets/data.js | mixed-or-derived | .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml, .github/workflows/update-market-monthly.yml | 1 |
+| src/pages/factsheet-tweets/data.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml | 2 |
+| src/pages/fee-impact/data.js | manual-or-editorial |  | 4 |
+| src/pages/investment-calculator/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 1 |
+| src/pages/investor-portfolio/data.js | manual-or-editorial |  | 4 |
+| src/pages/lexique-financier/data.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 1 |
+| src/pages/market-facts/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml | 2 |
+| src/pages/performance-rankings/data.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/update-inflation.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-economic-data.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-gold-monthly.yml, .github/workflows/update-publication-observations.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-qualified-exposures.yml | 7 |
+| src/pages/performance-rankings/engine.js | manual-or-editorial |  | 12 |
+| src/pages/portfolio-duels/data.js | manual-or-editorial |  | 2 |
+| src/pages/portfolio-generator/data.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-economic-data.yml | 1 |
+| src/pages/portfolio-generator/engine.js | mixed-or-derived | .github/workflows/update-qualified-exposures.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/collect-etf-pilot.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-economic-data.yml | 6 |
+| src/pages/portfolio-generator/theses.js | manual-or-editorial |  | 10 |
+| src/pages/practical-sheets/data.js | manual-or-editorial |  | 3 |
+| src/pages/purchasing-power/data.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 1 |
+| src/pages/tweet-bank/data.js | mixed-or-derived | .github/workflows/collect-etf-pilot.yml, .github/workflows/refresh-automated-index-sheets.yml, .github/workflows/update-bitcoin-monthly.yml, .github/workflows/update-market-monthly.yml, .github/workflows/update-instrument-metadata.yml, .github/workflows/update-exposure-expansion.yml, .github/workflows/update-non-bond-expansion.yml, .github/workflows/update-lifestrategy.yml, .github/workflows/update-qualified-exposures.yml | 3 |
+| src/pages/tweet-midi/engine.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/collect-etf-pilot.yml | 19 |
+| src/pages/wealth-simulator/data.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 2 |
+
+## Qualification et raccordements
+
+86 raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.
+
+| Nature des champs | Nombre |
+|---|---:|
+| reference | 662 |
+| live | 2581 |
+| unavailable | 14 |
+| archive | 160 |
+| history | 1011 |
+| simulation | 12 |
+| editorial | 44 |
+
+| État de raccordement | Nombre |
+|---|---:|
+| tracked-index-needed | 30 |
+| current | 4015 |
+| outside-equity-scope | 43 |
+| not-applicable | 69 |
+| waiting-first-year | 13 |
+| manual | 5 |
+| connector-needed | 29 |
+| not-published | 18 |
+| source-conflict | 2 |
+| collection-error | 1 |
+| unqualified | 1 |
+| archived | 3 |
+
+Le CSV `data/data-connections-backlog.csv` contient chaque raccordement restant avec source, tentative, dernier succès, consommateurs et action. Les champs financiers sans provenance, les modules non qualifiés et les archives restent visibles séparément dans le JSON.
+
+## Statuts PEA restant à qualifier
+
+| ISIN | État | Action |
+|---|---|---|
+| IE0000QLH0G6 | unqualified | Qualifier une déclaration PEA explicite liée à cet ISIN ; absence et tiret restent inconnus. |
+| IE0003R87OG3 | unqualified | Qualifier une déclaration PEA explicite liée à cet ISIN ; absence et tiret restent inconnus. |
+| IE000716YHJ7 | unqualified | Qualifier une déclaration PEA explicite liée à cet ISIN ; absence et tiret restent inconnus. |
+| IE00B0M62S72 | source-conflict | Obtenir une clarification explicite de l’émetteur ou un accord des sources contradictoires. |
+| IE00BD6FTQ80 | unqualified | Qualifier une déclaration PEA explicite liée à cet ISIN ; absence et tiret restent inconnus. |
+
+## Exploitation
+
+Le JSON public `data/data-automation-inventory.json` fournit les champs du catalogue, leurs sources, dates, consommateurs, valeurs numériques présentes (chemins uniquement), workflows et crons UTC, ainsi que la couverture détaillée et les diagnostics PEA. Il est régénéré à chaque build. Les derniers résultats réseau restent dans le suivi des automatisations ; cet inventaire ne prétend pas avoir relu chaque fournisseur.
+
+Priorités : 1. statuts PEA inconnus et contradiction ; 2. champs vivants sans source/date ou sans collecteur ; 3. champs absents, en retard ou conservés après panne ; 4. modules hors catalogue et données éditoriales à séparer des chiffres. Les champs non applicables ou en attente de publication gardent leur qualification.
