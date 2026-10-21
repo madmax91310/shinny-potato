@@ -52,7 +52,10 @@
     "audit:connections": "node scripts/audit-verified-connections.mjs",
     "test:rankings": "node scripts/test-performance-rankings.mjs",
     "audit:data-automation": "node scripts/data-automation-inventory.mjs --write && node scripts/test-data-automation-inventory.mjs",
-    "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs"
+    "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
+    "test:ai-portfolios": "node scripts/test-ai-portfolios.mjs && python3 -m unittest discover -s scripts -p test_ai_portfolios.py",
+    "test:ai-portfolios:browser": "node scripts/playwright-ai-portfolios.mjs",
+    "refresh:ai-portfolios": "python3 scripts/collect_ai_portfolios.py && node scripts/ai-portfolios.mjs refresh"
   },
   "dependencies": {
     "react": "^19.2.8",
