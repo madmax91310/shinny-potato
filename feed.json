@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "status": "ok",
         "articles": 10,
         "relevant": 2
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "status": "ok",
         "articles": 10,
         "relevant": 4
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "status": "error",
         "articles": 0,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "status": "error",
         "articles": 0,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "status": "error",
         "articles": 0,
         "relevant": 0
@@ -50,10 +50,10 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
-        "status": "ok",
-        "articles": 7,
-        "relevant": 1
+        "checkedAt": "2026-10-21T15:07:55.002Z",
+        "status": "error",
+        "articles": 0,
+        "relevant": 0
       }
     ],
     "items": [
@@ -69,7 +69,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +97,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-20",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-19",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A15386",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -209,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -237,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-21T13:59:45.131Z",
+        "checkedAt": "2026-10-21T15:07:55.002Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -761,9 +761,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-21T13:59:52.789Z",
-  "sourceRevision": "d04d8b45cf8d2830b40613c2ce6ecaa2af9ce544",
-  "observationCount": 7222,
+  "checkedAt": "2026-10-21T15:08:02.141Z",
+  "sourceRevision": "86410b9136aad3ffd41ee075ce6313607598b6ba",
+  "observationCount": 7221,
   "coverage": {
     "etf": 227,
     "indices": 52,
@@ -773,9 +773,9 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 32,
-    "pouvoir-achat": 7
+    "pouvoir-achat": 6
   },
-  "newSignalCount": 0,
+  "newSignalCount": 5,
   "errors": [
     {
       "family": "pouvoir-achat",
@@ -793,49 +793,29 @@
       "reason": "La liste Banque de France a changé de format."
     },
     {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+      "family": "pouvoir-achat",
+      "entity": "CRE · prix de l’énergie",
+      "reason": "Flux officiel indisponible (HTTP 503)."
     },
     {
       "family": "etf",
       "entity": "IE0006WW1TQ4",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
     },
     {
       "family": "etf",
       "entity": "IE00BGV5VN51",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
     },
     {
       "family": "etf",
       "entity": "IE00BM67HK77",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
     },
     {
       "family": "etf",
       "entity": "IE00BTJRMP35",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HQ30",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
     },
     {
       "family": "etf",
@@ -901,204 +881,144 @@
       "family": "etf",
       "entity": "IE00BZ56SW52",
       "reason": "Observation plus ancienne ignorée : Frais annuels."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Canada:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Switzerland:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Germany:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Australia:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Brazil:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Zambia:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Korea, Republic of:896eb444159fd8c94545e70e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Switzerland:e02e00a632cb2b9e9ddccd1e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Australia:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Canada:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Brazil:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Zambia:9e8222db7f15caa14c54cb45:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-19)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Ireland:f5d10aa5ac6de524b51ebc86:2026-10-19)."
     }
   ],
   "events": [
+    {
+      "id": "23f610a07915b850e6285912",
+      "family": "etf",
+      "entity": "IE00BF4RFH31",
+      "label": "iShares MSCI World Small Cap UCITS ETF",
+      "field": "metric:numHoldings",
+      "fieldLabel": "Nombre de positions hors liquidités et dérivés",
+      "title": "iShares MSCI World Small Cap UCITS ETF : nombre de positions hors liquidités et dérivés, 3 579 positions → 3 578 positions",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-21T15:08:02.141Z",
+      "before": 3579,
+      "after": 3578,
+      "beforeText": "3 579 positions",
+      "afterText": "3 578 positions",
+      "beforePeriod": "2026-10-19",
+      "period": "2026-10-20",
+      "scope": "IE00BF4RFH31 · Fund portfolio · numHoldings",
+      "unit": "positions",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise iShares MSCI World Small Cap UCITS ETF ?",
+      "draft": "Nombre de positions hors liquidités et dérivés : 3 579 positions → 3 578 positions.\n\niShares MSCI World Small Cap UCITS ETF · IE00BF4RFH31\nPérimètre : IE00BF4RFH31 · Fund portfolio · numHoldings\nAncienne observation : 2026-10-19\nObservation actuelle : 2026-10-20\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise iShares MSCI World Small Cap UCITS ETF ?",
+      "reason": "Variation cumulée de la mesure publiée par l’émetteur, à méthode et périmètre identiques ; ce n’est pas une prévision de performance."
+    },
+    {
+      "id": "5f9e9f547d239398cf2d6182",
+      "family": "etf",
+      "entity": "IE00B3F81G20",
+      "label": "iShares MSCI EM Small Cap UCITS ETF USD (Dist)",
+      "field": "metric:numHoldings",
+      "fieldLabel": "Nombre de positions hors liquidités et dérivés",
+      "title": "iShares MSCI EM Small Cap UCITS ETF USD (Dist) : nombre de positions hors liquidités et dérivés, 1 807 positions → 1 806 positions",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-21T15:08:02.141Z",
+      "before": 1807,
+      "after": 1806,
+      "beforeText": "1 807 positions",
+      "afterText": "1 806 positions",
+      "beforePeriod": "2026-10-14",
+      "period": "2026-10-20",
+      "scope": "IE00B3F81G20 · Fund portfolio · numHoldings",
+      "unit": "positions",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise iShares MSCI EM Small Cap UCITS ETF USD (Dist) ?",
+      "draft": "Nombre de positions hors liquidités et dérivés : 1 807 positions → 1 806 positions.\n\niShares MSCI EM Small Cap UCITS ETF USD (Dist) · IE00B3F81G20\nPérimètre : IE00B3F81G20 · Fund portfolio · numHoldings\nAncienne observation : 2026-10-14\nObservation actuelle : 2026-10-20\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise iShares MSCI EM Small Cap UCITS ETF USD (Dist) ?",
+      "reason": "Variation cumulée de la mesure publiée par l’émetteur, à méthode et périmètre identiques ; ce n’est pas une prévision de performance."
+    },
+    {
+      "id": "879b9e6507089094fef4bf83",
+      "family": "etf",
+      "entity": "IE00BQT3WG13",
+      "label": "iShares MSCI China A UCITS ETF (Acc)",
+      "field": "countries:United States",
+      "fieldLabel": "Poids du pays United States",
+      "title": "iShares MSCI China A UCITS ETF (Acc) : poids du pays united states, -7,234 % → -0,41 %",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-21T15:08:02.141Z",
+      "before": -7.23392,
+      "after": -0.40998,
+      "beforeText": "-7,234 %",
+      "afterText": "-0,41 %",
+      "beforePeriod": "2026-10-16",
+      "period": "2026-10-20",
+      "scope": "IE00BQT3WG13 · fund · Country of risk, all published holdings including cash/derivatives, no renormalisation",
+      "unit": "%",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du pays United States : -7,234 % → -0,41 %.\n\niShares MSCI China A UCITS ETF (Acc) · IE00BQT3WG13\nPérimètre : IE00BQT3WG13 · fund · Country of risk, all published holdings including cash/derivatives, no renormalisation\nAncienne observation : 2026-10-16\nObservation actuelle : 2026-10-20\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "id": "a025b67fd9b7af6282a800c9",
+      "family": "etf",
+      "entity": "IE00BQT3WG13",
+      "label": "iShares MSCI China A UCITS ETF (Acc)",
+      "field": "countries:China",
+      "fieldLabel": "Poids du pays China",
+      "title": "iShares MSCI China A UCITS ETF (Acc) : poids du pays china, 105,712 % → 100,408 %",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-21T15:08:02.141Z",
+      "before": 105.71167,
+      "after": 100.40766,
+      "beforeText": "105,712 %",
+      "afterText": "100,408 %",
+      "beforePeriod": "2026-10-16",
+      "period": "2026-10-20",
+      "scope": "IE00BQT3WG13 · fund · Country of risk, all published holdings including cash/derivatives, no renormalisation",
+      "unit": "%",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du pays China : 105,712 % → 100,408 %.\n\niShares MSCI China A UCITS ETF (Acc) · IE00BQT3WG13\nPérimètre : IE00BQT3WG13 · fund · Country of risk, all published holdings including cash/derivatives, no renormalisation\nAncienne observation : 2026-10-16\nObservation actuelle : 2026-10-20\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "id": "b578930d7ca80f83d3ead2a7",
+      "family": "etf",
+      "entity": "IE00BCRY6557",
+      "label": "iShares € Ultrashort Bond UCITS ETF",
+      "field": "metric:numHoldings",
+      "fieldLabel": "Nombre de positions hors liquidités et dérivés",
+      "title": "iShares € Ultrashort Bond UCITS ETF : nombre de positions hors liquidités et dérivés, 703 positions → 702 positions",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-21T15:08:02.141Z",
+      "before": 703,
+      "after": 702,
+      "beforeText": "703 positions",
+      "afterText": "702 positions",
+      "beforePeriod": "2026-10-19",
+      "period": "2026-10-20",
+      "scope": "IE00BCRY6557 · Fund portfolio · numHoldings",
+      "unit": "positions",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise iShares € Ultrashort Bond UCITS ETF ?",
+      "draft": "Nombre de positions hors liquidités et dérivés : 703 positions → 702 positions.\n\niShares € Ultrashort Bond UCITS ETF · IE00BCRY6557\nPérimètre : IE00BCRY6557 · Fund portfolio · numHoldings\nAncienne observation : 2026-10-19\nObservation actuelle : 2026-10-20\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise iShares € Ultrashort Bond UCITS ETF ?",
+      "reason": "Variation cumulée de la mesure publiée par l’émetteur, à méthode et périmètre identiques ; ce n’est pas une prévision de performance."
+    },
     {
       "topic": "revenus",
       "topicLabel": "Revenus et aides",
