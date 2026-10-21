@@ -51,7 +51,7 @@ import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
-import { SHEETS } from "../src/data/index-factsheets.js";
+import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
 import { ASSETS as HISTORY, LATEST_YM as LATEST_HISTORY_YM } from '../src/data/market-history.js';
 // Last collected month of an asset as the tools write it ("septembre 2026"); it advances
 // with every monthly refresh, so it is never pinned in the expectations.
@@ -940,6 +940,14 @@ async function testFactsheetTweets(page) {
   }));
   for (let index = 0; index < count; index++) {
     await choose(select, SHEETS[index].id);
+    if (SHEETS[index].compositionOnly) {
+      const compositionOnlyChecks = await draft.count() === 0 &&
+        await page.locator('.fs-sources a').count() >= 1 &&
+        (await page.locator('.fs-meta').innerText()).includes(SHEETS[index].snapshot);
+      ok &&= compositionOnlyChecks;
+      if (!compositionOnlyChecks && !failedStep) failedStep = `fiche de composition ${SHEETS[index].id}`;
+      continue;
+    }
     const tweet = await draft.inputValue();
     const checks = {
       constituents: tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR')),
@@ -958,10 +966,12 @@ async function testFactsheetTweets(page) {
     ok &&= (await page.evaluate(() => window.__factsheetCopied)) === tweet;
     if (!ok && !failedStep) failedStep = 'copie du texte';
   }
+  const lastEditableSheet = SHEETS.filter(sheet => !sheet.compositionOnly).at(-1);
+  await choose(select, lastEditableSheet.id);
   await draft.fill('Texte corrigé avant publication');
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
-  ok &&= (await draft.inputValue()).includes(latestSheetYear(SHEETS.at(-1)));
+  ok &&= (await draft.inputValue()).includes(latestSheetYear(lastEditableSheet));
   if (!ok && !failedStep) failedStep = 'rétablissement du modèle';
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();

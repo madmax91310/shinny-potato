@@ -41,7 +41,7 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
     if (observed?.index !== proxy.observedBenchmark || !/^(Physical|Physique|Physisch|Direct Replication \(physically\))/.test(observed?.replicationMethod ?? '')) throw new Error('Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir')
     if (facts?.benchmark !== proxy.benchmark || !/^(Physical|Physique|Physisch|Direct Replication \(physically\))/.test(facts.replicationMethod ?? '')) throw new Error('Benchmark exact ou réplication physique non confirmé')
     if (full?.basis !== 'fund' || full.complete !== true) throw new Error('Composition physique complète absente')
-    if (full.rows.some(row => INSTRUMENTS_BY_ISIN[row.isin] && /\b(?:ETF|UCITS|SICAV|Fund|LifeStrategy)\b/i.test(INSTRUMENTS_BY_ISIN[row.isin].name))) throw new Error('Fonds sous-jacent présent : transparisation de même date exigée')
+    if (full.rows.some(row => INSTRUMENT_FACTS_BY_ISIN[row.isin]?.replicationMethod)) throw new Error('Fonds sous-jacent présent : transparisation de même date exigée')
     // A single composition date for all three bands and the concentration visual.
     if (!['countries','sectors'].every(key => fund?.[key]?.asOf === full.asOf && fund[key].rows?.length)) throw new Error('Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies')
     const record = { ...full, checkedAt: full.checkedAt ?? holdingsStatus[proxy.isin]?.lastSuccessAt }
