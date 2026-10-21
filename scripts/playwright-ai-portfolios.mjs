@@ -19,10 +19,13 @@ for(const p of config.participants)submit({type:'decision',decision:{participant
 submit({type:'launch'})
 const result=refresh(book,market),fixture={book:result.book,market,state:result.state,defaults}
 fs.writeFileSync(output+'/fixture.json',JSON.stringify(fixture))
-const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4337'],{stdio:'ignore'})
+const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4337','--strictPort'],{stdio:['ignore','pipe','pipe']})
+let serverLog='';for(const stream of [server.stdout,server.stderr])stream.on('data',chunk=>{serverLog=(serverLog+chunk.toString()).slice(-4000)})
 const url='http://127.0.0.1:4337/shinny-potato/';let browser
 try {
- for(let i=0;i<100;i++){try{if((await fetch(url)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
+ let ready=false
+ for(let i=0;i<600;i++){assert.equal(server.exitCode,null,'Preview stopped: '+serverLog);try{if((await fetch(url,{signal:AbortSignal.timeout(500)})).ok){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
+ assert(ready,'Preview not ready after 60 seconds: '+serverLog)
  browser=await chromium.launch({headless:true,args:['--no-sandbox']})
  const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true}),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
