@@ -87,10 +87,12 @@ export default function App() {
     return (await import('./image.js')).renderRankingImage(result, title, regularity, presentation)
   }, [result, title, regularity, presentation])
 
-  function applyIds(next, nextCurrency = currency) {
+  function applyIds(next, nextCurrency = currency, resetPeriod = false) {
     setIds(next); setStatus('')
     if (benchmarkId && !next.includes(benchmarkId)) setBenchmarkId('')
-    if (next.length >= 2) {
+    // Manual edits preserve the requested years. Only choosing a prepared category
+    // resets its period; incompatible manual selections are explained below.
+    if (next.length >= 2 && resetPeriod) {
       try {
         const nextDates = defaultDates(next.map(id => convertAsset(SOURCES[id], nextCurrency, FX)))
         setDates(nextDates)
@@ -102,7 +104,7 @@ export default function App() {
     const c = ALL_CATEGORIES.find(c => c.id === id)
     const nextCurrency = c.currency ?? 'original'
     setCurrency(nextCurrency); setComparison('assets'); setBank(c.frequency ?? 'monthly')
-    setCategoryId(id); applyIds(c.ids, nextCurrency); setTitle(c.label); setSlot(0); setManual(false)
+    setCategoryId(id); applyIds(c.ids, nextCurrency, true); setTitle(c.label); setSlot(0); setManual(false)
     setBenchmarkId(c.benchmarkId ?? '')
     if (c.frequency === 'annual') setMode('years')
   }
