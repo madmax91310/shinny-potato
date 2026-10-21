@@ -31,13 +31,14 @@ export function suggestionPool(categories = [...CATEGORIES, ...BENCHMARK_CATEGOR
 }
 
 const POOL = suggestionPool()
-export function randomSuggestion(currentId, random = Math.random, pool = POOL) {
+export function randomSuggestion(currentId, random = Math.random, pool = POOL, maximumYears = 10) {
   const candidates = pool.filter(item => item.category.id !== currentId)
   if (!candidates.length) throw new Error('Aucune autre sélection avec trois années communes disponibles.')
   const pick = items => items[Math.min(items.length - 1, Math.max(0, Math.floor(random() * items.length)))]
   const { category, coverage } = pick(candidates)
-  const length = pick([3, 5, 10].filter(n => n <= coverage.years.length))
+  const length = pick([3, 5, 10].filter(n => n <= coverage.years.length && n <= maximumYears))
   const startYear = coverage.years.at(-length), endYear = coverage.years.at(-1)
   return { category, currency: 'EUR', mode: 'years',
     dates: { startYear, endYear, start: `${startYear - 1}-12`, end: `${endYear}-12` } }
 }
+

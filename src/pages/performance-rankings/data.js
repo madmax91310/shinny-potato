@@ -223,4 +223,5 @@ export const BENCHMARK_OPTIONS = [
   { id: 'etfFR0011871110', label: 'Nasdaq-100' },
   { id: 'etfFR0011550193', label: 'Europe · STOXX Europe 600' },
 ]
-export const COLORS = ['#64dfc5', '#e9bd70', '#a9a1ff', '#77b4ef', '#f498a5', '#c2d981']
+export { COLORS } from './palette.js'
+
