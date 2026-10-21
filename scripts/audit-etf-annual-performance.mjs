@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+import { isQualifiedAnnualPortfolioFund } from '../src/data/annual-portfolio-funds.js'
 import { LIFESTRATEGY_RECORDS } from '../src/data/lifestrategy.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js';
@@ -29,22 +29,23 @@ for (const etf of ETFS) {
     console.error(`Série annuelle invalide : ${etf.isin}`); errors++
   }
   const asset = known.get(etf.isin)
+  const qualifiedNav=isQualifiedAnnualPortfolioFund(asset)
   const market=asset?.distinctCandidate ? monthly[etf.isin] : null
   const qualifiedMarket=market?.basis==='market-price' && market.source?.startsWith('https://') && market.currency===asset.returnCurrency && asset.confidenceNote &&
     latestCommonYears([market.years],{minimum:3}).length>=3 && JSON.stringify(asset.calendarReturns)===JSON.stringify(market.years)
   // Une fiche seule ne raccorde pas implicitement un autre outil.
-  if (etf.presentationOnly && asset && !qualifiedMarket) {
+  if (etf.presentationOnly && asset && !qualifiedMarket && !qualifiedNav) {
     console.error(`Fiche seule ajoutée au Générateur : ${etf.isin}`); errors++
   }
   if (series.values.every(Number.isFinite) && !asset && !etf.presentationOnly) {
     console.error(`Part à historique complet absente de la composition manuelle : ${etf.isin}`); errors++
   }
-  if (asset && !qualifiedMarket && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
+  if (asset && !qualifiedMarket && !qualifiedNav && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
   const publishedYears = Object.keys(asset?.calendarReturns ?? {}).map(Number).filter(year=>Number.isFinite(asset.calendarReturns[year])).sort((a,b)=>a-b)
   const qualifiedRecent = asset?.manualOnly && series.basis === 'fund' && Boolean(series.source ?? series.sourceUrl) && publishedYears.length >= 3 && publishedYears.every((year,i)=>!i || year === publishedYears[i-1]+1) && series.values.every((v,i)=>v === null || Math.abs(v-(asset.calendarReturns[series.calendarYears?.[i] ?? 2020+i] ?? NaN)) < .051)
-  if (asset && !qualifiedMarket && !qualifiedRecent && !series.values.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[etf.isin] && asset.manualOnly && series.values[0] === null && series.values.slice(1).every(Number.isFinite) && JSON.stringify(asset.r) === JSON.stringify(series.values)) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
+  if (asset && !qualifiedMarket && !qualifiedNav && !qualifiedRecent && !series.values.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[etf.isin] && asset.manualOnly && series.values[0] === null && series.values.slice(1).every(Number.isFinite) && JSON.stringify(asset.r) === JSON.stringify(series.values)) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
     console.error(`Part à historique incomplet dans le Générateur : ${etf.isin}`); errors++
   }
 }

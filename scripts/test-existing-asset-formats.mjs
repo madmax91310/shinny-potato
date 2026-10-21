@@ -29,7 +29,8 @@ for (const [id, record] of Object.entries(HISTORY).filter(([id]) => id !== 'ftse
     assert(Math.abs(row.pct - (values.get(`${row.year}-12`) / values.get(`${row.year - 1}-12`) - 1) * 100) < 1e-9)
   }
 }
-assert(!ASSET_ORDER.includes('ftseAllWorld'))
+assert(ASSET_ORDER.includes('ftseAllWorld'))
+assert.equal(ASSETS.ftseAllWorld.points[0].date, '2024-10', 'No FTSE history before its first collected observation')
 assert.equal(ASSETS.msciWorldQuality.indexCode, '702787', 'Keep Quality distinct from Sector Neutral Quality')
 assert.equal(ASSETS.msciWorldValue.indexCode, '105868', 'Keep Value distinct from Enhanced Value')
 for (const id of ['monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea']) {

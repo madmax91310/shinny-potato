@@ -1,3 +1,4 @@
+import { isQualifiedAnnualPortfolioFund } from '../src/data/annual-portfolio-funds.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
 import assert from 'node:assert/strict'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
@@ -74,6 +75,9 @@ const annual=added.find(a=>a.isin==='IE000QDFFK00')
 if(annual){assert(history.getAnnualReturnStartYears(annual.id).every(year=>year>=2023));assert.deepEqual(history.getAnnualReturns(annual.id,2020),[])}
 else assert(history.MARKET_ASSETS.some(a=>a.isin==='IE000QDFFK00'&&history.getAnnualReturnStartYears(a.id).length),'A newly completed monthly history may replace the annual fallback, never the exact share')
 for(const asset of PORTFOLIO.filter(a=>a.annualManual)) {
+  assert(isQualifiedAnnualPortfolioFund(asset))
+  assert(!isQualifiedAnnualPortfolioFund({...asset,returnCurrency:asset.returnCurrency==='EUR'?'USD':'EUR'}))
+  assert(!isQualifiedAnnualPortfolioFund({...asset,calendarReturns:{...asset.calendarReturns,2025:999}}))
   const duel=CATALOG.find(a=>a.isin===asset.isin);assert(duel,asset.isin)
   const manual=buildManualPortfolio([{id:asset.id,pct:100}],'generaliste',[])
   const result=buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:duel.id,pct:100}]})

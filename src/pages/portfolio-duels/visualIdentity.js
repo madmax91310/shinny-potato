@@ -38,7 +38,7 @@ const references = {
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
-const automaticArt = Object.fromEntries(CATALOG.filter(asset=>asset.id.startsWith('manual-')).map(asset=>{
+const automaticArt = Object.fromEntries(CATALOG.filter(asset=>asset.id.startsWith('manual-') || asset.annualManual).map(asset=>{
  const card=ETFS.find(card=>card.isin===asset.isin)
  const art=getETFArt(card?.id)
  return [asset.exposure,art.scene?art:{...art,scene:art.mark}]

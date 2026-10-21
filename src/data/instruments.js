@@ -1,3 +1,4 @@
+import VANGUARD_UNDERLIERS from './vanguard-equity-underliers.json' with {type:'json'}
 import { EXPANSION_INSTRUMENTS } from './exposure-etf-expansion.js';
 import GLOBAL_EQUITIES from './global-equities.json' with { type: 'json' };
 import EQUITY_LINKS from './equity-history-links.json' with { type: 'json' };
@@ -14,6 +15,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(Object.entries(VANGUARD_UNDERLIERS).map(([isin,r])=>[isin,Object.freeze({name:r.name,instrumentType:'ETF'})])),
   ...Object.fromEntries(Object.values(EQUITY_LINKS).map(r => [r.isin, Object.freeze({name:r.label,instrumentType:'EQUITY'})])),
   ...Object.fromEntries(GLOBAL_EQUITIES.map(r => [r.isin, Object.freeze({name:r.label,instrumentType:'EQUITY'})])),
   ...EXPANSION_INSTRUMENTS,
