@@ -17,9 +17,9 @@ const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_POSITIONS&&d.
 export default function SimpleExposure({isin}){
  const [saved]=useState(()=>{const asset=Object.keys(references).find(key=>references[key]?.isin===isin&&ASSETS[key]);return asset?{lines:[newLine(asset,100)],field:'all',exposureLimit:4}:readPreference(draftKey,null,validDraft)})
  const [lines,setLines]=useState(()=>confirmLines(saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[])),[field,setField]=useState(saved?.field||'all')
- const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4),[showAnalysis,setShowAnalysis]=useState(false)
- useEffect(()=>{writePreference(draftKey,{lines,field,exposureLimit})},[lines,field,exposureLimit])
- const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit}
+ const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4),[showAnalysis,setShowAnalysis]=useState(false),[showCompanies,setShowCompanies]=useState(saved?.showCompanies===true)
+ useEffect(()=>{writePreference(draftKey,{lines,field,exposureLimit,showCompanies})},[lines,field,exposureLimit,showCompanies])
+ const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies}
  const records=useSelectedRecords(lines.map(line=>line.asset),exposureRecords)
  const analysis=analyzeProfile(profile)
  const total=profile.lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
@@ -31,8 +31,8 @@ export default function SimpleExposure({isin}){
   <div className="dca-simple-grid">
    <section className="dca-simple-card" aria-label="Composer les expositions">
     <AllocationEditor lines={lines} onChange={setLines}/>
-    <ImageOptions field={field} onFieldChange={setField} limit={exposureLimit} onLimitChange={setExposureLimit}/>
-    <Portfolios profile={profile} field={field} onLoad={item=>{setLines(confirmLines(item.profile.lines));setExposureLimit(item.profile.exposureLimit||4);setField(item.field)}}/>
+    <ImageOptions field={field} onFieldChange={setField} limit={exposureLimit} onLimitChange={setExposureLimit} showCompanies={showCompanies} onCompaniesChange={setShowCompanies}/>
+    <Portfolios profile={profile} field={field} onLoad={item=>{setLines(confirmLines(item.profile.lines));setExposureLimit(item.profile.exposureLimit||4);setField(item.field);setShowCompanies(item.profile.showCompanies===true)}}/>
    </section>
    <ImageExport image={image} reason={reason} filename="epargnant-libre-expositions.png" alt="Répartition et expositions du portefeuille">
     {records.error&&<button className="dca-secondary" onClick={records.retry}>Réessayer les données</button>}

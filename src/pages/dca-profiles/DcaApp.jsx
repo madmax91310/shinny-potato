@@ -77,7 +77,7 @@ export default function DcaApp(){
    </div></details>
    <AllocationEditor lines={profile.lines} onChange={lines=>edit({lines})} dca={!profile.imageOnly}/>
    {!profile.imageOnly&&<p className="dca-note">Versements : {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</p>}
-   <ImageOptions field={field} onFieldChange={setField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>edit({exposureLimit})}/>
+   <ImageOptions field={field} onFieldChange={setField} limit={profile.exposureLimit||4} onLimitChange={exposureLimit=>edit({exposureLimit})} showCompanies={profile.showCompanies===true} onCompaniesChange={showCompanies=>edit({showCompanies})}/>
    <details><summary>Détails du portefeuille</summary>
     <label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label>
     <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{edit({imageOnly:e.target.checked});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>

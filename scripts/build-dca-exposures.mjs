@@ -7,6 +7,7 @@ import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { getInstrumentPeaStatus, getInstrumentName } from '../src/data/instruments.js'
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js'
 import { selectDcaHoldings } from './select-dca-holdings.mjs'
+import { equityChartObservations } from './equity-chart-observations.mjs'
 import { equityUniverse } from './dca-equity-universe.mjs'
 const readOptional=name=>{const url=new URL('../src/data/'+name,import.meta.url);return existsSync(url)?JSON.parse(readFileSync(url,'utf8')):{}}
 const fullHoldings=readOptional('dca-complete-holdings.json')
@@ -55,6 +56,8 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
   const compatibility=observation.compatibility||`${observation.classificationMetadata?.id || `${field}-support-${isin}`}:${observation.basis}`
   record[field]={asOf:observation.asOf,basis:observation.basis,sourceUrl:observation.sourceUrl,sourceUrls:observation.sourceUrls,method:observation.method||observation.classificationMetadata?.method,classificationLabel:observation.classificationMetadata?.label,compatibility,rows:observation.rows.map(r=>({name:r.label||r.name,weightPct:r.weightPct}))}
  }
+ const equityCharts=!synthetic&&equityChartObservations(complete)
+ if(equityCharts&&!record.outsideClassification)Object.assign(record,equityCharts)
  return [asset,record]
 }))
 const previousEquities=JSON.parse(readFileSync(new URL('../src/data/dca-equity-exposures.json',import.meta.url),'utf8'))
