@@ -143,7 +143,7 @@ try {
       opening.on('pageerror', error => errors.push(`${tool.to}: ${error.message}`))
       await opening.goto(`${base}/`, { waitUntil: 'networkidle' })
       const destination = await opening.locator('.workspace-tool-card').evaluateAll((cards, path) =>
-        cards.find(card => new URL(card.href).pathname.replace(/\\/$/, '').endsWith(path))?.getAttribute('href'), tool.to)
+        cards.find(card => new URL(card.href).pathname.endsWith(path))?.getAttribute('href'), tool.to)
       assert(destination, `Missing tool link: ${tool.to}`)
       await opening.locator(`.workspace-tool-card[href="${destination}"]`).first().click()
       await opening.locator('.workspace-home').waitFor({ state: 'detached' })
