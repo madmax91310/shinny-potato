@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import {chromium} from 'playwright'
 import {spawn} from 'node:child_process'
 import {mkdir,writeFile} from 'node:fs/promises'
+import {references} from '../src/pages/dca-profiles/engine.js'
 const base='http://127.0.0.1:4372/shinny-potato/'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4372'],{stdio:'ignore'})
 let browser,page
@@ -27,7 +28,9 @@ try{
  await page.getByRole('table').first().waitFor()
  const countryRows=await page.getByRole('table').first().locator('tbody tr').count()
  assert(countryRows>6,`Expected detailed physical World country table, received ${countryRows} rows`)
- assert((await page.locator('.dca-exposure-detail').innerText()).includes('80 % du portefeuille'))
+ // A refreshed physical fund may hold cash; only its observed equity sleeve belongs in this scope.
+ const pocket = Number((80 * (references.world.equitySleeve?.weightPct ?? 100) / 100).toFixed(2)).toLocaleString('fr-FR')
+ assert((await page.locator('.dca-exposure-detail').innerText()).includes(`${pocket} % du portefeuille`))
  await page.locator('.dca-simple-preview img').waitFor()
  await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
  const original=await page.getByAltText('Répartition et expositions du portefeuille').getAttribute('src')
@@ -64,3 +67,4 @@ try{
  console.log('Exposure UI: 80/15/5, complete detail, six categories, PNG, mobile and 36 canvas layouts verified.')
 }catch(error){await mkdir('test-artifacts/exposure-scope',{recursive:true});if(page&&!page.isClosed())await page.screenshot({path:'test-artifacts/exposure-scope/failure.png',fullPage:true});throw error}
 finally{await browser?.close();server.kill()}
+

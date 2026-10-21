@@ -160,8 +160,11 @@ export function buildTweet(result, title) {
   const stocks = participants.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))
   const count = ['zéro', 'une', 'deux', 'trois', 'quatre', 'cinq'][participants.length]
   const currency = ` (en ${result.coverage.currency})`
+  const confrontation = participants.length === 1
+    ? stocks ? 'Cette action a-t-elle battu' : 'Cet actif a-t-il battu'
+    : `Parmi ces ${count} ${stocks ? 'actions' : 'actifs'}, ${stocks ? 'lesquelles' : 'lesquels'} ont battu`
   const hook = benchmark
-    ? `Parmi ces ${count} ${stocks ? 'actions' : 'actifs'}, ${stocks ? 'lesquelles' : 'lesquels'} ont battu l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period}${currency} ? 👇`
+    ? `${confrontation} l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period}${currency} ? 👇`
     : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period}${currency} ? 👇`
   return `${hook}\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
 }
