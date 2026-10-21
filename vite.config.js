@@ -6,12 +6,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import {splitEtfRecords,splitInstrumentMetadataRecords,splitCharacteristicMetadataRecords} from './scripts/split-etf-records.mjs'
-import {splitCompanyRecords} from './scripts/split-company-records.mjs'
 import { dataBytesReport, withDataMarks } from './scripts/data-bytes-plugin.mjs'
 const issuerParts=splitEtfRecords()
 const metadataParts=splitInstrumentMetadataRecords()
 const characteristicParts=splitCharacteristicMetadataRecords()
-const companyParts=splitCompanyRecords()
 const toolData = projectToolData()
 
 // https://vite.dev/config/
@@ -30,9 +28,7 @@ export default defineConfig({
       ...issuerParts.groups,
       ...metadataParts.groups,
       ...characteristicParts.groups,
-      ...companyParts.groups,
       ...toolData.groups,
-      { name: 'company-observations', test: /company-analysis\.json$/, priority: 100 },
       { name: 'light-helpers', test: /(?:search-text|asset-labels|investment-presets|format-currency|publication-length)\.js$/, priority: 110 },
       { name: 'non-bond-monthly', test: /non-bond-monthly-records\.json$/, priority: 100 },
       { name: 'company-history-expansion', test: /non-bond-company-histories\.json$/ },
@@ -44,5 +40,5 @@ export default defineConfig({
   },
   // Data projections are marked so route budgets measure code, not monthly data growth.
   plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog()].map(withDataMarks), react(), tailwindcss(),
-    ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin, companyParts.plugin].map(withDataMarks), dataBytesReport()],
+    ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin].map(withDataMarks), dataBytesReport()],
 })

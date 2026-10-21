@@ -25,16 +25,12 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: pip install -r scripts/company-requirements.txt
       - run: npm ci
-      - run: python -m unittest discover -s scripts -p 'test_company_round*.py'
       - run: python scripts/validate_round3_funds.py
       - run: python scripts/collect_qualified_exposures.py --apply --only world-materials history-healthcare-innovation --output "$RUNNER_TEMP/round3-funds.json"
       - run: python scripts/refresh_index_sources.py --apply --require-complete --ids msci-world-materials msci-world-utilities --output "$RUNNER_TEMP/round3-indices.json"
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/round3-baseline.json"
       - run: python scripts/refresh_monthly_history.py --apply --baseline "$RUNNER_TEMP/round3-baseline.json" --only etfWorldMaterials etfWorldUtilities etfHealthcareInnovation etfCloudWisdomtree --output "$RUNNER_TEMP/round3-monthly.json"
-      - run: python scripts/refresh_company_analysis.py --apply --publications-only --only walmart netflix booking deere --output "$RUNNER_TEMP/round3-companies.json"
       - run: python scripts/refresh_anniversary_levels.py --apply --only etfWorldMaterials etfWorldUtilities etfHealthcareInnovation etfCloudWisdomtree --output "$RUNNER_TEMP/round3-latest-levels.json"
-      - run: node scripts/test-company-analysis.mjs
-      - run: node scripts/test-company-decision.mjs
       - run: node scripts/test-qualified-exposures.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-monthly-consumers.mjs
@@ -46,7 +42,6 @@ jobs:
       - run: npm run audit:data-provenance
       - run: npm run build
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/test-company-analysis-ui.mjs
       - run: node scripts/playwright-tools.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()

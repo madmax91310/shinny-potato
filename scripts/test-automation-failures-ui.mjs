@@ -12,12 +12,12 @@ try {
  let status={schemaVersion:1,workflows:{economic:{name:'Données économiques',status:'success',completedAt:'2026-10-07T10:00:00Z',lastSuccessAt:'2026-10-01T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1',dataFailures:{wealth:{name:'Patrimoine des ménages',completedAt:'2026-10-07T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}}
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({json:status}))
  await page.goto('http://127.0.0.1:4317/shinny-potato/donnees-a-revoir',{waitUntil:'networkidle'})
- const shared=page.locator('details').filter({has:page.locator('summary',{hasText:'Actions, historiques et expositions hors Analyse d’entreprise'})})
+ const shared=page.locator('details').filter({has:page.locator('summary',{hasText:'Actions, historiques et expositions'})})
  await shared.locator('summary').click()
  const report=await (await page.request.get('http://127.0.0.1:4317/shinny-potato/data/shared-market-coverage.json')).json()
  assert.equal(report.errors.length,0)
  await shared.getByText(`${report.summary.histories} historiques`,{exact:false}).waitFor()
- assert.match(await shared.textContent(),/Les actions utilisées ailleurs restent incluses/)
+ assert.match(await shared.textContent(),/Les actions utilisées par les outils restent incluses/)
  assert.equal(await shared.getByRole('link').getAttribute('href'),'/shinny-potato/data/shared-market-coverage.json')
  const section=page.getByRole('region',{name:'Échecs des mises à jour automatiques'})
  await section.getByRole('heading',{name:'Patrimoine des ménages'}).waitFor()
@@ -51,9 +51,9 @@ try {
  assert.match(await overview.textContent(),/10\/10\/2026/)
  assert.match(await overview.textContent(),/09\/10\/2026/)
 
- status={schemaVersion:1,workflows:{'update-company-analysis.yml':{name:'Analyse entreprises',status:'failure',collectionStatus:'success',recordingStatus:'failure',publicationStatus:'not-run',runUrl:'https://github.com/test/repo/actions/runs/3'}}}
+ status={schemaVersion:1,workflows:{'update-scpi.yml':{name:'SCPI de test',status:'failure',collectionStatus:'success',recordingStatus:'failure',publicationStatus:'not-run',runUrl:'https://github.com/test/repo/actions/runs/3'}}}
  await page.reload({waitUntil:'networkidle'})
- status.recovery={'update-company-analysis.yml':{status:'waiting',reason:'recording-failed',nextAttemptAt:'2026-10-19T16:00:00Z'}}
+ status.recovery={'update-scpi.yml':{status:'waiting',reason:'recording-failed',nextAttemptAt:'2026-10-19T16:00:00Z'}}
  await page.reload({waitUntil:'networkidle'})
  await overview.getByText('Enregistrement en échec',{exact:true}).waitFor()
  await overview.getByRole('status').filter({hasText:'Reprise automatique : Nouvelle tentative programmée'}).waitFor()
@@ -67,10 +67,10 @@ try {
  assert.match(await overview.textContent(),/L’enregistrement des données validées a échoué/)
  assert.equal(await overview.getByText('Collecte en échec',{exact:true}).count(),0)
 
- status={schemaVersion:1,workflows:{'update-company-analysis.yml':{name:'Analyse entreprises',status:'failure',collectionStatus:'success',validationStatus:'failure',recordingStatus:'not-run',publicationStatus:'not-run'}}}
+ status={schemaVersion:1,workflows:{'update-scpi.yml':{name:'SCPI de test',status:'failure',collectionStatus:'success',validationStatus:'failure',recordingStatus:'not-run',publicationStatus:'not-run'}}}
  await page.reload({waitUntil:'networkidle'})
  await overview.getByText('Validation en échec',{exact:true}).waitFor()
- const validationRow=overview.locator(':scope > .dr-list > .dr-item').filter({has:page.getByRole('heading',{name:'Analyse entreprises',exact:true})})
+ const validationRow=overview.locator(':scope > .dr-list > .dr-item').filter({has:page.getByRole('heading',{name:'SCPI de test',exact:true})})
  for(const phase of ['Collecte','Validation','Enregistrement','Publication'])assert.equal(await validationRow.getByText(`${phase} de cette exécution`,{exact:true}).count(),1)
  assert.match(await validationRow.textContent(),/Leur enregistrement est bloqué/)
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))

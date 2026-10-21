@@ -5,3 +5,16 @@ export function prioritizeIncidents(rows) {
     || String(a.firstSeenAt ?? '').localeCompare(String(b.firstSeenAt ?? ''))
     || String(a.id).localeCompare(String(b.id)))
 }
+
+export function groupIncidents(rows){
+ const groups=new Map()
+ for(const row of prioritizeIncidents(rows)){
+  // Same collector, field and cause only. Different source hosts or currencies
+  // remain separate; changing a check date does not create another root cause.
+  const cause=String(row.cause??'Cause non documentée').replace(/\b\d{4}-\d{2}-\d{2}(?:T[\d:.+Z-]+)?\b/g,'[date]')
+  const key=JSON.stringify([row.workflow??'',row.kind,row.field,cause,row.currency??''])
+  if(!groups.has(key))groups.set(key,{id:key,cause:row.cause,kind:row.kind,field:row.field,rows:[],tools:[]})
+  const group=groups.get(key);group.rows.push(row);group.tools=[...new Set([...group.tools,...(row.tools??[])])]
+ }
+ return [...groups.values()]
+}

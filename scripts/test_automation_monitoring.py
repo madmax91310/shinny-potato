@@ -12,6 +12,20 @@ def evaluate(state, context=CONTEXT, now=NOW, radar=None):
     return evaluate_monitoring(state, context, REGISTRY, now, {'errors': []} if radar is None else radar)
 
 class MonitoringTests(unittest.TestCase):
+    def test_retired_tool_is_not_a_data_recovery_and_other_alerts_remain(self):
+        state = copy.deepcopy(STATE)
+        state['monitoring'] = {'active': {
+            'old-company': {'id':'old-company','workflow':'update-company-analysis.yml','name':'Comptes','kind':'collection','tools':['Analyse d’entreprise']},
+            'history:still-failed': {'id':'history:still-failed','name':'Change','kind':'history','tools':['Performances']}
+        }}
+        result = evaluate(state)
+        self.assertEqual([r['id'] for r in result['retired']], ['old-company'])
+        self.assertNotIn('old-company', [r['id'] for r in result['resolved']])
+        self.assertIn('history:still-failed', result['active'])
+        state['monitoring'] = result
+        again = evaluate(state)
+        self.assertEqual(len(again['retired']), 1)
+
     def test_failure_keeps_first_seen_and_recovers_once(self):
         state = copy.deepcopy(STATE)
         state['workflows']['x.yml']['dataFailures'] = {'index-world-composition': {'cause': 'Missing weights'}}

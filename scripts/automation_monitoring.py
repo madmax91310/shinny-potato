@@ -3,6 +3,9 @@ import datetime as dt
 import hashlib
 import json
 import re
+from pathlib import Path
+
+RETIRED_WORKFLOWS = json.loads((Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
 
 MARKER = '<!-- data-reliability-monitor:v1 -->'
 QUIET_HOURS = 6  # minimum spacing between comments that only report checks or recoveries
@@ -106,7 +109,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
-    resolved = [{**row, 'resolvedAt': now} for key, row in old.items() if key not in active]
+    retired = [{**row, 'retiredAt': now, 'retirementReason': RETIRED_WORKFLOWS[row['workflow']]['reason']}
+               for key, row in old.items() if key not in active and row.get('workflow') in RETIRED_WORKFLOWS]
+    resolved = [{**row, 'resolvedAt': now} for key, row in old.items()
+                if key not in active and row.get('workflow') not in RETIRED_WORKFLOWS]
     opened = [row for key, row in active.items() if key not in old]
     # A date/run change alone is not a new incident. Notify only an increased
     # severity, wider impact or additional missing/invalid periods.
@@ -114,13 +120,14 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     escalated = [row for key, row in active.items() if key in old and (
         severity.get(row.get('kind'), 1) > severity.get(old[key].get('kind'), 1)
         or any(set(row.get(field, [])) - set(old[key].get(field, [])) for field in ('tools', 'missingPeriods', 'invalidPeriods')))]
-    changed = bool(opened or resolved or escalated)
+    changed = bool(opened or resolved or escalated or retired)
     revision = previous.get('revision', 0) + int(changed)
     events = previous.get('events', [])
     if changed:
-        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved, 'escalated': [r['id'] for r in escalated]}][-30:]
+        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved, 'retired': retired, 'escalated': [r['id'] for r in escalated]}][-30:]
     return {'schemaVersion': 1, 'checkedAt': now, 'revision': revision, 'active': active, 'events': events,
-            'resolved': [*resolved, *previous.get('resolved', [])][:100]}
+            'resolved': [*resolved, *previous.get('resolved', [])][:100],
+            'retired': [*retired, *previous.get('retired', [])][:500]}
 
 
 def safe(value):

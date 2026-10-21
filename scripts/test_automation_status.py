@@ -13,14 +13,14 @@ def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
 class StatusTests(unittest.TestCase):
  def test_explicit_fresh_quarter_closes_only_its_own_incident(self):
   def report(rows):return {'_collector':'company-universe-observation','companies':rows}
-  initial=update_status({},run(workflow='update-company-analysis.yml'),[],[report({
+  initial=update_status({},run(workflow='update-scpi.yml'),[],[report({
       'a':{'quarter':'retained with original observation date; annual-only fallback'},
       'b':{'quarter':'retained with original observation date; annual-only fallback'}})])
-  accounts_only=update_status(initial,run(2,workflow='update-company-analysis.yml'),[],[report({'a':{'accounts':'updated'}})])
-  failures=accounts_only['workflows']['update-company-analysis.yml']['dataFailures']
+  accounts_only=update_status(initial,run(2,workflow='update-scpi.yml'),[],[report({'a':{'accounts':'updated'}})])
+  failures=accounts_only['workflows']['update-scpi.yml']['dataFailures']
   self.assertIn('company-universe-observation:a:quarter',failures)
-  recovered=update_status(accounts_only,run(3,workflow='update-company-analysis.yml'),[],[report({'a':{'accounts':'updated','quarter':'updated'}})])
-  failures=recovered['workflows']['update-company-analysis.yml']['dataFailures']
+  recovered=update_status(accounts_only,run(3,workflow='update-scpi.yml'),[],[report({'a':{'accounts':'updated','quarter':'updated'}})])
+  failures=recovered['workflows']['update-scpi.yml']['dataFailures']
   self.assertNotIn('company-universe-observation:a:quarter',failures)
   self.assertIn('company-universe-observation:b:quarter',failures)
 
@@ -34,7 +34,7 @@ class StatusTests(unittest.TestCase):
 
  def test_four_phases_with_validation_failure_and_setup_failure(self):
   from publish_automation_status import REGISTRY
-  workflow='update-company-analysis.yml';config=REGISTRY[workflow]
+  workflow='update-scpi.yml';config=REGISTRY[workflow]
   def evaluate(steps, conclusion='failure'):
    return update_status({},run(workflow=workflow,conclusion=conclusion),[{'name':config['collectionJob'],'conclusion':conclusion,'steps':steps}],[])['workflows'][workflow]
   collected=[{'name':n,'conclusion':'success'} for n in config['collectionSteps']]
@@ -55,13 +55,13 @@ class StatusTests(unittest.TestCase):
  def test_recording_failure_is_distinct_from_collection(self):
   jobs=[{'name':'refresh','conclusion':'failure','steps':[{'name':'Commit validated observations','conclusion':'failure'}]}]
   report={'successes':[{'id':'company:A'}], 'errors':[]}
-  row=update_status({},run(workflow='update-company-analysis.yml'),jobs,[report])['workflows']['update-company-analysis.yml']
+  row=update_status({},run(workflow='update-scpi.yml'),jobs,[report])['workflows']['update-scpi.yml']
   self.assertEqual(row['collectionStatus'],'success')
   self.assertEqual(row['recordingStatus'],'failure')
   self.assertEqual(row['publicationStatus'],'not-run')
   self.assertEqual(row['status'],'failure')
   report['errors']=[{'id':'company:B','error':'Source unavailable'}]
-  row=update_status({},run(workflow='update-company-analysis.yml'),jobs,[report])['workflows']['update-company-analysis.yml']
+  row=update_status({},run(workflow='update-scpi.yml'),jobs,[report])['workflows']['update-scpi.yml']
   self.assertEqual(row['collectionStatus'],'failure')
   self.assertEqual(row['recordingStatus'],'failure')
  def test_insee_requires_a_real_production_collection_even_without_changes(self):

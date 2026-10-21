@@ -156,6 +156,8 @@ jobs:
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-market-publication.sh
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

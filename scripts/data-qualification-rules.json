@@ -3,12 +3,113 @@
   "reviewedAt": "2026-10-20",
   "description": "Rôles de code examinés ; cette date qualifie le rôle du module et ne renouvelle aucune preuve financière. Les valeurs de secours restent signalées tant que leur remplacement champ par champ n'est pas établi.",
   "groups": [
-    {"role":"logic","reason":"Fonctions de sélection, traduction, calcul ou projection ; aucun chiffre courant à collecter dans ce module.","paths":["annual-window.js","asset-labels.js","automated-characteristics.js","catalog-browser.js","catalog-search.js","evidence.js","exposure-observations.js","french-characteristics.js","history-selection.js","index-comparison-composition.js","index-comparison-pairs.js","maintenance-links.js","pea-group-status.js","review-projection.js","search-text.js","src/pages/performance-rankings/engine.js"]},
-    {"role":"configuration","reason":"Configuration des contrôles, conventions ou identités ; changements sur évolution du contrat, avec revue du code.","paths":["automation-workflows.json","benchmark-changes.js","benchmark-changes.json","company-release-cohort.json","exposure-etf-expansion.js","freshness-policy.json","global-equities.json","investor-roster.js","pea-sector-completion.js","presentation-etf-additions.js","presentation-etf-expansion.js"]},
-    {"role":"editorial","reason":"Choix éditoriaux et textes ; les valeurs variables sont résolues dans les registres partagés. La rédaction ne constitue pas une mesure financière.","paths":["distinct-asset-selections.js","editorial-calendar.js","household-editorial.js","index-comparison-editorial.js","investor-profiles.js","market-story-selection.js","practical-sheet-topics.js","qualified-etf-comparisons.js","resource-selections.js","routing-presentations.js","src/pages/investor-portfolio/data.js","src/pages/practical-sheets/data.js"]},
-    {"role":"simulation","reason":"Hypothèses, allocations pédagogiques ou proxies explicitement distincts des observations de marché ; ne pas les remplacer par un cours ou un rendement de la part.","paths":["investment-presets.js","simulation-proxies.js","src/pages/fee-impact/data.js","src/pages/portfolio-duels/data.js","src/pages/portfolio-generator/theses.js"]},
-    {"role":"historical-fallback","reason":"Relevés ou preuves historiques conservés ; les registres de consommation privilégient les observations automatiques. Vérifier le remplacement pour chaque champ avant d'affirmer une autonomie complète.","paths":["archive-source-review.js","company-history-additions.js","company-history.js","comparator-return-evidence.js","diversification-history.js","exposure-additions.js","index-comparison-return-additions.js","index-composition-review.js","index-exposure-additions.js","index-source-review.js","instrument-performance-review.js","monthly-history-additions.js","msci-history.js","new-index-returns.js","non-bond-company-histories.json","property-infrastructure-additions.js","verified-returns.js","world-factor-additions.js"]},
-    {"role":"manual-observation","reason":"Observation manuelle datée, conservée dans son propre périmètre ; ne pas la présenter comme une nouvelle collecte. Comparer avec la preuve automatique courante sans fusionner les devises ou périmètres.","paths":["instrument-aum-observations.js","reviewed-broker-profiles.json"]},
-    {"role":"mixed-or-derived","reason":"Rapport calculé par build-etf-completeness.mjs depuis les observations des parts ; la date de génération ne renouvelle pas leurs preuves.","paths":["etf-completeness.json"]}
+    {
+      "role": "logic",
+      "reason": "Fonctions de sélection, traduction, calcul ou projection ; aucun chiffre courant à collecter dans ce module.",
+      "paths": [
+        "annual-window.js",
+        "asset-labels.js",
+        "automated-characteristics.js",
+        "catalog-browser.js",
+        "catalog-search.js",
+        "evidence.js",
+        "exposure-observations.js",
+        "french-characteristics.js",
+        "history-selection.js",
+        "index-comparison-composition.js",
+        "index-comparison-pairs.js",
+        "maintenance-links.js",
+        "pea-group-status.js",
+        "review-projection.js",
+        "search-text.js",
+        "src/pages/performance-rankings/engine.js"
+      ]
+    },
+    {
+      "role": "configuration",
+      "reason": "Configuration des contrôles, conventions ou identités ; changements sur évolution du contrat, avec revue du code.",
+      "paths": [
+        "automation-workflows.json",
+        "benchmark-changes.js",
+        "benchmark-changes.json",
+        "exposure-etf-expansion.js",
+        "freshness-policy.json",
+        "global-equities.json",
+        "investor-roster.js",
+        "pea-sector-completion.js",
+        "presentation-etf-additions.js",
+        "presentation-etf-expansion.js",
+        "retired-automations.json",
+        "equity-candidates.json"
+      ]
+    },
+    {
+      "role": "editorial",
+      "reason": "Choix éditoriaux et textes ; les valeurs variables sont résolues dans les registres partagés. La rédaction ne constitue pas une mesure financière.",
+      "paths": [
+        "distinct-asset-selections.js",
+        "editorial-calendar.js",
+        "household-editorial.js",
+        "index-comparison-editorial.js",
+        "investor-profiles.js",
+        "market-story-selection.js",
+        "practical-sheet-topics.js",
+        "qualified-etf-comparisons.js",
+        "resource-selections.js",
+        "routing-presentations.js",
+        "src/pages/investor-portfolio/data.js",
+        "src/pages/practical-sheets/data.js"
+      ]
+    },
+    {
+      "role": "simulation",
+      "reason": "Hypothèses, allocations pédagogiques ou proxies explicitement distincts des observations de marché ; ne pas les remplacer par un cours ou un rendement de la part.",
+      "paths": [
+        "investment-presets.js",
+        "simulation-proxies.js",
+        "src/pages/fee-impact/data.js",
+        "src/pages/portfolio-duels/data.js",
+        "src/pages/portfolio-generator/theses.js"
+      ]
+    },
+    {
+      "role": "historical-fallback",
+      "reason": "Relevés ou preuves historiques conservés ; les registres de consommation privilégient les observations automatiques. Vérifier le remplacement pour chaque champ avant d'affirmer une autonomie complète.",
+      "paths": [
+        "archive-source-review.js",
+        "company-history-additions.js",
+        "company-history.js",
+        "comparator-return-evidence.js",
+        "diversification-history.js",
+        "exposure-additions.js",
+        "index-comparison-return-additions.js",
+        "index-composition-review.js",
+        "index-exposure-additions.js",
+        "index-source-review.js",
+        "instrument-performance-review.js",
+        "monthly-history-additions.js",
+        "msci-history.js",
+        "new-index-returns.js",
+        "non-bond-company-histories.json",
+        "property-infrastructure-additions.js",
+        "verified-returns.js",
+        "world-factor-additions.js"
+      ]
+    },
+    {
+      "role": "manual-observation",
+      "reason": "Observation manuelle datée, conservée dans son propre périmètre ; ne pas la présenter comme une nouvelle collecte. Comparer avec la preuve automatique courante sans fusionner les devises ou périmètres.",
+      "paths": [
+        "instrument-aum-observations.js",
+        "reviewed-broker-profiles.json"
+      ]
+    },
+    {
+      "role": "mixed-or-derived",
+      "reason": "Rapport calculé par build-etf-completeness.mjs depuis les observations des parts ; la date de génération ne renouvelle pas leurs preuves.",
+      "paths": [
+        "etf-completeness.json"
+      ]
+    }
   ]
 }

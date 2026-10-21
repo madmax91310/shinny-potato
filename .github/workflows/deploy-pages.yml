@@ -129,13 +129,6 @@ jobs:
       - run: node scripts/test-presentation-etf.mjs
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
-      - run: node scripts/test-company-analysis.mjs
-      - run: node scripts/test-company-valuation.mjs
-      - run: node scripts/test-company-release.mjs
-      - run: node scripts/test-company-independent.mjs
-      - run: node scripts/test-company-professional.mjs
-      - run: node scripts/test-company-context.mjs
-      - run: node scripts/test-company-forecast-ledger.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
@@ -147,6 +140,7 @@ jobs:
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
+      - run: node scripts/test-consumer-usage.mjs
       - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-closed-pr-validation.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
@@ -352,7 +346,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
-      - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_support_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
@@ -369,6 +362,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'

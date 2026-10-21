@@ -14,7 +14,7 @@ try {
   {id:'known',name:'Qualified fixture',symbol:'KNOWN',currency:'USD',sourceUrl:'https://example.com/known'},
   {id:'new-company',name:'Newly promoted financial profile',symbol:'NEW',currency:'USD',qualifiedAt:'2026-10-19',sourceUrl:'https://example.com/accounts'},
  ]
- write('src/data/company-profiles.json',profiles)
+ write('src/data/equity-candidates.json',profiles)
  // Historical aliases all resolve to the one synthetic qualified fixture.
  write('src/data/market-history.js',"export const ASSETS=new Proxy({}, {get:(_target,key)=>({label:String(key),currency:'USD',isin:'US0378331005'})})")
  write('src/data/company-history.js','export const COMPANY_HISTORY={}')
@@ -34,7 +34,7 @@ try {
  assert.equal(gap.field,'identity')
  assert.equal(gap.sourceUrl,'https://example.com/accounts')
  assert(gap.tools.includes('dca-profiles'))
- assert.deepEqual(JSON.parse(readFileSync(path.join(root,'src/data/company-profiles.json'))),profiles,'The financial-analysis catalogue is preserved')
+ assert.deepEqual(JSON.parse(readFileSync(path.join(root,'src/data/equity-candidates.json'))),profiles,'The financial-analysis catalogue is preserved')
  write('scripts/dca-equity-extra-identities.json',{'new-company':'US5949181045'})
  assert.equal(equityUniverse()['new-company'].isin,'US5949181045','An explicitly qualified identity can join automatically')
  assert(!equityExposureGaps().some(r=>r.id==='new-company'),'The identity gap resolves once the source mapping exists')

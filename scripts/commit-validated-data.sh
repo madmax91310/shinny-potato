@@ -41,7 +41,7 @@ else
     fi
     git -C "$task_dir/checkout" rebase FETCH_HEAD
     if [[ -n "${VALIDATED_DATA_CHECK:-}" ]]; then
-      (cd "$task_dir/checkout" && bash -e -c "$VALIDATED_DATA_CHECK")
+      (cd "$task_dir/checkout" && VALIDATED_DATA_ORIGINAL_BASE="$base" bash -e -c "$VALIDATED_DATA_CHECK")
     fi
     if git -C "$task_dir/checkout" push origin HEAD:master; then
       result=$(git -C "$task_dir/checkout" rev-parse HEAD)

@@ -5,7 +5,6 @@ import types
 import unittest
 from unittest.mock import patch
 import collect_non_bond_expansion as funds
-import company_round4_publications as companies
 
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/non-bond'
 TODAY=dt.date(2026,10,13)
@@ -72,19 +71,4 @@ class NonBondSources(unittest.TestCase):
   observation['record']['responseSha256']='new'
   result=merge_monthly_evidence(previous,[observation])
   self.assertEqual(result['asset']['responseSha256'],'new');self.assertNotIn('rawResponse',result['asset'])
- def test_nike_actual_fiscal_dates_and_percent_columns(self):
-  raw=(FIXTURES/'nike-income.html').read_bytes()
-  row=companies.parse(raw,'nike','https://investors.nike.com/release',TODAY)[0]
-  self.assertEqual(row['end'],'2026-08-31');self.assertEqual(row['revenue'],11_213_000_000)
-  self.assertEqual(row['dilutedEPS'],.48)
-  self.assertRaises(ValueError,companies.parse,raw.replace(b'NIKE, Inc.',b'Another issuer'), 'nike','https://issuer.example',TODAY)
- def test_disney_parent_income_matches_eps_not_consolidated_income(self):
-  text=(FIXTURES/'disney-income.txt').read_text()
-  pdf=types.SimpleNamespace(pages=[types.SimpleNamespace(extract_text=lambda **kw:text)])
-  with patch.object(companies.pdfplumber,'open')as opened:
-   opened.return_value.__enter__.return_value=pdf
-   quarters=companies.parse(b'%PDF fixture','disney','https://s206.q4cdn.com/release',TODAY)
-  q=next(r for r in quarters if r['durationMonths']==3)
-  self.assertEqual(q['netIncome'],1_313_000_000);self.assertEqual(q['incomeBasis'],'part du groupe')
-  self.assertRaises(ValueError,companies.parse,b'Not a PDF','disney','https://issuer.example',TODAY)
 if __name__=='__main__':unittest.main()
