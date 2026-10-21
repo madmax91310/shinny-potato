@@ -106,6 +106,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
+      - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: node scripts/test-performance-rankings.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
@@ -362,6 +365,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'

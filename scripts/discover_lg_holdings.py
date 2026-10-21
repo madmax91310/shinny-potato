@@ -38,7 +38,15 @@ def document_link(page,share):
     return 'https://fundcentres.landg.com'+parsed.path
 
 def collect(share,now,fetch=download,page_fetch=public_page):
-    page=page_fetch(share['pageUrl']);url=document_link(page,share);body=fetch(url)
+    page=page_fetch(share['pageUrl'])
+    try:url=document_link(page,share)
+    except ValueError as error:
+        # The browser-facing route sometimes serves the generic fund explorer.
+        # Retry the same official URL as a document; exact share checks still apply.
+        if str(error)!='Missing or ambiguous L&G share state':raise
+        page=fetch(share['pageUrl']).decode('utf-8')
+        url=document_link(page,share)
+    body=fetch(url)
     text=body.decode('utf-8-sig')
     evidence={'discoveredSourceUrl':url,'identitySourceUrl':share['pageUrl'],
               'identitySha256':hashlib.sha256(page.encode()).hexdigest(),'sourceSha256':hashlib.sha256(body).hexdigest()}

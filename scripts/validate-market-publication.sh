@@ -8,6 +8,8 @@ fi
 npm ci --ignore-scripts
 python -m unittest discover -s scripts -p 'test_monthly_automation.py'
 python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+python -m unittest discover -s scripts -p 'test_market_transport.py'
 node scripts/build-equity-history-links.mjs
 node scripts/build-ranking-annual.mjs
 node scripts/build-monthly-duel-returns.mjs

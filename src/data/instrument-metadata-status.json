@@ -2174,24 +2174,21 @@
     }
   },
   "IE000716YHJ7": {
-    "checkedAt": "2026-10-21T09:35:41.081407+00:00",
+    "checkedAt": "2026-10-21T10:35:43.487084+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
       "currencyHedge",
       "distribution",
-      "listings"
-    ],
-    "pending": [
+      "listings",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       },
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
@@ -2203,19 +2200,15 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE000716YHJ7",
-        "error": "No public exact-share fund reference found"
-      },
-      {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE000716YHJ7",
-        "error": "No explicit supported metadata fields"
+        "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+        "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
       }
     ],
     "fields": {
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2224,7 +2217,8 @@
           "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
           "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2232,7 +2226,7 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2241,7 +2235,8 @@
           "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
           "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2249,7 +2244,7 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2258,53 +2253,16 @@
           "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
           "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
-        "lastSuccessAt": null,
-        "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
-          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
-          "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
-        ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE000716YHJ7",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE000716YHJ7",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
-      },
-      "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2313,7 +2271,26 @@
           "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
           "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "currencyHedge": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
+        "lastSuccessAt": "2026-10-21",
+        "sourceUrls": [
+          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
+          "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2321,7 +2298,7 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2330,7 +2307,8 @@
           "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
           "https://extraetf.com/fr/etf-profile/IE000716YHJ7",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE000716YHJ7",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2338,20 +2316,17 @@
     }
   },
   "IE0000QLH0G6": {
-    "checkedAt": "2026-10-21T09:35:41.081407+00:00",
+    "checkedAt": "2026-10-21T10:35:43.487084+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
       "currencyHedge",
       "distribution",
-      "listings"
-    ],
-    "pending": [
+      "listings",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
@@ -2363,19 +2338,15 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
-        "error": "No public exact-share fund reference found"
-      },
-      {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
-        "error": "No explicit supported metadata fields"
+        "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+        "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
       }
     ],
     "fields": {
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2383,7 +2354,8 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
           "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2391,7 +2363,7 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2399,7 +2371,8 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
           "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2407,7 +2380,7 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2415,48 +2388,16 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
           "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
-        "lastSuccessAt": null,
-        "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
-          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-          "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
-          "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
-        ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
-      },
-      "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2464,7 +2405,25 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
           "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "currencyHedge": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
+        "lastSuccessAt": "2026-10-21",
+        "sourceUrls": [
+          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
+          "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -2472,7 +2431,7 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2480,7 +2439,8 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://bourse.fortuneo.fr/api/search?term=IE0000QLH0G6",
           "https://extraetf.com/fr/etf-profile/IE0000QLH0G6",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0000QLH0G6",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15210,69 +15170,28 @@
     }
   },
   "IE00B579F325": {
-    "checkedAt": "2026-10-21T09:35:41.081407+00:00",
+    "checkedAt": "2026-10-21T10:35:43.487084+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
       "currencyHedge",
+      "distribution",
       "pea",
       "listings"
     ],
-    "pending": [
-      "distribution"
-    ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T21:37:49.441988+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
-        "lastSuccessAt": "2026-10-20",
-        "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-          "https://bourse.fortuneo.fr/trackers/cours-inve-phys-gold-etc-SGLD-IE00B579F325-46",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
-          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
-        ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
-      },
-      "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15281,7 +15200,26 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "domicile": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
+        "lastSuccessAt": "2026-10-21",
+        "sourceUrls": [
+          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+          "https://bourse.fortuneo.fr/trackers/cours-inve-phys-gold-etc-SGLD-IE00B579F325-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15289,7 +15227,7 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15298,7 +15236,8 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15306,7 +15245,7 @@
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15315,7 +15254,8 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15323,7 +15263,7 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15332,7 +15272,8 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15340,7 +15281,7 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15349,7 +15290,8 @@
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325"
+          "https://bourse.fortuneo.fr/api/search?term=IE00B579F325",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15357,33 +15299,21 @@
     }
   },
   "IE00BD6FTQ80": {
-    "checkedAt": "2026-10-21T09:35:41.081407+00:00",
+    "checkedAt": "2026-10-21T10:35:43.487084+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "listings"
-    ],
-    "pending": [
       "distribution",
+      "listings",
       "pea"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-21T09:35:41.081407+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       },
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
@@ -15395,19 +15325,15 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-        "error": "No public exact-share fund reference found"
-      },
-      {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-        "error": "No explicit supported metadata fields"
+        "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+        "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15417,44 +15343,16 @@
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15464,7 +15362,8 @@
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15472,7 +15371,7 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15482,62 +15381,16 @@
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
-        "lastSuccessAt": null,
-        "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-          "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
-          "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
-        ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
-      },
-      "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15547,7 +15400,27 @@
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
+        ],
+        "cause": null,
+        "sourceErrors": []
+      },
+      "currencyHedge": {
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
+        "lastSuccessAt": "2026-10-21",
+        "sourceUrls": [
+          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
+          "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15555,7 +15428,7 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-21T09:35:41.081407+00:00",
+        "lastAttemptAt": "2026-10-21T10:35:43.487084+00:00",
         "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15565,7 +15438,8 @@
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
+          "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80",
+          "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin"
         ],
         "cause": null,
         "sourceErrors": []

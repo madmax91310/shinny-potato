@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
 from data_automation import UTC, get_json, number, reject, write_json_atomic
+from market_transport import chart_response
 from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
@@ -56,7 +57,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             url = 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
                 'period1':int(dt.datetime.combine(start,dt.time(),UTC).timestamp()),
                 'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
-            body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
+            body,url=chart_response(url,json_fetch); rows, zone=yahoo_chart(body,config,'1d')
             asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
     elif parser == 'msci':
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({

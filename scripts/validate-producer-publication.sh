@@ -22,6 +22,7 @@ case "$1" in
     python -m unittest discover -s scripts -p 'test_physical_holdings.py'
     python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
     python -m unittest discover -s scripts -p 'test_wisdomtree*py'
+    python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
     python -m unittest discover -s scripts -p 'test_lg_discovery.py'
     ;;
   non-bond)

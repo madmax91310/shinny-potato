@@ -9,9 +9,11 @@ import pathlib
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote
+import urllib.error
 from data_automation import UTC, get_json, month_shift, reject, write_json_atomic
 from issuer_documents import download
 from refresh_monthly_history import collect_one, months
+from market_transport import chart_response
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ECB = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
@@ -109,7 +111,7 @@ def cross_value(per_usd, usd_per_eur):
     return float((Decimal(str(per_usd)) * Decimal(str(usd_per_eur))).quantize(Decimal('0.0001'), rounding=ROUND_HALF_UP))
 
 
-def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
+def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', source_url=None):
     """TWD per EUR at the latest day of each completed month where both official series publish."""
     usd_per_eur = ecb_daily_usd(ecb_body)
     per_usd = parse_fred_series(fred_body, series)
@@ -132,7 +134,7 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
         next_month = month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date()
         if (next_month - dt.date.fromisoformat(row['asOf'])).days > 7:
             reject('Stale cross-rate month-end observation')
-    return {'sourceUrl': CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
+    return {'sourceUrl': source_url or CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
             'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
             'convention': f'{currency} per EUR = Federal Reserve H.10 noon buying rate ({currency} per USD, FRED {series}) '
                           '× ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places',
@@ -173,7 +175,8 @@ def collect_source(source, now):
     if source['parser'] == 'yahoo' and source.pop('discoverStart', False):
         # Ask the provider for the exact listing's inception; never prepend proxy prices.
         meta_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + quote(source['symbol'], safe='') + '?range=1mo&interval=1d'
-        meta = get_json(meta_url)['chart']['result'][0]['meta']
+        response, _ = chart_response(meta_url, get_json)
+        meta = response['chart']['result'][0]['meta']
         if meta['symbol'] != source['symbol'] or meta['currency'] != source['currency']:
             reject('Long-history listing identity mismatch')
         if source.get('isin') and meta.get('instrumentType') not in (('ETF', 'MUTUALFUND', 'EQUITY') if source.get('instrumentType') == 'ETC' and source.get('listingSourceUrl', '').startswith('https://www.invesco.com/') else ('ETF', 'MUTUALFUND')):
@@ -184,6 +187,22 @@ def collect_source(source, now):
     result = collect_one(source, now)
     validate_record(result)
     return result
+
+
+def cross_fx_document(currency, now, fetch=None):
+    """Bounded access fallback for the same official series and complete needed window."""
+    fetch = fetch or download
+    canonical = CROSS_SERIES[currency]
+    # Request only the period consumed by EUR conversions, instead of all data since 1971.
+    window = canonical + '&cosd=1999-01-01&coed=' + now.date().isoformat()
+    attempts = []
+    for url, timeout in [(window, 25), (canonical, 60)]:
+        try:
+            body = fetch(url, max_bytes=4_000_000, timeout=timeout, max_attempts=2)
+            return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded'}]
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            attempts.append({'sourceUrl':url, 'error':str(error)})
+    raise ValueError('Official cross-rate access failed: ' + ' | '.join(a['sourceUrl'] + ': ' + a['error'] for a in attempts))
 
 
 def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
@@ -219,11 +238,13 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
     derived = copy.deepcopy(old_fx.get('derived', {}))
     for currency in due:
         try:
-            cross = parse_cross_fx(download(CROSS_SERIES[currency], max_bytes=4_000_000, timeout=60, max_attempts=4), body, now, currency)
+            raw, source_url, attempts = cross_fx_document(currency, now)
+            cross = parse_cross_fx(raw, body, now, currency, source_url=source_url)
+            cross['sourceAttempts'] = attempts
             if not set(derived.get(currency, {}).get('observations', {})).issubset(cross['observations']):
                 reject(f'{currency} cross-rate coverage would regress')
             derived[currency] = cross
-            reports[currency] = {'id': 'fx:' + currency, 'status': 'validated', 'checkedAt': checked}
+            reports[currency] = {'id': 'fx:' + currency, 'status': 'validated', 'checkedAt': checked, 'sourceUrl':source_url, 'sourceAttempts':attempts}
             print(currency, 'cross FX:', len(cross['observations']), 'months', flush=True)
         except Exception as error:
             reports[currency] = {'id': 'fx:' + currency, 'status': 'failed', 'checkedAt': checked, 'reason': str(error)}

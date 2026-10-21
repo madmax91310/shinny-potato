@@ -1801,26 +1801,26 @@
     "domicile": {
       "value": "Ireland",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
-      "sha256": "53091e40b58473235f3ffcf1c2ef986fb587ac70921f592c09c1c771f277d79a"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin",
+      "sha256": "c49ac4f647a263aee59a7e16fb3b3a69c5a52a9b270dc41796b8164bdf65c610"
     },
     "replicationMethod": {
       "value": "Physical",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
-      "sha256": "53091e40b58473235f3ffcf1c2ef986fb587ac70921f592c09c1c771f277d79a"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin",
+      "sha256": "c49ac4f647a263aee59a7e16fb3b3a69c5a52a9b270dc41796b8164bdf65c610"
     },
     "currencyHedge": {
       "value": false,
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
-      "sha256": "b7744ee89ea01593166c0428bbef2987622e94c172257a97b1b1f5596b4600d3"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin",
+      "sha256": "c49ac4f647a263aee59a7e16fb3b3a69c5a52a9b270dc41796b8164bdf65c610"
     },
     "distribution": {
       "value": "Capitalisation",
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
-      "sha256": "b7744ee89ea01593166c0428bbef2987622e94c172257a97b1b1f5596b4600d3"
+      "sha256": "d919e268ad612ec19dadb876c361ce83d86151583fc507cd6b6f03ebbfa8fdc1"
     },
     "listings": {
       "value": [
@@ -1830,10 +1830,10 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "FWRA.L",
-          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T09:35:57\", \"inav\": 9.450403, \"listingBloombergTicker\": \"FWRA LN\", \"listingBloombergTickerInav\": \"FWRAIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAUSiv.P\", \"listingRic\": \"FWRA.L\", \"listingSedol\": \"BMZLPZ1\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T10:32:57\", \"inav\": 9.439865, \"listingBloombergTicker\": \"FWRA LN\", \"listingBloombergTickerInav\": \"FWRAIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAUSiv.P\", \"listingRic\": \"FWRA.L\", \"listingSedol\": \"BMZLPZ1\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19",
+          "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd",
           "evidenceId": "IE000716YHJ7-XLON-FWRA-USD"
         },
         {
@@ -1842,10 +1842,10 @@
           "exchange": "London Stock Exchange",
           "currency": "GBX",
           "symbol": "FWRG.L",
-          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T09:35:57\", \"inav\": 7.055699, \"listingBloombergTicker\": \"FWRG LN\", \"listingBloombergTickerInav\": \"FWRAINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRG\", \"listingReutersInav\": \"FWRAGBiv.P\", \"listingRic\": \"FWRG.L\", \"listingSedol\": \"BMZLQ03\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T10:32:57\", \"inav\": 7.0472, \"listingBloombergTicker\": \"FWRG LN\", \"listingBloombergTickerInav\": \"FWRAINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRG\", \"listingReutersInav\": \"FWRAGBiv.P\", \"listingRic\": \"FWRG.L\", \"listingSedol\": \"BMZLQ03\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19",
+          "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd",
           "evidenceId": "IE000716YHJ7-XLON-FWRG-GBX"
         },
         {
@@ -1854,10 +1854,10 @@
           "exchange": "Borsa Italiana",
           "currency": "EUR",
           "symbol": "FWRA.MI",
-          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T09:35:57\", \"inav\": 8.419292, \"listingBloombergTicker\": \"FWRA IM\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWRA.MI\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T10:32:57\", \"inav\": 8.409155, \"listingBloombergTicker\": \"FWRA IM\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWRA.MI\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19",
+          "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd",
           "evidenceId": "IE000716YHJ7-ETFP-FWRA-EUR"
         },
         {
@@ -1866,10 +1866,10 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "FWIA.DE",
-          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T09:35:57\", \"inav\": 8.419292, \"listingBloombergTicker\": \"FWIA GY\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FWIA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWIA.DE\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T10:32:57\", \"inav\": 8.409155, \"listingBloombergTicker\": \"FWIA GY\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FWIA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWIA.DE\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19",
+          "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd",
           "evidenceId": "IE000716YHJ7-XETR-FWIA-EUR"
         },
         {
@@ -1878,42 +1878,48 @@
           "exchange": "SIX Swiss Exchange",
           "currency": "CHF",
           "symbol": "FWRA.S",
-          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T09:35:57\", \"inav\": 7.80058, \"listingBloombergTicker\": \"FWRA SW\", \"listingBloombergTickerInav\": \"FWRAINC\", \"listingCurrency\": \"CHF\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRACHiv.P\", \"listingRic\": \"FWRA.S\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-21T10:32:57\", \"inav\": 7.787382, \"listingBloombergTicker\": \"FWRA SW\", \"listingBloombergTickerInav\": \"FWRAINC\", \"listingCurrency\": \"CHF\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRACHiv.P\", \"listingRic\": \"FWRA.S\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19",
+          "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd",
           "evidenceId": "IE000716YHJ7-XSWX-FWRA-CHF"
         }
       ],
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-      "sha256": "ee0b5e4050cbee99388f53f5affc3cf08e573b1914049094b9eef062f6682f19"
+      "sha256": "0782021e129dd533bb040bf58bd4976f425b04372ab4c7521fc75daf78f3e8dd"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-21",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE000716YHJ7?idType=isin",
+      "sha256": "c49ac4f647a263aee59a7e16fb3b3a69c5a52a9b270dc41796b8164bdf65c610"
     }
   },
   "IE0000QLH0G6": {
     "domicile": {
       "value": "Ireland",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
-      "sha256": "a1ec0a994c2968e089685a791c9cf7c7a3c15a58fd15a9f550d81a28d22de97e"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin",
+      "sha256": "847006544d95190b3a2ffa153917ecbfb09fe244ba8c295a908c2c366fa0f608"
     },
     "replicationMethod": {
       "value": "Physical",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
-      "sha256": "a1ec0a994c2968e089685a791c9cf7c7a3c15a58fd15a9f550d81a28d22de97e"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin",
+      "sha256": "847006544d95190b3a2ffa153917ecbfb09fe244ba8c295a908c2c366fa0f608"
     },
     "currencyHedge": {
       "value": false,
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
-      "sha256": "0c8a3e1d2eee23d3440eb51ca64e4621d4cbf27a90096d540a03110268d2cc7c"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin",
+      "sha256": "847006544d95190b3a2ffa153917ecbfb09fe244ba8c295a908c2c366fa0f608"
     },
     "distribution": {
       "value": "Distribution",
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
-      "sha256": "0c8a3e1d2eee23d3440eb51ca64e4621d4cbf27a90096d540a03110268d2cc7c"
+      "sha256": "b469b95c18bd6847b8a5997b64b636564dd7cf96d62d73c0bc23172d6296eba4"
     },
     "listings": {
       "value": [
@@ -1923,10 +1929,10 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "FTWD.L",
-          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T09:35:58\", \"inav\": 9.003071, \"listingBloombergTicker\": \"FTWD LN\", \"listingBloombergTickerInav\": \"FTWDIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDUSiv.P\", \"listingRic\": \"FTWD.L\", \"listingSedol\": \"BMZLQ47\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T10:32:58\", \"inav\": 8.992857, \"listingBloombergTicker\": \"FTWD LN\", \"listingBloombergTickerInav\": \"FTWDIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDUSiv.P\", \"listingRic\": \"FTWD.L\", \"listingSedol\": \"BMZLQ47\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "a39d9ed2166bd6403802ded659eb398c84870f9d83ee9155a6915954e6331a28",
+          "sha256": "eff68ba0e1c2fb321786b341ff644ad9257399d64b3ba22c9db1b29507382671",
           "evidenceId": "IE0000QLH0G6-XLON-FTWD-USD"
         },
         {
@@ -1935,10 +1941,10 @@
           "exchange": "London Stock Exchange",
           "currency": "GBX",
           "symbol": "FTWG.L",
-          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T09:35:58\", \"inav\": 6.721745, \"listingBloombergTicker\": \"FTWG LN\", \"listingBloombergTickerInav\": \"FTWDINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWG\", \"listingReutersInav\": \"FTWDGBiv.P\", \"listingRic\": \"FTWG.L\", \"listingSedol\": \"BMZLQ58\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T10:32:58\", \"inav\": 6.713517, \"listingBloombergTicker\": \"FTWG LN\", \"listingBloombergTickerInav\": \"FTWDINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWG\", \"listingReutersInav\": \"FTWDGBiv.P\", \"listingRic\": \"FTWG.L\", \"listingSedol\": \"BMZLQ58\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "a39d9ed2166bd6403802ded659eb398c84870f9d83ee9155a6915954e6331a28",
+          "sha256": "eff68ba0e1c2fb321786b341ff644ad9257399d64b3ba22c9db1b29507382671",
           "evidenceId": "IE0000QLH0G6-XLON-FTWG-GBX"
         },
         {
@@ -1947,16 +1953,22 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "FTWD.DE",
-          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T09:35:58\", \"inav\": 8.020804, \"listingBloombergTicker\": \"FTWD GY\", \"listingBloombergTickerInav\": \"FTWDINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDEUiv.P\", \"listingRic\": \"FTWD.DE\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-21T10:32:58\", \"inav\": 8.010954, \"listingBloombergTicker\": \"FTWD GY\", \"listingBloombergTickerInav\": \"FTWDINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDEUiv.P\", \"listingRic\": \"FTWD.DE\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "a39d9ed2166bd6403802ded659eb398c84870f9d83ee9155a6915954e6331a28",
+          "sha256": "eff68ba0e1c2fb321786b341ff644ad9257399d64b3ba22c9db1b29507382671",
           "evidenceId": "IE0000QLH0G6-XETR-FTWD-EUR"
         }
       ],
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-      "sha256": "a39d9ed2166bd6403802ded659eb398c84870f9d83ee9155a6915954e6331a28"
+      "sha256": "eff68ba0e1c2fb321786b341ff644ad9257399d64b3ba22c9db1b29507382671"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-21",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE0000QLH0G6?idType=isin",
+      "sha256": "847006544d95190b3a2ffa153917ecbfb09fe244ba8c295a908c2c366fa0f608"
     }
   },
   "IE00BDVPNG13": {
@@ -11503,26 +11515,26 @@
     "domicile": {
       "value": "Ireland",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-      "sha256": "1b241477b5595fbefdf5fc6e9e94824de0a3f1371409d5dfdea41acc720448b0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin",
+      "sha256": "d3d4192fe94d548e1868a19945468fcc810596fe5fbc53191eb1c37065316586"
     },
     "replicationMethod": {
       "value": "Physical",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-      "sha256": "1b241477b5595fbefdf5fc6e9e94824de0a3f1371409d5dfdea41acc720448b0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin",
+      "sha256": "d3d4192fe94d548e1868a19945468fcc810596fe5fbc53191eb1c37065316586"
     },
     "currencyHedge": {
       "value": false,
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-      "sha256": "1b241477b5595fbefdf5fc6e9e94824de0a3f1371409d5dfdea41acc720448b0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin",
+      "sha256": "d3d4192fe94d548e1868a19945468fcc810596fe5fbc53191eb1c37065316586"
     },
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-20",
+      "checkedAt": "2026-10-21",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-      "sha256": "c6cbe7f37800b67c0a0c5bfd084ddaece1637469c17d5bac7c00b913457ddeb3"
+      "sha256": "ce13d01e00c1a40d34f7a7e4e6b664f5b9e2c334bbf4e718b4061cd90c5d0631"
     },
     "listings": {
       "value": [
@@ -11630,34 +11642,34 @@
     "pea": {
       "value": false,
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-inve-phys-gold-etc-SGLD-IE00B579F325-46",
-      "sha256": "dfda6b2d2aada99792e84e2045d1adcfbefe60734bde7dff0e33f6bde2d50879"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00B579F325?idType=isin",
+      "sha256": "d3d4192fe94d548e1868a19945468fcc810596fe5fbc53191eb1c37065316586"
     }
   },
   "IE00BD6FTQ80": {
     "domicile": {
       "value": "Ireland",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-      "sha256": "f8e1719b62cc99afdf55fc5f8729b60d6ce8b0b8002de449d770e6c25ee7e0d0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin",
+      "sha256": "26373b11aaaf306c642d839b4d06959eb8214a704648e49ab913b400faa6a922"
     },
     "replicationMethod": {
       "value": "Synthetic",
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-      "sha256": "f8e1719b62cc99afdf55fc5f8729b60d6ce8b0b8002de449d770e6c25ee7e0d0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin",
+      "sha256": "26373b11aaaf306c642d839b4d06959eb8214a704648e49ab913b400faa6a922"
     },
     "currencyHedge": {
       "value": false,
       "checkedAt": "2026-10-21",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-      "sha256": "f8e1719b62cc99afdf55fc5f8729b60d6ce8b0b8002de449d770e6c25ee7e0d0"
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin",
+      "sha256": "26373b11aaaf306c642d839b4d06959eb8214a704648e49ab913b400faa6a922"
     },
     "distribution": {
       "value": "Accumulating",
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-      "sha256": "74d2e1f2b5796ab2f20f78be611b39aeb3df0c45633e29710727d10b585dbe0d"
+      "sha256": "4c0cf671d1c23a831a407144568395950bab3172494a5dd77675a5fc3cd1cea1"
     },
     "listings": {
       "value": [
@@ -11667,10 +11679,10 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "CMOD.L",
-          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T09:38:59\", \"inav\": 35.836486, \"listingBloombergTicker\": \"CMOD LN\", \"listingBloombergTickerInav\": \"CMODIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODUSiv.P\", \"listingRic\": \"CMOD.L\", \"listingSedol\": \"BYX9528\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T10:32:59\", \"inav\": 35.907389, \"listingBloombergTicker\": \"CMOD LN\", \"listingBloombergTickerInav\": \"CMODIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODUSiv.P\", \"listingRic\": \"CMOD.L\", \"listingSedol\": \"BYX9528\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "40d338f0c3857f330bd6466eaffebc198f0802fcc6b70df3be9ff115852a0a2a",
+          "sha256": "e72a1c27dcc64715fd4bfca80798b93653ef4a2cda8c6f02174fc091e2461b02",
           "evidenceId": "IE00BD6FTQ80-XLON-CMOD-USD"
         },
         {
@@ -11679,10 +11691,10 @@
           "exchange": "London Stock Exchange",
           "currency": "GBX",
           "symbol": "CMOP.L",
-          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T09:38:59\", \"inav\": 26.757924, \"listingBloombergTicker\": \"CMOP LN\", \"listingBloombergTickerInav\": \"CMOPIN\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOP\", \"listingReutersInav\": \"CMODGBiv.P\", \"listingRic\": \"CMOP.L\", \"listingSedol\": \"BD1X3S7\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T10:32:59\", \"inav\": 26.806461, \"listingBloombergTicker\": \"CMOP LN\", \"listingBloombergTickerInav\": \"CMOPIN\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOP\", \"listingReutersInav\": \"CMODGBiv.P\", \"listingRic\": \"CMOP.L\", \"listingSedol\": \"BD1X3S7\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "40d338f0c3857f330bd6466eaffebc198f0802fcc6b70df3be9ff115852a0a2a",
+          "sha256": "e72a1c27dcc64715fd4bfca80798b93653ef4a2cda8c6f02174fc091e2461b02",
           "evidenceId": "IE00BD6FTQ80-XLON-CMOP-GBX"
         },
         {
@@ -11691,16 +11703,22 @@
           "exchange": "Borsa Italiana",
           "currency": "EUR",
           "symbol": "CMOD.MI",
-          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T09:38:59\", \"inav\": 31.926311, \"listingBloombergTicker\": \"CMOD IM\", \"listingBloombergTickerInav\": \"CMODINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODEUiv.P\", \"listingRic\": \"CMOD.MI\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-21T10:32:59\", \"inav\": 31.98677, \"listingBloombergTicker\": \"CMOD IM\", \"listingBloombergTickerInav\": \"CMODINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODEUiv.P\", \"listingRic\": \"CMOD.MI\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-21",
-          "sha256": "40d338f0c3857f330bd6466eaffebc198f0802fcc6b70df3be9ff115852a0a2a",
+          "sha256": "e72a1c27dcc64715fd4bfca80798b93653ef4a2cda8c6f02174fc091e2461b02",
           "evidenceId": "IE00BD6FTQ80-ETFP-CMOD-EUR"
         }
       ],
       "checkedAt": "2026-10-21",
       "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-      "sha256": "40d338f0c3857f330bd6466eaffebc198f0802fcc6b70df3be9ff115852a0a2a"
+      "sha256": "e72a1c27dcc64715fd4bfca80798b93653ef4a2cda8c6f02174fc091e2461b02"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-21",
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/IE00BD6FTQ80?idType=isin",
+      "sha256": "26373b11aaaf306c642d839b4d06959eb8214a704648e49ab913b400faa6a922"
     }
   },
   "IE00B3VVMM84": {

@@ -12700,11 +12700,11 @@
   },
   "derived": {
     "TWD": {
-      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS",
+      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21",
       "series": "DEXTAUS",
       "secondarySourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
       "checkedAt": "2026-10-21",
-      "sha256": "ef2d4a393412790364aa8cde46b240cf63579d4587d482d52f73a30e48df62c8",
+      "sha256": "4da497e778b87d939a4309337449287271db42985ce1eb0d2d3c92de936af7d9",
       "convention": "TWD per EUR = Federal Reserve H.10 noon buying rate (TWD per USD, FRED DEXTAUS) × ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places",
       "observations": {
         "1999-01": {
@@ -14705,7 +14705,13 @@
           "perUsd": 31.85,
           "value": 36.1657
         }
-      }
+      },
+      "sourceAttempts": [
+        {
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21",
+          "status": "downloaded"
+        }
+      ]
     }
   }
 }

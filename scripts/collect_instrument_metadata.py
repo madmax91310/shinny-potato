@@ -505,12 +505,49 @@ def dws_factsheet_listings(text,isin):
     return rows
 
 
+def invesco_characteristics(body, isin, url, today):
+    """Explicit characteristics of the requested share, never inferred from its name."""
+    from urllib.parse import urlsplit, parse_qs
+    p = urlsplit(url)
+    if (p.scheme != 'https' or p.netloc != 'dng-api.invesco.com'
+            or p.path != f'/cache/v1/accounts/fr_FR/shareclasses/{isin}'
+            or parse_qs(p.query) != {'idType': ['isin']} or p.fragment):
+        raise ValueError('Wrong Invesco characteristics reference')
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result: raise ValueError('Duplicate Invesco characteristic')
+            result[key] = value
+        return result
+    data = json.loads(body, object_pairs_hook=unique)
+    if data.get('aliases', {}).get('isin') != isin:
+        raise ValueError('Wrong Invesco exact share')
+    effective = dt.date.fromisoformat(data['effectiveDate'])
+    if not 0 <= (today - effective).days <= RENEWAL_GRACE_DAYS:
+        raise ValueError('Stale or future Invesco characteristics')
+    result = {}
+    for source, field in [('peaEligible', 'pea'), ('hedgedIndicator', 'currencyHedge')]:
+        value = data.get(source)
+        if source == 'peaEligible' and value in ('Yes', 'No'): result[field] = value == 'Yes'
+        elif source == 'hedgedIndicator' and type(value) is bool: result[field] = value
+    mappings = [('distributionFrequency', 'distribution', {'Accumulating':'Accumulating', 'Distributing':'Distributing'}),
+                ('replicationMethod', 'replicationMethod', {'Physical':'Physical', 'Synthetic':'Synthetic'})]
+    for source, field, mapping in mappings:
+        if data.get(source) in mapping: result[field] = mapping[data[source]]
+    domicile = {'IE':'Ireland', 'LU':'Luxembourg', 'FR':'France', 'JE':'Jersey'}
+    country = data.get('account', {}).get('domicileCountry')
+    if country in domicile: result['domicile'] = domicile[country]
+    return result
+
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
     from urllib.parse import urlsplit
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
+    if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}':
+        return []  # Characteristics endpoint; the independent listing endpoint remains required.
     markets=EXCHANGE_MICS
     if urlsplit(url).hostname=='live.euronext.com' and re.fullmatch(r'/en/product/etfs/[A-Z0-9]{12}-[A-Z0-9]{4}',urlsplit(url).path):
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in euronext_listing_rows(body,isin,url)]
@@ -609,7 +646,8 @@ def collect(source,now,fetch=download,on_document=None):
                 continue
             try:
                 from urllib.parse import urlsplit
-                if urlsplit(url).hostname=='dng-api.invesco.com':fields={}
+                if urlsplit(url).hostname=='dng-api.invesco.com':
+                    fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path else {}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname=='extraetf.com':fields=parse_extraetf_pea(body,source['isin'],url)

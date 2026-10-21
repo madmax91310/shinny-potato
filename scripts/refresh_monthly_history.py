@@ -15,6 +15,7 @@ from urllib.parse import urlencode, quote
 import urllib.error
 from zoneinfo import ZoneInfo
 from issuer_documents import download
+from market_transport import chart_response
 from data_automation import UTC, get_json, get_text, month_shift, number, reject, write_json_atomic
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -86,7 +87,7 @@ def collect_yahoo(config, now, fetch=get_json):
         urls[interval] = 'https://query2.finance.yahoo.com/v8/finance/chart/' + quote(config['symbol'], safe='') + '?' + urlencode({
             'period1': int(start.timestamp()), 'period2': int(end.timestamp()),
             'interval': interval, 'events': 'div,splits'})
-        raw[interval] = fetch(urls[interval])
+        raw[interval], urls[interval] = chart_response(urls[interval], fetch)
     daily, zone = yahoo_chart(raw['1d'], config, '1d')
     monthly, monthly_zone = yahoo_chart(raw['1mo'], config, '1mo')
     if zone != monthly_zone:
@@ -141,7 +142,7 @@ def collect_yahoo(config, now, fetch=get_json):
             boundary=month_shift(dt.datetime.strptime(key,'%Y-%m').replace(tzinfo=UTC),1)
             url='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
                 'period1':int((boundary-dt.timedelta(days=14 if key in sparse_ends else 7)).timestamp()),'period2':int(boundary.timestamp()),'interval':'1d','events':'div,splits'})
-            response=fetch(url);rows,tz=yahoo_chart(response,config,'1d')
+            response,url=chart_response(url,fetch);rows,tz=yahoo_chart(response,config,'1d')
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
             if (tz!=zone or not rows or rows[-1][0]!=final[key][0]
                     or any(not math.isclose(a,b,rel_tol=(1e-7 if i==0 else 1e-6),abs_tol=1e-6) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:])))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')

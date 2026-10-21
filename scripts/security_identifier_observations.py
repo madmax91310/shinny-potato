@@ -3,11 +3,20 @@ import datetime as dt
 import hashlib
 import json
 import re
+import unicodedata
 import urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PATH=ROOT/'src/data/security-identifier-observations.json'
 API='https://api.openfigi.com/v3/mapping'
+
+def candidate_name(value):
+    """Propose crosswalk queries only. This key is never a security identity."""
+    text = ''.join(c for c in unicodedata.normalize('NFKD', value.upper()) if not unicodedata.combining(c))
+    text = re.sub(r'\b(?:GBP|USD|EUR|GBX|JPY|SEK|NOK|CHF)\s*\d+(?:[.,]\d+)?\b', '', text)
+    text = re.sub(r'\b(?:ORDINARY|ORD|COMMON)\s+(?:SHARES?|STOCK)\b', '', text)
+    text = re.sub(r'\b(?:INCORPORATED|INC|CORPORATION|CORP|PLC|LIMITED|LTD)\b', '', text)
+    return re.sub('[^A-Z0-9]', '', text)
 
 def digest(value):
     return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
@@ -51,7 +60,7 @@ def refresh(now,max_requests=4):
         except Exception as e:print('Identity workbook pending:',fund,str(e)[:200])
     raw=json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     candidates={}
-    normalize=lambda s:re.sub('[^A-Z0-9]','',s.upper())
+    normalize=candidate_name
     for fund in raw.values():
         if not fund.get('complete')or not re.fullmatch(r'[a-f0-9]{64}',fund.get('sha256','')):continue
         for r in fund.get('rows',[]):
