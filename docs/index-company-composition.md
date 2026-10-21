@@ -6,7 +6,7 @@ Les documents de CAC 40, DAX et Dow Jones décrivent explicitement l’indice (j
 
 Les compositions complètes sont regroupées par ISIN et table d’identités d’émetteurs revue, sans comparaison floue des noms. Les classes Alphabet, Samsung, Hyundai, Roche, les titres français au nominatif et la structure duale Rio Tinto sont notamment regroupés. Les dix entreprises sont sélectionnées après agrégation. Les poids ne sont pas renormalisés. Le reste vaut 100 moins leur somme, sans effectif supposé. L’arrondi répartit les centièmes pour que les dix libellés concordent avec le centre du donut et que les onze parts totalisent 100 %.
 
-Les pays, secteurs et positions d’un visuel ont la même date. Le tweet historique et ses performances, devises et conventions ne changent pas. Une fiche d’origine reste prévisualisable dans le menu des actions pour les compositions approchées. Le comptage d’un fonds n’est jamais attribué à l’indice ; les comptages historiques restent sur la fiche d’origine. Les indices ajoutés ici n’inventent aucune performance ni aucun tweet.
+Les pays, secteurs et positions d’un visuel ont la même date. Lorsque le portefeuille complet iShares publie les attributs de chaque ligne, les ventilations sont agrégées avec ses propres poids et sa propre date (pays de risque et secteurs publiés), sans utiliser les tableaux de ventilation indépendamment datés ni renormaliser la poche actions. Le tweet historique et ses performances, devises et conventions ne changent pas. Une fiche d’origine reste prévisualisable dans le menu des actions pour les compositions approchées. Le comptage d’un fonds n’est jamais attribué à l’indice ; les comptages historiques restent sur la fiche d’origine. Les indices ajoutés ici n’inventent aucune performance ni aucun tweet.
 
 Les portefeuilles physiques sont actualisés par les collecteurs existants. Le workflow quotidien des fiches actualise aussi les quatre indices complémentaires et conserve les qualifications validées et leur historique par date dans index-company-observations.json (documents) et index-company-qualified.json (qualifications). Un échec conserve la dernière qualification, indique sa date et remonte dans le rapport d’automatisation. La projection compacte est régénérée à chaque build ; elle est ignorée par git. La fraîcheur utilise freshness-policy.json.
 
@@ -23,7 +23,7 @@ Limites : une fiche limitée à dix titres ne certifie pas dix entreprises aprè
 | MSCI World Momentum | Approximation physique | 2026-10-19 |
 | MSCI World Minimum Volatility (USD) | Approximation physique | 2026-10-19 |
 | MSCI World Sector Neutral Quality | Approximation physique | 2026-10-19 |
-| MSCI World Enhanced Value | Approximation physique | 2026-10-19 |
+| MSCI World Enhanced Value | Approximation physique | 2026-10-20 |
 | MSCI EM ex-China | Indisponible | Identifiant, doublon ou poids de titre incohérent |
 | MSCI ACWI IMI | Approximation physique | 2026-10-20 |
 | S&P 500 Equal Weight | Approximation physique | 2026-10-19 |
@@ -36,12 +36,12 @@ Limites : une fiche limitée à dix titres ne certifie pas dix entreprises aprè
 | MSCI World Small Cap | Indisponible | Identifiant, doublon ou poids de titre incohérent |
 | MSCI World ex USA | Approximation physique | 2026-10-19 |
 | MSCI World | Approximation physique | 2026-10-19 |
-| STOXX Europe 600 | Approximation physique | 2026-10-19 |
+| STOXX Europe 600 | Approximation physique conservée | 2026-10-19 ; nouvelle photographie non qualifiée (ventilations de date différente, attributs localisés non interprétés) |
 | EURO STOXX 50 | Approximation physique | 2026-10-19 |
-| MSCI Europe | Approximation physique | 2026-10-19 |
+| MSCI Europe | Approximation physique | 2026-10-20 |
 | MSCI EM ex-Egypt ESG Broad CTB Select | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
-| S&P 500 | Approximation physique | 2026-10-19 |
-| Nasdaq-100 | Approximation physique | 2026-10-19 |
+| S&P 500 | Approximation physique | 2026-10-20 |
+| Nasdaq-100 | Approximation physique | 2026-10-20 |
 | MSCI World Consumer Discretionary | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
 | MSCI World Communication Services | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
 | MSCI World Health Care | Approximation physique | 2026-10-19 |

@@ -35,16 +35,28 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     keys=['isin','issueName','holdingPercent','assetClass','countryOfRisk','sectorName','ticker','marketCurrencyCode','exchange']
     cols=[p[k]['value'] for k in keys]
     if len({len(c) for c in cols})!=1:raise ValueError('Misaligned holdings')
-    rows=[]; securities=[]
+    rows=[]; securities=[]; allocations={'countries':{},'sectors':{}}; classified=True
     for security,name,weight,kind,country,sector,ticker,currency,exchange in zip(*cols):
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
         rows.append({'isin':security,'name':name,'weightPct':weight})
+        if localized or not all(isinstance(v,str) and v.strip() and v not in ('-', 'Unknown', 'Other') for v in (country,sector)):
+            classified=False
+        else:
+            for field,label in [('countries',country),('sectors',sector)]:
+                allocations[field][label]=allocations[field].get(label,0)+weight
         if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
     if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
-    return {'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows},securities
+    record={'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows}
+    # Attributes and equity weights come from these exact dated holdings, never
+    # the independently dated exposure tables or a later security lookup.
+    if classified and total <= 100:
+        record['compositionFacts']={'asOf':h['asOf'],'basis':'fund','method':'same-snapshot-equity-country-of-risk-and-sector',
+            **{field:{'asOf':h['asOf'],'rows':[{'name':label,'weightPct':weight} for label,weight in sorted(values.items(),key=lambda item:-item[1])]}
+               for field,values in allocations.items()}}
+    return record,securities
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--only',nargs='+');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()

@@ -59,7 +59,8 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
     if (full?.basis !== 'fund' || full.complete !== true) throw new Error('Composition physique complète absente')
     if (full.rows.some(row => INSTRUMENT_FACTS_BY_ISIN[row.isin]?.replicationMethod)) throw new Error('Fonds sous-jacent présent : transparisation de même date exigée')
     // A single composition date for all three bands and the concentration visual.
-    if (!['countries','sectors'].every(key => fund?.[key]?.asOf === full.asOf && fund[key].rows?.length)) throw new Error('Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies')
+    const allocations = full.compositionFacts?.asOf === full.asOf && full.compositionFacts?.method === 'same-snapshot-equity-country-of-risk-and-sector' ? full.compositionFacts : fund
+    if (!['countries','sectors'].every(key => allocations?.[key]?.asOf === full.asOf && allocations[key].rows?.length)) throw new Error('Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies')
     const record = { ...full, checkedAt: full.checkedAt ?? holdingsStatus[proxy.isin]?.lastSuccessAt }
     const result = calculateConcentration(record, identities)
     if (!result.available) throw new Error(result.reason)
@@ -67,9 +68,9 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
       sourceUrl: full.sourceUrl, sourceLabel: INSTRUMENTS_BY_ISIN[proxy.isin]?.name ?? proxy.isin, sourceIsin: proxy.isin,
       identitySourceUrl: facts.characteristicsSource.url, identityCheckedAt: facts.characteristicsSource.checkedAt,
       observedIdentitySourceUrl: observed.sourceUrl, observedIdentityCheckedAt: observed.checkedAt,
-      approximation: true, method: `Positions d’un ETF physique suivant exactement ${proxy.benchmark}. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.`,
+      approximation: true, method: `Positions d’un ETF physique suivant exactement ${proxy.benchmark}. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.${allocations === full.compositionFacts ? ' Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.' : ''}`,
       refresh: holdingsStatus[proxy.isin],
-      visualFacts: { asOf: full.asOf, countries: labelRows(fund.countries.rows), sectors: labelRows(fund.sectors.rows),
+      visualFacts: { asOf: full.asOf, countries: labelRows(allocations.countries.rows), sectors: labelRows(allocations.sectors.rows),
         holdings: result.top.map(row => [row.name, row.weightPct]), source: { url: full.sourceUrl, checkedAt: record.checkedAt },
         // A fund's security count is never presented as the index's count.
         constituents: null, targetConstituents: null }
