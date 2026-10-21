@@ -112,6 +112,8 @@ jobs:
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
         id: commit
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh regulatory
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'

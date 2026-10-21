@@ -75,6 +75,8 @@ jobs:
         run: node scripts/build-dca-exposures.mjs && node scripts/audit-portfolio-routing.mjs
       - name: Commit validated observations
         id: commit
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh non-bond
         if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
