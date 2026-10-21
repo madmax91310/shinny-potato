@@ -1,6 +1,6 @@
 import FX from '../src/data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from '../src/pages/performance-rankings/series.js'
-import { ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
+import { ALL_CATEGORIES, ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 import assert from 'node:assert/strict'
 import { isStock } from '../src/lib/is-stock.js'
 import { CATEGORIES, EXPOSURE_CATEGORIES, ANNUAL_PEA_CATEGORIES, RANKING_ASSETS, buildRankingAssets, derivedGroup } from '../src/pages/performance-rankings/data.js'
@@ -279,3 +279,18 @@ for (const category of ANNUAL_PEA_CATEGORIES) {
 }
 console.log(`${EXPOSURE_CATEGORIES.length} exposure universes and ${ANNUAL_PEA_CATEGORIES.length} PEA calendar universes derived from the registries.`)
 
+
+// Every prepared comparison remains reachable through exactly one family.
+const { comparisonFamily, comparisonTags, filterComparisons } = await import('../src/pages/performance-rankings/comparisonCatalog.js')
+const catalogSources = { ...RANKING_ASSETS, ...ANNUAL_ASSETS }
+for (const [id, family] of [['world', 'etfs'], ['fr-stocks', 'stocks'], ['us-stocks-benchmark', 'mixed'], ['multi-asset', 'general'], ['regions-indices', 'general'], ['commodities', 'general'], ['exposure-crypto', 'general']]) {
+  const category = ALL_CATEGORIES.find(c => c.id === id)
+  assert.equal(comparisonFamily(category, catalogSources), family)
+}
+const france = filterComparisons(ALL_CATEGORIES, catalogSources, { family: 'stocks', tag: 'France', query: 'hermes' })
+assert(france.some(c => c.id === 'fr-stocks'))
+assert(!france.some(c => c.id === 'us-stocks'))
+assert(filterComparisons(ALL_CATEGORIES, catalogSources, { family: 'etfs', query: 'IE00B4L5Y983' }).some(c => c.id === 'world'))
+assert(comparisonTags(ALL_CATEGORIES.find(c => c.id === 'multi-asset'), catalogSources).includes('Obligations'))
+assert.equal(['etfs', 'stocks', 'mixed', 'general'].flatMap(family => filterComparisons(ALL_CATEGORIES, catalogSources, { family })).length, ALL_CATEGORIES.length)
+console.log('Comparison families, country/type filters and asset/ISIN search passed.')

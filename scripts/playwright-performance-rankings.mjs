@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
-import { ALL_CATEGORIES, CATEGORIES, RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
+import { ALL_CATEGORIES, CATEGORIES, RANKING_ASSETS, ANNUAL_ASSETS } from '../src/pages/performance-rankings/data.js'
+import { COMPARISON_FAMILIES, comparisonFamily } from '../src/pages/performance-rankings/comparisonCatalog.js'
 import { commonCoverage, monthIndex } from '../src/pages/performance-rankings/engine.js'
 import { ANNUAL_PEA_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
@@ -15,7 +16,20 @@ try {
   const errors = []; page.on('pageerror', e => errors.push(e.message))
   await page.goto(`${base}/classements-performances`, { waitUntil: 'networkidle' })
   await page.getByRole('heading', { name: 'Qui a vraiment gagné ?', exact: true }).waitFor()
-  assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option]').count(), ALL_CATEGORIES.length)
+  const category = async value => {
+    const c = ALL_CATEGORIES.find(c => c.id === value)
+    const family = comparisonFamily(c, { ...RANKING_ASSETS, ...ANNUAL_ASSETS })
+    await page.getByRole('button', { name: COMPARISON_FAMILIES.find(f => f.id === family).label, exact: true }).click()
+    await page.getByRole('group', { name: 'Catégorie', exact: true }).locator(`[data-option][data-value="${value}"]`).click()
+  }
+  assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option]').count(), ALL_CATEGORIES.filter(c => comparisonFamily(c, { ...RANKING_ASSETS, ...ANNUAL_ASSETS }) === 'etfs').length)
+  await page.getByRole('button', { name: 'Actions vs actions', exact: true }).click()
+  await page.getByLabel('Pays ou type d’actif', { exact: true }).selectOption('France')
+  assert(await page.locator('[data-option][data-value="fr-stocks"]').isVisible())
+  assert.equal(await page.locator('[data-option][data-value="us-stocks"]').count(), 0)
+  await page.getByRole('searchbox', { name: 'Rechercher une comparaison', exact: true }).fill('Hermès')
+  assert(await page.locator('[data-option][data-value="fr-stocks"]').isVisible())
+  await category('world')
   await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option][data-value="factors"]').click()
   await page.getByRole('button', { name: 'Une année', exact: true }).click()
   await page.getByRole('group', { name: 'Année', exact: true }).locator('[data-option][data-value="2022"]').click()
@@ -50,8 +64,8 @@ try {
   // Capture the real PNG at three, five and six rows, not just the editor.
   const dimensions = {}
   await page.getByLabel('Montrer la fréquence de première place').uncheck()
-  for (const [category, count] of [['europe', 3], ['themes', 5], ['europe-sectors', 6]]) {
-    await page.getByRole('group', { name: 'Catégorie', exact: true }).locator(`[data-option][data-value="${category}"]`).click()
+  for (const [categoryId, count] of [['europe', 3], ['themes', 5], ['europe-sectors', 6]]) {
+    await category(categoryId)
     await page.getByRole('button', { name: 'Année par année', exact: true }).click()
     await img.waitFor({ state: 'visible' })
     await page.waitForFunction(() => { const img = document.querySelector('.publication-image-stage img'); return img?.complete && img.naturalWidth > 0 })
@@ -63,7 +77,7 @@ try {
     assert.equal(width, 1200)
     assert(height <= 1230)
   }
-  await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option][data-value="us-stocks"]').click()
+  await category('us-stocks')
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
   await page.getByRole('button', { name: 'Nouvelle sélection', exact: true }).click()
   await page.getByRole('button', { name: 'Un par un', exact: true }).click()
@@ -74,7 +88,6 @@ try {
   await page.locator('.rk-manual [data-option][data-value="microsoft"]').click()
   assert.equal(await page.locator('.rk-selected>div').count(), 2)
   // Four new capabilities: long index history, annual calendars, ECB and portfolios.
-  const category = value => page.getByRole('group', { name: 'Catégorie', exact: true }).locator(`[data-option][data-value="${value}"]`).click()
   await category('regions-indices')
   assert.match(await page.locator('.rk-coverage').innerText(), /2005-12/)
   await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-option][data-value="EUR"]').click()

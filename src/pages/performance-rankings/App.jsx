@@ -9,6 +9,7 @@ import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, BENCHMARK_OPTIONS,
 import { markBenchmark, randomSuggestion } from './suggestions.js'
 import { isStock, replaceBenchmark } from './selection.js'
 import SelectionGrid from './SelectionGrid.jsx'
+import ComparisonPicker from './ComparisonPicker.jsx'
 import Favorites from './Favorites.jsx'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from './series.js'
@@ -173,10 +174,7 @@ export default function App() {
           <button type="button" onClick={suggest}>Sélection aléatoire</button>
           <button type="button" onClick={startBenchmark}>5 actions face à un ETF</button>
         </div>
-        <label className="rk-field">Catégorie<ChoicePicker aria-label="Catégorie" value={categoryId} onChange={e => chooseCategory(e.target.value)}>
-          <optgroup label="Univers de comparaison">{categories.filter(c => !c.benchmarkId).map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
-          <optgroup label="5 actions face à un ETF">{categories.filter(c => c.benchmarkId).map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
-        </ChoicePicker></label>
+        <ComparisonPicker key={categoryId} categories={categories} sources={SOURCES} value={categoryId} onChange={chooseCategory} />
         <fieldset className="rk-modes"><legend>Comparer</legend>{[['assets', 'Actifs'], ['portfolios', 'Portefeuilles']].map(([value, label]) => <button type="button" key={value} aria-pressed={comparison === value} onClick={() => {
           setComparison(value)
           if (value === 'portfolios') {
