@@ -113,7 +113,8 @@ def collect(share, now, fetch=download, post=mapping_request):
     if (now.date()-dt.date.fromisoformat(identity_date)).days > limit:
         raise ValueError('Expired API fund identity document')
     url = f'https://www.wisdomtree.com/api/fund-holdings/{class_id}'
-    raw = fetch(url)
+    raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+                             'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     observations = previous.get(share['isin'], {}).get('identityObservations', [])

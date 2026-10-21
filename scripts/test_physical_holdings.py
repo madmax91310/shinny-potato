@@ -58,6 +58,19 @@ class PhysicalHoldingsTest(unittest.TestCase):
         self.assertEqual(excluded, {'CASH': 4})
         self.assertEqual(stamp, '2026-10-16')
 
+    def test_amundi_cash_payables_keep_net_nav_without_short_equities(self):
+        body=amundi();composition=body['products'][0]['composition']
+        positive=composition['compositionData'][-1]
+        positive['weight']=positive['compositionCharacteristics']['weight']=.054
+        negative=copy.deepcopy(positive)
+        negative['weight']=negative['compositionCharacteristics']['weight']=-.014
+        composition['compositionData'].append(negative);composition['totalNumberOfInstruments']+=1
+        rows,_,excluded=amundi_composition(body,SHARE,NOW)
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows),96)
+        self.assertAlmostEqual(excluded['CASH'],4)
+        negative['compositionCharacteristics']['type']='EQUITY_ORDINARY'
+        with self.assertRaises(ValueError):amundi_composition(body,SHARE,NOW)
+
     def test_amundi_wrong_identity_replication_count_date_weight(self):
         for field, value in [('ISIN', 'IE0000000000'), ('CURRENCY', 'EUR'),
                              ('FUND_REPLICATION_METHODOLOGY', 'Indirect(Swap)')]:

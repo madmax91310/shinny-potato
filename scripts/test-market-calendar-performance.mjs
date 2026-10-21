@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { marketCalendarPerformance } from '../src/data/market-calendar-performance.js'
-import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
+import { getInstrumentAnnualPerformance, getInstrumentDuelSeries } from '../src/data/instrument-returns.js'
 import { annualPerformanceInCurrency } from '../src/data/annual-performance-currency.js'
 import { formatTweetPerformance, performanceImageHeading } from '../src/pages/etf-sheets/annualPerformance.js'
 import {AUTOMATED_ETF as official} from '../src/data/automated-etf.js'
@@ -32,6 +32,10 @@ for(const id of ['IE00BLCHJB90','IE000NDWFGA5','IE00BMH5Y871','IE000UL6CLP7','IE
  assert(p.calendarYears.every(y=>y<new Date().getUTCFullYear()),id)
 }
 assert.notEqual(getInstrumentAnnualPerformance('IE00B4L5Y983').sourceKind,'adjusted-market-price','Published NAV calendar retains precedence')
+if(!Object.keys(official[isin]?.performance?.years??{}).length){
+ assert.equal(getInstrumentDuelSeries(isin).basis,'proxy','An existing simulation proxy must keep its own convention')
+ assert.equal(getInstrumentDuelSeries(isin).currency,'USD','The proxy currency must not inherit the UCITS EUR listing currency')
+}
 const points=[['2024-12',100],...Array.from({length:12},(_,i)=>[`2025-${String(i+1).padStart(2,'0')}`,101+i])]
 assert(Math.abs(monthlyCalendarReturns({points},now)[2025]-12)<1e-9)
 for(const invalid of [[...points,points.at(-1)],[...points].reverse(),points.map((p,i)=>i===3?[p[0],NaN]:p),points.map((p,i)=>i===3?['2025-13',p[1]]:p)])assert.deepEqual(monthlyCalendarReturns({points:invalid},now),{})

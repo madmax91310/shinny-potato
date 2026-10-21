@@ -169,12 +169,14 @@ def amundi_composition(data, share, now):
     for entry in entries:
         item = entry['compositionCharacteristics']
         weight = finite_weight(entry['weight'])
-        if weight != finite_weight(item['weight']) or not -0.01 <= weight <= 1:
+        kind = item['type']
+        # Payables and receivables are separate signed cash lines. Their net
+        # NAV weight is checked below; no negative equity position is admitted.
+        if weight != finite_weight(item['weight']) or not -1 <= weight <= 1 or weight < 0 and kind != 'CASH':
             raise ValueError('Inconsistent Amundi weight')
         if document_date(item['date'], now) != stamp:
             raise ValueError('Mixed-date Amundi portfolio')
         total += weight
-        kind = item['type']
         if kind in ('CASH', 'FUTURE', 'ETF', 'RIGHT'):
             excluded[kind] = excluded.get(kind, 0) + weight * 100
         elif kind in ('EQUITY_ORDINARY', 'PREFERENCE_SHARES', 'DEPOSITORY_RECEIPT'):
