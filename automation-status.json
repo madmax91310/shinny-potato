@@ -18060,14 +18060,15 @@
           "at": "2026-10-21T08:43:51.773573+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39570293828,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-21T08:38:16Z",
       "observedRunId": 39570293828,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T12:43:51.773573+00:00"
     },
     "collect-etf-pilot.yml": {
