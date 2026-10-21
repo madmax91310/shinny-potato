@@ -1267,20 +1267,20 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39563280361,
+      "runId": 39570293690,
       "attempt": 1,
-      "headSha": "4e68f5d21c8bce922ae065b6a645b3a3a892b73a",
-      "createdAt": "2026-10-21T07:37:21Z",
-      "completedAt": "2026-10-21T07:38:17Z",
+      "headSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "createdAt": "2026-10-21T08:34:26Z",
+      "completedAt": "2026-10-21T08:35:58Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-21T07:38:17Z",
+      "lastSuccessAt": "2026-10-21T08:35:58Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-21T07:38:17Z",
+      "lastCollectionSuccessAt": "2026-10-21T08:35:58Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39563280361",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39570293690",
       "failures": [],
       "dataFailures": {}
     },
@@ -2148,11 +2148,11 @@
     "update-instrument-metadata.yml": {
       "monitorVersion": 2,
       "name": "Caractéristiques et statut PEA par ISIN",
-      "runId": 39549495712,
+      "runId": 39553115014,
       "attempt": 1,
-      "headSha": "099fc88c732a6335316c3e7067cc0a1e67035432",
-      "createdAt": "2026-10-21T05:25:44Z",
-      "completedAt": "2026-10-21T05:41:32Z",
+      "headSha": "7bd7c2ddc2359a131362caa76411f2e2d57648b0",
+      "createdAt": "2026-10-21T06:03:39Z",
+      "completedAt": "2026-10-21T06:22:06Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
       "collectionStatus": "failure",
@@ -2161,7 +2161,7 @@
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
       "lastPublicationSuccessAt": "2026-10-20T15:02:22Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
       "failures": [
         {
           "job": "refresh",
@@ -2175,113 +2175,113 @@
       "dataFailures": {
         "IE00B0M62S72:pea:qualification": {
           "name": "IE00B0M62S72:pea:qualification",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
-          "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+          "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
           "field": "pea"
         },
         "JE00B78CGV99:ter": {
           "name": "JE00B78CGV99:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "JE00B78CGV99:aum": {
           "name": "JE00B78CGV99:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "GB00B15KXV33:ter": {
           "name": "GB00B15KXV33:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "GB00B15KXV33:aum": {
           "name": "GB00B15KXV33:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "GB00B15KXV33:listings": {
           "name": "GB00B15KXV33:listings",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=unknown",
           "field": "Cotations"
         },
         "JE00BN7KB334:ter": {
           "name": "JE00BN7KB334:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "JE00BN7KB334:aum": {
           "name": "JE00BN7KB334:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "JE00BN7KB334:listings": {
           "name": "JE00BN7KB334:listings",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=unknown",
           "field": "Cotations"
         },
         "JE00BN7KB557:ter": {
           "name": "JE00BN7KB557:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "JE00BN7KB557:aum": {
           "name": "JE00BN7KB557:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "JE00B2QXZK10:ter": {
           "name": "JE00B2QXZK10:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "JE00B2QXZK10:aum": {
           "name": "JE00B2QXZK10:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "JE00BN7KB664:ter": {
           "name": "JE00BN7KB664:ter",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Frais"
         },
         "JE00BN7KB664:aum": {
           "name": "JE00BN7KB664:aum",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
           "field": "Encours"
         },
         "JE00BN7KB664:listings": {
           "name": "JE00BN7KB664:listings",
-          "completedAt": "2026-10-21T05:41:32Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+          "completedAt": "2026-10-21T06:22:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
           "cause": "check-overdue; checked=2026-10-13, published=unknown",
           "field": "Cotations"
         }
@@ -2318,10 +2318,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T07:38:17Z",
+  "updatedAt": "2026-10-21T08:35:58Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T08:36:31.680595+00:00",
+    "checkedAt": "2026-10-21T08:38:06.172719+00:00",
     "revision": 203,
     "active": {
       "collection:update-regulatory-data.yml:broker-observation:saxo": {
@@ -2343,7 +2343,7 @@
         "dataId": "broker-observation:saxo",
         "id": "collection:update-regulatory-data.yml:broker-observation:saxo",
         "firstSeenAt": "2026-10-19T16:48:49.137349+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:saxo:profile:pea": {
         "name": "saxo:profile:pea",
@@ -2364,7 +2364,7 @@
         "dataId": "broker-observation:saxo:profile:pea",
         "id": "collection:update-regulatory-data.yml:broker-observation:saxo:profile:pea",
         "firstSeenAt": "2026-10-19T16:48:49.137349+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:saxo:profile:pme": {
         "name": "saxo:profile:pme",
@@ -2385,7 +2385,7 @@
         "dataId": "broker-observation:saxo:profile:pme",
         "id": "collection:update-regulatory-data.yml:broker-observation:saxo:profile:pme",
         "firstSeenAt": "2026-10-19T16:48:49.137349+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:saxo:profile:ifu": {
         "name": "saxo:profile:ifu",
@@ -2406,7 +2406,7 @@
         "dataId": "broker-observation:saxo:profile:ifu",
         "id": "collection:update-regulatory-data.yml:broker-observation:saxo:profile:ifu",
         "firstSeenAt": "2026-10-19T16:48:49.137349+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -2429,7 +2429,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -2442,11 +2442,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=IE00B0M62S72",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
-        "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "field": "pea",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -2456,7 +2456,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00B78CGV99:ter": {
         "name": "WisdomTree Brent Crude Oil",
@@ -2468,10 +2468,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00B78CGV99",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2484,7 +2484,7 @@
         "dataId": "JE00B78CGV99:ter",
         "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00B78CGV99:aum": {
         "name": "WisdomTree Brent Crude Oil",
@@ -2496,10 +2496,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00B78CGV99",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2512,7 +2512,7 @@
         "dataId": "JE00B78CGV99:aum",
         "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:GB00B15KXV33:ter": {
         "name": "WisdomTree WTI Crude Oil",
@@ -2524,10 +2524,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=GB00B15KXV33",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2540,7 +2540,7 @@
         "dataId": "GB00B15KXV33:ter",
         "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:GB00B15KXV33:aum": {
         "name": "WisdomTree WTI Crude Oil",
@@ -2552,10 +2552,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=GB00B15KXV33",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2568,7 +2568,7 @@
         "dataId": "GB00B15KXV33:aum",
         "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:GB00B15KXV33:listings": {
         "name": "WisdomTree WTI Crude Oil",
@@ -2580,10 +2580,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=GB00B15KXV33",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=unknown",
         "field": "Cotations",
         "sourceUrls": [
@@ -2596,7 +2596,7 @@
         "dataId": "GB00B15KXV33:listings",
         "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:listings",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB334:ter": {
         "name": "WisdomTree Natural Gas",
@@ -2608,10 +2608,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB334",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2624,7 +2624,7 @@
         "dataId": "JE00BN7KB334:ter",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB334:aum": {
         "name": "WisdomTree Natural Gas",
@@ -2636,10 +2636,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB334",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2652,7 +2652,7 @@
         "dataId": "JE00BN7KB334:aum",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB334:listings": {
         "name": "WisdomTree Natural Gas",
@@ -2664,10 +2664,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB334",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=unknown",
         "field": "Cotations",
         "sourceUrls": [
@@ -2680,7 +2680,7 @@
         "dataId": "JE00BN7KB334:listings",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:listings",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB557:ter": {
         "name": "WisdomTree Coffee",
@@ -2692,10 +2692,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB557",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2708,7 +2708,7 @@
         "dataId": "JE00BN7KB557:ter",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB557:aum": {
         "name": "WisdomTree Coffee",
@@ -2720,10 +2720,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB557",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2736,7 +2736,7 @@
         "dataId": "JE00BN7KB557:aum",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter": {
         "name": "WisdomTree Cocoa",
@@ -2748,10 +2748,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2764,7 +2764,7 @@
         "dataId": "JE00B2QXZK10:ter",
         "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum": {
         "name": "WisdomTree Cocoa",
@@ -2776,10 +2776,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2792,7 +2792,7 @@
         "dataId": "JE00B2QXZK10:aum",
         "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB664:ter": {
         "name": "WisdomTree Wheat",
@@ -2804,10 +2804,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB664",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Frais",
         "sourceUrls": [
@@ -2820,7 +2820,7 @@
         "dataId": "JE00BN7KB664:ter",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:ter",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB664:aum": {
         "name": "WisdomTree Wheat",
@@ -2832,10 +2832,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB664",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
         "field": "Encours",
         "sourceUrls": [
@@ -2848,7 +2848,7 @@
         "dataId": "JE00BN7KB664:aum",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:aum",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00BN7KB664:listings": {
         "name": "WisdomTree Wheat",
@@ -2860,10 +2860,10 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39549495712",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
         "to": "/bibliotheque-donnees?id=JE00BN7KB664",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T05:41:32Z",
+        "completedAt": "2026-10-21T06:22:06Z",
         "cause": "check-overdue; checked=2026-10-13, published=unknown",
         "field": "Cotations",
         "sourceUrls": [
@@ -2876,7 +2876,7 @@
         "dataId": "JE00BN7KB664:listings",
         "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:listings",
         "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -2900,7 +2900,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2929,7 +2929,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2951,7 +2951,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T08:36:31.680595+00:00"
+        "lastSeenAt": "2026-10-21T08:38:06.172719+00:00"
       }
     },
     "events": [
@@ -18339,8 +18339,8 @@
     "update-editorial-radar.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-21T07:38:17Z",
-      "observedRunId": 39563280361,
+      "lastSuccessAt": "2026-10-21T08:35:58Z",
+      "observedRunId": 39570293690,
       "status": "idle",
       "nextAttemptAt": null
     },
@@ -18656,7 +18656,7 @@
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
-      "observedRunId": 39549495712,
+      "observedRunId": 39553115014,
       "status": "awaiting-current-run",
       "nextAttemptAt": "2026-10-21T07:03:34.415735+00:00"
     }
