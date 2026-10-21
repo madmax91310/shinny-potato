@@ -616,20 +616,20 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39590805510,
+      "runId": 39591047018,
       "attempt": 1,
-      "headSha": "b79ceba0bf97b9ffd8412838fd3368422c84563a",
-      "createdAt": "2026-10-21T11:17:05Z",
-      "completedAt": "2026-10-21T11:17:59Z",
+      "headSha": "3fb486d4a1f0218975a9064d45ef4972f4d8a401",
+      "createdAt": "2026-10-21T11:19:04Z",
+      "completedAt": "2026-10-21T11:19:57Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-21T11:17:59Z",
+      "lastSuccessAt": "2026-10-21T11:19:57Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-21T11:17:59Z",
+      "lastCollectionSuccessAt": "2026-10-21T11:19:57Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805510",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39591047018",
       "failures": [],
       "dataFailures": {}
     },
@@ -1287,10 +1287,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T11:19:02Z",
+  "updatedAt": "2026-10-21T11:19:57Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T11:20:31.588995+00:00",
+    "checkedAt": "2026-10-21T11:21:21.780533+00:00",
     "revision": 210,
     "active": {
       "workflow:update-publication-observations.yml": {
@@ -1309,7 +1309,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T11:20:31.588995+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:dividends": {
         "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
@@ -1330,7 +1330,7 @@
         "dataId": "fiscal-observation:dividends",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:pee": {
         "name": "Plan d'épargne entreprise (PEE)",
@@ -1351,7 +1351,7 @@
         "dataId": "fiscal-observation:pee",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:rent": {
         "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
@@ -1372,7 +1372,7 @@
         "dataId": "fiscal-observation:rent",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:lmnp": {
         "name": "Impôt sur le revenu - Revenus d'une location meublée",
@@ -1393,7 +1393,7 @@
         "dataId": "fiscal-observation:lmnp",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1416,7 +1416,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1444,7 +1444,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1471,7 +1471,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1493,7 +1493,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T11:20:31.588995+00:00"
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
       }
     },
     "events": [
@@ -17440,8 +17440,8 @@
     "update-editorial-radar.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-21T11:17:59Z",
-      "observedRunId": 39590805510,
+      "lastSuccessAt": "2026-10-21T11:19:57Z",
+      "observedRunId": 39591047018,
       "status": "idle",
       "nextAttemptAt": null
     },
@@ -17475,8 +17475,8 @@
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-21T11:19:02Z",
       "observedRunId": 39590805470,
-      "status": "dispatched",
-      "nextAttemptAt": "2026-10-21T15:20:31.594055+00:00"
+      "status": "budget-exhausted",
+      "nextAttemptAt": "2026-10-21T18:44:51.099730+00:00"
     },
     "update-insurance.yml": {
       "attempts": [
