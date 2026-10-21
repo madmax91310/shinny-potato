@@ -17467,14 +17467,15 @@
           "at": "2026-10-21T11:20:31.594055+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39590805470,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-21T11:19:02Z",
       "observedRunId": 39590805470,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T15:20:31.594055+00:00"
     },
     "update-insurance.yml": {
