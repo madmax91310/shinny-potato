@@ -4,14 +4,15 @@ import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
 const groups = {
-  world: ['msciWorld', 'msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'],
-  europe: ['stoxx600', 'cac40', 'msciEurope'], asia: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'], chip: ['soxx', 'nvidia', 'google', 'meta', 'adobe','sap', 'intel'],
+  world: ['world-net','acwi-gross','ftseAllWorld','msciWorld', 'msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'],
+  europe: ['stoxx600', 'cac40', 'msciEurope'], asia: ['emerging-net','msciEmerging', 'msciIndia', 'msciEmergingExChina'], chip: ['soxx', 'nvidia', 'google', 'meta', 'adobe','sap', 'intel'],
   bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond'],
   finance: ['mastercard','jpmorgan', 'euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],
   consumer: ['pepsico','booking','home-depot','nike','disney','procter-gamble', 'amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
   health: ['unitedhealth','sanofi','johnson-johnson'], energy:['totalenergies','exxonmobil'], infrastructure: ['vinci','airliquide','caterpillar','waste-management'], utilities: ['schneider'], silver: ['silver'],
 }
 export const PERFORMANCE_ART = Object.freeze({
+  'japan-net': { scene:'paper/japan.webp' },
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:`etf-night/${asset.scene}.webp`}])),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
     scene: `etf-night/${id === 'etfIndustrials' ? 'infrastructure' : id === 'etfEpra' ? 'property' : id === 'etfCmod' ? 'commodities' : id === 'etfLock' ? 'security' : asset.scene === 'industry' ? 'silver' : asset.scene}.webp`,
