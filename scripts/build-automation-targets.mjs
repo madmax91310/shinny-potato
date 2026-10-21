@@ -6,6 +6,7 @@ import {getInstrumentListings} from '../src/data/instrument-listings.js'
 import {getInstrumentFacts} from '../src/data/instrument-facts.js'
 import METADATA from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js'
+import {hasPhysicalPortfolio} from './lib/physical-replication.mjs'
 const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.json'))
 const issuerShares=new Map(['amundi-etf','additional-etf-sources','exposure-etf-expansion','non-bond-expansion-sources'].flatMap(file=>
  JSON.parse(readFileSync(`scripts/${file}.json`)).instruments).map(share=>[share.isin,share]))
@@ -62,7 +63,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const url=r.sourceUrl??''
  const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
- if(!/physic|physisch|physique|direct replication/i.test(method) || /synthe|swap|indirect/i.test(method))continue
+ if(!hasPhysicalPortfolio(method,facts.replicationMethod??'',{issuer:share?.expansionKind}))continue
  if(['IE00BMVB5K07','IE00BMVB5M21','IE00BMVB5P51','IE00BMVB5R75'].includes(isin))holdings[isin]={isin,name,currency:'EUR',parser:'lifestrategy-lookthrough'}
  else if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
  else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
