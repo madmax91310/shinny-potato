@@ -11,14 +11,36 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def refresh(previous, configs, now, collect=collect_one):
+    def one(config):
+        result = collect(config, now)
+        if config.get('physicalComposition'):
+            try:
+                from collect_korea_companies import collect as collect_physical
+                result['companyFund'] = collect_physical(config['physicalComposition'], now)
+            except Exception as error:
+                result.setdefault('errors', []).append({'field': 'companyFund', 'reason': str(error)})
+        return result
     with ThreadPoolExecutor(max_workers=4) as pool:
-        observations = list(pool.map(lambda config: collect(config, now), configs))
+        observations = list(pool.map(one, configs))
     merged = merge_records(previous, observations)
     for observation in observations:
         record = merged.setdefault(observation['id'], {})
         errors = observation.get('errors', [])
+        incoming = observation.get('companyFund')
+        if incoming:
+            old = previous.get(observation['id'], {}).get('companyFund')
+            if old and incoming['asOf'] < old['asOf']:
+                errors.append({'field': 'companyFund', 'reason': 'Physical portfolio date regression'})
+            else:
+                record['companyFund'] = incoming
+                record.setdefault('companyFundHistory', {}).setdefault(incoming['asOf'], incoming)
         if observation.get('facts') and record.get('facts', {}).get('asOf') == observation['facts']['asOf']:
             record['facts']['source']['checkedAt'] = observation['facts']['source']['checkedAt']
+        if incoming or previous.get(observation['id'], {}).get('companyFund'):
+            native_errors = [e['reason'] for e in errors if e['field'] == 'companyFund']
+            record['companyStatus'] = holdings_status(previous.get(observation['id'], {}).get('companyStatus', {}),
+                previous.get(observation['id'], {}).get('companyFund', {}),
+                incoming if incoming and not native_errors else None, '; '.join(native_errors) or None, now)
         record['status'] = holdings_status(previous.get(observation['id'], {}).get('status', {}),
             {**previous.get(observation['id'], {}).get('facts', {}), 'checkedAt': previous.get(observation['id'], {}).get('facts', {}).get('source', {}).get('checkedAt')}, observation.get('facts'),
             '; '.join(e['reason'] for e in errors) or None, now)

@@ -25,7 +25,7 @@ try {
     await page.locator(`#factsheet-subject [data-option][data-value="${id}"]`).click()
     assert.equal(await page.locator('#factsheet-subject').getAttribute('data-value'),id)
   }
-  const cases=[['cac40','CAC 40'],['nasdaq-pea','Nasdaq-100'],['dow-jones','Dow Jones Industrial Average'],['sp500-pea','S&P 500'],['world','MSCI World'],['acwi','MSCI ACWI'],['dax','DAX'],['russell-2000','Russell 2000']]
+  const cases=[['cac40','CAC 40'],['nasdaq-pea','Nasdaq-100'],['dow-jones','Dow Jones Industrial Average'],['sp500-pea','S&P 500'],['world','MSCI World'],['acwi','MSCI ACWI'],['dax','DAX'],['msci-korea','MSCI Korea'],['russell-2000','Russell 2000']]
   for(const [id,title] of cases){
     await select(id,title)
     const preview=page.locator('.fs-composition-preview')
@@ -51,8 +51,8 @@ try {
     assert.equal(digest(await readFile(`${directory}/${id}-fiche.png`)),digest(Buffer.from(originalData.split(',')[1],'base64')))
     await page.screenshot({path:`${directory}/${id}-desktop.png`,fullPage:true})
   }
-  await select('msci-korea','MSCI Korea')
-  await page.getByText(/neuf entreprises après regroupement/).first().waitFor()
+  await select('msci-usa','MSCI USA')
+  await page.getByText(/ne certifient pas les dix premières entreprises/).first().waitFor()
   assert.equal(await page.locator('.fs-composition-preview').count(),0)
   assert.equal(await page.getByRole('button',{name:'Télécharger la composition en PNG',exact:true}).isDisabled(),true)
   // Back-to-back choices never expose the previous index's asynchronous canvas.
@@ -60,7 +60,7 @@ try {
   await page.locator('.fs-composition-preview').evaluate(i=>i.decode())
   assert.match(await page.locator('.fs-composition-preview').getAttribute('alt'),/MSCI World/)
   await page.setViewportSize({width:390,height:844})
-  for(const [id,title] of [cases[2],cases[4],cases[7]]){
+  for(const [id,title] of [cases[2],cases[4],cases[8]]){
     await select(id,title)
     await page.locator('.fs-composition-preview').evaluate(i=>i.decode())
     const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger la composition en PNG',exact:true}).click()])
@@ -109,5 +109,5 @@ try {
     console.log(`${report.count} compositions: all canvas labels, geometry and metadata restrictions checked`)
   }
   assert.deepEqual(errors,[])
-  console.log(`${external?'Published':'Local'}: own-index previews, PNG byte equality, real downloads, rapid switching, unavailable Korea, 390px mobile and Dow verified`)
+  console.log(`${external?'Published':'Local'}: own-index previews, PNG byte equality, real downloads, rapid switching, unavailable composition, 390px mobile and Dow verified`)
 } finally {await browser?.close();server?.kill('SIGTERM')}

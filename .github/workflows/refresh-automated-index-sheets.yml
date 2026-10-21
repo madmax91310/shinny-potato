@@ -12,6 +12,7 @@ on:
       - 'scripts/test_world_sector_indices.py'
       - 'scripts/test_index_composition_gate.py'
       - 'scripts/*index_companies*'
+      - 'scripts/*korea_companies*'
       - 'scripts/index-company-sources.json'
       - 'scripts/build-index-company-compositions.mjs'
       - 'src/data/index-company*'
@@ -54,6 +55,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
       - run: python -m unittest discover -s scripts -p 'test_index_companies.py'
+      - run: python -m unittest discover -s scripts -p 'test_korea_companies.py'
       - name: Refresh additional exact-index company compositions
         continue-on-error: true
         run: python scripts/refresh_index_companies.py --apply --output "${{ runner.temp }}/index-company-observations.json"

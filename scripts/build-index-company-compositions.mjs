@@ -19,6 +19,22 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
   const id = definition.id, extra = config.additionalIndices.find(row => row.id === id)
   const original = extra ? observations[id]?.facts : definition.indexFacts
   output[id] = missing('Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact.')
+  const native = extra && observations[id]?.companyFund
+  if (native) {
+    const result = native.classificationAsOf === native.asOf && native.basis === 'physical-creation-basket'
+      ? calculateConcentration(native, identities) : missing('Portefeuille et classification incompatibles : qualification suspendue')
+    output[id] = { ...result, asOf: native.asOf, checkedAt: native.checkedAt, sourceUrl: native.sourceUrl,
+      sourceLabel: native.sourceLabel, sourceProductCode: native.sourceProductCode, sourceBasis: native.basis, sha256: native.sha256,
+      approximation: true, method: native.method, identitySourceUrl: native.identitySourceUrl,
+      identityCheckedAt: native.identityCheckedAt, classificationSourceUrl: native.classificationSourceUrl,
+      classificationAsOf: native.classificationAsOf, indexIdentitySourceUrl: native.indexIdentitySourceUrl,
+      refresh: observations[id]?.companyStatus,
+      visualFacts: { asOf: native.asOf, countries: native.countries, sectors: native.sectors,
+        holdings: result.available ? result.top.map(row => [row.name, row.weightPct]) : [],
+        source: { url: native.sourceUrl, checkedAt: native.checkedAt, sha256: native.sha256 },
+        constituents: null, targetConstituents: null } }
+    continue
+  }
   // Index tables first: the three one-security-per-company universes are qualified
   // by their own index rules; every line also needs its reviewed ISIN.
   if (extra && original) {

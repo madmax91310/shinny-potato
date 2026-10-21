@@ -100,12 +100,14 @@ export default function App() {
       <section className="fs-composition-evidence" aria-label="Fiabilité de la composition">
         <strong>Composition et concentration · {concentration.status === 'unavailable' ? 'indisponibles' : concentration.status === 'stale' ? 'données anciennes' : 'disponibles'}</strong>
         {concentration.available ? <>
-          <p>{concentration.approximation ? `Approximation par les positions d’un ETF physique : ${concentration.sourceLabel} (${concentration.sourceIsin}). Il ne s’agit pas d’une composition officielle de l’indice.` : 'Poids de l’indice publiés dans la source indiquée, sans utiliser le portefeuille du fonds.'}</p>
+          <p>{concentration.approximation ? `${concentration.sourceBasis === 'physical-creation-basket' ? 'Approximation par le panier physique de souscription' : 'Approximation par les positions d’un ETF physique'} : ${concentration.sourceLabel} (${concentration.sourceIsin ?? concentration.sourceProductCode}). Il ne s’agit pas d’une composition officielle de l’indice.` : 'Poids de l’indice publiés dans la source indiquée, sans utiliser le portefeuille du fonds.'}</p>
           <p>Composition des deux images : {dateLabel(concentration.asOf)} · Récupération : {dateLabel(concentration.checkedAt)}.</p>
           <p>{concentration.method}</p>
           <a href={concentration.sourceUrl} target="_blank" rel="noopener noreferrer">Source de la composition ↗</a>
           {concentration.identitySourceUrl && <> · <a href={concentration.identitySourceUrl} target="_blank" rel="noopener noreferrer">Benchmark et réplication vérifiés ↗</a> (contrôle : {dateLabel(concentration.identityCheckedAt)})</>}
           {concentration.observedIdentitySourceUrl && <> · <a href={concentration.observedIdentitySourceUrl} target="_blank" rel="noopener noreferrer">Identité actualisée ↗</a> ({dateLabel(concentration.observedIdentityCheckedAt)})</>}
+          {concentration.classificationSourceUrl && <> · <a href={concentration.classificationSourceUrl} target="_blank" rel="noopener noreferrer">Noms et classifications par ISIN ↗</a> ({dateLabel(concentration.classificationAsOf)})</>}
+          {concentration.indexIdentitySourceUrl && <> · <a href={concentration.indexIdentitySourceUrl} target="_blank" rel="noopener noreferrer">Indice suivi confirmé par MSCI ↗</a></>}
           {concentration.methodologyUrl && <> · <a href={concentration.methodologyUrl} target="_blank" rel="noopener noreferrer">Méthodologie ↗</a></>}
           {concentration.status === 'stale' && <p>Données anciennes : relire la date avant publication.</p>}
           {concentration.refresh?.status === 'failed' && <p>Dernière actualisation en échec : dernière composition valide conservée. {concentration.refresh.error}</p>}

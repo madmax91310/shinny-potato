@@ -64,6 +64,9 @@ export function imageCompanyLabel(name) {
     'GOLDMAN SACHS GROUP INC': 'Goldman Sachs', 'CATERPILLAR INC': 'Caterpillar', 'AMGEN INC': 'Amgen',
     'UNITEDHEALTH GROUP INC': 'UnitedHealth', 'TRAVELERS COMPANIES': 'Travelers', 'SHERWIN-WILLIAMS CO/THE': 'Sherwin-Williams',
     'VISA INC-CLASS A SHARES': 'Visa', 'ALPHABET INC CL A': 'Alphabet', 'TESLA INC': 'Tesla', 'ELI LILLY': 'Eli Lilly',
+    'SK HYNIX': 'SK Hynix', 'SK SQUARE': 'SK Square', 'SAMSUNG ELECTRO MECHANICS LTD': 'Samsung Electro-Mechanics',
+    'KB FINANCIAL GROUP': 'KB Financial', 'SHINHAN FINANCIAL GROUP': 'Shinhan Financial', 'SAMSUNG SDI LTD': 'Samsung SDI',
+    'HANA FINANCIAL GROUP': 'Hana Financial', 'CELLTRION': 'Celltrion',
     'LVMH MOET HENNESSY LOUIS VUI': 'LVMH', 'L OREAL (PARIS)': 'L’Oréal', 'SANOFI - PARIS': 'Sanofi', 'AXA SA': 'AXA',
   }
   if (aliases[name.toUpperCase()]) return aliases[name.toUpperCase()]
