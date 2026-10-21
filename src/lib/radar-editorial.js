@@ -4,6 +4,29 @@ export const EDITORIAL_LIMIT = 5
 export const EDITORIAL_STATES = { ready: 'À exploiter', watch: 'À suivre', secondary: 'Variations secondaires' }
 const normal = value => String(value ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
 
+// The collection date and a legacy `publication` label cannot establish a new
+// reporting period. The guard also applies to events already in the feed.
+export function investorFilingType(event) {
+  if (event.family !== 'investisseurs' || event.field !== 'filing') return null
+  if (event.kind === 'new') return 'coverage'
+  const validDate = value => /^\d{4}-\d{2}-\d{2}$/.test(value ?? '') &&
+    Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value
+  if (!validDate(event.period) || !validDate(event.beforePeriod)) return 'unknown'
+  if (event.period === event.beforePeriod) return 'revision'
+  return event.period > event.beforePeriod ? 'publication' : 'unknown'
+}
+
+export function readableInvestorFiling(event) {
+  const type = investorFilingType(event)
+  if (!type || type === 'publication' || type === 'coverage') return event
+  const reason = type === 'revision'
+    ? 'Le relevé a changé pour une même période. Cela peut venir de la source ou de la collecte ; cette mise à jour ne prouve pas une nouvelle opération de l’investisseur.'
+    : 'Les périodes disponibles ne permettent pas d’établir une nouvelle déclaration.'
+  const angle = 'Comparer les relevés et leur périmètre avant de parler de nouveaux achats ou de nouvelles ventes.'
+  return { ...event, title: factualTitle(event), reason, angle,
+    draft: `${factualTitle(event)}\n\n${reason}\n\nPériode déclarée : ${event.period ?? 'non documentée'}\n${event.scope ?? ''}\n\n${angle}` }
+}
+
 // Only explicit issuer wording qualifies an announcement. A launch is not a
 // listing, French distribution permission, or availability at a retail broker.
 export function etfAnnouncement(title = '') {
@@ -37,7 +60,7 @@ export function editorialState(event) {
   if (event.family === 'epargne') return 'ready'
   if (event.family === 'assurance') return /^(fees:|euro:)/.test(field) ? 'ready' : 'secondary'
   if (event.family === 'scpi') return /^(price|distribution|subscriptionFee|managementFee|minimum)$/.test(field) ? 'ready' : 'secondary'
-  if (event.family === 'investisseurs' && field === 'filing') return 'ready'
+  if (event.family === 'investisseurs' && field === 'filing') return investorFilingType(event) === 'publication' ? 'ready' : 'secondary'
   return 'secondary'
 }
 
@@ -74,6 +97,9 @@ export function editorialAudience(event) {
 }
 
 export function factualTitle(event) {
+  const filing = investorFilingType(event)
+  if (filing === 'revision') return `${event.label} : relevé révisé pour la même période · ${event.period}`
+  if (filing === 'unknown') return `${event.label} : période de déclaration à vérifier`
   if (!event.label || !event.fieldLabel) return event.title
   if (event.family === 'etf' && event.field === 'announcement') {
     const announcement = etfAnnouncement(event.label)

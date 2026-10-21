@@ -1,6 +1,7 @@
 import { frenchCharacteristic } from '../../data/french-characteristics.js'
-import { factualTitle } from '../../lib/radar-editorial.js'
+import { factualTitle, readableInvestorFiling } from '../../lib/radar-editorial.js'
 export function readableSignal(event) {
+  event = readableInvestorFiling(event)
   const title = factualTitle(event).replace(/(poids du (?:pays|secteur) )(.+?)(,| en mouvement)/i, (_,prefix,label,end) => prefix+frenchCharacteristic(label)+end)
   const composition = /poids du (pays|secteur) (.+?) en mouvement/i.exec(title)
   const angle = composition
