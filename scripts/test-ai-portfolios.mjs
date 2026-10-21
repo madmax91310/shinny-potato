@@ -4,7 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
-import { addDays,clone,emptyPortfolio,mark,planDecision,quoteAt,validateDecision,runCompetition,portfolioAt,snapshot,periodReport,nextExecution,coverage } from '../src/pages/ai-portfolios/lib.js'
+import { addDays,clone,emptyPortfolio,mark,planDecision,quoteAt,validateDecision,runCompetition,portfolioAt,snapshot,periodReport,nextExecution,coverage,sourceFreshness } from '../src/pages/ai-portfolios/lib.js'
 import { register,refresh } from './ai-portfolios.mjs'
 // Entirely synthetic tests, never published in the real book.
 const ids=['a','b','c'],config={...defaultConfig('2026-01-05'),benchmark:'a',universe:ids,participants:[{id:'test',name:'Test',model:'Test manuel',color:'#17866b'}]}
@@ -15,6 +15,8 @@ for(let d='2025-12-01';d<='2026-03-31';d=addDays(d,1)){
  for(const id of ids){market.series[id]??={anchorDate:'2025-12-01',qualified:true,points:{}};market.series[id].points[d]={synthetic:id==='a'&&d>='2026-02-01'?200:100,close:75};market.status[id]={ok:true}}
 }
 market.status.ECB={ok:true}
+assert.equal(sourceFreshness(market,'2026-01-05T00:00:00Z').ok,false)
+assert.equal(sourceFreshness(market,'2026-01-03T06:00:00Z').ok,true)
 const eq=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`)
 const target={id:'initial',participant:'test',model:'Test',kind:'target',weights:{a:33,b:33,c:33},reason:'Test',decisionDate:'2026-01-02'}
 validateDecision(target,{config,decisions:[]},market,market.asOf)
@@ -65,6 +67,13 @@ const noPrice=clone(market);delete noPrice.series.a.points['2026-01-05']
 const waiting=runCompetition(comp,noPrice,'2026-01-06');assert.equal(waiting.decisions[0].status,'pending');assert.equal(waiting.decisions[0].executionDate,'2026-01-05')
 assert.equal(snapshot(waiting,'2026-01-09',noPrice).complete,false)
 assert.equal(runCompetition(waiting,market,'2026-01-06').decisions[0].status,'executed')
+// Fully sold lines keep their contributions, but no longer require future prices.
+const liquidated=planDecision(initial.portfolio,{...target,weights:{a:0,b:0,c:0}},'2026-02-02',config,market)
+assert.equal(liquidated.after.positions.length,0);assert.equal(liquidated.after.closedResults.length,3)
+const cashComp=clone(executed);cashComp.decisions.push({...target,id:'sell-all',status:'executed',executionDate:'2026-02-02',registeredAt:'2026-02-01T00:00:00Z',execution:liquidated})
+cashComp.decisions.push({...target,id:'cash-hold',kind:'hold',weights:undefined,status:'recorded',executionDate:'2026-02-03',registeredAt:'2026-02-02T00:00:00Z'})
+const discontinued=clone(market);for(const id of ids)delete discontinued.series[id].points['2026-02-03']
+assert.equal(runCompetition(cashComp,discontinued,'2026-02-03').decisions.at(-1).status,'executed')
 // Source adjustment cancels in normalization; a dividend or split never creates cash a second time.
 const afterDividend=clone(market);for(const d of Object.keys(afterDividend.series.a.points))if(d>='2026-01-06')afterDividend.series.a.points[d].synthetic=110
 const wealth=mark(portfolioAt(executed,'test','2026-01-09'),'2026-01-09',config,afterDividend)

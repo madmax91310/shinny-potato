@@ -1,5 +1,5 @@
 // Shared deterministic accounting used by browser preview and durable automation.
-import { EXECUTION_RULE, METHOD } from './data.js'
+import { EXECUTION_RULE, METHOD, MAX_CHECK_AGE_HOURS } from './data.js'
 export const day = value => value.slice(0,10)
 export function assert(ok,message) { if(!ok) throw Error(message) }
 export const clone = value => structuredClone(value)
@@ -51,6 +51,10 @@ export function quoteAt(id,date,common,market,exact=false) {
   return {price:point.synthetic/base.rate*target.rate,synthetic:point.synthetic,rawClose:point.close,
     currency:asset.currency,priceDate,fxDate:base.date,commonFxDate:target.date}
 }
+export function sourceFreshness(market,now=new Date().toISOString()) {
+  const age=Date.parse(now)-Date.parse(market.generatedAt)
+  return Number.isFinite(age)&&age<=MAX_CHECK_AGE_HOURS*3600000?{ok:true}:{ok:false,reason:`Collecte périmée : aucune actualisation depuis ${market.generatedAt??'une date inconnue'}. Relancer le workflow avant toute nouvelle décision.`}
+}
 export function coverage(id,market,asOf) {
   try {
     const asset=market.universe.find(a=>a.id===id),s=market.series[id]
@@ -72,17 +76,17 @@ export function mark(portfolio,date,config,market) {
   return {date,value,cash:portfolio.cash,fees:portfolio.fees,pnl:value-config.initialCapital,
     performance:(value/config.initialCapital-1)*100,closedResults:Object.entries(portfolio.flows).filter(([id])=>!(portfolio.positions[id]>1e-10)).map(([id,flow])=>({id,pnl:-flow,contribution:-flow/config.initialCapital*100})),positions:positions.map(p=>({...p,weight:p.value/value*100}))}
 }
-export function validateDecision(d,competition,market,asOf) {
+export function validateDecision(d,competition,market,asOf,now=market.generatedAt??asOf) {
   const c=competition.config
   assert(c.participants.some(p=>p.id===d.participant),'Participant inconnu.')
   assert(['hold','target','trades'].includes(d.kind),'Type de décision invalide.')
   assert(typeof d.model==='string'&&d.model.trim()&&d.model.length<=100,'Modèle utilisé requis.')
   assert(typeof d.reason==='string'&&d.reason.trim()&&d.reason.length<=10000,'Justification requise (10 000 caractères maximum).')
   assert(!d.original||typeof d.original==='string'&&d.original.length<=50000,'Réponse originale trop longue.')
-  assert(/^\d{4}-\d{2}-\d{2}$/.test(d.decisionDate)&&d.decisionDate<=(market.generatedAt?.slice(0,10)??asOf)&&!isNaN(Date.parse(d.decisionDate)),'Date de décision future ou invalide.')
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(d.decisionDate)&&d.decisionDate<=(d.registeredAt??now).slice(0,10)&&!isNaN(Date.parse(d.decisionDate)),'Date de décision future ou invalide.')
   const others=competition.decisions.filter(x=>x.id!==d.id&&x.participant===d.participant&&x.status!=='cancelled')
   assert(!others.some(x=>['recorded','pending'].includes(x.status)),'Une opération attend déjà son exécution.')
-  if(c.frequency==='monthly') assert(!others.some(x=>(x.registeredAt??x.decisionDate).slice(0,7)===(d.registeredAt??market.generatedAt??asOf).slice(0,7)),'Une décision par mois d’enregistrement, conservation comprise.')
+  if(c.frequency==='monthly') assert(!others.some(x=>(x.registeredAt??x.decisionDate).slice(0,7)===(d.registeredAt??now).slice(0,7)),'Une décision par mois d’enregistrement, conservation comprise.')
   if(d.kind==='hold') return
   const entries=Object.entries(d.kind==='target'?d.weights??{}:d.amounts??{})
   assert(entries.length>0&&entries.length<=c.maxLines*2,'Allocation ou mouvements requis.')
@@ -100,7 +104,7 @@ export function validateDecision(d,competition,market,asOf) {
 }
 export function planDecision(portfolio,d,date,c,market,{benchmark=false,estimate=false}={}) {
   const before=mark(portfolio,date,c,market)
-  const ids=[...new Set([...Object.keys(portfolio.positions),...Object.keys(d.weights??{}),...Object.keys(d.amounts??{})])]
+  const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...Object.keys(d.weights??{}).filter(id=>d.weights[id]>0),...Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0)])]
   if(d.kind==='hold') return {before,after:before,trades:[],portfolio:clone(portfolio),fee:0}
   const feeRate=c.feeBps/10000
   const quotes=Object.fromEntries(ids.map(id=>[id,quoteAt(id,date,c.currency,market,!estimate)]))
@@ -151,7 +155,7 @@ export function runCompetition(input,market,asOf) {
     try {
       portfolio=portfolioAt(comp,d.participant,d.executionDate)
       // A missing planned close waits on this exact date; never jump to a cheaper session.
-      const ids=[...new Set([...Object.keys(portfolio.positions),...Object.keys(d.weights??{}),...Object.keys(d.amounts??{})])]
+      const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...Object.keys(d.weights??{}).filter(id=>d.weights[id]>0),...Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0)])]
       for(const id of ids) quoteAt(id,d.executionDate,comp.config.currency,market,true)
       plan=planDecision(portfolio,d,d.executionDate,d.rules??comp.config,market,{benchmark:d.participant==='world'})
     } catch(e) {

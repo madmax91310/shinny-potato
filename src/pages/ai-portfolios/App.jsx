@@ -1,10 +1,11 @@
 import { useEffect,useMemo,useRef,useState } from 'react'
 import { defaultConfig,COLORS,EXECUTION_RULE,METHOD,STATUS } from './data.js'
-import { coverage,validateConfig,validateDecision,nextExecution,portfolioAt,planDecision,periodReport,prompt,tweet,money,percent,clone } from './lib.js'
+import { coverage as recordedCoverage,sourceFreshness,validateConfig,validateDecision,nextExecution,portfolioAt,planDecision,periodReport,prompt,tweet,money,percent,clone } from './lib.js'
 import { renderImage } from './image.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import './style.css'
 const BASE=import.meta.env.BASE_URL
+function coverage(id,market,asOf) {const fresh=sourceFreshness(market);return fresh.ok?recordedCoverage(id,market,asOf):fresh}
 function downloadJSON(value,name) {
   const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}))
   const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000)
@@ -36,7 +37,8 @@ export default function App() {
   function prepare(operation) {setRequest({version:1,expectedRevision:bundle.book.revision,requestId:crypto.randomUUID(),competitionId:comp?.id??null,operation});setNotice('Demande préparée. Téléchargez le JSON puis enregistrez-le dans le dépôt avec la commande indiquée. Aucun enregistrement distant effectué.');}
   function decisionRequest() {guard(()=>{
     if(!comp)throw Error('Enregistrer d’abord la configuration de la compétition.')
-    const d={...decision,participant};validateDecision(d,comp,market,asOf)
+    const fresh=sourceFreshness(market);if(!fresh.ok)throw Error(fresh.reason)
+    const d={...decision,participant};validateDecision(d,comp,market,asOf,new Date().toISOString())
     if(d.kind!=='hold') planDecision(portfolioAt(comp,participant,asOf),d,asOf,comp.config,market,{estimate:true})
     prepare({type:'decision',decision:d})
   })}
@@ -53,6 +55,7 @@ export default function App() {
   return <main className="ai-tool">
     <header className="ai-hero"><span className="ai-kicker">L’EXPÉRIENCE · ÉPARGNANT LIBRE</span><h1>Portefeuilles IA</h1><p>Tu échanges avec les IA. Tu saisis leurs décisions.<br/>L’application suit la course, un jour après l’autre.</p><div className="ai-badges"><span>Portefeuilles fictifs</span><span>Aucune connexion aux IA</span><span>Arrêté {asOf} · {config.currency}</span></div></header>
     {error&&<p role="alert" className="ai-alert">{error}</p>}{notice&&<p role="status" className="ai-notice">{notice}</p>}
+    {!sourceFreshness(market).ok&&<p role="alert" className="ai-alert">{sourceFreshness(market).reason} Les bilans historiques conservent leur date.</p>}
     <div className="ai-toolbar"><Field label="Compétition"><select value={selected} onChange={e=>{setSelected(e.target.value);if(!e.target.value)setConfig(defaultConfig())}}><option value="">Nouvelle compétition</option>{bundle.book.competitions.map(c=><option key={c.id} value={c.id}>{c.config.name} · {c.status==='launched'?'lancée':'avant lancement'}</option>)}</select></Field><button onClick={()=>downloadJSON(bundle,'portefeuilles-ia-dossier.json')}>Exporter le dossier</button><button onClick={load}>Recharger le dépôt</button></div>
     <nav className="ai-tabs" aria-label="Vues Portefeuilles IA">{[['competition','Compétition'],['portfolio','Portefeuille'],['manage','Gestion']].map(([key,label])=><button key={key} aria-pressed={view===key} onClick={()=>setView(key)}>{label}</button>)}</nav>
     {view!=='manage'&&<>

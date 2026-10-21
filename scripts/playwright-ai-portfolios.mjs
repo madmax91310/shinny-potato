@@ -10,7 +10,7 @@ import { register,refresh } from './ai-portfolios.mjs'
 const output='/tmp/ai-portfolios-qa';fs.mkdirSync(output,{recursive:true})
 const sourceBytes=fs.readFileSync('public/data/ai-portfolios/snapshot.json','utf8'),actual=JSON.parse(sourceBytes)
 const blank={...actual,book:{version:1,revision:0,competitions:[],audit:[]},state:{daily:{},weekly:{},valuationRevisions:[]}}
-const market=clone(actual.market),defaults=defaultConfig(market.calendarFrom),qaDay=addDays(market.calendarFrom,3)
+const market=clone(actual.market);market.generatedAt=new Date().toISOString();const defaults=defaultConfig(market.calendarFrom),qaDay=addDays(market.calendarFrom,3)
 const config={...defaults,name:'DÉMONSTRATION QA · jamais publiée',launchDate:qaDay,participants:defaults.participants.map(p=>({...p,model:'Modèle fictif de test'}))}
 let book={version:1,revision:0,competitions:[],audit:[]},index=0
 const submit=op=>{book=register(book,{version:1,requestId:'qa-request-'+index++,expectedRevision:book.revision,competitionId:book.competitions[0]?.id,operation:op},market,qaDay+'T09:00:00Z')}

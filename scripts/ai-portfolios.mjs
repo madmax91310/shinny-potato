@@ -3,7 +3,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { validateConfig,validateDecision,nextExecution,coverage,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
+import { validateConfig,validateDecision,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
 import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 export function register(book,proposal,market,now=new Date().toISOString()) {
@@ -12,6 +12,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
   assert(!book.audit.some(e=>e.requestId===proposal.requestId),'Demande déjà enregistrée, aucune double exécution.')
   const next=clone(book),op=proposal.operation
   assert(op&&typeof op==='object','Opération absente.')
+  if(['decision','launch'].includes(op.type)){const fresh=sourceFreshness(market,now);assert(fresh.ok,fresh.reason)}
   let comp=next.competitions.find(c=>c.id===proposal.competitionId)
   const event={requestId:proposal.requestId,at:now,operation:op.type,competitionId:comp?.id??proposal.requestId,reason:op.reason??null}
   if(op.type==='create') {
@@ -38,7 +39,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       // Registration time and executable date can never be supplied by the browser.
       d.registeredAt=now;d.executionDate=nextExecution(now,comp.config.launchDate,market,comp.config.universe)
       assert(!d.correctionOf,'Corriger par une nouvelle décision justifiée ; pas de contournement de fréquence.')
-      validateDecision(d,comp,market,market.asOf)
+      validateDecision(d,comp,market,market.asOf,now)
       comp.decisions.push(d)
     } else if(op.type==='cancel') {
       const d=comp.decisions.find(d=>d.id===op.decisionId)
