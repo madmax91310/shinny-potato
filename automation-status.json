@@ -1466,7 +1466,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T20:23:09Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:47:57.294Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:49:11Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39571633502",
       "failures": [
         {
@@ -1625,8 +1625,8 @@
   "updatedAt": "2026-10-21T10:39:00Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T11:07:45.653805+00:00",
-    "revision": 208,
+    "checkedAt": "2026-10-21T11:19:03.145531+00:00",
+    "revision": 209,
     "active": {
       "collection:update-regulatory-data.yml:fiscal-observation:dividends": {
         "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
@@ -1647,7 +1647,7 @@
         "dataId": "fiscal-observation:dividends",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:pee": {
         "name": "Plan d'épargne entreprise (PEE)",
@@ -1668,7 +1668,7 @@
         "dataId": "fiscal-observation:pee",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:rent": {
         "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
@@ -1689,7 +1689,7 @@
         "dataId": "fiscal-observation:rent",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:lmnp": {
         "name": "Impôt sur le revenu - Revenus d'une location meublée",
@@ -1710,7 +1710,7 @@
         "dataId": "fiscal-observation:lmnp",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1733,7 +1733,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1761,7 +1761,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1788,36 +1788,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
-      },
-      "field:instrument:IE00BJGWQN72:completeHoldings": {
-        "id": "field:instrument:IE00BJGWQN72:completeHoldings",
-        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
-        "aliases": [
-          "IE00BJGWQN72"
-        ],
-        "field": "Positions intégrales",
-        "kind": "collection",
-        "cause": "Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n",
-        "category": "current",
-        "tools": [
-          "Présentation ETF",
-          "Générateur de portefeuilles",
-          "Duels de portefeuilles",
-          "Impact des frais",
-          "Comparatif ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://www.wisdomtree.com/api/fund-holdings/3104137"
-        ],
-        "checkedAt": "2026-10-21T04:40:43.388320+00:00",
-        "asOf": "2026-10-19",
-        "lastSuccessAt": "2026-10-21T04:40:43.388320+00:00",
-        "evaluatedAt": "2026-10-21",
-        "to": "/donnees-a-revoir",
-        "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1839,28 +1810,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00"
+        "lastSeenAt": "2026-10-21T11:19:03.145531+00:00"
       }
     },
     "events": [
-      {
-        "revision": 179,
-        "at": "2026-10-20T13:34:56.697442+00:00",
-        "opened": [
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BLNMYC90",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HK77",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HS53",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HQ30",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE000L6ZMMC4",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BTJRMP35",
-          "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HV82",
-          "collection:update-qualified-exposures.yml:dca-holdings:LU0380865021",
-          "collection:update-qualified-exposures.yml:dca-holdings:LU0328475792",
-          "collection:update-qualified-exposures.yml:dca-holdings:LU0274209237"
-        ],
-        "resolved": [],
-        "escalated": []
-      },
       {
         "revision": 180,
         "at": "2026-10-20T13:35:49.631309+00:00",
@@ -11609,9 +11562,78 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 209,
+        "at": "2026-10-21T11:19:03.145531+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "id": "field:instrument:IE00BJGWQN72:completeHoldings",
+            "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+            "aliases": [
+              "IE00BJGWQN72"
+            ],
+            "field": "Positions intégrales",
+            "kind": "collection",
+            "cause": "Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n",
+            "category": "current",
+            "tools": [
+              "Présentation ETF",
+              "Générateur de portefeuilles",
+              "Duels de portefeuilles",
+              "Impact des frais",
+              "Comparatif ETF"
+            ],
+            "impactScope": "asset",
+            "sourceUrls": [
+              "https://www.wisdomtree.com/api/fund-holdings/3104137"
+            ],
+            "checkedAt": "2026-10-21T04:40:43.388320+00:00",
+            "asOf": "2026-10-19",
+            "lastSuccessAt": "2026-10-21T04:40:43.388320+00:00",
+            "evaluatedAt": "2026-10-21",
+            "to": "/donnees-a-revoir",
+            "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
+            "lastSeenAt": "2026-10-21T11:07:45.653805+00:00",
+            "resolvedAt": "2026-10-21T11:19:03.145531+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "id": "field:instrument:IE00BJGWQN72:completeHoldings",
+        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BJGWQN72"
+        ],
+        "field": "Positions intégrales",
+        "kind": "collection",
+        "cause": "Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n",
+        "category": "current",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/api/fund-holdings/3104137"
+        ],
+        "checkedAt": "2026-10-21T04:40:43.388320+00:00",
+        "asOf": "2026-10-19",
+        "lastSuccessAt": "2026-10-21T04:40:43.388320+00:00",
+        "evaluatedAt": "2026-10-21",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
+        "lastSeenAt": "2026-10-21T11:07:45.653805+00:00",
+        "resolvedAt": "2026-10-21T11:19:03.145531+00:00"
+      },
       {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
         "tools": [
@@ -14194,28 +14216,6 @@
         "field": "Poids du pays Zambia",
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:d4976b3e291e6c643374fdaa",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Macao",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:b6a2cc31378ca28a3a20b8c5",
         "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
         "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
         "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
@@ -17858,7 +17858,7 @@
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T08:47:03Z",
       "observedRunId": 39585245137,
-      "status": "waiting",
+      "status": "awaiting-current-run",
       "nextAttemptAt": "2026-10-21T12:43:51.773573+00:00"
     },
     "collect-etf-pilot.yml": {
