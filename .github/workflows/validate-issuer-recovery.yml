@@ -1,4 +1,4 @@
-name: Probe exact public WisdomTree portfolios
+name: Probe exact public WisdomTree portfolios in an ordinary browser
 on:
   workflow_dispatch:
 permissions:
@@ -6,7 +6,7 @@ permissions:
 jobs:
   public-access:
     runs-on: ubuntu-24.04
-    timeout-minutes: 8
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -14,26 +14,49 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
       - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
-      - name: Qualify ordinary public document access without writing data
-        shell: bash
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Read only the exact public fund pages in a normal browser
+        run: |
+          node --input-type=module <<'PROBE'
+          import {chromium} from 'playwright'
+          import {readFileSync,writeFileSync} from 'node:fs'
+          const wanted=new Set(['IE0002Y8CX98','IE000W8WMSL2','IE00BDVPNG13','IE00BJGWQN72'])
+          const shares=['additional-etf-sources.json','exposure-etf-expansion.json'].flatMap(f=>JSON.parse(readFileSync('scripts/'+f)).instruments).filter(s=>wanted.has(s.isin))
+          const unique=new Map(shares.map(s=>[s.isin,s])),browser=await chromium.launch({headless:true})
+          try{
+            for(const share of unique.values()){
+              const page=await browser.newPage({locale:'en-GB'})
+              try{
+                const response=await page.goto(share.sourceUrl,{waitUntil:'load',timeout:45000})
+                const body=await page.content()
+                if(!response?.ok()||page.url().replace(/\/$/,'')!==share.sourceUrl.replace(/\/$/,''))throw Error('Public page HTTP '+response?.status()+' or wrong final URL')
+                writeFileSync('/tmp/'+share.isin+'-public-page.html',body)
+                console.log(JSON.stringify({isin:share.isin,http:response.status(),bytes:body.length,saved:true}))
+              }catch(error){console.log(JSON.stringify({isin:share.isin,saved:false,error:error.message}))}
+              finally{await page.close()}
+            }
+          }finally{await browser.close()}
+          PROBE
+      - name: Independently qualify any accessible exact fund portfolio without applying data
         run: |
           python -u - <<'PROBE'
           import sys,datetime,json
+          from pathlib import Path
           from unittest.mock import patch
           sys.path.insert(0,'scripts')
-          from issuer_documents import download
           from collect_wisdomtree_holdings import known_shares,collect_rankings
-          selected={'IE0002Y8CX98','IE000W8WMSL2','IE00BDVPNG13','IE00BJGWQN72'}
-          def page(url,**kwargs):
-              return download(url,max_bytes=12_000_000,timeout=25,max_attempts=1).decode('utf-8')
           for share in known_shares():
-              if share['isin'] not in selected:continue
+              path=Path('/tmp/'+share['isin']+'-public-page.html')
+              if not path.exists():continue
               try:
-                  with patch('collect_wisdomtree_holdings.public_page',side_effect=page):
+                  with patch('collect_wisdomtree_holdings.public_page',return_value=path.read_text()):
                       value=collect_rankings(share,datetime.datetime.now(datetime.timezone.utc))
                   print(json.dumps({'isin':share['isin'],'qualified':True,'asOf':value['asOf'],'rows':len(value['rows']),'sha256':value['sha256']}))
-              except Exception as error:
-                  print(json.dumps({'isin':share['isin'],'qualified':False,'error':str(error)[:700]}))
-          print('Read-only probe: no registry, financial date, workflow schedule or published file changed.')
+              except Exception as error:print(json.dumps({'isin':share['isin'],'qualified':False,'error':str(error)[:700]}))
+          print('Read-only probe: no registry, financial date, schedule or published file changed.')
           PROBE
