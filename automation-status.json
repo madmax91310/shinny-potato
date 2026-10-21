@@ -15430,14 +15430,15 @@
           "at": "2026-10-21T18:50:06.964991+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39605630531,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-21T13:12:11Z",
       "observedRunId": 39605630531,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T22:50:06.964991+00:00"
     },
     "update-insurance.yml": {
