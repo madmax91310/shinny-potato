@@ -28,6 +28,15 @@ class CompleteHoldings(unittest.TestCase):
         url='https://www.blackrock.com/product-data/api/v2/get-product-data?portfolioId=251882'
         h,securities=parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
         self.assertTrue(h['complete']);self.assertEqual(len(securities),2)
+        self.assertEqual(h['compositionFacts']['asOf'],h['asOf'])
+        self.assertEqual(h['compositionFacts']['countries']['rows'],[{'name':'United States','weightPct':100}])
+        p['holdingPercent']['value']=[49.8,50]
+        h,_=parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
+        self.assertEqual(h['compositionFacts']['sectors']['rows'][0]['weightPct'],99.8, 'Partial equity sleeve is never normalized')
+        p['sectorName']['value'][0]='Unknown'
+        h,_=parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
+        self.assertNotIn('compositionFacts',h, 'Incomplete classification cannot qualify a same-date visual')
+
         with self.assertRaises(ValueError):parse_complete(b,'IE00B5BMR087',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
         facts['productStructure']['value']='Synthetic'
         with self.assertRaises(ValueError):parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))

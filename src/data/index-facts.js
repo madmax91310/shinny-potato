@@ -1,3 +1,4 @@
+import { COMPANY_INDEX_FACTS } from './index-company-facts.js';
 import automatedIndices from './automated-indices.json' with { type: 'json' };
 import { PROPERTY_INFRA_FACTS } from './property-infrastructure-additions.js';
 import { WORLD_FACTOR_FACTS } from './world-factor-additions.js';
@@ -10,6 +11,7 @@ import { normalizeEvidence } from './evidence.js';
 // Clé = indice + photographie : une nouvelle date ajoute une entrée, elle ne remplace pas l’histoire.
 // Les archives migrées gardent leur provenance ; les revues externes sont identifiées séparément.
 export const INDEX_FACTS = {
+...COMPANY_INDEX_FACTS,
 ...Object.fromEntries(['msci-world-consumer-discretionary', 'msci-world-communication-services', 'msci-world-industrials', 'msci-world-consumer-staples', 'msci-world-materials', 'msci-world-utilities', 'msci-world-health-care', 'msci-world-financials', 'msci-world-energy'].map(id => {
   const facts = automatedIndices[id].facts;
   return [id, { [facts.asOf]: { ...facts, markets: '23 marchés développés, grandes et moyennes capitalisations', sectorClassification: 'GICS' } }];

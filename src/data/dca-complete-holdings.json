@@ -3017,7 +3017,7 @@
       }
     ],
     "sha256": "4d6ea13a536c1e802537f724977f3f378505cd15beb324d82030a840d578c71e",
-    "checkedAt": "2026-10-21T11:55:56.804756+00:00"
+    "checkedAt": "2026-10-21T12:43:34.691433+00:00"
   },
   "DE000A0F5UJ7": {
     "asOf": "2026-10-19",
@@ -202164,8 +202164,127 @@
         "weightPct": 0.00241
       }
     ],
-    "sha256": "a856c20a78c44f1a846e6f43b295fddfcfb4e6e3ccfd995b5cf3e0218eea18df",
-    "checkedAt": "2026-10-21T11:55:56.804756+00:00"
+    "compositionFacts": {
+      "asOf": "2026-10-20",
+      "basis": "fund",
+      "method": "same-snapshot-equity-country-of-risk-and-sector",
+      "countries": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "United Kingdom",
+            "weightPct": 22.928740000000005
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 14.907009999999998
+          },
+          {
+            "name": "France",
+            "weightPct": 14.392060000000003
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.523850000000001
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 8.796019999999999
+          },
+          {
+            "name": "Spain",
+            "weightPct": 6.0715699999999995
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 5.363670000000001
+          },
+          {
+            "name": "Italy",
+            "weightPct": 4.8376
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.50197
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.7567000000000002
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.7400299999999997
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.03101
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.6438299999999999
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.56135
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.33410000000000006
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "Financials",
+            "weightPct": 24.427259999999993
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 17.859139999999996
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 13.365049999999995
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 9.105030000000003
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 8.943489999999997
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.093800000000002
+          },
+          {
+            "name": "Energy",
+            "weightPct": 5.73491
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.4247700000000005
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 4.846369999999999
+          },
+          {
+            "name": "Communication",
+            "weightPct": 3.05926
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0.53043
+          }
+        ]
+      }
+    },
+    "sha256": "4603f70ce48002bb1ce066dfc8ae021d09f4fcd433fe8958b9397fb475c772ad",
+    "checkedAt": "2026-10-21T12:43:34.691433+00:00"
   },
   "IE00B4KBBD01": {
     "asOf": "2026-10-19",
@@ -218124,8 +218243,87 @@
         "weightPct": 0.10933
       }
     ],
+    "compositionFacts": {
+      "asOf": "2026-10-20",
+      "basis": "fund",
+      "method": "same-snapshot-equity-country-of-risk-and-sector",
+      "countries": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 97.01196000000003
+          },
+          {
+            "name": "Canada",
+            "weightPct": 1.09049
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.05248
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 0.41688
+          },
+          {
+            "name": "China",
+            "weightPct": 0.23511
+          },
+          {
+            "name": "Spain",
+            "weightPct": 0.15567
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 57.24829000000001
+          },
+          {
+            "name": "Communication",
+            "weightPct": 14.842649999999999
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 10.931289999999999
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 6.34518
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 4.466289999999999
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 3.3392600000000003
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 1.09621
+          },
+          {
+            "name": "Materials",
+            "weightPct": 1.00058
+          },
+          {
+            "name": "Energy",
+            "weightPct": 0.48146999999999995
+          },
+          {
+            "name": "Financials",
+            "weightPct": 0.21137
+          }
+        ]
+      }
+    },
     "sha256": "734c1c1bd3cf23793c5b2fcd5bc73842fad7f863f02ba82c7f9df8fc401a9d00",
-    "checkedAt": "2026-10-21T11:55:56.804756+00:00"
+    "checkedAt": "2026-10-21T12:43:34.691433+00:00"
   },
   "IE00B5BMR087": {
     "asOf": "2026-10-20",
@@ -220649,8 +220847,71 @@
         "weightPct": 0.00583
       }
     ],
-    "sha256": "6cb1b0083cd2cea9191cb0f0466bb2f6d18700b836ac38a2877de91c3234aaed",
-    "checkedAt": "2026-10-21T11:55:56.804756+00:00"
+    "compositionFacts": {
+      "asOf": "2026-10-20",
+      "basis": "fund",
+      "method": "same-snapshot-equity-country-of-risk-and-sector",
+      "countries": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 99.87500000000001
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 37.82911999999997
+          },
+          {
+            "name": "Financials",
+            "weightPct": 11.78467
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.781649999999999
+          },
+          {
+            "name": "Communication",
+            "weightPct": 9.570570000000004
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 9.032779999999999
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 7.97004
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.793800000000002
+          },
+          {
+            "name": "Energy",
+            "weightPct": 3.7237
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 1.9757200000000004
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.73449
+          },
+          {
+            "name": "Materials",
+            "weightPct": 1.6784600000000005
+          }
+        ]
+      }
+    },
+    "sha256": "6a87e16bb64d6f10b62ecccbc8fcc0de982498b88d57e55d45e3381d8254d5d7",
+    "checkedAt": "2026-10-21T12:43:34.691433+00:00"
   },
   "IE00B5M1WJ87": {
     "asOf": "2026-10-20",
@@ -506555,8 +506816,155 @@
         "weightPct": 0.00089
       }
     ],
+    "compositionFacts": {
+      "asOf": "2026-10-20",
+      "basis": "fund",
+      "method": "same-snapshot-equity-country-of-risk-and-sector",
+      "countries": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 47.57409000000002
+          },
+          {
+            "name": "Japan",
+            "weightPct": 20.399849999999994
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 8.36328
+          },
+          {
+            "name": "France",
+            "weightPct": 6.00563
+          },
+          {
+            "name": "Germany",
+            "weightPct": 4.270879999999999
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.8969200000000002
+          },
+          {
+            "name": "Italy",
+            "weightPct": 1.6399599999999996
+          },
+          {
+            "name": "Canada",
+            "weightPct": 1.4975999999999998
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.47924
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 1.4578900000000001
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 0.97755
+          },
+          {
+            "name": "Finland",
+            "weightPct": 0.77732
+          },
+          {
+            "name": "Australia",
+            "weightPct": 0.62814
+          },
+          {
+            "name": "Israel",
+            "weightPct": 0.58183
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 0.42951000000000006
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 0.42539
+          },
+          {
+            "name": "Norway",
+            "weightPct": 0.41916000000000003
+          },
+          {
+            "name": "Austria",
+            "weightPct": 0.24602000000000002
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.20274999999999999
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.11645
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 0.06194
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 0.04445
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-20",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 31.874260000000007
+          },
+          {
+            "name": "Financials",
+            "weightPct": 15.550939999999999
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 10.476019999999998
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.132269999999998
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 8.46596
+          },
+          {
+            "name": "Communication",
+            "weightPct": 7.87151
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.9703
+          },
+          {
+            "name": "Energy",
+            "weightPct": 4.284439999999998
+          },
+          {
+            "name": "Materials",
+            "weightPct": 3.0948499999999997
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 2.2510700000000003
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.5242300000000002
+          }
+        ]
+      }
+    },
     "sha256": "97243a81139c90007e67c53798d277ea9a19052757a2e5d9904ed9fb4987f441",
-    "checkedAt": "2026-10-21T11:55:56.804756+00:00"
+    "checkedAt": "2026-10-21T12:43:34.691433+00:00"
   },
   "IE00BP3QZD73": {
     "asOf": "2026-10-19",

@@ -1,3 +1,4 @@
+import { roundedComposition } from '../../data/index-concentration-core.js'
 import { loadEditorialFont } from '../../lib/art-resources.js'
 import { getIndexArt } from './visualIdentity.js'
 import { companyLabel, plainLabel, sectorLabel, sortedRows } from './editorial.js'
@@ -55,6 +56,20 @@ function displayLabel(name) {
 }
 // Only display aliases: no grouping of share classes or change to their weights.
 export function imageCompanyLabel(name) {
+  const aliases = {
+    'SIEMENS ENERGY AG': 'Siemens Energy', 'SIEMENS HEALTHINEERS AG': 'Siemens Healthineers',
+    'AIRBUS SE-BERLIN': 'Airbus', 'AIRBUS SE PARIS': 'Airbus',
+    'DEUTSCHE TELEKOM NAM (XETRA)': 'Deutsche Telekom', 'INFINEON TECHNOLOGIES AG': 'Infineon',
+    'MUENCHENER RUECKVER AG-REG': 'Munich Re', 'DEUTSCHE BANK NAMEN': 'Deutsche Bank', 'DHL GROUP (XETRA)': 'DHL Group',
+    'GOLDMAN SACHS GROUP INC': 'Goldman Sachs', 'CATERPILLAR INC': 'Caterpillar', 'AMGEN INC': 'Amgen',
+    'UNITEDHEALTH GROUP INC': 'UnitedHealth', 'TRAVELERS COMPANIES': 'Travelers', 'SHERWIN-WILLIAMS CO/THE': 'Sherwin-Williams',
+    'VISA INC-CLASS A SHARES': 'Visa', 'ALPHABET INC CL A': 'Alphabet', 'TESLA INC': 'Tesla', 'ELI LILLY': 'Eli Lilly',
+    'SK HYNIX': 'SK Hynix', 'SK SQUARE': 'SK Square', 'SAMSUNG ELECTRO MECHANICS LTD': 'Samsung Electro-Mechanics',
+    'KB FINANCIAL GROUP': 'KB Financial', 'SHINHAN FINANCIAL GROUP': 'Shinhan Financial', 'SAMSUNG SDI LTD': 'Samsung SDI',
+    'HANA FINANCIAL GROUP': 'Hana Financial', 'CELLTRION': 'Celltrion',
+    'LVMH MOET HENNESSY LOUIS VUI': 'LVMH', 'L OREAL (PARIS)': 'L’Oréal', 'SANOFI - PARIS': 'Sanofi', 'AXA SA': 'AXA',
+  }
+  if (aliases[name.toUpperCase()]) return aliases[name.toUpperCase()]
   return companyLabel(name)
     .replace(/^HSBC HOLDING PLC(?: GBP)?$/i, 'HSBC')
     .replace(/^ROCHE HLDG AG-GENUSS(?: CHF)?$/i, 'Roche')
@@ -144,8 +159,9 @@ export async function renderFactsheetImage(sheet) {
     returnRows.push({ cells, width, height: Math.max(...cells.map(cell => cell.year.height + cell.value.height + 56)) })
   }
   const note = block(ctx, performanceNote(sheet), USABLE - 44, 27)
-  const perfH = 65 + returnRows.reduce((sum, row) => sum + row.height, 0) + note.height + 24
-  const natural = PAD + headerH + 30 + bands.reduce((sum, band) => sum + band.height + GAP, 0) + perfH + 78
+  const perfH = returns.length ? 65 + returnRows.reduce((sum, row) => sum + row.height, 0) + note.height + 24 : 0
+  const concentrationH = sheet.concentration?.available ? 168 : 0
+  const natural = PAD + headerH + 30 + concentrationH + bands.reduce((sum, band) => sum + band.height + GAP, 0) + perfH + 78
   const H = Math.ceil(Math.max(1600, natural))
   bands.forEach(band => { band.height += (H - natural) / bands.length })
   canvas.width = W; canvas.height = H
@@ -162,6 +178,12 @@ export async function renderFactsheetImage(sheet) {
     draw(ctx, caption, x + badgeW / 2, PAD + 148, 'center', C.paper)
   }
   let y = PAD + headerH + 30
+  if (concentrationH) {
+    panel(ctx, PAD, y, USABLE, 144, true)
+    draw(ctx, block(ctx, 'Poids des 10 premières entreprises', USABLE - 520, 46, 700), PAD + 28, y + 39, 'left', C.paper)
+    draw(ctx, fit(ctx, percent(sheet.concentration.topWeight), 460, 100), W - PAD - 28, y + 14, 'right', C.paper)
+    y += concentrationH
+  }
   for (const band of bands) {
     panel(ctx, PAD, y, USABLE, band.height); category(ctx, band.label, y, band.height)
     const valueH = Math.max(...band.cells.map(cell => cell.value.height), 0)
@@ -175,6 +197,7 @@ export async function renderFactsheetImage(sheet) {
     })
     y += band.height + GAP
   }
+  if (returns.length) {
   panel(ctx, PAD, y, USABLE, perfH)
   ctx.fillStyle = C.green; ctx.fillRect(PAD + 1, y + 1, USABLE - 2, 63)
   draw(ctx, block(ctx, 'PERFORMANCES ANNUELLES', USABLE - 48, 32, 700), PAD + 24, y + 17, 'left', C.paper)
@@ -189,6 +212,61 @@ export async function renderFactsheetImage(sheet) {
     ry += row.height
   }
   draw(ctx, note, PAD + 22, ry + 4)
+  }
   draw(ctx, block(ctx, 'Épargnant Libre', USABLE, 33, 400, true), W / 2, H - 53, 'center')
+  return canvas
+}
+
+
+// No logo request participates in rendering: this canvas is self-contained.
+export async function renderCompositionImage(sheet, composition) {
+  if (!composition?.available) throw new Error('Composition indisponible')
+  await Promise.all([loadEditorialFont(), loadDisplayFont()])
+  const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Impossible de créer l’image')
+  const width = 1200, margin = 48, columnW = 534, gap = 36
+  const colors = ['#214a37','#b49750','#497e63','#d3a766','#7a9d85','#685b39','#87b4a3','#b87950','#366b73','#967b93','#ddd5c3']
+  const values = roundedComposition(composition)
+  const entries = [...composition.top.map((row, i) => ({ name: imageCompanyLabel(row.name), value: values[i], weight: row.weightPct, color: colors[i] })),
+    { name: 'Autres entreprises', value: values[10], weight: composition.otherWeight, color: colors[10] }]
+  const title = block(ctx, sheet.index ?? sheet.title, width - margin * 2, 80, 700, 'display')
+  const titleY = 38, donutTop = titleY + title.height + 22, diameter = 660
+  const legendTop = donutTop + diameter + 22
+  const rows = []
+  for (let i = 0; i < entries.length; i += 2) {
+    const cells = entries.slice(i, i + 2).map(entry => ({ ...entry,
+      label: block(ctx, `${entry.name} · ${percent(entry.value).replace(' %', '\u00a0%')}`, columnW - 40, 42, 400, 'display') }))
+    rows.push({ cells, height: Math.max(...cells.map(cell => cell.label.height)) + 26 })
+  }
+  const height = Math.ceil(legendTop + rows.reduce((sum, row) => sum + row.height, 0) + 82)
+  canvas.width = width; canvas.height = height
+  // Same ivory, green and gold palette as the original image.
+  ctx.fillStyle = C.paper; ctx.fillRect(0, 0, width, height)
+  draw(ctx, title, width / 2, titleY, 'center')
+  const cx = width / 2, cy = donutTop + diameter / 2, outer = diameter / 2, inner = 210
+  let angle = -Math.PI / 2
+  for (const entry of entries) {
+    const end = angle + entry.weight / 100 * Math.PI * 2
+    if (end > angle) {
+      ctx.beginPath(); ctx.arc(cx, cy, outer, angle, end); ctx.arc(cx, cy, inner, end, angle, true); ctx.closePath()
+      ctx.fillStyle = entry.color; ctx.fill()
+      // Thin separators preserve very small slices, with their values in the legend.
+      ctx.strokeStyle = C.paper; ctx.lineWidth = 1.5; ctx.stroke()
+    }
+    angle = end
+  }
+  const center = fit(ctx, percent(composition.topWeight), inner * 2 - 22, 86, 65)
+  draw(ctx, center, cx, cy - 62, 'center')
+  draw(ctx, block(ctx, 'Top 10', inner * 2 - 20, 45, 400, 'display'), cx, cy + 54, 'center')
+  let y = legendTop
+  for (const row of rows) {
+    row.cells.forEach((entry, i) => {
+      const x = margin + i * (columnW + gap)
+      ctx.fillStyle = entry.color; ctx.beginPath(); ctx.roundRect(x, y + 10, 22, 30, 5); ctx.fill()
+      draw(ctx, entry.label, x + 38, y)
+    })
+    y += row.height
+  }
+  draw(ctx, block(ctx, 'Épargnant Libre', width - 96, 36, 400, true), width / 2, height - 57, 'center')
   return canvas
 }
