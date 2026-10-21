@@ -37,3 +37,21 @@ Avant intégration du cycle concurrent : 78 raccordements ouverts contre 81 ; 17
 Les tests couvrent la séparation ADR/action ordinaire, les hypothèses erronées, les ambiguïtés, les limites de requêtes, les erreurs d’accès primaire avec secours disponible, les coupures de lecture, les documents trop volumineux, les clauses contractuelles modifiées et les sommes non finies. Un parcours Chromium mobile et bureau exerce les nouveaux portefeuilles dans le calcul de recouvrement et vérifie la conservation des poids complets dans les projections. Les obligations par outil et le retrait d’Analyse d’entreprise sont aussi rejoués.
 
 Cette livraison ne réalise pas l’automatisation totale : les sources non publiées, les identités encore inconnues et les compositions d’indices non qualifiées restent explicitement requises. Il faut une nouvelle source exploitable pour les fermer.
+
+## Contre-vérification depuis GitHub
+
+La recette du dernier code sur GitHub Actions ([collecte 39598011425](https://github.com/madmax91310/shinny-potato/actions/runs/39598011425)) a validé 177 portefeuilles sur 181. Les trois nouveaux WisdomTree ont tous renvoyé HTTP 403, comme Cloud. Ils sont bien raccordés avec leurs observations intégrales validées localement, mais leur renouvellement autonome depuis GitHub n’est pas démontré. Cette limite doit rester dans les incidents ; le gain de raccordement ne vaut pas résolution de l’accès.
+
+La [sonde publique indépendante 39598711976](https://github.com/madmax91310/shinny-potato/actions/runs/39598711976), sans écriture de registre ni changement de date financière, a aussi testé le lecteur de documents standard sur les quatre pages exactes : quatre refus HTTP 403. Aucun changement de User-Agent, de runner déjà testé ou succès local n’est présenté comme une réparation de ces accès. Une source publique alternative exploitable ou un environnement de collecte durable ayant accès à ces sources reste nécessaire.
+
+Les collectes GitHub des assurances, plateformes, SCPI et données réglementaires ont réussi sur le dernier code. Les tests Python et la recette navigateur des expositions ont aussi réussi. Le bilan final doit reprendre les incidents et les compteurs réellement publiés après les cycles de production, et non les seuls compteurs de la recette locale.
+
+## Certificats des données réellement consommées
+
+Le suivi relie désormais les séries nommées du calculateur à leur certificat mensuel par ISIN, avec contrôle de la devise, de la méthode, de la cotation sourcée et des deux bornes de période. Les rendements annuels du catalogue rejoignent le certificat NAV uniquement lorsque chaque année affichée concorde avec les valeurs qualifiées de la part exacte et de la même devise. Un prix ajusté ou un proxy de simulation n’est pas promu en rendement NAV.
+
+Les certificats utilisent la règle de fraîcheur de leur champ dans le registre partagé : un historique mensuel ne reçoit plus le seuil d’une ventilation mensuelle simplement parce que son actif est un ETF. Un ancien contrôle hors délai, une date future ou une source en échec reste bloquant.
+
+Une liaison vérifiée supprime le certificat de couverture en doublon tout en conservant l’union de ses outils consommateurs et de ceux de la façade. La recette conserve 1 515 fiches, 4 487 champs du catalogue et 20 outils ; les usages sont recalculés après cette correction de leur périmètre. Les usages à confirmer passent de 3 938 à 2 134 dans la recette, sans effacer les 857 usages bloqués de cet instantané. Ce sont des certificats de données déjà présentes, pas de nouvelles performances collectées.
+
+Les tests refusent les mauvaises parts, devises, cotations, méthodes, fenêtres, années et valeurs. Ils contrôlent aussi la conservation des consommateurs absents de la façade, les échecs de source et les preuves expirées. Compilation et Chromium mobile/bureau du suivi des obligations par outil réussis.

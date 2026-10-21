@@ -2,7 +2,8 @@ import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from 
 import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_CATALOG } from '../src/data/catalog.js'
-import { registryQualification, fieldQualification, coverageKey, qualifyCoverage } from './lib/data-qualification.mjs'
+import { registryQualification, fieldQualification, qualifyCoverage } from './lib/data-qualification.mjs'
+import {catalogCoverage} from './lib/catalog-coverage.mjs'
 import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
 import {consumerUsage} from './lib/consumer-usage.mjs'
 import {externalConsumerAssets} from './lib/external-consumer-assets.mjs'
@@ -108,8 +109,8 @@ export function buildDataAutomationInventory(){
  const holdingSources={...JSON.parse(read('scripts/dca-complete-holdings-sources.json')),...JSON.parse(read('scripts/generated-holdings-sources.json'))}
  const fields=DATA_CATALOG.flatMap(record=>record.fields.map((field,index)=>{
   const registry=registryMap.get(field.registry),evidence=field.metadata??{}
-  const nature=fieldQualification(field,record),key=coverageKey(field,record)
-  const matchingCoverage=key?coverageMap.get(`${record.id.replace(/^(history|insurance|scpi|index):/,'')}:${key}`):null
+  const nature=fieldQualification(field,record)
+  const matchingCoverage=catalogCoverage(field,record,coverageMap,AUTOMATED_ETF)
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
    consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
    qualification:'source-configuration-only',nature,

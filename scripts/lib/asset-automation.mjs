@@ -1,3 +1,4 @@
+import {consumerPath} from './consumer-usage.mjs'
 // Field certificates derive from existing evidence. File schedules alone never
 // certify every value that a mixed registry exposes.
 import POLICY from '../../src/data/freshness-policy.json' with {type:'json'}
@@ -19,6 +20,15 @@ export function explicitFieldProducer(field,workflows){
  if(!binding)return null
  return workflows.find(w=>w.path.endsWith('/'+binding[2])&&w.crons.length&&field.upstreamWorkflows.includes(w.path))??null
 }
+export function certificateFreshnessKey(field){
+ const name=field.coverageReference?.field
+ if(name==='monthly')return field.type==='instrument'?'etf.monthly':'series.monthly'
+ if(name==='performance')return 'etf.performance'
+ if(name==='ter')return 'etf.ter'
+ for(const key of ['etf.staticCharacteristic','etf.characteristic'])if(POLICY.fields[key].fields.includes(name))return key
+ if(field.type==='index')return name==='returns'?'index.returns':'index.facts'
+ return field.type==='series'?'series.monthly':field.type==='instrument'?'etf.default':'product.default'
+}
 export function assetAutomation(inventory,now=inventory.generatedAt){
  const workflows=new Map(inventory.workflows.map(w=>[w.path,w]))
  const fields=new Map(),add=(id,type,name,field)=>{
@@ -38,13 +48,14 @@ export function assetAutomation(inventory,now=inventory.generatedAt){
   if(state==='connected'&&(!field.sourceUrls.length||!field.checkedAt||field.checkedAt.slice(0,10)>now.slice(0,10)))state='blocked'
   if(state==='qualification-needed'&&binding&&field.sourceUrls.length&&field.checkedAt&&field.sourceStatus==='documented')state='scheduled-evidence'
   if(!['excluded','reference','not-required'].includes(state)&&field.checkedAt){
-   const key=field.type==='series'?'series.monthly':field.type==='index'?'index.facts':field.type==='instrument'?'etf.default':'product.default'
+   const key=certificateFreshnessKey(field)
    const age=(Date.parse(now.slice(0,10))-Date.parse(field.checkedAt.slice(0,10)))/86400000
    if(!Number.isFinite(age)||age<0||age>POLICY.fields[key].checkDays)state='blocked'
   }
   if(!['excluded','reference','not-required'].includes(state)&&/^\d{4}-\d{2}-\d{2}/.test(field.asOf??'')&&field.asOf.slice(0,10)>now.slice(0,10))state='blocked'
+  const consumers=[...new Map([...(connection?.tools??[]),...(field.consumers??[])].map(c=>[consumerPath(c),typeof c==='string'?{path:consumerPath(c)}:c])).values()]
   add(field.id,field.type,field.name,{key:`catalog:${field.fieldIndex}`,label:field.field,state,kind,
-   checkedAt:field.checkedAt,asOf:field.asOf,sourceUrls:field.sourceUrls,consumers:field.consumers,
+   checkedAt:field.checkedAt,asOf:field.asOf,sourceUrls:field.sourceUrls,consumers,coverageReference:field.coverageReference??null,
    currency:field.currency??null,scope:field.scope,method:field.method,
    workflows:scheduled.map(path=>({path,name:workflows.get(path).name,crons:workflows.get(path).crons})),
    reason:connection?.reason??field.missingReason??field.action,

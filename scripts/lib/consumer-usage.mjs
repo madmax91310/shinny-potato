@@ -6,10 +6,11 @@ const ROUTES={
  'dca-profiles':'/le-dca-de',
 }
 const OPTIONAL=new Set(['excluded','reference','not-required'])
+export const consumerPath=consumer=>typeof consumer==='string'?(ROUTES[consumer]??consumer):consumer?.path
 export function consumerUsage(assets){
  const tools=new Map(),unmapped=[]
  for(const asset of assets)for(const field of asset.fields){
-  const paths=new Set((field.consumers??[]).map(c=>typeof c==='string'?(ROUTES[c]??c):c.path))
+  const paths=new Set((field.consumers??[]).map(consumerPath))
   for(const path of paths){
    const tool=TOOLS.find(t=>t.to===path?.split('?')[0])
    if(!tool){unmapped.push({asset:asset.id,field:field.label,consumer:path??null});continue}
