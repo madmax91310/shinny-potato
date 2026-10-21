@@ -574,22 +574,35 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39591444977,
+      "runId": 39596290518,
       "attempt": 1,
-      "headSha": "1fabffe6c2b90773d45382b4b635fee5530fb131",
-      "createdAt": "2026-10-21T11:22:16Z",
-      "completedAt": "2026-10-21T11:23:12Z",
-      "status": "success",
+      "headSha": "d03c26b7570022e43684173b1972633acbee5056",
+      "createdAt": "2026-10-21T12:01:07Z",
+      "completedAt": "2026-10-21T12:02:54Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-21T11:23:12Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-21T11:23:12Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39591444977",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39596290518",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Radar partiel : une famille de sources locales est illisible ; ses signaux précédents sont conservés. Voir editorial-radar-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "radar:etf": {
+          "name": "Radar · etf",
+          "completedAt": "2026-10-21T12:02:54Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39596290518",
+          "cause": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio",
+          "field": "Sources du radar"
+        }
+      }
     },
     "update-presentation-actors.yml": {
       "monitorVersion": 2,
@@ -1245,12 +1258,32 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T12:01:04Z",
+  "updatedAt": "2026-10-21T12:02:54Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T12:01:24.697671+00:00",
-    "revision": 212,
+    "checkedAt": "2026-10-21T12:03:13.597642+00:00",
+    "revision": 213,
     "active": {
+      "collection:update-editorial-radar.yml:radar:etf": {
+        "name": "Radar · etf",
+        "tools": [
+          "Radar éditorial"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-editorial-radar.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39596290518",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T11:23:12Z",
+        "completedAt": "2026-10-21T12:02:54Z",
+        "cause": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio",
+        "field": "Sources du radar",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "radar:etf",
+        "id": "collection:update-editorial-radar.yml:radar:etf",
+        "firstSeenAt": "2026-10-21T12:03:13.597642+00:00",
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
+      },
       "workflow:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
         "tools": [
@@ -1267,7 +1300,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T11:20:31.588995+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1290,7 +1323,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1318,7 +1351,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1345,7 +1378,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -1374,7 +1407,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T12:01:24.697671+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1396,39 +1429,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T12:01:24.697671+00:00"
+        "lastSeenAt": "2026-10-21T12:03:13.597642+00:00"
       }
     },
     "events": [
-      {
-        "revision": 183,
-        "at": "2026-10-20T16:06:16.836607+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Radar · etf",
-            "tools": [
-              "Radar éditorial"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-editorial-radar.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39444581067",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T13:32:40Z",
-            "completedAt": "2026-10-20T15:02:09Z",
-            "cause": "La page de communiqués Vanguard a changé de format. ; Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio",
-            "field": "Sources du radar",
-            "sourceUrls": [],
-            "kind": "collection",
-            "dataId": "radar:etf",
-            "id": "collection:update-editorial-radar.yml:radar:etf",
-            "firstSeenAt": "2026-10-20T13:35:49.631309+00:00",
-            "lastSeenAt": "2026-10-20T16:05:29.541605+00:00",
-            "resolvedAt": "2026-10-20T16:06:16.836607+00:00"
-          }
-        ],
-        "escalated": []
-      },
       {
         "revision": 184,
         "at": "2026-10-20T16:22:55.844299+00:00",
@@ -10069,6 +10073,16 @@
         "resolved": [],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 213,
+        "at": "2026-10-21T12:03:13.597642+00:00",
+        "opened": [
+          "collection:update-editorial-radar.yml:radar:etf"
+        ],
+        "resolved": [],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
@@ -16225,7 +16239,7 @@
       "attempts": [],
       "reason": null,
       "lastSuccessAt": "2026-10-21T11:23:12Z",
-      "observedRunId": 39591444977,
+      "observedRunId": 39596290518,
       "status": "idle",
       "nextAttemptAt": null
     },
