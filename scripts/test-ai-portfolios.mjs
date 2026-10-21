@@ -71,7 +71,7 @@ assert.equal(runCompetition(waiting,market,'2026-01-06').decisions[0].status,'ex
 const liquidated=planDecision(initial.portfolio,{...target,weights:{a:0,b:0,c:0}},'2026-02-02',config,market)
 assert.equal(liquidated.after.positions.length,0);assert.equal(liquidated.after.closedResults.length,3)
 const cashComp=clone(executed);cashComp.decisions.push({...target,id:'sell-all',status:'executed',executionDate:'2026-02-02',registeredAt:'2026-02-01T00:00:00Z',execution:liquidated})
-cashComp.decisions.push({...target,id:'cash-hold',kind:'hold',weights:undefined,status:'recorded',executionDate:'2026-02-03',registeredAt:'2026-02-02T00:00:00Z'})
+cashComp.decisions.push({...target,id:'cash-hold',kind:'hold',weights:{a:33},status:'recorded',executionDate:'2026-02-03',registeredAt:'2026-02-02T00:00:00Z'})
 const discontinued=clone(market);for(const id of ids)delete discontinued.series[id].points['2026-02-03']
 assert.equal(runCompetition(cashComp,discontinued,'2026-02-03').decisions.at(-1).status,'executed')
 // Source adjustment cancels in normalization; a dividend or split never creates cash a second time.

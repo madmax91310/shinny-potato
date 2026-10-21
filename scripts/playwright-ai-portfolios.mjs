@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { choose } from './card-selection.mjs'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import fs from 'node:fs'
@@ -56,14 +57,14 @@ try {
  const financialText=await page.getByRole('textbox',{name:'Tweet modifiable'}).inputValue();assert.match(financialText,/Pas un conseil financier/)
  await page.getByRole('textbox',{name:'Tweet modifiable'}).fill('Retouche éditoriale QA')
  await page.getByRole('button',{name:'Rétablir le texte'}).click();assert.equal(await page.getByRole('textbox',{name:'Tweet modifiable'}).inputValue(),financialText)
- await page.getByRole('combobox',{name:'Format de l’image'}).selectOption('chart')
+ await choose(page.getByRole('group',{name:'Format de l’image',exact:true}),'chart')
  const [chart]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger PNG'}).click()]);await chart.saveAs(output+'/courbes.png')
  await page.getByRole('button',{name:'Portefeuille',exact:true}).click()
  await page.getByRole('heading',{name:'ChatGPT · le portefeuille'}).waitFor()
  assert.equal(await page.locator('.ai-scroll tbody tr').count(),3)
  const [focus]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger PNG'}).click()]);await focus.saveAs(output+'/focus.png')
  await page.getByRole('button',{name:'Gestion',exact:true}).click()
- await page.getByRole('combobox',{name:'Forme de la réponse'}).selectOption('hold')
+ await choose(page.getByRole('group',{name:'Forme de la réponse',exact:true}),'hold')
  await page.getByRole('textbox',{name:'Modèle utilisé',exact:true}).fill('Modèle test suivant')
  await page.getByRole('textbox',{name:'Justification',exact:true}).fill('Conserver le portefeuille de recette.')
  await page.getByRole('button',{name:'Valider le brouillon et préparer l’enregistrement'}).click()
@@ -76,7 +77,7 @@ try {
  const mobile=await browser.newPage({viewport:{width:390,height:844},acceptDownloads:true})
  mobile.on('pageerror',e=>errors.push(e.message));await mobile.route('**/data/ai-portfolios/snapshot.json',route=>route.fulfill({json:fixture}))
  await mobile.goto(url+'portefeuilles-ia');await mobile.getByRole('heading',{name:/La course au/}).waitFor()
- assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile overflow')
+ assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile overflow');assert.equal(await mobile.locator('select').count(),0,'Reuse shared button pickers')
  await mobile.screenshot({path:output+'/mobile.png',fullPage:true})
  await mobile.getByRole('button',{name:'Gestion',exact:true}).click();await mobile.getByRole('heading',{name:'Règles communes'}).waitFor()
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile management overflow')

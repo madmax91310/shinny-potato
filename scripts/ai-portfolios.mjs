@@ -36,6 +36,8 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
     } else if(op.type==='decision') {
       const supplied=op.decision??{}
       const d={...Object.fromEntries(['participant','kind','model','reason','original','decisionDate','weights','amounts'].filter(k=>supplied[k]!==undefined).map(k=>[k,clone(supplied[k])])),id:proposal.requestId,status:'recorded',registeredAt:now,rules:clone(comp.config)}
+      if(d.kind!=='target')delete d.weights
+      if(d.kind!=='trades')delete d.amounts
       // Registration time and executable date can never be supplied by the browser.
       d.registeredAt=now;d.executionDate=nextExecution(now,comp.config.launchDate,market,comp.config.universe)
       assert(!d.correctionOf,'Corriger par une nouvelle décision justifiée ; pas de contournement de fréquence.')

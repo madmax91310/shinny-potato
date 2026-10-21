@@ -104,7 +104,7 @@ export function validateDecision(d,competition,market,asOf,now=market.generatedA
 }
 export function planDecision(portfolio,d,date,c,market,{benchmark=false,estimate=false}={}) {
   const before=mark(portfolio,date,c,market)
-  const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...Object.keys(d.weights??{}).filter(id=>d.weights[id]>0),...Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0)])]
+  const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...(d.kind==='target'?Object.keys(d.weights??{}).filter(id=>d.weights[id]>0):[]),...(d.kind==='trades'?Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0):[])])]
   if(d.kind==='hold') return {before,after:before,trades:[],portfolio:clone(portfolio),fee:0}
   const feeRate=c.feeBps/10000
   const quotes=Object.fromEntries(ids.map(id=>[id,quoteAt(id,date,c.currency,market,!estimate)]))
@@ -155,7 +155,7 @@ export function runCompetition(input,market,asOf) {
     try {
       portfolio=portfolioAt(comp,d.participant,d.executionDate)
       // A missing planned close waits on this exact date; never jump to a cheaper session.
-      const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...Object.keys(d.weights??{}).filter(id=>d.weights[id]>0),...Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0)])]
+      const ids=[...new Set([...Object.keys(portfolio.positions).filter(id=>portfolio.positions[id]>1e-10),...(d.kind==='target'?Object.keys(d.weights??{}).filter(id=>d.weights[id]>0):[]),...(d.kind==='trades'?Object.keys(d.amounts??{}).filter(id=>d.amounts[id]!==0):[])])]
       for(const id of ids) quoteAt(id,d.executionDate,comp.config.currency,market,true)
       plan=planDecision(portfolio,d,d.executionDate,d.rules??comp.config,market,{benchmark:d.participant==='world'})
     } catch(e) {

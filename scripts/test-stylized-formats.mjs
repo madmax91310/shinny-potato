@@ -4,16 +4,16 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
-assert.deepEqual(Object.keys(PERFORMANCE_ART).sort(), [...ASSET_ORDER].sort())
+// The current paper renderer uses one shared background, not the retired per-asset art map.
+// All ASSET_ORDER identities are still rendered and checked below, including new indices.
+await readFile('public/asset-art/performance-cobalt/ivory-folds.webp')
 for (let count = 1; count <= 40; count++) {
   const layout = performanceLayout(count)
   assert.ok(layout.rows * layout.columns >= count)
   assert.ok(layout.gridTop + (layout.rows - 1) * layout.rowStep + layout.cellHeight < layout.height)
 }
-for (const art of Object.values(PERFORMANCE_ART)) await readFile(`public/asset-art/${art.mark || art.scene}`)
 assert.equal(getComparisonPerformance('FR001400U5Q4'), null, 'No complete calendar year for this share class')
 const ubsPerformance = getComparisonPerformance('IE00BD4TXV59')
 assert.equal(ubsPerformance.referenceIsin, 'IE00BD4TXV59', 'Never substitute another share class')
