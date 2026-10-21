@@ -156,9 +156,13 @@ export function buildTweet(result, title) {
   const badges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣']
   const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${formatPercent(r.value)}${annualized ? '/an' : ''}`)
   const benchmark = result.assets.find(a => a.benchmark)
+  const participants = result.assets.filter(a => !a.benchmark)
+  const stocks = participants.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted'))
+  const count = ['zéro', 'une', 'deux', 'trois', 'quatre', 'cinq'][participants.length]
+  const currency = ` (en ${result.coverage.currency})`
   const hook = benchmark
-    ? `Parmi ces cinq actions, lesquelles ont battu l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period} ? 👇`
-    : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period} ? 👇`
+    ? `Parmi ces ${count} ${stocks ? 'actions' : 'actifs'}, ${stocks ? 'lesquelles' : 'lesquels'} ont battu l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period}${currency} ? 👇`
+    : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period}${currency} ? 👇`
   return `${hook}\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
 }
 
@@ -187,4 +191,5 @@ export function portfolioReturn(asset, start, end, annualized = false) {
   const growth = values.reduce((sum, v) => sum + v, 0)
   return (Math.pow(growth, annualized ? 12 / (monthIndex(end) - monthIndex(start)) : 1) - 1) * 100
 }
+
 

@@ -4,8 +4,8 @@ import { assetPreferenceKey, filterAssetOptions } from '../lib/asset-picker-pref
 import { useId, useMemo, useState } from 'react'
 import './asset-picker.css'
 
-export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false, hideIdleResults = false, clearSearchOnSelect = false, searchPlaceholder = 'Nom, indice, ticker ou ISIN…', optionsClassName = '', disabled = false, compact = false, inputClassName = '' }) {
-  const { favorites, recents, toggleFavorite, remember } = useAssetPickerPreferences(items, `favorites:${globalThis.location?.pathname ?? ''}:${id ?? label ?? 'assets'}`)
+export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false, hideIdleResults = false, clearSearchOnSelect = false, searchPlaceholder = 'Nom, indice, ticker ou ISIN…', optionsClassName = '', disabled = false, compact = false, inputClassName = '', persistent = true }) {
+  const { favorites, recents, toggleFavorite, remember } = useAssetPickerPreferences(items, `favorites:${globalThis.location?.pathname ?? ''}:${id ?? label ?? 'assets'}`, persistent)
   const favoriteItems = items.filter(item => favorites.includes(assetPreferenceKey(item)))
   const recentItems = recents.flatMap(key => { const item = items.find(item => assetPreferenceKey(item) === key); return item ? [item] : [] })
   const [mode, setMode] = useState('search')
@@ -35,7 +35,7 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
     {(current || (emptyOption && String(value) === String(emptyOption.id))) && <p className="picker-selection"><span aria-hidden="true">✓</span><span><small>Sélection actuelle</small><strong>{current?.label ?? emptyOption.label}</strong></span></p>}
     {compact && current && <button type="button" className="asset-picker-open" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Fermer' : 'Modifier'}</button>}
     <div className="asset-picker-panel" hidden={compact && current && !open}>
-    {current && <button type="button" className="asset-picker-more" aria-pressed={favorites.includes(assetPreferenceKey(current))}
+    {persistent && current && <button type="button" className="asset-picker-more" aria-pressed={favorites.includes(assetPreferenceKey(current))}
       onClick={() => toggleFavorite(current)}>
       {favorites.includes(assetPreferenceKey(current)) ? '★ Retirer des favoris' : '☆ Ajouter aux favoris'}
     </button>}
@@ -97,3 +97,4 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
     </details>}
   </div></div>
 }
+

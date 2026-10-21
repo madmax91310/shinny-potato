@@ -5,6 +5,7 @@ export function annualRankingError(result) {
   const columns = annualColumns(result)
   if (columns.some(column => column.partial)) return 'Le classement annuel exige des années civiles complètes. Choisis « Année par année » et les années communes indiquées ci-dessous ; la période libre contient une année partielle.'
   if (columns.length > 7) return 'Le classement annuel présente au maximum 7 années pour garder les noms et les performances lisibles. Réduis la période ; la présentation actuelle reste disponible.'
+  if (columns.length === 1) return 'Le classement annuel exige au moins 2 années civiles complètes communes.'
   if (!columns.length) return 'Aucune année civile complète commune.'
   return ''
 }
@@ -24,13 +25,13 @@ export function annualRankingColumns(result) {
     return { ...column, rows: rankRows(column.rows.map(row => {
     const order = result.assets.findIndex(asset => asset.id === row.id)
     if (order < 0 || !Number.isFinite(row.value)) throw new Error('Performance annuelle absente ou invalide.')
-    return { ...row, order, label: labels[order], color: COLORS[order] }
+    return { ...row, order, label: labels[order], color: result.assets[order].rankingColor ?? COLORS[order] }
     })).map((row, _, rows) => ({ ...row, tied: rows.some(other => other.id !== row.id && other.value === row.value) })) }
   })
 }
 
 export function annualRankingLayout(assetCount, yearCount, nameHeight = 0) {
-  if (!Number.isInteger(assetCount) || assetCount < 2 || assetCount > 6 || !Number.isInteger(yearCount) || yearCount < 1 || yearCount > 7) throw new Error('Choisis 2 à 6 actifs et 1 à 7 années complètes.')
+  if (!Number.isInteger(assetCount) || assetCount < 2 || assetCount > 6 || !Number.isInteger(yearCount) || yearCount < 2 || yearCount > 7) throw new Error('Choisis 2 à 6 actifs et 2 à 7 années complètes.')
   const margin = 36, rankWidth = 66, gap = 10
   const width = Math.max(1000, margin * 2 + rankWidth + yearCount * 236)
   const cellWidth = (width - margin * 2 - rankWidth) / yearCount
@@ -46,3 +47,4 @@ export function contrastText(hex) {
 }
 
 export const annualImagePercent = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+

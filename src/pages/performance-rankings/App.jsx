@@ -18,6 +18,7 @@ import { DEFAULT_PORTFOLIOS } from './portfolio-defaults.js'
 import { annualColumns, basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, monthIndex, rollingRegularity } from './engine.js'
 import { annualImagePercent, annualRankingColumns, annualRankingError, contrastText } from './annualRanking.js'
 import { renderRankingImage } from './image.js'
+import { publicationDraft, selectionFilename, workingColors } from './workingSelection.js'
 import './rankings.css'
 
 const CATEGORY = ALL_CATEGORIES.find(c => c.id === 'world')
@@ -35,7 +36,8 @@ function defaultDates(assets) {
 
 export default function App() {
   const [categoryId, setCategoryId] = useState(CATEGORY.id)
-  const [ids, setIds] = useState(CATEGORY.ids)
+  const [ids, setIds] = useState(() => [...CATEGORY.ids])
+  const [colors, setColors] = useState(() => workingColors(CATEGORY.ids))
   const [mode, setMode] = useState('years')
   const [presentation, setPresentation] = useState('current')
   const [dates, setDates] = useState(() => defaultDates(CATEGORY.ids.map(id => SOURCES[id])))
@@ -57,11 +59,15 @@ export default function App() {
     try {
       const assets = comparison === 'portfolios'
         ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX))
-        : ids.map(id => convertAsset(SOURCES[id], currency, FX))
-      return { assets: markBenchmark(assets, benchmarkId) }
+        : ids.map(id => {
+          try { return convertAsset(SOURCES[id], currency, FX) }
+          catch (e) { throw new Error(`${SOURCES[id]?.shortLabel ?? id} : ${e.message}`) }
+        })
+      return { assets: markBenchmark(assets, benchmarkId).map(a => ({ ...a, rankingColor: colors[a.id] })) }
     } catch (e) { return { assets: [], error: e.message } }
-  }, [ids, currency, comparison, portfolios, benchmarkId])
+  }, [ids, currency, comparison, portfolios, benchmarkId, colors])
   const assets = prepared.assets
+  const selectedAssets = ids.map(id => assets.find(a => a.id === id) ?? { ...SOURCES[id], rankingColor: colors[id] })
   const categories = presentation === 'annual' ? ALL_CATEGORIES.filter(c => ANNUAL_CATEGORY_IDS.has(c.id) || c.id === categoryId) : ALL_CATEGORIES
   const computed = useMemo(() => {
     try {
@@ -81,8 +87,8 @@ export default function App() {
   const imageError = result && presentation === 'annual' ? annualRankingError(result) : ''
   const rankedColumns = result && presentation === 'annual' && !imageError ? annualRankingColumns(result) : []
   const generatedText = result ? buildTweet(result, title, regularity) : ''
-  // Keep a manual draft only for its exact calculation snapshot.
-  const text = draft?.owner === generatedText ? draft.value : generatedText
+  const snapshot = JSON.stringify({ ids, dates, currency, mode, title, comparison, portfolios, benchmarkId, generatedText })
+  const { text, stale: staleText } = publicationDraft(generatedText, snapshot, draft)
   const renderImage = useCallback(async () => {
     if (!result) throw new Error('Choisis une période valide.')
     await document.fonts.ready
@@ -92,7 +98,8 @@ export default function App() {
   }, [result, title, regularity, presentation])
 
   function applyIds(next, nextCurrency = currency, resetPeriod = false) {
-    setIds(next); setStatus('')
+    setIds([...next]); setColors(previous => workingColors(next, previous)); setStatus('')
+    if (!resetPeriod) setTitle('Ma sélection')
     if (benchmarkId && !next.includes(benchmarkId)) setBenchmarkId('')
     // Manual edits preserve the requested years. Only choosing a prepared category
     // resets its period; incompatible manual selections are explained below.
@@ -108,15 +115,15 @@ export default function App() {
     const c = ALL_CATEGORIES.find(c => c.id === id)
     const nextCurrency = c.currency ?? 'original'
     setCurrency(nextCurrency); setComparison('assets'); setBank(c.frequency ?? 'monthly')
-    setCategoryId(id); applyIds(c.ids, nextCurrency, true); setTitle(c.label); setSlot(0); setManual(false)
+    setCategoryId(id); applyIds(c.ids, nextCurrency, true); setColors(workingColors(c.ids)); setTitle(c.label); setSlot(0); setManual(false); setDraft(null); setShowRegularity(false)
     setBenchmarkId(c.benchmarkId ?? '')
-    if (c.frequency === 'annual') setMode('years')
+    if (c.frequency === 'annual' || presentation === 'annual') setMode('years')
   }
   function suggest() {
     try {
       const suggestion = randomSuggestion(categoryId, Math.random, undefined, presentation === 'annual' ? 7 : 10)
       const c = suggestion.category
-      setCategoryId(c.id); setIds(c.ids); setTitle(c.label); setBenchmarkId(c.benchmarkId ?? '')
+      setCategoryId(c.id); setIds([...c.ids]); setColors(workingColors(c.ids)); setDraft(null); setTitle(c.label); setBenchmarkId(c.benchmarkId ?? '')
       setCurrency(suggestion.currency); setDates(suggestion.dates); setMode(suggestion.mode)
       setComparison('assets'); setBank('monthly'); setSlot(0); setManual(false); setShowRegularity(false)
       setStatus(`Sélection proposée : ${c.label}, de ${suggestion.dates.startYear} à ${suggestion.dates.endYear}.`)
@@ -124,8 +131,14 @@ export default function App() {
   }
   function changeBenchmark(nextId, selectedIds = ids, previousId = benchmarkId) {
     try {
+      if (presentation === 'annual') {
+        const next = selectedIds.map(id => id === previousId ? nextId : id)
+        if (new Set(next).size !== next.length) throw new Error('Chaque actif doit apparaître une seule fois.')
+        applyIds(next); setBenchmarkId(nextId)
+        return
+      }
       const next = replaceBenchmark({ ids: selectedIds, benchmarkId: previousId, currency, dates, mode }, nextId)
-      setIds(next.ids); setBenchmarkId(next.benchmarkId); setCurrency(next.currency); setDates(next.dates); setMode(next.mode)
+      setIds([...next.ids]); setColors(previous => workingColors(next.ids, previous)); setBenchmarkId(next.benchmarkId); setCurrency(next.currency); setDates(next.dates); setMode(next.mode)
       const label = BENCHMARK_OPTIONS.find(option => option.id === nextId).label
       setTitle(`${title.replace(/ · face à un ETF.*$/, '')} · face à un ETF ${label}`.slice(0, 85))
       setStatus(next.adjusted ? 'Période adaptée à l’historique commun de la nouvelle référence.' : 'ETF de référence remplacé ; période conservée.')
@@ -140,20 +153,20 @@ export default function App() {
     chooseCategory((BENCHMARK_CATEGORIES.find(c => c.id === categoryId || c.id === `${categoryId}-benchmark`) ?? BENCHMARK_CATEGORIES[0]).id)
   }
   function restoreFavorite(saved) {
-    setIds(saved.ids); setCurrency(saved.currency); setDates(saved.dates); setMode(saved.mode)
+    setIds([...saved.ids]); setColors(workingColors(saved.ids)); setCurrency(saved.currency); setDates(saved.dates); setMode(saved.mode)
     setTitle(saved.title); setBank(saved.bank); setCategoryId(saved.categoryId); setBenchmarkId(saved.benchmarkId)
     setComparison('assets'); setManual(true); setManualMode('batch'); setSlot(0); setShowRegularity(false); setDraft(null); setStatus('Favori restauré.')
   }
   const otherIds = ids.filter((_, i) => i !== slot)
   const reference = SOURCES[otherIds[0]]
   const universe = bank === 'annual' ? Object.values(ANNUAL_ASSETS) : ELIGIBLE
-  const options = universe.filter(a => !otherIds.includes(a.id) && (!reference || (bank !== 'annual' || a.basis === reference.basis)) && (currency !== 'original' || !reference || a.currency === reference.currency))
+  const options = universe.filter(a => !otherIds.includes(a.id) && !otherIds.some(id => ['index-net', 'index-gross'].includes(SOURCES[id]?.basis) && ['index-net', 'index-gross'].includes(a.basis) && SOURCES[id].basis !== a.basis) && (!reference || (bank !== 'annual' || a.basis === reference.basis)) && (currency !== 'original' || !reference || a.currency === reference.currency))
     .map(a => ({ ...a, label: a.shortLabel, name: a.label, detail: `${a.label} · ${a.currency} · ${a.frequency === 'annual' ? 'Calendrier NAV / indice officiel' : a.points[0].date + ' → ' + a.points.at(-1).date}`, badges: [a.instrumentType === 'EQUITY' ? 'Action' : a.instrumentType ?? (a.isin ? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif')] }))
   async function download() {
     setBusy(true); setStatus('')
     try {
       const canvas = await renderImage()
-      const link = document.createElement('a'); link.href = canvas.toDataURL('image/png'); link.download = `classement-${presentation}-${categoryId}-${result.coverage.currency}-${result.start}-${result.end}.png`
+      const link = document.createElement('a'); link.href = canvas.toDataURL('image/png'); link.download = selectionFilename(result, presentation)
       document.body.append(link); startPublicationDownload(link); link.remove(); setStatus('Téléchargement lancé.')
     } catch (e) { setStatus(e.message); notifyPublication(e.message, 'error') }
     finally { setBusy(false) }
@@ -177,6 +190,7 @@ export default function App() {
           <button type="button" onClick={suggest}>Sélection aléatoire</button>
           <button type="button" onClick={startBenchmark}>5 actions face à un ETF</button>
         </div>
+        {presentation === 'annual' && <p className="rk-note">Les ajustements restent temporaires et ne modifient pas le profil. <button type="button" className="rk-text-button" onClick={() => chooseCategory(categoryId)}>Réinitialiser le profil</button></p>}
         <ComparisonPicker key={categoryId} categories={categories} sources={SOURCES} value={categoryId} onChange={chooseCategory} />
         <fieldset className="rk-modes"><legend>Comparer</legend>{[['assets', 'Actifs'], ['portfolios', 'Portefeuilles']].map(([value, label]) => <button type="button" key={value} aria-pressed={comparison === value} onClick={() => {
           setComparison(value)
@@ -200,27 +214,28 @@ export default function App() {
         {assets.some(a => a.benchmark) && <label className="rk-field">ETF de référence<ChoicePicker aria-label="ETF de référence" value={benchmarkId} onChange={e => changeBenchmark(e.target.value)}>
           {BENCHMARK_OPTIONS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
         </ChoicePicker></label>}
-        <div className="rk-selected" aria-label="Actifs sélectionnés">{assets.map((a, i) => <div key={a.id} style={{ '--rk-color': COLORS[i] }}>
+        <div className="rk-selected" aria-label="Actifs sélectionnés">{selectedAssets.map((a, i) => <div key={a.id} style={{ '--rk-color': presentation === 'annual' ? a.rankingColor : COLORS[i] }}>
           <span className="rk-dot" /><span><strong>{a.shortLabel}</strong><small>{a.currency} · {a.instrumentType === 'EQUITY' ? 'Action' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
-          {manual && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
+          {(manual || presentation === 'annual') && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setManual(true); setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} disabled={presentation === 'annual' && ids.length <= 2} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
         </div>)}</div>
+        {presentation === 'annual' && <button type="button" disabled={ids.length >= 6} onClick={() => { setManual(true); setSlot(ids.length); setManualMode('single') }}>Ajouter un actif au profil</button>}
         <button type="button" className="rk-text-button" aria-expanded={manual} onClick={() => setManual(!manual)}>{manual ? 'Fermer la sélection manuelle' : 'Personnaliser les actifs'}</button>
         {manual && <div className="rk-manual">
-          <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Cotations mensuelles</option><option value="annual">Calendriers annuels officiels</option></ChoicePicker></label>
-          <div className="rk-inline"><button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button><button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
+          {presentation !== 'annual' && <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Cotations mensuelles</option><option value="annual">Calendriers annuels officiels</option></ChoicePicker></label>}
+          <div className="rk-inline">{presentation !== 'annual' && <button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button>}<button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
           {bank === 'monthly' && <fieldset className="rk-modes"><legend>Sélection manuelle</legend>
             <button type="button" aria-pressed={manualMode === 'batch'} onClick={() => setManualMode('batch')}>Cocher les actifs</button>
             <button type="button" aria-pressed={manualMode === 'single'} onClick={() => setManualMode('single')}>Un par un</button>
           </fieldset>}
-          {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
+          {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid minimum={presentation === 'annual' ? 2 : 0} ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
             setCurrency(next.currency); applyIds(next.ids, next.currency); setSlot(0); setTitle('Ma sélection')
           }} /> : <>
           <p>{slot >= ids.length ? 'Ajouter un actif' : `Remplacer l’actif ${slot + 1}`} · de 2 à 6 actifs</p>
-          <AssetPicker label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
+          <AssetPicker persistent={presentation !== 'annual'} label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
             const next = [...ids]; next[Math.min(slot, ids.length)] = id; applyIds(next); setSlot(Math.min(next.length, 5)); setTitle('Ma sélection')
           }} />
           </>}
-          <p className="rk-note">Les indices nets et bruts restent distincts. Choisis EUR ou USD pour comparer des devises différentes. Les calendriers annuels sont séparés des cotations mensuelles. « Nouvelle sélection » permet de repartir sur une autre base.</p>
+          <p className="rk-note">Les indices nets et bruts restent distincts. Choisis EUR ou USD pour comparer des devises différentes. Les calendriers annuels sont séparés des cotations mensuelles. {presentation !== 'annual' && '« Nouvelle sélection » permet de repartir sur une autre base.'}</p>
         </div>}
         </>}
         <fieldset className="rk-modes"><legend>Temporalité</legend>{[['year', 'Une année'], ['years', 'Année par année'], ['period', 'Période libre']].map(([value, label]) => <button type="button" key={value} aria-pressed={mode === value} onClick={() => setMode(value)}>{label}</button>)}</fieldset>
@@ -234,7 +249,7 @@ export default function App() {
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
         {imageError && <p className="rk-error" role="alert">{imageError}</p>}
-        {(error || imageError) && coverage?.years.length > 0 && <div className="rk-note">
+        {(error || imageError) && coverage?.years.length >= (presentation === 'annual' ? 2 : 1) && <div className="rk-note">
           <p>Années civiles complètes communes disponibles : {coverage.years.join(', ')}. Aucun actif ni aucune année n’a été retiré.</p>
           <button type="button" className="rk-text-button" onClick={() => {
             const years = coverage.years
@@ -245,7 +260,7 @@ export default function App() {
         </div>}
         {(error || imageError) && assets.length > 0 && <ul className="rk-note">{assets.map(a => <li key={a.id}>{a.shortLabel ?? a.label} · {a.currency} · {basisLabel(a.basis)} · {a.frequency === 'annual' ? `années ${Object.keys(a.years).join(', ')}` : `${a.points[0]?.date ?? 'borne absente'} → ${a.points.at(-1)?.date ?? 'borne absente'}`}</li>)}</ul>}
         <label className="rk-field">Univers du tweet<input maxLength={85} value={title} onChange={e => setTitle(e.target.value)} /></label>
-        {comparison === 'assets' && <Favorites disabled={!result} selection={{ ids, currency, dates, mode, title, bank, categoryId, benchmarkId: assets.some(a => a.benchmark) ? benchmarkId : '' }} onRestore={restoreFavorite} />}
+        {comparison === 'assets' && presentation !== 'annual' && <Favorites disabled={!result} selection={{ ids, currency, dates, mode, title, bank, categoryId, benchmarkId: assets.some(a => a.benchmark) ? benchmarkId : '' }} onRestore={restoreFavorite} />}
         <details className="rk-regularity"><summary>Ajouter la régularité historique</summary>
           {presentation === 'annual' && <p>La régularité glissante s’affiche dans la présentation actuelle. Le classement annuel conserve uniquement les performances des années choisies.</p>}
           <label className="rk-check"><input type="checkbox" checked={showRegularity} onChange={e => setShowRegularity(e.target.checked)} /> Montrer la fréquence de première place</label>
@@ -266,11 +281,13 @@ export default function App() {
             return <td key={c.label} data-asset={row.id} data-rank={row.rank} style={{ background: row.color, color: contrastText(row.color), '--rk-color': row.color }}><strong>{row.label}</strong><span>{annualImagePercent(row.value)}</span>{row.tied && <small>{row.rank} ex æquo</small>}</td>
           })}</tr>)}</tbody></table></div> : <div className="rk-table-scroll"><table className="rk-table"><caption>Performances par année · {coverage.currency} · 🏆 Meilleure performance</caption><thead><tr><th scope="col">Actif</th>{imageColumns.map(c => <th key={c.label} scope="col" title={c.detail}>{c.label}{c.partial ? '*' : ''}</th>)}</tr></thead><tbody>{assets.map((asset, i) => <tr key={asset.id}><th scope="row">{asset.shortLabel}</th>{imageColumns.map(c => { const r = c.rows.find(r => r.id === asset.id); return <td key={c.label} style={{ '--rk-color': COLORS[i] }} className={`${r.rank === 1 ? 'rk-winner ' : ''}${r.value < 0 ? 'rk-negative' : 'rk-positive'}`}><span>{r.rank === 1 && <span aria-label="Meilleure performance">🏆 </span>}{formatPercent(r.value)}</span></td> })}</tr>)}</tbody></table></div>}
           {imageColumns.filter(c => c.partial).map(c => <p className="rk-note" key={c.label}>* {c.label} : clôtures {c.detail} (période partielle).</p>)}
-          <label className="rk-field">Texte à publier<textarea aria-label="Texte à publier" rows={16} value={text} onChange={e => setDraft({ owner: generatedText, value: e.target.value })} /></label>
-          <button type="button" className="rk-text-button" onClick={() => setDraft(null)}>Rétablir le texte généré</button>
+          <label className="rk-field">Texte à publier<textarea aria-label="Texte à publier" rows={16} value={text} onChange={e => setDraft({ owner: draft?.owner ?? snapshot, value: e.target.value })} /></label>
+          <p className="rk-note" role="status">{staleText ? 'La sélection, la période ou la devise a changé. Tes retouches sont conservées ; le texte doit être actualisé. L’image et les calculs suivent la sélection actuelle.' : 'Tu peux retoucher ce texte avant de le copier.'}</p>
+          <button type="button" className="rk-text-button" onClick={() => setDraft(null)}>{staleText ? 'Actualiser le texte avec la sélection' : 'Rétablir le texte généré'}</button>
         </> : <p>Complète la sélection et choisis une période couverte pour préparer le classement.</p>}
       </section>
     </ToolWorkspace>
   </div>
 }
+
 
