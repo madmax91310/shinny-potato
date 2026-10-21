@@ -125,7 +125,7 @@ async function overlapPortfolio(ctx,p){
  text(ctx,pct(g?.top5||0),70,613,415,53,C.ivory,700,'DcaEditorial')
  text(ctx,'Les 10 premiers titres',70,674,415,26,C.muted,400)
  text(ctx,pct(g?.top10||0),70,739,415,53,C.ivory,700,'DcaEditorial')
- wrappedLabel(ctx,g?.complete?'Titres entièrement identifiés':'Poids observés sur une couverture partielle',70,809,415,23)
+ wrappedLabel(ctx,g?.complete?'Couverture complète':'Couverture partielle',70,809,415,23)
  text(ctx,g?`${g.oldest===g.asOf?g.asOf:g.oldest+' → '+g.asOf}`:'Aucune liste compatible',70,895,415,19,C.muted,400)
  text(ctx,'Les principales détentions cumulées',580,192,950,40,C.ivory,700,'DcaEditorial')
  text(ctx,'Actions en direct + positions détenues via les fonds',580,235,950,24,C.muted,400)
@@ -144,7 +144,6 @@ async function overlapPortfolio(ctx,p){
  text(ctx,'En direct',580,900,170,21,C.yellow)
  text(ctx,'Via les fonds',780,900,220,21,'#63dfbd')
  text(ctx,g?.scope==='index'?'Périmètre : indices suivis':'Périmètre : positions publiées',1090,900,440,18,C.muted,400)
- centered(ctx,groups.length>1?'Synthèse du périmètre le mieux couvert · Autres périmètres séparés dans l’outil':'Poids dans le portefeuille entier · ADR et classes de titres distincts · Données datées',800,978,1480,18,C.muted,400)
 }
 let fontReady
 async function loadDcaFont(){

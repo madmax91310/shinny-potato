@@ -43,7 +43,10 @@ try {
         if(!all.includes(portfolio.identity.displayName)||!labels.includes(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`)||!all.includes(investorPortrait(slug).person))throw Error('Lost identity/date')
         const topWeight=portfolio.holdings.slice(0,5).reduce((sum,row)=>sum+row.weight,0)
         if(!labels.includes(percentage(Math.max(0,1-topWeight))))throw Error('Wrong concentration or remainder')
-        if(!all.includes(investorPortrait(slug).author))throw Error('Missing scope or portrait credit')
+        if(!all.includes(investorPortrait(slug).author)||!all.includes(investorPortrait(slug).license))throw Error('Missing portrait attribution')
+        const licensedData=!['SEC','FolioFact'].includes(portfolio.identity.dataProvider)
+        if(all.includes('Données : Tracefour')!==licensedData)throw Error('Wrong data attribution policy')
+        if(/Données : (?:SEC EDGAR|FolioFact)/.test(all))throw Error('Optional source should remain in the tool')
         if(!labels.includes('Autres positions'))throw Error('Lost remainder')
         await window.saveInvestor({slug,png})
       }

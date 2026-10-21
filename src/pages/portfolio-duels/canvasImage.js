@@ -104,7 +104,7 @@ export async function renderDuelImage(duel) {
     fitted(ctx, `B ${formatPercent(duel.b.annual[year])}`, center, 1404, 33, colW - 20, RUST, false, 'center')
   })
   rule(ctx, 72, 1389, 1456)
-  fitted(ctx, `En ${duel.currency} · Revenus réinvestis · Rééquilibrage annuel · Hors courtage et fiscalité`, W / 2, 1487, 26, 1460, MUTED, false, 'center')
+  fitted(ctx, `${duel.currency} · Revenus réinvestis · Rééquilibrage annuel`, W / 2, 1487, 26, 1460, MUTED, false, 'center')
   text(ctx, 'Les performances passées ne préjugent pas des performances futures.', W / 2, 1525, 24, MUTED, false, 'center')
   text(ctx, 'Épargnant Libre', W / 2, 1560, 30, INK, true, 'center')
   return canvas.toDataURL('image/png')

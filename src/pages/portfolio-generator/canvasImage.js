@@ -1,5 +1,5 @@
 import { dataLabels } from './compact.js'
-import { performanceYears, computeYearlyPerf, returnCurrency } from './performance.js'
+import { performanceYears, computeYearlyPerf } from './performance.js'
 import { annualizedReturn, formatPerformance as percent } from './performance.js'
 export { annualizedReturn } from './performance.js'
 
@@ -179,7 +179,7 @@ export function renderPortfolioImage(portfolio, background) {
   label(ctx, 'Annualisé', 1570, upperHeight + 157, 48, WHITE, 'center', false, 'Georgia, serif')
   label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 40, MUTED, 'center', false)
   rule(ctx, 70, height - 50, 1660)
-  label(ctx, `EUR${selection.some(asset => returnCurrency(asset) === 'USD') ? ' · change BCE' : ''} · rééquilibrage annuel · hors courtage et fiscalité${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 18, 18, MUTED, 'left', false)
+  label(ctx, `EUR · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 18, 18, MUTED, 'left', false)
   label(ctx, 'Épargnant Libre', 1730, height - 18, 24, '#dfc390', 'right', false)
   return canvas
 }
