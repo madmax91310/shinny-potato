@@ -17672,15 +17672,16 @@
           "at": "2026-10-21T15:32:56.494469+00:00",
           "reason": "transient-source",
           "sourceRunId": 39605665118,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T12:22:45Z",
       "observedRunId": 39605665118,
       "nextAttemptAt": "2026-10-21T19:32:56.494469+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-market-monthly.yml": {
       "attempts": [
