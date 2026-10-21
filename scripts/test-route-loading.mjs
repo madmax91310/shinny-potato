@@ -142,7 +142,10 @@ try {
       const opening = await browser.newPage({ viewport: { width, height: 900 } })
       opening.on('pageerror', error => errors.push(`${tool.to}: ${error.message}`))
       await opening.goto(`${base}/`, { waitUntil: 'networkidle' })
-      await opening.locator(`.workspace-tool-card[href$="${tool.to}"]`).first().click()
+      const destination = await opening.locator('.workspace-tool-card').evaluateAll((cards, path) =>
+        cards.find(card => new URL(card.href).pathname.replace(/\\/$/, '').endsWith(path))?.getAttribute('href'), tool.to)
+      assert(destination, `Missing tool link: ${tool.to}`)
+      await opening.locator(`.workspace-tool-card[href="${destination}"]`).first().click()
       await opening.locator('.workspace-home').waitFor({ state: 'detached' })
       await opening.locator('main h1').first().waitFor()
       await opening.waitForLoadState('networkidle')
