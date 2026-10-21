@@ -21,7 +21,7 @@ try {
     assert(await exposure.evaluate(img=>img.naturalWidth>=1000))
     assert(!(await page.locator('body').innerText()).includes('non ventilés'))
     await page.screenshot({path:`test-artifacts/global-equities/exposure-${asset.id}.png`,fullPage:true})
-    await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+    await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
     const dca=page.locator('.dca-profiles-scope:visible')
     await dca.getByLabel('Pseudonyme',{exact:true}).waitFor()
     while(await dca.locator('.dca-simple-line').count())await dca.locator('.dca-simple-line > button').first().click()

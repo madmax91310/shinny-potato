@@ -11,7 +11,7 @@ try{
  const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
  await page.goto(base+'le-dca-de')
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
  await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
  await page.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor()
  await page.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'})

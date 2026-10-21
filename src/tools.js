@@ -4,48 +4,47 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
-  { to: '/classements-performances', navLabel: 'Classements', title: 'Qui a vraiment gagné ?',
+  { to: '/classements-performances', title: 'Qui a vraiment gagné ?',
     publicationDay: 'Publication ponctuelle', icon: '🏆', accent: '#76cdb7',
     description: 'Classe les actifs sur une année, année par année ou sur une période choisie. Quinze catégories, sélection manuelle, régularité historique, texte et image.', status: 'disponible' },
-  { to: '/le-dca-de', navLabel: 'Portefeuille & DCA', title: 'Portefeuille & DCA',
+  { to: '/le-dca-de', title: 'Portefeuille & DCA',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
     description: 'Analyse les expositions, les titres communs et la concentration de ton portefeuille. Prépare un DCA ou une image à publier.', status: 'disponible' },
-  {to:'/fiches-pratiques',navLabel:'Fiches pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
-  { to: '/radar-editorial', navLabel: 'Radar', title: 'Radar éditorial',
+  {to:'/fiches-pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
+  { to: '/radar-editorial', title: 'Radar éditorial',
     publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',
     description: 'Repère les changements sourcés et prépare des idées pour tes prochains posts.', status: 'disponible' },
-  { to: '/simulateur-patrimoine', navLabel: 'Patrimoine', title: 'Simulateur de patrimoine',
+  { to: '/simulateur-patrimoine', title: 'Simulateur de patrimoine',
     publicationDay: 'Publication ponctuelle', icon: '📊', accent: '#65d5b0',
     description: 'Projette ton patrimoine par enveloppe et exporte des comparaisons pour X.', status: 'disponible' },
-  { to: '/presentations', navLabel: 'Présentations', title: 'Présentations',
+  { to: '/presentations', title: 'Présentations',
     publicationDay: 'Publication ponctuelle', icon: '🛡️', accent: '#65d5b0',
     description: 'Assurance-vie, SCPI et acteurs du non coté ou des actifs réels : texte et visuel personnalisés.', status: 'disponible' },
   {
-    to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
+    to: '/analyse-entreprise', hidden: true, title: 'Analyse d’entreprise',
     publicationDay: 'Publication ponctuelle', icon: '🏭', accent: '#7bd8bd',
     description: 'Activité, résultats publiés et valorisation disponible : texte et image actualisés automatiquement.', status: 'disponible',
   },
   {
-    to: '/portefeuilles-investisseurs', navLabel: 'Investisseurs', title: "Portefeuille d’investisseur",
+    to: '/portefeuilles-investisseurs', title: 'Présentation d’un investisseur connu',
     publicationDay: 'Publication ponctuelle', icon: '👤', accent: '#d5ad65',
     description: `${INVESTORS.length} profils 13F : tweet, répartition et export PNG issus des déclarations SEC, via FolioFact et Tracefour.`, status: 'disponible',
   },
   {
-    to: '/france-100-menages', navLabel: '100 ménages', title: 'La France en 100 ménages',
+    to: '/france-100-menages', title: 'France en 100 ménages',
     publicationDay: 'Publication ponctuelle',
     icon: '🇫🇷', accent: '#e7c97c', description: '29 sujets Insee sur le patrimoine, les salaires et le niveau de vie. Repères documentés, tweets prêts à copier et export PNG.', status: 'disponible',
   },
   {
-    to: '/donnees-a-revoir', navLabel: 'À revoir', title: 'Données à revoir',
+    to: '/donnees-a-revoir', title: 'Données à revoir',
     icon: '🗓️', accent: '#fbbf24', description: 'Réserves ouvertes, échéances des offres et contrôles de sources à prévoir.', status: 'disponible',
   },
   {
-    to: '/bibliotheque-donnees', navLabel: 'Données', title: 'Bibliothèque de données',
+    to: '/bibliotheque-donnees', title: 'Bibliothèque de données',
     icon: '🔎', accent: '#2dd4bf', description: 'Recherche par ISIN, ticker, nom ou indice. Sources, historiques, outils consommateurs et export JSON.', status: 'disponible',
   },
   {
     to: '/calculateur-investissement',
-    navLabel: 'Calculateur',
     title: 'Et si tu avais investi ?',
     publicationDay: 'Publication ponctuelle',
     icon: '💰',
@@ -55,7 +54,6 @@ export const TOOLS = [
   },
   {
     to: '/generateur-portefeuilles',
-    navLabel: 'Générateur portefeuilles',
     title: 'Générateur de portefeuilles',
     publicationDay: 'Publication ponctuelle',
     icon: '🧭',
@@ -65,7 +63,6 @@ export const TOOLS = [
   },
   {
     to: '/duels-portefeuilles',
-    navLabel: 'Duels portefeuilles',
     title: 'Duel de portefeuilles',
     publicationDay: 'Publication ponctuelle',
     icon: '⚔️',
@@ -74,7 +71,6 @@ export const TOOLS = [
   },
   {
     to: '/fiches-etf',
-    navLabel: 'Fiches ETF',
     title: "Présentation d'ETF",
     publicationDay: 'Publication ponctuelle',
     icon: '📋',
@@ -84,7 +80,6 @@ export const TOOLS = [
   },
   {
     to: '/comparatif-courtiers',
-    navLabel: 'Comparatif courtiers',
     title: 'Comparatif courtiers',
     publicationDay: 'Publication ponctuelle',
     icon: '⚖️',
@@ -93,45 +88,44 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
-    to: '/fiche-lexique', navLabel: 'Fiche lexique', title: 'Fiche lexique',
+    to: '/fiche-lexique', title: 'Fiche lexique',
     format: 'fiche-lexique', bundle: '/tweet-midi/formats/lexique', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Un terme financier expliqué avec un texte prêt à publier.', status: 'disponible',
   },
   {
-    to: '/comparatif-etf', navLabel: 'Comparatif ETF', title: 'Comparatif ETF',
+    to: '/comparatif-etf', title: 'Comparatif ETF',
     format: 'comparatif-etf', bundle: '/tweet-midi/formats/comparatif', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Compare les expositions, frais et performances de deux ETF.', status: 'disponible',
   },
   {
-    to: '/il-y-a-x-ans', navLabel: 'Il y a X ans', title: 'Il y a X ans',
+    to: '/il-y-a-x-ans', title: 'Il y a X ans',
     format: 'anniversaire', bundle: '/tweet-midi/formats/anniversaire', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Compare un prix historique au dernier niveau automatique disponible, avec saisie manuelle facultative.', status: 'disponible',
   },
   {
-    to: '/performance-depuis', navLabel: 'Performance depuis', title: 'Performance depuis',
+    to: '/performance-depuis', title: 'Performance depuis',
     format: 'performance-depuis', bundle: '/tweet-midi/formats/performance', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Les performances annuelles d’un actif sur la période choisie.', status: 'disponible',
   },
   {
-    to: '/pouvoir-achat', navLabel: 'Pouvoir d’achat', title: 'Pouvoir d’achat',
+    to: '/pouvoir-achat', title: 'Pouvoir d’achat',
     format: 'pouvoir-achat', bundle: '/tweet-midi/formats/pouvoir', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Mesure l’évolution du pouvoir d’achat sur la période choisie.', status: 'disponible',
   },
   {
-    to: '/dilemme', navLabel: 'Dilemme', title: 'Dilemme',
+    to: '/dilemme', title: 'Dilemme',
     hidden: true, format: 'dilemme', bundle: '/tweet-midi/formats/dilemme', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Deux choix de placement pour ouvrir la discussion.', status: 'disponible',
   },
   {
     to: '/impact-frais',
-    navLabel: 'Impact des frais',
-    title: "Calculateur d'impact des frais",
+    title: 'Impact des frais',
     publicationDay: 'Publication ponctuelle',
     icon: '🧮',
     accent: '#fbbf24',
@@ -140,8 +134,7 @@ export const TOOLS = [
   },
   {
     to: '/faits-marquants-marches',
-    navLabel: 'Faits marquants',
-    title: 'Faits marquants des marchés',
+    title: 'Faits marquants',
     publicationDay: 'Publication ponctuelle',
     icon: '📚',
     accent: '#34d399',
@@ -150,8 +143,7 @@ export const TOOLS = [
   },
   {
     to: '/banque-tweets',
-    navLabel: 'Banque de tweets',
-    title: 'Banque de tweets à recycler',
+    title: 'Banque de tweets',
     icon: '🗄️',
     accent: '#22d3ee',
     description: "Recycle tes meilleurs tweets déjà écrits : filtre par mois/catégorie/format, recherche libre, et repos de 45 jours après chaque publication pour épuiser le stock avant de répéter.",
@@ -159,14 +151,13 @@ export const TOOLS = [
   },
   {
     to: '/tweets-factsheets',
-    navLabel: 'Décryptage indices',
-    title: 'Dans les coulisses des indices',
+    title: 'Coulisses des indices',
     publicationDay: 'Publication ponctuelle',
     icon: '🔎',
     description: 'Des indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
     status: 'disponible',
   },
-].map(tool => ({ ...tool, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
+].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
@@ -201,9 +192,9 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiches-pratiques', '/radar-editorial', '/presentations', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
-].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
+].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
 
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
@@ -215,7 +206,7 @@ export const WEEKLY_ORDER = [
   '/duels-portefeuilles', '/fiches-etf',
   '/presentations',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
-  '/il-y-a-x-ans', '/analyse-entreprise', '/pouvoir-achat',
+  '/il-y-a-x-ans', '/pouvoir-achat',
   '/le-dca-de', '/comparatif-courtiers',
   '/simulateur-patrimoine', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]

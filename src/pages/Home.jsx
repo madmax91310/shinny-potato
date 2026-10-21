@@ -30,7 +30,7 @@ export default function Home() {
     <nav className="home-quick-links" aria-label="Outils favoris">
       {QUICK_PATHS.map(path => {
         const tool = HOME_TOOLS.find(item => item.to === path)
-        return <Link key={path} to={path}><span aria-hidden="true">{tool.icon}</span>{tool.title === 'Banque de tweets à recycler' ? 'Banque de tweets' : tool.title}</Link>
+        return <Link key={path} to={path}><span aria-hidden="true">{tool.icon}</span>{tool.title}</Link>
       })}
     </nav>
     <div className="home-search">
@@ -54,7 +54,7 @@ export default function Home() {
             {[['midday', 'Midi', midday], ['evening', 'Soir', evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
               <h3>{label}</h3>
               {(period === 'midday' ? middayNote : eveningNote) && <p className="home-day-note">{period === 'midday' ? middayNote : eveningNote}</p>}
-              <ToolList tools={entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), ...(entry.title ? { title: entry.title } : {}), publicationDay: entry.note || `${day} ${label.toLowerCase()}` }))} />
+              <ToolList tools={entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), ...(entry.title ? { title: entry.title } : {}), to: entry.href ?? entry.path, publicationDay: entry.note || `${day} ${label.toLowerCase()}` }))} />
             </div>)}
           </div>
         </section>

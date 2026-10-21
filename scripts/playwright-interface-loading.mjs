@@ -16,7 +16,7 @@ for(const width of [390,1440]){
   await add.getByRole('searchbox').fill('FR001400U5Q4');await add.locator('[data-option]').first().click()
   await page.locator('.dca-simple-line input').fill('100');await page.reload();assert.equal(await page.locator('.dca-simple-line input').inputValue(),'100')
   await page.locator('.dca-simple-preview img').waitFor()
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
   const dca=page.locator('.dca-profiles-scope:visible .asset-picker');await dca.getByRole('searchbox').fill('FR0000120073');await dca.locator('[data-option][data-value="airliquide"]').click();assert((await page.locator('.dca-profiles-scope:visible .dca-simple-line').last().innerText()).includes('FR0000120073'))
   await page.goto(base+'generateur-portefeuilles');await page.getByRole('button',{name:/Composition manuelle/}).click()
   await page.locator('.pg-manual-search').fill('World');await page.locator('.pg-manual-available [data-option]').first().click()
