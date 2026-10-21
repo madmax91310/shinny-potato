@@ -10,6 +10,7 @@ on:
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
       - 'scripts/security_identifier_observations.py'
@@ -44,6 +45,7 @@ on:
       - 'scripts/collect_physical_holdings.py'
       - 'scripts/collect_wisdomtree_holdings.py'
       - 'scripts/wisdomtree_api_holdings.py'
+      - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
       - 'scripts/security_identifier_observations.py'
@@ -92,6 +94,8 @@ jobs:
       - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
       - run: npm ci
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Install browser for public issuer API fallback
+        run: npx playwright install --with-deps chromium
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -111,6 +115,8 @@ jobs:
         run: python scripts/discover_holdings_sources.py
       - name: "Collect observations: holdings"
         id: holdings
+        env:
+          WISDOMTREE_BROWSER_CAPTURE: '1'
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
       - name: "Collect observations: sleeves"
@@ -140,7 +146,6 @@ jobs:
         run: npm run build
       - name: Verify complete portfolios in the browser
         run: |
-          npx playwright install --with-deps chromium
           node scripts/playwright-live-data-connections.mjs
           node scripts/playwright-live-data-connections.mjs --physical
           node scripts/playwright-live-data-connections.mjs --new-issuers

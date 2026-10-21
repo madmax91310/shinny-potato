@@ -1,4 +1,6 @@
 import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js';
+import monthlyRecords from '../src/data/automated-etf-monthly.json' with {type:'json'};
+import otherMonthlyRecords from '../src/data/non-bond-monthly-records.json' with {type:'json'};
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -63,7 +65,17 @@ for (const etf of ETFS) {
   }
   const evidence = capture.performances[etf.isin];
   const automated = AUTOMATED_ETF[etf.isin];
-  if (automated?.performance) {
+  if(series.sourceKind==='adjusted-market-price') {
+    const source=Object.values({...monthlyRecords,...otherMonthlyRecords}).find(r=>r.isin===etf.isin&&r.listingEvidenceId===series.listingEvidenceId&&r.currency===series.currency);
+    assert(source&&source.field==='adjclose'&&source.responseSha256===series.responseSha256,`${etf.isin}: exact adjusted-price source required`);
+    assert(!AUTOMATED_PERFORMANCE[etf.isin]?.values.some(Number.isFinite),'Published NAV must retain precedence');
+    const points=new Map(source.points);
+    for(const [index,year]of series.calendarYears.entries())if(Number.isFinite(series.values[index])) {
+      const months=[`${year-1}-12`,...Array.from({length:12},(_,i)=>`${year}-${String(i+1).padStart(2,'0')}`)];
+      assert(months.every(month=>Number.isFinite(points.get(month))&&points.get(month)>0));
+      assert.equal(series.values[index],(points.get(`${year}-12`)/points.get(`${year-1}-12`)-1)*100);
+    }
+  } else if (automated?.performance) {
     assert.deepEqual(series.values, AUTOMATED_PERFORMANCE[etf.isin].values);
     assert.equal(series.currency, automated.currency);
     assert.equal(series.source, automated.performance.sourceUrl ?? automated.sourceUrl);
@@ -84,7 +96,14 @@ for (const etf of ETFS) {
 // Régressions concrètes : STOXX 50 présent ; aucun historique d’un autre fonds
 // attribué aux nouvelles parts World, small cap, QYLD ou PEA Global.
 const stoxx = ETFS.find(e => e.isin === 'IE00B53L3W79');
-assert.deepEqual(getAnnualPerformance(stoxx).values, [-2.89, 23.98, -9.04, 22.78, 11.54, 21.78]);
-for (const isin of ['FR001400U5Q4', 'IE0000N55FP4', 'FR0014017NX3', 'IE00BM8R0J59', ...sourceConflicts]) assert(getAnnualPerformance(ETFS.find(e => e.isin === isin)).values.every(v => v === null));
-for (const isin of ['IE00BKPSFC54', 'IE00BMW42413', 'IE00BKPX3K41', 'DE000A27Z304']) assert.equal(getAnnualPerformance(ETFS.find(e => e.isin === isin)).values[0], null, `${isin}: année 2020 incomplète publiée`);
+assert.deepEqual(getAnnualPerformance(stoxx).values, AUTOMATED_PERFORMANCE[stoxx.isin].values);
+for (const isin of ['FR001400U5Q4', 'IE0000N55FP4', 'FR0014017NX3', 'IE00BM8R0J59', ...sourceConflicts]) {
+ const series=getAnnualPerformance(ETFS.find(e=>e.isin===isin));
+ if(series.sourceKind==='adjusted-market-price')assert(series.listingEvidenceId.startsWith(isin+'-'));
+ else if(!AUTOMATED_PERFORMANCE[isin]?.values.some(Number.isFinite))assert(series.values.every(v=>v===null));
+}
+for (const isin of ['IE00BKPSFC54', 'IE00BMW42413', 'IE00BKPX3K41', 'DE000A27Z304']) {
+ const series=getAnnualPerformance(ETFS.find(e=>e.isin===isin)),index=series.calendarYears.indexOf(2020);
+ if(index>=0)assert.equal(series.values[index], null, `${isin}: année 2020 incomplète publiée`);
+}
 console.log(`${ETFS.length} présentations ; ${annual} historiques annuels, ${other} performances sur périodes datées, ${withoutPublishedPerformance} nouvelles fiches sans performance publiée, ${unpublished.size} parts sans historique publié et ${sourceConflicts.size} conflits de sources explicitement signalés.`);

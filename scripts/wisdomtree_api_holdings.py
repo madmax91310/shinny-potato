@@ -2,7 +2,10 @@
 import datetime as dt
 import json
 import math
+import os
 import re
+import subprocess
+import urllib.error
 import urllib.request
 from pathlib import Path
 from issuer_documents import download, pdf_text, document_date, proof
@@ -108,13 +111,23 @@ def collect(share, now, fetch=download, post=mapping_request):
             or not re.search(r'Base Currency\s+USD\b', text)
             or not re.search(r'WCLD\s+WCLD LN', text)):
         raise ValueError('API fund identity not confirmed by official factsheet')
-    identity_date = document_date(re.search(r'Document Date:\s*(\d{2}/\d{2}/\d{4})', text)[1], now)
     limit = json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.staticCharacteristic']['checkDays']
+    identity_date = document_date(re.search(r'Document Date:\s*(\d{2}/\d{2}/\d{4})', text)[1], now, max_age=limit)
     if (now.date()-dt.date.fromisoformat(identity_date)).days > limit:
         raise ValueError('Expired API fund identity document')
     url = f'https://www.wisdomtree.com/api/fund-holdings/{class_id}'
-    raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-                             'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
+    capture_method='public-http-json'
+    try:
+        raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+                                 'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
+    except urllib.error.HTTPError as error:
+        if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
+            raise
+        result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
+        if result.returncode:
+            raise ValueError('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
+        raw=result.stdout
+        capture_method='public-browser-json'
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     observations = previous.get(share['isin'], {}).get('identityObservations', [])
@@ -160,6 +173,7 @@ def collect(share, now, fetch=download, post=mapping_request):
     mapping = identity_map(observations, now)
     rows, stamp, cash = parse(payload, share, now, mapping)
     return observation(rows, stamp, url, raw, allow_unidentified=True,
+                       captureMethod=capture_method,
                        excludedWeightPctByType={'Cash': cash}, identityObservations=observations,
                        identitySourceUrl=document_url, identitySha256=proof(document), identityAsOf=identity_date,
                        sourceUrls=[url, document_url, API],

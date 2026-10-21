@@ -172,7 +172,8 @@ def amundi_composition(data, share, now):
         kind = item['type']
         # Payables and receivables are separate signed cash lines. Their net
         # NAV weight is checked below; no negative equity position is admitted.
-        if weight != finite_weight(item['weight']) or not -1 <= weight <= 1 or weight < 0 and kind != 'CASH':
+        minimum = -1 if kind == 'CASH' else -.01
+        if weight != finite_weight(item['weight']) or not minimum <= weight <= 1:
             raise ValueError('Inconsistent Amundi weight')
         if document_date(item['date'], now) != stamp:
             raise ValueError('Mixed-date Amundi portfolio')
