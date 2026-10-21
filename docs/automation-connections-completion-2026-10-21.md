@@ -55,3 +55,9 @@ Les certificats utilisent la règle de fraîcheur de leur champ dans le registre
 Une liaison vérifiée supprime le certificat de couverture en doublon tout en conservant l’union de ses outils consommateurs et de ceux de la façade. La recette conserve 1 515 fiches, 4 487 champs du catalogue et 20 outils ; les usages sont recalculés après cette correction de leur périmètre. Les usages à confirmer passent de 3 938 à 2 134 dans la recette, sans effacer les 857 usages bloqués de cet instantané. Ce sont des certificats de données déjà présentes, pas de nouvelles performances collectées.
 
 Les tests refusent les mauvaises parts, devises, cotations, méthodes, fenêtres, années et valeurs. Ils contrôlent aussi la conservation des consommateurs absents de la façade, les échecs de source et les preuves expirées. Compilation et Chromium mobile/bureau du suivi des obligations par outil réussis.
+
+## Cohérence des rapports effectivement publiés
+
+La vérification publique a trouvé les trois nouvelles compositions présentes et qualifiées, mais le rapport de couverture portait encore `automationConfigured: false`. Sur un checkout neuf, les cibles générées étaient mises à jour après ce rapport ; l’inventaire, construit ensuite, voyait déjà la bonne configuration.
+
+Le prébuild génère maintenant les cibles avant le rapport de couverture. Chaque compilation audite les deux JSON réellement placés dans `dist` : présence, configuration, état, dates et source doivent concorder ; la configuration est aussi confrontée indépendamment au registre des collecteurs. Une absence ou un doublon fait échouer le contrôle. Cette correction ne renouvelle aucune observation financière et ne certifie pas les accès WisdomTree en échec.
