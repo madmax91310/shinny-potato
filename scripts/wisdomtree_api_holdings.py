@@ -15,6 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CLASSES = {'IE00BJGWQN72': (3104137, 'WCLD LN', 'WisdomTree Cloud Computing UCITS ETF - USD Acc')}
 
 
+class IssuerApiUnavailable(ConnectionError):
+    """Both ordinary public transports failed; financial validation is separate."""
+
+
 def mapping_request(jobs):
     request = urllib.request.Request(API, json.dumps(jobs).encode(), {
         'Content-Type': 'application/json', 'User-Agent': 'EpargnantLibre/1.0 (lepargnantlibre@gmail.com)'})
@@ -125,7 +129,7 @@ def collect(share, now, fetch=download, post=mapping_request):
             raise
         result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
         if result.returncode:
-            raise ValueError('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
+            raise IssuerApiUnavailable('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
         raw=result.stdout
         capture_method='public-browser-json'
     payload = json.loads(raw)

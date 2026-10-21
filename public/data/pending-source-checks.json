@@ -1,1057 +1,1946 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-21T11:56:52.461441+00:00",
-  "method": "HTTP access and content changes only; never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.",
+  "checkedAt": "2026-10-21T12:08:21.148798+00:00",
+  "method": "HTTP access and content changes only; primary and configured alternatives are checked independently with a bounded budget. Never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.",
   "sources": {
     "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": {
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "8f4c48781d53bc8d40a7076bbb8ae8456430243f6eb08c67ccf140abe6861694",
       "bytes": 29394,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72": {
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+      "sha256": "f2a5d584738ddce56e9a03d88091a70c9892ff6d7e85f82126bd12286a311ffb",
+      "bytes": 478757,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46": {
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+      "sha256": "e357ccb1ef137251cfeb3e4025d08fe620f834766d742c3c3a4a873656252f71",
+      "bytes": 53119,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.quantalys.com/Fonds/17300": {
+      "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.quantalys.com/Fonds/17300",
+      "sha256": "0e241c279b72dd2b7e2c58c04c6f85ec6ae0325eef437ede22e45c3a9aac12ad",
+      "bytes": 233,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72": {
+      "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+      "sha256": "167fb978aa00e5b29bf911eff5ce58396ba36aff56a797bee53a637985d40945",
+      "bytes": 281,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://extraetf.com/fr/etf-profile/IE00B0M62S72": {
+      "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+      "sha256": "4d3ff4805d681f20a6004d278f663dce19a5561a63032d2bde001254667b2695",
+      "bytes": 703345,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72": {
+      "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+      "sha256": "b321cd81af1e6d8dd8a8ba578fff96aa53b7b6513c5e706c5e42c3767f13f871",
+      "bytes": 272,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/qyld/": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.placement-direct.fr/assurance-vie/placement-direct-vie": {
       "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
-      "sha256": "bcfb8d16909f056d6829530be0f1fbe790a5f1438c4a2039a0e648af8c556892",
+      "sha256": "0a3057eab51ace2440e61b29a862afbce3c9cb651b440dd83f97cf589e6c6bc1",
       "bytes": 281275,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf": {
+      "sourceUrl": "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+      "sha256": "420e9ac733178f6f6e12b22c41c136ead4d9e3b804a7039a794bb96133b03ef7",
+      "bytes": 788823,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf": {
+      "sourceUrl": "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+      "sha256": "65d3cd417af606601fc7bfe8b776323f3278caca008c448690bccc7eedf55237",
+      "bytes": 172823,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.anaxago.com/investir-private-equity": {
       "sourceUrl": "https://www.anaxago.com/investir-private-equity",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "changed-unqualified",
+      "status": "accessible-unqualified",
       "finalUrl": "https://www.anaxago.com/investir-private-equity",
       "sha256": "78b30b32b1d543873e572998230d9f140fbbe0446a0932965d0bb82231ec0f14",
       "bytes": 433211,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.anaxago.com/axclimat": {
+      "sourceUrl": "https://www.anaxago.com/axclimat",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.anaxago.com/axclimat",
+      "sha256": "3d072803998734c007fc9b474e046a5284b3036c8f01cb37e954044d0ae2a8be",
+      "bytes": 394135,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://bacchusconseil.com/gfv-gfa/": {
       "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://bacchusconseil.com/gfv-gfa/",
-      "sha256": "314a5cc1a71daa78842e351cc05001b12503005dd53ff2448ee60ca4a23f4b72",
-      "bytes": 381455,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "d6f5d690ba5b72eca12894a83a88ae821fe2ead942c130663ea3bb8b5870dc62",
+      "bytes": 381400,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bacchusconseil.com/investir/": {
+      "sourceUrl": "https://bacchusconseil.com/investir/",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bacchusconseil.com/investir/",
+      "sha256": "59c8e68c84a0f79f710d836989f3f42cfa1f13417148af26c838a78416606823",
+      "bytes": 141923,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/": {
+      "sourceUrl": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+      "sha256": "71314bfad198e64646081a7e271bd27e541b8dd1cfd304290d455ba3228fe553",
+      "bytes": 156752,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bacchusconseil.com/fonctionnement/": {
+      "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bacchusconseil.com/fonctionnement/",
+      "sha256": "6edf37ae2b9270d8a2db44cf3682c0162bd3e457192dc7f09f77f7b8153f637d",
+      "bytes": 146051,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.france-valley.com/": {
       "sourceUrl": "https://www.france-valley.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.france-valley.com/",
-      "sha256": "d95b1353e1df475fe6286833aed56fc9ebb2eefbb22e4464b2b853a926560382",
+      "sha256": "d12178dd99149c6d861b6e3bd0ad671d5ab7b7b5e7df85b34813fc63d19d95a1",
       "bytes": 577395,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.france-valley.com/gfi-france-valley-patrimoine": {
+      "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+      "sha256": "a76fde6b9a1af8ea36a918fa45468555a8f008f80a7e867c8c20667ecd6d4735",
+      "bytes": 696955,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf": {
+      "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+      "sha256": "ae458a92888eb6a80408544ca00b687adffa70b1c219b0b08b931feba5aaac43",
+      "bytes": 269925,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.fundora.fr/": {
       "sourceUrl": "https://www.fundora.fr/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://www.fundora.fr/",
       "sha256": "6b8502ebd52e21cfe684f99e4a9d630b5ed7cb38c75baeee5192a170c56455a7",
       "bytes": 139808,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.fundora.fr/questions": {
+      "sourceUrl": "https://www.fundora.fr/questions",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.fundora.fr/questions",
+      "sha256": "a5a0299db0c5cc804140ebae4547a03f35087a916f8c760605c2f62788d72181",
+      "bytes": 124340,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://app.hectarea.io/club/investir/": {
       "sourceUrl": "https://app.hectarea.io/club/investir/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://app.hectarea.io/club/investir/",
       "sha256": "36e941636358da0cd226b294e01632f41e9a04145879adc2e6ee34306486702d",
       "bytes": 545426,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.hectarea.io/aide/fonctionnement": {
+      "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.hectarea.io/aide/fonctionnement",
+      "sha256": "77448a6b41533950bb37b1bd7ed3e41b302edb123988509b8dc4bc2c0496e396",
+      "bytes": 263004,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.hectarea.io/aide/portefeuille": {
+      "sourceUrl": "https://www.hectarea.io/aide/portefeuille",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.hectarea.io/aide/portefeuille",
+      "sha256": "08a94b8ede0cbe3a268f34b135cbad051b7040b59ed240eadf69dafe806771e2",
+      "bytes": 211334,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.hectarea.io/aide/investir": {
+      "sourceUrl": "https://www.hectarea.io/aide/investir",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.hectarea.io/aide/investir",
+      "sha256": "f1e16ce41e610b9b9a2ebc634ebd9f2986a72b2a1ad79c6b0f4232397deb3488",
+      "bytes": 257350,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.mymarguerit.com/": {
       "sourceUrl": "https://www.mymarguerit.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
-      "finalUrl": "https://www.mymarguerit.com/en",
-      "sha256": "cad761fdcf26a48f668ed0ac269c48ddbf20debb1323e2150c5cb4814ee94dd8",
-      "bytes": 202386,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "finalUrl": "https://www.mymarguerit.com/",
+      "sha256": "bbc09e747aa170f8bc7ac9320fe8b40ce78b3891cfee8567f5e7bd0d000a3f7a",
+      "bytes": 218217,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review": {
       "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
-      "lastAccessibleAt": "2026-10-20T20:52:37.840102+00:00",
-      "sha256": "e70bf313ef315596f8cb8060d45f17c8080a9979916164779ca27a6746fef3a1"
+      "status": "changed-unqualified",
+      "finalUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "sha256": "1d8294f9374a0ff6fd1e4925427372c15aa353296c612be9034ddb80352e6951",
+      "bytes": 778735,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/": {
+      "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+      "sha256": "aeaaa0ac86f1f79897c11532bec35f41ea4df65bdbfb44b30d99137485d9be67",
+      "bytes": 558442,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://sinvestir.fr/cto-boursobank-avis/": {
       "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://sinvestir.fr/cto-boursobank-avis/",
-      "sha256": "0960006369651eb161013ebbc8cbdde035375ebfa7b63d19ba70e984b5debc4e",
-      "bytes": 808291,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "724a0be0d99373b717483f286dbff7bde787ff6432cb5cb913ec54c727d61088",
+      "bytes": 807353,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
-    "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees": {
-      "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
-      "qualification": "access-check-only",
-      "financialDataQualified": false,
-      "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
-      "lastAccessibleAt": "2026-10-20T20:52:37.840102+00:00",
-      "sha256": "88933016336f168e63ddb57632d720139d4c83a9e1f111fdd8b5817c8acea26a"
-    },
-    "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/": {
-      "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+    "https://brokerchooser.com/fr/broker-reviews/boursobank-review": {
+      "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/boursobank-review",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
+      "finalUrl": "https://brokerchooser.com/fr/broker-reviews/boursobank-review",
+      "sha256": "59ecec5ef3b5672ecfbf4327e19fa8d5b9bca968b17d867fb058a2ae284f8fd5",
+      "bytes": 761611,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees": {
+      "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "changed-unqualified",
+      "finalUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "sha256": "0184afae5ccc8a152571ab81e4a5e55ac2c489d71d149209b66f6b3bbd6c8cde",
+      "bytes": 387515,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/": {
+      "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "changed-unqualified",
       "finalUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
-      "sha256": "1b8fb29217cda25785e6c687bdd9901eaab4d1ba59cca837f03e05b74e5c96ca",
-      "bytes": 373615,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "c1185adc07b5decce95744bd822c25fbedde2a89a4f9c24a830265b63c66c000",
+      "bytes": 373248,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html": {
+      "sourceUrl": "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html",
+      "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+      "bytes": 3038,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/": {
       "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "sha256": "4fd2666ee501c0f264c6854027c750e768436788a538a74095176c421cb29762",
+      "sha256": "1bde7431460ed294303cae0fc3baab607a8f0914d4cd122056c98e5843e4e5c0",
       "bytes": 268334,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://extraetf.com/fr/ressources/pea-trade-republic": {
+      "sourceUrl": "https://extraetf.com/fr/ressources/pea-trade-republic",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://extraetf.com/fr/ressources/pea-trade-republic",
+      "sha256": "656a437e673b20d9eeb5888ee5930fd29857f8329dec9d3e47ff7ca5e65d8b6c",
+      "bytes": 233483,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.ideal-investisseur.fr/pea/trade-republic-8.html": {
+      "sourceUrl": "https://www.ideal-investisseur.fr/pea/trade-republic-8.html",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.ideal-investisseur.fr/pea/trade-republic-8.html",
+      "sha256": "a2f31cadb10f32042b8a563e6507a967d897e76803bb95581fa0e029d62da9d6",
+      "bytes": 95698,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.wisdomtree.com/api/fund-holdings/3104137": {
       "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "sha256": "b5fffabfea740edec2fec5f8627b55a2dbc0ee308c8cdac6a4ec82945c65a7e6",
+      "bytes": 25808,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc": {
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
+      "error": "Official document exceeds size limit",
       "lastAccessibleAt": null,
       "sha256": null
     },
     "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf": {
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
       "bytes": 123940,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf": {
+      "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+      "sha256": "61314078f8e1d9225773c14fa4e1eaf43439b72f55782f142dfe93d2cc5b0eb3",
+      "bytes": 55760,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3": {
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+      "sha256": "fa78cef562dfde754bd92ea6b98783a1471c6c70838922ae52c6e509c0a624cb",
+      "bytes": 446220,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3": {
+      "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+      "sha256": "4d5b54a82a364b8320d68a53c68c1651d2578d24245eb0df30ed875fb36605a5",
+      "bytes": 46,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://extraetf.com/fr/etf-profile/IE0003R87OG3": {
+      "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+      "sha256": "bbde737d45fc6e78e7fa5bc38972537764dd94d79a54b3aaa53eb377fc5501ca",
+      "bytes": 431235,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
+    },
+    "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3": {
+      "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
+      "qualification": "access-check-only",
+      "financialDataQualified": false,
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+      "sha256": "f96355730bf71785b0b405bbbb693ddc620d23bda5390feaf31cd4c0a155d2f5",
+      "bytes": 272,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/silv/": {
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/silv",
-      "sha256": "781817ae4c240c743fa8d38e4fb8bb67718c766cf85469aec473396f8c61e307",
-      "bytes": 415235,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "7f72dfcdda013fe39839a809b0fa6a480e92309d89b7ea8325059191ec8a98aa",
+      "bytes": 416615,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating": {
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "f98d286251d5a32157d6088be71defb3c83ba9d7e6545fee811f2927b486b8fe",
+      "sha256": "b3e7b91d95e5985dc66b00fe967eb55444fb76ed3dd294414e7f60753126a438",
       "bytes": 336040,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating": {
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "2f5e8aebde9a4c544905c7b8ea637a6e16cc4bbda48ec9db64bd92ea4d7f65dd",
+      "sha256": "5dac59668dbbe460ce878e94fe23831cf55d18d864884af7b23c74a4bc7c0cf3",
       "bytes": 336103,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating": {
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "9a0797cd41e868e12ea20b6ccc3502785ca9c396dc355b0bbac36978e1221235",
+      "sha256": "134e9edefc646c69eb0e84cebb50e83814ad24088750269f5f2ee4fd75c1e7ca",
       "bytes": 337168,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating": {
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "d7903a3df5bee3ccc55672b84e1cd9c3b3975d20536ab2d02835b15bd9dcd5e8",
+      "sha256": "b9e47676f1e6dc82594c14909a133713405b5fb4cf2d5fab2b81463309bbfbcf",
       "bytes": 337315,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/copx/": {
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/copx",
-      "sha256": "b44fc2bedcb897f55e56e10df9261354426ac1e37c89947a2550fdccb3b94a44",
-      "bytes": 425360,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "1ad445ff1856872dc0981742aace04ff3b96c107f5f98c5e0d4b8810b6e79f68",
+      "bytes": 425446,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/urnu/": {
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/urnu",
-      "sha256": "c9b550102952e9a76041cd78ca9f60b564425a35040b2ab584f5c8ff5f060add",
+      "sha256": "869f053d2176637fd5942ee8192aa6b104a930b369bced3b04aaf7128e8023fe",
       "bytes": 449577,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/botz/": {
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/botz",
-      "sha256": "ac9d7e8284c6e06767176dce773fa3b3701d8efa2ced1f277562afa19b3f1837",
-      "bytes": 428340,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "6dbfe71b04dfc05afd3684736ad604c4010d573eb3a4ce27a413c9231fb77098",
+      "bytes": 428254,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     },
     "https://globalxetfs.eu/funds/bug/": {
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/bug",
-      "sha256": "5f1a0c6cb4e5a479a22c9299d22a39cb58cd807f7bb480e4694eb85e30f5b28f",
-      "bytes": 397708,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "6bb5b0cbcf02e96a1b9a06eec1fb230ec593aeda27cb62ac8e69680623e00e05",
+      "bytes": 397572,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00"
     }
   },
   "observations": {
     "IE00B0M62S72:pea": {
       "prerequisite": "contradictory-evidence-requires-qualification",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "8f4c48781d53bc8d40a7076bbb8ae8456430243f6eb08c67ccf140abe6861694",
       "bytes": 29394,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00B0M62S72",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:holdings": {
       "prerequisite": "contradictory-evidence-requires-qualification",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:catalog:Rendements glissants à qualifier": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "insurance:placement-direct-vie:catalog:Actif général SwissLife · Allocation maximale à confirmer": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
-      "sha256": "bcfb8d16909f056d6829530be0f1fbe790a5f1438c4a2039a0e648af8c556892",
+      "sha256": "0a3057eab51ace2440e61b29a862afbce3c9cb651b440dd83f97cf589e6c6bc1",
       "bytes": 281275,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:anaxago:catalog:AxClimat I — part B · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.anaxago.com/investir-private-equity",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "changed-unqualified",
+      "status": "accessible-unqualified",
       "finalUrl": "https://www.anaxago.com/investir-private-equity",
       "sha256": "78b30b32b1d543873e572998230d9f140fbbe0446a0932965d0bb82231ec0f14",
       "bytes": 433211,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.anaxago.com/investir-private-equity",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.anaxago.com/axclimat",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:anaxago:catalog:AxClimat I — part E · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.anaxago.com/investir-private-equity",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "changed-unqualified",
+      "status": "accessible-unqualified",
       "finalUrl": "https://www.anaxago.com/investir-private-equity",
       "sha256": "78b30b32b1d543873e572998230d9f140fbbe0446a0932965d0bb82231ec0f14",
       "bytes": 433211,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.anaxago.com/investir-private-equity",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.anaxago.com/investir-private-equity",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.anaxago.com/axclimat",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:bacchus:catalog:GFV Cave de Tain — Crozes-Hermitage · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://bacchusconseil.com/gfv-gfa/",
-      "sha256": "314a5cc1a71daa78842e351cc05001b12503005dd53ff2448ee60ca4a23f4b72",
-      "bytes": 381455,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "d6f5d690ba5b72eca12894a83a88ae821fe2ead942c130663ea3bb8b5870dc62",
+      "bytes": 381400,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://bacchusconseil.com/gfv-gfa/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://bacchusconseil.com/investir/",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:france-valley:catalog:France Valley Foncière Europe · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.france-valley.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.france-valley.com/",
-      "sha256": "d95b1353e1df475fe6286833aed56fc9ebb2eefbb22e4464b2b853a926560382",
+      "sha256": "d12178dd99149c6d861b6e3bd0ad671d5ab7b7b5e7df85b34813fc63d19d95a1",
       "bytes": 577395,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.france-valley.com/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.france-valley.com/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:france-valley:catalog:GFI France Valley Forêts · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.france-valley.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.france-valley.com/",
-      "sha256": "d95b1353e1df475fe6286833aed56fc9ebb2eefbb22e4464b2b853a926560382",
+      "sha256": "d12178dd99149c6d861b6e3bd0ad671d5ab7b7b5e7df85b34813fc63d19d95a1",
       "bytes": 577395,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.france-valley.com/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.france-valley.com/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:france-valley:catalog:GFI France Valley Patrimoine · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.france-valley.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.france-valley.com/",
-      "sha256": "d95b1353e1df475fe6286833aed56fc9ebb2eefbb22e4464b2b853a926560382",
+      "sha256": "d12178dd99149c6d861b6e3bd0ad671d5ab7b7b5e7df85b34813fc63d19d95a1",
       "bytes": 577395,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.france-valley.com/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.france-valley.com/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:fundora:catalog:Fundora — Classique · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.fundora.fr/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://www.fundora.fr/",
       "sha256": "6b8502ebd52e21cfe684f99e4a9d630b5ed7cb38c75baeee5192a170c56455a7",
       "bytes": 139808,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fundora.fr/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fundora.fr/",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.fundora.fr/questions",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:fundora:catalog:Fundora — Horizon · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.fundora.fr/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://www.fundora.fr/",
       "sha256": "6b8502ebd52e21cfe684f99e4a9d630b5ed7cb38c75baeee5192a170c56455a7",
       "bytes": 139808,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fundora.fr/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fundora.fr/",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.fundora.fr/questions",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:hectarea:catalog:Obligations foncières Hectarea · À compléter": {
       "prerequisite": "published-general-platform-condition-required",
       "sourceUrl": "https://app.hectarea.io/club/investir/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://app.hectarea.io/club/investir/",
       "sha256": "36e941636358da0cd226b294e01632f41e9a04145879adc2e6ee34306486702d",
       "bytes": 545426,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://app.hectarea.io/club/investir/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://app.hectarea.io/club/investir/",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.hectarea.io/aide/portefeuille",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.hectarea.io/aide/investir",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "actor:mymarguerit:catalog:Cheptel MyMarguerit · À compléter": {
       "prerequisite": "exact-offer-and-underlying-documents-required",
       "sourceUrl": "https://www.mymarguerit.com/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
-      "finalUrl": "https://www.mymarguerit.com/en",
-      "sha256": "cad761fdcf26a48f668ed0ac269c48ddbf20debb1323e2150c5cb4814ee94dd8",
-      "bytes": 202386,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "finalUrl": "https://www.mymarguerit.com/",
+      "sha256": "bbc09e747aa170f8bc7ac9320fe8b40ce78b3891cfee8567f5e7bd0d000a3f7a",
+      "bytes": 218217,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.mymarguerit.com/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.mymarguerit.com/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:bd:catalog:Recoupement externe · cash": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
-      "lastAccessibleAt": "2026-10-20T20:52:37.840102+00:00",
-      "sha256": "e70bf313ef315596f8cb8060d45f17c8080a9979916164779ca27a6746fef3a1"
+      "status": "changed-unqualified",
+      "finalUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "sha256": "1d8294f9374a0ff6fd1e4925427372c15aa353296c612be9034ddb80352e6951",
+      "bytes": 778735,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:bourso:catalog:Recoupement externe · cash": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://sinvestir.fr/cto-boursobank-avis/",
-      "sha256": "0960006369651eb161013ebbc8cbdde035375ebfa7b63d19ba70e984b5debc4e",
-      "bytes": 808291,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "724a0be0d99373b717483f286dbff7bde787ff6432cb5cb913ec54c727d61088",
+      "bytes": 807353,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://sinvestir.fr/cto-boursobank-avis/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/boursobank-review",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:fortuneo:catalog:Recoupement externe · cash": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
-      "lastAccessibleAt": "2026-10-20T20:52:37.840102+00:00",
-      "sha256": "88933016336f168e63ddb57632d720139d4c83a9e1f111fdd8b5817c8acea26a"
+      "status": "changed-unqualified",
+      "finalUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "sha256": "0184afae5ccc8a152571ab81e4a5e55ac2c489d71d149209b66f6b3bbd6c8cde",
+      "bytes": 387515,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:fortuneo:catalog:Recoupement externe · dca": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "accessible-unqualified",
+      "status": "changed-unqualified",
       "finalUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
-      "sha256": "1b8fb29217cda25785e6c687bdd9901eaab4d1ba59cca837f03e05b74e5c96ca",
-      "bytes": 373615,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "c1185adc07b5decce95744bd822c25fbedde2a89a4f9c24a830265b63c66c000",
+      "bytes": 373248,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:tr:catalog:Recoupement externe · garde": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "sha256": "4fd2666ee501c0f264c6854027c750e768436788a538a74095176c421cb29762",
+      "sha256": "1bde7431460ed294303cae0fc3baab607a8f0914d4cd122056c98e5843e4e5c0",
       "bytes": 268334,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/ressources/pea-trade-republic",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "broker:tr:catalog:Recoupement externe · pme": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
-      "sha256": "4fd2666ee501c0f264c6854027c750e768436788a538a74095176c421cb29762",
+      "sha256": "1bde7431460ed294303cae0fc3baab607a8f0914d4cd122056c98e5843e4e5c0",
       "bytes": 268334,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+          "status": "changed-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.ideal-investisseur.fr/pea/trade-republic-8.html",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BJGWQN72:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
-      "status": "unavailable",
-      "error": "HTTP Error 403: Forbidden",
-      "lastAccessibleAt": null,
-      "sha256": null
+      "status": "accessible-unqualified",
+      "finalUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "sha256": "b5fffabfea740edec2fec5f8627b55a2dbc0ee308c8cdac6a4ec82945c65a7e6",
+      "bytes": 25808,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
+          "status": "unavailable"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE0003R87OG3:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
       "bytes": 123940,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE0003R87OG3:pea": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
       "bytes": 123940,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
+          "status": "accessible-unqualified"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE000UL6CLP7:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/silv",
-      "sha256": "781817ae4c240c743fa8d38e4fb8bb67718c766cf85469aec473396f8c61e307",
-      "bytes": 415235,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "7f72dfcdda013fe39839a809b0fa6a480e92309d89b7ea8325059191ec8a98aa",
+      "bytes": 416615,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5K07:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "f98d286251d5a32157d6088be71defb3c83ba9d7e6545fee811f2927b486b8fe",
+      "sha256": "b3e7b91d95e5985dc66b00fe967eb55444fb76ed3dd294414e7f60753126a438",
       "bytes": 336040,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5K07:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "f98d286251d5a32157d6088be71defb3c83ba9d7e6545fee811f2927b486b8fe",
+      "sha256": "b3e7b91d95e5985dc66b00fe967eb55444fb76ed3dd294414e7f60753126a438",
       "bytes": 336040,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5M21:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "2f5e8aebde9a4c544905c7b8ea637a6e16cc4bbda48ec9db64bd92ea4d7f65dd",
+      "sha256": "5dac59668dbbe460ce878e94fe23831cf55d18d864884af7b23c74a4bc7c0cf3",
       "bytes": 336103,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5M21:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "2f5e8aebde9a4c544905c7b8ea637a6e16cc4bbda48ec9db64bd92ea4d7f65dd",
+      "sha256": "5dac59668dbbe460ce878e94fe23831cf55d18d864884af7b23c74a4bc7c0cf3",
       "bytes": 336103,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5P51:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "9a0797cd41e868e12ea20b6ccc3502785ca9c396dc355b0bbac36978e1221235",
+      "sha256": "134e9edefc646c69eb0e84cebb50e83814ad24088750269f5f2ee4fd75c1e7ca",
       "bytes": 337168,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5P51:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "9a0797cd41e868e12ea20b6ccc3502785ca9c396dc355b0bbac36978e1221235",
+      "sha256": "134e9edefc646c69eb0e84cebb50e83814ad24088750269f5f2ee4fd75c1e7ca",
       "bytes": 337168,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5R75:countries": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "d7903a3df5bee3ccc55672b84e1cd9c3b3975d20536ab2d02835b15bd9dcd5e8",
+      "sha256": "b9e47676f1e6dc82594c14909a133713405b5fb4cf2d5fab2b81463309bbfbcf",
       "bytes": 337315,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMVB5R75:sectors": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "d7903a3df5bee3ccc55672b84e1cd9c3b3975d20536ab2d02835b15bd9dcd5e8",
+      "sha256": "b9e47676f1e6dc82594c14909a133713405b5fb4cf2d5fab2b81463309bbfbcf",
       "bytes": 337315,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "FR0007056841:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0010342592:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0010755611:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011440478:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011550185:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011550193:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011869304:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011869320:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011871078:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011871110:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0011871128:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0013412004:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0013412012:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0013412020:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0013412038:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR001400S9V0:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR001400U5Q4:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR001400ZGO4:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "FR0014017NX3:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE0002XZSHO1:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
-    },
-    "IE0002Y8CX98:completeHoldings": {
-      "prerequisite": "source-and-field-qualification-required",
-      "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
-      "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE0003R87OG3:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "accessible-unqualified",
       "finalUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
       "bytes": 123940,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+          "status": "accessible-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE0003Z9E2Y3:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/copx",
-      "sha256": "b44fc2bedcb897f55e56e10df9261354426ac1e37c89947a2550fdccb3b94a44",
-      "bytes": 425360,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "1ad445ff1856872dc0981742aace04ff3b96c107f5f98c5e0d4b8810b6e79f68",
+      "bytes": 425446,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/copx/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/copx/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE000DQLYVB9:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE000NDWFGA5:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/urnu",
-      "sha256": "c9b550102952e9a76041cd78ca9f60b564425a35040b2ab584f5c8ff5f060add",
+      "sha256": "869f053d2176637fd5942ee8192aa6b104a930b369bced3b04aaf7128e8023fe",
       "bytes": 449577,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE000QDFFK00:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE000UL6CLP7:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/silv",
-      "sha256": "781817ae4c240c743fa8d38e4fb8bb67718c766cf85469aec473396f8c61e307",
-      "bytes": 415235,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
-    },
-    "IE000W8WMSL2:completeHoldings": {
-      "prerequisite": "source-and-field-qualification-required",
-      "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
-      "qualification": "access-check-only",
-      "financialDataQualified": false
+      "sha256": "7f72dfcdda013fe39839a809b0fa6a480e92309d89b7ea8325059191ec8a98aa",
+      "bytes": 416615,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BD4TXV59:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
-    },
-    "IE00BDVPNG13:completeHoldings": {
-      "prerequisite": "source-and-field-qualification-required",
-      "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
-      "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BF0M2Z96:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BK5BCD43:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BK5BCH80:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BKLF1R75:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BLCHJB90:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/botz",
-      "sha256": "ac9d7e8284c6e06767176dce773fa3b3701d8efa2ced1f277562afa19b3f1837",
-      "bytes": 428340,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "6dbfe71b04dfc05afd3684736ad604c4010d573eb3a4ce27a413c9231fb77098",
+      "bytes": 428254,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/botz/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/botz/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BM8R0J59:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/qyld",
-      "sha256": "06963ec697a224d63be8fb3116822435f61335e1494a9dd9ebdcf1da4fdecb05",
-      "bytes": 423058,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "9afe224d54137df53deca2c66e0fdcffc91c6545c27c70cfba0ef979e13bbb41",
+      "bytes": 423057,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BMH5Y871:performance": {
       "prerequisite": "source-and-field-qualification-required",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
       "financialDataQualified": false,
       "status": "changed-unqualified",
       "finalUrl": "https://globalxetfs.eu/funds/bug",
-      "sha256": "5f1a0c6cb4e5a479a22c9299d22a39cb58cd807f7bb480e4694eb85e30f5b28f",
-      "bytes": 397708,
-      "lastAccessibleAt": "2026-10-21T11:56:52.461441+00:00"
+      "sha256": "6bb5b0cbcf02e96a1b9a06eec1fb230ec593aeda27cb62ac8e69680623e00e05",
+      "bytes": 397572,
+      "lastAccessibleAt": "2026-10-21T12:08:21.148798+00:00",
+      "primarySourceUrl": "https://globalxetfs.eu/funds/bug/",
+      "sourceChecks": [
+        {
+          "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+          "status": "changed-unqualified"
+        }
+      ],
+      "notCheckedSourceUrls": []
     },
     "IE00BYPLS672:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "IE00BZ56SW52:completeHoldings": {
       "prerequisite": "source-and-field-qualification-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1681038672:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1681043599:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1681045370:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1834983550:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1834983634:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1834986900:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU1834988518:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     },
     "LU2903252349:completeHoldings": {
       "prerequisite": "economic-index-holdings-required",
       "status": "not-configured",
-      "lastAccessAttemptAt": "2026-10-21T11:56:52.461441+00:00",
+      "lastAccessAttemptAt": "2026-10-21T12:08:21.148798+00:00",
       "qualification": "access-check-only",
-      "financialDataQualified": false
+      "financialDataQualified": false,
+      "primarySourceUrl": null,
+      "sourceChecks": [],
+      "notCheckedSourceUrls": []
     }
   }
 }

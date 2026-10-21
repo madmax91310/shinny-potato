@@ -16,7 +16,7 @@ Placement-direct Vie renouvelle à nouveau ses données. La notice actuellement 
 
 Les accès primaire et alternatifs configurés d’un champ en attente sont contrôlés indépendamment, dans la limite de huit routes par champ et six requêtes simultanées. Les doublons sont téléchargés une seule fois. Un accès primaire défaillant demeure enregistré même si une autre route répond ; les routes dépassant le budget sont explicitement conservées comme non contrôlées. Aucun de ces contrôles HTTP ne renouvelle une date financière ou ne clôt un incident de qualification.
 
-Le téléchargement commun aux SCPI, assurances et plateformes réessaie désormais également les réponses interrompues et limite leur taille à huit millions d’octets. Les réponses vides, trop volumineuses, les 404 et les données invalides ne deviennent pas des succès. Les contrôles de somme WisdomTree API rejettent aussi explicitement NaN, infini et les booléens.
+Le téléchargement commun aux SCPI, assurances et plateformes réessaie désormais également les réponses interrompues et limite leur taille à huit millions d’octets. Les réponses vides, trop volumineuses, les 404 et les données invalides ne deviennent pas des succès. Les contrôles de somme WisdomTree API rejettent aussi explicitement NaN, infini et les booléens. Cloud dispose aussi du portefeuille intégral embarqué dans sa page officielle comme accès de secours, seulement après une panne de transport API. Ce portefeuille de 65 lignes a été qualifié localement ; sa photographie du 15 octobre est plus ancienne que celle du 19 octobre déjà conservée, donc elle ne la remplace pas. Une erreur financière API ou un retrait 404 ne déclenche pas ce secours.
 
 ## Relecture de toute la roadmap
 
@@ -32,7 +32,7 @@ Le téléchargement commun aux SCPI, assurances et plateformes réessaie désorm
 
 ## Mesures et recette
 
-Avant fusion : 78 raccordements ouverts contre 81 ; 177 compositions intégrales actuelles contre 174 ; 688 historiques mensuels actuels. Ces périmètres se chevauchent et ne s’additionnent pas. La publication peut faire apparaître un incident de source conservé par un cycle concurrent ; ses données brutes priment sur ces chiffres de recette.
+Avant intégration du cycle concurrent : 78 raccordements ouverts contre 81 ; 177 compositions intégrales actuelles contre 174 ; 688 historiques mensuels actuels. Après conservation du dernier échec Cloud enregistré par GitHub : 79 raccordements ouverts et 176 compositions actuelles. Il s’agit des trois nouveaux raccordements, auxquels s’ajoute un incident d’accès désormais présent dans l’instantané intégré. Ces périmètres se chevauchent et ne s’additionnent pas. La publication peut faire apparaître un incident de source conservé par un cycle concurrent ; ses données brutes priment sur ces chiffres de recette.
 
 Les tests couvrent la séparation ADR/action ordinaire, les hypothèses erronées, les ambiguïtés, les limites de requêtes, les erreurs d’accès primaire avec secours disponible, les coupures de lecture, les documents trop volumineux, les clauses contractuelles modifiées et les sommes non finies. Un parcours Chromium mobile et bureau exerce les nouveaux portefeuilles dans le calcul de recouvrement et vérifie la conservation des poids complets dans les projections. Les obligations par outil et le retrait d’Analyse d’entreprise sont aussi rejoués.
 

@@ -4,6 +4,8 @@ import hashlib
 import json
 import math
 import re
+import urllib.error
+import http.client
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -91,8 +93,28 @@ def parse(page,share,now,mapping,identity_dates):
 
 def collect(share,now):
     from wisdomtree_api_holdings import CLASSES, collect as api_collect
-    if share['isin'] in CLASSES:
-        return api_collect(share, now)
+    if share['isin'] not in CLASSES:
+        return collect_rankings(share,now)
+    try:
+        return api_collect(share,now)
+    except urllib.error.HTTPError as error:
+        if error.code not in (403,408,429,500,502,503,504):raise
+        primary_error=error
+    except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as error:
+        primary_error=error
+    # Same exact fund, public issuer SSR portfolio. Identity/date/weight gates
+    # are unchanged. The caller still refuses a date older than retained data.
+    try:
+        result=collect_rankings(share,now)
+    except Exception as error:
+        raise ValueError(f'Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
+    result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}',
+        'status':'unavailable','error':str(primary_error)[:800]},
+        {'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}]
+    return result
+
+
+def collect_rankings(share,now):
     from collect_physical_holdings import observation
     page=public_page(share['sourceUrl'],max_bytes=12_000_000);mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
