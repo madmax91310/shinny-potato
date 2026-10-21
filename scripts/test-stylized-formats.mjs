@@ -35,8 +35,9 @@ try {
   const result = await page.evaluate(async () => {
     const { DEFAULT_THEMES } = await import('/shinny-potato/src/data/etf-themes.js')
     const { getInstrumentPeaStatus } = await import('/shinny-potato/src/data/instruments.js')
-    const { ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
-    const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
+    const { MARKET_ASSETS } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
+    const ASSET_ORDER=MARKET_ASSETS.map(a=>a.id)
+    const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
     const { getComparisonComposition, compositionEvidenceLabel } = await import('/shinny-potato/src/pages/etf-tweets/lib/comparisonComposition.js')
     const { renderComparatifEtfImage, getComparisonPaperCards } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
     const { renderPerformanceImage, cumulativePerformance } = await import('/shinny-potato/src/pages/tweet-midi/performanceImage.js')
@@ -95,7 +96,7 @@ try {
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
         if (!words.includes(`Cumul sur ${rows.length} an${rows.length > 1 ? 's' : ''}`)) throw new Error('Missing period summary')
         if (words.some(word => /sources?\s*:|MSCI ·|BCE|Yahoo|Les performances passées/i.test(word))) throw new Error('Source/footer returned on performance image')
-        const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
+        const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
         const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
         if (!words.join(' ').includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
         if (!words.includes(`${rows[0].year} — ${rows.at(-1).year} · EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
