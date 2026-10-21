@@ -24,7 +24,7 @@ assert.ok(Math.abs(records['dow-jones'].topWeight - observations['dow-jones'].fa
 assert.equal(records.dax.topWeight, records.dax.top.reduce((s,r)=>s+r.weightPct,0))
 assert.equal(records.world.top.find(r=>r.name==='Alphabet').securities.length, 2)
 if (!records.world.retained) assert.equal(records.world.topWeight, aggregateCompanies(full.IE00B4L5Y983.rows, identities).slice(0,10).reduce((s,r)=>s+r.weightPct,0))
-for(const [id, record] of Object.entries(records)) {
+for(const id of Object.keys(records)) {
   const c=getIndexConcentration(id)
   if(!c.available) continue
   assert.equal(c.top.length,10,id)

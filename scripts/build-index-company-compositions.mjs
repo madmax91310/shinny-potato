@@ -7,6 +7,7 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import holdings from '../src/data/dca-complete-holdings.json' with { type: 'json' }
 import holdingsStatus from '../src/data/dca-holdings-status.json' with { type: 'json' }
 import observations from '../src/data/index-company-observations.json' with { type: 'json' }
+import qualified from '../src/data/index-company-qualified.json' with { type: 'json' }
 import config from './index-company-sources.json' with { type: 'json' }
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import { calculateConcentration, retainQualifiedComposition } from '../src/data/index-concentration-core.js'
@@ -61,16 +62,16 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
 }
 const failures = []
 for (const [id, candidate] of Object.entries(output)) {
-  const previous = observations[id]?.companies
+  const previous = qualified[id]?.companies
   output[id] = retainQualifiedComposition(candidate, previous)
   if (!candidate.available && previous?.available) failures.push({ id, field: 'company-composition', error: candidate.reason })
   if (process.argv.includes('--apply') && candidate.available && (!previous || candidate.asOf >= previous.asOf)) {
-    const record = observations[id] ??= {}
+    const record = qualified[id] ??= {}
     record.companies = candidate
     ;(record.companiesHistory ??= {})[candidate.asOf] ??= candidate
   }
 }
-if (process.argv.includes('--apply')) writeFileSync(new URL('../src/data/index-company-observations.json', import.meta.url), JSON.stringify(observations, null, 2) + '\n')
+if (process.argv.includes('--apply')) writeFileSync(new URL('../src/data/index-company-qualified.json', import.meta.url), JSON.stringify(qualified, null, 2) + '\n')
 const reportAt = process.argv.indexOf('--report')
 if (reportAt >= 0) writeFileSync(process.argv[reportAt + 1], JSON.stringify({ errors: failures, successes: Object.keys(output).filter(id => output[id].available).map(id => ({ id })) }) + '\n')
 writeFileSync(new URL('../src/data/index-company-compositions.json', import.meta.url), JSON.stringify(output) + '\n')

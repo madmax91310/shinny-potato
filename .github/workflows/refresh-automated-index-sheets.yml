@@ -91,7 +91,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh complete automated index sheets' src/data/automated-indices.json src/data/index-company-observations.json
+          bash scripts/commit-validated-data.sh 'Refresh complete automated index sheets' src/data/automated-indices.json src/data/index-company-observations.json src/data/index-company-qualified.json
   deploy:
     needs: collect
     if: github.event_name != 'pull_request'

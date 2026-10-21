@@ -1,3 +1,4 @@
+import { COMPANY_INDEX_IDS } from './index-company-facts.js'
 import { QUALIFIED_METRICS } from './qualified-exposure-metrics.js';
 import { marketCalendarPerformance } from './market-calendar-performance.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js'
@@ -124,7 +125,7 @@ function index(id, history) {
   })] : [];
   const values = [...Object.values(history), ...(current ? [current] : [])];
   const consumers = PRACTICAL_TOPICS.some(t=>t.indices?.includes(id)) ? [{tool:'Fiches pratiques',path:'/fiches-pratiques'}] : [];
-  if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
+  if (SHEETS.some((s) => values.includes(s.indexFacts)) || COMPANY_INDEX_IDS.includes(id)) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
   if ([...ALLOCATION_CASE_DEFINITIONS, ...INDEX_DECISION_CASE_DEFINITIONS].some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Banque de tweets', path: '/banque-tweets' });
   return { id, type: 'index', name: values[0].index,
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
