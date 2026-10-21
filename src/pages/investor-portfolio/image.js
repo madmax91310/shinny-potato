@@ -51,8 +51,9 @@ export async function renderPortfolioImage(portfolio) {
   text(ctx,portrait.person,40,1035,490,26,GOLD,true)
   ctx.textAlign='right'; text(ctx,'Épargnant Libre',1530,1035,700,27,GOLD,true); ctx.textAlign='left'
   // Keep the signature inside the page for long names and metadata.
-  const credit=identity.dataProvider==='FolioFact'?'Données : FolioFact · SEC 13F':identity.dataProvider==='SEC'?'Données : SEC EDGAR · 13F':ATTRIBUTION
-  text(ctx,credit,35,1072,700,16,INK)
+  // Tracefour's compilation is CC BY 4.0. SEC/FolioFact provenance remains
+  // available in the tool; portrait credits travel with every exported PNG.
+  if (!['SEC', 'FolioFact'].includes(identity.dataProvider)) text(ctx,ATTRIBUTION,35,1072,700,16,INK)
   text(ctx,`Photo : ${portrait.author} · ${portrait.license}`,770,1072,780,15,INK)
   return canvas.toDataURL('image/png')
 }
