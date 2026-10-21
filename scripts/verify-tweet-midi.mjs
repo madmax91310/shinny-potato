@@ -23,7 +23,7 @@
 // risque le plus direct d'un futur renommage/déplacement de données en amont.
 
 import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
-import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
+import { getAnnualReturns } from "../src/pages/tweet-midi/data/performanceHistory.js";
 
 import assert from 'node:assert/strict';
 import { shardIndices } from './tweet-midi-shards.mjs';
