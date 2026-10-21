@@ -1625,7 +1625,7 @@
   "updatedAt": "2026-10-21T10:39:00Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T10:39:25.304705+00:00",
+    "checkedAt": "2026-10-21T10:50:26.179378+00:00",
     "revision": 208,
     "active": {
       "collection:update-regulatory-data.yml:fiscal-observation:dividends": {
@@ -1647,7 +1647,7 @@
         "dataId": "fiscal-observation:dividends",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:pee": {
         "name": "Plan d'épargne entreprise (PEE)",
@@ -1668,7 +1668,7 @@
         "dataId": "fiscal-observation:pee",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:rent": {
         "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
@@ -1689,7 +1689,7 @@
         "dataId": "fiscal-observation:rent",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-regulatory-data.yml:fiscal-observation:lmnp": {
         "name": "Impôt sur le revenu - Revenus d'une location meublée",
@@ -1710,7 +1710,7 @@
         "dataId": "fiscal-observation:lmnp",
         "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
         "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1733,7 +1733,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1761,7 +1761,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1788,7 +1788,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -1817,7 +1817,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1839,7 +1839,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T10:39:25.304705+00:00"
+        "lastSeenAt": "2026-10-21T10:50:26.179378+00:00"
       }
     },
     "events": [
