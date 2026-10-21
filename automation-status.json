@@ -17685,14 +17685,15 @@
           "at": "2026-10-21T14:04:07.443607+00:00",
           "reason": "transient-run",
           "sourceRunId": 39590805494,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-run",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
       "observedRunId": 39590805494,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T18:04:07.443607+00:00"
     }
   }
