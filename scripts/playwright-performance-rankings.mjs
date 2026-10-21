@@ -218,6 +218,7 @@ try {
     await page.getByRole('group', { name: 'Première année', exact: true }).locator(`[data-value="${last - length + 1}"]`).click()
     await page.getByRole('tab', { name: 'Texte', exact: true }).click()
     const tweet = await page.getByLabel('Texte à publier', { exact: true }).inputValue()
+    const expectedCurrency = (await page.locator('.rk-coverage strong').innerText()).split(' · ')[0]
     const selected = await page.locator('.rk-selected strong').allTextContents()
     await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
     assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), tweet)
@@ -233,7 +234,7 @@ try {
     const event = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
     const downloaded = await event
-    assert.match(downloaded.suggestedFilename(), /classement-annual-.*-EUR-/)
+    assert.match(downloaded.suggestedFilename(), new RegExp(`classement-annual-.*-${expectedCurrency}-`))
     const path = `test-artifacts/performance-rankings/annual-live-downloaded-${count}.png`
     await downloaded.saveAs(path)
     assert.equal((await readFile(path)).toString('base64'), png.split(',')[1])
