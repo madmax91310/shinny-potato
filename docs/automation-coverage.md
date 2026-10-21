@@ -348,6 +348,10 @@ S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositi
 
 | Indice | Bloc hors collecte active |
 |---|---|
+| CAC 40 (cac40) | Composition / méthodologie, Rendements annuels |
+| Dow Jones Industrial Average (dow-jones) | Composition / méthodologie, Rendements annuels |
+| DAX (dax) | Composition / méthodologie, Rendements annuels |
+| MSCI Korea (msci-korea) | Composition / méthodologie, Rendements annuels |
 
 Russell 2000 : composition automatisée depuis les tables explicitement consacrées à l’indice de la fiche mensuelle Amundi LU1681038672 (pays, secteurs, dix positions pondérées et nombre de titres). Sa convention de rendement TOTAL USD reste issue de FTSE Russell, distincte du NET de la fiche Amundi. Russell 1000 : lecteur du comptage et des onze secteurs imprimés raccordé ; poids individuels du top dix toujours absents de la publication. L’inventaire par champ distingue les observations actives du connecteur configuré. Les photographies archivées ne changent pas de date. Les quatre séries annuelles de sous-jacents sont automatisées : or/argent depuis les lignes Benchmark USD des fiches BlackRock (cours du métal, jamais rendement ETC), Bitcoin/Ethereum depuis les clôtures décembre/décembre de leurs séries spot USD validées. S&P 500 utilise également sa série exacte ^SP500TR USD, dividendes réinvestis. Les mises à jour mensuelles recalculent ces annuels avant leurs audits et publications. Les moyennes mensuelles Banque mondiale pour l’or et les contrats SI=F pour l’argent ne servent pas de substitut aux références métal annuelles.
 

@@ -39,7 +39,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | actor | 11 |
 | broker | 8 |
 | household | 29 |
-| index | 52 |
+| index | 56 |
 | instrument | 647 |
 | insurance | 7 |
 | lexicon | 44 |
