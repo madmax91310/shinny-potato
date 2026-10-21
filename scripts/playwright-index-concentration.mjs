@@ -58,11 +58,13 @@ try {
     const original=page.locator('.publication-preview img, .publication-preview-stage img, .studio-preview img').first()
     await original.evaluate(i=>i.decode())
     const originalData=await original.getAttribute('src')
-    if(!external && !['cac40','dow-jones','dax','msci-korea'].includes(id)){
+    if(!external){
       const legacy=await page.evaluate(async id=>{
         const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
         const {renderFactsheetImage}=await import('/shinny-potato/scripts/fixtures/index-companies/original-canvasImage.js')
-        return (await renderFactsheetImage(SHEETS.find(s=>s.id===id))).toDataURL()
+        const sheet=SHEETS.find(s=>s.id===id)
+        const render=sheet.compositionOnly ? (await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')).renderFactsheetImage : renderFactsheetImage
+        return (await render(sheet)).toDataURL()
       },id)
       assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(legacy.split(',')[1],'base64')),'Primary preview is the original image, not the qualified replacement')
     }
