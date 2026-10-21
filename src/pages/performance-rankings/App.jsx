@@ -17,6 +17,7 @@ import PortfolioEditor from './PortfolioEditor.jsx'
 import { DEFAULT_PORTFOLIOS } from './portfolio-defaults.js'
 import { annualColumns, basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, monthIndex, rollingRegularity } from './engine.js'
 import { annualImagePercent, annualRankingColumns, annualRankingError, contrastText } from './annualRanking.js'
+import { renderRankingImage } from './image.js'
 import './rankings.css'
 
 const CATEGORY = ALL_CATEGORIES.find(c => c.id === 'world')
@@ -85,7 +86,9 @@ export default function App() {
   const renderImage = useCallback(async () => {
     if (!result) throw new Error('Choisis une période valide.')
     await document.fonts.ready
-    return (await import('./image.js')).renderRankingImage(result, title, regularity, presentation)
+    // Keep the renderer with the loaded tool: a deployment can remove old lazy
+    // chunks while this tab stays open, including before the first download.
+    return renderRankingImage(result, title, regularity, presentation)
   }, [result, title, regularity, presentation])
 
   function applyIds(next, nextCurrency = currency, resetPeriod = false) {
