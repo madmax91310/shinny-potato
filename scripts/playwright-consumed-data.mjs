@@ -19,6 +19,9 @@ for(const width of [390,1440]){
   const section=page.locator('section').filter({has:page.getByRole('heading',{name:'Inventaire de toutes les données',exact:true})})
   await section.locator('summary').click()
   await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('usages')
+  // A successful collection can remove this asset from the pending-only filter.
+  // Verify its required usages without freezing a historical source incident.
+  await section.getByRole('checkbox',{name:'Afficher seulement les champs à compléter ou à confirmer'}).uncheck()
   const tool=section.getByRole('combobox',{name:'Outil consommateur',exact:true})
   await tool.selectOption('/le-dca-de')
   await section.getByRole('textbox',{name:'Rechercher dans l’inventaire'}).fill('IE00BJGWQN72')
