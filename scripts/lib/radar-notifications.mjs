@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import { datedEtfSnapshot } from './editorial-radar.mjs'
+import { investorFilingType } from '../../src/lib/radar-editorial.js'
 
 const EVENT_ID = /^[a-f0-9]{24}$/
 export const TRACKER_MARKER = '<!-- editorial-radar-tracker:v1 -->'
@@ -31,6 +32,8 @@ export function notifiableEvents(events) {
   return events.filter(event => {
     if (!EVENT_ID.test(event.id)) throw new Error('Identifiant de signal invalide.')
     if (event.status === 'source-conflict' || datedEtfSnapshot(event) && event.kind === 'change' && event.beforePeriod === event.period) return false
+    const filing = investorFilingType(event)
+    if (filing && filing !== 'publication') return false
     if (seen.has(event.id)) return false
     seen.add(event.id)
     return true

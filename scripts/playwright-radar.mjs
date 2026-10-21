@@ -81,6 +81,25 @@ try{
  await mobile.getByRole('button',{name:'À exploiter',exact:true}).click()
  await mobile.screenshot({path:'test-artifacts/radar/selection-mobile.png',fullPage:true})
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Grouped mobile feed has no overflow')
+ // Exercise both legacy feed corrections and a real later reporting period.
+ const filing={...base,id:'filing-revision',family:'investisseurs',entity:'investor-test',label:'Investisseur test',field:'filing',fieldLabel:'Positions et mouvements déclarés',kind:'publication',beforePeriod:'2026-06-30',period:'2026-06-30',before:{positions:[{ticker:'ABC',changePct:null,isNew:false}]},after:{positions:[{ticker:'ABC',changePct:null,isNew:false},{ticker:'XYZ',changePct:null,isNew:true}]},beforeText:'1 position suivie',afterText:'2 positions suivies',scope:'Déclaration 13F · hors options · publication différée',sourceUrl:'https://www.sec.gov/Archives/test',tool:'/portefeuilles-investisseurs',detectedAt:stamp}
+ feed={...feed,events:[filing,{...filing,id:'filing-new-quarter',beforePeriod:'2026-06-30',period:'2026-09-30'}]}
+ await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
+ await mobile.getByRole('heading',{name:/Investisseur test : Positions et mouvements déclarés · 2026-09-30/}).waitFor()
+ assert.equal(await mobile.locator('.radar-card').count(),1,'Only the later quarter is actionable')
+ await mobile.getByRole('button',{name:'Variations secondaires',exact:true}).click()
+ await mobile.getByRole('heading',{name:/Investisseur test : relevé révisé pour la même période/}).waitFor()
+ await mobile.getByText(/cette mise à jour ne prouve pas une nouvelle opération/).waitFor()
+ assert.equal(await mobile.locator('.radar-draft').count(),0,'A correction is not offered as a publication')
+ assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Revision mobile has no overflow')
+ await mobile.screenshot({path:'test-artifacts/radar/filing-revision-mobile.png',fullPage:true})
+ await page.reload()
+ await page.getByRole('heading',{name:/Investisseur test : Positions et mouvements déclarés · 2026-09-30/}).waitFor()
+ await page.getByRole('button',{name:'Variations secondaires',exact:true}).click()
+ await page.getByRole('heading',{name:/Investisseur test : relevé révisé pour la même période/}).waitFor()
+ assert.equal(await page.locator('.radar-draft').count(),0)
+ await page.screenshot({path:'test-artifacts/radar/filing-revision-desktop.png',fullPage:true})
+ await mobile.getByRole('button',{name:'À exploiter',exact:true}).click()
  feed=initial.feed
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('heading',{name:'Le radar est en veille',exact:true}).waitFor()

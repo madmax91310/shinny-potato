@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
-import { editorialState, etfAnnouncement, groupSignals, factualTitle, recentEditorial } from '../src/lib/radar-editorial.js'
+import { editorialState, etfAnnouncement, groupSignals, factualTitle, recentEditorial, investorFilingType } from '../src/lib/radar-editorial.js'
 import { parseLaunchDetails, officialNewsDocument, enrichEtfLaunches, parseVanguardNews, parseGlobalXNews } from './lib/radar-news.mjs'
+import { pendingNotifications } from './lib/radar-notifications.mjs'
+import { readableSignal } from '../src/pages/editorial-radar/presentation.js'
 import { advanceRadar } from './lib/editorial-radar.mjs'
 const now = new Date('2026-10-20T12:00:00Z')
 const event = { id: 'a', family: 'etf', entity: 'IE0002XZSHO1', label: 'ETF Monde', field: 'ter', fieldLabel: 'Frais annuels', kind: 'change', before: .2, after: .15, beforeText: '0,2 %', afterText: '0,15 %', period: '2026-10-19', detectedAt: now.toISOString() }
@@ -62,3 +64,39 @@ assert.equal(requested, false, 'Archives are not refetched as launch news')
 const global = parseGlobalXNews('<div>Recent News</div><a href="https://gxeustrapi.blob.core.windows.net/webpublic/uploads/new.pdf"><li><p>19 Oct 2026</p><h3>Global X launches a UCITS ETF</h3></li></a>', now)
 assert.match(global[0].documentUrl, /webpublic\/uploads/)
 console.log('Editorial radar: relevance, factual titles, grouping, launch evidence, future announcements, ambiguous multi-fund documents, failure preservation and no duplicate launch verified.')
+
+// Corrections within a quarter are never new trades, including legacy events.
+{
+  const observation = {family:'investisseurs', entity:'fund-test', label:'Investisseur test', field:'filing', fieldLabel:'Positions et mouvements déclarés', value:{positions:[{ticker:'ABC',changePct:15,isNew:false}],exits:[]}, period:'2026-06-30', checkedAt:now.toISOString(), sourceUrl:'https://www.sec.gov/Archives/test', scope:'13F · hors options', tool:'/portefeuilles-investisseurs', rule:'publication'}
+  const initial=advanceRadar(null,[observation],{now})
+  const revised={...observation,value:{positions:[{ticker:'ABC',changePct:15,isNew:false},{ticker:'XYZ',changePct:null,isNew:true}],exits:[]}}
+  const correction=advanceRadar(initial.state,[revised],{now})
+  assert.equal(correction.newEvents.length,1,'Keep the correction in the audit history')
+  const event=correction.newEvents[0]
+  assert.equal(editorialState(event),'secondary')
+  assert.equal(investorFilingType(event),'revision')
+  assert.match(event.title,/relevé révisé pour la même période/)
+  assert.match(event.draft,/ne prouve pas une nouvelle opération/)
+  assert.deepEqual(pendingNotifications([event],{acknowledged:[]}),[])
+  const legacy={...event,kind:'publication',title:'Positions modifiées',reason:'Changement publié',draft:'Nouveaux achats'}
+  assert.equal(editorialState(legacy),'secondary','Never trust a historical publication label')
+  assert.match(readableSignal(legacy).reason,/ne prouve pas une nouvelle opération/)
+  const previous={...initial.state,events:[legacy]}
+  const migrated=advanceRadar(previous,[],{now}).feed.events[0]
+  assert.equal(migrated.id,legacy.id)
+  assert.equal(migrated.detectedAt,legacy.detectedAt)
+  assert.deepEqual(migrated.before,legacy.before)
+  assert.match(migrated.title,/relevé révisé/)
+  assert.deepEqual(pendingNotifications([legacy],{acknowledged:[]}),[],'Pending retries are also excluded')
+  assert.equal(advanceRadar(correction.state,[revised],{now}).newEvents.length,0,'No repeated correction')
+  const publication=advanceRadar(correction.state,[{...revised,period:'2026-09-30'}],{now}).newEvents[0]
+  assert.equal(editorialState(publication),'ready','A later quarter remains actionable even with unchanged positions')
+  assert.equal(pendingNotifications([publication],{acknowledged:[]}).length,1)
+  for(const beforePeriod of [null,'','2026-12-31','2026-02-30','not-a-date']) {
+    assert.equal(editorialState({...event,beforePeriod}),'secondary')
+    assert.deepEqual(pendingNotifications([{...event,beforePeriod}],{acknowledged:[]}),[])
+  }
+  assert.equal(editorialState({...publication,kind:'new'}),'secondary','A newly tracked fund is not new trading activity')
+  assert.equal(groupSignals([legacy,publication]).filter(group=>group.state==='ready').length,1)
+  console.log('13F radar: same-quarter revisions, legacy migration, pending notifications, unchanged later quarter and unknown periods verified.')
+}

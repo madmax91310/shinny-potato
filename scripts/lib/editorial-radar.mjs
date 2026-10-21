@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { publishablePurchasingNews } from './purchasing-power-news.mjs'
 import { reconcileDws } from './dws-reconciliation.mjs'
-import { factualTitle } from '../../src/lib/radar-editorial.js'
+import { factualTitle, readableInvestorFiling } from '../../src/lib/radar-editorial.js'
 
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 export function stable(value) {
@@ -171,6 +171,9 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     state.anchors[key] = after
     if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
   }
+  // Update historical wording as well as new events without resetting their
+  // ids, detection dates, evidence, or notification/read receipts.
+  for (const event of [...newEvents, ...state.events]) Object.assign(event, readableInvestorFiling(event))
   state.events = [...newEvents, ...state.events].sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
   // A later revision can invalidate an already emitted cross-period movement.
   // Keep its audit record, but never publish/retry a signal whose baseline or
