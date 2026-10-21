@@ -133,7 +133,7 @@ export async function renderFactsheetImage(sheet) {
   const bands = [
     compositionBand(ctx, 'PAYS', sortedRows(sheet.countries).filter(([name]) => !/autres|others/i.test(name)).slice(0, 4).map(([name, value]) => [displayLabel(name), value])),
     compositionBand(ctx, 'SECTEURS', sortedRows(sheet.sectors).slice(0, 4).map(([name, value]) => [displayLabel(sectorLabel(name)), value])),
-    compositionBand(ctx, 'ENTREPRISES', sortedRows(sheet.holdings).slice(0, 4).map(([name, value]) => [(sheet.concentration?.available ? compositionCompanyLabel : imageCompanyLabel)(name), value])),
+    compositionBand(ctx, 'ENTREPRISES', sortedRows(sheet.holdings).slice(0, 4).map(([name, value]) => [((sheet.compositionOnly || sheet.concentration?.available) ? compositionCompanyLabel : imageCompanyLabel)(name), value])),
   ]
   const returns = sheet.returns.slice().sort((a, b) => a[0] - b[0])
   // New complete years grow the strip in balanced rows instead of shrinking type.
