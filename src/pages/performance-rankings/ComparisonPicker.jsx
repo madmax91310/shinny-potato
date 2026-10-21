@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { COMPARISON_FAMILIES, comparisonFamily, comparisonTags, filterComparisons } from './comparisonCatalog.js'
 
 export default function ComparisonPicker({ categories, sources, value, onChange }) {
@@ -17,9 +18,9 @@ export default function ComparisonPicker({ categories, sources, value, onChange 
       {COMPARISON_FAMILIES.map(f => <button key={f.id} type="button" aria-pressed={family === f.id} onClick={() => chooseFamily(f.id)}>{f.label}</button>)}
     </fieldset>
     <div className="rk-catalog-filters">
-      <label className="rk-field">Pays ou type d’actif<select aria-label="Pays ou type d’actif" value={tags.includes(tag) ? tag : ''} onChange={e => setTag(e.target.value)}>
+      <label className="rk-field">Pays ou type d’actif<ChoicePicker aria-label="Pays ou type d’actif" value={tags.includes(tag) ? tag : ''} onChange={e => setTag(e.target.value)}>
         <option value="">Tous</option>{tags.map(t => <option key={t} value={t}>{t}</option>)}
-      </select></label>
+      </ChoicePicker></label>
       <label className="rk-field">Rechercher une comparaison<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Nom, actif ou ISIN…" /></label>
     </div>
     <p className="rk-note" aria-live="polite">{filtered.length} comparaison{filtered.length > 1 ? 's' : ''}{selected ? ` · Sélection actuelle : ${selected.label}` : ''}</p>
