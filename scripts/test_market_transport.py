@@ -1,4 +1,3 @@
-import copy
 import urllib.error
 import unittest
 from market_transport import chart_response

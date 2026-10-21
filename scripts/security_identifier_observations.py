@@ -4,6 +4,7 @@ import hashlib
 import json
 import re
 import unicodedata
+import time
 import urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -48,7 +49,9 @@ def mappings(now):
         except (ValueError,KeyError,TypeError):continue
     return out,proofs
 
-def refresh(now,max_requests=4):
+def refresh(now,max_requests=12):
+    if type(max_requests) is not int or not 1 <= max_requests <= 24:
+        raise ValueError('Invalid bounded identifier request budget')
     from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares
     from issuer_documents import public_page
     from data_automation import write_json_atomic
@@ -83,6 +86,9 @@ def refresh(now,max_requests=4):
         if attempts>=max_requests:break
         jobs=[{'idType':'ID_SEDOL','idValue':sedol},*[{'idType':'ID_ISIN','idValue':v}for v in values]]
         request=urllib.request.Request(API,json.dumps(jobs).encode(),{'Content-Type':'application/json','User-Agent':'EpargnantLibre/1.0 (lepargnantlibre@gmail.com)'})
+        # Public OpenFIGI mapping: remain below 25 requests per minute, including
+        # the next run's independent lookup. An HTTP failure still stops the batch.
+        if attempts:time.sleep(3)
         attempts+=1
         try:
             with urllib.request.urlopen(request,timeout=25)as response:result=json.load(response)

@@ -27,6 +27,10 @@ class Holdings(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Identity dates'):parse(page(data),SHARE,NOW,mapping,['2025-10-19'])
             bad=copy.deepcopy(data);bad['ranking'][0]['pctWeight']=.5
             with self.assertRaisesRegex(ValueError,'Incomplete weights'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
+            for value in [float('nan'), float('inf'), True]:
+                bad=copy.deepcopy(data)
+                for row in bad['ranking']:row['wgtSumCheck']=value
+                with self.assertRaisesRegex(ValueError,'Incomplete weights'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
             bad=copy.deepcopy(data);bad['ranking'][0]['dt']='2026-10-18'
             with self.assertRaisesRegex(ValueError,'Mixed fund/date'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
     def test_sector_rows_complete_truncated_top100(self):
