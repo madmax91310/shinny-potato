@@ -1,6 +1,6 @@
 import {weeklyWindow,WEEKLY_WINDOW} from './weekly.js'
 // Shared deterministic accounting used by browser preview and durable automation.
-import { EXECUTION_RULE, AFFECTED_EXECUTION_RULE, METHOD, MAX_CHECK_AGE_HOURS,STOCK_REGIONS,marketRegion } from './data.js'
+import { EXECUTION_RULE, AFFECTED_EXECUTION_RULE, MAX_CHECK_AGE_HOURS,STOCK_REGIONS,marketRegion } from './data.js'
 export const day = value => value.slice(0,10)
 export function assert(ok,message) { if(!ok) throw Error(message) }
 export const clone = value => structuredClone(value)
