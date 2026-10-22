@@ -1,0 +1,41 @@
+name: Probe WisdomTree official holdings runtime
+on:
+  push:
+    branches: [test/wisdom-macos-20261022]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: macos-15
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 Pillow==12.3.0
+      - name: Read four exact official portfolios without publishing
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import pathlib,json,datetime,sys
+          from collect_physical_holdings import COLLECTORS
+          config={**json.loads(pathlib.Path('scripts/dca-complete-holdings-sources.json').read_text()),**json.loads(pathlib.Path('scripts/generated-holdings-sources.json').read_text())}
+          now=datetime.datetime.now(datetime.timezone.utc);rows=[]
+          for isin in ['IE00BDVPNG13','IE0002Y8CX98','IE000W8WMSL2','IE00BJGWQN72']:
+              c=config[isin]
+              try:
+                  record=COLLECTORS[c['parser']](c,now)
+                  rows.append({'isin':isin,'ok':True,'record':record})
+                  print(isin,'success',record.get('asOf'),len(record.get('rows',[])),flush=True)
+              except Exception as e:
+                  rows.append({'isin':isin,'ok':False,'error':str(e)})
+                  print(isin,type(e).__name__,str(e)[:500],flush=True)
+              pathlib.Path('wisdom-runtime-proof.json').write_text(json.dumps({'environment':'GitHub macos-15','checkedAt':now.isoformat(),'results':rows},ensure_ascii=False,indent=2))
+          sys.exit(0 if all(r['ok']for r in rows)else 1)
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: wisdom-macos-runtime-proof
+          path: wisdom-runtime-proof.json
+          retention-days: 35
