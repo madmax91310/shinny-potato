@@ -53,7 +53,7 @@ def parse_prices(raw, asset, calendar, now, previous=None):
         raise ValueError('Place de cotation action différente de la place qualifiée')
     source_currency=asset.get('sourceCurrency') or asset['currency']
     # GBp/GBX are source units; normalization is explicit and applied to both prices.
-    config={**asset,'currency':source_currency,'field':'close' if asset['instrumentType']=='CRYPTOCURRENCY' else 'adjclose','yahooInstrumentType':asset['instrumentType']}
+    config={**asset,'currency':source_currency,'field':'close' if asset['instrumentType']=='CRYPTOCURRENCY' else 'adjclose','yahooInstrumentType':asset.get('yahooInstrumentType',asset['instrumentType'])}
     rows, zone = yahoo_chart(raw, config, '1d')
     scale=asset.get('priceScale',1)
     rows=[(d,c*scale,a*scale) for d,c,a in rows]

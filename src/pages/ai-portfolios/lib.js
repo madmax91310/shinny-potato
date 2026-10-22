@@ -8,8 +8,9 @@ const finite = n => typeof n==='number'&&Number.isFinite(n)
 export function admission(asset,config) {
   if(!asset)return {ok:false,reason:'Identité inconnue.'}
   if(asset.leveraged)return {ok:false,reason:'Levier / produit inverse interdit par les règles.'}
-  if(config.assetTypes&&!config.assetTypes.includes(asset.instrumentType))return {ok:false,reason:'Famille interdite par les règles de la compétition.'}
-  if(config.requireUcits&&asset.instrumentType==='ETF'&&!asset.ucits)return {ok:false,reason:'ETF UCITS requis par les règles.'}
+  const category=['ETC','ETN','ETP'].includes(asset.instrumentType)?'ETF':asset.instrumentType
+  if(config.assetTypes&&!config.assetTypes.includes(category))return {ok:false,reason:'Famille interdite par les règles de la compétition.'}
+  if(config.requireUcits&&category==='ETF'&&!asset.ucits)return {ok:false,reason:'ETF UCITS requis par les règles.'}
   return {ok:true}
 }
 export function executionRule(c){return c.executionPolicy==='affected-markets-v2'?AFFECTED_EXECUTION_RULE:EXECUTION_RULE}

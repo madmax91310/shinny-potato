@@ -133,3 +133,6 @@ const audited=register(book,request({type:'configure',config:extendedConfig,reas
 assert.equal(audited.competitions[0].ruleHistory.at(-1).reason,'Élargissement explicite')
 assert.deepEqual(audited.competitions[0].decisions,book.competitions[0].decisions)
 assert.throws(()=>register(book,request({type:'configure',config:{...changedConfig,universe:['a','b']},reason:'Retrait interdit'},cid),market,'2026-01-12T00:00:00Z'),/ne peut pas être remplacée/)
+
+assert(!admission({instrumentType:'ETC',ucits:false},config).ok,'Default UCITS rule excludes ETC')
+assert(admission({instrumentType:'ETC',ucits:false},{...config,requireUcits:false}).ok,'Explicit non-UCITS rules can admit qualified ETC without calling it an ETF')

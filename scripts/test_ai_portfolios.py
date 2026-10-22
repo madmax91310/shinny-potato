@@ -11,6 +11,15 @@ class DailyTests(unittest.TestCase):
         self.calendar=calendars([self.asset],'2026-01-01','2026-03-01')['XAMS']
         dates=[dt.datetime.fromisoformat(d+'T12:00:00+00:00') for d in self.calendar if d<'2026-02-10']
         self.raw={'chart':{'error':None,'result':[{'meta':{'symbol':'TEST','currency':'EUR','dataGranularity':'1d','instrumentType':'ETF','exchangeTimezoneName':'Europe/Amsterdam'},'timestamp':[int(d.timestamp()) for d in dates],'indicators':{'quote':[{'close':[100]*len(dates)}],'adjclose':[{'adjclose':[90]*len(dates)}]}}]}}
+    def test_note_is_not_reclassified_as_a_stock(self):
+        raw=copy.deepcopy(self.raw);raw['chart']['result'][0]['meta']['instrumentType']='EQUITY'
+        # A real ETF with an unexpected source classification remains refused.
+        with self.assertRaisesRegex(ValueError,'instrument type'):parse_prices(raw,self.asset,self.calendar,self.now)
+        # Issuer-identified exchange-traded notes use the provider's security taxonomy.
+        note={**self.asset,'instrumentType':'ETN','yahooInstrumentType':'EQUITY'}
+        self.assertTrue(parse_prices(raw,note,self.calendar,self.now)['qualified'])
+        self.assertEqual(note['instrumentType'],'ETN')
+
     def test_pence_and_wrong_venue(self):
         asset={**self.asset,'currency':'GBP','sourceCurrency':'GBp','priceScale':.01,'yahooExchanges':['AMS']}
         raw=copy.deepcopy(self.raw);raw['chart']['result'][0]['meta'].update(currency='GBp',exchangeName='AMS')

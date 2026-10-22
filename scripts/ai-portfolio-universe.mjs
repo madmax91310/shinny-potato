@@ -45,7 +45,9 @@ export function inventory(){
  const rows=[]
  for(const [isin,identity] of Object.entries(INSTRUMENTS_BY_ISIN)){
   const histories=monthly.filter(r=>r.isin===isin&&r.parser==='yahoo'),global=GLOBAL.find(r=>r.isin===isin),equity=Object.values(EQUITIES).find(r=>r.isin===isin)
-  const type=identity.instrumentType==='EQUITY'||equity||global?'EQUITY':'ETF',name=identity.name
+  const name=identity.name
+  const documentedProductType=histories.map(h=>h.instrumentType).find(t=>['ETC','ETN','ETP'].includes(t))
+  const type=identity.instrumentType==='EQUITY'||equity||global?'EQUITY':documentedProductType??(['ETC','ETN','ETP'].includes(identity.instrumentType)?identity.instrumentType:null)??(/\bETC\b/.test(name)?'ETC':/\bET[PN]\b/.test(name)?'ETP':'ETF')
   const listings=getInstrumentListings(isin).map(r=>({...r}))
   for(const h of histories){
    const mic=h.mic??exchangeMic(h.listingEvidence?.exchange)??suffixMic['.'+h.symbol.split('.').slice(1).join('.')]
@@ -74,8 +76,9 @@ export function inventory(){
     currency:['GBp','GBX'].includes(listing.currency)?'GBP':listing.currency,sourceCurrency:listing.currency,
     priceScale:['GBp','GBX'].includes(listing.currency)?0.01:1,
     timezone:v?.[1],calendar:v?.[2],yahooExchanges:v?.[3],instrumentType:type,
+    yahooInstrumentType:histories.find(h=>h.yahooInstrumentType)?.yahooInstrumentType??(['EQUITY','ETC','ETN','ETP'].includes(type)?'EQUITY':'ETF'),
     ucits:/UCITS/i.test(name),leveraged:/leverag|\(2x\)|\(3x\)|daily.*(?:short|inverse)|\b(?:2x|3x|inverse)\b/i.test(name),
-    region:global?.region??null,exposure:global?.sector??null,
+    region:global?.region??security?.country??null,exposure:global?.sector??equity?.sector??security?.sector??null,
     discoveryBlock:listing.discoveryBlock??(!v?'Calendrier / correspondance de place à qualifier : '+listing.mic:!symbol?'Symbole de collecte absent':!listing.sourceUrl?'Preuve d’identité de cotation absente':null),
     convention:'synthetic-total-return-100-at-anchor',source:'Yahoo daily adjusted closes',symbolOrigin:listing.symbol?'issuer-listing':h?.symbol?'documented-history':'venue-adapter-candidate'})
   }

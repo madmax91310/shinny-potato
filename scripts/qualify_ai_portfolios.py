@@ -54,7 +54,7 @@ def reports(rows, destination):
     assert sum(counts[s] for s in ['qualifiedListings','temporary-failure','excluded','blocked','unprocessed'])==len(rows)
     report={'version':1,'generatedAt':dt.datetime.now(UTC).isoformat(),'counts':counts,'families':families,'candidates':rows}
     write_json_atomic(destination/'qualification.json',report)
-    columns=['id','instrumentId','name','family','isin','mic','ticker','symbol','currency','sourceCurrency','priceScale','source','convention','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','sourceRetrievedAt','qualifiedSymbol','status','reason','lastAttempt','lastSuccess','sourceUrl','responseSha256']
+    columns=['id','instrumentId','name','family','isin','instrumentType','yahooInstrumentType','mic','ticker','symbol','currency','sourceCurrency','priceScale','source','convention','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','sourceRetrievedAt','qualifiedSymbol','status','reason','lastAttempt','lastSuccess','sourceUrl','responseSha256']
     stream=io.StringIO();w=csv.DictWriter(stream,fieldnames=columns,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(rows)
     (destination/'qualification.csv').write_text(stream.getvalue())
     text='# Qualification quotidienne — Portefeuilles IA\n\nGénéré : '+report['generatedAt']+'\n\n'
