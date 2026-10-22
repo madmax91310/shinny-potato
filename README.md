@@ -17,6 +17,8 @@ conservés et les liens de compatibilité sont distingués des outils accessible
 Saisie manuelle des décisions, suivi quotidien fictif, classement et focus texte/PNG.
 La [notice et l’audit](docs/portefeuilles-ia.md) décrivent les sources validées, la méthode
 en unités synthétiques et l’import JSON nécessaire pour enregistrer les demandes dans le dépôt.
+Le catalogue quotidien dérive de tout le registre, avec qualification exhaustive et reprise par lots.
+Le [rapport généré](data/ai-portfolios/qualification.md) distingue les admissions, échecs et blocages.
 Aucune connexion aux IA ou à un courtier.
 
 ## Démarrer

@@ -11,8 +11,10 @@ import { register,refresh } from './ai-portfolios.mjs'
 const output='/tmp/ai-portfolios-qa';fs.mkdirSync(output,{recursive:true})
 const sourceBytes=fs.readFileSync('public/data/ai-portfolios/snapshot.json','utf8'),actual=JSON.parse(sourceBytes)
 const blank={...actual,book:{version:1,revision:0,competitions:[],audit:[]},state:{daily:{},weekly:{},valuationRevisions:[]}}
-const market=clone(actual.market);market.generatedAt=new Date().toISOString();const defaults=defaultConfig(market.calendarFrom),qaDay=addDays(market.calendarFrom,3)
-const config={...defaults,name:'DÉMONSTRATION QA · jamais publiée',launchDate:qaDay,participants:defaults.participants.map(p=>({...p,model:'Modèle fictif de test'}))}
+const market=clone(actual.market);market.generatedAt=new Date().toISOString();const defaults=defaultConfig(market.calendarFrom,market),qaDay=addDays(market.calendarFrom,3)
+const qualified=market.universe.filter(a=>a.status==='qualified'&&!a.leveraged&&a.instrumentType==='EQUITY').slice(0,3).map(a=>a.id)
+assert.equal(qualified.length,3,'Three genuinely qualified listings required for browser QA')
+const config={...defaults,benchmark:qualified[0],universe:qualified,name:'DÉMONSTRATION QA · jamais publiée',launchDate:qaDay,participants:defaults.participants.map(p=>({...p,model:'Modèle fictif de test'}))}
 let book={version:1,revision:0,competitions:[],audit:[]},index=0
 const submit=op=>{book=register(book,{version:1,requestId:'qa-request-'+index++,expectedRevision:book.revision,competitionId:book.competitions[0]?.id,operation:op},market,qaDay+'T09:00:00Z')}
 submit({type:'create',config})
@@ -36,6 +38,15 @@ try {
  await page.getByRole('heading',{name:'Une feuille blanche, pour chaque IA.'}).waitFor()
  await page.getByRole('button',{name:'Configurer et saisir les décisions'}).click()
  await page.getByRole('heading',{name:'Règles communes'}).waitFor()
+ assert(await page.locator('.ai-source').count()<=25,'Catalogue pagination')
+ await choose(page.getByRole('group',{name:'Famille du catalogue',exact:true}),'Actions')
+ assert(await page.locator('.ai-source').count()>0,'Family filter remains usable')
+ await choose(page.getByRole('group',{name:'Famille du catalogue',exact:true}),'')
+ await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).fill('IE00B53SZB19')
+ assert.equal(await page.locator('.ai-source').count(),1,'Nasdaq exact instrument deduplicated across alternatives')
+ await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).fill('does-not-exist')
+ assert.equal(await page.locator('.ai-source').count(),0)
+ await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).fill('')
  await page.getByRole('button',{name:'Préparer la création',exact:true}).click()
  const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger la demande JSON'}).click()])
  await download.saveAs(output+'/demande.json')
