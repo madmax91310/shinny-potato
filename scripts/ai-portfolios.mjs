@@ -3,7 +3,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { validateConfig,validateDecision,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
+import { validateConfig,validateDecision,executionAssets,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
 import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 export function register(book,proposal,market,now=new Date().toISOString()) {
@@ -26,7 +26,9 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       validateConfig(op.config,market)
       if(comp.status==='launched') {
         assert(typeof op.reason==='string'&&op.reason.trim(),'Motif du changement de règles requis.')
-        const allowed=['minLines','maxLines','maxWeight','frequency','feeBps']
+        const allowed=['minLines','maxLines','maxWeight','frequency','feeBps','universe','assetTypes','requireUcits']
+        const archivedIds=new Set([comp.config.benchmark,...comp.decisions.flatMap(d=>[...Object.keys(d.weights??{}),...Object.keys(d.amounts??{}),...(d.execution?.trades??[]).map(t=>t.id)])])
+        for(const id of archivedIds)assert(op.config.universe.includes(id),'Une cotation référencée dans l’historique ne peut pas être remplacée ou retirée : '+id)
         for(const key of Object.keys(comp.config)) if(!allowed.includes(key)) assert(JSON.stringify(op.config[key])===JSON.stringify(comp.config[key]),`Après lancement, ${key} est figé.`)
       } else {
         assert(!comp.decisions.some(d=>d.status!=='cancelled'),'Annuler les décisions préparées avant de changer les participants ou le capital.')
@@ -39,7 +41,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       if(d.kind!=='target')delete d.weights
       if(d.kind!=='trades')delete d.amounts
       // Registration time and executable date can never be supplied by the browser.
-      d.registeredAt=now;d.executionDate=nextExecution(now,comp.config.launchDate,market,comp.config.universe)
+      d.registeredAt=now;d.executionDate=nextExecution(now,comp.config.launchDate,market,executionAssets(comp,d,market.asOf))
       assert(!d.correctionOf,'Corriger par une nouvelle décision justifiée ; pas de contournement de fréquence.')
       validateDecision(d,comp,market,market.asOf,now)
       comp.decisions.push(d)
@@ -50,11 +52,12 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       d.status='cancelled';d.cancelledAt=now;d.cancellationReason=op.reason
     } else if(op.type==='launch') {
       assert(comp.status==='draft','Compétition déjà lancée.')
-      for(const a of market.universe.filter(a=>comp.config.universe.includes(a.id))) assert(coverage(a.id,market,market.asOf).ok,coverage(a.id,market,market.asOf).reason)
+      const initialAssets=comp.config.executionPolicy==='affected-markets-v2'?[...new Set([comp.config.benchmark,...comp.decisions.filter(d=>d.status==='recorded').flatMap(d=>executionAssets(comp,d,market.asOf))])]:comp.config.universe
+      for(const a of market.universe.filter(a=>initialAssets.includes(a.id))) assert(coverage(a.id,market,market.asOf).ok,coverage(a.id,market,market.asOf).reason)
       assert(market.status.ECB?.ok,'Changes BCE non validés.')
       assert(comp.config.participants.every(p=>p.model!=='À renseigner'),'Renseigner manuellement les modèles avant le lancement.')
       assert(comp.config.participants.every(p=>comp.decisions.some(d=>d.participant===p.id&&d.status==='recorded')),'Enregistrer une décision initiale pour chaque participant (conservation = liquidités).')
-      const date=nextExecution(now,comp.config.launchDate,market,comp.config.universe)
+      const date=nextExecution(now,comp.config.launchDate,market,initialAssets)
       comp.status='launched';comp.launchedAt=now;comp.startDate=date
       event.initialExecutionSchedule=comp.decisions.filter(d=>d.status==='recorded').map(d=>({decisionId:d.id,provisionalDate:d.executionDate,finalDate:date}))
       for(const d of comp.decisions.filter(d=>d.status==='recorded')) d.executionDate=date
@@ -94,6 +97,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   else assert(cmd==='refresh','Usage : node scripts/ai-portfolios.mjs [refresh | import demande.json]')
   const stateFile=path.join(folder,'state.json'),result=refresh(book,market,read(stateFile,{}))
   write(bookFile,result.book);write(stateFile,result.state)
-  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market,state:result.state,defaults:defaultConfig()})
+  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market,state:result.state,defaults:defaultConfig(undefined,market)})
+  for(const name of ['qualification.json','qualification.csv','qualification.md']){const file=path.join(folder,name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(root,'public/data/ai-portfolios',name))}
   console.log(`Portefeuilles IA : révision ${result.book.revision}, ${result.book.competitions.length} compétitions ; arrêté ${market.asOf}.`)
 }

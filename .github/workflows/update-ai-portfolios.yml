@@ -2,6 +2,7 @@ name: Update AI portfolio daily tracking
 on:
   schedule:
     - cron: '20 5,9 * * *'
+    - cron: '35 3 * * 0'
   workflow_dispatch:
     inputs:
       qualify_all:
@@ -12,6 +13,12 @@ on:
     paths:
       - '.github/workflows/update-ai-portfolios.yml'
       - 'scripts/*ai*portfolio*'
+      - 'src/data/instruments.js'
+      - 'src/data/instrument-listings.js'
+      - 'src/data/qualified-listings.js'
+      - 'src/data/equity-history-links.json'
+      - 'src/data/global-equities.json'
+      - 'scripts/monthly-automation.json'
       - 'src/pages/ai-portfolios/**'
       - 'data/ai-portfolios/**'
       - 'public/data/ai-portfolios/**'
@@ -20,7 +27,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 25
+    timeout-minutes: 55
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
@@ -46,14 +53,16 @@ jobs:
         run: |
           node scripts/test-ai-portfolios.mjs
           python -m unittest discover -s scripts -p test_ai_portfolios.py
+      - name: Discover and qualify every due registry candidate
+        if: inputs.qualify_all == true || github.event.schedule == '35 3 * * 0'
+        env:
+          QUALIFICATION_MODE: ${{ inputs.qualify_all && 'all' || 'due' }}
+        run: python scripts/qualify_ai_portfolios.py --mode "$QUALIFICATION_MODE" --workers 4 --batch-size 100
       - name: Collect exact daily closes and ECB FX
         id: collect
         continue-on-error: true
-        env:
-          QUALIFY_ALL: ${{ inputs.qualify_all }}
         run: |
           args=()
-          if [[ "$QUALIFY_ALL" == 'true' ]]; then args+=(--qualify-all); fi
           python scripts/collect_ai_portfolios.py "${args[@]}" --report "$RUNNER_TEMP/ai-portfolio-observations.json"
       - name: Execute recorded simulations and prepare valuations
         run: node scripts/ai-portfolios.mjs refresh
@@ -68,7 +77,9 @@ jobs:
         if: always()
         with:
           name: ai-portfolio-observations
-          path: ${{ runner.temp }}/ai-portfolio-observations.json
+          path: |
+            ${{ runner.temp }}/ai-portfolio-observations.json
+            data/ai-portfolios/qualification.*
           retention-days: 35
       - name: Validate collected observations
         run: node scripts/test-ai-portfolios.mjs
@@ -93,7 +104,7 @@ jobs:
       producer: update-ai-portfolios.yml
   report-failures:
     needs: [refresh, deploy]
-    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    if: always() && github.ref == 'refs/heads/master' && needs.refresh.outputs.collection_failed == 'true'
     runs-on: ubuntu-latest
     steps:
       - run: |

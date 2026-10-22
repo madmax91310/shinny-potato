@@ -7,8 +7,8 @@ import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
 import { addDays,clone,emptyPortfolio,mark,planDecision,quoteAt,validateDecision,runCompetition,portfolioAt,snapshot,periodReport,nextExecution,coverage,sourceFreshness } from '../src/pages/ai-portfolios/lib.js'
 import { register,refresh } from './ai-portfolios.mjs'
 // Entirely synthetic tests, never published in the real book.
-const ids=['a','b','c'],config={...defaultConfig('2026-01-05'),benchmark:'a',universe:ids,participants:[{id:'test',name:'Test',model:'Test manuel',color:'#17866b'}]}
-const market={version:1,universe:ids.map(id=>({id,name:id,ticker:id,calendar:'TEST',currency:id==='c'?'USD':'EUR'})),calendarFrom:'2025-12-01',calendarThrough:'2026-03-31',calendars:{TEST:{}},series:{},status:{},fx:{rates:{},validThrough:'2026-03-31'},revisions:[],asOf:'2026-01-02',generatedAt:'2026-01-03T05:00:00Z'}
+const ids=['a','b','c'],config={...defaultConfig('2026-01-05'),executionPolicy:'universe-v1',benchmark:'a',universe:ids,participants:[{id:'test',name:'Test',model:'Test manuel',color:'#17866b'}]}
+const market={version:1,universe:ids.map(id=>({id,name:id,ticker:id,instrumentType:'EQUITY',calendar:'TEST',currency:id==='c'?'USD':'EUR'})),calendarFrom:'2025-12-01',calendarThrough:'2026-03-31',calendars:{TEST:{}},series:{},status:{},fx:{rates:{},validThrough:'2026-03-31'},revisions:[],asOf:'2026-01-02',generatedAt:'2026-01-03T05:00:00Z'}
 for(let d='2025-12-01';d<='2026-03-31';d=addDays(d,1)){
  if([0,6].includes(new Date(d+'T12:00:00Z').getUTCDay()))continue
  market.calendars.TEST[d]=d+'T16:30:00+00:00';market.fx.rates[d]={USD:d>='2026-02-01'?2:1,GBP:.8,CHF:.9}
@@ -94,3 +94,45 @@ const saved=JSON.parse(fs.readFileSync(path.join(root,'public/data/ai-portfolios
 assert.deepEqual(saved.book.competitions[0].decisions,book.competitions[0].decisions)
 fs.rmSync(root,{recursive:true})
 console.log('Portefeuilles IA : comptabilité, dérive, change historique, cibles, frais, conservation, règles, référence, calendrier, reprise, corrections et persistance validés.')
+
+// Exhaustive discovery: every common ISIN and documented listing survives the projection.
+const {inventory}=await import('./ai-portfolio-universe.mjs')
+const {INSTRUMENTS_BY_ISIN}=await import('../src/data/instruments.js')
+const {INSTRUMENT_LISTINGS_BY_ISIN}=await import('../src/data/instrument-listings.js')
+const {executionAssets,admission,catalogue,validateConfig}=await import('../src/pages/ai-portfolios/lib.js')
+const all=inventory()
+assert.equal(new Set(all.map(a=>a.id)).size,all.length,'Unique candidate IDs')
+for(const isin of Object.keys(INSTRUMENTS_BY_ISIN))assert(all.some(a=>a.isin===isin),isin+' absent from exhaustive inventory')
+for(const [isin,listings] of Object.entries(INSTRUMENT_LISTINGS_BY_ISIN))for(const l of listings)assert(all.some(a=>a.isin===isin&&a.mic===l.mic&&a.ticker===l.ticker&&(a.sourceCurrency===l.currency)),isin+' listing lost')
+assert(all.some(a=>a.id==='US0378331005-XNAS'&&!a.discoveryBlock),'Apple exact Nasdaq venue retained from common holdings classifications')
+assert(all.some(a=>a.id==='US5949181045-XNAS'&&!a.discoveryBlock),'Microsoft exact Nasdaq venue retained')
+assert(all.some(a=>a.symbol==='BTC-USD'&&a.calendar==='24/7'))
+assert(all.some(a=>a.symbol==='ETH-USD'&&a.calendar==='24/7'))
+assert(all.filter(a=>a.family==='Indices (référence uniquement)').every(a=>a.permanentExclusion))
+const nasdaq=all.filter(a=>a.isin==='IE00B53SZB19')
+assert(nasdaq.length>1&&nasdaq.some(a=>a.symbolCandidates.includes('CNDX.AS')),'All exact Nasdaq alternatives retained')
+assert(!admission({instrumentType:'ETF',ucits:true,leveraged:true},config).ok)
+assert(!admission({instrumentType:'CRYPTOCURRENCY'},config).ok)
+assert(admission({instrumentType:'CRYPTOCURRENCY'},{...config,assetTypes:['CRYPTOCURRENCY']}).ok)
+const international=clone(market);international.calendars.UNRELATED={'2026-01-07':'2026-01-07T16:00:00Z'};international.universe.find(a=>a.id==='b').calendar='UNRELATED'
+const modern={config:{...config,executionPolicy:'affected-markets-v2'},decisions:[]}
+const onlyA={...target,weights:{a:30}}
+assert.deepEqual(executionAssets(modern,onlyA,'2026-01-02'),['a'])
+assert.equal(nextExecution('2026-01-02T12:00:00Z','2026-01-05',international,executionAssets(modern,onlyA,'2026-01-02')),'2026-01-05')
+assert.equal(nextExecution('2026-01-02T12:00:00Z','2026-01-05',international,executionAssets({...modern,config},onlyA,'2026-01-02')),'2026-01-07','Legacy scheduling retained')
+const listings=clone(market);listings.universe.push({...listings.universe[0],id:'a-alternative',instrumentId:'same',isin:'same'});listings.universe[0].instrumentId='same';listings.universe[0].isin='same'
+assert.equal(catalogue(listings,config).length,3,'Alternative listings deduplicated by exact instrument')
+assert.throws(()=>validateConfig({...config,universe:[...ids,'a-alternative']},listings),/Plusieurs cotations/)
+console.log(`Inventaire exhaustif : ${Object.keys(INSTRUMENTS_BY_ISIN).length} ISIN, ${all.length} candidats ; déduplication, familles, alternatives et exécution limitée aux marchés concernés validés.`)
+
+const bounded=clone(market);bounded.calendarValidity={TEST:{from:'2025-12-01',through:'2026-01-30'}}
+assert.throws(()=>quoteAt('a','2026-02-02','EUR',bounded),/couverture certifiée/)
+const extendedMarket=clone(market);extendedMarket.universe.push({id:'new',name:'New',ticker:'NEW',instrumentType:'EQUITY',calendar:'TEST',currency:'EUR'})
+const extendedConfig={...changedConfig,universe:[...ids,'new']}
+const audited=register(book,request({type:'configure',config:extendedConfig,reason:'Élargissement explicite'},cid),extendedMarket,'2026-01-12T00:00:00Z')
+assert.equal(audited.competitions[0].ruleHistory.at(-1).reason,'Élargissement explicite')
+assert.deepEqual(audited.competitions[0].decisions,book.competitions[0].decisions)
+assert.throws(()=>register(book,request({type:'configure',config:{...changedConfig,universe:['a','b']},reason:'Retrait interdit'},cid),market,'2026-01-12T00:00:00Z'),/ne peut pas être remplacée/)
+
+assert(!admission({instrumentType:'ETC',ucits:false},config).ok,'Default UCITS rule excludes ETC')
+assert(admission({instrumentType:'ETC',ucits:false},{...config,requireUcits:false}).ok,'Explicit non-UCITS rules can admit qualified ETC without calling it an ETF')

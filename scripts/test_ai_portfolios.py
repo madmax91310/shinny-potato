@@ -11,6 +11,66 @@ class DailyTests(unittest.TestCase):
         self.calendar=calendars([self.asset],'2026-01-01','2026-03-01')['XAMS']
         dates=[dt.datetime.fromisoformat(d+'T12:00:00+00:00') for d in self.calendar if d<'2026-02-10']
         self.raw={'chart':{'error':None,'result':[{'meta':{'symbol':'TEST','currency':'EUR','dataGranularity':'1d','instrumentType':'ETF','exchangeTimezoneName':'Europe/Amsterdam'},'timestamp':[int(d.timestamp()) for d in dates],'indicators':{'quote':[{'close':[100]*len(dates)}],'adjclose':[{'adjclose':[90]*len(dates)}]}}]}}
+    def test_note_is_not_reclassified_as_a_stock(self):
+        raw=copy.deepcopy(self.raw);raw['chart']['result'][0]['meta']['instrumentType']='EQUITY'
+        # A real ETF with an unexpected source classification remains refused.
+        with self.assertRaisesRegex(ValueError,'instrument type'):parse_prices(raw,self.asset,self.calendar,self.now)
+        # Issuer-identified exchange-traded notes use the provider's security taxonomy.
+        note={**self.asset,'instrumentType':'ETN','yahooInstrumentType':'EQUITY'}
+        self.assertTrue(parse_prices(raw,note,self.calendar,self.now)['qualified'])
+        self.assertEqual(note['instrumentType'],'ETN')
+
+    def test_pence_and_wrong_venue(self):
+        asset={**self.asset,'currency':'GBP','sourceCurrency':'GBp','priceScale':.01,'yahooExchanges':['AMS']}
+        raw=copy.deepcopy(self.raw);raw['chart']['result'][0]['meta'].update(currency='GBp',exchangeName='AMS')
+        series=parse_prices(raw,asset,self.calendar,self.now)
+        point=series['points'][series['anchorDate']]
+        self.assertEqual(point['close'],1)
+        self.assertEqual(point['adjusted'],.9)
+        self.assertEqual(point['synthetic'],100)
+        raw['chart']['result'][0]['meta']['exchangeName']='PAR'
+        with self.assertRaisesRegex(ValueError,'Place retournée'):parse_prices(raw,asset,self.calendar,self.now)
+
+    def test_certified_calendar_bound(self):
+        bounds={}
+        rows=calendars([{'calendar':'XBOM'}],'2026-10-01','2027-01-10',bounds)
+        self.assertEqual(bounds['XBOM']['through'],'2026-12-31')
+        self.assertTrue(all(d<='2026-12-31' for d in rows['XBOM']))
+
+    def test_crypto_calendar_and_recent_history(self):
+        cal=calendars([{'calendar':'24/7'}],'2026-01-01','2026-02-10')['24/7']
+        self.assertEqual(len(cal),41)
+        self.assertEqual(cal['2026-01-03'],'2026-01-04T00:00:00+00:00')
+        raw=copy.deepcopy(self.raw)
+        data=raw['chart']['result'][0]
+        data['timestamp']=data['timestamp'][-19:]
+        for row in [data['indicators']['quote'][0],data['indicators']['adjclose'][0]]:
+            for key in row:row[key]=row[key][-19:]
+        with self.assertRaisesRegex(ValueError,'20 clôtures'):parse_prices(raw,self.asset,self.calendar,self.now)
+
+    def test_resume_checkpoints_and_due_queue(self):
+        from qualify_ai_portfolios import should_attempt
+        # One completed batch, a saved transient failure, then never-attempted rows.
+        prior=[{'status':'qualified','lastAttempt':self.now.isoformat()} for _ in range(100)]
+        prior += [{'status':'temporary-failure','lastAttempt':self.now.isoformat()}]+[{} for _ in range(250)]
+        self.assertEqual(sum(should_attempt(r,'remaining',self.now) for r in prior),250)
+        self.assertEqual(sum(should_attempt(r,'retry',self.now) for r in prior),251)
+        self.assertEqual(sum(should_attempt(r,'all',self.now) for r in prior),351)
+        self.assertEqual(sum(should_attempt(r,'due',self.now+dt.timedelta(days=2)) for r in prior),251)
+        self.assertEqual(sum(should_attempt(r,'due',self.now+dt.timedelta(days=8)) for r in prior),351)
+
+    def test_exhaustive_report_reconciliation(self):
+        import tempfile,pathlib
+        from qualify_ai_portfolios import reports
+        rows=[{'id':str(i),'instrumentId':str(i//2),'name':str(i),'family':'Test','status':'qualified' if i%2==0 else 'blocked','lastAttempt':'2026-01-01' if i%2==0 else None} for i in range(1002)]
+        with tempfile.TemporaryDirectory() as folder:
+            r=reports(rows,pathlib.Path(folder))
+            self.assertEqual(r['counts']['admittedInstruments'],501)
+            self.assertEqual(r['counts']['qualifiedListings'],501)
+            self.assertEqual(r['counts']['blocked'],501)
+            self.assertEqual(r['counts']['listingCandidates'],len(rows))
+            self.assertEqual(len((pathlib.Path(folder)/'qualification.csv').read_text().splitlines()),1003)
+
     def test_coverage_and_holidays(self):
         self.assertNotIn('2026-01-01',self.calendar)
         series=parse_prices(self.raw,self.asset,self.calendar,self.now)
