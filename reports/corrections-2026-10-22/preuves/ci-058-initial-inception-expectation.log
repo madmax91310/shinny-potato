@@ -1,0 +1,22 @@
+Performance shortcuts: 656 exact share classes.
+Simulation shortcuts: 693 shared, consistent histories.
+Performance shortcuts: 656 exact share classes.
+Simulation shortcuts: 693 shared, consistent histories.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+2017 !== 2016
+
+    at file:///workspace/corrections-20261022/scripts/test-etf-tool-connections.mjs:52:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 2017,
+  expected: 2016,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

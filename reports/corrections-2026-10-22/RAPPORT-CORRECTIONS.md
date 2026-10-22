@@ -1,14 +1,14 @@
 # Corrections de l’audit du 22 octobre 2026
 
-Travail isolé sur `fix/audit-20261022-data-reliability`, depuis `9a4ffd2`, puis intégration de `master` `5f26a78` (évolutions IA et assurance-vie conservées). La dernière instruction de livraison autorise fusion et déploiement ; leur preuve est publiée séparément après exécution.
+Travail isolé sur `fix/audit-20261022-data-reliability`, depuis `9a4ffd2`, puis intégration de `master` `5f26a78` et `77e0e93` (évolutions IA, assurance-vie et 29 raccordements de la PR #884 conservés). La dernière instruction de livraison autorise fusion et déploiement ; leur preuve est publiée séparément après exécution.
 
 ## Résultat et limites
 
 **19 actions traitées : 11 corrigées, 6 partiellement corrigées et 2 bloquées.** « Corrigée » porte sur le défaut décrit et ses scénarios vérifiés, pas sur une certification indépendante de toutes les données du catalogue.
 
-Les 90 écarts sur 53 parts figurent tous dans `reconciliation-90-ecarts.csv`, avec données initiales, recollectées, sources, devises, conventions et dates exactes disponibles. **5 erreurs d’usage sont corrigées par refus ciblé des fenêtres ; 85 causes financières restent inexpliquées. Aucun historique chiffré n’a été artificiellement aligné sur la NAV.** Les 175 périodes non comparables sont conservées avec leurs motifs dans `performances-non-comparables.csv`.
+Les 90 écarts sur 53 parts figurent tous dans `reconciliation-90-ecarts.csv`, avec données initiales, recollectées, sources, devises, conventions et dates exactes disponibles. **5 erreurs d’usage sont corrigées par refus ciblé des fenêtres, 1 comparaison est non pertinente et 84 causes financières restent inexpliquées. Aucun historique chiffré n’a été artificiellement aligné sur la NAV.** Les 175 périodes non comparables sont conservées avec leurs motifs dans `performances-non-comparables.csv`.
 
-La nouvelle collecte réussit pour les 53 séries de marché et les 53 fiches officielles. Cela ne signifie pas que chaque ancienne année reste publiée : la NAV 2016 de IE00BYTRR863 n’est plus exposée dans le calendrier actuel. Les dates quotidiennes exactes sous-jacentes aux calendriers annuels NAV ne sont pas publiées ; cette limite est enregistrée, sans inventer de dates.
+La nouvelle collecte réussit pour les 53 séries de marché et les 53 fiches officielles. La qualification reste distincte de la simple présence d’un chiffre : la valeur officielle 2016 de IE00BYTRR863 est publiée mais correspond à une année de lancement incomplète. Cette comparaison est requalifiée non pertinente ; l’ancienne valeur est conservée séparément, sans être réintroduite dans le calendrier qualifié. Les dates quotidiennes exactes sous-jacentes aux calendriers annuels NAV ne sont pas publiées ; cette limite est enregistrée, sans inventer de dates.
 
 ## Preuves retrouvées et reconstruction
 
@@ -18,7 +18,7 @@ La matrice initiale contient 214 711 lignes / 69 994 couples outil × actif. Ell
 
 ## Historiques et sens financier
 
-La qualification commune contrôle la fenêtre mensuelle, sa couverture, la devise et une convention documentée. Elle est utilisée par calculateur, Performance depuis, anniversaire, classements et projections dérivées des portefeuilles. Les répétitions seules n’impliquent pas une corruption universelle. Les restrictions correspondent à des cotations et fenêtres documentées ; les périodes indépendamment valides subsistent.
+La qualification commune contrôle la fenêtre mensuelle, sa couverture, la devise et une convention documentée. Elle est utilisée par calculateur, Performance depuis, anniversaire, classements et projections dérivées des portefeuilles. Les répétitions seules n’impliquent pas une corruption universelle. Les restrictions correspondent à des cotations et fenêtres documentées ; les périodes indépendamment valides subsistent. Le recoupement des 53 parts documente 26 dates de lancement, dont une série antérieure au lancement ; 27 dates restent non vérifiées dans les réponses conservées (`inceptions-53-parts.csv`). World Energy IE00BYTRR863 est lancé le 29 avril 2016 : les cours de 2015 sont refusés. La valeur 2016 reste archivée avec son ancienne date de preuve dans `excludedYears` ; le calendrier qualifié commence en 2017.
 
 Aerospace IE000U9ODG19 : la cotation suisse USD donne des cours reportés et aucun volume déclaré par la source en 2025 ; le 0 % ne permet pas de valoriser le placement. Sa fenêtre est refusée. La cotation Paris EUR, présentée distinctement avec sa devise, donne 37,02855 % pour 2025. La NAV USD 54,55 % donne 36,64851 % après la conversion existante : l’écart résiduel ne reçoit pas de cause arbitraire. Il n’y a aucune substitution d’ETF, de part ou de calendrier NAV dans les niveaux de prix.
 
@@ -54,15 +54,16 @@ Les formats de tweets et maquettes PNG sont conservés. Les nouvelles cotations 
 
 `modules-verification.csv` conserve les 115 modules initiaux et identifie chacun des 81 initialement sans sonde directe. Il distingue rôle, preuve réseau limitée aux branches citées, scénarios locaux et lignes/branches non couvertes. Les nombres actualisés sont dans `bilan-modules.json`. Aucun module ne disparaît et une couverture de tests n’est jamais appelée preuve d’accès réseau.
 
-`restant-a-verifier.csv` contient les 85 écarts inexpliqués, les 81 modules et les actions non closes. C’est un reliquat ciblé de cette mission, pas la suppression ni la réécriture des 21 731 lignes du reliquat initial, fourni séparément. Les 26 outils / 1 527 profils / 650 ISIN natifs / 703 séries sont les dénominateurs de l’audit initial, pas une annonce de recollecte de tout le catalogue.
+`restant-a-verifier.csv` contient les 84 écarts inexpliqués, les 81 modules, les 27 preuves de dates de lancement restant à vérifier et les actions non closes. C’est un reliquat ciblé de cette mission, pas la suppression ni la réécriture des 21 731 lignes du reliquat initial, fourni séparément. Les 26 outils / 1 527 profils / 650 ISIN natifs / 703 séries sont les dénominateurs de l’audit initial, pas une annonce de recollecte de tout le catalogue.
 
 ## Tests et fichiers exploitables
 
-Les journaux réels sont dans `preuves/` : 894 tests Python avec couverture, 113 commandes CI locales, audits financiers, navigateur IA et routes. Les défauts supplémentaires découverts par la CI sont corrigés et retestés dans `preuves/validation-additionnelle.json` : schéma des champs non applicables, contrôle DWS intégral avec différés, et assertion héritée d’exclusion globale. 39 PNG de raccordements et 5 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
+Les journaux réels sont dans `preuves/` : 897 tests Python avec couverture, 113 commandes CI locales, audits financiers, navigateur IA et routes. Les défauts supplémentaires découverts par la CI sont corrigés et retestés dans `preuves/validation-additionnelle.json` : schéma des champs non applicables, contrôle DWS intégral avec différés, et assertion héritée d’exclusion globale. 39 PNG de raccordements et 6 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
 
 - `statut-19-actions.csv` et `.json` : statuts, preuves, tests et limites par action.
 - `reconciliation-90-ecarts.csv` et `.json` : tous les cas, sans disparition d’alerte.
 - `performances-non-comparables.csv` : 175 périodes conservées.
+- `inceptions-53-parts.csv` : contrôle des dates de lancement des 53 parts, avec chaque reliquat.
 - `modules-verification.csv` et `bilan-modules.json` : 115 modules, dont le reliquat de 81.
 - `restant-a-verifier.csv` : éléments ciblés encore ouverts.
 - `bilan-corrections.json` : dénominateurs et résultats structurés.
@@ -72,19 +73,19 @@ Les journaux réels sont dans `preuves/` : 894 tests Python avec couverture, 113
 
 ### P0-01 — partiellement corrigée
 
-Qualification mensuelle commune et refus ciblés des cinq fenêtres annuelles non valorisables. Paris EUR et Londres USD sont des cotations distinctes, jamais des historiques substitués.
+Qualification mensuelle commune, refus ciblés des cinq fenêtres annuelles non valorisables et refus des cours de World Energy antérieurs au lancement du 29 avril 2016. Paris EUR et Londres USD sont des cotations distinctes, jamais des historiques substitués.
 
 Limite : Mining et Copper restent à investiguer ; les cours de la cotation suisse Aerospace ne sont pas réparés.
 
-Preuves : preuves/historiques-recollectes.json | preuves/qualification-quatre-historiques.json | preuves/aerospace-2025.json | preuves/navigateur-corrections.log. Tests : test-audit-history-quality.mjs | test-market-calendar-performance.mjs | test-performance-rankings.mjs.
+Preuves : preuves/historiques-recollectes.json | preuves/qualification-quatre-historiques.json | preuves/aerospace-2025.json | preuves/ssga-2016-verification.json | preuves/ssga-application.json | preuves/navigateur-corrections.log. Tests : test-audit-history-quality.mjs | test-market-calendar-performance.mjs | test-performance-rankings.mjs.
 
 ### P0-02 — partiellement corrigée
 
-90 couples part × année relus, 53 collectes de cours et 53 collectes de fiches officielles réussies ; bornes, conventions, change et sources conservés. Cinq refus corrigent le calcul utilisateur.
+90 couples part × année relus, 53 collectes de cours et 53 collectes de fiches officielles réussies ; bornes, conventions, change et sources conservés. Cinq refus corrigent le calcul utilisateur ; la comparaison SSGA 2016 est requalifiée non pertinente et la fusion ne réintroduit plus cette année incomplète.
 
-Limite : 85 causes financières encore inexpliquées. Une réussite de collecte ne garantit pas la présence de toutes les anciennes années NAV : 2016 de IE00BYTRR863 est absent du calendrier actuel.
+Limite : 84 causes financières encore inexpliquées. Une réussite de collecte ne garantit pas la présence de toutes les anciennes années NAV : 2016 de IE00BYTRR863 est exclu des années qualifiées car la part a été lancée le 29 avril 2016. La comparaison 2016 est non pertinente.
 
-Preuves : preuves/historiques-recollectes.json | preuves/nav-recollectes.json | preuves/comparaisons-originales.json. Tests : reconcile-audit-cases.mjs.
+Preuves : preuves/historiques-recollectes.json | preuves/nav-recollectes.json | preuves/comparaisons-originales.json | preuves/ssga-2016-verification.json | preuves/ssga-application.json. Tests : reconcile-audit-cases.mjs.
 
 ### P0-03 — corrigée
 

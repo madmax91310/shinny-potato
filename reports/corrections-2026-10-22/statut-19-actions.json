@@ -4,12 +4,12 @@
     "priorité": "P0",
     "statut": "partiellement corrigée",
     "constat_initial": "Les historiques répétés restent admis hors classements",
-    "correction_démontrée": "Qualification mensuelle commune et refus ciblés des cinq fenêtres annuelles non valorisables. Paris EUR et Londres USD sont des cotations distinctes, jamais des historiques substitués.",
+    "correction_démontrée": "Qualification mensuelle commune, refus ciblés des cinq fenêtres annuelles non valorisables et refus des cours de World Energy antérieurs au lancement du 29 avril 2016. Paris EUR et Londres USD sont des cotations distinctes, jamais des historiques substitués.",
     "limitation": "Mining et Copper restent à investiguer ; les cours de la cotation suisse Aerospace ne sont pas réparés.",
     "outils": "Calculateur ; Performance depuis ; vérifier les rendements dérivés des portefeuilles",
     "actifs": "IE00B579F325 | IE00BDFBTQ78 | IE000U9ODG19 | GB00B15KXQ89",
     "fichiers_de_départ": "src/data/market-history.js | src/pages/investment-calculator/lib.js | src/pages/tweet-midi/data/performanceHistory.js | src/pages/performance-rankings/data.js | scripts/refresh_monthly_history.py",
-    "preuves": "preuves/historiques-recollectes.json | preuves/qualification-quatre-historiques.json | preuves/aerospace-2025.json | preuves/navigateur-corrections.log",
+    "preuves": "preuves/historiques-recollectes.json | preuves/qualification-quatre-historiques.json | preuves/aerospace-2025.json | preuves/ssga-2016-verification.json | preuves/ssga-application.json | preuves/navigateur-corrections.log",
     "tests": "test-audit-history-quality.mjs | test-market-calendar-performance.mjs | test-performance-rankings.mjs"
   },
   {
@@ -17,12 +17,12 @@
     "priorité": "P0",
     "statut": "partiellement corrigée",
     "constat_initial": "90 écarts annuels >2 points sur 53 parts à investiguer ; le seuil seul ne prouve pas une erreur",
-    "correction_démontrée": "90 couples part × année relus, 53 collectes de cours et 53 collectes de fiches officielles réussies ; bornes, conventions, change et sources conservés. Cinq refus corrigent le calcul utilisateur.",
-    "limitation": "85 causes financières encore inexpliquées. Une réussite de collecte ne garantit pas la présence de toutes les anciennes années NAV : 2016 de IE00BYTRR863 est absent du calendrier actuel.",
+    "correction_démontrée": "90 couples part × année relus, 53 collectes de cours et 53 collectes de fiches officielles réussies ; bornes, conventions, change et sources conservés. Cinq refus corrigent le calcul utilisateur ; la comparaison SSGA 2016 est requalifiée non pertinente et la fusion ne réintroduit plus cette année incomplète.",
+    "limitation": "84 causes financières encore inexpliquées. Une réussite de collecte ne garantit pas la présence de toutes les anciennes années NAV : 2016 de IE00BYTRR863 est exclu des années qualifiées car la part a été lancée le 29 avril 2016. La comparaison 2016 est non pertinente.",
     "outils": "Performance depuis ; Calculateur ; classements et portefeuilles selon route",
     "actifs": "CH0454664001 | DE000A0H08P6 | DE000A27Z304 | FR0007054358 | FR0010342592 | FR0010755611 | FR0011550185 | FR0011871110 | FR0011871128 | FR0013411998 | FR0013412004 | FR0013416716 | GB00B15KXQ89 | GB00B15KXV33 | IE000M7V94E1 | IE000RDRMSD1 | IE000U9ODG19 | IE000YU9K6K2 | IE00B1XNHC34 | IE00B2QWCY14 | IE00B42NKQ00 | IE00B43HR379 | IE00B4556L06 | IE00B4JNQZ49 | IE00B4K6B022 | IE00B579F325 | IE00B5W4TY14 | IE00BD1F4L37 | IE00BDFBTQ78 | IE00BDVPNG13 | IE00BJ5JP097 | IE00BJ5JP436 | IE00BJGWQN72 | IE00BK5BCD43 | IE00BK5BCH80 | IE00BLNMYC90 | IE00BQN1K562 | IE00BQQP9F84 | IE00BQT3WG13 | IE00BSPLC298 | IE00BSPLC413 | IE00BYTRR863 | IE00BYWQWR46 | IE00BYXG2H39 | JE00B2QXZK10 | JE00B78CGV99 | JE00BN7KB334 | JE00BN7KB557 | JE00BN7KB664 | LU1737652823 | LU1875395870 | LU2089238385 | LU2196470426",
     "fichiers_de_départ": "src/data/automated-etf-monthly.json | src/data/non-bond-monthly-records.json | src/data/automated-etf.json | src/data/monthly-fx.json | scripts/collect_ranking_sources.py | scripts/refresh_monthly_history.py",
-    "preuves": "preuves/historiques-recollectes.json | preuves/nav-recollectes.json | preuves/comparaisons-originales.json",
+    "preuves": "preuves/historiques-recollectes.json | preuves/nav-recollectes.json | preuves/comparaisons-originales.json | preuves/ssga-2016-verification.json | preuves/ssga-application.json",
     "tests": "reconcile-audit-cases.mjs"
   },
   {

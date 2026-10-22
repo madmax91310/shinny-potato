@@ -134,7 +134,7 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             if any(int(year) < first_year for year in years):
                 reject('Recent share calendar includes a partial launch year or a predecessor history')
         previous_performance = old.get('performance', {})
-        launch_text = (share.get('characteristics') or {}).get('inceptionDate') or old.get('characteristics', {}).get('inceptionDate')
+        launch_text = record.get('characteristics', {}).get('inceptionDate')
         launch = dt.date.fromisoformat(launch_text) if isinstance(launch_text, str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', launch_text) else None
         if isinstance(launch_text, str) and re.fullmatch(r'\d{8}', launch_text):
             launch = dt.datetime.strptime(launch_text, '%Y%m%d').date()

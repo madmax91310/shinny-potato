@@ -1,4 +1,4 @@
-DCA: 651 références reliées aux collectes communes.
+DCA: 672 références reliées aux collectes communes.
 
 > patrimoine-et-compagnie@0.0.0 test:dca
 > node scripts/test-dca-profiles.mjs && node scripts/test-dca-engine.mjs && node scripts/test-dca-upgrade.mjs && node scripts/test-exposure-checker.mjs && node scripts/test-exposure-complete.mjs && node scripts/test-dca-analytics.mjs && node scripts/test-published-exposure.mjs && node scripts/test-exposure-scope.mjs
@@ -8,9 +8,9 @@ DCA moteur : 100 profils, pondérations, couverture, absences, zéro DCA, premi�
 Donuts : total, couverture partielle, dates séparées et accroche validée.
 DCA upgrade: recency, compatibility, stocks, neutral assets, both donuts, filters and multiple saves verified.
 34/33/33: all three positions included, weighted countries and partial-coverage warning verified.
-Exposure checker: 258 exact supports connected; 651 coverage records; conservation, contributions, permutations, sources, synthetic safeguards and partial holdings verified.
-Complete exposures: 390 equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified.
+Exposure checker: 258 exact supports connected; 672 coverage records; conservation, contributions, permutations, sources, synthetic safeguards and partial holdings verified.
+Complete exposures: 411 equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified.
 DCA analytics: contributions, direct/indirect totals, concentration, partial coverage and compatible comparisons verified.
 Published portfolio synthesis: 70/20/10 fully represented, provenance, exact weighted results, missing data and catalog mass conservation verified.
 Exposure scope: metals/crypto excluded, 80/15/5, missing data, all-neutral, 3/4/6 categories and exact support classifications verified.
-{"catalog":651,"complete":181,"completeConfigured":87,"exposureCoverage":583,"historical":620,"notApplicable":41,"incomplete":0,"missingEquities":[],"missingHistoryTools":[]}
+{"catalog":672,"complete":181,"completeConfigured":87,"exposureCoverage":604,"historical":641,"notApplicable":41,"incomplete":0,"missingEquities":[],"missingHistoryTools":[]}

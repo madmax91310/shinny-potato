@@ -1176,6 +1176,39 @@
     }
   },
   {
+    "id": "equity-ast-spacemobile",
+    "historyId": "ast-spacemobile",
+    "label": "AST SpaceMobile",
+    "isin": "US00217D1000",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -39.29471032745592,
+      "2023": 25.103734439834025,
+      "2024": 249.91708126036488,
+      "2025": 244.21799526066349
+    },
+    "euroCalendarReturns": {
+      "2022": -35.5383357555565,
+      "2023": 20.756238147988192,
+      "2024": 272.1805513453684,
+      "2025": 204.34729810749212
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -39.29471032745592,
+      25.103734439834025,
+      249.91708126036488,
+      244.21799526066349
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ASTS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
     "id": "equity-astrazeneca",
     "historyId": "astrazeneca",
     "label": "AstraZeneca (ADR)",
@@ -2507,6 +2540,43 @@
     }
   },
   {
+    "id": "equity-cameco",
+    "historyId": "cameco",
+    "label": "Cameco (NYSE)",
+    "isin": "CA13321L1085",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 51.47213015472148,
+      "2021": 63.18812638506215,
+      "2022": 4.345706459426002,
+      "2023": 90.48971049351739,
+      "2024": 19.466666231876538,
+      "2025": 78.37738150576871
+    },
+    "euroCalendarReturns": {
+      "2020": 38.67149459360613,
+      "2021": 76.80394657170207,
+      "2022": 10.802500596236552,
+      "2023": 83.86997756776984,
+      "2024": 27.067731433461905,
+      "2025": 57.71596735858988
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      51.47213015472148,
+      63.18812638506215,
+      4.345706459426002,
+      90.48971049351739,
+      19.466666231876538,
+      78.37738150576871
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CCJ?period1=828316800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/energy.webp"
+    }
+  },
+  {
     "id": "equity-canadian-national-railway",
     "historyId": "canadian-national-railway",
     "label": "Canadian National Railway",
@@ -2986,6 +3056,43 @@
     }
   },
   {
+    "id": "equity-cloudflare",
+    "historyId": "cloudflare",
+    "label": "Cloudflare",
+    "isin": "US18915M1071",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 345.4279159101944,
+      "2021": 73.04908996049717,
+      "2022": -65.61977262357415,
+      "2023": 84.16280433892508,
+      "2024": 29.329807126355824,
+      "2025": 83.08877600297176
+    },
+    "euroCalendarReturns": {
+      "2020": 307.78560894263893,
+      "2021": 87.48767286820242,
+      "2022": -63.49236309156204,
+      "2023": 77.76293855918325,
+      "2024": 37.558414548679565,
+      "2025": 61.88164203360624
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      345.4279159101944,
+      73.04908996049717,
+      -65.61977262357415,
+      84.16280433892508,
+      29.329807126355824,
+      83.08877600297176
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NET?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
     "id": "equity-cme",
     "historyId": "cme",
     "label": "CME Group",
@@ -3094,6 +3201,39 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-coinbase",
+    "historyId": "coinbase",
+    "label": "Coinbase",
+    "isin": "US19260Q1076",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -85.9769387402809,
+      "2023": 391.4382676303551,
+      "2024": 42.766792695110325,
+      "2025": -8.924689380692442
+    },
+    "euroCalendarReturns": {
+      "2022": -85.10920759163898,
+      "2023": 374.36023190455813,
+      "2024": 51.85032816257284,
+      "2025": -19.473923232001177
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -85.9769387402809,
+      391.4382676303551,
+      42.766792695110325,
+      -8.924689380692442
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/COIN?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/finance.webp"
     }
   },
   {
@@ -3276,6 +3416,37 @@
       -2.341148085784439
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/COP?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/energy.webp"
+    }
+  },
+  {
+    "id": "equity-constellation-energy",
+    "historyId": "constellation-energy",
+    "label": "Constellation Energy",
+    "isin": "US21037T1097",
+    "currency": "USD",
+    "calendarReturns": {
+      "2023": 37.23904502588029,
+      "2024": 92.71387252385624,
+      "2025": 58.79897238061251
+    },
+    "euroCalendarReturns": {
+      "2023": 32.46983296344246,
+      "2024": 104.97529034446158,
+      "2025": 40.40532119678155
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      null,
+      37.23904502588029,
+      92.71387252385624,
+      58.79897238061251
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CEG?period1=1646092800&period2=1790812800&interval=1d&events=div%2Csplits",
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/energy.webp"
@@ -3683,6 +3854,43 @@
       -28.28068657217341
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/DSY.PA?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-datadog",
+    "historyId": "datadog",
+    "label": "Datadog",
+    "isin": "US23804L1035",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 160.56115565275695,
+      "2021": 80.93254508466994,
+      "2022": -58.7333672520725,
+      "2023": 65.14285306122449,
+      "2024": 17.721208215221807,
+      "2025": -4.828885190208442
+    },
+    "euroCalendarReturns": {
+      "2020": 138.54160399340486,
+      "2021": 96.02889464365043,
+      "2022": -56.179834755013424,
+      "2023": 59.40395210416474,
+      "2024": 25.211218671498802,
+      "2025": -15.85253516945324
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      160.56115565275695,
+      80.93254508466994,
+      -58.7333672520725,
+      65.14285306122449,
+      17.721208215221807,
+      -4.828885190208442
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DDOG?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/chip.webp"
@@ -4167,6 +4375,39 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-duolingo",
+    "historyId": "duolingo",
+    "label": "Duolingo",
+    "isin": "US26603R1068",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -32.96579367669593,
+      "2023": 218.92312043820272,
+      "2024": 42.927045371116265,
+      "2025": -45.87175953924883
+    },
+    "euroCalendarReturns": {
+      "2022": -28.817792910393592,
+      "2023": 207.8401812302145,
+      "2024": 52.02077691316149,
+      "2025": -52.14142211517072
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -32.96579367669593,
+      218.92312043820272,
+      42.927045371116265,
+      -45.87175953924883
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DUOL?period1=1627776000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/consumer.webp"
     }
   },
   {
@@ -8273,6 +8514,43 @@
     }
   },
   {
+    "id": "equity-mercadolibre",
+    "historyId": "mercadolibre",
+    "label": "MercadoLibre",
+    "isin": "US58733R1023",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 192.9013471941065,
+      "2021": -19.509076578457286,
+      "2022": -37.24117658425672,
+      "2023": 85.70855284208443,
+      "2024": 8.202139226565386,
+      "2025": 18.455228052067962
+    },
+    "euroCalendarReturns": {
+      "2020": 168.14878448199758,
+      "2021": -12.793208431418801,
+      "2022": -33.35773167010046,
+      "2023": 79.25497055327355,
+      "2024": 15.086499032972146,
+      "2025": 4.734584190036939
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      192.9013471941065,
+      -19.509076578457286,
+      -37.24117658425672,
+      85.70855284208443,
+      8.202139226565386,
+      18.455228052067962
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MELI?period1=1188604800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
     "id": "equity-mercedes-benz",
     "historyId": "mercedes-benz",
     "label": "Mercedes-Benz Group",
@@ -9600,6 +9878,37 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-nu",
+    "historyId": "nu",
+    "label": "Nu Holdings",
+    "isin": "KYG6683N1034",
+    "currency": "USD",
+    "calendarReturns": {
+      "2023": 104.66830466830466,
+      "2024": 24.369747899159666,
+      "2025": 61.58301158301158
+    },
+    "euroCalendarReturns": {
+      "2023": 97.55584955584953,
+      "2024": 32.28277161283226,
+      "2025": 42.86688573071551
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      null,
+      104.66830466830466,
+      24.369747899159666,
+      61.58301158301158
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NU?period1=1640995200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/finance.webp"
     }
   },
   {
@@ -11079,6 +11388,39 @@
     }
   },
   {
+    "id": "equity-robinhood",
+    "historyId": "robinhood",
+    "label": "Robinhood",
+    "isin": "US7707001027",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -54.16666666666667,
+      "2023": 56.5110565110565,
+      "2024": 192.4646624803768,
+      "2025": 203.5426840334237
+    },
+    "euroCalendarReturns": {
+      "2022": -51.330551909494346,
+      "2023": 51.07212024859082,
+      "2024": 211.07272311176857,
+      "2025": 168.383399525382
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -54.16666666666667,
+      56.5110565110565,
+      192.4646624803768,
+      203.5426840334237
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/HOOD?period1=1627776000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
     "id": "equity-roche",
     "historyId": "roche",
     "label": "Roche",
@@ -11113,6 +11455,39 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/health.webp"
+    }
+  },
+  {
+    "id": "equity-rocket-lab",
+    "historyId": "rocket-lab",
+    "label": "Rocket Lab",
+    "isin": "US7731211089",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -69.29967426710097,
+      "2023": 46.684350132625994,
+      "2024": 360.578643761302,
+      "2025": 173.8908705885697
+    },
+    "euroCalendarReturns": {
+      "2022": -67.39997288104121,
+      "2023": 41.586903032994485,
+      "2024": 389.8829544289525,
+      "2025": 142.16614932294897
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -69.29967426710097,
+      46.684350132625994,
+      360.578643761302,
+      173.8908705885697
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/RKLB?period1=1630454400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
     }
   },
   {
@@ -11335,6 +11710,43 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-saab-b",
+    "historyId": "saab-b",
+    "label": "Saab B",
+    "isin": "SE0021921269",
+    "currency": "SEK",
+    "calendarReturns": {
+      "2020": -23.677496583623935,
+      "2021": -1.9181519947459869,
+      "2022": 80.88839279016004,
+      "2023": 49.17635126043947,
+      "2024": 54.942877851082606,
+      "2025": 131.0079612448313
+    },
+    "euroCalendarReturns": {
+      "2020": -20.539955085038574,
+      "2021": -3.984987030709297,
+      "2022": 66.71404742190808,
+      "2023": 49.52321047660018,
+      "2024": 50.034573054857546,
+      "2025": 144.61675626341287
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -23.677496583623935,
+      -1.9181519947459869,
+      80.88839279016004,
+      49.17635126043947,
+      54.942877851082606,
+      131.0079612448313
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SAAB-B.ST?period1=949363200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
     }
   },
   {
@@ -12076,6 +12488,41 @@
     }
   },
   {
+    "id": "equity-snowflake",
+    "historyId": "snowflake",
+    "label": "Snowflake",
+    "isin": "US8334451098",
+    "currency": "USD",
+    "calendarReturns": {
+      "2021": 20.38024421564131,
+      "2022": -57.62657033210332,
+      "2023": 38.63732040170853,
+      "2024": -22.407033165829148,
+      "2025": 42.06333483418603
+    },
+    "euroCalendarReturns": {
+      "2021": 30.424331341173794,
+      "2022": -55.0045504951624,
+      "2023": 33.819516688201205,
+      "2024": -17.470181584600265,
+      "2025": 25.608168986583713
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      20.38024421564131,
+      -57.62657033210332,
+      38.63732040170853,
+      -22.407033165829148,
+      42.06333483418603
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SNOW?period1=1601510400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
     "id": "equity-societe-generale",
     "historyId": "societe-generale",
     "label": "Société Générale",
@@ -12107,6 +12554,39 @@
       161.84250639264638
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/GLE.PA?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-sofi",
+    "historyId": "sofi",
+    "label": "SoFi Technologies",
+    "isin": "US83406F1021",
+    "currency": "USD",
+    "calendarReturns": {
+      "2022": -70.84123972169513,
+      "2023": 115.83514099783079,
+      "2024": 54.773869346733676,
+      "2025": 70
+    },
+    "euroCalendarReturns": {
+      "2022": -69.03692866003367,
+      "2023": 108.33462569075682,
+      "2024": 64.62135492168709,
+      "2025": 50.308936170212746
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      null,
+      -70.84123972169513,
+      115.83514099783079,
+      54.773869346733676,
+      70
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SOFI?period1=1625097600&period2=1790812800&interval=1d&events=div%2Csplits",
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/finance.webp"
@@ -12181,6 +12661,43 @@
       20.106874365510752
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/6758.T?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
+    "id": "equity-spotify",
+    "historyId": "spotify",
+    "label": "Spotify",
+    "isin": "LU1778762911",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 110.40454542819367,
+      "2021": -25.624484832841986,
+      "2022": -66.26500989729954,
+      "2023": 138.0114137306427,
+      "2024": 138.08205815375322,
+      "2025": 29.802408581045103
+    },
+    "euroCalendarReturns": {
+      "2020": 92.62363811753953,
+      "2021": -19.418863975260813,
+      "2022": -64.17752691700866,
+      "2023": 129.74024785982215,
+      "2024": 153.23002623919274,
+      "2025": 14.767423212636377
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      110.40454542819367,
+      -25.624484832841986,
+      -66.26500989729954,
+      138.0114137306427,
+      138.08205815375322,
+      29.802408581045103
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SPOT?period1=1525132800&period2=1790812800&interval=1d&events=div%2Csplits",
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/consumer.webp"
@@ -12369,6 +12886,43 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-strategy",
+    "historyId": "strategy",
+    "label": "Strategy",
+    "isin": "US5949724083",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 172.41814485031196,
+      "2021": 40.13383348346417,
+      "2022": -73.99952296645442,
+      "2023": 346.1538390902027,
+      "2024": 358.5351945558278,
+      "2025": -47.53470077229993
+    },
+    "euroCalendarReturns": {
+      "2020": 149.39658049453217,
+      "2021": 51.826087822319344,
+      "2022": -72.39064289499933,
+      "2023": 330.64948848290516,
+      "2024": 387.70949079236664,
+      "2025": -53.611745219014814
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      172.41814485031196,
+      40.13383348346417,
+      -73.99952296645442,
+      346.1538390902027,
+      358.5351945558278,
+      -47.53470077229993
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MSTR?period1=899251200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/finance.webp"
     }
   },
   {
@@ -13736,6 +14290,41 @@
     }
   },
   {
+    "id": "equity-vertiv",
+    "historyId": "vertiv",
+    "label": "Vertiv",
+    "isin": "US92537N1081",
+    "currency": "USD",
+    "calendarReturns": {
+      "2021": 33.79542694843531,
+      "2022": -45.25255549704651,
+      "2023": 251.80534491477323,
+      "2024": 136.82301685962557,
+      "2025": 42.805088498363865
+    },
+    "euroCalendarReturns": {
+      "2021": 44.95882783721081,
+      "2022": -41.86484563655998,
+      "2023": 239.57971120913766,
+      "2024": 151.89087845787492,
+      "2025": 26.264005481659748
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      33.79542694843531,
+      -45.25255549704651,
+      251.80534491477323,
+      136.82301685962557,
+      42.805088498363865
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VRT?period1=1583020800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
     "id": "equity-stockFR0000125486",
     "historyId": "stockFR0000125486",
     "label": "Vinci",
@@ -14399,6 +14988,43 @@
     "checkedAt": "2026-10-22",
     "art": {
       "scene": "etf-night/health.webp"
+    }
+  },
+  {
+    "id": "equity-zscaler",
+    "historyId": "zscaler",
+    "label": "Zscaler",
+    "isin": "US98980G1022",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 329.4838860215053,
+      "2021": 60.8982903896248,
+      "2022": -65.17598527148978,
+      "2023": 97.99820736374964,
+      "2024": -18.572844543896416,
+      "2025": 24.67157752515765
+    },
+    "euroCalendarReturns": {
+      "2020": 293.1889801618116,
+      "2021": 74.32305503894455,
+      "2022": -63.02111468075129,
+      "2023": 91.11754567798678,
+      "2024": -13.392042757729838,
+      "2025": 10.230895226286174
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      329.4838860215053,
+      60.8982903896248,
+      -65.17598527148978,
+      97.99820736374964,
+      -18.572844543896416,
+      24.67157752515765
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ZS?period1=1522540800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-22",
+    "art": {
+      "scene": "etf-night/chip.webp"
     }
   },
   {

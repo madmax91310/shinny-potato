@@ -1,10 +1,10 @@
 # Inventaire de l’automatisation des données
 
-Généré le 2026-10-22T20:44:56.374Z.
+Généré le 2026-10-22T21:46:04.558Z.
 
 Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
 
-276 modules de données ; 4501 champs du catalogue ; 4253 lignes de couverture détaillée.
+276 modules de données ; 4543 champs du catalogue ; 4274 lignes de couverture détaillée.
 
 PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
@@ -13,12 +13,12 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | Famille | Fiches |
 |---|---:|
 | reference | 11 |
-| series | 705 |
+| series | 726 |
 | insurance | 7 |
 | actor | 11 |
 | scpi | 8 |
 | household | 29 |
-| instrument | 650 |
+| instrument | 671 |
 | index | 56 |
 | broker | 8 |
 | lexicon | 44 |
@@ -312,17 +312,17 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
 | Nature des champs | Nombre |
 |---|---:|
-| reference | 665 |
+| reference | 686 |
 | live | 2584 |
 | unavailable | 14 |
 | archive | 164 |
-| history | 1018 |
+| history | 1039 |
 | simulation | 12 |
 | editorial | 44 |
 
 | État de raccordement | Nombre |
 |---|---:|
-| current | 4013 |
+| current | 4034 |
 | not-applicable | 102 |
 | tracked-index-needed | 30 |
 | outside-equity-scope | 43 |

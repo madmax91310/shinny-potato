@@ -1,6 +1,6 @@
 {
   "base_initiale": "9a4ffd2fb7c3bb643c265718117b066f57d69530",
-  "master_intégré": "5f26a78",
+  "master_intégré": "77e0e93",
   "actions": {
     "total": 19,
     "statuts": {
@@ -13,13 +13,19 @@
     "total": 90,
     "parts_uniques": 53,
     "statuts": {
-      "anomalie encore inexpliquée": 85,
-      "erreur corrigée": 5
+      "anomalie encore inexpliquée": 84,
+      "erreur corrigée": 5,
+      "comparaison non pertinente": 1
     },
     "périodes_non_comparables_conservées": 175,
     "collectes_cours_parts_réussies": 53,
     "collectes_fiches_NAV_parts_réussies": 53,
-    "années_NAV_demandées_absentes_du_calendrier_actuel": 1
+    "comparaisons_année_de_lancement_non_pertinentes": 1
+  },
+  "lancements_53_parts": {
+    "dates_vérifiées": 26,
+    "dates_non_vérifiées": 27,
+    "série_antérieure_au_lancement": 1
   },
   "modules": {
     "inventaire_modules": 115,
@@ -31,8 +37,8 @@
     "sans_exec_locale_ou_reseau_citee": 2
   },
   "tests_python": {
-    "exécutés": 894,
-    "réussis": 894
+    "exécutés": 897,
+    "réussis": 897
   },
   "contrôles_CI_locaux": {
     "exécutés": 113,
@@ -55,5 +61,5 @@
     "couples_outil_actif": 69994,
     "reliquat_lignes_initiales": 21731
   },
-  "avertissement": "Corrections des 19 actions, pas certification indépendante de toutes les données. Les 85 causes restantes ne sont pas résolues ; les 175 non-comparaisons restent conservées."
+  "avertissement": "Corrections des 19 actions, pas certification indépendante de toutes les données. Les 84 causes restantes ne sont pas résolues ; les 175 non-comparaisons restent conservées."
 }
