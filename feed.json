@@ -5,16 +5,16 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 2
+        "relevant": 3
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "ok",
         "articles": 10,
         "relevant": 4
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "ok",
         "articles": 10,
         "relevant": 1
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "error",
         "articles": 0,
         "relevant": 0
@@ -50,13 +50,41 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "status": "ok",
         "articles": 7,
         "relevant": 1
       }
     ],
     "items": [
+      {
+        "family": "pouvoir-achat",
+        "entity": "purchasing-news-984740bc1e00de631245",
+        "label": "De nouveaux modèles de bail et une notice d'information actualisée",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "De nouveaux modèles de bail et une notice d'information actualisée",
+          "summary": "Les modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location.",
+          "status": "Application indiquée"
+        },
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
+        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19067",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "logement",
+        "topicLabel": "Logement",
+        "publisher": "Service Public",
+        "status": "Application indiquée",
+        "statusEvidence": "Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement.",
+        "summary": "Les modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location.",
+        "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
       {
         "family": "pouvoir-achat",
         "entity": "purchasing-news-930646c9816103eee946",
@@ -69,7 +97,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +125,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-20",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -125,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-19",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.vie-publique.fr/en-bref/305001-encadrement-des-loyers-quelles-evolutions-possibles",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-19",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A15386",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -209,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -237,7 +265,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -713,7 +741,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-10",
-        "checkedAt": "2026-10-22T10:36:23.782Z",
+        "checkedAt": "2026-10-22T13:02:43.588Z",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -761,9 +789,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-22T10:36:29.499Z",
-  "sourceRevision": "a450385d3db2521e3c79e01df494d945c3581a2c",
-  "observationCount": 7223,
+  "checkedAt": "2026-10-22T13:02:47.639Z",
+  "sourceRevision": "ad47259c563b3956b93b31509303a0747c89314c",
+  "observationCount": 7224,
   "coverage": {
     "etf": 227,
     "indices": 52,
@@ -773,14 +801,69 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 32,
-    "pouvoir-achat": 8
+    "pouvoir-achat": 9
   },
-  "newSignalCount": 0,
+  "newSignalCount": 1,
   "errors": [
     {
       "family": "pouvoir-achat",
       "entity": "Banque de France · crédits aux particuliers",
       "reason": "La liste Banque de France a changé de format."
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BLNMYC90",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE0006WW1TQ4",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE000L6ZMMC4",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BGV5VN51",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HK77",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HS53",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BTJRMP35",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "LU1875395870",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "LU2196470426",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HV82",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
+    },
+    {
+      "family": "etf",
+      "entity": "IE00BM67HQ30",
+      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf"
     },
     {
       "family": "etf",
@@ -859,6 +942,43 @@
     }
   ],
   "events": [
+    {
+      "topic": "logement",
+      "topicLabel": "Logement",
+      "publisher": "Service Public",
+      "status": "Application indiquée",
+      "statusEvidence": "Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement.",
+      "summary": "Les modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location.",
+      "id": "104376a295fb76dd8bcf5511",
+      "family": "pouvoir-achat",
+      "entity": "purchasing-news-984740bc1e00de631245",
+      "label": "De nouveaux modèles de bail et une notice d'information actualisée",
+      "field": "announcement",
+      "fieldLabel": "Actualité officielle",
+      "title": "De nouveaux modèles de bail et une notice d'information actualisée",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-22T13:02:47.639Z",
+      "before": null,
+      "after": {
+        "title": "De nouveaux modèles de bail et une notice d'information actualisée",
+        "summary": "Les modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location.",
+        "status": "Application indiquée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : De nouveaux modèles de bail et une notice d'information actualisée · summary : Les modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location. · status : Application indiquée",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Actualité officielle · particuliers",
+      "unit": "",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19067",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-22T13:02:43.588Z",
+      "tool": "/pouvoir-achat",
+      "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
+      "draft": "🔖 Sauvegarde ce tweet\n\nDe nouveaux modèles de bail et une notice d'information actualisée\n\nLes modèles réglementaires de bail ont évolué au 1 er octobre 2026 pour les logements loués vides, meublés et les colocations à bail unique. Les nouveaux contrats types intègrent notamment la clause résolutoire applicable en cas d'impayés ou de non-versement du dépôt de garantie, ainsi que de nouvelles mentions relatives à l'occupation du logement. Un arrêté du 9 octobre 2026 met également à jour la notice d'information annexée au contrat de location.\n\n📌 Application indiquée\n\nQui peut en bénéficier, à partir de quand et sous quelles conditions ?\n\nSource : https://www.service-public.gouv.fr/particuliers/actualites/A19067",
+      "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+    },
     {
       "id": "49d6b176c3888cc1b0e2cbb7",
       "family": "etf",
