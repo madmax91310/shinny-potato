@@ -124,7 +124,7 @@ export function getAnnualReturns(assetId, startYear) {
     // A cumulative return must never silently skip an unavailable year.
     if (!prev || !cur) break;
     const qualification=qualifyHistoryWindow(ASSETS[assetId], prev.date, cur.date, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) });
-    if(!qualification.qualified) {if(!out.length&&qualification.reason.includes('cours reportés'))throw new Error(qualification.reason);break;}
+    if(!qualification.qualified) {if(!out.length&&qualification.code)throw new Error(qualification.reason);break;}
     out.push({ year, pct: ((cur.price - prev.price) / prev.price) * 100, startDate: prev.date, endDate: cur.date });
   }
   return out;

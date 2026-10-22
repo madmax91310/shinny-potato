@@ -13,16 +13,20 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
     const nested=qualifyHistoryWindow(line.asset,start,end,{contiguous})
     if(!nested.qualified)return nested
   }
+  for(const rule of RESTRICTIONS){
+    if(rule.inceptionMonth&&asset.isin===rule.isin&&start<rule.inceptionMonth)return {qualified:false,code:'before-inception',reason:rule.reason}
+  }
   const points = asset.points ?? []
   const window = points.filter(p => dateOf(p) >= start && dateOf(p) <= end)
   if (!window.length || dateOf(window[0]) !== start || dateOf(window.at(-1)) !== end || window.some(p => !Number.isFinite(priceOf(p)) || priceOf(p) <= 0)) return { qualified: false, reason: 'Bornes ou niveaux historiques absents.' }
   if (contiguous && (window.length !== index(end) - index(start) + 1 || window.some((p, i) => i && index(dateOf(p)) !== index(dateOf(window[i-1])) + 1))) return { qualified: false, reason: 'Couverture mensuelle incomplète.' }
   for (const rule of RESTRICTIONS) {
+    if(rule.inceptionMonth)continue
     if (asset.isin !== rule.isin || (asset.originalCurrency ?? asset.currency) !== rule.currency || (asset.symbol ?? `${asset.ticker}.${({XSWX:'SW',XAMS:'AS'})[asset.mic]}`) !== rule.symbol || start > rule.end || end < rule.start) continue
     const observed = (asset.qualityPoints ?? points).filter(p => dateOf(p) >= rule.start && dateOf(p) <= rule.end)
     // A changed source is investigated by the collector; this observed restriction
     // only applies while the known multi-month carried-forward prices persist.
-    if (observed.some((p,i) => i >= 2 && priceOf(p) === priceOf(observed[i-1]) && priceOf(p) === priceOf(observed[i-2]))) return { qualified: false, reason: rule.reason }
+    if (observed.some((p,i) => i >= 2 && priceOf(p) === priceOf(observed[i-1]) && priceOf(p) === priceOf(observed[i-2]))) return { qualified: false, code:'unreliable-window', reason: rule.reason }
   }
   return { qualified: true, convention, start, end }
 }

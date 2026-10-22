@@ -68,6 +68,8 @@ def parse_page(body, share, now):
             if component in parser.data:result[key]=allocation(parser.data[component],now)
     launch = facts.get('inception-date')
     inception = date(launch.get('originalValue') or launch['value'], now, historical=True) if launch else None
+    if inception:
+        result['characteristics']={'terPct':ter,'index':result['index'],'distribution':result['distribution'],'inceptionDate':inception}
     years={}
     calendar=parser.data.get('data-point-cal',{}).get('fund-perf-cal-net-total-mon',{})
     for key,point in calendar.get('attrs',{}).items():

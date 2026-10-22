@@ -13,11 +13,15 @@ try {
  page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(30000);await mkdir(folder,{recursive:true})
  const button=()=>page.getByRole('button',{name:'📊 Télécharger une image',exact:true})
  async function png(name){await button().waitFor({state:'visible'});const pending=page.waitForEvent('download');await button().click();const download=await pending;await download.saveAs(`${folder}/${name}.png`);const body=await readFile(`${folder}/${name}.png`);assert.equal(body.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert(body.length>10000);results.push({name,bytes:body.length});console.log(name,'PNG valide')}
- for(const [id,startYear,startMonth]of [['etfIE00B579F325','2024','12'],['etfIE000U9ODG19','2026','2']]) {
+ for(const [id,startYear,startMonth,reason]of [['etfIE00B579F325','2024','12',/cours reportés/],['etfIE000U9ODG19','2026','2',/cours reportés/],['etfIE00BYTRR863','2016','12',/lancée le 29 avril 2016/]]) {
   await page.goto(`${base}/calculateur-investissement?asset=${id}`,{waitUntil:'networkidle'})
   const picker=page.getByRole('group',{name:'Choisir un actif',exact:true})
   if(await picker.getAttribute('data-value')!==id)await choose(picker,id)
-  await page.getByText(/cours reportés/).first().waitFor()
+  if(id==='etfIE00BYTRR863'){
+   await choose(page.getByRole('group',{name:'Année de départ',exact:true}),'2015')
+   await choose(page.getByRole('group',{name:'Mois de départ',exact:true}),'12')
+  }
+  await page.getByText(reason).first().waitFor()
   assert(await button().count()===0||await button().isDisabled(),'A refused window cannot export a PNG')
   await page.screenshot({path:`${folder}/${id}-refus.png`,fullPage:true})
   await choose(page.getByRole('group',{name:'Année de départ',exact:true}),startYear)

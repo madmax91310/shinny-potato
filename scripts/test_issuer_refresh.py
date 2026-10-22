@@ -44,6 +44,25 @@ class IssuerRefreshTests(unittest.TestCase):
         body = ''.join(f'<input id="{k}" value="{html.escape(json.dumps(v), quote=True)}">' for k, v in components.items())
         result, _ = parse_page(body, {'isin': 'TESTSHARE', 'currency': 'USD'}, NOW)
         self.assertEqual(result['performance']['years'], {'2024': 10, '2025': 10})
+        self.assertEqual(result['characteristics']['inceptionDate'], '2023-10-31')
+
+    def test_merge_does_not_resurrect_the_partial_inception_year(self):
+        share={'isin':'TESTSHARE','productId':'TESTSHARE','currency':'USD','sourceUrl':'https://issuer.test/share',
+            'characteristics':{'inceptionDate':'2023-10-31'},
+            'performance':{'currency':'USD','basis':'fund','method':'NAV total return','years':{'2025':10}}}
+        old={'TESTSHARE':{'productId':'TESTSHARE','currency':'USD','sourceUrl':share['sourceUrl'],
+            'performance':{'currency':'USD','basis':'fund','method':'NAV total return','years':{'2023':3,'2024':10},'checkedAt':'2026-10-01'}}}
+        merged=merge_collection({'checkedAt':NOW.isoformat(),'shares':[share]},old,{})['TESTSHARE']['performance']
+        self.assertEqual(merged['years'],{'2024':10,'2025':10})
+        self.assertEqual(merged['excludedYears']['2023']['value'],3)
+        self.assertEqual(merged['excludedYears']['2023']['checkedAt'],'2026-10-01')
+        share['characteristics']['inceptionDate']='20231031'
+        compact=merge_collection({'checkedAt':NOW.isoformat(),'shares':[share]},old,{})['TESTSHARE']['performance']
+        self.assertEqual(compact['years'],{'2024':10,'2025':10})
+        self.assertEqual(compact['excludedYears']['2023']['inceptionDate'],'2023-10-31')
+        share['performance']['years']['2023']=3
+        with self.assertRaisesRegex(ValueError,'partial launch year'):
+            merge_collection({'checkedAt':NOW.isoformat(),'shares':[share]},old,{})
 
     def test_amundi_adjusted_weights_and_separate_dates(self):
         p,s=amundi();r=parse_product(p,s,NOW)

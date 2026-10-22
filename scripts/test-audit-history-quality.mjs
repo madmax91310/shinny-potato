@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import {ASSETS} from '../src/data/market-history.js'
+import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import {derive} from '../src/pages/investment-calculator/lib.js'
 import {computeComparativeSeries} from '../src/pages/investment-calculator/videoExport.js'
@@ -29,3 +30,13 @@ assert(Number.isFinite(derive(state('aerospace-paris-eur',2024)).result.finalVal
 console.log('Window guards: calculator, video, annual formats, rankings, FX conversion and portfolio projections; independent valid periods preserved.')
 
 assert(!qualifyHistoryWindow({...lowLiquidity,basis:undefined},'2025-01','2025-03').qualified,'A price array alone cannot qualify its financial convention')
+const energy=ASSETS.etfIE00BYTRR863
+assert.equal(qualifyHistoryWindow(energy,'2015-12','2016-12').qualified,false)
+assert.throws(()=>derive(state('etfIE00BYTRR863',2015)),/lancée le 29 avril 2016/)
+assert.throws(()=>periodReturn(convertAsset({...energy,basis:'adjusted'},'USD',FX),'2015-12','2016-12'),/lancée le 29 avril 2016/)
+assert.equal(monthlyCalendarReturns({...energy,points:energy.points.map(p=>[p.date,p.price])})[2016],undefined)
+assert.throws(()=>getAnnualReturns('etfIE00BYTRR863',2016),/lancée le 29 avril 2016/)
+assert(!('2016'in AUTOMATED_ETF.IE00BYTRR863.performance.years))
+assert.equal(AUTOMATED_ETF.IE00BYTRR863.performance.excludedYears['2016'].value,26.33)
+assert(qualifyHistoryWindow(energy,'2016-12','2017-12').qualified)
+assert(Number.isFinite(derive(state('etfIE00BYTRR863',2016)).result.finalValue))

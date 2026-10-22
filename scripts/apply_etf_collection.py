@@ -134,6 +134,15 @@ def merge_collection(report, current, baseline, sibling_aum=None):
             if any(int(year) < first_year for year in years):
                 reject('Recent share calendar includes a partial launch year or a predecessor history')
         previous_performance = old.get('performance', {})
+        launch_text = (share.get('characteristics') or {}).get('inceptionDate') or old.get('characteristics', {}).get('inceptionDate')
+        launch = dt.date.fromisoformat(launch_text) if isinstance(launch_text, str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', launch_text) else None
+        if isinstance(launch_text, str) and re.fullmatch(r'\d{8}', launch_text):
+            launch = dt.datetime.strptime(launch_text, '%Y%m%d').date()
+        if launch and launch.isoformat() > checked:
+            reject('Future exact-share inception date')
+        first_year = launch.year + ((launch.month, launch.day) != (1, 1)) if launch else None
+        if first_year and any(int(year) < first_year for year in years):
+            reject('Exact-share calendar includes a partial launch year or a pre-inception history')
         if previous_performance and any(previous_performance.get(k) != performance.get(k)
                                         for k in ('currency', 'basis', 'method')):
             reject('Annual performance convention changed')
@@ -144,8 +153,20 @@ def merge_collection(report, current, baseline, sibling_aum=None):
                 reject('Invalid calendar-year evidence')
         from issuer_monthly_capture import merge_monthly_returns
         monthly = merge_monthly_returns(previous_performance, performance, checked)
-        performance = {**performance, **monthly, 'years': {**previous_performance.get('years', {}), **years}}
+        preserved_years = dict(previous_performance.get('years', {}))
+        excluded_years = copy.deepcopy(previous_performance.get('excludedYears', {}))
+        for year in list(preserved_years):
+            if first_year and int(year) < first_year:
+                excluded_years[year] = {'value': preserved_years.pop(year),
+                    'reason': 'partial-or-pre-inception-year', 'inceptionDate': launch.isoformat(),
+                    'sourceUrl': old.get('sourceUrl'), 'checkedAt': previous_performance.get('checkedAt'),
+                    'excludedAt': checked}
+        performance = {**performance, **monthly, 'years': {**preserved_years, **years}}
+        if excluded_years:
+            performance['excludedYears'] = excluded_years
         preserved_evidence = {**previous_performance.get('yearEvidence', {})}
+        for year in excluded_years:
+            preserved_evidence.pop(year, None)
         # A replacement value cannot inherit proof of the old observation.
         for year in years:
             preserved_evidence.pop(year, None)

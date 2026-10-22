@@ -36,7 +36,8 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   for (const mode of ['lump', 'dca']) {
     const expected = (mode === 'lump' ? 100 / asset.points[0].price : asset.points.reduce((n, p) => n + 100 / p.price, 0)) * asset.points.at(-1).price
     const inputs = { assetId: id, amountRaw: '100', startYear: Number(start.slice(0, 4)), startMonth: Number(start.slice(5)), mode, overridePriceRaw: '' }
-    if(!qualifyHistoryWindow(asset,start,asset.points.at(-1).date).qualified){assert.throws(()=>derive(inputs),/cours reportés/);continue}
+    const qualification=qualifyHistoryWindow(asset,start,asset.points.at(-1).date)
+    if(!qualification.qualified){assert.throws(()=>derive(inputs),error=>error.message===qualification.reason);continue}
     const d = derive(inputs)
     close(d.result.finalValue, expected)
     assert.equal(d.endYm, asset.points.at(-1).date)
