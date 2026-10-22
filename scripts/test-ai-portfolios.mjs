@@ -136,3 +136,15 @@ assert.throws(()=>register(book,request({type:'configure',config:{...changedConf
 
 assert(!admission({instrumentType:'ETC',ucits:false},config).ok,'Default UCITS rule excludes ETC')
 assert(admission({instrumentType:'ETC',ucits:false},{...config,requireUcits:false}).ok,'Explicit non-UCITS rules can admit qualified ETC without calling it an ETF')
+
+// Issuer corporate brand names must never turn European listings into US listings.
+const {VENUES}=await import('./ai-portfolio-universe.mjs')
+for(const a of all.filter(a=>a.instrumentType==='EQUITY')){
+ const venue=Object.entries(VENUES).find(([,v])=>v[0]&&a.symbol?.endsWith(v[0]))
+ if(venue)assert.equal(a.mic,venue[0],`${a.isin}: source symbol and venue conflict`)
+}
+assert(all.some(a=>a.isin==='FR0000052292'&&a.mic==='XPAR'&&a.symbol==='RMS.PA'))
+assert(all.some(a=>a.isin==='SE0000115446'&&a.mic==='XSTO'&&a.symbol==='VOLV-B.ST'))
+assert(all.some(a=>a.isin==='FI4000297767'&&a.mic==='XHEL'&&a.symbol==='NDA-FI.HE'))
+assert(all.some(a=>a.isin==='BE0974293251'&&a.mic==='XBRU'&&a.symbol==='ABI.BR'))
+assert(all.some(a=>a.isin==='GB00BVZK7T90'&&a.mic==='XLON'&&a.symbol==='ULVR.L'),'Documented primary equity venue retained alongside an alternative')

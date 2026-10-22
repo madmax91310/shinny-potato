@@ -2,7 +2,6 @@
 // A provider symbol is a candidate, never evidence of daily availability.
 import fs from 'node:fs'
 import CLASSIFICATIONS from '../src/data/dca-security-classifications.json' with {type:'json'}
-import {matchesListing} from './build-equity-history-links.mjs'
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { getInstrumentListings } from '../src/data/instrument-listings.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
@@ -28,7 +27,20 @@ export const VENUES={
  XMAD:['.MC','Europe/Madrid','XMAD',['MCE']],CRYPTO:['','UTC','24/7',['CCC']]
 }
 const suffixMic=Object.fromEntries(Object.entries(VENUES).filter(([,v])=>v[0]).map(([mic,v])=>[v[0],mic]))
-const exchangeMic=name=>/nasdaq/i.test(name??'')?'XNAS':/nyse mkt/i.test(name??'')?'XASE':/new york|nyse/i.test(name??'')?'XNYS':null
+// Exact issuer venue labels: NYSE Euronext Europe and Nasdaq OMX are not US venues.
+const SOURCE_EXCHANGES={
+ XPAR:['Nyse Euronext - Euronext Paris'],XAMS:['Euronext Amsterdam'],XBRU:['Nyse Euronext - Euronext Brussels'],
+ ETFP:['Borsa Italiana'],XETR:['Xetra'],XSWX:['SIX Swiss Exchange'],XLON:['London Stock Exchange'],
+ XNAS:['NASDAQ'],XNYS:['New York Stock Exchange Inc.'],XASE:['Nyse Mkt Llc'],
+ XTSE:['Toronto Stock Exchange'],XHKG:['Hong Kong Exchanges And Clearing Ltd'],XSHG:['Shanghai Stock Exchange'],
+ XSHE:['Shenzhen Stock Exchange'],XTKS:['Tokyo Stock Exchange'],XKRX:['Korea Exchange (Stock Market)'],
+ XNSE:['National Stock Exchange Of India'],XSES:['Singapore Exchange'],XASX:['Asx - All Markets'],
+ XOSL:['Oslo Bors Asa'],XCSE:['Omx Nordic Exchange Copenhagen A/S'],XSTO:['Nasdaq Omx Nordic','Nasdaq Omx Stockholm'],
+ XHEL:['Nasdaq Omx Helsinki Ltd.'],XMAD:['Bolsa De Madrid']
+}
+const exchangeMic=name=>Object.entries(SOURCE_EXCHANGES).find(([,names])=>names.includes(name))?.[0]
+const normalTicker=value=>String(value).toUpperCase().replace(/[^A-Z0-9]/g,'').replace(/^0+(?=\d)/,'')
+
 function family(name,type){
  if(type==='EQUITY')return 'Actions'
  if(type==='CRYPTOCURRENCY')return 'Crypto au comptant'
@@ -50,13 +62,17 @@ export function inventory(){
   const type=identity.instrumentType==='EQUITY'||equity||global?'EQUITY':documentedProductType??(['ETC','ETN','ETP'].includes(identity.instrumentType)?identity.instrumentType:null)??(/\bETC\b/.test(name)?'ETC':/\bET[PN]\b/.test(name)?'ETP':'ETF')
   const listings=getInstrumentListings(isin).map(r=>({...r}))
   for(const h of histories){
-   const mic=h.mic??exchangeMic(h.listingEvidence?.exchange)??suffixMic['.'+h.symbol.split('.').slice(1).join('.')]
+   const mic=h.mic??suffixMic['.'+h.symbol.split('.').slice(1).join('.')]??exchangeMic(h.listingEvidence?.exchange)
    if(mic&&!listings.some(r=>r.mic===mic&&r.currency===h.currency&&(r.symbol===h.symbol||r.ticker===h.ticker)))listings.push({ticker:h.ticker??h.symbol.split('.')[0],symbol:h.symbol,mic,currency:h.currency,sourceUrl:h.listingEvidence?.sourceUrl??equity?.sourceUrl??global?.identitySourceUrl,checkedAt:equity?.checkedAt??global?.checkedAt,evidenceId:h.listingEvidenceId,exchange:h.listingEvidence?.exchange??mic})
   }
-  const security=CLASSIFICATIONS[isin],linked=global??equity
-  if(security&&linked&&matchesListing(linked,security)){
-   const mic=exchangeMic(security.exchange)??suffixMic['.'+linked.symbol.split('.').slice(1).join('.')]
-   if(mic&&!listings.some(r=>r.mic===mic&&r.ticker===security.ticker&&r.currency===security.currency))listings.push({ticker:security.ticker,symbol:linked.symbol,mic,currency:security.currency,exchange:security.exchange,sourceUrl:security.sourceUrl,checkedAt:security.checkedAt,evidenceId:[isin,mic,security.ticker,security.currency].join('-')})
+  const security=CLASSIFICATIONS[isin]
+  if(security&&type==='EQUITY'){
+   const mic=exchangeMic(security.exchange),v=VENUES[mic]
+   if(v&&!listings.some(r=>r.mic===mic&&normalTicker(r.ticker)===normalTicker(security.ticker)&&r.currency===security.currency)){
+    const known=[...histories,global,equity].filter(Boolean).find(r=>r.currency===security.currency&&r.symbol&&normalTicker(v[0]&&r.symbol.endsWith(v[0])?r.symbol.slice(0,-v[0].length):r.symbol)===normalTicker(security.ticker))
+    const symbol=known?.symbol??security.ticker.replace(/\s+/g,'-')+v[0]
+    listings.push({ticker:security.ticker,symbol,mic,currency:security.currency,exchange:security.exchange,sourceUrl:security.sourceUrl,checkedAt:security.checkedAt,evidenceId:[isin,mic,security.ticker,security.currency].join('-')})
+   }
   }
   if(!listings.length&&(global||equity)){
    const h=global??equity,mic=suffixMic['.'+h.symbol.split('.').slice(1).join('.')]

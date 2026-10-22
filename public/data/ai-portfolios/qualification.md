@@ -1,21 +1,21 @@
 # Qualification quotidienne — Portefeuilles IA
 
-Généré : 2026-10-22T05:36:36.606800+00:00
+Généré : 2026-10-22T06:59:08.262440+00:00
 
 - instrumentsInventoried : 756
-- listingCandidates : 1463
-- technicalCandidates : 1361
-- testedCandidates : 1344
+- listingCandidates : 1478
+- technicalCandidates : 1376
+- testedCandidates : 1359
 - admittedInstruments : 288
 - qualifiedListings : 288
-- temporary-failure : 1056
+- temporary-failure : 1071
 - excluded : 102
 - blocked : 17
 - unprocessed : 0
 
 | Famille | Instruments | Candidats | Instruments admis | Cotations qualifiées | Échecs temporaires | Exclus | Bloqués | Non traités |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Actions | 389 | 389 | 281 | 281 | 108 | 0 | 0 | 0 |
+| Actions | 389 | 404 | 281 | 281 | 123 | 0 | 0 | 0 |
 | Assurance-vie | 7 | 7 | 0 | 0 | 0 | 7 | 0 | 0 |
 | Autres instruments cotés | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 |
 | Crypto au comptant | 2 | 2 | 0 | 0 | 2 | 0 | 0 | 0 |
