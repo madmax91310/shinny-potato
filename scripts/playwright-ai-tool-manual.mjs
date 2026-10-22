@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs'
 import {chromium} from 'playwright'
 import {spawn} from 'node:child_process'
 import {CATALOG as DUELS} from '../src/data/duel-assets.js'
+import {ASSETS as PORTFOLIOS} from '../src/data/portfolio-assets.js'
 const report=JSON.parse(readFileSync('docs/ai-tools-matrix.json'))
 const base=process.env.TEST_BASE_URL??'http://127.0.0.1:4396/shinny-potato'
 const server=process.env.TEST_BASE_URL?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4396'],{stdio:'ignore'})
@@ -34,7 +35,8 @@ try{
    await page.goto(`${base}/generateur-portefeuilles?asset=${choice}`,{waitUntil:'networkidle'})
    await page.getByRole('button',{name:'Générer le tweet',exact:true}).click()
    await page.locator('.pg-alloc-list').waitFor()
-   assert((await page.locator('body').innerText()).includes(row.identity.name)||!row.identity.aiListingId,isin)
+   const selected=PORTFOLIOS.find(a=>a.id===choice)
+   assert((await page.locator('body').innerText()).includes(selected.name),isin)
    const duel=DUELS.find(r=>r.isin===isin)
    await page.goto(`${base}/duels-portefeuilles?asset=${duel.id}`,{waitUntil:'networkidle'})
    const settings=page.getByRole('button',{name:'Réglages',exact:true})
@@ -44,7 +46,7 @@ try{
    assert(await page.locator('.pd-table tbody tr').count()>=3)
    manual++
   }
-  if(!row.identity.aiListingId){
+  if(row.identity.instrumentType!=='EQUITY'){
    await page.goto(`${base}/fiches-etf?isin=${isin}`,{waitUntil:'networkidle'})
    const body=await page.locator('body').innerText();assert(body.includes(isin),isin)
    assert(!/NaN|undefined/.test(body));sheets++
