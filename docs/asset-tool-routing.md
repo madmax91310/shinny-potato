@@ -4,7 +4,7 @@ Généré le 2026-10-22 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 26) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 29) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -15,6 +15,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Macquarie | AU000000MQG1 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | AB InBev | BE0974293251 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Brookfield | CA11271J1075 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Cameco (NYSE) | CA13321L1085 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Canadian National Railway | CA1363751027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Enbridge | CA29250N1050 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Royal Bank of Canada | CA7800871021 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -238,7 +239,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares MSCI USA UCITS ETF (Acc) | IE00B52SFT06 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core EURO STOXX 50 UCITS ETF | IE00B53L3W79 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI EMU UCITS ETF | IE00B53QG562 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares Nasdaq 100 UCITS ETF | IE00B53SZB19 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / — / — | — |
+| iShares Nasdaq 100 UCITS ETF | IE00B53SZB19 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Invesco Physical Gold ETC | IE00B579F325 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | iShares Core S&P 500 UCITS ETF | IE00B5BMR087 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist) | IE00B5M1WJ87 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -406,6 +407,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Alibaba | KYG017191142 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Meituan | KYG596691041 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | NetEase | KYG6427A1022 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Nu Holdings | KYG6683N1034 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | JD.com | KYG8208B1014 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Tencent | KYG875721634 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Xiaomi | KYG9830T1067 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -422,6 +424,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi Core EURO STOXX 50 UCITS ETF | LU1681047236 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF Dist | LU1737652823 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Spotify | LU1778762911 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Amundi Euro Stoxx Banks UCITS ETF Acc | LU1829219390 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Basic Resources UCITS ETF | LU1834983550 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
@@ -442,6 +445,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | ASM International | NL0000334118 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Wolters Kluwer | NL0000395903 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | VanEck Global Real Estate UCITS ETF | NL0009690239 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Nebius | NL0009805522 | — | — | missing | Oui / Oui | — | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | ASML (Amsterdam) | NL0010273215 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Ferrari | NL0011585146 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | NL0011683594 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -453,10 +457,12 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Volvo | SE0000115446 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Investor AB | SE0015811963 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Atlas Copco | SE0017486889 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Saab B | SE0021921269 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | DBS Group | SG1L01001701 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | UOB | SG1M31001969 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | OCBC | SG1S04926220 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | AT&T | US00206R1023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| AST SpaceMobile | US00217D1000 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Abbott Laboratories | US0028241000 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | AbbVie | US00287Y1091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Adobe | US00724F1012 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -497,23 +503,28 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Church & Dwight | US1713401024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Cisco | US17275R1023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Citigroup | US1729674242 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Cloudflare | US18915M1071 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Coca-Cola | US1912161007 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Cognizant | US1924461023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Coinbase | US19260Q1076 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Colgate-Palmolive | US1941621039 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Comfort Systems USA | US1999081045 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Comcast | US20030N1019 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | ConocoPhillips | US20825C1045 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Constellation Energy | US21037T1097 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Costco | US22160K1051 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | CrowdStrike | US22788C1053 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Cummins | US2310211063 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | D.R. Horton | US23331A1097 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Danaher | US2358511028 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Datadog | US23804L1035 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Deere | US2441991054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Dell Technologies | US24703L2025 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Walt Disney | US2546871060 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Dollar General | US2566771059 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Domino’s Pizza | US25754A2015 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Dover | US2600031080 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Duolingo | US26603R1068 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | EOG Resources | US26875P1012 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | eBay | US2786421030 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Ecolab | US2788651006 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -530,6 +541,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Fortinet | US34959E1091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Freeport-McMoRan | US35671D8570 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Gartner | US3666511072 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| GE Vernova | US36828A1016 | — | — | missing | Oui / Oui | — | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | General Dynamics | US3695501086 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | GE Aerospace | US3696043013 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Genuine Parts | US3724601055 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -572,9 +584,11 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Masco | US5745991068 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mastercard | US57636Q1040 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | McDonald’s | US5801351017 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| MercadoLibre | US58733R1023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Merck & Co. | US58933Y1055 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mettler-Toledo | US5926881054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Microsoft | US5949181045 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Strategy | US5949724083 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Micron Technology | US5951121038 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Mondelez | US6092071058 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Monolithic Power Systems | US6098391054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -609,10 +623,13 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Quanta Services | US74762E1029 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Quest Diagnostics | US74834L1008 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | RTX | US75513E1010 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Reddit | US75734B1008 | — | — | missing | Oui / Oui | — | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Regeneron | US75886F1075 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Republic Services | US7607591002 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | ResMed | US7611521078 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Robert Half | US7703231032 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Robinhood | US7707001027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Rocket Lab | US7731211089 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Rollins | US7757111049 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Ross Stores | US7782961038 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | S&P Global | US78409V1044 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -624,6 +641,8 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Skyworks | US83088M1027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | A. O. Smith | US8318652091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Snap-on | US8330341012 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Snowflake | US8334451098 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| SoFi Technologies | US83406F1021 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Stanley Black & Decker | US8545021011 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Starbucks | US8552441094 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Stryker | US8636671013 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -647,6 +666,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Verizon | US92343V1044 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Verisk | US92345Y1064 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Vertex | US92532F1003 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Vertiv | US92537N1081 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Visa | US92826C8394 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Vulcan Materials | US9291601097 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Wabtec | US9297401088 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -659,3 +679,4 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Yum! Brands | US9884981013 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Zebra Technologies | US9892071054 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Zoetis | US98978V1035 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Zscaler | US98980G1022 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

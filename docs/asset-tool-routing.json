@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-22T18:05:29.829Z",
+  "checkedAt": "2026-10-22T22:04:16.183Z",
   "summary": {
-    "instruments": 651,
+    "instruments": 672,
     "sheets": 258,
     "comparisons": 245,
     "practical": 21,
-    "duels": 621,
+    "duels": 639,
     "generatorAutomatic": 144,
-    "dca": 651,
-    "fullExposure": 583,
+    "dca": 672,
+    "fullExposure": 604,
     "outsideExposure": 41,
     "automaticHistories": 251,
     "historyCandidates": 0,
@@ -19,7 +19,7 @@
       "qualification-failed": 0,
       "qualification-pending": 0,
       "collection-pending": 0,
-      "history-short": 26
+      "history-short": 29
     }
   },
   "errors": [],
@@ -324,6 +324,50 @@
           "first": "2015-01",
           "last": "2026-09",
           "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA13321L1085",
+      "name": "Cameco (NYSE)",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "cameco",
+          "automatic": true,
+          "first": "1996-04",
+          "last": "2026-09",
+          "currency": "USD",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -9066,7 +9110,7 @@
         {
           "id": "etf_clean_energy",
           "automatic": true,
-          "first": "2015-01",
+          "first": "2008-02",
           "last": "2026-09",
           "currency": "EUR",
           "performance": true,
@@ -9491,7 +9535,7 @@
         {
           "id": "etfIE00B3RBWM25",
           "automatic": true,
-          "first": "2015-01",
+          "first": "2012-06",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -10403,7 +10447,7 @@
         {
           "id": "etfIE00B4L5Y983",
           "automatic": true,
-          "first": "2015-01",
+          "first": "2009-10",
           "last": "2026-09",
           "currency": "EUR",
           "performance": true,
@@ -10569,7 +10613,7 @@
         {
           "id": "etfIE00B4ND3602",
           "automatic": true,
-          "first": "2015-01",
+          "first": "2011-05",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -10902,12 +10946,12 @@
         {
           "id": "etfIE00B53SZB19",
           "automatic": true,
-          "first": "2026-01",
+          "first": "2010-06",
           "last": "2026-09",
           "currency": "EUR",
-          "performance": false,
-          "simulation": false,
-          "anniversary": false
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
         }
       ],
       "historyCandidate": false,
@@ -11230,7 +11274,7 @@
         {
           "id": "etfIE00B6R52259",
           "automatic": true,
-          "first": "2022-01",
+          "first": "2012-04",
           "last": "2026-09",
           "currency": "EUR",
           "performance": true,
@@ -18633,6 +18677,50 @@
       "decision": "keep-used"
     },
     {
+      "isin": "KYG6683N1034",
+      "name": "Nu Holdings",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "nu",
+          "automatic": true,
+          "first": "2022-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "KYG8208B1014",
       "name": "JD.com",
       "kind": "equity",
@@ -19382,6 +19470,50 @@
           "first": "2018-02",
           "last": "2026-09",
           "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "LU1778762911",
+      "name": "Spotify",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "spotify",
+          "automatic": true,
+          "first": "2018-05",
+          "last": "2026-09",
+          "currency": "USD",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -20369,6 +20501,58 @@
       "decision": "keep-used"
     },
     {
+      "isin": "NL0009805522",
+      "name": "Nebius",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-22T19:54:52.582035+00:00"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "nebius",
+          "automatic": true,
+          "first": "2024-11",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "NL0010273215",
       "name": "ASML (Amsterdam)",
       "kind": "equity",
@@ -20858,6 +21042,50 @@
       "decision": "keep-used"
     },
     {
+      "isin": "SE0021921269",
+      "name": "Saab B",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "saab-b",
+          "automatic": true,
+          "first": "2000-02",
+          "last": "2026-09",
+          "currency": "SEK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "SG1L01001701",
       "name": "DBS Group",
       "kind": "equity",
@@ -21023,6 +21251,50 @@
           "id": "t",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US00217D1000",
+      "name": "AST SpaceMobile",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ast-spacemobile",
+          "automatic": true,
+          "first": "2021-05",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -22794,6 +23066,50 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US18915M1071",
+      "name": "Cloudflare",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "cloudflare",
+          "automatic": true,
+          "first": "2019-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US1912161007",
       "name": "Coca-Cola",
       "kind": "equity",
@@ -22871,6 +23187,50 @@
           "id": "stockUS1924461023",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US19260Q1076",
+      "name": "Coinbase",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "coinbase",
+          "automatic": true,
+          "first": "2021-05",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -23047,6 +23407,50 @@
           "id": "conocophillips",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US21037T1097",
+      "name": "Constellation Energy",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "constellation-energy",
+          "automatic": true,
+          "first": "2022-03",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -23267,6 +23671,50 @@
           "id": "dhr",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US23804L1035",
+      "name": "Datadog",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "datadog",
+          "automatic": true,
+          "first": "2019-10",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -23531,6 +23979,50 @@
           "id": "stockUS2600031080",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US26603R1068",
+      "name": "Duolingo",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "duolingo",
+          "automatic": true,
+          "first": "2021-08",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -24235,6 +24727,58 @@
           "id": "stockUS3666511072",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US36828A1016",
+      "name": "GE Vernova",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-22T19:54:52.582035+00:00"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ge-vernova",
+          "automatic": true,
+          "first": "2024-05",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -26094,6 +26638,50 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US58733R1023",
+      "name": "MercadoLibre",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "mercadolibre",
+          "automatic": true,
+          "first": "2007-09",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US58933Y1055",
       "name": "Merck & Co.",
       "kind": "equity",
@@ -26215,6 +26803,50 @@
           "id": "microsoft",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US5949724083",
+      "name": "Strategy",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "strategy",
+          "automatic": true,
+          "first": "1998-07",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -27722,6 +28354,58 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US75734B1008",
+      "name": "Reddit",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-22T19:54:52.582035+00:00"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "reddit",
+          "automatic": true,
+          "first": "2024-04",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US75886F1075",
       "name": "Regeneron",
       "kind": "equity",
@@ -27887,6 +28571,94 @@
           "id": "stockUS7703231032",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US7707001027",
+      "name": "Robinhood",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "robinhood",
+          "automatic": true,
+          "first": "2021-08",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US7731211089",
+      "name": "Rocket Lab",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "rocket-lab",
+          "automatic": true,
+          "first": "2021-09",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -28371,6 +29143,94 @@
           "id": "stockUS8330341012",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US8334451098",
+      "name": "Snowflake",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "snowflake",
+          "automatic": true,
+          "first": "2020-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US83406F1021",
+      "name": "SoFi Technologies",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "sofi",
+          "automatic": true,
+          "first": "2021-07",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
@@ -29394,6 +30254,50 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US92537N1081",
+      "name": "Vertiv",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "vertiv",
+          "automatic": true,
+          "first": "2020-03",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US92826C8394",
       "name": "Visa",
       "kind": "equity",
@@ -29911,6 +30815,50 @@
           "id": "zts",
           "automatic": true,
           "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US98980G1022",
+      "name": "Zscaler",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-21"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "zscaler",
+          "automatic": true,
+          "first": "2018-04",
           "last": "2026-09",
           "currency": "USD",
           "performance": true,
