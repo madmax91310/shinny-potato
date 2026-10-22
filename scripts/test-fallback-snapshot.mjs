@@ -4,6 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { compose, fallbackFiles, introducedIdentifiers, isIsin } from './compose-fallback-snapshot.mjs'
+await import('./test-published-mentions.mjs')
 
 assert.deepEqual(fallbackFiles(['src/data/a.json', 'src/app.js', 'public/data/x/1.json'], ['src/data/a.json', 'public/data/x']), ['src/data/a.json', 'public/data/x/1.json'])
 
