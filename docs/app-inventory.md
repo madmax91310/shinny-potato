@@ -41,12 +41,12 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 650 |
+| instrument | 671 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 703 |
+| series | 726 |
 
 ## Champs des instruments
 
