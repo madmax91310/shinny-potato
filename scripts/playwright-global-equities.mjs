@@ -51,6 +51,8 @@ try {
     await search.fill(asset.isin)
     assert.equal(await page.getByRole('checkbox',{name:`Sélectionner ${asset.label}`,exact:true}).count(),1,`${asset.id}: stock with ISIN remains in stock universe`)
   }
+  await search.fill('')
+  await page.getByRole('button',{name:'Actions vs actions',exact:true}).click()
   await page.getByRole('group',{name:'Catégorie',exact:true}).locator('[data-option][data-value="india-stocks"]').click()
   const tweet=await page.getByLabel('Texte à publier',{exact:true}).inputValue()
   assert(tweet.includes('HDFC Bank')&&tweet.includes('Infosys')&&!tweet.includes('ces ETF'))

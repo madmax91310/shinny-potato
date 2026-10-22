@@ -12,6 +12,7 @@ import FX from '../src/data/monthly-fx.json' with {type:'json'}
 execFileSync(process.execPath,['scripts/report-ai-tool-reuse.mjs'],{stdio:'inherit'})
 const report=JSON.parse(readFileSync('docs/ai-tools-matrix.json'))
 const proof=JSON.parse(readFileSync('scripts/source-snapshots/monthly-automated.json'))
+const daily=JSON.parse(readFileSync('src/data/anniversary-levels.json'))
 assert.equal(report.matrix.length,29)
 assert.equal(new Set(report.matrix.map(r=>r.identity.isin)).size,29)
 assert.equal(new Set(ASSET_ORDER).size,ASSET_ORDER.length)
@@ -21,6 +22,8 @@ for(const row of report.matrix){
  assert.equal(source.isin,row.identity.isin)
  assert.equal(source.currency,asset.currency)
  assert.equal(source.field,'adjclose')
+ assert.equal(daily[h.id].symbol,source.symbol)
+ assert.equal(daily[h.id].listingEvidenceId,source.listingEvidenceId,'Monthly and daily consumers must retain the same exact listing evidence')
  assert.equal(asset.points.length,h.months)
  // Independent source proof, rather than a calculation on the implementation's input alone.
  const observed=proof[h.id].proofRows
