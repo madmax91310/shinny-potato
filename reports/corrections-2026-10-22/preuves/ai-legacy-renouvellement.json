@@ -1,0 +1,668 @@
+{
+  "sources": [
+    {
+      "id": "GB00BVZK7T90-XAMS",
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "ok": false,
+      "error": "Ambiguous or missing issuer listing"
+    },
+    {
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "ok": true,
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817"
+    },
+    {
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "ok": true,
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59"
+    }
+  ],
+  "proofs": [
+    {
+      "id": "CH0011075394-XSWX",
+      "isin": "CH0011075394",
+      "mic": "XSWX",
+      "ticker": "ZURN",
+      "currency": "CHF",
+      "sourceCurrency": "CHF",
+      "symbol": "ZURN.SW",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761087+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "CH0011075394",
+        "ticker": "ZURN",
+        "marketCurrencyCode": "CHF",
+        "exchange": "SIX Swiss Exchange",
+        "issueName": "ZURICH INSURANCE GROUP AG"
+      }
+    },
+    {
+      "id": "CH0012032113-XSWX",
+      "isin": "CH0012032113",
+      "mic": "XSWX",
+      "ticker": "RO",
+      "currency": "CHF",
+      "sourceCurrency": "CHF",
+      "symbol": "RO.SW",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761167+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "CH0012032113",
+        "ticker": "RO",
+        "marketCurrencyCode": "CHF",
+        "exchange": "SIX Swiss Exchange",
+        "issueName": "ROCHE HOLDING AG"
+      }
+    },
+    {
+      "id": "CH0126881561-XSWX",
+      "isin": "CH0126881561",
+      "mic": "XSWX",
+      "ticker": "SREN",
+      "currency": "CHF",
+      "sourceCurrency": "CHF",
+      "symbol": "SREN.SW",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761228+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "CH0126881561",
+        "ticker": "SREN",
+        "marketCurrencyCode": "CHF",
+        "exchange": "SIX Swiss Exchange",
+        "issueName": "SWISS RE AG"
+      }
+    },
+    {
+      "id": "CH0244767585-XSWX",
+      "isin": "CH0244767585",
+      "mic": "XSWX",
+      "ticker": "UBSG",
+      "currency": "CHF",
+      "sourceCurrency": "CHF",
+      "symbol": "UBSG.SW",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761322+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "CH0244767585",
+        "ticker": "UBSG",
+        "marketCurrencyCode": "CHF",
+        "exchange": "SIX Swiss Exchange",
+        "issueName": "UBS GROUP AG"
+      }
+    },
+    {
+      "id": "DE0005552004-XETR",
+      "isin": "DE0005552004",
+      "mic": "XETR",
+      "ticker": "DHL",
+      "currency": "EUR",
+      "sourceCurrency": "EUR",
+      "symbol": "DHL.DE",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761383+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "DE0005552004",
+        "ticker": "DHL",
+        "marketCurrencyCode": "EUR",
+        "exchange": "Xetra",
+        "issueName": "DHL AG"
+      }
+    },
+    {
+      "id": "DE0007030009-XETR",
+      "isin": "DE0007030009",
+      "mic": "XETR",
+      "ticker": "RHM",
+      "currency": "EUR",
+      "sourceCurrency": "EUR",
+      "symbol": "RHM.DE",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761442+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "DE0007030009",
+        "ticker": "RHM",
+        "marketCurrencyCode": "EUR",
+        "exchange": "Xetra",
+        "issueName": "RHEINMETALL AG"
+      }
+    },
+    {
+      "id": "DE000BASF111-XETR",
+      "isin": "DE000BASF111",
+      "mic": "XETR",
+      "ticker": "BAS",
+      "currency": "EUR",
+      "sourceCurrency": "EUR",
+      "symbol": "BAS.DE",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761501+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "DE000BASF111",
+        "ticker": "BAS",
+        "marketCurrencyCode": "EUR",
+        "exchange": "Xetra",
+        "issueName": "BASF N"
+      }
+    },
+    {
+      "id": "ES0113211835-XMAD",
+      "isin": "ES0113211835",
+      "mic": "XMAD",
+      "ticker": "BBVA",
+      "currency": "EUR",
+      "sourceCurrency": "EUR",
+      "symbol": "BBVA.MC",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761559+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "ES0113211835",
+        "ticker": "BBVA",
+        "marketCurrencyCode": "EUR",
+        "exchange": "Bolsa De Madrid",
+        "issueName": "BANCO BILBAO VIZCAYA ARGENTARIA"
+      }
+    },
+    {
+      "id": "GB0002374006-XLON-DGE-GBp",
+      "isin": "GB0002374006",
+      "mic": "XLON",
+      "ticker": "DGE",
+      "currency": "GBP",
+      "sourceCurrency": "GBp",
+      "symbol": "DGE.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761619+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "GB0002374006",
+        "ticker": "DGE",
+        "marketCurrencyCode": "GBP",
+        "exchange": "London Stock Exchange",
+        "issueName": "DIAGEO PLC"
+      }
+    },
+    {
+      "id": "GB0002634946-XLON-BA-GBp",
+      "isin": "GB0002634946",
+      "mic": "XLON",
+      "ticker": "BA",
+      "currency": "GBP",
+      "sourceCurrency": "GBp",
+      "symbol": "BA.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761678+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "GB0002634946",
+        "ticker": "BA.",
+        "marketCurrencyCode": "GBP",
+        "exchange": "London Stock Exchange",
+        "issueName": "BAE SYSTEMS PLC"
+      }
+    },
+    {
+      "id": "GB00B0SWJX34-XLON-LSEG-GBp",
+      "isin": "GB00B0SWJX34",
+      "mic": "XLON",
+      "ticker": "LSEG",
+      "currency": "GBP",
+      "sourceCurrency": "GBp",
+      "symbol": "LSEG.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761738+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "GB00B0SWJX34",
+        "ticker": "LSEG",
+        "marketCurrencyCode": "GBP",
+        "exchange": "London Stock Exchange",
+        "issueName": "LONDON STOCK EXCHANGE GROUP PLC"
+      }
+    },
+    {
+      "id": "GB00B2B0DG97-XLON-REL-GBp",
+      "isin": "GB00B2B0DG97",
+      "mic": "XLON",
+      "ticker": "REL",
+      "currency": "GBP",
+      "sourceCurrency": "GBp",
+      "symbol": "REL.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761800+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "GB00B2B0DG97",
+        "ticker": "REL",
+        "marketCurrencyCode": "GBP",
+        "exchange": "London Stock Exchange",
+        "issueName": "RELX PLC"
+      }
+    },
+    {
+      "id": "GB00B63H8491-XLON-RR-GBp",
+      "isin": "GB00B63H8491",
+      "mic": "XLON",
+      "ticker": "RR",
+      "currency": "GBP",
+      "sourceCurrency": "GBp",
+      "symbol": "RR.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761860+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "GB00B63H8491",
+        "ticker": "RR.",
+        "marketCurrencyCode": "GBP",
+        "exchange": "London Stock Exchange",
+        "issueName": "ROLLS-ROYCE HOLDINGS PLC"
+      }
+    },
+    {
+      "id": "IT0003128367-ETFP",
+      "isin": "IT0003128367",
+      "mic": "ETFP",
+      "ticker": "ENEL",
+      "currency": "EUR",
+      "sourceCurrency": "EUR",
+      "symbol": "ENEL.MI",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.761976+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "IT0003128367",
+        "ticker": "ENEL",
+        "marketCurrencyCode": "EUR",
+        "exchange": "Borsa Italiana",
+        "issueName": "ENEL"
+      }
+    },
+    {
+      "id": "JP3122400009-XTKS",
+      "isin": "JP3122400009",
+      "mic": "XTKS",
+      "ticker": "6857",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "6857.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762036+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3122400009",
+        "ticker": "6857",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "ADVANTEST"
+      }
+    },
+    {
+      "id": "JP3236200006-XTKS",
+      "isin": "JP3236200006",
+      "mic": "XTKS",
+      "ticker": "6861",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "6861.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762095+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3236200006",
+        "ticker": "6861",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "KEYENCE"
+      }
+    },
+    {
+      "id": "JP3436100006-XTKS",
+      "isin": "JP3436100006",
+      "mic": "XTKS",
+      "ticker": "9984",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "9984.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762153+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3436100006",
+        "ticker": "9984",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "SOFTBANK GROUP CORP"
+      }
+    },
+    {
+      "id": "JP3571400005-XTKS",
+      "isin": "JP3571400005",
+      "mic": "XTKS",
+      "ticker": "8035",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "8035.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762212+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3571400005",
+        "ticker": "8035",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "TOKYO ELECTRON"
+      }
+    },
+    {
+      "id": "JP3788600009-XTKS",
+      "isin": "JP3788600009",
+      "mic": "XTKS",
+      "ticker": "6501",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "6501.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762285+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3788600009",
+        "ticker": "6501",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "HITACHI"
+      }
+    },
+    {
+      "id": "JP3898400001-XTKS",
+      "isin": "JP3898400001",
+      "mic": "XTKS",
+      "ticker": "8058",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "8058.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762345+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3898400001",
+        "ticker": "8058",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "MITSUBISHI"
+      }
+    },
+    {
+      "id": "JP3902400005-XTKS",
+      "isin": "JP3902400005",
+      "mic": "XTKS",
+      "ticker": "6503",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "6503.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762498+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3902400005",
+        "ticker": "6503",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "MITSUBISHI ELECTRIC"
+      }
+    },
+    {
+      "id": "JP3970300004-XTKS",
+      "isin": "JP3970300004",
+      "mic": "XTKS",
+      "ticker": "6098",
+      "currency": "JPY",
+      "sourceCurrency": "JPY",
+      "symbol": "6098.T",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762561+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "JP3970300004",
+        "ticker": "6098",
+        "marketCurrencyCode": "JPY",
+        "exchange": "Tokyo Stock Exchange",
+        "issueName": "RECRUIT HOLDINGS LTD"
+      }
+    },
+    {
+      "id": "SG1L01001701-XSES",
+      "isin": "SG1L01001701",
+      "mic": "XSES",
+      "ticker": "D05",
+      "currency": "SGD",
+      "sourceCurrency": "SGD",
+      "symbol": "D05.SI",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:11.762620+00:00",
+      "sha256": "25af10962536234f304d78268b325270fa475c5a07abc64d0a91c6046053d817",
+      "providerRow": {
+        "isin": "SG1L01001701",
+        "ticker": "D05",
+        "marketCurrencyCode": "SGD",
+        "exchange": "Singapore Exchange",
+        "issueName": "DBS GROUP HOLDINGS LTD"
+      }
+    },
+    {
+      "id": "CNE100000296-XHKG",
+      "isin": "CNE100000296",
+      "mic": "XHKG",
+      "ticker": "1211",
+      "currency": "HKD",
+      "sourceCurrency": "HKD",
+      "symbol": "1211.HK",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.022879+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "CNE100000296",
+        "ticker": "1211",
+        "marketCurrencyCode": "HKD",
+        "exchange": "Hong Kong Exchanges And Clearing Ltd",
+        "issueName": "BYD H"
+      }
+    },
+    {
+      "id": "CNE100003662-XSHE",
+      "isin": "CNE100003662",
+      "mic": "XSHE",
+      "ticker": "300750",
+      "currency": "CNY",
+      "sourceCurrency": "CNY",
+      "symbol": "300750.SZ",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023071+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "CNE100003662",
+        "ticker": "300750",
+        "marketCurrencyCode": "CNY",
+        "exchange": "Shenzhen Stock Exchange",
+        "issueName": "CONTEMPORARY AMPEREX TECHNOLOGY A"
+      }
+    },
+    {
+      "id": "INE002A01018-XNSE",
+      "isin": "INE002A01018",
+      "mic": "XNSE",
+      "ticker": "RELIANCE",
+      "currency": "INR",
+      "sourceCurrency": "INR",
+      "symbol": "RELIANCE.NS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023247+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "INE002A01018",
+        "ticker": "RELIANCE",
+        "marketCurrencyCode": "INR",
+        "exchange": "National Stock Exchange Of India",
+        "issueName": "RELIANCE INDUSTRIES LTD"
+      }
+    },
+    {
+      "id": "INE009A01021-XNSE",
+      "isin": "INE009A01021",
+      "mic": "XNSE",
+      "ticker": "INFY",
+      "currency": "INR",
+      "sourceCurrency": "INR",
+      "symbol": "INFY.NS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023467+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "INE009A01021",
+        "ticker": "INFY",
+        "marketCurrencyCode": "INR",
+        "exchange": "National Stock Exchange Of India",
+        "issueName": "INFOSYS"
+      }
+    },
+    {
+      "id": "INE040A01034-XNSE",
+      "isin": "INE040A01034",
+      "mic": "XNSE",
+      "ticker": "HDFCBANK",
+      "currency": "INR",
+      "sourceCurrency": "INR",
+      "symbol": "HDFCBANK.NS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023645+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "INE040A01034",
+        "ticker": "HDFCBANK",
+        "marketCurrencyCode": "INR",
+        "exchange": "National Stock Exchange Of India",
+        "issueName": "HDFC BANK"
+      }
+    },
+    {
+      "id": "INE090A01021-XNSE",
+      "isin": "INE090A01021",
+      "mic": "XNSE",
+      "ticker": "ICICIBANK",
+      "currency": "INR",
+      "sourceCurrency": "INR",
+      "symbol": "ICICIBANK.NS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023820+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "INE090A01021",
+        "ticker": "ICICIBANK",
+        "marketCurrencyCode": "INR",
+        "exchange": "National Stock Exchange Of India",
+        "issueName": "ICICI BANK"
+      }
+    },
+    {
+      "id": "INE467B01029-XNSE",
+      "isin": "INE467B01029",
+      "mic": "XNSE",
+      "ticker": "TCS",
+      "currency": "INR",
+      "sourceCurrency": "INR",
+      "symbol": "TCS.NS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.023995+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "INE467B01029",
+        "ticker": "TCS",
+        "marketCurrencyCode": "INR",
+        "exchange": "National Stock Exchange Of India",
+        "issueName": "TATA CONSULTANCY SERVICES LTD"
+      }
+    },
+    {
+      "id": "KYG017191142-XHKG",
+      "isin": "KYG017191142",
+      "mic": "XHKG",
+      "ticker": "9988",
+      "currency": "HKD",
+      "sourceCurrency": "HKD",
+      "symbol": "9988.HK",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.024170+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "KYG017191142",
+        "ticker": "9988",
+        "marketCurrencyCode": "HKD",
+        "exchange": "Hong Kong Exchanges And Clearing Ltd",
+        "issueName": "ALIBABA GROUP HOLDING"
+      }
+    },
+    {
+      "id": "KYG596691041-XHKG",
+      "isin": "KYG596691041",
+      "mic": "XHKG",
+      "ticker": "3690",
+      "currency": "HKD",
+      "sourceCurrency": "HKD",
+      "symbol": "3690.HK",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.024361+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "KYG596691041",
+        "ticker": "3690",
+        "marketCurrencyCode": "HKD",
+        "exchange": "Hong Kong Exchanges And Clearing Ltd",
+        "issueName": "MEITUAN"
+      }
+    },
+    {
+      "id": "KYG8208B1014-XHKG",
+      "isin": "KYG8208B1014",
+      "mic": "XHKG",
+      "ticker": "9618",
+      "currency": "HKD",
+      "sourceCurrency": "HKD",
+      "symbol": "9618.HK",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.024536+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "KYG8208B1014",
+        "ticker": "9618",
+        "marketCurrencyCode": "HKD",
+        "exchange": "Hong Kong Exchanges And Clearing Ltd",
+        "issueName": "JD.COM CLASS A"
+      }
+    },
+    {
+      "id": "KYG9830T1067-XHKG",
+      "isin": "KYG9830T1067",
+      "mic": "XHKG",
+      "ticker": "1810",
+      "currency": "HKD",
+      "sourceCurrency": "HKD",
+      "symbol": "1810.HK",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-22T19:49:14.024714+00:00",
+      "sha256": "998d72878e7dea99c47daecc84b83ae68ccb06234f00ad7568189439db90fb59",
+      "providerRow": {
+        "isin": "KYG9830T1067",
+        "ticker": "1810",
+        "marketCurrencyCode": "HKD",
+        "exchange": "Hong Kong Exchanges And Clearing Ltd",
+        "issueName": "XIAOMI"
+      }
+    }
+  ]
+}

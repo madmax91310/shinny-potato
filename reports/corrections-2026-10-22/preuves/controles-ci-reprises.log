@@ -1,0 +1,11 @@
+3 0 node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
+34 0 node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
+43 0 npm run audit:data-review
+53 0 npm run audit:calculator-series
+58 1 node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs
+59 0 node scripts/test-investment-conclusions.mjs
+66 0 node scripts/test-tweet-bank-validity.mjs
+80 0 npm run audit:data-provenance
+102 0 node scripts/build-app-inventory.mjs --check
+103 0 node scripts/test-format-loading.mjs --built
+105 1 node scripts/test-performance-links.mjs

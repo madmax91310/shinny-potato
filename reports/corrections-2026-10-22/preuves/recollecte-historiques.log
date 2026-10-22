@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspace/corrections-20261022/scripts/refresh_monthly_history.py", line 455, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/corrections-20261022/scripts/refresh_monthly_history.py", line 405, in main
+    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/corrections-20261022/scripts/refresh_monthly_history.py", line 446, in select_series
+    reject('Unknown or empty monthly series selection')
+  File "/workspace/corrections-20261022/scripts/data_automation.py", line 98, in reject
+    raise ValueError(message)
+ValueError: Unknown or empty monthly series selection

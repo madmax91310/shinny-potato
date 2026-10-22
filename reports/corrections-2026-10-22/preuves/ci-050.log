@@ -1,0 +1,8 @@
+
+> patrimoine-et-compagnie@0.0.0 audit:instrument-listings
+> node scripts/audit-instrument-listings.mjs && node scripts/test-listing-evidence.mjs
+
+258 ISIN, 965 cotations documentées, 0 erreur(s). Contrôle des preuves conservées, sans nouvelle certification en ligne.
+Preuve valide acceptée ; 10 régressions de preuve refusées.
+Choix publié : 4 mutations place/devise/absence/copie refusées.
+Listing evidence keeps the newest observation regardless of collector order.

@@ -1,0 +1,86 @@
+[
+  {
+    "isin": "IE0002Y8CX98",
+    "source": {
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "c9e7b3f8f1efb49bcb435ca20643c59d29ac8b76f6c79b1427beb46219b8f6d8",
+      "rows": 42,
+      "identified": 42,
+      "unidentifiedWeightPct": 0
+    },
+    "consumers": [
+      {
+        "id": "IE0002Y8CX98",
+        "path": "src/pages/dca-profiles/holdings-17.json",
+        "asOf": "2026-10-15",
+        "rows": 42,
+        "complete": true,
+        "identified": 42
+      }
+    ]
+  },
+  {
+    "isin": "IE000W8WMSL2",
+    "source": {
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "8ee4fe14fe79a2a7ac71b10ca1d5382bb11c996598ccae1e15dd8d843a6853bd",
+      "rows": 47,
+      "identified": 47,
+      "unidentifiedWeightPct": 0
+    },
+    "consumers": [
+      {
+        "id": "IE000W8WMSL2",
+        "path": "src/pages/dca-profiles/holdings-14.json",
+        "asOf": "2026-10-15",
+        "rows": 47,
+        "complete": true,
+        "identified": 47
+      }
+    ]
+  },
+  {
+    "isin": "IE00BDVPNG13",
+    "source": {
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+      "sha256": "9b4dc9707d3bb3b27f9917dea5314ba096f0082ddc53a71264d38863c0a4bd87",
+      "rows": 58,
+      "identified": 58,
+      "unidentifiedWeightPct": 0
+    },
+    "consumers": [
+      {
+        "id": "IE00BDVPNG13",
+        "path": "src/pages/dca-profiles/holdings-19.json",
+        "asOf": "2026-10-15",
+        "rows": 58,
+        "complete": true,
+        "identified": 58
+      }
+    ]
+  },
+  {
+    "isin": "IE00BJGWQN72",
+    "source": {
+      "asOf": "2026-10-21",
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "sha256": "4f2e070b4ed8a0d8cfa3fae28217e0c2e8254492bc83c90ff6e5d22e3e6ba4a5",
+      "rows": 65,
+      "identified": 64,
+      "unidentifiedWeightPct": 1.4897862517528784
+    },
+    "consumers": [
+      {
+        "id": "cloud",
+        "path": "src/pages/dca-profiles/holdings-21.json",
+        "asOf": "2026-10-21",
+        "rows": 65,
+        "complete": true,
+        "identified": 64
+      }
+    ]
+  }
+]
