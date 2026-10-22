@@ -888,7 +888,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:05:32Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39783320199",
       "failures": [],
       "dataFailures": {},
@@ -900,7 +900,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -962,7 +962,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:16:55Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39784477156",
       "failures": [],
       "dataFailures": {},
@@ -976,16 +976,16 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39789448375,
+      "runId": 39798334010,
       "attempt": 1,
-      "headSha": "77b78ce3ba7ddb964e7d293d95014ed27795c18f",
-      "createdAt": "2026-10-22T13:43:56Z",
-      "completedAt": "2026-10-22T13:45:33Z",
+      "headSha": "104f81c699ccbf81ca12273c15ed9838227b9f89",
+      "createdAt": "2026-10-22T14:44:31Z",
+      "completedAt": "2026-10-22T14:46:20Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-21T12:23:36Z",
       "collectionStatus": "failure",
@@ -994,7 +994,7 @@
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-21T12:23:36Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39798334010",
       "failures": [
         {
           "job": "report-failures",
@@ -1002,17 +1002,10 @@
         }
       ],
       "dataFailures": {
-        "radar:pouvoir-achat": {
-          "name": "Radar · pouvoir-achat",
-          "completedAt": "2026-10-22T13:45:33Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
-          "cause": "La liste Banque de France a changé de format.",
-          "field": "Sources du radar"
-        },
         "radar:etf": {
           "name": "Radar · etf",
-          "completedAt": "2026-10-22T13:45:33Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
+          "completedAt": "2026-10-22T14:46:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39798334010",
           "cause": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf",
           "field": "Sources du radar"
         }
@@ -1033,7 +1026,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:13:59Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39784256327",
       "failures": [],
       "dataFailures": {},
@@ -1045,7 +1038,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -1135,7 +1128,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T12:29:47Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39777588758",
       "failures": [
         {
@@ -1162,7 +1155,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-lifestrategy.yml": {
       "monitorVersion": 2,
@@ -1179,7 +1172,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T10:34:42Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39763727431",
       "failures": [],
       "dataFailures": {},
@@ -1191,7 +1184,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -1208,7 +1201,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:02:10Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39782485527",
       "failures": [],
       "dataFailures": {},
@@ -1223,7 +1216,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
@@ -1936,7 +1929,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-22T13:15:09.517Z",
+      "lastPublicationSuccessAt": "2026-10-22T14:40:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39617689999",
       "failures": [
         {
@@ -1962,7 +1955,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "1eb2b8f3603a44cf32e6162fdcaf5443a8f172a0",
-      "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
+      "publishedDataSha": "104f81c699ccbf81ca12273c15ed9838227b9f89"
     },
     "onboard-assets.yml": {
       "monitorVersion": 2,
@@ -2052,11 +2045,11 @@
       "publishedDataSha": "3b29b49495a01418cc4ea2f0c867f930073c08df"
     }
   },
-  "updatedAt": "2026-10-22T14:36:26Z",
+  "updatedAt": "2026-10-22T14:46:20Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-22T14:45:09.248428+00:00",
-    "revision": 246,
+    "checkedAt": "2026-10-22T14:46:46.685287+00:00",
+    "revision": 247,
     "active": {
       "collection:update-practical-sheets.yml:practical:etf": {
         "name": "AMF · comprendre les ETF",
@@ -2078,7 +2071,7 @@
         "dataId": "practical:etf",
         "id": "collection:update-practical-sheets.yml:practical:etf",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-practical-sheets.yml:practical:transfer": {
         "name": "AMF · transfert du PEA",
@@ -2100,7 +2093,7 @@
         "dataId": "practical:transfer",
         "id": "collection:update-practical-sheets.yml:practical:transfer",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-practical-sheets.yml:practical:bonds": {
         "name": "AMF · comprendre les obligations et le risque de taux",
@@ -2122,27 +2115,7 @@
         "dataId": "practical:bonds",
         "id": "collection:update-practical-sheets.yml:practical:bonds",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
-      },
-      "collection:update-editorial-radar.yml:radar:pouvoir-achat": {
-        "name": "Radar · pouvoir-achat",
-        "tools": [
-          "Radar éditorial"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-editorial-radar.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T12:23:36Z",
-        "completedAt": "2026-10-22T13:45:33Z",
-        "cause": "La liste Banque de France a changé de format.",
-        "field": "Sources du radar",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "radar:pouvoir-achat",
-        "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
-        "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-editorial-radar.yml:radar:etf": {
         "name": "Radar · etf",
@@ -2151,10 +2124,10 @@
         ],
         "impactScope": "collector",
         "workflow": "update-editorial-radar.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39798334010",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-21T12:23:36Z",
-        "completedAt": "2026-10-22T13:45:33Z",
+        "completedAt": "2026-10-22T14:46:20Z",
         "cause": "Vérification indépendante DWS impossible : ValueError: DWS countries: live evidence differs from active asOf",
         "field": "Sources du radar",
         "sourceUrls": [],
@@ -2162,7 +2135,7 @@
         "dataId": "radar:etf",
         "id": "collection:update-editorial-radar.yml:radar:etf",
         "firstSeenAt": "2026-10-22T13:03:35.309637+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "workflow:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -2179,7 +2152,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-insurance.yml",
         "firstSeenAt": "2026-10-22T13:04:19.279357+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BM8R0J59": {
         "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
@@ -2211,7 +2184,7 @@
         "dataId": "etf-additional-observation-IE00BM8R0J59",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BM8R0J59",
         "firstSeenAt": "2026-10-22T13:44:32.199253+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -2234,7 +2207,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "checks:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -2251,7 +2224,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; deploy / publish-code / exposure-browser-check : Run node scripts/playwright-exposure-scope.mjs",
         "id": "checks:update-investor-13f.yml",
         "firstSeenAt": "2026-10-21T17:34:46.663710+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -2279,7 +2252,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -2307,7 +2280,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -2334,7 +2307,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -2361,7 +2334,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:stoxx600": {
         "name": "Indice STOXX Europe 600",
@@ -2388,7 +2361,7 @@
         "dataId": "stoxx600",
         "id": "collection:refresh-automated-index-sheets.yml:stoxx600",
         "firstSeenAt": "2026-10-22T12:26:18.416092+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "workflow:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -2405,7 +2378,7 @@
         "cause": "Exécution en échec ; consulter le journal.",
         "id": "workflow:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-22T14:37:07.793527+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -2432,7 +2405,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -2461,7 +2434,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2490,7 +2463,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T12:01:24.697671+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -2517,7 +2490,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -2544,7 +2517,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:scpi:remake-live:annual": {
         "id": "field:scpi:remake-live:annual",
@@ -2569,7 +2542,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T22:42:52.073682+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:scpi:remake-live:price": {
         "id": "field:scpi:remake-live:price",
@@ -2594,7 +2567,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T22:42:52.073682+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:scpi:remake-live:conditions": {
         "id": "field:scpi:remake-live:conditions",
@@ -2619,7 +2592,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T22:42:52.073682+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:scpi:remake-live:snapshot": {
         "id": "field:scpi:remake-live:snapshot",
@@ -2644,7 +2617,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T22:42:52.073682+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "field:scpi:remake-live:portfolio": {
         "id": "field:scpi:remake-live:portfolio",
@@ -2669,7 +2642,7 @@
         "evaluatedAt": "2026-10-22",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T22:42:52.073682+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "radar:f803743f0d8effa9ba3ba35a": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2691,7 +2664,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-20).",
         "id": "radar:f803743f0d8effa9ba3ba35a",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       },
       "radar:fea0c583613401a394fe3f88": {
         "name": "Bitwise Physical Bitcoin ETP",
@@ -2715,56 +2688,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-21) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-21).",
         "id": "radar:fea0c583613401a394fe3f88",
         "firstSeenAt": "2026-10-21T19:46:53.942218+00:00",
-        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00"
+        "lastSeenAt": "2026-10-22T14:46:46.685287+00:00"
       }
     },
     "events": [
-      {
-        "revision": 217,
-        "at": "2026-10-21T13:11:45.655032+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Pouvoir d’achat et niveaux des anniversaires",
-            "tools": [
-              "Pouvoir d’achat",
-              "Il y a X ans"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-publication-observations.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805470",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-21T11:19:02Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-publication-observations.yml",
-            "firstSeenAt": "2026-10-21T11:20:31.588995+00:00",
-            "lastSeenAt": "2026-10-21T13:06:03.317054+00:00",
-            "resolvedAt": "2026-10-21T13:11:45.655032+00:00"
-          },
-          {
-            "name": "Présentations d’assurance-vie",
-            "tools": [
-              "Présentations assurance-vie"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-insurance.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39604279508",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-21T13:01:56Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-insurance.yml",
-            "firstSeenAt": "2026-10-21T13:02:19.291996+00:00",
-            "lastSeenAt": "2026-10-21T13:06:03.317054+00:00",
-            "resolvedAt": "2026-10-21T13:11:45.655032+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 218,
         "at": "2026-10-21T13:13:12.009256+00:00",
@@ -6100,9 +6027,60 @@
         "resolved": [],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 247,
+        "at": "2026-10-22T14:46:46.685287+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Radar · pouvoir-achat",
+            "tools": [
+              "Radar éditorial"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-editorial-radar.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T12:23:36Z",
+            "completedAt": "2026-10-22T13:45:33Z",
+            "cause": "La liste Banque de France a changé de format.",
+            "field": "Sources du radar",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "radar:pouvoir-achat",
+            "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
+            "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
+            "lastSeenAt": "2026-10-22T14:45:09.248428+00:00",
+            "resolvedAt": "2026-10-22T14:46:46.685287+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "Radar · pouvoir-achat",
+        "tools": [
+          "Radar éditorial"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-editorial-radar.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T12:23:36Z",
+        "completedAt": "2026-10-22T13:45:33Z",
+        "cause": "La liste Banque de France a changé de format.",
+        "field": "Sources du radar",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "radar:pouvoir-achat",
+        "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
+        "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
+        "lastSeenAt": "2026-10-22T14:45:09.248428+00:00",
+        "resolvedAt": "2026-10-22T14:46:46.685287+00:00"
+      },
       {
         "name": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
         "tools": [
@@ -8627,28 +8605,6 @@
         "field": "Poids du pays Ireland",
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:ee4badca6a761757506eca17",
-        "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T15:07:44.312595+00:00",
-        "resolvedAt": "2026-10-21T15:08:25.397352+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Brazil",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:1714418a8bf06fdde5261898",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
         "lastSeenAt": "2026-10-21T15:07:44.312595+00:00",
         "resolvedAt": "2026-10-21T15:08:25.397352+00:00"
@@ -12216,7 +12172,7 @@
       ],
       "reason": null,
       "lastSuccessAt": "2026-10-21T12:23:36Z",
-      "observedRunId": 39789448375,
+      "observedRunId": 39798334010,
       "status": "idle",
       "nextAttemptAt": null
     },
