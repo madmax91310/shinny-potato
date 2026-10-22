@@ -11,7 +11,9 @@ archivées, calendriers et changes. Il ne charge aucun historique ni le catalogu
 Dans Gestion, **Charger le catalogue complet** ouvre la recherche sur toutes les
 entrées techniques. Pagination et vingt champs de décision visibles ne limitent
 pas la recherche. Les historiques des actifs sélectionnés et les preuves d’une
-cotation sont chargés à la demande. Les exports exhaustifs restent disponibles.
+cotation sont chargés à la demande. Une conservation peut être importée et
+préparée sans charger le catalogue : seules les séries des positions et de la
+référence nécessaires au contrôle sont récupérées. Les exports exhaustifs restent disponibles.
 Le fichier historique `snapshot.json` reste compatible avec l’ancien code, y
 compris la voie de secours de publication ; la nouvelle interface ne le demande pas.
 
