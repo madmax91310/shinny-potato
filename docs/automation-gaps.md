@@ -1,15 +1,15 @@
-# Champs restant à automatiser — 2026-10-21
+# Champs restant à automatiser — 2026-10-22
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 258/258 | 0 | 0 | 0 | 0 |
-| Encours | 258/258 | 0 | 0 | 0 | 0 |
-| Calendrier annuel | 238/258 | 0 | 13 | 7 | 0 |
-| Pays | 229/235 | 23 | 0 | 6 | 0 |
-| Secteurs | 229/235 | 23 | 0 | 5 | 1 |
-| Positions pondérées | 234/235 | 23 | 0 | 0 | 1 |
+| Frais | 258/261 | 0 | 0 | 0 | 3 |
+| Encours | 258/261 | 0 | 0 | 0 | 3 |
+| Calendrier annuel | 238/261 | 0 | 13 | 7 | 3 |
+| Pays | 229/238 | 23 | 0 | 6 | 3 |
+| Secteurs | 229/238 | 23 | 0 | 5 | 4 |
+| Positions pondérées | 234/238 | 23 | 0 | 0 | 4 |
 
 ## Premiers calendriers des 13 parts récentes
 
@@ -37,6 +37,24 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Japan UCITS ETF (IE00BFMXYX26) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE North America UCITS ETF (IE00BKX55R35) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (IE00BK5BQZ41) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Pays | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
 | instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Secteurs | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
 | instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Positions pondérées | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |

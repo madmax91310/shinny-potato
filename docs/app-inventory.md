@@ -6,6 +6,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
+| Portefeuilles IA | /portefeuilles-ia |
 | Qui a vraiment gagné ? | /classements-performances |
 | Portefeuille & DCA | /le-dca-de |
 | Fiches pratiques | /fiches-pratiques |
@@ -40,23 +41,23 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | household | 29 |
 | index | 56 |
-| instrument | 647 |
+| instrument | 650 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 698 |
+| series | 703 |
 
 ## Champs des instruments
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 258/258 |
-| aum | 258/258 |
-| performance | 238/258 |
-| countries | 229/258 |
-| sectors | 229/258 |
-| holdings | 234/258 |
+| ter | 258/261 |
+| aum | 258/261 |
+| performance | 238/261 |
+| countries | 229/261 |
+| sectors | 229/261 |
+| holdings | 234/261 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

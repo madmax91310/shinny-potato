@@ -3,62 +3,62 @@
     "ter": {
       "label": "Frais",
       "present": 258,
-      "total": 258,
-      "applicable": 258,
+      "total": 261,
+      "applicable": 261,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 0
+      "unresolved": 3
     },
     "aum": {
       "label": "Encours",
       "present": 258,
-      "total": 258,
-      "applicable": 258,
+      "total": 261,
+      "applicable": 261,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 0
+      "unresolved": 3
     },
     "performance": {
       "label": "Calendrier annuel",
       "present": 238,
-      "total": 258,
-      "applicable": 258,
+      "total": 261,
+      "applicable": 261,
       "notApplicable": 0,
       "waiting": 13,
       "notPublished": 7,
-      "unresolved": 0
+      "unresolved": 3
     },
     "countries": {
       "label": "Pays",
       "present": 229,
-      "total": 258,
-      "applicable": 235,
+      "total": 261,
+      "applicable": 238,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 6,
-      "unresolved": 0
+      "unresolved": 3
     },
     "sectors": {
       "label": "Secteurs",
       "present": 229,
-      "total": 258,
-      "applicable": 235,
+      "total": 261,
+      "applicable": 238,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 1
+      "unresolved": 4
     },
     "holdings": {
       "label": "Positions pondérées",
       "present": 234,
-      "total": 258,
-      "applicable": 235,
+      "total": 261,
+      "applicable": 238,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 1
+      "unresolved": 4
     }
   },
   "recentCalendars": [
@@ -407,9 +407,9 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-10-21",
+  "checkedAt": "2026-10-22",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 258,
+  "instruments": 261,
   "covered": {
     "ter": 258,
     "aum": 258,
@@ -419,15 +419,213 @@
     "holdings": 234
   },
   "summary": {
+    "instrument:unqualified": 19,
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
     "instrument:not-published": 18,
-    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "ter",
+      "label": "Frais",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "aum",
+      "label": "Encours",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BFMXYX26",
+      "name": "Vanguard FTSE Japan UCITS ETF",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "ter",
+      "label": "Frais",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "aum",
+      "label": "Encours",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BKX55R35",
+      "name": "Vanguard FTSE North America UCITS ETF",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "ter",
+      "label": "Frais",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "aum",
+      "label": "Encours",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BK5BQZ41",
+      "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
     {
       "type": "instrument",
       "id": "FR0013346681",
@@ -716,9 +914,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "d3e4bc033f9a23c3482d312afd03a8de03af529986a7afe392b9a8829e404d33",
+      "sha256": "66b7b08d65ba36c55012962bb258ee97d4d5912d66174dfa7dd468f26f4dc0e9",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -737,9 +935,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "d3e4bc033f9a23c3482d312afd03a8de03af529986a7afe392b9a8829e404d33",
+      "sha256": "66b7b08d65ba36c55012962bb258ee97d4d5912d66174dfa7dd468f26f4dc0e9",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -758,9 +956,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "e97c350197416f98bde53060ca948e106f6237b971ad356cbeb081a7d97458ba",
+      "sha256": "7a62ae2426803f7f367723fae0315c6e7ddb36455df65ab9fdf15279944941dd",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -779,9 +977,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "e97c350197416f98bde53060ca948e106f6237b971ad356cbeb081a7d97458ba",
+      "sha256": "7a62ae2426803f7f367723fae0315c6e7ddb36455df65ab9fdf15279944941dd",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -800,9 +998,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "48002210c2e2f2323007af891a0209c622a401c51aea62ab36457bd779fb7715",
+      "sha256": "97510e964b218a0c8c156a8916d54f683369aae63f7dccee133c52fc96ffad00",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -821,9 +1019,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "48002210c2e2f2323007af891a0209c622a401c51aea62ab36457bd779fb7715",
+      "sha256": "97510e964b218a0c8c156a8916d54f683369aae63f7dccee133c52fc96ffad00",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -842,9 +1040,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "7e00960ba26b26a43d26342e70a52b567d3b37c50673458dc9f2aea024135f2b",
+      "sha256": "0aaeecc88ecfbab05589ff77e9508d3aa31fa122012d2a702ddd0157c4f124b6",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -863,9 +1061,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-21",
+      "checkedAt": "2026-10-22",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "7e00960ba26b26a43d26342e70a52b567d3b37c50673458dc9f2aea024135f2b",
+      "sha256": "0aaeecc88ecfbab05589ff77e9508d3aa31fa122012d2a702ddd0157c4f124b6",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
