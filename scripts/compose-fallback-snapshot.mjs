@@ -87,23 +87,63 @@ const TOKEN = /^[A-Za-z0-9_.-]+$/
 export function mentionsInChunks(chunks, identifiers) {
   const wanted = new Set(identifiers), found = new Set()
   if (!wanted.size) return found
-  const complex = [...wanted].filter(id => !TOKEN.test(id))
+  if (wanted.has('')) found.add('')
+  if (found.size === wanted.size) return found
+  const root = { next: new Map(), output: null }
+  root.fail = root
   let overlap = 1
-  for (const id of wanted) overlap = Math.max(overlap, id.length + 1)
+  for (const id of wanted) {
+    if (!id) continue
+    overlap = Math.max(overlap, id.length + 1)
+    let node = root
+    for (let i = 0; i < id.length; i++) {
+      const char = id.charCodeAt(i)
+      if (!node.next.has(char)) node.next.set(char, { next: new Map(), output: null })
+      node = node.next.get(char)
+    }
+    node.id = id
+    node.kind = !TOKEN.test(id) ? 'substring' : isIsin(id) ? 'isin' : 'token'
+  }
+  // Aho-Corasick failure/output links find every overlapping identifier in one
+  // pass, rather than rescanning a gigabyte once for each requested substring.
+  const queue = [...root.next.values()]
+  for (const node of queue) node.fail = root
+  for (let i = 0; i < queue.length; i++) {
+    const node = queue[i]
+    for (const [char, child] of node.next) {
+      let failure = node.fail
+      while (failure !== root && !failure.next.has(char)) failure = failure.fail
+      child.fail = failure.next.get(char) ?? root
+      child.output = child.fail.id !== undefined ? child.fail : child.fail.output
+      queue.push(child)
+    }
+  }
+  const first = new RegExp('[' + [...root.next.keys()].map(char => '\\u' + char.toString(16).padStart(4, '0')).join('') + ']', 'g')
+  const upperAlnum = char => char >= 65 && char <= 90 || char >= 48 && char <= 57
+  const tokenChar = char => upperAlnum(char) || char >= 97 && char <= 122 || char === 95 || char === 46 || char === 45
   let carry = '', beginning = true
   const scan = (text, final = false) => {
     const limit = final ? text.length + 1 : Math.max(0, text.length - overlap)
     const start = beginning ? 0 : 1
-    for (const match of text.matchAll(/[A-Za-z0-9_.-]+/g)) {
-      if (match.index >= start && match.index < limit && wanted.has(match[0])) found.add(match[0])
-    }
-    for (const match of text.matchAll(ISIN)) {
-      if (match.index >= start && match.index < limit && wanted.has(match[0]) && isIsin(match[0])) found.add(match[0])
-    }
-    for (const id of complex) {
-      if (found.has(id)) continue
-      const index = text.indexOf(id, start)
-      if (index >= 0 && index < limit) found.add(id)
+    let state = root
+    for (let i = 0; i < text.length; i++) {
+      if (state === root) {
+        first.lastIndex = i
+        const candidate = first.exec(text)
+        if (!candidate) break
+        i = candidate.index
+      }
+      const char = text.charCodeAt(i)
+      let next = state.next.get(char)
+      while (!next && state !== root) { state = state.fail; next = state.next.get(char) }
+      state = next ?? root
+      for (let node = state; node; node = node.output) {
+        if (node.id === undefined || found.has(node.id)) continue
+        const index = i - node.id.length + 1
+        if (index < start || index >= limit) continue
+        const boundary = node.kind === 'isin' ? upperAlnum : tokenChar
+        if (node.kind === 'substring' || !boundary(text.charCodeAt(index - 1)) && !boundary(text.charCodeAt(i + 1))) found.add(node.id)
+      }
     }
     if (limit > 0) beginning = false
     return text.slice(Math.max(0, limit - 1))

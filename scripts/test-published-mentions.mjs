@@ -15,6 +15,7 @@ for(let width=1;width<=text.length+2;width++){
  assert.deepEqual([...mentionsInChunks(chunks,ids)].sort(),expected,'Chunk width '+width)
 }
 assert.deepEqual([...mentionsInChunks([],['absent'])],[])
+assert.deepEqual([...mentionsInChunks([],[''])],[''])
 
 // Exceed V8's single-string limit under a small heap, without a giant fixture.
 // A missing identifier forces the entire stream to be checked.
@@ -23,7 +24,7 @@ const stress=`
  import {mentionsInChunks} from ${JSON.stringify(new URL('./compose-fallback-snapshot.mjs',import.meta.url).href)};
  const block=' '.repeat(1024*1024);
  function* chunks(){for(let i=0;i<600;i++)yield block;yield ' last-token'}
- assert.deepEqual([...mentionsInChunks(chunks(),['last-token','never-present'])],['last-token']);
+ assert.deepEqual([...mentionsInChunks(chunks(),['last-token',...Array.from({length:600},(_,i)=>'never:present/'+i)])],['last-token']);
  console.log('600 MiB inspected with a 96 MiB heap.');
 `
 const result=execFileSync(process.execPath,['--max-old-space-size=96','--input-type=module','-e',stress],{encoding:'utf8',timeout:60000})
