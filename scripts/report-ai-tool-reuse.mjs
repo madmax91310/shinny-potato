@@ -18,6 +18,7 @@ const scope=read('scripts/ai-tools-scope.json').assets
 const catalog=read('src/pages/dca-profiles/catalog.json')
 const sources=read('scripts/monthly-automation.json').series
 const classifications=read('src/data/dca-security-classifications.json')
+const compositions=read('src/data/dca-complete-holdings.json')
 const listings=read('data/ai-portfolios/selectable-assets.json').listings
 const now=new Date()
 const profileIds=['ai-infrastructure','space-stocks','digital-finance','bitcoin-companies','cyber-stocks','cyber-etf-stocks','software-data','digital-platforms','latin-america-business','digital-infrastructure-energy','europe-defense-expanded','robotics-etf-stocks','world','world-nasdaq-funds','themes-world-funds','world-gold-products']
@@ -50,7 +51,9 @@ const matrix=rows.map(r=>{
  const period=h?`${h.start} → ${h.end}, ${h.months} clôtures réelles continues`:'Aucun historique mensuel qualifié'
  const currencies=a?historyCurrencies(a):[]
  const index=indexIds[r.isin]
- const report={identity:{name:r.label,isin:r.isin,aiListingId:ai?.id??null,companyId:ai?.companyId??null,shareClass:ai?.shareClass??null,instrumentType:a?.instrumentType??(r.aiListingId?'EQUITY':'ETF'),
+ const report={identity:{name:r.label,isin:r.isin,aiListingId:ai?.id??null,companyId:ai?.companyId??null,
+  companyIdentityConvention:ai?.companyIdentityConvention??(ai?.cik?'SEC CIK ; identité de société, distincte de l’ISIN de la classe':null),companyIdentitySource:ai?.companyIdentitySource??ai?.sourceUrl??null,
+  shareClass:ai?.shareClass??null,instrumentType:a?.instrumentType??(r.aiListingId?'EQUITY':'ETF'),
   listing:{symbol:src?.symbol,currency:src?.currency,mic:src?.mic??src?.listingEvidence?.exchange,source:src?.listingEvidence??src?.listingEvidenceId},
   countryOfRisk:security?.country??null,domicile:security?null:getInstrumentFacts(r.isin)?.domicile??null,domicileNote:security?'Le pays de risque BlackRock n’est ni un domicile juridique ni une ventilation des revenus.':null},
   before:old,after:{history:r.history,aiDaily:{from:ai?.coverageFrom??null,through:ai?.coverageThrough??null,convention:ai?.convention??null},convention:'Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.',currency:src?.currency,conversion:`BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle ${Object.keys(FX.months).sort()[0]} → ${Object.keys(FX.months).sort().at(-1)}. Périodes antérieures conservées en devise native.`,currenciesAtFirstDate:currencies,continuity:src?.continuityNote??null},
@@ -78,7 +81,14 @@ const profiles=profileIds.map(id=>{
  try{
   const assets=c.ids.map(id=>convertAsset(RANKING_ASSETS[id],c.currency??'original',FX)),coverage=commonCoverage(assets)
   const sample=assets.map(a=>({id:a.id,returnPct:periodReturn(a,coverage.start,coverage.end)}))
-  return {...c,status:'raccordé dans cette PR',coverage,modes:{current:['period',...(coverage.years.length?['year','years']:[])],annual:coverage.years.length>=2},annualBlocker:coverage.years.length<2?'Au moins deux années civiles communes ; une seule disponible.':null,sample}
+  const fundIsin=({'cyber-etf-stocks':'IE00BG0J4C88','robotics-etf-stocks':'IE00BYZK4552'})[id]
+  const composition=fundIsin?compositions[fundIsin]:null
+  const compositionReview=composition?{isin:fundIsin,asOf:composition.asOf,checkedAt:composition.checkedAt,complete:composition.complete===true,sourceUrl:composition.sourceUrl,
+   identifiedWeightPct:composition.rows.filter(r=>r.isin).reduce((n,r)=>n+r.weightPct,0),requestedCompanies:assets.filter(a=>a.instrumentType==='EQUITY').map(a=>{
+    const rows=composition.rows.filter(r=>r.isin===a.isin)
+    return {id:a.id,isin:a.isin,weightPct:rows.length?rows.reduce((n,r)=>n+r.weightPct,0):null,observation:rows.length?'Position observée à cette date':composition.complete?'Absent de cette composition complète datée':'Absence non démontrée : composition partielle'}
+   })}:null
+  return {...c,status:'raccordé dans cette PR',coverage,modes:{current:['period',...(coverage.years.length?['year','years']:[])],annual:coverage.years.length>=2},annualBlocker:coverage.years.length<2?'Au moins deux années civiles communes ; une seule disponible.':null,sample,...(compositionReview?{compositionReview}:{})}
  }catch(e){return {...c,status:'bloqué',reason:e.message}}
 })
 const report={checkedAt:now.toISOString(),scope:'29 actifs exacts ; 16 profils demandés ; statuts fondés sur les consommateurs actuels',matrix,profiles}
