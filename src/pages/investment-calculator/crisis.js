@@ -46,7 +46,7 @@ export function compareCrisis({ assetId, crisisId, amount, mode }) {
 
 export function crisisMethodNote(asset) {
   if (asset.methodNote) return asset.methodNote
-  if (asset.priceMethod === 'adjusted') return asset.isin
+  if (asset.priceMethod === 'adjusted') return asset.isin && asset.instrumentType !== 'EQUITY'
     ? 'Cours ajustés, revenus réinvestis, frais du produit inclus ; hors frais du courtier et fiscalité.'
     : 'Dividendes réinvestis et divisions d’actions pris en compte ; hors frais et fiscalité.'
   return asset.returnNote || 'Simulation sur les cours historiques de l’actif ; hors frais et fiscalité.'
