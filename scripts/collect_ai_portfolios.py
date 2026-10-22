@@ -162,9 +162,9 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
             if corrections:
                 output['revisions'].append({'at': now.isoformat(), 'asset':key, 'sourceSha256':series['responseSha256'], 'changes':corrections})
             output['series'][key] = series
-            output['status'][key] = {'ok':True,'attemptedAt':now.isoformat(),'asOf':max(series['points'])}
+            output['status'][key] = {'ok':True,'attemptedAt':now.isoformat(),'asOf':max(series['points']),'sourceUrl':actual}
         except Exception as error:
-            output['status'][key] = {'ok':False,'attemptedAt':now.isoformat(),'error':str(error)}
+            output['status'][key] = {'ok':False,'attemptedAt':now.isoformat(),'error':str(error),'requestedUrl':url}
     try:
         fx = parse_fx(fetch_ecb(ECB, max_bytes=12_000_000),now,start)
         fx['rates'] = {d:r for d,r in fx['rates'].items() if d >= (dt.date.fromisoformat(start)-dt.timedelta(days=7)).isoformat()}
@@ -191,6 +191,17 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
     # Conservative global accounting cutoff: yesterday, after all supported markets close.
     output['asOf']=(today-dt.timedelta(days=1)).isoformat()
     return output
+
+
+def record_qualification_success(row, series, attempted_at):
+    """Keep the certificate consistent with the exact response admitted by daily catch-up."""
+    dates=sorted(series['points'])
+    row.update(lastSuccess=attempted_at,coverageFrom=series['anchorDate'],coverageThrough=dates[-1],
+               observedCoverageFrom=dates[0],observedCoverageThrough=dates[-1],
+               dailySourceUrl=series['sourceUrl'],sourceRetrievedAt=series['retrievedAt'],
+               responseSha256=series['responseSha256'],qualifiedSymbol=series['symbol'],
+               observedSourceCurrency=series.get('sourceCurrency',series['currency']),priceScale=series.get('priceScale',1),
+               attempts=[{'url':series['sourceUrl'],'result':'qualified','at':attempted_at,'retrievedAt':series['retrievedAt']}])
 
 
 def main():
@@ -255,7 +266,9 @@ def main():
             row.update(status='qualified' if status.get('ok') else 'temporary-failure',lastAttempt=status.get('attemptedAt'),reason='Clôtures quotidiennes actualisées et contrôlées.' if status.get('ok') else status.get('error','Source indisponible'))
             if status.get('ok'):
                 series=result['series'][key]
-                row.update(lastSuccess=series['retrievedAt'],coverageFrom=series['anchorDate'],coverageThrough=max(series['points']))
+                record_qualification_success(row,series,status['attemptedAt'])
+            elif status.get('requestedUrl'):
+                row['attempts']=[{'requestedUrl':status['requestedUrl'],'result':status['error'],'at':status['attemptedAt']}]
         reports(rows,args.root/'data/ai-portfolios')
         metadata={r['id']:r for r in rows}
         result['universe']=[{**a,**metadata.get(a['id'],{})} for a in result['universe']]
