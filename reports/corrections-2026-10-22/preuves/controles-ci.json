@@ -2,7 +2,7 @@
   {
     "command": "node scripts/test-performance-rankings.mjs",
     "exitCode": 0,
-    "seconds": 4.54,
+    "seconds": 3.68,
     "log": "reports/corrections-2026-10-22/preuves/ci-000.log"
   },
   {
@@ -14,25 +14,25 @@
   {
     "command": "node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs",
     "exitCode": 0,
-    "seconds": 2.13,
+    "seconds": 3.05,
     "log": "reports/corrections-2026-10-22/preuves/ci-002.log"
   },
   {
     "command": "node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
     "exitCode": 0,
-    "seconds": 5.34,
+    "seconds": 5.83,
     "log": "reports/corrections-2026-10-22/preuves/ci-003.log"
   },
   {
     "command": "node scripts/test-tool-projections.mjs",
     "exitCode": 0,
-    "seconds": 15.16,
+    "seconds": 16.65,
     "log": "reports/corrections-2026-10-22/preuves/ci-004.log"
   },
   {
     "command": "node scripts/test-light-registries.mjs",
     "exitCode": 0,
-    "seconds": 3.38,
+    "seconds": 3.78,
     "log": "reports/corrections-2026-10-22/preuves/ci-005.log"
   },
   {
@@ -44,31 +44,31 @@
   {
     "command": "node scripts/test-broker-automation.mjs",
     "exitCode": 0,
-    "seconds": 0.52,
+    "seconds": 0.57,
     "log": "reports/corrections-2026-10-22/preuves/ci-007.log"
   },
   {
     "command": "node scripts/test-lifestrategy.mjs",
     "exitCode": 0,
-    "seconds": 0.52,
+    "seconds": 0.69,
     "log": "reports/corrections-2026-10-22/preuves/ci-008.log"
   },
   {
     "command": "node scripts/test-resource-selections.mjs",
     "exitCode": 0,
-    "seconds": 0.72,
+    "seconds": 1.12,
     "log": "reports/corrections-2026-10-22/preuves/ci-009.log"
   },
   {
     "command": "node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
     "exitCode": 0,
-    "seconds": 3.75,
+    "seconds": 4.72,
     "log": "reports/corrections-2026-10-22/preuves/ci-010.log"
   },
   {
     "command": "node scripts/test-exposure-classification.mjs",
     "exitCode": 0,
-    "seconds": 0.11,
+    "seconds": 0.22,
     "log": "reports/corrections-2026-10-22/preuves/ci-011.log"
   },
   {
@@ -86,7 +86,7 @@
   {
     "command": "node scripts/test-portfolio-roadmap.mjs",
     "exitCode": 0,
-    "seconds": 0.26,
+    "seconds": 0.27,
     "log": "reports/corrections-2026-10-22/preuves/ci-014.log"
   },
   {
@@ -98,7 +98,7 @@
   {
     "command": "node scripts/test-exposure-observations.mjs",
     "exitCode": 0,
-    "seconds": 0.37,
+    "seconds": 0.32,
     "log": "reports/corrections-2026-10-22/preuves/ci-016.log"
   },
   {
@@ -110,13 +110,13 @@
   {
     "command": "node scripts/test-market-calendar-performance.mjs",
     "exitCode": 0,
-    "seconds": 0.21,
+    "seconds": 0.16,
     "log": "reports/corrections-2026-10-22/preuves/ci-018.log"
   },
   {
     "command": "node scripts/test-presentation-etf.mjs",
     "exitCode": 0,
-    "seconds": 0.21,
+    "seconds": 0.16,
     "log": "reports/corrections-2026-10-22/preuves/ci-019.log"
   },
   {
@@ -128,7 +128,7 @@
   {
     "command": "node scripts/test-insurance.mjs",
     "exitCode": 0,
-    "seconds": 0.47,
+    "seconds": 0.52,
     "log": "reports/corrections-2026-10-22/preuves/ci-021.log"
   },
   {
@@ -140,25 +140,25 @@
   {
     "command": "node scripts/test-wealth-simulator.mjs",
     "exitCode": 0,
-    "seconds": 0.06,
+    "seconds": 0.11,
     "log": "reports/corrections-2026-10-22/preuves/ci-023.log"
   },
   {
     "command": "node scripts/test-performance-currency.mjs",
     "exitCode": 0,
-    "seconds": 1.42,
+    "seconds": 1.53,
     "log": "reports/corrections-2026-10-22/preuves/ci-024.log"
   },
   {
     "command": "node scripts/test-cross-tool-currency.mjs",
     "exitCode": 0,
-    "seconds": 1.72,
+    "seconds": 1.87,
     "log": "reports/corrections-2026-10-22/preuves/ci-025.log"
   },
   {
     "command": "node scripts/test-annual-rollover.mjs",
     "exitCode": 0,
-    "seconds": 0.27,
+    "seconds": 0.22,
     "log": "reports/corrections-2026-10-22/preuves/ci-026.log"
   },
   {
@@ -170,43 +170,43 @@
   {
     "command": "node scripts/test-fx-consistency.mjs",
     "exitCode": 0,
-    "seconds": 0.22,
+    "seconds": 0.21,
     "log": "reports/corrections-2026-10-22/preuves/ci-028.log"
   },
   {
     "command": "npm run test:index-concentration",
     "exitCode": 0,
-    "seconds": 0.52,
+    "seconds": 0.57,
     "log": "reports/corrections-2026-10-22/preuves/ci-029.log"
   },
   {
     "command": "node scripts/test-automated-indices.mjs",
     "exitCode": 0,
-    "seconds": 0.22,
+    "seconds": 0.21,
     "log": "reports/corrections-2026-10-22/preuves/ci-030.log"
   },
   {
     "command": "node scripts/test-automated-index-sheets.mjs",
     "exitCode": 0,
-    "seconds": 0.67,
+    "seconds": 0.77,
     "log": "reports/corrections-2026-10-22/preuves/ci-031.log"
   },
   {
     "command": "node scripts/test-automation-gap-inventory.mjs",
     "exitCode": 0,
-    "seconds": 0.82,
+    "seconds": 0.87,
     "log": "reports/corrections-2026-10-22/preuves/ci-032.log"
   },
   {
     "command": "node scripts/test-consumer-usage.mjs",
     "exitCode": 0,
-    "seconds": 2.33,
+    "seconds": 2.77,
     "log": "reports/corrections-2026-10-22/preuves/ci-033.log"
   },
   {
     "command": "node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
     "exitCode": 0,
-    "seconds": 5.31,
+    "seconds": 4.99,
     "log": "reports/corrections-2026-10-22/preuves/ci-034.log"
   },
   {
@@ -224,31 +224,31 @@
   {
     "command": "npm run audit:portfolio-provenance",
     "exitCode": 0,
-    "seconds": 0.32,
+    "seconds": 0.37,
     "log": "reports/corrections-2026-10-22/preuves/ci-037.log"
   },
   {
     "command": "node scripts/build-equity-duel-returns.mjs",
     "exitCode": 0,
-    "seconds": 0.27,
+    "seconds": 0.32,
     "log": "reports/corrections-2026-10-22/preuves/ci-038.log"
   },
   {
     "command": "npm run audit:portfolio-duels",
     "exitCode": 0,
-    "seconds": 1.32,
+    "seconds": 1.52,
     "log": "reports/corrections-2026-10-22/preuves/ci-039.log"
   },
   {
     "command": "node scripts/test-equity-duels.mjs",
     "exitCode": 0,
-    "seconds": 0.62,
+    "seconds": 0.72,
     "log": "reports/corrections-2026-10-22/preuves/ci-040.log"
   },
   {
     "command": "node scripts/test-manual-equity-duels.mjs",
     "exitCode": 0,
-    "seconds": 0.22,
+    "seconds": 0.27,
     "log": "reports/corrections-2026-10-22/preuves/ci-041.log"
   },
   {
@@ -260,13 +260,13 @@
   {
     "command": "npm run audit:data-review",
     "exitCode": 0,
-    "seconds": 2.08,
+    "seconds": 2.17,
     "log": "reports/corrections-2026-10-22/preuves/ci-043.log"
   },
   {
     "command": "node scripts/test-data-review-reminder.mjs",
     "exitCode": 0,
-    "seconds": 2.33,
+    "seconds": 2.43,
     "log": "reports/corrections-2026-10-22/preuves/ci-044.log"
   },
   {
@@ -278,25 +278,25 @@
   {
     "command": "npm run audit:etf-annual-performance",
     "exitCode": 0,
-    "seconds": 0.31,
+    "seconds": 0.32,
     "log": "reports/corrections-2026-10-22/preuves/ci-046.log"
   },
   {
     "command": "npm run audit:etf-completeness",
     "exitCode": 0,
-    "seconds": 0.72,
+    "seconds": 0.67,
     "log": "reports/corrections-2026-10-22/preuves/ci-047.log"
   },
   {
     "command": "npm run audit:etf-consistency",
     "exitCode": 0,
-    "seconds": 0.57,
+    "seconds": 0.62,
     "log": "reports/corrections-2026-10-22/preuves/ci-048.log"
   },
   {
     "command": "node scripts/test-four-issuer-consumers.mjs",
     "exitCode": 0,
-    "seconds": 0.17,
+    "seconds": 0.22,
     "log": "reports/corrections-2026-10-22/preuves/ci-049.log"
   },
   {
@@ -308,25 +308,25 @@
   {
     "command": "npm run audit:instrument-catalog",
     "exitCode": 0,
-    "seconds": 0.42,
+    "seconds": 0.52,
     "log": "reports/corrections-2026-10-22/preuves/ci-051.log"
   },
   {
     "command": "node scripts/audit-support-enrichment.mjs",
     "exitCode": 0,
-    "seconds": 0.32,
+    "seconds": 0.37,
     "log": "reports/corrections-2026-10-22/preuves/ci-052.log"
   },
   {
     "command": "npm run audit:calculator-series",
     "exitCode": 0,
-    "seconds": 14.79,
+    "seconds": 15.11,
     "log": "reports/corrections-2026-10-22/preuves/ci-053.log"
   },
   {
     "command": "node scripts/test-gold-consumers.mjs",
     "exitCode": 0,
-    "seconds": 0.31,
+    "seconds": 0.32,
     "log": "reports/corrections-2026-10-22/preuves/ci-054.log"
   },
   {
@@ -338,56 +338,55 @@
   {
     "command": "node scripts/test-equity-monthly.mjs",
     "exitCode": 0,
-    "seconds": 3.54,
+    "seconds": 3.23,
     "log": "reports/corrections-2026-10-22/preuves/ci-056.log"
   },
   {
     "command": "node scripts/test-investment-crisis.mjs",
     "exitCode": 0,
-    "seconds": 0.52,
+    "seconds": 0.62,
     "log": "reports/corrections-2026-10-22/preuves/ci-057.log"
   },
   {
     "command": "node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
     "exitCode": 0,
-    "seconds": 5.38,
-    "log": "reports/corrections-2026-10-22/preuves/ci-058.log",
-    "retestedAfterInceptionFix": true
+    "seconds": 5.4,
+    "log": "reports/corrections-2026-10-22/preuves/ci-058.log"
   },
   {
     "command": "node scripts/test-investment-conclusions.mjs",
     "exitCode": 0,
-    "seconds": 4.03,
+    "seconds": 3.58,
     "log": "reports/corrections-2026-10-22/preuves/ci-059.log"
   },
   {
     "command": "node scripts/test-anniversary-indices.mjs",
     "exitCode": 0,
-    "seconds": 2.74,
+    "seconds": 2.48,
     "log": "reports/corrections-2026-10-22/preuves/ci-060.log"
   },
   {
     "command": "node scripts/test-existing-asset-formats.mjs",
     "exitCode": 0,
-    "seconds": 0.52,
+    "seconds": 0.47,
     "log": "reports/corrections-2026-10-22/preuves/ci-061.log"
   },
   {
     "command": "node scripts/test-publication-consumers.mjs",
     "exitCode": 0,
-    "seconds": 2.33,
+    "seconds": 2.48,
     "log": "reports/corrections-2026-10-22/preuves/ci-062.log"
   },
   {
     "command": "node scripts/test-household-benchmarks.mjs",
     "exitCode": 0,
-    "seconds": 0.27,
+    "seconds": 0.26,
     "log": "reports/corrections-2026-10-22/preuves/ci-063.log"
   },
   {
     "command": "npm run audit:publishable-content",
     "exitCode": 0,
-    "seconds": 0.57,
+    "seconds": 0.52,
     "log": "reports/corrections-2026-10-22/preuves/ci-064.log"
   },
   {
@@ -405,7 +404,7 @@
   {
     "command": "npm run audit:source-inventory",
     "exitCode": 0,
-    "seconds": 0.21,
+    "seconds": 0.22,
     "log": "reports/corrections-2026-10-22/preuves/ci-067.log"
   },
   {
@@ -435,7 +434,7 @@
   {
     "command": "npm run audit:household-statistics",
     "exitCode": 0,
-    "seconds": 0.64,
+    "seconds": 0.62,
     "log": "reports/corrections-2026-10-22/preuves/ci-072.log"
   },
   {
@@ -453,7 +452,7 @@
   {
     "command": "node scripts/test-world-factors-step-one.mjs",
     "exitCode": 0,
-    "seconds": 0.42,
+    "seconds": 0.37,
     "log": "reports/corrections-2026-10-22/preuves/ci-075.log"
   },
   {
@@ -471,13 +470,13 @@
   {
     "command": "node scripts/test-fee-impact-editorial.mjs",
     "exitCode": 0,
-    "seconds": 0.77,
+    "seconds": 0.67,
     "log": "reports/corrections-2026-10-22/preuves/ci-078.log"
   },
   {
     "command": "npm run audit:data-catalog",
     "exitCode": 0,
-    "seconds": 2.13,
+    "seconds": 2.12,
     "log": "reports/corrections-2026-10-22/preuves/ci-079.log"
   },
   {
@@ -489,7 +488,7 @@
   {
     "command": "node scripts/test-index-comparison-copy.mjs",
     "exitCode": 0,
-    "seconds": 0.42,
+    "seconds": 0.47,
     "log": "reports/corrections-2026-10-22/preuves/ci-081.log"
   },
   {
@@ -513,67 +512,67 @@
   {
     "command": "node scripts/test-portfolio-editorial.mjs",
     "exitCode": 0,
-    "seconds": 3.52,
+    "seconds": 3.63,
     "log": "reports/corrections-2026-10-22/preuves/ci-085.log"
   },
   {
     "command": "node scripts/test-publication-preferences.mjs",
     "exitCode": 0,
-    "seconds": 0.03,
+    "seconds": 0.06,
     "log": "reports/corrections-2026-10-22/preuves/ci-086.log"
   },
   {
     "command": "node scripts/test-asset-selection.mjs",
     "exitCode": 0,
-    "seconds": 7.74,
+    "seconds": 6.79,
     "log": "reports/corrections-2026-10-22/preuves/ci-087.log"
   },
   {
     "command": "node scripts/test-portfolio-recipes.mjs",
     "exitCode": 0,
-    "seconds": 47.65,
+    "seconds": 41.39,
     "log": "reports/corrections-2026-10-22/preuves/ci-088.log"
   },
   {
     "command": "node scripts/test-generator-controls.mjs",
     "exitCode": 0,
-    "seconds": 10.95,
+    "seconds": 11.5,
     "log": "reports/corrections-2026-10-22/preuves/ci-089.log"
   },
   {
     "command": "node scripts/test-etf-routing-expansion.mjs",
     "exitCode": 0,
-    "seconds": 0.37,
+    "seconds": 0.42,
     "log": "reports/corrections-2026-10-22/preuves/ci-090.log"
   },
   {
     "command": "node scripts/audit-asset-tool-routing.mjs --write",
     "exitCode": 0,
-    "seconds": 1.12,
+    "seconds": 1.22,
     "log": "reports/corrections-2026-10-22/preuves/ci-091.log"
   },
   {
     "command": "node scripts/test-asset-routing-blockers.mjs",
     "exitCode": 0,
-    "seconds": 0.12,
+    "seconds": 0.11,
     "log": "reports/corrections-2026-10-22/preuves/ci-092.log"
   },
   {
     "command": "node scripts/test-publication-reliability.mjs",
     "exitCode": 0,
-    "seconds": 0.32,
+    "seconds": 0.26,
     "log": "reports/corrections-2026-10-22/preuves/ci-093.log"
   },
   {
     "command": "node scripts/test-historical-publications.mjs",
     "exitCode": 0,
-    "seconds": 6.16,
+    "seconds": 5.9,
     "log": "reports/corrections-2026-10-22/preuves/ci-094.log"
   },
   {
     "command": "npm run stress-test:portfolios",
     "exitCode": 0,
-    "seconds": 108.24,
+    "seconds": 99.23,
     "log": "reports/corrections-2026-10-22/preuves/ci-095.log"
   },
   {
@@ -597,7 +596,7 @@
   {
     "command": "node scripts/test-format-loading.mjs",
     "exitCode": 0,
-    "seconds": 7.97,
+    "seconds": 8.11,
     "log": "reports/corrections-2026-10-22/preuves/ci-099.log"
   },
   {
@@ -615,19 +614,19 @@
   {
     "command": "node scripts/test-format-loading.mjs --built",
     "exitCode": 0,
-    "seconds": 8.56,
+    "seconds": 8.9,
     "log": "reports/corrections-2026-10-22/preuves/ci-103.log"
   },
   {
     "command": "node scripts/test-practical-sheets.mjs",
     "exitCode": 0,
-    "seconds": 0.97,
+    "seconds": 0.92,
     "log": "reports/corrections-2026-10-22/preuves/ci-104.log"
   },
   {
     "command": "node scripts/test-performance-links.mjs",
     "exitCode": 0,
-    "seconds": 2.78,
+    "seconds": 2.63,
     "log": "reports/corrections-2026-10-22/preuves/ci-105.log"
   },
   {
@@ -663,7 +662,7 @@
   {
     "command": "node scripts/test-browser-check-error.mjs",
     "exitCode": 0,
-    "seconds": 0.06,
+    "seconds": 0.03,
     "log": "reports/corrections-2026-10-22/preuves/ci-111.log"
   },
   {

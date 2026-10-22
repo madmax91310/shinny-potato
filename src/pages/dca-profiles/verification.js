@@ -59,5 +59,8 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
    totals.push({scope,asOf:latest,oldest:cluster.at(-1).h.asOf,rows,coverage:rows.reduce((s,r)=>s+r.weight,0),portfolioWeight:cluster.reduce((s,x)=>s+x.line.weight,0),complete:cluster.every(x=>x.h.complete===true&&x.h.rows.every(r=>x.rows.has(r.isin)))})
   }
  }
+ // Keep unidentifiable scopes visible, after scopes with usable positions.
+ // Their zero identified weight must not hide another scope's real holdings.
+ totals.sort((a,b)=>Number(b.rows.length>0)-Number(a.rows.length>0))
  return {pairs,unavailable,totals}
 }

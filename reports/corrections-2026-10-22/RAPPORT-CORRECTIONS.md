@@ -58,7 +58,7 @@ Les formats de tweets et maquettes PNG sont conservés. Les nouvelles cotations 
 
 ## Tests et fichiers exploitables
 
-Les journaux réels sont dans `preuves/` : 897 tests Python avec couverture, 113 commandes CI locales, audits financiers, navigateur IA et routes. Les défauts supplémentaires découverts par la CI sont corrigés et retestés dans `preuves/validation-additionnelle.json` : schéma des champs non applicables, contrôle DWS intégral avec différés, et assertion héritée d’exclusion globale. 39 PNG de raccordements et 6 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
+Les journaux réels sont dans `preuves/` : 897 tests Python avec couverture, 113 commandes CI locales, 719 actifs testés en versement unique et en DCA dans Chromium, 18 vérifications navigateur complémentaires, audits financiers, navigateur IA et routes. Les défauts supplémentaires découverts par la CI sont corrigés et retestés dans `preuves/validation-additionnelle.json` : schéma des champs non applicables, contrôle DWS intégral avec différés, et assertion héritée d’exclusion globale. 39 PNG de raccordements et 6 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
 
 - `statut-19-actions.csv` et `.json` : statuts, preuves, tests et limites par action.
 - `reconciliation-90-ecarts.csv` et `.json` : tous les cas, sans disparition d’alerte.
@@ -161,7 +161,7 @@ Preuves : preuves/tests-field-coverage.log | preuves/tests-etf-fields.log | preu
 
 ### P2-02 — corrigée
 
-Positions économiques, top10, fonds/indice et panier restent distincts. Pas de renormalisation silencieuse ; poids et identifiants inconnus préservés ; consolidation et symétrie du recouvrement testées.
+Positions économiques, top10, fonds/indice et panier restent distincts. Pas de renormalisation silencieuse ; poids et identifiants inconnus préservés ; consolidation et symétrie du recouvrement testées. Le panneau ouvre une composition identifiable avant un périmètre sans identifiants, sans supprimer ce dernier ni ses poids.
 
 Limite : Un fichier complet contenant une position sans identifiant ne certifie pas un recouvrement complet ; donuts compatibles restent utilisables.
 
