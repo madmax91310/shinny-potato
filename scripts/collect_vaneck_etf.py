@@ -3,6 +3,7 @@ import re
 import pathlib
 import subprocess
 import urllib.error
+import http.client
 from urllib.parse import urlparse
 from data_automation import reject
 from issuer_documents import download,pdf_text,document_date,proof,validated_rows,bounded_return
@@ -94,7 +95,7 @@ def download_document(share, fetch=download):
     for url in urls:
         try:
             body=download(url, url_validator=official_transport_url) if fetch is download else fetch(url)
-        except (urllib.error.URLError, TimeoutError) as error:
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead) as error:
             last_error=error;continue
         except ValueError as error:
             if 'Expected official PDF' not in str(error):raise

@@ -24,3 +24,7 @@ assert.equal(qualifyCoverage({...retained,field:'pea',state:'manual'},{metadataS
 assert(report.backlog.every(row=>row.requiresAction&&row.nextAction&&row.priority))
 assert.equal(new Set(report.connections.map(r=>`${r.type}:${r.id}:${r.field}`)).size,report.connections.length)
 console.log('Field lifecycles, explicit module roles, unknown defaults, immutable proof dates, nested funds and actionable connections passed.')
+
+const partialFund=qualifyCoverage({...retained,scope:'fund',unidentifiedSecurityCount:1,unidentifiedWeightPct:.1})
+assert.equal(partialFund.actionState,'unqualified','Missing identities matter for fund holdings as well as index holdings')
+assert(partialFund.requiresAction)

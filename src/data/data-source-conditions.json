@@ -1,0 +1,645 @@
+{
+  "version": 1,
+  "scope": "Sources des configurations inventoriées le 22 octobre 2026 ; conditions juridiques non certifiées.",
+  "sources": [
+    {
+      "host": "am.jpmorgan.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "assets.traderepublic.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "bitwiseinvestments.eu",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "bofip.impots.gouv.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "ca-paris.credit-agricole.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "cdn.21shares.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "coinshares.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/qualified-listing-sources.json"
+      ]
+    },
+    {
+      "host": "dataspanapi.wisdomtree.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/monthly-automation.json",
+        "scripts/qualified-listing-sources.json"
+      ]
+    },
+    {
+      "host": "epargne.boursedirect.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "etf.dws.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/dca-complete-holdings-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/monthly-automation.json"
+      ]
+    },
+    {
+      "host": "forum.linxea.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "fundcentres.landg.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "globalxetfs.eu",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/monthly-automation.json",
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "groupe.boursedirect.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "indexes.nikkei.co.jp",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/index-automation.json"
+      ]
+    },
+    {
+      "host": "res.americancentury.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/generated-holdings-sources.json"
+      ]
+    },
+    {
+      "host": "research.ftserussell.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/index-automation.json"
+      ]
+    },
+    {
+      "host": "stoxx.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/monthly-automation.json"
+      ]
+    },
+    {
+      "host": "support.linxea.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "support.traderepublic.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "swissfunddata.ch",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "traderepublic.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.amf-france.org",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "www.amundietf.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/exposure-etf-expansion.json",
+        "scripts/index-automation.json",
+        "scripts/practical-sheet-sources.json",
+        "scripts/qualified-listing-sources.json"
+      ]
+    },
+    {
+      "host": "www.assetmanagement.hsbc.co.uk",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json"
+      ]
+    },
+    {
+      "host": "www.blackrock.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/dca-complete-holdings-sources.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/monthly-automation.json"
+      ]
+    },
+    {
+      "host": "www.boursedirect.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.boursobank.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.boursorama.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.corum.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/corum-quarterly-qualified.json"
+      ]
+    },
+    {
+      "host": "www.credit-agricole.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.fortuneo.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.help.saxo",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.home.saxo",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.ibkrguides.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.interactivebrokers.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.interactivebrokers.ie",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "www.invesco.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/non-bond-expansion-sources.json"
+      ]
+    },
+    {
+      "host": "www.ishares.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/etf-pilot.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/monthly-automation.json",
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "www.msci.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/index-automation.json",
+        "scripts/index-company-sources.json"
+      ]
+    },
+    {
+      "host": "www.sec.gov",
+      "access": "Fair access SEC : User-Agent identifiant application et contact réel, limitation des requêtes, refus conservé.",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": "https://www.sec.gov/about/developer-resources",
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "www.service-public.gouv.fr",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/practical-sheet-sources.json"
+      ]
+    },
+    {
+      "host": "www.spglobal.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/index-automation.json"
+      ]
+    },
+    {
+      "host": "www.ssga.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/dca-complete-holdings-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/non-bond-expansion-sources.json",
+        "scripts/security-identity-sources.json",
+        "scripts/ssga-etf.json"
+      ]
+    },
+    {
+      "host": "www.vaneck.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/monthly-automation.json"
+      ]
+    },
+    {
+      "host": "www.vanguard.co.uk",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json"
+      ]
+    },
+    {
+      "host": "www.wisdomtree.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/additional-etf-sources.json",
+        "scripts/exposure-etf-expansion.json",
+        "scripts/generated-holdings-sources.json",
+        "scripts/non-bond-expansion-sources.json"
+      ]
+    },
+    {
+      "host": "www.xtb.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    },
+    {
+      "host": "xtb.com",
+      "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "À vérifier pour la donnée et le document précis",
+      "termsUrl": null,
+      "reviewStatus": "Conditions de réutilisation non vérifiées ; un succès HTTP ne constitue pas une licence.",
+      "configurations": [
+        "scripts/broker_profile_sources.json"
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "id": "worldbank-pink-sheet-gold",
+      "urls": [
+        "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx"
+      ],
+      "reuseStatus": "documented-in-repository",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Source : Banque mondiale, Pink Sheet · CC BY 4.0 · Calculs Épargnant Libre\nworldbank.org/commodities · creativecommons.org/licenses/by/4.0",
+      "proof": "src/data/worldbank-gold-monthly.json",
+      "reviewStatus": "Licence et attribution déjà consignées pour la série or Pink Sheet ; ne vaut pas pour toutes les données de ce domaine."
+    }
+  ]
+}

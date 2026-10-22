@@ -68,7 +68,11 @@ class PublicationTests(unittest.TestCase):
                 for row in new['annual']['years']:row['year']-=1
                 return new
             result, observations=scpi_refresh({'records':[record]},{record['id']:adapter},JAN)
-            self.assertEqual(result,{'records':[record]})
+            retained=copy.deepcopy(result);baseline=copy.deepcopy(record)
+            retained['records'][0].pop('collectionStatus',None);baseline.pop('collectionStatus',None)
+            self.assertEqual(retained,{'records':[baseline]})
+            self.assertEqual(result['records'][0]['collectionStatus']['status'],'failed')
+            self.assertEqual(result['records'][0]['collectionStatus'].get('lastAccessSuccessAt'),record.get('collectionStatus',{}).get('lastAccessSuccessAt'))
             self.assertEqual(observations[0]['status'],'failure')
 
     def test_origin_tof_uses_its_own_date_not_undated_counts(self):

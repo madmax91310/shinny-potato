@@ -1,3 +1,4 @@
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
@@ -23,7 +24,8 @@ export function anniversaryProjection() {
  const all = [...anniversary.MARKET_ASSETS, ...anniversary.ANNIVERSAIRE_ELIGIBLE_ASSETS]
  const assets = Object.fromEntries(all.map(asset => [asset.id, {...strip(asset), historyId:asset.id}]))
  const bounds = Object.fromEntries(all.map(asset => [asset.id, [anniversary.getAssetMinDate(asset.id),anniversary.getAssetMaxDate(asset.id)]]))
- return { assets, bounds, eligible:anniversary.ANNIVERSAIRE_ELIGIBLE_ASSETS.map(a=>assets[a.id]), excluded:anniversary.ANNIVERSAIRE_EXCLUDED_ASSETS.map(a=>assets[a.id]) }
+ const unqualifiedMonths=Object.fromEntries(all.map(asset=>[asset.id,anniversary.MARKET_ASSETS.find(a=>a.id===asset.id)??asset]).map(([id,asset])=>[id,asset.points.filter(p=>!qualifyHistoryWindow(asset,p.date,p.date).qualified).map(p=>p.date)]).filter(([,months])=>months.length));
+ return { assets, bounds, unqualifiedMonths, eligible:anniversary.ANNIVERSAIRE_ELIGIBLE_ASSETS.map(a=>assets[a.id]), excluded:anniversary.ANNIVERSAIRE_EXCLUDED_ASSETS.map(a=>assets[a.id]) }
 }
 export function projectSelectedData(){
  let base='/'
@@ -63,7 +65,7 @@ export function projectSelectedData(){
 export const references=${JSON.stringify(exposureIndex)};export async function loadExposureCatalog(){return loadRecord('__catalog')};const ready=new Set(${JSON.stringify(inlineExposures)});export const exposureRecords={isReady:id=>!references[id]||ready.has(id),load:async id=>{if(!references[id]||ready.has(id))return references[id];const record=await loadRecord(id);Object.assign(references[id],record);ready.add(id);return record}};`,map:null}
    if(path.endsWith('/src/pages/tweet-midi/data/anniversaryHistory.js')) {
     const functions=['getValidYearsBackOptions','ymForYearsBack','fmtYm'].map(key=>anniversarySource.match(new RegExp('export function '+key+'\\([\\s\\S]*?\\n}'))[0]).join('\n')
-    return {code:`import {interpolatePrice,ymIndex} from '../../investment-calculator/math.js';import {loadHistoryRecord} from '../../../data/history-browser.js';const data=${JSON.stringify(anniversaryData)},loaded=new Map();export const ASSETS=data.assets,ANNIVERSAIRE_ELIGIBLE_ASSETS=data.eligible,ANNIVERSAIRE_EXCLUDED_ASSETS=data.excluded,MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};const getAssetMinDate=id=>data.bounds[id][0],getAssetMaxDate=id=>data.bounds[id][1];export const anniversaryRecords={isReady:id=>loaded.has(id),load:async id=>{const record=await loadHistoryRecord(id);loaded.set(id,record);return record}};export function getHistoricalPrice(id,ym){const record=loaded.get(id);if(!record)throw Error('Historique non chargé');return interpolatePrice(record.anniversaryPoints??record.points,ymIndex(ym)<ymIndex(getAssetMinDate(id))?getAssetMinDate(id):ym)};${functions}`,map:null}
+    return {code:`import {interpolatePrice,ymIndex} from '../../investment-calculator/math.js';import {requireHistoryWindow} from '../../../data/history-window-quality.js';import {loadHistoryRecord} from '../../../data/history-browser.js';const data=${JSON.stringify(anniversaryData)},loaded=new Map();export const ASSETS=data.assets,ANNIVERSAIRE_ELIGIBLE_ASSETS=data.eligible,ANNIVERSAIRE_EXCLUDED_ASSETS=data.excluded,MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};const getAssetMinDate=id=>data.bounds[id][0],getAssetMaxDate=id=>data.bounds[id][1],isQualifiedMonth=(id,ym)=>!data.unqualifiedMonths[id]?.includes(ym);export const anniversaryRecords={isReady:id=>loaded.has(id),load:async id=>{const record=await loadHistoryRecord(id);loaded.set(id,record);return record}};export function getHistoricalPrice(id,ym){const record=loaded.get(id);if(!record)throw Error('Historique non chargé');const date=ymIndex(ym)<ymIndex(getAssetMinDate(id))?getAssetMinDate(id):ym;requireHistoryWindow(record,date,date);return interpolatePrice(record.anniversaryPoints??record.points,date)};${functions}`,map:null}
    }
    if(path.endsWith('/src/data/history-parameters.js'))return {code:Object.entries(history).filter(([key])=>['LIVRET_A','INFLATION','LATEST_YM','MONTHS_FULL','MONTHS_SHORT','INCONSISTENT_MONTHLY_DATA_IDS'].includes(key)).map(([key,value])=>`export const ${key}=${value instanceof Set?`new Set(${JSON.stringify([...value])})`:JSON.stringify(value)};`).join('\n'),map:null}
    if(path.endsWith('/src/data/calculator-history.js'))return {code:calculatorCode,map:null}

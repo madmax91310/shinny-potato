@@ -13,6 +13,13 @@ FIXTURES = pathlib.Path(__file__).parent / 'fixtures/scpi'
 TODAY = dt.date(2026, 10, 8)
 
 class ScpiTests(unittest.TestCase):
+    def assert_retained_financial(self,result,previous):
+        clean=copy.deepcopy(result)
+        for record in clean['records']:record.pop('collectionStatus',None)
+        baseline=copy.deepcopy(previous)
+        for record in baseline['records']:record.pop('collectionStatus',None)
+        self.assertEqual(clean,baseline)
+
     def test_remake_explicit_years_from_official_2025_capital_table(self):
         # Tableau du rapport officiel lié sur remake.fr/documentation/ le 11/10/2026.
         url='https://www.remake.fr/wp-content/uploads/2026/08/Rapport-Annuel-Remake-Live-2025-1.pdf'
@@ -76,14 +83,14 @@ class ScpiTests(unittest.TestCase):
         for mutation in [lambda r:r['snapshot']['countries'].pop(), lambda r:r['annual']['years'].pop(), lambda r:r['snapshot']['sectors'][0].update(value=float('nan'))]:
             bad=copy.deepcopy(previous['records'][0]); mutation(bad)
             result, report=refresh(previous,{'remake-live':lambda today:bad},TODAY)
-            self.assertEqual(result,previous); self.assertEqual(report[0]['status'],'failure')
+            self.assert_retained_financial(result,previous); self.assertEqual(report[0]['status'],'failure')
 
     def test_source_failure_and_regression_keeps_previous(self):
         previous={'records':[self.remake()]}
         def failed(today): raise RuntimeError('Source unavailable')
-        self.assertEqual(refresh(previous,{'remake-live':failed},TODAY)[0],previous)
+        self.assert_retained_financial(refresh(previous,{'remake-live':failed},TODAY)[0],previous)
         old=copy.deepcopy(previous['records'][0]);old['price']['asOf']='2026-03-31'
-        self.assertEqual(refresh(previous,{'remake-live':lambda today:old},TODAY)[0],previous)
+        self.assert_retained_financial(refresh(previous,{'remake-live':lambda today:old},TODAY)[0],previous)
 
     def test_missing_bulletin_waits_until_next_edition_is_due(self):
         from collect_scpi import AwaitingPublication, next_bulletin_due
@@ -92,8 +99,13 @@ class ScpiTests(unittest.TestCase):
         previous={'records':[self.remake()]};previous['records'][0]['snapshot']['asOf']='2026-06-30'
         def missing(today): raise AwaitingPublication('Missing current official bulletin')
         result,report=refresh(previous,{'remake-live':missing},dt.date(2026,10,17))
-        self.assertEqual(result,previous);self.assertEqual(report[0]['status'],'waiting');self.assertIn('2026-11-14',report[0]['reason'])
+        self.assertEqual(result['records'][0]['checkedAt'],previous['records'][0]['checkedAt']);self.assertEqual(result['records'][0]['collectionStatus']['status'],'waiting-publication');self.assertEqual(report[0]['status'],'waiting');self.assertIn('2026-11-14',report[0]['reason'])
         self.assertEqual(refresh(previous,{'remake-live':missing},dt.date(2026,11,15))[1][0]['status'],'failure')
+        def offline(today):raise TimeoutError('offline')
+        failed,_=refresh(result,{'remake-live':offline},dt.date(2026,10,18))
+        self.assertEqual(failed['records'][0]['collectionStatus']['status'],'failed')
+        self.assertEqual(failed['records'][0]['collectionStatus']['lastAccessSuccessAt'],'2026-10-17')
+        self.assert_retained_financial(failed,previous)
         self.assertEqual(refresh({'records':[]},{'remake-live':missing},dt.date(2026,10,17))[1][0]['status'],'failure')
 
     def test_changed_conditions_fail_closed(self):

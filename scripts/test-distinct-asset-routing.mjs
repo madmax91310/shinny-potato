@@ -34,12 +34,12 @@ for(const selection of DISTINCT_ASSET_SELECTIONS) {
 }
 // A gap, a partial first year or an unfinished year must never become a return.
 const points=[['2023-12',100],...Array.from({length:12},(_,i)=>[`2024-${String(i+1).padStart(2,'0')}`,101+i])]
-assert(Math.abs(monthlyCalendarReturns({points},new Date('2025-01-01'))[2024]-12)<1e-9)
-assert.deepEqual(monthlyCalendarReturns({points},new Date('2024-12-31')), {})
-assert.deepEqual(monthlyCalendarReturns({points:points.slice(1)},new Date('2025-01-01')), {})
-assert.deepEqual(monthlyCalendarReturns({points:points.filter(([m])=>m!=='2024-06')},new Date('2025-01-01')), {})
+assert(Math.abs(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points},new Date('2025-01-01'))[2024]-12)<1e-9)
+assert.deepEqual(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points},new Date('2024-12-31')), {})
+assert.deepEqual(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points:points.slice(1)},new Date('2025-01-01')), {})
+assert.deepEqual(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points:points.filter(([m])=>m!=='2024-06')},new Date('2025-01-01')), {})
 const changed=points.map(([m,p])=>[m,m==='2024-12'?120:p])
-assert(Math.abs(monthlyCalendarReturns({points:changed},new Date('2025-01-01'))[2024]-20)<1e-9)
+assert(Math.abs(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points:changed},new Date('2025-01-01'))[2024]-20)<1e-9)
 
 for(const id of ['world-cloud-robotics','world-copper-miners']) {
  const d=buildDuel(DUELS.find(d=>d.id===id))

@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-22T18:05:29.829Z",
+  "checkedAt": "2026-10-22T20:48:41.991Z",
   "summary": {
-    "instruments": 651,
+    "instruments": 652,
     "sheets": 258,
     "comparisons": 245,
     "practical": 21,
@@ -8177,7 +8177,7 @@
       "compositionOnly": false,
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
         "field": "monthly",
         "tools": [
           "portfolio-generator"
@@ -8207,13 +8207,23 @@
       },
       "monthly": [
         {
+          "id": "aerospace-paris-eur",
+          "automatic": false,
+          "first": "2024-08",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
+        },
+        {
           "id": "etfIE000U9ODG19",
           "automatic": true,
           "first": "2024-03",
           "last": "2026-09",
           "currency": "USD",
-          "performance": true,
-          "simulation": true,
+          "performance": false,
+          "simulation": false,
           "anniversary": true
         }
       ],
@@ -10938,6 +10948,16 @@
       "holdings": null,
       "monthly": [
         {
+          "id": "gold-invesco-usd",
+          "automatic": false,
+          "first": "2009-07",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
+        },
+        {
           "id": "etfIE00B579F325",
           "automatic": true,
           "first": "2017-03",
@@ -13169,9 +13189,9 @@
         "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-19",
+        "asOf": "2026-10-21",
         "complete": true,
-        "identifiedCoverage": 98.48220255141672,
+        "identifiedCoverage": 98.44850852244534,
         "automatic": true
       },
       "monthly": [
@@ -25208,6 +25228,42 @@
           "performance": true,
           "simulation": true,
           "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US4642875235",
+      "name": "ETF Semi-conducteurs (SOXX) · hors dividendes",
+      "kind": "ETF",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "annualPerformance": true,
+      "compositionOnly": false,
+      "blocker": null,
+      "dca": false,
+      "countries": {
+        "status": "missing"
+      },
+      "sectors": {
+        "status": "missing"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "soxx",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": false
         }
       ],
       "historyCandidate": false,

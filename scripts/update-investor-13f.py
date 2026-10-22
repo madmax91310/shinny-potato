@@ -271,6 +271,8 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
     reviews = []
     checks = []
     failures = []
+    review_path = directory / 'review-metadata.json'
+    prior_reviews = {r['data']['identity']['slug']: r for r in json.loads(review_path.read_text())} if review_path.exists() else {}
     for slug, (source_slug, display, entity) in MANAGERS.items():
         destination = directory / f'{slug}.json'
         try:
@@ -283,7 +285,7 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
             print(f'{slug}: failed — {error}', flush=True)
             if destination.exists():
                 stored = json.loads(destination.read_text())
-                reviews.append({'as_of': stored.get('as_of'), 'data': {
+                reviews.append({**prior_reviews.get(slug, {}), 'as_of': stored.get('as_of'), 'data': {
                     'identity': stored['data'].get('identity', {'slug': slug, 'displayName': display}),
                     'snapshot': {'periodEnd': stored['data']['snapshot']['periodEnd']},
                     'sourceUrl': stored['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),
@@ -305,7 +307,7 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         # Preserve the stored check date on unchanged data so this index does
         # not create a new commit on every successful poll.
         current = json.loads(content) if content else json.loads(destination.read_text())
-        reviews.append({'as_of': current.get('as_of'), 'data': {
+        reviews.append({'as_of': current.get('as_of'), 'lastSuccessfulPollAt': portfolio['as_of'], 'positionsCollectedAt': current.get('as_of'), 'data': {
             'identity': current['data'].get('identity', {'slug': slug, 'displayName': display}),
             'snapshot': {'periodEnd': current['data']['snapshot']['periodEnd']},
             'sourceUrl': current['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),

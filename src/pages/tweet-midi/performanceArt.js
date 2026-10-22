@@ -1,3 +1,4 @@
+import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
@@ -11,7 +12,7 @@ const groups = {
   consumer: ['pepsico','booking','home-depot','nike','disney','procter-gamble', 'amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
   health: ['unitedhealth','sanofi','johnson-johnson'], energy:['totalenergies','exxonmobil'], infrastructure: ['vinci','airliquide','caterpillar','waste-management'], utilities: ['schneider'], silver: ['silver'],
 }
-export const PERFORMANCE_ART = Object.freeze({
+const BASE_PERFORMANCE_ART = Object.freeze({
   'japan-net': { scene:'paper/japan.webp' },
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:`etf-night/${asset.scene}.webp`}])),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
@@ -21,6 +22,7 @@ export const PERFORMANCE_ART = Object.freeze({
   ...Object.fromEntries(['bitcoin', 'ethereum', 'apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map(id => [id, { mark: ANNIVERSARY_ART[id].mark }])),
   or: { scene: 'approved/performance-gold-glass.webp' },
 })
+export const PERFORMANCE_ART = Object.freeze(withHistoryVisuals(BASE_PERFORMANCE_ART))
 export async function loadPerformanceArt(id) {
   const art = PERFORMANCE_ART[id]
   if (!art) throw new Error(`Illustration de performance absente : ${id}`)

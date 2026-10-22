@@ -9,8 +9,8 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Encours | 258/261 | 258 | 0 | 0 |
 | Performances annuelles | 238/261 | 238 | 0 | 0 |
 | Historique mensuel | 258/261 | 258 | 0 | 0 |
-| Pays | 229/261 | 229 | 0 | 0 |
-| Secteurs | 229/261 | 229 | 0 | 0 |
+| Pays | 232/261 | 232 | 0 | 0 |
+| Secteurs | 232/261 | 232 | 0 | 0 |
 | Principales positions | 234/261 | 234 | 0 | 0 |
 | Distribution | 258/261 | 258 | 0 | 0 |
 | Domicile | 258/261 | 258 | 0 | 0 |

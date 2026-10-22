@@ -331,6 +331,7 @@ def refresh(previous, adapters, today):
                 if old.get('priceHistory') and (not record.get('priceHistory') or record['priceHistory']['years'][-1]['asOf']<old['priceHistory']['years'][-1]['asOf']):raise ValueError('Price history disappeared or regressed')
                 for action in old.get('priceHistory',{}).get('corporateActions',[]):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
+            record['collectionStatus'] = {'status':'success','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat()}
             records[id] = record
             observations.append({'id': id, 'name':record['name'], 'status': 'success'})
             if id=='iroko-zen':
@@ -339,6 +340,8 @@ def refresh(previous, adapters, today):
             old = records.get(id)
             due = old and old.get('snapshot', {}).get('asOf') and next_bulletin_due(old['snapshot']['asOf'])
             if due and today <= due:
+                import copy
+                records[id] = {**copy.deepcopy(old), 'collectionStatus': {'status':'waiting-publication','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat(),'nextPublicationDue':due.isoformat()}}
                 observations.append({'id': id, 'name': old['name'], 'status': 'waiting',
                                      'reason': f'{error}; next quarterly edition expected by {due.isoformat()}, last validated data kept.'})
             else:
@@ -346,6 +349,14 @@ def refresh(previous, adapters, today):
                                      'reason': f'{error}; next quarterly edition was due by {due.isoformat()}.' if due else str(error)[:250]})
         except Exception as error:
             observations.append({'id': id, 'name':records.get(id,{}).get('name',id), 'status': 'failure', 'reason': str(error)[:250]})
+    # Failed attempts remain visible without refreshing the last successful access
+    # or the proof dates of retained financial values.
+    for attempt in observations:
+        if attempt['status']=='failure' and attempt['id'] in records:
+            import copy
+            saved=copy.deepcopy(records[attempt['id']])
+            saved['collectionStatus']={**saved.get('collectionStatus',{}),'status':'failed','lastAttemptAt':today.isoformat()}
+            records[attempt['id']]=saved
     return {'records': list(records.values())}, observations
 
 

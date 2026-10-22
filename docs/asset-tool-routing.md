@@ -182,7 +182,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares Blockchain Technology UCITS ETF | IE000RDRMSD1 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Linde | IE000S9YS762 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | iShares iBonds Dec 2029 Term € Corp UCITS ETF | IE000SNLFDR7 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
-| iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
+| iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | Oui | Oui | missing | Oui / Oui | Complète | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
@@ -552,6 +552,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | IBM | US4592001014 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Intuit | US4612021034 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Intuitive Surgical | US46120E6023 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| ETF Semi-conducteurs (SOXX) · hors dividendes | US4642875235 | — | — | missing | Absent / Absent | — | Oui / Oui / — | — |
 | JPMorgan Chase | US46625H1005 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Johnson & Johnson | US4781601046 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | KLA | US4824801009 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

@@ -115,7 +115,8 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     const before = state.anchors[key]
     const latest = state.current[key]
     if (latest && (after.period < latest.period || after.period === latest.period && Date.parse(after.checkedAt) < Date.parse(latest.checkedAt))) {
-      issues.push({ family: after.family, entity: after.entity, reason: `Observation plus ancienne ignorée : ${after.fieldLabel}.` })
+      state.ignoredObservations ??= {}
+      state.ignoredObservations[key] = { period: after.period, checkedAt: after.checkedAt, receivedAt: stamp, reason: 'older-observation', retainedPeriod: latest.period }
       continue
     }
     if (latest && datedEtfSnapshot(after) && after.period === latest.period && !same(latest.value, after.value)) {

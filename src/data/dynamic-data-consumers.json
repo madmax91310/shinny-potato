@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "bindings": [
+    {"pattern":"src/pages/dca-profiles/holdings-*.json","consumers":["src/pages/dca-profiles/holdings-loader.js"],"mechanism":"import.meta.glob ?url puis fetch","producer":"scripts/build-dca-exposures.mjs"},
+    {"pattern":"src/data/dca-complete-holdings.json","consumers":["src/pages/dca-profiles/holdings-loader.js"],"mechanism":"projection de build en fragments datés","producer":"scripts/build-dca-exposures.mjs"},
+    {"pattern":"public/data/ai-portfolios/*.json","consumers":["src/pages/ai-portfolios/App.jsx","src/pages/ai-portfolios/series.js"],"mechanism":"fetch public et fragments sélectionnés","producer":"scripts/ai-portfolios.mjs"},
+    {"pattern":"data/ai-portfolios/*","consumers":["src/pages/ai-portfolios/App.jsx"],"mechanism":"projection publique versionnée ; les sources de comptabilité ne sont pas des imports Vite","producer":"scripts/ai-portfolios.mjs"}
+  ]
+}

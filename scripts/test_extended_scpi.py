@@ -68,7 +68,12 @@ class ExtendedScpiTests(unittest.TestCase):
         for mutation in [lambda r:r['portfolio']['occupancy'].update(value=101),lambda r:r['portfolio']['tenants'].update(value=float('nan')),lambda r:r['portfolio']['buildings'].update(asOf='2024-12-31'),lambda r:r.pop('priceHistory')]:
             bad=copy.deepcopy(row);mutation(bad)
             result,obs=refresh(previous,{row['id']:lambda today:bad},TODAY)
-            self.assertEqual(result,previous);self.assertEqual(obs[0]['status'],'failure')
+            retained=copy.deepcopy(result);baseline=copy.deepcopy(previous)
+            for r in retained['records']:r.pop('collectionStatus',None)
+            for r in baseline['records']:r.pop('collectionStatus',None)
+            self.assertEqual(retained,baseline);self.assertEqual(obs[0]['status'],'failure')
+            self.assertEqual(result['records'][0]['collectionStatus']['status'],'failed')
+            self.assertEqual(result['records'][0]['collectionStatus'].get('lastAccessSuccessAt'),previous['records'][0].get('collectionStatus',{}).get('lastAccessSuccessAt'))
     def test_latest_completed_bulletin(self):
         urls=['https://issuer.fr/BTI-T2-2026-ActivImmo.pdf','https://issuer.fr/BTI-T4-2026-ActivImmo.pdf','https://issuer.fr/BTI-T1-2026-ActivImmo.pdf']
         self.assertEqual(latest(urls,r'BTI-T(?P<quarter>\d)-(?P<year>\d{4})-ActivImmo',TODAY),urls[0])

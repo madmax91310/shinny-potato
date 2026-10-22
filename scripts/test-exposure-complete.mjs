@@ -67,3 +67,14 @@ const completeResult=sharedPositions(liveLines,references,snapshotDate,completeO
 assert(completeResult.pairs[0].common.length>10,'Full positions must exceed editorial top ten')
 assert(completeResult.totals[0].coverage>95)
 console.log(`Complete exposures: ${Object.keys(universe).length} equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified.`)
+
+// Portfolio order cannot affect consolidation, coverage, or pair direction.
+assert.deepEqual(sharedPositions([...positions].reverse(),refs,now,{x:o,y:o}),result)
+const partial={...o,complete:false,rows:[{name:'Apple',isin:a,weightPct:8},{name:'Microsoft',isin:b,weightPct:2}]}
+const partialResult=sharedPositions(positions,refs,now,{x:partial,y:o})
+assert.equal(partialResult.pairs.find(p=>p.left==='ETF X'&&p.right==='ETF Y').overlap,null)
+assert.equal(partialResult.pairs.find(p=>p.left==='ETF X'&&p.right==='ETF Y').identifiedCoverage[0],10)
+const rounding={...o,rows:[{name:'Apple',isin:a,weightPct:50.2},{name:'Microsoft',isin:b,weightPct:50}]}
+const rounded=sharedPositions(positions,refs,now,{x:rounding,y:o}).pairs.find(p=>p.left==='ETF X'&&p.right==='ETF Y')
+assert.equal(rounded.common.find(r=>r.isin===a).leftWeight,50.2,'Published weights stay unchanged')
+assert.equal(rounded.overlap,null,'Rounding excess cannot produce a silently normalized full score')

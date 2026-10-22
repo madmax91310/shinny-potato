@@ -1,3 +1,4 @@
+import { qualifyHistoryWindow } from '../../data/history-window-quality.js'
 import { ASSETS, LATEST_YM, MONTHS_FULL, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import { computeAssetSeries, monthsBetween, fmtEUR, fmtPct, pct } from './lib.js'
 
@@ -37,6 +38,8 @@ export function compareCrisis({ assetId, crisisId, amount, mode }) {
   if (!monthsBetween(crisis.dates[0], endYm).every(ym => Number.isFinite(points.get(ym)) && points.get(ym) > 0)) {
     return blocked('Des clôtures mensuelles manquent sur cette période. Choisis une autre crise ou un autre actif.')
   }
+  const quality=qualifyHistoryWindow(asset, crisis.dates[0], endYm)
+  if(!quality.qualified)return blocked(quality.reason)
   const entries = crisis.dates.map((startYm, i) => {
     const result = computeAssetSeries(asset.points, startYm, endYm, amount, mode)
     return { label: ENTRY_LABELS[i], startYm, result, loss: lossMonths(result) }

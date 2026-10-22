@@ -1,5 +1,5 @@
 // Données du Calculateur d'impact des frais (TER) — outil de SIMULATION pédagogique : contrairement
-// aux autres outils de l'app, aucune donnée de marché réelle n'est sourcée ici. Le rendement brut et
+// aux autres outils de l'app, les scénarios manuels ne consomment aucune donnée de marché. Le mode ETF utilise l’identité et le TER du registre partagé. Le rendement brut et
 // les niveaux de frais sont des hypothèses assumées et présentées comme telles dans le tweet généré
 // (jamais comme une performance ou un TER réel constaté) — c'est le calcul (intérêts composés) qui
 // est réel, pas les chiffres d'entrée.

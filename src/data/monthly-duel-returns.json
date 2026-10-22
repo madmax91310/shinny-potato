@@ -2587,28 +2587,20 @@
       "2018": 2.9850708200919174,
       "2019": 20.59255606106831,
       "2020": 13.73697258890263,
-      "2021": -0.0066842774472331,
-      "2022": 0,
-      "2023": 0,
-      "2024": 62.11877174642129,
       "2025": 45.76732869061044
     },
     "calendarReturns": {
       "2018": 2.9850708200919174,
       "2019": 20.59255606106831,
       "2020": 13.73697258890263,
-      "2021": -0.0066842774472331,
-      "2022": 0,
-      "2023": 0,
-      "2024": 62.11877174642129,
       "2025": 45.76732869061044
     },
     "values": [
       13.73697258890263,
-      -0.0066842774472331,
-      0,
-      0,
-      62.11877174642129,
+      null,
+      null,
+      null,
+      null,
       45.76732869061044
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.AS?period1=1488326400&period2=1790812800&interval=1d&events=div%2Csplits",
@@ -6260,19 +6252,15 @@
   "IE000U9ODG19": {
     "isin": "IE000U9ODG19",
     "currency": "USD",
-    "years": {
-      "2025": 0
-    },
-    "calendarReturns": {
-      "2025": 0
-    },
+    "years": {},
+    "calendarReturns": {},
     "values": [
       null,
       null,
       null,
       null,
       null,
-      0
+      null
     ],
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1709251200&period2=1790812800&interval=1d&events=div%2Csplits",
     "sourceUrls": [

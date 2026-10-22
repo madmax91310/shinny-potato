@@ -1,9 +1,10 @@
+import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.
-export const ANNIVERSARY_ART = Object.freeze({
+const BASE_ANNIVERSARY_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {title:asset.title, indexTitle:asset.title, kind:'illustration', subtitle:asset.currency}])),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
     title: asset.title, subtitle: `${asset.instrumentType ?? 'ETF'} ${asset.ticker}`, kind: 'illustration', indexTitle: asset.ticker,
@@ -47,6 +48,7 @@ export const ANNIVERSARY_ART = Object.freeze({
   asml: { title: 'ASML', subtitle: 'Amsterdam · EUR', mark: 'asml.svg', kind: 'logo' },
 })
 
+export const ANNIVERSARY_ART = Object.freeze(withHistoryVisuals(BASE_ANNIVERSARY_ART))
 export { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 
 // The downloaded SVG silhouette remains unchanged. Only the surface is shaded;

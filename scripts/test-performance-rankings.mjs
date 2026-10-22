@@ -116,7 +116,8 @@ for (const id of ['world-net', 'msciAcwi', 'japan-net', 'msciEurope', 'msciUsa',
 }
 console.log('Annual NAV, ECB conversion, cross-asset conventions, portfolio weights, rebalancing and multi-year drift passed.')
 
-assert(!RANKING_ASSETS.etfIE00B579F325, 'Stale Amsterdam gold listing must stay excluded')
+assert.throws(() => periodReturn(RANKING_ASSETS.etfIE00B579F325, '2021-12', '2022-12'), /cours reportés/)
+assert(Number.isFinite(periodReturn(RANKING_ASSETS.etfIE00B579F325, '2024-12', '2025-12')), 'Independent valid windows remain available')
 for (const asset of Object.values(RANKING_ASSETS).filter(a => a.symbol === 'SGLD.L' || a.id === 'euroGov13')) {
   for (let i = 2; i < asset.points.length; i++) assert(!(asset.points[i].price === asset.points[i - 1].price && asset.points[i].price === asset.points[i - 2].price), asset.id)
 }

@@ -222,8 +222,14 @@ def parse_households(key, body, url, today):
     elif key == 'salaries':
         require('equivalent temps plein' in text and 'secteur prive' in text and 'apprentis' in text and 'stagiaires' in text,
                 'Champ des salaires EQTP modifié')
+        caption_pattern=r'^figure \d+ .*distribution par sexe des salaires mensuels nets'
+        table=unique([t for t in soup.find_all('table') if t.caption and re.search(caption_pattern,norm(t.caption.get_text(' ',strip=True)))], 'Table INSEE ambiguë/absente')
+        figure=table.find_parent('figure')
+        population="france, salaries du prive, y compris alternants, stagiaires et beneficiaires de contrats aides, hors salaries de l'agriculture et des particuliers employeurs"
+        require(figure is not None and population in norm(figure.get_text(' ',strip=True)), 'Population de la distribution des salaires modifiée')
         for id_, row in [('salary-top10',r'^9 .*decile'),('salary-median',r'^mediane')]:
-            field(id_,r'^figure 3 ',row,r'ensemble .*en euros\)',r'evolution')
+            field(id_,caption_pattern,row,r'ensemble .*en euros\)',r'evolution')
+            records[id_].update(measurementUnit='EUR/month', metricDefinition='Salaire mensuel net en équivalent temps plein (EQTP)',populationDefinition=population,statistic='D9' if id_=='salary-top10' else 'median')
     elif key == 'ageWealth':
         field('young-wealth',r'^montants de patrimoine brut selon l.age',r'^moins de 30 ans$',r'^mediane$')
         field('thirties-wealth',r'^montants de patrimoine brut selon l.age',r'^de 30 a 39 ans$',r'^9 .*decile$')

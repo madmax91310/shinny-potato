@@ -44,6 +44,7 @@ try {
   const { MARKET_HISTORY_REVIEW }=await load('src/data/market-history-review.js');
   const { HISTORY_FACTS,HISTORY_STATISTIC_IDS }=await load('src/data/history-statistics.js');
   const { derive }=await load('src/pages/investment-calculator/lib.js');
+  const { qualifyHistoryWindow }=await load('src/data/history-window-quality.js');
   const { computeComparativeSeries }=await load('src/pages/investment-calculator/videoExport.js');
   for(const [id,record] of Object.entries(records)) {
     if (record.consumerScope === 'catalog') {
@@ -58,6 +59,10 @@ try {
     const startYm = record.periodStart > '2020-01' ? record.periodStart : '2020-01';
     const points=ASSETS[id].points.filter(p=>p.date>=startYm);
     const expected=points.reduce((n,p)=>n+100/p.price,0)*points.at(-1).price;
+    if (!qualifyHistoryWindow(ASSETS[id],startYm,record.periodEnd).qualified) {
+      assert.throws(()=>derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''}), /cours reportés/);
+      continue;
+    }
     const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
     assert.equal(result.endYm,record.periodEnd);
     if(ASSETS[id].currency==='EUR') { assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation'); assert(result.livretA); }

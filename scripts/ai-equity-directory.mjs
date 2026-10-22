@@ -17,6 +17,11 @@ export function directoryCandidates(existing,venues){
   // An exchange directory proves a listing, not an inferred ISIN or underlying ADR.
   if(known&&(!r.isin||!known.isin||r.isin===known.isin)){
    if(r.segmentMic){known.segmentMic=r.segmentMic;known.operatingMic=r.operatingMic;known.micConvention='Legacy operating MIC retained; exact market segment documented separately'}
+   if (!known.evidenceId && r.isin && r.isin===known.isin && r.sourceUrl && r.identitySha256 && !r.identityStale && !r.identityDetailError) {
+    known.evidenceId=[r.sourceId,r.mic,r.ticker,r.currency,r.isin].join('|')
+    known.listingEvidence={sourceUrl:r.sourceUrl,sha256:r.identitySha256,asOf:r.sourceAsOf,checkedAt:r.checkedAt,isin:r.isin,mic:r.mic,ticker:r.ticker,currency:r.currency}
+    known.sourceUrl=r.sourceUrl;known.checkedAt=r.checkedAt
+   }
    known.directorySources=[...new Set([...(known.directorySources??[]),r.sourceId])]
    known.company??=r.company;if(r.cik){known.cik=r.cik;known.companyId=r.companyId;known.companyIdentitySource=r.companyIdentitySource}else known.companyId??=r.companyId;known.shareType??=r.shareType;if(known.shareType==='unit')known.family='Autres titres de participation';continue
   }

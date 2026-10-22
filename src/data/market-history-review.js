@@ -1,3 +1,4 @@
+import { SHARED_QUALIFIED_HISTORIES } from './shared-qualified-histories.js'
 import { CERTIFIED_INDEX_HISTORY_REVIEW } from './certified-monthly-indices.js'
 import { applyMonthlyReviews } from './monthly-automation.js';
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' };
@@ -321,4 +322,5 @@ const BASELINE_REVIEW = {
   },
 };
 
-export const MARKET_HISTORY_REVIEW = applyMonthlyReviews({...CERTIFIED_INDEX_HISTORY_REVIEW,...BASELINE_REVIEW});
+const qualifiedReviews=Object.fromEntries(Object.entries(SHARED_QUALIFIED_HISTORIES).map(([id,r])=>{return ['history:'+id,{sourceUrls:r.sourceUrls,checkedAt:r.checkedAt,asOf:null,periodStart:r.periodStart,periodEnd:r.periodEnd,dateStatus:'month-only',sourceStatus:'documented',method:r.method,note:`Cotation exacte ${r.symbol}, ${r.mic}, ${r.currency} ; SHA-256 ${r.responseSha256}.`}]}));
+export const MARKET_HISTORY_REVIEW = applyMonthlyReviews({...CERTIFIED_INDEX_HISTORY_REVIEW,...BASELINE_REVIEW,...qualifiedReviews});

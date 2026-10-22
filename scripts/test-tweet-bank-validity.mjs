@@ -5,9 +5,9 @@ import { contentValidity, evidenceCheckedAt, reviewPolicy } from '../src/pages/t
 // A product guide is valid while the shares it cites keep fresh registry controls: the policy
 // reads the oldest control date among the cited ISINs, and a stale registry blocks reuse even
 // when the hand-written review is recent. Dates come from the registry, never from this test.
-const records = { IE00TEST0001: { characteristics: { checkedAt: '2026-10-01' }, aum: { checkedAt: '2026-10-05' } }, IE00TEST0002: { aum: { checkedAt: '2026-09-20T09:00:00Z' } } }
+const records = { IE00TEST0001: { characteristics: { checkedAt: '2026-10-01' }, aum: { checkedAt: '2026-10-05' } }, IE00TEST0002: { characteristics: { checkedAt: '2026-09-20T09:00:00Z' }, aum: { checkedAt: '2026-10-21' } } }
 assert.equal(evidenceCheckedAt('Part IE00TEST0001 et IE00TEST0002', records), '2026-09-20')
-assert.equal(evidenceCheckedAt('Part IE00TEST0001 et IE00UNKNOWN01', records), '2026-10-05')
+assert.equal(evidenceCheckedAt('Part IE00TEST0001 et IE00UNKNOWN01', records), '2026-10-01')
 assert.equal(evidenceCheckedAt('Aucun ISIN ici', records), null)
 
 const guides = TWEETS.filter(tweet => reviewPolicy(tweet).kind === 'reviewed' && reviewPolicy(tweet).evidence)

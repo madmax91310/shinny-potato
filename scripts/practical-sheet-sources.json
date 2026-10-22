@@ -37,12 +37,21 @@
   },
   "gold": {
     "label": "Amundi · structure et risques de l’ETC or",
-    "url": "https://www.amundietf.fr/fr/particuliers/mentions-legales",
+    "url": "https://www.amundietf.fr/pdfDocuments/kid-priips/FR0013416716/FRA/FRA",
+    "downloadUrl": "https://www.amundietf.fr/pdfDocuments/kid-priips/FR0013416716/FRA/FRA",
+    "kind": "pdf-policy",
+    "title": "Document d’informations clés · Amundi Physical Gold ETC · FR0013416716",
     "markers": [
-      "ETC",
-      "Gold"
+      "FR0013416716",
+      "adossés à de l’or physique",
+      "recours limité"
     ],
-    "selector": "main"
+    "policyPatterns": [
+      "AMUNDI PHYSICAL GOLD ETC \\(l.*?titres avec recours limité\\.",
+      "Les titres ETC offrent une exposition.*?Association \\(LBMA\\)\\.",
+      "Les titres ETC ne comportent pas de garantie en capital.*?investissement\\.",
+      "La monnaie de base de L’ETC est le dollar américain\\..*?performance des titres ETC\\."
+    ]
   },
   "gold-supports": {
     "label": "Linxea · supports Spirica",

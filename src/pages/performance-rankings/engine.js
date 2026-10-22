@@ -1,3 +1,4 @@
+import { qualifyHistoryWindow, requireHistoryWindow } from '../../data/history-window-quality.js'
 const MONTH = /^\d{4}-(0[1-9]|1[0-2])$/
 export const monthIndex = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1
 export function monthAt(index) { return `${Math.floor(index / 12)}-${String(index % 12 + 1).padStart(2, '0')}` }
@@ -36,7 +37,7 @@ export function commonCoverage(assets) {
   if (start >= end) throw new Error('Les actifs ne partagent pas de période complète.')
   const years = []
   for (let year = Number(start.slice(0, 4)); year <= Number(end.slice(0, 4)); year++) {
-    if (`${year - 1}-12` >= start && `${year}-12` <= end) years.push(year)
+    if (`${year - 1}-12` >= start && `${year}-12` <= end && assets.every(a => qualifyHistoryWindow(a, `${year - 1}-12`, `${year}-12`).qualified)) years.push(year)
   }
   const basis = assets.every(a => a.basis === assets[0].basis) ? assets[0].basis : 'mixed-total'
   return { start, end, years, currency: assets[0].currency, basis, frequency: 'monthly' }
@@ -53,6 +54,7 @@ export function periodReturn(asset, start, end, annualized = false) {
     return (Math.pow(growth, annualized ? 12 / (monthIndex(end) - monthIndex(start)) : 1) - 1) * 100
   }
   if (asset.portfolio) return portfolioReturn(asset, start, end, annualized)
+  requireHistoryWindow(asset, start, end)
   const first = asset.points.find(p => p.date === start), last = asset.points.find(p => p.date === end)
   if (!first || !last) throw new Error(`Bornes absentes de l’historique de ${asset.label}.`)
   const ratio = last.price / first.price
@@ -98,10 +100,13 @@ export function rollingRegularity(assets, months) {
   const count = monthIndex(coverage.end) - monthIndex(coverage.start) - months + 1
   if (count < 2) return null
   const stats = assets.map(a => ({ id: a.id, label: a.shortLabel ?? a.label, wins: 0, topTwo: 0, last: 0 }))
+  let qualifiedCount=0
   // Build exact monthly lookups once; no interpolation or extrapolation.
   const maps = assets.map(a => new Map(a.points.map(p => [p.date, p.price])))
   for (let i = 0; i < count; i++) {
     const start = monthAt(monthIndex(coverage.start) + i), end = monthAt(monthIndex(start) + months)
+    if(assets.some(a=>!qualifyHistoryWindow(a,start,end).qualified))continue
+    qualifiedCount++
     const rows = rankRows(assets.map((a, order) => ({ id: a.id, order, value: a.portfolio ? portfolioReturn(a, start, end) : (maps[order].get(end) / maps[order].get(start) - 1) * 100 })))
     const min = Math.min(...rows.map(r => r.value))
     for (const row of rows) {
@@ -111,7 +116,8 @@ export function rollingRegularity(assets, months) {
       if (row.value === min) s.last++
     }
   }
-  return { count, months, start: coverage.start, end: coverage.end, stats }
+  if(qualifiedCount<2)return null
+  return { count:qualifiedCount, months, start: coverage.start, end: coverage.end, stats }
 }
 export const formatPercent = value => `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} %`
 export const formatMonth = (value, short = false) => new Date(`${value}-01T00:00:00Z`).toLocaleDateString('fr-FR', { month: short ? 'short' : 'long', year: 'numeric', timeZone: 'UTC' })
@@ -177,6 +183,7 @@ function pointMap(asset) {
 }
 export function portfolioReturn(asset, start, end, annualized = false) {
   const { lines, rebalance } = asset.portfolio
+  lines.forEach(line=>requireHistoryWindow(line.asset,start,end))
   let values = lines.map(line => line.pct / 100)
   for (let index = monthIndex(start) + 1; index <= monthIndex(end); index++) {
     const before = monthAt(index - 1), after = monthAt(index)

@@ -4,7 +4,7 @@ import {consumerPath} from './consumer-usage.mjs'
 import POLICY from '../../src/data/freshness-policy.json' with {type:'json'}
 const FINANCIAL=new Set(['instrument','series','index','insurance','scpi','actor','broker','household','lexicon','reference'])
 const EXCLUDED=new Set(['editorial','archive','simulation'])
-const PASSIVE=new Set(['archived','not-applicable','outside-equity-scope','waiting-first-year'])
+const PASSIVE=new Set(['archived','not-applicable','outside-equity-scope','waiting-first-year','waiting-publication'])
 // Explicit facade contracts. Unlisted fields stay unqualified even when their
 // file imports one of these producers.
 const BINDINGS=[

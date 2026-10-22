@@ -9,7 +9,15 @@ const links = {}
 for (const asset of MARKET_ASSETS) {
   const id = asset.id
   if (!asset.isin || !getAnnualReturnStartYears(id).length) continue
-  if (links[asset.isin]) throw new Error(`Ambiguous performance history: ${asset.isin}`)
+  const previous=links[asset.isin]
+  if(previous) {
+    const a=ASSETS[previous],b=ASSETS[id]
+    if(![a,b].every(r=>r?.ticker&&r.mic&&r.currency))throw new Error(`Ambiguous performance history: ${asset.isin}`)
+    // Same exact share, explicitly labelled listings. Prefer the most qualified
+    // annual windows; never splice prices or replace one currency's series.
+    const score=key=>getAnnualReturnStartYears(key).length
+    if(score(previous)>score(id)||(score(previous)===score(id)&&previous.localeCompare(id)<0))continue
+  }
   links[asset.isin] = id
 }
 await writeFile(new URL('../src/data/performance-links.json', import.meta.url), `${JSON.stringify(links, null, 2)}\n`)

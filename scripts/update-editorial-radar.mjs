@@ -1,3 +1,4 @@
+import { mergeDatedRecords } from './lib/dated-records.mjs'
 import { readFile, readdir, mkdir, writeFile, rename } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -22,7 +23,7 @@ export async function collectObservations(root = ROOT) {
   const expanded = await load('src/data/non-bond-qualified-records.json')
   const lifeStrategy = await load('src/data/lifestrategy.json')
   const metadata = await load('src/data/automated-instrument-metadata.json')
-  const etfs = { ...lifeStrategy, ...baseEtfs, ...additions, ...Object.fromEntries(Object.values({...qualified,...expanded}).map(r=>[r.isin,r.automatedRecord])) }
+  const etfs = mergeDatedRecords(lifeStrategy, baseEtfs, additions, Object.fromEntries(Object.values({...qualified,...expanded}).map(r=>[r.isin,r.automatedRecord])))
   for (const [isin, r] of Object.entries(etfs ?? {})) {
     const c = r.characteristics ?? {}, label = INSTRUMENTS_BY_ISIN[isin]?.name ?? `${r.provider ?? 'ETF'} ${isin}`
     const base = { family: 'etf', entity: isin, label, sourceUrl: r.sourceUrl, checkedAt: c.checkedAt, scope: `Part ${isin}`, tool: '/fiches-etf', maxAgeDays: 60 }

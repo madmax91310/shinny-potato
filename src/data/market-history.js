@@ -1,3 +1,4 @@
+import { SHARED_QUALIFIED_HISTORIES } from './shared-qualified-histories.js'
 import { CERTIFIED_INDEX_HISTORIES } from './certified-monthly-indices.js'
 import { AUTOMATED_EQUITY_HISTORY } from './automated-equity-history.js'
 import { INFLATION_MONTHLY } from './inflation-monthly.js'
@@ -26,6 +27,7 @@ function P(list) {
 
 export const BASELINE_ASSETS = {
   bitcoin: {
+    historyConvention: 'spot-close',
     // Mise à jour du 02/10/2026 : Yahoo BTC-USD, champ close, clôture du 30/09/2026.
     // Source : https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo
     // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
@@ -37,6 +39,7 @@ export const BASELINE_ASSETS = {
     points: BITCOIN_MONTHLY.points.map(([date, price]) => ({ date, price })),
   },
   ethereum: {
+    historyConvention: 'spot-close',
     // Yahoo Finance, ETH-USD : clôtures mensuelles (champ close), contrôlées le 30/09/2026.
     // Export mensuel et dernières clôtures quotidiennes concordants point par point.
     // Capture et dates de séance : scripts/source-snapshots/calculator-certified-2026-09-30.json.
@@ -79,6 +82,7 @@ export const BASELINE_ASSETS = {
   },
 
   stoxx600: {
+    historyConvention: 'index-net',
     // Contrôle du 02/10/2026, source officielle STOXX :
     // https://stoxx.com/index/SXXR/?factsheet=true — ISIN EU0009658210.
     // Net Return EUR : dividendes nets réinvestis, niveaux réels en points.
@@ -129,6 +133,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   sp500: {
+    historyConvention: 'index-gross',
     // Mise à jour du 02/10/2026 : Yahoo ^SP500TR, champ close, clôture du 30/09/2026.
     // Source : https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo
     // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
@@ -179,6 +184,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   msciWorld: {
+    historyConvention: 'index-gross',
     // Série officielle MSCI 990100, GRTR USD : dernières séances de chaque mois.
     // Vérification de toute la série le 02/10/2026.
     // Source : https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=990100
@@ -228,6 +234,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   nasdaq100: {
+    historyConvention: 'index-gross',
     // 16/10/2026: remplacement intégral de NDX prix par XNDX Total Return USD.
     // Nasdaq via FRED NASDAQXNDX ; 122 fins de mois depuis août 2016,
     // recoupées sur deux exports quotidiens (complet et fenêtre datée).
@@ -280,7 +287,10 @@ export const BASELINE_ASSETS = {
     // Source : https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1788220800&period2=1790899200&interval=1mo
     // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
     // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
+    label: 'ETF Semi-conducteurs (SOXX) · hors dividendes', tweetPhrase: 'un ETF semi-conducteurs (SOXX, hors dividendes)', icon: '🖥️', currency: 'USD',
+    isin: 'US4642875235', ticker: 'SOXX', mic: 'XNAS', symbol: 'SOXX', instrumentType: 'ETF', priceMethod: 'price',
+    identitySourceUrl: 'https://www.ishares.com/us/products/239705/ishares-phlx-semiconductor-etf',
+    methodNote: 'Cours ajustés des divisions de parts, sans réinvestissement des dividendes.',
     points: P([
       '2016-01', 27.68, '2016-02', 28.16, '2016-03', 30.54, '2016-04', 29.13,
       '2016-05', 31.66, '2016-06', 31.21, '2016-07', 34.67, '2016-08', 36.30,
@@ -318,12 +328,14 @@ export const BASELINE_ASSETS = {
     ]),
   },
   or: {
+    historyConvention: 'monthly-average',
     // Série officielle homogène, actualisée par scripts/update_gold_monthly.py.
     label: 'Or (once, moyenne mensuelle)', tweetPhrase: "l'or", icon: '●', currency: 'USD',
     sourceCredit: GOLD_MONTHLY.attribution,
     points: GOLD_MONTHLY.points.map(([date, price]) => ({ date, price })),
   },
   silver: {
+    historyConvention: 'futures-price',
     // REMPLACÉ le 02/09/2026 : série annuelle éparse (11 points + 3 en 2026) remplacée par une série
     // mensuelle complète, clôtures réelles ("Dernier") de l'export CSV Investing.com "Futures Argent"
     // (COMEX, contrat continu) fourni par l'utilisateur, janvier 2015 à août 2026. Motivation : cet
@@ -387,6 +399,7 @@ export const BASELINE_ASSETS = {
   },
 
   apple: {
+    priceMethod: 'adjusted',
     // Source consultée : https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history
     // Extraction initiale MacroTrends (AAPL), clôtures ajustées des splits et dividendes.
     // Août 2026 corrigé avec la clôture du 31/08 ; série complète de janvier 2015 à août 2026.
@@ -437,6 +450,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   microsoft: {
+    priceMethod: 'adjusted',
     // Source consultée : https://www.macrotrends.net/stocks/charts/MSFT/microsoft/stock-price-history
     // Extraction initiale MacroTrends (MSFT), clôtures ajustées des splits et dividendes.
     // Série complète de janvier 2015 à août 2026.
@@ -487,6 +501,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   broadcom: {
+    priceMethod: 'adjusted',
     // Source consultée : https://www.macrotrends.net/stocks/charts/AVGO/broadcom/stock-price-history
     // Extraction initiale MacroTrends (AVGO), puis clôtures ajustées Yahoo après recoupement.
     // Split 10:1 de juillet 2024. Série complète de janvier 2015 à août 2026 —
@@ -540,6 +555,7 @@ export const BASELINE_ASSETS = {
     ]),
   },
   tesla: {
+    priceMethod: 'adjusted',
     // Source consultée : https://www.macrotrends.net/stocks/charts/TSLA/tesla/stock-price-history
     // Extraction initiale MacroTrends (TSLA), clôtures ajustées des splits 5:1 (août 2020)
     // et 3:1 (août 2022). Série complète de janvier 2015
@@ -606,7 +622,8 @@ export const BASELINE_ASSETS = {
   ...MONTHLY_HISTORY_ADDITIONS,
 }
 
-const PRIMARY_ASSETS = { ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }
+const QUALIFIED_LISTINGS = Object.fromEntries(Object.entries(SHARED_QUALIFIED_HISTORIES).map(([id,{anniversaryPoints,...r}])=>[id,{...r,...(anniversaryPoints?.length?{anniversaryPoints:anniversaryPoints.map(([date,price])=>({date,price}))}:{}),tweetPhrase:r.label,priceMethod:'adjusted',points:r.points.map(([date,price])=>({date,price}))}]))
+const PRIMARY_ASSETS = { ...QUALIFIED_LISTINGS, ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }
 const ADDITIONAL_INDICES = Object.fromEntries(Object.entries(CERTIFIED_INDEX_HISTORIES).filter(([id])=>!PRIMARY_ASSETS[id]))
 export const ASSETS = Object.fromEntries(Object.entries({ ...PRIMARY_ASSETS, ...ADDITIONAL_INDICES }).map(([id, asset]) => [id,
   EQUITY_LINKS[id] ? { ...asset, isin: EQUITY_LINKS[id].isin, instrumentType: 'EQUITY' } : asset,
@@ -618,7 +635,7 @@ export const ASSET_ORDER = [...new Set([
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),
   'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond',
-  ...Object.keys(ETF_MONTHLY_HISTORIES),
+  ...Object.keys(QUALIFIED_LISTINGS), ...Object.keys(ETF_MONTHLY_HISTORIES),
   ...Object.keys(AUTOMATED_EQUITY_HISTORY),
   ...Object.keys(ADDITIONAL_INDICES),
 ])]

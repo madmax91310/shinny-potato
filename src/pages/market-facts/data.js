@@ -1,3 +1,4 @@
+import { reusableContract } from '../../data/reusable-data-contracts.js';
 import { HISTORY_FACTS } from '../../data/history-statistics.js';
 import { EDITORIAL, NEWTON_STORY } from './editorial.js';
 import { selectMonthlyMarketStories } from '../../data/market-story-selection.js';
@@ -171,4 +172,4 @@ export const FACTS = [
   NEWTON_STORY,
   ...publishedFacts.filter(fact => fact.id !== 'records-1987-pire-seance'),
   ...selectMonthlyMarketStories(HISTORY_FACTS),
-];
+].map(fact=>({...fact,dataContract:reusableContract(fact,{derived:HISTORY_FACTS.some(row=>row.id===fact.id)})}));

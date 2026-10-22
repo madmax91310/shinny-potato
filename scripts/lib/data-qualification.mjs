@@ -53,9 +53,9 @@ export function qualifyCoverage(row,{record={},holdingStatus,holdingSource,metad
    reason=holdingStatus.error;
   }else if(!row.present&&!holdingSource){actionState='connector-needed';reason='Source de positions intégrales et contrôle de l’identité du fonds à raccorder.';}
  }
- if(row.field==='completeHoldings'&&row.present&&row.scope==='equity-index'&&row.unidentifiedWeightPct>0){actionState='unqualified';reason=`Composition officielle complète raccordée ; ${row.unidentifiedSecurityCount} identités restent inconnues (${row.unidentifiedWeightPct} % des poids publiés), sans renormalisation.`;}
+ if(row.field==='completeHoldings'&&row.present&&row.unidentifiedWeightPct>0){actionState='unqualified';reason=`Composition officielle complète raccordée ; ${row.unidentifiedSecurityCount} identités restent inconnues (${row.unidentifiedWeightPct} % des poids publiés), sans renormalisation.`;}
  if(row.diagnostic?.code==='retained-source-failure'&&actionState==='current')actionState='collection-error';
- const passive=['current','archived','not-applicable','outside-equity-scope','waiting-first-year'];
+ const passive=['current','archived','not-applicable','outside-equity-scope','waiting-first-year','waiting-publication'];
  const actions={
   'connector-needed':'Découvrir et qualifier le téléchargement intégral de l’émetteur, puis raccorder la collecte quotidienne.',
   'tracked-index-needed':'Qualifier une composition complète de l’indice suivi, distincte du portefeuille de substitution.',

@@ -60,7 +60,12 @@ class ExpansionTests(unittest.TestCase):
         for mutation in [lambda r:r['priceHistory'].pop('corporateActions'),lambda r:r['snapshot']['regions'][0].update(value=90),lambda r:r['priceHistory']['corporateActions'][0].update(ratio=100)]:
             bad=copy.deepcopy(previous['records'][0]);mutation(bad)
             result,obs=refresh_scpi(previous,{'epargne-pierre':lambda day:bad},TODAY)
-            self.assertEqual(result,previous);self.assertEqual(obs[0]['status'],'failure')
+            retained=copy.deepcopy(result);baseline=copy.deepcopy(previous)
+            for r in retained['records']:r.pop('collectionStatus',None)
+            for r in baseline['records']:r.pop('collectionStatus',None)
+            self.assertEqual(retained,baseline);self.assertEqual(obs[0]['status'],'failure')
+            self.assertEqual(result['records'][0]['collectionStatus']['status'],'failed')
+            self.assertEqual(result['records'][0]['collectionStatus'].get('lastAccessSuccessAt'),previous['records'][0].get('collectionStatus',{}).get('lastAccessSuccessAt'))
     def test_remake_year_end_prices_not_withdrawal_counts(self):
         annual='''31.12.2024 Remake Live
 Évolution du capital

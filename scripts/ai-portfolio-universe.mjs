@@ -126,6 +126,18 @@ export function inventory(){
  }
  for(const a of rows){const r=typeReviews.find(r=>r.id===a.id&&r.isin===a.isin&&r.evidenceId===a.evidenceId&&r.status==='approved');if(r){a.yahooInstrumentType=r.providerType;a.instrumentType=r.financialInstrumentType;a.qualifiedProviderName=r.providerName;a.providerTypeProof=r.identityResponseSha256;a.providerTypeProofUrl=r.identitySource;a.family=family(a.name,a.instrumentType)}}
  rows.push(...directoryCandidates(rows,VENUES))
+ const legacyPath=new URL('../data/ai-portfolios/legacy-listing-proofs.json',import.meta.url)
+ const legacyProofs=fs.existsSync(legacyPath)?JSON.parse(fs.readFileSync(legacyPath)).proofs:[]
+ for (const a of rows.filter(r=>!r.evidenceId)) {
+  const proof=legacyProofs.find(p=>['id','isin','mic','ticker','currency','sourceCurrency','symbol'].every(k=>p[k]===a[k]))
+  if(!proof || !/^[a-f0-9]{64}$/.test(proof.sha256??'') || !proof.sourceUrl?.startsWith('https://www.blackrock.com/') ||
+     proof.providerRow?.isin!==a.isin || normalTicker(proof.providerRow.ticker)!==normalTicker(a.ticker) ||
+     exchangeMic(proof.providerRow.exchange)!==a.mic ||
+     proof.providerRow.marketCurrencyCode!==(['GBp','GBX'].includes(a.sourceCurrency)?'GBP':a.sourceCurrency)) continue
+  a.evidenceId=[a.isin,a.mic,a.ticker,a.sourceCurrency,proof.sha256].join('|')
+  a.listingEvidence=proof;a.sourceUrl=proof.sourceUrl;a.checkedAt=proof.checkedAt
+ }
+
  const identities=Map.groupBy(rows.filter(r=>r.mic&&r.ticker),r=>[r.mic,r.ticker,r.sourceCurrency].join('/'))
  for(const entries of identities.values())if(new Set(entries.map(a=>a.instrumentId)).size>1)for(const a of entries)a.discoveryBlock='Identité ambiguë : même ticker, place et devise attribués à plusieurs ISIN dans le registre.'
  return rows.sort((a,b)=>a.id.localeCompare(b.id))

@@ -10,8 +10,12 @@ import { SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, getAssetMinDate
 import { getSimulationAssetId, getSimulationHref, getAnnualPerformanceHref } from '../src/data/simulation-links.js'
 
 const index = JSON.parse(await readFile(new URL('../src/data/performance-links.json', import.meta.url)))
-const expected = Object.fromEntries(performance.MARKET_ASSETS.filter(asset => asset.isin && performance.getAnnualReturnStartYears(asset.id).length).map(asset => [asset.isin, asset.id]))
-assert.deepEqual(index, expected, 'Shortcut index must match the usable share-class histories')
+const candidates=performance.MARKET_ASSETS.filter(asset=>asset.isin&&performance.getAnnualReturnStartYears(asset.id).length)
+assert.deepEqual(Object.keys(index).sort(),[...new Set(candidates.map(asset=>asset.isin))].sort(),'Every usable exact share has one shortcut')
+for(const [isin,id] of Object.entries(index))assert(candidates.some(a=>a.isin===isin&&a.id===id),'Shortcut must select a qualified listing of that exact share')
+assert.equal(index.IE00B579F325,'gold-invesco-usd','The qualified long London series remains separately labelled in USD')
+assert.equal(ASSETS[index.IE00B579F325].currency,'USD')
+assert(ASSETS.etfIE00B579F325,'The EUR listing and its independently valid windows are preserved')
 for (const etf of ETFS) {
   const assetId = getPerformanceAssetId(etf.isin)
   if (!assetId) {
@@ -30,7 +34,7 @@ for (const etf of ETFS) {
 }
 // Same benchmark is insufficient: shares without their own usable history must
 // never open a substitute index/older ETF. Derive absence as collection expands.
-for (const isin of [...ETFS.filter(etf => !Object.hasOwn(expected, etf.isin)).map(etf => etf.isin), 'unknown', '__proto__', null]) {
+for (const isin of [...ETFS.filter(etf => !Object.hasOwn(index, etf.isin)).map(etf => etf.isin), 'unknown', '__proto__', null]) {
   assert.equal(getPerformanceHref(isin), null)
 }
 console.log(`Performance links verified: ${Object.keys(index).length} exact histories; valid years and absent shares checked.`)
