@@ -16,7 +16,8 @@ try {
     if (pathname === '/') return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}canvas{display:block;width:100%;height:auto}</style><main></main>' })
     const file = resolve(root, `.${pathname}`)
     if (!file.startsWith(`${root}/src/`)) return route.fulfill({ status: 404 })
-    try { await route.fulfill({ contentType: extname(file) === '.js' ? 'text/javascript; charset=utf-8' : 'text/plain', body: await readFile(file) }) }
+    const contentType=extname(file)==='.js'?'text/javascript; charset=utf-8':extname(file)==='.json'?'application/json; charset=utf-8':'text/plain'
+    try { await route.fulfill({ contentType, body: await readFile(file) }) }
     catch { await route.fulfill({ status: 404 }) }
   })
   const errors = []; page.on('pageerror', error => errors.push(error.message))

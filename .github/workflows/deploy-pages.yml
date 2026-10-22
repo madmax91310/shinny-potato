@@ -364,6 +364,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_sec_transport.py'
+      - run: python -m unittest discover -s scripts -p 'test_ai_security_classifications.py'
       - run: python -m unittest discover -s scripts -p 'test_holdings_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_source_download_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
