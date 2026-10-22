@@ -11,7 +11,9 @@ archivées, calendriers et changes. Il ne charge aucun historique ni le catalogu
 Dans Gestion, **Charger le catalogue complet** ouvre la recherche sur toutes les
 entrées techniques. Pagination et vingt champs de décision visibles ne limitent
 pas la recherche. Les historiques des actifs sélectionnés et les preuves d’une
-cotation sont chargés à la demande. Les exports exhaustifs restent disponibles.
+cotation sont chargés à la demande. Une conservation peut être importée et
+préparée sans charger le catalogue : seules les séries des positions et de la
+référence nécessaires au contrôle sont récupérées. Les exports exhaustifs restent disponibles.
 Le fichier historique `snapshot.json` reste compatible avec l’ancien code, y
 compris la voie de secours de publication ; la nouvelle interface ne le demande pas.
 
@@ -55,7 +57,7 @@ dates/devise, dernière réponse et opérations non exécutées. La dernière se
 est un bilan commun du vendredi ; un arrêté quotidien ultérieur conserve cette
 comparaison hebdomadaire et indique ses deux dates. La première semaine peut
 être partielle. Un bilan incomplet empêche copie et téléchargement d’un dossier
-présenté comme complet. Aucun complément d’actualité ou de marché n’est inventé.
+présenté comme complet. Cette complétude est vérifiée pour le participant et la référence, sur les deux bornes nécessaires : un autre portefeuille incomplet ne bloque ni son dossier ni son focus individuel. Le classement global reste suspendu si un participant manque. Aucun complément d’actualité ou de marché n’est inventé.
 
 Le texte précise règles, frais, échéance, exécution et unités **synthétiques**.
 Résultat de ligne = valeur restante − achats cumulés + ventes cumulées ; contribution

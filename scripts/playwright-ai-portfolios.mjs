@@ -29,12 +29,21 @@ submit({type:'launch'})
 const result=refresh(book,market),fixture={...boot,book:result.book,market:{...market,universe:market.universe.filter(a=>qualified.includes(a.id)),series:{},revisions:[]},state:result.state,defaults:boot.defaults}
 fs.writeFileSync(output+'/fixture.json',JSON.stringify(fixture))
 fs.writeFileSync(output+'/blank.json',JSON.stringify(blank))
+const completeCatalogue=JSON.parse(fs.readFileSync('public/data/ai-portfolios/catalogue.json'))
+const staleCatalogue=clone(completeCatalogue),staleRow=staleCatalogue.rows.find(r=>r[staleCatalogue.columns.indexOf('id')]===qualified[0])
+staleRow[staleCatalogue.columns.indexOf('coverageThrough')]=addDays(blank.market.asOf,-14)
+staleRow[staleCatalogue.columns.indexOf('reason')]='Qualification technique existante, fixture de fraîcheur.'
+fs.writeFileSync(output+'/stale-catalogue.json',JSON.stringify(staleCatalogue))
+// Test time is frozen at the last real observations. The fixture catalogue uses
+// that same cutoff even after the live catalogue advances with only held assets.
+fs.writeFileSync(output+'/fixture-catalogue.json',JSON.stringify({...completeCatalogue,asOf:market.asOf}))
+
 // Stream the full real catalogue over HTTP. Sending ~70 MB through CDP's
 // base64 route.fulfill transport measures the test harness instead of the UI.
 // Fixtures remain exclusively in /tmp, never in public/, dist/ or the book.
 const fixtures=http.createServer((req,res)=>{
  const name=(req.url??'').slice(1)
- if(!['blank.json','fixture.json','missing.json'].includes(name)||!fs.existsSync(output+'/'+name)){res.writeHead(404);res.end();return}
+ if(!['blank.json','fixture.json','missing.json','scope.json','stale-catalogue.json','fixture-catalogue.json'].includes(name)||!fs.existsSync(output+'/'+name)){res.writeHead(404);res.end();return}
  res.writeHead(200,{'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Cache-Control':'no-store'})
  fs.createReadStream(output+'/'+name).pipe(res)
 })
@@ -50,6 +59,7 @@ try {
  const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true}),errors=[]
  page.on('pageerror',e=>{errors.push(e.message);console.error('Browser error:',e.message)})
  await page.route('**/data/ai-portfolios/overview.json',route=>route.continue({url:'http://127.0.0.1:4338/blank.json'}))
+ await page.route('**/data/ai-portfolios/catalogue.json',route=>route.continue({url:'http://127.0.0.1:4338/stale-catalogue.json'}))
  await page.goto(url)
  await page.getByRole('link',{name:/Portefeuilles IA/}).first().click()
  await page.getByRole('heading',{name:'Une feuille blanche, pour chaque IA.'}).waitFor()
@@ -62,6 +72,11 @@ try {
  await page.getByRole('button',{name:'Charger le catalogue complet',exact:true}).click()
  await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).waitFor()
  assert(await page.locator('.ai-source').count()<=25,'Catalogue pagination')
+ await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).fill(market.universe.find(a=>a.id===qualified[0]).ticker)
+ const staleCard=page.locator('.ai-source').filter({hasText:market.universe.find(a=>a.id===qualified[0]).name}).first()
+ await staleCard.getByText('Rattrapage nécessaire avant utilisation.',{exact:true}).waitFor()
+ await page.getByRole('searchbox',{name:'Rechercher un actif',exact:true}).fill('')
+
  await choose(page.getByRole('group',{name:'Famille du catalogue',exact:true}),'Actions')
  assert(await page.locator('.ai-source').count()>0,'Family filter remains usable')
  await choose(page.getByRole('group',{name:'Famille du catalogue',exact:true}),'')
@@ -90,6 +105,8 @@ try {
  const {spawnSync}=await import('node:child_process');const imported=spawnSync(process.execPath,['scripts/ai-portfolios.mjs','import',output+'/demande.json','--root',temp],{encoding:'utf8'});assert.equal(imported.status,0,imported.stderr)
  assert.equal(JSON.parse(fs.readFileSync(path.join(temp,'data/ai-portfolios/book.json'))).competitions.length,1);fs.rmSync(temp,{recursive:true})
  // Demo is intercepted in the browser only. No demo decision is saved in production.
+ await page.unroute('**/data/ai-portfolios/catalogue.json')
+ await page.route('**/data/ai-portfolios/catalogue.json',route=>route.continue({url:'http://127.0.0.1:4338/fixture-catalogue.json'}))
  await page.clock.setFixedTime(new Date(fixtureNow))
  await page.unroute('**/data/ai-portfolios/overview.json')
  await page.route('**/data/ai-portfolios/overview.json',route=>route.continue({url:'http://127.0.0.1:4338/fixture.json'}))
@@ -112,6 +129,14 @@ try {
  assert(dossier.includes('Arrêté financier : '+market.asOf),'Weekly exchange defaults to the latest daily holdings, with the last common weekly return reported separately')
  assert.match(dossier,/DOSSIER HEBDOMADAIRE/);assert.match(dossier,/Référence exacte/);assert.match(dossier,/unités synthétiques/)
  const [brief]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger le dossier individuel'}).click()]);await brief.saveAs(output+'/dossier-chatgpt.txt')
+ const catalogueButton=page.getByRole('button',{name:'Charger le catalogue complet',exact:true})
+ await catalogueButton.waitFor()
+ await page.getByRole('textbox',{name:'Réponse JSON à vérifier'}).fill(JSON.stringify({version:1,participant:'chatgpt',kind:'hold',model:'Test QA',decisionDate:fixtureNow.slice(0,10),reason:'Conserver sans consulter le catalogue global.'}))
+ await page.getByRole('button',{name:'Vérifier et prévisualiser la réponse'}).click()
+ await page.getByText(/Réponse vérifiée pour l’aperçu/).waitFor({timeout:60000})
+ assert(await catalogueButton.isVisible(),'A hold response never loads the global catalogue')
+ assert(!(await page.getByRole('button',{name:'Valider le brouillon et préparer l’enregistrement'}).isDisabled()),'A checked hold can be prepared without the global catalogue')
+
  await page.getByRole('textbox',{name:'Réponse JSON à vérifier'}).fill(JSON.stringify({version:1,participant:'chatgpt',kind:'target',model:'Test QA',decisionDate:fixtureNow.slice(0,10),reason:'Identifiant invalide de test',weights:{UNKNOWN:30}}))
  await page.getByRole('button',{name:'Vérifier et prévisualiser la réponse'}).click()
  await page.getByText(/Identifiant inconnu ou hors univers : UNKNOWN/).waitFor()
@@ -123,6 +148,30 @@ try {
  await page.getByRole('textbox',{name:'Justification',exact:true}).fill('Conserver le portefeuille de recette.')
  await page.getByRole('button',{name:'Valider le brouillon et préparer l’enregistrement'}).click()
  await page.getByText(/Demande préparée : decision/).waitFor()
+ // A source used only by another participant cannot block a healthy focus or
+ // briefing. The synthetic wrapper below is strictly confined to /tmp fixtures.
+ const scopeMarket=clone(market),scopeBook=clone(result.book),scopeComp=scopeBook.competitions[0],qaId='qa:other-only',basis=qualified[0]
+ scopeMarket.universe.push({...scopeMarket.universe.find(a=>a.id===basis),id:qaId,instrumentId:qaId,name:'ACTIF FICTIF DE RECETTE — autre participant',ticker:'QA_OTHER',symbol:'QA_OTHER',evidenceId:qaId,seriesFile:null})
+ scopeMarket.series[qaId]={...clone(scopeMarket.series[basis]),symbol:'QA_OTHER',listingEvidenceId:qaId}
+ scopeComp.config.universe.push(qaId)
+ const otherInitial=scopeComp.decisions.find(d=>d.participant==='claude')
+ otherInitial.weights[qaId]=otherInitial.weights[basis];delete otherInitial.weights[basis]
+ otherInitial.execution.trades.find(t=>t.id===basis).id=qaId
+ otherInitial.execution.after.positions.find(t=>t.id===basis).id=qaId
+ for(const field of ['positions','flows']){otherInitial.execution.portfolio[field][qaId]=otherInitial.execution.portfolio[field][basis];delete otherInitial.execution.portfolio[field][basis]}
+ const scopeWeek=fixture.state.weekly[scopeComp.id][0].date,scopeCalendar=scopeMarket.calendars[scopeMarket.universe.find(a=>a.id===qaId).calendar]
+ delete scopeMarket.series[qaId].points[Object.keys(scopeCalendar).filter(d=>d<=scopeWeek).sort().at(-1)]
+ const scopeResult=refresh(scopeBook,scopeMarket),scopeFixture={...fixture,book:scopeResult.book,market:{...scopeMarket,universe:scopeMarket.universe.filter(a=>[...qualified,qaId].includes(a.id)),series:{}},state:scopeResult.state}
+ fs.writeFileSync(output+'/scope.json',JSON.stringify(scopeFixture))
+ await page.unroute('**/data/ai-portfolios/overview.json');await page.route('**/data/ai-portfolios/overview.json',route=>route.continue({url:'http://127.0.0.1:4338/scope.json'}));await page.reload()
+ await page.getByText(/Bilan incomplet/).waitFor();assert(await page.getByRole('button',{name:'Télécharger PNG'}).isDisabled(),'Ranking stays incomplete')
+ await page.getByRole('button',{name:'Portefeuille',exact:true}).click()
+ const [scopedFocus]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger PNG'}).click()]);await scopedFocus.saveAs(output+'/focus-independent.png')
+ assert.equal(Buffer.compare(fs.readFileSync(output+'/focus.png'),fs.readFileSync(output+'/focus-independent.png')),0,'An unrelated missing quote changes neither the healthy focus figures nor its PNG layout')
+ await page.getByRole('button',{name:'Gestion',exact:true}).click()
+ assert(!(await page.getByRole('button',{name:'Copier le dossier individuel',exact:true}).isDisabled()),'Healthy participant briefing remains complete')
+ await choose(page.getByRole('group',{name:'Participant du dossier',exact:true}),'claude')
+ assert(await page.getByRole('button',{name:'Copier le dossier individuel',exact:true}).isDisabled(),'Affected participant stays blocked')
  // Missing expected close must suspend ranking, tweet and PNG exports.
  const missingMarket=clone(market),last=fixture.state.weekly[book.competitions[0].id][0].date,asset=market.universe.find(a=>a.id===config.benchmark),calendar=market.calendars[asset.calendar]
  const expected=Object.keys(calendar).filter(d=>d<=last).sort().at(-1);delete missingMarket.series[config.benchmark].points[expected]
