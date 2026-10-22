@@ -1,6 +1,7 @@
 // Exhaustive projection of common identities, listings and documented history links.
 // A provider symbol is a candidate, never evidence of daily availability.
 import fs from 'node:fs'
+import {directoryCandidates} from './ai-equity-directory.mjs'
 import CLASSIFICATIONS from '../src/data/dca-security-classifications.json' with {type:'json'}
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { getInstrumentListings } from '../src/data/instrument-listings.js'
@@ -9,14 +10,21 @@ import { ASSETS as HISTORY } from '../src/data/market-history.js'
 import BITCOIN from '../src/data/bitcoin-yahoo-monthly.json' with {type:'json'}
 import GLOBAL from '../src/data/global-equities.json' with {type:'json'}
 import EQUITIES from '../src/data/equity-history-links.json' with {type:'json'}
+const typeReviewFile=new URL('../data/ai-portfolios/provider-type-reviews.json',import.meta.url)
+const typeReviews=fs.existsSync(typeReviewFile)?JSON.parse(fs.readFileSync(typeReviewFile)).reviews:[]
 const monthly=JSON.parse(fs.readFileSync(new URL('./monthly-automation.json',import.meta.url))).series
 // Venue adapters, not an instrument whitelist. Metadata must confirm these mappings.
 export const VENUES={
+ FNSE:['.ST','Europe/Stockholm','XSTO',['STO']],FNFI:['.HE','Europe/Helsinki','XHEL',['HEL']],FNDK:['.CO','Europe/Copenhagen','XCSE',['CPH']],FNIS:['.IC','Atlantic/Reykjavik','XICE',['ICE']],
+ XICE:['.IC','Atlantic/Reykjavik','XICE',['ICE']],
  XPAR:['.PA','Europe/Paris','XPAR',['PAR']],XAMS:['.AS','Europe/Amsterdam','XAMS',['AMS']],
  ETFP:['.MI','Europe/Rome','XMIL',['MIL']],XETR:['.DE','Europe/Berlin','XETR',['GER']],
  XSWX:['.SW','Europe/Zurich','XSWX',['EBS','SWX']],XLON:['.L','Europe/London','XLON',['LSE']],
  XMEX:['.MX','America/Mexico_City','XMEX',['MEX']],XSGO:['.SN','America/Santiago','XSGO',['SGO']],
  XASE:['','America/New_York','XASE',['ASE']],XNAS:['','America/New_York','XNYS',['NMS','NGM','NCM']],XNYS:['','America/New_York','XNYS',['NYQ']],
+ XTSX:['.V','America/Toronto','XTSE',['VAN']],XTAI:['.TW','Asia/Taipei','XTAI',['TAI']],XKOS:['.KQ','Asia/Seoul','XKRX',['KOE']],
+ XLIS:['.LS','Europe/Lisbon','XLIS',['LIS']],XDUB:['.IR','Europe/Dublin','XDUB',['ISE']],
+ ARCX:['','America/New_York','XNYS',['PCX']],BATS:['','America/New_York','XNYS',['BTS']],IEXG:['','America/New_York','XNYS',['IEX']],
  XTSE:['.TO','America/Toronto','XTSE',['TOR']],XHKG:['.HK','Asia/Hong_Kong','XHKG',['HKG']],
  XSHG:['.SS','Asia/Shanghai','XSHG',['SHH']],XSHE:['.SZ','Asia/Shanghai','XSHG',['SHZ']],
  XTKS:['.T','Asia/Tokyo','XTKS',['JPX']],XKRX:['.KS','Asia/Seoul','XKRX',['KSC']],
@@ -44,6 +52,7 @@ const normalTicker=value=>String(value).toUpperCase().replace(/[^A-Z0-9]/g,'').r
 function family(name,type){
  if(type==='EQUITY')return 'Actions'
  if(type==='CRYPTOCURRENCY')return 'Crypto au comptant'
+ if(/\bcommodit(?:y|ies)\b/i.test(name)&&!/producers?|miners?|mining/i.test(name))return 'ETF / produits matières premières'
  if(/ETC|ETP|WisdomTree (?!.*UCITS)/i.test(name))return /bitcoin|ethereum|crypto/i.test(name)?'ETP crypto':'ETC / matières premières'
  if(/LifeStrategy|multi.asset|portfolio/i.test(name))return 'ETF multi-actifs'
  if(/overnight|money market|monétaire|€STR|cash/i.test(name))return 'ETF monétaires'
@@ -115,6 +124,8 @@ export function inventory(){
   if(rows.some(x=>x.instrumentId===instrumentId))continue
   rows.push({id:instrumentId+(crypto?'-CRYPTO':''),instrumentId,isin:null,name:r.name,family:crypto?'Crypto au comptant':potential?'Identité à documenter':r.type==='index'?'Indices (référence uniquement)':r.type==='scpi'?'SCPI':r.type==='insurance'?'Assurance-vie':'Séries non détenables',ticker:crypto?h.symbol:null,symbol:crypto?h.symbol:null,mic:crypto?'CRYPTO':null,currency:crypto?'USD':null,sourceCurrency:crypto?'USD':null,priceScale:1,timezone:crypto?'UTC':null,calendar:crypto?'24/7':null,yahooExchanges:crypto?['CCC']:null,instrumentType:crypto?'CRYPTOCURRENCY':null,ucits:false,leveraged:false,sourceUrl:crypto?'https://finance.yahoo.com/quote/'+h.symbol+'/':null,evidenceId:crypto?'documented-history:'+h.id:null,source:crypto?'Yahoo daily spot closes':null,convention:'synthetic-total-return-100-at-anchor',discoveryBlock:crypto?null:potential?'Identité de la part / ISIN et cotation à documenter avant qualification quotidienne.':r.type==='index'?'Indice, référence uniquement ; aucune part détenable.':'Pas de cotation quotidienne détenable documentée ; aucune interpolation autorisée.',permanentExclusion:!crypto&&!potential})
  }
+ for(const a of rows){const r=typeReviews.find(r=>r.id===a.id&&r.isin===a.isin&&r.evidenceId===a.evidenceId&&r.status==='approved');if(r){a.yahooInstrumentType=r.providerType;a.instrumentType=r.financialInstrumentType;a.qualifiedProviderName=r.providerName;a.providerTypeProof=r.identityResponseSha256;a.providerTypeProofUrl=r.identitySource;a.family=family(a.name,a.instrumentType)}}
+ rows.push(...directoryCandidates(rows,VENUES))
  const identities=Map.groupBy(rows.filter(r=>r.mic&&r.ticker),r=>[r.mic,r.ticker,r.sourceCurrency].join('/'))
  for(const entries of identities.values())if(new Set(entries.map(a=>a.instrumentId)).size>1)for(const a of entries)a.discoveryBlock='Identité ambiguë : même ticker, place et devise attribués à plusieurs ISIN dans le registre.'
  return rows.sort((a,b)=>a.id.localeCompare(b.id))

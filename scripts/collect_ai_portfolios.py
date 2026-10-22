@@ -14,6 +14,9 @@ from data_automation import UTC, get_json, write_json_atomic
 from issuer_documents import download
 from market_transport import chart_response
 from refresh_monthly_history import yahoo_chart
+from ai_portfolio_series import hydrate, persist
+from ai_portfolio_fx import enrich_twd, validate_fx_date
+from ai_portfolio_catalogue import compact_catalogue
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ECB = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
@@ -43,23 +46,58 @@ def calendars(universe, start, end, bounds=None):
         if bounds is not None:bounds[name]={'from':start,'through':effective_end.isoformat()}
         result[name] = {s.date().isoformat(): cal.session_close(s).isoformat()
                         for s in cal.sessions_in_range(start, effective_end.isoformat())}
+    corrections=json.loads((ROOT/'scripts/ai-calendar-corrections.json').read_text())['closures']
+    for name,closures in corrections.items():
+        for date in closures:
+            if name in result:result[name].pop(date,None)
     return result
 
 
-def parse_prices(raw, asset, calendar, now, previous=None):
+def parse_prices(raw, asset, calendar, now, previous=None, through=None):
     if asset.get('yahooExchanges') and raw['chart']['result'][0]['meta'].get('exchangeName') not in asset['yahooExchanges']:
         raise ValueError('Place retournée différente : '+str(raw['chart']['result'][0]['meta'].get('exchangeName')))
     if asset.get('yahooExchange') and raw['chart']['result'][0]['meta'].get('exchangeName')!=asset['yahooExchange']:
         raise ValueError('Place de cotation action différente de la place qualifiée')
+    meta=raw['chart']['result'][0]['meta']
+    provider_name=meta.get('longName') or meta.get('shortName')
+    if asset.get('qualifiedProviderName') and provider_name!=asset['qualifiedProviderName']:
+        raise ValueError('Nom du produit différent de la revue de classification fournisseur.')
+    if previous and previous.get('providerIdentityName') and previous['providerIdentityName']!=provider_name:
+        raise ValueError('Identité fournisseur modifiée : changement de nom / ticker à revoir explicitement.')
+    if previous and previous.get('providerFirstTradeDate') and previous['providerFirstTradeDate']!=meta.get('firstTradeDate'):
+        raise ValueError('Première cotation fournisseur modifiée : possible réutilisation du ticker.')
     source_currency=asset.get('sourceCurrency') or asset['currency']
+    completed = {d: close for d, close in calendar.items() if (through is None or d<=through) and dt.datetime.fromisoformat(close) + dt.timedelta(hours=2) < now}
+    # Ignore observations outside this accounting cutoff BEFORE duplicate checks.
+    # ASX can return two changing bars for today's session; neither is a completed
+    # observation for yesterday's report. Historical conflicting bars still fail.
+    data=raw['chart']['result'][0];stamps=data.get('timestamp',[]);tz=ZoneInfo(meta['exchangeTimezoneName'])
+    keep=[]
+    for i,t in enumerate(stamps):
+        day=dt.datetime.fromtimestamp(t,UTC).astimezone(tz).date().isoformat()
+        if through is not None and day>through:continue
+        if day in calendar and day not in completed:continue
+        keep.append(i)
+    validated=raw
+    if len(keep)!=len(stamps):
+        indicators=copy.deepcopy(data.get('indicators',{}))
+        for groups in indicators.values():
+            for group in groups:
+                for key,values in group.items():
+                    if isinstance(values,list):
+                        if len(values)!=len(stamps):raise ValueError('Inconsistent daily observation arrays')
+                        group[key]=[values[i] for i in keep]
+        validated={'chart':{**raw['chart'],'result':[{**data,'timestamp':[stamps[i] for i in keep],'indicators':indicators}]}}
     # GBp/GBX are source units; normalization is explicit and applied to both prices.
     config={**asset,'currency':source_currency,'field':'close' if asset['instrumentType']=='CRYPTOCURRENCY' else 'adjclose','yahooInstrumentType':asset.get('yahooInstrumentType',asset['instrumentType'])}
-    rows, zone = yahoo_chart(raw, config, '1d')
+    rows, zone = yahoo_chart(validated, config, '1d')
     scale=asset.get('priceScale',1)
     rows=[(d,c*scale,a*scale) for d,c,a in rows]
+    if meta.get('firstTradeDate'):
+        first_trade=dt.datetime.fromtimestamp(meta['firstTradeDate'],UTC).astimezone(ZoneInfo(zone)).date()
+        rows=[(d,c,a) for d,c,a in rows if d>=first_trade]
     unexpected=[d.isoformat() for d,_,_ in rows if d.isoformat() not in calendar and d<now.date()]
     if unexpected:raise ValueError('Observations hors séances certifiées : '+', '.join(unexpected[:10]))
-    completed = {d: close for d, close in calendar.items() if dt.datetime.fromisoformat(close) + dt.timedelta(hours=2) < now}
     valid = [(d.isoformat(), close, adjusted) for d, close, adjusted in rows if d.isoformat() in completed]
     if len(valid) < 20:
         raise ValueError('Moins de 20 clôtures quotidiennes achevées')
@@ -76,7 +114,7 @@ def parse_prices(raw, asset, calendar, now, previous=None):
     points = {d: {'close': close, 'adjusted': adj, 'synthetic': 100 * adj / values[anchor]}
               for d, close, adj in valid if d >= anchor}
     return {'qualified': True, 'anchorDate': anchor, 'timezone': zone, 'points': points,
-            'convention': 'synthetic-total-return-100-at-anchor', 'responseSha256': sha(raw), 'minimumUseDate': anchor, 'sourceCurrency': source_currency, 'priceScale':scale}
+            'convention': 'synthetic-total-return-100-at-anchor', 'responseSha256': sha(raw), 'minimumUseDate': anchor, 'sourceCurrency': source_currency, 'priceScale':scale,'providerIdentityName':provider_name,'providerFirstTradeDate':meta.get('firstTradeDate')}
 
 
 def parse_fx(body, now, start=None):
@@ -127,8 +165,12 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
     start = previous.get('calendarFrom', (today-dt.timedelta(days=100)).isoformat())
     end = (today+dt.timedelta(days=70)).isoformat()
     output = copy.deepcopy(previous)
-    calendar_bounds={}
-    calendar_rows=calendars([a for a in universe if a.get('calendar')],start,end,calendar_bounds)
+    calendar_bounds=copy.deepcopy(previous.get('calendarValidity',{}))
+    calendar_rows=copy.deepcopy(previous.get('calendars',{}));calendar_errors={}
+    needed_calendars={a['calendar'] for a in universe if a.get('calendar') and (required is None or a['id'] in required)}
+    for name in sorted(needed_calendars):
+        try:calendar_rows.update(calendars([{'calendar':name}],start,end,calendar_bounds))
+        except Exception as e:calendar_errors[name]='Calendrier non qualifié : '+str(e)
     output.update({'version': 1, 'universe': universe, 'generatedAt': now.isoformat(),
                    'calendarFrom': start, 'calendarThrough': end, 'calendars':calendar_rows,'calendarValidity':calendar_bounds})
     output.setdefault('series', {})
@@ -145,6 +187,9 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
         if required is not None and key not in required:
             output['status'].setdefault(key,{'ok':False,'error':'Cotation à qualifier par une collecte manuelle complète'})
             continue
+        if asset.get('calendar') in calendar_errors:
+            output['status'][key]={'ok':False,'error':calendar_errors[asset['calendar']],'attemptedAt':now.isoformat()}
+            continue
         if asset.get('discoveryBlock') or not asset.get('calendar'):
             output['status'][key]={'ok':False,'error':asset.get('discoveryBlock') or 'Calendrier non qualifié','attemptedAt':now.isoformat()}
             continue
@@ -153,7 +198,7 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
             'period2': int(now.timestamp()), 'interval': '1d', 'events': 'div,splits'})
         try:
             raw, actual = chart_response(url, fetch)
-            series = parse_prices(raw, asset, output['calendars'][asset['calendar']], now, previous.get('series',{}).get(key))
+            series = parse_prices(raw, asset, output['calendars'][asset['calendar']], now, previous.get('series',{}).get(key),through=(today-dt.timedelta(days=1)).isoformat())
             series.update({'sourceUrl': actual, 'retrievedAt': now.isoformat(), 'isin': asset['isin'],
                            'listingEvidenceId': asset['evidenceId'], 'symbol': asset['symbol'], 'currency': asset['currency']})
             old = previous.get('series',{}).get(key,{}).get('points',{})
@@ -169,6 +214,13 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
         fx = parse_fx(fetch_ecb(ECB, max_bytes=12_000_000),now,start)
         fx['rates'] = {d:r for d,r in fx['rates'].items() if d >= (dt.date.fromisoformat(start)-dt.timedelta(days=7)).isoformat()}
         fx['retrievedAt'] = now.isoformat()
+        try:
+            needs_twd=any(a['currency']=='TWD' and (required is None or a['id'] in required) for a in universe)
+            fx=enrich_twd(fx,now,start,fetch_ecb,previous=previous.get('fx',{}),required=needs_twd)
+            if needs_twd:output['status']['CBC']={'ok':True,'attemptedAt':now.isoformat(),'asOf':max(fx['supplemental']['TWD']['rates'])}
+        except Exception as e:
+            output['status']['CBC']={'ok':False,'error':str(e),'attemptedAt':now.isoformat()}
+            fx=enrich_twd(fx,now,start,fetch_ecb,previous=previous.get('fx',{}),required=False)
         old_rates=previous.get('fx',{}).get('rates',{})
         changes=[{'date':d,'before':old_rates[d],'after':r} for d,r in fx['rates'].items() if d in old_rates and old_rates[d]!=r]
         if changes:
@@ -185,8 +237,7 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
         rates=output.get('fx',{}).get('rates',{})
         try:
             for d in output['series'][key]['points']:
-                previous_dates=[f for f in rates if f<=d]
-                if not previous_dates or not rates[max(previous_dates)].get(asset['currency']):raise ValueError('Change historique non qualifié : '+asset['currency']+' '+d)
+                validate_fx_date(output['fx'],asset['currency'],d)
         except Exception as error:output['status'][key]={'ok':False,'attemptedAt':now.isoformat(),'error':str(error)}
     # Conservative global accounting cutoff: yesterday, after all supported markets close.
     output['asOf']=(today-dt.timedelta(days=1)).isoformat()
@@ -237,7 +288,9 @@ def main():
     required.update(k for k in args.assets.split(',') if k)
     if args.request:
         op=json.loads(args.request.read_text())['operation']
-        required.update(op.get('config',{}).get('universe',[]))
+        config=op.get('config',{})
+        if config.get('benchmark'):required.add(config['benchmark'])
+        if config and config.get('executionPolicy')!='affected-markets-v2':required.update(config.get('universe',[]))
         for field in ['weights','amounts']:required.update(k for k,v in op.get('decision',{}).get(field,{}).items() if v)
     old_assets={a['id']:a for a in previous.get('universe',[])}
     universe=[{**old_assets.get(a['id'],{}),**a} for a in universe]
@@ -245,9 +298,11 @@ def main():
     universe=[a for a in universe if a.get('calendar') and not a.get('discoveryBlock')]
     # Keep frozen legacy listing identities for existing decisions, including the old IDs.
     for a in previous.get('universe',[]):
-        if a['id'] in required and not any(x['id']==a['id'] for x in universe): universe.append(a)
+        if a['id'] in required and not any(x['id']==a['id'] for x in universe): universe.append({**a,'discoveryBlock':'Cotation archivée absente du registre actuel : changement de ticker, suspension ou radiation à revoir explicitement.'})
     unknown=required-{a['id'] for a in universe}
     if unknown:raise ValueError('Identifiants absents du registre : '+', '.join(sorted(unknown)))
+    hydrate(previous,args.root/'data/ai-portfolios',required)
+    resident=set(previous.get('series',{}))
     result=collect(previous,universe,dt.datetime.now(UTC),required=required)
     # Retain all inventory statuses in the application, including blocked identities.
     active={a['id'] for a in result['universe']}
@@ -272,7 +327,8 @@ def main():
         reports(rows,args.root/'data/ai-portfolios')
         metadata={r['id']:r for r in rows}
         result['universe']=[{**a,**metadata.get(a['id'],{})} for a in result['universe']]
-    write_json_atomic(path,result)
+    result['universe']=compact_catalogue([r for r in result['universe'] if not r.get('permanentExclusion') or r['id'] in required])
+    write_json_atomic(path,persist(result,args.root/'data/ai-portfolios',resident,required))
     relevant={k:v for k,v in result['status'].items() if k in required or k=='ECB'}
     print(json.dumps(relevant,ensure_ascii=False,indent=2))
     if args.report:

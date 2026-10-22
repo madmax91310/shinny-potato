@@ -3,8 +3,14 @@ on:
   schedule:
     - cron: '20 5,9 * * *'
     - cron: '35 3 * * 0'
+    - cron: '10 0 * * *'
   workflow_dispatch:
     inputs:
+      qualification_mode:
+        description: 'Reprise du catalogue (aucune décision automatisée)'
+        type: choice
+        options: [none, remaining, due, retry, all]
+        default: none
       qualify_all:
         description: 'Retester aussi les cotations non admises'
         type: boolean
@@ -13,6 +19,11 @@ on:
     paths:
       - '.github/workflows/update-ai-portfolios.yml'
       - 'scripts/*ai*portfolio*'
+      - 'scripts/*ai*equit*'
+      - 'scripts/ai-calendar-corrections.json'
+      - 'scripts/ai-series-store.mjs'
+      - 'scripts/collect_ai_security_classifications.py'
+      - 'scripts/review_ai_provider_types.py'
       - 'src/data/instruments.js'
       - 'src/data/instrument-listings.js'
       - 'src/data/qualified-listings.js'
@@ -27,7 +38,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 55
+    timeout-minutes: 90
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
@@ -52,20 +63,31 @@ jobs:
       - name: Validate accounting and daily coverage
         run: |
           node scripts/test-ai-portfolios.mjs
+          node scripts/test-ai-equity-directory.mjs
           python -m unittest discover -s scripts -p test_ai_portfolios.py
-      - name: Discover and qualify every due registry candidate
+      - name: Discover complete official exchange directories
         if: inputs.qualify_all == true || github.event.schedule == '35 3 * * 0'
+        run: |
+          if ! command -v pdftotext >/dev/null; then sudo apt-get update && sudo apt-get install -y poppler-utils; fi
+          python scripts/collect_ai_security_classifications.py
+          python scripts/discover_ai_equities.py --refresh
+      - name: Discover and qualify every due registry candidate
+        if: inputs.qualify_all == true || (inputs.qualification_mode != '' && inputs.qualification_mode != 'none') || github.event.schedule == '35 3 * * 0' || github.event.schedule == '10 0 * * *'
         env:
-          QUALIFICATION_MODE: ${{ inputs.qualify_all && 'all' || 'due' }}
-        run: python scripts/qualify_ai_portfolios.py --mode "$QUALIFICATION_MODE" --workers 4 --batch-size 100
+          QUALIFICATION_MODE: ${{ inputs.qualify_all && 'all' || inputs.qualification_mode != 'none' && inputs.qualification_mode || 'due' }}
+        run: python scripts/qualify_ai_portfolios.py --mode "$QUALIFICATION_MODE" --workers 4 --batch-size 100 --time-budget 1800
       - name: Collect exact daily closes and ECB FX
         id: collect
         continue-on-error: true
         run: |
           args=()
           python scripts/collect_ai_portfolios.py "${args[@]}" --report "$RUNNER_TEMP/ai-portfolio-observations.json"
+      - name: Reconcile international scope and exhaustive exports
+        run: python scripts/report_ai_equities.py
       - name: Execute recorded simulations and prepare valuations
         run: node scripts/ai-portfolios.mjs refresh
+      - name: Validate every selectable equity against the accounting engine
+        run: node scripts/test-ai-equity-coverage.mjs
       - name: Validate observations build
         run: npm run build
       - if: github.event_name == 'pull_request'
@@ -80,6 +102,12 @@ jobs:
           path: |
             ${{ runner.temp }}/ai-portfolio-observations.json
             data/ai-portfolios/qualification.*
+            data/ai-portfolios/equity-coverage.*
+            data/ai-portfolios/equity-catalogue.*
+            data/ai-portfolios/selectable-equities.*
+            data/ai-portfolios/selectable-assets.*
+            data/ai-portfolios/equity-scope/sources.json
+            data/ai-portfolios/qualification-progress.json
           retention-days: 35
       - name: Validate collected observations
         run: node scripts/test-ai-portfolios.mjs
