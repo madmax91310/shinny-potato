@@ -55,7 +55,7 @@ dates/devise, dernière réponse et opérations non exécutées. La dernière se
 est un bilan commun du vendredi ; un arrêté quotidien ultérieur conserve cette
 comparaison hebdomadaire et indique ses deux dates. La première semaine peut
 être partielle. Un bilan incomplet empêche copie et téléchargement d’un dossier
-présenté comme complet. Aucun complément d’actualité ou de marché n’est inventé.
+présenté comme complet. Cette complétude est vérifiée pour le participant et la référence, sur les deux bornes nécessaires : un autre portefeuille incomplet ne bloque ni son dossier ni son focus individuel. Le classement global reste suspendu si un participant manque. Aucun complément d’actualité ou de marché n’est inventé.
 
 Le texte précise règles, frais, échéance, exécution et unités **synthétiques**.
 Résultat de ligne = valeur restante − achats cumulés + ventes cumulées ; contribution

@@ -4,7 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import {defaultConfig} from '../src/pages/ai-portfolios/data.js'
 import {weeklyWindow,weeklyStatus,WEEKLY_WINDOW} from '../src/pages/ai-portfolios/weekly.js'
-import {briefing,parseResponse} from '../src/pages/ai-portfolios/briefing.js'
+import {briefing,parseResponse,individualReportReady} from '../src/pages/ai-portfolios/briefing.js'
 import {addDays,clone,coverage,periodReport,validateDecision} from '../src/pages/ai-portfolios/lib.js'
 import {register,refresh} from './ai-portfolios.mjs'
 import {publishRuntime} from './ai-runtime-projection.mjs'
@@ -45,7 +45,28 @@ assert(!weeklyStatus(comp,'2026-02-03T12:00:00Z').participants[0].received)
 assert.equal(JSON.stringify(comp.decisions),before,'Missing response creates no fake hold decision')
 const report=periodReport(comp,'2026-01-09',market),brief=briefing(comp,'test',market,'2026-01-09',report,'2026-01-12T12:00:00Z')
 for(const term of ['Modèle saisi manuellement','Liquidités','Référence exacte','unités synthétiques','a | a','2026-01-09','2026-01-18','weights','amounts'])assert(brief.text.includes(term),term)
-assert.throws(()=>briefing(comp,'test',market,'2026-01-09',{...report,complete:false}),/incomplet/)
+assert.throws(()=>briefing(comp,'test',market,'2026-01-09',{...report,complete:false,rows:report.rows.map(r=>r.id==='test'?{...r,complete:false}:r)}),/incomplet/)
+// A missing quote held exclusively by another participant must not block this
+// participant's current holdings and matched benchmark briefing.
+const otherComp=clone(comp),otherMarket=clone(market)
+otherComp.config.participants.push({id:'other',name:'Autre participant de test',model:'Test',color:'#287fba'})
+otherComp.config.universe.push('outside')
+otherMarket.universe.push({...otherMarket.universe[0],id:'outside',symbol:'outside',ticker:'outside',name:'Marché sans rapport'})
+otherMarket.series.outside={...clone(otherMarket.series.a),symbol:'outside'}
+otherMarket.status.outside={ok:true}
+otherComp.decisions.push({id:'other-initial',participant:'other',status:'executed',kind:'target',model:'Test',reason:'Fixture isolée',registeredAt:'2026-01-05T12:00:00Z',executionDate:otherComp.startDate,execution:{trades:['outside','b','c'].map(id=>({id,units:33,amount:3300,fee:0}))}})
+delete otherMarket.series.outside.points['2026-01-09']
+const otherMissing=periodReport(otherComp,'2026-01-09',otherMarket)
+assert.equal(otherMissing.complete,false,'The competition ranking stays incomplete')
+assert(individualReportReady(otherComp,'test',otherMissing),'A healthy individual focus remains exportable')
+assert(!individualReportReady(otherComp,'other',otherMissing),'The incomplete participant focus stays blocked')
+assert(briefing(otherComp,'test',otherMarket,'2026-01-09',otherMissing).complete,'An unrelated missing quote cannot block a complete individual briefing')
+assert.throws(()=>briefing(otherComp,'other',otherMarket,'2026-01-09',otherMissing),/incomplet/,'Own missing quote still blocks its briefing')
+const pendingMarket=clone(otherMarket);pendingMarket.asOf='2026-01-23';delete pendingMarket.series.a.points['2026-01-19']
+const pendingReport=periodReport(otherComp,'2026-01-23',pendingMarket)
+assert.throws(()=>briefing(otherComp,'test',pendingMarket,'2026-01-23',pendingReport),/incomplet/,'An unresolved own execution cannot be hidden by healthy current prices')
+const referenceMissing={...otherMissing,rows:otherMissing.rows.map(r=>r.id==='world'?{...r,complete:false}:r)}
+assert.throws(()=>briefing(otherComp,'test',otherMarket,'2026-01-09',referenceMissing),/incomplet/,'The benchmark is required on the same dates')
 const response={version:1,...initial};assert.deepEqual(parseResponse(response,comp,'test',market).weights,initial.weights)
 assert.throws(()=>parseResponse({...response,participant:'other'},comp,'test',market),/participant/)
 assert.throws(()=>parseResponse({...response,weights:{UNKNOWN:33}},comp,'test',market),/Identifiant/)

@@ -1,16 +1,27 @@
 import {assert,executionRule,money,percent,periodReport,admission,addDays} from './lib.js'
 import {METHOD} from './data.js'
 import {weeklyWindow,frequencyText} from './weekly.js'
+// Completeness is scoped to the participant and its matched benchmark. A global
+// ranking can remain incomplete without hiding another participant's valid focus.
+export function individualReportReady(comp,participant,report){
+ if(!comp||!report?.started)return false
+ return [participant,'world'].every(id=>{
+  const row=report.rows.find(x=>x.id===id)
+  return row?.complete&&[row.value,row.cash,row.performance,row.weekly].every(Number.isFinite)
+   &&comp.decisions.some(d=>d.participant===id&&d.status==='executed'&&d.executionDate<=report.date)
+   &&!comp.decisions.some(d=>d.participant===id&&['recorded','pending','failed'].includes(d.status)&&d.executionDate<=report.date)
+ })
+}
 export function responseTemplate(participant,model,date){return {version:1,participant,model,decisionDate:date,kind:'hold',reason:'Justification de la décision. Pour target, ajouter weights ; pour trades, ajouter amounts (achats positifs, ventes négatives).'}}
 export function briefing(comp,participant,market,date,publishedReport=null,now=new Date().toISOString(),weeklyReport=null){
  const c=comp.config,p=c.participants.find(p=>p.id===participant);assert(p,'Participant inconnu.');assert(p.model&&p.model!=='À renseigner','Renseigner manuellement le modèle du participant avant de préparer son dossier.')
  assert(date<=market.asOf,'Arrêté demandé au-delà des données publiées.')
  const started=comp.status==='launched',report=started?(publishedReport??periodReport(comp,date,market)):null
- assert(!started||report?.date===date&&report.complete,'Dossier incomplet : clôture, change, allocation ou exécution nécessaire absent. Corriger les données avant de transmettre un dossier complet.')
+ assert(!started||report?.date===date&&individualReportReady(comp,participant,report),'Dossier incomplet : clôture, change, allocation ou exécution nécessaire absent. Corriger les données avant de transmettre un dossier complet.')
  const row=report?.rows.find(r=>r.id===participant),ref=report?.rows.find(r=>r.id==='world')
  let week=weeklyReport??report
  if(started&&!weeklyReport){const dow=new Date(date+'T12:00:00Z').getUTCDay(),friday=addDays(date,-((dow+2)%7));if(friday>=comp.startDate&&friday!==date)week=periodReport(comp,friday,market)}
- assert(!started||week?.complete,'Dossier incomplet : dernier bilan hebdomadaire commun indisponible.')
+ assert(!started||individualReportReady(comp,participant,week),'Dossier incomplet : dernier bilan hebdomadaire commun indisponible.')
  const weeklyRow=week?.rows.find(r=>r.id===participant),weeklyRef=week?.rows.find(r=>r.id==='world')
  assert(!started||row?.complete&&ref?.complete,'Participant ou référence incomplet.')
  const window=c.frequency==='weekly'?weeklyWindow(now,c.weeklyWindow):null
