@@ -12562,15 +12562,16 @@
           "at": "2026-10-22T17:43:08.885999+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39778088593,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
       "observedRunId": 39778088593,
       "nextAttemptAt": "2026-10-22T21:43:08.885999+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
