@@ -1,0 +1,20 @@
+{
+  "commitCode": "ac6e6b5c6b06aea65fc201353d1ca812028ed709",
+  "incidentsCIcorrigés": [
+    "Schéma non-applicable incomplet : sourceUrls vide et dates nulles explicites",
+    "Workflow DWS : contrôle strict du nombre de candidats, des échecs et des différés, sans certifier leurs poids",
+    "Assertion héritée d’exclusion globale remplacée par qualification des fenêtres et maintien du refus suisse 2025"
+  ],
+  "DWSréel": {
+    "candidats": 11,
+    "vérifiésÀDateÉgale": 0,
+    "différés": 11,
+    "erreurs": 0
+  },
+  "preuves": [
+    "tests-field-diagnostics-final.log",
+    "tests-verified-connections-final.log",
+    "dws-verification-finale.json",
+    "tests-dws-gate-final.log"
+  ]
+}

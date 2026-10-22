@@ -113,7 +113,7 @@
     "outils": "Radar ; ETF/expositions DWS",
     "actifs": "IE00BLNMYC90 | IE0006WW1TQ4 | IE000L6ZMMC4 | IE00BGV5VN51 | IE00BM67HK77 | IE00BM67HS53 | IE00BTJRMP35 | LU1875395870 | LU2196470426 | IE00BM67HV82 | IE00BM67HQ30 | JE00B1VS3770 | GB00BJYDH287 | IE00BYPLS672 | IE0002XZSHO1 | IE0002XZSHO1 | IE0002XZSHO1 | IE000DQLYVB9 | IE000DQLYVB9 | IE000DQLYVB9 | GB00B15KXQ89 | IE0002Y8CX98 | IE000W8WMSL2 | IE00BZ56SW52 | IE00B3T9LM79 | DE000A27Z304",
     "fichiers_de_départ": "scripts/update-editorial-radar.mjs | scripts/verify_dws_compositions.py | scripts/lib/dws-reconciliation.mjs | src/data/automated-etf.json",
-    "preuves": "preuves/dws-recollecte.json | preuves/tests-dated-records.log | preuves/tests-radar-all.log",
+    "preuves": "preuves/dws-recollecte.json | preuves/dws-verification-finale.json | preuves/tests-dws-gate-final.log | preuves/tests-dated-records.log | preuves/tests-radar-all.log",
     "tests": "test_dws_reconciliation.py | test-dated-records.mjs | test-editorial-radar.mjs"
   },
   {

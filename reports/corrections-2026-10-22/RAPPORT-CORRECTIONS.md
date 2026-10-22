@@ -58,7 +58,7 @@ Les formats de tweets et maquettes PNG sont conservés. Les nouvelles cotations 
 
 ## Tests et fichiers exploitables
 
-Les journaux réels sont dans `preuves/` : suite Python avec couverture, commandes CI locales, audits financiers, navigateur IA et routes. 39 PNG de raccordements et 5 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
+Les journaux réels sont dans `preuves/` : 894 tests Python avec couverture, 113 commandes CI locales, audits financiers, navigateur IA et routes. Les défauts supplémentaires découverts par la CI sont corrigés et retestés dans `preuves/validation-additionnelle.json` : schéma des champs non applicables, contrôle DWS intégral avec différés, et assertion héritée d’exclusion globale. 39 PNG de raccordements et 5 PNG des corrections ont été téléchargés et validés ; les PNG IA sont vérifiés en plus dans des compétitions isolées. La validation finale du commit et la publication effective sont consignées séparément dans `LIVRAISON.md` après exécution.
 
 - `statut-19-actions.csv` et `.json` : statuts, preuves, tests et limites par action.
 - `reconciliation-90-ecarts.csv` et `.json` : tous les cas, sans disparition d’alerte.
@@ -140,7 +140,7 @@ DWS : onze photographies de dates différentes différées ; comparaison financi
 
 Limite : Différer pour publication ne certifie pas les poids à la nouvelle date.
 
-Preuves : preuves/dws-recollecte.json | preuves/tests-dated-records.log | preuves/tests-radar-all.log. Tests : test_dws_reconciliation.py | test-dated-records.mjs | test-editorial-radar.mjs.
+Preuves : preuves/dws-recollecte.json | preuves/dws-verification-finale.json | preuves/tests-dws-gate-final.log | preuves/tests-dated-records.log | preuves/tests-radar-all.log. Tests : test_dws_reconciliation.py | test-dated-records.mjs | test-editorial-radar.mjs.
 
 ### P1-07 — corrigée
 
