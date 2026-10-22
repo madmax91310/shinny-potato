@@ -101,7 +101,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const runtimeIds=new Set(market.universe.map(a=>a.id));const runtimeMarket={...market,universe:[...market.universe,...certified.filter(a=>a.permanentExclusion&&!runtimeIds.has(a.id))]}
   const stateFile=path.join(folder,'state.json'),result=refresh(book,market,read(stateFile,{}))
   write(bookFile,result.book);write(stateFile,result.state)
-  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market:publicMarket(runtimeMarket),state:result.state,defaults:defaultConfig(undefined,market)})
+  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market:publicMarket(runtimeMarket,result.book.competitions.flatMap(c=>c.config.universe)),state:result.state,defaults:defaultConfig(undefined,market)})
   for(const name of ['qualification.json','qualification.csv','qualification.md','equity-catalogue.json','equity-catalogue.csv','selectable-equities.json','selectable-equities.csv','selectable-assets.json','selectable-assets.csv','equity-coverage.json','equity-coverage.md']){const file=path.join(folder,name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(root,'public/data/ai-portfolios',name))}
   const seriesFolder=path.join(folder,'series');if(fs.existsSync(seriesFolder))fs.cpSync(seriesFolder,path.join(root,'public/data/ai-portfolios/series'),{recursive:true})
   console.log(`Portefeuilles IA : révision ${result.book.revision}, ${result.book.competitions.length} compétitions ; arrêté ${market.asOf}.`)

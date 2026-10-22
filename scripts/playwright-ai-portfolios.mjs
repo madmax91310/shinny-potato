@@ -114,7 +114,7 @@ try {
  mobile.on('pageerror',e=>errors.push(e.message));await mobile.route('**/data/ai-portfolios/snapshot.json',route=>route.continue({url:'http://127.0.0.1:4338/fixture.json'}))
  await mobile.goto(url+'portefeuilles-ia');await mobile.getByRole('heading',{name:/La course au/}).waitFor()
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile overflow');assert.equal(await mobile.locator('select').count(),0,'Reuse shared button pickers')
- assert(await mobile.locator('.ai-toolbar>.ai-field').evaluate(e=>e.getBoundingClientRect().width>=innerWidth-50),'Competition names retain a readable full-width field on mobile')
+ assert(await mobile.locator('.ai-toolbar>.ai-field').first().evaluate(e=>e.getBoundingClientRect().width>=e.parentElement.getBoundingClientRect().width-2),'Competition names retain a readable full-width field on mobile')
  await mobile.screenshot({path:output+'/mobile.png',fullPage:true})
  await mobile.getByRole('button',{name:'Gestion',exact:true}).click();await mobile.getByRole('heading',{name:'Règles communes'}).waitFor()
  assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile management overflow')

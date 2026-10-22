@@ -4,7 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import {inventory} from './ai-portfolio-universe.mjs'
 import {tickerKey} from './ai-equity-directory.mjs'
-import {hydrateMarketSeries} from './ai-series-store.mjs'
+import {hydrateMarketSeries,publicMarket} from './ai-series-store.mjs'
 import {loadSeries} from '../src/pages/ai-portfolios/series.js'
 const raw=JSON.parse(fs.readFileSync('data/ai-portfolios/equity-scope/instruments.json')).listings
 const all=inventory(),keys=new Map(all.map(a=>[tickerKey(a.mic,a.ticker,a.currency),a]))
@@ -16,6 +16,10 @@ assert(all.filter(a=>a.shareType==='preferred').every(a=>a.permanentExclusion||a
 const hk=all.filter(a=>a.mic==='XHKG'&&a.sourceId==='hkex');assert(hk.length>2000,'HKEX complete worksheet, not erroneous dimension of eight rows')
 const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'ai-series-test-'));fs.mkdirSync(path.join(tmp,'data/ai-portfolios/series'),{recursive:true});const value={qualified:true,anchorDate:'2026-01-02',points:{'2026-01-02':{synthetic:100}}};fs.writeFileSync(path.join(tmp,'data/ai-portfolios/series/ab.json'),JSON.stringify({asset:value,unrelated:value}));const market={universe:[{id:'asset',seriesFile:'series/ab.json'}],series:{}};hydrateMarketSeries(market,tmp,['asset']);assert.deepEqual(market.series,{asset:value});
 const requests=[];const browser=await loadSeries({...market,series:{}},['asset'],async url=>{requests.push(url);return {ok:true,json:async()=>({asset:value,unrelated:value})}},'/app/');assert.deepEqual(browser,{asset:value});assert.equal(requests.length,1);await loadSeries(market,['asset'],async()=>{throw Error('Already loaded must not request again')},'/app/');fs.rmSync(tmp,{recursive:true});
+const complete={...market,universe:[{id:'usable',instrumentId:'usable'},{id:'excluded',instrumentId:'excluded',permanentExclusion:true}]}
+assert.deepEqual(publicMarket(complete).universe.map(a=>a.id),['usable'])
+assert.equal(publicMarket(complete).inventoryCounts.listings,2,'Full inventory remains counted and exported')
+assert.deepEqual(publicMarket(complete,['excluded']).universe.map(a=>a.id),['usable','excluded'],'An archived competition never loses a referenced identity')
 console.log(`Official perimeter: all ${raw.length} source rows reconciled; classes, ADR, units and selective shard hydration validated.`)
 const {fxAt,quoteAt}=await import('../src/pages/ai-portfolios/lib.js')
 const twd={universe:[{id:'taiwan',ticker:'1101',calendar:'XTAI',currency:'TWD'}],calendarFrom:'2026-01-09',calendarThrough:'2026-01-12',calendars:{XTAI:{'2026-01-09':'2026-01-09T05:30:00Z'}},series:{taiwan:{anchorDate:'2026-01-09',points:{'2026-01-09':{synthetic:100,close:300}}}},fx:{validThrough:'2026-01-12',expectedDates:['2026-01-09'],rates:{'2026-01-09':{USD:1.2,TWD:36}},supplemental:{TWD:{}},derivedFixingOrigins:{TWD:{'2026-01-09':{TWDUSDDate:'2026-01-09',USDEURDate:'2026-01-09',TWDPerUSD:30,USDPerEUR:1.2}}},supplementalGaps:{TWD:[]}}}

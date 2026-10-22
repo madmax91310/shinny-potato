@@ -10,4 +10,11 @@ export function requiredSeries(book,proposal){
 }
 // Runtime catalogue keeps every status; exhaustive source certificates remain in dedicated exports.
 const UI_FIELDS=new Set(['id','instrumentId','isin','name','company','companyId','cik','shareType','shareClass','family','ticker','symbol','mic','currency','sourceCurrency','observedSourceCurrency','priceScale','timezone','calendar','instrumentType','ucits','leveraged','region','exposure','status','reason','selectionBlock','discoveryBlock','permanentExclusion','lastAttempt','lastSuccess','coverageFrom','coverageThrough','seriesFile','sourceUrl','checkedAt','country','listingCountry','calendarThrough','operatingMic','segmentMic','sourceRetrievedAt','responseSha256','dailySourceUrl','sourceId','earliestQualificationDate'])
-export function publicMarket(market){return {...market,universe:market.universe.map(a=>Object.fromEntries(Object.entries(a).filter(([key])=>UI_FIELDS.has(key))))}}
+export function publicMarket(market,retainedIds=[]){
+ const retained=new Set(retainedIds)
+ const universe=market.universe.filter(a=>!a.permanentExclusion||retained.has(a.id))
+ // Non-investable products remain in the complete downloadable inventory, without
+ // making every phone parse tens of thousands of warrants just to open a portfolio.
+ const inventoryCounts={instruments:new Set(market.universe.map(a=>a.instrumentId??a.id)).size,listings:market.universe.length,permanentExcluded:market.universe.filter(a=>a.permanentExclusion).length}
+ return {...market,inventoryCounts,universe:universe.map(a=>Object.fromEntries(Object.entries(a).filter(([key])=>UI_FIELDS.has(key))))}
+}
