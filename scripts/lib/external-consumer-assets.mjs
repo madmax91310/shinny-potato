@@ -17,7 +17,7 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
   const review=reviews.find(r=>r.data?.identity?.slug===id&&r.data?.snapshot?.periodEnd===portfolio?.snapshot.periodEnd)
   // A lightweight review of the available quarter does not re-certify the
   // retained holdings/weights, even when it names the same quarter.
-  const checkedAt=portfolio?.fetchedAt??null,asOf=portfolio?.snapshot.periodEnd??null
+  const checkedAt=review?.lastSuccessfulPollAt??portfolio?.fetchedAt??null,asOf=portfolio?.snapshot.periodEnd??null
   const age=(Date.parse(now)-Date.parse(checkedAt))/86400000
   const periodAge=(Date.parse(now)-Date.parse(asOf))/86400000
   const state=error||!workflow||!checkedAt||!asOf||!Number.isFinite(age)||age<0||age>POLICY.fields['investor.13f'].checkDays||!Number.isFinite(periodAge)||periodAge<0||periodAge>POLICY.fields['investor.13f'].dataDays?'blocked':'scheduled-evidence'
@@ -29,9 +29,9 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
     workflows:workflow?[{path:workflow.path,name:workflow.name,crons:workflow.crons}]:[],
     reason:error??null,nextAction:error??'Confirmer le renouvellement des positions et leur publication dans le bilan du collecteur 13F.'})
   }
-  const reviewAge=(Date.parse(now)-Date.parse(review?.as_of))/86400000
+  const reviewAge=(Date.parse(now)-Date.parse(review?.lastSuccessfulPollAt??review?.as_of))/86400000
   if(review)fields.push({key:'investor:filing-availability',label:'Disponibilité de la déclaration',state:workflow&&Number.isFinite(reviewAge)&&reviewAge>=0&&reviewAge<=POLICY.fields['investor.13f'].checkDays?'scheduled-evidence':'blocked',kind:'live',
-   checkedAt:review.as_of,asOf:review.data.snapshot.periodEnd,currency:null,scope:'Période disponible ; ce contrôle ne renouvelle pas les poids conservés.',
+   checkedAt:review.lastSuccessfulPollAt??review.as_of,asOf:review.data.snapshot.periodEnd,currency:null,scope:'Période disponible ; ce contrôle ne renouvelle pas les poids conservés.',
    method:'Revue de disponibilité du trimestre, distincte du téléchargement des positions.',sourceUrls:[review.data.sourceUrl].filter(Boolean),
    consumers:[{path:'/portefeuilles-investisseurs'}],workflows:workflow?[{path:workflow.path,name:workflow.name,crons:workflow.crons}]:[],
    reason:null,nextAction:'Surveiller les nouvelles déclarations ; qualifier les positions indépendamment de la période disponible.'})

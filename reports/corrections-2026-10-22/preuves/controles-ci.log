@@ -1,0 +1,113 @@
+0 0 node scripts/test-performance-rankings.mjs
+1 0 node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs
+2 0 node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
+3 0 node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
+4 0 node scripts/test-tool-projections.mjs
+5 0 node scripts/test-light-registries.mjs
+6 0 node scripts/test-browser-shards.mjs
+7 0 node scripts/test-broker-automation.mjs
+8 0 node scripts/test-lifestrategy.mjs
+9 0 node scripts/test-resource-selections.mjs
+10 0 node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs
+11 0 node scripts/test-exposure-classification.mjs
+12 0 node scripts/test-equity-exposure-qualification.mjs
+13 0 node scripts/test-global-audit.mjs
+14 0 node scripts/test-portfolio-roadmap.mjs
+15 0 node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs
+16 0 node scripts/test-exposure-observations.mjs
+17 0 node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs
+18 0 node scripts/test-market-calendar-performance.mjs
+19 0 node scripts/test-presentation-etf.mjs
+20 0 node scripts/test-scpi.mjs
+21 0 node scripts/test-insurance.mjs
+22 0 npm run test:radar
+23 0 node scripts/test-wealth-simulator.mjs
+24 0 node scripts/test-performance-currency.mjs
+25 0 node scripts/test-cross-tool-currency.mjs
+26 0 node scripts/test-annual-rollover.mjs
+27 0 node scripts/test-inflation-consistency.mjs
+28 0 node scripts/test-fx-consistency.mjs
+29 0 npm run test:index-concentration
+30 0 node scripts/test-automated-indices.mjs
+31 0 node scripts/test-automated-index-sheets.mjs
+32 0 node scripts/test-automation-gap-inventory.mjs
+33 0 node scripts/test-consumer-usage.mjs
+34 0 node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
+35 0 node scripts/test-etf-completeness.mjs
+36 0 node scripts/test-priority-issuer-consumers.mjs
+37 0 npm run audit:portfolio-provenance
+38 0 node scripts/build-equity-duel-returns.mjs
+39 0 npm run audit:portfolio-duels
+40 0 node scripts/test-equity-duels.mjs
+41 0 node scripts/test-manual-equity-duels.mjs
+42 0 npm run audit:broker-evidence
+43 0 npm run audit:data-review
+44 0 node scripts/test-data-review-reminder.mjs
+45 0 npm run audit:performance-consistency
+46 0 npm run audit:etf-annual-performance
+47 0 npm run audit:etf-completeness
+48 0 npm run audit:etf-consistency
+49 0 node scripts/test-four-issuer-consumers.mjs
+50 0 npm run audit:instrument-listings
+51 0 npm run audit:instrument-catalog
+52 0 node scripts/audit-support-enrichment.mjs
+53 0 npm run audit:calculator-series
+54 0 node scripts/test-gold-consumers.mjs
+55 0 node scripts/test-monthly-consumers.mjs
+56 0 node scripts/test-equity-monthly.mjs
+57 0 node scripts/test-investment-crisis.mjs
+58 0 node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs
+59 0 node scripts/test-investment-conclusions.mjs
+60 0 node scripts/test-anniversary-indices.mjs
+61 0 node scripts/test-existing-asset-formats.mjs
+62 0 node scripts/test-publication-consumers.mjs
+63 0 node scripts/test-household-benchmarks.mjs
+64 0 npm run audit:publishable-content
+65 0 node scripts/test-etf-themes-coverage.mjs
+66 0 node scripts/test-tweet-bank-validity.mjs
+67 0 npm run audit:source-inventory
+68 0 node scripts/test-comparison-etf-details.mjs
+69 0 node scripts/test-tweet-midi-shards.mjs
+70 0 node scripts/build-tweet-midi-verifier.mjs
+71 0 npm run audit:investor-profiles
+72 0 npm run audit:household-statistics
+73 0 node scripts/test-diversification-lot-one.mjs
+74 0 node scripts/test-gaming-medical-reuse.mjs
+75 0 node scripts/test-world-factors-step-one.mjs
+76 0 node scripts/test-property-infrastructure-step-two.mjs
+77 0 node scripts/test-data-reuse.mjs
+78 0 node scripts/test-fee-impact-editorial.mjs
+79 0 npm run audit:data-catalog
+80 0 npm run audit:data-provenance
+81 0 node scripts/test-index-comparison-copy.mjs
+82 0 npm run audit:index-facts
+83 0 npm run audit:index-completeness
+84 0 npm run verify:factsheet-tweets
+85 0 node scripts/test-portfolio-editorial.mjs
+86 0 node scripts/test-publication-preferences.mjs
+87 0 node scripts/test-asset-selection.mjs
+88 0 node scripts/test-portfolio-recipes.mjs
+89 0 node scripts/test-generator-controls.mjs
+90 0 node scripts/test-etf-routing-expansion.mjs
+91 0 node scripts/audit-asset-tool-routing.mjs --write
+92 0 node scripts/test-asset-routing-blockers.mjs
+93 0 node scripts/test-publication-reliability.mjs
+94 0 node scripts/test-historical-publications.mjs
+95 0 npm run stress-test:portfolios
+96 0 node scripts/test-observation-freshness.mjs
+97 0 node scripts/test-automation-overview.mjs
+98 0 node scripts/test-monitoring-context.mjs
+99 0 node scripts/test-format-loading.mjs
+100 0 node scripts/test-history-pool-initialization.mjs
+102 0 node scripts/build-app-inventory.mjs --check
+103 0 node scripts/test-format-loading.mjs --built
+104 0 node scripts/test-practical-sheets.mjs
+105 0 node scripts/test-performance-links.mjs
+106 0 node scripts/test-deploy-scope.mjs
+107 0 node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
+108 0 node scripts/test-fallback-snapshot.mjs
+109 0 node scripts/test-validated-data-publisher.mjs
+110 0 node scripts/test-code-data-refresh.mjs
+111 0 node scripts/test-browser-check-error.mjs
+112 0 node scripts/test-freshness-policy.mjs
+113 0 node scripts/test-benchmark-changes.mjs

@@ -1,3 +1,4 @@
+import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
@@ -33,7 +34,7 @@ const neonGroups = {
 const historicalEtfSceneFiles = Object.fromEntries(
   ['robotics', 'health', 'finance', 'infrastructure', 'renewables', 'energy', 'commodities'].map(scene => [scene, `etf-night/${scene}.webp`]),
 )
-export const NEON_ASSET_ART = Object.freeze({
+const BASE_NEON_ASSET_ART = Object.freeze({
   'japan-net': { scene:'japan', sceneFile:'paper/japan.webp', mark:null },
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:asset.scene, sceneFile:`etf-night/${asset.scene}.webp`, mark:null}])),
   ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
@@ -43,6 +44,7 @@ export const NEON_ASSET_ART = Object.freeze({
   }])),
 })
 
+export const NEON_ASSET_ART = Object.freeze(withHistoryVisuals(BASE_NEON_ASSET_ART))
 export async function loadNeonArt(id) {
   const art = NEON_ASSET_ART[id]
   if (!art) throw new Error(`Illustration néon absente : ${id}`)

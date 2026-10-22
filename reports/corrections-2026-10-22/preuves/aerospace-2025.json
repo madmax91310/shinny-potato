@@ -1,0 +1,128 @@
+{
+  "share": "IE000U9ODG19",
+  "launchDate": "20240201",
+  "swiss": {
+    "id": "etfIE000U9ODG19",
+    "isin": "IE000U9ODG19",
+    "symbol": "DFND",
+    "ticker": "DFND",
+    "mic": "XSWX",
+    "currency": "USD",
+    "start": {
+      "date": "2024-12",
+      "price": 5.9628
+    },
+    "end": {
+      "date": "2025-12",
+      "price": 5.9628
+    },
+    "returnPct": 0
+  },
+  "paris": {
+    "id": "aerospace-paris-eur",
+    "isin": "IE000U9ODG19",
+    "symbol": "DFND.PA",
+    "ticker": "DFND",
+    "mic": "XPAR",
+    "currency": "EUR",
+    "start": {
+      "date": "2024-12",
+      "price": 5.674
+    },
+    "end": {
+      "date": "2025-12",
+      "price": 7.775
+    },
+    "returnPct": 37.02855128657032
+  },
+  "nav": {
+    "currency": "USD",
+    "basis": "fund",
+    "method": "calendar-year NAV total return, income reinvested, fund fees included",
+    "years": {
+      "2025": 54.55
+    },
+    "checkedAt": "2026-10-22",
+    "modifiedAt": "2026-10-17",
+    "source": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "navInEUR": 36.64850638297872,
+  "fx": {
+    "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "start": {
+      "asOf": "2024-12-31",
+      "rates": {
+        "EUR": 1,
+        "USD": 1.0389,
+        "JPY": 163.06,
+        "BGN": 1.9558,
+        "CZK": 25.185,
+        "DKK": 7.4578,
+        "GBP": 0.82918,
+        "HUF": 411.35,
+        "PLN": 4.275,
+        "RON": 4.9743,
+        "SEK": 11.459,
+        "CHF": 0.9412,
+        "ISK": 143.9,
+        "NOK": 11.795,
+        "TRY": 36.7372,
+        "AUD": 1.6772,
+        "BRL": 6.4253,
+        "CAD": 1.4948,
+        "CNY": 7.5833,
+        "HKD": 8.0686,
+        "IDR": 16820.88,
+        "ILS": 3.7885,
+        "INR": 88.9335,
+        "KRW": 1532.15,
+        "MXN": 21.5504,
+        "MYR": 4.6454,
+        "NZD": 1.8532,
+        "PHP": 60.301,
+        "SGD": 1.4164,
+        "THB": 35.676,
+        "ZAR": 19.6188,
+        "TWD": 34.0655
+      }
+    },
+    "end": {
+      "asOf": "2025-12-31",
+      "rates": {
+        "EUR": 1,
+        "USD": 1.175,
+        "JPY": 184.09,
+        "BGN": 1.9558,
+        "CZK": 24.237,
+        "DKK": 7.4689,
+        "GBP": 0.8726,
+        "HUF": 385.15,
+        "PLN": 4.221,
+        "RON": 5.0968,
+        "SEK": 10.8215,
+        "CHF": 0.9314,
+        "ISK": 147.2,
+        "NOK": 11.843,
+        "TRY": 50.4838,
+        "AUD": 1.7581,
+        "BRL": 6.4364,
+        "CAD": 1.6088,
+        "CNY": 8.2262,
+        "HKD": 9.1464,
+        "IDR": 19640.83,
+        "ILS": 3.7471,
+        "INR": 105.5965,
+        "KRW": 1696.94,
+        "MXN": 21.118,
+        "MYR": 4.7682,
+        "NZD": 2.038,
+        "PHP": 69.266,
+        "SGD": 1.5105,
+        "THB": 37.218,
+        "ZAR": 19.4439,
+        "TWD": 36.8598
+      }
+    }
+  },
+  "decision": "Refus de la fenêtre suisse non valorisable ; raccordement séparé de Paris EUR avec sa véritable profondeur. Aucun point suisse ni rendement calculé remplacé par le chiffre NAV. Différence cours Paris / NAV convertie conservée, sans forcer une égalité."
+}

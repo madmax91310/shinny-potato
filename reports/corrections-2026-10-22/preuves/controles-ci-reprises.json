@@ -1,0 +1,68 @@
+[
+  {
+    "command": "node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
+    "exitCode": 0,
+    "seconds": 5.65,
+    "log": "reports/corrections-2026-10-22/preuves/ci-003.log"
+  },
+  {
+    "command": "node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
+    "exitCode": 0,
+    "seconds": 5.69,
+    "log": "reports/corrections-2026-10-22/preuves/ci-034.log"
+  },
+  {
+    "command": "npm run audit:data-review",
+    "exitCode": 0,
+    "seconds": 2.08,
+    "log": "reports/corrections-2026-10-22/preuves/ci-043.log"
+  },
+  {
+    "command": "npm run audit:calculator-series",
+    "exitCode": 0,
+    "seconds": 12.81,
+    "log": "reports/corrections-2026-10-22/preuves/ci-053.log"
+  },
+  {
+    "command": "node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
+    "exitCode": 1,
+    "seconds": 3.94,
+    "log": "reports/corrections-2026-10-22/preuves/ci-058.log"
+  },
+  {
+    "command": "node scripts/test-investment-conclusions.mjs",
+    "exitCode": 0,
+    "seconds": 3.73,
+    "log": "reports/corrections-2026-10-22/preuves/ci-059.log"
+  },
+  {
+    "command": "node scripts/test-tweet-bank-validity.mjs",
+    "exitCode": 0,
+    "seconds": 0.16,
+    "log": "reports/corrections-2026-10-22/preuves/ci-066.log"
+  },
+  {
+    "command": "npm run audit:data-provenance",
+    "exitCode": 0,
+    "seconds": 0.62,
+    "log": "reports/corrections-2026-10-22/preuves/ci-080.log"
+  },
+  {
+    "command": "node scripts/build-app-inventory.mjs --check",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/corrections-2026-10-22/preuves/ci-102.log"
+  },
+  {
+    "command": "node scripts/test-format-loading.mjs --built",
+    "exitCode": 0,
+    "seconds": 7.98,
+    "log": "reports/corrections-2026-10-22/preuves/ci-103.log"
+  },
+  {
+    "command": "node scripts/test-performance-links.mjs",
+    "exitCode": 1,
+    "seconds": 2.15,
+    "log": "reports/corrections-2026-10-22/preuves/ci-105.log"
+  }
+]

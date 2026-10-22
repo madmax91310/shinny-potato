@@ -120,6 +120,7 @@ def parse_product(body, share, now):
         if not date:
             reject('Invalid DWS share launch date')
         inception = dt.datetime.strptime(date[1], '%d/%m/%Y').date()
+        result['characteristics']['inceptionDate'] = inception.isoformat()
     for key, year in columns.items():
         if int(year) >= now.year:
             reject('Incomplete DWS current year')

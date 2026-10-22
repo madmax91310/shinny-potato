@@ -169,8 +169,6 @@ export function buildRankingAssets(histories) {
   return Object.fromEntries(Object.entries(histories).flatMap(([id, a]) => {
     const basis = comparisonBasis(id, a)
     if (!basis || !a.points?.length) return []
-    // Frozen listing prices cannot represent a genuine cross-asset return.
-    if (a.points.some((p, i) => i >= 2 && p.price === a.points[i - 1].price && p.price === a.points[i - 2].price)) return []
     return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
       group: GROUPS[id] ?? derivedGroup({ ...a, basis }),
     }]]

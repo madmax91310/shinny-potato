@@ -1,0 +1,65 @@
+{
+  "base_initiale": "9a4ffd2fb7c3bb643c265718117b066f57d69530",
+  "master_intégré": "77e0e93",
+  "actions": {
+    "total": 19,
+    "statuts": {
+      "partiellement corrigée": 7,
+      "corrigée": 10,
+      "bloquée": 2
+    }
+  },
+  "écarts": {
+    "total": 90,
+    "parts_uniques": 53,
+    "statuts": {
+      "anomalie encore inexpliquée": 84,
+      "erreur corrigée": 5,
+      "comparaison non pertinente": 1
+    },
+    "périodes_non_comparables_conservées": 175,
+    "collectes_cours_parts_réussies": 53,
+    "collectes_fiches_NAV_parts_réussies": 53,
+    "comparaisons_année_de_lancement_non_pertinentes": 1
+  },
+  "lancements_53_parts": {
+    "dates_vérifiées": 26,
+    "dates_non_vérifiées": 27,
+    "série_antérieure_au_lancement": 1
+  },
+  "modules": {
+    "inventaire_modules": 115,
+    "reliquat_initial": 81,
+    "reliquat_initial_avec_exec_reelle_citee": 22,
+    "reliquat_initial_avec_tests_python": 69,
+    "reliquat_initial_avec_scenarios_locaux": 76,
+    "sans_nouvelle_preuve_reseau": 59,
+    "sans_exec_locale_ou_reseau_citee": 2
+  },
+  "tests_python": {
+    "exécutés": 897,
+    "réussis": 897
+  },
+  "contrôles_CI_locaux": {
+    "exécutés": 113,
+    "réussis": 113,
+    "échoués": 0
+  },
+  "preuve_IA": {
+    "preuves_legacy_initiales": 35,
+    "preuves_identité_renouvelées": 35,
+    "cotations_requalifiées_en_réseau": 35,
+    "preuves_projetées_publiques": 35,
+    "transactions_production_ajoutées": 0
+  },
+  "périmètre_initial_non_recertifié": {
+    "outils_routés": 26,
+    "profils_catalogue": 1527,
+    "ISIN_natifs": 650,
+    "séries": 703,
+    "matrice_lignes": 214711,
+    "couples_outil_actif": 69994,
+    "reliquat_lignes_initiales": 21731
+  },
+  "avertissement": "Corrections des 19 actions, pas certification indépendante de toutes les données. Les 84 causes restantes ne sont pas résolues ; les 175 non-comparaisons restent conservées."
+}

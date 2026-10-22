@@ -37,3 +37,15 @@ assert(report.fields.some(f=>f.numericPaths.some(p=>p.includes('[]'))),'array pa
 console.log('Inventory: writer allowlists, null/false/proof semantics, source conflicts, coverage and array paths passed.')
 
 assert.equal(report.assets.length,report.summary.assetAutomation.profiles,'read-only inventory and written inventory share the same field certification')
+
+for (const r of report.registries.filter(r=>/holdings-\d+\.json$/.test(r.path))) assert(r.consumers.length>0, `Dynamic fragment has real consumers: ${r.path}`)
+assert(report.registries.find(r=>r.path==='src/data/dca-complete-holdings.json').dynamicBindings.length)
+assert(report.fields.filter(f=>f.consumers.some(c=>c.path==='/impact-frais')).every(f=>['Identité','Frais annuels (%)'].includes(f.field)))
+const {sourceConditions}=await import('./lib/source-conditions.mjs')
+assert.equal(sourceConditions('https://new-source.test/http-200').reuseStatus,'unverified')
+assert.equal(sourceConditions('https://new-source.test/http-200').license,null)
+assert(report.fields.every(f=>Array.isArray(f.sourceConditions)))
+
+const gold=JSON.parse((await import('node:fs')).readFileSync('src/data/worldbank-gold-monthly.json'))
+assert.equal(sourceConditions(gold.url).license,gold.license)
+assert.equal(sourceConditions('https://thedocs.worldbank.org/another-dataset').license,null,'A dataset licence cannot be generalized to a whole domain')

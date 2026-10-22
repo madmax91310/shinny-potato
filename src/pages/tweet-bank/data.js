@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from '../../data/automated-etf.js'
+import { resolveGuideFees, reusableContract } from '../../data/reusable-data-contracts.js'
 import { EDITORIAL_CASES } from '../../data/editorial-cases.js'
 
 // Banque de tweets à recycler — contenu initial repris tel quel du prototype HTML fourni le
@@ -289,7 +291,7 @@ Il baisse ? J'accumule, sans regarder le prix.
 export const TWEETS = [...ARCHIVED_TWEETS, ...EDITORIAL_CASES.map(item => ({
   ...item, id: `pedagogy:${item.id}`, month: 'Intemporel', category: 'Pédagogie',
   formats: ['Explication pédagogique'],
-}))]
+}))].map(tweet=>{const resolved=resolveGuideFees(tweet,AUTOMATED_ETF);return {...resolved,dataContract:reusableContract(resolved)}})
 
 export function getTweet(id) {
   return TWEETS.find((t) => t.id === id)

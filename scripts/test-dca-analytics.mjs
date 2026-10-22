@@ -24,6 +24,13 @@ const roundedPartial=portfolioAnalytics(lines,refs,{x:{...observation,complete:f
 assert.equal(roundedPartial.groups[0].coverage,100)
 assert.equal(roundedPartial.groups[0].complete,false)
 assert.equal(roundedPartial.pairs[0].overlap,null)
+const mixedLines=[{asset:'a-index',isin:refs.y.isin,label:'Unknown index positions',weight:30},{asset:'x',isin:refs.x.isin,label:'Fund',weight:70}]
+const mixedRefs={...refs,'a-index':refs.y},mixedHoldings={x:observation,'a-index':{...observation,basis:'index',complete:false,rows:[{name:'Unidentified issuer',weightPct:20}]}}
+const mixed=portfolioAnalytics(mixedLines,mixedRefs,mixedHoldings,now)
+assert.equal(mixed.groups[0].scope,'fund','An empty scope cannot hide available issuer positions')
+assert.equal(mixed.groups[0].rows.find(r=>r.isin===a).weight,42,'Unknown positions are not redistributed')
+assert.equal(mixed.groups.find(g=>g.scope==='index').portfolioWeight,30,'Keep the unidentifiable scope and its weight explicit')
+assert.deepEqual(portfolioAnalytics([...mixedLines].reverse(),mixedRefs,mixedHoldings,now).groups,mixed.groups,'Scope choice is invariant to asset order')
 const diff=compareExposures(result,result,'countries');assert(diff.compatible);assert(diff.rows.every(r=>r.delta===0))
 const incompatible=structuredClone(result);incompatible.exposures.countries.groups[0].classification='registration'
 assert.equal(compareExposures(result,incompatible,'countries').compatible,false)

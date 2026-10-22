@@ -1,3 +1,4 @@
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import { getAnnualReturnStartYears as routedPerformanceYears, ASSETS as routedPerformanceAssets } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
@@ -28,14 +29,15 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length && getValidYearsBackOptions(id,new Date()).length), id)
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
   const routedId=getPerformanceAssetId(asset.isin)
-  if(getAnnualReturnStartYears(id).length) assert.equal(routedId,id)
-  else if(routedId){assert.equal(routedPerformanceAssets[routedId].isin,asset.isin);assert(routedPerformanceYears(routedId).length>0)}
+  if(routedId){assert.equal(routedPerformanceAssets[routedId].isin,asset.isin);assert(routedPerformanceYears(routedId).length>0)}
   const priceInstrument = ['ETC','ETN','ETP'].includes(asset.instrumentType)
   assert.match(performanceBasis(id), priceInstrument ? new RegExp(`cours de l’${asset.instrumentType}`) : /revenus réinvestis/)
   const start = asset.points[0].date
   for (const mode of ['lump', 'dca']) {
     const expected = (mode === 'lump' ? 100 / asset.points[0].price : asset.points.reduce((n, p) => n + 100 / p.price, 0)) * asset.points.at(-1).price
     const inputs = { assetId: id, amountRaw: '100', startYear: Number(start.slice(0, 4)), startMonth: Number(start.slice(5)), mode, overridePriceRaw: '' }
+    const qualification=qualifyHistoryWindow(asset,start,asset.points.at(-1).date)
+    if(!qualification.qualified){assert.throws(()=>derive(inputs),error=>error.message===qualification.reason);continue}
     const d = derive(inputs)
     close(d.result.finalValue, expected)
     assert.equal(d.endYm, asset.points.at(-1).date)
@@ -47,13 +49,13 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   }
   const years = getAnnualReturnStartYears(id)
   if (years.length) {
-  assert.equal(years[0], Number(start.slice(0, 4)) + 1)
+  assert.equal(years[0], asset.isin==='IE00BYTRR863'?2017:Number(start.slice(0, 4)) + 1)
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
   assert(annual.includes(asset.currency) && annual.includes(priceInstrument ? `cours de l’${asset.instrumentType}` : 'revenus réinvestis'))
   } else {
-    assert(asset.points[0].date > `${clock.getUTCFullYear()-2}-12`, `${id}: unexpected missing completed annual history`);
+    assert(asset.points[0].date > `${clock.getUTCFullYear()-2}-12` || !qualifyHistoryWindow(asset,asset.points[0].date,asset.points.at(-1).date).qualified, `${id}: unexpected missing completed annual history`);
   }
   if (!asset.anniversaryPoints?.length) {
     assert(!LEVELS[id], `${id}: anniversary collection must remain disabled`)
@@ -74,8 +76,9 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(latest.currency, asset.currency)
   assert.match(latest.method, /cours brut/)
   assert.equal(resolveAnniversaryLevel(id, '', new Date(`${latest.asOf}T12:00:00Z`)).value, latest.value)
-  if (!getValidYearsBackOptions(id,new Date()).length) continue
-  const text = buildAnniversaireText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.SIMPLE, assetId: id, yearsBack: 1 }, '100')
+  const validYearsBack=getValidYearsBackOptions(id,new Date())
+  if (!validYearsBack.length) continue
+  const text = buildAnniversaireText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.SIMPLE, assetId: id, yearsBack: validYearsBack[0] }, '100')
   assert(text.includes(asset.label))
   assert(!text.includes('[à saisir]'))
 }

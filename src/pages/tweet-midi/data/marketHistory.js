@@ -1,3 +1,4 @@
+import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/history-window-quality.js';
 import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
@@ -56,6 +57,7 @@ export function getAssetAvailableYears(assetId) {
 export function getHistoricalPrice(assetId, ym) {
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
+  requireHistoryWindow(ASSETS[assetId], clampedYm, clampedYm);
   return interpolatePrice(ASSETS[assetId].anniversaryPoints ?? assetPoints(assetId), clampedYm);
 }
 
@@ -101,7 +103,7 @@ export function getLastRealPointOfYear(assetId, year) {
 // elle n'a qu'un point partiel, jamais une vraie clôture annuelle.
 export function getAnnualReturnStartYears(assetId) {
   return getAssetAvailableYears(assetId).filter(
-    (year) => year < LATEST_YEAR && annualClose(assetId, year - 1) && annualClose(assetId, year),
+    (year) => year < LATEST_YEAR && annualClose(assetId, year - 1) && annualClose(assetId, year) && qualifyHistoryWindow(ASSETS[assetId], `${year - 1}-12`, `${year}-12`, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) }).qualified,
   );
 }
 
@@ -121,6 +123,8 @@ export function getAnnualReturns(assetId, startYear) {
     const cur = annualClose(assetId, year);
     // A cumulative return must never silently skip an unavailable year.
     if (!prev || !cur) break;
+    const qualification=qualifyHistoryWindow(ASSETS[assetId], prev.date, cur.date, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) });
+    if(!qualification.qualified) {if(!out.length&&qualification.code)throw new Error(qualification.reason);break;}
     out.push({ year, pct: ((cur.price - prev.price) / prev.price) * 100, startDate: prev.date, endDate: cur.date });
   }
   return out;
@@ -130,6 +134,7 @@ export function getAnnualReturns(assetId, startYear) {
 // nombre d'années fixe supposé disponible pour tous les actifs — filtré au plancher vérifié de
 // CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
 // de `new Date()` au moment du clic, pour rester exact indéfiniment).
+function isQualifiedMonth(assetId, ym) { return qualifyHistoryWindow(ASSETS[assetId], ym, ym).qualified; }
 export function getValidYearsBackOptions(assetId, today) {
   const minDate = getAssetMinDate(assetId);
   const minIdx = ymIndex(minDate);
@@ -137,7 +142,7 @@ export function getValidYearsBackOptions(assetId, today) {
   for (let yearsBack = 1; yearsBack <= 10; yearsBack++) {
     const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
     const ym = past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
-    if (ymIndex(ym) >= minIdx && ymIndex(ym) <= ymIndex(getAssetMaxDate(assetId))) options.push(yearsBack);
+    if (ymIndex(ym) >= minIdx && ymIndex(ym) <= ymIndex(getAssetMaxDate(assetId)) && isQualifiedMonth(assetId, ym)) options.push(yearsBack);
   }
   return options;
 }
@@ -211,6 +216,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   minDate: getAssetMinDate(id),
   variant: ASSETS[id].variant,
   priceMethod: ASSETS[id].priceMethod,
+  historyConvention: ASSETS[id].historyConvention,
   returnNote: ASSETS[id].returnNote,
   methodNote: ASSETS[id].methodNote,
   label: ASSETS[id].label,
@@ -222,6 +228,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   priceUnit: ASSETS[id].priceUnit,
   instrumentType: ASSETS[id].instrumentType,
   isin: ASSETS[id].isin,
+  symbol: ASSETS[id].symbol, ticker: ASSETS[id].ticker, mic: ASSETS[id].mic,
 }));
 
 // Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.

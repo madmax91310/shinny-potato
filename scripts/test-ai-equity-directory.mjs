@@ -3,11 +3,22 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import {inventory} from './ai-portfolio-universe.mjs'
-import {tickerKey} from './ai-equity-directory.mjs'
+import {tickerKey,directoryCandidates} from './ai-equity-directory.mjs'
 import {hydrateMarketSeries,publicMarket} from './ai-series-store.mjs'
 import {loadSeries} from '../src/pages/ai-portfolios/series.js'
 const raw=JSON.parse(fs.readFileSync('data/ai-portfolios/equity-scope/instruments.json')).listings
 const all=inventory(),keys=new Map(all.map(a=>[tickerKey(a.mic,a.ticker,a.currency),a]))
+// Renew an existing listing without confusing another share on the same venue.
+const official=raw.find(r=>r.isin&&r.sourceUrl&&r.identitySha256&&!r.identityStale&&!r.identityDetailError)
+assert(official,'An exact official listing is required for this regression')
+const retained={isin:official.isin,mic:official.mic,ticker:official.ticker,currency:official.currency}
+directoryCandidates([retained],{})
+assert(retained.evidenceId&&retained.listingEvidence.sha256===official.identitySha256,'Existing exact listing keeps the official identity proof')
+const conflict={...retained,isin:'ZZ0000000000'};delete conflict.evidenceId;delete conflict.listingEvidence
+directoryCandidates([conflict],{})
+assert.equal(conflict.evidenceId,undefined,'A matching ticker cannot renew a different ISIN')
+const liveMarket=JSON.parse(fs.readFileSync('data/ai-portfolios/market.json'))
+for(const a of liveMarket.universe.filter(a=>a.status==='qualified'))assert(a.evidenceId,`Qualified listing without identity proof: ${a.id}`)
 for(const r of raw)assert(keys.has(tickerKey(r.mic,r.ticker,r.currency)),`Missing official row ${r.sourceId}/${r.ticker}`)
 assert.equal(new Set(all.map(a=>a.id)).size,all.length)
 const brk=all.filter(a=>a.mic==='XNYS'&&/^BRK[.\- ][AB]$/.test(a.ticker));assert.equal(brk.length,2);assert.notEqual(brk[0].instrumentId,brk[1].instrumentId)

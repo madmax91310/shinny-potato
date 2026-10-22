@@ -1,0 +1,41 @@
+
+> patrimoine-et-compagnie@0.0.0 stress-test:portfolios
+> node scripts/stress-test-portfolios.mjs
+
+Mode regression — 9300 portefeuilles générés (31 combos profil×risque, ~300 chacun)
+
+  [OK] Le Généraliste / prudent — 298 générations, 0 violation(s)
+  [OK] Le Généraliste / defensif — 315 générations, 0 violation(s)
+  [OK] Le Généraliste / equilibre — 286 générations, 0 violation(s)
+  [OK] Le Généraliste / dynamique — 292 générations, 0 violation(s)
+  [OK] Le Généraliste / offensif — 318 générations, 0 violation(s)
+  [OK] Le Rentier / prudent — 311 générations, 0 violation(s)
+  [OK] Le Rentier / defensif — 279 générations, 0 violation(s)
+  [OK] Le Rentier / equilibre — 312 générations, 0 violation(s)
+  [OK] Le Rentier / dynamique — 308 générations, 0 violation(s)
+  [OK] Le Rentier / offensif — 305 générations, 0 violation(s)
+  [OK] Le Pro-Européen / prudent — 300 générations, 0 violation(s)
+  [OK] Le Pro-Européen / defensif — 290 générations, 0 violation(s)
+  [OK] Le Pro-Européen / equilibre — 285 générations, 0 violation(s)
+  [OK] Le Pro-Européen / dynamique — 295 générations, 0 violation(s)
+  [OK] Le Pro-Européen / offensif — 291 générations, 0 violation(s)
+  [OK] L'Anti-Inflation / prudent — 304 générations, 0 violation(s)
+  [OK] L'Anti-Inflation / defensif — 306 générations, 0 violation(s)
+  [OK] L'Anti-Inflation / equilibre — 288 générations, 0 violation(s)
+  [OK] L'Anti-Inflation / dynamique — 311 générations, 0 violation(s)
+  [OK] L'Anti-Inflation / offensif — 298 générations, 0 violation(s)
+  [OK] Le Bouclier / prudent — 281 générations, 0 violation(s)
+  [OK] Le Bouclier / defensif — 302 générations, 0 violation(s)
+  [OK] Le Bouclier / equilibre — 299 générations, 0 violation(s)
+  [OK] Le Crypto-Curieux / defensif — 310 générations, 0 violation(s)
+  [OK] Le Crypto-Curieux / equilibre — 307 générations, 0 violation(s)
+  [OK] Le Crypto-Curieux / dynamique — 291 générations, 0 violation(s)
+  [OK] Le Crypto-Curieux / offensif — 312 générations, 0 violation(s)
+  [OK] Le Thématique / defensif — 298 générations, 0 violation(s)
+  [OK] Le Thématique / equilibre — 315 générations, 0 violation(s)
+  [OK] Le Thématique / dynamique — 298 générations, 0 violation(s)
+  [OK] Le Thématique / offensif — 295 générations, 0 violation(s)
+
+Total : 0 violation(s) sur 9300 portefeuilles.
+
+OK — aucune violation sur l'échantillon testé.

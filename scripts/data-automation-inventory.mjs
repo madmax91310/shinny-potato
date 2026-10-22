@@ -1,3 +1,5 @@
+import {sourceConditions} from './lib/source-conditions.mjs'
+import DYNAMIC from '../src/data/dynamic-data-consumers.json' with {type:'json'}
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -39,8 +41,10 @@ export function workflowInfo(path,text=read(path)){
  const outputs=[]
  // Only the explicitly validated commit allowlist establishes a writer. PR path
  // filters and a mention in a test do not establish automatic publication.
- for(const line of text.split('\n').filter(l=>l.includes('bash scripts/commit-validated-data.sh ')))
+ for(const line of text.split('\n').filter(l=>l.includes('bash scripts/commit-validated-data.sh '))) {
   for(const m of line.matchAll(/(?:src|public)\/[A-Za-z0-9_./*?-]+\.(?:json|js)/g))outputs.push(m[0])
+  for(const m of line.matchAll(/(?:^|\s)(data\/[A-Za-z0-9_./*-]+)(?=\s|$)/g))outputs.push(m[1].endsWith('/')?m[1]+'*':m[1]+'/*')
+ }
  return {path,name:/^name:\s*(.+)$/m.exec(text)?.[1]??path,
   crons:[...text.matchAll(/\bcron:\s*['"]([^'"]+)['"]/g)].map(m=>m[1]),
   collectors:[...new Set([...text.matchAll(/\b(?:python3?|node)\s+(scripts\/[\w./-]+\.(?:py|mjs))/g)].map(m=>m[1]))],
@@ -95,9 +99,11 @@ export function buildDataAutomationInventory(){
  const registries=registryFiles.map(path=>{
   const deps=[...dependencies(path)],direct=writers(path)
   const upstream=[...new Set(deps.flatMap(p=>writers(p).map(w=>w.path)))]
-  const users=consumers.filter(c=>c.deps.has(path)).map(c=>c.path)
+  const dynamic=DYNAMIC.bindings.filter(binding=>matches(path,binding.pattern))
+  const dynamicConsumers=new Set(dynamic.flatMap(binding=>binding.consumers))
+  const users=consumers.filter(c=>c.deps.has(path)||[...dynamicConsumers].some(d=>c.path===d||c.deps.has(d))).map(c=>c.path)
   return {path,mode:direct.some(w=>w.crons.length)?'scheduled-output':direct.length?'event-output':upstream.length?'mixed-or-derived':'manual-or-editorial',
-   writers:direct.map(w=>w.path),upstreamWorkflows:upstream,dependencies:deps.filter(p=>p!==path),consumers:users,
+   dynamicBindings:dynamic,writers:direct.map(w=>w.path),upstreamWorkflows:upstream,dependencies:deps.filter(p=>p!==path),consumers:users,
    catalogFields:DATA_CATALOG.reduce((n,r)=>n+r.fields.filter(f=>f.registry===path).length,0),
    action:upstream.length||direct.length?'Qualifier la couverture au niveau de chaque champ ; vérifier le dernier succès dans Données à revoir.':'Décider si les valeurs sont éditoriales, hypothèses de simulation ou chiffres à raccorder ; aucun statut automatique déduit du nom du fichier.'}
  })
@@ -112,12 +118,12 @@ export function buildDataAutomationInventory(){
   const nature=fieldQualification(field,record)
   const matchingCoverage=catalogCoverage(field,record,coverageMap,AUTOMATED_ETF)
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
-   consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
+   consumers:record.consumers.filter(c=>c.path!=='/impact-frais'||['Identité','Frais annuels (%)'].includes(field.label)),mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
    qualification:'source-configuration-only',nature,
    coverageReference:matchingCoverage?{id:matchingCoverage.id,field:matchingCoverage.field,state:matchingCoverage.state,checkedAt:matchingCoverage.checkedAt}:null,
    provenanceGap:['live','history'].includes(nature.kind)&&(!evidence.sourceUrls?.length||!evidence.checkedAt),
    sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
-   sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
+   sourceConditions:(evidence.sourceUrls??[]).map(sourceConditions),sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
    currency:evidence.currency??null,scope:evidence.scope??null,method:evidence.method??null,
    requiresConnection:(['live','history'].includes(nature.kind)&&(registry?.mode==='manual-or-editorial'||nature.manual))||!!field.qualificationMissing,
    missingReason:field.qualificationMissing||null,

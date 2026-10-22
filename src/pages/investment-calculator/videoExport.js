@@ -1,3 +1,4 @@
+import { requireHistoryWindow } from '../../data/history-window-quality.js'
 // Génération de la vidéo de résultat (canvas 2D animé + MediaRecorder) — 100% côté client, aucune
 // dépendance externe. Rejoue exactement la série déjà calculée par derive() (lib.js) : mêmes points
 // mois par mois que le Sparkline statique, même valeur finale, même performance. Aucune nouvelle
@@ -122,6 +123,7 @@ export function getComparativeAssetIssue(assetId, startYm, mode, endYm, currency
 // retour utilisateur du 14/09/2026). Mode toujours 'lump' pour ces actifs (DCA bloqué en amont par
 // getComparativeAssetIssue), donc pas de branche DCA à gérer ici.
 export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '', currency = 'native') {
+  requireHistoryWindow(ASSETS[assetId], startYm, endYm, { contiguous: !SPARSE_MONTHLY_DATA_IDS.has(assetId) && !INCONSISTENT_MONTHLY_DATA_IDS.has(assetId) })
   const asset = historyInCurrency(ASSETS[assetId], currency, startYm, endYm)
   const points = asset.points
   if (overridePriceRaw && asset.fxConverted) overridePriceRaw = String(Number(overridePriceRaw) * monthlyCurrencyFactor(endYm, ASSETS[assetId].currency, asset.currency))

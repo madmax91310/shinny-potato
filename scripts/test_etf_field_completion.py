@@ -18,6 +18,24 @@ CONFIG = json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['i
 
 
 class FieldCompletion(unittest.TestCase):
+    def test_vaneck_disconnected_transport_tries_only_sanctioned_same_document(self):
+        import http.client
+        from collect_vaneck_etf import download_document
+        primary='https://www.vaneck.com/ucits/library/fact-sheets/smh-fact-sheet.pdf'
+        fallback='https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf'
+        share={'sourceUrl':primary,'fallbackUrls':[fallback]}
+        attempted=[]
+        def fetch(url):
+            attempted.append(url)
+            if url==primary:raise http.client.RemoteDisconnected('closed')
+            return b'%PDF-qualified'
+        self.assertEqual(download_document(share,fetch),(b'%PDF-qualified',fallback))
+        self.assertEqual(attempted,[primary,fallback])
+        with self.assertRaisesRegex(ValueError,'wrong identity'):
+            download_document(share,lambda url: (_ for _ in ()).throw(ValueError('wrong identity')))
+        with self.assertRaises(ValueError):
+            download_document({**share,'fallbackUrls':['https://other.test/smh-fact-sheet.pdf']},fetch)
+
     def test_existing_equity_listing_rows_may_share_an_isin(self):
         columns={'asOfDate':20261006,'issueName':['APPLE NASDAQ','APPLE XETRA','USD CASH'],
             'holdingPercent':[60,39.9,0.1],'isin':['US0378331005','US0378331005',''],

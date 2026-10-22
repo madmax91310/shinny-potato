@@ -44,7 +44,7 @@ const fixture={world:obs([holding('US67066G1040',80),holding('US0378331005',20)]
 let pair=sharedPositions(positions,references,now,fixture).pairs[0]
 assert.equal(pair.overlap,50);assert.equal(pair.common[0].portfolioWeight,68)
 const rounded=obs([holding('US67066G1040',100.2)],{complete:true})
-assert.equal(sharedPositions(positions,references,now,{world:rounded,sp500:rounded}).pairs[0].overlap,100)
+assert.equal(sharedPositions(positions,references,now,{world:rounded,sp500:rounded}).pairs.length,0,'A single position above 100% is invalid, never silently normalized')
 assert.equal(sharedPositions(positions,references,now,{...fixture,world:{...fixture.world,synthetic:true}}).pairs.length,0)
 assert.equal(sharedPositions(positions,references,now,{...fixture,world:{...fixture.world,asOf:'2020-01-01'}}).pairs.length,0)
 assert.equal(sharedPositions(positions,references,now,{...fixture,world:{...fixture.world,rows:[holding('US67066G1040',-5)]}}).pairs.length,0)

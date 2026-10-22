@@ -54,12 +54,14 @@ export function productFieldEvidence(value,record,field) {
 }
 export function completeHoldingsEvidence(record,status) {
  if(!record?.complete)return null;
- return {...record,checkedAt:record.checkedAt??status?.lastSuccessAt??(status?.status==='validated'?status.checkedAt:null)};
+ const unidentified=(record.rows??[]).filter(row=>!row.isin);
+ return {...record,unidentifiedWeightPct:record.unidentifiedWeightPct??unidentified.reduce((n,row)=>n+row.weightPct,0),unidentifiedSecurityCount:record.unidentifiedSecurityCount??unidentified.length,checkedAt:record.checkedAt??status?.lastSuccessAt??(status?.status==='validated'?status.checkedAt:null)};
 }
 export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) {
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
  const monthly={...read('src/data/automated-monthly.json'),...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
  for(const [id,r] of Object.entries(monthly))if(!r.isin&&ASSETS[id]?.isin)monthly[id]={...r,isin:ASSETS[id].isin};
+ const compositionOnly=read('src/data/vanguard-equity-underliers.json');
  const completeHoldings=read('src/data/dca-complete-holdings.json'),holdingsStatus=read('src/data/dca-holdings-status.json'),metadataStatus=read('src/data/instrument-metadata-status.json');
  const holdingsSources={...read('scripts/dca-complete-holdings-sources.json'),...read('scripts/generated-holdings-sources.json')};
  const names={completeHoldings:'Positions intégrales',ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
@@ -67,10 +69,15 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
  const metadataSources=new Map(read('scripts/instrument-metadata-sources.json').instruments.map(r=>[r.isin,r.urls]));
  for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
-  const record=AUTOMATED_ETF[item.id]??{};
+  const onlyComposition=!AUTOMATED_ETF[item.id]&&!!compositionOnly[item.id];
+  const record=AUTOMATED_ETF[item.id]??compositionOnly[item.id]??{};
   for(const field of Object.keys(names)) {
+   if(onlyComposition&&!['countries','sectors','completeHoldings'].includes(field)) {
+    rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:[],reason:'Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ.'});continue;
+   }
    const meta=['distribution','domicile','replicationMethod','listings','pea','currencyHedge'].includes(field);
    let value=field==='ter'||meta?record.characteristics:record[field];
+   if(onlyComposition&&value)value={...value,checkedAt:value.checkedAt??record.checkedAt};
    if((field==='ter'||meta)&&value)value={...value,...record.characteristicChecks?.[field==='ter'?'terPct':field]};
    if(field==='listings') {
     const listings=(INSTRUMENT_LISTINGS_BY_ISIN[item.id]??[]).filter(l=>l.evidenceId&&l.sourceUrl&&l.checkedAt);
@@ -86,7 +93,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
    const observed=field==='monthly'?value?.periodEnd:field==='performance'?completeCalendarYears(item.id,value?.years,now).at(-1)?.toString():value?.asOf;
    const configured=field==='completeHoldings'?!!holdingsSources[item.id]:meta?true:field==='monthly'?!!value:true;
    const diagnostic=field==='completeHoldings'&&holdingsStatus[item.id]?.status==='failed'?{code:'retained-source-failure',reason:holdingsStatus[item.id].error}:fieldDiagnostic({field,present,state,status:meta?metadataStatus[item.id]:null,gap,configured});
-   rows.push({diagnostic,tools:FIELD_TOOLS[field]??['etf-sheets'],automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null,sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
+   rows.push({diagnostic,tools:onlyComposition?['dca-profiles']:(FIELD_TOOLS[field]??['etf-sheets']),automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null,sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
      ...(field==='completeHoldings'&&value?{basis:value.basis,scope:value.scope,unidentifiedWeightPct:value.unidentifiedWeightPct,unidentifiedSecurityCount:value.unidentifiedSecurityCount}:{}),
      ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method}:{}),
      ...(field==='performance'&&record.performance?.months?{archivedMonthlyReturns:Object.keys(record.performance.months).length}:{})});
@@ -101,9 +108,11 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  for(const type of ['scpi','insurance'])for(const r of read(`src/data/automated-${type}.json`).records)for(const field of (type==='scpi'?['annual','price','conditions','snapshot','portfolio']:['fees','access','euroFunds'])) {
   const value=r[field],evidence=productFieldEvidence(value,r,field),annual=POLICY.fields['product.annual'].fields.includes(field);
   const archived=r.availability?.status==='superseded';
-  rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,archived,state:archived?'archived':value?fieldState(evidence,now,{...freshness(annual?'product.annual':'product.default'),effectiveDate:field==='price',requireObservation:annual||field==='snapshot'}):'missing',checkedAt:evidence.checkedAt,asOf:observationDate(evidence),...(field==='price'?{effectiveAt:value?.asOf??null}:{}),sourceUrl:value?.sourceUrl??r.sourceUrl});
+  const wait=r.collectionStatus;
+  const waiting=field==='snapshot'&&wait?.status==='waiting-publication'&&wait.nextPublicationDue>=now&&wait.lastAccessSuccessAt<=now&&Number.isFinite(dateStamp(wait.lastAccessSuccessAt))&&(dateStamp(now)-dateStamp(wait.lastAccessSuccessAt))/86400000<=freshness('product.default').checkDays;
+  rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,archived,state:archived?'archived':waiting?'waiting-publication':value?fieldState(evidence,now,{...freshness(annual?'product.annual':'product.default'),effectiveDate:field==='price',requireObservation:annual||field==='snapshot'}):'missing',checkedAt:evidence.checkedAt,asOf:observationDate(evidence),...(field==='price'?{effectiveAt:value?.asOf??null}:{}),sourceUrl:value?.sourceUrl??r.sourceUrl});
  }
- const summary=Object.fromEntries(Object.keys(names).map(field=>{const values=rows.filter(r=>r.type==='instrument'&&r.field===field);return [field,{label:names[field],total:values.length,present:values.filter(r=>r.present).length,states:values.reduce((a,r)=>(a[r.state]=(a[r.state]??0)+1,a),{})}]}));
+ const summary=Object.fromEntries(Object.keys(names).map(field=>{const values=rows.filter(r=>r.type==='instrument'&&r.field===field);return [field,{label:names[field],total:values.length,applicable:values.filter(r=>r.state!=='not-applicable').length,present:values.filter(r=>r.present).length,states:values.reduce((a,r)=>(a[r.state]=(a[r.state]??0)+1,a),{})}]}));
  return {checkedAt:now,summary,rows};
 }
 export function writeAssetFieldReport() {

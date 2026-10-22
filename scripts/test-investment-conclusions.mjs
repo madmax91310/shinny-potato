@@ -1,3 +1,4 @@
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import assert from 'node:assert/strict'
 import { buildTweetText, derive, fmtEUR, fmtPct, pct } from '../src/pages/investment-calculator/lib.js'
 import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js'
@@ -16,6 +17,8 @@ for (const assetId of Object.keys(ASSETS)) for (const mode of ['lump','dca']) {
   const asset = ASSETS[assetId]
   const [year, month] = asset.points[0].date.split('-').map(Number)
   const s = {...state, assetId, mode, startYear:Math.max(year,2020), startMonth:year>=2020?month:1}
+  const start=`${s.startYear}-${String(s.startMonth).padStart(2,'0')}`
+  if(!qualifyHistoryWindow(asset,start,asset.points.at(-1).date,{contiguous:false}).qualified){assert.throws(()=>derive(s),/cours reportés/);continue}
   const d = derive(s)
   const text = buildTweetText(s,d)
   assert.doesNotMatch(text,/undefined|NaN|Tu as commencé avec|Tu as du Bitcoin en portefeuille/)

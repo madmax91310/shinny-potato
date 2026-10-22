@@ -25,6 +25,7 @@ try{
  const code=plugin.transform('',resolve('src/pages/tweet-midi/data/anniversaryHistory.js')).code
   .replace("'../../investment-calculator/math.js'",JSON.stringify(pathToFileURL(resolve('src/pages/investment-calculator/math.js')).href))
   .replace("'../../../data/history-browser.js'",JSON.stringify(loader))
+  .replace("'../../../data/history-window-quality.js'",JSON.stringify(pathToFileURL(resolve('src/data/history-window-quality.js')).href))
  const projected=await import(uri(code)),p=anniversaryProjection()
  assert(Object.values(p.assets).every(asset=>!Object.hasOwn(asset,'points')&&!Object.hasOwn(asset,'anniversaryPoints')))
  assert.equal(requests.length,0)
@@ -37,7 +38,9 @@ try{
   assert.equal(requests.length,before+1,'history cache')
   for(const years of [1,3,5,10]){
    const ym=canonical.ymForYearsBack(years,new Date('2026-10-17'))
-   assert.equal(projected.getHistoricalPrice(asset.id,ym),canonical.getHistoricalPrice(asset.id,ym),asset.id+' '+ym)
+   let expected
+   try {expected=canonical.getHistoricalPrice(asset.id,ym)} catch(error) {assert.match(error.message,/cours reportés/);assert.throws(()=>projected.getHistoricalPrice(asset.id,ym),{message:error.message});continue}
+   assert.equal(projected.getHistoricalPrice(asset.id,ym),expected,asset.id+' '+ym)
   }
  }
  const exposure=await import(uri(plugin.transform('',resolve('src/pages/dca-profiles/records.js')).code))

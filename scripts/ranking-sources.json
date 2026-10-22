@@ -251,7 +251,10 @@
       "periodStart": "2005-12",
       "discoverStart": true,
       "listingSourceUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-physical-gold-etc.html",
-      "verifyMonthlyDisagreements": true
+      "verifyMonthlyDisagreements": true,
+      "sharedHistory": true,
+      "icon": "🥇",
+      "artHistoryId": "etfIE00B579F325"
     },
     {
       "id": "long-msciEurope",
@@ -345,7 +348,10 @@
       "periodStart": "2024-08",
       "verifyMonthlyDisagreements": true,
       "discoverStart": true,
-      "listingSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      "listingSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sharedHistory": true,
+      "icon": "🛩️",
+      "artHistoryId": "etfIE000U9ODG19"
     }
   ]
 }

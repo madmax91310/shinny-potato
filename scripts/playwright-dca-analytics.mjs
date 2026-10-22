@@ -17,6 +17,7 @@ try{
  await page.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'})
  const panel=page.getByRole('region',{name:'Analyse du portefeuille',exact:true})
  await panel.getByText('Concentration et poids cumulés',{exact:true}).click()
+ await panel.locator('.dca-security-list details').first().waitFor({state:'visible'})
  assert((await panel.locator('.dca-security-list details').count())>0)
  await panel.getByRole('button',{name:'Versements mensuels',exact:true}).click()
  await panel.getByRole('button',{name:'Après les versements',exact:true}).click()

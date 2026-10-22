@@ -13,6 +13,12 @@ for(const row of report.rows.filter(r=>r.type==='instrument'&&r.field==='pea')) 
  assert.equal(row.present,typeof review?.eligible==='boolean'&&!!review.sourceUrl,`${row.id}: unknown and false must remain distinct`)
  if(row.present) assert.equal(row.checkedAt,review.checkedAt)
  assert.ok(Array.isArray(row.sourceUrls))
+ if(row.state==='not-applicable'){
+  assert.deepEqual(row.sourceUrls,[])
+  assert.equal(row.checkedAt,null)
+  assert.equal(row.asOf,null)
+  assert.equal(row.automationConfigured,false)
+ }
 }
 assert.ok(report.rows.some(r=>r.field==='listings'&&r.present))
 console.log('Field diagnostics: retained observations, incomplete collections, unknown PEA and registry dates verified.')

@@ -16,6 +16,10 @@ const selected=discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQ
 const lines=selected.map(isin=>{const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin);return {asset,isin,label:r.name,weight:50}})
 const expectedPair=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]]))).pairs[0]
 assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')
+if(selected.some(isin=>raw[isin].rows.reduce((sum,row)=>sum+row.weightPct,0)>100.00001||raw[isin].rows.some(row=>!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(row.isin??'')))){
+ assert.equal(expectedPair.full,false,'Unknown identities or published weights above 100% must not be silently normalized into a full overlap')
+ assert.equal(expectedPair.overlap,null)
+}
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
 if(physical){
  const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))
@@ -63,8 +67,7 @@ try{
   await page.getByText(/^Recouvrement entre les supports ·/).click()
   await page.locator('.dca-pair-grid article').first().waitFor()
   const pair=await page.locator('.dca-pair-grid article').first().innerText()
-  if(newIssuers||selected.some(isin=>raw[isin].unidentifiedWeightPct>0))assert(pair.includes('Partiel'),'Unknown identities, cash and option sleeves must prevent an integral overlap claim')
-  else assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
+  assert.equal(pair.includes('Partiel'),!expectedPair.full,'The interface must preserve the qualified scope, including unknown identities and unnormalized weight totals')
   assert.equal(Number(/(\d+) entreprises communes/.exec(pair)?.[1]),expectedPair.companyCommon.length,'Displayed company count matches the verified consolidation of full issuer portfolios')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/live-data-connections/${newIssuers?'new-issuers-':physical?'physical-':''}holdings-${width}.png`,fullPage:true})

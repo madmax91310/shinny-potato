@@ -6,7 +6,7 @@ import pathlib
 import unittest
 
 from collect_dws_etf import parse_holdings
-from verify_dws_compositions import verify, collect
+from verify_dws_compositions import verify, collect, check_report
 
 
 class VerificationTests(unittest.TestCase):
@@ -37,6 +37,32 @@ class VerificationTests(unittest.TestCase):
         partial['tables'][0]['values'] = partial['tables'][0]['values'][:2]
         with self.assertRaises(ValueError):
             verify(self.isin, self.record, self.now, lambda url: partial)
+
+    def test_different_publication_dates_are_deferred_without_weight_comparison(self):
+        record=copy.deepcopy(self.record)
+        for field in ('countries','sectors'):
+            record[field]['asOf']='2026-10-11'
+            record[field]['rows'][0]['weightPct']+=5
+        result=collect({self.isin:record},self.now,lambda url:self.body)
+        self.assertEqual(result['verified'],[])
+        self.assertEqual(result['errors'],[])
+        self.assertEqual(result['deferred'][0]['reason'],'publication-lag')
+        check_report(result)
+        record['countries']['basis']='index'
+        incompatible=collect({self.isin:record},self.now,lambda url:self.body)
+        self.assertEqual(incompatible['deferred'],[])
+        self.assertEqual(len(incompatible['errors']),1)
+        with self.assertRaises(ValueError):
+            check_report(incompatible)
+
+    def test_gate_rejects_empty_missing_and_failed_checks(self):
+        for report in (
+            {'candidateCount':0,'verified':[],'deferred':[],'errors':[]},
+            {'candidateCount':2,'verified':[{}],'deferred':[],'errors':[]},
+            {'candidateCount':1,'verified':[],'deferred':[],'errors':[{'reason':'timeout'}]},
+        ):
+            with self.subTest(report=report), self.assertRaises(ValueError):
+                check_report(report)
 
     def test_non_allocation_document_revision_keeps_both_hashes(self):
         body = copy.deepcopy(self.body)

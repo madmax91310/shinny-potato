@@ -312,7 +312,7 @@ function InvestmentEditor({state,setState}){
   // en négatif ne doit jamais atteindre le calcul.
   const overridePriceInvalid = !isCustom && state.overridePriceRaw !== '' && !(parseFloat(state.overridePriceRaw) > 0)
   const hasValidOverride = !isCustom && !overridePriceInvalid && state.overridePriceRaw !== ''
-  const calculation = useMemo(() => { try { return { data: derive(crisisMode ? { ...state, currency: 'native' } : state) } } catch (error) { return { error: error.message, data: derive({ ...state, currency: 'native' }) } } }, [state, crisisMode])
+  const calculation = useMemo(() => { try { return { data: derive(crisisMode ? { ...state, currency: 'native' } : state) } } catch (error) { return { error: error.message, data: null } } }, [state, crisisMode])
   const currencyOptions = isCustom ? [] : historyCurrencies(ASSETS[state.assetId], startYm, lastAvailableYm)
   const resultBlocked = Boolean(calculation.error) || amountInvalid || customStartInvalid || customEndInvalid || (!crisisMode && (startDateInvalid || overridePriceInvalid))
   const d = calculation.data

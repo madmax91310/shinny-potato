@@ -15,6 +15,22 @@ class EconomicDataTests(unittest.TestCase):
    self.assertEqual(records[id_]['value'],expected,id_)
   self.assertEqual(records['livret-assurance']['secondValue'],41.7)
   self.assertEqual(records['unexpected-expense']['referencePeriod'],'Début 2025')
+ def test_salary_distribution_moves_without_selecting_histogram(self):
+  body=(FIXTURES/'salaries.html').read_bytes()
+  shifted=body.replace(b'Figure 3',b'Figure 4')
+  # A separate histogram is not a decile distribution, regardless of figure number.
+  shifted+=b'<table><caption>Figure 3 - Distribution des salaires mensuels nets en 2025</caption><tr><td>Histogramme</td></tr></table>'
+  result=c.parse_households('salaries',shifted,'https://www.insee.fr/fr/statistiques/1','2026-10-22')
+  self.assertEqual(result['salary-median']['value'],2190)
+  self.assertEqual(result['salary-top10']['value'],4334)
+ def test_salary_decile_population_and_units_cannot_drift(self):
+  body=(FIXTURES/'salaries.html').read_bytes()
+  for before,after in [(b'y compris alternants, stagiaires',b'hors alternants, stagiaires'),(b'euros',b'dollars')]:
+   self.assertIn(before,body)
+   with self.assertRaises(ValueError):c.parse_households('salaries',body.replace(before,after),'url','2026-10-22')
+  result=c.parse_households('salaries',body,'url','2026-10-22')
+  self.assertEqual(result['salary-top10']['statistic'],'D9')
+  self.assertEqual(result['salary-median']['measurementUnit'],'EUR/month')
  def test_period_rollover_and_provisional_flag(self):
   body=(FIXTURES/'living.html').read_bytes().replace(b'2025',b'2026').replace('provisoires'.encode(),b'definitives')
   result=c.parse_households('living',body,'https://www.insee.fr/fr/statistiques/1','2027-01-01')

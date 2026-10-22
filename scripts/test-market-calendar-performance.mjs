@@ -37,6 +37,6 @@ if(!Object.keys(official[isin]?.performance?.years??{}).length){
  assert.equal(getInstrumentDuelSeries(isin).currency,'USD','The proxy currency must not inherit the UCITS EUR listing currency')
 }
 const points=[['2024-12',100],...Array.from({length:12},(_,i)=>[`2025-${String(i+1).padStart(2,'0')}`,101+i])]
-assert(Math.abs(monthlyCalendarReturns({points},now)[2025]-12)<1e-9)
-for(const invalid of [[...points,points.at(-1)],[...points].reverse(),points.map((p,i)=>i===3?[p[0],NaN]:p),points.map((p,i)=>i===3?['2025-13',p[1]]:p)])assert.deepEqual(monthlyCalendarReturns({points:invalid},now),{})
+assert(Math.abs(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points},now)[2025]-12)<1e-9)
+for(const invalid of [[...points,points.at(-1)],[...points].reverse(),points.map((p,i)=>i===3?[p[0],NaN]:p),points.map((p,i)=>i===3?['2025-13',p[1]]:p)])assert.deepEqual(monthlyCalendarReturns({currency:'EUR',field:'adjclose',points:invalid},now),{})
 console.log('Calculated share calendars: exact identity, completed years, source proof, currency, NAV precedence and publication labels verified.')

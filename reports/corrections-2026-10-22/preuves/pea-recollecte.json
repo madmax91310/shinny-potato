@@ -1,0 +1,708 @@
+{
+  "checkedAt": "2026-10-22T19:46:21.557039+00:00",
+  "updated": [
+    "IE0003R87OG3",
+    "IE00B0M62S72"
+  ],
+  "successes": [
+    {
+      "id": "IE0003R87OG3:listings:qualification"
+    },
+    {
+      "id": "IE0003R87OG3:distribution:qualification"
+    },
+    {
+      "id": "IE0003R87OG3:domicile:qualification"
+    },
+    {
+      "id": "IE0003R87OG3:replicationMethod:qualification"
+    },
+    {
+      "id": "IE0003R87OG3:currencyHedge:qualification"
+    },
+    {
+      "id": "IE0003R87OG3:listings"
+    },
+    {
+      "id": "IE0003R87OG3:distribution"
+    },
+    {
+      "id": "IE0003R87OG3:domicile"
+    },
+    {
+      "id": "IE0003R87OG3:replicationMethod"
+    },
+    {
+      "id": "IE0003R87OG3:currencyHedge"
+    },
+    {
+      "id": "IE00B0M62S72:distribution:qualification"
+    },
+    {
+      "id": "IE00B0M62S72:domicile:qualification"
+    },
+    {
+      "id": "IE00B0M62S72:replicationMethod:qualification"
+    },
+    {
+      "id": "IE00B0M62S72:listings:qualification"
+    },
+    {
+      "id": "IE00B0M62S72:currencyHedge:qualification"
+    },
+    {
+      "id": "IE00B0M62S72:distribution"
+    },
+    {
+      "id": "IE00B0M62S72:domicile"
+    },
+    {
+      "id": "IE00B0M62S72:replicationMethod"
+    },
+    {
+      "id": "IE00B0M62S72:listings"
+    },
+    {
+      "id": "IE00B0M62S72:currencyHedge"
+    }
+  ],
+  "errors": [
+    {
+      "field": "pea",
+      "qualificationRequired": true,
+      "error": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+      "sources": [
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-22",
+          "sha256": "2c9e96e56a71e09805b252c2b93342607d57f0b263b6681b3a7751c3c9a1f190"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-22",
+          "sha256": "51b25a6eb1ba42adedff82c928238c17fd4047f2011cf2db6439694206e8d847"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-22",
+          "sha256": "c5d2217e2da64353589085d73e5a43337f04925d99d1a64c1342cceacc558288"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-22",
+          "sha256": "750bb4b2c3e398f8fb90a6808beee3c0f06d8753978197176fc96896207ffa6c"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-19",
+          "sha256": "04bac2fea7e840f62bd628f45e1d6c913a2adf4b492704a5cf6b9d26f0bb5157"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-19",
+          "sha256": "9401633b001650af47c26b6edc85e74d4e9625f97d3bc10e02fc64e8a7c77b20"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-21",
+          "sha256": "7a5ae0b2a6a6c94b2fe34ae988b8e9d5213f210795e264f084b488344d7ef237"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-21",
+          "sha256": "b0d69f9fc74b56e52281e6119651416e1f1f371e5dd4ba4d844b3cee8cb8775a"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-21",
+          "sha256": "19eadb4f4aa1424bdd9de1917d039c9c9e6ec12a39bddcea23e2b2d87a4f2491"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-20",
+          "sha256": "535d92050fc34f9523c19495eb26326d5db330cfb58d7e70ae520d24f79b4ff1"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "9401633b001650af47c26b6edc85e74d4e9625f97d3bc10e02fc64e8a7c77b20"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "aac6344cb76e2383dab9d4299913a7565402470d9bad409f86a0d3d0227b8510"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "72f5b96bfae45bb431a99d2a156ab5384e115d4a6659d076684c7be806294c1b"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-19",
+          "sha256": "463d50019591782dad2313f284b2481376ae1935254d4df263c393dcc5fba1e9"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-19",
+          "sha256": "d33a5892078468230edb48db1c8dadf863ffb9ffdb39d0e5b9448e475be9eeb5"
+        }
+      ],
+      "category": "source-conflict",
+      "reasons": [
+        "Conflicting current exact-share statements; no automatic value chosen.",
+        "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
+      ],
+      "id": "IE00B0M62S72:pea:qualification",
+      "lastAttemptAt": "2026-10-22T19:46:21.557039+00:00"
+    }
+  ],
+  "inactive": [],
+  "pending": {
+    "IE0002XZSHO1": [
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "FR0011550193": [
+      "distribution",
+      "replicationMethod",
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00BP3QZ601": [
+      "currencyHedge"
+    ],
+    "LU3038520774": [
+      "pea"
+    ],
+    "IE0006WW1TQ4": [
+      "currencyHedge"
+    ],
+    "LU0290358497": [
+      "currencyHedge"
+    ],
+    "IE000L6ZMMC4": [
+      "currencyHedge"
+    ],
+    "IE00BGV5VN51": [
+      "currencyHedge"
+    ],
+    "IE00BM67HK77": [
+      "currencyHedge"
+    ],
+    "IE00BM67HS53": [
+      "currencyHedge"
+    ],
+    "IE00BTJRMP35": [
+      "currencyHedge"
+    ],
+    "LU1875395870": [
+      "currencyHedge"
+    ],
+    "LU2196470426": [
+      "currencyHedge"
+    ],
+    "IE00BK5BQT80": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BK5BR626": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00B8GKDB10": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BK5BR733": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BZ163G84": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BYWQWR46": [
+      "currencyHedge"
+    ],
+    "IE0007Y8Y157": [
+      "currencyHedge"
+    ],
+    "IE000M7V94E1": [
+      "currencyHedge"
+    ],
+    "IE000YU9K6K2": [
+      "currencyHedge"
+    ],
+    "IE000YYE6WK5": [
+      "currencyHedge"
+    ],
+    "IE00BDFBTQ78": [
+      "currencyHedge"
+    ],
+    "NL0009690239": [
+      "currencyHedge"
+    ],
+    "NL0011683594": [
+      "currencyHedge"
+    ],
+    "IE00B579F325": [
+      "distribution"
+    ],
+    "IE00BD6FTQ80": [
+      "distribution"
+    ],
+    "IE00B3VVMM84": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00B02KXK85": [
+      "currencyHedge"
+    ],
+    "IE00B0M63623": [
+      "currencyHedge"
+    ],
+    "IE00B4NCWG09": [
+      "currencyHedge"
+    ],
+    "IE00B4ND3602": [
+      "currencyHedge"
+    ],
+    "IE00B52SFT06": [
+      "currencyHedge"
+    ],
+    "IE00B53L3W79": [
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00BDFL4P12": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JPG56": [
+      "currencyHedge"
+    ],
+    "IE00BKPSFC54": [
+      "currencyHedge"
+    ],
+    "IE00BQT3WG13": [
+      "currencyHedge"
+    ],
+    "IE000XZSV718": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00B2NPKV68": [
+      "currencyHedge"
+    ],
+    "IE00B1FZS913": [
+      "currencyHedge"
+    ],
+    "DE000A0H08Q4": [
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00B14X4Q57": [
+      "currencyHedge"
+    ],
+    "IE00B3WJKG14": [
+      "currencyHedge"
+    ],
+    "IE00B40B8R38": [
+      "currencyHedge"
+    ],
+    "IE00B42NKQ00": [
+      "currencyHedge"
+    ],
+    "IE00B4KBBD01": [
+      "currencyHedge"
+    ],
+    "IE00B5W4TY14": [
+      "currencyHedge"
+    ],
+    "JE00B1VS3770": [
+      "distribution"
+    ],
+    "GB00BJYDH287": [
+      "distribution"
+    ],
+    "CH0454664001": [
+      "distribution",
+      "currencyHedge"
+    ],
+    "IE00BYPLS672": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00B4K6B022": [
+      "distribution",
+      "currencyHedge"
+    ],
+    "IE000DQLYVB9": [
+      "distribution",
+      "replicationMethod",
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00BF0M2Z96": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BK5BCD43": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BK5BCH80": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "DE000A27Z304": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "GB00B15KXQ89": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "IE0002Y8CX98": [
+      "domicile",
+      "currencyHedge"
+    ],
+    "IE000W8WMSL2": [
+      "domicile",
+      "currencyHedge"
+    ],
+    "IE00BZ56SW52": [
+      "domicile",
+      "currencyHedge"
+    ],
+    "IE00BM8R0J59": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "GB00BLD4ZL17": [
+      "distribution",
+      "domicile",
+      "currencyHedge"
+    ],
+    "GB00BLD4ZM24": [
+      "distribution",
+      "domicile",
+      "currencyHedge"
+    ],
+    "IE00BD4TXV59": [
+      "currencyHedge"
+    ],
+    "FR0007056841": [
+      "domicile",
+      "currencyHedge"
+    ],
+    "FR0011550185": [
+      "distribution",
+      "replicationMethod",
+      "pea",
+      "currencyHedge"
+    ],
+    "IE000QDFFK00": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "FR001400ZGO4": [
+      "domicile",
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00B52MJY50": [
+      "currencyHedge"
+    ],
+    "IE00BJGWQN72": [
+      "domicile",
+      "currencyHedge"
+    ],
+    "IE00BQQP9F84": [
+      "currencyHedge"
+    ],
+    "IE0003Z9E2Y3": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE0003UVYC20": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BM67HV82": [
+      "currencyHedge"
+    ],
+    "IE00BM67HQ30": [
+      "currencyHedge"
+    ],
+    "IE00B4556L06": [
+      "currencyHedge"
+    ],
+    "IE00B4LHWP62": [
+      "currencyHedge"
+    ],
+    "IE000UL6CLP7": [
+      "distribution",
+      "domicile",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE0003R87OG3": [
+      "pea"
+    ],
+    "IE00BF4RFH31": [
+      "currencyHedge"
+    ],
+    "IE00B1FZS467": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP097": [
+      "currencyHedge"
+    ],
+    "IE00BP3QZ825": [
+      "currencyHedge"
+    ],
+    "IE00BP3QZB59": [
+      "currencyHedge"
+    ],
+    "IE00BYZK4552": [
+      "currencyHedge"
+    ],
+    "IE00BYZK4776": [
+      "currencyHedge"
+    ],
+    "IE00B1XNHC34": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP329": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JNZ06": [
+      "currencyHedge"
+    ],
+    "IE00B3F81G20": [
+      "currencyHedge"
+    ],
+    "IE00BSPLC298": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "JE00B78CGV99": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "GB00B15KXV33": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "JE00BN7KB334": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "JE00BN7KB557": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "JE00B2QXZK10": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "JE00BN7KB664": [
+      "distribution",
+      "replicationMethod"
+    ],
+    "IE00BSPLC413": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BP3QZD73": [
+      "currencyHedge"
+    ],
+    "IE00B1TXK627": [
+      "currencyHedge"
+    ],
+    "IE00B6R52143": [
+      "currencyHedge"
+    ],
+    "IE00B27YCF74": [
+      "currencyHedge"
+    ],
+    "IE00B1TXHL60": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP659": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP212": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP105": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP436": [
+      "currencyHedge"
+    ],
+    "IE00BJ5JP766": [
+      "currencyHedge"
+    ],
+    "IE00BZ0PKT83": [
+      "currencyHedge"
+    ],
+    "IE0008UEVOE0": [
+      "currencyHedge"
+    ],
+    "DE000A0H08F7": [
+      "currencyHedge"
+    ],
+    "IE00B4WXJG34": [
+      "currencyHedge"
+    ],
+    "IE00B0M63284": [
+      "currencyHedge"
+    ],
+    "IE000SNLFDR7": [
+      "currencyHedge"
+    ],
+    "DE000A0Q4R02": [
+      "currencyHedge"
+    ],
+    "IE00B441G979": [
+      "currencyHedge"
+    ],
+    "DE000A0H08R2": [
+      "currencyHedge"
+    ],
+    "DE000A0H08L5": [
+      "currencyHedge"
+    ],
+    "DE000A0H08H3": [
+      "currencyHedge"
+    ],
+    "DE000A0H08P6": [
+      "currencyHedge"
+    ],
+    "IE00BCRY6557": [
+      "currencyHedge"
+    ],
+    "IE00BG0SKF03": [
+      "currencyHedge"
+    ],
+    "IE00B27YCN58": [
+      "currencyHedge"
+    ],
+    "DE000A0F5UJ7": [
+      "currencyHedge"
+    ],
+    "DE000A0H08K7": [
+      "currencyHedge"
+    ],
+    "IE00BMVB5K07": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BMVB5M21": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BMVB5P51": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00BMVB5R75": [
+      "distribution",
+      "replicationMethod",
+      "currencyHedge"
+    ],
+    "IE00B53QG562": [
+      "pea",
+      "currencyHedge"
+    ],
+    "IE00B3VWMM18": [
+      "currencyHedge"
+    ],
+    "IE00B0M62S72": [
+      "pea"
+    ],
+    "IE00BQN1K901": [
+      "currencyHedge"
+    ],
+    "IE00BQN1K786": [
+      "currencyHedge"
+    ],
+    "IE00BQN1K562": [
+      "currencyHedge"
+    ],
+    "IE00BD1F4L37": [
+      "currencyHedge"
+    ],
+    "IE00BD1F4M44": [
+      "currencyHedge"
+    ],
+    "IE00BD1F4N50": [
+      "currencyHedge"
+    ],
+    "IE00B2QWCY14": [
+      "currencyHedge"
+    ],
+    "IE00BYX2JD69": [
+      "currencyHedge"
+    ],
+    "IE00BGL86Z12": [
+      "currencyHedge"
+    ],
+    "IE000U9ODG19": [
+      "currencyHedge"
+    ],
+    "IE00BYZK4669": [
+      "currencyHedge"
+    ]
+  }
+}

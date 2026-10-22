@@ -1,3 +1,4 @@
+import { requireHistoryWindow } from '../../data/history-window-quality.js'
 import { LIVRET_A, INFLATION } from '../../data/history-parameters.js'
 import { historyInCurrency } from '../../data/history-currency.js'
 import { monthlyCurrencyFactor } from '../../data/history-currency.js'
@@ -31,6 +32,8 @@ export function derive(state) {
   // de nouveaux versements mensuels entre la dernière clôture et la saisie.
   const endYm = clampYm(lastAssetYm, LATEST_YM)
   const safeStartYm = ymIndex(startYm) > ymIndex(endYm) ? endYm : startYm
+
+  if (!isCustom) requireHistoryWindow(ASSETS[state.assetId], safeStartYm, endYm, { contiguous: !INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId) && !ASSETS[state.assetId].priceUnit })
 
   let result = isCustom
     ? computeCustomSeries(safeStartYm, endYm, amount, state.customStart, state.customEnd)

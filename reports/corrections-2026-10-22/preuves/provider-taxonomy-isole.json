@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-22T20:51:34.454454+00:00",
+  "reviews": [
+    {
+      "id": "CH0454664001-XETR-2BTC-EUR",
+      "isin": "CH0454664001",
+      "evidenceId": "xetra-full|XETR|2BTC|EUR|CH0454664001",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/22fa2294418b8da49cba5a9e108f0181/data/t7-xetr-allTradableInstruments.csv"
+    },
+    {
+      "id": "CH0454664001-XETR-2BTD-USD",
+      "isin": "CH0454664001",
+      "evidenceId": "xetra-full|XETR|2BTD|USD|CH0454664001",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/22fa2294418b8da49cba5a9e108f0181/data/t7-xetr-allTradableInstruments.csv"
+    },
+    {
+      "id": "FR0010524777-ETFP",
+      "isin": "FR0010524777",
+      "evidenceId": "FR0010524777-ETFP-ENER-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "FR0013416716-ETFP",
+      "isin": "FR0013416716",
+      "evidenceId": "FR0013416716-ETFP-GOLD-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "GB00B15KXV33-XPAR",
+      "isin": "GB00B15KXV33",
+      "evidenceId": "GB00B15KXV33-XPAR-CRUDP-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+    },
+    {
+      "id": "IE00B4NCWG09-XMEX",
+      "isin": "IE00B4NCWG09",
+      "evidenceId": "IE00B4NCWG09-XMEX-ISLN-MXN",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258443&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "id": "IE00B4ND3602-XETR-PPFB-EUR",
+      "isin": "IE00B4ND3602",
+      "evidenceId": "xetra-full|XETR|PPFB|EUR|IE00B4ND3602",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.cashmarket.deutsche-boerse.com/resource/blob/1528/22fa2294418b8da49cba5a9e108f0181/data/t7-xetr-allTradableInstruments.csv"
+    },
+    {
+      "id": "IE00B579F325-ETFP",
+      "isin": "IE00B579F325",
+      "evidenceId": "IE00B579F325-ETFP-SGLD-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
+    },
+    {
+      "id": "IE00B579F325-XAMS",
+      "isin": "IE00B579F325",
+      "evidenceId": "IE00B579F325-XAMS-SGLD-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
+    },
+    {
+      "id": "IE00B579F325-XMEX",
+      "isin": "IE00B579F325",
+      "evidenceId": "IE00B579F325-XMEX-SGLDN-MXN",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
+    },
+    {
+      "id": "JE00BN7KB334-XPAR",
+      "isin": "JE00BN7KB334",
+      "evidenceId": "JE00BN7KB334-XPAR-NGASP-EUR",
+      "checkedAt": "2026-10-22T20:51:34.454454+00:00",
+      "status": "unresolved",
+      "reason": "No observed provider metadata in the dated response cache; explicit collection needed.",
+      "identitySource": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+    }
+  ],
+  "networkCalls": []
+}

@@ -21,8 +21,20 @@ def verify(isin, record, now, fetch=get_json):
         raise ValueError('DWS active evidence hashes are missing or inconsistent')
     active_hash = next(iter(active_hashes))
     for field in ('countries', 'sectors'):
+        for key in ('basis', 'method', 'sourceUrl', 'complete'):
+            if record[field].get(key) != parsed[field].get(key):
+                raise ValueError(f'DWS {field}: live evidence differs from active {key}')
+    periods = {record[field].get('asOf') for field in ('countries', 'sectors')}
+    live_periods = {parsed[field].get('asOf') for field in ('countries', 'sectors')}
+    if len(periods) != 1 or len(live_periods) != 1:
+        raise ValueError('DWS country/sector snapshots have incompatible dates')
+    if periods != live_periods:
+        return {'entity': isin, 'deferred': True, 'reason': 'publication-lag',
+                'activePeriod': next(iter(periods)), 'livePeriod': next(iter(live_periods)),
+                'sourceUrl': url, 'checkedAt': now.isoformat()}
+    for field in ('countries', 'sectors'):
         active, live = record[field], parsed[field]
-        for key in ('asOf', 'basis', 'method', 'sourceUrl', 'complete'):
+        for key in ('asOf',):
             if active.get(key) != live.get(key):
                 raise ValueError(f'DWS {field}: live evidence differs from active {key}')
         weights = lambda rows: sorted((r['name'], r['weightPct']) for r in rows)
@@ -52,12 +64,25 @@ def collect(records, now, fetch=get_json):
                           'reason': f'Vérification indépendante DWS impossible : {type(error).__name__}: {error}'}
     with ThreadPoolExecutor(max_workers=3) as pool:
         results = list(pool.map(one, candidates))
-    return {'verified': [proof for proof, error in results if proof],
+    return {'candidateCount': len(candidates),
+            'verified': [proof for proof, error in results if proof and not proof.get('deferred')],
+            'deferred': [proof for proof, error in results if proof and proof.get('deferred')],
             'errors': [error for proof, error in results if error]}
+
+
+def check_report(report):
+    """A publication lag is accounted for, never promoted to verified weights."""
+    accounted = len(report['verified']) + len(report['deferred'])
+    if report['errors'] or accounted == 0 or accounted != report['candidateCount']:
+        raise ValueError('Incomplete or failed DWS verification: ' + json.dumps(report['errors']))
 
 
 if __name__ == '__main__':
     root = pathlib.Path(__file__).resolve().parents[1]
     records = json.loads((root / 'src/data/automated-etf.json').read_text())
-    print(json.dumps(collect(records, dt.datetime.now(UTC)), allow_nan=False))
+    report = collect(records, dt.datetime.now(UTC))
+    print(json.dumps(report, allow_nan=False))
+    import sys
+    if '--check' in sys.argv:
+        check_report(report)
 

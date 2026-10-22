@@ -1,0 +1,12 @@
+
+> patrimoine-et-compagnie@0.0.0 test:ai-portfolios
+> node scripts/test-ai-portfolios.mjs && node scripts/test-ai-weekly.mjs && python3 -m unittest discover -s scripts -p test_ai_portfolios.py
+
+Portefeuilles IA : comptabilité, dérive, change historique, cibles, frais, conservation, règles, référence, calendrier, reprise, corrections et persistance validés.
+Inventaire exhaustif : 650 ISIN, 63771 candidats ; déduplication, familles, alternatives et exécution limitée aux marchés concernés validés.
+Weekly windows/DST, common future execution, missing responses, financial briefings, exact import, stale coverage and lazy exhaustive catalogue validated.
+..........................
+----------------------------------------------------------------------
+Ran 26 tests in 6.335s
+
+OK

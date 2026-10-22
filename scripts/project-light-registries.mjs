@@ -1,3 +1,4 @@
+import * as historyVisuals from '../src/data/history-visual-identities.js'
 import * as commodities from '../src/data/commodity-publication-data.js'
 import * as exposures from '../src/data/portfolio-exposure-data.js'
 import * as cards from '../src/data/etf-cards.js'
@@ -25,6 +26,7 @@ import * as preferredTickers from '../src/data/preferred-instrument-tickers.js'
 // Canonical function bodies retain runtime validation and formatting behaviour.
 export function projectLightRegistries() {
   const definitions = [
+    ['history-visual-identities',historyVisuals,''],
     ['calendar-fx', calendarFx, "import { fxRate } from '../lib/fx-rate.js';"],
     ['commodity-publication-data', commodities, ''], ['portfolio-exposure-data', exposures, ''], ['etf-cards', cards, ''], ['etf-publication-data', publication, ''],
     ['qualified-exposure-sheets', qualified, ''],

@@ -1,0 +1,31 @@
+probe	Read four exact official portfolios without publishing	﻿2026-10-22T22:36:39.7614190Z ##[group]Run PYTHONPATH=scripts python - <<'PY'
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7614580Z [36;1mPYTHONPATH=scripts python - <<'PY'[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7614950Z [36;1mimport pathlib,json,datetime,sys[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7615380Z [36;1mfrom collect_physical_holdings import COLLECTORS[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7616140Z [36;1mconfig={**json.loads(pathlib.Path('scripts/dca-complete-holdings-sources.json').read_text()),**json.loads(pathlib.Path('scripts/generated-holdings-sources.json').read_text())}[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7617140Z [36;1mnow=datetime.datetime.now(datetime.timezone.utc);rows=[][0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7618040Z [36;1mfor isin in ['IE00BDVPNG13','IE0002Y8CX98','IE000W8WMSL2','IE00BJGWQN72']:[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7618380Z [36;1m    c=config[isin][0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7618620Z [36;1m    try:[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7618810Z [36;1m        record=COLLECTORS[c['parser']](c,now)[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7619100Z [36;1m        rows.append({'isin':isin,'ok':True,'record':record})[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7619760Z [36;1m        print(isin,'success',record.get('asOf'),len(record.get('rows',[])),flush=True)[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7620250Z [36;1m    except Exception as e:[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7620570Z [36;1m        rows.append({'isin':isin,'ok':False,'error':str(e)})[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7621120Z [36;1m        print(isin,type(e).__name__,str(e)[:500],flush=True)[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7621850Z [36;1m    pathlib.Path('wisdom-runtime-proof.json').write_text(json.dumps({'environment':'GitHub macos-15','checkedAt':now.isoformat(),'results':rows},ensure_ascii=False,indent=2))[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7622580Z [36;1msys.exit(0 if all(r['ok']for r in rows)else 1)[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7622830Z [36;1mPY[0m
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7689800Z shell: /bin/bash -e {0}
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7690110Z env:
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7690540Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7691170Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7691590Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7692080Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7692570Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:39.7693020Z ##[endgroup]
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:40.0905670Z IE00BDVPNG13 HTTPError HTTP Error 403: Forbidden
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:40.1548560Z IE0002Y8CX98 HTTPError HTTP Error 403: Forbidden
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:40.1971750Z IE000W8WMSL2 HTTPError HTTP Error 403: Forbidden
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:41.5134850Z IE00BJGWQN72 ValueError Issuer API unavailable: Public issuer API unavailable: HTTP 403; public full portfolio unqualified: HTTP Error 403: Forbidden
+probe	Read four exact official portfolios without publishing	2026-10-22T22:36:41.5330860Z ##[error]Process completed with exit code 1.

@@ -74,6 +74,21 @@ class WorkflowContracts(unittest.TestCase):
             self.assertLess(job.index('name: Validate collected observations'),job.index('bash scripts/commit-validated-data.sh'))
             self.assertIn('steps.commit.outputs.commit_sha', job)
 
+    def test_second_ai_audit_failure_fails_workflow_step(self):
+        import subprocess, tempfile, os
+        workflow = (ROOT/'.github/workflows/update-ai-portfolios.yml').read_text()
+        step = workflow.split('name: Validate every selectable equity against the accounting engine\n')[1].split('      - name:')[0]
+        self.assertIn('run: |',step)
+        command = '\n'.join(line[10:] for line in step.split('run: |\n')[1].splitlines() if line.startswith('          '))
+        with tempfile.TemporaryDirectory() as folder:
+            fake = Path(folder)/'node'
+            fake.write_text('#!/bin/sh\necho "$1" >> "$CALLS"\ncase "$1" in *audit-ai-runtime.mjs) exit 23;; esac\n')
+            fake.chmod(0o755)
+            calls = Path(folder)/'calls'
+            result = subprocess.run(['bash','-e','-c',command], env={**os.environ,'PATH':folder+':'+os.environ['PATH'],'CALLS':str(calls)})
+            self.assertEqual(result.returncode,23)
+            self.assertEqual(calls.read_text().splitlines(),['scripts/test-ai-equity-coverage.mjs','scripts/audit-ai-runtime.mjs'])
+
     def test_partial_failure_signal_cannot_block_validated_publication(self):
         for filename in ['update-lifestrategy.yml','update-non-bond-expansion.yml','update-qualified-exposures.yml']:
             workflow = (ROOT/'.github/workflows'/filename).read_text()

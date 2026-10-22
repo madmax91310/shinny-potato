@@ -61,6 +61,7 @@ if (refresh) {
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
     verifiedCompositions: verification.verified.map(({ canonicalBody: _canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
+  result.feed.compositionPublicationLags = verification.deferred ?? []
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
   const commit = await api(`git/commits/${parent}`)

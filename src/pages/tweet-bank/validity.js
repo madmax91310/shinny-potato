@@ -6,7 +6,7 @@ const ISIN_PATTERN = /\b[A-Z]{2}[A-Z0-9]{9}\d\b/g
 export function evidenceCheckedAt(text, records = AUTOMATED_ETF) {
   const dates = [...new Set(String(text ?? '').match(ISIN_PATTERN) ?? [])].flatMap(isin => {
     const record = records[isin]
-    const latest = record ? [record.characteristics?.checkedAt, record.aum?.checkedAt].filter(Boolean).map(value => value.slice(0, 10)).sort().at(-1) : null
+    const latest = record ? [record.characteristicChecks?.terPct?.checkedAt ?? record.characteristics?.checkedAt].filter(Boolean).map(value => value.slice(0, 10)).sort()[0] : null
     return latest ? [latest] : []
   })
   return dates.length ? dates.sort()[0] : null

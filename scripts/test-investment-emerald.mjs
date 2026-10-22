@@ -44,6 +44,7 @@ try {
     // This exhaustive export fixture needs every history; the app only loads its selected one.
     for(const id of ASSET_ORDER)await ensureCalculatorAsset(id)
     const { derive, fmtEUR, fmtPct, pct } = await import('/shinny-potato/src/pages/investment-calculator/lib.js')
+    const {qualifyHistoryWindow}=await import('/shinny-potato/src/data/history-window-quality.js')
     const { renderInvestmentImage, investmentChartKind, annualInvestmentCapital } = await import('/shinny-potato/src/pages/investment-calculator/imageExport.js')
     const original = CanvasRenderingContext2D.prototype.fillText
     let boxes = [], labels = [], current
@@ -55,12 +56,22 @@ try {
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
     const stateFor = (id, mode = 'lump') => {
-      const date = ASSETS[id].points.find(p => p.date >= '2020-01')?.date || ASSETS[id].points[0].date
-      return { assetId: id, mode, amountRaw: '1000', startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5, 7)), overridePriceRaw: '' }
+      const asset=ASSETS[id],end=asset.points.at(-1).date
+      let date = asset.points.find(p => p.date >= '2020-01')?.date || asset.points[0].date
+      const makeState=()=>({ assetId: id, mode, amountRaw: '1000', startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5, 7)), overridePriceRaw: '' })
+      const qualification=qualifyHistoryWindow(asset,date,end,{contiguous:false})
+      if(!qualification.qualified&&qualification.code){
+        let refused=false
+        try{derive(makeState())}catch(error){if(error.message!==qualification.reason)throw error;refused=true}
+        if(!refused)throw new Error(`Unqualified window accepted: ${id}`)
+        date=asset.points.find(p=>p.date>=date&&qualifyHistoryWindow(asset,p.date,end,{contiguous:false}).qualified)?.date
+        if(!date)throw new Error(`No independently qualified export window: ${id}`)
+      }
+      return makeState()
     }
-    const check = async (name, state, keep = false) => {
+    const check = async (name, state, keep = false, qualifiedCalculation = null) => {
       boxes = []; labels = []; current = name
-      const d = derive(state), before = JSON.stringify(d), canvas = await renderInvestmentImage(state, d)
+      const d = qualifiedCalculation ?? derive(state), before = JSON.stringify(d), canvas = await renderInvestmentImage(state, d)
       const currency = d.isCustom ? 'EUR' : ASSETS[state.assetId].currency
       if (canvas.width !== 1600 || canvas.height !== 2040) throw new Error('Export must follow the approved portrait poster')
       if (JSON.stringify(d) !== before) throw new Error('Changed calculation')
@@ -92,14 +103,20 @@ try {
         if (investmentChartKind(monthlyState, monthlyDerived) !== 'annual') throw new Error('Missing starting month must not draw a monthly curve')
         ASSETS.apple.points = originalPoints.filter(p => p.date !== '2021-06')
         if (investmentChartKind(monthlyState, monthlyDerived) !== 'annual') throw new Error('Missing middle month must not draw a monthly curve')
-        ASSETS.apple.points = originalPoints.filter(p => p.date >= '2019-12' && p.date <= '2025-12' && p.date.endsWith('-12'))
-        const state = { ...stateFor('apple'), startYear: 2019, startMonth: 12 }, d = await check('annual-apple', state, true)
+        // Calculate on complete observations; the sparse fixture only exercises
+        // the renderer. It must not authorize a monthly calculation with holes.
+        ASSETS.apple.points = originalPoints.filter(p => p.date >= '2019-12' && p.date <= '2025-12')
+        const state = { ...stateFor('apple'), startYear: 2019, startMonth: 12 }, annualCalculation=derive(state)
+        ASSETS.apple.points = ASSETS.apple.points.filter(p=>p.date.endsWith('-12'))
+        const d = await check('annual-apple', state, true,annualCalculation)
         if (investmentChartKind(state, d) !== 'annual') throw new Error('Annual observations drawn as monthly')
         const rows = annualInvestmentCapital(state, d)
         if (rows.length !== ASSETS.apple.points.length || rows.some(row => !ASSETS.apple.points.some(point => point.date === row.date))) throw new Error('Invented annual observation')
         if (rows.at(-1).value !== d.result.finalValue || !labels.includes('Capital en fin d’année')) throw new Error('Annual capital must match the final result')
-        ASSETS.apple.points = [...ASSETS.apple.points.filter(p => p.date < '2025'), originalPoints.find(p => p.date === '2025-07')]
-        const partial = await check('annual-partial-year', state, true)
+        ASSETS.apple.points = originalPoints.filter(p=>p.date>='2019-12'&&p.date<='2025-07')
+        const partialCalculation=derive(state)
+        ASSETS.apple.points = ASSETS.apple.points.filter(p=>p.date.endsWith('-12')||p.date==='2025-07')
+        const partial = await check('annual-partial-year', state, true,partialCalculation)
         if (!labels.includes('Capital aux dates observées') || annualInvestmentCapital(state, partial).at(-1).date !== '2025-07') throw new Error('Partial year labelled as a December close')
       } finally { ASSETS.apple.points = originalPoints }
     } finally { CanvasRenderingContext2D.prototype.fillText = original }

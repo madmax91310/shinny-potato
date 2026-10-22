@@ -190,11 +190,16 @@ class RefreshTests(unittest.TestCase):
                 checked_later = portfolio('2026-06-30')
                 checked_later['as_of'] = 'later-poll'
                 module.refresh(directory, lambda *args: {**checked_later, 'data': {**checked_later['data'], 'identity': {'slug': args[0], 'archetype': 'hedge_fund'}}})
-            self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
+            self.assertEqual({k:v for k,v in before.items() if k != 'review-metadata.json'}, {p.name: p.read_bytes() for p in directory.iterdir() if p.name != 'review-metadata.json'})
             reviews = json.loads((directory / 'review-metadata.json').read_text())
             self.assertEqual({row['data']['identity']['slug'] for row in reviews}, set(module.MANAGERS))
             self.assertTrue(all(row['data']['snapshot'] == {'periodEnd': '2026-06-30'} for row in reviews))
             self.assertTrue(all(row['as_of'] == 'checked-now' for row in reviews))
+            self.assertTrue(all(row['lastSuccessfulPollAt'] == 'later-poll' for row in reviews))
+            self.assertTrue(all(row['positionsCollectedAt'] == 'checked-now' for row in reviews))
+            with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
+                module.refresh(directory, lambda *args: (_ for _ in ()).throw(RuntimeError('offline')))
+            self.assertEqual(reviews, json.loads((directory / 'review-metadata.json').read_text()))
 
     def test_older_report_cannot_overwrite(self):
         with tempfile.TemporaryDirectory() as folder:
