@@ -11,6 +11,20 @@ class DailyTests(unittest.TestCase):
         self.calendar=calendars([self.asset],'2026-01-01','2026-03-01')['XAMS']
         dates=[dt.datetime.fromisoformat(d+'T12:00:00+00:00') for d in self.calendar if d<'2026-02-10']
         self.raw={'chart':{'error':None,'result':[{'meta':{'symbol':'TEST','currency':'EUR','dataGranularity':'1d','instrumentType':'ETF','exchangeTimezoneName':'Europe/Amsterdam'},'timestamp':[int(d.timestamp()) for d in dates],'indicators':{'quote':[{'close':[100]*len(dates)}],'adjclose':[{'adjclose':[90]*len(dates)}]}}]}}
+    def test_daily_catchup_updates_the_exact_source_certificate(self):
+        from collect_ai_portfolios import record_qualification_success
+        row={'sourceUrl':'https://issuer.example/exact-isin','lastSuccess':'2026-01-01','dailySourceUrl':'old-response','responseSha256':'old-hash','coverageThrough':'2026-01-01','attempts':[{'result':'HTTP Error 404'}]}
+        series={'anchorDate':'2026-01-02','points':{'2026-01-02':{},'2026-02-09':{}},'sourceUrl':'https://query1.finance.yahoo.com/exact-response','retrievedAt':'2026-02-10T05:00:01+00:00','responseSha256':'new-response-hash','symbol':'EXACT.L','currency':'GBP','sourceCurrency':'GBp','priceScale':.01}
+        record_qualification_success(row,series,'2026-02-10T05:00:02+00:00')
+        self.assertEqual(row['sourceUrl'],'https://issuer.example/exact-isin')
+        self.assertEqual(row['dailySourceUrl'],series['sourceUrl'])
+        self.assertEqual(row['responseSha256'],series['responseSha256'])
+        self.assertEqual(row['sourceRetrievedAt'],series['retrievedAt'])
+        self.assertEqual(row['coverageThrough'],'2026-02-09')
+        self.assertEqual(row['observedSourceCurrency'],'GBp')
+        self.assertEqual(row['attempts'][0]['url'],series['sourceUrl'])
+        self.assertEqual(row['attempts'][0]['result'],'qualified')
+
     def test_note_is_not_reclassified_as_a_stock(self):
         raw=copy.deepcopy(self.raw);raw['chart']['result'][0]['meta']['instrumentType']='EQUITY'
         # A real ETF with an unexpected source classification remains refused.

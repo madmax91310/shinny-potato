@@ -65,6 +65,9 @@ try {
         if (Math.abs((plotted[i] > 0 ? bar.y + bar.h : bar.y) - baseline) > 1e-8) throw new Error('Wrong side of zero')
       })
       if (keep) samples.push({ name, png: canvas.toDataURL(), words, width: canvas.width, height: canvas.height })
+      // Release the backing store between hundreds of complete image checks.
+      // Samples already contain their PNG bytes and original dimensions.
+      canvas.width = 1; canvas.height = 1
       count++
     }
     try {
