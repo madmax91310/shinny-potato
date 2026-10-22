@@ -119,6 +119,7 @@ export function coverage(id,market,asOf) {
     assert(market.status?.[id]?.ok,'Dernière collecte en échec : '+(market.status?.[id]?.error??'source indisponible'))
     assert(s.convention==='synthetic-total-return-100-at-anchor','Convention de la série incompatible.')
     assert(s.symbol===(asset.qualifiedSymbol??asset.symbol)&&s.currency===asset.currency&&s.timezone===asset.timezone,'Identité / cotation de la série incompatible.')
+    if(asset.evidenceId)assert(s.listingEvidenceId===asset.evidenceId,'Preuve de cotation de la série incompatible.')
     if(asset.isin)assert(s.isin===asset.isin,'ISIN de la série incompatible.')
     if(asset.responseSha256)assert(s.responseSha256===asset.responseSha256,'Série et certificat de versions différentes. Recharger le dépôt avant validation.')
     assert((s.priceScale??1)===(asset.priceScale??1),'Unité de cotation incompatible.')
