@@ -40,7 +40,7 @@ export function buildComparisonTweet(comparison) {
     )
     if (override) lines.push('Valorisation au prix final saisi manuellement.')
     if (asset.methodNote) lines.push(asset.methodNote)
-    else if (asset.priceMethod === 'adjusted') lines.push(asset.isin
+    else if (asset.priceMethod === 'adjusted') lines.push(asset.isin && asset.instrumentType !== 'EQUITY'
       ? 'Revenus réinvestis, frais du fonds inclus ; hors frais du courtier et fiscalité.'
       : 'Dividendes réinvestis et divisions d’actions pris en compte ; hors frais et fiscalité.')
     if (asset.returnNote) lines.push(asset.returnNote)

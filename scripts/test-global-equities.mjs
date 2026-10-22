@@ -19,6 +19,7 @@ import { isStock } from '../src/lib/is-stock.js'
 import { fxRate } from '../src/lib/fx-rate.js'
 import { projectLightRegistries } from './project-light-registries.mjs'
 import { convertCalendarReturn } from '../src/data/calendar-fx.js'
+import { annualEquityReturns } from './lib/equity-duel-returns.mjs'
 
 // The registry only holds qualified identities: curated candidates stay in
 // scripts/global-equity-candidates.json until their real collection succeeds.
@@ -54,8 +55,12 @@ for (const identity of GLOBAL) {
   assert.equal(exposure.sectors.coverage,100,`${id}: complete sector`)
   assert(CATEGORIES.some(c=>c.ids.includes(id)),`${id}: prepared comparison`)
   const years=getAnnualReturnStartYears(id)
-  assert(years.length>=3,`${id}: three full verified years`)
-  const entries=convertPerformanceEntries([{asset,returns:getAnnualReturns(id,years[0])}],'EUR')
+  assert(years.length>=1,`${id}: a calculable performance period`)
+  // Long native histories can predate the ECB series. Choose only a converted
+  // period with both fixes, without shortening the qualified native history.
+  const euroStart=years.find(y=>currency==='EUR'||(fxRate(FX.months[`${y-1}-12`]?.rates,currency)&&fxRate(FX.months[`${y}-12`]?.rates,currency)))
+  assert(euroStart,`${id}: a covered EUR period`)
+  const entries=convertPerformanceEntries([{asset,returns:getAnnualReturns(id,euroStart)}],'EUR')
   const converted=convertAsset(RANKING_ASSETS[id],'EUR',FX)
   for (const row of entries[0].returns) {
     const points=new Map(record.points), y=row.year
@@ -65,6 +70,10 @@ for (const identity of GLOBAL) {
     const p=new Map(converted.points.map(p=>[p.date,p.price]))
     assert(Math.abs((p.get(`${y}-12`)/p.get(`${y-1}-12`)-1)*100-expected)<1e-9)
   }
+  const calendar=annualEquityReturns(record)
+  const admitted=Object.keys(calendar).map(Number).some(y=>[y-2,y-1,y].every(year=>Number.isFinite(calendar[year])))
+  assert.equal(PORTFOLIO_EQUITIES.some(a=>a.isin===isin),admitted,`${id}: three full consecutive years required for manual portfolios`)
+  if(!admitted)continue
   const duel=buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:`equity-${id}`,pct:100}]})
   const manual=buildManualPortfolio([{id:`equity-${id}`,pct:100}],'generaliste',[])
   assert(PORTFOLIO_EQUITIES.some(a=>a.isin===isin))

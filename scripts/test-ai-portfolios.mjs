@@ -102,7 +102,7 @@ const {INSTRUMENT_LISTINGS_BY_ISIN}=await import('../src/data/instrument-listing
 const {executionAssets,admission,catalogue,validateConfig}=await import('../src/pages/ai-portfolios/lib.js')
 const all=inventory()
 assert.equal(new Set(all.map(a=>a.id)).size,all.length,'Unique candidate IDs')
-for(const isin of Object.keys(INSTRUMENTS_BY_ISIN))assert(all.some(a=>a.isin===isin),isin+' absent from exhaustive inventory')
+for(const isin of Object.keys(INSTRUMENTS_BY_ISIN))assert(all.some(a=>a.isin===isin||a.sharedIsin===isin),isin+' absent from exhaustive inventory or its explicit stable AI cross-reference')
 for(const [isin,listings] of Object.entries(INSTRUMENT_LISTINGS_BY_ISIN))for(const l of listings)assert(all.some(a=>a.isin===isin&&a.mic===l.mic&&a.ticker===l.ticker&&(a.sourceCurrency===l.currency)),isin+' listing lost')
 assert(all.some(a=>a.id==='US0378331005-XNAS'&&!a.discoveryBlock),'Apple exact Nasdaq venue retained from common holdings classifications')
 assert(all.some(a=>a.id==='US5949181045-XNAS'&&!a.discoveryBlock),'Microsoft exact Nasdaq venue retained')
