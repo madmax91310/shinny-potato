@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+import {publishRuntime} from './ai-runtime-projection.mjs'
+import {spawnSync} from 'node:child_process'
+import {defaultConfig} from '../src/pages/ai-portfolios/data.js'
+import {decisionSchedule} from '../src/pages/ai-portfolios/weekly.js'
 import {hydrateMarketSeries,requiredSeries,publicMarket} from './ai-series-store.mjs'
 // The sole durable writer for manual requests. Browser exports are proposals, not saved decisions.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { validateConfig,validateDecision,executionAssets,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
-import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
+import { validateConfig,validateDecision,planDecision,portfolioAt,executionAssets,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 export function register(book,proposal,market,now=new Date().toISOString()) {
   assert(proposal?.version===1&&proposal.expectedRevision===book.revision,'Export périmé ou format invalide. Recharger le dossier avant de réexporter.')
@@ -13,7 +16,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
   assert(!book.audit.some(e=>e.requestId===proposal.requestId),'Demande déjà enregistrée, aucune double exécution.')
   const next=clone(book),op=proposal.operation
   assert(op&&typeof op==='object','Opération absente.')
-  if(['decision','launch'].includes(op.type)){const fresh=sourceFreshness(market,now);assert(fresh.ok,fresh.reason)}
+  if(['decision','launch'].includes(op.type)){assert(market.asOf>=addDays(day(now),-1),'Arrêté périmé : rattraper les cours et changes jusqu’à la veille UTC avant enregistrement.');const fresh=sourceFreshness(market,now);assert(fresh.ok,fresh.reason)}
   let comp=next.competitions.find(c=>c.id===proposal.competitionId)
   const event={requestId:proposal.requestId,at:now,operation:op.type,competitionId:comp?.id??proposal.requestId,reason:op.reason??null}
   if(op.type==='create') {
@@ -27,7 +30,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       validateConfig(op.config,market)
       if(comp.status==='launched') {
         assert(typeof op.reason==='string'&&op.reason.trim(),'Motif du changement de règles requis.')
-        const allowed=['minLines','maxLines','maxWeight','frequency','feeBps','universe','assetTypes','requireUcits']
+        const allowed=['minLines','maxLines','maxWeight','frequency','weeklyWindow','feeBps','universe','assetTypes','requireUcits']
         const archivedIds=new Set([comp.config.benchmark,...comp.decisions.flatMap(d=>[...Object.keys(d.weights??{}),...Object.keys(d.amounts??{}),...(d.execution?.trades??[]).map(t=>t.id)])])
         for(const id of archivedIds)assert(op.config.universe.includes(id),'Une cotation référencée dans l’historique ne peut pas être remplacée ou retirée : '+id)
         for(const key of Object.keys(comp.config)) if(!allowed.includes(key)) assert(JSON.stringify(op.config[key])===JSON.stringify(comp.config[key]),`Après lancement, ${key} est figé.`)
@@ -42,9 +45,10 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
       if(d.kind!=='target')delete d.weights
       if(d.kind!=='trades')delete d.amounts
       // Registration time and executable date can never be supplied by the browser.
-      d.registeredAt=now;d.executionDate=nextExecution(now,comp.config.launchDate,market,executionAssets(comp,d,market.asOf))
+      d.registeredAt=now;d.executionDate=nextExecution(comp.status==='launched'?decisionSchedule(now,comp.config):now,comp.config.launchDate,market,executionAssets(comp,d,market.asOf))
       assert(!d.correctionOf,'Corriger par une nouvelle décision justifiée ; pas de contournement de fréquence.')
       validateDecision(d,comp,market,market.asOf,now)
+      planDecision(portfolioAt(comp,d.participant,market.asOf),d,market.asOf,comp.config,market,{estimate:true})
       comp.decisions.push(d)
     } else if(op.type==='cancel') {
       const d=comp.decisions.find(d=>d.id===op.decisionId)
@@ -72,7 +76,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
 }
 export function refresh(book,market,previous={}) {
   const competitions=book.competitions.map(c=>runCompetition(c,market,market.asOf))
-  const daily={},weekly={},effects=[]
+  const daily={},weekly={},current={},effects=[]
   for(const comp of competitions.filter(c=>c.status==='launched')) {
     daily[comp.id]=[]
     for(let date=comp.startDate;date<=market.asOf;date=addDays(date,1)) {
@@ -81,9 +85,10 @@ export function refresh(book,market,previous={}) {
       if(old&&JSON.stringify(old)!==JSON.stringify(s)) effects.push({competitionId:comp.id,date,before:old,after:s})
     }
     weekly[comp.id]=weeklyDates(comp,market.asOf).map(date=>periodReport(comp,date,market))
+    current[comp.id]=periodReport(comp,market.asOf,market)
   }
   const state={version:1,revision:book.revision,generatedAt:market.generatedAt,asOf:market.asOf,
-    competitions,daily,weekly,valuationRevisions:[...(previous.valuationRevisions??[]),...(effects.length?[{at:market.generatedAt,sourceRevisionCount:market.revisions.length,effects}]:[])]}
+    competitions,daily,weekly,current,valuationRevisions:[...(previous.valuationRevisions??[]),...(effects.length?[{at:market.generatedAt,sourceRevisionCount:market.revisions.length,effects}]:[])]}
   return {book:{...book,competitions},state}
 }
 function read(file,fallback) {return fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):fallback}
@@ -91,6 +96,7 @@ function write(file,value) {fs.mkdirSync(path.dirname(file),{recursive:true});fs
 if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const args=process.argv.slice(2),cmd=args[0]??'refresh',root=args.includes('--root')?path.resolve(args[args.indexOf('--root')+1]):ROOT
   const folder=path.join(root,'data/ai-portfolios'),bookFile=path.join(folder,'book.json'),marketFile=path.join(folder,'market.json')
+  if(cmd==='import'){const proposal=read(path.resolve(args[1]),null),current=read(bookFile,{revision:0,audit:[],competitions:[]});assert(proposal?.version===1&&proposal.expectedRevision===current.revision,'Export périmé ou format invalide. Recharger le dossier avant de réexporter.');assert(!current.audit.some(e=>e.requestId===proposal.requestId),'Demande déjà enregistrée, aucune double exécution.');if(['decision','launch'].includes(proposal?.operation?.type)){const catchup=spawnSync('python3',[path.join(ROOT,'scripts/collect_ai_portfolios.py'),'--root',root,'--request',path.resolve(args[1]),'--request-only'],{cwd:ROOT,stdio:'inherit'});assert(catchup.status===0,'Rattrapage en échec : aucune décision enregistrée. Consulter les motifs ci-dessus, puis réessayer.')}}
   const market=read(marketFile,null)
   assert(market,'Lancer d’abord python3 scripts/collect_ai_portfolios.py.')
   let book=read(bookFile,{version:1,revision:0,competitions:[],audit:[]})
@@ -101,7 +107,9 @@ if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const runtimeIds=new Set(market.universe.map(a=>a.id));const runtimeMarket={...market,universe:[...market.universe,...certified.filter(a=>a.permanentExclusion&&!runtimeIds.has(a.id))]}
   const stateFile=path.join(folder,'state.json'),result=refresh(book,market,read(stateFile,{}))
   write(bookFile,result.book);write(stateFile,result.state)
+  // Keep the v1 endpoint compatible with previously published code / fallback.
   write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market:publicMarket(runtimeMarket,result.book.competitions.flatMap(c=>c.config.universe)),state:result.state,defaults:defaultConfig(undefined,market)})
+  write(path.join(root,'public/data/ai-portfolios/overview.json'),publishRuntime(root,result.book,runtimeMarket,result.state))
   for(const name of ['qualification.json','qualification.csv','qualification.md','equity-catalogue.json','equity-catalogue.csv','selectable-equities.json','selectable-equities.csv','selectable-assets.json','selectable-assets.csv','equity-coverage.json','equity-coverage.md']){const file=path.join(folder,name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(root,'public/data/ai-portfolios',name))}
   const seriesFolder=path.join(folder,'series');if(fs.existsSync(seriesFolder))fs.cpSync(seriesFolder,path.join(root,'public/data/ai-portfolios/series'),{recursive:true})
   console.log(`Portefeuilles IA : révision ${result.book.revision}, ${result.book.competitions.length} compétitions ; arrêté ${market.asOf}.`)

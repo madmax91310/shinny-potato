@@ -1,0 +1,43 @@
+import {assert,executionRule,money,percent,periodReport,admission,addDays} from './lib.js'
+import {METHOD} from './data.js'
+import {weeklyWindow,frequencyText} from './weekly.js'
+export function responseTemplate(participant,model,date){return {version:1,participant,model,decisionDate:date,kind:'hold',reason:'Justification de la décision. Pour target, ajouter weights ; pour trades, ajouter amounts (achats positifs, ventes négatives).'}}
+export function briefing(comp,participant,market,date,publishedReport=null,now=new Date().toISOString(),weeklyReport=null){
+ const c=comp.config,p=c.participants.find(p=>p.id===participant);assert(p,'Participant inconnu.');assert(p.model&&p.model!=='À renseigner','Renseigner manuellement le modèle du participant avant de préparer son dossier.')
+ assert(date<=market.asOf,'Arrêté demandé au-delà des données publiées.')
+ const started=comp.status==='launched',report=started?(publishedReport??periodReport(comp,date,market)):null
+ assert(!started||report?.date===date&&report.complete,'Dossier incomplet : clôture, change, allocation ou exécution nécessaire absent. Corriger les données avant de transmettre un dossier complet.')
+ const row=report?.rows.find(r=>r.id===participant),ref=report?.rows.find(r=>r.id==='world')
+ let week=weeklyReport??report
+ if(started&&!weeklyReport){const dow=new Date(date+'T12:00:00Z').getUTCDay(),friday=addDays(date,-((dow+2)%7));if(friday>=comp.startDate&&friday!==date)week=periodReport(comp,friday,market)}
+ assert(!started||week?.complete,'Dossier incomplet : dernier bilan hebdomadaire commun indisponible.')
+ const weeklyRow=week?.rows.find(r=>r.id===participant),weeklyRef=week?.rows.find(r=>r.id==='world')
+ assert(!started||row?.complete&&ref?.complete,'Participant ou référence incomplet.')
+ const window=c.frequency==='weekly'?weeklyWindow(now,c.weeklyWindow):null
+ const decisions=comp.decisions.filter(d=>d.participant===participant),last=decisions.at(-1),pending=decisions.filter(d=>['recorded','pending','failed'].includes(d.status))
+ const byId=new Map(market.universe.map(a=>[a.id,a]))
+ const positions=row?.positions.map(x=>{const a=byId.get(x.id);assert(a,'Identité archivée absente : '+x.id);return `${x.id} | ${a.name} | ${a.isin??'ISIN non documenté'} | ${a.ticker} ${a.mic} ${a.currency} | poids ${x.weight.toFixed(2)} % | valeur ${money(x.value,c.currency)} | résultat cumulé ${money(x.pnl,c.currency)} | contribution ${x.contribution.toFixed(2)} points | ${x.units.toFixed(6)} unités synthétiques | clôture ${x.priceDate}, change ${x.fxDate}`}).join('\n')||'Aucune position : liquidités uniquement.'
+ const text=`DOSSIER ${started?'HEBDOMADAIRE':'DE LANCEMENT'} — ${c.name}\nParticipant : ${p.name} ; identifiant ${p.id} ; modèle déclaré : ${p.model}.\nArrêté financier : ${date}. Dossier généré : ${now}. Aucun dossier de marché ni actualité inventés.\nCapital fictif initial : ${money(c.initialCapital,c.currency)}. Devise commune : ${c.currency}.\n${started?`Valeur : ${money(row.value,c.currency)}. Liquidités : ${money(row.cash,c.currency)}.\nDepuis le lancement (${comp.startDate} → ${date}) : ${percent(row.performance)}.\nDernière semaine disponible (${week.weekStart} → ${week.date}${week.partialWeek?', première semaine partielle':''}) : ${percent(weeklyRow.weekly)}.\nRéférence exacte ${c.benchmark} (${byId.get(c.benchmark)?.name??c.benchmark}), même capital, dates et devise : ${money(ref.value,c.currency)}, départ ${percent(ref.performance)}, semaine (${week.weekStart} → ${week.date}) ${percent(weeklyRef.weekly)}.`:`Compétition non lancée : ${money(c.initialCapital,c.currency)} en liquidités par participant. Aucune performance ni allocation créée. La référence démarre à la même clôture future que les allocations initiales.`}\n\nPOSITIONS\n${positions}\nRésultat de ligne = valeur restante − achats cumulés + ventes cumulées ; contribution = résultat / capital initial, frais séparés (${money(row?.fees??0,c.currency)}). Ce résultat après mouvements n’est pas un rendement du seul solde investi.\n\nDÉCISIONS (état publié au ${market.generatedAt})\nDernière réponse enregistrée : ${last?`${last.decisionDate} | ${last.model} | ${last.kind} | ${last.status} | exécution ${last.executionDate} | ${last.reason}`:'aucune'}.\nOpérations non exécutées : ${pending.map(d=>`${d.id} | ${d.kind} | ${d.status} | prévue ${d.executionDate} | ${d.error??'attend la clôture future'}`).join('\n')||'aucune'}.\n\nRÈGLES\n${c.minLines} à ${c.maxLines} lignes investies (une conservation conserve aussi les liquidités), ${c.maxWeight} % maximum par ligne au moment d’un achat ; dérive de marché autorisée. Aucun levier, aucune vente à découvert. Liquidités non rémunérées. Frais : ${c.feeBps} points de base sur chaque achat et vente.\n${frequencyText(c)}\n${window?`Fenêtre commune : ${window.startDate} lundi 00:00 à ${window.endDate} dimanche 23:59:59 (${window.timezone}). Date limite de réponse ET d’enregistrement dans le dépôt : ${window.deadlineAt} (UTC). Une demande téléchargée n’est pas une réponse enregistrée. Après cette borne, la demande appartient à la semaine suivante. Les décisions de cette fenêtre sont exécutables après cette échéance.`:'La fréquence archivée de cette compétition est conservée.'}\n${executionRule(c)}\n${METHOD}\n${c.universe.length} cotations autorisées. Actions : ${(c.stockRegions??['règles archivées']).join(', ')}. Familles : ${(c.assetTypes??['ETF','EQUITY']).join(', ')}. ETF UCITS ${c.requireUcits?'obligatoires':'non exigés'}. Joindre l’export univers-admissible.json, complet et propre à cette compétition. Identifiants exacts uniquement ; un statut technique qualified doit encore passer le rattrapage et les contrôles d’admission.\n\nRÉPONSE À FOURNIR\nDécider de conserver, acheter, vendre partiellement ou totalement, ou rééquilibrer. Répondre en JSON uniquement, version 1, participant ${p.id}, modèle et date réels, justification obligatoire. kind=hold : aucune opération. kind=target : weights {"identifiant exact": poids en %}, somme ≤100, reste en liquidités ; les positions omises sont vendues, poids 0 pour céder entièrement une ligne. kind=trades : amounts {"identifiant exact": montant en ${c.currency}}, achat positif, vente négative ; pour une liquidation exacte préférer target. Les frais sont déduits et les poids cibles s’appliquent après frais. Les montants et poids finaux dépendent des clôtures futures.\nExemple de structure à adapter (aucune décision créée par l’application) :\n${JSON.stringify(responseTemplate(p.id,p.model,date),null,2)}\nL’utilisateur transmet ce dossier et importe manuellement ta réponse. Il vérifie l’aperçu avant d’exporter une demande puis de l’enregistrer dans le dépôt. Aucun ordre réel. Pas un conseil financier.`
+ return {text,complete:true,date}
+}
+export function parseResponse(input,comp,participant,market){
+ let raw;try{raw=typeof input==='string'?JSON.parse(input):input}catch{throw Error('JSON illisible : coller uniquement l’objet JSON, sans balises Markdown.')}
+ assert(raw&&raw.version===1,'Version de réponse attendue : 1.')
+ assert(raw.participant===participant,'Le participant de la réponse ne correspond pas au participant sélectionné.')
+ const allowed=new Set(comp.config.universe),assets=market.universe.filter(a=>allowed.has(a.id))
+ function resolve(key){
+  const direct=assets.find(a=>a.id===key)
+  if(direct)return direct.id
+  // ISIN or ticker may be used only if it resolves to exactly one admitted quote.
+  const candidates=assets.filter(a=>a.isin===key||[a.ticker,a.mic,a.currency].join('|')===key)
+  assert(candidates.length===1,candidates.length?'Identifiant ambigu : '+key+'. Utiliser l’identifiant exact de cotation.':'Identifiant inconnu ou hors univers : '+key)
+  return candidates[0].id
+ }
+ const d={participant,kind:raw.kind,model:raw.model,decisionDate:raw.decisionDate,reason:raw.reason,original:typeof input==='string'?input:JSON.stringify(input)}
+ assert(['hold','target','trades'].includes(d.kind),'kind attendu : hold, target ou trades.')
+ assert(!raw.weights||d.kind==='target','weights est réservé à kind=target.')
+ assert(!raw.amounts||d.kind==='trades','amounts est réservé à kind=trades.')
+ const field=d.kind==='target'?'weights':d.kind==='trades'?'amounts':null
+ if(field){assert(raw[field]&&typeof raw[field]==='object'&&!Array.isArray(raw[field]),field+' doit être un objet identifiant → nombre.');d[field]={};for(const [key,value] of Object.entries(raw[field])){assert(typeof value==='number'&&Number.isFinite(value),'Valeur numérique requise : '+key);const id=resolve(key);assert(!(id in d[field]),'Même cotation répétée via deux identifiants : '+id);const state=admission(assets.find(a=>a.id===id),comp.config);assert(state.ok,id+' : '+state.reason);d[field][id]=value}}
+ return d
+}

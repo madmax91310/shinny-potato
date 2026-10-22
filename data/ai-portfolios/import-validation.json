@@ -1,0 +1,24 @@
+{
+  "testedAt": "2026-10-22T16:40:22.660Z",
+  "scope": "CLI réelle avec réseau, livre temporaire et sans lancement ; aucune compétition ni décision ajoutée aux données de production.",
+  "requestedAssets": [
+    "IE00B4L5Y983-ETFP",
+    "security:004810f8f891e640e8879902-XNAS-BSVN-USD",
+    "security:0072141d8e3ce72f1f769587-XNAS-CELU-USD",
+    "security:0075468dffd39c78c532d7c1-XNAS-CRSP-USD"
+  ],
+  "incrementallyFetched": [
+    "security:004810f8f891e640e8879902-XNAS-BSVN-USD"
+  ],
+  "reused": [
+    "IE00B4L5Y983-ETFP",
+    "security:0072141d8e3ce72f1f769587-XNAS-CELU-USD",
+    "security:0075468dffd39c78c532d7c1-XNAS-CRSP-USD"
+  ],
+  "restoredClose": "2026-10-21",
+  "anchorPreserved": true,
+  "decisionRecordedInTemporaryRoot": true,
+  "competitionRemainsDraft": true,
+  "duplicateRejectedBeforeCollection": true,
+  "productionBookUnchanged": true
+}

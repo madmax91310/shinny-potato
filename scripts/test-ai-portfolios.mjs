@@ -7,12 +7,12 @@ import { defaultConfig } from '../src/pages/ai-portfolios/data.js'
 import { addDays,clone,emptyPortfolio,mark,planDecision,quoteAt,validateDecision,runCompetition,portfolioAt,snapshot,periodReport,nextExecution,coverage,sourceFreshness } from '../src/pages/ai-portfolios/lib.js'
 import { register,refresh } from './ai-portfolios.mjs'
 // Entirely synthetic tests, never published in the real book.
-const ids=['a','b','c'],config={...defaultConfig('2026-01-05'),executionPolicy:'universe-v1',benchmark:'a',universe:ids,participants:[{id:'test',name:'Test',model:'Test manuel',color:'#17866b'}]}
-const market={version:1,universe:ids.map(id=>({id,name:id,ticker:id,mic:id==='c'?'XNAS':'XPAR',instrumentType:'EQUITY',calendar:'TEST',currency:id==='c'?'USD':'EUR'})),calendarFrom:'2025-12-01',calendarThrough:'2026-03-31',calendars:{TEST:{}},series:{},status:{},fx:{rates:{},validThrough:'2026-03-31'},revisions:[],asOf:'2026-01-02',generatedAt:'2026-01-03T05:00:00Z'}
+const ids=['a','b','c'],config={...defaultConfig('2026-01-05'),frequency:'monthly',executionPolicy:'universe-v1',benchmark:'a',universe:ids,participants:[{id:'test',name:'Test',model:'Test manuel',color:'#17866b'}]}
+const market={version:1,universe:ids.map(id=>({id,name:id,ticker:id,symbol:id,timezone:'UTC',mic:id==='c'?'XNAS':'XPAR',instrumentType:'EQUITY',calendar:'TEST',currency:id==='c'?'USD':'EUR'})),calendarFrom:'2025-12-01',calendarThrough:'2026-03-31',calendars:{TEST:{}},series:{},status:{},fx:{rates:{},validThrough:'2026-03-31'},revisions:[],asOf:'2026-01-02',generatedAt:'2026-01-03T05:00:00Z'}
 for(let d='2025-12-01';d<='2026-03-31';d=addDays(d,1)){
  if([0,6].includes(new Date(d+'T12:00:00Z').getUTCDay()))continue
  market.calendars.TEST[d]=d+'T16:30:00+00:00';market.fx.rates[d]={USD:d>='2026-02-01'?2:1,GBP:.8,CHF:.9}
- for(const id of ids){market.series[id]??={anchorDate:'2025-12-01',qualified:true,points:{}};market.series[id].points[d]={synthetic:id==='a'&&d>='2026-02-01'?200:100,close:75};market.status[id]={ok:true}}
+ for(const id of ids){market.series[id]??={anchorDate:'2025-12-01',qualified:true,convention:'synthetic-total-return-100-at-anchor',symbol:id,currency:id==='c'?'USD':'EUR',timezone:'UTC',points:{}};market.series[id].points[d]={synthetic:id==='a'&&d>='2026-02-01'?200:100,close:75};market.status[id]={ok:true}}
 }
 market.status.ECB={ok:true}
 assert.equal(sourceFreshness(market,'2026-01-05T00:00:00Z').ok,false)

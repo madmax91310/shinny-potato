@@ -1,3 +1,4 @@
+import {WEEKLY_WINDOW} from './weekly.js'
 import WORKFLOW_POLICY from '../../data/automation-workflows.json' with {type:'json'}
 import MARKET_REGIONS from './market-regions.json' with {type:'json'}
 export const STOCK_REGIONS=Object.keys(MARKET_REGIONS)
@@ -12,7 +13,7 @@ export function defaultConfig(date = new Date().toISOString().slice(0,10), marke
   const chosen=new Map()
   for(const a of market?.universe??[])if(a.status==='qualified'&&!a.selectionBlock&&!a.leveraged&&(a.instrumentType==='EQUITY'&&(!a.shareType||['ordinary','depositary-receipt','REIT','legacy-equity'].includes(a.shareType))&&STOCK_REGIONS.includes(marketRegion(a))||a.instrumentType==='ETF'&&a.ucits||['ETC','ETN','ETP','CRYPTOCURRENCY'].includes(a.instrumentType))&&a.isin!=='IE00B4L5Y983') {const key=a.instrumentId??a.isin??a.id;if(!chosen.has(key))chosen.set(key,a.id)}
   return { name:'Portefeuilles IA', initialCapital:10000, currency:'EUR', launchDate:date,
-    minLines:3, maxLines:6, maxWeight:35, frequency:'monthly', feeBps:0,
+    minLines:3, maxLines:6, maxWeight:35, frequency:'weekly', weeklyWindow:{...WEEKLY_WINDOW}, feeBps:0,
     executionPolicy:'affected-markets-v2', admissionPolicy:'instrument-types-v2', stockRegions:[...STOCK_REGIONS], assetTypes:['ETF','EQUITY','CRYPTOCURRENCY','ETC','ETN','ETP'], requireUcits:true, cash:'unremunerated', income:'synthetic-total-return', benchmark:'IE00B4L5Y983-ETFP', universe:['IE00B4L5Y983-ETFP',...chosen.values()],
     participants:['ChatGPT','Claude','Gemini'].map((name,i)=>({id:name.toLowerCase(),name,model:'À renseigner',color:COLORS[i]})) }
 }

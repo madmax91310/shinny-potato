@@ -20,6 +20,8 @@ on:
       - '.github/workflows/update-ai-portfolios.yml'
       - 'scripts/*ai*portfolio*'
       - 'scripts/*ai*equit*'
+      - 'scripts/*ai*weekly*'
+      - 'scripts/*ai*runtime*'
       - 'scripts/ai-calendar-corrections.json'
       - 'scripts/ai-series-store.mjs'
       - 'scripts/collect_ai_security_classifications.py'
@@ -63,6 +65,7 @@ jobs:
       - name: Validate accounting and daily coverage
         run: |
           node scripts/test-ai-portfolios.mjs
+          node scripts/test-ai-weekly.mjs
           node scripts/test-ai-equity-directory.mjs
           python -m unittest discover -s scripts -p test_ai_portfolios.py
       - name: Discover complete official exchange directories
@@ -88,6 +91,7 @@ jobs:
         run: node scripts/ai-portfolios.mjs refresh
       - name: Validate every selectable equity against the accounting engine
         run: node scripts/test-ai-equity-coverage.mjs
+          node scripts/audit-ai-runtime.mjs
       - name: Validate observations build
         run: npm run build
       - if: github.event_name == 'pull_request'
@@ -102,6 +106,7 @@ jobs:
           path: |
             ${{ runner.temp }}/ai-portfolio-observations.json
             data/ai-portfolios/qualification.*
+            data/ai-portfolios/runtime-audit.json
             data/ai-portfolios/equity-coverage.*
             data/ai-portfolios/equity-catalogue.*
             data/ai-portfolios/selectable-equities.*
