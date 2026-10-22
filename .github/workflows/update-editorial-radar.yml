@@ -87,8 +87,7 @@ jobs:
         run: node scripts/test-purchasing-power-news.mjs --live
       - name: Verify live DWS portfolios independently
         run: |
-          python scripts/verify_dws_compositions.py > "$RUNNER_TEMP/dws-verification.json"
-          python -c 'import json,os; r=json.load(open(os.environ["RUNNER_TEMP"]+"/dws-verification.json")); assert r["verified"] and not r["errors"], r["errors"]'
+          python scripts/verify_dws_compositions.py --check > "$RUNNER_TEMP/dws-verification.json"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

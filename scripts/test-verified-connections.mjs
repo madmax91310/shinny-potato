@@ -9,6 +9,7 @@ import * as history from '../src/pages/tweet-midi/data/performanceHistory.js'
 import { derive as calculateInvestment } from '../src/pages/investment-calculator/lib.js'
 import { CERTIFIED_INDEX_HISTORIES } from '../src/data/certified-monthly-indices.js'
 import { ASSETS as MONTHLY } from '../src/data/market-history.js'
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js'
 import engine from '../src/pages/tweet-midi/engines/performance.js'
 import { projectLightRegistries } from './project-light-registries.mjs'
@@ -98,7 +99,12 @@ for(const admission of AUTOMATIC_FACTOR_ADMISSIONS) {
     for(const recipe of recipes){const slot=recipe.assets.find(slot=>(slot.idOptions??[slot.id]).includes(admission.id));assert(slot.maxPct<=admission.maxPct);assert(recipe.assets.some(s=>s.id===admission.core))}
   }
 }
-for(const id of ['soxx','etfIE00BDFBTQ78','etfIE000U9ODG19','etfGB00B15KXQ89'])assert.equal(RANKING_ASSETS[id],undefined,id)
+assert.equal(RANKING_ASSETS.soxx,undefined,'Price-only SOXX must not become total return')
+for(const id of ['etfIE00BDFBTQ78','etfGB00B15KXQ89']){
+ assert(RANKING_ASSETS[id],`${id}: a historical repetition does not exclude independent valid windows`)
+ assert(qualifyHistoryWindow(RANKING_ASSETS[id],'2024-12','2025-12').qualified)
+}
+assert.equal(qualifyHistoryWindow(RANKING_ASSETS.etfIE000U9ODG19,'2024-12','2025-12').qualified,false,'Swiss Aerospace 2025 remains refused')
 const aerospace=RANKING_ASSETS['aerospace-paris-eur']
 assert(aerospace);assert.equal(aerospace.isin,'IE000U9ODG19');assert.equal(aerospace.currency,'EUR');assert.equal(aerospace.points[0].date,'2024-08')
 assert(commonCoverage([aerospace,RANKING_ASSETS.etfIE00B4L5Y983]).years.includes(2025))

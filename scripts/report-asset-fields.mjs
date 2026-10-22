@@ -73,7 +73,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
   const record=AUTOMATED_ETF[item.id]??compositionOnly[item.id]??{};
   for(const field of Object.keys(names)) {
    if(onlyComposition&&!['countries','sectors','completeHoldings'].includes(field)) {
-    rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,automationConfigured:false,tools:[],reason:'Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ.'});continue;
+    rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state:'not-applicable',present:false,checkedAt:null,asOf:null,sourceUrl:null,sourceUrls:[],automationConfigured:false,tools:[],reason:'Sous-jacent de composition uniquement : cette capacité ne consomme pas ce champ.'});continue;
    }
    const meta=['distribution','domicile','replicationMethod','listings','pea','currencyHedge'].includes(field);
    let value=field==='ter'||meta?record.characteristics:record[field];
