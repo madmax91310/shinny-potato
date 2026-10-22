@@ -19,6 +19,7 @@ from ai_portfolio_fx import enrich_twd, validate_fx_date
 from ai_portfolio_catalogue import compact_catalogue
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+ECB_RECENT = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
 ECB = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
 
 
@@ -53,7 +54,7 @@ def calendars(universe, start, end, bounds=None):
     return result
 
 
-def parse_prices(raw, asset, calendar, now, previous=None, through=None):
+def parse_prices(raw, asset, calendar, now, previous=None, through=None, incremental=False):
     if asset.get('yahooExchanges') and raw['chart']['result'][0]['meta'].get('exchangeName') not in asset['yahooExchanges']:
         raise ValueError('Place retournée différente : '+str(raw['chart']['result'][0]['meta'].get('exchangeName')))
     if asset.get('yahooExchange') and raw['chart']['result'][0]['meta'].get('exchangeName')!=asset['yahooExchange']:
@@ -99,11 +100,22 @@ def parse_prices(raw, asset, calendar, now, previous=None, through=None):
     unexpected=[d.isoformat() for d,_,_ in rows if d.isoformat() not in calendar and d<now.date()]
     if unexpected:raise ValueError('Observations hors séances certifiées : '+', '.join(unexpected[:10]))
     valid = [(d.isoformat(), close, adjusted) for d, close, adjusted in rows if d.isoformat() in completed]
-    if len(valid) < 20:
+    if not incremental and len(valid) < 20:
         raise ValueError('Moins de 20 clôtures quotidiennes achevées')
     if any(close <= 0 or adj <= 0 for _, close, adj in valid):
         raise ValueError('Prix quotidien non positif')
     anchor = previous['anchorDate'] if previous else valid[0][0]
+    if incremental:
+        if not previous or not previous.get('qualified'):raise ValueError('Série précédente non qualifiée')
+        overlap=[(d,c,a) for d,c,a in valid if d in previous['points']]
+        if len(overlap)<3:raise ValueError('Révision à contrôler : recouvrement insuffisant')
+        for d,c,a in overlap:
+            old=previous['points'][d]
+            if abs(a-old['adjusted'])>max(1e-8,abs(old['adjusted'])*1e-8) or abs(c-old['close'])>max(1e-8,abs(old['close'])*1e-8):
+                raise ValueError('Révision à contrôler : cours ajusté ou brut modifié')
+        merged={d:(p['close'],p['adjusted']) for d,p in previous['points'].items()}
+        merged.update({d:(c,a) for d,c,a in valid})
+        valid=[(d,c,a) for d,(c,a) in sorted(merged.items()) if d in completed]
     values = {d: adj for d, _, adj in valid}
     if anchor not in values:
         raise ValueError('Séance d’ancrage absente ; aucun changement de base autorisé')
@@ -117,18 +129,20 @@ def parse_prices(raw, asset, calendar, now, previous=None, through=None):
             'convention': 'synthetic-total-return-100-at-anchor', 'responseSha256': sha(raw), 'minimumUseDate': anchor, 'sourceCurrency': source_currency, 'priceScale':scale,'providerIdentityName':provider_name,'providerFirstTradeDate':meta.get('firstTradeDate')}
 
 
-def parse_fx(body, now, start=None):
+def parse_fx(body, now, start=None, previous=None):
     root = ET.fromstring(body)
     if root.tag != '{http://www.gesmes.org/xml/2002-08-01}Envelope':
         raise ValueError('Document BCE incorrect')
     ns = '{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}'
-    rates = {}
+    rates = copy.deepcopy(previous.get('rates',{})) if previous else {}
+    seen=set()
     for cube in root.iter(ns+'Cube'):
         date = cube.attrib.get('time')
         if not date:
             continue
-        if date in rates or dt.date.fromisoformat(date) > now.date():
+        if date in seen or dt.date.fromisoformat(date) > now.date():
             raise ValueError('Date BCE future ou dupliquée')
+        seen.add(date)
         row = {c.attrib['currency']: float(c.attrib['rate']) for c in cube}
         if not all(0 < row.get(c, 0) < 1e9 for c in ['USD', 'GBP', 'CHF']) or any(not 0<v<1e9 for v in row.values()):
             raise ValueError('Change BCE absent ou incohérent')
@@ -160,8 +174,8 @@ def parse_fx(body, now, start=None):
 
 def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, required=None):
     today = now.date()
-    # Full anchor history is needed to normalize Yahoo back-adjustments consistently.
-    # One bounded request per exact instrument (not per participant); no unrelated assets.
+    # One incremental request per exact listing, shared by every portfolio.
+    # A weekly full-anchor review and any changed overlap force a coherent full replay.
     start = previous.get('calendarFrom', (today-dt.timedelta(days=100)).isoformat())
     end = (today+dt.timedelta(days=70)).isoformat()
     output = copy.deepcopy(previous)
@@ -176,6 +190,7 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
     output.setdefault('series', {})
     output['status'] = copy.deepcopy(previous.get('status',{}))
     output.setdefault('revisions', [])
+    output['collection']={'required':sorted(required) if required is not None else [a['id'] for a in universe],'requested':[],'reused':[]}
     for asset in universe:
         key = asset['id']
         asset=copy.deepcopy(asset)
@@ -193,17 +208,39 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
         if asset.get('discoveryBlock') or not asset.get('calendar'):
             output['status'][key]={'ok':False,'error':asset.get('discoveryBlock') or 'Calendrier non qualifié','attemptedAt':now.isoformat()}
             continue
-        url = 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(asset['symbol'],safe='')+'?'+urlencode({
-            'period1': int(dt.datetime.fromisoformat(start).replace(tzinfo=UTC).timestamp()),
-            'period2': int(now.timestamp()), 'interval': '1d', 'events': 'div,splits'})
+        last_full=prior_series.get('fullCheckedAt') or prior_series.get('retrievedAt')
+        review_due=not last_full or now-dt.datetime.fromisoformat(last_full)>=dt.timedelta(days=7)
+        incremental=bool(prior_series.get('qualified') and not review_due)
+        completed=[d for d,close in output['calendars'][asset['calendar']].items() if d<today.isoformat() and dt.datetime.fromisoformat(close)+dt.timedelta(hours=2)<now]
+        if incremental and completed and previous.get('status',{}).get(key,{}).get('ok') and all(d in prior_series['points'] for d in completed if d>=prior_series['anchorDate']):
+            output['collection']['reused'].append(key)
+            continue
+        output['collection']['requested'].append(key)
+        request_start=max(start,(dt.date.fromisoformat(max(prior_series['points']))-dt.timedelta(days=14)).isoformat()) if incremental else start
+        def price_url(begin):
+            return 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(asset['symbol'],safe='')+'?'+urlencode({
+                'period1':int(dt.datetime.fromisoformat(begin).replace(tzinfo=UTC).timestamp()),
+                'period2':int(now.timestamp()),'interval':'1d','events':'div,splits'})
+        url=price_url(request_start)
         try:
             raw, actual = chart_response(url, fetch)
-            series = parse_prices(raw, asset, output['calendars'][asset['calendar']], now, previous.get('series',{}).get(key),through=(today-dt.timedelta(days=1)).isoformat())
-            series.update({'sourceUrl': actual, 'retrievedAt': now.isoformat(), 'isin': asset['isin'],
-                           'listingEvidenceId': asset['evidenceId'], 'symbol': asset['symbol'], 'currency': asset['currency']})
+            try:
+                series = parse_prices(raw, asset, output['calendars'][asset['calendar']], now, prior_series or None,through=(today-dt.timedelta(days=1)).isoformat(),incremental=incremental)
+            except ValueError as error:
+                if not incremental or not str(error).startswith('Révision à contrôler'):raise
+                # Never splice differently back-adjusted bases. Fetch and re-normalize
+                # the entire anchor history atomically; failure keeps the old series.
+                incremental=False;request_start=start;url=price_url(start)
+                raw,actual=chart_response(url,fetch)
+                series=parse_prices(raw,asset,output['calendars'][asset['calendar']],now,prior_series,through=(today-dt.timedelta(days=1)).isoformat())
+            series.update(collectionMode='incremental' if incremental else 'full-anchor-review',requestedFrom=request_start,
+                          fullCheckedAt=last_full if incremental else now.isoformat(),
+                          observations=[*prior_series.get('observations',[]),{'from':request_start,'through':max(series['points']),'sourceUrl':actual,'sha256':series['responseSha256'],'retrievedAt':now.isoformat(),'mode':'incremental' if incremental else 'full-anchor-review'}])
+            series.update({'sourceUrl': actual, 'retrievedAt': now.isoformat(), 'isin': asset.get('isin'),
+                           'listingEvidenceId': asset.get('evidenceId'), 'symbol': asset['symbol'], 'currency': asset['currency']})
             old = previous.get('series',{}).get(key,{}).get('points',{})
             corrections = [{'date': d, 'before': old[d], 'after': p} for d,p in series['points'].items()
-                           if d in old and (abs(old[d]['synthetic']-p['synthetic'])>1e-7 or abs(old[d]['close']-p['close'])>1e-7)]
+                           if d in old and (abs(old[d]['synthetic']-p['synthetic'])>1e-7 or abs(old[d]['close']-p['close'])>1e-7 or abs(old[d].get('adjusted',p['adjusted'])-p['adjusted'])>1e-7)]
             if corrections:
                 output['revisions'].append({'at': now.isoformat(), 'asset':key, 'sourceSha256':series['responseSha256'], 'changes':corrections})
             output['series'][key] = series
@@ -211,9 +248,16 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
         except Exception as error:
             output['status'][key] = {'ok':False,'attemptedAt':now.isoformat(),'error':str(error),'requestedUrl':url}
     try:
-        fx = parse_fx(fetch_ecb(ECB, max_bytes=12_000_000),now,start)
+        recent=bool(previous.get('fx',{}).get('rates')) and min(previous['fx']['rates'])<=start
+        fx_url=ECB_RECENT if recent else ECB
+        fx = parse_fx(fetch_ecb(fx_url, max_bytes=12_000_000),now,start,previous.get('fx') if recent else None)
+        fx['sourceUrl']=fx_url
         fx['rates'] = {d:r for d,r in fx['rates'].items() if d >= (dt.date.fromisoformat(start)-dt.timedelta(days=7)).isoformat()}
         fx['retrievedAt'] = now.isoformat()
+        prior_fx=previous.get('fx',{})
+        prior_observations=prior_fx.get('observations',[])
+        if not prior_observations and prior_fx.get('responseSha256'):prior_observations=[{k:prior_fx.get(k) for k in ['sourceUrl','retrievedAt','responseSha256']}]
+        fx['observations']=[*prior_observations,{'sourceUrl':fx_url,'retrievedAt':now.isoformat(),'responseSha256':fx['responseSha256'],'from':min(fx['rates']),'through':max(fx['rates'])}]
         try:
             needs_twd=any(a['currency']=='TWD' and (required is None or a['id'] in required) for a in universe)
             fx=enrich_twd(fx,now,start,fetch_ecb,previous=previous.get('fx',{}),required=needs_twd)
@@ -255,12 +299,29 @@ def record_qualification_success(row, series, attempted_at):
                attempts=[{'url':series['sourceUrl'],'result':'qualified','at':attempted_at,'retrievedAt':series['retrievedAt']}])
 
 
+def active_assets(book):
+    required=set()
+    for c in book['competitions']:
+        required.add(c['config']['benchmark'])
+        positions={}
+        for d in c['decisions']:
+            if d['status']=='cancelled':continue
+            if d['status'] in ['recorded','pending']:
+                required.update(k for k,v in d.get('weights',{}).items() if v)
+                required.update(k for k,v in d.get('amounts',{}).items() if v)
+            for t in d.get('execution',{}).get('trades',[]):
+                key=(d['participant'],t['id']);positions[key]=positions.get(key,0)+t['units']
+        required.update(key[1] for key,units in positions.items() if units>1e-10)
+    return required
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root',type=pathlib.Path,default=ROOT)
     p.add_argument('--qualify-all',action='store_true')
     p.add_argument('--report',type=pathlib.Path)
     p.add_argument('--assets',default='',help='Comma-separated exact listing IDs to catch up before admission')
+    p.add_argument('--request-only',action='store_true',help='Catch up only the requested competition/participant, not unrelated portfolios')
     p.add_argument('--request',type=pathlib.Path,help='Catch up all assets from a downloaded decision/configuration request')
     args=p.parse_args()
     if args.qualify_all:
@@ -271,26 +332,21 @@ def main():
     book_path=args.root/'data/ai-portfolios/book.json'
     book=json.loads(book_path.read_text()) if book_path.exists() else {'competitions':[]}
     defaults=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {defaultConfig} from './src/pages/ai-portfolios/data.js'; console.log(JSON.stringify(defaultConfig()))"],cwd=ROOT))
-    required=set()
-    for c in book['competitions']:
-        required.add(c['config']['benchmark'])
-        if c['config'].get('executionPolicy')!='affected-markets-v2':required.update(c['config']['universe'])
-        positions={}
-        for d in c['decisions']:
-            if d['status']=='cancelled':continue
-            if d['status'] in ['recorded','pending']:
-                required.update(k for k,v in d.get('weights',{}).items() if v)
-                required.update(k for k,v in d.get('amounts',{}).items() if v)
-            for t in d.get('execution',{}).get('trades',[]):
-                key=(d['participant'],t['id']);positions[key]=positions.get(key,0)+t['units']
-        required.update(key[1] for key,units in positions.items() if units>1e-10)
+    requested=json.loads(args.request.read_text()) if args.request else None
+    if args.request_only:
+        if not requested:raise ValueError('--request-only exige --request')
+        focused=copy.deepcopy(book)
+        focused['competitions']=[c for c in focused['competitions'] if c['id']==requested.get('competitionId')]
+        if requested['operation']['type']=='decision':
+            for c in focused['competitions']:c['decisions']=[d for d in c['decisions'] if d['participant']==requested['operation']['decision'].get('participant')]
+        required=active_assets(focused)
+    else:required=active_assets(book)
     if not required:required.add(defaults['benchmark'])
     required.update(k for k in args.assets.split(',') if k)
     if args.request:
-        op=json.loads(args.request.read_text())['operation']
+        op=requested['operation']
         config=op.get('config',{})
         if config.get('benchmark'):required.add(config['benchmark'])
-        if config and config.get('executionPolicy')!='affected-markets-v2':required.update(config.get('universe',[]))
         for field in ['weights','amounts']:required.update(k for k,v in op.get('decision',{}).get(field,{}).items() if v)
     old_assets={a['id']:a for a in previous.get('universe',[])}
     universe=[{**old_assets.get(a['id'],{}),**a} for a in universe]

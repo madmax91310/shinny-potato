@@ -129,6 +129,68 @@ class DailyTests(unittest.TestCase):
             self.assertTrue(result['status']['test']['ok'])
             self.assertFalse(result['status']['unrelated']['ok'])
             if 'unrelated' in required:self.assertIn('Calendrier non qualifié',result['status']['unrelated']['error'])
+    def tail_response(self, count=8, revision=False):
+        raw=copy.deepcopy(self.raw);data=raw['chart']['result'][0]
+        data['timestamp']=data['timestamp'][-count:]
+        for groups in data['indicators'].values():
+            for group in groups:
+                for key,values in group.items():group[key]=values[-count:]
+        if revision:data['indicators']['adjclose'][0]['adjclose']=[45]*len(data['timestamp'])
+        return raw
+
+    def test_incremental_merge_preserves_anchor_and_refuses_adjusted_splice(self):
+        prior=parse_prices(self.raw,self.asset,self.calendar,self.now)
+        last=max(prior['points']);del prior['points'][last]
+        merged=parse_prices(self.tail_response(),self.asset,self.calendar,self.now,prior,incremental=True)
+        self.assertEqual(merged['anchorDate'],prior['anchorDate'])
+        self.assertIn(last,merged['points'])
+        self.assertEqual(merged['points'][prior['anchorDate']],prior['points'][prior['anchorDate']])
+        with self.assertRaisesRegex(ValueError,'Révision à contrôler'):
+            parse_prices(self.tail_response(revision=True),self.asset,self.calendar,self.now,prior,incremental=True)
+        with self.assertRaisesRegex(ValueError,'recouvrement insuffisant'):
+            parse_prices(self.tail_response(count=1),self.asset,self.calendar,self.now,prior,incremental=True)
+
+    def test_incremental_collection_and_full_review_on_revision(self):
+        from urllib.parse import urlparse,parse_qs
+        prior=parse_prices(self.raw,self.asset,self.calendar,self.now)
+        prior['retrievedAt']=(self.now-dt.timedelta(days=1)).isoformat()
+        del prior['points'][max(prior['points'])]
+        previous={'calendarFrom':'2026-01-01','series':{'test':prior},'status':{'test':{'ok':True}}}
+        def offline_fx(*args,**kwargs):raise ConnectionError('isolated FX failure')
+        calls=[]
+        def fetch(url,**kwargs):calls.append(url);return self.tail_response()
+        result=collect(previous,[self.asset],self.now,fetch=fetch,fetch_ecb=offline_fx,required={'test'})
+        self.assertTrue(result['status']['test']['ok']);self.assertEqual(len(calls),1)
+        self.assertEqual(result['series']['test']['collectionMode'],'incremental')
+        reused=collect(result,[self.asset],self.now,fetch=lambda *a,**kw:(_ for _ in ()).throw(AssertionError('unnecessary price download')),fetch_ecb=offline_fx,required={'test'})
+        self.assertEqual(reused['collection']['requested'],[]);self.assertEqual(reused['collection']['reused'],['test'])
+        self.assertGreater(int(parse_qs(urlparse(calls[0]).query)['period1'][0]),int(dt.datetime(2026,1,1,tzinfo=UTC).timestamp()))
+        calls=[]
+        def revised(url,**kwargs):
+            calls.append(url)
+            return self.tail_response(revision=True) if len(calls)==1 else self.raw
+        result=collect(previous,[self.asset],self.now,fetch=revised,fetch_ecb=offline_fx,required={'test'})
+        self.assertEqual(len(calls),2);self.assertEqual(result['series']['test']['collectionMode'],'full-anchor-review')
+        self.assertEqual(result['series']['test']['anchorDate'],prior['anchorDate'])
+        # A failed coherent full reload keeps the original healthy history intact.
+        calls=[]
+        def failing(url,**kwargs):
+            calls.append(url)
+            if len(calls)>1:raise ConnectionError('full review failed')
+            return self.tail_response(revision=True)
+        failed=collect(previous,[self.asset],self.now,fetch=failing,fetch_ecb=offline_fx,required={'test'})
+        self.assertFalse(failed['status']['test']['ok']);self.assertEqual(failed['series']['test'],prior)
+
+    def test_active_assets_are_mutualized_and_sold_assets_stop_daily_collection(self):
+        from collect_ai_portfolios import active_assets
+        decisions=[{'participant':'one','status':'executed','execution':{'trades':[{'id':'sold','units':2},{'id':'held','units':3}]}},
+                   {'participant':'one','status':'executed','execution':{'trades':[{'id':'sold','units':-2}]}},
+                   {'participant':'two','status':'executed','execution':{'trades':[{'id':'held','units':1}]}},
+                   {'participant':'two','status':'pending','weights':{'waiting':33,'zero':0}},
+                   {'participant':'two','status':'cancelled','amounts':{'cancelled':1}}]
+        c={'config':{'benchmark':'world','universe':['unrelated']},'decisions':decisions}
+        self.assertEqual(active_assets({'competitions':[c,c]}),{'held','waiting','world'})
+
     def test_ecb_stale(self):
         body=b'<gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref"><Cube><Cube time="2026-01-02"><Cube currency="USD" rate="1.1"/><Cube currency="GBP" rate="0.8"/><Cube currency="CHF" rate="0.9"/></Cube></Cube></gesmes:Envelope>'
         with self.assertRaisesRegex(ValueError,'attendu manquant'):parse_fx(body,self.now)
