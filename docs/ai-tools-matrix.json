@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-22T20:15:17.870Z",
+  "checkedAt": "2026-10-22T20:21:41.061Z",
   "scope": "29 actifs exacts ; 16 profils demandés ; statuts fondés sur les consommateurs actuels",
   "matrix": [
     {
@@ -110,13 +110,21 @@
           "status": "bloqué",
           "reason": "Années complètes : 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Profondeur insuffisante, aucune admission par le seul mode actuel."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "bloqué",
-          "reason": "Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils."
+          "reason": "Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -303,13 +311,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-vertiv. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-vertiv. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -496,13 +512,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-rocket-lab. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-rocket-lab. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -689,13 +713,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-ast-spacemobile. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-ast-spacemobile. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -882,13 +914,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-sofi. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-sofi. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -1074,13 +1114,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-robinhood. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-robinhood. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -1261,13 +1309,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-coinbase. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-coinbase. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -1448,13 +1504,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-strategy. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-strategy. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -1641,13 +1705,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-cloudflare. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-cloudflare. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -1829,13 +1901,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-zscaler. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-zscaler. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2017,13 +2097,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-datadog. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-datadog. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2204,13 +2292,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-snowflake. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-snowflake. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2391,13 +2487,21 @@
           "status": "bloqué",
           "reason": "Années complètes : 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Profondeur insuffisante, aucune admission par le seul mode actuel."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "bloqué",
-          "reason": "Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils."
+          "reason": "Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2578,13 +2682,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-duolingo. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-duolingo. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2765,13 +2877,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-mercadolibre. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-mercadolibre. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -2952,13 +3072,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-nu. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-nu. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -3140,13 +3268,21 @@
           "status": "bloqué",
           "reason": "Années complètes : 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Profondeur insuffisante, aucune admission par le seul mode actuel."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "bloqué",
-          "reason": "Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils."
+          "reason": "Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -3333,13 +3469,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-constellation-energy. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-constellation-energy. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -3524,13 +3668,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-cameco. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-cameco. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -3716,13 +3868,21 @@
           "status": "raccordé dans cette PR",
           "reason": "Années complètes : 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "raccordé dans cette PR",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "raccordé dans cette PR",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "raccordé dans cette PR",
-          "reason": "Sélecteur manuel : equity-saab-b. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : equity-saab-b. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "hors périmètre",
@@ -3991,13 +4151,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : sect_cybersecurite. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : sect_cybersecurite. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -4256,13 +4424,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : sect_robotique. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : sect_robotique. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -4522,13 +4698,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : sect_energie_propre. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : sect_energie_propre. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -4794,13 +4978,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : msci_world_ishares. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : msci_world_ishares. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -5034,13 +5226,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : nasdaq100_ishares. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : nasdaq100_ishares. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -5280,13 +5480,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : msci_acwi_ishares. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : msci_acwi_ishares. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -5555,13 +5763,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : manual-IE00B3RBWM25. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : manual-IE00B3RBWM25. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "bloqué",
@@ -5803,13 +6019,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : ftse_allworld_vanguard. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : ftse_allworld_vanguard. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",
@@ -6065,13 +6289,21 @@
           "status": "déjà raccordé",
           "reason": "Années complètes : 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
+        "rankingManualPortfolios": {
+          "status": "déjà raccordé",
+          "reason": "Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée."
+        },
         "dcaManual": {
           "status": "déjà raccordé",
           "reason": "Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif."
         },
+        "wealthProjection": {
+          "status": "hors périmètre",
+          "reason": "Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision."
+        },
         "portfolioManual": {
           "status": "déjà raccordé",
-          "reason": "Sélecteur manuel : or_ishares. Années EUR et conventions existantes."
+          "reason": "Sélecteur manuel du Générateur : or_ishares. Années EUR et conventions existantes."
         },
         "portfolioAutomatic": {
           "status": "déjà raccordé",

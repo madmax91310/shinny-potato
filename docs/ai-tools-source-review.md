@@ -1,6 +1,6 @@
 # Identités, continuités et indices — contrôle du 22 octobre 2026
 
-La matrice JSON et Markdown couvre les 29 actifs et 14 destinations ou modes. Les 20 actions étaient déjà dans le quotidien IA, mais absentes du registre mensuel partagé vérifié. Les neuf fonds/ETC avaient déjà des fiches et des usages ; leurs nouveaux profils ne sont pas annoncés comme neuf instruments nouveaux.
+La matrice JSON et Markdown couvre les 29 actifs et 16 destinations ou modes. Les 20 actions étaient déjà dans le quotidien IA, mais absentes du registre mensuel partagé vérifié. Les neuf fonds/ETC avaient déjà des fiches et des usages ; leurs nouveaux profils ne sont pas annoncés comme neuf instruments nouveaux.
 
 ## Identités et continuité
 
@@ -47,4 +47,4 @@ Un top 10 d’indice peut alimenter une rubrique « principales lignes » sourc�
 
 Les sources nouvellement qualifiées rejoignent `monthly-automation.json`, les niveaux récents `anniversary-levels.json`, les identités internationales `global-equities.json`, les classifications `dca-security-classifications.json` et l’univers de collecte des compositions existant. Aucune compétition, position ou ancre IA n’est modifiée. La collecte ne dépend pas de la détention par un participant IA. Les nouveaux candidats ont été retirés de la file après leur qualification effective.
 
-À poursuivre : qualifier les observations propres aux trois indices thématiques pour Coulisses ; attendre une deuxième année complète commune pour les profils infrastructure IA, plateformes numériques et énergie/infrastructures numériques, ainsi qu’une troisième pour admettre Nebius, Reddit et GE Vernova dans les Duels/portefeuilles manuels. Les champs de domicile juridique et de répartition du chiffre d’affaires non sourcés ne sont pas inventés. L’automatique ETF conserve ses admissions et ses limites actuelles.
+À poursuivre : qualifier les observations propres aux trois indices thématiques pour Coulisses ; attendre une deuxième année complète commune pour les profils infrastructure IA, plateformes numériques et énergie/infrastructures numériques, ainsi qu’une troisième pour admettre Nebius, Reddit et GE Vernova dans les Duels/le mode manuel du Générateur. Les champs de domicile juridique et de répartition du chiffre d’affaires non sourcés ne sont pas inventés. L’automatique ETF conserve ses admissions et ses limites actuelles.

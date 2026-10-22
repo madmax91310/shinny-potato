@@ -1,6 +1,6 @@
 # Réutilisation des 29 actifs IA
 
-Contrôle : 2026-10-22T20:15:17.870Z. Avant : 75ebe707c1504ee655bf5f871b84e5d57928c153.
+Contrôle : 2026-10-22T20:21:41.061Z. Avant : 75ebe707c1504ee655bf5f871b84e5d57928c153.
 
 Les statuts « déjà raccordé » portent sur les consommateurs vérifiés avant la PR. Une absence dans ce registre ne signifie jamais une absence de toute l’application. Le quotidien IA est une série synthétique distincte : aucune unité base 100 n’entre dans les historiques de cours.
 
@@ -244,6 +244,40 @@ Les statuts « déjà raccordé » portent sur les consommateurs vérifiés avan
 | Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | déjà raccordé | Années complètes : 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection. |
 | iShares Physical Gold ETC / IE00B4ND3602 | déjà raccordé | Années complètes : 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection. |
 
+### rankingManualPortfolios
+
+| Actif / ISIN | Conclusion | Motif et conditions |
+|---|---|---|
+| Nebius / NL0009805522 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Vertiv / US92537N1081 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Rocket Lab / US7731211089 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| AST SpaceMobile / US00217D1000 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| SoFi Technologies / US83406F1021 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Robinhood / US7707001027 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Coinbase / US19260Q1076 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Strategy / US5949724083 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Cloudflare / US18915M1071 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Zscaler / US98980G1022 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Datadog / US23804L1035 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Snowflake / US8334451098 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Reddit / US75734B1008 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Duolingo / US26603R1068 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| MercadoLibre / US58733R1023 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Nu Holdings / KYG6683N1034 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| GE Vernova / US36828A1016 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Constellation Energy / US21037T1097 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Cameco (NYSE) / CA13321L1085 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Saab B / SE0021921269 | raccordé dans cette PR | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Digital Security (LOCK) / IE00BG0J4C88 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Automation & Robotics UCITS ETF / IE00BYZK4552 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Global Clean Energy Transition UCITS ETF / IE00B1XNHC34 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Core MSCI World UCITS ETF (Acc) / IE00B4L5Y983 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Nasdaq 100 UCITS ETF / IE00B53SZB19 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares MSCI ACWI UCITS ETF USD (Acc) / IE00B6R52259 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Vanguard FTSE All-World UCITS ETF Distributing / IE00B3RBWM25 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+| iShares Physical Gold ETC / IE00B4ND3602 | déjà raccordé | Portefeuilles manuels de Qui a vraiment gagné : lignes mensuelles compatibles, 1 à 6 actifs par portefeuille, pondérations positives totalisant 100 %, période commune et change contrôlés. La présentation actuelle accepte une période libre ; Classement annuel exige deux années communes. Aucune unité IA utilisée. |
+
 ### dcaManual
 
 | Actif / ISIN | Conclusion | Motif et conditions |
@@ -278,39 +312,73 @@ Les statuts « déjà raccordé » portent sur les consommateurs vérifiés avan
 | Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | déjà raccordé | Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif. |
 | iShares Physical Gold ETC / IE00B4ND3602 | déjà raccordé | Sélection manuelle d’exposition et recouvrement. Cet outil ne simule pas un historique de versements et ne génère pas de profil éditorial DCA de cet actif. |
 
+### wealthProjection
+
+| Actif / ISIN | Conclusion | Motif et conditions |
+|---|---|---|
+| Nebius / NL0009805522 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Vertiv / US92537N1081 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Rocket Lab / US7731211089 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| AST SpaceMobile / US00217D1000 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| SoFi Technologies / US83406F1021 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Robinhood / US7707001027 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Coinbase / US19260Q1076 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Strategy / US5949724083 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Cloudflare / US18915M1071 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Zscaler / US98980G1022 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Datadog / US23804L1035 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Snowflake / US8334451098 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Reddit / US75734B1008 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Duolingo / US26603R1068 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| MercadoLibre / US58733R1023 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Nu Holdings / KYG6683N1034 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| GE Vernova / US36828A1016 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Constellation Energy / US21037T1097 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Cameco (NYSE) / CA13321L1085 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Saab B / SE0021921269 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Digital Security (LOCK) / IE00BG0J4C88 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Automation & Robotics UCITS ETF / IE00BYZK4552 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Global Clean Energy Transition UCITS ETF / IE00B1XNHC34 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Core MSCI World UCITS ETF (Acc) / IE00B4L5Y983 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Nasdaq 100 UCITS ETF / IE00B53SZB19 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares MSCI ACWI UCITS ETF USD (Acc) / IE00B6R52259 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Vanguard FTSE All-World UCITS ETF Distributing / IE00B3RBWM25 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+| iShares Physical Gold ETC / IE00B4ND3602 | hors périmètre | Le simulateur de patrimoine et de versements futurs utilise des poches d’enveloppes et des hypothèses saisies, sans sélection de titres ni moteur de cours historiques. Une performance passée ne devient pas une prévision. |
+
 ### portfolioManual
 
 | Actif / ISIN | Conclusion | Motif et conditions |
 |---|---|---|
-| Nebius / NL0009805522 | bloqué | Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils. |
-| Vertiv / US92537N1081 | raccordé dans cette PR | Sélecteur manuel : equity-vertiv. Années EUR et conventions existantes. |
-| Rocket Lab / US7731211089 | raccordé dans cette PR | Sélecteur manuel : equity-rocket-lab. Années EUR et conventions existantes. |
-| AST SpaceMobile / US00217D1000 | raccordé dans cette PR | Sélecteur manuel : equity-ast-spacemobile. Années EUR et conventions existantes. |
-| SoFi Technologies / US83406F1021 | raccordé dans cette PR | Sélecteur manuel : equity-sofi. Années EUR et conventions existantes. |
-| Robinhood / US7707001027 | raccordé dans cette PR | Sélecteur manuel : equity-robinhood. Années EUR et conventions existantes. |
-| Coinbase / US19260Q1076 | raccordé dans cette PR | Sélecteur manuel : equity-coinbase. Années EUR et conventions existantes. |
-| Strategy / US5949724083 | raccordé dans cette PR | Sélecteur manuel : equity-strategy. Années EUR et conventions existantes. |
-| Cloudflare / US18915M1071 | raccordé dans cette PR | Sélecteur manuel : equity-cloudflare. Années EUR et conventions existantes. |
-| Zscaler / US98980G1022 | raccordé dans cette PR | Sélecteur manuel : equity-zscaler. Années EUR et conventions existantes. |
-| Datadog / US23804L1035 | raccordé dans cette PR | Sélecteur manuel : equity-datadog. Années EUR et conventions existantes. |
-| Snowflake / US8334451098 | raccordé dans cette PR | Sélecteur manuel : equity-snowflake. Années EUR et conventions existantes. |
-| Reddit / US75734B1008 | bloqué | Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils. |
-| Duolingo / US26603R1068 | raccordé dans cette PR | Sélecteur manuel : equity-duolingo. Années EUR et conventions existantes. |
-| MercadoLibre / US58733R1023 | raccordé dans cette PR | Sélecteur manuel : equity-mercadolibre. Années EUR et conventions existantes. |
-| Nu Holdings / KYG6683N1034 | raccordé dans cette PR | Sélecteur manuel : equity-nu. Années EUR et conventions existantes. |
-| GE Vernova / US36828A1016 | bloqué | Trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils. |
-| Constellation Energy / US21037T1097 | raccordé dans cette PR | Sélecteur manuel : equity-constellation-energy. Années EUR et conventions existantes. |
-| Cameco (NYSE) / CA13321L1085 | raccordé dans cette PR | Sélecteur manuel : equity-cameco. Années EUR et conventions existantes. |
-| Saab B / SE0021921269 | raccordé dans cette PR | Sélecteur manuel : equity-saab-b. Années EUR et conventions existantes. |
-| iShares Digital Security (LOCK) / IE00BG0J4C88 | déjà raccordé | Sélecteur manuel : sect_cybersecurite. Années EUR et conventions existantes. |
-| iShares Automation & Robotics UCITS ETF / IE00BYZK4552 | déjà raccordé | Sélecteur manuel : sect_robotique. Années EUR et conventions existantes. |
-| iShares Global Clean Energy Transition UCITS ETF / IE00B1XNHC34 | déjà raccordé | Sélecteur manuel : sect_energie_propre. Années EUR et conventions existantes. |
-| iShares Core MSCI World UCITS ETF (Acc) / IE00B4L5Y983 | déjà raccordé | Sélecteur manuel : msci_world_ishares. Années EUR et conventions existantes. |
-| iShares Nasdaq 100 UCITS ETF / IE00B53SZB19 | déjà raccordé | Sélecteur manuel : nasdaq100_ishares. Années EUR et conventions existantes. |
-| iShares MSCI ACWI UCITS ETF USD (Acc) / IE00B6R52259 | déjà raccordé | Sélecteur manuel : msci_acwi_ishares. Années EUR et conventions existantes. |
-| Vanguard FTSE All-World UCITS ETF Distributing / IE00B3RBWM25 | déjà raccordé | Sélecteur manuel : manual-IE00B3RBWM25. Années EUR et conventions existantes. |
-| Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | déjà raccordé | Sélecteur manuel : ftse_allworld_vanguard. Années EUR et conventions existantes. |
-| iShares Physical Gold ETC / IE00B4ND3602 | déjà raccordé | Sélecteur manuel : or_ishares. Années EUR et conventions existantes. |
+| Nebius / NL0009805522 | bloqué | Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre. |
+| Vertiv / US92537N1081 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-vertiv. Années EUR et conventions existantes. |
+| Rocket Lab / US7731211089 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-rocket-lab. Années EUR et conventions existantes. |
+| AST SpaceMobile / US00217D1000 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-ast-spacemobile. Années EUR et conventions existantes. |
+| SoFi Technologies / US83406F1021 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-sofi. Années EUR et conventions existantes. |
+| Robinhood / US7707001027 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-robinhood. Années EUR et conventions existantes. |
+| Coinbase / US19260Q1076 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-coinbase. Années EUR et conventions existantes. |
+| Strategy / US5949724083 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-strategy. Années EUR et conventions existantes. |
+| Cloudflare / US18915M1071 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-cloudflare. Années EUR et conventions existantes. |
+| Zscaler / US98980G1022 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-zscaler. Années EUR et conventions existantes. |
+| Datadog / US23804L1035 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-datadog. Années EUR et conventions existantes. |
+| Snowflake / US8334451098 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-snowflake. Années EUR et conventions existantes. |
+| Reddit / US75734B1008 | bloqué | Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre. |
+| Duolingo / US26603R1068 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-duolingo. Années EUR et conventions existantes. |
+| MercadoLibre / US58733R1023 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-mercadolibre. Années EUR et conventions existantes. |
+| Nu Holdings / KYG6683N1034 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-nu. Années EUR et conventions existantes. |
+| GE Vernova / US36828A1016 | bloqué | Générateur manuel : trois années civiles complètes consécutives requises ; les nouveaux titres récents restent dans les autres outils, dont les portefeuilles manuels de Qui a vraiment gagné sur période libre. |
+| Constellation Energy / US21037T1097 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-constellation-energy. Années EUR et conventions existantes. |
+| Cameco (NYSE) / CA13321L1085 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-cameco. Années EUR et conventions existantes. |
+| Saab B / SE0021921269 | raccordé dans cette PR | Sélecteur manuel du Générateur : equity-saab-b. Années EUR et conventions existantes. |
+| iShares Digital Security (LOCK) / IE00BG0J4C88 | déjà raccordé | Sélecteur manuel du Générateur : sect_cybersecurite. Années EUR et conventions existantes. |
+| iShares Automation & Robotics UCITS ETF / IE00BYZK4552 | déjà raccordé | Sélecteur manuel du Générateur : sect_robotique. Années EUR et conventions existantes. |
+| iShares Global Clean Energy Transition UCITS ETF / IE00B1XNHC34 | déjà raccordé | Sélecteur manuel du Générateur : sect_energie_propre. Années EUR et conventions existantes. |
+| iShares Core MSCI World UCITS ETF (Acc) / IE00B4L5Y983 | déjà raccordé | Sélecteur manuel du Générateur : msci_world_ishares. Années EUR et conventions existantes. |
+| iShares Nasdaq 100 UCITS ETF / IE00B53SZB19 | déjà raccordé | Sélecteur manuel du Générateur : nasdaq100_ishares. Années EUR et conventions existantes. |
+| iShares MSCI ACWI UCITS ETF USD (Acc) / IE00B6R52259 | déjà raccordé | Sélecteur manuel du Générateur : msci_acwi_ishares. Années EUR et conventions existantes. |
+| Vanguard FTSE All-World UCITS ETF Distributing / IE00B3RBWM25 | déjà raccordé | Sélecteur manuel du Générateur : manual-IE00B3RBWM25. Années EUR et conventions existantes. |
+| Vanguard FTSE All-World (VWCE) / IE00BK5BQT80 | déjà raccordé | Sélecteur manuel du Générateur : ftse_allworld_vanguard. Années EUR et conventions existantes. |
+| iShares Physical Gold ETC / IE00B4ND3602 | déjà raccordé | Sélecteur manuel du Générateur : or_ishares. Années EUR et conventions existantes. |
 
 ### portfolioAutomatic
 
@@ -545,6 +613,6 @@ Le JSON joint conserve, pour chacune des 29 lignes, les sources et preuves de co
 
 Les collectes mensuelles et clôtures récentes fonctionnent sur les sources configurées des consommateurs, indépendamment des positions IA. Les requêtes mensuelles et quotidiennes recoupent la dernière séance terminée ; aucun mois manquant interpolé. Une extension remplace la série entière par une cotation documentée de la même part et même devise, sans perdre les mois déjà qualifiés. Elle ne raccorde jamais deux places par concaténation. Le prébuild régénère les liens, rendements annuels pour les Duels, expositions et sélecteurs. Les échecs conservent les dernières observations validées et restent visibles.
 
-Les classements annuels requièrent deux années communes ; les Duels et portefeuilles manuels en requièrent trois. Nebius, Reddit et GE Vernova ne sont donc pas admis dans ces derniers. Les 20 actions restent exclues des tirages automatiques ETF. Aucun profil éditorial « DCA de » n’a été ajouté ; le DCA historique est celui du calculateur.
+Les classements annuels requièrent deux années communes ; les Duels et le mode manuel du Générateur en requièrent trois. Les portefeuilles manuels de Qui a vraiment gagné restent disponibles sur une période libre commune. Nebius, Reddit et GE Vernova ne sont donc pas admis dans ces derniers. Les 20 actions restent exclues des tirages automatiques ETF. Aucun profil éditorial « DCA de » n’a été ajouté ; le DCA historique est celui du calculateur.
 
 Aucun changement aux règles, positions, ancrages ou observations des compétitions IA, ni aux outils exclus par la demande. Les limites relatives aux trois indices thématiques sont détaillées dans ai-tools-source-review.md.
