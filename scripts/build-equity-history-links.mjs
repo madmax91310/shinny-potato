@@ -27,7 +27,11 @@ for (const source of sources) {
   const isin=source.isin ?? explicit?.isin ?? security?.isin
   if (!isin) {if (reviewed || catalog.some(r=>r.kind==='equity' && r.name===source.label)) unresolved.push({id:source.id,symbol:source.symbol,reason:'No unambiguous exact listing/ISIN evidence; ADR and ordinary shares stay separate.'});continue}
   const reference=catalog.find(r=>r.isin===isin)
-  if (!reference || reference.kind!=='equity') throw new Error(`${source.id}: equity identity absent from exposure catalogue`)
+  // A clean checkout may still have the previous generated exposure catalogue.
+  // Exact reviewed global identities and issuer classifications are upstream of it;
+  // relying on that projection here would make the prebuild depend on a prior build.
+  const reviewedGlobal=explicit?.isin===isin && explicit?.symbol===source.symbol && explicit?.currency===source.currency && classifications[isin]
+  if ((!reference && !reviewedGlobal) || (reference && reference.kind!=='equity')) throw new Error(`${source.id}: equity identity absent from exposure catalogue and reviewed source identities`)
   links[source.id]={isin,label:source.label,symbol:source.symbol,currency:source.currency,sector:classifications[isin]?.sector??null,
     sourceUrl:classifications[isin]?.sourceUrl ?? explicit?.classificationSourceUrl ?? null,
     asOf:classifications[isin]?.asOf??null,checkedAt:classifications[isin]?.checkedAt?.slice(0,10)??null}

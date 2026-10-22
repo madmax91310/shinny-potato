@@ -13,6 +13,8 @@ import EQUITIES from '../src/data/equity-history-links.json' with {type:'json'}
 const typeReviewFile=new URL('../data/ai-portfolios/provider-type-reviews.json',import.meta.url)
 const typeReviews=fs.existsSync(typeReviewFile)?JSON.parse(fs.readFileSync(typeReviewFile)).reviews:[]
 const monthly=JSON.parse(fs.readFileSync(new URL('./monthly-automation.json',import.meta.url))).series
+const qualifiedAiFile=new URL('../data/ai-portfolios/selectable-assets.json',import.meta.url)
+const qualifiedAiListings=new Map((fs.existsSync(qualifiedAiFile)?JSON.parse(fs.readFileSync(qualifiedAiFile)).listings:[]).map(r=>[r.id,r]))
 // Venue adapters, not an instrument whitelist. Metadata must confirm these mappings.
 export const VENUES={
  FNSE:['.ST','Europe/Stockholm','XSTO',['STO']],FNFI:['.HE','Europe/Helsinki','XHEL',['HEL']],FNDK:['.CO','Europe/Copenhagen','XCSE',['CPH']],FNIS:['.IC','Atlantic/Reykjavik','XICE',['ICE']],
@@ -46,7 +48,7 @@ const SOURCE_EXCHANGES={
  XOSL:['Oslo Bors Asa'],XCSE:['Omx Nordic Exchange Copenhagen A/S'],XSTO:['Nasdaq Omx Nordic','Nasdaq Omx Stockholm'],
  XHEL:['Nasdaq Omx Helsinki Ltd.'],XMAD:['Bolsa De Madrid']
 }
-const exchangeMic=name=>Object.entries(SOURCE_EXCHANGES).find(([,names])=>names.includes(name))?.[0]
+const exchangeMic=name=>VENUES[name]?name:Object.entries(SOURCE_EXCHANGES).find(([,names])=>names.includes(name))?.[0]
 const normalTicker=value=>String(value).toUpperCase().replace(/[^A-Z0-9]/g,'').replace(/^0+(?=\d)/,'')
 
 function family(name,type){
@@ -95,8 +97,20 @@ export function inventory(){
    const unique=`${listing.mic}/${listing.ticker}/${listing.currency}`;if(seen.has(unique))continue;seen.add(unique)
    // Preserve original IDs when unambiguous; include listing currency/ticker on alternatives.
    const sameVenue=listings.filter(r=>r.mic===listing.mic)
-   const id=isin+'-'+(listing.mic??'unlisted')+(sameVenue.length>1?'-'+listing.ticker+'-'+listing.currency:'')
-   rows.push({id,instrumentId:isin,isin,name,family:family(name,type),...listing,symbol,
+   const prior=qualifiedAiListings.get(global?.aiListingId)
+   // Adding a consumer's reviewed ISIN must not rename an existing AI listing.
+   // The explicit reviewed link and exact quote/type/unit must all agree; there
+   // is no company-name, ADR or class inference and no competition migration.
+   const sameAiQuote=prior&&prior.symbol===symbol&&prior.mic===listing.mic&&prior.instrumentType===type
+    &&prior.sourceCurrency===listing.currency&&normalTicker(prior.ticker)===normalTicker(listing.ticker)
+    &&prior.priceScale===(['GBp','GBX'].includes(listing.currency)?0.01:1)
+    &&(!prior.isin||prior.isin===isin)
+   const id=sameAiQuote?prior.id:isin+'-'+(listing.mic??'unlisted')+(sameVenue.length>1?'-'+listing.ticker+'-'+listing.currency:'')
+   rows.push({id,instrumentId:sameAiQuote?prior.instrumentId:isin,isin,name,family:family(name,type),...listing,symbol,
+    // Keep the frozen financial identity too: cached series carry that ISIN.
+    // The newly reviewed common ISIN is an explicit cross-reference, never an
+    // implicit migration of an existing competition's series or anchor.
+    ...(sameAiQuote?{isin:prior.isin,sharedIsin:isin,shareClass:prior.shareClass,shareType:prior.shareType}:{}),
     symbolCandidates:[...new Set([symbol,v&&listing.ticker?listing.ticker+v[0]:null].filter(Boolean))],
     currency:['GBp','GBX'].includes(listing.currency)?'GBP':listing.currency,sourceCurrency:listing.currency,
     priceScale:['GBp','GBX'].includes(listing.currency)?0.01:1,

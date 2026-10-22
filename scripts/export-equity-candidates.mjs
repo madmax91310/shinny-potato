@@ -4,8 +4,10 @@ const catalog=Object.values(read('src/pages/dca-profiles/catalog.json'))
 const active=new Set(Object.values(read('src/data/equity-history-links.json')).map(r=>r.isin))
 const classifications=read('src/data/dca-security-classifications.json')
 // Curated candidates carry the editorial identity (id, label, scene, region) and the expected
-// exact listing. The classification stays the only source of the ticker, exchange and currency.
+// exact listing. Issuer holdings qualify the ISIN; a reviewed directory listing can
+// qualify a different venue of the same ordinary share without replacing its prices.
 const curated=new Map(read('scripts/global-equity-candidates.json').candidates.map(c=>[c.isin,c]))
+const aiListings=new Map(read('data/ai-portfolios/selectable-assets.json').listings.map(r=>[r.id,r]))
 // Exchange labels as published in BlackRock complete holdings, mapped to the Yahoo suffix of
 // the same venue and its trading timezone. A venue absent from this map is never guessed.
 export const exchanges={
@@ -35,17 +37,30 @@ export function buildCandidates(){
   // Yahoo writes London tickers without their trailing dot (BP. → BP.L, NG. → NG.L).
   let ticker=r.ticker.replace(/\s+/g,'-').replace(/\.+$/,'')
   if(suffix==='.HK')ticker=ticker.padStart(4,'0')
-  const symbol=ticker+suffix
+  let symbol=ticker+suffix
+  let listingEvidence={sourceUrl:r.sourceUrl,asOf:r.asOf,isin:r.isin,ticker:r.ticker,exchange:r.exchange,currency:r.currency}
+  // A US ordinary-share listing must not silently become its Canadian quotation.
+  // Reuse the qualified directory identity, keeping the issuer ISIN proof separate.
+  if(expected?.aiListingId){
+   const ai=aiListings.get(expected.aiListingId)
+   if(!ai || ai.status!=='qualified' || ai.instrumentType!=='EQUITY' || ai.symbol!==expected.symbol || ai.currency!==expected.currency || (ai.isin && ai.isin!==item.isin)){
+    skipped.push({id:expected.id,isin:item.isin,reason:'Qualified AI directory listing changed or is unavailable'});continue
+   }
+   symbol=ai.symbol
+   listingEvidence={isin:item.isin,ticker:ai.ticker,exchange:ai.mic,currency:ai.currency,sourceUrl:ai.sourceUrl,asOf:ai.sourceAsOf,
+    identitySourceUrl:r.sourceUrl,identityAsOf:r.asOf,aiListingId:ai.id,companyId:ai.companyId,shareClass:ai.shareClass}
+  }
   if(expected?.symbol&&expected.symbol!==symbol){skipped.push({id:expected.id,isin:item.isin,reason:`Expected listing ${expected.symbol} differs from the issuer-held listing ${symbol}; no substitution`});continue}
-  if(expected&&normal(expected.currency==='GBp'?'GBP':expected.currency)!==normal(r.currency)){skipped.push({id:expected.id,isin:item.isin,reason:`Expected currency ${expected.currency} differs from the issuer listing currency ${r.currency}`});continue}
+  if(expected&&!expected.aiListingId&&normal(expected.currency==='GBp'?'GBP':expected.currency)!==normal(r.currency)){skipped.push({id:expected.id,isin:item.isin,reason:`Expected currency ${expected.currency} differs from the issuer listing currency ${r.currency}`});continue}
   const label=expected?.label??(r.exchange==='London Stock Exchange'?item.name.replace(/\s*\((?:NYSE|ADR)\)$/,'')+' (Londres)':item.name)
-  candidates.push({id:expected?.id??`stock${item.isin}`,isin:item.isin,label,ticker:r.ticker,
-   symbol,currency:r.currency,timezone:expected?.timezone??timezone,parser:'yahoo',field:'adjclose',precision:6,
+  candidates.push({id:expected?.id??`stock${item.isin}`,isin:item.isin,label,ticker:listingEvidence.ticker,
+   symbol,currency:expected?.aiListingId?expected.currency:r.currency,timezone:expected?.timezone??timezone,parser:'yahoo',field:'adjclose',precision:6,
+   ...(expected?.historyFloor?{historyFloor:expected.historyFloor}:{}),
    instrumentType:'EQUITY',consumerScope:'equity',collectAnniversary:true,
    ...(expected?{icon:'📈',tweetPhrase:expected.label}:{}),
-   listingEvidenceId:`${item.isin}:${r.exchange}:${r.ticker}:${r.currency}`,
-   listingEvidence:{sourceUrl:r.sourceUrl,asOf:r.asOf,isin:r.isin,ticker:r.ticker,exchange:r.exchange,currency:r.currency},
-   method:'Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.'})
+   listingEvidenceId:listingEvidence.aiListingId??`${item.isin}:${r.exchange}:${r.ticker}:${r.currency}`,
+   listingEvidence,
+   method:'ISIN qualifié dans les positions émetteur ; cotation exacte qualifiée par ces positions ou l’annuaire officiel référencé. Cours ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.'})
  }
  return {candidates,skipped}
 }

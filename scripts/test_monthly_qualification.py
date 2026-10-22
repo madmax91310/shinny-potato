@@ -79,3 +79,42 @@ class YahooSessions(unittest.TestCase):
    yahoo_chart(self.chart([previous,open_bar,close_bar],[59.5,60.03,60.10]),config,'1d')
   with self.assertRaisesRegex(ValueError,'different prices'):
    yahoo_chart(self.chart([previous,open_bar,close_bar],[59.5,60.03,60.03],[59.5,60.03,59.99]),config,'1d')
+
+class ReviewedExtensions(unittest.TestCase):
+ def test_reviewed_operating_boundary_and_frozen_start(self):
+  source=dict(symbol='TEST',currency='USD',isin='US0378331005',id='test',instrumentType='EQUITY',consumerScope='equity',listingEvidence={'isin':'US0378331005'},historyFloor='2021-09')
+  meta=dict(symbol='TEST',currency='USD',instrumentType='EQUITY',firstTradeDate=946684800)
+  seen=[]
+  def collect(c,n):
+   seen.append(c['periodStart'])
+   return {'points':[['2021-09',10],['2021-10',10],['2021-11',10],['2021-12',12],['2022-01',13]],'anniversaryPoints':[['2021-11',10],['2021-12',12],['2022-01',13]],'proofRows':[{'date':'2021-11-30'},{'date':'2021-12-31'},{'date':'2022-01-31'}]}
+  with patch('refresh_anniversary_levels.collect_one',return_value={'isin':source['isin']}):
+   c,r=qualify(source,dt.datetime(2026,10,22),lambda u:{'chart':{'result':[{'meta':meta}]}},collect)
+  self.assertEqual(seen,['2021-09'])
+  self.assertEqual(c['periodStart'],'2021-12')
+  self.assertEqual(r['points'],[['2021-12',12],['2022-01',13]])
+  self.assertEqual(r['proofRows'][0]['date'],'2021-12-31')
+  self.assertEqual(r['anniversaryPoints'][0][0],'2021-12')
+ def test_extension_preserves_share_currency_convention_and_all_old_months(self):
+  import tempfile,json
+  from pathlib import Path
+  import qualify_monthly_candidates as module
+  with tempfile.TemporaryDirectory() as folder:
+   root=Path(folder)
+   paths={'src/data/automated-monthly.json':{},'scripts/monthly-automation.json':{'series':[{'id':'fund'}]},'src/data/automated-etf-monthly.json':{'fund':dict(id='fund',isin='IE000TEST001',currency='EUR',consumerScope='catalog',field='adjclose',points=[['2025-01',10],['2025-02',11]])},'scripts/source-snapshots/monthly-automated.json':{},'src/data/auto-history-identities.json':{'fund':{'icon':'X','scene':'chip','title':'Reviewed illustration'}},'src/data/anniversary-levels.json':{}}
+   def reset():
+    for name,value in paths.items():
+     p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(value))
+   source=dict(id='fund',isin='IE000TEST001',currency='EUR',consumerScope='catalog',field='adjclose',periodStart='2024-12',ticker='FUND')
+   result={**source,'points':[['2024-12',9],['2025-01',10],['2025-02',11]],'proofRows':[{'date':'2025-02-28'}],'responseSha256':'a'*64,'qualifiedAnniversary':{'isin':source['isin']}}
+   with patch.object(module,'ROOT',root):
+    for changed in [{'currency':'USD'},{'isin':'IE000OTHER01'},{'field':'close'}]:
+     reset()
+     with self.assertRaisesRegex(ValueError,'changed exact share'):module.apply_qualified([({**source,**changed},{**result,**changed})],extend=True)
+    reset();module.apply_qualified([(source,{**result,'points':[['2025-02',12]]})],extend=True)
+    self.assertEqual(json.loads((root/'src/data/automated-etf-monthly.json').read_text())['fund']['points'],paths['src/data/automated-etf-monthly.json']['fund']['points'])
+    reset();module.apply_qualified([(source,result)],extend=True)
+    self.assertEqual(json.loads((root/'src/data/automated-etf-monthly.json').read_text())['fund']['points'][0][0],'2024-12')
+    identity=json.loads((root/'src/data/auto-history-identities.json').read_text())['fund']
+    self.assertEqual(identity['scene'],'chip')
+    self.assertEqual(identity['title'],'Reviewed illustration')
