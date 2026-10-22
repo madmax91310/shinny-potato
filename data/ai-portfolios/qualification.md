@@ -1,14 +1,14 @@
 # Qualification quotidienne — Portefeuilles IA
 
-Généré : 2026-10-22T06:59:08.262440+00:00
+Généré : 2026-10-22T10:19:07.951474+00:00
 
 - instrumentsInventoried : 756
 - listingCandidates : 1478
 - technicalCandidates : 1376
 - testedCandidates : 1359
-- admittedInstruments : 288
-- qualifiedListings : 288
-- temporary-failure : 1071
+- admittedInstruments : 289
+- qualifiedListings : 289
+- temporary-failure : 1070
 - excluded : 102
 - blocked : 17
 - unprocessed : 0
@@ -20,7 +20,7 @@ Généré : 2026-10-22T06:59:08.262440+00:00
 | Autres instruments cotés | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 |
 | Crypto au comptant | 2 | 2 | 0 | 0 | 2 | 0 | 0 | 0 |
 | ETC / matières premières | 14 | 54 | 0 | 0 | 54 | 0 | 0 | 0 |
-| ETF actions | 135 | 487 | 4 | 4 | 473 | 0 | 10 | 0 |
+| ETF actions | 135 | 487 | 5 | 5 | 472 | 0 | 10 | 0 |
 | ETF factoriels / dividendes / small caps | 34 | 135 | 0 | 0 | 133 | 0 | 2 | 0 |
 | ETF immobiliers | 6 | 16 | 0 | 0 | 16 | 0 | 0 | 0 |
 | ETF monétaires | 1 | 2 | 0 | 0 | 2 | 0 | 0 | 0 |

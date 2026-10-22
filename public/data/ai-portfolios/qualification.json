@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-22T06:59:08.262440+00:00",
+  "generatedAt": "2026-10-22T10:19:07.951474+00:00",
   "counts": {
     "instrumentsInventoried": 756,
     "listingCandidates": 1478,
     "technicalCandidates": 1376,
     "testedCandidates": 1359,
-    "admittedInstruments": 288,
-    "qualifiedListings": 288,
-    "temporary-failure": 1071,
+    "admittedInstruments": 289,
+    "qualifiedListings": 289,
+    "temporary-failure": 1070,
     "excluded": 102,
     "blocked": 17,
     "unprocessed": 0
@@ -67,9 +67,9 @@
     "ETF actions": {
       "instruments": 135,
       "candidates": 487,
-      "admittedInstruments": 4,
-      "qualified": 4,
-      "temporary-failure": 473,
+      "admittedInstruments": 5,
+      "qualified": 5,
+      "temporary-failure": 472,
       "excluded": 0,
       "blocked": 10,
       "unprocessed": 0
@@ -32425,30 +32425,28 @@
       "convention": "synthetic-total-return-100-at-anchor",
       "source": "Yahoo daily adjusted closes",
       "symbolOrigin": "issuer-listing",
-      "status": "temporary-failure",
-      "reason": "Clôtures attendues manquantes : 2026-10-21",
-      "lastAttempt": "2026-10-22T05:34:47.162495+00:00",
+      "status": "qualified",
+      "reason": "Clôtures quotidiennes actualisées et contrôlées.",
+      "lastAttempt": "2026-10-22T10:18:58.238491+00:00",
       "calendarThrough": "2026-12-31",
       "observedCoverageFrom": "2026-07-13",
-      "observedCoverageThrough": "2026-10-20",
-      "dailySourceUrl": "https://query1.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792645596&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-      "sourceRetrievedAt": "2026-10-22T05:09:28.706085+00:00",
+      "observedCoverageThrough": "2026-10-21",
+      "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792664338&interval=1d&events=div%2Csplits",
+      "sourceRetrievedAt": "2026-10-22T10:18:58.238491+00:00",
       "attempts": [
         {
-          "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792645596&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-          "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792647255&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-          "result": "Clôtures attendues manquantes : 2026-10-21",
-          "at": "2026-10-22T05:34:47.162495+00:00",
-          "retrievedAt": "2026-10-22T05:09:28.320076+00:00"
-        },
-        {
-          "url": "https://query1.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792645596&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-          "requestedUrl": "https://query1.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792647255&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-          "result": "Clôtures attendues manquantes : 2026-10-21",
-          "at": "2026-10-22T05:34:47.162495+00:00",
-          "retrievedAt": "2026-10-22T05:09:28.706085+00:00"
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792664338&interval=1d&events=div%2Csplits",
+          "result": "qualified",
+          "at": "2026-10-22T10:18:58.238491+00:00",
+          "retrievedAt": "2026-10-22T10:18:58.238491+00:00"
         }
-      ]
+      ],
+      "lastSuccess": "2026-10-22T10:18:58.238491+00:00",
+      "coverageFrom": "2026-07-13",
+      "coverageThrough": "2026-10-21",
+      "responseSha256": "aa8e9e8d0a53ff496e01acb3f054b987b378d5963f232100ee92f687b51a5f9a",
+      "qualifiedSymbol": "SWDA.MI",
+      "observedSourceCurrency": "EUR"
     },
     {
       "id": "IE00B4L5Y983-XAMS",
