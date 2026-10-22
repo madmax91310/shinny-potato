@@ -54,7 +54,7 @@ def reports(rows, destination):
     assert sum(counts[s] for s in ['qualifiedListings','temporary-failure','excluded','blocked','unprocessed'])==len(rows)
     report={'version':1,'generatedAt':dt.datetime.now(UTC).isoformat(),'counts':counts,'families':families,'candidates':rows}
     write_json_atomic(destination/'qualification.json',report)
-    columns=['id','instrumentId','name','family','isin','mic','ticker','symbol','currency','sourceCurrency','priceScale','source','convention','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','qualifiedSymbol','status','reason','lastAttempt','lastSuccess','sourceUrl','responseSha256']
+    columns=['id','instrumentId','name','family','isin','mic','ticker','symbol','currency','sourceCurrency','priceScale','source','convention','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','sourceRetrievedAt','qualifiedSymbol','status','reason','lastAttempt','lastSuccess','sourceUrl','responseSha256']
     stream=io.StringIO();w=csv.DictWriter(stream,fieldnames=columns,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(rows)
     (destination/'qualification.csv').write_text(stream.getvalue())
     text='# Qualification quotidienne — Portefeuilles IA\n\nGénéré : '+report['generatedAt']+'\n\n'
@@ -89,7 +89,7 @@ def main():
     candidates=discover();rows=[];queue=[];calendar_cache={}
     currencies=set.intersection(*(set(r) for r in fx['rates'].values()))|{'EUR'}
     for asset in candidates:
-        prior=old_by.get(asset['id'],{});row={**asset,**{k:prior[k] for k in ['status','reason','lastAttempt','lastSuccess','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','responseSha256','attempts','qualifiedSymbol','observedSourceCurrency'] if k in prior}}
+        prior=old_by.get(asset['id'],{});row={**asset,**{k:prior[k] for k in ['status','reason','lastAttempt','lastSuccess','coverageFrom','coverageThrough','calendarThrough','observedCoverageFrom','observedCoverageThrough','dailySourceUrl','sourceRetrievedAt','responseSha256','attempts','qualifiedSymbol','observedSourceCurrency'] if k in prior}}
         # A changed identity invalidates the old certificate, never silently rebases a series.
         if prior and any(prior.get(k)!=asset.get(k) for k in ['instrumentId','symbol','currency','mic']):
             row.update(status='blocked',reason='Identité de cotation modifiée depuis la qualification ; revue explicite requise.');rows.append(row);continue
@@ -117,6 +117,7 @@ def main():
         for symbol in symbols:
           for host in ['query2','query1']:
             url='https://'+host+'.finance.yahoo.com/v8/finance/chart/'+quote(symbol,safe='')+'?'+urlencode({'period1':int(dt.datetime.fromisoformat(start).replace(tzinfo=UTC).timestamp()),'period2':int(now.timestamp()),'interval':'1d','events':'div,splits','includeAdjustedClose':'true'})
+            entry=None;actual=url
             cache=args.cache/(hashlib.sha256((today.isoformat()+start+symbol+host+'adjusted').encode()).hexdigest()+'.json')
             try:
                 with cache_locks.setdefault(str(cache),threading.Lock()):
@@ -124,26 +125,27 @@ def main():
                     if entry and entry.get('error') and time.time()-entry.get('cachedAt',0)>3600:entry=None
                     if not entry:
                         time.sleep(.2)
-                        try:entry={'raw':get_json(url,max_attempts=1),'url':url}
+                        try:entry={'raw':get_json(url,max_attempts=1),'url':url,'retrievedAt':dt.datetime.now(UTC).isoformat()}
                         except Exception as e:entry={'error':str(e),'url':url,'cachedAt':time.time()}
                         write_json_atomic(cache,entry)
                     if entry.get('error'):raise ValueError(entry['error'])
                     raw=entry['raw'];actual=entry['url']
+                    retrieved=entry.get('retrievedAt') or dt.datetime.fromtimestamp(cache.stat().st_mtime,UTC).isoformat()
                 data=raw['chart']['result'][0];meta=data['meta'];candidate={**row,'symbol':symbol}
                 stamps=data.get('timestamp',[]);closes=data.get('indicators',{}).get('quote',[{}])[0].get('close',[])
                 observed_dates=[dt.datetime.fromtimestamp(t,UTC).astimezone(__import__('zoneinfo').ZoneInfo(meta['exchangeTimezoneName'])).date().isoformat() for t,c in zip(stamps,closes) if c is not None and c>0]
-                if observed_dates:observed={'observedCoverageFrom':min(observed_dates),'observedCoverageThrough':max(observed_dates),'dailySourceUrl':actual}
+                if observed_dates:observed={'observedCoverageFrom':min(observed_dates),'observedCoverageThrough':max(observed_dates),'dailySourceUrl':actual,'sourceRetrievedAt':retrieved}
                 if row['currency']=='GBP' and meta.get('currency') in ['GBP','GBp','GBX']:
                     candidate.update(sourceCurrency=meta['currency'],priceScale=1 if meta['currency']=='GBP' else .01)
                 series=parse_prices(raw,candidate,market['calendars'][row['calendar']],now,market['series'].get(row['id']))
-                series.update(sourceUrl=actual,retrievedAt=at,isin=row['isin'],listingEvidenceId=row.get('evidenceId'),symbol=symbol,currency=row['currency'])
+                series.update(sourceUrl=actual,retrievedAt=retrieved,isin=row['isin'],listingEvidenceId=row.get('evidenceId'),symbol=symbol,currency=row['currency'])
                 for d in series['points']:
                     dates=[f for f in fx['rates'] if f<=d]
                     if row['currency']!='EUR' and (not dates or row['currency'] not in fx['rates'][max(dates)]):raise ValueError('Change historique absent pour '+d)
-                attempts.append({'url':actual,'result':'qualified','at':at})
+                attempts.append({'url':actual,'result':'qualified','at':at,'retrievedAt':retrieved})
                 return row,{'status':'qualified','reason':'Identité, place, type, devise, séances et cours quotidiens contrôlés.','lastAttempt':at,'lastSuccess':at,'coverageFrom':series['anchorDate'],'coverageThrough':max(series['points']),'responseSha256':series['responseSha256'],'observedSourceCurrency':candidate.get('sourceCurrency'),'priceScale':candidate.get('priceScale',1),'qualifiedSymbol':symbol,'attempts':attempts,**observed},series
             except Exception as e:
-                last_error=str(e);attempts.append({'url':url,'result':last_error,'at':at})
+                last_error=str(e);attempts.append({'url':actual,'requestedUrl':url,'result':last_error,'at':at,**({'retrievedAt':retrieved} if entry and entry.get('raw') else {})})
         return row,{'status':'temporary-failure','reason':failure_reason(attempts) if attempts else last_error,'lastAttempt':at,'attempts':attempts,**observed},None
     def save():
         # Preserve listing IDs already frozen in a book; no automatic replacement.
