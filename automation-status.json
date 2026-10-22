@@ -11674,15 +11674,16 @@
           "at": "2026-10-22T13:19:25.034882+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39783382648,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-22T13:03:43Z",
       "observedRunId": 39783382648,
       "nextAttemptAt": "2026-10-22T14:19:25.034882+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-scpi.yml": {
       "attempts": [],
