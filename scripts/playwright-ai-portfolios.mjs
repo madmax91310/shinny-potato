@@ -109,6 +109,7 @@ try {
  const [focus]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger PNG'}).click()]);await focus.saveAs(output+'/focus.png')
  await page.getByRole('button',{name:'Gestion',exact:true}).click()
  const dossier=await page.getByRole('textbox',{name:'Instructions à copier'}).inputValue()
+ assert(dossier.includes('Arrêté financier : '+market.asOf),'Weekly exchange defaults to the latest daily holdings, with the last common weekly return reported separately')
  assert.match(dossier,/DOSSIER HEBDOMADAIRE/);assert.match(dossier,/Référence exacte/);assert.match(dossier,/unités synthétiques/)
  const [brief]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger le dossier individuel'}).click()]);await brief.saveAs(output+'/dossier-chatgpt.txt')
  await page.getByRole('textbox',{name:'Réponse JSON à vérifier'}).fill(JSON.stringify({version:1,participant:'chatgpt',kind:'target',model:'Test QA',decisionDate:fixtureNow.slice(0,10),reason:'Identifiant invalide de test',weights:{UNKNOWN:30}}))
