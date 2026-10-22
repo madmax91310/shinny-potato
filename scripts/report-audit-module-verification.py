@@ -30,6 +30,8 @@ local_proofs={
  'review_ai_provider_types.py':('preuves/provider-taxonomy-isole.json','Onze candidats examinés par l’entrée réelle en répertoire isolé ; onze refus pour cache daté absent, aucun appel réseau et aucune admission.'),
 }
 limitations={
+ 'collect_dca_complete_holdings.py':'Quatre captures complètes locales appliquées ; les quatre mêmes voies WisdomTree restent en HTTP 403 dans GitHub Actions, voir positions-github-403.json. Autres branches non recertifiées.',
+ 'collect_wisdomtree_holdings.py':'Succès local sur quatre parts, refus HTTP 403 depuis GitHub Actions, navigateur inclus : collecte planifiée non réparée. Voir positions-github-403.json.',
  'publish-editorial-radar.mjs':'Entrée externe non exécutée : elle enverrait des notifications. Moteurs Radar et contrats workflow testés séparément ; envoi réel non vérifié.',
  'probe_automation_lots.py':'Sonde de découverte ancienne non relancée intégralement : nombreuses URL déjà mutualisées dans les collectes de cette mission. Ses branches de découverte et son manifeste restent non vérifiés.',
  'review_ai_provider_types.py':'Entrée exécutée dans /tmp/corrections-provider-types, sans toucher les décisions de production. Voir provider-taxonomy-isole.json ; accès fournisseur seulement pour les appels effectivement listés.',

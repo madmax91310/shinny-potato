@@ -4,7 +4,7 @@ Travail isolé sur `fix/audit-20261022-data-reliability`, depuis `9a4ffd2`, puis
 
 ## Résultat et limites
 
-**19 actions traitées : 11 corrigées, 6 partiellement corrigées et 2 bloquées.** « Corrigée » porte sur le défaut décrit et ses scénarios vérifiés, pas sur une certification indépendante de toutes les données du catalogue.
+**19 actions traitées : 10 corrigées, 7 partiellement corrigées et 2 bloquées.** « Corrigée » porte sur le défaut décrit et ses scénarios vérifiés, pas sur une certification indépendante de toutes les données du catalogue.
 
 Les 90 écarts sur 53 parts figurent tous dans `reconciliation-90-ecarts.csv`, avec données initiales, recollectées, sources, devises, conventions et dates exactes disponibles. **5 erreurs d’usage sont corrigées par refus ciblé des fenêtres, 1 comparaison est non pertinente et 84 causes financières restent inexpliquées. Aucun historique chiffré n’a été artificiellement aligné sur la NAV.** Les 175 périodes non comparables sont conservées avec leurs motifs dans `performances-non-comparables.csv`.
 
@@ -26,7 +26,7 @@ L’or Invesco dispose d’une cotation Londres USD séparée ; Amsterdam EUR re
 
 ## Collectes, consommation et pannes
 
-INSEE récupère réellement médiane et D9 2025 avec population et unités contrôlées. VanEck et les quatre collectes de positions sont appliqués puis projetés vers les données consommées. Le DIC Amundi or exact remplace la référence juridique inadéquate. Les onze divergences DWS de dates de publication sont différées sans faux signal financier ; les observations hors ordre n’écrasent pas les récentes.
+INSEE récupère réellement médiane et D9 2025 avec population et unités contrôlées. Les corrections VanEck sont appliquées. Les quatre collectes de positions réussies localement sont projetées vers les données consommées ; leurs accès WisdomTree restent toutefois en HTTP 403 depuis GitHub Actions, y compris avec le navigateur. Cette limite d’environnement est prouvée dans `preuves/positions-github-403.json` et l’action P1-04 reste partielle. Le DIC Amundi or exact remplace la référence juridique inadéquate. Les onze divergences DWS de dates de publication sont différées sans faux signal financier ; les observations hors ordre n’écrasent pas les récentes.
 
 Les 28 contrôles 13F réels sans changement persistent leur propre réussite, indépendamment des dates des positions et du trimestre. Les échecs n’actualisent pas les preuves des valeurs conservées. Les amendements restent couverts par les tests.
 
@@ -119,13 +119,13 @@ Limite : Bourse Direct et la référence fiscale BOFiP d’IBKR restent inaccess
 
 Preuves : preuves/courtiers-recollecte.json | preuves/courtiers-navigateur.json | preuves/voies-officielles.json. Tests : test_broker_tariff_sources.py | test_broker_tariff_profiles.py.
 
-### P1-04 — corrigée
+### P1-04 — partiellement corrigée
 
 Reprise VanEck sur déconnexion réseau, sans avaler les erreurs financières. Cinq caractéristiques/PDF réels et quatre collectes de positions récupérés et raccordés aux projections.
 
-Limite : 212 positions dont 211 identifiées ; une position WisdomTree inconnue conserve le refus du recouvrement complet.
+Limite : 212 positions dont 211 identifiées ; une position WisdomTree inconnue conserve le refus du recouvrement complet. Les quatre voies WisdomTree réussissent localement mais restent en HTTP 403 dans GitHub Actions, navigateur compris : leur collecte planifiée n’est pas rétablie.
 
-Preuves : preuves/positions-recollectees.json | preuves/positions-appliquees.json | preuves/positions-consommees.json | preuves/nav-recollectes.json. Tests : test_non_bond_expansion.py | test_physical_holdings.py | test_wisdomtree_api_holdings.py | test-exposure-complete.mjs.
+Preuves : preuves/positions-recollectees.json | preuves/positions-appliquees.json | preuves/positions-consommees.json | preuves/positions-github-403.json | preuves/nav-recollectes.json. Tests : test_non_bond_expansion.py | test_physical_holdings.py | test_wisdomtree_api_holdings.py | test-exposure-complete.mjs.
 
 ### P1-05 — corrigée
 

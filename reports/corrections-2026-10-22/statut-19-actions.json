@@ -80,14 +80,14 @@
   {
     "action": "P1-04",
     "priorité": "P1",
-    "statut": "corrigée",
+    "statut": "partiellement corrigée",
     "constat_initial": "Source VanEck de la sonde en déconnexion ; 4 connecteurs de positions bloqués en 403",
     "correction_démontrée": "Reprise VanEck sur déconnexion réseau, sans avaler les erreurs financières. Cinq caractéristiques/PDF réels et quatre collectes de positions récupérés et raccordés aux projections.",
-    "limitation": "212 positions dont 211 identifiées ; une position WisdomTree inconnue conserve le refus du recouvrement complet.",
+    "limitation": "212 positions dont 211 identifiées ; une position WisdomTree inconnue conserve le refus du recouvrement complet. Les quatre voies WisdomTree réussissent localement mais restent en HTTP 403 dans GitHub Actions, navigateur compris : leur collecte planifiée n’est pas rétablie.",
     "outils": "ETF ; expositions ; recouvrement",
     "actifs": "IE00BDFBTQ78 | IE0002Y8CX98 | IE000W8WMSL2 | IE00BDVPNG13 | IE00BJGWQN72",
     "fichiers_de_départ": "scripts/issuer-access-routes.json | scripts/collect_vaneck_etf.py | scripts/collect_dca_complete_holdings.py | src/data/dca-holdings-status.json",
-    "preuves": "preuves/positions-recollectees.json | preuves/positions-appliquees.json | preuves/positions-consommees.json | preuves/nav-recollectes.json",
+    "preuves": "preuves/positions-recollectees.json | preuves/positions-appliquees.json | preuves/positions-consommees.json | preuves/positions-github-403.json | preuves/nav-recollectes.json",
     "tests": "test_non_bond_expansion.py | test_physical_holdings.py | test_wisdomtree_api_holdings.py | test-exposure-complete.mjs"
   },
   {

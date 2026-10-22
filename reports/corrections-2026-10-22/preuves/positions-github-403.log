@@ -1,0 +1,20 @@
+refresh	Collect observations: holdings	﻿2026-10-22T21:59:59.8074102Z ##[group]Run python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8075007Z [36;1mpython scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"[0m
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8137791Z shell: /usr/bin/bash -e {0}
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8138059Z env:
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8138335Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8138798Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8139252Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8139644Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8140037Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8140429Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8140769Z   WISDOMTREE_BROWSER_CAPTURE: 1
+refresh	Collect observations: holdings	2026-10-22T21:59:59.8141011Z ##[endgroup]
+refresh	Collect observations: holdings	2026-10-22T22:00:41.6743832Z Complete holdings: 177/181; identified securities: 410; errors: {'IE00BDVPNG13': 'HTTP Error 403: Forbidden', 'IE0002Y8CX98': 'HTTP Error 403: Forbidden', 'IE000W8WMSL2': 'HTTP Error 403: Forbidden', 'IE00BJGWQN72': 'Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: HTTP Error 403: Forbidden'}
+refresh	Collect observations: holdings	2026-10-22T22:00:41.7345672Z ##[error]Process completed with exit code 1.
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	﻿2026-10-22T22:00:49.9438902Z ##[group]Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	2026-10-22T22:00:49.9442578Z [36;1mecho 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"[0m
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	2026-10-22T22:00:49.9445334Z [36;1mexit 1[0m
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	2026-10-22T22:00:50.0701098Z shell: /usr/bin/bash -e {0}
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	2026-10-22T22:00:50.0702008Z ##[endgroup]
+report-failures	Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"	2026-10-22T22:00:50.0913659Z ##[error]Process completed with exit code 1.
