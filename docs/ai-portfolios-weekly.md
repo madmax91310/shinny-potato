@@ -16,7 +16,7 @@ Le fichier historique `snapshot.json` reste compatible avec l’ancien code, y
 compris la voie de secours de publication ; la nouvelle interface ne le demande pas.
 
 Mesures des fichiers JSON, même arrêté du 21 octobre : ancien dossier public
-42 233 643 octets avant changement ; nouveau aperçu 264 024 octets ; catalogue
+42 233 643 octets avant changement ; nouveau aperçu 264 000 octets ; catalogue
 12 283 606 octets, séparé et consulté volontairement. Les mesures réseau Chromium,
 cache froid, mobile 390 × 844, sont fournies dans la PR, puis vérifiées sur le site
 publié. Elles incluent compression et requêtes réelles, pas une estimation de
@@ -128,7 +128,7 @@ historique pour une première collecte. Origines, empreintes, dates et correctio
 sont gardées. CBC/ECB pour TWD et GBp/GBP restent inchangés. Les calendriers gardent
 jours fériés, fuseaux, bornes certifiées et crypto 24/7. Un marché fermé conserve sa
 vraie dernière clôture ; une séance attendue absente bloque le résultat. Pas
- d’interpolation ou de substitution.
+d’interpolation ou de substitution.
 
 Qualification périodique des non-détenus : mécanisme reprenable existant,
 indépendant de la collecte quotidienne. Source indisponible ne signifie ni
@@ -155,3 +155,10 @@ exhaustivité de recherche, chargement différé, reprise, révisions, mutualisa
 et arrêt des collectes après liquidation. La recette Chromium utilise un livre
 isolé et conserve les maquettes PNG. Aucun test de compétition réelle sur une
 semaine ni lancement réel n’a été effectué ; cette recette reste une étape ultérieure.
+
+Une recette CLI avec réseau est également disponible :
+`node scripts/verify-ai-request-catchup.mjs`. Elle rétablit une vraie clôture
+manquante, enregistre une demande uniquement dans un dossier temporaire, vérifie
+le refus du doublon avant toute nouvelle collecte et contrôle que le livre réel
+est identique octet pour octet. Preuve :
+`data/ai-portfolios/import-validation.json`. Elle ne lance aucune compétition.
