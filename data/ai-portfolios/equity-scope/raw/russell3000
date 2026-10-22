@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html class="newFtseStyle">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Factsheets Error</title>
+
+  <link href="/Analytics/FactSheets/Content/css/siteFtseCom.css" rel="stylesheet" type="text/css" />
+  <link href="/Analytics/FactSheets/Content/css/siteFR.css" rel="stylesheet" />
+  <link href="https://research.ftserussell.com/analytics/webcontrols/WebControlsContent/css/WebControls.css" rel="stylesheet" type="text/css" />
+  <link href="/Analytics/FactSheets/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+  <!--[if !IE]><!-->
+  <link href="/Analytics/FactSheets/Content/css/responsiveTable.css" rel="stylesheet" type="text/css" />
+  <!--<![endif]-->
+  <link rel="shortcut icon" href="/Analytics/FactSheets/favicon.ico?v=1" type="image/x-icon">
+  <script src="/Analytics/FactSheets/Scripts/JSON-js-master/json2.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/Analytics/FactSheets/Scripts/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" src="/Analytics/FactSheets/Scripts/jquery-ui-1.8.11.min.js"></script>
+  <script src="/Analytics/FactSheets/Scripts/modernizr-1.7.min.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/js/utility.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+  <link href="/Analytics/FactSheets/Scripts/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" />
+  <script src="/Analytics/FactSheets/Scripts/knockout-2.2.0.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/Knockout-mapping.js" type="text/javascript"></script>
+  <script src="/Analytics/FactSheets/Scripts/jquery.tablesorter.min.js"></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39076513-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    function trackDownload(category, action, id) {
+      _gaq.push(['_trackEvent', category, action, id]);
+    }
+  </script>
+
+  <script>
+
+    var fileref = document.createElement('script');
+    fileref.setAttribute('type', 'text/javascript');
+
+    if (window.location.hostname == 'ra-sdes-web04' || window.location.hostname == 'ra-stes-web01' || window.location.hostname == 'localhost') {
+      fileref.setAttribute('src', '//assets.adobedtm.com/feae4c3fa968/5011df2528f3/launch-5f718699974a-development.min.js');
+    }
+    if (window.location.hostname == 'uat-research.ftserussell.com') {
+      fileref.setAttribute('src', '//assets.adobedtm.com/feae4c3fa968/5011df2528f3/launch-583c79c94dae-staging.min.js');
+    }
+    if (window.location.hostname == 'research.ftserussell.com') {
+      fileref.setAttribute('src', '//assets.adobedtm.com/feae4c3fa968/5011df2528f3/launch-182ed19959c0.min.js');
+    }
+
+    document.getElementsByTagName('head')[0].appendChild(fileref);
+
+  </script>
+
+</head>
+
+<body id="factsheetsPortal">
+
+
+    
+
+<input type="hidden" id="baseurl" value="https://research.ftserussell.com/products/webcontrols" />
+
+
+<!-- loads in text files for Pardot code and FooterReplace -->
+<script src="/Analytics/WebControls/Scripts/Include.js" type="text/javascript"></script>
+
+<div id="browserNotices" style="width: 100%; ">
+	<script src="/Analytics/WebControls/Scripts/BrowserDetect.js" type="text/javascript"></script>
+
+<!--[if IE 7]>				
+	<link href="/Analytics/WebControls/WebControlsContent/css/IE7Fix.css" rel="stylesheet" />			
+	<script src="/Analytics/WebControls/Scripts/IE7Deprecation.js" type="text/javascript"></script>	
+<![endif]-->	
+		
+		
+<div id="browserInfoContainer" class="messageOuter" style="display: none;">
+	<div class="browserMessageInner" >		
+		<div class="messageElement" style="width: 10%;">
+			<img src="/Analytics/WebControls/WebControlsContent/images/exclamation.gif" alt="Note!" width="29" height="29" style="">
+		</div>
+		<div class="messageElement" style="width: 76%; margin: 0 1%; ">
+			To display and be able to browse this site correctly, we suggest you upgrade to a later version of Internet Explorer (IE8 or above) or switch to another browser.
+		</div>
+		<div class="messageElement" style="width: 10%; margin: auto inherit; text-align: left;">
+			<a id="browserInfoCloseImgLink"><img src="/Analytics/WebControls/WebControlsContent/images/close.gif" alt="Close" width="16" height="15" class="acceptCookiesImg" style="margin: 0 4px 0 0; " />Close</a><br />
+			<input type="checkbox" id="browserInfoCloseRemember" />
+			<a href="#" id="browserInfoCloseCheckBoxLink" style="display: inline">Don't show again</a>
+		</div>
+		<div style="clear: both; "></div>
+	</div>
+</div>
+
+
+	
+</div>
+	
+
+
+<div class="container980Wide headerContainer980Wide">
+
+
+  <div id="header" class="">
+    <div id="headerMain">
+      <div id="mainNav">
+
+        
+
+
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/research_subbrand.css">
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/hamburgers.css">
+<script src="https://research.ftserussell.com/products/webcontrols/scripts/vue.min.js"></script>
+<script src="https://research.ftserussell.com/products/webcontrols/scripts/axios.min.js"></script>
+
+
+<!-- Minified version of `es6-promise-auto` below. -->
+
+
+<script src="https://research.ftserussell.com/products/webcontrols/scripts/velocity.min.js" type="text/javascript"></script>
+<script src="https://research.ftserussell.com/products/webcontrols/scripts/polyfill.min.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/bootstrap.min.css ">
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/ftse_bootstrap.css?v=453 ">
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/jquery.jscrollpane.css ">
+<link rel="stylesheet" href="https://research.ftserussell.com/products/webcontrols/Content/jquery.jscrollpane_custom.css ">
+
+
+<link href="https://research.ftserussell.com/products/webcontrols/Content/font-awesome-4.3.0/css/font-awesome.min.css " rel="stylesheet" />
+
+<div id="app">
+    <div id="ftsemenu" class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom:100px;">
+
+        <div id="desktop" v-on:click="HideDropDownMenu()" v-bind:class="{'header-section-small': menusize, 'header-section': menusize == false }">
+            <div style="margin-right:32px;">
+                <div style="float:left">
+                    <a href="https://research.ftserussell.com/researchportal">
+                        <img src="/Analytics/WebControls/images/logo_new.png" v-bind:class="{'logo-position-small': menusize, 'logo-position': menusize == false}" style="width: auto" />
+                        
+                </a>
+             </div>
+
+                <div>
+                    <div v-show="showLoginDetails" v-bind:class="{'login-section-small v-fade': menusize, 'login-section v-fade': menusize == false }">
+                        <div class="menu-item"><a v-bind:href="'https://www.ftserussell.com'">FTSE Russell Main Site</a></div>
+                        
+                            <div v-show="loggedInUser == ''" class="menu-item"><a v-bind:href="'https://research.ftserussell.com' + '/analytics/portal/home/login?appId=' + appId + '&CurrentUrl=' + loginUrl">Login</a></div>
+                            <div v-show="loggedInUser !== ''" class="menu-item"><a href="https://research.ftserussell.com/analytics/portal/home/logout">Log Out</a></div>
+                            <div v-show="loggedInUser !== ''" class="menu-item"> <a href="https://research.ftserussell.com/analytics/portal/registration/RegisterUserApplication">Welcome {{loggedInUser}}</a></div>
+                        
+                    </div>
+
+                    <div v-bind:class="{'menu-section-small': menusize, 'menu-section': menusize == false }">
+                        <div v-for="item in menu.Headers" v-on:mouseover="ShowMenu(item)" class="menu-item-large">
+                            <div v-if="(item.url != '')" style="float:left;">
+                                <a v-bind:href="item.url">{{item.name}}&nbsp;&nbsp;</a>
+                            </div>
+                            <div v-if="(item.url == '')" style="float:left;">
+                                <div>{{item.name}}&nbsp;&nbsp;</div>
+                            </div>
+                            <i v-if="item.dropDown" class="fa fa-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="border-section">
+            </div>
+
+            <div v-show="MenuVisible" v-on:mouseleave="MenuVisible=false" class="menu-dropdown">
+
+                <!-- graphic -->
+                <div class="col-lg-3" style="padding-left: 0;padding-right: 0; width: 25%">
+                    <div class="menu-title-section">
+                        <div class="header-title">{{ name }}</div>
+                        <div class="header-subtitle">FTSE Russell {{ name }}</div>
+
+                    </div>
+                    <div class="menu-image-section">
+                        <img style="width:100%;height:100%;" src="https://research.ftserussell.com/products/webcontrols/images/img_travertineterraces_screen_131288685.jpg">
+                    </div>
+
+                </div>
+
+
+                <!-- column 1 -->
+                <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[0].url">
+                            {{filteredMenu.MenuItems[0].name}}
+                        </a>
+                    </div>
+
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[1].url">
+                            {{filteredMenu.MenuItems[1].name}}
+                        </a>
+                    </div>
+
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[2].url">
+                            {{filteredMenu.MenuItems[2].name}}
+                        </a>
+                    </div>
+
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[3].url">
+                            {{filteredMenu.MenuItems[3].name}}
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- column 2 -->
+                <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[4].url">
+                            {{filteredMenu.MenuItems[4].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[5].url">
+                            {{filteredMenu.MenuItems[5].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[6].url">
+                            {{filteredMenu.MenuItems[6].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[7].url">
+                            {{filteredMenu.MenuItems[7].name}}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- column 3 -->
+                <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[8].url">
+                            {{filteredMenu.MenuItems[8].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[9].url">
+                            {{filteredMenu.MenuItems[9].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[10].url">
+                            {{filteredMenu.MenuItems[10].name}}
+                        </a>
+                    </div>
+                    <div class="menu-text">
+                        <a class="url-link" v-bind:href="filteredMenu.MenuItems[11].url">
+                            {{filteredMenu.MenuItems[11].name}}
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+
+
+        <div id="mobile" class="mobile-header">
+            <div style="margin-left: 32px; margin-right: 32px;">
+                <div style="float:left;position:absolute;left:0;top:0; ">
+
+                    <a href="/researchportal" style="float:left;">
+
+                        <img src="/Analytics/WebControls/images/logo_new.png" class="logo-position-mobile" />
+
+                        
+                    </a>
+                    </div>
+
+                    <div class="ftserussell-title"><div style="text-align:left;padding-top: 3px;display: inline-block;">Research Portal</div></div>
+
+                    <div v-on:click="ShowMobileMenu()" class="mobile-menu" style="float:right;">
+                        
+                        <div v-bind:class="{'is-active': changeAnimation }" style="font-size: 28px;top:4px;position: fixed; right: -12px;" class="hamburger hamburger--collapse">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div v-bind:class="{'login-section-small': menusize, 'login-section': menusize == false }">
+                            <div class="menu-item">Return to main site</div>
+                            <div class="menu-item">About FTSE Russell</div>
+                            <div class="menu-item">Press</div>
+                            <div class="menu-item"><a v-bind:href="'https://research.ftserussell.com' + '/analytics/portal/home/login?appId=' + appId + '&CurrentUrl=' + loginUrl">Login</a></div>
+                        </div>
+
+                        <div v-bind:class="{'menu-section-small': menusize, 'menu-section': menusize == false }">
+
+
+                            <div v-for="item in menu.Headers" v-on:mouseover="ShowMenu(item)" class="menu-item-large">
+                                <a v-bind:href="item.url">{{item.name}}&nbsp;&nbsp;</a>
+                                <i v-if="item.dropDown" class="fa fa-caret-down"></i>
+                            </div>
+                            <div v-on:click="ShowSearch()" class="base-text-colour header_search" style="float:left;font-size: 30px;margin-top: -10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 65" id="ico-search" width="30px" height="30px"><path d="M63.7 57.633L47.19 41.037A25.697 25.697 0 0 0 52 26C52 11.657 40.343 0 26 0S0 11.657 0 26s11.657 26 26 26c5.633 0 10.747-1.777 15.037-4.81L57.633 63.7c.824.867 1.95 1.3 3.034 1.3 1.083 0 2.253-.39 3.033-1.3a4.316 4.316 0 0 0 0-6.11v.043zM26 46.367C14.777 46.367 5.633 37.223 5.633 26S14.777 5.633 26 5.633 46.367 14.777 46.367 26 37.223 46.367 26 46.367z"></path></svg>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="border-section">
+                </div>
+
+
+                <div v-show="MenuVisible" v-on:mouseleave="MenuVisible=false" class="menu-dropdown">
+
+                    <!-- graphic -->
+                    <div class="col-lg-3" style="padding-left: 0;padding-right: 0; width: 25%">
+                        <div class="menu-title-section">
+                            <div class="header-title">{{ name }}</div>
+                            <div class="header-subtitle">FTSE Russell {{ name }}</div>
+
+                        </div>
+                        <div class="menu-image-section">
+                            <img style="width:100%;height:100%;" src="https://research.ftserussell.com/products/webcontrols/images/img_travertineterraces_screen_131288685.jpg">
+                        </div>
+
+                    </div>
+
+
+                    <!-- column 1 -->
+                    <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[0].url">
+                                {{filteredMenu.MenuItems[0].name}}
+                            </a>
+                        </div>
+
+                        <div class="menu-text">
+                            <a class="url-link" href="filteredMenu.MenuItems[1].url">
+                                {{filteredMenu.MenuItems[1].name}}
+                            </a>
+                        </div>
+
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[2].url">
+                                {{filteredMenu.MenuItems[2].name}}
+                            </a>
+                        </div>
+
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[3].url">
+                                {{filteredMenu.MenuItems[3].name}}
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- column 2 -->
+                    <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[4].url">
+                                {{filteredMenu.MenuItems[4].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[5].url">
+                                {{filteredMenu.MenuItems[5].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[6].url">
+                                {{filteredMenu.MenuItems[6].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[7].url">
+                                {{filteredMenu.MenuItems[7].name}}
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- column 3 -->
+                    <div class="col-lg-3" style="padding-left: 0;padding-right: 0;">
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[8].url">
+                                {{filteredMenu.MenuItems[8].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[9].url">
+                                {{filteredMenu.MenuItems[9].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[10].url">
+                                {{filteredMenu.MenuItems[10].name}}
+                            </a>
+                        </div>
+                        <div class="menu-text">
+                            <a class="url-link" v-bind:href="filteredMenu.MenuItems[11].url">
+                                {{filteredMenu.MenuItems[11].name}}
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div v-show="searchVisible" class="searchPanel">
+
+                    <div class="row" style="height:250px;">
+                        <div class="col-sm-3">
+                            SEARCH SITE
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                        <div class="col-sm-1">
+                            SEARCH
+                        </div>
+                        <div v-on:click="ShowSearch()" class="col-sm-2">
+                            <span style="float:right" class="closesearch">
+                                CLOSE X
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input class="searchbox" type="text" placeholder="Search" />
+                            <div class="header_search_main">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 65" id="ico-search" width="75px" height="75px"><path d="M63.7 57.633L47.19 41.037A25.697 25.697 0 0 0 52 26C52 11.657 40.343 0 26 0S0 11.657 0 26s11.657 26 26 26c5.633 0 10.747-1.777 15.037-4.81L57.633 63.7c.824.867 1.95 1.3 3.034 1.3 1.083 0 2.253-.39 3.033-1.3a4.316 4.316 0 0 0 0-6.11v.043zM26 46.367C14.777 46.367 5.633 37.223 5.633 26S14.777 5.633 26 5.633 46.367 14.777 46.367 26 37.223 46.367 26 46.367z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div v-show="mobileMenuVisible" style="position:fixed;top:0;left:0;z-index:1000">
+
+    </div>
+
+    <div v-bind:class="{'mobilemenu-expanded': changeAnimation }" v-show="mobileMenuVisible" class="mobileMenu">
+
+
+        <div class="mobile-menu-main">
+            <!-- login -->
+            <div style="padding-top: 30px;" class="mobile-menu-section row">
+                <div v-if="loggedInUser != null"><a href="https://research.ftserussell.com/analytics/portal/registration/RegisterUserApplication">Welcome {{loggedInUser}}</a></div>
+                <div v-if="loggedInUser == null" style="float:left">
+                    <a class="btn btn-default" style="border:0px;background-color:#531732;" v-bind:href="'https://research.ftserussell.com' + '/analytics/portal/home/login?appId=' + appId + '&CurrentUrl=' + loginUrl">Login</a>
+                </div>
+                <div v-if="loggedInUser != null" style="float:left">
+                    <a class="btn btn-default" style="border:0px;background-color:#531732;" href="https://research.ftserussell.com/analytics/portal/home/logout">Log Out</a>
+                </div>
+            </div>
+
+
+
+            <!-- render menu -->
+            <div v-for="item in menu.Headers" style="">
+
+                <div style="padding-top: 30px;" class="mobile-menu-section row">
+                    <div style="float:left">
+                        <a class="mobile-menu-link" v-bind:href="item.url">{{item.name}}&nbsp;&nbsp;</a>
+                    </div>
+                    <div v-if="item.dropDown" v-on:click="OpenMobileMenu(item)" style="float:right;">
+                        <div class="chevron-down">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 33" id="ico-chevron-down" width="100%" height="100%"><path d="M53.175 5.236c1.107-1.231 1.071-3.189-.08-4.372-1.152-1.184-2.983-1.146-4.09.085L26.99 25.421 4.978.95C3.87-.28 2.039-.32.888.864-.265 2.047-.3 4.004.807 5.236c0 0 24.076 26.789 24.17 26.885.563.58 1.289.866 2.013.863a2.787 2.787 0 0 0 2.014-.863c.093-.096 24.17-26.885 24.17-26.885z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div v-show="item.open" class="mobile-menu-section-expanded row">
+                    <div class="mobile-menu-item" style="height:60px;" v-for="menuitem in menu.MenuItems.filter(function(p) { return p.header == item.name } )">
+                        <a v-bind:href="menuitem.url">{{menuitem.name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div v-show="showCookieInfoContainer" id="cookieInfoContainer">
+        <div class="notification-bar">
+            <div class="notification-bar__content">
+                <div class="notification-bar__title">Cookies at FTSE Russell</div>
+                <div class="notification-bar__body" data-link="/legal/privacy-and-cookie-policy">
+                    <p class="secondary">
+                        FTSE Russell uses cookies to improve its website. The cookies are for analytical purposes and have already been set. For more details on how to manage cookies, please see our
+                        <a href="https://www.ftserussell.com/legal/privacy-and-cookie-policy">privacy</a> and <a href="https://www.ftserussell.com/legal/privacy-and-cookie-policy">cookie</a> policy.
+                    </p>
+                </div>
+
+                <div class="accept-cookie"  v-on:click="AcceptCookieNotice()" id="cookieAcceptImgLink" style="width:120px;">
+                    <svg class="icon " style="width: 16px;height: 13px;">
+                        <use xlink:href="https://research.ftserussell.com/products/webcontrols/assets/sprites/icons.svg#ico-check"></use>
+                    </svg><span style="font-size: 18px;font-weight: 900;"> Continue</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+<script src="https://research.ftserussell.com/products/webcontrols/scripts/menu-app.js"></script>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<input id="FooterReplaceSrc" name="FooterReplaceSrc" type="hidden" value="https://research.ftserussell.com/products/webcontrols/menu/FooterReplace" />
+
+<!-- Google Tag Manager -->
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-WPR65X');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPR65X"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div class="row" style="margin-top:60px;">
+        <div class="container" style="padding-right: 0;padding-left:0;">
+
+            <div class="pull-right">
+                <button class="btn pageicon" onclick="window.print()">
+                    <i class="fa fa-print"></i>
+                </button>
+                <button class="btn pageicon" onclick="window.location.href = '/contact-us'">
+                    <i class="fa fa-envelope"></i>
+                </button>
+                <button class="btn pageicon" onclick="window.location.href = 'https://www.linkedin.com/company/ftse'">
+                    <i class="fa fa-linkedin"></i>
+                </button>
+                <button class="btn pageicon" onclick="window.location.href = 'https://twitter.com/ftserussell'">
+                    <i class="fa fa-twitter"></i>
+                </button>
+            </div>
+
+            
+        </div>
+    </div>
+    <div>
+        
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 style="color:#3B6E8F">Factsheets</h1>
+    <h2>Sorry, we can&#39;t find that file.</h2>
+    <a href="search">Return to Factsheets</a>
+  </div>
+</div>
+    </div>
+
+    <div class="line_horz_fullWidth_1_blue">&nbsp;</div>
+
+<div id="footer"></div>        
+
+<script type="text/javascript">
+		var sel = $("#jumpMenu")
+		sel.bind("change", function () {		
+		window.location = sel.val();
+	});
+</script>	
+
+    <noscript>
+        
+
+<div style="margin:20px;">
+    <h2>This site requires javascript. Please enable javascript in your browser or contact your system administrator.</h2>
+</div>
+    </noscript>
+    <!--[if lte IE 6]>
+        <script src="http://research.ftserussell.com/analytics/webcontrols/IE_FIX/IE9.js" type="text/javascript">IE7_PNG_SUFFIX = ".png";</script>
+    <![endif]-->
+</body>
+
+</html>

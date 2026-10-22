@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {hydrateMarketSeries,requiredSeries,publicMarket} from './ai-series-store.mjs'
 // The sole durable writer for manual requests. Browser exports are proposals, not saved decisions.
 import fs from 'node:fs'
 import path from 'node:path'
@@ -86,18 +87,22 @@ export function refresh(book,market,previous={}) {
   return {book:{...book,competitions},state}
 }
 function read(file,fallback) {return fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):fallback}
-function write(file,value) {fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file+'.tmp',JSON.stringify(value,null,2)+'\n');fs.renameSync(file+'.tmp',file)}
+function write(file,value) {fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file+'.tmp',JSON.stringify(value,null,file.endsWith('snapshot.json')?undefined:2)+'\n');fs.renameSync(file+'.tmp',file)}
 if(process.argv[1]===fileURLToPath(import.meta.url)) {
   const args=process.argv.slice(2),cmd=args[0]??'refresh',root=args.includes('--root')?path.resolve(args[args.indexOf('--root')+1]):ROOT
   const folder=path.join(root,'data/ai-portfolios'),bookFile=path.join(folder,'book.json'),marketFile=path.join(folder,'market.json')
   const market=read(marketFile,null)
   assert(market,'Lancer d’abord python3 scripts/collect_ai_portfolios.py.')
   let book=read(bookFile,{version:1,revision:0,competitions:[],audit:[]})
+  hydrateMarketSeries(market,root,requiredSeries(book,cmd==='import'?read(path.resolve(args[1]),null):null))
   if(cmd==='import') book=register(book,read(path.resolve(args[1]),null),market)
   else assert(cmd==='refresh','Usage : node scripts/ai-portfolios.mjs [refresh | import demande.json]')
+  const certified=read(path.join(folder,'qualification.json'),{candidates:[]}).candidates
+  const runtimeIds=new Set(market.universe.map(a=>a.id));const runtimeMarket={...market,universe:[...market.universe,...certified.filter(a=>a.permanentExclusion&&!runtimeIds.has(a.id))]}
   const stateFile=path.join(folder,'state.json'),result=refresh(book,market,read(stateFile,{}))
   write(bookFile,result.book);write(stateFile,result.state)
-  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market,state:result.state,defaults:defaultConfig(undefined,market)})
-  for(const name of ['qualification.json','qualification.csv','qualification.md']){const file=path.join(folder,name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(root,'public/data/ai-portfolios',name))}
+  write(path.join(root,'public/data/ai-portfolios/snapshot.json'),{book:result.book,market:publicMarket(runtimeMarket,result.book.competitions.flatMap(c=>c.config.universe)),state:result.state,defaults:defaultConfig(undefined,market)})
+  for(const name of ['qualification.json','qualification.csv','qualification.md','equity-catalogue.json','equity-catalogue.csv','selectable-equities.json','selectable-equities.csv','selectable-assets.json','selectable-assets.csv','equity-coverage.json','equity-coverage.md']){const file=path.join(folder,name);if(fs.existsSync(file))fs.copyFileSync(file,path.join(root,'public/data/ai-portfolios',name))}
+  const seriesFolder=path.join(folder,'series');if(fs.existsSync(seriesFolder))fs.cpSync(seriesFolder,path.join(root,'public/data/ai-portfolios/series'),{recursive:true})
   console.log(`Portefeuilles IA : révision ${result.book.revision}, ${result.book.competitions.length} compétitions ; arrêté ${market.asOf}.`)
 }

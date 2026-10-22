@@ -1,5 +1,5 @@
 // Shared deterministic accounting used by browser preview and durable automation.
-import { EXECUTION_RULE, AFFECTED_EXECUTION_RULE, METHOD, MAX_CHECK_AGE_HOURS } from './data.js'
+import { EXECUTION_RULE, AFFECTED_EXECUTION_RULE, METHOD, MAX_CHECK_AGE_HOURS,STOCK_REGIONS,marketRegion } from './data.js'
 export const day = value => value.slice(0,10)
 export function assert(ok,message) { if(!ok) throw Error(message) }
 export const clone = value => structuredClone(value)
@@ -7,8 +7,12 @@ export const addDays = (date,n) => new Date(Date.parse(date+'T12:00:00Z')+n*8640
 const finite = n => typeof n==='number'&&Number.isFinite(n)
 export function admission(asset,config) {
   if(!asset)return {ok:false,reason:'Identité inconnue.'}
+  if(asset.permanentExclusion)return {ok:false,reason:asset.reason??asset.discoveryBlock??'Produit hors périmètre admissible.'}
+  if(asset.selectionBlock)return {ok:false,reason:asset.selectionBlock}
+  if(config.admissionPolicy==='instrument-types-v2'&&asset.instrumentType==='EQUITY'&&asset.shareType&&!['ordinary','depositary-receipt','REIT','legacy-equity'].includes(asset.shareType))return {ok:false,reason:'Classe de titre distincte des actions admises : '+asset.shareType+'.'}
+  if(asset.instrumentType==='EQUITY'&&config.stockRegions&&!config.stockRegions.includes(marketRegion(asset)))return {ok:false,reason:'Action hors périmètre : '+config.stockRegions.join(', ')+'. La qualification des cours reste distincte.'}
   if(asset.leveraged)return {ok:false,reason:'Levier / produit inverse interdit par les règles.'}
-  const category=['ETC','ETN','ETP'].includes(asset.instrumentType)?'ETF':asset.instrumentType
+  const category=config.admissionPolicy==='instrument-types-v2'?asset.instrumentType:['ETC','ETN','ETP'].includes(asset.instrumentType)?'ETF':asset.instrumentType
   if(config.assetTypes&&!config.assetTypes.includes(category))return {ok:false,reason:'Famille interdite par les règles de la compétition.'}
   if(config.requireUcits&&category==='ETF'&&!asset.ucits)return {ok:false,reason:'ETF UCITS requis par les règles.'}
   return {ok:true}
@@ -25,15 +29,24 @@ export function executionAssets(comp,d,date){
 }
 // One choice per instrument; alternative listing identities remain available explicitly.
 export function catalogue(market,config){
-  const groups=Map.groupBy(market.universe,a=>a.instrumentId??a.isin??a.id)
+  const authorized=new Set(config.universe)
+ const groups=Map.groupBy(market.universe,a=>a.instrumentId??a.isin??a.id)
   return [...groups.entries()].map(([instrumentId,alternatives])=>{
-    const selected=alternatives.find(a=>config.universe.includes(a.id))
+    const selected=alternatives.find(a=>authorized.has(a.id))
     const rank=a=>(a.status==='qualified'?0:100)+(a.currency==='EUR'?0:10)+({XPAR:0,XAMS:1,ETFP:2,XETR:3,XLON:4}[a.mic]??5)
     const preferred=selected??[...alternatives].sort((a,b)=>rank(a)-rank(b))[0]
     return {instrumentId,preferred,alternatives}
   })
 }
-export function eligibleUniverse(config,market){return market.universe.filter(a=>config.universe.includes(a.id)&&admission(a,config).ok).map(a=>({...a,coverage:coverage(a.id,market,market.asOf)}))}
+export function catalogueCoverage(asset,market,date){
+ if(market.series[asset.id])return coverage(asset.id,market,date)
+ if(asset.status!=='qualified'||!asset.seriesFile)return {ok:false,reason:asset.reason??'Couverture quotidienne non qualifiée.'}
+ if(!market.status?.[asset.id]?.ok)return {ok:false,reason:market.status?.[asset.id]?.error??'Dernière collecte non validée.'}
+ const expected=latestKey(market.calendars[asset.calendar],date)
+ if(!expected||date>(market.calendarValidity?.[asset.calendar]?.through??market.calendarThrough)||!asset.coverageThrough||asset.coverageThrough<expected)return {ok:false,reason:'Rattrapage nécessaire avant utilisation.'}
+ try{fxAt(asset.currency,date,market);return {ok:true,certificateOnly:true,reason:'Cours quotidiens qualifiés ; historique chargé à la sélection.'}}catch(e){return {ok:false,reason:e.message}}
+}
+export function eligibleUniverse(config,market){const ids=new Set(config.universe);return market.universe.filter(a=>ids.has(a.id)&&admission(a,config).ok).map(a=>({...a,coverage:catalogueCoverage(a,market,market.asOf)}))}
 export function validateConfig(c,market) {
   assert(c&&typeof c.name==='string'&&c.name.trim().length>0&&c.name.length<=80,'Nom requis (80 caractères maximum).')
   assert(finite(c.initialCapital)&&c.initialCapital>0&&c.initialCapital<=1e9,'Capital invalide.')
@@ -47,11 +60,14 @@ export function validateConfig(c,market) {
   assert(Array.isArray(c.participants)&&c.participants.length>=1&&c.participants.length<=8,'Prévoir 1 à 8 participants.')
   assert(new Set(c.participants.map(p=>p.id)).size===c.participants.length,'Identifiants participants dupliqués.')
   for(const p of c.participants) assert(/^[a-z0-9-]{1,40}$/.test(p.id)&&p.id!=='world'&&typeof p.name==='string'&&p.name.trim()&&p.name.length<=60&&typeof p.model==='string'&&p.model.trim()&&p.model.length<=100&&/^#[a-f0-9]{6}$/i.test(p.color),'Participant, modèle ou couleur invalide.')
-  assert(Array.isArray(c.universe)&&c.universe.length>=1&&new Set(c.universe).size===c.universe.length&&c.universe.every(id=>market.universe.some(a=>a.id===id)), 'Univers invalide.')
+  const assets=new Map(market.universe.map(a=>[a.id,a]))
+  assert(Array.isArray(c.universe)&&c.universe.length>=1&&new Set(c.universe).size===c.universe.length&&c.universe.every(id=>assets.has(id)), 'Univers invalide.')
   if(c.executionPolicy)assert(['affected-markets-v2','universe-v1'].includes(c.executionPolicy),'Règle d’exécution inconnue.')
-  if(c.assetTypes)assert(Array.isArray(c.assetTypes)&&c.assetTypes.length>0&&c.assetTypes.every(t=>['ETF','EQUITY','CRYPTOCURRENCY'].includes(t)),'Familles invalides.')
-  for(const id of c.universe){const a=market.universe.find(a=>a.id===id),r=admission(a,c);assert(r.ok,r.reason)}
-  const identities=c.universe.map(id=>{const a=market.universe.find(a=>a.id===id);return a.instrumentId??a.isin??a.id})
+  if(c.assetTypes)assert(Array.isArray(c.assetTypes)&&c.assetTypes.length>0&&c.assetTypes.every(t=>['ETF','EQUITY','CRYPTOCURRENCY','ETC','ETN','ETP'].includes(t)),'Familles invalides.')
+  if(c.admissionPolicy)assert(c.admissionPolicy==='instrument-types-v2','Règles d’admission inconnues.')
+  if(c.stockRegions)assert(Array.isArray(c.stockRegions)&&c.stockRegions.length>0&&c.stockRegions.every(r=>STOCK_REGIONS.includes(r)),'Périmètre actions invalide.')
+  for(const id of c.universe){const a=assets.get(id),r=admission(a,c);assert(r.ok,r.reason)}
+  const identities=c.universe.map(id=>{const a=assets.get(id);return a.instrumentId??a.isin??a.id})
   assert(new Set(identities).size===identities.length,'Plusieurs cotations du même instrument dans la compétition.')
   assert(c.universe.includes(c.benchmark),'Référence exacte absente de l’univers.')
 }
@@ -66,11 +82,14 @@ export function nextExecution(registeredAt,launchDate,market,universe=market.uni
 function latestKey(rows,date) { return Object.keys(rows??{}).filter(d=>d<=date).sort().at(-1) }
 export function fxAt(currency,date,market) {
   if(currency==='EUR') return {rate:1,date}
-  const fxDate = market.fx?.expectedDates?.filter(d=>d<=date).at(-1)??latestKey(market.fx?.rates,date)
+  const composite=currency==='TWD'&&market.fx?.supplemental?.TWD
+  const fxDate = composite?latestKey(market.fx.rates,date):market.fx?.expectedDates?.filter(d=>d<=date).at(-1)??latestKey(market.fx?.rates,date)
   assert(fxDate&&date<=market.fx.validThrough,'Change quotidien non validé pour cet arrêté.')
   const rate=market.fx.rates[fxDate]?.[currency]
   assert(finite(rate)&&rate>0,`Change ${currency} manquant au ${date}.`)
-  return {rate,date:fxDate}
+  const fixings=composite?market.fx.derivedFixingOrigins?.TWD?.[fxDate]:null
+  if(composite)assert(fixings&&!(market.fx.supplementalGaps?.TWD??[]).some(d=>d>fixings.TWDUSDDate&&d<=date),'Fixing CBC attendu manquant ; aucun report artificiel.')
+  return {rate,date:fxDate,...(fixings?{fixings}: {})}
 }
 export function quoteAt(id,date,common,market,exact=false) {
   const asset=market.universe.find(a=>a.id===id),series=market.series[id]
@@ -83,7 +102,7 @@ export function quoteAt(id,date,common,market,exact=false) {
   assert(calendar[priceDate]&&point,`Clôture attendue manquante : ${asset.ticker} ${priceDate}.`)
   const base=fxAt(asset.currency,date,market),target=fxAt(common,date,market)
   return {price:point.synthetic/base.rate*target.rate,synthetic:point.synthetic,rawClose:point.close,
-    currency:asset.currency,priceDate,fxDate:base.date,commonFxDate:target.date}
+    currency:asset.currency,priceDate,fxDate:base.date,commonFxDate:target.date,...(base.fixings?{fxFixings:base.fixings}:{}),...(target.fixings?{commonFxFixings:target.fixings}:{})}
 }
 export function sourceFreshness(market,now=new Date().toISOString()) {
   const age=Date.parse(now)-Date.parse(market.generatedAt)
@@ -248,5 +267,5 @@ export function tweet(report,comp,participant=null,market=null) {
 }
 export function prompt(comp,participant,market,date) {
   const c=comp.config,p=c.participants.find(p=>p.id===participant),s=snapshot(comp,date,market).rows.find(r=>r.id===participant)
-  return `Tu participes à « ${c.name} ». Participant : ${p.name} ; modèle déclaré : ${p.model}.\nDossier commun arrêté au ${date}. Aucun contenu d’actualité ajouté.\nCapital fictif initial : ${money(c.initialCapital,c.currency)}. Devise : ${c.currency}. Référence exacte : ${c.benchmark} (${market.universe.find(a=>a.id===c.benchmark)?.name??c.benchmark}).\nRègles : ${c.minLines} à ${c.maxLines} lignes, ${c.maxWeight} % maximum par ligne à l’achat, aucune vente à découvert ni levier, ${c.frequency==='monthly'?'une décision mensuelle':'fréquence libre'}. Liquidités non rémunérées autorisées. Frais simulés ${c.feeBps} pb par achat/vente.\n${executionRule(c)}\n${METHOD}\nUnivers admissible (couverture contrôlée) :\n${c.universe.length>30?`${c.universe.length} instruments autorisés. Joindre le fichier « univers-admissible.json » exporté dans la gestion ; seuls ses identifiants exacts sont utilisables. Les entrées dont la couverture nécessite un rattrapage doivent être actualisées avant enregistrement.`:eligibleUniverse(c,market).map(a=>`${a.id} | ${a.name} | ${a.ticker} | ${a.mic} | ${a.currency} | ${a.coverage.ok?'à jour':'rattrapage nécessaire'}`).join('\n')}\n${s?.complete?`État comptable : valeur ${money(s.value,c.currency)}, résultat ${percent(s.performance)}, liquidités ${money(s.cash,c.currency)}.\n`+s.positions.map(x=>`${x.id} : ${x.weight.toFixed(2)} %, ${money(x.value,c.currency)}`).join('\n'):'Aucun portefeuille valorisé.'}\nHistorique :\n${comp.decisions.filter(d=>d.participant===participant).map(d=>`${d.decisionDate} ${d.kind} ${d.status} : ${d.reason}`).join('\n')||'Aucune décision.'}\nRéponds par CONSERVER ou une allocation cible : identifiant exact, poids en %, liquidités résiduelles et justification. Précise ton modèle et la date de décision. L’utilisateur transmet et saisit ta réponse lui-même. Aucun ordre réel.`
+  return `Tu participes à « ${c.name} ». Participant : ${p.name} ; modèle déclaré : ${p.model}.\nDossier commun arrêté au ${date}. Aucun contenu d’actualité ajouté.\nCapital fictif initial : ${money(c.initialCapital,c.currency)}. Devise : ${c.currency}. Référence exacte : ${c.benchmark} (${market.universe.find(a=>a.id===c.benchmark)?.name??c.benchmark}).\nPérimètre actions : ${(c.stockRegions??['règles archivées']).join(', ')}. Autres familles autorisées : ${(c.assetTypes??[]).join(', ')}.\nRègles : ${c.minLines} à ${c.maxLines} lignes, ${c.maxWeight} % maximum par ligne à l’achat, aucune vente à découvert ni levier, ${c.frequency==='monthly'?'une décision mensuelle':'fréquence libre'}. Liquidités non rémunérées autorisées. Frais simulés ${c.feeBps} pb par achat/vente.\n${executionRule(c)}\n${METHOD}\nUnivers admissible (couverture contrôlée) :\n${c.universe.length>30?`${c.universe.length} instruments autorisés. Joindre le fichier « univers-admissible.json » exporté dans la gestion ; seuls ses identifiants exacts sont utilisables. Les entrées dont la couverture nécessite un rattrapage doivent être actualisées avant enregistrement.`:eligibleUniverse(c,market).map(a=>`${a.id} | ${a.name} | ${a.ticker} | ${a.mic} | ${a.currency} | ${a.coverage.ok?'à jour':'rattrapage nécessaire'}`).join('\n')}\n${s?.complete?`État comptable : valeur ${money(s.value,c.currency)}, résultat ${percent(s.performance)}, liquidités ${money(s.cash,c.currency)}.\n`+s.positions.map(x=>`${x.id} : ${x.weight.toFixed(2)} %, ${money(x.value,c.currency)}`).join('\n'):'Aucun portefeuille valorisé.'}\nHistorique :\n${comp.decisions.filter(d=>d.participant===participant).map(d=>`${d.decisionDate} ${d.kind} ${d.status} : ${d.reason}`).join('\n')||'Aucune décision.'}\nRéponds par CONSERVER ou une allocation cible : identifiant exact, poids en %, liquidités résiduelles et justification. Précise ton modèle et la date de décision. L’utilisateur transmet et saisit ta réponse lui-même. Aucun ordre réel.`
 }
