@@ -23,7 +23,9 @@
 // Usage (from a full clone of the new snapshot):
 //   node scripts/compose-fallback-snapshot.mjs --published <sha> [--data <rev>]
 import { execFileSync } from 'node:child_process'
-import { appendFileSync, readFileSync, rmSync } from 'node:fs'
+import { appendFileSync, closeSync, mkdtempSync, openSync, readFileSync, readSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { StringDecoder } from 'node:string_decoder'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { automationPaths, classify } from './classify-deploy-scope.mjs'
@@ -79,13 +81,113 @@ export function introducedIdentifiers(file, text, publishedText = '') {
 
 const TOKEN = /^[A-Za-z0-9_.-]+$/
 
+// Scan only the requested identifiers, keeping bounded text and no index of all
+// prices, dates and other tokens in the repository. A preceding context character
+// and a deferred suffix preserve token boundaries across arbitrarily small chunks.
+export function mentionsInChunks(chunks, identifiers) {
+  const wanted = new Set(identifiers), found = new Set()
+  if (!wanted.size) return found
+  if (wanted.has('')) found.add('')
+  if (found.size === wanted.size) return found
+  const root = { next: new Map(), output: null }
+  root.fail = root
+  let overlap = 1
+  for (const id of wanted) {
+    if (!id) continue
+    overlap = Math.max(overlap, id.length + 1)
+    let node = root
+    for (let i = 0; i < id.length; i++) {
+      const char = id.charCodeAt(i)
+      if (!node.next.has(char)) node.next.set(char, { next: new Map(), output: null })
+      node = node.next.get(char)
+    }
+    node.id = id
+    node.kind = !TOKEN.test(id) ? 'substring' : isIsin(id) ? 'isin' : 'token'
+  }
+  // Aho-Corasick failure/output links find every overlapping identifier in one
+  // pass, rather than rescanning a gigabyte once for each requested substring.
+  const queue = [...root.next.values()]
+  for (const node of queue) node.fail = root
+  for (let i = 0; i < queue.length; i++) {
+    const node = queue[i]
+    for (const [char, child] of node.next) {
+      let failure = node.fail
+      while (failure !== root && !failure.next.has(char)) failure = failure.fail
+      child.fail = failure.next.get(char) ?? root
+      child.output = child.fail.id !== undefined ? child.fail : child.fail.output
+      queue.push(child)
+    }
+  }
+  const first = new RegExp('[' + [...root.next.keys()].map(char => '\\u' + char.toString(16).padStart(4, '0')).join('') + ']', 'g')
+  const upperAlnum = char => char >= 65 && char <= 90 || char >= 48 && char <= 57
+  const tokenChar = char => upperAlnum(char) || char >= 97 && char <= 122 || char === 95 || char === 46 || char === 45
+  let carry = '', beginning = true
+  const scan = (text, final = false) => {
+    const limit = final ? text.length + 1 : Math.max(0, text.length - overlap)
+    const start = beginning ? 0 : 1
+    let state = root
+    for (let i = 0; i < text.length; i++) {
+      if (state === root) {
+        first.lastIndex = i
+        const candidate = first.exec(text)
+        if (!candidate) break
+        i = candidate.index
+      }
+      const char = text.charCodeAt(i)
+      let next = state.next.get(char)
+      while (!next && state !== root) { state = state.fail; next = state.next.get(char) }
+      state = next ?? root
+      for (let node = state; node; node = node.output) {
+        if (node.id === undefined || found.has(node.id)) continue
+        const index = i - node.id.length + 1
+        if (index < start || index >= limit) continue
+        const boundary = node.kind === 'isin' ? upperAlnum : tokenChar
+        if (node.kind === 'substring' || !boundary(text.charCodeAt(index - 1)) && !boundary(text.charCodeAt(i + 1))) found.add(node.id)
+      }
+    }
+    if (limit > 0) beginning = false
+    return text.slice(Math.max(0, limit - 1))
+  }
+  for (const chunk of chunks) {
+    carry = scan(carry + chunk)
+    if (found.size === wanted.size) return found
+  }
+  scan(carry, true)
+  return found
+}
+
 // Whether the published tree mentions an identifier: a whole token for simple ids,
-// a plain substring otherwise. The tree is read once as text (about 100 MB).
-export function publishedMentions(codeSha, cwd) {
-  const text = execFileSync('sh', ['-c', `git archive --format=tar ${codeSha} | tar -xOf -`], { cwd, encoding: 'utf8', maxBuffer: 1 << 30 })
-  const tokens = new Set(text.split(/[^A-Za-z0-9_.-]+/))
-  for (const isin of isinsIn(text)) tokens.add(isin) // also ISINs embedded in ids such as etfIE00B4L5Y983
-  const mentioned = id => (TOKEN.test(id) ? tokens.has(id) : text.includes(id))
+// a plain substring otherwise. Archive bytes go directly to disk: the enlarged
+// catalogue exceeds V8's maximum single-string size, regardless of maxBuffer.
+export function publishedMentions(codeSha, cwd, identifiers) {
+  if (!identifiers) {
+    const cache = new Map()
+    return id => {
+      if (!cache.has(id)) cache.set(id, publishedMentions(codeSha, cwd, [id])(id))
+      return cache.get(id)
+    }
+  }
+  const wanted = new Set(identifiers.flatMap(id => { const isins = [...isinsIn(id)]; return isins.length ? isins : [id] }))
+  const folder = mkdtempSync(path.join(tmpdir(), 'published-mentions-'))
+  const fd = openSync(path.join(folder, 'tree.txt'), 'w+')
+  let found
+  try {
+    execFileSync('bash', ['-o', 'pipefail', '-c', 'git archive --format=tar "$1" | tar -xOf -', 'published-mentions', codeSha], { cwd, stdio: ['ignore', fd, 'pipe'] })
+    function* chunks() {
+      const buffer = Buffer.alloc(1024 * 1024), decoder = new StringDecoder('utf8')
+      let position = 0, count
+      while ((count = readSync(fd, buffer, 0, buffer.length, position))) {
+        position += count
+        yield decoder.write(buffer.subarray(0, count))
+      }
+      yield decoder.end()
+    }
+    found = mentionsInChunks(chunks(), wanted)
+  } finally {
+    closeSync(fd)
+    rmSync(folder, { recursive: true, force: true })
+  }
+  const mentioned = id => found.has(id)
   // An id built on an ISIN ("etfFR0007054358") is known when its ISIN is: the
   // published registries resolve assets by ISIN, not by the key's prefix.
   return id => {
@@ -103,19 +205,21 @@ export function compose({ published, data = 'HEAD', cwd = ROOT, allowed }) {
   const paths = allowed ?? automationPaths(path.join(cwd, '.github/workflows'))
   const files = fallbackFiles(git('ls-tree', '-r', '--name-only', dataSha).split('\n').filter(Boolean), paths)
   const publishedFiles = new Set(git('ls-tree', '-r', '--name-only', codeSha).split('\n').filter(Boolean))
+  const changed = new Set(git('diff', '--no-renames', '--name-only', codeSha, dataSha).split('\n').filter(Boolean))
+  const updates = files.filter(file => changed.has(file))
   git('checkout', '--quiet', '--detach', codeSha)
-  for (let i = 0; i < files.length; i += 200) git('checkout', dataSha, '--', ...files.slice(i, i + 200))
+  for (let i = 0; i < updates.length; i += 200) git('checkout', dataSha, '--', ...updates.slice(i, i + 200))
 
   // Identifiers each file adds, then which of them the published tree mentions elsewhere.
   const introduced = new Map()
-  for (const file of files) {
+  for (const file of updates) {
     let text
     try { text = readFileSync(path.join(cwd, file), 'utf8') } catch { continue } // removed path
     const before = publishedFiles.has(file) ? git('show', `${codeSha}:${file}`) : ''
     const ids = introducedIdentifiers(file, text, before)
     if (ids.length) introduced.set(file, ids)
   }
-  const isKnown = introduced.size ? publishedMentions(codeSha, cwd) : () => true
+  const isKnown = introduced.size ? publishedMentions(codeSha, cwd, [...new Set([...introduced.values()].flat())]) : () => true
   const heldBack = []
   for (const [file, ids] of introduced) {
     const unknown = ids.filter(id => !isKnown(id))
