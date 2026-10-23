@@ -96,10 +96,21 @@ const TweetText = forwardRef(function TweetText({ text, onChange }, ref) {
   useLayoutEffect(() => {
     const el = ref?.current
     if (!el) return
-    el.style.height = 'auto'
-    el.style.height = `${el.scrollHeight + 2}px`
+    const resize = () => {
+      el.style.height = 'auto'
+      el.style.height = `${el.scrollHeight + 2}px`
+    }
+    resize()
+    let width = el.clientWidth
+    const observer = new ResizeObserver(() => {
+      if (width === el.clientWidth) return
+      width = el.clientWidth
+      resize()
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [text, ref])
-  return <textarea ref={ref} className="tb-tweet-text" value={text} onChange={(e) => onChange(e.target.value)} spellCheck={false} rows={2} />
+  return <textarea ref={ref} className="tb-tweet-text" aria-label="Texte de la publication" value={text} onChange={(e) => onChange(e.target.value)} spellCheck={false} rows={2} />
 })
 
 function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, onSetDate, onClearDate, today }) {
@@ -111,9 +122,9 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
   const text = draft?.text ?? tweet.text
   const updateDraft = patch => onDraftChange(tweet.id, { ...draft, text, ...patch, checkedAt: null, verifiedText: null, verifiedAsOf: null })
 
-  async function handleCopy() {
+  async function handleCopy(override) {
     if (!contentValidity(tweet, draft).ready) return
-    const copyText = renderBankCopy(tweet, draft)
+    const copyText = override ?? renderBankCopy(tweet, draft)
     let copied = false
     if (navigator.clipboard?.writeText) {
       try {
@@ -157,6 +168,8 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
       </div>
 
       <p className={`tb-validity${validity.ready ? ' ready' : ''}`} role="status">{validity.ready ? '✅' : '🕒'} {validity.label}</p>
+      {tweet.title && <h2 className="tb-story-title">{tweet.title}</h2>}
+      {tweet.alternativeHook && <p className="tb-story-length">Post long sur X · compte autorisant plus de 280 caractères requis · {Array.from(text).length.toLocaleString('fr-FR')} caractères · {tweet.angle}</p>}
       <TweetText ref={textareaRef} text={text} onChange={value => updateDraft({ text: value })} />
       {tweet.image && <figure className="tb-tweet-image">
         <a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} target="_blank" rel="noreferrer" aria-label="Ouvrir l’image en taille réelle">
@@ -168,19 +181,32 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         <p>{reviewPolicy(tweet).kind === 'personal' ? 'Actualise ton bilan ou replace-le explicitement dans sa période d’origine.' : 'Vérifie les chiffres, la période, les hypothèses et les sources avant de réutiliser ce texte.'}</p>
         <label>Date de référence <input type="date" value={draft?.asOf ?? ''} max={bankToday()} onChange={event => updateDraft({ asOf: event.target.value })} /></label>
         <label><input type="checkbox" checked={validity.ready && Boolean(draft?.checkedAt)} disabled={!draft?.asOf || !text.trim() || draft.asOf > bankToday()} onChange={event => onDraftChange(tweet.id, { ...draft, text, checkedAt: event.target.checked ? bankToday() : null, verifiedText: event.target.checked ? text : null, verifiedAsOf: event.target.checked ? draft.asOf : null })} /> J’ai vérifié ce texte et sa date de référence.</label>
-        <small>La date de référence sera ajoutée au texte copié. Les bilans et chiffres de marché sont à revérifier le jour de leur réutilisation.</small>
+        <small>{tweet.timeline ? 'Les preuves et la date de relecture restent séparées du récit copié.' : 'La date de référence sera ajoutée au texte copié. Les bilans et chiffres de marché sont à revérifier le jour de leur réutilisation.'}</small>
         {draft && <Button type="button" variant="ghost" onClick={() => onDraftChange(tweet.id, null)}>Revenir au texte archivé</Button>}
       </div>}
+      {tweet.alternativeHook && <details className="tb-sources">
+        <summary>Accroche alternative</summary>
+        <p>{tweet.alternativeHook}</p>
+        <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => handleCopy(tweet.alternativeHook)}>Copier l’accroche alternative</Button>
+      </details>}
+      {tweet.timeline && <details className="tb-sources tb-evidence">
+        <summary>Dossier de preuves et limites</summary>
+        <p><strong>Protagonistes.</strong> {tweet.protagonists}</p>
+        <ol>{tweet.timeline.map(step => <li key={step.date}><strong>{step.date}.</strong> {step.fact} <span>({step.sources.join(', ')})</span></li>)}</ol>
+        <p><strong>Points non établis et limites</strong></p>
+        <ul>{tweet.uncertainties.map(item => <li key={item}>{item}</li>)}</ul>
+      </details>}
       {tweet.sources?.length > 0 && <details className="tb-sources">
         <summary>Sources de ce texte</summary>
         <ul>{tweet.sources.map(source => <li key={source.url}>
-          <a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>
+          <a href={source.url} target="_blank" rel="noreferrer">{source.id ? `${source.id} · ` : ''}{source.label} ↗</a>
+          {source.note && <p>{source.note} Document : {source.publishedAt} · consulté le {source.checkedAt}.</p>}
         </li>)}</ul>
       </details>}
 
       {manualCopy && <label>Texte complet à copier <textarea aria-label="Copie manuelle avec date de référence" value={manualCopy} readOnly rows={6} onFocus={event => event.target.select()} /></label>}
       <div className="tb-tweet-actions">
-        <Button type="button" onClick={handleCopy} disabled={!validity.ready}>
+        <Button type="button" onClick={() => handleCopy()} disabled={!validity.ready}>
           {copyLabel}
         </Button>
         <Button type="button" variant="secondary" disabled={!validity.ready} onClick={() => onMarkToday(tweet.id)}>
@@ -189,6 +215,7 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
         <input
           type="date"
           className="tb-date-input"
+          aria-label="Date de dernière publication"
           value={lastPublished || ''}
           max={todayStr()}
           title="Corriger ou saisir la date de dernière publication"

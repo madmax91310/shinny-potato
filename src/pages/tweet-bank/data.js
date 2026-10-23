@@ -1,3 +1,4 @@
+import { MARKET_STORIES } from './market-stories.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { resolveGuideFees, reusableContract } from '../../data/reusable-data-contracts.js'
 import { EDITORIAL_CASES } from '../../data/editorial-cases.js'
@@ -18,6 +19,7 @@ import { EDITORIAL_CASES } from '../../data/editorial-cases.js'
 
 export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Intemporel"]
 export const CATEGORIES = [
+  "Histoires de marché",
   "Storytelling",
   "Simulation & chiffres",
   "Guide ETF",
@@ -288,7 +290,7 @@ Il baisse ? J'accumule, sans regarder le prix.
 ]
 
 // Stable ids retain publication tracking when the catalogue order changes.
-export const TWEETS = [...ARCHIVED_TWEETS, ...EDITORIAL_CASES.map(item => ({
+export const TWEETS = [...ARCHIVED_TWEETS, ...MARKET_STORIES, ...EDITORIAL_CASES.map(item => ({
   ...item, id: `pedagogy:${item.id}`, month: 'Intemporel', category: 'Pédagogie',
   formats: ['Explication pédagogique'],
 }))].map(tweet=>{const resolved=resolveGuideFees(tweet,AUTOMATED_ETF);return {...resolved,dataContract:reusableContract(resolved)}})
