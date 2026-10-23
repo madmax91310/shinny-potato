@@ -200,21 +200,46 @@ def parse_remake(html, text, bulletin_url, today):
                            'otherFees': '5 % TTC du prix net vendeur pour les acquisitions et 5 % TTC du montant TTC des travaux.', 'sourceUrl': bulletin_url}}
 
 
+def remake_bulletin(html, today):
+    soup = BeautifulSoup(html, 'html.parser')
+    # A consent/error page or a structural change is an access/schema failure,
+    # never proof that the issuer has not published a bulletin.
+    title=soup.title.get_text(' ',strip=True) if soup.title else ''
+    if ('Remake Live' not in title or len(soup.select('script[data-repartition-data]'))!=2
+            or not soup.select_one('script[data-scpi-perf-data]')):
+        raise ValueError('Remake product page identity/components changed')
+    links=[];unrecognized=False
+    for a in soup.select('a[href]'):
+        url=urllib.parse.urljoin(REMAKE,a['href']);parsed=urllib.parse.urlsplit(url)
+        if parsed.scheme!='https' or parsed.netloc!='www.remake.fr' or parsed.query or parsed.fragment:continue
+        old=re.search(r'remake-live-bulletin-information-(\d{2})-(\d{2})-(\d{4})\.pdf$',parsed.path,re.I)
+        new=re.search(r'/REMAKELIVE_BT([1-4])_(20\d{2})\.pdf$',parsed.path,re.I)
+        if old:
+            day,month,year=map(int,old.groups());stamp=dt.date(year,month,day);expected=None
+        elif new:
+            quarter,year=map(int,new.groups());month=quarter*3
+            stamp=(dt.date(year,month+1,1)-dt.timedelta(days=1)) if month<12 else dt.date(year,12,31)
+            expected=stamp.isoformat()
+        else:
+            if 'bulletin' in a.get_text(' ',strip=True).lower():unrecognized=True
+            continue
+        if stamp<=today:links.append((stamp,url,expected))
+    if not links:
+        if unrecognized:raise ValueError('Current official Remake bulletin link structure changed')
+        raise AwaitingPublication('No bulletin linked by the identified current Remake product page')
+    _,url,expected=max(set(links))
+    return url,expected
+
+
 def collect_remake(today):
     html = fetch(REMAKE).decode()
-    soup = BeautifulSoup(html, 'html.parser')
-    links = [urllib.parse.urljoin(REMAKE, a['href']) for a in soup.select('a[href]') if re.search(r'remake-live-bulletin-information-\d{2}-\d{2}-\d{4}\.pdf', a['href'])]
-    def publication_date(url):
-        day, month, year = required(r'(\d{2})-(\d{2})-(\d{4})\.pdf', url).groups()
-        return dt.date(int(year), int(month), int(day))
-    links = [url for url in links if publication_date(url) <= today]
-    if not links:
-        raise AwaitingPublication('Missing current official bulletin')
-    url = max(links, key=publication_date)
+    url,expected_period=remake_bulletin(html,today)
     from collect_corum import bbox_pages
     data = fetch(url)
     text = pdf_text(data)
     record = parse_remake(html,text,url,today)
+    if expected_period and record['snapshot']['asOf']!=expected_period:
+        raise ValueError('Remake bulletin filename period and financial date disagree')
     record['portfolio'] = remake_portfolio(text,record['snapshot']['asOf'],url,bbox_pages(data))
     documents=BeautifulSoup(fetch('https://www.remake.fr/documentation/').decode(),'html.parser')
     section=next((s for s in documents.select('section') if s.find('h2') and s.find('h2').get_text(' ',strip=True)=='Live'),None)
@@ -332,6 +357,11 @@ def refresh(previous, adapters, today):
                 for action in old.get('priceHistory',{}).get('corporateActions',[]):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             record['collectionStatus'] = {'status':'success','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat()}
+            if id=='remake-live':
+                due=next_bulletin_due(record['snapshot']['asOf'])
+                record['collectionStatus'].update(internalReviewDue=due.isoformat(),issuerPublicationDeadline=None,deadlineBasis='internal-monitoring-policy')
+                if due-dt.timedelta(days=BULLETIN_GRACE_DAYS)<=today<=due:
+                    record['collectionStatus'].update(status='waiting-publication',accessStatus='success',reason='Published current bulletin verified; awaiting the next edition linked by the issuer')
             records[id] = record
             observations.append({'id': id, 'name':record['name'], 'status': 'success'})
             if id=='iroko-zen':

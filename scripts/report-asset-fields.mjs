@@ -57,6 +57,11 @@ export function completeHoldingsEvidence(record,status) {
  const unidentified=(record.rows??[]).filter(row=>!row.isin);
  return {...record,unidentifiedWeightPct:record.unidentifiedWeightPct??unidentified.reduce((n,row)=>n+row.weightPct,0),unidentifiedSecurityCount:record.unidentifiedSecurityCount??unidentified.length,checkedAt:record.checkedAt??status?.lastSuccessAt??(status?.status==='validated'?status.checkedAt:null)};
 }
+export function scpiWaitingForPublication(record,now,field='snapshot') {
+ const wait=record.collectionStatus,reviewDue=wait?.internalReviewDue??wait?.nextPublicationDue
+ const checked=dateStamp(wait?.lastAccessSuccessAt),day=dateStamp(now),due=dateStamp(reviewDue)
+ return field==='snapshot'&&wait?.status==='waiting-publication'&&Number.isFinite(checked)&&Number.isFinite(day)&&Number.isFinite(due)&&day<=due&&checked<=day&&(day-checked)/86400000<=freshness('product.default').checkDays
+}
 export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) {
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
  const monthly={...read('src/data/automated-monthly.json'),...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
@@ -108,8 +113,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  for(const type of ['scpi','insurance'])for(const r of read(`src/data/automated-${type}.json`).records)for(const field of (type==='scpi'?['annual','price','conditions','snapshot','portfolio']:['fees','access','euroFunds'])) {
   const value=r[field],evidence=productFieldEvidence(value,r,field),annual=POLICY.fields['product.annual'].fields.includes(field);
   const archived=r.availability?.status==='superseded';
-  const wait=r.collectionStatus;
-  const waiting=field==='snapshot'&&wait?.status==='waiting-publication'&&wait.nextPublicationDue>=now&&wait.lastAccessSuccessAt<=now&&Number.isFinite(dateStamp(wait.lastAccessSuccessAt))&&(dateStamp(now)-dateStamp(wait.lastAccessSuccessAt))/86400000<=freshness('product.default').checkDays;
+  const waiting=scpiWaitingForPublication(r,now,field);
   rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,archived,state:archived?'archived':waiting?'waiting-publication':value?fieldState(evidence,now,{...freshness(annual?'product.annual':'product.default'),effectiveDate:field==='price',requireObservation:annual||field==='snapshot'}):'missing',checkedAt:evidence.checkedAt,asOf:observationDate(evidence),...(field==='price'?{effectiveAt:value?.asOf??null}:{}),sourceUrl:value?.sourceUrl??r.sourceUrl});
  }
  const summary=Object.fromEntries(Object.keys(names).map(field=>{const values=rows.filter(r=>r.type==='instrument'&&r.field===field);return [field,{label:names[field],total:values.length,applicable:values.filter(r=>r.state!=='not-applicable').length,present:values.filter(r=>r.present).length,states:values.reduce((a,r)=>(a[r.state]=(a[r.state]??0)+1,a),{})}]}));

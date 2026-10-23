@@ -1,7 +1,7 @@
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
 import UNDERLIERS from '../src/data/vanguard-equity-underliers.json' with {type:'json'};
 import assert from 'node:assert/strict';
-import {fieldState,buildAssetFieldReport,completeHoldingsEvidence} from './report-asset-fields.mjs';
+import {scpiWaitingForPublication,fieldState,buildAssetFieldReport,completeHoldingsEvidence} from './report-asset-fields.mjs';
 import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
 assert.equal(fieldState({checkedAt:'2026-10-16',asOf:'2026-01-01'},'2026-10-16'),'publication-old');
 assert.equal(fieldState({checkedAt:'2026-10-01',asOf:'2026-09-30'},'2026-10-16'),'check-overdue');
@@ -35,3 +35,9 @@ for(const isin of ['IE00BFMXYX26','IE00BK5BQZ41','IE00BKX55R35']) {
 const unidentified=completeHoldingsEvidence({complete:true,asOf:'2026-10-21',rows:[{isin:'US0378331005',weightPct:99.9},{isin:null,weightPct:.1}]},{lastSuccessAt:'2026-10-22'})
 assert.equal(unidentified.unidentifiedWeightPct,.1)
 assert.equal(unidentified.unidentifiedSecurityCount,1)
+
+const scpiWait={collectionStatus:{status:'waiting-publication',lastAccessSuccessAt:'2026-11-14',internalReviewDue:'2026-11-14',issuerPublicationDeadline:null,deadlineBasis:'internal-monitoring-policy'}}
+assert(scpiWaitingForPublication(scpiWait,'2026-11-14'),'Internal review date includes its last day')
+assert(!scpiWaitingForPublication(scpiWait,'2026-11-15'),'Expired internal monitoring does not mask old data')
+assert(!scpiWaitingForPublication({...scpiWait,collectionStatus:{...scpiWait.collectionStatus,status:'failed'}},'2026-11-14'))
+assert(!scpiWaitingForPublication(scpiWait,'2026-11-14','price'),'Snapshot waiting must not certify another field')

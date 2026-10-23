@@ -214,7 +214,7 @@
     "priorité": "P2",
     "statut": "partiellement corrigée",
     "constat_initial": "Alertes génériques de fraîcheur sur bulletin SCPI attendu",
-    "correction_démontrée": "Délai interne de surveillance SCPI séparé du délai émetteur : internalReviewDue, deadlineBasis internal-monitoring-policy et issuerPublicationDeadline null. Collecte Remake réellement retentée, attente avec données financières anciennes conservées.",
+    "correction_démontrée": "Bulletin courant REMAKELIVE_BT2_2026.pdf réellement retrouvé et entièrement parsé : l’ancien motif de fichier provoquait une fausse absence de bulletin. Page produit/consentement, absence réelle et structure inconnue distinguées. Lecture réussie du bulletin courant et attente de l’édition suivante séparées ; internalReviewDue, issuerPublicationDeadline null, consommateurs de fraîcheur raccordés.",
     "limitation": "Aucune date de publication promise actuellement confirmée chez Remake ; dépassement de surveillance ne constitue pas un retard émetteur démontré.",
     "outils": "Présentations SCPI ; Données à revoir",
     "actifs": "remake-live",
@@ -222,7 +222,7 @@
     "preuves": "preuves/scpi-recollecte.json | preuves/tests-scpi.log",
     "tests": "test_scpi.py | test_publication_periods.py | test_extended_scpi.py",
     "statut_lot_1": "partiellement corrigée",
-    "preuves_lot_2": "preuves/scpi-reel.json"
+    "preuves_lot_2": "preuves/scpi-reel-corrige.json | preuves/scpi-current-bulletin-proof.json | scripts/test_scpi.py | scripts/test-asset-field-coverage.mjs"
   },
   {
     "action": "P2-06",

@@ -92,6 +92,19 @@ class ScpiTests(unittest.TestCase):
         old=copy.deepcopy(previous['records'][0]);old['price']['asOf']='2026-03-31'
         self.assert_retained_financial(refresh(previous,{'remake-live':lambda today:old},TODAY)[0],previous)
 
+    def test_current_bulletin_discovery_and_identity_failure_are_distinct(self):
+        from collect_scpi import remake_bulletin,AwaitingPublication
+        shell='<title>SCPI Remake Live</title><script data-repartition-data>[]</script>'*1+'<script data-repartition-data>[]</script><script data-scpi-perf-data>{}</script>'
+        url='https://www.remake.fr/wp-content/uploads/2026/08/REMAKELIVE_BT2_2026.pdf'
+        html=shell+'<a href="'+url+'">Télécharger le bulletin d’information</a>'
+        self.assertEqual(remake_bulletin(html,TODAY),(url,'2026-06-30'))
+        old='https://www.remake.fr/remake-live-bulletin-information-30-06-2026.pdf'
+        self.assertEqual(remake_bulletin(shell+'<a href="'+old+'">Bulletin</a>',TODAY),(old,None))
+        with self.assertRaises(AwaitingPublication):remake_bulletin(shell,TODAY)
+        with self.assertRaisesRegex(ValueError,'identity'):remake_bulletin('<title>Access denied</title>',TODAY)
+        with self.assertRaisesRegex(ValueError,'structure'):remake_bulletin(shell+'<a href="/new-bulletin.pdf">Bulletin</a>',TODAY)
+        with self.assertRaises(AwaitingPublication):remake_bulletin(shell+'<a href="https://other.test/REMAKELIVE_BT2_2026.pdf">PDF</a>',TODAY)
+
     def test_missing_bulletin_waits_until_next_edition_is_due(self):
         from collect_scpi import AwaitingPublication, next_bulletin_due
         self.assertEqual(next_bulletin_due('2026-06-30'),dt.date(2026,11,14))
@@ -111,6 +124,18 @@ class ScpiTests(unittest.TestCase):
         self.assertEqual(failed['records'][0]['collectionStatus']['lastAccessSuccessAt'],'2026-10-17')
         self.assert_retained_financial(failed,previous)
         self.assertEqual(refresh({'records':[]},{'remake-live':missing},dt.date(2026,10,17))[1][0]['status'],'failure')
+
+    def test_successful_read_of_retained_quarter_is_not_an_issuer_deadline(self):
+        previous={'records':[self.remake()]}
+        record=self.remake();record['snapshot']['asOf']='2026-06-30';previous['records'][0]['snapshot']['asOf']='2026-06-30'
+        record['checkedAt']='2026-10-23'
+        result,report=refresh(previous,{'remake-live':lambda _:copy.deepcopy(record)},dt.date(2026,10,23))
+        observed=result['records'][0]
+        self.assertEqual(report[0]['status'],'success')
+        self.assertEqual(observed['snapshot']['asOf'],'2026-06-30')
+        self.assertEqual(observed['collectionStatus']['status'],'waiting-publication')
+        self.assertEqual(observed['collectionStatus']['accessStatus'],'success')
+        self.assertIsNone(observed['collectionStatus']['issuerPublicationDeadline'])
 
     def test_changed_conditions_fail_closed(self):
         text=(FIXTURES/'iroko-conditions.txt').read_text().replace('six (6) ans','sept (7) ans')
