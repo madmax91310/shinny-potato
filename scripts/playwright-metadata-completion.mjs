@@ -29,7 +29,7 @@ try {
    const facts=page.locator('.es-card .es-facts')
    await facts.getByText(`ISIN : ${isin}`,{exact:true}).waitFor()
    const text=await facts.innerText()
-   assert(text.includes(observation.value?'couverture de change':'sans couverture de change'),`${isin}: observed hedge reaches the actual sheet`)
+   assert(text.toLocaleLowerCase('fr-FR').includes(observation.value?'couverture de change':'sans couverture de change'),`${isin}: observed hedge reaches the actual sheet`)
    assert(!text.includes('couverture en euros'),'A boolean observation cannot preserve an older hedge-currency claim')
    await page.screenshot({path:`test-artifacts/metadata/${isin}-${width}.png`,fullPage:true})
    await page.getByRole('tab',{name:'Image',exact:true}).click()

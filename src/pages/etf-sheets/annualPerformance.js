@@ -22,8 +22,8 @@ export function formatPerformanceDate(date) {
   return date.split('-').reverse().join('/')
 }
 
-export function performanceEntries(series) {
-  const annual = series.values.flatMap((value, index) => Number.isFinite(value) ? [{ label: String(series.calendarYears?.[index] ?? 2020 + index), value }] : [])
+export function performanceEntries(series, now = new Date()) {
+  const annual = series.values.flatMap((value, index) => Number.isFinite(value) && (series.calendarYears?.[index] ?? 2020 + index) < now.getUTCFullYear() ? [{ label: String(series.calendarYears?.[index] ?? 2020 + index), value }] : [])
   return annual.length ? annual : series.observations ?? []
 }
 
@@ -39,5 +39,10 @@ export function formatTweetPerformance(series, { includeIcon = true } = {}) {
   const entries = performanceEntries(series)
   const heading = series.sourceKind === 'adjusted-market-price' ? 'Performances annuelles · cours ajustés, distributions réinvesties' : !entries.length ? 'Historique de performance' : series.values.some(Number.isFinite) ? 'Performances annuelles' : 'Performances sur les périodes publiées'
   const lines = entries.map(({ label, value, asOf }) => `${value < 0 ? '🔴' : '🟢'} ${label} : ${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %${asOf ? ` (au ${formatPerformanceDate(asOf)})` : ''}`)
-  return `${includeIcon ? '📈 ' : ''}${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}`
+  const method = series.sourceKind === 'adjusted-market-price' ? ''
+    : /NAV/i.test(series.method ?? '') ? /income|revenus/i.test(series.method ?? '')
+      ? 'Valeur liquidative, revenus réinvestis, frais du fonds inclus.'
+      : 'Valeur liquidative, frais inclus.'
+    : /share total return/i.test(series.method ?? '') ? 'Performance de la part, revenus réinvestis, frais du fonds inclus.' : ''
+  return `${includeIcon ? '📈 ' : ''}${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}${method ? '\n'+method : ''}`
 }

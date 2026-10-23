@@ -80,7 +80,11 @@ for (const product of snapshot.products) {
   assert(card, `Fiche absente : ${product.isin}`)
   assert.equal(card.ter, (AUTOMATED_ETF[product.isin]?.characteristics?.terPct.toFixed(2).replace('.', ',') ?? product.ter) + '%')
   assert.equal(card.pea, false)
-  assert.equal(card.positions, product.positions)
+  const count = AUTOMATED_ETF[product.isin]?.metrics?.numHoldings
+  if (count) {
+    assert(card.positions.includes(count.value.toLocaleString('fr-FR')))
+    assert(card.positions.includes(count.asOf.split('-').reverse().join('/')))
+  } else assert.equal(card.positions, product.positions)
   assert.equal(card.listing,getPreferredInstrumentListing(product.isin),'Current exact-share listing follows the verified registry, independently of the archived preferred venue')
   const facts = INSTRUMENT_FACTS_BY_ISIN[product.isin]
   assert.equal(facts.benchmark, product.benchmark)

@@ -80,6 +80,12 @@ def merge_collection(report, current, baseline, sibling_aum=None):
                         reject('Unknown issuer sector: ' + row['name'])
                     row['label'] = SECTORS[row['name']]
             record[field] = checked_observation(incoming, old.get(field, {}), checked)
+        # Metrics keep their own observation date; absence preserves the previous
+        # value without pretending that it was checked again.
+        for key, incoming in share.get('metrics', {}).items():
+            active = old.get('metrics', {}).get(key, {})
+            if incoming.get('asOf') and incoming['asOf'] >= active.get('asOf', ''):
+                record.setdefault('metrics', {})[key] = checked_observation(incoming, active, checked)
         if not share.get('exposureOnly'):
             characteristics = {k:v for k,v in old.get('characteristics',{}).items() if k not in AUDIT_DATES}
             characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})

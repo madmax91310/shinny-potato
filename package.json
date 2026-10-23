@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "node scripts/build-index-company-compositions.mjs && node scripts/build-equity-history-links.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-tool-links.mjs",
-    "prebuild": "node scripts/build-index-company-compositions.mjs && node scripts/build-equity-history-links.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/report-exposure-coverage.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-app-inventory.mjs && node scripts/build-tool-links.mjs && node scripts/build-automation-targets.mjs && node scripts/report-asset-fields.mjs --write && node scripts/audit-asset-tool-routing.mjs --write && node scripts/report-shared-market-data.mjs && node scripts/data-automation-inventory.mjs --write && python3 scripts/data_publication.py manifest --output public/data/publication-manifest.json",
+    "prebuild": "node scripts/test-etf-presentation-quality.mjs && node scripts/build-index-company-compositions.mjs && node scripts/build-equity-history-links.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/report-exposure-coverage.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-app-inventory.mjs && node scripts/build-tool-links.mjs && node scripts/build-automation-targets.mjs && node scripts/report-asset-fields.mjs --write && node scripts/audit-asset-tool-routing.mjs --write && node scripts/report-shared-market-data.mjs && node scripts/data-automation-inventory.mjs --write && python3 scripts/data_publication.py manifest --output public/data/publication-manifest.json",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs",
     "lint": "oxlint",
@@ -55,7 +55,8 @@
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
     "test:ai-portfolios": "node scripts/test-ai-portfolios.mjs && node scripts/test-ai-weekly.mjs && python3 -m unittest discover -s scripts -p test_ai_portfolios.py",
     "test:ai-portfolios:browser": "node scripts/playwright-ai-portfolios.mjs",
-    "refresh:ai-portfolios": "python3 scripts/collect_ai_portfolios.py && node scripts/ai-portfolios.mjs refresh"
+    "refresh:ai-portfolios": "python3 scripts/collect_ai_portfolios.py && node scripts/ai-portfolios.mjs refresh",
+    "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

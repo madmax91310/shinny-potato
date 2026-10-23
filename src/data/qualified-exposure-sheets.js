@@ -66,4 +66,4 @@ export const QUALIFIED_LISTINGS = Object.fromEntries(Object.values(records).map(
 
 export const QUALIFIED_LISTING_EVIDENCE = Object.fromEntries(Object.values(records).flatMap(r=>r.listings.map(l=>[l.evidenceId,{isin:r.isin,sourceUrl:l.sourceUrl,checkedAt:l.checkedAt,identityEvidence:r.isin,excerpt:l.excerpt,pageSha256:r.pageSha256}])))
 
-export const QUALIFIED_AUTOMATED_RECORDS = Object.fromEntries(Object.values(records).map(r=>[r.isin,r.automatedRecord]))
+export const QUALIFIED_AUTOMATED_RECORDS = Object.fromEntries(Object.values(records).map(r=>[r.isin,{...r.automatedRecord,metrics:r.metrics??{}}]))
