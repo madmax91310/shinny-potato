@@ -32,7 +32,7 @@ class OfficialDistribution(unittest.TestCase):
         fixed=copy.deepcopy(self.data);raw=fixed['rawResponse']['1d']['chart']['result'][0]
         factor=1-.1077/next(q for d,q,a in self.daily if d.isoformat()=='2023-06-14')
         for i,t in enumerate(raw['timestamp']):
-            if dt.datetime.fromtimestamp(t,dt.timezone.utc).date().isoformat()<'2023-06-15':
+            if raw['indicators']['adjclose'][0]['adjclose'][i] is not None and dt.datetime.fromtimestamp(t,dt.timezone.utc).date().isoformat()<'2023-06-15':
                 raw['indicators']['adjclose'][0]['adjclose'][i]*=factor
         for point,row in zip(fixed['points'],fixed['proofRows']):
             if row['date']<'2023-06-15':row['value']*=factor;point[1]=round(row['value'],6)
