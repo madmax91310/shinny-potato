@@ -1,0 +1,47 @@
+{
+  "runId": 39977600793,
+  "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39977600793",
+  "codeCommit": "9246c0c17788cb9cb6ae39885170c09cd95156c3",
+  "runner": "macos-15",
+  "differenceFromMainPR": "Only the read-only verification workflow runner changes; financial validators and public routes are identical.",
+  "outcomes": {
+    "copper": "HTTP403",
+    "IE00BJGWQN72": "HTTP403 including browser",
+    "IE00BDVPNG13": "HTTP403",
+    "IE0002Y8CX98": "HTTP403",
+    "IE000W8WMSL2": "HTTP403",
+    "IE00B4K6B022": "validated"
+  },
+  "financialDataPromoted": false,
+  "publicationRequested": false,
+  "artifacts": {
+    "copper": 12512645313,
+    "holdings": 12511747863
+  },
+  "files": [
+    {
+      "path": "copper-collection.log.gz",
+      "sha256": "76779a0b57f77e8660c68a4a437208e28492abbd2112d3db6989ccbfb0ff39ee"
+    },
+    {
+      "path": "copper-execution.json.gz",
+      "sha256": "fa4f455ee8ede1953f8c090ce961fb12b02bc4bc787648335127291500fbf14b"
+    },
+    {
+      "path": "copper-observation.json.gz",
+      "sha256": "b8091642ea14b68b5fa582216132c3a960994f759689d49b24253a7d6f498d03"
+    },
+    {
+      "path": "holdings-collection.log.gz",
+      "sha256": "540d7f3fff83cc487d14965d8bd61dd2f1ab5725f446725e0e7e9a17377d7967"
+    },
+    {
+      "path": "holdings-execution.json.gz",
+      "sha256": "c5001acaa829f7c67e907564e8ed9b6335c268e1bdf41b37cae713952c59c9d2"
+    },
+    {
+      "path": "holdings-observation.json.gz",
+      "sha256": "fd10766e0b8b7a034c0013a70cf888fa10ba78874075ca802b1d42c6eec34927"
+    }
+  ]
+}
