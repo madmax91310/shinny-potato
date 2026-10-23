@@ -30,9 +30,10 @@ def main():
         from data_automation import UTC, write_json_atomic
         from refresh_additional_etf import refresh
         shares=[]
-        for filename in ['additional-etf-sources.json','exposure-etf-expansion.json']:
+        for filename in ['additional-etf-sources.json','exposure-etf-expansion.json','ssga-etf.json']:
             shares.extend(s for s in json.loads((ROOT/'scripts'/filename).read_text())['instruments'] if s['isin']=='IE00B3T9LM79')
         if len(shares)!=1: raise ValueError('Ambiguous conflict source configuration')
+        shares[0].setdefault('parser','ssga')
         current=json.loads((ROOT/'src/data/automated-etf.json').read_text())
         merged, value=refresh({'instruments':shares},current,{},dt.datetime.now(UTC))
         write_json_atomic(report,value)

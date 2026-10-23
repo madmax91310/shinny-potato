@@ -8,6 +8,8 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 import hashlib
+import http.client
+import time
 import json
 import os
 import pathlib
@@ -18,10 +20,12 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
+from data_automation import retry_delay, write_json_atomic
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CONFIG = ROOT / 'scripts/practical-sheet-sources.json'
 DEST = ROOT / 'src/data/automated-practical-sheets.json'
+REVIEWS = ROOT / 'scripts/practical-sheet-editorial-reviews.json'
 
 def parse(raw, config):
     if len(raw) < 500 or len(raw) > 10_000_000:
@@ -94,7 +98,9 @@ def parse(raw, config):
     if any(wall in folded for wall in ['access denied', 'verify you are human', 'just a moment...']):
         raise ValueError('Page de blocage au lieu de la source')
     result = {'title':title, 'publishedAt':published,
-              'contentHash':hashlib.sha256(text.encode()).hexdigest()}
+              'contentHash':hashlib.sha256(text.encode()).hexdigest(),
+              'documentSha256':hashlib.sha256(raw).hexdigest(),
+              'reviewedContent':text}
     if config.get('kind') == 'discourse':
         result['listedIsins'] = [isin for isin in config['supportIsins'] if re.search(r'\b'+isin+r'\b',text)]
         result['contractIds'] = config['contractIds']
@@ -145,19 +151,47 @@ def http_error_reason(error):
     reason = ' '.join(title.group(1).decode('utf-8', 'replace').split()) if title else ''
     return f'HTTP Error {error.code}: {error.reason}' + (f' ({reason})' if reason else '')
 
+def fetch_document(url):
+    """Bounded retries reuse the common transport policy; financial failures never retry."""
+    request = urllib.request.Request(url, headers={'User-Agent':user_agent(url)})
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=35) as response:
+                return response.read(10_000_001)
+        except urllib.error.HTTPError as error:
+            if error.code not in (429,500,502,503,504) or attempt == 2:
+                raise
+            delay = retry_delay(error, attempt)
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead):
+            if attempt == 2:
+                raise
+            delay = 2 ** attempt
+        time.sleep(delay)
+
+
 def collect(key, config, previous, today):
     try:
         url = config.get('downloadUrl', config['url'])
-        request = urllib.request.Request(url, headers={'User-Agent':user_agent(url)})
-        with urllib.request.urlopen(request, timeout=35) as response:
-            raw = response.read(10_000_001)
+        raw = fetch_document(url)
         parsed = parse(raw, config)
+        if parsed.get('publishedAt') and previous.get('publishedAt') and parsed['publishedAt'] < previous['publishedAt']:
+            raise ValueError('Document publication date regression; previous valid evidence preserved')
+        if previous.get('checkedAt', '') > today:
+            raise ValueError('Successful control date regression')
+        approval = json.loads(REVIEWS.read_text()).get(key, {}) if REVIEWS.exists() else {}
+        reviewed = (approval.get('contentHash') == parsed['contentHash']
+                    and approval.get('sourceUrl') == config['url']
+                    and approval.get('reviewedAt', '') <= today
+                    and bool(approval.get('reviewedAt')) and bool(approval.get('evidence')))
+
         old_hash = previous.get('contentHash')
         changed = bool(old_hash and parsed['contentHash'] != old_hash)
         return key, {**parsed,'label':config['label'],'sourceUrl':config['url'],
                      'checkedAt':today,'lastAttemptAt':today,'status':'ok',
                      'changedAt':today if changed else previous.get('changedAt'),
-                     'reviewRequired':changed or previous.get('reviewRequired',False)}, None
+                     'reviewRequired':False if reviewed else changed or previous.get('reviewRequired',False),
+                     'lastSuccessfulCheckAt':today,
+                     'editorialReview':approval if reviewed else None}, None
     except Exception as error:
         if isinstance(error, urllib.error.HTTPError):
             error = ValueError(http_error_reason(error))
@@ -178,9 +212,7 @@ def main():
     failed = [key for key,_,error in results if error]
     changed = [key for key,record,_ in results if record.get('reviewRequired')]
     if args.apply:
-        temp = DEST.with_suffix('.tmp')
-        temp.write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n')
-        temp.replace(DEST)
+        write_json_atomic(DEST,snapshot)
     report = {'failed':failed,'changed':changed,'sources':snapshot['sources']}
     if args.output:
         pathlib.Path(args.output).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
