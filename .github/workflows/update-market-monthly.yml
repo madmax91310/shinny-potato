@@ -163,6 +163,8 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/listing-observation.json
             ${{ runner.temp }}/ranking-collection-status.json
+            src/data/monthly-fx.json
+            ${{ runner.temp }}/ranking-collection-status.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations
