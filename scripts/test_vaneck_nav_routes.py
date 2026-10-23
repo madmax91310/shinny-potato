@@ -18,7 +18,7 @@ class VanEckRoutes(unittest.TestCase):
     def source(self,isin):
         candidates=json.loads((ROOT/'reports/vaneck-nav-remainder-2026-10-23/candidats.json').read_text())
         return next(s for s in configurations()+candidates if s['isin']==isin)
-    def collect(self,isin,change=None,api_change=None):
+    def collect(self,isin,change=None,api_change=None,renderer=None):
         source=copy.deepcopy(self.source(isin))
         if isin=='IE00BQQP9F84':source['navCalendarSource']='page-api'
         titles={r['isin']:r for r in json.loads((P/'vaneck-daily-collectes.json').read_text())}
@@ -31,6 +31,9 @@ class VanEckRoutes(unittest.TestCase):
         if change:source,page,metadata=change(source,page,metadata)
         def document(url):
             if url==source['sourceUrl']:return page.encode()
+            if url.endswith('/static/eu/js/dist/main.js'):
+                published=json.loads((discovery/'chart-number-format.json').read_text())['publishedTooltipFormatter']
+                return (renderer or 'window.initPastYearsChart=function(){return {'+published+'}}').encode()
             if '/fundhistoprices/'in url:return (P/row['file']).read_bytes()
             if '/fact-sheets/'in url and isin=='IE00BDFBTQ78':return gzip.decompress((P/(isin+'-inception.pdf.gz')).read_bytes())
             raise AssertionError('NAV route must not download a region-gated factsheet: '+url)
@@ -47,7 +50,7 @@ class VanEckRoutes(unittest.TestCase):
                 r=self.collect(isin)
                 self.assertEqual(r['isin'],isin);self.assertEqual(r['currency'],'EUR')
                 self.assertEqual(len(r['calendarProof']['checks']),years)
-                if isin!='IE00BDFBTQ78':self.assertEqual(r['calendarProof']['officialPageCalendar']['isin'],isin)
+                self.assertEqual(r['calendarProof']['officialPageCalendar']['isin'],isin)
                 self.assertEqual(r['latestLevel']['nativeCurrency'],'USD')
                 self.assertEqual(r['latestLevel']['fxAsOf'],'2026-10-22')
                 self.assertNotIn('symbol',r);self.assertNotIn('mic',r)
@@ -81,12 +84,15 @@ class VanEckRoutes(unittest.TestCase):
             return change
         for kind in ['us-ticker','income','currency','share','calendar-currency','missing-year','benchmark-only']:
             with self.subTest(kind=kind),self.assertRaises(ValueError):self.collect('IE00BYWQWR46',api_change=mutation(kind))
-    def test_api_precision_is_preserved_and_mining_candidate_is_not_forced(self):
+    def test_published_format_and_json_zeroes_are_distinguished(self):
         r=self.collect('IE00BYWQWR46')
         self.assertEqual(next(c for c in r['calendarProof']['checks']if c['year']==2020)['publishedDecimalPlaces'],1)
-        def api(s,p,m):s['navCalendarSource']='page-api';return s,p,m
-        with self.assertRaisesRegex(ValueError,'2022: 1.945'):
-            self.collect('IE00BDFBTQ78',api)
+        r=self.collect('IE00BDFBTQ78');c=next(c for c in r['calendarProof']['checks']if c['year']==2022)
+        self.assertEqual(c['publishedDecimalPlaces'],0)
+        self.assertAlmostEqual(c['dailyDerived'],1.945486865494761)
+        self.assertEqual(c['published'],2)
+        with self.assertRaisesRegex(ValueError,'number format changed'):
+            self.collect('IE00BDFBTQ78',renderer='window.initPastYearsChart=function(){return {tooltip:{formatter:function(){return this.series.name+": "+this.y.toFixed(1)+"%"}}}}')
     def test_failed_api_refresh_preserves_record_and_proof_dates(self):
         from refresh_monthly_history import refresh
         r=self.collect('IE00BYWQWR46');r['checkedAt']='2026-10-22';r['latestLevel']['checkedAt']='2026-10-22'

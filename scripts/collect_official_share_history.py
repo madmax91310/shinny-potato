@@ -13,6 +13,8 @@ import math
 import pathlib
 import re
 import urllib.parse
+import functools
+import threading
 from bs4 import BeautifulSoup
 from data_automation import UTC, get_json, get_text, write_json_atomic
 from issuer_documents import download, pdf_text
@@ -21,9 +23,16 @@ from issuer_nav_history import (blackrock_nav, calendar_checks, dws_nav, monthly
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDS = ['etfEqualWeight', 'etfIE000U9ODG19', 'etfIE00BDFBTQ78', 'etfGB00B15KXQ89']
+VANECK_CHART_URL='https://www.vaneck.com/static/eu/js/dist/main.js'
+_VANECK_CHART_LOCK=threading.Lock()
 
 
-def vaneck_page_calendar(soup, isin, native, title, ticker, now, fetch):
+@functools.lru_cache(maxsize=8)
+def _vaneck_chart_body(fetch):
+    return fetch(VANECK_CHART_URL)
+
+
+def vaneck_page_calendar(soup, isin, native, title, ticker, now, fetch, document):
     """The public UCITS page APIs, never the US fund sharing its public ticker."""
     from decimal import Decimal
     from issuer_documents import document_date
@@ -67,15 +76,21 @@ def vaneck_page_calendar(soup, isin, native, title, ticker, now, fetch):
     series=json.loads(calendar['Series'],parse_float=Decimal)
     selected=[row for row in series if normalize(row['name'])==normalize(title.rsplit(' - ',1)[0])]
     if len(selected)!=1 or len(selected[0]['data'])!=len(categories):raise ValueError('Wrong or missing VanEck fund calendar row')
+    renderer=document(VANECK_CHART_URL).decode()
+    start=renderer.find('window.initPastYearsChart=')
+    if start<0 or not re.search(r'tooltip:\{formatter:function\(\)\{return this\.series\.name\+": "\+this\.y\+"%"\}\}',renderer[start:start+8000]):
+        raise ValueError('VanEck published calendar number format changed')
     first_full=inception.year+(0 if (inception.month,inception.day)==(1,1)else 1)
     years={};precision={}
     for year,value in zip(categories,selected[0]['data']):
         if int(year)<first_full:continue
         if isinstance(value,bool)or not isinstance(value,(int,Decimal))or not math.isfinite(value)or value<=-100:
             raise ValueError('Missing complete VanEck annual observation')
-        years[year]=float(value);precision[year]=max(0,-Decimal(value).as_tuple().exponent)
+        # The verified issuer renderer concatenates a JavaScript Number, not
+        # the JSON decimal token: 2.0 is published as 2%, 11.6 as 11.6%.
+        years[year]=float(value);precision[year]=max(0,-Decimal(value).normalize().as_tuple().exponent)
     if not years:raise ValueError('No complete VanEck annual observation')
-    return years,precision,{'isin':isin,'internalTicker':ticker,'fundInception':inception.isoformat(),'fundDataAsOf':asof,'calendarAsOf':calendar['AsOfDate'],'calendarCurrency':native,'incomeTreatment':values['Income Treatment']}
+    return years,precision,{'isin':isin,'internalTicker':ticker,'fundInception':inception.isoformat(),'fundDataAsOf':asof,'calendarAsOf':calendar['AsOfDate'],'calendarCurrency':native,'incomeTreatment':values['Income Treatment'],'numberFormat':'verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted','numberFormatSource':VANECK_CHART_URL}
 
 
 def configurations():
@@ -102,6 +117,7 @@ def configurations():
             'precision':8,'collectAnniversary':True,'parser':'official-nav','field':'nav-total-return',
             'valuationBasis':'fund-nav-total-return',
             'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement',
+            **({'navCalendarSource':prior['navCalendarSource']}if 'navCalendarSource'in prior else{}),
             **extras[id]}.items()})
     remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
     return result + remainder
@@ -110,7 +126,12 @@ def configurations():
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
     def document(url):
-        body=document_fetch(url);urls.append(url);hashes[url]=hashlib.sha256(body).hexdigest()
+        if url==VANECK_CHART_URL:
+            # A single shared request even when the monthly producer collects
+            # several UCITS funds concurrently. Cache lasts only this process.
+            with _VANECK_CHART_LOCK:body=_vaneck_chart_body(document_fetch)
+        else:body=document_fetch(url)
+        urls.append(url);hashes[url]=hashlib.sha256(body).hexdigest()
         if capture:
             capture.mkdir(parents=True,exist_ok=True)
             (capture/(hashes[url]+'.bin.gz')).write_bytes(gzip.compress(body))
@@ -184,7 +205,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         slug=re.fullmatch(r'/[^/]+/[^/]+/investments/([^/]+)/?',urllib.parse.urlsplit(source['sourceUrl']).path)
         if not slug or path!='/ucits/investments/'+slug[1]+'/downloads/fundhistoprices/':raise ValueError('Unexpected NAV download target')
         if source.get('navCalendarSource')=='page-api':
-            years,calendar_precision,calendar_context=vaneck_page_calendar(soup,isin,native,title,ticker.get_text(strip=True),now,data)
+            years,calendar_precision,calendar_context=vaneck_page_calendar(soup,isin,native,title,ticker.get_text(strip=True),now,data,document)
             nav=vaneck_nav(document('https://www.vaneck.com'+path),title,now)
             credit='VanEck'
             calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None','officialPageCalendar':calendar_context}
