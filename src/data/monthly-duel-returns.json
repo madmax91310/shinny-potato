@@ -6577,11 +6577,11 @@
     "isin": "FR0007054358",
     "currency": "EUR",
     "years": {
-      "2016": -1.0935495458352706,
-      "2017": 6.5310821894180915,
-      "2018": -15.0416684670856,
-      "2019": 25.60220666215438,
-      "2020": -5.109594520547933,
+      "2016": 3.1309222551217264,
+      "2017": 9.969962710824841,
+      "2018": -12.140103976189353,
+      "2019": 29.992034033321467,
+      "2020": -2.885047490153836,
       "2021": 23.386757521972413,
       "2022": -8.85690864965698,
       "2023": 22.54171700791483,
@@ -6589,11 +6589,11 @@
       "2025": 22.02718384295961
     },
     "calendarReturns": {
-      "2016": -1.0935495458352706,
-      "2017": 6.5310821894180915,
-      "2018": -15.0416684670856,
-      "2019": 25.60220666215438,
-      "2020": -5.109594520547933,
+      "2016": 3.1309222551217264,
+      "2017": 9.969962710824841,
+      "2018": -12.140103976189353,
+      "2019": 29.992034033321467,
+      "2020": -2.885047490153836,
       "2021": 23.386757521972413,
       "2022": -8.85690864965698,
       "2023": 22.54171700791483,
@@ -6601,7 +6601,7 @@
       "2025": 22.02718384295961
     },
     "values": [
-      -5.109594520547933,
+      -2.885047490153836,
       23.386757521972413,
       -8.85690864965698,
       22.54171700791483,
@@ -6611,13 +6611,14 @@
     "source": "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     ],
-    "checkedAt": "2026-10-18",
+    "checkedAt": "2026-10-23",
     "listingEvidenceId": "FR0007054358-XETR-LYSX-EUR",
     "basis": "market-price",
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "841a7566ea19ec5e9359c0cce59122c1f6185d947d59f5c6ec496603065e1847",
+    "responseSha256": "8707b2028385f3054012485aea6cff04ead9dc8bf3bc16d46d6c8cadb11c5d46",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "FR0007056841": {

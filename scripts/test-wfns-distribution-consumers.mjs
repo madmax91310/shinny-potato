@@ -8,6 +8,8 @@ import {convertAsset} from '../src/pages/performance-rankings/series.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 import {derive,buildTweetText} from '../src/pages/investment-calculator/lib.js'
 import {getAnnualReturns} from '../src/pages/tweet-midi/data/performanceHistory.js'
+import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
+import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
 const a=ASSETS.etf_financials,old=JSON.parse(gunzipSync(fs.readFileSync('reports/wfns-dividend-2026-10-23/original-wfns-record.json.gz'))).active
 assert.equal(a.currency,'USD');assert.equal(a.isin,'IE00BJ5JP097');assert.equal(a.ticker,'WFNS');assert.equal(a.mic,'XAMS')
 assert.deepEqual(a.anniversaryPoints,old.anniversaryPoints.map(([date,price])=>({date,price})),'Raw price-only anniversary convention stays unchanged')
@@ -29,6 +31,11 @@ const fixed2020=-2.885047490153836
 assert(Math.abs(periodReturn(RANKING_ASSETS.etfFR0007054358,'2019-12','2020-12')-fixed2020)<1e-8)
 assert(Math.abs(periodReturn(convertAsset(RANKING_ASSETS.etfFR0007054358,'EUR',FX),'2019-12','2020-12')-fixed2020)<1e-8)
 assert(Math.abs(getAnnualReturns('etfFR0007054358',2020)[0].pct-fixed2020)<1e-8)
+const manualAmundi=PORTFOLIO_ASSETS.find(a=>a.isin==='FR0007054358'),duelAmundi=DUEL_ASSETS.find(a=>a.isin==='FR0007054358')
+assert.equal(manualAmundi.id,'manual-FR0007054358');assert.equal(duelAmundi.id,manualAmundi.id)
+assert.equal(manualAmundi.manualOnly,true)
+assert(Math.abs(manualAmundi.calendarReturns[2020]-fixed2020)<1e-8)
+assert(Math.abs(duelAmundi.calendarReturns[2020]-fixed2020)<1e-8)
 for(const mode of ['lump','dca']){
  const state={assetId:'etfFR0007054358',startYear:2019,startMonth:12,amountRaw:'100',mode,overridePriceRaw:''}
  const d=derive(state),p=amundi.points.filter(p=>p.date>='2019-12'),expected=mode==='lump'?100*p.at(-1).price/p[0].price:p.reduce((sum,row)=>sum+100/row.price,0)*p.at(-1).price
