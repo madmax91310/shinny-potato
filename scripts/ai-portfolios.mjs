@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 import {publishRuntime} from './ai-runtime-projection.mjs'
+import {createHash} from 'node:crypto'
 import {spawnSync} from 'node:child_process'
 import {defaultConfig} from '../src/pages/ai-portfolios/data.js'
 import {decisionSchedule} from '../src/pages/ai-portfolios/weekly.js'
 import {hydrateMarketSeries,requiredSeries,publicMarket} from './ai-series-store.mjs'
-// The sole durable writer for manual requests. Browser exports are proposals, not saved decisions.
+// Sole durable writer, shared by CLI recovery and authenticated GitHub confirmations.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { validateConfig,validateDecision,planDecision,portfolioAt,executionAssets,nextExecution,coverage,sourceFreshness,clone,assert,runCompetition,snapshot,periodReport,weeklyDates,addDays,day } from '../src/pages/ai-portfolios/lib.js'
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
+export const proposalHash=proposal=>createHash('sha256').update(JSON.stringify(proposal)).digest('hex')
 export function register(book,proposal,market,now=new Date().toISOString()) {
   assert(proposal?.version===1&&proposal.expectedRevision===book.revision,'Export périmé ou format invalide. Recharger le dossier avant de réexporter.')
   assert(typeof proposal.requestId==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(proposal.requestId),'Identifiant de demande invalide.')
@@ -18,7 +20,7 @@ export function register(book,proposal,market,now=new Date().toISOString()) {
   assert(op&&typeof op==='object','Opération absente.')
   if(['decision','launch'].includes(op.type)){assert(market.asOf>=addDays(day(now),-1),'Arrêté périmé : rattraper les cours et changes jusqu’à la veille UTC avant enregistrement.');const fresh=sourceFreshness(market,now);assert(fresh.ok,fresh.reason)}
   let comp=next.competitions.find(c=>c.id===proposal.competitionId)
-  const event={requestId:proposal.requestId,at:now,operation:op.type,competitionId:comp?.id??proposal.requestId,reason:op.reason??null}
+  const event={proposalHash:proposalHash(proposal),requestId:proposal.requestId,at:now,operation:op.type,competitionId:comp?.id??proposal.requestId,reason:op.reason??null}
   if(op.type==='create') {
     validateConfig(op.config,market)
     assert(op.config.launchDate>=day(now),'Le lancement ne peut pas être rétroactif.')
