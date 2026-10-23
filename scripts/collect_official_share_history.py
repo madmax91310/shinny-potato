@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 from data_automation import UTC, get_json, get_text, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_nav_history import (blackrock_nav, calendar_checks, dws_nav, monthly,
-                                vaneck_nav, wisdomtree_identity, wisdomtree_nav)
+                                vaneck_nav, wisdomtree_identity, wisdomtree_nav, ssga_nav)
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDS = ['etfEqualWeight', 'etfIE000U9ODG19', 'etfIE00BDFBTQ78', 'etfGB00B15KXQ89']
@@ -88,6 +88,22 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
         if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
         calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
+    elif kind=='ssga':
+        from collect_ssga_etf import Inputs, parse_page
+        page=document(source['sourceUrl']).decode(); parsed=Inputs(); parsed.feed(page)
+        facts=parsed.data['fund-quick-info']['attrs']
+        if facts['isin']['value']!=isin or facts['fund-income-treatment']['value']!='Accumulation':
+            raise ValueError('State Street exact accumulating share not confirmed')
+        record,_=parse_page(page,{'isin':isin,'currency':native},now)
+        paths=[a['href'] for a in BeautifulSoup(page,'html.parser').find_all('a',href=True)
+               if '/navhist-emea-' in a['href']]
+        if len(set(paths))!=1:raise ValueError('Ambiguous State Street NAV export')
+        url=urllib.parse.urljoin(source['sourceUrl'],paths[0]);parts=urllib.parse.urlsplit(url)
+        if parts.scheme!='https' or parts.netloc!='www.ssga.com' or not parts.path.startswith('/library-content/products/fund-data/etfs/emea/navhist-emea-'):
+            raise ValueError('Unexpected State Street NAV export host/path')
+        nav=ssga_nav(document(url),isin,native,now)
+        years=record['performance']['years'];credit='State Street'
+        calendar_proof={'incomeTreatment':'Accumulation','sourceNavUrl':url}
     elif kind=='wisdomtree':
         identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
