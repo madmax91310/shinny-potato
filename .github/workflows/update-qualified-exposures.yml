@@ -115,6 +115,7 @@ jobs:
       - run: node scripts/build-automation-targets.mjs
       - name: Validate staged source qualification
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - name: Validate public holdings API identities and complete weights
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'

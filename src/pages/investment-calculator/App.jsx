@@ -586,7 +586,7 @@ function InvestmentEditor({state,setState}){
         {crisisMode ? <CrisisResult comparison={crisisComparison} copied={copied} onCopy={handleCopy} /> : resultBlocked ? (
           <div className="ic-card ic-card-invalid">
             <p className="ic-invalid-message">
-              {amountInvalid
+              {calculation.error ? calculation.error : amountInvalid
                 ? 'Indique un montant supérieur à 0 pour voir le résultat de la simulation.'
                   : startDateInvalid
                   ? startDateAfterLast

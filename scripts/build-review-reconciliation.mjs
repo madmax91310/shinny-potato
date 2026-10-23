@@ -31,4 +31,15 @@ const summary={total:rows.length,open:rows.filter(r=>r.open).length,corrected:ro
  checked:rows.filter(r=>r.latestCheck).length}
 if(summary.total!==summary.open+summary.corrected+summary.correctedWithResidual+summary.nonComparable)throw Error('Unaccounted financial case')
 writeFileSync(new URL('../public/data/financial-reconciliation.json',import.meta.url),JSON.stringify({schemaVersion:1,summary,sourceCheckedAt:observed?.attemptedAt??null,rows},null,2)+'\n')
+// Only the original disputed listing and valuation months are suspended.
+// A separately qualified NAV or a different listing is a distinct data contract.
+const windows=new Map()
+for(const row of rows.filter(r=>r.open||r.residualOpen)){
+ const {marketSymbol:symbol,marketCurrency:currency}=row.original
+ if(!symbol||!currency||!Number.isInteger(Number(row.year)))throw Error('Unbound financial restriction '+row.id)
+ const key=JSON.stringify([row.isin,symbol,currency])
+ if(!windows.has(key))windows.set(key,[row.isin,symbol,currency,[]])
+ windows.get(key)[3].push(Number(row.year))
+}
+writeFileSync(new URL('../src/data/financial-history-restrictions.json',import.meta.url),JSON.stringify([...windows.values()])+'\n')
 console.log('Original financial cases preserved:',summary)

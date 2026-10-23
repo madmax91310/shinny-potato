@@ -4,6 +4,7 @@ import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
 import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 import {buildTweet as buildBrokerPost} from '../src/pages/broker-comparator/data.js'
+import {choose}from './card-selection.mjs'
 const out='test-artifacts/data-review-recovery';fs.mkdirSync(out,{recursive:true})
 const report=JSON.parse(fs.readFileSync('dist/data/financial-reconciliation.json'))
 const source=JSON.parse(fs.readFileSync('src/data/automated-practical-sheets.json'))
@@ -109,6 +110,19 @@ try{
  assert.equal(details['IE00B4L5Y983-ETFP'].status.asOf,latest)
  const published=await(await page.request.get(base+'/data/ai-portfolios/series/94.json')).json()
  assert.deepEqual(published['IE00B4L5Y983-ETFP'].points,series.points)
+ await page.setViewportSize({width:1280,height:900})
+ await page.goto(base+'/calculateur-investissement?asset=etfGB00B15KXQ89',{waitUntil:'networkidle'})
+ const editor=page.getByRole('button',{name:'Éditeur',exact:true});if(await editor.isVisible())await editor.click()
+ await choose(page.getByRole('group',{name:'Année de départ',exact:true}),'2018')
+ await choose(page.getByRole('group',{name:'Mois de départ',exact:true}),'12')
+ await page.getByRole('alert').filter({hasText:'rapprochement financier non résolu'}).waitFor()
+ assert.equal(await page.getByRole('button',{name:'📊 Télécharger une image',exact:true}).count(),0)
+ assert.equal(await page.getByRole('img',{name:'Graphique du placement',exact:true}).count(),0)
+ await choose(page.getByRole('group',{name:'Année de départ',exact:true}),'2026')
+ await choose(page.getByRole('group',{name:'Mois de départ',exact:true}),'1')
+ assert.equal(await page.getByRole('alert').count(),0)
+ const recovered=page.waitForEvent('download');await page.getByRole('button',{name:'📊 Télécharger une image',exact:true}).click()
+ await(await recovered).saveAs(`${out}/copper-compatible-2026.png`);pngCount++
  assert.deepEqual(errors,[])
  console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
 }finally{await browser?.close();server.kill()}

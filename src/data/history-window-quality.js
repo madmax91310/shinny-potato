@@ -1,6 +1,18 @@
 // Restrictions concern exact listings and observed windows, never an ISIN globally.
 // Repeated prices alone are an investigation signal, not a universal rejection rule.
 import RESTRICTIONS from './history-window-restrictions.json' with {type:'json'}
+import FINANCIAL from './financial-history-restrictions.json' with {type:'json'}
+
+function unresolvedFinancialWindow(asset,start,end){
+  if([asset.historyConvention,asset.valuationBasis,asset.field,asset.basis].some(v=>v==='fund-nav-total-return'||v==='nav-total-return'))return null
+  const currency=asset.originalCurrency??asset.currency
+  for(const[isin,symbol,native,years]of FINANCIAL){
+    if(asset.isin!==isin||currency!==native||!(asset.symbol===symbol||[asset.sourceUrl,...asset.sourceUrls??[]].some(u=>typeof u==='string'&&u.includes('/chart/'+encodeURIComponent(symbol)+'?'))))continue
+    const affected=years.filter(year=>start<=`${year}-12`&&end>=`${year-1}-12`)
+    if(affected.length)return {qualified:false,code:'financial-window-unconfirmed',reason:`Cotation ${symbol} : rapprochement financier non résolu pour ${affected.join(', ')}. Les périodes concernées restent indisponibles ; choisir une période vérifiée ou une voie VL qualifiée.`,cases:affected.map(y=>`${isin}/${y}`)}
+  }
+  return null
+}
 
 const dateOf = p => Array.isArray(p) ? p[0] : p.date
 const priceOf = p => Array.isArray(p) ? p[1] : p.price
@@ -13,6 +25,8 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
     const nested=qualifyHistoryWindow(line.asset,start,end,{contiguous})
     if(!nested.qualified)return nested
   }
+  const financial=unresolvedFinancialWindow(asset,start,end)
+  if(financial)return financial
   for(const rule of RESTRICTIONS){
     if(rule.inceptionMonth&&asset.isin===rule.isin&&start<rule.inceptionMonth)return {qualified:false,code:'before-inception',reason:rule.reason}
   }

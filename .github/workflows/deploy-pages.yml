@@ -147,7 +147,7 @@ jobs:
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
       - run: node scripts/test-consumer-usage.mjs
-      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
+      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-financial-window-safety.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
@@ -381,6 +381,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
