@@ -10792,14 +10792,15 @@
           "at": "2026-10-23T08:00:48.905289+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39917620235,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-23T07:35:54Z",
       "observedRunId": 39917620235,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-23T09:00:48.905289+00:00"
     },
     "update-insurance.yml": {
@@ -10841,14 +10842,15 @@
           "at": "2026-10-23T08:00:48.905289+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39917620412,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-23T07:27:51Z",
       "observedRunId": 39917620412,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-23T09:00:48.905289+00:00"
     },
     "update-presentation-actors.yml": {
