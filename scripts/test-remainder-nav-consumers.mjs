@@ -7,9 +7,11 @@ import {periodReturn,basisLabel,commonCoverage} from '../src/pages/performance-r
 import {getAnnualReturns,MARKET_ASSETS,ANNIVERSAIRE_ELIGIBLE_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'
 import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
+import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
+import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 const sources=JSON.parse(fs.readFileSync('scripts/official-nav-remainder-sources.json'))
-const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence}))]
+const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence})),...JSON.parse(fs.readFileSync('reports/gdx-window-2026-10-23/github/nav.json')).series]
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
@@ -34,3 +36,7 @@ for(const s of sources){
  if(s.currency!==s.navCurrency)assert.notEqual(monthlyCurrencyFactor('2025-12',s.navCurrency,s.currency,FX),1)
 }
 console.log(`${sources.length} existing shares: selectors, lump/DCA, text, annual/ranking calculations, EUR conversion and matching current NAV levels passed.`)
+
+assert.equal(DUEL_ASSETS.find(a=>a.id==='manual-IE00BQQP9F84')?.isin,'IE00BQQP9F84')
+assert.equal(PORTFOLIO_ASSETS.find(a=>a.id==='gold-miners-vaneck')?.manualOnly,false)
+console.log('Original GDX Duel URL and already qualified automatic role preserved.')

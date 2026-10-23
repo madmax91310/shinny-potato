@@ -1,0 +1,71 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
++ actual - expected
+
+  {
+    category: 'Newton et la bulle de 1720',
+    context: 'En 1720, il investit dans la South Sea Company, puis vend ses actions en avril avant d’en racheter quelques semaines plus tard, alors que le cours a continué à monter. 📈\n' +
+      '\n' +
+      'Il revient donc à l’achat à des prix plus élevés et continue à investir lorsque le cours commence à baisser, même si les archives ne permettent pas de savoir précisément pourquoi il a racheté.',
++   dataContract: {
++     fields: [],
++     kind: 'archive-or-editorial',
++     remaining: 'Chiffres historiques, personnels et assertions générales conservés ; vérification éditoriale avant réemploi.'
++   },
+    fact: 'Newton donne des instructions de vente en avril 1720, puis rachète des titres à partir de juin et continue à investir avant l’effondrement de septembre. Le motif précis de ses achats n’est pas documenté ici.',
+    family: 'histoires',
+    hook: 'Newton aussi s’est planté en Bourse, et assez sévèrement 🫠',
+    id: 'newton-south-sea-1720',
+    indices: [
+
+    at file:///workspace/scratch/story-baseline/scripts/test-market-story-selection.mjs:9:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    id: 'newton-south-sea-1720',
+    family: 'histoires',
+    category: 'Newton et la bulle de 1720',
+    indices: [ 'South Sea Company' ],
+    hook: 'Newton aussi s’est planté en Bourse, et assez sévèrement 🫠',
+    context: 'En 1720, il investit dans la South Sea Company, puis vend ses actions en avril avant d’en racheter quelques semaines plus tard, alors que le cours a continué à monter. 📈\n' +
+      '\n' +
+      'Il revient donc à l’achat à des prix plus élevés et continue à investir lorsque le cours commence à baisser, même si les archives ne permettent pas de savoir précisément pourquoi il a racheté.',
+    twist: 'Quand la bulle éclate en septembre, il perd énormément d’argent, malgré ses connaissances et son intelligence.\n' +
+      '\n' +
+      'Comme quoi, même les plus grands génies peuvent se planter en Bourse. 🫠',
+    fact: 'Newton donne des instructions de vente en avril 1720, puis rachète des titres à partir de juin et continue à investir avant l’effondrement de septembre. Le motif précis de ses achats n’est pas documenté ici.',
+    source: 'Andrew Odlyzko, « Isaac Newton and the perils of the financial South Sea », Physics Today, 1er juillet 2020 · https://physicstoday.aip.org/features/isaac-newton-and-the-perils-of-the-financial-south-sea',
+    note: null,
+    dataContract: {
+      kind: 'archive-or-editorial',
+      fields: [],
+      remaining: 'Chiffres historiques, personnels et assertions générales conservés ; vérification éditoriale avant réemploi.'
+    }
+  },
+  expected: {
+    id: 'newton-south-sea-1720',
+    family: 'histoires',
+    category: 'Newton et la bulle de 1720',
+    indices: [ 'South Sea Company' ],
+    hook: 'Newton aussi s’est planté en Bourse, et assez sévèrement 🫠',
+    context: 'En 1720, il investit dans la South Sea Company, puis vend ses actions en avril avant d’en racheter quelques semaines plus tard, alors que le cours a continué à monter. 📈\n' +
+      '\n' +
+      'Il revient donc à l’achat à des prix plus élevés et continue à investir lorsque le cours commence à baisser, même si les archives ne permettent pas de savoir précisément pourquoi il a racheté.',
+    twist: 'Quand la bulle éclate en septembre, il perd énormément d’argent, malgré ses connaissances et son intelligence.\n' +
+      '\n' +
+      'Comme quoi, même les plus grands génies peuvent se planter en Bourse. 🫠',
+    fact: 'Newton donne des instructions de vente en avril 1720, puis rachète des titres à partir de juin et continue à investir avant l’effondrement de septembre. Le motif précis de ses achats n’est pas documenté ici.',
+    source: 'Andrew Odlyzko, « Isaac Newton and the perils of the financial South Sea », Physics Today, 1er juillet 2020 · https://physicstoday.aip.org/features/isaac-newton-and-the-perils-of-the-financial-south-sea',
+    note: null
+  },
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

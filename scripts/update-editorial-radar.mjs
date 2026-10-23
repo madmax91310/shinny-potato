@@ -30,7 +30,7 @@ export async function collectObservations(root = ROOT) {
     add(base, 'ter', 'Frais annuels', c.terPct, c, { unit: '% / an', priority: 'high', discovery: true, angle: 'À exposition comparable, quelles différences avec les autres ETF disponibles ?', reason: 'Toute modification confirmée des frais annuels est signalée.' })
     const pea = metadata?.[isin]?.pea
     if (typeof pea?.value === 'boolean' && pea.sourceUrl && pea.sha256) add(base, 'pea', 'Éligibilité au PEA', pea.value, pea, { priority: 'high', reason: 'Changement de statut PEA documenté pour cet ISIN exact ; une première qualification est silencieuse.' })
-    for (const [field, label] of Object.entries({index:'Indice suivi',distribution:'Politique de revenus',replicationMethod:'Méthode de réplication'})) {
+    for (const [field, label] of Object.entries({index:'Indice suivi',distribution:'Politique de revenus',replicationMethod:'Méthode de réplication',productStructure:'Structure de réplication'})) {
       if (c[field]) add(base, `characteristics:${field}`, label, c[field], c, { priority:'high', reason:'Modification d’une caractéristique de la part exacte ; vérifier le document émetteur avant publication.' })
     }
     const qualifiedRecord = Object.values({...qualified,...expanded}).find(q=>q.isin===isin)

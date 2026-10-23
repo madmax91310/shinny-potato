@@ -1360,6 +1360,8 @@ try {
     await testPracticalSheets(page);
   } else if (process.argv.includes('--investors')) {
     await testInvestorIntroductions(page);
+  } else if (process.argv.includes('--tweet-bank')) {
+    await testTweetBank(page);
   } else if (process.argv.includes('--market-facts')) {
     await testMarketFacts(page);
   } else if (process.argv.includes('--etfs')) {

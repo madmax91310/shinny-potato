@@ -124,3 +124,8 @@
 .tb-scope .tb-tweet-image { margin: 16px 0; }
 .tb-scope .tb-tweet-image img { display: block; width: 100%; max-width: 600px; height: auto; border-radius: 12px; }
 .tb-scope .tb-tweet-image figcaption { margin-top: 10px; }
+
+.tb-story-title { font-size: 1.2rem; line-height: 1.4; margin: 12px 0 8px; }
+.tb-story-length { color: var(--tb-ink-dim); font-size: .85rem; line-height: 1.5; }
+.tb-evidence li, .tb-sources li { margin-bottom: 10px; line-height: 1.6; }
+.tb-tweet-text { font-size: 16px; }
