@@ -4,7 +4,7 @@ import { ETFS } from '../src/data/etf-cards.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { ASSETS as HISTORY } from '../src/data/market-history.js'
 import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
-import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 import { getInstrumentPeaStatus, INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { getInstrumentFacts } from '../src/data/instrument-facts.js'
@@ -34,7 +34,7 @@ for (const proof of capture.funds) {
  assert.equal(getInstrumentPeaStatus(proof.isin),pea,'Le statut suit la preuve courante ; une absence reste inconnue')
  assert.equal(sheet.pea,pea,'La fiche consomme le même statut documenté')
  assert.equal(sheet.listing.currency, 'EUR')
- assert.equal(getInstrumentFacts(proof.isin).positionsAsOf, proof.positionsDate)
+ assert.equal(getInstrumentFacts(proof.isin).positionsAsOf, AUTOMATED_ETF[proof.isin]?.metrics?.numHoldings?.asOf ?? proof.positionsDate)
  assert.equal(getComparisonPerformance(proof.isin).label, 'ETF')
  assert.equal(getComparisonPerformance(proof.isin).referenceIsin, proof.isin)
  const asset = CATALOG.find(x => x.isin === proof.isin)

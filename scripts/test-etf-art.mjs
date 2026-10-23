@@ -34,7 +34,8 @@ try {
       const { ETFS } = await import('/shinny-potato/src/data/etf-cards.js')
       const { renderETFImage } = await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
       const { getAnnualPerformance, performanceEntries } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
-      const etf = ETFS.find(e => e.id === id)
+      const { getPresentationCopy } = await import('/shinny-potato/src/pages/etf-sheets/editorial.js')
+      const etf = getPresentationCopy(ETFS.find(e => e.id === id))
       const labels = [], bounds = [], performanceText = [], identifiers = [], aumText = []
       const original = CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
@@ -62,12 +63,12 @@ try {
         if (identifiers.length !== 1 || identifiers.some(item => item.y > 850)) throw new Error(`Misplaced identity ${id}`)
         if (canvas.width !== 1600 || canvas.height !== 1600) throw new Error('Incorrect X aspect ratio')
         const text = labels.join(' '), normalize = s => s.replace(/\s+/g, ' ').trim()
-        for (const value of [etf.name, etf.isin, etf.ter, String(etf.positions).replace(/^Exposition suivie\s*:\s*/, ''), etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
+        for (const value of [etf.name, etf.isin, etf.ter, (etf.positions ?? '').replace(/^Exposition suivie\s*:\s*/, ''), etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
         const amount = String(etf.aum).replace(/^(?:Part|Fonds)\s*:\s*/i, '').replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '').trim().replace(/\d[\d \u00a0\u202f]*,\d+/g, amount => Number(amount.replace(/[ \u00a0\u202f]/g, '').replace(',', '.')).toLocaleString('fr-FR', { maximumFractionDigits: 0 }))
         const aumDate = String(etf.aum).match(/\s+(au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/)?.[1]
         if (aumDate && !normalize(text).includes(normalize(aumDate))) throw new Error(`Missing AUM date ${id}`)
         if (aumText.some(value => /\d,\d/.test(value))) throw new Error(`Decimal AUM returned ${id}`)
-        if (!labels.some(label => /^Encours(?: du fonds)?$/.test(label)) || !normalize(aumText.join(' ')).includes(normalize(amount))) throw new Error(`Missing AUM amount ${id}: ${amount}`)
+        if (!labels.some(label => /^Encours(?: du fonds| de la part)?$/.test(label)) || !normalize(aumText.join(' ')).includes(normalize(amount))) throw new Error(`Missing AUM amount ${id}: ${amount}`)
         if (aumText.some(s => /^(?:Part|Fonds)\s*:|\d{2}\/\d{2}\/\d{4}|relevé le/i.test(s))) throw new Error(`AUM metadata returned ${id}`)
         if (labels.filter(s => s === 'ÉPARGNANT LIBRE').length !== 1 || !text.includes('Pas un conseil financier')) throw new Error('Signature/disclaimer missing')
         if (labels.filter(s => s === etf.ter).length !== 1 || /Nouveau|PRÉSENTATION/.test(text)) throw new Error('Clutter returned')

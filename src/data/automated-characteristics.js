@@ -7,6 +7,10 @@ const policies = new Map([
  ['Capitalizing',['accumulating','Capitalisant']],
 ].map(([label,value])=>[label.toLowerCase(),value]));
 export function applyAutomatedCharacteristics(previous,record) {
+ const count=record?.metrics?.numHoldings;
+ if(Number.isInteger(count?.value) && count.value>0 && /^\d{4}-\d{2}-\d{2}$/.test(count.asOf??'') && count.sourceUrl && (!previous.positionsAsOf || count.asOf>=previous.positionsAsOf)) {
+  previous={...previous,positionsLabel:`${count.value.toLocaleString('fr-FR')} positions hors liquidités et dérivés au ${count.asOf.split('-').reverse().join('/')}`,positionsAsOf:count.asOf,positionsSource:{url:count.sourceUrl,checkedAt:count.checkedAt,scope:count.scope}};
+ }
  const c=record?.characteristics;
  if(!c?.checkedAt)return previous;
  const source={url:c.sourceUrl??record.sourceUrl,checkedAt:c.checkedAt,...(c.asOf?{asOf:c.asOf}:{})};

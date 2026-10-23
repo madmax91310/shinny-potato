@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-23",
+  "probes": [
+    {
+      "url": "https://www.blackrock.com/varnish-api/fr-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts&locale=fr_FR&portfolioId=328618&targetSite=ishares-fr&userType=individual&excludeContent=true&includeConfig=true",
+      "httpStatus": 503
+    },
+    {
+      "url": "https://www.blackrock.com/fr/intermediaries/products/328618/",
+      "httpStatus": 200,
+      "sha256": "10536d8f76c22ef83045a8a13599bd89f3e9a5c744e11bcb32f8eb77dbb45713",
+      "isin": "IE000RDRMSD1",
+      "peaPublishedValue": "-",
+      "peaInterpretation": null,
+      "holdings": {
+        "value": 40,
+        "asOf": "2026-10-21"
+      },
+      "hedgeNote": "La page décrit la convention de nommage des parts couvertes, mais cette note générale n’est pas une valeur de champ liée explicitement à cet ISIN ; aucune requalification automatique."
+    }
+  ]
+}
