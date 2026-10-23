@@ -153,7 +153,7 @@ def main():
  today=dt.datetime.now(dt.timezone.utc).date().isoformat()
  baseline,failures,validated=collect(baseline,today)
  successes=set(validated)
- successes.update(name+':extras' for name in validated if name+':extras' not in failures)
+ successes.update(name+':extras' for name in ('bourso','fortuneo') if name in validated and name+':extras' not in failures)
  successes.update(key for key in SUPPLEMENT_SOURCES if key not in failures)
  for broker,record in baseline['brokers'].items():
   successes.update(f'{broker}:profile:{field}' for field,value in record.get('profile',{}).items()

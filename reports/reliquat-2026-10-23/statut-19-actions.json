@@ -77,17 +77,17 @@
   {
     "action": "P1-03",
     "priorité": "P1",
-    "statut": "partiellement corrigée",
+    "statut": "corrigée",
     "constat_initial": "Accès Bourse Direct et condition fiscale IBKR en échec réel",
-    "correction_démontrée": "Règle de non-rémunération des espèces PEA rétablie via la fiche DILA/Service-Public F2385 ; intérêt CTO conservé distinctement. Extraction réelle des deux documents IBKR/Service-Public réussie localement et dans GitHub. Seul le champ cash IBKR est renouvelé.",
-    "limitation": "Bourse Direct reste indisponible sur les routes officielles actuelles essayées ; pas de nouvelle date de preuve pour ses tarifs. Le nouvel accès IBKR ne certifie pas tous les autres champs.",
+    "correction_démontrée": "IBKR cash : alternative officielle Service-Public et intérêts CTO vérifiés séparément. Bourse Direct : contre-vérification réelle dans le workflow normal GitHub, huit barèmes qualifiés, zéro échec ; PDF officiel tarifs_bd.pdf du 06/01/2026 relu le 23/10/2026 et profils BD qualifiés. Seuls BD et le champ cash IBKR sont appliqués ; observations et audit des 28 textes conservés.",
+    "limitation": "Les accès Bourse Direct depuis cet espace restent en échec, contrairement à GitHub. Correction qualifiée pour l’environnement planifié, sans prétendre à une disponibilité universelle. La date de la grille reste le 06/01/2026.",
     "outils": "Comparatif courtiers",
     "actifs": "bd | ibkr:cash",
     "fichiers_de_départ": "scripts/collect_broker_tariffs.py | scripts/broker_document_sources.py | scripts/broker_profile_sources.json | src/data/broker-tariffs.js",
     "preuves": "preuves/courtiers-recollecte.json | preuves/courtiers-navigateur.json | preuves/voies-officielles.json",
     "tests": "test_broker_tariff_sources.py | test_broker_tariff_profiles.py",
     "statut_lot_1": "bloquée",
-    "preuves_lot_2": "preuves/ibkr-cash-reel.json | preuves/github-official-nav-3.json | preuves/brokers-alternatives.json"
+    "preuves_lot_2": "preuves/brokers-planned-proof.json | preuves/brokers-planned-observation.json | preuves/brokers-planned-consumers.json"
   },
   {
     "action": "P1-04",

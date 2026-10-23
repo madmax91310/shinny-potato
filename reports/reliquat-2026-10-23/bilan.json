@@ -1,12 +1,12 @@
 {
   "baselineMaster": "80bc745142687ae07a34ff90a245d8c88f976159",
   "actions": {
-    "partiellement corrigée": 7,
-    "corrigée": 11,
+    "corrigée": 12,
+    "partiellement corrigée": 6,
     "bloquée": 1
   },
   "initialRemainderRows": 201,
-  "activeRemainderRows": 169,
+  "activeRemainderRows": 168,
   "initialModules": 115,
   "initialModuleTypes": {
     "networkCollectors": 71,
@@ -42,5 +42,8 @@
   "integratedMasterPr886": "c9e79babd15ec6664b08e445aaeacbb70b36fb4e",
   "pythonCombinedTestsPassed": 910,
   "targetedPngDownloadsPassed": 15,
-  "restoredRemakeDiscovery": true
+  "restoredRemakeDiscovery": true,
+  "bourseDirectPlannedEnvironmentRestored": true,
+  "dailyNavNormalProducerSuccesses": 665,
+  "dailyNavNormalProducerFailures": 0
 }
