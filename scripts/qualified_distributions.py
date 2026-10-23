@@ -53,6 +53,14 @@ def reconcile_adjustments(config,result,daily,now):
         raise ValueError('Official dividend reconciliation requires adjusted exchange prices')
     events,source=official_events(config)
     raw=result['rawResponse']['1d']['chart']['result'][0]
+    quote_ref=config['distributionEvidence']['quoteEvidence']
+    quote_body=gzip.decompress((ROOT/quote_ref['path']).read_bytes())
+    if hashlib.sha256(quote_body).hexdigest()!=quote_ref['sha256']:raise ValueError('Historical quote evidence hash changed')
+    reference=json.loads(quote_body)['1d']['chart']['result'][0]
+    if reference['meta']['symbol']!=config['symbol'] or reference['meta']['currency']!=config['currency']:
+        raise ValueError('Historical quote identity/currency changed')
+    reference_zone=ZoneInfo(reference['meta']['exchangeTimezoneName'])
+    reference_prices={dt.datetime.fromtimestamp(t,reference_zone).date().isoformat():reference['indicators']['quote'][0]['close'][i] for i,t in enumerate(reference['timestamp'])}
     zone=ZoneInfo(raw['meta']['exchangeTimezoneName'])
     stamp=lambda t:dt.datetime.fromtimestamp(t,zone).date().isoformat()
     splits=raw.get('events',{}).get('splits',{})
@@ -67,6 +75,9 @@ def reconcile_adjustments(config,result,daily,now):
         if (dt.date.fromisoformat(day)-dt.date.fromisoformat(before)).days>4:
             raise ValueError('Dividend sessions too far apart')
         q0,a0=quotes[before];q1,a1=quotes[day]
+        reference_close=reference_prices.get(before)
+        if reference_close is None or not math.isclose(q0,reference_close,rel_tol=1e-6,abs_tol=1e-8):
+            raise ValueError('Historical quote share units changed; requalify the per-share cash amount')
         factor=1-amount/q0
         if not 0<factor<1 or min(q0,a0,q1,a1)<=0:raise ValueError('Dividend adjustment values invalid')
         observed=(a1/q1)/(a0/q0)

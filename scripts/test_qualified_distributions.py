@@ -46,6 +46,8 @@ class OfficialDistribution(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'hash'):reconcile_adjustments(bad,self.data,self.daily,NOW)
         bad=copy.deepcopy(self.data);bad['rawResponse']['1d']['chart']['result'][0].setdefault('events',{})['splits']={'x':{'date':1704196800,'splitRatio':'2:1'}}
         with self.assertRaisesRegex(ValueError,'split'):reconcile_adjustments(self.source,bad,self.daily,NOW)
+        changed=[(d,q/2,a/2)for d,q,a in self.daily]
+        with self.assertRaisesRegex(ValueError,'share units changed'):reconcile_adjustments(self.source,self.data,changed,NOW)
         daily=[(d,q,a*.99 if d.isoformat()=='2023-06-15'else a)for d,q,a in self.daily]
         with self.assertRaisesRegex(ValueError,'Ambiguous'):reconcile_adjustments(self.source,self.data,daily,NOW)
 if __name__=='__main__':unittest.main()
