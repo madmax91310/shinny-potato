@@ -1,0 +1,28 @@
+// Original financial alerts are immutable; a new fetch never explains their cause.
+import {readFileSync,writeFileSync,existsSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+const original=JSON.parse(readFileSync(new URL('../reports/reliquat-2026-10-23/reconciliation-90-ecarts.json',import.meta.url)))
+const proof=new URL('../reports/data-review-2026-10-23/preuves/financial-final-observation.json.gz',import.meta.url)
+const observed=existsSync(proof)?JSON.parse(gunzipSync(readFileSync(proof))):null
+const executions=JSON.parse(readFileSync(new URL('../reports/data-review-2026-10-23/network-executions.json',import.meta.url)))
+const financialRun=executions.runs.find(r=>r.scope==='financial')?.runUrl??null
+const key=r=>`${r.isin}/${r.year}`
+const diagnostics=new Map((observed?.cases??[]).map(r=>[key(r),r]))
+const shares=new Map((observed?.observations??[]).map(r=>[r.isin,r]))
+const rows=original.cases.map(r=>{
+ const check=diagnostics.get(key(r)),share=shares.get(r.isin)
+ return {id:key(r),isin:r.isin,name:r.name,year:r.year,status:r.status,open:r.status==='anomalie encore inexpliquée',
+  original:{marketReturn:r.recollectedMarketReturn,officialReturn:r.recollectedNavReturn,convertedOfficialReturn:r.recollectedNavConverted,differencePp:r.recollectedDifferencePp,
+   marketCurrency:r.currency,navCurrency:r.navCurrency,marketStartDate:r.marketStartDate,marketEndDate:r.marketEndDate,marketSymbol:r.marketSymbol,marketMic:r.marketMic},
+  reason:r.demonstratedCause,missingPiece:r.missingPiece??null,
+  sourceUrls:[...new Set([r.navSource,...(()=>{try{return JSON.parse(r.marketSource)}catch{return []}})()].filter(Boolean))],
+  latestCheck:share?{runUrl:financialRun,attemptedAt:share.attemptedAt,officialStatus:share.official.status,officialError:share.official.error??null,marketStatus:share.market.status,
+   recollectedAdjustedReturn:check?.recollectedAdjustedReturn??null,currentPublishedAnnual:check?.currentPublishedAnnual??null}:null,
+  proof:'https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv'}
+})
+if(rows.length!==new Set(rows.map(r=>r.id)).size)throw Error('Duplicate original financial case')
+const summary={total:rows.length,open:rows.filter(r=>r.open).length,corrected:rows.filter(r=>r.status==='erreur corrigée').length,nonComparable:rows.filter(r=>r.status==='comparaison non pertinente').length,
+ checked:rows.filter(r=>r.latestCheck).length}
+if(summary.total!==summary.open+summary.corrected+summary.nonComparable)throw Error('Unaccounted financial case')
+writeFileSync(new URL('../public/data/financial-reconciliation.json',import.meta.url),JSON.stringify({schemaVersion:1,summary,sourceCheckedAt:observed?.attemptedAt??null,rows},null,2)+'\n')
+console.log('Original financial cases preserved:',summary)

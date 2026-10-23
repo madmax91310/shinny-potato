@@ -1,0 +1,104 @@
+{
+  "publicationRequested": false,
+  "mergeRequested": false,
+  "runs": [
+    {
+      "scope": "holdings",
+      "runId": 39958464588,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39958464588",
+      "artifactId": 12504312172,
+      "interpretation": "176/181 ; quatre HTTP403 ; dépendance xlrd absente de la sonde, reprise HSBC séparée"
+    },
+    {
+      "scope": "holdings-hsbc",
+      "runId": 39962442463,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962442463",
+      "artifactId": 12505063051,
+      "interpretation": "1/1 valide avec les dépendances du producteur ; total 177/181"
+    },
+    {
+      "scope": "ai",
+      "runId": 39959275848,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39959275848",
+      "artifactId": 12503957238,
+      "interpretation": "job AI réussi ; run ensuite annulé pour arrêter des sondes redondantes ; SWDA 22 octobre validé"
+    },
+    {
+      "scope": "practical",
+      "runId": 39960124696,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960124696",
+      "artifactId": 12503539844,
+      "interpretation": "job practical réussi, 11/11 ; run ensuite annulé pendant installation navigateur d’une sonde FX redondante"
+    },
+    {
+      "scope": "metadata",
+      "runId": 39961260241,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39961260241",
+      "artifactId": 12503574947,
+      "interpretation": "job terminé ; deux distributions renouvelées ; deux PEA inconnus/conflit maintenus"
+    },
+    {
+      "scope": "financial",
+      "runId": 39962852559,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",
+      "artifactId": 12504778522,
+      "interpretation": "53/53 calendriers et 53/53 historiques contrôlés ; 90 cas conservés, 79 causes toujours ouvertes"
+    },
+    {
+      "scope": "fx",
+      "runId": 39963529117,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39963529117",
+      "artifactId": 12505977470,
+      "interpretation": "333 mois, source H.10 qualifiée et snapshots BCE aux mêmes dates"
+    },
+    {
+      "scope": "actors",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12503869778,
+      "interpretation": "11/11 observations ; pièces contractuelles non publiées ou non qualifiées maintenues"
+    },
+    {
+      "scope": "insurance",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12504742439,
+      "interpretation": "contrats courants qualifiés ; contrat Avenir 2 remplacé conservé comme archive, pas réactivé"
+    },
+    {
+      "scope": "discovery",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12505300111,
+      "interpretation": "six sources sans admission : HTTP403 ou état exact L&G absent ; aucun panier PCF qualifié comme portefeuille"
+    },
+    {
+      "scope": "pending",
+      "runId": 39961428567,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39961428567",
+      "artifactId": 12504323808,
+      "interpretation": "79 routes publiques, 94 raccordements conservés ; contrôle d’accès seulement"
+    },
+    {
+      "scope": "routes",
+      "runId": 39962442463,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962442463",
+      "artifactId": 12506280473,
+      "interpretation": "13 routes, dont API exactes WisdomTree ; refus maintenus, accès H.10 réussi"
+    },
+    {
+      "scope": "ssga",
+      "runId": 39964490079,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39964490079",
+      "artifactId": 12506885419,
+      "interpretation": "top10 du 22/10 somme 1.146616 %, classeur sha256 ; conflit initial non clôturé"
+    },
+    {
+      "scope": "brokers-repaired",
+      "runId": 39966451832,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39966451832",
+      "artifactId": 12506572985,
+      "interpretation": "8/8 barèmes et profils validés sur macOS-15 ; routage IBKR anglais unifié, table France exacte. Échecs Linux antérieurs conservés dans les preuves."
+    }
+  ]
+}

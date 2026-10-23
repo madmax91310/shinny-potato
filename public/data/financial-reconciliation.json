@@ -1,0 +1,3073 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "total": 90,
+    "open": 79,
+    "corrected": 10,
+    "nonComparable": 1,
+    "checked": 90
+  },
+  "sourceCheckedAt": "2026-10-23T13:39:26.378371+00:00",
+  "rows": [
+    {
+      "id": "IE00BLNMYC90/2016",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2016,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 14.138110097887434,
+        "officialReturn": 14.14,
+        "convertedOfficialReturn": 17.886555355279388,
+        "differencePp": -3.7484452573919533,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2015-12-31",
+        "marketEndDate": "2016-12-30",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "2015-12-31: 36.9434013367 correspond à la NAV USD 36.9434000000; 2016-12-30: 42.1665000916 correspond à 42.1665000000 USD (ratios 1.0000000362/1.0000000022), malgré l’étiquette EUR. Rendement natif 14.13811010 %, NAV aux bornes civiles 14.13811398 %, différence de bornes -0.00000388 point(s). L’effet de conversion sur cette série déjà en USD est 3.74649332 points. La table DWS indique bien Total return (USD) : supprimer le change serait faux ; la source de niveaux a été remplacée explicitement par la NAV exacte et convertie en EUR.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 14.138110097887434,
+        "currentPublishedAnnual": 14.14
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BLNMYC90/2017",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2017,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 18.843635544494397,
+        "officialReturn": 18.84,
+        "convertedOfficialReturn": 4.451966980738775,
+        "differencePp": 14.391668563755623,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2016-12-30",
+        "marketEndDate": "2017-12-28",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "2016-12-30: 42.1665000916 correspond à la NAV USD 42.1665000000; 2017-12-28: 50.1122016907 correspond à 50.1122000000 USD (ratios 1.0000000022/1.0000000337), malgré l’étiquette EUR. Rendement natif 18.84363554 %, NAV aux bornes civiles 18.84363179 %, différence de bornes 0.00000375 point(s). L’effet de conversion sur cette série déjà en USD est -14.38847318 points. La table DWS indique bien Total return (USD) : supprimer le change serait faux ; la source de niveaux a été remplacée explicitement par la NAV exacte et convertie en EUR.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 18.843635544494397,
+        "currentPublishedAnnual": 18.84
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BLNMYC90/2018",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2018,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": -9.40609272725017,
+        "officialReturn": -9.41,
+        "convertedOfficialReturn": -5.113897816593871,
+        "differencePp": -4.292194910656299,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2017-12-28",
+        "marketEndDate": "2018-12-28",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "2017-12-28: 50.1122016907 correspond à la NAV USD 50.1122000000; 2018-12-28: 45.3986015320 correspond à 45.3986000000 USD (ratios 1.0000000337/1.0000000337), malgré l’étiquette EUR. Rendement natif -9.40609273 %, NAV aux bornes civiles -9.40609273 %, différence de bornes 0.00000000 point(s). L’effet de conversion sur cette série déjà en USD est 4.29628748 points. La table DWS indique bien Total return (USD) : supprimer le change serait faux ; la source de niveaux a été remplacée explicitement par la NAV exacte et convertie en EUR.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -9.40609272725017,
+        "currentPublishedAnnual": -9.41
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BLNMYC90/2019",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2019,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 29.020716040733152,
+        "officialReturn": 29.53,
+        "convertedOfficialReturn": 32.020518070144234,
+        "differencePp": -2.9998020294110823,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "2018-12-28: 45.3986015320 correspond à la NAV USD 45.3986000000; 2019-12-30: 58.5736007690 correspond à 58.5736000000 USD (ratios 1.0000000337/1.0000000131), malgré l’étiquette EUR. Rendement natif 29.02071604 %, NAV aux bornes civiles 29.53262876 %, différence de bornes -0.51191272 point(s). L’effet de conversion sur cette série déjà en USD est 2.48072589 points. La table DWS indique bien Total return (USD) : supprimer le change serait faux ; la source de niveaux a été remplacée explicitement par la NAV exacte et convertie en EUR.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 29.020716040733152,
+        "currentPublishedAnnual": 29.53
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BLNMYC90/2020",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2020,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 11.770662281130795,
+        "officialReturn": 12.17,
+        "convertedOfficialReturn": 2.6907163230380338,
+        "differencePp": 9.079945958092761,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2019-12-30",
+        "marketEndDate": "2020-12-30",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "2019-12-30: 58.5736007690 correspond à la NAV USD 58.5736000000; 2020-12-30: 65.4681015015 correspond à 65.4681000000 USD (ratios 1.0000000131/1.0000000229), malgré l’étiquette EUR. Rendement natif 11.77066228 %, NAV aux bornes civiles 12.17137707 %, différence de bornes -0.40071479 point(s). L’effet de conversion sur cette série déjà en USD est -9.44553637 points. La table DWS indique bien Total return (USD) : supprimer le change serait faux ; la source de niveaux a été remplacée explicitement par la NAV exacte et convertie en EUR.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 11.770662281130795,
+        "currentPublishedAnnual": 12.17
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BLNMYC90/2021",
+      "isin": "IE00BLNMYC90",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 14.498507464425913,
+        "officialReturn": 28.9,
+        "convertedOfficialReturn": 39.65494437577255,
+        "differencePp": -25.15643691134664,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-30",
+        "marketEndDate": "2021-12-30",
+        "marketSymbol": "XDEW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BLNMYC90/2021, XDEW.MI en EUR. Série officielle official exact-share daily NAV en USD: 2020-12-31 (65.963500000) → 2021-12-31 (85.029100000) = 28.90325710 %. NAV aux dates de marché reçues : 2020-12-30 (65.468100000) et 2021-12-30 (85.004700000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de XDEW.MI / ETFP en EUR aux 2020-12-30 et 2021-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 14.498507464425913,
+        "currentPublishedAnnual": 28.9
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B4556L06/2025",
+      "isin": "IE00B4556L06",
+      "name": "iShares Physical Palladium (IPDM)",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 74.06821257636898,
+        "officialReturn": 72.04,
+        "convertedOfficialReturn": 72.04,
+        "differencePp": 2.028212576368972,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "IPDM.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00B4556L06/2025, IPDM.L en USD. Série officielle official income-reinvested performanceData en USD: 2024-12-31 (10876.859500000) → 2025-12-31 (18713.000500000) = 72.04415024 %. NAV aux dates de marché reçues : 2024-12-31 (26.038908000) et 2025-12-31 (44.798418000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IPDM.L / XLON en USD aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 74.06821257636898,
+        "currentPublishedAnnual": 72.04
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BJ5JP436/2024",
+      "isin": "IE00BJ5JP436",
+      "name": "iShares MSCI World Communication Services Sector Advanced UCITS ETF",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 32.61974908550152,
+        "officialReturn": 30.35,
+        "convertedOfficialReturn": 30.35,
+        "differencePp": 2.269749085501516,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "WCMS.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Cause complète non démontrée pour IE00BJ5JP436/2024, WCMS.AS en USD. Série officielle official income-reinvested performanceData en USD: 2023-12-29 (9819.622400000) → 2024-12-31 (12799.727400000) = 30.34846839 %. NAV aux dates de marché reçues : 2023-12-29 (4.702842000) et 2024-12-31 (6.080010000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WCMS.AS / XAMS en USD aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 32.6197352757662,
+        "currentPublishedAnnual": 30.35
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B1XNHC34/2020",
+      "isin": "IE00B1XNHC34",
+      "name": "iShares Global Clean Energy Transition UCITS ETF",
+      "year": 2020,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 117.42816170740258,
+        "officialReturn": 140.24,
+        "convertedOfficialReturn": 119.93775242441527,
+        "differencePp": -2.509590717012685,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2019-12-30",
+        "marketEndDate": "2020-12-30",
+        "marketSymbol": "IQQH.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B1XNHC34/2020, IQQH.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2019-12-31 (3202.263800000) → 2020-12-31 (7693.073900000) = 140.23860558 %. NAV aux dates de marché reçues : 2019-12-30 (6.748922000) et 2020-12-30 (16.161981000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IQQH.DE / XETR en EUR aux 2019-12-30 et 2020-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 117.42819494086936,
+        "currentPublishedAnnual": 140.24
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BJ5JP097/2023",
+      "isin": "IE00BJ5JP097",
+      "name": "iShares MSCI World Financials Sector Advanced UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 14.60479839005524,
+        "officialReturn": 17.41,
+        "convertedOfficialReturn": 17.41,
+        "differencePp": -2.80520160994476,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "WFNS.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Cause complète non démontrée pour IE00BJ5JP097/2023, WFNS.AS en USD. Série officielle official income-reinvested performanceData en USD: 2022-12-30 (9342.860900000) → 2023-12-29 (10969.622300000) = 17.41181226 %. NAV aux dates de marché reçues : 2022-12-30 (4.462887000) et 2023-12-29 (5.064557000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WFNS.AS / XAMS en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 14.604785189836766,
+        "currentPublishedAnnual": 17.41
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BQQP9F84/2018",
+      "isin": "IE00BQQP9F84",
+      "name": "VanEck Gold Miners UCITS ETF",
+      "year": 2018,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -6.814157665525322,
+        "officialReturn": -9,
+        "convertedOfficialReturn": -4.684454148471606,
+        "differencePp": -2.1297035170537155,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2017-12-29",
+        "marketEndDate": "2018-12-28",
+        "marketSymbol": "GDX.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BQQP9F84/2018, GDX.MI en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2017-12-29 (24.369000000) → 2018-12-31 (22.171000000) = -9.01965612 %. NAV aux dates de marché reçues : 2017-12-29 (24.369000000) et 2018-12-28 (21.809000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDX.MI / ETFP en EUR aux 2017-12-29 et 2018-12-28, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -6.814157665525322,
+        "currentPublishedAnnual": -9
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BQQP9F84/2019",
+      "isin": "IE00BQQP9F84",
+      "name": "VanEck Gold Miners UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 46.116909378803506,
+        "officialReturn": 40.2,
+        "convertedOfficialReturn": 42.89567384724944,
+        "differencePp": 3.221235531554065,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "GDX.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BQQP9F84/2019, GDX.MI en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2018-12-31 (22.171000000) → 2019-12-31 (31.073000000) = 40.15154932 %. NAV aux dates de marché reçues : 2018-12-28 (21.809000000) et 2019-12-30 (31.062000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDX.MI / ETFP en EUR aux 2018-12-28 et 2019-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 46.116909378803506,
+        "currentPublishedAnnual": 40.2
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BQQP9F84/2025",
+      "isin": "IE00BQQP9F84",
+      "name": "VanEck Gold Miners UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 131.73992245112623,
+        "officialReturn": 155.7,
+        "convertedOfficialReturn": 126.08232340425528,
+        "differencePp": 5.657599046870956,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "GDX.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BQQP9F84/2025, GDX.MI en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2024-12-31 (38.114000000) → 2025-12-31 (97.444000000) = 155.66458519 %. NAV aux dates de marché reçues : 2024-12-30 (37.942000000) et 2025-12-30 (98.529000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDX.MI / ETFP en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 131.73992245112623,
+        "currentPublishedAnnual": 155.7
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BJGWQN72/2020",
+      "isin": "IE00BJGWQN72",
+      "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+      "year": 2020,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 111.75769170172609,
+        "officialReturn": 109.11,
+        "convertedOfficialReturn": 109.11,
+        "differencePp": 2.647691701726089,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2019-12-31",
+        "marketEndDate": "2020-12-31",
+        "marketSymbol": "WCLD.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BJGWQN72/2020, WCLD.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2019-12-31 (25.242900000) → 2020-12-31 (52.779200000) = 109.08532696 %. NAV aux dates de marché reçues : 2019-12-31 (25.242900000) et 2020-12-31 (52.779200000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WCLD.L / XLON en USD aux 2019-12-31 et 2020-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 111.75769170172609,
+        "currentPublishedAnnual": 109.11
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BJGWQN72/2023",
+      "isin": "IE00BJGWQN72",
+      "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 44.1716432711166,
+        "officialReturn": 39.5,
+        "convertedOfficialReturn": 39.5,
+        "differencePp": 4.671643271116601,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "WCLD.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BJGWQN72/2023, WCLD.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (24.630000000) → 2023-12-29 (34.357000000) = 39.49248883 %. NAV aux dates de marché reçues : 2022-12-30 (24.630000000) et 2023-12-29 (34.357000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WCLD.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 44.1716432711166,
+        "currentPublishedAnnual": 39.5
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BK5BCD43/2023",
+      "isin": "IE00BK5BCD43",
+      "name": "L&G Artificial Intelligence UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 59.582602459451415,
+        "officialReturn": 56.51,
+        "convertedOfficialReturn": 56.51,
+        "differencePp": 3.072602459451417,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "AIAI.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Écart 3.07260246 points pour IE00BK5BCD43/2023: marché 59.58260246 %, officiel publié 56.51 % (USD), converti 56.51 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BK5BCD43, USD, autour de décembre 2022/2023, et clôtures officielles AIAI.L en USD aux 2022-12-30/2023-12-29; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 59.582602459451415,
+        "currentPublishedAnnual": 56.51
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BSPLC413/2023",
+      "isin": "IE00BSPLC413",
+      "name": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 19.112134370844068,
+        "officialReturn": 21.18,
+        "convertedOfficialReturn": 16.968857918552025,
+        "differencePp": 2.1432764522920422,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "ZPRV.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart 2.14327645 points pour IE00BSPLC413/2023: marché 19.11213437 %, officiel publié 21.18 % (USD), converti 16.968857918552025 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BSPLC413, USD, autour de décembre 2022/2023, et clôtures officielles ZPRV.DE en EUR aux 2022-12-30/2023-12-29; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 19.112134370844068,
+        "currentPublishedAnnual": 21.18
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BSPLC413/2024",
+      "isin": "IE00BSPLC413",
+      "name": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 14.068242696173217,
+        "officialReturn": 9.67,
+        "convertedOfficialReturn": 16.647752430455288,
+        "differencePp": -2.5795097342820714,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-30",
+        "marketSymbol": "ZPRV.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart -2.57950973 points pour IE00BSPLC413/2024: marché 14.06824270 %, officiel publié 9.67 % (USD), converti 16.647752430455288 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BSPLC413, USD, autour de décembre 2023/2024, et clôtures officielles ZPRV.DE en EUR aux 2023-12-29/2024-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 14.068242696173217,
+        "currentPublishedAnnual": 9.67
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BSPLC413/2025",
+      "isin": "IE00BSPLC413",
+      "name": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 2.9912515343052393,
+        "officialReturn": 13.89,
+        "convertedOfficialReturn": 0.6981455319148955,
+        "differencePp": 2.293106002390344,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "ZPRV.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart 2.29310600 points pour IE00BSPLC413/2025: marché 2.99125153 %, officiel publié 13.89 % (USD), converti 0.6981455319148955 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BSPLC413, USD, autour de décembre 2024/2025, et clôtures officielles ZPRV.DE en EUR aux 2024-12-30/2025-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 2.9912515343052393,
+        "currentPublishedAnnual": 13.89
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0013411998/2025",
+      "isin": "FR0013411998",
+      "name": "Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 28.539656259130375,
+        "officialReturn": 25.86,
+        "convertedOfficialReturn": 25.86,
+        "differencePp": 2.6796562591303754,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "PTPXH.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0013411998/2025, PTPXH.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2024-12-31 (191.845000000) → 2025-12-31 (241.461500000) = 25.86280591 %. NAV aux dates de marché reçues : 2024-12-31 (38.369000000) et 2025-12-31 (48.292300000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de PTPXH.PA / XPAR en EUR aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 28.539656259130375,
+        "currentPublishedAnnual": 25.86
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B579F325/2021",
+      "isin": "IE00B579F325",
+      "name": "Invesco Physical Gold ETC",
+      "year": 2021,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": -0.006683947647645461,
+        "officialReturn": -3.9,
+        "convertedOfficialReturn": 4.118232385661313,
+        "differencePp": -4.124916333308959,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "SGLD.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Clôtures reportées et aucun volume déclaré dans la source pendant la fenêtre ; calendrier NAV et cotation alternative distincte confirment que le 0 % ne valorise pas le placement. Cause amont du fournisseur non démontrée.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -0.006683947647645461,
+        "currentPublishedAnnual": -3.9
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B579F325/2022",
+      "isin": "IE00B579F325",
+      "name": "Invesco Physical Gold ETC",
+      "year": 2022,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 0,
+        "officialReturn": -0.54,
+        "convertedOfficialReturn": 5.614472154509653,
+        "differencePp": -5.614472154509653,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "SGLD.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Clôtures reportées et aucun volume déclaré dans la source pendant la fenêtre ; calendrier NAV et cotation alternative distincte confirment que le 0 % ne valorise pas le placement. Cause amont du fournisseur non démontrée.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 0,
+        "currentPublishedAnnual": -0.54
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B579F325/2023",
+      "isin": "IE00B579F325",
+      "name": "Invesco Physical Gold ETC",
+      "year": 2023,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 0,
+        "officialReturn": 13.66,
+        "convertedOfficialReturn": 9.710186425339383,
+        "differencePp": -9.710186425339383,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "SGLD.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Clôtures reportées et aucun volume déclaré dans la source pendant la fenêtre ; calendrier NAV et cotation alternative distincte confirment que le 0 % ne valorise pas le placement. Cause amont du fournisseur non démontrée.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 0,
+        "currentPublishedAnnual": 13.66
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B579F325/2024",
+      "isin": "IE00B579F325",
+      "name": "Invesco Physical Gold ETC",
+      "year": 2024,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 62.118771381770465,
+        "officialReturn": 26.44,
+        "convertedOfficialReturn": 34.48474347867938,
+        "differencePp": 27.634027903091088,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "SGLD.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Clôtures reportées et aucun volume déclaré dans la source pendant la fenêtre ; calendrier NAV et cotation alternative distincte confirment que le 0 % ne valorise pas le placement. Cause amont du fournisseur non démontrée.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 62.118771381770465,
+        "currentPublishedAnnual": 26.44
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B42NKQ00/2019",
+      "isin": "IE00B42NKQ00",
+      "name": "iShares S&P 500 Energy Sector UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 8.70390182078351,
+        "officialReturn": 11.19,
+        "convertedOfficialReturn": 11.19,
+        "differencePp": -2.486098179216489,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-31",
+        "marketEndDate": "2019-12-31",
+        "marketSymbol": "IUES.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00B42NKQ00/2019, IUES.L en USD. Série officielle official income-reinvested performanceData en USD: 2018-12-31 (9206.721600000) → 2019-12-31 (10236.610800000) = 11.18627504 %. NAV aux dates de marché reçues : 2018-12-31 (4.545329000) et 2019-12-31 (5.053782000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IUES.L / XLON en USD aux 2018-12-31 et 2019-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 8.70390182078351,
+        "currentPublishedAnnual": 11.19
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "CH0454664001/2024",
+      "isin": "CH0454664001",
+      "name": "21Shares Bitcoin ETP",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 134.49103648001704,
+        "officialReturn": 114.17,
+        "convertedOfficialReturn": 127.7965636731158,
+        "differencePp": 6.694472806901246,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "ABTC.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour CH0454664001/2024, ABTC.PA en EUR. Série officielle official exact ETP NAV adjusted for the 14:1 split; monthly returns and split independently checked en USD: 2023-12-29 (14.498000000) → 2024-12-30 (31.051000000) = 114.17436888 %. NAV aux dates de marché reçues : 2023-12-29 (14.498000000) et 2024-12-30 (31.051000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de ABTC.PA / XPAR en EUR aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 134.49103648001704,
+        "currentPublishedAnnual": 114.17
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "CH0454664001/2025",
+      "isin": "CH0454664001",
+      "name": "21Shares Bitcoin ETP",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -18.26344838283338,
+        "officialReturn": -4.71,
+        "convertedOfficialReturn": -15.74742042553192,
+        "differencePp": -2.5160279573014606,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "ABTC.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour CH0454664001/2025, ABTC.PA en EUR. Série officielle official exact ETP NAV adjusted for the 14:1 split; monthly returns and split independently checked en USD: 2024-12-30 (31.051000000) → 2025-12-30 (29.587000000) = -4.71482400 %. NAV aux dates de marché reçues : 2024-12-30 (31.051000000) et 2025-12-30 (29.587000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de ABTC.PA / XPAR en EUR aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -18.26344838283338,
+        "currentPublishedAnnual": -4.71
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B4JNQZ49/2021",
+      "isin": "IE00B4JNQZ49",
+      "name": "iShares S&P 500 Financials Sector UCITS ETF",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 48.504000681279955,
+        "officialReturn": 34.46,
+        "convertedOfficialReturn": 45.67885043263287,
+        "differencePp": 2.825150248647084,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-30",
+        "marketEndDate": "2021-12-30",
+        "marketSymbol": "QDVH.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B4JNQZ49/2021, QDVH.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2020-12-31 (16117.719600000) → 2021-12-31 (21672.611500000) = 34.46450266 %. NAV aux dates de marché reçues : 2020-12-30 (7.963744000) et 2021-12-30 (10.864187000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de QDVH.DE / XETR en EUR aux 2020-12-30 et 2021-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 48.504000681279955,
+        "currentPublishedAnnual": 34.46
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0013412004/2025",
+      "isin": "FR0013412004",
+      "name": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 37.88488613069323,
+        "officialReturn": 35.75,
+        "convertedOfficialReturn": 35.75,
+        "differencePp": 2.134886130693232,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "PALAT.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0013412004/2025, PALAT.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2024-12-31 (88.892000000) → 2025-12-31 (120.673000000) = 35.75237367 %. NAV aux dates de marché reçues : 2024-12-31 (17.778400000) et 2025-12-31 (24.134600000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de PALAT.PA / XPAR en EUR aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 37.88488613069323,
+        "currentPublishedAnnual": 35.75
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BYTRR863/2016",
+      "isin": "IE00BYTRR863",
+      "name": "SPDR MSCI World Energy UCITS ETF",
+      "year": 2016,
+      "status": "comparaison non pertinente",
+      "open": false,
+      "original": {
+        "marketReturn": 20.20278917933116,
+        "officialReturn": null,
+        "convertedOfficialReturn": null,
+        "differencePp": null,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2015-12-30",
+        "marketEndDate": "2016-12-30",
+        "marketSymbol": "WNRG.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "La source officielle confirme la création de cette part le 29 avril 2016 et affiche 26,33 % pour 2016. La cotation Yahoo commence en 2015 : son rendement décembre 2015-décembre 2016 ne peut pas être comparé à celui de cette part sur une année civile complète. Le collecteur excluait déjà 2016, mais la fusion réintroduisait la valeur ancienne.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 20.20278917933116,
+        "currentPublishedAnnual": null
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BK5BCH80/2025",
+      "isin": "IE00BK5BCH80",
+      "name": "L&G Clean Energy UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 36.66627714660551,
+        "officialReturn": 52.01,
+        "convertedOfficialReturn": 34.40271404255317,
+        "differencePp": 2.263563104052338,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "RENW.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Écart 2.26356310 points pour IE00BK5BCH80/2025: marché 36.66627715 %, officiel publié 52.01 % (USD), converti 34.40271404255317 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BK5BCH80, USD, autour de décembre 2024/2025, et clôtures officielles RENW.MI en EUR aux 2024-12-30/2025-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 36.66627714660551,
+        "currentPublishedAnnual": 52.01
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "LU1737652823/2024",
+      "isin": "LU1737652823",
+      "name": "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 5.5210662288696755,
+        "officialReturn": 7.62,
+        "convertedOfficialReturn": 7.62,
+        "differencePp": -2.0989337711303246,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-30",
+        "marketSymbol": "10AJ.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour LU1737652823/2024, 10AJ.DE en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2023-12-29 (120.512124586) → 2024-12-31 (129.692625905) = 7.61790679 %. NAV aux dates de marché reçues : 2023-12-29 (51.255200000) et 2024-12-30 (53.248800000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de 10AJ.DE / XETR en EUR aux 2023-12-29 et 2024-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 5.5210662288696755,
+        "currentPublishedAnnual": 7.62
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE000M7V94E1/2025",
+      "isin": "IE000M7V94E1",
+      "name": "VanEck Uranium and Nuclear Technologies UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 51.501862846923615,
+        "officialReturn": 68.9,
+        "convertedOfficialReturn": 49.336348936170204,
+        "differencePp": 2.165513910753411,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "NUKL.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE000M7V94E1/2025, NUKL.DE en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2024-12-31 (31.869000000) → 2025-12-31 (53.831000000) = 68.91336408 %. NAV aux dates de marché reçues : 2024-12-30 (31.957000000) et 2025-12-30 (53.838000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de NUKL.DE / XETR en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 51.501862846923615,
+        "currentPublishedAnnual": 68.9
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0010342592/2021",
+      "isin": "FR0010342592",
+      "name": "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 71.21539211884682,
+        "officialReturn": 67.05,
+        "convertedOfficialReturn": 67.05,
+        "differencePp": 4.165392118846825,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "LQQ.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0010342592/2021, LQQ.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2020-12-31 (3700.957300000) → 2021-12-31 (6182.611520000) = 67.05438671 %. NAV aux dates de marché reçues : 2020-12-31 (559.897300000) et 2021-12-31 (935.333000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de LQQ.PA / XPAR en EUR aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 71.21539211884682,
+        "currentPublishedAnnual": 67.05
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0010342592/2023",
+      "isin": "FR0010342592",
+      "name": "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 112.32788823049785,
+        "officialReturn": 110.24,
+        "convertedOfficialReturn": 110.24,
+        "differencePp": 2.087888230497853,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "LQQ.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0010342592/2023, LQQ.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2022-12-30 (2615.951557842) → 2023-12-29 (5499.827540486) = 110.24194901 %. NAV aux dates de marché reçues : 2022-12-30 (395.752800000) et 2023-12-29 (832.038400000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de LQQ.PA / XPAR en EUR aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 112.32788823049785,
+        "currentPublishedAnnual": 110.24
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0010342592/2024",
+      "isin": "FR0010342592",
+      "name": "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 57.018187551787406,
+        "officialReturn": 52.51,
+        "convertedOfficialReturn": 52.51,
+        "differencePp": 4.508187551787408,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "LQQ.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0010342592/2024, LQQ.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2023-12-29 (5499.827540486) → 2024-12-31 (8387.741611569) = 52.50917506 %. NAV aux dates de marché reçues : 2023-12-29 (832.038400000) et 2024-12-31 (1268.934900000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de LQQ.PA / XPAR en EUR aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 57.018187551787406,
+        "currentPublishedAnnual": 52.51
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE000RDRMSD1/2023",
+      "isin": "IE000RDRMSD1",
+      "name": "iShares Blockchain Technology UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 207.25984670187754,
+        "officialReturn": 197.37,
+        "convertedOfficialReturn": 197.37,
+        "differencePp": 9.88984670187753,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "BLKC.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Cause complète non démontrée pour IE000RDRMSD1/2023, BLKC.AS en USD. Série officielle official income-reinvested performanceData en USD: 2022-12-30 (6856.991800000) → 2023-12-29 (20390.647600000) = 197.37016165 %. NAV aux dates de marché reçues : 2022-12-30 (3.474699000) et 2023-12-29 (10.332718000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BLKC.AS / XAMS en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 207.25984670187754,
+        "currentPublishedAnnual": 197.37
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE000RDRMSD1/2025",
+      "isin": "IE000RDRMSD1",
+      "name": "iShares Blockchain Technology UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 25.382369429364026,
+        "officialReturn": 27.43,
+        "convertedOfficialReturn": 27.43,
+        "differencePp": -2.047630570635974,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "BLKC.AS",
+        "marketMic": "XAMS"
+      },
+      "reason": "Cause complète non démontrée pour IE000RDRMSD1/2025, BLKC.AS en USD. Série officielle official income-reinvested performanceData en USD: 2024-12-31 (23993.538300000) → 2025-12-31 (30574.920300000) = 27.42981013 %. NAV aux dates de marché reçues : 2024-12-31 (12.158440000) et 2025-12-31 (15.493477000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BLKC.AS / XAMS en USD aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 25.382369429364026,
+        "currentPublishedAnnual": 27.43
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B43HR379/2018",
+      "isin": "IE00B43HR379",
+      "name": "iShares S&P 500 Health Care Sector UCITS ETF",
+      "year": 2018,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 8.89557907803249,
+        "officialReturn": 6.05,
+        "convertedOfficialReturn": 11.079270742358084,
+        "differencePp": -2.1836916643255933,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2017-12-29",
+        "marketEndDate": "2018-12-28",
+        "marketSymbol": "QDVG.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B43HR379/2018, QDVG.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2017-12-29 (12013.738600000) → 2018-12-31 (12741.001700000) = 6.05359517 %. NAV aux dates de marché reçues : 2017-12-29 (5.908126000) et 2018-12-28 (6.179998000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de QDVG.DE / XETR en EUR aux 2017-12-29 et 2018-12-28, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 8.89557907803249,
+        "currentPublishedAnnual": 6.05
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B43HR379/2019",
+      "isin": "IE00B43HR379",
+      "name": "iShares S&P 500 Health Care Sector UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 24.74645108901854,
+        "officialReturn": 20.35,
+        "convertedOfficialReturn": 22.664011037920616,
+        "differencePp": 2.0824400510979224,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "QDVG.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B43HR379/2019, QDVG.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2018-12-31 (12741.001700000) → 2019-12-31 (15333.941500000) = 20.35114555 %. NAV aux dates de marché reçues : 2018-12-28 (6.179998000) et 2019-12-30 (7.518279000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de QDVG.DE / XETR en EUR aux 2018-12-28 et 2019-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 24.74645108901854,
+        "currentPublishedAnnual": 20.35
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BYWQWR46/2020",
+      "isin": "IE00BYWQWR46",
+      "name": "VanEck Video Gaming and eSports UCITS ETF",
+      "year": 2020,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 65.72735260104561,
+        "officialReturn": 83.7,
+        "convertedOfficialReturn": 68.17584548936514,
+        "differencePp": -2.448492888319535,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2019-12-30",
+        "marketEndDate": "2020-12-30",
+        "marketSymbol": "ESP0.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00BYWQWR46/2020, ESP0.DE en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2019-12-31 (23.145000000) → 2020-12-31 (42.509000000) = 83.66385828 %. NAV aux dates de marché reçues : 2019-12-30 (23.073000000) et 2020-12-30 (42.618000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de ESP0.DE / XETR en EUR aux 2019-12-30 et 2020-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 65.72735260104561,
+        "currentPublishedAnnual": 83.7
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B5W4TY14/2016",
+      "isin": "IE00B5W4TY14",
+      "name": "iShares MSCI Korea UCITS ETF",
+      "year": 2016,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 19.116103302540743,
+        "officialReturn": 8.01,
+        "convertedOfficialReturn": 11.555342946589509,
+        "differencePp": 7.560760355951235,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2015-12-30",
+        "marketEndDate": "2016-12-29",
+        "marketSymbol": "CSKR.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00B5W4TY14/2016, CSKR.MI en EUR. Série officielle official income-reinvested performanceData en USD: 2015-12-31 (11217.851000000) → 2016-12-30 (12116.013500000) = 8.00654689 %. NAV aux dates de marché reçues : 2015-12-30 (112.183179000) et 2016-12-29 (121.164984000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CSKR.MI / ETFP en EUR aux 2015-12-30 et 2016-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 19.116103302540743,
+        "currentPublishedAnnual": 8.01
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B5W4TY14/2017",
+      "isin": "IE00B5W4TY14",
+      "name": "iShares MSCI Korea UCITS ETF",
+      "year": 2017,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 22.34566559492577,
+        "officialReturn": 46.36,
+        "convertedOfficialReturn": 28.64010339364629,
+        "differencePp": -6.294437798720519,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2016-12-29",
+        "marketEndDate": "2017-12-29",
+        "marketSymbol": "CSKR.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00B5W4TY14/2017, CSKR.MI en EUR. Série officielle official income-reinvested performanceData en USD: 2016-12-30 (12116.013500000) → 2017-12-29 (17733.402900000) = 46.36334715 %. NAV aux dates de marché reçues : 2016-12-29 (121.164984000) et 2017-12-29 (177.338640000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CSKR.MI / ETFP en EUR aux 2016-12-29 et 2017-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 22.34566559492577,
+        "currentPublishedAnnual": 46.36
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BYXG2H39/2018",
+      "isin": "IE00BYXG2H39",
+      "name": "iShares Nasdaq US Biotechnology UCITS ETF",
+      "year": 2018,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -11.222790385934712,
+        "officialReturn": -9.2,
+        "convertedOfficialReturn": -9.2,
+        "differencePp": -2.0227903859347123,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2017-12-29",
+        "marketEndDate": "2018-12-31",
+        "marketSymbol": "BTEC.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BYXG2H39/2018, BTEC.L en USD. Série officielle official income-reinvested performanceData en USD: 2017-12-29 (9565.566900000) → 2018-12-31 (8685.318300000) = -9.20226275 %. NAV aux dates de marché reçues : 2017-12-29 (4.773413000) et 2018-12-31 (4.334151000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BTEC.L / XLON en USD aux 2017-12-29 et 2018-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -11.222790385934712,
+        "currentPublishedAnnual": -9.2
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BYXG2H39/2023",
+      "isin": "IE00BYXG2H39",
+      "name": "iShares Nasdaq US Biotechnology UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 6.222688295405088,
+        "officialReturn": 4.22,
+        "convertedOfficialReturn": 4.22,
+        "differencePp": 2.002688295405088,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "BTEC.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BYXG2H39/2023, BTEC.L en USD. Série officielle official income-reinvested performanceData en USD: 2022-12-30 (12140.886400000) → 2023-12-29 (12653.180100000) = 4.21957412 %. NAV aux dates de marché reçues : 2022-12-30 (6.058550000) et 2023-12-29 (6.314195000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BTEC.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 6.222688295405088,
+        "currentPublishedAnnual": 4.22
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BDFBTQ78/2019",
+      "isin": "IE00BDFBTQ78",
+      "name": "VanEck S&P Global Mining UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 26.920505418074047,
+        "officialReturn": 27.4,
+        "convertedOfficialReturn": 29.849563824105395,
+        "differencePp": -2.9290584060313485,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "GDIG.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BDFBTQ78/2019, GDIG.MI en EUR. Série officielle official accumulated exact-share NAV en USD: 2018-12-31 (16.761000000) → 2019-12-31 (21.348000000) = 27.36710220 %. NAV aux dates de marché reçues : 2018-12-28 (16.653000000) et 2019-12-30 (21.313000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDIG.MI / ETFP en EUR aux 2018-12-28 et 2019-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 26.920505418074047,
+        "currentPublishedAnnual": 27.4
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BDFBTQ78/2021",
+      "isin": "IE00BDFBTQ78",
+      "name": "VanEck S&P Global Mining UCITS ETF",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 17.01754911381066,
+        "officialReturn": 9.9,
+        "convertedOfficialReturn": 19.069653893695925,
+        "differencePp": -2.0521047798852656,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-30",
+        "marketEndDate": "2021-12-30",
+        "marketSymbol": "GDIG.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BDFBTQ78/2021, GDIG.MI en EUR. Série officielle official accumulated exact-share NAV en USD: 2020-12-31 (27.645000000) → 2021-12-31 (30.378000000) = 9.88605534 %. NAV aux dates de marché reçues : 2020-12-30 (27.890000000) et 2021-12-30 (30.208000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDIG.MI / ETFP en EUR aux 2020-12-30 et 2021-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 17.01754911381066,
+        "currentPublishedAnnual": 9.9
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BDFBTQ78/2025",
+      "isin": "IE00BDFBTQ78",
+      "name": "VanEck S&P Global Mining UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 72.02255510392865,
+        "officialReturn": 90.5,
+        "convertedOfficialReturn": 68.43442553191488,
+        "differencePp": 3.58812957201377,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "GDIG.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BDFBTQ78/2025, GDIG.MI en EUR. Série officielle official accumulated exact-share NAV en USD: 2024-12-31 (29.724000000) → 2025-12-31 (56.627000000) = 90.50935271 %. NAV aux dates de marché reçues : 2024-12-30 (29.675000000) et 2025-12-30 (57.013000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GDIG.MI / ETFP en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 72.02255510392865,
+        "currentPublishedAnnual": 90.5
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE000YU9K6K2/2025",
+      "isin": "IE000YU9K6K2",
+      "name": "VanEck Space Innovators UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 76.1962431817486,
+        "officialReturn": 96,
+        "convertedOfficialReturn": 73.29736170212765,
+        "differencePp": 2.898881479620954,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "JEDI.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE000YU9K6K2/2025, JEDI.MI en EUR. Série officielle official exact-share accumulated NAV; issuer confirms no distribution and reinvestment en USD: 2024-12-31 (34.317000000) → 2025-12-31 (67.250000000) = 95.96701343 %. NAV aux dates de marché reçues : 2024-12-30 (34.683000000) et 2025-12-30 (67.687000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de JEDI.MI / ETFP en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 76.1962431817486,
+        "currentPublishedAnnual": 96
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0010755611/2021",
+      "isin": "FR0010755611",
+      "name": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 87.00833061193265,
+        "officialReturn": 81.38,
+        "convertedOfficialReturn": 81.38,
+        "differencePp": 5.628330611932654,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "CL2.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0010755611/2021, CL2.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2020-12-31 (2054.089890000) → 2021-12-31 (3725.674560000) = 81.37836022 %. NAV aux dates de marché reçues : 2020-12-31 (2559.396000000) et 2021-12-31 (4642.190500000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CL2.PA / XPAR en EUR aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 87.00833061193265,
+        "currentPublishedAnnual": 81.38
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0010755611/2024",
+      "isin": "FR0010755611",
+      "name": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 68.1683745636741,
+        "officialReturn": 65.62,
+        "convertedOfficialReturn": 65.62,
+        "differencePp": 2.548374563674102,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "CL2.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0010755611/2024, CL2.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2023-12-29 (3606.910473051) → 2024-12-31 (5973.756616637) = 65.61976410 %. NAV aux dates de marché reçues : 2023-12-29 (14.980700000) et 2024-12-31 (24.811000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CL2.PA / XPAR en EUR aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 68.1683745636741,
+        "currentPublishedAnnual": 65.62
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0011871110/2021",
+      "isin": "FR0011871110",
+      "name": "Amundi PEA Nasdaq-100 UCITS ETF",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 38.741561890474976,
+        "officialReturn": 36.59,
+        "convertedOfficialReturn": 36.59,
+        "differencePp": 2.151561890474973,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "PUST.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0011871110/2021, PUST.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2020-12-31 (416.752000000) → 2021-12-31 (569.242000000) = 36.59010635 %. NAV aux dates de marché reçues : 2020-12-31 (41.675200000) et 2021-12-31 (56.924200000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de PUST.PA / XPAR en EUR aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 38.741561890474976,
+        "currentPublishedAnnual": 36.59
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0011871128/2021",
+      "isin": "FR0011871128",
+      "name": "Amundi PEA S&P 500 UCITS ETF",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 40.47078927554559,
+        "officialReturn": 38.23,
+        "convertedOfficialReturn": 38.23,
+        "differencePp": 2.2407892755455947,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "PSP5.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Cause complète non démontrée pour FR0011871128/2021, PSP5.PA en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2020-12-31 (253.332000000) → 2021-12-31 (350.182000000) = 38.23046437 %. NAV aux dates de marché reçues : 2020-12-31 (25.333200000) et 2021-12-31 (35.018200000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de PSP5.PA / XPAR en EUR aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 40.47078927554559,
+        "currentPublishedAnnual": 38.23
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "DE000A27Z304/2021",
+      "isin": "DE000A27Z304",
+      "name": "Bitwise Physical Bitcoin ETP",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 81.36168361344392,
+        "officialReturn": 55.46,
+        "convertedOfficialReturn": 68.43101359703338,
+        "differencePp": 12.93067001641053,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-30",
+        "marketEndDate": "2021-12-30",
+        "marketSymbol": "BTCE.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart 12.93067002 points pour DE000A27Z304/2021: marché 81.36168361 %, officiel publié 55.46 % (USD), converti 68.43101359703338 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de DE000A27Z304, USD, autour de décembre 2020/2021, et clôtures officielles BTCE.DE en EUR aux 2020-12-30/2021-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 81.36168361344392,
+        "currentPublishedAnnual": 55.46
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "DE000A27Z304/2023",
+      "isin": "DE000A27Z304",
+      "name": "Bitwise Physical Bitcoin ETP",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 146.52114437796624,
+        "officialReturn": 150.42,
+        "convertedOfficialReturn": 141.71762171945704,
+        "differencePp": 4.803522658509195,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "BTCE.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart 4.80352266 points pour DE000A27Z304/2023: marché 146.52114438 %, officiel publié 150.42 % (USD), converti 141.71762171945704 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de DE000A27Z304, USD, autour de décembre 2022/2023, et clôtures officielles BTCE.DE en EUR aux 2022-12-30/2023-12-29; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 146.52114437796624,
+        "currentPublishedAnnual": 150.42
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "DE000A27Z304/2024",
+      "isin": "DE000A27Z304",
+      "name": "Bitwise Physical Bitcoin ETP",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 125.7885994804243,
+        "officialReturn": 120.73,
+        "convertedOfficialReturn": 134.7739435941862,
+        "differencePp": -8.985344113761897,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-30",
+        "marketSymbol": "BTCE.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart -8.98534411 points pour DE000A27Z304/2024: marché 125.78859948 %, officiel publié 120.73 % (USD), converti 134.7739435941862 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de DE000A27Z304, USD, autour de décembre 2023/2024, et clôtures officielles BTCE.DE en EUR aux 2023-12-29/2024-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 125.7885994804243,
+        "currentPublishedAnnual": 120.73
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0013416716/2025",
+      "isin": "FR0013416716",
+      "name": "Amundi Physical Gold ETC",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 48.99362681503043,
+        "officialReturn": 64.8,
+        "convertedOfficialReturn": 45.711251063829785,
+        "differencePp": 3.2823757512006466,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "GLDA.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour FR0013416716/2025, GLDA.DE en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en USD: 2024-12-31 (201.822165526) → 2025-12-31 (332.610452717) = 64.80372800 %. NAV aux dates de marché reçues : 2024-12-30 (103.557400000) et 2025-12-30 (173.153700000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de GLDA.DE / XETR en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 48.99362681503043,
+        "currentPublishedAnnual": 64.8
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE000U9ODG19/2025",
+      "isin": "IE000U9ODG19",
+      "name": "iShares Global Aerospace & Defence UCITS ETF",
+      "year": 2025,
+      "status": "erreur corrigée",
+      "open": false,
+      "original": {
+        "marketReturn": 0,
+        "officialReturn": 54.55,
+        "convertedOfficialReturn": 54.55,
+        "differencePp": -54.55,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "DFND.SW",
+        "marketMic": "XSWX"
+      },
+      "reason": "Clôtures reportées et aucun volume déclaré dans la source pendant la fenêtre ; calendrier NAV et cotation alternative distincte confirment que le 0 % ne valorise pas le placement. Cause amont du fournisseur non démontrée.",
+      "missingPiece": null,
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 0,
+        "currentPublishedAnnual": 54.55
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B2QWCY14/2023",
+      "isin": "IE00B2QWCY14",
+      "name": "iShares S&P SmallCap 600 UCITS ETF",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 13.501524089636096,
+        "officialReturn": 15.43,
+        "convertedOfficialReturn": 11.418676923076942,
+        "differencePp": 2.0828471665591533,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "IUS3.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B2QWCY14/2023, IUS3.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2022-12-30 (34647.483900000) → 2023-12-29 (39992.282300000) = 15.42622378 %. NAV aux dates de marché reçues : 2022-12-30 (77.170834000) et 2023-12-29 (88.037800000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IUS3.DE / XETR en EUR aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 13.501549181967821,
+        "currentPublishedAnnual": 15.43
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B2QWCY14/2024",
+      "isin": "IE00B2QWCY14",
+      "name": "iShares S&P SmallCap 600 UCITS ETF",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 12.835157549223064,
+        "officialReturn": 8.04,
+        "convertedOfficialReturn": 14.914043700067392,
+        "differencePp": -2.078886150844328,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-30",
+        "marketSymbol": "IUS3.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B2QWCY14/2024, IUS3.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2023-12-29 (39992.282300000) → 2024-12-31 (43208.280400000) = 8.04154681 %. NAV aux dates de marché reçues : 2023-12-29 (88.037800000) et 2024-12-30 (93.778494000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IUS3.DE / XETR en EUR aux 2023-12-29 et 2024-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 12.835167288070037,
+        "currentPublishedAnnual": 8.04
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B2QWCY14/2025",
+      "isin": "IE00B2QWCY14",
+      "name": "iShares S&P SmallCap 600 UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -4.3507947892688525,
+        "officialReturn": 5.55,
+        "convertedOfficialReturn": -6.675834042553186,
+        "differencePp": 2.3250392532843334,
+        "marketCurrency": "EUR",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "IUS3.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour IE00B2QWCY14/2025, IUS3.DE en EUR. Série officielle official income-reinvested performanceData en USD: 2024-12-31 (43208.280400000) → 2025-12-31 (45607.829200000) = 5.55344665 %. NAV aux dates de marché reçues : 2024-12-30 (93.778494000) et 2025-12-30 (99.137198000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IUS3.DE / XETR en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -4.350803044788787,
+        "currentPublishedAnnual": 5.55
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BD1F4L37/2017",
+      "isin": "IE00BD1F4L37",
+      "name": "iShares Edge MSCI USA Quality Factor UCITS ETF",
+      "year": 2017,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 50.22922039282369,
+        "officialReturn": 21.82,
+        "convertedOfficialReturn": 21.82,
+        "differencePp": 28.40922039282369,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2016-12-30",
+        "marketEndDate": "2017-12-29",
+        "marketSymbol": "IUQA.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BD1F4L37/2017, IUQA.L en USD. Série officielle official income-reinvested performanceData en USD: 2016-12-30 (10431.044600000) → 2017-12-29 (12706.679800000) = 21.81598572 %. NAV aux dates de marché reçues : 2016-12-30 (5.203730000) et 2017-12-29 (6.338975000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IUQA.L / XLON en USD aux 2016-12-30 et 2017-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 50.22922039282369,
+        "currentPublishedAnnual": 21.82
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BQN1K562/2016",
+      "isin": "IE00BQN1K562",
+      "name": "iShares Edge MSCI Europe Quality Factor UCITS ETF",
+      "year": 2016,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -3.7261725008423174,
+        "officialReturn": -1.3,
+        "convertedOfficialReturn": -1.3,
+        "differencePp": -2.426172500842317,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2015-12-30",
+        "marketEndDate": "2016-12-30",
+        "marketSymbol": "IEQU.MI",
+        "marketMic": "ETFP"
+      },
+      "reason": "Cause complète non démontrée pour IE00BQN1K562/2016, IEQU.MI en EUR. Série officielle official income-reinvested performanceData en EUR: 2015-12-31 (11153.491100000) → 2016-12-30 (11008.954400000) = -1.29588753 %. NAV aux dates de marché reçues : 2015-12-30 (5.668618000) et 2016-12-30 (5.565229000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de IEQU.MI / ETFP en EUR aux 2015-12-30 et 2016-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -3.7261725008423174,
+        "currentPublishedAnnual": -1.3
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BQT3WG13/2017",
+      "isin": "IE00BQT3WG13",
+      "name": "iShares MSCI China A UCITS ETF (Acc)",
+      "year": 2017,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 30.026381868727924,
+        "officialReturn": 27.82,
+        "convertedOfficialReturn": 27.82,
+        "differencePp": 2.2063818687279237,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2016-12-30",
+        "marketEndDate": "2017-12-29",
+        "marketSymbol": "CNYA.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BQT3WG13/2017, CNYA.L en USD. Série officielle official income-reinvested performanceData en USD: 2016-12-30 (6672.304100000) → 2017-12-29 (8528.682500000) = 27.82214917 %. NAV aux dates de marché reçues : 2016-12-30 (3.442624000) et 2017-12-29 (4.400436000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CNYA.L / XLON en USD aux 2016-12-30 et 2017-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 30.026381868727924,
+        "currentPublishedAnnual": 27.82
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0007054358/2020",
+      "isin": "FR0007054358",
+      "name": "Amundi EURO STOXX 50 II UCITS ETF Acc",
+      "year": 2020,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -5.109593639635057,
+        "officialReturn": -2.84,
+        "convertedOfficialReturn": -2.84,
+        "differencePp": -2.2695936396350573,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2019-12-30",
+        "marketEndDate": "2020-12-30",
+        "marketSymbol": "LYSX.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour FR0007054358/2020, LYSX.DE en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en EUR: 2019-12-31 (147.975530000) → 2020-12-31 (143.766030000) = -2.84472710 %. NAV aux dates de marché reçues : 2019-12-30 (36.303000000) et 2020-12-30 (34.609700000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de LYSX.DE / XETR en EUR aux 2019-12-30 et 2020-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -5.109593639635057,
+        "currentPublishedAnnual": -2.84
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "GB00B15KXQ89/2018",
+      "isin": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "year": 2018,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -19.354838709677423,
+        "officialReturn": -22.17,
+        "convertedOfficialReturn": -22.17,
+        "differencePp": 2.8151612903225782,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2017-12-29",
+        "marketEndDate": "2018-12-31",
+        "marketSymbol": "COPA.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour GB00B15KXQ89/2018, COPA.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2017-12-29 (31.204830000) → 2018-12-31 (24.285430000) = -22.17413138 %. NAV aux dates de marché reçues : 2017-12-29 (31.204830000) et 2018-12-31 (24.285430000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COPA.L / XLON en USD aux 2017-12-29 et 2018-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -19.354838709677423,
+        "currentPublishedAnnual": -22.17
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "GB00B15KXQ89/2019",
+      "isin": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 3.68000030517579,
+        "officialReturn": 6.16,
+        "convertedOfficialReturn": 6.16,
+        "differencePp": -2.47999969482421,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-31",
+        "marketEndDate": "2019-12-31",
+        "marketSymbol": "COPA.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour GB00B15KXQ89/2019, COPA.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2018-12-31 (24.285430000) → 2019-12-31 (25.781620000) = 6.16085447 %. NAV aux dates de marché reçues : 2018-12-31 (24.285430000) et 2019-12-31 (25.781620000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COPA.L / XLON en USD aux 2018-12-31 et 2019-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 3.68000030517579,
+        "currentPublishedAnnual": 6.16
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BDVPNG13/2019",
+      "isin": "IE00BDVPNG13",
+      "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 45.05988936235408,
+        "officialReturn": 47.74,
+        "convertedOfficialReturn": 47.74,
+        "differencePp": -2.6801106376459245,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2018-12-31",
+        "marketEndDate": "2019-12-31",
+        "marketSymbol": "WTAI.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BDVPNG13/2019, WTAI.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2018-12-31 (22.981100000) → 2019-12-31 (33.945500000) = 47.71050994 %. NAV aux dates de marché reçues : 2018-12-31 (22.981100000) et 2019-12-31 (33.945500000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WTAI.L / XLON en USD aux 2018-12-31 et 2019-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 45.05988936235408,
+        "currentPublishedAnnual": 47.74
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BDVPNG13/2023",
+      "isin": "IE00BDVPNG13",
+      "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 57.329990267082835,
+        "officialReturn": 55.14,
+        "convertedOfficialReturn": 55.14,
+        "differencePp": 2.189990267082834,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "WTAI.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour IE00BDVPNG13/2023, WTAI.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (39.986000000) → 2023-12-29 (62.042000000) = 55.15930576 %. NAV aux dates de marché reçues : 2022-12-30 (39.986000000) et 2023-12-29 (62.042000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WTAI.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 57.329990267082835,
+        "currentPublishedAnnual": 55.14
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "LU2089238385/2025",
+      "isin": "LU2089238385",
+      "name": "Amundi Prime Japan UCITS ETF",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 12.83549154745418,
+        "officialReturn": 24.5,
+        "convertedOfficialReturn": 10.277418653919291,
+        "differencePp": 2.5580728935348898,
+        "marketCurrency": "EUR",
+        "navCurrency": "JPY",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "PRAJ.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour LU2089238385/2025, PRAJ.DE en EUR. Série officielle official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency en JPY: 2024-12-31 (180.198783646) → 2025-12-31 (224.347319867) = 24.49990801 %. NAV aux dates de marché reçues : 2024-12-30 (4528.642000000) et 2025-12-30 (5637.979100000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de PRAJ.DE / XETR en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 12.83549154745418,
+        "currentPublishedAnnual": 24.5
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "LU1875395870/2019",
+      "isin": "LU1875395870",
+      "name": "Xtrackers Nikkei 225 UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 16.82372502345202,
+        "officialReturn": 19.46,
+        "convertedOfficialReturn": 19.46,
+        "differencePp": -2.6362749765479805,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "XDJE.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour LU1875395870/2019, XDJE.DE en EUR. Série officielle official exact-share daily NAV en EUR: 2018-12-28 (28.542700000) → 2019-12-30 (34.096800000) = 19.45891594 %. NAV aux dates de marché reçues : 2018-12-28 (28.542700000) et 2019-12-30 (34.096800000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de XDJE.DE / XETR en EUR aux 2018-12-28 et 2019-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 16.823722596943313,
+        "currentPublishedAnnual": 19.46
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "LU2196470426/2025",
+      "isin": "LU2196470426",
+      "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 16.157986575670957,
+        "officialReturn": 28.24,
+        "convertedOfficialReturn": 13.590170025531002,
+        "differencePp": 2.5678165501399555,
+        "marketCurrency": "EUR",
+        "navCurrency": "JPY",
+        "marketStartDate": "2024-12-30",
+        "marketEndDate": "2025-12-30",
+        "marketSymbol": "XNKY.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour LU2196470426/2025, XNKY.DE en EUR. Série officielle official exact-share daily NAV en JPY: 2024-12-31 (12912.294400000) → 2025-12-31 (16558.986500000) = 28.24201484 %. NAV aux dates de marché reçues : 2024-12-30 (12912.308600000) et 2025-12-30 (16559.008600000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de XNKY.DE / XETR en EUR aux 2024-12-30 et 2025-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 16.157986575670957,
+        "currentPublishedAnnual": 28.24
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "FR0011550185/2021",
+      "isin": "FR0011550185",
+      "name": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 40.401087914453136,
+        "officialReturn": 38.2,
+        "convertedOfficialReturn": 38.2,
+        "differencePp": 2.201087914453133,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "ESE.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Écart 2.20108791 points pour FR0011550185/2021: marché 40.40108791 %, officiel publié 38.2 % (EUR), converti 38.2 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de FR0011550185, EUR, autour de décembre 2020/2021, et clôtures officielles ESE.PA en EUR aux 2020-12-31/2021-12-31; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 40.401087914453136,
+        "currentPublishedAnnual": 38.2
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00B4K6B022/2024",
+      "isin": "IE00B4K6B022",
+      "name": "HSBC EURO STOXX 50",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 14.482925816540426,
+        "officialReturn": 11.6,
+        "convertedOfficialReturn": 11.6,
+        "differencePp": 2.8829258165404266,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "50E.PA",
+        "marketMic": "XPAR"
+      },
+      "reason": "Écart 2.88292582 points pour IE00B4K6B022/2024: marché 14.48292582 %, officiel publié 11.6 % (EUR), converti 11.6 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00B4K6B022, EUR, autour de décembre 2023/2024, et clôtures officielles 50E.PA en EUR aux 2023-12-29/2024-12-31; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 14.48291688711194,
+        "currentPublishedAnnual": 11.6
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "IE00BSPLC298/2019",
+      "isin": "IE00BSPLC298",
+      "name": "State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 29.015973025951936,
+        "officialReturn": 26.95,
+        "convertedOfficialReturn": 26.95,
+        "differencePp": 2.065973025951937,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "ZPRX.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Écart 2.06597303 points pour IE00BSPLC298/2019: marché 29.01597303 %, officiel publié 26.95 % (EUR), converti 26.95 %. Pas de cause attribuée sans les observations quotidiennes/ajustements spécifiques.",
+      "missingPiece": "NAV/rendement total quotidiens officiels de IE00BSPLC298, EUR, autour de décembre 2018/2019, et clôtures officielles ZPRX.DE en EUR aux 2018-12-28/2019-12-30; identité historique et distributions/splits à recouper.",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 29.015973025951936,
+        "currentPublishedAnnual": 26.95
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00B78CGV99/2021",
+      "isin": "JE00B78CGV99",
+      "name": "WisdomTree Brent Crude Oil",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 66.25574221682326,
+        "officialReturn": 63.87,
+        "convertedOfficialReturn": 63.87,
+        "differencePp": 2.3857422168232674,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "BRNT.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00B78CGV99/2021, BRNT.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2020-12-31 (20.985660000) → 2021-12-31 (34.390000000) = 63.87380716 %. NAV aux dates de marché reçues : 2020-12-31 (20.985660000) et 2021-12-31 (34.390000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BRNT.L / XLON en USD aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 66.25574221682326,
+        "currentPublishedAnnual": 63.87
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00B78CGV99/2022",
+      "isin": "JE00B78CGV99",
+      "name": "WisdomTree Brent Crude Oil",
+      "year": 2022,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 35.09741177389305,
+        "officialReturn": 39.5,
+        "convertedOfficialReturn": 39.5,
+        "differencePp": -4.40258822610695,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "BRNT.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00B78CGV99/2022, BRNT.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2021-12-31 (34.390000000) → 2022-12-30 (47.976000000) = 39.50567025 %. NAV aux dates de marché reçues : 2021-12-31 (34.390000000) et 2022-12-30 (47.976000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BRNT.L / XLON en USD aux 2021-12-31 et 2022-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 35.09741177389305,
+        "currentPublishedAnnual": 39.5
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00B78CGV99/2023",
+      "isin": "JE00B78CGV99",
+      "name": "WisdomTree Brent Crude Oil",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 1.0761945971865083,
+        "officialReturn": -2.59,
+        "convertedOfficialReturn": -2.59,
+        "differencePp": 3.666194597186508,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "BRNT.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00B78CGV99/2023, BRNT.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (47.976000000) → 2023-12-29 (46.735000000) = -2.58671002 %. NAV aux dates de marché reçues : 2022-12-30 (47.976000000) et 2023-12-29 (46.735000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de BRNT.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 1.0761945971865083,
+        "currentPublishedAnnual": -2.59
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "GB00B15KXV33/2021",
+      "isin": "GB00B15KXV33",
+      "name": "WisdomTree WTI Crude Oil",
+      "year": 2021,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 67.4842290653903,
+        "officialReturn": 65.13,
+        "convertedOfficialReturn": 65.13,
+        "differencePp": 2.3542290653902995,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2020-12-31",
+        "marketEndDate": "2021-12-31",
+        "marketSymbol": "CRUD.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour GB00B15KXV33/2021, CRUD.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2020-12-31 (4.332640000) → 2021-12-31 (7.154000000) = 65.11872669 %. NAV aux dates de marché reçues : 2020-12-31 (4.332640000) et 2021-12-31 (7.154000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CRUD.L / XLON en USD aux 2020-12-31 et 2021-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 67.4842290653903,
+        "currentPublishedAnnual": 65.13
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "GB00B15KXV33/2022",
+      "isin": "GB00B15KXV33",
+      "name": "WisdomTree WTI Crude Oil",
+      "year": 2022,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 25.470712090116244,
+        "officialReturn": 29.33,
+        "convertedOfficialReturn": 29.33,
+        "differencePp": -3.8592879098837543,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "CRUD.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour GB00B15KXV33/2022, CRUD.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2021-12-31 (7.154000000) → 2022-12-30 (9.253000000) = 29.34022924 %. NAV aux dates de marché reçues : 2021-12-31 (7.154000000) et 2022-12-30 (9.253000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CRUD.L / XLON en USD aux 2021-12-31 et 2022-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 25.470712090116244,
+        "currentPublishedAnnual": 29.33
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "GB00B15KXV33/2023",
+      "isin": "GB00B15KXV33",
+      "name": "WisdomTree WTI Crude Oil",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 0.43073162892288686,
+        "officialReturn": -2.65,
+        "convertedOfficialReturn": -2.65,
+        "differencePp": 3.0807316289228868,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "CRUD.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour GB00B15KXV33/2023, CRUD.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (9.253000000) → 2023-12-29 (9.008000000) = -2.64778991 %. NAV aux dates de marché reçues : 2022-12-30 (9.253000000) et 2023-12-29 (9.008000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de CRUD.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 0.43073162892288686,
+        "currentPublishedAnnual": -2.65
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB334/2022",
+      "isin": "JE00BN7KB334",
+      "name": "WisdomTree Natural Gas",
+      "year": 2022,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 20.20201612723134,
+        "officialReturn": 17.51,
+        "convertedOfficialReturn": 17.51,
+        "differencePp": 2.692016127231337,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "NGAS.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB334/2022, NGAS.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2021-12-31 (26.745000000) → 2022-12-30 (32.094000000) = 20.00000000 %. NAV aux dates de marché reçues : 2021-12-31 (26.745000000) et 2022-12-30 (32.094000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de NGAS.L / XLON en USD aux 2021-12-31 et 2022-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 20.20201612723134,
+        "currentPublishedAnnual": 17.51
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB557/2022",
+      "isin": "JE00BN7KB557",
+      "name": "WisdomTree Coffee",
+      "year": 2022,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -20.978504813769938,
+        "officialReturn": -23.12,
+        "convertedOfficialReturn": -23.12,
+        "differencePp": 2.1414951862300633,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "COFF.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB557/2022, COFF.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2021-12-31 (31.027000000) → 2022-12-30 (23.851000000) = -23.12824314 %. NAV aux dates de marché reçues : 2021-12-31 (31.027000000) et 2022-12-30 (23.851000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COFF.L / XLON en USD aux 2021-12-31 et 2022-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -20.978504813769938,
+        "currentPublishedAnnual": -23.12
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB557/2024",
+      "isin": "JE00BN7KB557",
+      "name": "WisdomTree Coffee",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 74.90992572835819,
+        "officialReturn": 85.28,
+        "convertedOfficialReturn": 85.28,
+        "differencePp": -10.370074271641812,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "COFF.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB557/2024, COFF.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2023-12-29 (29.347000000) → 2024-12-31 (54.375000000) = 85.28299315 %. NAV aux dates de marché reçues : 2023-12-29 (29.347000000) et 2024-12-31 (54.375000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COFF.L / XLON en USD aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 74.90992572835819,
+        "currentPublishedAnnual": 85.28
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB557/2025",
+      "isin": "JE00BN7KB557",
+      "name": "WisdomTree Coffee",
+      "year": 2025,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 29.868907289286195,
+        "officialReturn": 26.83,
+        "convertedOfficialReturn": 26.83,
+        "differencePp": 3.038907289286197,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2024-12-31",
+        "marketEndDate": "2025-12-31",
+        "marketSymbol": "COFF.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB557/2025, COFF.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2024-12-31 (54.375000000) → 2025-12-31 (68.964600000) = 26.83144828 %. NAV aux dates de marché reçues : 2024-12-31 (54.375000000) et 2025-12-31 (68.964600000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COFF.L / XLON en USD aux 2024-12-31 et 2025-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 29.868907289286195,
+        "currentPublishedAnnual": 26.83
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00B2QXZK10/2023",
+      "isin": "JE00B2QXZK10",
+      "name": "WisdomTree Cocoa",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 69.21052852572087,
+        "officialReturn": 66.48,
+        "convertedOfficialReturn": 66.48,
+        "differencePp": 2.730528525720871,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "COCO.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00B2QXZK10/2023, COCO.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (2.483000000) → 2023-12-29 (4.133000000) = 66.45187273 %. NAV aux dates de marché reçues : 2022-12-30 (2.483000000) et 2023-12-29 (4.133000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COCO.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 69.21052852572087,
+        "currentPublishedAnnual": 66.48
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00B2QXZK10/2024",
+      "isin": "JE00B2QXZK10",
+      "name": "WisdomTree Cocoa",
+      "year": 2024,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 326.7256524694049,
+        "officialReturn": 336.14,
+        "convertedOfficialReturn": 336.14,
+        "differencePp": -9.41434753059508,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2023-12-29",
+        "marketEndDate": "2024-12-31",
+        "marketSymbol": "COCO.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00B2QXZK10/2024, COCO.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2023-12-29 (4.133000000) → 2024-12-31 (18.028000000) = 336.19646746 %. NAV aux dates de marché reçues : 2023-12-29 (4.133000000) et 2024-12-31 (18.028000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de COCO.L / XLON en USD aux 2023-12-29 et 2024-12-31, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 326.7256524694049,
+        "currentPublishedAnnual": 336.14
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB664/2022",
+      "isin": "JE00BN7KB664",
+      "name": "WisdomTree Wheat",
+      "year": 2022,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -7.134151126731281,
+        "officialReturn": -4.24,
+        "convertedOfficialReturn": -4.24,
+        "differencePp": -2.8941511267312805,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2021-12-31",
+        "marketEndDate": "2022-12-30",
+        "marketSymbol": "WEAT.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB664/2022, WEAT.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2021-12-31 (37.444000000) → 2022-12-30 (35.880000000) = -4.17690418 %. NAV aux dates de marché reçues : 2021-12-31 (37.444000000) et 2022-12-30 (35.880000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WEAT.L / XLON en USD aux 2021-12-31 et 2022-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -7.134151126731281,
+        "currentPublishedAnnual": -4.24
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "JE00BN7KB664/2023",
+      "isin": "JE00BN7KB664",
+      "name": "WisdomTree Wheat",
+      "year": 2023,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": -25.547402370690264,
+        "officialReturn": -27.69,
+        "convertedOfficialReturn": -27.69,
+        "differencePp": 2.142597629309737,
+        "marketCurrency": "USD",
+        "navCurrency": "USD",
+        "marketStartDate": "2022-12-30",
+        "marketEndDate": "2023-12-29",
+        "marketSymbol": "WEAT.L",
+        "marketMic": "XLON"
+      },
+      "reason": "Cause complète non démontrée pour JE00BN7KB664/2023, WEAT.L en USD. Série officielle official exact-share daily NAV; income qualification separate en USD: 2022-12-30 (35.880000000) → 2023-12-29 (25.940000000) = -27.70345596 %. NAV aux dates de marché reçues : 2022-12-30 (35.880000000) et 2023-12-29 (25.940000000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de WEAT.L / XLON en USD aux 2022-12-30 et 2023-12-29, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": -25.547402370690264,
+        "currentPublishedAnnual": -27.69
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    },
+    {
+      "id": "DE000A0H08P6/2019",
+      "isin": "DE000A0H08P6",
+      "name": "iShares STOXX Europe 600 Retail UCITS ETF (DE)",
+      "year": 2019,
+      "status": "anomalie encore inexpliquée",
+      "open": true,
+      "original": {
+        "marketReturn": 40.694779977923275,
+        "officialReturn": 37.81,
+        "convertedOfficialReturn": 37.81,
+        "differencePp": 2.884779977923273,
+        "marketCurrency": "EUR",
+        "navCurrency": "EUR",
+        "marketStartDate": "2018-12-28",
+        "marketEndDate": "2019-12-30",
+        "marketSymbol": "EXH8.DE",
+        "marketMic": "XETR"
+      },
+      "reason": "Cause complète non démontrée pour DE000A0H08P6/2019, EXH8.DE en EUR. Série officielle official income-reinvested performanceData en EUR: 2018-12-31 (17631.650300000) → 2019-12-31 (24297.701800000) = 37.80730327 %. NAV aux dates de marché reçues : 2018-12-28 (26.315900000) et 2019-12-30 (35.494600000). Le reliquat de prix/ajustement ne devient pas une prime/décote certifiée par simple différence.",
+      "missingPiece": "Clôtures officielles de EXH8.DE / XETR en EUR aux 2018-12-28 et 2019-12-30, devise historique de cette cotation et horaires de valorisation ; flux et facteurs officiels d’ajustement des distributions/splits sur cette année.",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "latestCheck": {
+        "attemptedAt": "2026-10-23T13:39:26.378371+00:00",
+        "officialStatus": "validated",
+        "officialError": null,
+        "marketStatus": "provider-validated",
+        "recollectedAdjustedReturn": 40.69469526962335,
+        "currentPublishedAnnual": 37.81
+      },
+      "proof": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv"
+    }
+  ]
+}
