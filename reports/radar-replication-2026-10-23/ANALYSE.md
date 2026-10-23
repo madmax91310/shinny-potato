@@ -12,6 +12,8 @@ L’état radar-data 645584c9 contient 364 événements, dont **24** allers-reto
 |---|---|
 | Code iShares Replicated / Physical (Replicated) / Physical (Full replication) | physique intégrale, libellés équivalents |
 | Code iShares Optimised ou Optimized / Physical (Optimised) / Physical (Optimised sampling) | physique optimisée, libellés équivalents |
+| Code iShares Sampled / Physical (Sampled) | physique échantillonnée, libellés équivalents, distincte d’Optimised |
+| Code iShares Swap / Synthetic (Swap) | swap synthétique, sans assimiler les variantes funded/unfunded |
 | Intégrale / optimisée | méthodes distinctes ; changement conservé |
 | Physique / synthétique | structures distinctes ; changement conservé |
 | Physical sans précision / intégrale ou optimisée | non équivalentes ; précision non déduite |
@@ -27,7 +29,7 @@ Sources officielles :
 
 ## Correctif
 
-Les deux producteurs partagent la même construction et archivent les deux valeurs API originales dans `replicationMethodRaw`. Le moteur compare des alias normalisés, actualise silencieusement l’ancre équivalente, conserve les vrais changements et associe leur comparaison normalisée aux preuves originales. Les anciens événements équivalents conservent toutes leurs preuves et leurs IDs, avec une qualification technique séparée.
+Les deux producteurs partagent l’extraction des deux valeurs API originales dans `replicationMethodRaw` et conservent chacun leur convention de libellé existante. La normalisation est centralisée dans le Radar : réécrire le libellé du producteur général aurait créé des signaux supplémentaires non financiers sur les obligations, swaps et métaux. Le moteur compare des alias normalisés, actualise silencieusement l’ancre équivalente, conserve les vrais changements et associe leur comparaison normalisée aux preuves originales. Les anciens événements équivalents conservent toutes leurs preuves et leurs IDs, avec une qualification technique séparée.
 
 Les notifications ont une protection indépendante, applicable même avant migration. Le flux exclut les événements wording-only. Le publisher transmet l’historique complet pour corriger les anciens commentaires bot, même quand ces événements ont été exclus de la sélection éditoriale ready. La correction archive le texte original, conserve les marqueurs de reçus et est idempotente. Les commentaires humains restent intacts.
 

@@ -8,10 +8,16 @@ export function normalizedReplication(value, sourceUrl = '') {
     'physical (replicated)': 'physical:full', 'physical (full replication)': 'physical:full',
     'physical (optimised)': 'physical:optimised', 'physical (optimized)': 'physical:optimised',
     'physical (optimised sampling)': 'physical:optimised', 'physical (optimized sampling)': 'physical:optimised',
+    'physical (sampled)': 'physical:sampled',
+    'physical (physical replication)': 'physical:replication-unspecified',
+    'synthetic (swap)': 'synthetic:swap',
     'physical': 'physical:unspecified', 'synthetic': 'synthetic:unspecified',
   }
   if (aliases[raw]) return aliases[raw]
   if (blackrock(sourceUrl)) {
+    if (raw === 'sampled') return 'physical:sampled'
+    if (raw === 'physical replication') return 'physical:replication-unspecified'
+    if (raw === 'swap') return 'synthetic:swap'
     if (raw === 'replicated') return 'physical:full'
     if (['optimised', 'optimized'].includes(raw)) return 'physical:optimised'
   }

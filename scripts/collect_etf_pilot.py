@@ -72,15 +72,15 @@ def allocation(container, now):
             'rows': [{'name': name, 'weightPct': weight} for name, weight in zip(labels, weights)]}
 
 
-def replication_characteristics(facts):
-    """One representation for both iShares producers; exact API inputs retained."""
+def replication_characteristics(facts, combined=False):
+    """Preserve each producer display convention and the exact two API inputs."""
     structure = facts.get('productStructure', {}).get('value')
     method = facts.get('fundMethodologyTypeCode', {}).get('value')
     raw = {'productStructure': structure, 'fundMethodologyTypeCode': method}
     parts = [v for v in (structure, method) if isinstance(v, str) and v.strip()]
     if not parts:
         return {}
-    label = f'{structure} ({method})' if len(parts) == 2 else parts[0]
+    label = f'{structure} ({method})' if combined and len(parts) == 2 else (method if isinstance(method, str) and method.strip() else parts[0])
     return {'replicationMethod': label, 'replicationMethodRaw': raw}
 
 

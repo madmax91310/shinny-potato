@@ -66,7 +66,7 @@ def collect_one(config,now):
  # Prefer USD London for historical calculations; the sheet uses the same exact listing.
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
  result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
- result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),**replication_characteristics(facts),'inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
+ result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),**replication_characteristics(facts, combined=True),'inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
  if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('fundAssetClass',config.get('holdingsAssetClass','Equity')):raise ValueError('Unexpected UCITS/asset class')
  metrics=components.get('fundamentalsAndRisk',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
  result['metrics']={}

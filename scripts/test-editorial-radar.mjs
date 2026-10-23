@@ -268,7 +268,7 @@ console.log('All qualified ETFs monitored once; metric thresholds and same-date 
   const { editorialState } = await import('../src/lib/radar-editorial.js')
   const sourceUrl = 'https://www.blackrock.com/varnish-api/product-data'
   const row = value => rate({ value, sourceUrl, field: 'characteristics:replicationMethod' })
-  for (const [short, long] of [['Replicated', 'Physical (Replicated)'], ['Optimised', 'Physical (Optimised)'], ['Optimized', 'Physical (Optimised sampling)']]) {
+  for (const [short, long] of [['Replicated', 'Physical (Replicated)'], ['Optimised', 'Physical (Optimised)'], ['Optimized', 'Physical (Optimised sampling)'], ['Sampled', 'Physical (Sampled)'], ['Swap', 'Synthetic (Swap)'], ['Physical Replication', 'Physical (Physical Replication)']]) {
     for (const [a, b] of [[short, long], [long, short]]) {
       const initial = advance(null, [row(a)])
       const changed = advance(initial.state, [row(b)])
@@ -295,7 +295,7 @@ console.log('All qualified ETFs monitored once; metric thresholds and same-date 
       assert.equal(advance(migrated.state, [row(a)]).feed.events.length, 0)
     }
   }
-  for (const [a, b] of [['Replicated','Optimised'], ['Physical (Replicated)','Synthetic'],
+  for (const [a, b] of [['Replicated','Optimised'], ['Sampled','Optimised'], ['Physical Replication','Physical metal (Physical Replication)'], ['Physical (Replicated)','Synthetic'],
     ['Physical','Physical (Replicated)'], ['Physical metal','Physical (Replicated)'],
     ['Synthetic - funded swap','Synthetic - unfunded swap'], ['Novel method A','Novel method B']]) {
     const initial = advance(null, [row(a)])
