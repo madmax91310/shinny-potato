@@ -1,0 +1,40 @@
+name: Diagnose Pages queue read only
+on:
+  push:
+    branches: [chore/reliquat-pages-queue-20261023]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Inspect active and queued workflows without mutation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p queue-proof
+          gh api "repos/$GH_REPO/actions/runs?per_page=100" > queue-proof/runs.json
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          root=pathlib.Path('queue-proof')
+          runs=json.loads((root/'runs.json').read_text())['workflow_runs']
+          relevant=[r for r in runs if r['status']!='completed' and str(r['id'])!=os.environ['GITHUB_RUN_ID']]
+          print('Active/queued runs:',len(relevant))
+          summary=[]
+          for run in relevant[:25]:
+              raw=subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/actions/runs/{run['id']}/jobs?per_page=100"])
+              data=json.loads(raw);(root/f"{run['id']}-jobs.json").write_bytes(raw)
+              jobs=[{'id':j['id'],'name':j['name'],'status':j['status'],'startedAt':j['started_at'],'step':[s['name'] for s in j.get('steps',[]) if s['status']=='in_progress']} for j in data['jobs'] if j['status']!='completed']
+              row={'runId':run['id'],'name':run['name'],'head':run['head_sha'],'createdAt':run['created_at'],'status':run['status'],'jobs':jobs}
+              summary.append(row);print(json.dumps(row))
+          (root/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: pages-queue-readonly
+          path: queue-proof/
+          retention-days: 14
