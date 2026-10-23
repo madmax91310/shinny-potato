@@ -111,12 +111,13 @@ export function sourceFreshness(market,now=new Date().toISOString()) {
   const age=Date.parse(now)-Date.parse(market.generatedAt)
   return Number.isFinite(age)&&age<=MAX_CHECK_AGE_HOURS*3600000?{ok:true}:{ok:false,reason:`Collecte périmée : aucune actualisation depuis ${market.generatedAt??'une date inconnue'}. Relancer le workflow avant toute nouvelle décision.`}
 }
-export function coverage(id,market,asOf) {
+// Retained history certification is independent from the latest collection attempt.
+// This is for audits; new decisions must use coverage(), which also requires success.
+export function technicalCoverage(id,market,asOf) {
   try {
     const asset=market.universe.find(a=>a.id===id),s=market.series[id]
     assert(!asset?.discoveryBlock,asset?.discoveryBlock)
     assert(s?.qualified,'Couverture quotidienne non validée.')
-    assert(market.status?.[id]?.ok,'Dernière collecte en échec : '+(market.status?.[id]?.error??'source indisponible'))
     assert(s.convention==='synthetic-total-return-100-at-anchor','Convention de la série incompatible.')
     assert(s.symbol===(asset.qualifiedSymbol??asset.symbol)&&s.currency===asset.currency&&s.timezone===asset.timezone,'Identité / cotation de la série incompatible.')
     if(asset.evidenceId)assert(s.listingEvidenceId===asset.evidenceId,'Preuve de cotation de la série incompatible.')
@@ -129,16 +130,38 @@ export function coverage(id,market,asOf) {
     return {ok:true,reason:`${Object.keys(s.points).length} clôtures · ${asset.ticker} · dernière ${Object.keys(s.points).sort().at(-1)}`}
   } catch(e) {return {ok:false,reason:e.message}}
 }
-export function emptyPortfolio(config) { return {cash:config.initialCapital,positions:{},flows:{},fees:0} }
+export function coverage(id,market,asOf) {
+  if(!market.status?.[id]?.ok)return {ok:false,reason:'Dernière collecte en échec : '+(market.status?.[id]?.error??'source indisponible')}
+  return technicalCoverage(id,market,asOf)
+}
+export function emptyPortfolio(config) { return {cash:config.initialCapital,positions:{},flows:{},fees:0,investment:{}} }
+// Average acquisition cost in the competition currency, including acquisition
+// fees. Realised proceeds are net of sale fees. This adds reporting fields only:
+// archived execution prices, units, flows and cash are never rewritten.
+function applyTrade(p,t) {
+  const units=p.positions[t.id]??0
+  p.investment??={}
+  const lot=p.investment[t.id]??={cost:0,purchases:0,realized:0}
+  if(t.units>0){lot.cost+=t.amount+t.fee;lot.purchases+=t.amount+t.fee}
+  else {const cost=units>0?lot.cost*Math.min(1,-t.units/units):0;lot.realized+=-t.amount-t.fee-cost;lot.cost-=cost}
+  p.positions[t.id]=Math.max(0,units+t.units);p.cash-=t.amount+t.fee;p.fees+=t.fee;p.flows[t.id]=(p.flows[t.id]??0)+t.amount
+}
+function investmentResult(portfolio,id,value) {
+  const lot=portfolio.investment?.[id]
+  if(!lot)return {investmentPerformance:null,investmentPnl:null,realizedPnl:null,unrealizedPnl:null,netContribution:null}
+  const unrealized=value-lot.cost,pnl=lot.realized+unrealized
+  return {costBasis:lot.cost,purchases:lot.purchases,realizedPnl:lot.realized,unrealizedPnl:unrealized,investmentPnl:pnl,investmentPerformance:lot.purchases>0?pnl/lot.purchases*100:null}
+}
 export function mark(portfolio,date,config,market) {
   const positions=Object.entries(portfolio.positions).filter(([,units])=>units>1e-10).map(([id,units])=>{
     const quote=quoteAt(id,date,config.currency,market),value=units*quote.price
     const flow=portfolio.flows[id]??0
-    return {id,units,...quote,value,netInvested:flow,pnl:value-flow,contribution:(value-flow)/config.initialCapital*100}
+    const result=investmentResult(portfolio,id,value)
+    return {id,units,...quote,value,netInvested:flow,pnl:value-flow,contribution:(value-flow)/config.initialCapital*100,...result,netContribution:result.investmentPnl==null?null:result.investmentPnl/config.initialCapital*100}
   })
   const value=portfolio.cash+positions.reduce((sum,p)=>sum+p.value,0)
   return {date,value,cash:portfolio.cash,fees:portfolio.fees,pnl:value-config.initialCapital,
-    performance:(value/config.initialCapital-1)*100,closedResults:Object.entries(portfolio.flows).filter(([id])=>!(portfolio.positions[id]>1e-10)).map(([id,flow])=>({id,pnl:-flow,contribution:-flow/config.initialCapital*100})),positions:positions.map(p=>({...p,weight:p.value/value*100}))}
+    performance:(value/config.initialCapital-1)*100,closedResults:Object.entries(portfolio.flows).filter(([id])=>!(portfolio.positions[id]>1e-10)).map(([id,flow])=>{const result=investmentResult(portfolio,id,0);return {id,pnl:-flow,contribution:-flow/config.initialCapital*100,...result,netContribution:result.investmentPnl==null?null:result.investmentPnl/config.initialCapital*100}}),positions:positions.map(p=>({...p,weight:p.value/value*100}))}
 }
 export function validateDecision(d,competition,market,asOf,now=market.generatedAt??asOf) {
   const c=competition.config
@@ -189,10 +212,8 @@ export function planDecision(portfolio,d,date,c,market,{benchmark=false,estimate
     if(Math.abs(amount)<1e-7) continue
     const units=amount/quotes[id].price,fee=Math.abs(amount)*feeRate
     assert((next.positions[id]??0)+units>=-1e-8,'Vente supérieure à la position.')
-    next.positions[id]=Math.max(0,(next.positions[id]??0)+units)
-    next.cash-=amount+fee;next.fees+=fee
-    next.flows[id]=(next.flows[id]??0)+amount
-    trades.push({id,amount,units,fee,...quotes[id],date})
+    const trade={id,amount,units,fee,...quotes[id],date}
+    applyTrade(next,trade);trades.push(trade)
   }
   assert(next.cash>=-1e-6,'Liquidités insuffisantes, frais compris.')
   next.cash=Math.max(0,next.cash)
@@ -209,7 +230,7 @@ export function planDecision(portfolio,d,date,c,market,{benchmark=false,estimate
 export function portfolioAt(competition,participant,date) {
   const p=emptyPortfolio(competition.config)
   for(const d of competition.decisions.filter(d=>d.participant===participant&&d.status==='executed'&&d.executionDate<=date).sort((a,b)=>a.executionDate.localeCompare(b.executionDate)||a.registeredAt.localeCompare(b.registeredAt))) {
-    for(const t of d.execution.trades) {p.positions[t.id]=(p.positions[t.id]??0)+t.units;p.cash-=t.amount+t.fee;p.fees+=t.fee;p.flows[t.id]=(p.flows[t.id]??0)+t.amount}
+    for(const t of d.execution.trades) applyTrade(p,t)
   }
   return p
 }
@@ -235,7 +256,8 @@ export function runCompetition(input,market,asOf) {
   return comp
 }
 export function snapshot(comp,date,market) {
-  const rows=[...comp.config.participants,{id:'world',name:(comp.config.benchmark==='IE00B4L5Y983-ETFP'?'World':'Réf.')+' ('+(market.universe.find(a=>a.id===comp.config.benchmark)?.ticker??comp.config.benchmark)+')',color:'#b48b26'}].map(p=>{
+  const refAsset=market.universe.find(a=>a.id===comp.config.benchmark)
+  const rows=[...comp.config.participants,{id:'world',name:refAsset?.name??comp.config.benchmark,color:'#858b89'}].map(p=>{
     const portfolio=portfolioAt(comp,p.id,date)
     try {return {...p,...mark(portfolio,date,comp.config,market),complete:true}}
     catch(e) {return {...p,date,complete:false,error:e.message}}

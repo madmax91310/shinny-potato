@@ -22,6 +22,10 @@ on:
       - 'scripts/*ai*equit*'
       - 'scripts/*ai*weekly*'
       - 'scripts/*ai*runtime*'
+      - 'scripts/rehearse-ai-week.mjs'
+      - 'scripts/measure-ai-mobile.mjs'
+      - 'scripts/verify-ai-final-network.mjs'
+      - 'scripts/check-ai-tracking.mjs'
       - 'scripts/ai-calendar-corrections.json'
       - 'scripts/ai-series-store.mjs'
       - 'scripts/collect_ai_security_classifications.py'
@@ -49,7 +53,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.security_types.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.security_types.outcome == 'failure' || steps.tracking.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -63,9 +67,12 @@ jobs:
       - run: npm ci
       - run: pip install -r scripts/ai-portfolios-requirements.txt
       - name: Validate accounting and daily coverage
+        env:
+          AI_REHEARSAL_OUTPUT: ${{ runner.temp }}/ai-final-rehearsal
         run: |
           node scripts/test-ai-portfolios.mjs
           node scripts/test-ai-weekly.mjs
+          node scripts/rehearse-ai-week.mjs
           node scripts/test-ai-equity-directory.mjs
           python -m unittest discover -s scripts -p test_ai_portfolios.py
       - name: Collect SEC fund classifications
@@ -93,6 +100,13 @@ jobs:
         run: python scripts/report_ai_equities.py
       - name: Execute recorded simulations and prepare valuations
         run: node scripts/ai-portfolios.mjs refresh
+      - name: Report incomplete portfolio valuations
+        id: tracking
+        continue-on-error: true
+        run: node scripts/check-ai-tracking.mjs "$RUNNER_TEMP/ai-tracking-status.json"
+      - name: Require complete tracking in PR validation
+        if: github.event_name == 'pull_request' && steps.tracking.outcome == 'failure'
+        run: exit 1
       - name: Validate every selectable equity against the accounting engine
         run: |
           node scripts/test-ai-equity-coverage.mjs
@@ -102,14 +116,26 @@ jobs:
       - if: github.event_name == 'pull_request'
         run: npx playwright install --with-deps chromium
       - name: Validate desktop mobile and PNGs
+        env:
+          AI_REHEARSAL_OUTPUT: ${{ runner.temp }}/ai-final-rehearsal
         if: github.event_name == 'pull_request'
         run: node scripts/playwright-ai-portfolios.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'pull_request'
+        with:
+          name: ai-portfolio-isolated-rehearsal
+          path: |
+            ${{ runner.temp }}/ai-final-rehearsal/*.png
+            ${{ runner.temp }}/ai-final-rehearsal/report.json
+            ${{ runner.temp }}/ai-final-rehearsal/browser-report.json
+          retention-days: 35
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: ai-portfolio-observations
           path: |
             ${{ runner.temp }}/ai-portfolio-observations.json
+            ${{ runner.temp }}/ai-tracking-status.json
             data/ai-portfolios/qualification.*
             data/ai-portfolios/runtime-audit.json
             data/ai-portfolios/equity-coverage.*
