@@ -10,22 +10,22 @@
     "version": 1,
     "universe": [
       {
-        "id": "IE00B4L5Y983-ETFP",
-        "instrumentId": "IE00B4L5Y983",
-        "isin": "IE00B4L5Y983",
-        "name": "iShares Core MSCI World UCITS ETF (Acc)",
+        "id": "IE00B5BMR087-XLON-CSPX-USD",
+        "instrumentId": "IE00B5BMR087",
+        "isin": "IE00B5BMR087",
+        "name": "iShares Core S&P 500 UCITS ETF",
         "family": "ETF actions",
-        "ticker": "SWDA",
-        "mic": "ETFP",
-        "currency": "EUR",
-        "symbol": "SWDA.MI",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "ticker": "CSPX",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "CSPX.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-21",
-        "evidenceId": "IE00B4L5Y983-ETFP-SWDA-EUR",
-        "sourceCurrency": "EUR",
+        "evidenceId": "IE00B5BMR087-XLON-CSPX-USD",
+        "sourceCurrency": "USD",
         "priceScale": 1,
-        "timezone": "Europe/Rome",
-        "calendar": "XMIL",
+        "timezone": "Europe/London",
+        "calendar": "XLON",
         "instrumentType": "ETF",
         "ucits": true,
         "leveraged": false,
@@ -34,20 +34,20 @@
         "discoveryBlock": null,
         "status": "qualified",
         "reason": "Identité, place, type, devise, séances et cours quotidiens contrôlés.",
-        "lastAttempt": "2026-10-22T11:17:19.038441+00:00",
-        "lastSuccess": "2026-10-22T11:17:19.038441+00:00",
+        "lastAttempt": "2026-10-22T11:17:25.167677+00:00",
+        "lastSuccess": "2026-10-22T11:17:25.167677+00:00",
         "coverageFrom": "2026-07-13",
         "coverageThrough": "2026-10-21",
         "calendarThrough": "2026-12-31",
-        "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-        "sourceRetrievedAt": "2026-10-22T10:58:22.280501+00:00",
-        "responseSha256": "ce00c46c9764774c50f3ee8b1cd5218b38616a9bc73b23c81c7d7b7d61e82c74",
-        "qualifiedSymbol": "SWDA.MI",
-        "observedSourceCurrency": "EUR",
-        "seriesFile": "series/94.json"
+        "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "sourceRetrievedAt": "2026-10-22T10:58:44.791336+00:00",
+        "responseSha256": "c4aaf9fb39aed1b5b0b1cb2a66e8ba464ee9e7295db82b7b9873a947c4964fdb",
+        "qualifiedSymbol": "CSPX.L",
+        "observedSourceCurrency": "USD",
+        "seriesFile": "series/32.json"
       }
     ],
-    "generatedAt": "2026-10-22T19:50:07.510047+00:00",
+    "generatedAt": "2026-10-23T04:59:17.398445+00:00",
     "calendarFrom": "2026-07-13",
     "calendarThrough": "2026-12-31",
     "calendars": {
@@ -3534,15 +3534,18 @@
     },
     "series": {},
     "status": {
-      "IE00B4L5Y983-ETFP": {
-        "ok": true,
-        "attemptedAt": "2026-10-22T11:17:19.038441+00:00",
-        "asOf": "2026-10-21"
-      },
       "ECB": {
         "ok": true,
-        "asOf": "2026-10-21",
-        "attemptedAt": "2026-10-22T11:32:55.389080+00:00"
+        "asOf": "2026-10-22",
+        "attemptedAt": "2026-10-23T04:59:17.398445+00:00"
+      },
+      "IE00B5BMR087-XLON-CSPX-USD": {
+        "ok": false,
+        "attemptedAt": "2026-10-23T04:59:17.398445+00:00",
+        "error": "Clôtures attendues manquantes : 2026-10-22",
+        "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792731557&interval=1d&events=div%2Csplits",
+        "lastValidAsOf": "2026-10-21",
+        "lastSuccess": "2026-10-22T11:17:25.167677+00:00"
       },
       "CBC": {
         "ok": true,
@@ -3625,11 +3628,12 @@
         "2026-10-16",
         "2026-10-19",
         "2026-10-20",
-        "2026-10-21"
+        "2026-10-21",
+        "2026-10-22"
       ],
-      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+      "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
       "convention": "currency per EUR; ECB reference, not closing FX",
-      "validThrough": "2026-10-21",
+      "validThrough": "2026-10-22",
       "rates": {
         "2026-10-21": {
           "USD": 1.1234,
@@ -6125,10 +6129,56 @@
           "THB": 38.04,
           "ZAR": 18.5318,
           "TWD": 36.5565375
+        },
+        "2026-10-22": {
+          "USD": 1.1205,
+          "JPY": 175.97,
+          "CZK": 24.26,
+          "DKK": 7.4747,
+          "GBP": 0.8377,
+          "HUF": 366.43,
+          "PLN": 4.3695,
+          "RON": 5.345,
+          "SEK": 11.112,
+          "CHF": 0.9211,
+          "ISK": 136.2,
+          "NOK": 10.488,
+          "TRY": 55.6079,
+          "AUD": 1.598,
+          "BRL": 5.6574,
+          "CAD": 1.5725,
+          "CNY": 7.4786,
+          "HKD": 8.7845,
+          "IDR": 20253.88,
+          "ILS": 3.4824,
+          "INR": 106.249,
+          "KRW": 1484.25,
+          "MXN": 21.0215,
+          "MYR": 4.5756,
+          "NZD": 1.9724,
+          "PHP": 71.162,
+          "SGD": 1.4315,
+          "THB": 37.811,
+          "ZAR": 18.5058,
+          "TWD": 36.425214000000004
         }
       },
-      "responseSha256": "3d41341a76ae4918d4daa5c720254643820a652e9f850b7a7c1189feb90d809a",
-      "retrievedAt": "2026-10-22T11:32:55.389080+00:00",
+      "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
+      "retrievedAt": "2026-10-23T04:59:17.398445+00:00",
+      "observations": [
+        {
+          "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+          "retrievedAt": "2026-10-22T11:32:55.389080+00:00",
+          "responseSha256": "3d41341a76ae4918d4daa5c720254643820a652e9f850b7a7c1189feb90d809a"
+        },
+        {
+          "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+          "retrievedAt": "2026-10-23T04:59:17.398445+00:00",
+          "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
+          "from": "2026-07-06",
+          "through": "2026-10-22"
+        }
+      ],
       "supplementalGaps": {
         "TWD": []
       },
@@ -6690,12 +6740,18 @@
             "USDEURDate": "2026-10-21",
             "TWDPerUSD": 32.488,
             "USDPerEUR": 1.1234
+          },
+          "2026-10-22": {
+            "TWDUSDDate": "2026-10-22",
+            "USDEURDate": "2026-10-22",
+            "TWDPerUSD": 32.508,
+            "USDPerEUR": 1.1205
           }
         }
       },
       "supplementalMethod": "TWD per EUR = CBC TWD per USD × ECB USD per EUR; each last published official fixing dated separately. Taiwan missing expected sessions are refused; closed-session carry is explicit."
     },
-    "asOf": "2026-10-21",
+    "asOf": "2026-10-22",
     "calendarValidity": {
       "XNYS": {
         "from": "2026-07-13",
@@ -6739,7 +6795,7 @@
       },
       "XLON": {
         "from": "2026-07-13",
-        "through": "2026-12-31"
+        "through": "2027-01-01"
       },
       "XCSE": {
         "from": "2026-07-13",
@@ -6810,6 +6866,15 @@
         "through": "2026-12-31"
       }
     },
+    "collection": {
+      "required": [
+        "IE00B5BMR087-XLON-CSPX-USD"
+      ],
+      "requested": [
+        "IE00B5BMR087-XLON-CSPX-USD"
+      ],
+      "reused": []
+    },
     "inventoryCounts": {
       "instruments": 62013,
       "listings": 63771,
@@ -6819,8 +6884,8 @@
   "state": {
     "version": 1,
     "revision": 0,
-    "generatedAt": "2026-10-22T19:50:07.510047+00:00",
-    "asOf": "2026-10-21",
+    "generatedAt": "2026-10-23T04:59:17.398445+00:00",
+    "asOf": "2026-10-22",
     "daily": {},
     "weekly": {},
     "current": {},
@@ -6830,7 +6895,7 @@
     "name": "Portefeuilles IA",
     "initialCapital": 10000,
     "currency": "EUR",
-    "launchDate": "2026-10-22",
+    "launchDate": "2026-10-23",
     "minLines": 3,
     "maxLines": 6,
     "maxWeight": 35,
@@ -6860,9 +6925,9 @@
     "requireUcits": true,
     "cash": "unremunerated",
     "income": "synthetic-total-return",
-    "benchmark": "IE00B4L5Y983-ETFP",
+    "benchmark": "IE00B5BMR087-XLON-CSPX-USD",
     "universe": [
-      "IE00B4L5Y983-ETFP"
+      "IE00B5BMR087-XLON-CSPX-USD"
     ],
     "participants": [
       {
@@ -6888,7 +6953,7 @@
   "catalogue": {
     "url": "catalogue.json",
     "count": 24974,
-    "revision": "2026-10-22T19:50:07.510047+00:00"
+    "revision": "2026-10-23T04:59:17.398445+00:00"
   },
   "sourceRevisionCount": 1881
 }

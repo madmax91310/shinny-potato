@@ -195,6 +195,42 @@ class DailyTests(unittest.TestCase):
         body=b'<gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref"><Cube><Cube time="2026-01-02"><Cube currency="USD" rate="1.1"/><Cube currency="GBP" rate="0.8"/><Cube currency="CHF" rate="0.9"/></Cube></Cube></gesmes:Envelope>'
         with self.assertRaisesRegex(ValueError,'attendu manquant'):parse_fx(body,self.now)
 
+    def test_range_retry_keeps_identity_anchor_and_full_coverage(self):
+        prior=parse_prices(self.raw,self.asset,self.calendar,self.now)
+        prior['retrievedAt']=(self.now-dt.timedelta(days=1)).isoformat()
+        del prior['points'][max(prior['points'])]
+        short=self.tail_response()
+        data=short['chart']['result'][0];data['timestamp']=data['timestamp'][:-1]
+        for groups in data['indicators'].values():
+            for group in groups:
+                for key in group:group[key]=group[key][:-1]
+        previous={'calendarFrom':'2026-01-01','series':{'test':prior},'status':{'test':{'ok':True}}}
+        calls=[]
+        def fetch(url,**kw):
+            calls.append(url)
+            return self.tail_response() if 'range=' in url else short
+        def fx(*a,**kw):raise ConnectionError('Isolated FX fixture')
+        result=collect(previous,[self.asset],self.now,fetch=fetch,fetch_ecb=fx,required={'test'})
+        self.assertTrue(result['status']['test']['ok'])
+        self.assertEqual(len(calls),2);self.assertIn('range=1mo',calls[-1]);self.assertEqual(result['series']['test']['anchorDate'],prior['anchorDate'])
+        self.assertEqual(len(result['series']['test']['observations'][-1]['windowRetries']),1)
+        # The alternative window is not permission to fill an actually absent bar.
+        failed=collect(previous,[self.asset],self.now,fetch=lambda *a,**kw:short,fetch_ecb=fx,required={'test'})
+        self.assertFalse(failed['status']['test']['ok']);self.assertEqual(failed['series']['test'],prior)
+        wrong=copy.deepcopy(self.raw);wrong['chart']['result'][0]['meta']['symbol']='OTHER'
+        failed=collect(previous,[self.asset],self.now,fetch=lambda url,**kw:wrong if 'range=' in url else short,fetch_ecb=fx,required={'test'})
+        self.assertFalse(failed['status']['test']['ok']);self.assertEqual(failed['series']['test'],prior)
+
+    def test_seven_day_review_requests_full_anchor(self):
+        prior=parse_prices(self.raw,self.asset,self.calendar,self.now)
+        prior['retrievedAt']=(self.now-dt.timedelta(days=8)).isoformat()
+        calls=[]
+        def fetch(url,**kw):calls.append(url);return self.raw
+        def fx(*a,**kw):raise ConnectionError('Isolated FX fixture')
+        result=collect({'calendarFrom':'2026-01-01','series':{'test':prior}},[self.asset],self.now,fetch=fetch,fetch_ecb=fx,required={'test'})
+        self.assertTrue(result['status']['test']['ok']);self.assertEqual(result['series']['test']['collectionMode'],'full-anchor-review');self.assertEqual(result['series']['test']['requestedFrom'],'2026-01-01')
+        self.assertEqual(len(calls),1)
+
 if __name__=='__main__':unittest.main()
 
 class InternationalEquityDirectory(unittest.TestCase):
