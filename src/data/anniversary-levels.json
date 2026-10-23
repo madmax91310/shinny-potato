@@ -1043,21 +1043,31 @@
     "listingEvidenceId": "IE00BJ5JP097-XAMS-WFNS-USD"
   },
   "etf_gold_miners": {
-    "value": 82.93000030517578,
+    "value": 82.97367246764836,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "GDX.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "3c08701c94a306c78629df68fee8412190c9e3b2aff08253877c5c0902b869fc",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BQQP9F84",
-    "ticker": "GDX",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BQQP9F84-ETFP-GDX-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 92.972,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "7618dd7c55253a681fec2b67703a82c86e0902bd75d9707b14fbb0fc0f6c1110"
   },
   "etf_health": {
     "value": 8.741999626159668,
