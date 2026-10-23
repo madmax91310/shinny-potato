@@ -18,5 +18,5 @@ export function resolveAnniversaryLevel(assetId, override, now = new Date(), lev
   const age = (now - date) / 86400000
   if (!Number.isFinite(age) || age < 0 || age > record.maxAgeDays) return null
   const label = date.toLocaleDateString('fr-FR', { ...(monthly ? { month: 'long', year: 'numeric' } : {}), timeZone: 'UTC' })
-  return { ...record, label: `${monthly ? 'Moyenne de' : 'Clôture du'} ${label}`, manual: false }
+  return { ...record, label: `${monthly ? 'Moyenne de' : record.valuationBasis==='fund-nav-total-return'?'Valeur liquidative du':'Clôture du'} ${label}`, manual: false }
 }

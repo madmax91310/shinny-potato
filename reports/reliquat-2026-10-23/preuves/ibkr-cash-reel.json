@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-23T05:14:41.146732+00:00",
+  "status": "validated",
+  "record": {
+    "available": true,
+    "status": "confirmé",
+    "copy": {
+      "resume": "Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.",
+      "full": "Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés."
+    },
+    "checkedAt": "2026-10-23",
+    "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
+    "refs": [
+      {
+        "document": "ibkrInterest",
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
+        "discoveryUrl": null,
+        "page": null,
+        "sha256": "efe31a155b2b75b201884179af09e5e78470819e6ecd1aa6b03b55315a79eaac",
+        "kind": "page",
+        "statement": "Interest will not be payable on the first EUR 10,000 or USD"
+      },
+      {
+        "document": "peaCashRules",
+        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+        "discoveryUrl": null,
+        "page": null,
+        "sha256": "b87f816f96a4991a19b05be100df909280d647f607670054e0328295035510fc",
+        "kind": "page",
+        "statement": "Le compte espèces du PEA fonctionne comme un compte de dépôt. Il n’est pas rémunéré."
+      }
+    ],
+    "scope": "ibkr ; cash ; portée exacte des sources publiques",
+    "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
+    "sha256": "845a21259cfb2a26e3166637bd32c229ed609fe51b53bbec16404d5149238799",
+    "values": {},
+    "decisiveDocument": "ibkrInterest",
+    "statement": "Interest will not be payable on the first EUR 10,000 or USD",
+    "checkedSources": [
+      {
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
+        "sha256": "efe31a155b2b75b201884179af09e5e78470819e6ecd1aa6b03b55315a79eaac"
+      },
+      {
+        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+        "sha256": "b87f816f96a4991a19b05be100df909280d647f607670054e0328295035510fc"
+      }
+    ]
+  }
+}

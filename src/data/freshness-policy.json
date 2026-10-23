@@ -16,6 +16,6 @@
     "product.annual": { "checkDays": 7, "dataDays": 550, "fields": ["annual", "euroFunds"] }
   },
   "calendars": {
-    "scpi.quarterlyBulletin": { "graceDaysAfterNextQuarterEnd": 45, "note": "Quarterly bulletins are published about a month after the quarter; a missing link is a wait until then." }
+    "scpi.quarterlyBulletin": { "graceDaysAfterNextQuarterEnd": 45, "note": "Internal monitoring interval only; not a regulatory or issuer publication deadline. A missing publication after this interval requires investigation; it does not establish an issuer delay." }
   }
 }

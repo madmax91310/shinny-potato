@@ -1,0 +1,584 @@
+[
+  {
+    "command": "node scripts/test-performance-rankings.mjs",
+    "exitCode": 0,
+    "seconds": 4.09,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-000.log"
+  },
+  {
+    "command": "node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs",
+    "exitCode": 0,
+    "seconds": 1.22,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-001.log"
+  },
+  {
+    "command": "node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs",
+    "exitCode": 0,
+    "seconds": 2.23,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-002.log"
+  },
+  {
+    "command": "node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
+    "exitCode": 0,
+    "seconds": 5.28,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-003.log"
+  },
+  {
+    "command": "node scripts/test-tool-projections.mjs",
+    "exitCode": 0,
+    "seconds": 15.61,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-004.log"
+  },
+  {
+    "command": "node scripts/test-light-registries.mjs",
+    "exitCode": 0,
+    "seconds": 4.24,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-005.log"
+  },
+  {
+    "command": "node scripts/test-browser-shards.mjs",
+    "exitCode": 0,
+    "seconds": 0.07,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-006.log"
+  },
+  {
+    "command": "node scripts/test-broker-automation.mjs",
+    "exitCode": 0,
+    "seconds": 0.67,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-007.log"
+  },
+  {
+    "command": "node scripts/test-lifestrategy.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-008.log"
+  },
+  {
+    "command": "node scripts/test-resource-selections.mjs",
+    "exitCode": 0,
+    "seconds": 0.87,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-009.log"
+  },
+  {
+    "command": "node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+    "exitCode": 0,
+    "seconds": 3.44,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-010.log"
+  },
+  {
+    "command": "node scripts/test-exposure-classification.mjs",
+    "exitCode": 0,
+    "seconds": 0.11,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-011.log"
+  },
+  {
+    "command": "node scripts/test-equity-exposure-qualification.mjs",
+    "exitCode": 0,
+    "seconds": 0.06,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-012.log"
+  },
+  {
+    "command": "node scripts/test-global-audit.mjs",
+    "exitCode": 0,
+    "seconds": 0.22,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-013.log"
+  },
+  {
+    "command": "node scripts/test-portfolio-roadmap.mjs",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-014.log"
+  },
+  {
+    "command": "node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-015.log"
+  },
+  {
+    "command": "node scripts/test-exposure-observations.mjs",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-016.log"
+  },
+  {
+    "command": "node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs",
+    "exitCode": 0,
+    "seconds": 0.62,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-017.log"
+  },
+  {
+    "command": "node scripts/test-market-calendar-performance.mjs",
+    "exitCode": 0,
+    "seconds": 0.16,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-018.log"
+  },
+  {
+    "command": "node scripts/test-presentation-etf.mjs",
+    "exitCode": 0,
+    "seconds": 0.21,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-019.log"
+  },
+  {
+    "command": "node scripts/test-scpi.mjs",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-020.log"
+  },
+  {
+    "command": "node scripts/test-insurance.mjs",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-021.log"
+  },
+  {
+    "command": "npm run test:radar",
+    "exitCode": 0,
+    "seconds": 4.78,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-022.log"
+  },
+  {
+    "command": "node scripts/test-wealth-simulator.mjs",
+    "exitCode": 0,
+    "seconds": 0.11,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-023.log"
+  },
+  {
+    "command": "node scripts/test-performance-currency.mjs",
+    "exitCode": 0,
+    "seconds": 1.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-024.log"
+  },
+  {
+    "command": "node scripts/test-cross-tool-currency.mjs",
+    "exitCode": 0,
+    "seconds": 1.93,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-025.log"
+  },
+  {
+    "command": "node scripts/test-annual-rollover.mjs",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-026.log"
+  },
+  {
+    "command": "node scripts/test-inflation-consistency.mjs",
+    "exitCode": 0,
+    "seconds": 0.22,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-027.log"
+  },
+  {
+    "command": "node scripts/test-fx-consistency.mjs",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-028.log"
+  },
+  {
+    "command": "npm run test:index-concentration",
+    "exitCode": 0,
+    "seconds": 0.77,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-029.log"
+  },
+  {
+    "command": "node scripts/test-automated-indices.mjs",
+    "exitCode": 0,
+    "seconds": 0.21,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-030.log"
+  },
+  {
+    "command": "node scripts/test-automated-index-sheets.mjs",
+    "exitCode": 0,
+    "seconds": 0.72,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-031.log"
+  },
+  {
+    "command": "node scripts/test-automation-gap-inventory.mjs",
+    "exitCode": 0,
+    "seconds": 0.82,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-032.log"
+  },
+  {
+    "command": "node scripts/test-consumer-usage.mjs",
+    "exitCode": 0,
+    "seconds": 2.43,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-033.log"
+  },
+  {
+    "command": "node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
+    "exitCode": 0,
+    "seconds": 4.88,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-034.log"
+  },
+  {
+    "command": "node scripts/test-etf-completeness.mjs",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-035.log"
+  },
+  {
+    "command": "node scripts/test-priority-issuer-consumers.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-036.log"
+  },
+  {
+    "command": "npm run audit:portfolio-provenance",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-037.log"
+  },
+  {
+    "command": "node scripts/build-equity-duel-returns.mjs",
+    "exitCode": 0,
+    "seconds": 0.26,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-038.log"
+  },
+  {
+    "command": "npm run audit:portfolio-duels",
+    "exitCode": 0,
+    "seconds": 1.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-039.log"
+  },
+  {
+    "command": "node scripts/test-equity-duels.mjs",
+    "exitCode": 0,
+    "seconds": 0.62,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-040.log"
+  },
+  {
+    "command": "node scripts/test-manual-equity-duels.mjs",
+    "exitCode": 0,
+    "seconds": 0.21,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-041.log"
+  },
+  {
+    "command": "npm run audit:broker-evidence",
+    "exitCode": 1,
+    "seconds": 0.22,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-042.log",
+    "recheck": {
+      "exitCode": 0,
+      "log": "reports/reliquat-2026-10-23/preuves/ci-reprise-042.log"
+    }
+  },
+  {
+    "command": "npm run audit:data-review",
+    "exitCode": 0,
+    "seconds": 1.93,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-043.log"
+  },
+  {
+    "command": "node scripts/test-data-review-reminder.mjs",
+    "exitCode": 0,
+    "seconds": 2.12,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-044.log"
+  },
+  {
+    "command": "npm run audit:performance-consistency",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-045.log"
+  },
+  {
+    "command": "npm run audit:etf-annual-performance",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-046.log"
+  },
+  {
+    "command": "npm run audit:etf-completeness",
+    "exitCode": 0,
+    "seconds": 0.62,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-047.log"
+  },
+  {
+    "command": "npm run audit:etf-consistency",
+    "exitCode": 0,
+    "seconds": 0.53,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-048.log"
+  },
+  {
+    "command": "node scripts/test-four-issuer-consumers.mjs",
+    "exitCode": 0,
+    "seconds": 0.16,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-049.log"
+  },
+  {
+    "command": "npm run audit:instrument-listings",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-050.log"
+  },
+  {
+    "command": "npm run audit:instrument-catalog",
+    "exitCode": 0,
+    "seconds": 0.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-051.log"
+  },
+  {
+    "command": "node scripts/audit-support-enrichment.mjs",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-052.log"
+  },
+  {
+    "command": "npm run audit:calculator-series",
+    "exitCode": 1,
+    "seconds": 10.9,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-053.log",
+    "recheck": {
+      "exitCode": 0,
+      "log": "reports/reliquat-2026-10-23/preuves/ci-reprise-053.log"
+    }
+  },
+  {
+    "command": "node scripts/test-gold-consumers.mjs",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-054.log"
+  },
+  {
+    "command": "node scripts/test-monthly-consumers.mjs",
+    "exitCode": 0,
+    "seconds": 3.37,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-055.log"
+  },
+  {
+    "command": "node scripts/test-equity-monthly.mjs",
+    "exitCode": 1,
+    "seconds": 4.34,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-056.log",
+    "recheck": {
+      "exitCode": 0,
+      "log": "reports/reliquat-2026-10-23/preuves/ci-reprise-056.log"
+    }
+  },
+  {
+    "command": "node scripts/test-investment-crisis.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-057.log"
+  },
+  {
+    "command": "node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
+    "exitCode": 0,
+    "seconds": 5.19,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-058.log"
+  },
+  {
+    "command": "node scripts/test-investment-conclusions.mjs",
+    "exitCode": 0,
+    "seconds": 4.03,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-059.log"
+  },
+  {
+    "command": "node scripts/test-anniversary-indices.mjs",
+    "exitCode": 0,
+    "seconds": 2.53,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-060.log"
+  },
+  {
+    "command": "node scripts/test-existing-asset-formats.mjs",
+    "exitCode": 0,
+    "seconds": 0.47,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-061.log"
+  },
+  {
+    "command": "node scripts/test-publication-consumers.mjs",
+    "exitCode": 0,
+    "seconds": 1.93,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-062.log"
+  },
+  {
+    "command": "node scripts/test-household-benchmarks.mjs",
+    "exitCode": 0,
+    "seconds": 0.26,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-063.log"
+  },
+  {
+    "command": "npm run audit:publishable-content",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-064.log"
+  },
+  {
+    "command": "node scripts/test-etf-themes-coverage.mjs",
+    "exitCode": 0,
+    "seconds": 0.16,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-065.log"
+  },
+  {
+    "command": "node scripts/test-tweet-bank-validity.mjs",
+    "exitCode": 0,
+    "seconds": 0.16,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-066.log"
+  },
+  {
+    "command": "npm run audit:source-inventory",
+    "exitCode": 0,
+    "seconds": 0.21,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-067.log"
+  },
+  {
+    "command": "node scripts/test-comparison-etf-details.mjs",
+    "exitCode": 0,
+    "seconds": 0.57,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-068.log"
+  },
+  {
+    "command": "node scripts/test-tweet-midi-shards.mjs",
+    "exitCode": 0,
+    "seconds": 0.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-069.log"
+  },
+  {
+    "command": "node scripts/build-tweet-midi-verifier.mjs",
+    "exitCode": 0,
+    "seconds": 0.72,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-070.log"
+  },
+  {
+    "command": "npm run audit:investor-profiles",
+    "exitCode": 0,
+    "seconds": 0.97,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-071.log"
+  },
+  {
+    "command": "npm run audit:household-statistics",
+    "exitCode": 0,
+    "seconds": 0.57,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-072.log"
+  },
+  {
+    "command": "node scripts/test-diversification-lot-one.mjs",
+    "exitCode": 0,
+    "seconds": 0.67,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-073.log"
+  },
+  {
+    "command": "node scripts/test-gaming-medical-reuse.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-074.log"
+  },
+  {
+    "command": "node scripts/test-world-factors-step-one.mjs",
+    "exitCode": 0,
+    "seconds": 0.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-075.log"
+  },
+  {
+    "command": "node scripts/test-property-infrastructure-step-two.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-076.log"
+  },
+  {
+    "command": "node scripts/test-data-reuse.mjs",
+    "exitCode": 0,
+    "seconds": 0.52,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-077.log"
+  },
+  {
+    "command": "node scripts/test-fee-impact-editorial.mjs",
+    "exitCode": 0,
+    "seconds": 0.67,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-078.log"
+  },
+  {
+    "command": "npm run audit:data-catalog",
+    "exitCode": 0,
+    "seconds": 2.13,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-079.log"
+  },
+  {
+    "command": "npm run audit:data-provenance",
+    "exitCode": 0,
+    "seconds": 0.57,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-080.log"
+  },
+  {
+    "command": "node scripts/test-index-comparison-copy.mjs",
+    "exitCode": 0,
+    "seconds": 0.42,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-081.log"
+  },
+  {
+    "command": "npm run audit:index-facts",
+    "exitCode": 0,
+    "seconds": 0.37,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-082.log"
+  },
+  {
+    "command": "npm run audit:index-completeness",
+    "exitCode": 0,
+    "seconds": 0.32,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-083.log"
+  },
+  {
+    "command": "npm run verify:factsheet-tweets",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-084.log"
+  },
+  {
+    "command": "node scripts/test-portfolio-editorial.mjs",
+    "exitCode": 0,
+    "seconds": 3.73,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-085.log"
+  },
+  {
+    "command": "node scripts/test-publication-preferences.mjs",
+    "exitCode": 0,
+    "seconds": 0.06,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-086.log"
+  },
+  {
+    "command": "node scripts/test-asset-selection.mjs",
+    "exitCode": 0,
+    "seconds": 6.74,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-087.log"
+  },
+  {
+    "command": "node scripts/test-portfolio-recipes.mjs",
+    "exitCode": 0,
+    "seconds": 40.14,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-088.log"
+  },
+  {
+    "command": "node scripts/test-generator-controls.mjs",
+    "exitCode": 0,
+    "seconds": 11.2,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-089.log"
+  },
+  {
+    "command": "node scripts/test-etf-routing-expansion.mjs",
+    "exitCode": 0,
+    "seconds": 0.37,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-090.log"
+  },
+  {
+    "command": "node scripts/audit-asset-tool-routing.mjs --write",
+    "exitCode": 0,
+    "seconds": 1.22,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-091.log"
+  },
+  {
+    "command": "node scripts/test-asset-routing-blockers.mjs",
+    "exitCode": 0,
+    "seconds": 0.11,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-092.log"
+  },
+  {
+    "command": "node scripts/test-publication-reliability.mjs",
+    "exitCode": 0,
+    "seconds": 0.26,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-093.log"
+  },
+  {
+    "command": "node scripts/test-historical-publications.mjs",
+    "exitCode": 0,
+    "seconds": 5.84,
+    "log": "reports/reliquat-2026-10-23/preuves/ci-094.log"
+  }
+]

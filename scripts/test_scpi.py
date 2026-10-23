@@ -100,6 +100,10 @@ class ScpiTests(unittest.TestCase):
         def missing(today): raise AwaitingPublication('Missing current official bulletin')
         result,report=refresh(previous,{'remake-live':missing},dt.date(2026,10,17))
         self.assertEqual(result['records'][0]['checkedAt'],previous['records'][0]['checkedAt']);self.assertEqual(result['records'][0]['collectionStatus']['status'],'waiting-publication');self.assertEqual(report[0]['status'],'waiting');self.assertIn('2026-11-14',report[0]['reason'])
+        status=result['records'][0]['collectionStatus']
+        self.assertEqual(status['internalReviewDue'],'2026-11-14')
+        self.assertIsNone(status['issuerPublicationDeadline'])
+        self.assertNotIn('nextPublicationDue',status)
         self.assertEqual(refresh(previous,{'remake-live':missing},dt.date(2026,11,15))[1][0]['status'],'failure')
         def offline(today):raise TimeoutError('offline')
         failed,_=refresh(result,{'remake-live':offline},dt.date(2026,10,18))

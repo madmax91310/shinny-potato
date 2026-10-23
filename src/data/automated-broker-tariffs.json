@@ -2112,7 +2112,7 @@
             "resume": "Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.",
             "full": "Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés."
           },
-          "checkedAt": "2026-10-21",
+          "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
           "refs": [
             {
@@ -2120,34 +2120,34 @@
               "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "d24bfeba4d12ab41cf6d221883db892d4de0080051b5d0d7e7224c1e94f960a6",
+              "sha256": "efe31a155b2b75b201884179af09e5e78470819e6ecd1aa6b03b55315a79eaac",
               "kind": "page",
               "statement": "Interest will not be payable on the first EUR 10,000 or USD"
             },
             {
               "document": "peaCashRules",
-              "sourceUrl": "https://bofip.impots.gouv.fr/bofip/1556-PGP.html/identifiant=BOI-RPPM-RCM-40-50-20-20-20240730",
+              "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "70ef3800892900a188dff8fbee8d1193cccd78afae278a3a98507f03470594f6",
+              "sha256": "b87f816f96a4991a19b05be100df909280d647f607670054e0328295035510fc",
               "kind": "page",
-              "statement": "Le compte en espèces n'est pas rémunéré et ne peut pas présenter un solde débiteur"
+              "statement": "Le compte espèces du PEA fonctionne comme un compte de dépôt. Il n’est pas rémunéré."
             }
           ],
           "scope": "ibkr ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "8065fafb3d77319ef79012b9a98134eb20b8f58735af33c707ac5a88004346d2",
+          "sha256": "845a21259cfb2a26e3166637bd32c229ed609fe51b53bbec16404d5149238799",
           "values": {},
           "decisiveDocument": "ibkrInterest",
           "statement": "Interest will not be payable on the first EUR 10,000 or USD",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/index.php?f=47097",
-              "sha256": "d24bfeba4d12ab41cf6d221883db892d4de0080051b5d0d7e7224c1e94f960a6"
+              "sha256": "efe31a155b2b75b201884179af09e5e78470819e6ecd1aa6b03b55315a79eaac"
             },
             {
-              "sourceUrl": "https://bofip.impots.gouv.fr/bofip/1556-PGP.html/identifiant=BOI-RPPM-RCM-40-50-20-20-20240730",
-              "sha256": "70ef3800892900a188dff8fbee8d1193cccd78afae278a3a98507f03470594f6"
+              "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+              "sha256": "b87f816f96a4991a19b05be100df909280d647f607670054e0328295035510fc"
             }
           ]
         },
@@ -3038,9 +3038,7 @@
   "profileCollection": {
     "checkedAt": "2026-10-22",
     "validated": 55,
-    "failures": {
-      "ibkr:profile:cash": "https://bofip.impots.gouv.fr/bofip/1556-PGP.html/identifiant=BOI-RPPM-RCM-40-50-20-20-20240730: <urlopen error timed out>; https://bofip.impots.gouv.fr/bofip/1556-PGP.html: <urlopen error timed out>"
-    }
+    "failures": {}
   },
   "sourceResolution": {
     "checkedAt": "2026-10-22",

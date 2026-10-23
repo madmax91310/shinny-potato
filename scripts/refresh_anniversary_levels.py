@@ -50,6 +50,9 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     # histories. Keep Yahoo on its existing retry policy and injected fetches
     # unchanged for deterministic validation.
     json_fetch = json_fetch or (get_msci_json if parser == 'msci' else get_json)
+    if parser == 'official-nav':
+        from collect_official_share_history import collect_one as collect_nav
+        return collect_nav(config,now)['latestLevel']
     if parser == 'yahoo':
         if config['id']=='nasdaq100':
             asof,value,url,body=xndx_supported_ranges(config,now,json_fetch)
@@ -162,7 +165,7 @@ def refresh(current, now, collect=collect_one, selected=None):
             # Older equity/index observations predate exact-identity metadata.
             # Enrich absent identifiers while preserving the same quote convention;
             # an existing identifier must never change or disappear.
-            convention_changed = old and (any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant']) or
+            convention_changed = old and (any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant','valuationBasis','nativeCurrency']) or
                 any(old.get(k) is not None and record.get(k)!=old[k] for k in ['isin','ticker','mic','listingEvidenceId']))
             # One explicit transport migration; the economic index stays XNDX
             # Total Return USD. Every other convention change still fails closed.

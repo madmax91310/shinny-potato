@@ -12,7 +12,8 @@ for (const asset of MARKET_ASSETS) {
   const previous=links[asset.isin]
   if(previous) {
     const a=ASSETS[previous],b=ASSETS[id]
-    if(![a,b].every(r=>r?.ticker&&r.mic&&r.currency))throw new Error(`Ambiguous performance history: ${asset.isin}`)
+    const exactHistory=r=>r?.currency&&((r.ticker&&r.mic)||(r.valuationBasis==='fund-nav-total-return'&&r.isin===asset.isin&&r.sourceUrls?.some(url=>url.startsWith('https://'))))
+    if(![a,b].every(exactHistory))throw new Error(`Ambiguous performance history: ${asset.isin}`)
     // Same exact share, explicitly labelled listings. Prefer the most qualified
     // annual windows; never splice prices or replace one currency's series.
     const score=key=>getAnnualReturnStartYears(key).length

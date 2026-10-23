@@ -13,6 +13,8 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/issuer_nav_history.py'
+      - 'scripts/collect_official_share_history.py'
       - 'scripts/qualify_monthly_candidates.py'
       - 'scripts/build-equity-history-links.mjs'
       - 'scripts/export-equity-candidates.mjs'
@@ -71,6 +73,9 @@ jobs:
       - name: Install issuer PDF parser
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: python -m pip install beautifulsoup4
+      - run: python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'

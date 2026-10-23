@@ -58,4 +58,19 @@ class OfficialNav(unittest.TestCase):
         self.assertEqual(result['years'],{'2025':50});self.assertNotIn('2023-12-29',result['nav'])
         cal['returnsByCurrency']['value']['annualNav']='EUR'
         with self.assertRaises(ValueError):blackrock_nav(body,'TEST','USD',NOW)
+class NavRefreshSafety(unittest.TestCase):
+    def test_failed_collection_and_changed_native_currency_preserve_all_evidence(self):
+        from refresh_monthly_history import refresh
+        old={'id':'example','parser':'official-nav','currency':'EUR','navCurrency':'USD','navProvider':'dws',
+             'valuationBasis':'fund-nav-total-return','method':'NAV','periodStart':'2026-01','periodEnd':'2026-01',
+             'points':[['2026-01',100]],'checkedAt':'2026-02-01'}
+        baseline={'example':{'currency':'EUR','points':[{'date':'2026-01','price':100}]}}
+        for collector in [lambda *_:(_ for _ in ()).throw(TimeoutError('offline')),lambda *_:{**old,'navCurrency':'EUR','proofRows':[]}]:
+            result,report=refresh({'series':[old]},{'example':old},baseline,NOW,collector)
+            self.assertEqual(result['example'],old)
+            self.assertEqual(report['series'][0]['status'],'failed')
+        fresh={**old,'proofRows':[]}
+        result,report=refresh({'series':[old]},{'example':old},baseline,NOW,lambda *_:fresh)
+        self.assertEqual(report['series'][0]['status'],'validated')
+        self.assertEqual(result['example']['checkedAt'],'2026-02-01','An unchanged successful poll does not renew the financial evidence date')
 if __name__=='__main__':unittest.main()

@@ -9,6 +9,7 @@ import datetime as dt
 import gzip
 import hashlib
 import json
+import math
 import pathlib
 import re
 import urllib.parse
@@ -121,6 +122,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     checks=calendar_checks(nav,years,calendar_precision,now,identity_from)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
+    points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
     eligible=[d for d in nav if d<now.date().isoformat()]
     latest=max(eligible)
     if (now.date()-dt.date.fromisoformat(latest)).days>7:raise ValueError('Official latest NAV is stale')

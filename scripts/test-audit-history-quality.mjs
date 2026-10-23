@@ -10,7 +10,7 @@ import {convertAsset} from '../src/pages/performance-rankings/series.js'
 import {monthlyCalendarReturns} from './monthly-return-projection.mjs'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 const state=(assetId,startYear)=>({assetId,startYear,startMonth:12,amountRaw:'100',mode:'dca',currency:'native',overridePriceRaw:''})
-for(const [id,year] of [['etfIE000U9ODG19',2025],['etfIE00B579F325',2022]]) {
+for(const [id,year] of [['etfIE00B579F325',2022]]) {
  const a=ASSETS[id],start=`${year-1}-12`,end=`${year}-12`
  assert(!qualifyHistoryWindow(a,start,end).qualified)
  assert.throws(()=>derive(state(id,year-1)),/cours reportés/)
@@ -40,3 +40,8 @@ assert(!('2016'in AUTOMATED_ETF.IE00BYTRR863.performance.years))
 assert.equal(AUTOMATED_ETF.IE00BYTRR863.performance.excludedYears['2016'].value,26.33)
 assert(qualifyHistoryWindow(energy,'2016-12','2017-12').qualified)
 assert(Number.isFinite(derive(state('etfIE00BYTRR863',2016)).result.finalValue))
+
+// The repaired NAV route is independent of the archived, unqualified Swiss quote.
+assert.equal(ASSETS.etfIE000U9ODG19.historyConvention,'fund-nav-total-return')
+assert(qualifyHistoryWindow(ASSETS.etfIE000U9ODG19,'2024-12','2025-12').qualified)
+assert(Math.abs(periodReturn(ASSETS.etfIE000U9ODG19,'2024-12','2025-12')-54.5533885)<.0001)

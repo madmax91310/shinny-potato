@@ -103,7 +103,7 @@ export function buildDataAutomationInventory(){
   const dynamicConsumers=new Set(dynamic.flatMap(binding=>binding.consumers))
   const users=consumers.filter(c=>c.deps.has(path)||[...dynamicConsumers].some(d=>c.path===d||c.deps.has(d))).map(c=>c.path)
   return {path,mode:direct.some(w=>w.crons.length)?'scheduled-output':direct.length?'event-output':upstream.length?'mixed-or-derived':'manual-or-editorial',
-   dynamicBindings:dynamic,writers:direct.map(w=>w.path),upstreamWorkflows:upstream,dependencies:deps.filter(p=>p!==path),consumers:users,
+   dynamicBindings:dynamic,runtimeConsumers:users,buildConsumers:[...dynamicConsumers].filter(p=>p.startsWith('scripts/')),writers:direct.map(w=>w.path),upstreamWorkflows:upstream,dependencies:deps.filter(p=>p!==path),consumers:[...new Set([...users,...dynamicConsumers])],
    catalogFields:DATA_CATALOG.reduce((n,r)=>n+r.fields.filter(f=>f.registry===path).length,0),
    action:upstream.length||direct.length?'Qualifier la couverture au niveau de chaque champ ; vérifier le dernier succès dans Données à revoir.':'Décider si les valeurs sont éditoriales, hypothèses de simulation ou chiffres à raccorder ; aucun statut automatique déduit du nom du fichier.'}
  })

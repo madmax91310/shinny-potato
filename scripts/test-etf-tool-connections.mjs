@@ -31,7 +31,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   const routedId=getPerformanceAssetId(asset.isin)
   if(routedId){assert.equal(routedPerformanceAssets[routedId].isin,asset.isin);assert(routedPerformanceYears(routedId).length>0)}
   const priceInstrument = ['ETC','ETN','ETP'].includes(asset.instrumentType)
-  assert.match(performanceBasis(id), priceInstrument ? new RegExp(`cours de l’${asset.instrumentType}`) : /revenus réinvestis/)
+  assert.match(performanceBasis(id), priceInstrument ? new RegExp(`${asset.valuationBasis?'valeur liquidative':'cours'} de l’${asset.instrumentType}`) : /revenus réinvestis/)
   const start = asset.points[0].date
   for (const mode of ['lump', 'dca']) {
     const expected = (mode === 'lump' ? 100 / asset.points[0].price : asset.points.reduce((n, p) => n + 100 / p.price, 0)) * asset.points.at(-1).price
@@ -74,7 +74,8 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(latest.ticker, asset.ticker)
   assert.equal(latest.mic, asset.mic)
   assert.equal(latest.currency, asset.currency)
-  assert.match(latest.method, /cours brut/)
+  assert.match(latest.method,asset.valuationBasis?/Valeur liquidative officielle/:/cours brut/)
+  assert.equal(latest.valuationBasis,asset.valuationBasis)
   assert.equal(resolveAnniversaryLevel(id, '', new Date(`${latest.asOf}T12:00:00Z`)).value, latest.value)
   const validYearsBack=getValidYearsBackOptions(id,new Date())
   if (!validYearsBack.length) continue

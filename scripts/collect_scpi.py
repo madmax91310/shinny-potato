@@ -285,8 +285,8 @@ class AwaitingPublication(ValueError):
     """The source currently lists no bulletin: normal between two quarterly editions."""
 
 
-# Quarterly bulletins describe the quarter just ended and are published about a month
-# later. While the next edition is not yet due, a missing link is a wait, not a failure.
+# Internal monitoring interval, not a legal or issuer-promised publication deadline.
+# A missing bulletin after this interval requests investigation, not a proven issuer delay.
 BULLETIN_GRACE_DAYS = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/freshness-policy.json').read_text())['calendars']['scpi.quarterlyBulletin']['graceDaysAfterNextQuarterEnd']
 
 
@@ -341,12 +341,12 @@ def refresh(previous, adapters, today):
             due = old and old.get('snapshot', {}).get('asOf') and next_bulletin_due(old['snapshot']['asOf'])
             if due and today <= due:
                 import copy
-                records[id] = {**copy.deepcopy(old), 'collectionStatus': {'status':'waiting-publication','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat(),'nextPublicationDue':due.isoformat()}}
+                records[id] = {**copy.deepcopy(old), 'collectionStatus': {'status':'waiting-publication','lastAttemptAt':today.isoformat(),'lastAccessSuccessAt':today.isoformat(),'internalReviewDue':due.isoformat(),'issuerPublicationDeadline':None,'deadlineBasis':'internal-monitoring-policy'}}
                 observations.append({'id': id, 'name': old['name'], 'status': 'waiting',
-                                     'reason': f'{error}; next quarterly edition expected by {due.isoformat()}, last validated data kept.'})
+                                     'reason': f'{error}; internal monitoring review on {due.isoformat()}, issuer publication deadline unknown; last validated data kept.'})
             else:
                 observations.append({'id': id, 'name': records.get(id, {}).get('name', id), 'status': 'failure',
-                                     'reason': f'{error}; next quarterly edition was due by {due.isoformat()}.' if due else str(error)[:250]})
+                                     'reason': f'{error}; internal monitoring interval exceeded on {due.isoformat()}; no issuer deadline established.' if due else str(error)[:250]})
         except Exception as error:
             observations.append({'id': id, 'name':records.get(id,{}).get('name',id), 'status': 'failure', 'reason': str(error)[:250]})
     # Failed attempts remain visible without refreshing the last successful access

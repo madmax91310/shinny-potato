@@ -664,21 +664,26 @@
     "listingEvidenceId": "IE00BK5BQT80-XETR-VWCE-EUR"
   },
   "etfEqualWeight": {
-    "value": 107.68000030517578,
+    "value": 107.64482820010683,
     "asOf": "2026-10-21",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "XDEW.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1791331200&period2=1792627200&interval=1d&events=splits",
-    "sha256": "6e363f900d5fcea0dd5c33544bba695ef65febf26e82285218e489bf6b9d9470",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BLNMYC90",
-    "ticker": "XDEW",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BLNMYC90-ETFP-XDEW-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 120.9282,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-21",
+    "fxFactor": 0.8901548869503294,
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+    "sourceUrls": [
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2b9a8a0c8f2448e1f38ae2f8e7388c0a26b861473eef84cff9046c35ba6a3416"
   },
   "etfMinVol": {
     "value": 79.18000030517578,
@@ -3640,21 +3645,28 @@
     "listingEvidenceId": "IE000YYE6WK5-XPAR-DFNS-EUR"
   },
   "etfIE00BDFBTQ78": {
-    "value": 53.959999084472656,
-    "asOf": "2026-10-21",
+    "value": 51.580544399821505,
+    "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "GDIG.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/GDIG.MI?period1=1791331200&period2=1792627200&interval=1d&events=splits",
-    "sha256": "61e76934a79e681f78fc33f8478e11d4b6a8d96244082ddf8bf3b3a6a395825e",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BDFBTQ78",
-    "ticker": "GDIG",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 57.796,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "c548f71fd6b5efdcceabee4af29d5d4e9c25962edfc5d8a3c731d22a2c306cae"
   },
   "etfIE00B3T9LM79": {
     "value": 51.689998626708984,
@@ -8628,21 +8640,24 @@
     "listingEvidenceId": "IE000C6ITGC8-XAMS-QANT-USD"
   },
   "etfIE000U9ODG19": {
-    "value": 8.947999954223633,
-    "asOf": "2026-10-21",
+    "value": 8.740156,
+    "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "DFND.SW",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1791331200&period2=1792627200&interval=1d&events=splits",
-    "sha256": "6457e62be9b4580e8145618eac08b9544441f12b14161978fd4047cb0d5c47ff",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE000U9ODG19",
-    "ticker": "DFND",
-    "mic": "XSWX",
-    "listingEvidenceId": "IE000U9ODG19-XSWX-DFND-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 8.740156,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "294bece865870cfcb073fed03a15ada32e25526c079569c5a74d083771eb828f"
   },
   "etfIE00B02KXK85": {
     "value": 83.48999786376953,

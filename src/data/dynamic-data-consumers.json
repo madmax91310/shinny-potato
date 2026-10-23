@@ -1,9 +1,116 @@
 {
   "version": 1,
   "bindings": [
-    {"pattern":"src/pages/dca-profiles/holdings-*.json","consumers":["src/pages/dca-profiles/holdings-loader.js"],"mechanism":"import.meta.glob ?url puis fetch","producer":"scripts/build-dca-exposures.mjs"},
-    {"pattern":"src/data/dca-complete-holdings.json","consumers":["src/pages/dca-profiles/holdings-loader.js"],"mechanism":"projection de build en fragments datés","producer":"scripts/build-dca-exposures.mjs"},
-    {"pattern":"public/data/ai-portfolios/*.json","consumers":["src/pages/ai-portfolios/App.jsx","src/pages/ai-portfolios/series.js"],"mechanism":"fetch public et fragments sélectionnés","producer":"scripts/ai-portfolios.mjs"},
-    {"pattern":"data/ai-portfolios/*","consumers":["src/pages/ai-portfolios/App.jsx"],"mechanism":"projection publique versionnée ; les sources de comptabilité ne sont pas des imports Vite","producer":"scripts/ai-portfolios.mjs"}
+    {
+      "pattern": "src/pages/dca-profiles/holdings-*.json",
+      "consumers": [
+        "src/pages/dca-profiles/holdings-loader.js"
+      ],
+      "mechanism": "import.meta.glob ?url puis fetch",
+      "producer": "scripts/build-dca-exposures.mjs"
+    },
+    {
+      "pattern": "src/data/dca-complete-holdings.json",
+      "consumers": [
+        "src/pages/dca-profiles/holdings-loader.js"
+      ],
+      "mechanism": "projection de build en fragments datés",
+      "producer": "scripts/build-dca-exposures.mjs"
+    },
+    {
+      "pattern": "public/data/ai-portfolios/*.json",
+      "consumers": [
+        "src/pages/ai-portfolios/App.jsx",
+        "src/pages/ai-portfolios/series.js"
+      ],
+      "mechanism": "fetch public et fragments sélectionnés",
+      "producer": "scripts/ai-portfolios.mjs"
+    },
+    {
+      "pattern": "data/ai-portfolios/*",
+      "consumers": [
+        "src/pages/ai-portfolios/App.jsx"
+      ],
+      "mechanism": "projection publique versionnée ; les sources de comptabilité ne sont pas des imports Vite",
+      "producer": "scripts/ai-portfolios.mjs"
+    },
+    {
+      "pattern": "src/data/dca-equity-exposures.json",
+      "consumers": [
+        "scripts/build-dca-exposures.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "prior projection used to preserve qualified equity rows",
+      "producer": "scripts/build-dca-exposures.mjs"
+    },
+    {
+      "pattern": "src/data/dca-holdings-status.json",
+      "consumers": [
+        "scripts/build-dca-exposures.mjs",
+        "scripts/report-asset-fields.mjs",
+        "scripts/build-index-company-compositions.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "dated admission and publication gates",
+      "producer": "scripts/collect_dca_complete_holdings.py"
+    },
+    {
+      "pattern": "src/data/dca-security-classifications.json",
+      "consumers": [
+        "scripts/build-dca-exposures.mjs",
+        "scripts/build-equity-history-links.mjs",
+        "scripts/ai-portfolio-universe.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "security identity projection and catalogue admission",
+      "producer": null
+    },
+    {
+      "pattern": "src/data/exposure-sleeves.json",
+      "consumers": [
+        "scripts/build-dca-exposures.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "economic exposure projection",
+      "producer": "scripts/derive-exposure-sleeves.mjs"
+    },
+    {
+      "pattern": "src/data/index-company-qualified.json",
+      "consumers": [
+        "scripts/build-index-company-compositions.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "qualified index composition projection",
+      "producer": "scripts/build-index-company-compositions.mjs"
+    },
+    {
+      "pattern": "src/data/instrument-metadata-status.json",
+      "consumers": [
+        "scripts/build-automation-targets.mjs",
+        "scripts/report-asset-fields.mjs",
+        "scripts/data-automation-inventory.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "field incidents and qualification reports",
+      "producer": "scripts/collect_instrument_metadata.py"
+    },
+    {
+      "pattern": "src/data/security-identifier-observations.json",
+      "consumers": [
+        "scripts/security_identifier_observations.py"
+      ],
+      "stage": "collection",
+      "mechanism": "dated SEDOL/ISIN crosswalk; no weights imported",
+      "producer": null
+    },
+    {
+      "pattern": "src/pages/dca-profiles/holdings.json",
+      "consumers": [
+        "scripts/test-exposure-checker.mjs"
+      ],
+      "stage": "validation",
+      "mechanism": "top-ten regression projection; not the runtime full holdings loader",
+      "producer": "scripts/build-dca-exposures.mjs"
+    }
   ]
 }
