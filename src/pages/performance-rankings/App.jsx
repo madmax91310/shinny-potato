@@ -58,14 +58,15 @@ export default function App() {
   const prepared = useMemo(() => {
     try {
       const assets = comparison === 'portfolios'
-        ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX))
+        ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX,
+          mode==='period'?{start:dates.start,end:dates.end}:Number.isInteger(dates.startYear)?{start:`${dates.startYear-1}-12`,end:`${mode==='year'?dates.startYear:dates.endYear}-12`}:{}))
         : ids.map(id => {
           try { return convertAsset(SOURCES[id], currency, FX) }
           catch (e) { throw new Error(`${SOURCES[id]?.shortLabel ?? id} : ${e.message}`) }
         })
       return { assets: markBenchmark(assets, benchmarkId).map(a => ({ ...a, rankingColor: colors[a.id] })) }
     } catch (e) { return { assets: [], error: e.message } }
-  }, [ids, currency, comparison, portfolios, benchmarkId, colors])
+  }, [ids, currency, comparison, portfolios, benchmarkId, colors,mode,dates])
   const assets = prepared.assets
   const selectedAssets = ids.map(id => assets.find(a => a.id === id) ?? { ...SOURCES[id], rankingColor: colors[id] })
   const categories = presentation === 'annual' ? ALL_CATEGORIES.filter(c => ANNUAL_CATEGORY_IDS.has(c.id) || c.id === categoryId) : ALL_CATEGORIES

@@ -110,19 +110,24 @@ def collect(share,now):
     return result
 
 
-def collect_rankings(share,now):
-    from collect_physical_holdings import observation
+def product_page(url):
+    """Bounded public transport only; callers still qualify the exact product."""
     from issuer_routes import wisdomtree_product_candidates
     attempts=[]
-    for route in wisdomtree_product_candidates(share['sourceUrl']):
+    for route in wisdomtree_product_candidates(url):
         try:
             page=public_page(route,max_bytes=12_000_000)
-            share={**share,'sourceUrl':route}
-            break
+            return page,route,attempts
         except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
             if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
             attempts.append({'sourceUrl':route,'status':'unavailable','error':str(error)[:500]})
-    else:raise ConnectionError('Public issuer routes unavailable: '+json.dumps(attempts))
+    raise ConnectionError('Public issuer routes unavailable: '+json.dumps(attempts))
+
+
+def collect_rankings(share,now):
+    from collect_physical_holdings import observation
+    page,route,attempts=product_page(share['sourceUrl'])
+    share={**share,'sourceUrl':route}
     mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)

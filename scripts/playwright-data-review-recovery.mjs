@@ -123,6 +123,13 @@ try{
  assert.equal(await page.getByRole('alert').count(),0)
  const recovered=page.waitForEvent('download');await page.getByRole('button',{name:'📊 Télécharger une image',exact:true}).click()
  await(await recovered).saveAs(`${out}/copper-compatible-2026.png`);pngCount++
+ await page.goto(base+'/performance-depuis?asset=annual-GB00B15KXQ89',{waitUntil:'networkidle'})
+ assert.equal(await page.locator('#subject-select').getAttribute('data-value'),'annual-GB00B15KXQ89')
+ await choose(page.locator('#secondary-select'),'2018')
+ await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+ assert((await page.locator('pre').innerText()).includes('valeur liquidative'))
+ const nav=page.waitForEvent('download');await page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}).click()
+ await(await nav).saveAs(`${out}/copper-annual-nav-2018.png`);pngCount++
  assert.deepEqual(errors,[])
  console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
 }finally{await browser?.close();server.kill()}

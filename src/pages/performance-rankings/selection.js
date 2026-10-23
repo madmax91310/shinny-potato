@@ -31,8 +31,11 @@ export function replaceBenchmark(state, nextId, assets = RANKING_ASSETS, fx = FX
   catch {
     adjusted = true
     mode = coverage.years.length ? 'years' : 'period'
+    const years = coverage.years.slice(-6)
+    while (years.length > 1 && years.at(-1) - years[0] !== years.length - 1) years.shift()
     dates = { start: coverage.start, end: coverage.end,
-      startYear: coverage.years.at(-6) ?? coverage.years[0], endYear: coverage.years.at(-1) }
+      startYear: years[0], endYear: years.at(-1) }
+    buildRanking(members, { ...dates, mode })
   }
   return { ids, currency, dates, mode, benchmarkId: nextId, adjusted }
 }

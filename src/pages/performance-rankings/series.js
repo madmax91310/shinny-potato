@@ -23,7 +23,7 @@ export function convertAsset(asset, currency, fx) {
   return converted
 }
 
-export function buildPortfolio({ id, label, lines, rebalance = 'annual' }, assets, currency, fx) {
+export function buildPortfolio({ id, label, lines, rebalance = 'annual' }, assets, currency, fx, window = {}) {
   if (!id || !label.trim() || lines.length < 1 || lines.length > 6 || !['none', 'annual', 'monthly'].includes(rebalance)) throw new Error('Portefeuille invalide.')
   if (new Set(lines.map(l => l.id)).size !== lines.length || lines.some(l => !assets[l.id] || !Number.isFinite(Number(l.pct)) || Number(l.pct) <= 0)) throw new Error('Chaque portefeuille exige des actifs distincts et des poids positifs.')
   const total = lines.reduce((sum, l) => sum + Number(l.pct), 0)
@@ -33,7 +33,9 @@ export function buildPortfolio({ id, label, lines, rebalance = 'annual' }, asset
   const members = converted.map(l => l.asset)
   members.forEach(validateSeries)
   if (members.some(a => ['monthly-average', 'price-index', 'futures-price'].includes(a.basis))) throw new Error('Convention de rendement non qualifiée pour une allocation.')
-  const coverage = members.length === 1 ? { start: members[0].points[0].date, end: members[0].points.at(-1).date, currency: members[0].currency } : commonCoverage(members)
+  const available = members.length === 1 ? { start: members[0].points[0].date, end: members[0].points.at(-1).date, currency: members[0].currency } : commonCoverage(members)
+  const coverage={...available,start:window.start??available.start,end:window.end??available.end}
+  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(coverage.start)||!/^\d{4}-(0[1-9]|1[0-2])$/.test(coverage.end)||coverage.start>=coverage.end||coverage.start<available.start||coverage.end>available.end)throw new Error('La période dépasse l’historique commun disponible.')
   const result = { id, label: label.trim(), shortLabel: label.trim(), currency: coverage.currency, basis: 'portfolio',
     fxConverted: members.some(a => a.fxConverted), frequency: 'monthly',
     indexVariants: [...new Set(members.flatMap(a => a.basis.startsWith('index-') ? [a.basis] : []))],
