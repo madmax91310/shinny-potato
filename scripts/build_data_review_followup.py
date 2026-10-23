@@ -179,18 +179,18 @@ def main():
         latest=read(source_path)
         attempts={}
         for error in latest['scopes']['holdings-retry']['observation']['errors']:
-            attempts[error['id'].split(':')[-1]]=error['error']
+            attempts[error['id'].split(':')[-1]]=(error['error'],latest['scopes']['holdings-retry']['execution']['startedAt'])
         for isin,observation in latest['scopes']['discovery']['observation']['observations'].items():
-            if observation.get('error'):attempts[isin]=observation['error']
+            if observation.get('error'):attempts[isin]=(observation['error'],observation.get('lastAttemptAt') or latest['scopes']['discovery']['execution']['startedAt'])
         for r in rows:
             if r['champ'] not in ['completeHoldings','Composition complète','Positions intégrales']:continue
-            for isin,error in attempts.items():
+            for isin,(error,attempted_at) in attempts.items():
                 if isin not in r['id'] and isin not in r['cle']:continue
                 r['motif']+=' Dernier rejeu GitHub : '+error
                 r['preuve']+=' ; reprise/source-results.json'
                 urls=list(dict.fromkeys(re.findall(r'https://[^"\\\s]+',error)))
                 if urls:r['routes_essayees']=' | '.join(u+' => refus de transport dans GitHub' for u in urls)
-                r['dernier_controle_acces']=latest['scopes']['holdings-retry']['execution']['startedAt']
+                r['dernier_controle_acces']=attempted_at
     # Never delete an initial follow-up line when current catalogue dimensions change.
     current_keys={(r['dimension'],r['cle']) for r in rows}
     for old in baseline:
