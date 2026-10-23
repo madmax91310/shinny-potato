@@ -1,0 +1,96 @@
+{
+  "Ticker": "UCTJEDI",
+  "Title": "NAVs",
+  "AsOfDateText": "as of",
+  "AsOfDate": "10/22/2026",
+  "TooltipText": "",
+  "Columns": [
+    {
+      "ColumnName": null,
+      "NumberFormat": "",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "",
+      "WrapperClass": "light_yellow",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "Base Currency",
+      "WrapperClass": "",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "{0:##0.00}",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "NAV",
+      "WrapperClass": "data",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "{0:##0.00}",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "Daily Change NAV",
+      "WrapperClass": "data",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "{0:##0.00}",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "YTD Change NAV",
+      "WrapperClass": "data",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "NAV Price History",
+      "WrapperClass": "",
+      "CellClass": ""
+    },
+    {
+      "ColumnName": "",
+      "NumberFormat": "",
+      "ThirtyDayBidAskMedian": false,
+      "HeaderText": "Total Expense Ratio",
+      "WrapperClass": "data",
+      "CellClass": ""
+    }
+  ],
+  "PricesViewModel": {
+    "DisplayTicker": "JEDI",
+    "NavCurrent": "$67.53",
+    "LastPriceCurrent": null,
+    "Volume30Day": null,
+    "Volume": null,
+    "NAVYTDPerc": "+0.41%",
+    "PriceYTDPerc": null,
+    "PremiumDiscountPercentage": null,
+    "PremiumDiscount": null,
+    "NavDailyChangePercentage": "-4.09%",
+    "NavDailyChange": "$-2.88",
+    "NavDailyChangeValue": -2.8785,
+    "LastPriceChangePerc": null,
+    "LastPriceChange": null,
+    "LastPriceChangeValue": null,
+    "ThirtyDayBidAskMedianFormatted": null,
+    "GrossExpenseRatio": " 0.55%"
+  },
+  "CurrencyName": "USD",
+  "CurrencySymbol": "$",
+  "DownloadUrlTarget": "_blank",
+  "DownloadUrl": "/ucits/investments/space-etf/downloads/fundhistoprices/",
+  "ChartUrlTarget": "_blank",
+  "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTJEDI",
+  "SwipeText": "Swipe<br>to view <br> full data",
+  "HistoPriceUrl": null,
+  "GrossExpenseRatio": null,
+  "CssClass": "etf_fund_prices",
+  "PremiumDiscountBlockID": 0,
+  "ChartSelectList": []
+}

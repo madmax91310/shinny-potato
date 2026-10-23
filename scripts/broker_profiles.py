@@ -57,6 +57,12 @@ def find(pattern, text):
         raise ValueError('Clause officielle absente ou modifiée : '+pattern+(f' | Passage actuel le plus proche : « {near} »' if near else ' | Aucun passage proche dans le document actuel'))
     return match
 
+def pea_cash_rule(text):
+    # Scope to the PEA cash account; the CTO and the invested securities may earn income.
+    # Keep the old BOFiP clause readable for immutable evidence replay.
+    return find(r"Le compte (?:en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur|espèces du PEA fonctionne comme un compte de dépôt\. Il n.est pas rémunéré\.)", text)[0]
+
+
 def amount(value): return float(value.replace(' ','').replace(',','.'))
 def fmt(value): return f'{value:g}'.replace('.',',')
 
@@ -142,7 +148,7 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             threshold=int(m[1].replace(',','').replace(' ',''))
             find(r'intérêts',text)
             money=f'{threshold:,}'.replace(',',' ')
-            find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur",texts['peaCashRules'])
+            pea_cash_rule(texts['peaCashRules'])
             return True,'confirmé',f'Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers {money} € EUR non rémunérés.',source,m[0]
         if broker=='xtb':
             m=find(r'Au-delà de ([\d ]+) EUR.{0,150}?([\d]+) jours',text)
@@ -200,7 +206,7 @@ def parse(broker,field,raws,today,sources=None):
         supporting['ibkrDcaRequirement'] = find(r'Account must have fractional share trading enabled', texts['ibkrDcaRequirement'])[0]
         supporting['ibkrRecurringEligibilityFaq'] = find(r'Recurring Investment is available to any client that has fractional share trading enabled', texts['ibkrRecurringEligibilityFaq'])[0]
     if broker == 'ibkr' and field == 'cash':
-        supporting['peaCashRules'] = find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur", texts['peaCashRules'])[0]
+        supporting['peaCashRules'] = pea_cash_rule(texts['peaCashRules'])
     conversion = {'automaticOnPea':True} if broker=='ibkr' and field=='change' else None
     if broker=='caidf' and field=='change' and decisive=='caCtoContract':
         conversion = {'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None}

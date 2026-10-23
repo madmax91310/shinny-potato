@@ -1,0 +1,78 @@
+{
+  "productIds": [
+    "FR0013411998",
+    "FR0013412004",
+    "LU1737652823",
+    "FR0010342592",
+    "FR0010755611",
+    "FR0011871110",
+    "FR0011871128",
+    "FR0013416716",
+    "FR0007054358",
+    "LU2089238385"
+  ],
+  "context": {
+    "countryCode": "FRA",
+    "languageCode": "fr",
+    "userProfileName": "INSTIT"
+  },
+  "characteristics": [
+    "ISIN",
+    "TER",
+    "CURRENCY",
+    "BASE_CURRENCY",
+    "DISTRIBUTION_POLICY",
+    "FUND_REPLICATION_METHODOLOGY",
+    "BENCHMARK_NAME",
+    "POSITION_AS_OF_DATE",
+    "FUND_BREAKDOWNS_AS_OF_DATE",
+    "PERFORMANCE_DATA_DATE",
+    "SHARE_MARKETING_NAME"
+  ],
+  "breakDown": {
+    "aggregationFields": []
+  },
+  "metrics": [
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2020"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2021"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2022"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2023"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2024"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2025"
+    }
+  ],
+  "historics": [
+    {
+      "indicator": "officialNav",
+      "startDate": "2015-12-01",
+      "endDate": "2026-10-23"
+    },
+    {
+      "indicator": "countervalorisedAdjustedNAV",
+      "startDate": "2015-12-01",
+      "endDate": "2026-10-23"
+    },
+    {
+      "indicator": "navCurrency",
+      "startDate": "2015-12-01",
+      "endDate": "2026-10-23"
+    }
+  ]
+}

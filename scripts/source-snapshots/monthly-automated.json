@@ -46238,932 +46238,1393 @@
   },
   "etfEqualWeight": {
     "id": "etfEqualWeight",
-    "label": "Xtrackers S&P 500 Equal Weight",
     "isin": "IE00BLNMYC90",
+    "label": "Xtrackers S&P 500 Equal Weight · VL",
+    "instrumentType": "ETF",
     "consumerScope": "catalog",
     "currency": "EUR",
-    "periodStart": "2014-07",
-    "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours ; bougies historiques discordantes remplacées uniquement pour les mois enregistrés par une seconde requête quotidienne de fin de mois",
-    "parser": "yahoo",
-    "symbol": "XDEW.MI",
-    "field": "adjclose",
-    "precision": 6,
-    "collectAnniversary": false,
-    "timezone": "Europe/Rome",
-    "ticker": "XDEW",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BLNMYC90-ETFP-XDEW-EUR",
-    "dailyWindowMonths": [
-      "2014-12",
-      "2019-12",
-      "2020-12"
-    ],
+    "periodStart": "2015-06",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement",
+    "navProvider": "dws",
+    "navCurrency": "USD",
+    "identityFrom": "2015-06-26",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+    "checkedAt": "2026-10-23",
+    "periodEnd": "2026-09",
     "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1404172800&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1404172800&period2=1790812800&interval=1mo&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1419465600&period2=1420070400&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1577232000&period2=1577836800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1608854400&period2=1609459200&interval=1d&events=div%2Csplits"
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
+    "sourceCredit": "DWS Xtrackers",
+    "latestLevel": {
+      "value": 107.64482820010683,
+      "asOf": "2026-10-21",
+      "currency": "EUR",
+      "isin": "IE00BLNMYC90",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 120.9282,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-21",
+      "fxFactor": 0.8901548869503294,
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "894744af07c20eec0eb0685c992e53e35278f7f7077b140c40e5f4a1b481f9f8"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-21",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "identityFrom": "2015-06-26",
+      "mergerNote": "Source: DWS <p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. ETF performance calculation includes reinvested dividends. </p><p>On 26 June 2015 db x-trackers S&P 500® Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500® Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500® Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500® Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p><p>Index performance and Tracking Difference calculations are reset on 26/06/2015. For further details on previous restructuring events please refer to the Notice to Shareholders section on our website etf.dws.com or visit the DWS contact page to request further information.</p>",
+      "checks": [
+        {
+          "year": 2016,
+          "start": "2015-12-31",
+          "end": "2016-12-30",
+          "startValue": 36.9434,
+          "endValue": 42.1665,
+          "dailyDerived": 14.138113979763656,
+          "published": 14.14,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2017,
+          "start": "2016-12-30",
+          "end": "2017-12-28",
+          "startValue": 42.1665,
+          "endValue": 50.1122,
+          "dailyDerived": 18.84363179301105,
+          "published": 18.84,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2018,
+          "start": "2017-12-28",
+          "end": "2018-12-28",
+          "startValue": 50.1122,
+          "endValue": 45.3986,
+          "dailyDerived": -9.406092727918548,
+          "published": -9.41,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-28",
+          "end": "2019-12-31",
+          "startValue": 45.3986,
+          "endValue": 58.806,
+          "dailyDerived": 29.532628759477152,
+          "published": 29.53,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 58.806,
+          "endValue": 65.9635,
+          "dailyDerived": 12.171377070366972,
+          "published": 12.17,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 65.9635,
+          "endValue": 85.0291,
+          "dailyDerived": 28.9032571043077,
+          "published": 28.9,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 85.0291,
+          "endValue": 74.8841,
+          "dailyDerived": -11.931209433005874,
+          "published": -11.93,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 74.8841,
+          "endValue": 84.8607,
+          "dailyDerived": 13.322721378770641,
+          "published": 13.32,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 84.8607,
+          "endValue": 95.4405,
+          "dailyDerived": 12.467255160516011,
+          "published": 12.47,
+          "publishedDecimalPlaces": 2
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 95.4405,
+          "endValue": 105.8892,
+          "dailyDerived": 10.947868043440678,
+          "published": 10.95,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
     "proofRows": [
       {
-        "date": "2014-07-31",
-        "close": 35.31869888305664,
-        "monthlyClose": 35.31869888305664,
-        "value": 35.31869888305664
-      },
-      {
-        "date": "2014-08-29",
-        "close": 36.801300048828125,
-        "monthlyClose": 36.801300048828125,
-        "value": 36.801300048828125
-      },
-      {
-        "date": "2014-09-30",
-        "close": 35.85860061645508,
-        "monthlyClose": 35.85860061645508,
-        "value": 35.85860061645508
-      },
-      {
-        "date": "2014-10-31",
-        "close": 36.93149948120117,
-        "monthlyClose": 36.93149948120117,
-        "value": 36.93149948120117
-      },
-      {
-        "date": "2014-11-28",
-        "close": 37.887298583984375,
-        "monthlyClose": 37.887298583984375,
-        "value": 37.887298583984375
-      },
-      {
-        "date": "2014-12-30",
-        "close": 38.35639953613281,
-        "monthlyClose": null,
-        "value": 38.35639953613281,
-        "rejectedMonthlyClose": 37.98809814453125,
-        "verificationReason": "Registered historical candle discrepancy; exact daily month-end window agrees",
-        "windowClose": 38.35639953613281,
-        "windowUrl": "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1419465600&period2=1420070400&interval=1d&events=div%2Csplits"
-      },
-      {
-        "date": "2015-01-30",
-        "close": 36.89350128173828,
-        "monthlyClose": 36.89350128173828,
-        "value": 36.89350128173828
-      },
-      {
-        "date": "2015-02-27",
-        "close": 38.98939895629883,
-        "monthlyClose": 38.98939895629883,
-        "value": 38.98939895629883
-      },
-      {
-        "date": "2015-03-31",
-        "close": 38.624900817871094,
-        "monthlyClose": 38.624900817871094,
-        "value": 38.624900817871094
-      },
-      {
-        "date": "2015-04-30",
-        "close": 38.76219940185547,
-        "monthlyClose": 38.76219940185547,
-        "value": 38.76219940185547
-      },
-      {
-        "date": "2015-05-29",
-        "close": 39.04410171508789,
-        "monthlyClose": 39.04410171508789,
-        "value": 39.04410171508789
-      },
-      {
         "date": "2015-06-30",
-        "close": 38.15129852294922,
-        "monthlyClose": 38.15129852294922,
-        "value": 38.15129852294922
+        "nav": 38.1513,
+        "navCurrency": "USD",
+        "value": 34.097148985610865,
+        "currency": "EUR",
+        "fxAsOf": "2015-06-30",
+        "fxFactor": 0.893734918223255
       },
       {
         "date": "2015-07-31",
-        "close": 38.5078010559082,
-        "monthlyClose": 38.5078010559082,
-        "value": 38.5078010559082
+        "nav": 38.5078,
+        "navCurrency": "USD",
+        "value": 35.112428193671924,
+        "currency": "EUR",
+        "fxAsOf": "2015-07-31",
+        "fxFactor": 0.9118263882556761
       },
       {
         "date": "2015-08-28",
-        "close": 36.67169952392578,
-        "monthlyClose": 36.67169952392578,
-        "value": 36.67169952392578
+        "nav": 36.6717,
+        "navCurrency": "USD",
+        "value": 32.69879625501561,
+        "currency": "EUR",
+        "fxAsOf": "2015-08-31",
+        "fxFactor": 0.8916629514043692
       },
       {
         "date": "2015-09-30",
-        "close": 35.222198486328125,
-        "monthlyClose": 35.222198486328125,
-        "value": 35.222198486328125
+        "nav": 35.2222,
+        "navCurrency": "USD",
+        "value": 31.43997143622244,
+        "currency": "EUR",
+        "fxAsOf": "2015-09-30",
+        "fxFactor": 0.8926180487369454
       },
       {
         "date": "2015-10-30",
-        "close": 37.762001037597656,
-        "monthlyClose": 37.762001037597656,
-        "value": 37.762001037597656
+        "nav": 37.762,
+        "navCurrency": "USD",
+        "value": 34.27611872560588,
+        "currency": "EUR",
+        "fxAsOf": "2015-10-30",
+        "fxFactor": 0.9076881183625307
       },
       {
         "date": "2015-11-30",
-        "close": 37.835201263427734,
-        "monthlyClose": 37.835201263427734,
-        "value": 37.835201263427734
+        "nav": 37.8352,
+        "navCurrency": "USD",
+        "value": 35.76443898289063,
+        "currency": "EUR",
+        "fxAsOf": "2015-11-30",
+        "fxFactor": 0.9452689290103033
       },
       {
         "date": "2015-12-31",
-        "close": 36.94340133666992,
-        "monthlyClose": 36.94340133666992,
-        "value": 36.94340133666992
+        "nav": 36.9434,
+        "navCurrency": "USD",
+        "value": 33.93349866813631,
+        "currency": "EUR",
+        "fxAsOf": "2015-12-31",
+        "fxFactor": 0.918526683200147
       },
       {
         "date": "2016-01-29",
-        "close": 34.862098693847656,
-        "monthlyClose": 34.862098693847656,
-        "value": 34.862098693847656
+        "nav": 34.8621,
+        "navCurrency": "USD",
+        "value": 31.924999999999997,
+        "currency": "EUR",
+        "fxAsOf": "2016-01-29",
+        "fxFactor": 0.9157509157509157
       },
       {
         "date": "2016-02-29",
-        "close": 35.234901428222656,
-        "monthlyClose": 35.234901428222656,
-        "value": 35.234901428222656
+        "nav": 35.2349,
+        "navCurrency": "USD",
+        "value": 32.36122336517267,
+        "currency": "EUR",
+        "fxAsOf": "2016-02-29",
+        "fxFactor": 0.9184423218221895
       },
       {
         "date": "2016-03-31",
-        "close": 38.00910186767578,
-        "monthlyClose": 38.00910186767578,
-        "value": 38.00910186767578
+        "nav": 38.0091,
+        "navCurrency": "USD",
+        "value": 33.38524374176548,
+        "currency": "EUR",
+        "fxAsOf": "2016-03-31",
+        "fxFactor": 0.8783487044356609
       },
       {
         "date": "2016-04-29",
-        "close": 38.462799072265625,
-        "monthlyClose": 38.462799072265625,
-        "value": 38.462799072265625
+        "nav": 38.4628,
+        "navCurrency": "USD",
+        "value": 33.73042181881961,
+        "currency": "EUR",
+        "fxAsOf": "2016-04-29",
+        "fxFactor": 0.8769622029290537
       },
       {
         "date": "2016-05-31",
-        "close": 39.01020050048828,
-        "monthlyClose": 39.01020050048828,
-        "value": 39.01020050048828
+        "nav": 39.0102,
+        "navCurrency": "USD",
+        "value": 34.97417966648736,
+        "currency": "EUR",
+        "fxAsOf": "2016-05-31",
+        "fxFactor": 0.8965393580778197
       },
       {
         "date": "2016-06-30",
-        "close": 38.966400146484375,
-        "monthlyClose": 38.966400146484375,
-        "value": 38.966400146484375
+        "nav": 38.9664,
+        "navCurrency": "USD",
+        "value": 35.09854080345884,
+        "currency": "EUR",
+        "fxAsOf": "2016-06-30",
+        "fxFactor": 0.9007386056566384
       },
       {
         "date": "2016-07-29",
-        "close": 40.59260177612305,
-        "monthlyClose": 40.59260177612305,
-        "value": 40.59260177612305
+        "nav": 40.5926,
+        "navCurrency": "USD",
+        "value": 36.52713038783407,
+        "currency": "EUR",
+        "fxAsOf": "2016-07-29",
+        "fxFactor": 0.8998470260055791
       },
       {
         "date": "2016-08-31",
-        "close": 40.65290069580078,
-        "monthlyClose": 40.65290069580078,
-        "value": 40.65290069580078
+        "nav": 40.6529,
+        "navCurrency": "USD",
+        "value": 36.51895436579231,
+        "currency": "EUR",
+        "fxAsOf": "2016-08-31",
+        "fxFactor": 0.8983111749910169
       },
       {
         "date": "2016-09-30",
-        "close": 40.671600341796875,
-        "monthlyClose": 40.671600341796875,
-        "value": 40.671600341796875
+        "nav": 40.6716,
+        "navCurrency": "USD",
+        "value": 36.44082071498969,
+        "currency": "EUR",
+        "fxAsOf": "2016-09-30",
+        "fxFactor": 0.8959770629871875
       },
       {
         "date": "2016-10-31",
-        "close": 39.680999755859375,
-        "monthlyClose": 39.680999755859375,
-        "value": 39.680999755859375
+        "nav": 39.681,
+        "navCurrency": "USD",
+        "value": 36.251598757536996,
+        "currency": "EUR",
+        "fxAsOf": "2016-10-31",
+        "fxFactor": 0.913575735428467
       },
       {
         "date": "2016-11-30",
-        "close": 41.72169876098633,
-        "monthlyClose": 41.72169876098633,
-        "value": 41.72169876098633
+        "nav": 41.7217,
+        "navCurrency": "USD",
+        "value": 39.23055947343677,
+        "currency": "EUR",
+        "fxAsOf": "2016-11-30",
+        "fxFactor": 0.9402914903620123
       },
       {
         "date": "2016-12-30",
-        "close": 42.166500091552734,
-        "monthlyClose": 42.166500091552734,
-        "value": 42.166500091552734
+        "nav": 42.1665,
+        "navCurrency": "USD",
+        "value": 40.00237169149037,
+        "currency": "EUR",
+        "fxAsOf": "2016-12-30",
+        "fxFactor": 0.948676596148373
       },
       {
         "date": "2017-01-31",
-        "close": 43.037498474121094,
-        "monthlyClose": 43.037498474121094,
-        "value": 43.037498474121094
+        "nav": 43.0375,
+        "navCurrency": "USD",
+        "value": 40.01627150162716,
+        "currency": "EUR",
+        "fxAsOf": "2017-01-31",
+        "fxFactor": 0.9298000929800094
       },
       {
         "date": "2017-02-28",
-        "close": 44.39889907836914,
-        "monthlyClose": 44.39889907836914,
-        "value": 44.39889907836914
+        "nav": 44.3989,
+        "navCurrency": "USD",
+        "value": 41.89761253184863,
+        "currency": "EUR",
+        "fxAsOf": "2017-02-28",
+        "fxFactor": 0.9436633009342266
       },
       {
         "date": "2017-03-31",
-        "close": 44.393001556396484,
-        "monthlyClose": 44.393001556396484,
-        "value": 44.393001556396484
+        "nav": 44.393,
+        "navCurrency": "USD",
+        "value": 41.523711533065196,
+        "currency": "EUR",
+        "fxAsOf": "2017-03-31",
+        "fxFactor": 0.9353661958656815
       },
       {
         "date": "2017-04-28",
-        "close": 44.6796989440918,
-        "monthlyClose": 44.6796989440918,
-        "value": 44.6796989440918
+        "nav": 44.6797,
+        "navCurrency": "USD",
+        "value": 40.87804208600183,
+        "currency": "EUR",
+        "fxAsOf": "2017-04-28",
+        "fxFactor": 0.9149130832570906
       },
       {
         "date": "2017-05-31",
-        "close": 44.926998138427734,
-        "monthlyClose": 44.926998138427734,
-        "value": 44.926998138427734
+        "nav": 44.927,
+        "navCurrency": "USD",
+        "value": 40.03832100525799,
+        "currency": "EUR",
+        "fxAsOf": "2017-05-31",
+        "fxFactor": 0.8911861687906603
       },
       {
         "date": "2017-06-30",
-        "close": 45.44029998779297,
-        "monthlyClose": 45.44029998779297,
-        "value": 45.44029998779297
+        "nav": 45.4403,
+        "navCurrency": "USD",
+        "value": 39.817998597967055,
+        "currency": "EUR",
+        "fxAsOf": "2017-06-30",
+        "fxFactor": 0.8762705923589205
       },
       {
         "date": "2017-07-31",
-        "close": 46.14659881591797,
-        "monthlyClose": 46.14659881591797,
-        "value": 46.14659881591797
+        "nav": 46.1466,
+        "navCurrency": "USD",
+        "value": 39.35072908672294,
+        "currency": "EUR",
+        "fxAsOf": "2017-07-31",
+        "fxFactor": 0.8527330092947898
       },
       {
         "date": "2017-08-31",
-        "close": 45.69459915161133,
-        "monthlyClose": 45.69459915161133,
-        "value": 45.69459915161133
+        "nav": 45.6946,
+        "navCurrency": "USD",
+        "value": 38.64236786469344,
+        "currency": "EUR",
+        "fxAsOf": "2017-08-31",
+        "fxFactor": 0.8456659619450316
       },
       {
         "date": "2017-09-29",
-        "close": 47.007999420166016,
-        "monthlyClose": 47.007999420166016,
-        "value": 47.007999420166016
+        "nav": 47.008,
+        "navCurrency": "USD",
+        "value": 39.81704218194139,
+        "currency": "EUR",
+        "fxAsOf": "2017-09-29",
+        "fxFactor": 0.8470269354565475
       },
       {
         "date": "2017-10-31",
-        "close": 47.51110076904297,
-        "monthlyClose": 47.51110076904297,
-        "value": 47.51110076904297
+        "nav": 47.5111,
+        "navCurrency": "USD",
+        "value": 40.82411067193676,
+        "currency": "EUR",
+        "fxAsOf": "2017-10-31",
+        "fxFactor": 0.8592541673827119
       },
       {
         "date": "2017-11-30",
-        "close": 49.30289840698242,
-        "monthlyClose": 49.30289840698242,
-        "value": 49.30289840698242
+        "nav": 49.3029,
+        "navCurrency": "USD",
+        "value": 41.60933412102287,
+        "currency": "EUR",
+        "fxAsOf": "2017-11-30",
+        "fxFactor": 0.8439530762089628
       },
       {
         "date": "2017-12-28",
-        "close": 50.11220169067383,
-        "monthlyClose": 50.11220169067383,
-        "value": 50.11220169067383
+        "nav": 50.1122,
+        "navCurrency": "USD",
+        "value": 41.78454098223964,
+        "currency": "EUR",
+        "fxAsOf": "2017-12-29",
+        "fxFactor": 0.8338197281747686
       },
       {
         "date": "2018-01-31",
-        "close": 52.07160186767578,
-        "monthlyClose": 52.07160186767578,
-        "value": 52.07160186767578
+        "nav": 52.0716,
+        "navCurrency": "USD",
+        "value": 41.801075700409406,
+        "currency": "EUR",
+        "fxAsOf": "2018-01-31",
+        "fxFactor": 0.8027614995584812
       },
       {
         "date": "2018-02-28",
-        "close": 49.785499572753906,
-        "monthlyClose": 49.785499572753906,
-        "value": 49.785499572753906
+        "nav": 49.7855,
+        "navCurrency": "USD",
+        "value": 40.76101195349598,
+        "currency": "EUR",
+        "fxAsOf": "2018-02-28",
+        "fxFactor": 0.8187326019322089
       },
       {
         "date": "2018-03-29",
-        "close": 49.290401458740234,
-        "monthlyClose": 49.290401458740234,
-        "value": 49.290401458740234
+        "nav": 49.2904,
+        "navCurrency": "USD",
+        "value": 40.005194383572764,
+        "currency": "EUR",
+        "fxAsOf": "2018-03-29",
+        "fxFactor": 0.8116224332440549
       },
       {
         "date": "2018-04-30",
-        "close": 49.472900390625,
-        "monthlyClose": 49.472900390625,
-        "value": 49.472900390625
+        "nav": 49.4729,
+        "navCurrency": "USD",
+        "value": 40.95777796175181,
+        "currency": "EUR",
+        "fxAsOf": "2018-04-30",
+        "fxFactor": 0.8278831029058697
       },
       {
         "date": "2018-05-31",
-        "close": 50.151100158691406,
-        "monthlyClose": 50.151100158691406,
-        "value": 50.151100158691406
+        "nav": 50.1511,
+        "navCurrency": "USD",
+        "value": 42.86785195315839,
+        "currency": "EUR",
+        "fxAsOf": "2018-05-31",
+        "fxFactor": 0.8547739123001966
       },
       {
         "date": "2018-06-29",
-        "close": 50.598201751708984,
-        "monthlyClose": 50.598201751708984,
-        "value": 50.598201751708984
+        "nav": 50.5982,
+        "navCurrency": "USD",
+        "value": 43.40212729456168,
+        "currency": "EUR",
+        "fxAsOf": "2018-06-29",
+        "fxFactor": 0.857780065191285
       },
       {
         "date": "2018-07-31",
-        "close": 52.205101013183594,
-        "monthlyClose": 52.205101013183594,
-        "value": 52.205101013183594
+        "nav": 52.2051,
+        "navCurrency": "USD",
+        "value": 44.482873210633954,
+        "currency": "EUR",
+        "fxAsOf": "2018-07-31",
+        "fxFactor": 0.8520790729379687
       },
       {
         "date": "2018-08-31",
-        "close": 53.22309875488281,
-        "monthlyClose": 53.22309875488281,
-        "value": 53.22309875488281
+        "nav": 53.2231,
+        "navCurrency": "USD",
+        "value": 45.681143249506476,
+        "currency": "EUR",
+        "fxAsOf": "2018-08-31",
+        "fxFactor": 0.8582954252853832
       },
       {
         "date": "2018-09-28",
-        "close": 53.26959991455078,
-        "monthlyClose": 53.26959991455078,
-        "value": 53.26959991455078
+        "nav": 53.2696,
+        "navCurrency": "USD",
+        "value": 46.01727712508638,
+        "currency": "EUR",
+        "fxAsOf": "2018-09-28",
+        "fxFactor": 0.8638562543192813
       },
       {
         "date": "2018-10-31",
-        "close": 49.38130187988281,
-        "monthlyClose": 49.38130187988281,
-        "value": 49.38130187988281
+        "nav": 49.3813,
+        "navCurrency": "USD",
+        "value": 43.63076515285387,
+        "currency": "EUR",
+        "fxAsOf": "2018-10-31",
+        "fxFactor": 0.8835483300936562
       },
       {
         "date": "2018-11-30",
-        "close": 50.71630096435547,
-        "monthlyClose": 50.71630096435547,
-        "value": 50.71630096435547
+        "nav": 50.7163,
+        "navCurrency": "USD",
+        "value": 44.648560612729995,
+        "currency": "EUR",
+        "fxAsOf": "2018-11-30",
+        "fxFactor": 0.8803591865481117
       },
       {
         "date": "2018-12-28",
-        "close": 45.39860153198242,
-        "monthlyClose": 45.39860153198242,
-        "value": 45.39860153198242
+        "nav": 45.3986,
+        "navCurrency": "USD",
+        "value": 39.64943231441048,
+        "currency": "EUR",
+        "fxAsOf": "2018-12-31",
+        "fxFactor": 0.8733624454148472
       },
       {
         "date": "2019-01-31",
-        "close": 50.25360107421875,
-        "monthlyClose": 50.25360107421875,
-        "value": 50.25360107421875
+        "nav": 50.2536,
+        "navCurrency": "USD",
+        "value": 43.744428969359326,
+        "currency": "EUR",
+        "fxAsOf": "2019-01-31",
+        "fxFactor": 0.8704735376044568
       },
       {
         "date": "2019-02-28",
-        "close": 52.06959915161133,
-        "monthlyClose": 52.06959915161133,
-        "value": 52.06959915161133
+        "nav": 52.0696,
+        "navCurrency": "USD",
+        "value": 45.61107217939734,
+        "currency": "EUR",
+        "fxAsOf": "2019-02-28",
+        "fxFactor": 0.8759635599159076
       },
       {
         "date": "2019-03-29",
-        "close": 52.5088005065918,
-        "monthlyClose": 52.5088005065918,
-        "value": 52.5088005065918
+        "nav": 52.5088,
+        "navCurrency": "USD",
+        "value": 46.736804628393415,
+        "currency": "EUR",
+        "fxAsOf": "2019-03-29",
+        "fxFactor": 0.8900756564307967
       },
       {
         "date": "2019-04-30",
-        "close": 54.37770080566406,
-        "monthlyClose": 54.37770080566406,
-        "value": 54.37770080566406
+        "nav": 54.3777,
+        "navCurrency": "USD",
+        "value": 48.473613834908186,
+        "currency": "EUR",
+        "fxAsOf": "2019-04-30",
+        "fxFactor": 0.8914244963451596
       },
       {
         "date": "2019-05-31",
-        "close": 50.60599899291992,
-        "monthlyClose": 50.60599899291992,
-        "value": 50.60599899291992
+        "nav": 50.606,
+        "navCurrency": "USD",
+        "value": 45.38247690790064,
+        "currency": "EUR",
+        "fxAsOf": "2019-05-31",
+        "fxFactor": 0.896780557797507
       },
       {
         "date": "2019-06-28",
-        "close": 54.390201568603516,
-        "monthlyClose": 54.390201568603516,
-        "value": 54.390201568603516
+        "nav": 54.3902,
+        "navCurrency": "USD",
+        "value": 47.79455184534271,
+        "currency": "EUR",
+        "fxAsOf": "2019-06-28",
+        "fxFactor": 0.8787346221441126
       },
       {
         "date": "2019-07-31",
-        "close": 54.84239959716797,
-        "monthlyClose": 54.84239959716797,
-        "value": 54.84239959716797
+        "nav": 54.8424,
+        "navCurrency": "USD",
+        "value": 49.181598062953995,
+        "currency": "EUR",
+        "fxAsOf": "2019-07-31",
+        "fxFactor": 0.896780557797507
       },
       {
         "date": "2019-08-30",
-        "close": 53.108699798583984,
-        "monthlyClose": 53.108699798583984,
-        "value": 53.108699798583984
+        "nav": 53.1087,
+        "navCurrency": "USD",
+        "value": 48.1231424429141,
+        "currency": "EUR",
+        "fxAsOf": "2019-08-30",
+        "fxFactor": 0.9061254077564336
       },
       {
         "date": "2019-09-30",
-        "close": 54.73059844970703,
-        "monthlyClose": 54.73059844970703,
-        "value": 54.73059844970703
+        "nav": 54.7306,
+        "navCurrency": "USD",
+        "value": 50.262283037928185,
+        "currency": "EUR",
+        "fxAsOf": "2019-09-30",
+        "fxFactor": 0.918357975939021
       },
       {
         "date": "2019-10-31",
-        "close": 55.407798767089844,
-        "monthlyClose": 55.407798767089844,
-        "value": 55.407798767089844
+        "nav": 55.4078,
+        "navCurrency": "USD",
+        "value": 49.67527344450422,
+        "currency": "EUR",
+        "fxAsOf": "2019-10-31",
+        "fxFactor": 0.8965393580778197
       },
       {
         "date": "2019-11-29",
-        "close": 57.25,
-        "monthlyClose": 57.25,
-        "value": 57.25
+        "nav": 57.25,
+        "navCurrency": "USD",
+        "value": 52.13075942451284,
+        "currency": "EUR",
+        "fxAsOf": "2019-11-29",
+        "fxFactor": 0.9105809506465125
       },
       {
-        "date": "2019-12-30",
-        "close": 58.57360076904297,
-        "monthlyClose": null,
-        "value": 58.57360076904297,
-        "rejectedMonthlyClose": 58.805999755859375,
-        "verificationReason": "Registered historical candle discrepancy; exact daily month-end window agrees",
-        "windowClose": 58.57360076904297,
-        "windowUrl": "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1577232000&period2=1577836800&interval=1d&events=div%2Csplits"
+        "date": "2019-12-31",
+        "nav": 58.806,
+        "navCurrency": "USD",
+        "value": 52.34644828200107,
+        "currency": "EUR",
+        "fxAsOf": "2019-12-31",
+        "fxFactor": 0.8901548869503294
       },
       {
         "date": "2020-01-31",
-        "close": 57.71989822387695,
-        "monthlyClose": 57.71989822387695,
-        "value": 57.71989822387695
+        "nav": 57.7199,
+        "navCurrency": "USD",
+        "value": 52.22575099529497,
+        "currency": "EUR",
+        "fxAsOf": "2020-01-31",
+        "fxFactor": 0.9048136083966704
       },
       {
         "date": "2020-02-28",
-        "close": 52.502899169921875,
-        "monthlyClose": 52.502899169921875,
-        "value": 52.502899169921875
+        "nav": 52.5029,
+        "navCurrency": "USD",
+        "value": 47.82991709938963,
+        "currency": "EUR",
+        "fxAsOf": "2020-02-28",
+        "fxFactor": 0.9109957183201239
       },
       {
         "date": "2020-03-31",
-        "close": 43.052398681640625,
-        "monthlyClose": 43.052398681640625,
-        "value": 43.052398681640625
+        "nav": 43.0524,
+        "navCurrency": "USD",
+        "value": 39.29572836801753,
+        "currency": "EUR",
+        "fxAsOf": "2020-03-31",
+        "fxFactor": 0.9127418765972983
       },
       {
         "date": "2020-04-30",
-        "close": 49.25270080566406,
-        "monthlyClose": 49.25270080566406,
-        "value": 49.25270080566406
+        "nav": 49.2527,
+        "navCurrency": "USD",
+        "value": 45.285674880470765,
+        "currency": "EUR",
+        "fxAsOf": "2020-04-30",
+        "fxFactor": 0.9194556822361163
       },
       {
         "date": "2020-05-29",
-        "close": 51.53919982910156,
-        "monthlyClose": 51.53919982910156,
-        "value": 51.53919982910156
+        "nav": 51.5392,
+        "navCurrency": "USD",
+        "value": 46.281609195402304,
+        "currency": "EUR",
+        "fxAsOf": "2020-05-29",
+        "fxFactor": 0.8979885057471265
       },
       {
         "date": "2020-06-30",
-        "close": 52.32419967651367,
-        "monthlyClose": 52.32419967651367,
-        "value": 52.32419967651367
+        "nav": 52.3242,
+        "navCurrency": "USD",
+        "value": 46.72637971066262,
+        "currency": "EUR",
+        "fxAsOf": "2020-06-30",
+        "fxFactor": 0.8930166101089481
       },
       {
         "date": "2020-07-31",
-        "close": 54.8406982421875,
-        "monthlyClose": 54.8406982421875,
-        "value": 54.8406982421875
+        "nav": 54.8407,
+        "navCurrency": "USD",
+        "value": 46.28688386225523,
+        "currency": "EUR",
+        "fxAsOf": "2020-07-31",
+        "fxFactor": 0.8440243079000674
       },
       {
         "date": "2020-08-28",
-        "close": 57.71390151977539,
-        "monthlyClose": 57.71390151977539,
-        "value": 57.71390151977539
+        "nav": 57.7139,
+        "navCurrency": "USD",
+        "value": 48.33659966499163,
+        "currency": "EUR",
+        "fxAsOf": "2020-08-31",
+        "fxFactor": 0.8375209380234506
       },
       {
         "date": "2020-09-30",
-        "close": 55.779701232910156,
-        "monthlyClose": 55.779701232910156,
-        "value": 55.779701232910156
+        "nav": 55.7797,
+        "navCurrency": "USD",
+        "value": 47.642381277758794,
+        "currency": "EUR",
+        "fxAsOf": "2020-09-30",
+        "fxFactor": 0.8541168431841476
       },
       {
         "date": "2020-10-30",
-        "close": 55.41699981689453,
-        "monthlyClose": 55.41699981689453,
-        "value": 55.41699981689453
+        "nav": 55.417,
+        "navCurrency": "USD",
+        "value": 47.37305522311507,
+        "currency": "EUR",
+        "fxAsOf": "2020-10-30",
+        "fxFactor": 0.8548469823901522
       },
       {
         "date": "2020-11-30",
-        "close": 63.29570007324219,
-        "monthlyClose": 63.29570007324219,
-        "value": 63.29570007324219
+        "nav": 63.2957,
+        "navCurrency": "USD",
+        "value": 52.83447412353923,
+        "currency": "EUR",
+        "fxAsOf": "2020-11-30",
+        "fxFactor": 0.8347245409015025
       },
       {
-        "date": "2020-12-30",
-        "close": 65.46810150146484,
-        "monthlyClose": null,
-        "value": 65.46810150146484,
-        "rejectedMonthlyClose": 65.9635009765625,
-        "verificationReason": "Registered historical candle discrepancy; exact daily month-end window agrees",
-        "windowClose": 65.46810150146484,
-        "windowUrl": "https://query2.finance.yahoo.com/v8/finance/chart/XDEW.MI?period1=1608854400&period2=1609459200&interval=1d&events=div%2Csplits"
+        "date": "2020-12-31",
+        "nav": 65.9635,
+        "navCurrency": "USD",
+        "value": 53.7556026403716,
+        "currency": "EUR",
+        "fxAsOf": "2020-12-31",
+        "fxFactor": 0.8149295085975062
       },
       {
         "date": "2021-01-29",
-        "close": 65.3812026977539,
-        "monthlyClose": 65.3812026977539,
-        "value": 65.3812026977539
+        "nav": 65.3812,
+        "navCurrency": "USD",
+        "value": 53.87376400791035,
+        "currency": "EUR",
+        "fxAsOf": "2021-01-29",
+        "fxFactor": 0.8239947264337508
       },
       {
         "date": "2021-02-26",
-        "close": 69.32019805908203,
-        "monthlyClose": 69.32019805908203,
-        "value": 69.32019805908203
+        "nav": 69.3202,
+        "navCurrency": "USD",
+        "value": 57.19016582790199,
+        "currency": "EUR",
+        "fxAsOf": "2021-02-26",
+        "fxFactor": 0.8250144377526607
       },
       {
         "date": "2021-03-31",
-        "close": 73.40989685058594,
-        "monthlyClose": 73.40989685058594,
-        "value": 73.40989685058594
+        "nav": 73.4099,
+        "navCurrency": "USD",
+        "value": 62.60972281449892,
+        "currency": "EUR",
+        "fxAsOf": "2021-03-31",
+        "fxFactor": 0.8528784648187633
       },
       {
         "date": "2021-04-30",
-        "close": 76.86869812011719,
-        "monthlyClose": 76.86869812011719,
-        "value": 76.86869812011719
+        "nav": 76.8687,
+        "navCurrency": "USD",
+        "value": 63.62249627545109,
+        "currency": "EUR",
+        "fxAsOf": "2021-04-30",
+        "fxFactor": 0.8276775368316505
       },
       {
-        "date": "2021-05-31",
-        "close": 63.93000030517578,
-        "monthlyClose": 63.93000030517578,
-        "value": 63.93000030517578
+        "date": "2021-05-28",
+        "nav": 78.3096,
+        "navCurrency": "USD",
+        "value": 64.18293582493239,
+        "currency": "EUR",
+        "fxAsOf": "2021-05-31",
+        "fxFactor": 0.8196049504139006
       },
       {
         "date": "2021-06-30",
-        "close": 65.9800033569336,
-        "monthlyClose": 65.9800033569336,
-        "value": 65.9800033569336
+        "nav": 78.3854,
+        "navCurrency": "USD",
+        "value": 65.95876809155168,
+        "currency": "EUR",
+        "fxAsOf": "2021-06-30",
+        "fxFactor": 0.841467519353753
       },
       {
         "date": "2021-07-30",
-        "close": 67.01000213623047,
-        "monthlyClose": 67.01000213623047,
-        "value": 67.01000213623047
+        "nav": 79.3708,
+        "navCurrency": "USD",
+        "value": 66.74863342023379,
+        "currency": "EUR",
+        "fxAsOf": "2021-07-30",
+        "fxFactor": 0.8409721638213775
       },
       {
         "date": "2021-08-31",
-        "close": 68.86000061035156,
-        "monthlyClose": 68.86000061035156,
-        "value": 68.86000061035156
+        "nav": 81.2274,
+        "navCurrency": "USD",
+        "value": 68.63900625316884,
+        "currency": "EUR",
+        "fxAsOf": "2021-08-31",
+        "fxFactor": 0.8450228156160217
       },
       {
         "date": "2021-09-30",
-        "close": 68.36000061035156,
-        "monthlyClose": 68.36000061035156,
-        "value": 68.36000061035156
+        "nav": 78.1129,
+        "navCurrency": "USD",
+        "value": 67.46083426893514,
+        "currency": "EUR",
+        "fxAsOf": "2021-09-30",
+        "fxFactor": 0.8636324380343726
       },
       {
         "date": "2021-10-29",
-        "close": 71.26000213623047,
-        "monthlyClose": 71.26000213623047,
-        "value": 71.26000213623047
+        "nav": 82.245,
+        "navCurrency": "USD",
+        "value": 70.62687848862173,
+        "currency": "EUR",
+        "fxAsOf": "2021-10-29",
+        "fxFactor": 0.8587376556462
       },
       {
         "date": "2021-11-30",
-        "close": 71.69999694824219,
-        "monthlyClose": 71.69999694824219,
-        "value": 71.69999694824219
+        "nav": 80.1223,
+        "navCurrency": "USD",
+        "value": 70.51157264806828,
+        "currency": "EUR",
+        "fxAsOf": "2021-11-30",
+        "fxFactor": 0.8800492827598345
       },
       {
-        "date": "2021-12-30",
-        "close": 74.95999908447266,
-        "monthlyClose": 74.95999908447266,
-        "value": 74.95999908447266
+        "date": "2021-12-31",
+        "nav": 85.0291,
+        "navCurrency": "USD",
+        "value": 75.07425392901288,
+        "currency": "EUR",
+        "fxAsOf": "2021-12-31",
+        "fxFactor": 0.8829242450997704
       },
       {
         "date": "2022-01-31",
-        "close": 71.69999694824219,
-        "monthlyClose": 71.69999694824219,
-        "value": 71.69999694824219
+        "nav": 81.3111,
+        "navCurrency": "USD",
+        "value": 72.88553244890642,
+        "currency": "EUR",
+        "fxAsOf": "2022-01-31",
+        "fxFactor": 0.8963786303334529
       },
       {
         "date": "2022-02-28",
-        "close": 71.94999694824219,
-        "monthlyClose": 71.94999694824219,
-        "value": 71.94999694824219
+        "nav": 80.574,
+        "navCurrency": "USD",
+        "value": 71.94749531208144,
+        "currency": "EUR",
+        "fxAsOf": "2022-02-28",
+        "fxFactor": 0.892936869363336
       },
       {
         "date": "2022-03-31",
-        "close": 75.48999786376953,
-        "monthlyClose": 75.48999786376953,
-        "value": 75.48999786376953
+        "nav": 82.6226,
+        "navCurrency": "USD",
+        "value": 74.42806954328438,
+        "currency": "EUR",
+        "fxAsOf": "2022-03-31",
+        "fxFactor": 0.9008197459688315
       },
       {
         "date": "2022-04-29",
-        "close": 74.94000244140625,
-        "monthlyClose": 74.94000244140625,
-        "value": 74.94000244140625
+        "nav": 77.3003,
+        "navCurrency": "USD",
+        "value": 73.33994307400378,
+        "currency": "EUR",
+        "fxAsOf": "2022-04-29",
+        "fxFactor": 0.9487666034155597
       },
       {
         "date": "2022-05-31",
-        "close": 72.5999984741211,
-        "monthlyClose": 72.5999984741211,
-        "value": 72.5999984741211
+        "nav": 78.0312,
+        "navCurrency": "USD",
+        "value": 72.8378605432652,
+        "currency": "EUR",
+        "fxAsOf": "2022-05-31",
+        "fxFactor": 0.9334453467749464
       },
       {
         "date": "2022-06-30",
-        "close": 67.51000213623047,
-        "monthlyClose": 67.51000213623047,
-        "value": 67.51000213623047
+        "nav": 70.6609,
+        "navCurrency": "USD",
+        "value": 68.02820833734475,
+        "currency": "EUR",
+        "fxAsOf": "2022-06-30",
+        "fxFactor": 0.962741888899586
       },
       {
         "date": "2022-07-29",
-        "close": 74.66999816894531,
-        "monthlyClose": 74.66999816894531,
-        "value": 74.66999816894531
+        "nav": 76.7796,
+        "navCurrency": "USD",
+        "value": 75.28888017258286,
+        "currency": "EUR",
+        "fxAsOf": "2022-07-29",
+        "fxFactor": 0.9805844283192783
       },
       {
         "date": "2022-08-31",
-        "close": 73.9800033569336,
-        "monthlyClose": 73.9800033569336,
-        "value": 73.9800033569336
+        "nav": 74.0515,
+        "navCurrency": "USD",
+        "value": 74.0515,
+        "currency": "EUR",
+        "fxAsOf": "2022-08-31",
+        "fxFactor": 1.0
       },
       {
         "date": "2022-09-30",
-        "close": 69.91999816894531,
-        "monthlyClose": 69.91999816894531,
-        "value": 69.91999816894531
+        "nav": 67.1809,
+        "navCurrency": "USD",
+        "value": 68.91762412802626,
+        "currency": "EUR",
+        "fxAsOf": "2022-09-30",
+        "fxFactor": 1.0258514567090686
       },
       {
         "date": "2022-10-31",
-        "close": 74.70999908447266,
-        "monthlyClose": 74.70999908447266,
-        "value": 74.70999908447266
+        "nav": 73.735,
+        "navCurrency": "USD",
+        "value": 74.3746217470244,
+        "currency": "EUR",
+        "fxAsOf": "2022-10-31",
+        "fxFactor": 1.0086746015735324
       },
       {
         "date": "2022-11-30",
-        "close": 74.2300033569336,
-        "monthlyClose": 74.2300033569336,
-        "value": 74.2300033569336
+        "nav": 78.626,
+        "navCurrency": "USD",
+        "value": 75.77679259830379,
+        "currency": "EUR",
+        "fxAsOf": "2022-11-30",
+        "fxFactor": 0.9637625289128758
       },
       {
         "date": "2022-12-30",
-        "close": 69.81999969482422,
-        "monthlyClose": 69.81999969482422,
-        "value": 69.81999969482422
+        "nav": 74.8841,
+        "navCurrency": "USD",
+        "value": 70.20823176448528,
+        "currency": "EUR",
+        "fxAsOf": "2022-12-30",
+        "fxFactor": 0.9375585974123383
       },
       {
         "date": "2023-01-31",
-        "close": 73.30000305175781,
-        "monthlyClose": 73.30000305175781,
-        "value": 73.30000305175781
+        "nav": 80.3919,
+        "navCurrency": "USD",
+        "value": 74.21019108280255,
+        "currency": "EUR",
+        "fxAsOf": "2023-01-31",
+        "fxFactor": 0.9231053263177329
       },
       {
         "date": "2023-02-28",
-        "close": 73.6500015258789,
-        "monthlyClose": 73.6500015258789,
-        "value": 73.6500015258789
+        "nav": 77.7065,
+        "navCurrency": "USD",
+        "value": 73.17685281099915,
+        "currency": "EUR",
+        "fxAsOf": "2023-02-28",
+        "fxFactor": 0.9417082587814295
       },
       {
         "date": "2023-03-31",
-        "close": 70.48999786376953,
-        "monthlyClose": 70.48999786376953,
-        "value": 70.48999786376953
+        "nav": 76.9942,
+        "navCurrency": "USD",
+        "value": 70.79926436781611,
+        "currency": "EUR",
+        "fxAsOf": "2023-03-31",
+        "fxFactor": 0.9195402298850576
       },
       {
         "date": "2023-04-28",
-        "close": 69.75,
-        "monthlyClose": 69.75,
-        "value": 69.75
+        "nav": 77.2353,
+        "navCurrency": "USD",
+        "value": 70.33539750478097,
+        "currency": "EUR",
+        "fxAsOf": "2023-04-28",
+        "fxFactor": 0.9106638739641197
       },
       {
         "date": "2023-05-31",
-        "close": 69.3499984741211,
-        "monthlyClose": 69.3499984741211,
-        "value": 69.3499984741211
+        "nav": 74.2853,
+        "navCurrency": "USD",
+        "value": 69.5359917626135,
+        "currency": "EUR",
+        "fxAsOf": "2023-05-31",
+        "fxFactor": 0.9360666479453337
       },
       {
         "date": "2023-06-30",
-        "close": 73.0999984741211,
-        "monthlyClose": 73.0999984741211,
-        "value": 73.0999984741211
+        "nav": 79.9711,
+        "navCurrency": "USD",
+        "value": 73.59755199705504,
+        "currency": "EUR",
+        "fxAsOf": "2023-06-30",
+        "fxFactor": 0.9203018590097551
       },
       {
         "date": "2023-07-31",
-        "close": 75.0199966430664,
-        "monthlyClose": 75.0199966430664,
-        "value": 75.0199966430664
+        "nav": 82.7073,
+        "navCurrency": "USD",
+        "value": 75.03157035289848,
+        "currency": "EUR",
+        "fxAsOf": "2023-07-31",
+        "fxFactor": 0.9071940488070398
       },
       {
         "date": "2023-08-31",
-        "close": 74.18000030517578,
-        "monthlyClose": 74.18000030517578,
-        "value": 74.18000030517578
+        "nav": 80.0634,
+        "navCurrency": "USD",
+        "value": 73.66893632683106,
+        "currency": "EUR",
+        "fxAsOf": "2023-08-31",
+        "fxFactor": 0.9201324990798675
       },
       {
         "date": "2023-09-29",
-        "close": 72.31999969482422,
-        "monthlyClose": 72.31999969482422,
-        "value": 72.31999969482422
+        "nav": 75.9617,
+        "navCurrency": "USD",
+        "value": 71.70256749103265,
+        "currency": "EUR",
+        "fxAsOf": "2023-09-29",
+        "fxFactor": 0.943930526713234
       },
       {
         "date": "2023-10-31",
-        "close": 68.77999877929688,
-        "monthlyClose": 68.77999877929688,
-        "value": 68.77999877929688
+        "nav": 72.8454,
+        "navCurrency": "USD",
+        "value": 68.59911479423674,
+        "currency": "EUR",
+        "fxAsOf": "2023-10-31",
+        "fxFactor": 0.9417082587814295
       },
       {
         "date": "2023-11-30",
-        "close": 72.62000274658203,
-        "monthlyClose": 72.62000274658203,
-        "value": 72.62000274658203
+        "nav": 79.4588,
+        "navCurrency": "USD",
+        "value": 72.69124508279207,
+        "currency": "EUR",
+        "fxAsOf": "2023-11-30",
+        "fxFactor": 0.9148293843198244
       },
       {
         "date": "2023-12-29",
-        "close": 76.66999816894531,
-        "monthlyClose": 76.66999816894531,
-        "value": 76.66999816894531
+        "nav": 84.8607,
+        "navCurrency": "USD",
+        "value": 76.79701357466062,
+        "currency": "EUR",
+        "fxAsOf": "2023-12-29",
+        "fxFactor": 0.9049773755656109
       },
       {
         "date": "2024-01-31",
-        "close": 78.3499984741211,
-        "monthlyClose": 78.3499984741211,
-        "value": 78.3499984741211
+        "nav": 84.1403,
+        "navCurrency": "USD",
+        "value": 77.64169050475222,
+        "currency": "EUR",
+        "fxAsOf": "2024-01-31",
+        "fxFactor": 0.9227646027498384
       },
       {
         "date": "2024-02-29",
-        "close": 80.83999633789062,
-        "monthlyClose": 80.83999633789062,
-        "value": 80.83999633789062
+        "nav": 87.6069,
+        "navCurrency": "USD",
+        "value": 80.92268612599298,
+        "currency": "EUR",
+        "fxAsOf": "2024-02-29",
+        "fxFactor": 0.9237021984112322
       },
       {
         "date": "2024-03-28",
-        "close": 84.63999938964844,
-        "monthlyClose": 84.63999938964844,
-        "value": 84.63999938964844
+        "nav": 91.4671,
+        "navCurrency": "USD",
+        "value": 84.60558690222922,
+        "currency": "EUR",
+        "fxAsOf": "2024-03-28",
+        "fxFactor": 0.9249838127832763
       },
       {
         "date": "2024-04-30",
-        "close": 81.9000015258789,
-        "monthlyClose": 81.9000015258789,
-        "value": 81.9000015258789
+        "nav": 86.9908,
+        "navCurrency": "USD",
+        "value": 81.16327673073333,
+        "currency": "EUR",
+        "fxAsOf": "2024-04-30",
+        "fxFactor": 0.9330098899048329
       },
       {
         "date": "2024-05-31",
-        "close": 81.38999938964844,
-        "monthlyClose": 81.38999938964844,
-        "value": 81.38999938964844
+        "nav": 89.4094,
+        "navCurrency": "USD",
+        "value": 82.38978990047919,
+        "currency": "EUR",
+        "fxAsOf": "2024-05-31",
+        "fxFactor": 0.9214891264283082
       },
       {
         "date": "2024-06-28",
-        "close": 83.22000122070312,
-        "monthlyClose": 83.22000122070312,
-        "value": 83.22000122070312
+        "nav": 88.974,
+        "navCurrency": "USD",
+        "value": 83.11443250817375,
+        "currency": "EUR",
+        "fxAsOf": "2024-06-28",
+        "fxFactor": 0.9341429238673516
       },
       {
         "date": "2024-07-31",
-        "close": 86.16999816894531,
-        "monthlyClose": 86.16999816894531,
-        "value": 86.16999816894531
+        "nav": 92.9235,
+        "navCurrency": "USD",
+        "value": 85.81778721832286,
+        "currency": "EUR",
+        "fxAsOf": "2024-07-31",
+        "fxFactor": 0.9235315847801995
       },
       {
         "date": "2024-08-30",
-        "close": 85.41000366210938,
-        "monthlyClose": 85.41000366210938,
-        "value": 85.41000366210938
+        "nav": 95.1995,
+        "navCurrency": "USD",
+        "value": 85.86587895733742,
+        "currency": "EUR",
+        "fxAsOf": "2024-08-30",
+        "fxFactor": 0.9019572472264814
       },
       {
         "date": "2024-09-30",
-        "close": 87.12999725341797,
-        "monthlyClose": 87.12999725341797,
-        "value": 87.12999725341797
+        "nav": 97.3768,
+        "navCurrency": "USD",
+        "value": 86.97463379778493,
+        "currency": "EUR",
+        "fxAsOf": "2024-09-30",
+        "fxFactor": 0.8931761343336907
       },
       {
         "date": "2024-10-31",
-        "close": 88.63999938964844,
-        "monthlyClose": 88.63999938964844,
-        "value": 88.63999938964844
+        "nav": 95.758,
+        "navCurrency": "USD",
+        "value": 87.99669178459841,
+        "currency": "EUR",
+        "fxAsOf": "2024-10-31",
+        "fxFactor": 0.9189487226612755
       },
       {
         "date": "2024-11-29",
-        "close": 96.73999786376953,
-        "monthlyClose": 96.73999786376953,
-        "value": 96.73999786376953
+        "nav": 101.8633,
+        "navCurrency": "USD",
+        "value": 96.4431925771634,
+        "currency": "EUR",
+        "fxAsOf": "2024-11-29",
+        "fxFactor": 0.946790380609733
       },
       {
-        "date": "2024-12-30",
-        "close": 91.69999694824219,
-        "monthlyClose": 91.69999694824219,
-        "value": 91.69999694824219
+        "date": "2024-12-31",
+        "nav": 95.4405,
+        "navCurrency": "USD",
+        "value": 91.86687842910771,
+        "currency": "EUR",
+        "fxAsOf": "2024-12-31",
+        "fxFactor": 0.9625565501973241
       },
       {
         "date": "2025-01-31",
-        "close": 95.8499984741211,
-        "monthlyClose": 95.8499984741211,
-        "value": 95.8499984741211
+        "nav": 98.7501,
+        "navCurrency": "USD",
+        "value": 95.01597228904072,
+        "currency": "EUR",
+        "fxAsOf": "2025-01-31",
+        "fxFactor": 0.9621860867891852
       },
       {
         "date": "2025-02-28",
-        "close": 93.62999725341797,
-        "monthlyClose": 93.62999725341797,
-        "value": 93.62999725341797
+        "nav": 98.1075,
+        "navCurrency": "USD",
+        "value": 94.23446354817021,
+        "currency": "EUR",
+        "fxAsOf": "2025-02-28",
+        "fxFactor": 0.9605225242531938
       },
       {
         "date": "2025-03-31",
-        "close": 87.08000183105469,
-        "monthlyClose": 87.08000183105469,
-        "value": 87.08000183105469
+        "nav": 94.7414,
+        "navCurrency": "USD",
+        "value": 87.60184928340269,
+        "currency": "EUR",
+        "fxAsOf": "2025-03-31",
+        "fxFactor": 0.9246417013407305
       },
       {
         "date": "2025-04-30",
-        "close": 80.94000244140625,
-        "monthlyClose": 80.94000244140625,
-        "value": 80.94000244140625
+        "nav": 92.5499,
+        "navCurrency": "USD",
+        "value": 81.37685746944517,
+        "currency": "EUR",
+        "fxAsOf": "2025-04-30",
+        "fxFactor": 0.8792754770069463
       },
       {
         "date": "2025-05-30",
-        "close": 84.81999969482422,
-        "monthlyClose": 84.81999969482422,
-        "value": 84.81999969482422
+        "nav": 96.5385,
+        "navCurrency": "USD",
+        "value": 85.13846018167388,
+        "currency": "EUR",
+        "fxAsOf": "2025-05-30",
+        "fxFactor": 0.8819119851838787
       },
       {
         "date": "2025-06-30",
-        "close": 84.72000122070312,
-        "monthlyClose": 84.72000122070312,
-        "value": 84.72000122070312
+        "nav": 99.8072,
+        "navCurrency": "USD",
+        "value": 85.15972696245734,
+        "currency": "EUR",
+        "fxAsOf": "2025-06-30",
+        "fxFactor": 0.8532423208191127
       },
       {
         "date": "2025-07-31",
-        "close": 88.62000274658203,
-        "monthlyClose": 88.62000274658203,
-        "value": 88.62000274658203
+        "nav": 100.7594,
+        "navCurrency": "USD",
+        "value": 88.03022890092608,
+        "currency": "EUR",
+        "fxAsOf": "2025-07-31",
+        "fxFactor": 0.8736676568233444
       },
       {
         "date": "2025-08-29",
-        "close": 88.31999969482422,
-        "monthlyClose": 88.31999969482422,
-        "value": 88.31999969482422
+        "nav": 103.4447,
+        "navCurrency": "USD",
+        "value": 88.73280150969292,
+        "currency": "EUR",
+        "fxAsOf": "2025-08-29",
+        "fxFactor": 0.857780065191285
       },
       {
         "date": "2025-09-30",
-        "close": 88.5199966430664,
-        "monthlyClose": 88.5199966430664,
-        "value": 88.5199966430664
+        "nav": 104.5538,
+        "navCurrency": "USD",
+        "value": 89.0501660846606,
+        "currency": "EUR",
+        "fxAsOf": "2025-09-30",
+        "fxFactor": 0.8517162081594414
       },
       {
         "date": "2025-10-31",
-        "close": 89.63999938964844,
-        "monthlyClose": 89.63999938964844,
-        "value": 89.63999938964844
+        "nav": 103.5504,
+        "navCurrency": "USD",
+        "value": 89.62298770988401,
+        "currency": "EUR",
+        "fxAsOf": "2025-10-31",
+        "fxFactor": 0.8655011251514627
       },
       {
         "date": "2025-11-28",
-        "close": 91.05000305175781,
-        "monthlyClose": 91.05000305175781,
-        "value": 91.05000305175781
+        "nav": 105.4659,
+        "navCurrency": "USD",
+        "value": 91.18614905758257,
+        "currency": "EUR",
+        "fxAsOf": "2025-11-28",
+        "fxFactor": 0.8646031471554556
       },
       {
-        "date": "2025-12-30",
-        "close": 90.91000366210938,
-        "monthlyClose": 90.91000366210938,
-        "value": 90.91000366210938
+        "date": "2025-12-31",
+        "nav": 105.8892,
+        "navCurrency": "USD",
+        "value": 90.11846808510639,
+        "currency": "EUR",
+        "fxAsOf": "2025-12-31",
+        "fxFactor": 0.851063829787234
       },
       {
         "date": "2026-01-30",
-        "close": 91.80999755859375,
-        "monthlyClose": 91.80999755859375,
-        "value": 91.80999755859375
+        "nav": 109.4373,
+        "navCurrency": "USD",
+        "value": 91.81751824817518,
+        "currency": "EUR",
+        "fxAsOf": "2026-01-30",
+        "fxFactor": 0.8389965601141035
       },
       {
         "date": "2026-02-27",
-        "close": 95.52999877929688,
-        "monthlyClose": 95.52999877929688,
-        "value": 95.52999877929688
+        "nav": 113.2701,
+        "navCurrency": "USD",
+        "value": 95.95095298602286,
+        "currency": "EUR",
+        "fxAsOf": "2026-02-27",
+        "fxFactor": 0.847098686997035
       },
       {
         "date": "2026-03-31",
-        "close": 91.54000091552734,
-        "monthlyClose": 91.54000091552734,
-        "value": 91.54000091552734
+        "nav": 106.4601,
+        "navCurrency": "USD",
+        "value": 92.59010262654374,
+        "currency": "EUR",
+        "fxAsOf": "2026-03-31",
+        "fxFactor": 0.8697164724299878
       },
       {
         "date": "2026-04-30",
-        "close": 95.81999969482422,
-        "monthlyClose": 95.81999969482422,
-        "value": 95.81999969482422
+        "nav": 112.8,
+        "navCurrency": "USD",
+        "value": 96.39377884122374,
+        "currency": "EUR",
+        "fxAsOf": "2026-04-30",
+        "fxFactor": 0.8545547769612033
       },
       {
         "date": "2026-05-29",
-        "close": 99.37000274658203,
-        "monthlyClose": 99.37000274658203,
-        "value": 99.37000274658203
+        "nav": 115.7819,
+        "navCurrency": "USD",
+        "value": 99.4348162143593,
+        "currency": "EUR",
+        "fxAsOf": "2026-05-29",
+        "fxFactor": 0.8588114050154585
       },
       {
         "date": "2026-06-30",
-        "close": 103.69000244140625,
-        "monthlyClose": 103.69000244140625,
-        "value": 103.69000244140625
+        "nav": 118.4706,
+        "navCurrency": "USD",
+        "value": 103.97630331753555,
+        "currency": "EUR",
+        "fxAsOf": "2026-06-30",
+        "fxFactor": 0.8776549060909251
       },
       {
         "date": "2026-07-31",
-        "close": 103.73999786376953,
-        "monthlyClose": 103.73999786376953,
-        "value": 103.73999786376953
+        "nav": 119.6326,
+        "navCurrency": "USD",
+        "value": 104.1642141924249,
+        "currency": "EUR",
+        "fxAsOf": "2026-07-31",
+        "fxFactor": 0.8707009142359599
       },
       {
         "date": "2026-08-31",
-        "close": 105.19000244140625,
-        "monthlyClose": 105.19000244140625,
-        "value": 105.19000244140625
+        "nav": 122.0504,
+        "navCurrency": "USD",
+        "value": 105.25215591583304,
+        "currency": "EUR",
+        "fxAsOf": "2026-08-31",
+        "fxFactor": 0.8623663332183512
       },
       {
         "date": "2026-09-30",
-        "close": 102.95999908447266,
-        "monthlyClose": 102.95999908447266,
-        "value": 102.95999908447266
+        "nav": 116.1285,
+        "navCurrency": "USD",
+        "value": 102.27080581241744,
+        "currency": "EUR",
+        "fxAsOf": "2026-09-30",
+        "fxFactor": 0.8806693086745927
       }
     ],
-    "checkedAt": "2026-10-11",
-    "periodEnd": "2026-09",
-    "responseSha256": "588830058157537c25a187afb291e9ec17bdb262df73886b1bd560b7dd914acb"
+    "responseSha256": "894744af07c20eec0eb0685c992e53e35278f7f7077b140c40e5f4a1b481f9f8",
+    "rawSourceHashes": {
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium": "35f480ad1b71b2ae09590de6a1cd00d0643f50ad8f55a91ca0649e9151de8df6",
+      "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false": "2dcb692fbe2d7fa935033a340557b17f13052ca9ada7d21ad0000820e3c4d7aa",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b"
+    }
   },
   "etfAvantisSmallValue": {
     "id": "etfAvantisSmallValue",
@@ -180934,631 +181395,1140 @@
   },
   "etfIE00BDFBTQ78": {
     "id": "etfIE00BDFBTQ78",
-    "label": "VanEck S&P Global Mining UCITS ETF",
     "isin": "IE00BDFBTQ78",
-    "ticker": "GDIG",
-    "mic": "ETFP",
-    "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "GDIG.MI",
-    "field": "adjclose",
-    "precision": 6,
-    "consumerScope": "catalog",
-    "listingEvidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR",
+    "label": "VanEck S&P Global Mining UCITS ETF · VL",
     "instrumentType": "ETF",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "collectAnniversary": true,
+    "consumerScope": "catalog",
+    "currency": "EUR",
     "periodStart": "2018-06",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement",
+    "navProvider": "vaneck",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+    "factsheetUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+    "checkedAt": "2026-10-23",
+    "periodEnd": "2026-09",
     "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDIG.MI?period1=1527811200&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDIG.MI?period1=1527811200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
-    "timezone": "Europe/Rome",
+    "sourceCredit": "VanEck",
+    "latestLevel": {
+      "value": 51.580544399821505,
+      "asOf": "2026-10-22",
+      "currency": "EUR",
+      "isin": "IE00BDFBTQ78",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 57.796,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-22",
+      "fxFactor": 0.8924587237840249,
+      "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "sourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "ee485a45160761d002c4db691b4d8ba69254e399325649641a575fb0d8dcf5cc"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "sourceNavMetadata": {
+        "Ticker": "UCTGDIG",
+        "Title": "NAVs",
+        "AsOfDateText": "as of",
+        "AsOfDate": "10/22/2026",
+        "TooltipText": "",
+        "Columns": [
+          {
+            "ColumnName": null,
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "",
+            "WrapperClass": "light_yellow",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Base Currency",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Daily Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "YTD Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV Price History",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Total Expense Ratio",
+            "WrapperClass": "data",
+            "CellClass": ""
+          }
+        ],
+        "PricesViewModel": {
+          "DisplayTicker": "GDIG",
+          "NavCurrent": "$57.80",
+          "LastPriceCurrent": null,
+          "Volume30Day": null,
+          "Volume": null,
+          "NAVYTDPerc": "+2.06%",
+          "PriceYTDPerc": null,
+          "PremiumDiscountPercentage": null,
+          "PremiumDiscount": null,
+          "NavDailyChangePercentage": "-4.48%",
+          "NavDailyChange": "$-2.71",
+          "NavDailyChangeValue": -2.7098,
+          "LastPriceChangePerc": null,
+          "LastPriceChange": null,
+          "LastPriceChangeValue": null,
+          "ThirtyDayBidAskMedianFormatted": null,
+          "GrossExpenseRatio": " 0.50%"
+        },
+        "CurrencyName": "USD",
+        "CurrencySymbol": "$",
+        "DownloadUrlTarget": "_blank",
+        "DownloadUrl": "/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "ChartUrlTarget": "_blank",
+        "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTGDIG",
+        "SwipeText": "Swipe<br>to view <br> full data",
+        "HistoPriceUrl": null,
+        "GrossExpenseRatio": null,
+        "CssClass": "etf_fund_prices",
+        "PremiumDiscountBlockID": 0,
+        "ChartSelectList": []
+      },
+      "incomeTreatment": "Reinvestment; distribution frequency None",
+      "checks": [
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 16.761,
+          "endValue": 21.348,
+          "dailyDerived": 27.367102201539282,
+          "published": 27.4,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 21.348,
+          "endValue": 27.645,
+          "dailyDerived": 29.49690837549186,
+          "published": 29.5,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 27.645,
+          "endValue": 30.378,
+          "dailyDerived": 9.88605534454694,
+          "published": 9.9,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 30.378,
+          "endValue": 30.969,
+          "dailyDerived": 1.945486865494761,
+          "published": 2.0,
+          "publishedDecimalPlaces": 0
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 30.969,
+          "endValue": 32.47,
+          "dailyDerived": 4.846782266137106,
+          "published": 4.8,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 32.47,
+          "endValue": 29.724,
+          "dailyDerived": -8.457037265167845,
+          "published": -8.5,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 29.724,
+          "endValue": 56.627,
+          "dailyDerived": 90.50935271161352,
+          "published": 90.5,
+          "publishedDecimalPlaces": 1
+        }
+      ]
+    },
     "proofRows": [
       {
         "date": "2018-06-29",
-        "close": 17.209999084472656,
-        "monthlyClose": 17.209999084472656,
-        "value": 17.209999084472656
+        "nav": 18.92,
+        "navCurrency": "USD",
+        "value": 16.229198833419115,
+        "currency": "EUR",
+        "fxAsOf": "2018-06-29",
+        "fxFactor": 0.857780065191285
       },
       {
         "date": "2018-07-31",
-        "close": 16.073999404907227,
-        "monthlyClose": 16.073999404907227,
-        "value": 16.073999404907227
+        "nav": 18.782,
+        "navCurrency": "USD",
+        "value": 16.003749147920928,
+        "currency": "EUR",
+        "fxAsOf": "2018-07-31",
+        "fxFactor": 0.8520790729379687
       },
       {
         "date": "2018-08-31",
-        "close": 15.539999961853027,
-        "monthlyClose": 15.539999961853027,
-        "value": 15.539999961853027
+        "nav": 16.972,
+        "navCurrency": "USD",
+        "value": 14.566989957943525,
+        "currency": "EUR",
+        "fxAsOf": "2018-08-31",
+        "fxFactor": 0.8582954252853832
       },
       {
         "date": "2018-09-28",
-        "close": 15.539999961853027,
-        "monthlyClose": 15.539999961853027,
-        "value": 15.539999961853027
+        "nav": 17.661,
+        "navCurrency": "USD",
+        "value": 15.256565307532828,
+        "currency": "EUR",
+        "fxAsOf": "2018-09-28",
+        "fxFactor": 0.8638562543192813
       },
       {
         "date": "2018-10-31",
-        "close": 15.411999702453613,
-        "monthlyClose": 15.411999702453613,
-        "value": 15.411999702453613
+        "nav": 16.77,
+        "navCurrency": "USD",
+        "value": 14.817105495670614,
+        "currency": "EUR",
+        "fxAsOf": "2018-10-31",
+        "fxFactor": 0.8835483300936562
       },
       {
         "date": "2018-11-30",
-        "close": 14.970000267028809,
-        "monthlyClose": 14.970000267028809,
-        "value": 14.970000267028809
+        "nav": 16.316,
+        "navCurrency": "USD",
+        "value": 14.36394048771899,
+        "currency": "EUR",
+        "fxAsOf": "2018-11-30",
+        "fxFactor": 0.8803591865481117
       },
       {
-        "date": "2018-12-28",
-        "close": 14.970000267028809,
-        "monthlyClose": 14.970000267028809,
-        "value": 14.970000267028809
+        "date": "2018-12-31",
+        "nav": 16.761,
+        "navCurrency": "USD",
+        "value": 14.638427947598252,
+        "currency": "EUR",
+        "fxAsOf": "2018-12-31",
+        "fxFactor": 0.8733624454148472
       },
       {
         "date": "2019-01-31",
-        "close": 14.970000267028809,
-        "monthlyClose": 14.970000267028809,
-        "value": 14.970000267028809
+        "nav": 18.412,
+        "navCurrency": "USD",
+        "value": 16.02715877437326,
+        "currency": "EUR",
+        "fxAsOf": "2019-01-31",
+        "fxFactor": 0.8704735376044568
       },
       {
         "date": "2019-02-28",
-        "close": 16.652000427246094,
-        "monthlyClose": 16.652000427246094,
-        "value": 16.652000427246094
+        "nav": 18.709,
+        "navCurrency": "USD",
+        "value": 16.388402242466714,
+        "currency": "EUR",
+        "fxAsOf": "2019-02-28",
+        "fxFactor": 0.8759635599159076
       },
       {
         "date": "2019-03-29",
-        "close": 17.128000259399414,
-        "monthlyClose": 17.128000259399414,
-        "value": 17.128000259399414
+        "nav": 19.135,
+        "navCurrency": "USD",
+        "value": 17.031597685803295,
+        "currency": "EUR",
+        "fxAsOf": "2019-03-29",
+        "fxFactor": 0.8900756564307967
       },
       {
         "date": "2019-04-30",
-        "close": 17.08799934387207,
-        "monthlyClose": 17.08799934387207,
-        "value": 17.08799934387207
+        "nav": 18.546,
+        "navCurrency": "USD",
+        "value": 16.53235870921733,
+        "currency": "EUR",
+        "fxAsOf": "2019-04-30",
+        "fxFactor": 0.8914244963451596
       },
       {
         "date": "2019-05-31",
-        "close": 16.143999099731445,
-        "monthlyClose": 16.143999099731445,
-        "value": 16.143999099731445
+        "nav": 17.836,
+        "navCurrency": "USD",
+        "value": 15.994978028876334,
+        "currency": "EUR",
+        "fxAsOf": "2019-05-31",
+        "fxFactor": 0.896780557797507
       },
       {
         "date": "2019-06-28",
-        "close": 17.84000015258789,
-        "monthlyClose": 17.84000015258789,
-        "value": 17.84000015258789
+        "nav": 20.078,
+        "navCurrency": "USD",
+        "value": 17.643233743409493,
+        "currency": "EUR",
+        "fxAsOf": "2019-06-28",
+        "fxFactor": 0.8787346221441126
       },
       {
         "date": "2019-07-31",
-        "close": 18.3799991607666,
-        "monthlyClose": 18.3799991607666,
-        "value": 18.3799991607666
+        "nav": 19.599,
+        "navCurrency": "USD",
+        "value": 17.57600215227334,
+        "currency": "EUR",
+        "fxAsOf": "2019-07-31",
+        "fxFactor": 0.896780557797507
       },
       {
         "date": "2019-08-30",
-        "close": 17.323999404907227,
-        "monthlyClose": 17.323999404907227,
-        "value": 17.323999404907227
+        "nav": 18.973,
+        "navCurrency": "USD",
+        "value": 17.191917361362812,
+        "currency": "EUR",
+        "fxAsOf": "2019-08-30",
+        "fxFactor": 0.9061254077564336
       },
       {
         "date": "2019-09-30",
-        "close": 17.988000869750977,
-        "monthlyClose": 17.988000869750977,
-        "value": 17.988000869750977
+        "nav": 18.804,
+        "navCurrency": "USD",
+        "value": 17.26880337955735,
+        "currency": "EUR",
+        "fxAsOf": "2019-09-30",
+        "fxFactor": 0.918357975939021
       },
       {
         "date": "2019-10-31",
-        "close": 17.81599998474121,
-        "monthlyClose": 17.81599998474121,
-        "value": 17.81599998474121
+        "nav": 19.467,
+        "navCurrency": "USD",
+        "value": 17.452931683700914,
+        "currency": "EUR",
+        "fxAsOf": "2019-10-31",
+        "fxFactor": 0.8965393580778197
       },
       {
         "date": "2019-11-29",
-        "close": 18.011999130249023,
-        "monthlyClose": 18.011999130249023,
-        "value": 18.011999130249023
+        "nav": 19.471,
+        "navCurrency": "USD",
+        "value": 17.729921690038243,
+        "currency": "EUR",
+        "fxAsOf": "2019-11-29",
+        "fxFactor": 0.9105809506465125
       },
       {
-        "date": "2019-12-30",
-        "close": 19.0,
-        "monthlyClose": 19.0,
-        "value": 19.0
+        "date": "2019-12-31",
+        "nav": 21.348,
+        "navCurrency": "USD",
+        "value": 19.00302652661563,
+        "currency": "EUR",
+        "fxAsOf": "2019-12-31",
+        "fxFactor": 0.8901548869503294
       },
       {
         "date": "2020-01-31",
-        "close": 18.073999404907227,
-        "monthlyClose": 18.073999404907227,
-        "value": 18.073999404907227
+        "nav": 20.075,
+        "navCurrency": "USD",
+        "value": 18.164133188563156,
+        "currency": "EUR",
+        "fxAsOf": "2020-01-31",
+        "fxFactor": 0.9048136083966704
       },
       {
         "date": "2020-02-28",
-        "close": 15.95199966430664,
-        "monthlyClose": 15.95199966430664,
-        "value": 15.95199966430664
+        "nav": 17.731,
+        "navCurrency": "USD",
+        "value": 16.15286508153412,
+        "currency": "EUR",
+        "fxAsOf": "2020-02-28",
+        "fxFactor": 0.9109957183201239
       },
       {
         "date": "2020-03-31",
-        "close": 13.904000282287598,
-        "monthlyClose": 13.904000282287598,
-        "value": 13.904000282287598
+        "nav": 15.13,
+        "navCurrency": "USD",
+        "value": 13.809784592917124,
+        "currency": "EUR",
+        "fxAsOf": "2020-03-31",
+        "fxFactor": 0.9127418765972983
       },
       {
         "date": "2020-04-30",
-        "close": 17.025999069213867,
-        "monthlyClose": 17.025999069213867,
-        "value": 17.025999069213867
+        "nav": 18.602,
+        "navCurrency": "USD",
+        "value": 17.103714600956234,
+        "currency": "EUR",
+        "fxAsOf": "2020-04-30",
+        "fxFactor": 0.9194556822361163
       },
       {
         "date": "2020-05-29",
-        "close": 17.993999481201172,
-        "monthlyClose": 17.993999481201172,
-        "value": 17.993999481201172
+        "nav": 19.949,
+        "navCurrency": "USD",
+        "value": 17.91397270114943,
+        "currency": "EUR",
+        "fxAsOf": "2020-05-29",
+        "fxFactor": 0.8979885057471265
       },
       {
         "date": "2020-06-30",
-        "close": 18.785999298095703,
-        "monthlyClose": 18.785999298095703,
-        "value": 18.785999298095703
+        "nav": 21.141,
+        "navCurrency": "USD",
+        "value": 18.87926415431327,
+        "currency": "EUR",
+        "fxAsOf": "2020-06-30",
+        "fxFactor": 0.8930166101089481
       },
       {
         "date": "2020-07-31",
-        "close": 20.155000686645508,
-        "monthlyClose": 20.155000686645508,
-        "value": 20.155000686645508
+        "nav": 24.089,
+        "navCurrency": "USD",
+        "value": 20.331701553004724,
+        "currency": "EUR",
+        "fxAsOf": "2020-07-31",
+        "fxFactor": 0.8440243079000674
       },
       {
         "date": "2020-08-31",
-        "close": 20.6200008392334,
-        "monthlyClose": 20.6200008392334,
-        "value": 20.6200008392334
+        "nav": 24.572,
+        "navCurrency": "USD",
+        "value": 20.57956448911223,
+        "currency": "EUR",
+        "fxAsOf": "2020-08-31",
+        "fxFactor": 0.8375209380234506
       },
       {
         "date": "2020-09-30",
-        "close": 19.940000534057617,
-        "monthlyClose": 19.940000534057617,
-        "value": 19.940000534057617
+        "nav": 23.108,
+        "navCurrency": "USD",
+        "value": 19.736932012299285,
+        "currency": "EUR",
+        "fxAsOf": "2020-09-30",
+        "fxFactor": 0.8541168431841476
       },
       {
         "date": "2020-10-30",
-        "close": 19.40999984741211,
-        "monthlyClose": 19.40999984741211,
-        "value": 19.40999984741211
+        "nav": 22.519,
+        "navCurrency": "USD",
+        "value": 19.250299196443837,
+        "currency": "EUR",
+        "fxAsOf": "2020-10-30",
+        "fxFactor": 0.8548469823901522
       },
       {
         "date": "2020-11-30",
-        "close": 20.790000915527344,
-        "monthlyClose": 20.790000915527344,
-        "value": 20.790000915527344
+        "nav": 24.693,
+        "navCurrency": "USD",
+        "value": 20.611853088480803,
+        "currency": "EUR",
+        "fxAsOf": "2020-11-30",
+        "fxFactor": 0.8347245409015025
       },
       {
-        "date": "2020-12-30",
-        "close": 22.799999237060547,
-        "monthlyClose": 22.799999237060547,
-        "value": 22.799999237060547
+        "date": "2020-12-31",
+        "nav": 27.645,
+        "navCurrency": "USD",
+        "value": 22.528726265178058,
+        "currency": "EUR",
+        "fxAsOf": "2020-12-31",
+        "fxFactor": 0.8149295085975062
       },
       {
         "date": "2021-01-29",
-        "close": 22.614999771118164,
-        "monthlyClose": 22.614999771118164,
-        "value": 22.614999771118164
+        "nav": 27.25,
+        "navCurrency": "USD",
+        "value": 22.45385629531971,
+        "currency": "EUR",
+        "fxAsOf": "2021-01-29",
+        "fxFactor": 0.8239947264337508
       },
       {
         "date": "2021-02-26",
-        "close": 24.094999313354492,
-        "monthlyClose": 24.094999313354492,
-        "value": 24.094999313354492
+        "nav": 28.92,
+        "navCurrency": "USD",
+        "value": 23.859417539806948,
+        "currency": "EUR",
+        "fxAsOf": "2021-02-26",
+        "fxFactor": 0.8250144377526607
       },
       {
         "date": "2021-03-31",
-        "close": 24.774999618530273,
-        "monthlyClose": 24.774999618530273,
-        "value": 24.774999618530273
+        "nav": 28.865,
+        "navCurrency": "USD",
+        "value": 24.6183368869936,
+        "currency": "EUR",
+        "fxAsOf": "2021-03-31",
+        "fxFactor": 0.8528784648187633
       },
       {
         "date": "2021-04-30",
-        "close": 25.895000457763672,
-        "monthlyClose": 25.895000457763672,
-        "value": 25.895000457763672
+        "nav": 30.952,
+        "navCurrency": "USD",
+        "value": 25.618275120013248,
+        "currency": "EUR",
+        "fxAsOf": "2021-04-30",
+        "fxFactor": 0.8276775368316505
       },
       {
         "date": "2021-05-31",
-        "close": 27.6200008392334,
-        "monthlyClose": 27.6200008392334,
-        "value": 27.6200008392334
+        "nav": 33.36,
+        "navCurrency": "USD",
+        "value": 27.342021145807724,
+        "currency": "EUR",
+        "fxAsOf": "2021-05-31",
+        "fxFactor": 0.8196049504139006
       },
       {
         "date": "2021-06-30",
-        "close": 26.03499984741211,
-        "monthlyClose": 26.03499984741211,
-        "value": 26.03499984741211
+        "nav": 30.892,
+        "navCurrency": "USD",
+        "value": 25.994614607876137,
+        "currency": "EUR",
+        "fxAsOf": "2021-06-30",
+        "fxFactor": 0.841467519353753
       },
       {
         "date": "2021-07-30",
-        "close": 27.139999389648438,
-        "monthlyClose": 27.139999389648438,
-        "value": 27.139999389648438
+        "nav": 31.963,
+        "navCurrency": "USD",
+        "value": 26.87999327222269,
+        "currency": "EUR",
+        "fxAsOf": "2021-07-30",
+        "fxFactor": 0.8409721638213775
       },
       {
         "date": "2021-08-31",
-        "close": 25.479999542236328,
-        "monthlyClose": 25.479999542236328,
-        "value": 25.479999542236328
+        "nav": 30.322,
+        "navCurrency": "USD",
+        "value": 25.622781815109008,
+        "currency": "EUR",
+        "fxAsOf": "2021-08-31",
+        "fxFactor": 0.8450228156160217
       },
       {
         "date": "2021-09-30",
-        "close": 24.06999969482422,
-        "monthlyClose": 24.06999969482422,
-        "value": 24.06999969482422
+        "nav": 27.67,
+        "navCurrency": "USD",
+        "value": 23.896709560411093,
+        "currency": "EUR",
+        "fxAsOf": "2021-09-30",
+        "fxFactor": 0.8636324380343726
       },
       {
         "date": "2021-10-29",
-        "close": 25.274999618530273,
-        "monthlyClose": 25.274999618530273,
-        "value": 25.274999618530273
+        "nav": 28.95,
+        "navCurrency": "USD",
+        "value": 24.86045513095749,
+        "currency": "EUR",
+        "fxAsOf": "2021-10-29",
+        "fxFactor": 0.8587376556462
       },
       {
         "date": "2021-11-30",
-        "close": 25.229999542236328,
-        "monthlyClose": 25.229999542236328,
-        "value": 25.229999542236328
+        "nav": 28.433,
+        "navCurrency": "USD",
+        "value": 25.022441256710376,
+        "currency": "EUR",
+        "fxAsOf": "2021-11-30",
+        "fxFactor": 0.8800492827598345
       },
       {
-        "date": "2021-12-30",
-        "close": 26.68000030517578,
-        "monthlyClose": 26.68000030517578,
-        "value": 26.68000030517578
+        "date": "2021-12-31",
+        "nav": 30.378,
+        "navCurrency": "USD",
+        "value": 26.821472717640827,
+        "currency": "EUR",
+        "fxAsOf": "2021-12-31",
+        "fxFactor": 0.8829242450997704
       },
       {
         "date": "2022-01-31",
-        "close": 26.780000686645508,
-        "monthlyClose": 26.780000686645508,
-        "value": 26.780000686645508
+        "nav": 30.103,
+        "navCurrency": "USD",
+        "value": 26.983685908927935,
+        "currency": "EUR",
+        "fxAsOf": "2022-01-31",
+        "fxFactor": 0.8963786303334529
       },
       {
         "date": "2022-02-28",
-        "close": 30.579999923706055,
-        "monthlyClose": 30.579999923706055,
-        "value": 30.579999923706055
+        "nav": 34.216,
+        "navCurrency": "USD",
+        "value": 30.552727922135908,
+        "currency": "EUR",
+        "fxAsOf": "2022-02-28",
+        "fxFactor": 0.892936869363336
       },
       {
         "date": "2022-03-31",
-        "close": 33.98500061035156,
-        "monthlyClose": 33.98500061035156,
-        "value": 33.98500061035156
+        "nav": 37.353,
+        "navCurrency": "USD",
+        "value": 33.64831997117376,
+        "currency": "EUR",
+        "fxAsOf": "2022-03-31",
+        "fxFactor": 0.9008197459688315
       },
       {
         "date": "2022-04-29",
-        "close": 32.18000030517578,
-        "monthlyClose": 32.18000030517578,
-        "value": 32.18000030517578
+        "nav": 33.483,
+        "navCurrency": "USD",
+        "value": 31.767552182163183,
+        "currency": "EUR",
+        "fxAsOf": "2022-04-29",
+        "fxFactor": 0.9487666034155597
       },
       {
         "date": "2022-05-31",
-        "close": 30.8799991607666,
-        "monthlyClose": 30.8799991607666,
-        "value": 30.8799991607666
+        "nav": 33.04,
+        "navCurrency": "USD",
+        "value": 30.841034257444228,
+        "currency": "EUR",
+        "fxAsOf": "2022-05-31",
+        "fxFactor": 0.9334453467749464
       },
       {
         "date": "2022-06-30",
-        "close": 26.0,
-        "monthlyClose": 26.0,
-        "value": 26.0
+        "nav": 27.195,
+        "navCurrency": "USD",
+        "value": 26.18176566862424,
+        "currency": "EUR",
+        "fxAsOf": "2022-06-30",
+        "fxFactor": 0.962741888899586
       },
       {
         "date": "2022-07-29",
-        "close": 26.489999771118164,
-        "monthlyClose": 26.489999771118164,
-        "value": 26.489999771118164
+        "nav": 26.998,
+        "navCurrency": "USD",
+        "value": 26.473818395763875,
+        "currency": "EUR",
+        "fxAsOf": "2022-07-29",
+        "fxFactor": 0.9805844283192783
       },
       {
         "date": "2022-08-31",
-        "close": 26.40999984741211,
-        "monthlyClose": 26.40999984741211,
-        "value": 26.40999984741211
+        "nav": 26.565,
+        "navCurrency": "USD",
+        "value": 26.565,
+        "currency": "EUR",
+        "fxAsOf": "2022-08-31",
+        "fxFactor": 1.0
       },
       {
         "date": "2022-09-30",
-        "close": 26.459999084472656,
-        "monthlyClose": 26.459999084472656,
-        "value": 26.459999084472656
+        "nav": 25.502,
+        "navCurrency": "USD",
+        "value": 26.16126384899467,
+        "currency": "EUR",
+        "fxAsOf": "2022-09-30",
+        "fxFactor": 1.0258514567090686
       },
       {
         "date": "2022-10-31",
-        "close": 25.899999618530273,
-        "monthlyClose": 25.899999618530273,
-        "value": 25.899999618530273
+        "nav": 25.664,
+        "navCurrency": "USD",
+        "value": 25.886624974783135,
+        "currency": "EUR",
+        "fxAsOf": "2022-10-31",
+        "fxFactor": 1.0086746015735324
       },
       {
         "date": "2022-11-30",
-        "close": 29.93000030517578,
-        "monthlyClose": 29.93000030517578,
-        "value": 29.93000030517578
+        "nav": 31.061,
+        "navCurrency": "USD",
+        "value": 29.935427910562836,
+        "currency": "EUR",
+        "fxAsOf": "2022-11-30",
+        "fxFactor": 0.9637625289128758
       },
       {
         "date": "2022-12-30",
-        "close": 28.889999389648438,
-        "monthlyClose": 28.889999389648438,
-        "value": 28.889999389648438
+        "nav": 30.969,
+        "navCurrency": "USD",
+        "value": 29.035252203262704,
+        "currency": "EUR",
+        "fxAsOf": "2022-12-30",
+        "fxFactor": 0.9375585974123383
       },
       {
         "date": "2023-01-31",
-        "close": 31.700000762939453,
-        "monthlyClose": 31.700000762939453,
-        "value": 31.700000762939453
+        "nav": 34.354,
+        "navCurrency": "USD",
+        "value": 31.712360380319396,
+        "currency": "EUR",
+        "fxAsOf": "2023-01-31",
+        "fxFactor": 0.9231053263177329
       },
       {
         "date": "2023-02-28",
-        "close": 28.934999465942383,
-        "monthlyClose": 28.934999465942383,
-        "value": 28.934999465942383
+        "nav": 30.56,
+        "navCurrency": "USD",
+        "value": 28.778604388360485,
+        "currency": "EUR",
+        "fxAsOf": "2023-02-28",
+        "fxFactor": 0.9417082587814295
       },
       {
         "date": "2023-03-31",
-        "close": 29.579999923706055,
-        "monthlyClose": 29.579999923706055,
-        "value": 29.579999923706055
+        "nav": 31.973,
+        "navCurrency": "USD",
+        "value": 29.400459770114946,
+        "currency": "EUR",
+        "fxAsOf": "2023-03-31",
+        "fxFactor": 0.9195402298850576
       },
       {
         "date": "2023-04-28",
-        "close": 28.700000762939453,
-        "monthlyClose": 28.700000762939453,
-        "value": 28.700000762939453
+        "nav": 31.685,
+        "navCurrency": "USD",
+        "value": 28.85438484655313,
+        "currency": "EUR",
+        "fxAsOf": "2023-04-28",
+        "fxFactor": 0.9106638739641197
       },
       {
         "date": "2023-05-31",
-        "close": 27.100000381469727,
-        "monthlyClose": 27.100000381469727,
-        "value": 27.100000381469727
+        "nav": 28.718,
+        "navCurrency": "USD",
+        "value": 26.88196199569409,
+        "currency": "EUR",
+        "fxAsOf": "2023-05-31",
+        "fxFactor": 0.9360666479453337
       },
       {
         "date": "2023-06-30",
-        "close": 27.475000381469727,
-        "monthlyClose": 27.475000381469727,
-        "value": 27.475000381469727
+        "nav": 30.043,
+        "navCurrency": "USD",
+        "value": 27.648628750230074,
+        "currency": "EUR",
+        "fxAsOf": "2023-06-30",
+        "fxFactor": 0.9203018590097551
       },
       {
         "date": "2023-07-31",
-        "close": 29.03499984741211,
-        "monthlyClose": 29.03499984741211,
-        "value": 29.03499984741211
+        "nav": 31.877,
+        "navCurrency": "USD",
+        "value": 28.918624693822007,
+        "currency": "EUR",
+        "fxAsOf": "2023-07-31",
+        "fxFactor": 0.9071940488070398
       },
       {
         "date": "2023-08-31",
-        "close": 27.104999542236328,
-        "monthlyClose": 27.104999542236328,
-        "value": 27.104999542236328
+        "nav": 29.488,
+        "navCurrency": "USD",
+        "value": 27.132867132867133,
+        "currency": "EUR",
+        "fxAsOf": "2023-08-31",
+        "fxFactor": 0.9201324990798675
       },
       {
         "date": "2023-09-29",
-        "close": 27.354999542236328,
-        "monthlyClose": 27.354999542236328,
-        "value": 27.354999542236328
+        "nav": 28.981,
+        "navCurrency": "USD",
+        "value": 27.356050594676233,
+        "currency": "EUR",
+        "fxAsOf": "2023-09-29",
+        "fxFactor": 0.943930526713234
       },
       {
         "date": "2023-10-31",
-        "close": 26.4950008392334,
-        "monthlyClose": 26.4950008392334,
-        "value": 26.4950008392334
+        "nav": 27.928,
+        "navCurrency": "USD",
+        "value": 26.300028251247763,
+        "currency": "EUR",
+        "fxAsOf": "2023-10-31",
+        "fxFactor": 0.9417082587814295
       },
       {
         "date": "2023-11-30",
-        "close": 27.655000686645508,
-        "monthlyClose": 27.655000686645508,
-        "value": 27.655000686645508
+        "nav": 30.256,
+        "navCurrency": "USD",
+        "value": 27.679077851980608,
+        "currency": "EUR",
+        "fxAsOf": "2023-11-30",
+        "fxFactor": 0.9148293843198244
       },
       {
         "date": "2023-12-29",
-        "close": 29.25,
-        "monthlyClose": 29.25,
-        "value": 29.25
+        "nav": 32.47,
+        "navCurrency": "USD",
+        "value": 29.384615384615383,
+        "currency": "EUR",
+        "fxAsOf": "2023-12-29",
+        "fxFactor": 0.9049773755656109
       },
       {
         "date": "2024-01-31",
-        "close": 27.829999923706055,
-        "monthlyClose": 27.829999923706055,
-        "value": 27.829999923706055
+        "nav": 30.048,
+        "navCurrency": "USD",
+        "value": 27.727230783427142,
+        "currency": "EUR",
+        "fxAsOf": "2024-01-31",
+        "fxFactor": 0.9227646027498384
       },
       {
         "date": "2024-02-29",
-        "close": 25.96500015258789,
-        "monthlyClose": 25.96500015258789,
-        "value": 25.96500015258789
+        "nav": 28.004,
+        "navCurrency": "USD",
+        "value": 25.86735636430815,
+        "currency": "EUR",
+        "fxAsOf": "2024-02-29",
+        "fxFactor": 0.9237021984112322
       },
       {
-        "date": "2024-03-28",
-        "close": 28.850000381469727,
-        "monthlyClose": 28.850000381469727,
-        "value": 28.850000381469727
+        "date": "2024-03-29",
+        "nav": 31.166,
+        "navCurrency": "USD",
+        "value": 28.82804550920359,
+        "currency": "EUR",
+        "fxAsOf": "2024-03-28",
+        "fxFactor": 0.9249838127832763
       },
       {
         "date": "2024-04-30",
-        "close": 31.2549991607666,
-        "monthlyClose": 31.2549991607666,
-        "value": 31.2549991607666
+        "nav": 33.216,
+        "navCurrency": "USD",
+        "value": 30.99085650307893,
+        "currency": "EUR",
+        "fxAsOf": "2024-04-30",
+        "fxFactor": 0.9330098899048329
       },
       {
         "date": "2024-05-31",
-        "close": 31.450000762939453,
-        "monthlyClose": 31.450000762939453,
-        "value": 31.450000762939453
+        "nav": 34.605,
+        "navCurrency": "USD",
+        "value": 31.8881312200516,
+        "currency": "EUR",
+        "fxAsOf": "2024-05-31",
+        "fxFactor": 0.9214891264283082
       },
       {
         "date": "2024-06-28",
-        "close": 30.4950008392334,
-        "monthlyClose": 30.4950008392334,
-        "value": 30.4950008392334
+        "nav": 32.549,
+        "navCurrency": "USD",
+        "value": 30.40541802895843,
+        "currency": "EUR",
+        "fxAsOf": "2024-06-28",
+        "fxFactor": 0.9341429238673516
       },
       {
         "date": "2024-07-31",
-        "close": 30.19499969482422,
-        "monthlyClose": 30.19499969482422,
-        "value": 30.19499969482422
+        "nav": 32.767,
+        "navCurrency": "USD",
+        "value": 30.2613594384928,
+        "currency": "EUR",
+        "fxAsOf": "2024-07-31",
+        "fxFactor": 0.9235315847801995
       },
       {
         "date": "2024-08-30",
-        "close": 29.354999542236328,
-        "monthlyClose": 29.354999542236328,
-        "value": 29.354999542236328
+        "nav": 32.733,
+        "navCurrency": "USD",
+        "value": 29.523766573464414,
+        "currency": "EUR",
+        "fxAsOf": "2024-08-30",
+        "fxFactor": 0.9019572472264814
       },
       {
         "date": "2024-09-30",
-        "close": 31.954999923706055,
-        "monthlyClose": 31.954999923706055,
-        "value": 31.954999923706055
+        "nav": 35.842,
+        "navCurrency": "USD",
+        "value": 32.01321900678814,
+        "currency": "EUR",
+        "fxAsOf": "2024-09-30",
+        "fxFactor": 0.8931761343336907
       },
       {
         "date": "2024-10-31",
-        "close": 31.19499969482422,
-        "monthlyClose": 31.19499969482422,
-        "value": 31.19499969482422
+        "nav": 34.037,
+        "navCurrency": "USD",
+        "value": 31.278257673221834,
+        "currency": "EUR",
+        "fxAsOf": "2024-10-31",
+        "fxFactor": 0.9189487226612755
       },
       {
         "date": "2024-11-29",
-        "close": 31.024999618530273,
-        "monthlyClose": 31.024999618530273,
-        "value": 31.024999618530273
+        "nav": 32.738,
+        "navCurrency": "USD",
+        "value": 30.996023480401437,
+        "currency": "EUR",
+        "fxAsOf": "2024-11-29",
+        "fxFactor": 0.946790380609733
       },
       {
-        "date": "2024-12-30",
-        "close": 28.3799991607666,
-        "monthlyClose": 28.3799991607666,
-        "value": 28.3799991607666
+        "date": "2024-12-31",
+        "nav": 29.724,
+        "navCurrency": "USD",
+        "value": 28.611030898065263,
+        "currency": "EUR",
+        "fxAsOf": "2024-12-31",
+        "fxFactor": 0.9625565501973241
       },
       {
         "date": "2025-01-31",
-        "close": 30.360000610351562,
-        "monthlyClose": 30.360000610351562,
-        "value": 30.360000610351562
+        "nav": 31.359,
+        "navCurrency": "USD",
+        "value": 30.17319349562206,
+        "currency": "EUR",
+        "fxAsOf": "2025-01-31",
+        "fxFactor": 0.9621860867891852
       },
       {
         "date": "2025-02-28",
-        "close": 29.635000228881836,
-        "monthlyClose": 29.635000228881836,
-        "value": 29.635000228881836
+        "nav": 30.971,
+        "navCurrency": "USD",
+        "value": 29.748343098645666,
+        "currency": "EUR",
+        "fxAsOf": "2025-02-28",
+        "fxFactor": 0.9605225242531938
       },
       {
         "date": "2025-03-31",
-        "close": 30.229999542236328,
-        "monthlyClose": 30.229999542236328,
-        "value": 30.229999542236328
+        "nav": 32.713,
+        "navCurrency": "USD",
+        "value": 30.247803975959318,
+        "currency": "EUR",
+        "fxAsOf": "2025-03-31",
+        "fxFactor": 0.9246417013407305
       },
       {
         "date": "2025-04-30",
-        "close": 29.3700008392334,
-        "monthlyClose": 29.3700008392334,
-        "value": 29.3700008392334
+        "nav": 33.549,
+        "navCurrency": "USD",
+        "value": 29.49881297810604,
+        "currency": "EUR",
+        "fxAsOf": "2025-04-30",
+        "fxFactor": 0.8792754770069463
       },
       {
         "date": "2025-05-30",
-        "close": 30.739999771118164,
-        "monthlyClose": 30.739999771118164,
-        "value": 30.739999771118164
+        "nav": 34.955,
+        "navCurrency": "USD",
+        "value": 30.82723344210248,
+        "currency": "EUR",
+        "fxAsOf": "2025-05-30",
+        "fxFactor": 0.8819119851838787
       },
       {
         "date": "2025-06-30",
-        "close": 31.100000381469727,
-        "monthlyClose": 31.100000381469727,
-        "value": 31.100000381469727
+        "nav": 36.702,
+        "navCurrency": "USD",
+        "value": 31.31569965870307,
+        "currency": "EUR",
+        "fxAsOf": "2025-06-30",
+        "fxFactor": 0.8532423208191127
       },
       {
         "date": "2025-07-31",
-        "close": 32.2400016784668,
-        "monthlyClose": 32.2400016784668,
-        "value": 32.2400016784668
+        "nav": 36.931,
+        "navCurrency": "USD",
+        "value": 32.26542023414293,
+        "currency": "EUR",
+        "fxAsOf": "2025-07-31",
+        "fxFactor": 0.8736676568233444
       },
       {
         "date": "2025-08-29",
-        "close": 36.0,
-        "monthlyClose": 36.0,
-        "value": 36.0
+        "nav": 42.266,
+        "navCurrency": "USD",
+        "value": 36.25493223537485,
+        "currency": "EUR",
+        "fxAsOf": "2025-08-29",
+        "fxFactor": 0.857780065191285
       },
       {
         "date": "2025-09-30",
-        "close": 41.29999923706055,
-        "monthlyClose": 41.29999923706055,
-        "value": 41.29999923706055
+        "nav": 48.772,
+        "navCurrency": "USD",
+        "value": 41.539902904352275,
+        "currency": "EUR",
+        "fxAsOf": "2025-09-30",
+        "fxFactor": 0.8517162081594414
       },
       {
         "date": "2025-10-31",
-        "close": 42.13999938964844,
-        "monthlyClose": 42.13999938964844,
-        "value": 42.13999938964844
+        "nav": 48.806,
+        "navCurrency": "USD",
+        "value": 42.241647914142284,
+        "currency": "EUR",
+        "fxAsOf": "2025-10-31",
+        "fxFactor": 0.8655011251514627
       },
       {
         "date": "2025-11-28",
-        "close": 45.1349983215332,
-        "monthlyClose": 45.1349983215332,
-        "value": 45.1349983215332
+        "nav": 52.185,
+        "navCurrency": "USD",
+        "value": 45.11931523430745,
+        "currency": "EUR",
+        "fxAsOf": "2025-11-28",
+        "fxFactor": 0.8646031471554556
       },
       {
-        "date": "2025-12-30",
-        "close": 48.81999969482422,
-        "monthlyClose": 48.81999969482422,
-        "value": 48.81999969482422
+        "date": "2025-12-31",
+        "nav": 56.627,
+        "navCurrency": "USD",
+        "value": 48.1931914893617,
+        "currency": "EUR",
+        "fxAsOf": "2025-12-31",
+        "fxFactor": 0.851063829787234
       },
       {
         "date": "2026-01-30",
-        "close": 55.630001068115234,
-        "monthlyClose": 55.630001068115234,
-        "value": 55.630001068115234
+        "nav": 65.535,
+        "navCurrency": "USD",
+        "value": 54.98363956707777,
+        "currency": "EUR",
+        "fxAsOf": "2026-01-30",
+        "fxFactor": 0.8389965601141035
       },
       {
         "date": "2026-02-27",
-        "close": 63.529998779296875,
-        "monthlyClose": 63.529998779296875,
-        "value": 63.529998779296875
+        "nav": 74.9,
+        "navCurrency": "USD",
+        "value": 63.44769165607793,
+        "currency": "EUR",
+        "fxAsOf": "2026-02-27",
+        "fxFactor": 0.847098686997035
       },
       {
         "date": "2026-03-31",
-        "close": 53.720001220703125,
-        "monthlyClose": 53.720001220703125,
-        "value": 53.720001220703125
+        "nav": 62.018,
+        "navCurrency": "USD",
+        "value": 53.938076187162984,
+        "currency": "EUR",
+        "fxAsOf": "2026-03-31",
+        "fxFactor": 0.8697164724299878
       },
       {
         "date": "2026-04-30",
-        "close": 54.72999954223633,
-        "monthlyClose": 54.72999954223633,
-        "value": 54.72999954223633
+        "nav": 63.959,
+        "navCurrency": "USD",
+        "value": 54.656468979661604,
+        "currency": "EUR",
+        "fxAsOf": "2026-04-30",
+        "fxFactor": 0.8545547769612033
       },
       {
         "date": "2026-05-29",
-        "close": 57.630001068115234,
-        "monthlyClose": 57.630001068115234,
-        "value": 57.630001068115234
+        "nav": 67.095,
+        "navCurrency": "USD",
+        "value": 57.621951219512184,
+        "currency": "EUR",
+        "fxAsOf": "2026-05-29",
+        "fxFactor": 0.8588114050154585
       },
       {
         "date": "2026-06-30",
-        "close": 51.029998779296875,
-        "monthlyClose": 51.029998779296875,
-        "value": 51.029998779296875
+        "nav": 58.065,
+        "navCurrency": "USD",
+        "value": 50.96103212216956,
+        "currency": "EUR",
+        "fxAsOf": "2026-06-30",
+        "fxFactor": 0.8776549060909251
       },
       {
         "date": "2026-07-31",
-        "close": 50.34000015258789,
-        "monthlyClose": 50.34000015258789,
-        "value": 50.34000015258789
+        "nav": 57.856,
+        "navCurrency": "USD",
+        "value": 50.375272094035694,
+        "currency": "EUR",
+        "fxAsOf": "2026-07-31",
+        "fxFactor": 0.8707009142359599
       },
       {
         "date": "2026-08-31",
-        "close": 60.7400016784668,
-        "monthlyClose": 60.7400016784668,
-        "value": 60.7400016784668
+        "nav": 70.299,
+        "navCurrency": "USD",
+        "value": 60.623490858916874,
+        "currency": "EUR",
+        "fxAsOf": "2026-08-31",
+        "fxFactor": 0.8623663332183512
       },
       {
         "date": "2026-09-30",
-        "close": 55.40999984741211,
-        "monthlyClose": 55.40999984741211,
-        "value": 55.40999984741211
+        "nav": 63.2,
+        "navCurrency": "USD",
+        "value": 55.65830030823426,
+        "currency": "EUR",
+        "fxAsOf": "2026-09-30",
+        "fxFactor": 0.8806693086745927
       }
     ],
-    "checkedAt": "2026-10-16",
-    "periodEnd": "2026-09",
-    "responseSha256": "4112e6f20304ae4bf225d1ae944527c4d6a4af03711210451d5b43c80f2d8ccd"
+    "responseSha256": "ee485a45160761d002c4db691b4d8ba69254e399325649641a575fb0d8dcf5cc",
+    "rawSourceHashes": {
+      "https://www.vaneck.com/DK/en/investments/mining-etf/": "db8ec7711f481e42ca81fd06bb0e585ab925227ed255a7df0e51711a80f8e769",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG": "10eb03caffe2cc8335f8180ce3db9d11def5e0293b37004967a6013b589750fd",
+      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf": "43ed7fa351de405e8be0ac6265a8258aed7c9590c8cae4e7771dfc16bb10fe8c",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/": "88bd74d2a9cad0612803ff34e6ddfb5eb52a5c4cea511d15502681008e89c9e2",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b"
+    }
   },
   "etfIE00B3T9LM79": {
     "id": "etfIE00B3T9LM79",
@@ -436815,219 +437785,363 @@
   },
   "etfIE000U9ODG19": {
     "id": "etfIE000U9ODG19",
-    "label": "iShares Global Aerospace & Defence UCITS ETF",
     "isin": "IE000U9ODG19",
-    "ticker": "DFND",
-    "mic": "XSWX",
-    "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "DFND.SW",
-    "field": "adjclose",
-    "precision": 6,
-    "consumerScope": "catalog",
-    "listingEvidenceId": "IE000U9ODG19-XSWX-DFND-USD",
+    "label": "iShares Global Aerospace & Defence UCITS ETF · VL",
     "instrumentType": "ETF",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "collectAnniversary": true,
-    "yahooInstrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "USD",
     "periodStart": "2024-03",
-    "verifyMonthlyDisagreements": true,
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement",
+    "navProvider": "blackrock",
+    "navCurrency": "USD",
+    "productId": 334464,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data",
+    "checkedAt": "2026-10-23",
+    "periodEnd": "2026-09",
     "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1709251200&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1709251200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
-    "timezone": "Europe/Zurich",
+    "sourceCredit": "BlackRock iShares",
+    "latestLevel": {
+      "value": 8.740156,
+      "asOf": "2026-10-22",
+      "currency": "USD",
+      "isin": "IE000U9ODG19",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 8.740156,
+      "nativeCurrency": "USD",
+      "fxAsOf": null,
+      "fxFactor": 1,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "294bece865870cfcb073fed03a15ada32e25526c079569c5a74d083771eb828f"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "officialIncomeReinvestedChartChecks": [
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 11694.843299999999,
+          "endValue": 18074.776700000002,
+          "dailyDerived": 54.55338935580269,
+          "published": 54.553389,
+          "publishedDecimalPlaces": 2
+        }
+      ],
+      "shareInception": "20240201",
+      "checks": [
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 5.875646,
+          "endValue": 9.08101,
+          "dailyDerived": 54.553388682708245,
+          "published": 54.553389,
+          "publishedDecimalPlaces": 2
+        }
+      ]
+    },
     "proofRows": [
       {
-        "date": "2024-03-28",
-        "close": 5.583700180053711,
-        "monthlyClose": 5.583700180053711,
-        "value": 5.583700180053711
+        "date": "2024-03-29",
+        "nav": 5.559227,
+        "navCurrency": "USD",
+        "value": 5.559227,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-04-30",
-        "close": 5.46999979019165,
-        "monthlyClose": 5.46999979019165,
-        "value": 5.46999979019165
+        "nav": 5.430685,
+        "navCurrency": "USD",
+        "value": 5.430685,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-05-31",
-        "close": 5.662399768829346,
-        "monthlyClose": 5.662399768829346,
-        "value": 5.662399768829346
+        "nav": 5.704366,
+        "navCurrency": "USD",
+        "value": 5.704366,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-06-28",
-        "close": 5.460599899291992,
-        "monthlyClose": 5.460599899291992,
-        "value": 5.460599899291992
+        "nav": 5.433227,
+        "navCurrency": "USD",
+        "value": 5.433227,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-07-31",
-        "close": 5.861400127410889,
-        "monthlyClose": 5.861400127410889,
-        "value": 5.861400127410889
+        "nav": 5.851781,
+        "navCurrency": "USD",
+        "value": 5.851781,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-08-30",
-        "close": 6.0289998054504395,
-        "monthlyClose": 6.0289998054504395,
-        "value": 6.0289998054504395
+        "nav": 6.049076,
+        "navCurrency": "USD",
+        "value": 6.049076,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-09-30",
-        "close": 6.013599872589111,
-        "monthlyClose": 6.013599872589111,
-        "value": 6.013599872589111
+        "nav": 6.025234,
+        "navCurrency": "USD",
+        "value": 6.025234,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-10-31",
-        "close": 5.888599872589111,
-        "monthlyClose": 5.888599872589111,
-        "value": 5.888599872589111
+        "nav": 5.858798,
+        "navCurrency": "USD",
+        "value": 5.858798,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2024-11-29",
-        "close": 6.121300220489502,
-        "monthlyClose": 6.121300220489502,
-        "value": 6.121300220489502
+        "nav": 6.115155,
+        "navCurrency": "USD",
+        "value": 6.115155,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
-        "date": "2024-12-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "date": "2024-12-31",
+        "nav": 5.875646,
+        "navCurrency": "USD",
+        "value": 5.875646,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-01-31",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 6.334728,
+        "navCurrency": "USD",
+        "value": 6.334728,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-02-28",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 6.521324,
+        "navCurrency": "USD",
+        "value": 6.521324,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-03-31",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 6.699621,
+        "navCurrency": "USD",
+        "value": 6.699621,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-04-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 6.961676,
+        "navCurrency": "USD",
+        "value": 6.961676,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-05-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 7.828472,
+        "navCurrency": "USD",
+        "value": 7.828472,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-06-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 8.295044,
+        "navCurrency": "USD",
+        "value": 8.295044,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-07-31",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 8.491894,
+        "navCurrency": "USD",
+        "value": 8.491894,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-08-29",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 8.571962,
+        "navCurrency": "USD",
+        "value": 8.571962,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-09-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 9.208852,
+        "navCurrency": "USD",
+        "value": 9.208852,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-10-31",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 9.161515,
+        "navCurrency": "USD",
+        "value": 9.161515,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2025-11-28",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 8.658315,
+        "navCurrency": "USD",
+        "value": 8.658315,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
-        "date": "2025-12-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "date": "2025-12-31",
+        "nav": 9.08101,
+        "navCurrency": "USD",
+        "value": 9.08101,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-01-30",
-        "close": 5.962800025939941,
-        "monthlyClose": 5.962800025939941,
-        "value": 5.962800025939941
+        "nav": 9.997569,
+        "navCurrency": "USD",
+        "value": 9.997569,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-02-27",
-        "close": 10.3100004196167,
-        "monthlyClose": 10.3100004196167,
-        "value": 10.3100004196167
+        "nav": 10.327914,
+        "navCurrency": "USD",
+        "value": 10.327914,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-03-31",
-        "close": 9.21399974822998,
-        "monthlyClose": 9.21399974822998,
-        "value": 9.21399974822998
+        "nav": 9.260411,
+        "navCurrency": "USD",
+        "value": 9.260411,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-04-30",
-        "close": 9.300000190734863,
-        "monthlyClose": 9.300000190734863,
-        "value": 9.300000190734863
+        "nav": 9.339777,
+        "navCurrency": "USD",
+        "value": 9.339777,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-05-29",
-        "close": 9.878000259399414,
-        "monthlyClose": 9.878000259399414,
-        "value": 9.878000259399414
+        "nav": 9.865034,
+        "navCurrency": "USD",
+        "value": 9.865034,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-06-30",
-        "close": 9.770000457763672,
-        "monthlyClose": 9.770000457763672,
-        "value": 9.770000457763672
+        "nav": 9.800919,
+        "navCurrency": "USD",
+        "value": 9.800919,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-07-31",
-        "close": 9.91100025177002,
-        "monthlyClose": 9.91100025177002,
-        "value": 9.91100025177002
+        "nav": 9.977735,
+        "navCurrency": "USD",
+        "value": 9.977735,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-08-31",
-        "close": 9.72599983215332,
-        "monthlyClose": 9.72599983215332,
-        "value": 9.72599983215332
+        "nav": 9.728916,
+        "navCurrency": "USD",
+        "value": 9.728916,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       },
       {
         "date": "2026-09-30",
-        "close": 8.982999801635742,
-        "monthlyClose": 8.982999801635742,
-        "value": 8.982999801635742
+        "nav": 8.942704,
+        "navCurrency": "USD",
+        "value": 8.942704,
+        "currency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1
       }
     ],
-    "checkedAt": "2026-10-17",
-    "periodEnd": "2026-09",
-    "responseSha256": "83a062f9e982d36001bf00b43e2cf4673169b72f24bc7897fa304c824db03314"
+    "responseSha256": "294bece865870cfcb073fed03a15ada32e25526c079569c5a74d083771eb828f",
+    "rawSourceHashes": {
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "1445d21315b6b2ba4d943bf1746fd653d56ccb592e18f1f6d2f095ea332d3a20"
+    }
   },
   "etfIE00B02KXK85": {
     "id": "etfIE00B02KXK85",

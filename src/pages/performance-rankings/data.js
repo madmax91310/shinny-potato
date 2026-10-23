@@ -169,7 +169,7 @@ export function buildRankingAssets(histories) {
   return Object.fromEntries(Object.entries(histories).flatMap(([id, a]) => {
     const basis = comparisonBasis(id, a)
     if (!basis || !a.points?.length) return []
-    return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
+    return [[id, { ...a, id, basis, shortLabel: SHORT[id] ? SHORT[id]+(a.valuationBasis==='fund-nav-total-return'?' · VL':'') : a.label.replace(/^Indice /, ''),
       group: GROUPS[id] ?? derivedGroup({ ...a, basis }),
     }]]
   }))

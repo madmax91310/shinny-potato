@@ -9,10 +9,17 @@ export function resolveGuideFees(tweet, records) {
     const checkedAt=r.characteristicChecks?.terPct?.checkedAt??r.characteristics?.checkedAt
     const sourceUrl=r.characteristicChecks?.terPct?.sourceUrl??r.characteristics?.sourceUrl??r.sourceUrl
     if(!checkedAt||!sourceUrl)return segment
-    const pattern=/(💸\s*(?:(?:Frais annuels|TER)\s*:\s*)?)(\d+[,.]\d+)\s*%/
+    const pattern=/(💸\s*(?:(?:Frais annuels|TER|Gestion)\s*:\s*)?)(\d+(?:[,.]\d+)?)\s*%/
     if(!pattern.test(tail))return segment
     fields.push({isin,field:'terPct',checkedAt,sourceUrl})
-    return isin+tail.replace(pattern,(_match,prefix)=>prefix+fee.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' %')
+    let updated=tail.replace(pattern,(_match,prefix)=>prefix+fee.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' %')
+    const swap=r.characteristics?.annualSwapRatePct,swapProof=r.characteristicChecks?.annualSwapRatePct
+    const swapSlot=/(💸[^\n]*?\+\s*swap\s*:\s*)(\d+(?:[,.]\d+)?)\s*%/
+    if(Number.isFinite(swap)&&swapProof?.checkedAt&&swapProof?.sourceUrl&&swapSlot.test(updated)){
+      updated=updated.replace(swapSlot,(_match,prefix)=>prefix+swap.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' %')
+      fields.push({isin,field:'annualSwapRatePct',checkedAt:swapProof.checkedAt,sourceUrl:swapProof.sourceUrl})
+    }
+    return isin+updated
   })
   return {...tweet,text,dataContract:{kind:'live-guide',fields,remaining:'Autres chiffres et rédaction soumis à la revue éditoriale existante.'}}
 }

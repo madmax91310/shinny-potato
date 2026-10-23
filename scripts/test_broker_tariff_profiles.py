@@ -11,6 +11,15 @@ FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-profiles'
 TODAY='2026-10-08'
 def raws(broker,field):return {key:(FIXTURES/(key+'.txt')).read_text() for key in DOCUMENTS[broker][field]}
 
+class PeaCashOfficialAlternativeTests(unittest.TestCase):
+    def test_service_public_exact_cash_scope(self):
+        from broker_profiles import pea_cash_rule
+        clause='Le compte espèces du PEA fonctionne comme un compte de dépôt. Il n’est pas rémunéré.'
+        self.assertEqual(pea_cash_rule(clause),clause)
+        for wrong in [clause.replace('PEA','CTO'),clause.replace('n’est pas','est'), 'Les titres du PEA ne sont pas rémunérés.']:
+            with self.assertRaises(ValueError): pea_cash_rule(wrong)
+
+
 class BrokerProfilesTests(unittest.TestCase):
     def test_current_caidf_cto_clause_keeps_page_and_conditional_fees(self):
         from broker_document_sources import SourceDocument

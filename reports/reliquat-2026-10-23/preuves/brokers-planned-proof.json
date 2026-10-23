@@ -1,0 +1,15 @@
+{
+  "runId": 39910884658,
+  "url": "https://github.com/madmax91310/shinny-potato/actions/runs/39910884658",
+  "trigger": "pull_request, normal scheduled-workflow environment",
+  "brokerRecordApplied": "bd",
+  "otherAppliedFields": [
+    "ibkr.profile.cash"
+  ],
+  "otherBrokersFinancialEvidenceDatesUnchanged": true,
+  "observationFile": "brokers-planned-observation.json",
+  "consumerFile": "brokers-planned-consumers.json",
+  "mainTariffsValidated": 8,
+  "failures": {},
+  "note": "Local Bourse Direct failures remain evidence of environment-dependent access, not failure of the working GitHub route. bd:extras in the old generic success emitter does not prove an extras extraction."
+}

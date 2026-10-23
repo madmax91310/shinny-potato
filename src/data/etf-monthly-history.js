@@ -11,8 +11,9 @@ export function buildEtfMonthlyHistories(records = RECORDS) {
     .filter(([, record]) => record.consumerScope === 'catalog')
     .map(([id, record]) => [id, {
       id, label: record.label, instrumentType: record.instrumentType || 'ETF', tweetPhrase: `l’${record.instrumentType || 'ETF'} ${record.label}`, icon: ETF_HISTORY_IDENTITIES[id].icon,
-      isin: record.isin, ticker: record.ticker, sourceCredit: 'Yahoo Finance',
-      mic: record.mic, currency: record.currency, priceMethod: 'adjusted',
+      isin: record.isin, ...(record.ticker?{ticker:record.ticker}:{}), sourceCredit: record.sourceCredit ?? 'Yahoo Finance',
+      ...(record.mic?{mic:record.mic}:{}), currency: record.currency, priceMethod: 'adjusted',
+      ...(record.valuationBasis ? {valuationBasis:record.valuationBasis,historyConvention:record.valuationBasis} : {}),
       periodStart: record.periodStart, periodEnd: record.periodEnd,
       checkedAt: record.checkedAt, method: record.method, sourceUrls: record.sourceUrls,
       ...(record.qualificationCoverage ? {methodNote:`Historique continu qualifié depuis ${record.periodStart}. Les mois antérieurs non vérifiés ne sont ni interpolés ni remplacés.`,qualificationCoverage:record.qualificationCoverage} : {}),

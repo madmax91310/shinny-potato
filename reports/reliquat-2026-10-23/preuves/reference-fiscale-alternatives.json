@@ -1,0 +1,28 @@
+[
+  {
+    "key": "pea-service-public",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+    "ok": true,
+    "bytes": 220411,
+    "sha256": "c3e0d0dc40f1db63bba5e98a3a198a2722bdd874d7b050d6b05604a411975ef2",
+    "checkedAt": "2026-10-23T04:49:11.851591+00:00"
+  },
+  {
+    "key": "pea-bofip-version",
+    "url": "https://bofip.impots.gouv.fr/bofip/1556-PGP.html/identifiant=BOI-RPPM-RCM-40-50-20-20-20240516",
+    "ok": false,
+    "error": "Remote end closed connection without response"
+  },
+  {
+    "key": "bd-com-tarifs",
+    "url": "https://www.boursedirect.com/fr/bourse/tarifs",
+    "ok": false,
+    "error": "Remote end closed connection without response"
+  },
+  {
+    "key": "bd-com-docs",
+    "url": "https://www.boursedirect.com/fr/formulaires-en-ligne",
+    "ok": false,
+    "error": "Remote end closed connection without response"
+  }
+]

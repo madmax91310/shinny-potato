@@ -1,0 +1,1369 @@
+{
+  "checkedAt": "2026-10-23",
+  "summary": {
+    "brokers": 8,
+    "cells": 88,
+    "tweets": 28,
+    "status": {
+      "confirmé": 69,
+      "partiel": 6,
+      "corroboré": 6,
+      "sans objet": 7
+    },
+    "sources": {
+      "collecte officielle": 75,
+      "recoupement manuel": 6,
+      "sans objet": 7
+    },
+    "stale": 0
+  },
+  "cells": [
+    {
+      "broker": "tr",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "change",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://support.traderepublic.com/fr-fr/414",
+        "https://support.traderepublic.com/fr-fr/319?web_view=true"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "garde",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "https://extraetf.com/fr/ressources/pea-trade-republic"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "pme",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+        "https://www.ideal-investisseur.fr/pea/trade-republic-8.html"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "cash",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "transfert",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf"
+      ]
+    },
+    {
+      "broker": "tr",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "bourso",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "change",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "cash",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://sinvestir.fr/cto-boursobank-avis/",
+        "https://brokerchooser.com/fr/broker-reviews/boursobank-review"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659",
+        "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+      ]
+    },
+    {
+      "broker": "bourso",
+      "field": "boursomarkets",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "change",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047458"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
+        "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745",
+        "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/749793090"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047241"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "cash",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.interactivebrokers.ie/fr/index.php?f=47097",
+        "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+        "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php"
+      ]
+    },
+    {
+      "broker": "ibkr",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "fortuneo",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "change",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "dca",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+        "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "cash",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+        "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse",
+        "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf"
+      ]
+    },
+    {
+      "broker": "fortuneo",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "xtb",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "change",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/pea"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/pea"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://xas-new-cdn.xtb.com/file/0103/07/9b6a22f8-38ad-4cbb-a794-c86e9708033c/informations-generales-concernant-xtb-25082023-2.pdf"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "cash",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/interets",
+        "https://www.xtb.com/fr/pea"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.xtb.com/fr/pea",
+        "https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf"
+      ]
+    },
+    {
+      "broker": "xtb",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "caidf",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "change",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/66289.1789655190953.CGL_CTO_PDF.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html",
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "cash",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "transfert",
+      "status": "partiel",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
+        "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf"
+      ]
+    },
+    {
+      "broker": "caidf",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "bd",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "change",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6adafd76a2dac1792736630"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/pdf/CGBDMARS24.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "cash",
+      "status": "corroboré",
+      "sourceMode": "recoupement manuel",
+      "checkedAt": "2026-10-13",
+      "stale": false,
+      "sources": [
+        "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+        "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.boursedirect.fr/fr/bourse/tarifs",
+        "https://www.boursedirect.fr/pdf/tarifs_bd.pdf"
+      ]
+    },
+    {
+      "broker": "bd",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    },
+    {
+      "broker": "saxo",
+      "field": "frais",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "change",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "garde",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "dca",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/fr-fr/products/autoinvest",
+        "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "pea",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "pme",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "jeune",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "ifu",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "cash",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/fr-fr/campaigns/interest-rates-cal"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "transfert",
+      "status": "confirmé",
+      "sourceMode": "collecte officielle",
+      "checkedAt": "2026-10-23",
+      "stale": false,
+      "sources": [
+        "https://www.home.saxo/fr-fr/accounts/pea",
+        "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848"
+      ]
+    },
+    {
+      "broker": "saxo",
+      "field": "boursomarkets",
+      "status": "sans objet",
+      "sourceMode": "sans objet",
+      "checkedAt": null,
+      "stale": false,
+      "sources": []
+    }
+  ],
+  "offers": [
+    {
+      "broker": "bourso",
+      "field": "minimumOrder",
+      "active": true,
+      "checkedAt": "2026-10-23",
+      "start": null,
+      "until": null,
+      "values": {
+        "etfEuronext": 100
+      },
+      "source": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf"
+    },
+    {
+      "broker": "fortuneo",
+      "field": "offerAmundi",
+      "active": true,
+      "checkedAt": "2026-10-23",
+      "start": "2026-09-01",
+      "until": "2026-12-31",
+      "values": {
+        "purchaseFee": 0,
+        "minimumOrder": 500,
+        "maximumOrder": 100000
+      },
+      "source": "https://www.fortuneo.fr/bourse"
+    },
+    {
+      "broker": "saxo",
+      "field": "offerPea",
+      "active": true,
+      "checkedAt": "2026-10-23",
+      "start": "2026-02-23",
+      "until": "2026-12-31",
+      "values": {
+        "count": 70
+      },
+      "source": "https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions"
+    },
+    {
+      "broker": "saxo",
+      "field": "offerAmundi",
+      "active": true,
+      "checkedAt": "2026-10-23",
+      "start": null,
+      "until": "2026-12-31",
+      "values": {
+        "transferLockMonths": 6,
+        "priorAccountMonths": 12
+      },
+      "source": "https://www.home.saxo/fr-fr/campaigns/amundi-etf"
+    }
+  ],
+  "collectionFailures": {},
+  "published": {
+    "tr": {
+      "frais": "1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.",
+      "faible": "Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.",
+      "verdict": "Pour les achats programmés sur PEA sans frais d’exécution.",
+      "dca": "✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.",
+      "ifu": "✅ Oui pour l’offre française après migration.",
+      "enveloppes": "PEA ✅ / PEA-PME ❌ / PEA Jeune ✅",
+      "garde": "0 € de droits de garde sur le PEA.",
+      "cash": "❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.",
+      "entrant": "✅ Transfert entrant possible, sauf titres non cotés.",
+      "change": "Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.",
+      "offres": []
+    },
+    "bourso": {
+      "frais": "Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.",
+      "faible": "Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.",
+      "verdict": "Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.",
+      "dca": "✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
+      "garde": "Aucun droit de garde annoncé dans le barème Bourse.",
+      "cash": "❌ Sur PEA.",
+      "entrant": "✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions.",
+      "sortant": "15 € par ligne, maximum 150 €.",
+      "change": "Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.",
+      "offres": [
+        "BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable."
+      ]
+    },
+    "ibkr": {
+      "frais": "Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.",
+      "faible": "Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.",
+      "verdict": "Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.",
+      "dca": "❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ❌ / PEA Jeune ❌",
+      "garde": "Aucun droit de garde ni frais de tenue de compte PEA annoncés.",
+      "cash": "❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.",
+      "entrant": "✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts.",
+      "sortant": "0 € annoncé par IBKR.",
+      "change": "PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.",
+      "offres": []
+    },
+    "fortuneo": {
+      "frais": "Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.",
+      "faible": "Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.",
+      "verdict": "Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.",
+      "dca": "❌ Sur PEA.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
+      "garde": "Aucun ✅",
+      "cash": "❌ Sur PEA.",
+      "entrant": "✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions.",
+      "sortant": "15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.",
+      "change": "Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.",
+      "offres": [
+        "ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026."
+      ]
+    },
+    "xtb": {
+      "frais": "0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.",
+      "faible": "Le transfert entrant de ton PEA existant n’est pas encore disponible.",
+      "verdict": "Pour investir sans courtage sous 100 000 € de transactions mensuelles.",
+      "dca": "❌ Sur PEA.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ❌ / PEA Jeune ❌",
+      "garde": "Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.",
+      "cash": "❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.",
+      "entrant": "pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir.",
+      "sortant": "15 € par ligne, maximum 150 €.",
+      "change": "0,5 %.",
+      "offres": []
+    },
+    "caidf": {
+      "frais": "Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.",
+      "faible": "Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.",
+      "verdict": "Pour garder un conseiller en agence, avec le barème Île-de-France.",
+      "dca": "✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
+      "garde": "Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.",
+      "cash": "❌ Sur PEA.",
+      "entrant": "✅ Transfert entrant possible, antériorité fiscale conservée.",
+      "sortant": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.",
+      "change": "CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.",
+      "offres": []
+    },
+    "bd": {
+      "frais": "Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.",
+      "faible": "Des frais de conservation s’appliquent sur les Bourses étrangères.",
+      "verdict": "Pour des ordres ponctuels sur Euronext avec un tarif par palier.",
+      "dca": "✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
+      "garde": "0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.",
+      "cash": "❌ Sur PEA.",
+      "entrant": "Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif.",
+      "sortant": "15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.",
+      "change": "Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.",
+      "offres": []
+    },
+    "saxo": {
+      "frais": "0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.",
+      "faible": "Le DCA automatique est indisponible sur PEA.",
+      "verdict": "Pour le courtage à partir de 2 € et l’accès au PEA-PME.",
+      "dca": "❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.",
+      "ifu": "✅ Oui.",
+      "enveloppes": "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
+      "garde": "0 € sur les titres cotés ; exception pour les titres non cotés en PEA.",
+      "cash": "❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.",
+      "entrant": "✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026.",
+      "sortant": "15 € par ligne, maximum 150 €.",
+      "change": "0,25 %.",
+      "offres": [
+        "0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026.",
+        "ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026."
+      ]
+    }
+  },
+  "tweets": [
+    {
+      "brokers": [
+        "tr",
+        "bourso"
+      ],
+      "text": "🔵 Trade Republic 🆚 🟡 BoursoBank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n🟡 BoursoBank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n🟡 BoursoBank → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "tr",
+        "ibkr"
+      ],
+      "text": "🔵 Trade Republic 🆚 🟢 Interactive Brokers\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n🟢 Interactive Brokers → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "tr",
+        "fortuneo"
+      ],
+      "text": "🔵 Trade Republic 🆚 🟣 Fortuneo\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n🟣 Fortuneo → Aucun ✅\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n🟣 Fortuneo → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "tr",
+        "xtb"
+      ],
+      "text": "🔵 Trade Republic 🆚 ⚫ XTB\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n⚫ XTB → 0,5 %.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n⚫ XTB → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n⚫ XTB → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "tr",
+        "caidf"
+      ],
+      "text": "🔵 Trade Republic 🆚 🟠 CA Île-de-France\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n🟠 CA Île-de-France → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n🟠 CA Île-de-France → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "tr",
+        "bd"
+      ],
+      "text": "🔵 Trade Republic 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "tr",
+        "saxo"
+      ],
+      "text": "🔵 Trade Republic 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🔵 Trade Republic → 1 €/ordre ponctuel ; 2 € avec Direct Price, plafonné à 0,5 % sur PEA en ligne.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🔵 Trade Republic → Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🔵 Trade Republic → ✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🔵 Trade Republic → 0 € de droits de garde sur le PEA.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🔵 Trade Republic → PEA ✅ / PEA-PME ❌ / PEA Jeune ✅\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🔵 Trade Republic → ✅ Oui pour l’offre française après migration.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🔵 Trade Republic → ❌ Sur PEA. Hors PEA : intérêts après activation, sous conditions.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🔵 Trade Republic → ✅ Transfert entrant possible, sauf titres non cotés.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🔵 Trade Republic → Les PEA contenant des titres non cotés ne sont pas acceptés au transfert.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🔵 Trade Republic → Pour les achats programmés sur PEA sans frais d’exécution.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bourso",
+        "ibkr"
+      ],
+      "text": "🟡 BoursoBank 🆚 🟢 Interactive Brokers\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n🟢 Interactive Brokers → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bourso",
+        "fortuneo"
+      ],
+      "text": "🟡 BoursoBank 🆚 🟣 Fortuneo\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n🟣 Fortuneo → Aucun ✅\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n🟣 Fortuneo → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bourso",
+        "xtb"
+      ],
+      "text": "🟡 BoursoBank 🆚 ⚫ XTB\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n⚫ XTB → 0,5 %.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n⚫ XTB → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n⚫ XTB → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "bourso",
+        "caidf"
+      ],
+      "text": "🟡 BoursoBank 🆚 🟠 CA Île-de-France\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n🟠 CA Île-de-France → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n🟠 CA Île-de-France → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bourso",
+        "bd"
+      ],
+      "text": "🟡 BoursoBank 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bourso",
+        "saxo"
+      ],
+      "text": "🟡 BoursoBank 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟡 BoursoBank → Découverte, actions Euronext : 1,99 € jusqu’à 500 €, puis 0,6 % ; plafond PEA en ligne : 0,5 %.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n🟡 BoursoBank → BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟡 BoursoBank → Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🟡 BoursoBank → ✅ Plan d’Épargne dès 10 €/fonds/mois, négociation gratuite ; frais des fonds selon DIC.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🟡 BoursoBank → Aucun droit de garde annoncé dans le barème Bourse.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🟡 BoursoBank → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟡 BoursoBank → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟡 BoursoBank → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🟡 BoursoBank → ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 € et dans la limite de la valeur du compte, sous conditions. Sortie : 15 € par ligne, maximum 150 €.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟡 BoursoBank → Le plan automatique utilise des fonds avec leurs propres frais de gestion. Ordre minimum ETF sur Paris/Amsterdam : 100 €, y compris sur PEA.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🟡 BoursoBank → Pour réunir banque et PEA, avec accès au PEA-PME, au même endroit.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "ibkr",
+        "fortuneo"
+      ],
+      "text": "🟢 Interactive Brokers 🆚 🟣 Fortuneo\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n\n📈 DCA AUTOMATIQUE\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n🟣 Fortuneo → Aucun ✅\n\n🏦 ENVELOPPES\n\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟢 Interactive Brokers → ✅ Oui.\n🟣 Fortuneo → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n🟣 Fortuneo → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n\n🎯 VERDICT\n\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "ibkr",
+        "xtb"
+      ],
+      "text": "🟢 Interactive Brokers 🆚 ⚫ XTB\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n\n💱 FRAIS DE CHANGE\n\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n⚫ XTB → 0,5 %.\n\n📈 DCA AUTOMATIQUE\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n⚫ XTB → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n\n🏦 ENVELOPPES\n\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🟢 Interactive Brokers → ✅ Oui.\n⚫ XTB → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n\n🔄 TRANSFERT DU PEA\n\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n\n🎯 VERDICT\n\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "ibkr",
+        "caidf"
+      ],
+      "text": "🟢 Interactive Brokers 🆚 🟠 CA Île-de-France\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n\n💱 FRAIS DE CHANGE\n\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n\n📈 DCA AUTOMATIQUE\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n\n🛡️ FRAIS DE GARDE\n\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n\n🏦 ENVELOPPES\n\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟢 Interactive Brokers → ✅ Oui.\n🟠 CA Île-de-France → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n🟠 CA Île-de-France → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n\n⚠️ POINTS FAIBLES\n\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n\n🎯 VERDICT\n\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "ibkr",
+        "bd"
+      ],
+      "text": "🟢 Interactive Brokers 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n💱 FRAIS DE CHANGE\n\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟢 Interactive Brokers → ✅ Oui.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "ibkr",
+        "saxo"
+      ],
+      "text": "🟢 Interactive Brokers 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟢 Interactive Brokers → Actions France : dégressif 0,05 %, min. 1,25 € + frais de Bourse ; fixe 0,05 %, min. 3 € ; routage direct 0,1 %, min. 4 €. Plafond PEA en ligne : 0,5 %.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟢 Interactive Brokers → PEA : conversion automatique pour les titres dans une autre devise. Compte général : conversion automatique généralement 0,03 % ; manuelle 0,002 %, min. 2 USD.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : investissements récurrents sous conditions.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🟢 Interactive Brokers → Aucun droit de garde ni frais de tenue de compte PEA annoncés.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🟢 Interactive Brokers → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟢 Interactive Brokers → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟢 Interactive Brokers → ❌ Sur PEA. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers 10 000 € EUR non rémunérés.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🟢 Interactive Brokers → ✅ Transfert entrant possible ; IBKR annonce 0 € de frais de transfert. Frais du courtier de départ distincts. Sortie : 0 € annoncé par IBKR.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟢 Interactive Brokers → Le tarif dépend de la Bourse et du routage choisi ; des frais tiers s’ajoutent au dégressif.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🟢 Interactive Brokers → Pour accéder à de nombreuses Bourses européennes et choisir ton mode de tarification.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "fortuneo",
+        "xtb"
+      ],
+      "text": "🟣 Fortuneo 🆚 ⚫ XTB\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n⚫ XTB → 0,5 %.\n\n📈 DCA AUTOMATIQUE\n\n🟣 Fortuneo → ❌ Sur PEA.\n⚫ XTB → ❌ Sur PEA.\n\n🛡️ FRAIS DE GARDE\n\n🟣 Fortuneo → Aucun ✅\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n\n🏦 ENVELOPPES\n\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n\n📄 IFU\n\n🟣 Fortuneo → ✅ Oui.\n⚫ XTB → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟣 Fortuneo → ❌ Sur PEA.\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n\n🔄 TRANSFERT DU PEA\n\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n\n🎯 VERDICT\n\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "fortuneo",
+        "caidf"
+      ],
+      "text": "🟣 Fortuneo 🆚 🟠 CA Île-de-France\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n\n📈 DCA AUTOMATIQUE\n\n🟣 Fortuneo → ❌ Sur PEA.\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n\n🛡️ FRAIS DE GARDE\n\n🟣 Fortuneo → Aucun ✅\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n\n🏦 ENVELOPPES\n\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟣 Fortuneo → ✅ Oui.\n🟠 CA Île-de-France → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟣 Fortuneo → ❌ Sur PEA.\n🟠 CA Île-de-France → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n\n⚠️ POINTS FAIBLES\n\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n\n🎯 VERDICT\n\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "fortuneo",
+        "bd"
+      ],
+      "text": "🟣 Fortuneo 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n🟣 Fortuneo → ❌ Sur PEA.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n🟣 Fortuneo → Aucun ✅\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟣 Fortuneo → ✅ Oui.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟣 Fortuneo → ❌ Sur PEA.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "fortuneo",
+        "saxo"
+      ],
+      "text": "🟣 Fortuneo 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟣 Fortuneo → Starter, Euronext/Equiduct : 0 € le premier ordre du mois ≤ 500 €, puis 0,35 %.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n🟣 Fortuneo → ETF Amundi de la sélection : 0 € de courtage sur chaque achat de 500 à 100 000 €, sur PEA et CTO, sous conditions. Jusqu’au 31/12/2026.\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟣 Fortuneo → Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🟣 Fortuneo → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🟣 Fortuneo → Aucun ✅\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🟣 Fortuneo → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟣 Fortuneo → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟣 Fortuneo → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🟣 Fortuneo → ✅ Premier transfert : jusqu’à 100 € remboursés si encours < 3 000 €, 150 € sous 5 000 €, 2 000 € dès 5 000 €, sous conditions. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟣 Fortuneo → Le tarif Starter présenté ici ne s’applique pas aux autres places boursières.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🟣 Fortuneo → Pour un premier ordre mensuel jusqu’à 500 € sans courtage avec Starter.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "xtb",
+        "caidf"
+      ],
+      "text": "⚫ XTB 🆚 🟠 CA Île-de-France\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n\n💱 FRAIS DE CHANGE\n\n⚫ XTB → 0,5 %.\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n\n📈 DCA AUTOMATIQUE\n\n⚫ XTB → ❌ Sur PEA.\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n\n🛡️ FRAIS DE GARDE\n\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n\n🏦 ENVELOPPES\n\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n⚫ XTB → ✅ Oui.\n🟠 CA Île-de-France → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n🟠 CA Île-de-France → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n\n⚠️ POINTS FAIBLES\n\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n\n🎯 VERDICT\n\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "xtb",
+        "bd"
+      ],
+      "text": "⚫ XTB 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n💱 FRAIS DE CHANGE\n\n⚫ XTB → 0,5 %.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n⚫ XTB → ❌ Sur PEA.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n⚫ XTB → ✅ Oui.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "xtb",
+        "saxo"
+      ],
+      "text": "⚫ XTB 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n⚫ XTB → 0 % jusqu’à 100 000 € de transactions/mois cumulées sur tes comptes, puis 0,2 %.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n⚫ XTB → 0,5 %.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n⚫ XTB → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n⚫ XTB → Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n⚫ XTB → PEA ✅ / PEA-PME ❌ / PEA Jeune ❌\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n⚫ XTB → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n⚫ XTB → ❌ Sur PEA. Fonds libres éligibles hors PEA : taux variable ; préférentiel pendant 90 jours jusqu’à 100000 €, puis taux standard.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n⚫ XTB → pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir. Sortie : 15 € par ligne, maximum 150 €.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n⚫ XTB → Le transfert entrant de ton PEA existant n’est pas encore disponible.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n⚫ XTB → Pour investir sans courtage sous 100 000 € de transactions mensuelles.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?\n\n🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié."
+    },
+    {
+      "brokers": [
+        "caidf",
+        "bd"
+      ],
+      "text": "🟠 CA Île-de-France 🆚 🟤 Bourse Direct\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n\n💱 FRAIS DE CHANGE\n\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n\n📈 DCA AUTOMATIQUE\n\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n\n🛡️ FRAIS DE GARDE\n\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n\n🏦 ENVELOPPES\n\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n\n📄 IFU\n\n🟠 CA Île-de-France → ✅ Oui.\n🟤 Bourse Direct → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟠 CA Île-de-France → ❌ Sur PEA.\n🟤 Bourse Direct → ❌ Sur PEA.\n\n🔄 TRANSFERT DU PEA\n\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n\n⚠️ POINTS FAIBLES\n\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n\n🎯 VERDICT\n\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "caidf",
+        "saxo"
+      ],
+      "text": "🟠 CA Île-de-France 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟠 CA Île-de-France → Île-de-France, Initial : 0,5 % ; Integral : 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou à 18–30 ans.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟠 CA Île-de-France → CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🟠 CA Île-de-France → ✅ Plan d’Épargne Boursière sur 1 à 3 fonds, dès 45 €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🟠 CA Île-de-France → Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🟠 CA Île-de-France → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟠 CA Île-de-France → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟠 CA Île-de-France → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🟠 CA Île-de-France → ✅ Transfert entrant possible, antériorité fiscale conservée. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟠 CA Île-de-France → Hors exemptions, les droits de garde s’ajoutent ; Integral coûte 96 €/an sous 12 ordres, sauf à 18–30 ans.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🟠 CA Île-de-France → Pour garder un conseiller en agence, avec le barème Île-de-France.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    },
+    {
+      "brokers": [
+        "bd",
+        "saxo"
+      ],
+      "text": "🟤 Bourse Direct 🆚 ⚪ Saxo Bank\n\nLequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇\n\n💰 FRAIS DE COURTAGE PEA\n\n🟤 Bourse Direct → Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.\n⚪ Saxo Bank → 0,08 % sur Euronext (Classic), minimum 2 €, plafonné à 0,5 % sur PEA en ligne.\n\n🎁 OFFRES\n\n⚪ Saxo Bank → 0 € sur 70 actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel. Jusqu’au 31/12/2026. ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les 12 derniers mois exclus, transfert des positions bloqué 6 mois. Jusqu’au 31/12/2026.\n\n💱 FRAIS DE CHANGE\n\n🟤 Bourse Direct → Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.\n⚪ Saxo Bank → 0,25 %.\n\n📈 DCA AUTOMATIQUE\n\n🟤 Bourse Direct → ✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.\n⚪ Saxo Bank → ❌ Sur PEA. ✅ PEPS hors PEA — ETF et fonds, mensuel, 0 € de courtage à l’achat ; ventes payantes, change éventuel.\n\n🛡️ FRAIS DE GARDE\n\n🟤 Bourse Direct → 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.\n⚪ Saxo Bank → 0 € sur les titres cotés ; exception pour les titres non cotés en PEA.\n\n🏦 ENVELOPPES\n\n🟤 Bourse Direct → PEA ✅ / PEA-PME ✅ / PEA Jeune ✅\n⚪ Saxo Bank → PEA ✅ / PEA-PME ✅ / PEA Jeune ❌\n\n📄 IFU\n\n🟤 Bourse Direct → ✅ Oui.\n⚪ Saxo Bank → ✅ Oui.\n\n💶 LIQUIDITÉS RÉMUNÉRÉES\n\n🟤 Bourse Direct → ❌ Sur PEA.\n⚪ Saxo Bank → ❌ Sur PEA. Hors PEA : clients VIP uniquement, sous conditions.\n\n🔄 TRANSFERT DU PEA\n\n🟤 Bourse Direct → Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.\n⚪ Saxo Bank → ✅ Transfert total : frais remboursés jusqu’à 150 €, sous conditions, jusqu’au 31/12/2026. Sortie : 15 € par ligne, maximum 150 €.\n\n⚠️ POINTS FAIBLES\n\n🟤 Bourse Direct → Des frais de conservation s’appliquent sur les Bourses étrangères.\n⚪ Saxo Bank → Le DCA automatique est indisponible sur PEA.\n\n🎯 VERDICT\n\n🟤 Bourse Direct → Pour des ordres ponctuels sur Euronext avec un tarif par palier.\n⚪ Saxo Bank → Pour le courtage à partir de 2 € et l’accès au PEA-PME.\n\n💬 Tu choisirais lequel pour ton PEA ?"
+    }
+  ],
+  "errors": []
+}

@@ -49,3 +49,8 @@ assert(report.fields.every(f=>Array.isArray(f.sourceConditions)))
 const gold=JSON.parse((await import('node:fs')).readFileSync('src/data/worldbank-gold-monthly.json'))
 assert.equal(sourceConditions(gold.url).license,gold.license)
 assert.equal(sourceConditions('https://thedocs.worldbank.org/another-dataset').license,null,'A dataset licence cannot be generalized to a whole domain')
+
+const buildOnly=report.registries.find(r=>r.path==='src/data/dca-security-classifications.json')
+assert(buildOnly.buildConsumers.includes('scripts/build-equity-history-links.mjs'))
+assert.equal(buildOnly.runtimeConsumers.length,0,'Build dependencies are not runtime imports')
+assert(report.registries.filter(r=>r.writers.length).every(r=>r.consumers.length),'Every current scheduled projection has a reviewed consumer, including validation-only snapshots')

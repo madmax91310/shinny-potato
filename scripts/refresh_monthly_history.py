@@ -302,6 +302,9 @@ def collect_fred(config, now, fetch=lambda url: get_text(url, ('text/csv', 'appl
 
 
 def collect_one(config, now):
+    if config['parser'] == 'official-nav':
+        from collect_official_share_history import collect_one as collect_nav
+        return collect_nav(config, now)
     if config['parser'] == 'yahoo': result=collect_yahoo(config, now)
     elif config['parser'] == 'msci': result=collect_msci(config, now)
     elif config['parser'] == 'fred': result=collect_fred(config,now)
@@ -366,7 +369,7 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
             previous=current.get(source['id'])
             if previous:
                 if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
-                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker']):
+                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom']):
                     reject('Existing exact series identity changed')
                 if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):active=previous
             return {'id':source['id'],'status':'validated','record':active,'evidence':result}

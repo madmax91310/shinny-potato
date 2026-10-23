@@ -6,6 +6,7 @@ import LINKS from '../src/data/equity-history-links.json' with {type:'json'}
 import MONTHLY from '../src/data/monthly-duel-returns.json' with {type:'json'}
 import {CATALOG,buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
 import {buildManualPortfolio} from '../src/pages/portfolio-generator/engine.js'
+import {isQualifiedAnnualPortfolioFund} from '../src/data/annual-portfolio-funds.js'
 import {latestCommonYears} from '../src/data/annual-window.js'
 import {projectLightRegistries} from './project-light-registries.mjs'
 import {buildAssetFieldReport,completeHoldingsEvidence,fieldState} from './report-asset-fields.mjs'
@@ -32,7 +33,12 @@ for(const asset of PORTFOLIO.filter(a=>a.id.startsWith('equity-')||a.id.startsWi
  const manual=buildManualPortfolio([{id:asset.id,pct:100}],'generaliste',[])
  const duel=buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:duelAsset.id,pct:100}]})
  for(const year of duel.years)assert(Math.abs(manual.perf[year]-duel.b.annual[year])<1e-9,`${asset.id}/${year}: shared EUR returns`)
- if(asset.id.startsWith('manual-'))assert(MONTHLY[asset.isin]?.source)
+ if(asset.id.startsWith('manual-')) {
+  if(asset.annualManual) {
+   assert(isQualifiedAnnualPortfolioFund(asset),`${asset.id}: exact official annual NAV contract`)
+   assert.equal(MONTHLY[asset.isin],undefined,`${asset.id}: no market-price projection inferred from NAV`)
+  } else assert(MONTHLY[asset.isin]?.source,`${asset.id}: market-price monthly source`)
+ }
  count++
 }
 const code=projectLightRegistries().transform('', '/app/src/data/portfolio-assets.js').code

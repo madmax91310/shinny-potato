@@ -1,0 +1,8 @@
+import pathlib,sys,json,datetime as dt,gzip,hashlib,re
+ROOT=pathlib.Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT/'scripts'));from collect_amundi_etf import fetch_api,request_payload,API
+p=ROOT/'reports/reliquat-2026-10-23/preuves';now=dt.datetime.now(dt.timezone.utc)
+rows=json.load(open('reports/corrections-2026-10-22/reconciliation-90-ecarts.json'))['cases'];shares={r['isin']:r for r in rows if r['status']=='anomalie encore inexpliquée'and'amundietf'in r['navSource']};ids=list(shares)
+payload=request_payload([{'isin':i}for i in ids],now);payload['breakDown']={'aggregationFields':[]};payload['historics']=[{'indicator':i,'startDate':'2015-12-01','endDate':now.date().isoformat()}for i in ['officialNav','countervalorisedAdjustedNAV','navCurrency']]
+(p/'amundi-daily-request.json').write_text(json.dumps(payload,indent=2));body=fetch_api(payload);raw=json.dumps(body,separators=(',',':')).encode();(p/'amundi-daily-response.json.gz').write_bytes(gzip.compress(raw));(p/'amundi-daily-proof.json').write_text(json.dumps({'url':API,'checkedAt':now.isoformat(),'sha256':hashlib.sha256(raw).hexdigest(),'publicWidget':'https://amundiprodcdn2.azureedge.net/widgets-assets/product-page/20.1.101-bis/amundi-product-page.js','indicatorsFromPublishedEnum':{'COUNTER_VALORISED_NAV':'officialNav','COUNTER_VALORISED_ADJUSTED_NAV':'countervalorisedAdjustedNAV','NAV_CURRENCY':'navCurrency'},'file':'amundi-daily-response.json.gz'},indent=2))
+for product in body['products']:
+ print(product['productId'],product.get('characteristics',{}),product.get('currencies',{}),[(h['indicator'],len(h['historicalData']),h['historicalData'][:2])for h in product['historics']],flush=True)

@@ -104,7 +104,12 @@ for(const id of ['etfIE00BDFBTQ78','etfGB00B15KXQ89']){
  assert(RANKING_ASSETS[id],`${id}: a historical repetition does not exclude independent valid windows`)
  assert(qualifyHistoryWindow(RANKING_ASSETS[id],'2024-12','2025-12').qualified)
 }
-assert.equal(qualifyHistoryWindow(RANKING_ASSETS.etfIE000U9ODG19,'2024-12','2025-12').qualified,false,'Swiss Aerospace 2025 remains refused')
+const {gunzipSync}=await import('node:zlib')
+const {readFileSync:readOriginalHistory}=await import('node:fs')
+const originalSwiss=JSON.parse(gunzipSync(readOriginalHistory('reports/reliquat-2026-10-23/preuves/original-exchange-quote-records.json.gz'))).etfIE000U9ODG19.record
+assert.equal(qualifyHistoryWindow(originalSwiss,'2024-12','2025-12').qualified,false,'Archived Swiss Aerospace 2025 remains refused')
+assert.equal(RANKING_ASSETS.etfIE000U9ODG19.valuationBasis,'fund-nav-total-return')
+assert(qualifyHistoryWindow(RANKING_ASSETS.etfIE000U9ODG19,'2024-12','2025-12').qualified,'Independently verified exact-share NAV restores the valid window')
 const aerospace=RANKING_ASSETS['aerospace-paris-eur']
 assert(aerospace);assert.equal(aerospace.isin,'IE000U9ODG19');assert.equal(aerospace.currency,'EUR');assert.equal(aerospace.points[0].date,'2024-08')
 assert(commonCoverage([aerospace,RANKING_ASSETS.etfIE00B4L5Y983]).years.includes(2025))

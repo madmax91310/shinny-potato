@@ -23,16 +23,25 @@ for (const [id, record] of Object.entries(records)) {
   const asset = catalog ? ETF_MONTHLY_HISTORIES[id] : ASSETS[id];
   assert(asset, `Missing active history ${id}`);
   if (catalog) {
-    assert.equal(record.field, 'adjclose');
+    assert.equal(record.field,record.parser==='official-nav'?'nav-total-return':'adjclose');
     assert.equal(record.collectAnniversary, source.collectAnniversary);
     if (source.collectAnniversary) assert.equal(record.anniversaryPoints.length, record.points.length);
     else assert.equal(record.anniversaryPoints?.length ?? 0, 0);
+    if(record.parser==='official-nav'){
+      assert.equal(record.valuationBasis,'fund-nav-total-return');
+      assert.equal(asset.historyConvention,record.valuationBasis);
+      assert(record.label.endsWith(' · VL'));
+      assert(record.calendarProof?.checks?.length);
+      assert(record.rawSourceHashes&&Object.values(record.rawSourceHashes).every(h=>/^[a-f0-9]{64}$/.test(h)));
+      assert(!record.ticker&&!record.mic&&!record.symbol,'NAV is never qualified as an exchange quote');
+    }else{
     const suffix = { XPAR: '.PA', XAMS: '.AS', XSWX: '.SW', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
     const listing=INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.find(l=>l.evidenceId===record.listingEvidenceId);
     assert([record.ticker+suffix,listing?.symbol].includes(record.symbol),`${id}: documented listing symbol`);
     assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>
       listing.evidenceId === record.listingEvidenceId && listing.ticker === record.ticker &&
       listing.mic === record.mic && listing.currency === record.currency), `${id}: exact documented listing`);
+    }
     assert(ASSETS[id], `${id}: shared tool connection`);
   }
   for (const key of Object.keys(source)) assert.deepEqual(record[key], source[key], `${id} ${key}`);
@@ -60,7 +69,7 @@ for (const [id, record] of Object.entries(records)) {
     if (record.parser === 'msci') assert(Math.abs(row.value-row.monthlyValue)<=.0001);
     assert.deepEqual(asset.points[i], { date, price });
     if (record.anniversaryPoints?.length) {
-      assert.equal(record.anniversaryPoints[i][1], Math.round(row.close*10**record.precision)/10**record.precision);
+      assert.equal(record.anniversaryPoints[i][1], Math.round((record.parser==='official-nav'?row.value:row.close)*10**record.precision)/10**record.precision);
       assert.deepEqual(ASSETS[id].anniversaryPoints[i], {date,price:record.anniversaryPoints[i][1]});
     }
   }
