@@ -15073,9 +15073,9 @@
     ],
     "fields": {
       "distribution": {
-        "status": "observed",
-        "category": null,
-        "lastAttemptAt": "2026-10-23T13:07:17.859867+00:00",
+        "status": "retained",
+        "category": "source-unavailable",
+        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
         "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
@@ -15085,8 +15085,27 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance"
         ],
-        "cause": null,
-        "sourceErrors": []
+        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "sourceErrors": [
+          {
+            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+          },
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
+            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+          },
+          {
+            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
+            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+          }
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+          "sha256": "d9f3a644123637a44984c321fdda201b168abc81180b32a15525ef49132d01f8"
+        }
       },
       "domicile": {
         "status": "observed",
@@ -15201,9 +15220,9 @@
     ],
     "fields": {
       "distribution": {
-        "status": "observed",
-        "category": null,
-        "lastAttemptAt": "2026-10-23T13:07:17.859867+00:00",
+        "status": "retained",
+        "category": "source-unavailable",
+        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
         "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15213,8 +15232,27 @@
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance"
         ],
-        "cause": null,
-        "sourceErrors": []
+        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "sourceErrors": [
+          {
+            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+          },
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
+            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+          },
+          {
+            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
+            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+          }
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+          "sha256": "d12cc98e3037483a48a8363f7dab3915f76a73e546630f620ee49f89473a5e25"
+        }
       },
       "domicile": {
         "status": "observed",

@@ -78,10 +78,11 @@ def main():
             result=zipped('publication-final-observation.json.gz') if (P/'publication-final-observation.json.gz').exists() else zipped('publication-observation.json.gz')
             if not result.get('errors') and result.get('successes'):after='corrigé et vérifié depuis GitHub, intégration attendue'
             elif not result.get('errors') and result.get('waiting'):after='attente normale de publication vérifiée depuis GitHub ; dernière clôture conservée sans revalidation'
-        if 'radar:etf' in key and (P/'dws-observation.json.gz').exists():
-            result=zipped('dws-observation.json.gz')
+        if key.startswith('radar:') and any('etf.dws.com' in u for u in b.get('sourceUrls',[])) and (P/'dws-observation.json.gz').exists():
+            result=zipped('dws-final-observation.json.gz') if (P/'dws-final-observation.json.gz').exists() else zipped('dws-observation.json.gz')
             if not result.get('errors') and len(result.get('verified',[]))==result.get('candidateCount',0)>0:
-                after='photographie courante recoupée depuis GitHub ; ancienne divergence conservée'
+                after='photographie courante recoupée depuis GitHub ; conflit historique et contrôle de stabilité conservés'
+                proof+=' ; preuves/dws-country-revisions.json.gz ; preuves/radar-current-conflicts.json ; preuves/dws-final-observation.json.gz'
         add('incident actif au contrôle final',key,'actif dans le moniteur de production',after,b.get('cause',''),proof,b.get('dataId',b.get('name','')),b.get('field',''),action='Le producteur et son moniteur de production restent inchangés avant intégration ; voir la preuve isolée et le reliquat documenté.')
     if (P/'holdings-ishares-promoted.json').exists():
         proof=read(P/'holdings-ishares-promoted.json')

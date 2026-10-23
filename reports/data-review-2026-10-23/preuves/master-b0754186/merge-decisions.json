@@ -27,7 +27,7 @@
     },
     {
       "file": "src/data/instrument-metadata-status.json",
-      "decision": "master failure history and qualification conflicts; distribution-specific results retained from the actual isolated check"
+      "decision": "latest master failed attempts retained (15:40, HTTP403); last qualified distribution evidence from actual PR success (13:07, 23/10) retained separately with original dates"
     },
     {
       "file": "scripts/source-snapshots/ranking-collection-status.json",
