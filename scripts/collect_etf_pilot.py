@@ -72,6 +72,19 @@ def allocation(container, now):
             'rows': [{'name': name, 'weightPct': weight} for name, weight in zip(labels, weights)]}
 
 
+def replication_characteristics(facts, combined=False):
+    """Preserve each producer display convention and the exact two API inputs."""
+    structure = facts.get('productStructure', {}).get('value')
+    method = facts.get('fundMethodologyTypeCode', {}).get('value')
+    raw = {'productStructure': structure, 'fundMethodologyTypeCode': method}
+    parts = [v for v in (structure, method) if isinstance(v, str) and v.strip()]
+    if not parts:
+        return {}
+    label = f'{structure} ({method})' if combined and len(parts) == 2 else (method if isinstance(method, str) and method.strip() else parts[0])
+    return {'replicationMethod': label, 'replicationMethodRaw': raw,
+            **({'productStructure': structure} if isinstance(structure, str) and structure.strip() else {})}
+
+
 def parse_share(body, share, now):
     if isinstance(body, dict):
         if str(body['productId']) != str(share['productId']) or body['currencyCode'] != share['currency']:
@@ -93,10 +106,11 @@ def parse_share(body, share, now):
         reject('Unexpected distribution policy')
     # Keep exact issuer characteristics in the shared record, not only in config.
     identity = {'distribution': value('useOfProfitsCode'), 'index': None if share.get('physicalMetal') else value('indexSeriesName')}
-    for target, source in [('domicile','domicile'), ('replicationMethod','fundMethodologyTypeCode'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
+    for target, source in [('domicile','domicile'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
         published = facts.get(source, {}).get('value')
         if isinstance(published, (str, int)) and not isinstance(published, bool) and str(published).strip():
             identity[target] = str(published)
+    identity.update(replication_characteristics(facts))
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')

@@ -1,3 +1,4 @@
+import { replicationWordingEvent } from '../../src/lib/replication-method.js'
 import { createHash } from 'node:crypto'
 import { datedEtfSnapshot } from './editorial-radar.mjs'
 import { investorFilingType } from '../../src/lib/radar-editorial.js'
@@ -31,6 +32,7 @@ export function notifiableEvents(events) {
   const seen = new Set()
   return events.filter(event => {
     if (!EVENT_ID.test(event.id)) throw new Error('Identifiant de signal invalide.')
+    if (replicationWordingEvent(event) || event.status === 'wording-only') return false
     if (event.status === 'source-conflict' || datedEtfSnapshot(event) && event.kind === 'change' && event.beforePeriod === event.period) return false
     const filing = investorFilingType(event)
     if (filing && filing !== 'publication') return false
@@ -101,7 +103,16 @@ export function trackerBody({ recent, receipts, repo, revision, now }) {
 // Issues carry durable per-event receipts. They also protect against a crash
 // after POST succeeds but before notifications.json is committed. Include
 // closed issues and every page; PRs and non-bot issues are never receipts.
-export async function notifyRadar({ events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false }) {
+export function correctReplicationNotification(body, events) {
+  const ignored = new Set(events.filter(replicationWordingEvent).map(e => e.id))
+  return body.replace(/\n### [\s\S]*?(?=\n### |\n<!-- radar-batch:|$)/g, section => {
+    const id = section.match(/<!-- editorial-radar-event:([a-f0-9]{24}) -->/)?.[1]
+    if (!ignored.has(id) || section.includes('radar-wording-corrected:v1')) return section
+    return `\n### Correction : variation de libellé de réplication\n\n<!-- radar-wording-corrected:v1 -->\nCes formulations sont équivalentes. Ce signal est retiré des événements financiers ; les observations originales restent archivées ci-dessous.\n\n<details><summary>Notification originale — variation technique sans changement financier établi</summary>\n${section.replace(/\n### /g, '\n#### ')}\n</details>\n`
+  })
+}
+
+export async function notifyRadar({ events, archiveEvents = events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false }) {
   if (!/^(?:[a-f0-9]{40}|radar-data)$/.test(evidenceRevision)) throw new Error('Révision de preuve invalide.')
   const pending = pendingNotifications(events, ledger)
   if (!pending.length && !maintain) return { ledger, issues: [], sent: 0, recovered: 0 }
@@ -133,6 +144,8 @@ export async function notifyRadar({ events, ledger, api, repo, assignee = 'madma
       const comments = await api(`issues/${tracker.number}/comments?per_page=100&page=${page}`)
       for (const comment of comments) {
         if (comment.user?.login !== 'github-actions[bot]') continue
+        const corrected = correctReplicationNotification(comment.body ?? '', archiveEvents)
+        if (corrected !== (comment.body ?? '')) await api(`issues/comments/${comment.id}`, 'PATCH', { body: corrected })
         for (const match of (comment.body ?? '').matchAll(/<!-- editorial-radar-event:([a-f0-9]{24}) -->/g)) receipts.add(match[1])
       }
       if (comments.length < 100) break

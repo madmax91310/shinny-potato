@@ -1,3 +1,4 @@
+import { normalizedReplication, replicationField, replicationEquivalent, replicationWordingEvent } from '../../src/lib/replication-method.js'
 import { createHash } from 'node:crypto'
 import { publishablePurchasingNews } from './purchasing-power-news.mjs'
 import { reconcileDws } from './dws-reconciliation.mjs'
@@ -26,6 +27,7 @@ export const observationKey = o => `${o.family}:${o.entity}:${o.field}:${digest(
 // A revision of that snapshot is evidence to review, never a market movement.
 export const datedEtfSnapshot = o => o.family === 'etf' && (o.field === 'aum' || o.field === 'top10' || o.field?.startsWith('metric:') || /^(countries|sectors):/.test(o.field))
 export function meaningful(before, after) {
+  if (replicationEquivalent(before, after)) return false
   if (same(before.value, after.value)) return after.rule === 'publication' && before.period !== after.period
   if (typeof before.value !== typeof after.value) return false
   if (typeof after.value !== 'number') return true
@@ -72,6 +74,10 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // Retire the removed legislative category from existing items and alert retries.
   for (const collection of [state.current, state.anchors]) for (const [key, item] of Object.entries(collection)) if (!publishablePurchasingNews(item)) delete collection[key]
   state.events = state.events.filter(publishablePurchasingNews)
+  for (const event of state.events) if (replicationWordingEvent(event)) {
+    event.status = 'wording-only'
+    event.normalization = { version: 1, before: normalizedReplication(event.before, event.previousSourceUrl), after: normalizedReplication(event.after, event.sourceUrl), reason: 'Equivalent replication wording; original evidence retained.' }
+  }
   const issues = [...errors], newEvents = [], seen = new Set(state.events.map(event => event.id))
   state.conflicts ??= {}
   // Keep old alerts for audit, but remove same-snapshot changes from the public
@@ -136,13 +142,16 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     }
     // A return to an already superseded value for the same publication period
     // is conflicting evidence. Keep the last accepted observation for review.
-    const roundTrip = latest && !same(latest.value, after.value) && state.events.some(event =>
-      observationKey(event) === key && event.beforePeriod === after.period && event.period === after.period && same(event.before, after.value))
+    const roundTrip = latest && !replicationEquivalent(latest, after) && !same(latest.value, after.value) && state.events.some(event =>
+      observationKey(event) === key && event.beforePeriod === after.period && event.period === after.period && same(event.before, after.value) && !replicationWordingEvent(event))
     if (roundTrip) {
       issues.push({ family: after.family, entity: after.entity, reason: `Valeur contradictoire pour la même période : ${after.fieldLabel}. Dernière observation conservée.` })
       continue
     }
     state.current[key] = after
+    // Advance equivalent wording silently; preserve every raw before/after in
+    // the historical events and use the latest source as the next baseline.
+    if (before && replicationEquivalent(before, after)) { state.anchors[key] = after; continue }
     if (!before) {
       state.anchors[key] = after
       // Initialisation is silent. New fields on an existing product are also
@@ -168,6 +177,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     }
     if (!meaningful(before, after)) continue
     const event = makeEvent(before, after, stamp)
+    if (replicationField(after)) event.normalization = { version: 1, before: normalizedReplication(before.value, before.sourceUrl), after: normalizedReplication(after.value, after.sourceUrl) }
     event.title = factualTitle(event)
     state.anchors[key] = after
     if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
@@ -185,7 +195,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     [event.beforePeriod, event.period].some(period => disputed.has(`${observationKey(event)}:${period}`))) {
     event.status = 'source-conflict'
   }
-  const publishableNewEvents = newEvents.filter(event => event.status !== 'source-conflict')
+  const publishableNewEvents = newEvents.filter(event => !['source-conflict', 'wording-only'].includes(event.status))
   // Enrich an existing announcement without inventing a second launch alert.
   for (const row of valid.filter(row => row.family === 'etf' && row.field === 'announcement' && row.launchDetails)) {
     for (const event of state.events.filter(event => event.entity === row.entity && event.period === row.period && event.label === row.label)) {
@@ -208,6 +218,6 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
   const purchasingItems = Object.values(state.current).filter(o => o.family === 'pouvoir-achat').sort((a, b) => b.period.localeCompare(a.period) || a.label.localeCompare(b.label)).slice(0, 120)
-  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => !['source-conflict', 'wording-only'].includes(event.status)).slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
   return { state, feed, newEvents: publishableNewEvents }
 }
