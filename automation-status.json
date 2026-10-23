@@ -2324,7 +2324,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T10:20:10Z",
-      "lastPublicationSuccessAt": "2026-10-23T10:17:45.712Z",
+      "lastPublicationSuccessAt": "2026-10-23T10:30:08.493Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937622913",
       "failures": [],
       "dataFailures": {},
@@ -2336,7 +2336,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
-      "publishedDataSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588"
+      "publishedDataSha": "49626863142c934063533bb2cd1595b2d977656e"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -2381,27 +2381,33 @@
     "update-publication-observations.yml": {
       "monitorVersion": 2,
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 39937622779,
+      "runId": 39939003159,
       "attempt": 1,
-      "headSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588",
-      "createdAt": "2026-10-23T10:13:58Z",
-      "completedAt": "2026-10-23T10:16:43Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-22T22:51:06Z",
+      "headSha": "5b88f28925ca038a33b4fc8552cc8a9145f5e1d3",
+      "createdAt": "2026-10-23T10:25:31Z",
+      "completedAt": "2026-10-23T10:32:43Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-23T10:32:43Z",
       "collectionStatus": "success",
       "validationStatus": "success",
-      "recordingStatus": "failure",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-23T10:16:43Z",
-      "lastPublicationSuccessAt": "2026-10-23T05:59:21Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937622779",
-      "failures": [
-        {
-          "job": "refresh",
-          "step": "Commit validated observations"
-        }
-      ],
-      "dataFailures": {}
+      "recordingStatus": "success",
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-23T10:32:43Z",
+      "lastPublicationSuccessAt": "2026-10-23T10:30:08.493Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39939003159",
+      "failures": [],
+      "dataFailures": {},
+      "publicationReceipt": {
+        "commit": "49626863142c934063533bb2cd1595b2d977656e",
+        "files": {
+          "src/data/anniversary-index-history.json": "a5e535fdfccff92c4ce787367aa224768640092c",
+          "src/data/anniversary-levels.json": "913af68d8e616d1b80c0433b5ace230a689c60f9",
+          "src/data/purchasing-power-observations.json": "bf3a79b03f00abc830fe2db0f6f9878ef5ab8b0a"
+        },
+        "schemaVersion": 1
+      },
+      "publishedCodeSha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
+      "publishedDataSha": "49626863142c934063533bb2cd1595b2d977656e"
     },
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
@@ -2438,7 +2444,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:13:59Z",
-      "lastPublicationSuccessAt": "2026-10-23T10:17:45.712Z",
+      "lastPublicationSuccessAt": "2026-10-23T10:30:08.493Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39784256327",
       "failures": [],
       "dataFailures": {},
@@ -2450,7 +2456,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
-      "publishedDataSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588"
+      "publishedDataSha": "49626863142c934063533bb2cd1595b2d977656e"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -2563,7 +2569,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T10:34:42Z",
-      "lastPublicationSuccessAt": "2026-10-23T10:17:45.712Z",
+      "lastPublicationSuccessAt": "2026-10-23T10:30:08.493Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39763727431",
       "failures": [],
       "dataFailures": {},
@@ -2575,7 +2581,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
-      "publishedDataSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588"
+      "publishedDataSha": "49626863142c934063533bb2cd1595b2d977656e"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -2592,7 +2598,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:02:10Z",
-      "lastPublicationSuccessAt": "2026-10-23T10:17:45.712Z",
+      "lastPublicationSuccessAt": "2026-10-23T10:30:08.493Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39782485527",
       "failures": [],
       "dataFailures": {},
@@ -2607,7 +2613,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
-      "publishedDataSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588"
+      "publishedDataSha": "49626863142c934063533bb2cd1595b2d977656e"
     },
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
@@ -3429,11 +3435,11 @@
       }
     }
   },
-  "updatedAt": "2026-10-23T10:23:40Z",
+  "updatedAt": "2026-10-23T10:32:43Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T10:28:18.318584+00:00",
-    "revision": 262,
+    "checkedAt": "2026-10-23T10:33:28.789272+00:00",
+    "revision": 263,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
         "name": "Amundi · structure et risques de l’ETC or",
@@ -3455,25 +3461,7 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
-      },
-      "workflow:update-publication-observations.yml": {
-        "name": "Pouvoir d’achat et niveaux des anniversaires",
-        "tools": [
-          "Pouvoir d’achat",
-          "Il y a X ans"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-publication-observations.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937622779",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-23T10:16:43Z",
-        "kind": "collection",
-        "field": "Exécution du collecteur",
-        "cause": "refresh : Commit validated observations",
-        "id": "workflow:update-publication-observations.yml",
-        "firstSeenAt": "2026-10-23T07:36:46.920652+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -3496,7 +3484,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -3524,7 +3512,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -3552,7 +3540,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -3579,7 +3567,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -3606,7 +3594,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:stoxx600": {
         "name": "Indice STOXX Europe 600",
@@ -3633,7 +3621,7 @@
         "dataId": "stoxx600",
         "id": "collection:refresh-automated-index-sheets.yml:stoxx600",
         "firstSeenAt": "2026-10-22T12:26:18.416092+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -3660,7 +3648,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -3689,7 +3677,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -3711,52 +3699,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00"
+        "lastSeenAt": "2026-10-23T10:33:28.789272+00:00"
       }
     },
     "events": [
-      {
-        "revision": 233,
-        "at": "2026-10-21T19:46:53.942218+00:00",
-        "opened": [
-          "radar:106c9e0f7d967e59e64a269a",
-          "radar:ab9736091bf7885f4f78b079",
-          "radar:37240c76a9fcaa9212ba3c40",
-          "radar:047b130e014863244dfea4b2",
-          "radar:a37047d7b04d8470659fd6af",
-          "radar:50159f596c20f83c54c571fe",
-          "radar:02cd5866ca9824125ac669b2",
-          "radar:fc1506455b2609ae295a84b6",
-          "radar:78d60688ff7c5aa5db59966d",
-          "radar:7089eb71757ba2e64dd07639",
-          "radar:93e2ae392047796ad6f37468",
-          "radar:78d5cc716d7456bcbdb3029f",
-          "radar:4bcb17720e49348337bf957b",
-          "radar:f95b52157c7e3a17aa8ffd8d",
-          "radar:0cc02672224ef5306239211b",
-          "radar:a42eaaf69c6d53efd96bb923",
-          "radar:3978ce883eb40bfc3b247083",
-          "radar:a87a7031e7467bc82b62fe66",
-          "radar:fb5ef2c0e07c79319c1d0c39",
-          "radar:e1986bc8a02ac3489f0e55ed",
-          "radar:fea0c583613401a394fe3f88",
-          "radar:13f71799b945417761185569",
-          "radar:2f196984f6a39545551bd761",
-          "radar:21e03a6f5700b7563ffd2be8",
-          "radar:1e4cf482ca7cbd61a35731c1",
-          "radar:ef794e5ed57539c62d7838ea",
-          "radar:cefac0cfe98042f79e355ae9",
-          "radar:864244bcc014b965c6a12aee",
-          "radar:745e4c12f03a11a6eb5a5102",
-          "radar:cb57736ae311b8956ab6eb04",
-          "radar:91feb7c957b217611012784e",
-          "radar:758e3d0ab2461e1c9defbe04",
-          "radar:3f5abf6addc16e65e0e9b569"
-        ],
-        "resolved": [],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 234,
         "at": "2026-10-21T21:04:13.493794+00:00",
@@ -6227,9 +6173,56 @@
         "resolved": [],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 263,
+        "at": "2026-10-23T10:33:28.789272+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Pouvoir d’achat et niveaux des anniversaires",
+            "tools": [
+              "Pouvoir d’achat",
+              "Il y a X ans"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-publication-observations.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937622779",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-23T10:16:43Z",
+            "kind": "collection",
+            "field": "Exécution du collecteur",
+            "cause": "refresh : Commit validated observations",
+            "id": "workflow:update-publication-observations.yml",
+            "firstSeenAt": "2026-10-23T07:36:46.920652+00:00",
+            "lastSeenAt": "2026-10-23T10:28:18.318584+00:00",
+            "resolvedAt": "2026-10-23T10:33:28.789272+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937622779",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-23T10:16:43Z",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Commit validated observations",
+        "id": "workflow:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-23T07:36:46.920652+00:00",
+        "lastSeenAt": "2026-10-23T10:28:18.318584+00:00",
+        "resolvedAt": "2026-10-23T10:33:28.789272+00:00"
+      },
       {
         "name": "Présentations de SCPI",
         "tools": [
@@ -8729,24 +8722,6 @@
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
         "lastSeenAt": "2026-10-21T15:32:56.484440+00:00",
         "resolvedAt": "2026-10-21T15:33:43.851095+00:00"
-      },
-      {
-        "name": "Sources des fiches pratiques",
-        "tools": [
-          "Fiches pratiques"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-practical-sheets.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39616936020",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T14:32:26Z",
-        "kind": "collection",
-        "field": "Exécution du collecteur",
-        "cause": "refresh : Commit validated observations",
-        "id": "workflow:update-practical-sheets.yml",
-        "firstSeenAt": "2026-10-21T14:33:06.277263+00:00",
-        "lastSeenAt": "2026-10-21T15:15:12.541979+00:00",
-        "resolvedAt": "2026-10-21T15:24:19.560741+00:00"
       }
     ],
     "retired": [
@@ -12308,11 +12283,11 @@
           "error": null
         }
       ],
-      "reason": "recording-failed",
-      "lastSuccessAt": "2026-10-23T10:16:43Z",
-      "observedRunId": 39937622779,
-      "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-23T14:17:43.851576+00:00"
+      "reason": null,
+      "lastSuccessAt": "2026-10-23T10:32:43Z",
+      "observedRunId": 39939003159,
+      "status": "idle",
+      "nextAttemptAt": null
     },
     "update-insurance.yml": {
       "attempts": [
