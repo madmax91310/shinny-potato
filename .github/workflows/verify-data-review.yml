@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         scope: ${{ fromJSON(inputs.scopes) }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.scope == 'brokers-macos' && 'macos-15' || 'ubuntu-latest' }}
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7.0.1
@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: 24
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+        if: runner.os == 'Linux'
+      - run: brew install poppler
+        if: runner.os == 'macOS'
       - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
       - run: npm ci
       - run: npx playwright install --with-deps chromium

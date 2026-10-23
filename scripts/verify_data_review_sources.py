@@ -13,13 +13,14 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
     report = out/'observation.json'
     commands = {
         'actors': ['collect_presentation_actors.py','--apply'],
+        'brokers-macos':['collect_broker_tariffs.py','--apply'],
         'brokers': ['collect_broker_tariffs.py','--apply'],
         'insurance': ['collect_insurance.py','--apply'],
         'pending': ['check_pending_sources.py'],
@@ -70,7 +71,7 @@ def main():
         'practical':['src/data/automated-practical-sheets.json'],
         'ai':['data/ai-portfolios'],
     }
-    for relative in paths.get('holdings' if args.scope in ['holdings-retry','holdings-hsbc'] else args.scope,[]):
+    for relative in paths.get('holdings' if args.scope in ['holdings-retry','holdings-hsbc'] else args.scope.removesuffix('-macos'),[]):
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
         if source.is_dir(): shutil.copytree(source,target,dirs_exist_ok=True)
         elif source.exists():shutil.copy2(source,target)
