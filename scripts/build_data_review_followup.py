@@ -71,8 +71,10 @@ def main():
             add('échec individuel initial',workflow+':'+key,'en échec','corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé',b.get('cause',''),b.get('runUrl',''),key,b.get('field',''),action='Une étape ou une publication verte ne clôture pas cet échec individuel.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
+    with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
     for i,b in enumerate(legacy):
-        add('reliquat historique initial',str(i)+':'+b['id'],b['statut'],b['statut'],b['motif'],b['preuve'],b['id'],b['type'],action=b['action'])
+        n=updated_legacy.get((b['type'],b['id']),b)
+        add('reliquat historique initial',str(i)+':'+b['id'],b['statut'],n['statut'],n['motif']+' '+n.get('suivi_mission_79',''),'reports/reliquat-79-2026-10-23/restant-a-verifier.csv ; '+n['preuve'],b['id'],b['type'],action=n['action'])
     with (ROOT/'reports/reliquat-2026-10-23/modules-verification.csv').open(encoding='utf-8-sig')as f:modules=list(csv.DictReader(f,delimiter=';'))
     for b in modules:
         add('module qualifié',b['module'],b['statut'],'scénarios rejoués ; branches externes non certifiées globalement',b['reliquat'],'preuves/tests-python-initial.log.gz ; preuves/tests-corum.log.gz ; network-executions.json',b['module'],b['role_actuel'],action='Vérification réseau limitée aux sources et branches explicitement présentes dans les artefacts GitHub. Les anciennes mesures de couverture ne sont pas une recertification actuelle.')

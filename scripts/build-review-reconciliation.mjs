@@ -9,12 +9,16 @@ const financialRun=executions.runs.find(r=>r.scope==='financial')?.runUrl??null
 const key=r=>`${r.isin}/${r.year}`
 const diagnostics=new Map((observed?.cases??[]).map(r=>[key(r),r]))
 const shares=new Map((observed?.observations??[]).map(r=>[r.isin,r]))
+const integrated=JSON.parse(readFileSync(new URL('../reports/data-review-2026-10-23/preuves/reconciliation-79-master-integre.json',import.meta.url)))
+const currentCases=new Map(integrated.rows.map(r=>[key(r),r]))
 const rows=original.cases.map(r=>{
  const check=diagnostics.get(key(r)),share=shares.get(r.isin)
+ const current=currentCases.get(key(r))
  return {id:key(r),isin:r.isin,name:r.name,year:r.year,status:r.status,open:r.status==='anomalie encore inexpliquée',
   original:{marketReturn:r.recollectedMarketReturn,officialReturn:r.recollectedNavReturn,convertedOfficialReturn:r.recollectedNavConverted,differencePp:r.recollectedDifferencePp,
    marketCurrency:r.currency,navCurrency:r.navCurrency,marketStartDate:r.marketStartDate,marketEndDate:r.marketEndDate,marketSymbol:r.marketSymbol,marketMic:r.marketMic},
-  reason:r.demonstratedCause,missingPiece:r.missingPiece??null,
+  reason:r.demonstratedCause,missingPiece:current?.missingPiece||r.missingPiece||null,
+  currentConsumer:current?{route:current.voie_active_apres,secured:current.usage_securise,dailyEvidence:current.preuve_quotidienne_apres,officialCloseCheck:current.clotures_officielles_recoupees,proof:integrated.source}:null,
   sourceUrls:[...new Set([r.navSource,...(()=>{try{return JSON.parse(r.marketSource)}catch{return []}})()].filter(Boolean))],
   latestCheck:share?{runUrl:financialRun,attemptedAt:share.attemptedAt,officialStatus:share.official.status,officialError:share.official.error??null,marketStatus:share.market.status,
    recollectedAdjustedReturn:check?.recollectedAdjustedReturn??null,currentPublishedAnnual:check?.currentPublishedAnnual??null}:null,

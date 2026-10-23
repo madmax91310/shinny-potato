@@ -14,6 +14,7 @@ export default function FinancialReconciliation(){
    <p>{rows.length} cas correspondants</p>
    {rows.map(r=><article className="dr-item" key={r.id}>
     <h3>{r.isin} · {r.year} · {r.original.marketSymbol}</h3><p>{r.reason}</p>
+    {r.currentConsumer&&<p>Voie de calcul actuelle : {r.currentConsumer.route}. Ce raccordement conserve l’enquête sur la divergence historique.</p>}
     {r.missingPiece&&<p>Pièces manquantes : {r.missingPiece}</p>}
     {r.latestCheck&&<p>Dernière tentative : {r.latestCheck.attemptedAt}. Calendrier officiel : {r.latestCheck.officialStatus==='validated'?'validé':'non qualifié'}. Historique de cotation : {r.latestCheck.marketStatus==='provider-validated'?'contrôlé auprès du fournisseur':'non qualifié'}. La cause initiale reste à expliquer.</p>}
     {r.latestCheck?.runUrl&&<p><a href={r.latestCheck.runUrl} target="_blank" rel="noreferrer">Dernier contrôle GitHub ↗</a></p>}
