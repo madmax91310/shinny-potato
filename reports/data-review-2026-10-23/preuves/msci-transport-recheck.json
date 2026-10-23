@@ -1,0 +1,81 @@
+{
+  "initialRun": 40002490621,
+  "recheckRun": 40005725976,
+  "recheckJob": 120593008403,
+  "artifactId": 12523239621,
+  "observation": {
+    "checkedAt": "2026-10-23T18:46:32.117557+00:00",
+    "successes": [
+      {
+        "id": "anniversary-msciWorld"
+      },
+      {
+        "id": "anniversary-msciEmerging"
+      }
+    ],
+    "errors": [],
+    "waiting": []
+  },
+  "publication": "not-requested",
+  "records": {
+    "msciWorld": {
+      "before": {
+        "value": 23626.869308243684,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "parser": "msci",
+        "symbol": null,
+        "indexCode": "990100",
+        "variant": "GRTR",
+        "sourceUrl": "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20261008&end_date=20261022&data_frequency=DAILY&index_codes=990100",
+        "sha256": "41c3900871bc7b60a80f904642e0a35e351fbe82a505fe6f8be2d88135b76ddd",
+        "method": "Niveau officiel de fin de séance, variante exacte",
+        "maxAgeDays": 7
+      },
+      "after": {
+        "value": 23626.869308243684,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "parser": "msci",
+        "symbol": null,
+        "indexCode": "990100",
+        "variant": "GRTR",
+        "sourceUrl": "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20261008&end_date=20261022&data_frequency=DAILY&index_codes=990100",
+        "sha256": "41c3900871bc7b60a80f904642e0a35e351fbe82a505fe6f8be2d88135b76ddd",
+        "method": "Niveau officiel de fin de séance, variante exacte",
+        "maxAgeDays": 7
+      },
+      "changedFields": []
+    },
+    "msciEmerging": {
+      "before": {
+        "value": 4386.786659048174,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "parser": "msci",
+        "symbol": null,
+        "indexCode": "891800",
+        "variant": "GRTR",
+        "sourceUrl": "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20261008&end_date=20261022&data_frequency=DAILY&index_codes=891800",
+        "sha256": "f897118119a850b7d03b6f45471be942896ab244e77a183bc35645db00f95cef",
+        "method": "Niveau officiel de fin de séance, variante exacte",
+        "maxAgeDays": 7
+      },
+      "after": {
+        "value": 4386.786659048174,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "parser": "msci",
+        "symbol": null,
+        "indexCode": "891800",
+        "variant": "GRTR",
+        "sourceUrl": "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20261008&end_date=20261022&data_frequency=DAILY&index_codes=891800",
+        "sha256": "f897118119a850b7d03b6f45471be942896ab244e77a183bc35645db00f95cef",
+        "method": "Niveau officiel de fin de séance, variante exacte",
+        "maxAgeDays": 7
+      },
+      "changedFields": []
+    }
+  },
+  "cause": "Timeout de lecture lors du rejeu général ; réponse exacte revalidée depuis GitHub avec le même transport borné et les mêmes contrôles, sans modification de données."
+}

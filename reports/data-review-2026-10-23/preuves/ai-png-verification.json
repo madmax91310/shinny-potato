@@ -1,0 +1,34 @@
+{
+  "initial": {
+    "runId": 39993469192,
+    "jobId": 120550864533,
+    "lines": [
+      "2026-10-23T17:18:08.0717480Z page.waitForEvent: Timeout 30000ms exceeded while waiting for event \"download\"",
+      "2026-10-23T17:18:08.0718843Z     at /home/runner/work/shinny-potato/shinny-potato/scripts/playwright-ai-portfolios.mjs:74:99 {"
+    ]
+  },
+  "successfulRechecks": [
+    {
+      "runId": 39996039012,
+      "jobId": 120559699100,
+      "lines": [
+        "2026-10-23T17:34:43.2583174Z   \"productionBookUnchanged\": true",
+        "2026-10-23T17:47:18.0789995Z Recette navigateur complète : /home/runner/work/_temp/ai-final-rehearsal",
+        "2026-10-23T17:47:28.5966212Z {\"scope\":\"Deterministic isolated UI. GitHub confirmation/authentication and data provider simulated; no production write, no real GitHub login asserted.\",\"root\":\"/tmp/ai-owner-ui-PKFHf5\",\"mobile\":true,\"desktop\":true,\"initialDossiers\":3,\"manualTarget\":true,\"import\":true,\"residualCash\":true,\"fees\":true,\"durableReload\":true,\"secondContext\":true,\"crossDeviceRequestTracking\":true,\"delayedCdnReceipt\":true,\"explicitLaunch\":true,\"commonFutureClose\":\"2026-10-26\",\"unauthorized\":true,\"staleRevision\":true,\"idempotency\":true,\"networkRecovery\":true,\"draftAfterDeployment\":true,\"confirmations\":5,\"bookRevision\":5,\"productionBookUnchanged\":true}"
+      ]
+    },
+    {
+      "runId": 39998020358,
+      "jobId": 120566525148,
+      "lines": [
+        "2026-10-23T17:50:39.6881156Z   \"productionBookUnchanged\": true",
+        "2026-10-23T17:52:55.6791094Z Recette navigateur complète : /home/runner/work/_temp/ai-final-rehearsal",
+        "2026-10-23T17:53:06.1984652Z {\"scope\":\"Deterministic isolated UI. GitHub confirmation/authentication and data provider simulated; no production write, no real GitHub login asserted.\",\"root\":\"/tmp/ai-owner-ui-Osn1xs\",\"mobile\":true,\"desktop\":true,\"initialDossiers\":3,\"manualTarget\":true,\"import\":true,\"residualCash\":true,\"fees\":true,\"durableReload\":true,\"secondContext\":true,\"crossDeviceRequestTracking\":true,\"delayedCdnReceipt\":true,\"explicitLaunch\":true,\"commonFutureClose\":\"2026-10-26\",\"unauthorized\":true,\"staleRevision\":true,\"idempotency\":true,\"networkRecovery\":true,\"draftAfterDeployment\":true,\"confirmations\":5,\"bookRevision\":5,\"productionBookUnchanged\":true}"
+      ]
+    }
+  ],
+  "currentExportsVerified": true,
+  "initialTimeoutCauseAttributed": false,
+  "guardRelaxed": false,
+  "action": "Diagnostics ajoutés au test conservant son délai et ses assertions ; investiguer la première intermittence en cas de récidive."
+}

@@ -70,7 +70,9 @@ def main():
     for workflow,w in monitor['workflows'].items():
         for key,b in w.get('dataFailures',{}).items():
             add('échec individuel initial',workflow+':'+key,'en échec','corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé',b.get('cause',''),b.get('runUrl',''),key,b.get('field',''),action='Une étape ou une publication verte ne clôture pas cet échec individuel.')
-    final_monitor=zipped('automation-status-final.json.gz')
+    final_monitor=read(P/'automation-status-latest.json') if (P/'automation-status-latest.json').exists() else zipped('automation-status-final.json.gz')
+    stability=read(P/'dws-stability-preview.json') if (P/'dws-stability-preview.json').exists() else {}
+    stable_keys={r['key'] for r in stability.get('resolved',[])}
     for key,b in final_monitor['monitoring']['active'].items():
         after='corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé'
         proof='preuves/automation-status-final.json.gz ; network-executions.json'
@@ -83,6 +85,11 @@ def main():
             if not result.get('errors') and len(result.get('verified',[]))==result.get('candidateCount',0)>0:
                 after='photographie courante recoupée depuis GitHub ; conflit historique et contrôle de stabilité conservés'
                 proof+=' ; preuves/dws-country-revisions.json.gz ; preuves/radar-current-conflicts.json ; preuves/dws-final-observation.json.gz'
+                if any(k in b.get('cause','') for k in stable_keys):
+                    after='réconciliation stable préparée en lecture seule ; publication ordinaire attendue'
+                elif stability:
+                    after='valeurs recoupées ; nouveau document, quatre heures de stabilité encore requises'
+                proof+=' ; preuves/dws-stability-preview.json ; preuves/dws-later-document-changes.json'
         add('incident actif au contrôle final',key,'actif dans le moniteur de production',after,b.get('cause',''),proof,b.get('dataId',b.get('name','')),b.get('field',''),action='Le producteur et son moniteur de production restent inchangés avant intégration ; voir la preuve isolée et le reliquat documenté.')
     if (P/'holdings-ishares-promoted.json').exists():
         proof=read(P/'holdings-ishares-promoted.json')
@@ -102,6 +109,23 @@ def main():
         add('contrôle de séance ultérieure','IE00B4L5Y983-ETFP:2026-10-23','séance du 23/10 terminée à Milan','attente normale de l’arrêté J−1 UTC',
             'Le contrat IA collecte jusqu’à la veille UTC, avec marge de clôture de deux heures. Le contrôle GitHub après clôture réutilise les prix du 22/10 sans nouvelle requête ni renouvellement du dernier contrôle. Aucune observation du 23 inventée ; la séance sera requise au prochain arrêté.',
             'preuves/ai-final23-orchestration.json ; network-executions.json','IE00B4L5Y983-ETFP','daily','/portefeuilles-ia',action='Collecte ordinaire ou rattrapage lors de l’arrêté suivant ; ne pas élargir la convention financière à une valorisation intrajournalière.')
+    if (P/'ai-png-verification.json').exists():
+        add('validation CI','ai-png-intermittent','délai de téléchargement PNG dépassé','deux rejeux GitHub complets réussis ; cause initiale non attribuée',
+            'Délai et assertions conservés ; traces navigateur et capture ajoutées en cas de récidive. Parcours propriétaire isolé, aucun changement du portefeuille réel.',
+            'preuves/ai-png-verification.json','IA','export PNG','/portefeuilles-ia',action='Conserver et diagnostiquer toute récidive ; un rejeu réussi ne démontre pas la cause initiale.')
+    if (P/'vaneck-dk-qualification.json').exists():
+        add('incident révélé par la CI','IE00BDFBTQ78:factsheet-route','routes document UCITS/NL/UK redirigées vers accueil US','route officielle DK qualifiée depuis GitHub',
+            'Identité GDIG, devise USD, sept années et capitalisation recoupées ; NAV et conversion BCE inchangées. Route supplémentaire limitée à gdig-fact-sheet.pdf, autres documents inchangés.',
+            'preuves/vaneck-dk-qualification.json ; preuves/vaneck-dk-evidence.zip','IE00BDFBTQ78','official-nav','Calculateur | Performance depuis | Classements | Duels',source='https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf')
+    if (P/'msci-transport-recheck.json').exists():
+        for ident in ['msciWorld','msciEmerging']:
+            add('incident révélé par la CI','anniversary-'+ident+':transport','délai de lecture MSCI dépassé','relecture officielle GitHub réussie ; registre identique',
+                'Reprises bornées existantes conservées. Variante GRTR USD et date du 22/10 validées ; ni valeur ni horodatage canonique renouvelés artificiellement.',
+                'preuves/msci-transport-recheck.json ; preuves/msci-transport-evidence.zip',ident,'latestLevel','Calculateur | Performance depuis | Classements | Duels',action='Panne transitoire recoupée, disponibilité future non garantie.')
+    if (P/'module-role-review.json').exists():
+        for r in read(P/'module-role-review.json'):
+            add('rôle de module actuel',r['path'],r['beforeRole'],r['afterRole'],r['reason'],
+                'preuves/module-role-review.json ; preuves/module-role-controls.json',r['path'],'rôle du registre',action='Qualification limitée au rôle ; dates financières, états consommateurs et restrictions strictement conservés.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
     with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
@@ -132,6 +156,7 @@ def main():
         writer=csv.DictWriter(f,fieldnames=list(rows[0]),delimiter=';');writer.writeheader();writer.writerows(rows)
     counters={'dimensions':dict(collections.Counter(r['dimension']for r in rows)),'before':initial['summary'],'after':now['summary'],'reviewBefore':dict(collections.Counter(r['category']for r in review_before['items'])),'reviewAfter':dict(collections.Counter(r['category']for r in review_after['items'])),'financial':financial['summary'],'monitorActiveInitial':len(monitor['monitoring']['active']),'monitorActiveFinal':len(final_monitor['monitoring']['active']),'productionMonitorManuallyChanged':False,'missingInitialCoverageRows':sum(k not in new_cov for k in old_cov),'newCoverageRows':sum(k not in old_cov for k in new_cov)}
     assert counters['missingInitialCoverageRows']==0
+    counters['dwsReadOnlyReconciliation']={'prepared':stability.get('resolvedCount',0),'productionWritten':False,'proof':'preuves/dws-stability-preview.json'}
     (OUT/'bilan.json').write_text(json.dumps(counters,ensure_ascii=False,indent=2)+'\n')
     for name,value in [('review-final',review_after),('inventory-final',now),('asset-field-coverage-final',after_coverage)]:
         (P/(name+'.json.gz')).write_bytes(gzip.compress(json.dumps(value,ensure_ascii=False).encode(),mtime=0))

@@ -10,9 +10,10 @@
     "incident historique retired": 160,
     "échec individuel initial": 8,
     "incident actif au contrôle final": 124,
-    "incident révélé par la CI": 3,
-    "validation CI": 1,
+    "incident révélé par la CI": 6,
+    "validation CI": 2,
     "contrôle de séance ultérieure": 1,
+    "rôle de module actuel": 16,
     "reliquat historique initial": 201,
     "module qualifié": 115,
     "action historique": 19
@@ -175,23 +176,22 @@
   },
   "after": {
     "fieldKinds": {
-      "reference": 686,
-      "live": 2584,
+      "reference": 687,
+      "live": 2579,
       "unavailable": 14,
-      "archive": 164,
+      "archive": 169,
       "history": 1039,
       "simulation": 12,
       "editorial": 44
     },
     "registryRoles": {
-      "mixed-or-derived": 108,
+      "mixed-or-derived": 109,
       "collector-output": 89,
-      "logic": 16,
+      "logic": 22,
       "historical-fallback": 18,
-      "configuration": 12,
-      "unclassified": 16,
-      "editorial": 12,
-      "manual-observation": 2,
+      "configuration": 18,
+      "editorial": 14,
+      "manual-observation": 3,
       "simulation": 5
     },
     "liveProvenanceGaps": 0,
@@ -212,7 +212,7 @@
     },
     "actionableConnections": 95,
     "unclassifiedFields": 0,
-    "unclassifiedModules": 16,
+    "unclassifiedModules": 0,
     "registries": 278,
     "registryModes": {
       "mixed-or-derived": 108,
@@ -220,7 +220,7 @@
       "manual-or-editorial": 81
     },
     "catalogRecords": 1571,
-    "catalogFields": 4543,
+    "catalogFields": 4544,
     "catalogTypes": {
       "reference": 11,
       "series": 726,
@@ -311,22 +311,22 @@
     },
     "assetAutomation": {
       "profiles": 1571,
-      "fields": 6736,
+      "fields": 6737,
       "states": {
         "blocked": 176,
         "connected": 756,
-        "reference-only": 456,
+        "reference-only": 457,
         "qualification-needed": 130,
-        "scheduled-evidence": 53
+        "scheduled-evidence": 52
       }
     },
     "consumerUsage": {
       "tools": 20,
-      "usages": 21023,
-      "required": 18375,
+      "usages": 21024,
+      "required": 18370,
       "connected": 15802,
       "blocked": 717,
-      "unconfirmed": 1856,
+      "unconfirmed": 1851,
       "unmapped": 0
     }
   },
@@ -355,11 +355,9 @@
   "productionMonitorManuallyChanged": false,
   "missingInitialCoverageRows": 0,
   "newCoverageRows": 0,
-  "postSnapshotChanges": {
-    "actor": "tudigo",
-    "archivedFields": 5,
-    "newQualifiedActivity": 1,
-    "qualifiedRun": 39994738052,
-    "countersSnapshot": "Moniteur 17:02 ; inventaire intégral avant ajout du statut de cessation. Le prochain build régénère les compteurs complets."
+  "dwsReadOnlyReconciliation": {
+    "prepared": 73,
+    "productionWritten": false,
+    "proof": "preuves/dws-stability-preview.json"
   }
 }
