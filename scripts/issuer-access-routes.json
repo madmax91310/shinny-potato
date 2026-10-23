@@ -5,9 +5,10 @@
     "factsheet": "https://www.vaneck.com/{region}/en/library/fact-sheets/{name}",
     "factsheetRegions": [
       "nl",
-      "uk"
+      "uk",
+      "dk"
     ],
-    "note": "The French gate redirects US-based runners to the US site; the Dutch then UK gates serve UCITS factsheets (Dutch gate confirmed in production 2026-10-17)."
+    "note": "The French gate redirects US-based runners to the US site; the Dutch then UK gates serve UCITS factsheets (Dutch gate confirmed in production 2026-10-17). Danish public route, matching the already-qualified DK product page, is checked independently in GitHub; every document keeps exact ISIN, currency, dates and financial validation."
   },
   "wisdomtree": {
     "ucitsFactsheet": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/{isin}",
