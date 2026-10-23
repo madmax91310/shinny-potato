@@ -97,7 +97,7 @@ def fetch_content(url):
  return SourceDocument(text,actual_url)
 def collect(baseline,today,fetcher=fetch_content):
  failures={};validated=[];documents={}
- previous_sources={SOURCES[name]:o['sourceUrl'] for name,o in baseline['brokers'].items() if name in SOURCES and o.get('sourceUrl')}
+ previous_sources={SOURCES[name]:o['sourceUrl'] for name,o in baseline['brokers'].items() if name in SOURCES and o.get('sourceUrl') and (name!='ibkr' or o['sourceUrl']==SOURCES['ibkr'])}
  from broker_profiles import SOURCES as PROFILE_SOURCES
  for broker in baseline['brokers'].values():
   for profile in broker.get('profile',{}).values():

@@ -35,6 +35,26 @@ class DocumentSourcesTests(unittest.TestCase):
         self.assertEqual(document,text)
         extract.assert_called_once_with(b'%PDF-test')
 
+    def test_ibkr_retired_french_route_is_not_reused_as_us_market(self):
+        import gzip
+        from broker_tariff_extensions import parse as tariff
+        raw=gzip.decompress((pathlib.Path(__file__).resolve().parents[1]/'reports/data-review-2026-10-23/preuves/ibkr-unified-en.html.gz').read_bytes()).decode()
+        current=SOURCES['ibkr'];old='https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php'
+        calls=[]
+        def fetch(url):
+            calls.append(url)
+            if url==current:return raw
+            if url==old:raise AssertionError('Retired route serves a different region')
+            raise ValueError('Unrelated source outside this regression')
+        result,failures,valid=collect({'brokers':{'ibkr':{'sourceUrl':old,'values':{'rate':.05}}}},TODAY,fetch)
+        self.assertIn('ibkr',valid)
+        self.assertNotIn(old,calls)
+        self.assertNotIn('ibkr',failures)
+        self.assertEqual(result['brokers']['ibkr']['sourceUrl'],current)
+        self.assertEqual(result['brokers']['ibkr']['values'],{'rate':.05,'fixedRate':.05,'directRate':.1,'minimum':1.25,'fixedMinimum':3.,'directMinimum':4.})
+        for wrong in [raw.replace('<h3>France</h3>','<h3>Wrong market</h3>'),raw.replace('Monthly Trade Value (EUR)','Monthly Trade Value (USD)'),raw.replace('Minimum per order (shares)','Minimum per order (fractional shares)')]:
+            with self.assertRaises(ValueError):tariff('ibkr',wrong,TODAY)
+
     def test_live_catalogue_links(self):
         expected = {'fortuneo': '/files/tarifs_fortuneo.pdf', 'saxo': '?revision=', 'xtb': 'table-des-frais-et-commissions', 'caidf': '04_2026.pdf'}
         for broker, fragment in expected.items():
