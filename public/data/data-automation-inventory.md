@@ -1,6 +1,6 @@
 # Inventaire de l’automatisation des données
 
-Généré le 2026-10-23T12:26:50.935Z.
+Généré le 2026-10-23T12:45:08.526Z.
 
 Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
 

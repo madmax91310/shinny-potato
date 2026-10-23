@@ -54,6 +54,21 @@ def main():
             issuer=('L&G'if isin in ['IE00BK5BCD43','IE00BK5BCH80']else'Bitwise'if isin=='DE000A27Z304'else'BNP'if isin=='FR0011550185'else'HSBC')
             r['recherche_nouvelle_strategie']=dict(fournisseur=issuer,piece='Découverte des exports/liens officiels et code de leur interface publique ; aucun niveau quotidien qualifié inventé.',preuve='preuves/recherche-voies/decouverte.json')
             r['missingPiece']=f"{issuer}: série quotidienne de la part exacte {isin} sur décembre {year-1} et décembre {year}, avec devise, distributions/ajustements et dates de valeur ; les documents annuels disponibles ne donnent pas ces deux bornes. Clôtures officielles {r['marketSymbol']} {r['marketStartDate']}/{r['marketEndDate']} également absentes."
+        quote_file=P/'recherche-voies/euronext-bornes-rendues.json'
+        if quote_file.exists() and isin in ['FR0013411998','FR0013412004'] and year==2025:
+            snapshots=[x for x in json.loads(quote_file.read_text())if x['isin']==isin]
+            close={}
+            for x in snapshots:
+                wanted=dt.date.fromisoformat(x['end']).strftime('%d/%m/%Y')
+                matched=[cells for cells in x['rows']if cells and cells[0]==wanted]
+                if len(matched)!=1 or x['adjusted']!='Y':raise ValueError('Official exchange row not qualified')
+                close[x['end']]=float(matched[0][5]) # Close, explicitly distinct from Last (column 4).
+            if len(close)==2:
+                ret=(close['2025-12-31']/close['2024-12-31']-1)*100
+                if abs(ret-float(r['adjustedPriceReturn']))>.0001:raise ValueError('Official quote differs; investigate before classifying')
+                r['clotures_officielles_recoupees']=dict(source='Euronext XPAR',currency='EUR',adjusted='Y',closes=close,returnPct=ret,proof='preuves/recherche-voies/euronext-bornes-rendues.json')
+                quant['clotures_officielles_recoupees']=r['clotures_officielles_recoupees']
+                r['missingPiece']=f"Clôtures XPAR {isin} des 31/12/2024 et 31/12/2025 maintenant recoupées officiellement ({close['2024-12-31']} / {close['2025-12-31']} EUR, {ret:.8f} %). Restent à établir les heures/conditions de valorisation NAV et de clôture, la convention historique et les éventuels ajustements officiels expliquant le résidu NAV de {quant['residu_cours_nav_pp']:.8f} pp. La nouvelle preuve de clôture ne démontre pas seule sa cause."
         decomp.append(quant);result.append(r)
         for phase,item in [('avant',b),('apres',a)]:
             for tool,value in item['consumers'].items():
