@@ -1,3 +1,4 @@
+import { replicationWordingEvent } from './replication-method.js'
 // Shared by the UI and notifications: collecting a fact does not make it a post.
 export const EDITORIAL_DAYS = 14
 export const EDITORIAL_LIMIT = 5
@@ -42,6 +43,7 @@ export function etfAnnouncement(title = '') {
 }
 
 export function editorialState(event) {
+  if (replicationWordingEvent(event) || event.status === 'wording-only') return 'secondary'
   const field = event.field ?? ''
   if (event.status === 'source-conflict') return 'secondary'
   if (event.family === 'etf' && field === 'announcement') {

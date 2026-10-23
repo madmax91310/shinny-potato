@@ -213,3 +213,19 @@ class RefreshTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ReplicationCharacteristicsTests(unittest.TestCase):
+    def test_both_inputs_remain_exact_and_structures_are_not_invented(self):
+        from collect_etf_pilot import replication_characteristics
+        for structure, method in [('Physical', 'Replicated'), ('Physical', 'Optimised'),
+                                  ('Synthetic', 'Swap'), ('Physical metal', 'Physical Replication'),
+                                  (None, 'Novel method')]:
+            facts = {key: {'value': value} for key, value in
+                     [('productStructure', structure), ('fundMethodologyTypeCode', method)]}
+            result = replication_characteristics(facts)
+            self.assertEqual(result['replicationMethodRaw'],
+                             {'productStructure': structure, 'fundMethodologyTypeCode': method})
+            self.assertEqual(result['replicationMethod'],
+                             f'{structure} ({method})' if structure else method)
+        self.assertEqual(replication_characteristics({}), {})

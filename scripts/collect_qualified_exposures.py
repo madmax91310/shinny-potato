@@ -3,7 +3,7 @@ import copy
 import argparse, datetime as dt, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_etf_pilot import product_data_url, parse_share, source_date
+from collect_etf_pilot import product_data_url, parse_share, source_date, replication_characteristics
 from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
@@ -66,7 +66,7 @@ def collect_one(config,now):
  # Prefer USD London for historical calculations; the sheet uses the same exact listing.
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
  result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
- result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
+ result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),**replication_characteristics(facts),'inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
  if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('fundAssetClass',config.get('holdingsAssetClass','Equity')):raise ValueError('Unexpected UCITS/asset class')
  metrics=components.get('fundamentalsAndRisk',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
  result['metrics']={}

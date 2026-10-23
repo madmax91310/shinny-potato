@@ -260,3 +260,83 @@ const conflict=advanceRadar(state,[{...metric,value:metric.value+.3}],{now});ass
 console.log('All qualified ETFs monitored once; metric thresholds and same-date revisions verified.')
 
 }
+
+// iShares replication aliases: future collection oscillations and legacy alerts.
+{
+  const { normalizedReplication, replicationWordingEvent } = await import('../src/lib/replication-method.js')
+  const { notifiableEvents, correctReplicationNotification } = await import('./lib/radar-notifications.mjs')
+  const { editorialState } = await import('../src/lib/radar-editorial.js')
+  const sourceUrl = 'https://www.blackrock.com/varnish-api/product-data'
+  const row = value => rate({ value, sourceUrl, field: 'characteristics:replicationMethod' })
+  for (const [short, long] of [['Replicated', 'Physical (Replicated)'], ['Optimised', 'Physical (Optimised)'], ['Optimized', 'Physical (Optimised sampling)']]) {
+    for (const [a, b] of [[short, long], [long, short]]) {
+      const initial = advance(null, [row(a)])
+      const changed = advance(initial.state, [row(b)])
+      assert.equal(changed.newEvents.length, 0)
+      assert.equal(changed.feed.errors.length, 0)
+      assert.equal(changed.state.current[observationKey(row(a))].value, b)
+      assert.equal(changed.state.anchors[observationKey(row(a))].value, b)
+      const legacy = { ...row(b), id: 'e'.repeat(24), before: a, after: b, previousSourceUrl: sourceUrl,
+        kind: 'change', detectedAt: now.toISOString(), beforePeriod: row(a).period }
+      initial.state.events = [legacy]
+      const migrated = advance(initial.state, [row(b)])
+      assert.equal(migrated.state.events.length, 1)
+      assert.equal(migrated.state.events[0].status, 'wording-only')
+      assert.equal(migrated.state.events[0].before, a)
+      assert.equal(migrated.state.events[0].after, b)
+      assert.equal(migrated.feed.events.length, 0)
+      assert.equal(notifiableEvents([legacy]).length, 0, 'Notification guard also handles unmigrated state')
+      assert.equal(editorialState(legacy), 'secondary')
+      const original = `Header\n### ETF replication\n\n<!-- editorial-radar-event:${legacy.id} -->\nValidation: important\n<!-- radar-batch:abc -->\n`
+      const corrected = correctReplicationNotification(original, [legacy])
+      assert.match(corrected, /formulations sont équivalentes/)
+      assert.ok(corrected.includes(`<!-- editorial-radar-event:${legacy.id} -->`))
+      assert.equal(correctReplicationNotification(corrected, [legacy]), corrected)
+      assert.equal(advance(migrated.state, [row(a)]).feed.events.length, 0)
+    }
+  }
+  for (const [a, b] of [['Replicated','Optimised'], ['Physical (Replicated)','Synthetic'],
+    ['Physical','Physical (Replicated)'], ['Physical metal','Physical (Replicated)'],
+    ['Synthetic - funded swap','Synthetic - unfunded swap'], ['Novel method A','Novel method B']]) {
+    const initial = advance(null, [row(a)])
+    const result = advance(initial.state, [{ ...row(b), period: '2026-10-08' }])
+    assert.equal(result.newEvents.length, 1, `${a} → ${b} must not disappear`)
+    assert.equal(notifiableEvents(result.newEvents).length, 1)
+    assert.equal(replicationWordingEvent(result.newEvents[0]), false)
+    assert.equal(result.newEvents[0].before, a)
+    assert.equal(result.newEvents[0].after, b)
+  }
+  assert.notEqual(normalizedReplication('Replicated','https://example.org'), normalizedReplication('Physical (Replicated)'))
+  assert.notEqual(normalizedReplication('Replicated','https://blackrock.com.evil.org'), normalizedReplication('Physical (Replicated)'))
+  assert.notEqual(normalizedReplication('Physical'), normalizedReplication('Physical (Full replication)'))
+  console.log('Replication: bidirectional aliases, unknowns, real method changes, raw evidence, legacy migration and notification correction verified.')
+}
+{
+  const { notifyRadar } = await import('./lib/radar-notifications.mjs')
+  const sourceUrl = 'https://www.blackrock.com/api'
+  const alias = { ...rate({ field: 'characteristics:replicationMethod' }), sourceUrl,
+    previousSourceUrl: sourceUrl, id: 'f'.repeat(24), before: 'Replicated', after: 'Physical (Replicated)',
+    kind: 'change', detectedAt: now.toISOString(), beforeText: 'Replicated', afterText: 'Physical (Replicated)' }
+  const body = `Header\n### False signal\n<!-- editorial-radar-event:${alias.id} -->\nOriginal evidence\n`
+  const calls = []
+  const api = async (path, method = 'GET', data) => {
+    calls.push({ path, method, data })
+    if (method === 'PATCH') return {}
+    if (path.startsWith('issues?')) return [{ number: 880, body: '<!-- editorial-radar-tracker:v1 -->',
+      user: { login: 'github-actions[bot]' }, state: 'open', assignees: [{ login: 'madmax91310' }] }]
+    if (path.startsWith('issues/880/comments?')) return [
+      { id: 1, body, user: { login: 'github-actions[bot]' } },
+      { id: 2, body, user: { login: 'human' } },
+    ]
+    throw new Error(`Unexpected ${method} ${path}`)
+  }
+  const result = await notifyRadar({ events: [], archiveEvents: [alias], api, repo: 'madmax91310/shinny-potato',
+    ledger: { schemaVersion: 1, acknowledged: [alias.id] }, now, maintain: true })
+  assert.equal(result.sent, 0)
+  assert.ok(calls.some(c => c.path === 'issues/comments/1' && c.method === 'PATCH'))
+  assert.ok(!calls.some(c => c.path === 'issues/comments/2'))
+  assert.ok(!calls.some(c => c.method === 'POST'))
+  assert.ok(calls.some(c => c.path === 'issues/880' && c.data.title === 'Radar éditorial : aucun signal récent'))
+  assert.deepEqual(result.ledger.acknowledged, [alias.id])
+  console.log('Legacy bot comments corrected even when aliases are excluded from the ready feed; human comments and receipts preserved.')
+}

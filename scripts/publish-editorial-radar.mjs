@@ -97,7 +97,7 @@ await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, nul
 
 // Data has already been committed. A notification failure leaves the daily
 // feed working and the unacknowledged events available for tomorrow's retry.
-const notification = await notifyRadar({ events: result.state.events.filter(event => editorialState(event) === 'ready'), ledger, api, repo, evidenceRevision: nextCommit.sha, maintain: true })
+const notification = await notifyRadar({ events: result.state.events.filter(event => editorialState(event) === 'ready'), archiveEvents: result.state.events, ledger, api, repo, evidenceRevision: nextCommit.sha, maintain: true })
 if (notification.sent || notification.recovered) {
   const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(notification.ledger, null, 2)}\n`, encoding: 'utf-8' })
   const receiptTree = await api('git/trees', 'POST', { base_tree: nextTree.sha, tree: [{ path: 'notifications.json', mode: '100644', type: 'blob', sha: blob.sha }] })
