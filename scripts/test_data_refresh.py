@@ -226,6 +226,8 @@ class ReplicationCharacteristicsTests(unittest.TestCase):
             result = replication_characteristics(facts)
             self.assertEqual(result['replicationMethodRaw'],
                              {'productStructure': structure, 'fundMethodologyTypeCode': method})
+            if structure:
+                self.assertEqual(result['productStructure'], structure)
             self.assertEqual(result['replicationMethod'], method, 'Pilot preserves its original source wording')
             self.assertEqual(replication_characteristics(facts, combined=True)['replicationMethod'],
                              f'{structure} ({method})' if structure else method)

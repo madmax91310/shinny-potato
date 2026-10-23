@@ -340,3 +340,20 @@ console.log('All qualified ETFs monitored once; metric thresholds and same-date 
   assert.deepEqual(result.ledger.acknowledged, [alias.id])
   console.log('Legacy bot comments corrected even when aliases are excluded from the ready feed; human comments and receipts preserved.')
 }
+
+{
+  // Product structure is an independent financial dimension. Its first
+  // qualification is silent; a later change must survive unchanged methodology.
+  const { notifiableEvents } = await import('./lib/radar-notifications.mjs')
+  const { editorialState } = await import('../src/lib/radar-editorial.js')
+  const method = rate({ field: 'characteristics:replicationMethod', value: 'Swap' })
+  const structure = rate({ field: 'characteristics:productStructure', fieldLabel: 'Structure de réplication', value: 'Physical' })
+  const initial = advance(null, [method])
+  const qualified = advance(initial.state, [method, structure])
+  assert.equal(qualified.newEvents.length, 0)
+  const changed = advance(qualified.state, [method, { ...structure, value: 'Synthetic', period: '2026-10-08' }])
+  assert.equal(changed.newEvents.length, 1)
+  assert.equal(changed.newEvents[0].field, structure.field)
+  assert.equal(editorialState(changed.newEvents[0]), 'ready')
+  assert.equal(notifiableEvents(changed.newEvents).length, 1)
+}

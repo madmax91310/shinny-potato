@@ -81,7 +81,8 @@ def replication_characteristics(facts, combined=False):
     if not parts:
         return {}
     label = f'{structure} ({method})' if combined and len(parts) == 2 else (method if isinstance(method, str) and method.strip() else parts[0])
-    return {'replicationMethod': label, 'replicationMethodRaw': raw}
+    return {'replicationMethod': label, 'replicationMethodRaw': raw,
+            **({'productStructure': structure} if isinstance(structure, str) and structure.strip() else {})}
 
 
 def parse_share(body, share, now):

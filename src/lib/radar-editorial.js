@@ -57,7 +57,7 @@ export function editorialState(event) {
     const concrete = /\d|€|euros|plafond|taux|tarif|frais|eligib|condition|date|versement|exoner|rembours/i.test(normal(`${event.label} ${event.summary}`))
     return concrete && /Application indiquée|Application annoncée|Loi promulguée|Loi adoptée définitivement|Promulgation indiquée/.test(status) ? 'ready' : 'watch'
   }
-  if (event.family === 'etf') return /^(ter|pea|lifecycle|characteristics:(index|distribution|replicationMethod))$/.test(field) ? 'ready' : 'secondary'
+  if (event.family === 'etf') return /^(ter|pea|lifecycle|characteristics:(index|distribution|replicationMethod|productStructure))$/.test(field) ? 'ready' : 'secondary'
   if (event.family === 'courtiers') return 'ready'
   if (event.family === 'epargne') return 'ready'
   if (event.family === 'assurance') return /^(fees:|euro:)/.test(field) ? 'ready' : 'secondary'
