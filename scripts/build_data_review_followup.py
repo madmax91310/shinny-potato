@@ -172,8 +172,14 @@ def main():
             'Contenus éditoriaux statiques séparés en JSON. Égalité profonde des trois récits, textes, sources et dates ; règles éditoriales et contrôle des empreintes inchangés. Les échecs de plusieurs workflows proviennent du même budget.',
             'reprise/story-data-parity.json ; reprise/build-master-904-json.log.gz ; reprise/browser-stories-master-904.log.gz',field='build et données éditoriales',action='Préserver les récits concurrents et leurs règles de validation.')
         add('validation reprise','performance-unavailable-link','support sans fenêtre annuelle pouvant retomber sur un autre actif','indisponibilité explicite, aucun export substitué',
-            'La route vérifie le support demandé dans le pool annuel réellement qualifié avant de monter le moteur. Les liens vers les calendriers VL distincts sont admis explicitement.',
-            'reprise/browser-final-all.log.gz',field='contrat de lien consommateur',tools='/performance-depuis',action='Conserver le refus si aucune observation compatible n’est publiée.')
+            'Les routes Performance et Calculateur vérifient le support exact avant de monter le moteur. Aucun actif de remplacement ni écrasement des préférences pour un identifiant inconnu. Les calendriers VL distincts et les mois récents compatibles restent admis selon leur contrat.',
+            'reprise/browser-links-qualified.log.gz',field='contrat de lien consommateur',tools='/performance-depuis | /calculateur-investissement',action='Conserver le refus si aucune observation compatible n’est publiée.')
+        add('validation reprise','qualified-history-selection','sélections préparées et preuve IA proposaient la totalité d’un historique contenant des fenêtres refusées','périodes continues qualifiées proposées ; demandes incompatibles refusées',
+            'Les dates par défaut et les suggestions utilisent une vraie intersection continue qualifiée. Une modification manuelle reste contrôlée. Le rapport IA distingue observations brutes et plages utilisables ; les calculs sont recoupés avec les observations exactes et le change.',
+            'reprise/ai-reuse-qualified.log.gz ; reprise/browser-ai-reuse-qualified.log.gz ; reprise/browser-rankings-qualified.log.gz ; docs/ai-tools-matrix.json',field='sélections et contrats consommateurs',tools='Calculateur | Classements | Portefeuilles IA',action='Conserver les restrictions financières et les données sources ; ne jamais franchir un trou de qualification.')
+        add('validation reprise','anniversary-valid-horizon','recette anniversaire supposant un horizon continu jusqu’au maximum','chaque horizon choisi appartient aux options réellement qualifiées',
+            'Les horizons et comparaisons sont pris dans les ensembles admissibles exacts. Les protections de dates et de conventions restent inchangées ; 709 exports réels ont été contrôlés localement.',
+            'reprise/anniversary-art-qualified.log.gz',field='validation des exports',tools='Anniversaire',action='Ne pas confondre ancienneté maximale et admissibilité de tous les horizons intermédiaires.')
     source_path=OUT/'reprise/source-results.json'
     if source_path.exists():
         latest=read(source_path)

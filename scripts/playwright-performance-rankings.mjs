@@ -4,6 +4,7 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { ALL_CATEGORIES, CATEGORIES, RANKING_ASSETS, ANNUAL_ASSETS } from '../src/pages/performance-rankings/data.js'
 import { COMPARISON_FAMILIES, comparisonFamily } from '../src/pages/performance-rankings/comparisonCatalog.js'
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import { commonCoverage, monthIndex } from '../src/pages/performance-rankings/engine.js'
 import { ANNUAL_PEA_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
@@ -186,12 +187,22 @@ try {
   await page.getByRole('group', { name: 'Dernière année', exact: true }).locator('[data-value="2025"]').click()
   const fiveStocks = (await page.locator('.rk-selected strong').allTextContents()).filter(label => !label.startsWith('ETF '))
   for (const id of ['etfIE00B4L5Y983','etfIE00B5BMR087','etfFR0011871110','etfFR0011550193']) {
+    const beforeStart=await page.getByRole('group',{name:'Première année',exact:true}).getAttribute('data-value')
+    const beforeEnd=await page.getByRole('group',{name:'Dernière année',exact:true}).getAttribute('data-value')
+    const members=[...ALL_CATEGORIES.find(c=>c.id==='us-stocks-benchmark').ids.slice(0,5),id].map(key=>RANKING_ASSETS[key])
+    const usable=members.every(a=>qualifyHistoryWindow(a,`${Number(beforeStart)-1}-12`,`${beforeEnd}-12`).qualified)
     await page.getByRole('group', { name: 'ETF de référence', exact: true }).locator(`[data-value="${id}"]`).click()
     assert.deepEqual((await page.locator('.rk-selected strong').allTextContents()).filter(label=>!label.startsWith('ETF ')),fiveStocks)
-    assert.equal(await page.getByRole('group', {name:'Première année',exact:true}).getAttribute('data-value'),'2018')
+    const afterStart=await page.getByRole('group',{name:'Première année',exact:true}).getAttribute('data-value')
+    const afterEnd=await page.getByRole('group',{name:'Dernière année',exact:true}).getAttribute('data-value')
+    if(usable){assert.equal(afterStart,beforeStart);assert.equal(afterEnd,beforeEnd)}
+    else await page.getByRole('status').filter({hasText:'Période adaptée'}).waitFor()
+    assert(members.every(a=>qualifyHistoryWindow(a,`${Number(afterStart)-1}-12`,`${afterEnd}-12`).qualified))
     assert.equal(await page.getByRole('alert').count(),0)
     assert.match(await page.getByLabel('Texte à publier',{exact:true}).inputValue(),/lesquelles ont battu l’ETF/)
   }
+  const savedStart=await page.getByRole('group',{name:'Première année',exact:true}).getAttribute('data-value')
+  const savedEnd=await page.getByRole('group',{name:'Dernière année',exact:true}).getAttribute('data-value')
   await page.getByText('Mes confrontations favorites (0)',{exact:true}).click()
   await page.getByLabel('Nom du favori',{exact:true}).fill('Mon duel sauvegardé')
   await page.getByRole('button',{name:'Enregistrer la confrontation',exact:true}).click()
@@ -202,7 +213,8 @@ try {
   await page.getByRole('button',{name:'Ouvrir le favori Mon duel sauvegardé',exact:true}).click()
   assert.equal(await page.getByRole('group',{name:'ETF de référence',exact:true}).getAttribute('data-value'),'etfFR0011550193')
   assert.equal(await page.getByRole('group',{name:'Devise du classement',exact:true}).getAttribute('data-value'),'EUR')
-  assert.equal(await page.getByRole('group',{name:'Première année',exact:true}).getAttribute('data-value'),'2018')
+  assert.equal(await page.getByRole('group',{name:'Première année',exact:true}).getAttribute('data-value'),savedStart)
+  assert.equal(await page.getByRole('group',{name:'Dernière année',exact:true}).getAttribute('data-value'),savedEnd)
   assert.equal(await page.locator('.rk-selected>div').count(),6)
   await page.getByRole('button',{name:'Supprimer le favori Mon duel sauvegardé',exact:true}).click()
   assert.equal(await page.getByRole('button',{name:'Ouvrir le favori Mon duel sauvegardé',exact:true}).count(),0)

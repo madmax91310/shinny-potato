@@ -415,6 +415,34 @@
       "conclusion": "",
       "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
       "interpretation": "CI complète relancée après intégration #899 ; état observé dans preuves/ci-after-master-dcbd.json, ne remplace pas la conclusion verte antérieure tant que ce run n’est pas terminé."
+    },
+    {
+      "scope": "technical-integration-49a9",
+      "runId": 40025337511,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40025337511",
+      "conclusion": "failure",
+      "passed": [
+        "build",
+        "python-965",
+        "exposure-browser",
+        "tweet-midi-4-jobs",
+        "smoke",
+        "browser-checks-1"
+      ],
+      "failed": [
+        "browser-checks-0: obsolete unknown-identity substitution assertion",
+        "browser-checks-2: disallowed anniversary test horizon",
+        "browser-checks-3: prepared selection proposed an unqualified financial window"
+      ],
+      "proof": "reprise/gha-49a9-*.log.gz",
+      "resolution": "Corrections présentes ; nouvelle CI requise."
+    },
+    {
+      "scope": "macos-source-comparison",
+      "runId": 40026026342,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40026026342",
+      "interpretation": "Copper et les quatre compositions WisdomTree restent en HTTP403 ; discovery 0/6, deux WisdomTree403 et quatre L&G sans état de part exacte. Aucun résultat promu.",
+      "proof": "reprise/github-macos-40026026342/"
     }
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",

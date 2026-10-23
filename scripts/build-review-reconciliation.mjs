@@ -36,7 +36,9 @@ for(const row of rows.filter(r=>r.open||r.residualOpen)){
  const nav=windows.filter(w=>w.convention==='fund-nav-total-return'&&w.qualification.qualified)
  const calendar=QUALIFIED_FUND_CALENDARS[row.isin]
  const annualNav=Number.isFinite(calendar?.years[row.year])?{id:calendar.id,currency:calendar.currency,year:row.year,sourceUrls:calendar.sourceUrls}:null
- row.currentConsumer={...row.currentConsumer,windows,annualNav,
+ row.currentConsumer={integrationArchive:row.currentConsumer,windows,annualNav,
+  route:nav.length?nav.map(w=>`${w.id} · ${w.currency} · ${w.convention}`).join(' ; '):annualNav?`${annualNav.id} · ${annualNav.currency} · calendrier annuel VL distinct`:'Fenêtre de cotation refusée ; aucun calcul admis sur cette période',
+  proof:'Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.',
   secured:nav.length?`NAV indépendante qualifiée pour ${row.year} (${nav.map(w=>w.currency).join(', ')}), sans attribuer la divergence de cotation initiale.`
    :`Fenêtre de cotation contestée refusée pour ${row.year} ; dernières observations conservées.${annualNav?' Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite.':''}`}
 }

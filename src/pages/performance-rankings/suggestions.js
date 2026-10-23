@@ -2,6 +2,7 @@ import { BENCHMARK_CATEGORIES, CATEGORIES, RANKING_ASSETS } from './data.js'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { commonCoverage } from './engine.js'
 import { convertAsset } from './series.js'
+import {qualifiedYearWindow} from './selection-windows.js'
 import { isStock } from '../../lib/is-stock.js'
 
 export function markBenchmark(assets, benchmarkId) {
@@ -24,7 +25,8 @@ export function suggestionPool(categories = [...CATEGORIES, ...BENCHMARK_CATEGOR
     try {
       const members = category.ids.map(id => convertAsset(assets[id], 'EUR', fx))
       if (members.some(a => a.basis !== 'adjusted')) return []
-      const coverage = commonCoverage(members)
+      const raw = commonCoverage(members)
+      const coverage = {...raw,years:qualifiedYearWindow(raw.years,3,Infinity)}
       return coverage.years.length >= 3 ? [{ category, coverage }] : []
     } catch { return [] } // Missing prices/FX never produce a broken suggestion.
   })

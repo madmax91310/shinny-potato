@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {execFileSync} from 'node:child_process'
 import {ASSETS,ASSET_ORDER} from '../src/data/market-history.js'
+import {qualifiedMonthlyWindows,qualifiedYearWindow} from '../src/pages/performance-rankings/selection-windows.js'
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import {derive} from '../src/pages/investment-calculator/lib.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
 import {RANKING_ASSETS,CATEGORIES} from '../src/pages/performance-rankings/data.js'
@@ -57,18 +59,25 @@ for(const row of report.matrix){
   assert(Math.abs(p.price-r.value)<.000001)
   assert(Math.abs(r.close-(r.windowClose??r.monthlyClose))<=Math.max(.02,r.close*1e-7))
  }
- const first=observed[0],last=observed.at(-1)
- const inputs={assetId:h.id,amountRaw:'1000',startYear:+h.start.slice(0,4),startMonth:+h.start.slice(5),overridePriceRaw:''}
+ const originalQualification=qualifyHistoryWindow(asset,h.start,h.end)
+ const originalInputs={assetId:h.id,amountRaw:'1000',startYear:+h.start.slice(0,4),startMonth:+h.start.slice(5),overridePriceRaw:''}
+ if(!originalQualification.qualified)for(const mode of ['lump','dca'])assert.throws(()=>derive({...originalInputs,mode}),{message:originalQualification.reason})
+ const window=h.qualifiedRanges.at(-1)
+ assert(window,'A separately qualified usable period remains available')
+ const selected=observed.filter(r=>r.date.slice(0,7)>=window.start&&r.date.slice(0,7)<=window.end)
+ const first=selected[0],last=selected.at(-1)
+ const inputs={...originalInputs,startYear:+window.start.slice(0,4),startMonth:+window.start.slice(5)}
  const lump=derive({...inputs,mode:'lump'})
  assert(Math.abs(lump.result.finalValue-1000*last.value/first.value)<.03)
  const dca=derive({...inputs,mode:'dca'})
- const expected=observed.reduce((total,r)=>total+1000/r.value,0)*last.value
+ const expected=selected.reduce((total,r)=>total+1000/r.value,0)*last.value
  assert(Math.abs(dca.result.finalValue-expected)<Math.max(.1,expected*1e-6))
  for(const before of row.before.history)assert(h.start<=before.start && h.end>=before.end,'A qualified long history must not shrink')
  for(const cell of Object.values(row.tools))assert(['déjà raccordé','raccordable','raccordé dans cette PR','bloqué','hors périmètre'].includes(cell.status)&&cell.reason)
  // Same two historical fixes, computed directly from ECB observations.
  const converted=convertAsset(RANKING_ASSETS[h.id],'EUR',FX)
- const start=converted.points[0],end=converted.points.at(-1)
+ const convertedWindow=qualifiedMonthlyWindows([converted]).at(-1)
+ const start=converted.points.find(p=>p.date===convertedWindow.start),end=converted.points.find(p=>p.date===convertedWindow.end)
  const from=asset.points.find(p=>p.date===start.date),to=asset.points.find(p=>p.date===end.date)
  const rate=date=>asset.currency==='EUR'?1:FX.months[date].rates[asset.currency]
  const reference=(to.price/from.price*rate(start.date)/rate(end.date)-1)*100
@@ -79,9 +88,9 @@ for(const p of report.profiles){
  assert.equal(p.status,'raccordé dans cette PR',p.id)
  assert(p.ids.length>=2 && p.ids.length<=6)
  const assets=p.ids.map(id=>convertAsset(RANKING_ASSETS[id],p.currency,FX)),coverage=commonCoverage(assets)
- const period=buildRanking(assets,{mode:'period',start:coverage.start,end:coverage.end})
+ const period=buildRanking(assets,{mode:'period',start:p.periodWindow.start,end:p.periodWindow.end})
  assert(period.columns[0].rows.every(r=>Number.isFinite(r.value)))
- if(coverage.years.length){const years=coverage.years.slice(-7);const result=buildRanking(assets,{mode:'years',startYear:years[0],endYear:years.at(-1)})
+ if(p.annualWindow.length){const years=p.annualWindow;const result=buildRanking(assets,{mode:'years',startYear:years[0],endYear:years.at(-1)})
  assert.equal(!annualRankingError(result),p.modes.annual,p.id)}
 }
 for(const id of ['nebius','vertiv','rocket-lab','ast-spacemobile','sofi','ge-vernova','constellation-energy']){

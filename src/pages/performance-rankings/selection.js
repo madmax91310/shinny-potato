@@ -3,6 +3,7 @@ import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { buildRanking, commonCoverage } from './engine.js'
 import { convertAsset } from './series.js'
 
+import {selectionDates} from './selection-windows.js'
 import { isStock } from '../../lib/is-stock.js'
 export { isStock }
 export function selectionCurrency(ids, currency, assets = RANKING_ASSETS) {
@@ -31,10 +32,7 @@ export function replaceBenchmark(state, nextId, assets = RANKING_ASSETS, fx = FX
   catch {
     adjusted = true
     mode = coverage.years.length ? 'years' : 'period'
-    const years = coverage.years.slice(-6)
-    while (years.length > 1 && years.at(-1) - years[0] !== years.length - 1) years.shift()
-    dates = { start: coverage.start, end: coverage.end,
-      startYear: years[0], endYear: years.at(-1) }
+    dates = selectionDates(members)
     buildRanking(members, { ...dates, mode })
   }
   return { ids, currency, dates, mode, benchmarkId: nextId, adjusted }

@@ -2,7 +2,7 @@
 
 État avant intégration : master d780e917 (#900, #902, #904, #901 et suivi IA courant) intégré. La dernière instruction utilisateur autorise fusion et déploiement après validation. La PR n'est pas encore fusionnée à ce stade.
 
-Les 8 550 lignes précédentes sont conservées dans le suivi actualisé de **8 553 lignes**. La ligne supplémentaire est le nouvel incident de table primaire CSPX du producteur 40011202978. Les originaux complets du suivi et du bilan sont archivés ici ; aucune disparition n'est interprétée comme une résolution. Les 73 conflits DWS disparus sont associés à leurs épisodes `resolved` datés dans le moniteur réel. Les 36 autres conflits attendent toujours quatre heures de stabilité du nouveau document : aucun délai n'est antidaté.
+Les 8 550 lignes précédentes sont conservées dans le suivi actualisé de **8 555 lignes**. La ligne supplémentaire est le nouvel incident de table primaire CSPX du producteur 40011202978. Les originaux complets du suivi et du bilan sont archivés ici ; aucune disparition n'est interprétée comme une résolution. Les 73 conflits DWS disparus sont associés à leurs épisodes `resolved` datés dans le moniteur réel. Les 36 autres conflits attendent toujours quatre heures de stabilité du nouveau document : aucun délai n'est antidaté.
 
 ## Fonctionnement corrigé
 
@@ -41,3 +41,11 @@ L’intégration de #904 a révélé un budget de banque de tweets dépassé dan
 Le rejeu GitHub **40022869635** est globalement en échec : Copper, quatre WisdomTree et conflit PEA restent refusés. Publication XNDX du 23/10 et contrôle DWS 11/11 réussissent ; discovery finit sans promotion 0/6. Le producteur ordinaire **40022897634** confirme également **177/181** compositions et les quatre refus GB/IE/NL. Les observations et réponses sont archivées dans `github-40022869635/` ; aucune réussite de job n’est confondue avec une composition intégrale validée. La clôture XNDX est transmise au registre puis au consommateur Anniversaire et à son PNG réel.
 
 #901 est intégrée sans modifier son travail de récupération mobile et de vérification hebdomadaire. Les tests comptables et hebdomadaires IA passent sur l’ensemble assemblé ; le livre réel reste strictement identique à celui de master. La recherche des alertes conserve aussi les identifiants techniques et alias des signalements dédupliqués.
+
+## Corrections issues de la CI 49a9
+
+La CI technique 40025337511 échoue dans trois partitions navigateur. Le build, les 965 tests Python, les contrôles d’exposition, les quatre jobs Tweet Midi, le smoke et la partition navigateur 1 réussissent. Les journaux de tous les échecs sont archivés. Le classement proposait une période contenant des cotations refusées ; il propose désormais une vraie plage continue qualifiée et explique toute adaptation de période. Les dates manuelles incompatibles restent refusées. Les preuves IA différencient les observations brutes et les plages réellement calculables. La recette anniversaire sélectionne un horizon effectivement admissible, sans supposer que tous les horizons sous le maximum sont valides.
+
+En local : calculs IA recoupés, 29 supports dans trois outils, 16 profils, classements et 709 exports anniversaire réussissent. Les quinze exports de reprise passent à nouveau. Les identifiants inconnus sont refusés dans Performance et Calculateur, sans actif de remplacement ni écrasement des préférences. Ces résultats ne remplacent pas la nouvelle CI GitHub.
+
+La comparaison réelle macOS 40026026342 ne restaure aucun accès fournisseur : mêmes refus Copper et WisdomTree ; aucune promotion discovery. La panne ne peut donc pas être attribuée au seul runner Ubuntu. L’origine précise des règles HTTP403 reste externe et non démontrée.

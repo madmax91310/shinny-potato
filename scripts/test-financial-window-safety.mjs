@@ -8,6 +8,8 @@ import {periodReturn}from '../src/pages/performance-rankings/engine.js'
 import {convertAsset,buildPortfolio}from '../src/pages/performance-rankings/series.js'
 import {getAnnualReturnStartYears,getHistoricalPrice,MARKET_ASSETS}from '../src/pages/tweet-midi/data/marketHistory.js'
 import {monthlyCalendarReturns}from './monthly-return-projection.mjs'
+import {selectionDates,qualifiedYearWindow,qualifiedMonthlyWindows}from '../src/pages/performance-rankings/selection-windows.js'
+import {RANKING_ASSETS}from '../src/pages/performance-rankings/data.js'
 import FX from '../src/data/monthly-fx.json'with{type:'json'}
 import * as performance from '../src/pages/tweet-midi/data/performanceHistory.js'
 const rows=JSON.parse(readFileSync('public/data/financial-reconciliation.json')).rows.filter(r=>r.open||r.residualOpen)
@@ -52,3 +54,10 @@ const other={...asset,symbol:'OTHER.L',sourceUrls:['https://query2.finance.yahoo
 assert(qualifyHistoryWindow(other,start,end).qualified,'A different explicitly identified listing is not the disputed quote')
 assert(refused>40);assert(nav>=20)
 console.log(JSON.stringify({unresolvedComparisons:rows.length,activeQuotesRefused:refused,independentNavCasesPreserved:nav,calculator:true,video:true,rankings:true,fx:true,anniversary:true,annualProjection:true,recentMonths:true}))
+
+assert.deepEqual(qualifiedYearWindow([2017,2018,2020,2023,2024,2025],3),[2023,2024,2025])
+assert.deepEqual(qualifiedYearWindow([2017,2018,2020,2023,2024,2025],4),[])
+const members=[RANKING_ASSETS[id],RANKING_ASSETS.apple]
+const safeDates=selectionDates(members)
+assert(members.every(a=>qualifyHistoryWindow(a,safeDates.start,safeDates.end).qualified))
+assert(qualifiedMonthlyWindows(members).some(w=>w.start===safeDates.start&&w.end===safeDates.end))

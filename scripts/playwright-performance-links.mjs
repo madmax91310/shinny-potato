@@ -3,9 +3,11 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { ETFS } from '../src/data/etf-cards.js'
 import { getPerformanceHref, getPerformanceAssetId } from '../src/data/performance-links.js'
-import { FORMATS, MODES, getSecondaryOptionsForFormat, pickForSelection, buildTweetText, SUBJECT_ALEATOIRE } from '../src/pages/tweet-midi/lib.js'
+import { FORMATS, MODES, getSecondaryOptionsForFormat, pickForSelection, buildTweetText } from '../src/pages/tweet-midi/lib.js'
 import { choose } from './card-selection.mjs'
-import { ASSETS } from '../src/data/market-history.js'
+import {qualifiedMonthlyWindows} from '../src/pages/performance-rankings/selection-windows.js'
+import {getSimulationAssetId} from '../src/data/simulation-links.js'
+import { ASSETS,ASSET_ORDER,SPARSE_MONTHLY_DATA_IDS,INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js'
 
 const base = 'http://localhost:4321/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--port', '4321'], { stdio: 'ignore' })
@@ -67,7 +69,9 @@ try {
     })
     await page.waitForFunction(() => document.querySelector('#subject-select')?.dataset.value === 'euroHighYieldBond')
     await page.goto(`${base}/performance-depuis?isin=unknown`, { waitUntil: 'networkidle' })
-    assert.equal(await page.locator('#subject-select').getAttribute('data-value'), SUBJECT_ALEATOIRE)
+    await page.getByRole('alert').filter({hasText:'Aucun autre actif n’a été substitué'}).waitFor()
+    assert.equal(await page.locator('#subject-select').count(),0)
+    assert.equal(await page.getByRole('button',{name:/Télécharger/}).count(),0)
     for (const assetId of ['bitcoin', 'apple', 'lvmh', 'euroHighYieldBond']) {
       await page.goto(`${base}/performance-depuis?asset=${assetId}`, { waitUntil: 'networkidle' })
       assert.equal(await page.locator('#subject-select').getAttribute('data-value'), assetId)
@@ -86,7 +90,23 @@ try {
       await showPreview(page)
       await page.getByRole('heading', { name: ASSETS[assetId].label, exact: true }).waitFor()
     }
+    const recentId=ASSET_ORDER.find(id=>!getSimulationAssetId(id)&&!SPARSE_MONTHLY_DATA_IDS.has(id)&&!INCONSISTENT_MONTHLY_DATA_IDS.has(id)&&qualifiedMonthlyWindows([ASSETS[id]]).length)
+    if(recentId){
+      const window=qualifiedMonthlyWindows([ASSETS[recentId]]).at(-1)
+      await page.goto(`${base}/calculateur-investissement?asset=${recentId}`,{waitUntil:'networkidle'})
+      assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),recentId)
+      await choose(page.getByRole('group',{name:'Année de départ',exact:true}),window.start.slice(0,4))
+      await choose(page.getByRole('group',{name:'Mois de départ',exact:true}),String(Number(window.start.slice(5))))
+      await showPreview(page)
+      await page.getByRole('heading',{name:ASSETS[recentId].label,exact:true}).waitFor()
+      assert.equal(await page.getByRole('alert').count(),0,'Compatible recent months remain usable without an annual calendar')
+    }
+    const savedSettings=await page.evaluate(()=>localStorage.getItem('epargnant-publication:v1:investment-settings'))
     await page.goto(`${base}/calculateur-investissement?asset=unknown`, { waitUntil: 'networkidle' })
+    await page.getByRole('alert').filter({hasText:'Aucun autre actif n’a été substitué'}).waitFor()
+    assert.equal(await page.getByRole('img',{name:'Graphique du placement',exact:true}).count(),0)
+    assert.equal(await page.evaluate(()=>localStorage.getItem('epargnant-publication:v1:investment-settings')),savedSettings)
+    await page.goto(`${base}/calculateur-investissement?asset=bitcoin`,{waitUntil:'networkidle'})
     await showPreview(page)
     await page.getByRole('heading', { name: 'Bitcoin', exact: true }).waitFor()
     // Same mounted route, new identity: reset its form and result together.
@@ -102,7 +122,7 @@ try {
     assert.deepEqual(errors, [])
     await page.close()
   }
-  console.log('History shortcuts: mobile/desktop, 7 ETF shares, annual/simulation round trips, valid dates, back navigation, changed/unknown IDs and no overflow verified.')
+  console.log(`History shortcuts: mobile/desktop, ${ETFS.filter(etf=>getPerformanceHref(etf.isin)).length} exact ETF shares, annual/simulation round trips, valid dates, back navigation, unavailable IDs without substitution, preserved settings and no overflow verified.`)
 } finally {
   await browser?.close()
   server.kill()
