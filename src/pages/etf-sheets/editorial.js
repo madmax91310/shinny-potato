@@ -1,4 +1,5 @@
-import { frenchLocation } from '../../data/french-characteristics.js'
+import { REVIEWED_EXPOSURE_COPY } from '../../data/etf-presentation-copy.js'
+import { completePresentation } from './presentationDetails.js'
 // Les parts d’une même exposition partagent une intention éditoriale, jamais leurs données.
 const PRESENTATION_COPY = Object.fromEntries([
   [['gaming_vaneck'], {
@@ -354,18 +355,14 @@ const EXPOSURE_COPY = {
 }
 
 export function getPresentationCopy(etf) {
+  if (etf.presentationCompleted) return etf
+  if (!Object.hasOwn(REVIEWED_EXPOSURE_COPY, etf.id)) throw new Error(`Rédaction de présentation à qualifier : ${etf.id}`)
   const exposureId = etf.id === 'support-sect_cybersecurite' ? 'cybersecurite' : etf.id
   const copy = { ...etf, ...PRESENTATION_COPY[etf.id], ...OVERRIDES[etf.id], ...EXPOSURE_COPY[exposureId] }
-  const question = copy.question.startsWith('Pour cette exposition, tu regardes')
-    ? ['Sectoriels classiques', 'Thématiques émergentes'].includes(copy.category)
-      ? 'Tu as déjà un ETF sectoriel ou thématique dans ton portefeuille ?'
-      : copy.category === 'Obligataires'
-        ? 'Dans tes ETF obligataires, tu regardes surtout la durée ou la qualité des emprunteurs ?'
-        : 'Tu détiens déjà cette exposition dans ton portefeuille ?'
-    : copy.question
-  return { ...copy, question, location: copy.location ? frenchLocation(copy.location) : null, aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
+  const reviewed = { ...copy, ...REVIEWED_EXPOSURE_COPY[etf.id] }
+  return completePresentation(reviewed)
 }
 
 export function presentationTicker(etf) {
-  return etf.isin === 'FR001400U5Q4' ? '' : etf.listing?.ticker ?? ''
+  return etf.listing?.ticker ?? ''
 }

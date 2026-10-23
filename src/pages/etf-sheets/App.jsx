@@ -1,6 +1,5 @@
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { annualPerformanceCurrencies } from '../../data/annual-performance-currency.js'
-import { metricCopy } from '../../data/etf-metric-copy.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
@@ -17,7 +16,6 @@ import { CATEGORY_EMOJI, ETFS, OPTIONS, readSheetRecord } from './records.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText } from './lib'
 const renderETFImage = async etf => (await import('./canvasImage')).renderETFImage(etf)
-import { ETF_PUBLICATION_DATA } from './records.js'
 import { commodityAllocationLines } from '../../data/commodity-allocation'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -60,17 +58,17 @@ function EtfCard({ etf: sourceEtf }) {
         {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li>
           <span className="es-fi">💸</span>
-          <span className="es-fv">Frais annuels : {etf.ter}</span>
+          <span className="es-fv">{etf.feeLabel} : {etf.ter}</span>
         </li>
-        <li>
+        {etf.swapFee && <li><span className="es-fi">💸</span><span className="es-fv">Frais de swap : {etf.swapFee}</span></li>}
+        {etf.positions && <li>
           <span className="es-fi">📦</span>
           <span className="es-fv">{etf.positions}</span>
-        </li>
+        </li>}
         <li>
           <span className="es-fi">💰</span>
           <span className="es-fv">
             Encours : {etf.aum}
-            {etf.lastVerified && !ETF_PUBLICATION_DATA[etf.isin]?.aumSource && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
           </span>
         </li>
         <li>
@@ -85,6 +83,8 @@ function EtfCard({ etf: sourceEtf }) {
           <span className="es-fi">📍</span>
           <span className="es-fv">{etf.location}</span>
         </li>
+        {etf.shareCurrency && <li><span className="es-fi">💱</span><span className="es-fv">Devise de la part : {etf.shareCurrency}</span></li>}
+        {etf.currencyHedge && <li><span className="es-fi">💱</span><span className="es-fv">{etf.currencyHedge}</span></li>}
         {annual && <li>
           <span className="es-fi">📈</span>
           <span className="es-fv">{formatTweetPerformance(annual, { includeIcon: false })}</span>
@@ -101,13 +101,13 @@ function EtfCard({ etf: sourceEtf }) {
         <p>{etf.whatIs}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">✅ L’intérêt de cette exposition</h3>
+        <h3 className="es-block-title">✅ Pourquoi s’y intéresser ?</h3>
         <p>{etf.whyInteresting}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">⚠️ Ce qu’il faut garder en tête</h3>
+        <h3 className="es-block-title">⚠️ Le point de vigilance</h3>
         <p>{etf.whatToKnow}</p>
-        {metricCopy(etf.isin) && <p>{metricCopy(etf.isin)}</p>}
+        {etf.riskMetric && <p>{etf.riskMetric}</p>}
       </section>
       {etf.closing && <section className="es-block">
         <p>{etf.closing}</p>
@@ -115,6 +115,7 @@ function EtfCard({ etf: sourceEtf }) {
 
       <div className="es-foot">
         <p className="es-engagement">💬 {etf.question}</p>
+        <p>Pas un conseil financier.</p>
       </div>
     </article>
   )

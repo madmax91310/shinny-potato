@@ -1,6 +1,7 @@
 import { ETFS, loadSheetRecord } from './records.js'
 import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 import { getAnnualPerformance, performanceEntries, performanceImageHeading } from './annualPerformance.js'
+import { getPresentationCopy } from './editorial.js'
 import { frenchCharacteristic } from '../../data/french-characteristics.js'
 
 // Approved porcelain relief: artwork contains material and recesses only.
@@ -59,8 +60,8 @@ function characteristics(etf) {
   const domicile = 'domicile' in etf ? etf.domicile && frenchCharacteristic(etf.domicile) : comma < 0 ? location : location.slice(0, comma)
   const replication = 'replicationMethod' in etf ? etf.replicationMethod && frenchCharacteristic(etf.replicationMethod).replace(/^réplication\s+/i, '') : comma < 0 ? null : location.slice(comma + 1).trim().replace(/^réplication\s+/i, '')
   return {
-    left: [String(etf.positions).replace(/^Exposition suivie\s*:\s*/, ''), etf.distribution, replication].filter(Boolean),
-    right: [domicile && `Domicile : ${domicile}`, etf.listing && `${etf.listing.exchange} · ${etf.listing.currency}`].filter(Boolean),
+    left: [(etf.positions ?? '').replace(/^Exposition suivie\s*:\s*/, ''), etf.distribution, replication, etf.swapFee && `Swap : ${etf.swapFee}`].filter(Boolean),
+    right: [domicile && `Domicile : ${domicile}`, etf.listing && `${etf.listing.exchange} · ${etf.listing.currency}`,etf.shareCurrency && `Part : ${etf.shareCurrency}`,etf.currencyHedge].filter(Boolean),
   }
 }
 function aumParts(aum) {
@@ -69,9 +70,10 @@ function aumParts(aum) {
   const amount = raw.replace(/^(?:Part|Fonds)\s*:\s*/i, '').replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '').trim()
     .replace(/\d[\d \u00a0\u202f]*,\d+/g, value => Number(value.replace(/[ \u00a0\u202f]/g, '').replace(',', '.')).toLocaleString('fr-FR', { maximumFractionDigits: 0 }))
   // Fund-wide figures must not look like the assets of this share class.
-  return { amount, date, label: /^Fonds\s*:/i.test(raw) ? 'Encours du fonds' : 'Encours' }
+  return { amount, date, label: /^Fonds\s*:/i.test(raw) ? 'Encours du fonds' : /^Part\s*:/i.test(raw) ? 'Encours de la part' : 'Encours' }
 }
-export async function renderETFImage(etf) {
+export async function renderETFImage(sourceEtf) {
+  const etf = getPresentationCopy(sourceEtf)
   if (ETFS.some(item => item.id === etf.id)) await loadSheetRecord(etf.id)
   const [background] = await Promise.all([loadArtImage(BACKGROUND), loadEditorialFont()])
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
@@ -87,7 +89,7 @@ export async function renderETFImage(etf) {
   text(ctx, identity, 185, 405, 850, 48, { size: 34, min: 26, color: '#f5f3ed' })
   text(ctx, 'ÉPARGNANT LIBRE', 1265, 288, 305, 80, { size: 30, min: 26, weight: 500, align: 'center', color: '#f5f3ed', centered: true })
   text(ctx, etf.ter, 330, 649, 370, 120, { size: 109, min: 45, align: 'center', relief: true, centered: true })
-  text(ctx, 'Frais annuels', 330, 806, 350, 54, { size: 38, min: 32, align: 'center' })
+  text(ctx, etf.swapFee ? 'Gestion / an' : 'Frais annuels', 330, 806, 350, 54, { size: 38, min: 32, align: 'center' })
   const accounts = [etf.pea === true ? 'PEA' : null, etf.cto ? 'CTO' : 'CTO indisponible'].filter(Boolean).join(' · ')
   text(ctx, accounts, 620, 538, 410, 75, { size: 61, min: 34, relief: true, centered: true })
   text(ctx, 'Enveloppes', 620, 625, 410, 45, { size: 34, color: MUTED })
@@ -96,8 +98,8 @@ export async function renderETFImage(etf) {
   text(ctx, aum.label, 1100, 618, 390, 42, { size: 29, color: MUTED })
   if (aum.date) text(ctx, aum.date, 1100, 661, 390, 39, { size: 26, min: 23, color: MUTED })
   const facts = characteristics(etf)
-  text(ctx, facts.left.join('\n'), 628, 735, 485, 190, { size: 34, min: 24, centered: true })
-  text(ctx, facts.right.join('\n'), 1180, 735, 300, 190, { size: 32, min: 24, centered: true })
+  text(ctx, facts.left.join('\n'), 628, 735, 485, 232, { size: 34, min: 24, centered: true })
+  text(ctx, facts.right.join('\n'), 1180, 735, 300, 232, { size: 32, min: 24, centered: true })
   const annual = getAnnualPerformance(etf)
   if (annual) {
     text(ctx, performanceImageHeading(annual), 160, 1000, 1290, 65, { size: 43, min: 29, relief: true })

@@ -39,7 +39,7 @@ class Components(HTMLParser):
         if tag == 'walrus-render-on-client' and 'componentprops' in attrs:
             value = json.loads(attrs['componentprops'])
             key = value.get('componentId')
-            if key in ('keyFundFacts', 'performance', 'exposureBreakdowns', 'holdings'):
+            if key in ('keyFundFacts', 'performance', 'exposureBreakdowns', 'holdings', 'fundamentalsAndRisk'):
                 if key == 'holdings' and 'context' not in value:
                     return
                 if key in self.components:
@@ -169,6 +169,11 @@ def collect(config, baseline, now=None, fetch=get_text):
         # Fetch the latest structured snapshot directly, without the HTML consent page.
         body, url, attempts = fetch_product(share, fetch)
         result = parse_share(body, share, now)
+        from ishares_metrics import parse_metrics
+        try:
+            result['metrics'] = parse_metrics(result['rawComponents'], now, url)
+        except (ValueError, KeyError, TypeError) as error:
+            result.setdefault('collectionErrors', []).append({'field': 'metrics', 'url': url, 'reason': str(error)})
         if attempts: result['sourceAttempts'] = attempts
         if share.get('collectHoldings'):
             from collect_etf_holdings import parse_holdings, collect_holdings
@@ -184,7 +189,7 @@ def collect(config, baseline, now=None, fetch=get_text):
                 if not result['countries'].get('rows'):
                     result['countries'] = holdings_countries
             except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
-                result['collectionErrors'] = [{'field': 'holdings', 'url': url, 'reason': str(error)}]
+                result.setdefault('collectionErrors', []).append({'field': 'holdings', 'url': url, 'reason': str(error)})
         for field in share.get('requiredFields', []):
             observation = result.get(field, {})
             if not observation or (field in ('countries', 'sectors', 'holdings') and not observation.get('rows')):
@@ -217,7 +222,7 @@ def collect(config, baseline, now=None, fetch=get_text):
 def product_data_url(share):
     return 'https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?' + urlencode({
         'appSubType': 'ISHARES', 'appType': 'PRODUCT_PAGE',
-        'component': 'keyFundFacts,performance,exposureBreakdowns' + (',holdings.all' if share.get('collectHoldings') else ''),
+        'component': 'keyFundFacts,performance,exposureBreakdowns,fundamentalsAndRisk' + (',holdings.all' if share.get('collectHoldings') else ''),
         'locale': 'en_GB', 'portfolioId': share['productId'], 'targetSite': 'ishares-uk',
         'userType': 'individual', 'excludeContent': 'true', 'includeConfig': 'true'})
 
