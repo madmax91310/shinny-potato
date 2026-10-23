@@ -350,6 +350,71 @@
       "conclusion": "success",
       "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
       "interpretation": "Validation technique complète réussie, build/Python, quatre partitions navigateur et quatre Tweet Midi, exposition et smoke. Tous les déploiements ignorés. Quatre SHA de preuves DWS et suivi complétés ensuite, valeurs financières inchangées, build et douze PNG rejoués."
+    },
+    {
+      "scope": "master-899-normal-four-api",
+      "runId": 40004946052,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40004946052",
+      "interpretation": "Preuve déjà fusionnée de #899 préservée : quatre NAV API exactes via le producteur normal, prix/devises/profondeurs inchangés ; GDX non admis. Voir reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/."
+    },
+    {
+      "scope": "gdig-probe-integration-refused",
+      "runId": 40011921279,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921279",
+      "interpretation": "Après #899, la sonde PDF héritait de la nouvelle configuration API et refusait à raison l’absence de PDF dans la provenance. Correction limitée à la copie de configuration de la sonde ; le producteur normal conserve API.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T19:30:17Z",
+      "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:31:55Z"
+    },
+    {
+      "scope": "gdig-pdf-after-899",
+      "runId": 40012347232,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40012347232",
+      "interpretation": "Sonde PDF indépendante explicitée et validée dans GitHub sur e3098a13 ; sept années et NAV USD/BCE. Texte PDF extrait identique à la qualification antérieure malgré empreinte binaire différente. Voie API active conservée.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T19:33:32Z",
+      "headSha": "e3098a13fd6c46f54ff12dc58bddc3e219759c7a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:34:55Z",
+      "artifactId": 12527315885
+    },
+    {
+      "scope": "msci-after-899",
+      "runId": 40012327278,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40012327278",
+      "interpretation": "Deux MSCI et contrôle des routes réussis après intégration #899 ; collecte isolée sans publication.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T19:33:23Z",
+      "headSha": "e3098a13fd6c46f54ff12dc58bddc3e219759c7a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:34:30Z"
+    },
+    {
+      "scope": "active-etf-after-899",
+      "runId": 40011921373,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921373",
+      "jobId": 120614190406,
+      "log": "preuves/after899-120614190406.log.gz",
+      "interpretation": "Seule erreur réelle de champ : table primaire CSPX à zéro, agrégation complète qualifiée disponible ; report-failures rouge conservé. Le HTTP502 nommé unavailable appartient au test négatif, pas à une nouvelle panne fournisseur."
+    },
+    {
+      "scope": "holdings-after-899",
+      "runId": 40011921374,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921374",
+      "jobId": 120614190686,
+      "log": "preuves/after899-120614190686.log.gz",
+      "interpretation": "177/181 encore valides ; quatre seuls refus WisdomTree HTTP403, sans autre erreur de portefeuille."
+    },
+    {
+      "scope": "ci-after-master-dcbd",
+      "runId": 40011921367,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921367",
+      "status": "queued",
+      "conclusion": "",
+      "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
+      "interpretation": "CI complète relancée après intégration #899 ; état observé dans preuves/ci-after-master-dcbd.json, ne remplace pas la conclusion verte antérieure tant que ce run n’est pas terminé."
     }
   ]
 }

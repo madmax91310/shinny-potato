@@ -1,6 +1,6 @@
 # Collectes et données à revoir — 23 octobre 2026
 
-Travail commencé sur `master` **5feee622**, puis intégrations de **e3c7492d** puis **d61805e8** puis **b0754186** et **de5bf3c9**, comprenant #892, #894, #895, #897 et les collectes concurrentes, sans fusionner de PR ni publier le site. Les résultats fusionnés de #894/#895/#897 sont préservés ; aucune fusion n’a été exécutée par cette intervention. Le portefeuille propriétaire IA est inchangé. Le suivi distingue une correction préparée, son contrôle GitHub isolé et son intégration/publication future.
+Travail commencé sur `master` **5feee622**, puis intégrations de **e3c7492d** puis **d61805e8** puis **b0754186**, **de5bf3c9** et **dcbd143b**, comprenant #892, #894, #895, #897, #899 et les collectes concurrentes, sans fusionner de PR ni publier le site. Les résultats fusionnés de #894/#895/#897/#899 sont préservés ; aucune PR n’a été fusionnée par cette intervention. Le portefeuille propriétaire IA est inchangé. Le suivi distingue une correction préparée, son contrôle GitHub isolé et son intégration/publication future.
 
 ## Périmètre et compteurs
 
@@ -17,12 +17,12 @@ Travail commencé sur `master` **5feee622**, puis intégrations de **e3c7492d** 
 | Épisodes historiques resolved / retired | 100 / 160 |
 | Reliquat historique / modules / actions | 201 / 115 / 19 |
 | Incidents actifs du dernier moniteur consulté | 124 |
-| Incidents fournisseurs supplémentaires révélés par la CI | 6 |
-| Contrôles de validation CI (projections et PNG IA) | 2 |
+| Incidents fournisseurs supplémentaires révélés par la CI | 7 |
+| Contrôles de validation CI (projections, PNG IA, sonde PDF) | 3 |
 | Rôles de modules supplémentaires examinés | 16 |
 | Contrôle de séance ultérieure avec attente normale | 1 |
 
-Les **8 548 lignes** incluent tous les cas initiaux et les découvertes en cours d’intervention. Le moniteur de production n’est pas modifié : ses **124 incidents** sont détaillés plus bas, avec 73 réconciliations DWS préparées en lecture seule et 36 encore soumises à stabilité. Les épisodes historiques restent datés ; leur résolution passée ne clôture pas une réapparition.
+Les **8 550 lignes** incluent tous les cas initiaux et les découvertes en cours d’intervention. Le moniteur de production n’est pas modifié : ses **124 incidents** sont détaillés plus bas, avec 73 réconciliations DWS préparées en lecture seule et 36 encore soumises à stabilité. Les épisodes historiques restent datés ; leur résolution passée ne clôture pas une réapparition.
 
 | Compteur | Avant | Branche de PR régénérée (avant publication) |
 |---|---:|---:|
@@ -71,7 +71,7 @@ Les contrôles d’accès portent sur **79 URLs pour 94 raccordements initiaux**
 
 Réutilisation des transports et écritures existants : délais et reprises bornés avec temporisation, formats et identités stricts, conservation de la dernière donnée valide, écriture atomique, refus des régressions de dates. Les ajouts ciblés concernent H.10/BCE, la revue pratique liée au document, IBKR et les empreintes SSGA. Les registres séparent date de donnée, contrôle réussi et dernière tentative ; les artefacts d’exécution séparent collecte et publication. Le refus individuel reste visible lorsqu’un workflow a pu produire d’autres données.
 
-Le build intégré et les audits de couverture passent. La suite Python complète passe **954 tests sur le master intégré final**, avec configuration OCR française locale ; les deux erreurs de configuration initiales du second environnement OCR sont conservées dans les journaux précédents et ne sont pas annoncées comme des pannes de collecteurs. Les contrôles Node des changes, qualifications, calendriers NAV, DCA, courtiers, revue et IA passent. Les parcours réels vérifient les calculs DCA physiques et WisdomTree, les restrictions d’identités, les conversions, les détails IA publics et les onze voies NAV de #892. Les tests de reprise téléchargent douze PNG (or, IBKR, DCA, secteurs du comparatif ETF, cessation Tudigo) et le JSON des 90 comparaisons ; les autres campagnes contrôlent les PNG de conversion et les 44 exports des voies NAV. Des exports or et DCA ont été inspectés visuellement. Un premier rejeu DCA a échoué au démarrage du serveur local (`ERR_CONNECTION_REFUSED`) ; son rejeu isolé passe, sans modifier les calculs.
+Le build intégré et les audits de couverture passent. La suite Python complète passe **954 tests avant #899, puis 961 tests après son intégration**, avec configuration OCR française locale ; les deux erreurs de configuration initiales du second environnement OCR sont conservées dans les journaux précédents et ne sont pas annoncées comme des pannes de collecteurs. Les contrôles Node des changes, qualifications, calendriers NAV, DCA, courtiers, revue et IA passent. Les parcours réels vérifient les calculs DCA physiques et WisdomTree, les restrictions d’identités, les conversions, les détails IA publics et les onze voies NAV de #892. Les tests de reprise téléchargent douze PNG (or, IBKR, DCA, secteurs du comparatif ETF, cessation Tudigo) et le JSON des 90 comparaisons ; les autres campagnes contrôlent les PNG de conversion et les 44 exports des voies NAV. Des exports or et DCA ont été inspectés visuellement. Un premier rejeu DCA a échoué au démarrage du serveur local (`ERR_CONNECTION_REFUSED`) ; son rejeu isolé passe, sans modifier les calculs.
 
 Les fichiers reconstruits par le build ne sont pas ajoutés artificiellement au diff. Les nouvelles projections publiques IA sont conservées car le build ne les produit pas. Aucun déploiement ni fusion n’est demandé ou effectué. La production doit encore recevoir la PR et exécuter ses producteurs ordinaires avant que son moniteur puisse clôturer les incidents réparés.
 
@@ -110,7 +110,7 @@ L’exécution 39993469202 refuse à raison de renouveler les tarifs : les deux 
 
 Les cinq anciens champs Tudigo deviennent des archives dans le catalogue et le suivi ; le nouveau statut dispose de ses propres sources, empreintes et date de contrôle. Les consommateurs Présentations, le texte et le PNG utilisent l’avis de cessation. Les tarifs antérieurs restent consultables comme archives. Le tableau conserve le périmètre initial et ajoute ce cas découvert par la CI. Les captures finales sont régénérées après intégration du statut Tudigo, du dernier master et des seize qualifications de rôles.
 
-Le build intégré, la suite Python complète (**954 tests**) et les parcours réels passent après la dernière synchronisation. La collecte et la recette IA sur le code final passent aussi dans 40007345551, sans écriture du portefeuille réel. Le producteur quotidien 40007345496 valide GDIG et les deux MSCI avec zéro erreur, et conserve Nasdaq en attente normale. Le PNG Tudigo a été téléchargé sur mobile et ordinateur, et inspecté visuellement : cessation, date du jugement, contrôle et suivi distincts, anciens tarifs absents de cette présentation courante. Les anciens tarifs restent accessibles dans les archives.
+Le build intégré, la suite Python complète avant #899 (**954 tests**) et les parcours réels passent après la dernière synchronisation. La collecte et la recette IA sur le code final passent aussi dans 40007345551, sans écriture du portefeuille réel. Le producteur quotidien 40007345496 valide GDIG et les deux MSCI avec zéro erreur, et conserve Nasdaq en attente normale. Le PNG Tudigo a été téléchargé sur mobile et ordinateur, et inspecté visuellement : cessation, date du jugement, contrôle et suivi distincts, anciens tarifs absents de cette présentation courante. Les anciens tarifs restent accessibles dans les archives.
 
 ## Dernières routes et qualifications vérifiées
 
@@ -121,6 +121,18 @@ Le build intégré, la suite Python complète (**954 tests**) et les parcours r�
 
 Les journaux finaux de build, Python, routes VanEck et navigateur sont archivés avec les preuves ; `network-executions.json` donne les conclusions GitHub et leur périmètre exact. Les erreurs externes WisdomTree, Copper et table primaire CSPX restent signalées individuellement. Une CI technique verte ne clôture ni ces refus d’accès ni les causes financières manquantes.
 
-## Validation GitHub finale
+## Validation GitHub complète avant #899
 
 La validation technique complète [40007345266](https://github.com/madmax91310/shinny-potato/actions/runs/40007345266), sur **74b49801**, est **réussie** : build, Python, quatre partitions navigateur, quatre partitions Tweet Midi, exposition et smoke. Les étapes de déploiement sont ignorées. Le récapitulatif détaillé est archivé dans `preuves/ci-final-74b49801.json`. Le complément final porte sur le suivi, les preuves et quatre empreintes de sources DWS, sans changement de valeurs/dates/méthodes financières ; build et douze téléchargements PNG rejoués après ce complément passent également.
+
+## Intégration du master dcbd143b et de #899
+
+La correction #899 et la collecte de 35 expositions sont intégrées sans modifier leurs prix, identités, conventions ou preuves. ESPO IE00BYWQWR46, NUCL IE000M7V94E1 et JEDI IE000YU9K6K2 disposent désormais des voies NAV qualifiées par #899 ; Mining conserve les mêmes valeurs mais son registre actif utilise la nouvelle API exacte validée par le producteur normal **40004946052**. Le conflit Git ne concernait que la référence documentaire et l’empreinte GDIG ; la version API de master est retenue après vérification de l’identité de tous les montants, devises, dates et change. La qualification PDF DK reste une preuve indépendante archivée ; elle ne réintroduit pas le PDF comme dépendance de la voie NAV active. La sonde PDF est explicitement maintenue sur cette branche documentaire, séparée de l’API du producteur normal.
+
+Les 79 statuts financiers intégrés restent strictement identiques, dont la correction WFNS avec résidu ; les références des consommateurs actuels sont actualisées depuis le rapport #899. Celui-ci compte **24 cas sur voie NAV distincte, un WFNS sur cotation corrigée et 54 anciennes cotations non réparées** parmi les 79 cas initiaux. Une voie NAV distincte ne démontre toujours pas la cause de l’écart original. Les 19 actions gardent leur répartition 12 corrigées, une déjà résolue, cinq partielles, une bloquée ; leurs compléments sont actualisés.
+
+Le candidat **GDX IE00BQQP9F84** reste non admis : rendement quotidien officiel 2017 **11,6563573883 %**, calendrier **11,6 %**, tolérance publiée **0,05 point** dépassée. Ni tolérance ni année supprimée. Il manque une explication officielle des bornes/conventions ; l’ancienne voie déjà qualifiée reste préservée. Ce cas et le raccordement de la sonde PDF indépendante portent le suivi à **8 550 lignes**, avec tous les cas initiaux conservés. Les sept nouveaux tests de master portent la suite locale complète à **961 tests réussis**. Les preuves GitHub de #899 restent dans `reports/vaneck-nav-remainder-2026-10-23/` ; la validation technique verte 40007345266 précède cette dernière intégration, les nouveaux contrôles sont distingués dans `network-executions.json`.
+
+La sonde PDF indépendante après #899 réussit dans **40012347232**, sur e3098a13, après un premier refus de provenance correctement conservé dans **40011921279**. Sept années et la NAV/BCE sont de nouveau qualifiées ; le texte PDF est identique à la capture précédente, malgré une empreinte binaire différente. Le rejeu MSCI **40012327278** et ses contrôles de routes réussissent également. Ces preuves distinguent bien le PDF d’archive de l’API active.
+
+Après intégration de dcbd143b, le build repasse, les douze PNG des corrections passent encore et les **56 PNG des quatorze voies NAV** sont téléchargés (versement unique, DCA, Performance depuis, anniversaire). Les contrôles de conversion EUR, fenêtres et niveaux courants passent ; le visuel JEDI en VL a été inspecté et un échantillon est archivé. Les archives et manifestes distinguent ces 56 téléchargements des douze tests mobile/ordinateur. La CI complète d’intégration est relancée ; sa conclusion courante est consignée dans `network-executions.json`, séparément de la validation verte précédente et des collectes GitHub finales déjà réussies.

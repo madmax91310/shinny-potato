@@ -126,12 +126,21 @@ def main():
         for r in read(P/'module-role-review.json'):
             add('rôle de module actuel',r['path'],r['beforeRole'],r['afterRole'],r['reason'],
                 'preuves/module-role-review.json ; preuves/module-role-controls.json',r['path'],'rôle du registre',action='Qualification limitée au rôle ; dates financières, états consommateurs et restrictions strictement conservés.')
+    vaneck_report=ROOT/'reports/vaneck-nav-remainder-2026-10-23'
+    if vaneck_report.exists():
+        add('incident révélé par la CI','IE00BQQP9F84:2017-calendar','candidat NAV GDX non admis','désaccord 2017 conservé ; ancienne voie qualifiée préservée',
+            'NAV quotidienne officielle 11.6563573883 %, calendrier 11.6 %, précision publiée 0.1 point : tolérance 0.05 dépassée. Aucun seuil modifié ni année supprimée.',
+            'reports/vaneck-nav-remainder-2026-10-23/LIVRAISON.md ; reports/vaneck-nav-remainder-2026-10-23/github/nav.json','IE00BQQP9F84','annual-2017','Calculateur | Performance depuis | Classements | Duels',action='Explication officielle des bornes/conventions 2017 nécessaire avant admission de cette voie candidate.')
+        add('validation CI','gdig-independent-pdf-probe','sonde PDF basculant sur API après intégration master','branche documentaire explicitement imposée à la sonde indépendante',
+            'Le producteur normal conserve la nouvelle API qualifiée de #899. La sonde d’archive retire seulement navCalendarSource de sa copie de configuration pour vérifier réellement le PDF ; assertion de provenance inchangée.',
+            '.github/workflows/verify-data-review.yml ; network-executions.json','IE00BDFBTQ78','qualification PDF',action='Résultat GitHub de la sonde indépendante consigné séparément de celui de la voie API active.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
-    with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
+    legacy_source=vaneck_report/'etat-79/restant-a-verifier.csv' if vaneck_report.exists() else ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv'
+    with legacy_source.open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
     for i,b in enumerate(legacy):
         n=updated_legacy.get((b['type'],b['id']),b)
-        add('reliquat historique initial',str(i)+':'+b['id'],b['statut'],n['statut'],n['motif']+' '+n.get('suivi_mission_79',''),'reports/reliquat-79-2026-10-23/restant-a-verifier.csv ; '+n['preuve'],b['id'],b['type'],action=n['action'])
+        add('reliquat historique initial',str(i)+':'+b['id'],b['statut'],n['statut'],n['motif']+' '+n.get('suivi_mission_79',''),str(legacy_source.relative_to(ROOT))+' ; '+n['preuve'],b['id'],b['type'],action=n['action'])
     with (ROOT/'reports/reliquat-2026-10-23/modules-verification.csv').open(encoding='utf-8-sig')as f:modules=list(csv.DictReader(f,delimiter=';'))
     for b in modules:
         add('module qualifié',b['module'],b['statut'],'scénarios rejoués ; branches externes non certifiées globalement',b['reliquat'],'preuves/tests-python-initial.log.gz ; preuves/tests-corum.log.gz ; network-executions.json',b['module'],b['role_actuel'],action='Vérification réseau limitée aux sources et branches explicitement présentes dans les artefacts GitHub. Les anciennes mesures de couverture ne sont pas une recertification actuelle.')

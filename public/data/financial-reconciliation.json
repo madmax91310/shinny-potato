@@ -234,7 +234,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium"
@@ -279,7 +279,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -320,11 +320,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de WCMS.AS (XAMS) aux 2023-12-29/2024-12-31, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.27128070 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etf_world_communication\", \"isin\": \"IE00BJ5JP436\", \"currency\": \"USD\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2022-05\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 32.619699006559166}",
+        "route": "{\"id\": \"etf_world_communication\", \"isin\": \"IE00BJ5JP436\", \"currency\": \"USD\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2022-05\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 32.619727967662726}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -369,7 +369,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -407,14 +407,14 @@
         "marketMic": "XAMS"
       },
       "reason": "Dividende officiel USD 0,1077 détaché le 15/06/2023 absent des événements et de l’ajustement Yahoo ; ratio adj/close inchangé au détachement. Facteur rétrospectif 0,9770401646545843. Le dividende de décembre était déjà ajusté.",
-      "missingPiece": "Attribution du résidu marché/NAV -0,11386 pp, sans incidence sur la preuve du dividende omis.",
-      "resolutionEvidence": "https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv",
+      "missingPiece": "Archive officielle Euronext XAMS 2022–2023 de la cotation WFNS USD, incluant les bornes et détachements ; méthode précise du niveau BlackRock réinvesti pour attribuer le résidu. Interface gratuite bornée au 23/10/2024 : les dates requises en 2022–2023 ne sont pas disponibles dans ce périmètre. Le dividende omis reste démontré indépendamment.",
+      "resolutionEvidence": "https://github.com/madmax91310/shinny-potato/blob/master/reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv",
       "currentConsumer": {
-        "route": "{\"id\": \"etf_financials\", \"isin\": \"IE00BJ5JP097\", \"currency\": \"USD\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2021-05\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2022-12\", \"end\": \"2023-12\"}, \"windowReturn\": 17.29795251560866, \"distributionAdjustmentProof\": \"preuves/wfns-dividend/github-qualification/wfns-result.json ; preuves/wfns-dividend/github-qualification/wfns-status.json ; WFNS-DIVIDENDE.md\"}",
+        "route": "{\"id\": \"etf_financials\", \"isin\": \"IE00BJ5JP097\", \"currency\": \"USD\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits\", \"https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true\"], \"start\": \"2021-05\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2022-12\", \"end\": \"2023-12\"}, \"windowReturn\": 17.29795251560866}",
         "secured": "série de cotation ajustée réparée sur preuve officielle",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -459,7 +459,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
@@ -504,7 +504,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
@@ -549,7 +549,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
@@ -594,7 +594,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
@@ -639,7 +639,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72"
@@ -684,7 +684,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
@@ -729,7 +729,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
@@ -774,7 +774,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
@@ -819,7 +819,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
@@ -864,7 +864,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "{\"source\": \"Euronext XPAR\", \"currency\": \"EUR\", \"adjusted\": \"Y\", \"closes\": {\"2024-12-31\": 37.772, \"2025-12-31\": 48.552}, \"returnPct\": 28.539659006671613, \"proof\": \"preuves/recherche-voies/euronext-bornes-rendues.json\"}",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1065,7 +1065,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1110,7 +1110,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
@@ -1155,7 +1155,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://api.primary.21shares.com/api/product_valuation_history/ABTC"
@@ -1200,7 +1200,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1245,7 +1245,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "{\"source\": \"Euronext XPAR\", \"currency\": \"EUR\", \"adjusted\": \"Y\", \"closes\": {\"2024-12-31\": 17.635, \"2025-12-31\": 24.316}, \"returnPct\": 37.88488800680463, \"proof\": \"preuves/recherche-voies/euronext-bornes-rendues.json\"}",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1329,7 +1329,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1"
@@ -1374,7 +1374,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1415,11 +1415,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de NUKL.DE (XETR) aux 2024-12-30/2025-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.54559062 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE000M7V94E1\", \"isin\": \"IE000M7V94E1\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2023-03\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 51.50186393895111}",
-        "secured": "ancienne cotation encore consommée ; cause à investiguer",
+        "route": "{\"id\": \"etfIE000M7V94E1\", \"isin\": \"IE000M7V94E1\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/uk/en/investments/nuclear-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2023-03\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 49.34816504862069}",
+        "secured": "voie NAV exacte distincte qualifiée ; preuve fournisseur GitHub ; publication vérifiée séparément",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf"
@@ -1464,7 +1464,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1509,7 +1509,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1554,7 +1554,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -1599,7 +1599,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1644,7 +1644,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1689,7 +1689,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1734,7 +1734,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1775,11 +1775,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de ESP0.DE (XETR) aux 2019-12-30/2020-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer -3.37259087 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00BYWQWR46\", \"isin\": \"IE00BYWQWR46\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/ESP0.DE?period1=1561939200&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/ESP0.DE?period1=1561939200&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2019-07\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2019-12\", \"end\": \"2020-12\"}, \"windowReturn\": 65.72735549132945}",
-        "secured": "ancienne cotation encore consommée ; cause à investiguer",
+        "route": "{\"id\": \"etfIE00BYWQWR46\", \"isin\": \"IE00BYWQWR46\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/uk/en/investments/esports-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2019-07\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2019-12\", \"end\": \"2020-12\"}, \"windowReturn\": 68.14275802779528}",
+        "secured": "voie NAV exacte distincte qualifiée ; preuve fournisseur GitHub ; publication vérifiée séparément",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf"
@@ -1824,7 +1824,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1869,7 +1869,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1914,7 +1914,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -1959,7 +1959,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2000,11 +2000,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de GDIG.MI (ETFP) aux 2018-12-28/2019-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer -3.52321293 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 29.816033490126227}",
+        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 29.816033490126227}",
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
@@ -2045,11 +2045,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de GDIG.MI (ETFP) aux 2020-12-30/2021-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer -0.33076567 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2020-12\", \"end\": \"2021-12\"}, \"windowReturn\": 19.05454573220309}",
+        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2020-12\", \"end\": \"2021-12\"}, \"windowReturn\": 19.05454573220309}",
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
@@ -2090,11 +2090,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de GDIG.MI (ETFP) aux 2024-12-30/2025-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.15163231 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 68.44269491177263}",
+        "route": "{\"id\": \"etfIE00BDFBTQ78\", \"isin\": \"IE00BDFBTQ78\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/DK/en/investments/mining-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2018-06\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 68.44269491177263}",
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
@@ -2135,11 +2135,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de JEDI.MI (ETFP) aux 2024-12-30/2025-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 3.64245835 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE000YU9K6K2\", \"isin\": \"IE000YU9K6K2\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/JEDI.MI?period1=1664582400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/JEDI.MI?period1=1664582400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2022-10\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 76.1962447001817}",
-        "secured": "ancienne cotation encore consommée ; cause à investiguer",
+        "route": "{\"id\": \"etfIE000YU9K6K2\", \"isin\": \"IE000YU9K6K2\", \"currency\": \"EUR\", \"basis\": \"fund-nav-total-return\", \"sourceUrls\": [\"https://www.vaneck.com/uk/en/investments/space-etf/\", \"https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI\", \"https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI\", \"https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI\", \"https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI\", \"https://www.vaneck.com/static/eu/js/dist/main.js\", \"https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/\", \"https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml\"], \"start\": \"2022-10\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"fund-nav-total-return\", \"start\": \"2024-12\", \"end\": \"2025-12\"}, \"windowReturn\": 73.26819596938567}",
+        "secured": "voie NAV exacte distincte qualifiée ; preuve fournisseur GitHub ; publication vérifiée séparément",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf"
@@ -2184,7 +2184,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2229,7 +2229,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2274,7 +2274,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2319,7 +2319,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2364,7 +2364,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
@@ -2409,7 +2409,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
@@ -2454,7 +2454,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/"
@@ -2499,7 +2499,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2579,11 +2579,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de IUS3.DE (XETR) aux 2022-12-30/2023-12-29, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.08649216 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00B2QWCY14\", \"isin\": \"IE00B2QWCY14\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2022-12\", \"end\": \"2023-12\"}, \"windowReturn\": 13.50156010670387}",
+        "route": "{\"id\": \"etfIE00B2QWCY14\", \"isin\": \"IE00B2QWCY14\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2022-12\", \"end\": \"2023-12\"}, \"windowReturn\": 13.501548516015148}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2624,11 +2624,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de IUS3.DE (XETR) aux 2023-12-29/2024-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer -1.87777942 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00B2QWCY14\", \"isin\": \"IE00B2QWCY14\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 12.835146763993755}",
+        "route": "{\"id\": \"etfIE00B2QWCY14\", \"isin\": \"IE00B2QWCY14\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 12.835158286630065}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2673,7 +2673,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2718,7 +2718,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2763,7 +2763,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2808,7 +2808,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2853,7 +2853,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2898,7 +2898,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
@@ -2943,7 +2943,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
@@ -2988,7 +2988,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
@@ -3033,7 +3033,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
@@ -3078,7 +3078,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -3119,11 +3119,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de XDJE.DE (XETR) aux 2018-12-28/2019-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer -2.63519092 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfLU1875395870\", \"isin\": \"LU1875395870\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2018-12\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 16.82372938339165}",
+        "route": "{\"id\": \"etfLU1875395870\", \"isin\": \"LU1875395870\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2018-12\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 16.823712987448047}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium"
@@ -3168,7 +3168,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
@@ -3213,7 +3213,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30"
@@ -3254,11 +3254,11 @@
       "missingPiece": "HSBC: série quotidienne de la part exacte IE00B4K6B022 sur décembre 2023 et décembre 2024, avec devise, distributions/ajustements et dates de valeur ; les documents annuels disponibles ne donnent pas ces deux bornes. Clôtures officielles 50E.PA 2023-12-29/2024-12-31 également absentes.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfIE00B4K6B022\", \"isin\": \"IE00B4K6B022\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 14.482925672800917}",
+        "route": "{\"id\": \"etfIE00B4K6B022\", \"isin\": \"IE00B4K6B022\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2023-12\", \"end\": \"2024-12\"}, \"windowReturn\": 14.4829149858678}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "False",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid"
@@ -3303,7 +3303,7 @@
         "secured": "voie NAV exacte distincte qualifiée",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy"
@@ -3348,7 +3348,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -3393,7 +3393,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -3438,7 +3438,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99"
@@ -3483,7 +3483,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -3528,7 +3528,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -3573,7 +3573,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33"
@@ -3618,7 +3618,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334"
@@ -3663,7 +3663,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -3708,7 +3708,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -3753,7 +3753,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557"
@@ -3798,7 +3798,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
@@ -3843,7 +3843,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10"
@@ -3888,7 +3888,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
@@ -3933,7 +3933,7 @@
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664"
@@ -3974,11 +3974,11 @@
       "missingPiece": "Confirmation officielle des clôtures et de la devise historique de EXH8.DE (XETR) aux 2018-12-28/2019-12-30, et facteurs officiels des opérations de cette fenêtre ; résidu à expliquer 2.44422892 pp après la convention BCE existante.",
       "resolutionEvidence": null,
       "currentConsumer": {
-        "route": "{\"id\": \"etfEuropeRetail\", \"isin\": \"DE000A0H08P6\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 40.69473388793929}",
+        "route": "{\"id\": \"etfEuropeRetail\", \"isin\": \"DE000A0H08P6\", \"currency\": \"EUR\", \"basis\": null, \"sourceUrls\": [\"https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits\", \"https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits\"], \"start\": \"2015-01\", \"end\": \"2026-09\", \"window\": {\"qualified\": true, \"convention\": \"adjusted\", \"start\": \"2018-12\", \"end\": \"2019-12\"}, \"windowReturn\": 40.69479299651289}",
         "secured": "ancienne cotation encore consommée ; cause à investiguer",
         "dailyEvidence": "True",
         "officialCloseCheck": "",
-        "proof": "reports/reliquat-79-2026-10-23/reconciliation-79-ecarts.csv"
+        "proof": "reports/vaneck-nav-remainder-2026-10-23/etat-79/reconciliation-79-ecarts.csv"
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
