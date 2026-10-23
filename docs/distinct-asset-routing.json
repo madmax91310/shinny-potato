@@ -380,10 +380,7 @@
       ],
       "duel": false,
       "qualification": {
-        "completeYears": [
-          2024,
-          2025
-        ],
+        "completeYears": [],
         "minimumDuel": 3,
         "minimumGenerator": 6,
         "reason": "Historique de la part trop court pour les duels et le générateur"
@@ -395,7 +392,7 @@
       "compositionOnly": false,
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
         "field": "monthly",
         "tools": [
           "portfolio-generator"

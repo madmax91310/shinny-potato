@@ -47,7 +47,7 @@
         "seriesFile": "series/32.json"
       }
     ],
-    "generatedAt": "2026-10-23T13:13:32.084502+00:00",
+    "generatedAt": "2026-10-23T20:19:49.325325+00:00",
     "calendarFrom": "2026-07-13",
     "calendarThrough": "2027-01-01",
     "calendars": {
@@ -3536,8 +3536,8 @@
     "status": {
       "ECB": {
         "ok": true,
-        "asOf": "2026-10-22",
-        "attemptedAt": "2026-10-23T13:13:32.084502+00:00"
+        "asOf": "2026-10-23",
+        "attemptedAt": "2026-10-23T20:19:49.325325+00:00"
       },
       "IE00B5BMR087-XLON-CSPX-USD": {
         "ok": true,
@@ -3627,11 +3627,12 @@
         "2026-10-19",
         "2026-10-20",
         "2026-10-21",
-        "2026-10-22"
+        "2026-10-22",
+        "2026-10-23"
       ],
       "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
       "convention": "currency per EUR; ECB reference, not closing FX",
-      "validThrough": "2026-10-22",
+      "validThrough": "2026-10-23",
       "rates": {
         "2026-10-21": {
           "USD": 1.1234,
@@ -6159,10 +6160,41 @@
           "THB": 37.811,
           "ZAR": 18.5058,
           "TWD": 36.425214000000004
+        },
+        "2026-10-23": {
+          "USD": 1.1193,
+          "JPY": 175.51,
+          "CZK": 24.327,
+          "DKK": 7.4748,
+          "GBP": 0.83728,
+          "HUF": 366.73,
+          "PLN": 4.3945,
+          "RON": 5.3492,
+          "SEK": 11.131,
+          "CHF": 0.9227,
+          "ISK": 136.2,
+          "NOK": 10.4665,
+          "TRY": 55.6715,
+          "AUD": 1.5939,
+          "BRL": 5.6485,
+          "CAD": 1.5665,
+          "CNY": 7.466,
+          "HKD": 8.7793,
+          "IDR": 20268.06,
+          "ILS": 3.4939,
+          "INR": 106.272,
+          "KRW": 1482.46,
+          "MXN": 21.0226,
+          "MYR": 4.5729,
+          "NZD": 1.9682,
+          "PHP": 71.235,
+          "SGD": 1.431,
+          "THB": 37.771,
+          "ZAR": 18.5777
         }
       },
-      "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
-      "retrievedAt": "2026-10-23T13:13:32.084502+00:00",
+      "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+      "retrievedAt": "2026-10-23T20:19:49.325325+00:00",
       "observations": [
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -6192,10 +6224,10 @@
         },
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
-          "retrievedAt": "2026-10-23T13:13:32.084502+00:00",
-          "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
+          "retrievedAt": "2026-10-23T20:19:49.325325+00:00",
+          "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
           "from": "2026-07-06",
-          "through": "2026-10-22"
+          "through": "2026-10-23"
         }
       ],
       "supplementalGaps": {
@@ -6806,7 +6838,7 @@
       },
       "XMIL": {
         "from": "2026-07-13",
-        "through": "2027-01-01"
+        "through": "2026-12-31"
       },
       "XETR": {
         "from": "2026-07-13",
@@ -6887,12 +6919,9 @@
     },
     "collection": {
       "required": [
-        "IE00B4L5Y983-ETFP",
         "IE00B5BMR087-XLON-CSPX-USD"
       ],
-      "requested": [
-        "IE00B4L5Y983-ETFP"
-      ],
+      "requested": [],
       "reused": [
         "IE00B5BMR087-XLON-CSPX-USD"
       ]
@@ -6906,7 +6935,7 @@
   "state": {
     "version": 1,
     "revision": 0,
-    "generatedAt": "2026-10-23T13:13:32.084502+00:00",
+    "generatedAt": "2026-10-23T20:19:49.325325+00:00",
     "asOf": "2026-10-22",
     "daily": {},
     "weekly": {},
@@ -6975,7 +7004,7 @@
   "catalogue": {
     "url": "catalogue.json",
     "count": 24975,
-    "revision": "2026-10-23T13:13:32.084502+00:00"
+    "revision": "2026-10-23T20:19:49.325325+00:00"
   },
   "sourceRevisionCount": 1881
 }

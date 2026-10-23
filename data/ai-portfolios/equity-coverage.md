@@ -1,6 +1,6 @@
 # Actions internationales — Portefeuilles IA
 
-Généré : 2026-10-23T10:40:06.930322+00:00
+Généré : 2026-10-23T20:20:02.746827+00:00
 Actions qualifiées : 18221 ; référence avant chantier : 281 ; nouveaux instruments qualifiés : 17950.
 
 
