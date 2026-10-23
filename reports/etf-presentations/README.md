@@ -53,4 +53,4 @@ La matrice fournit la liste fermée des 258 fiches avec les champs encore bloqu�
 
 Il reste à obtenir ou qualifier des preuves officielles explicites des champs signalés, compléter les comptages publiés par les autres émetteurs et qualifier les calendriers annuels officiels manquants. Les sources secondaires documentées ne sont pas effacées, mais ne suffisent pas à valider la demande de preuve officielle. La tentative complémentaire sur l’API régionale française BlackRock a retourné HTTP 503 ; la page produit française accessible laisse notamment le champ PEA à « - », ce qui n’est pas une déclaration négative.
 
-La PR doit rester un **brouillon avec certification incomplète**, sans fusion ni déploiement dans le cadre de cette demande.
+La livraison initiale a été préparée en brouillon, avec certification incomplète. L’utilisateur a ensuite autorisé explicitement la fusion et le déploiement. Cette autorisation ne change pas les réserves financières de la matrice.

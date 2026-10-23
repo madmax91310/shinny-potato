@@ -577,9 +577,9 @@ async function testEtfSheets(page) {
     const card = getPresentationCopy(ETFS.find(item => item.id === selectedId));
     if (!text.includes(card.hook)) badCount++;
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
-    if (accounts.includes('PEA') !== (card.pea === true)) badCount++;
+    if (accounts.includes('PEA') !== (typeof card.pea === 'boolean')) badCount++;
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
-    const sectionLabels = ['🔍 Ce que tu achètes', '✅ L’intérêt de cette exposition', '⚠️ Ce qu’il faut garder en tête'];
+    const sectionLabels = ['🔍 Ce que tu achètes', '✅ Pourquoi s’y intéresser ?', '⚠️ Le point de vigilance'];
     const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])];
     if (!explanations.every(value => value && text.includes(value))
       || !sectionLabels.every(label => text.includes(label))) badCount++;
@@ -591,7 +591,7 @@ async function testEtfSheets(page) {
       || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
-      || !copied.endsWith('💬 ' + card.question)
+      || !copied.endsWith('💬 ' + card.question + '\n\nPas un conseil financier.')
       || /undefined|NaN/.test(copied)) badCount++;
     if (card.lastVerified === '15/10/2026' || card.lastVerified === '01/10/2026' || card.id.startsWith('lifestrategy')) {
       for (const buttonName of ['🖼️ Image récapitulative']) {

@@ -24,7 +24,15 @@ for (const [isin, record] of Object.entries(capture.records)) {
   // The retained 2026-10-03 document proves its own historical policy;
   // current issuer observations are checked separately by the overlay above.
   assert(basics.includes(`Distribution policy ${record.facts.incomePolicy === 'accumulating' ? 'Accumulating' : 'Distributing'}`));
-  assert.equal(facts.positionsAsOf, null); assert(facts.positionsLabel.startsWith('Exposition suivie :'));
+  assert.equal(record.facts.positionsAsOf, null, 'La photographie historique reste inchangée');
+  const count = AUTOMATED_ETF[isin]?.metrics?.numHoldings;
+  if (count) {
+    assert.equal(facts.positionsAsOf, count.asOf);
+    assert(facts.positionsLabel.includes(count.value.toLocaleString('fr-FR')));
+  } else {
+    assert.equal(facts.positionsAsOf, null);
+    assert(facts.positionsLabel.startsWith('Exposition suivie :'));
+  }
   assert(card.hook && card.whatIs && card.whyInteresting && card.whatToKnow && card.question);
   assert(buildText(card).startsWith(getPresentationCopy(card).hook + '\n'));
   assert(!/undefined|NaN/.test(buildText(card)));
@@ -46,7 +54,8 @@ for (const card of ETFS) {
   assert(buildText(card).includes(card.isin), card.id);
   assert(buildText(card).startsWith(copy.hook + '\n\n'));
 }
-assert(!buildText(ETFS.find(card => card.isin === 'FR001400U5Q4')).includes('DCAM'));
+const world = ETFS.find(card => card.isin === 'FR001400U5Q4');
+assert(buildText(world).includes(`(${world.listing.ticker})`), 'La présentation garde le ticker de la cotation sélectionnée');
 assert(buildText(ETFS.find(card => card.id === 'ia')).includes('AIAI'));
 assert.match(buildText(ETFS.find(card => card.id === 'pea_global_amundi')), /MSCI ACWI/);
 assert(!buildText(ETFS.find(card => card.id === 'pea_global_amundi')).includes('Amundi PEA Monde'));
