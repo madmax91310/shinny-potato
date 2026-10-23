@@ -19231,12 +19231,12 @@
     "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 9404324826.3,
+      "amount": 9285370237.62,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "checkedAt": "2026-10-23",
-      "modifiedAt": "2026-10-22"
+      "modifiedAt": "2026-10-23"
     },
     "sectors": {
       "asOf": "2026-10-22",
@@ -20081,52 +20081,52 @@
         {
           "name": "GOLDMAN SACHS GROUP INC 3.5 01/23/2033",
           "isin": "XS2983840518",
-          "weightPct": 0.126182
+          "weightPct": 0.126173
         },
         {
           "name": "JPMORGAN CHASE & CO 3.761 03/21/2034",
           "isin": "XS2791972248",
-          "weightPct": 0.119203
+          "weightPct": 0.119194
         },
         {
           "name": "GOLDMAN SACHS GROUP INC 3.643 07/22/2030",
           "isin": "XS3447651202",
-          "weightPct": 0.118575
+          "weightPct": 0.118567
         },
         {
           "name": "AMAZON.COM INC 3.1 03/16/2030",
           "isin": "XS3305168794",
-          "weightPct": 0.118443
+          "weightPct": 0.118434
         },
         {
           "name": "JPMORGAN CHASE & CO 1.963 03/23/2030",
           "isin": "XS2461234622",
-          "weightPct": 0.114984
+          "weightPct": 0.114975
         },
         {
           "name": "HEIMSTADEN BOSTAD TRESRY 1 04/13/2028",
           "isin": "XS2397252102",
-          "weightPct": 0.113826
+          "weightPct": 0.113817
         },
         {
           "name": "MORGAN STANLEY 0.495 10/26/2029",
           "isin": "XS2250008245",
-          "weightPct": 0.111706
+          "weightPct": 0.111698
         },
         {
           "name": "ORANGE SA 0.5 09/04/2032",
           "isin": "FR0013444684",
-          "weightPct": 0.108645
+          "weightPct": 0.108637
         },
         {
           "name": "BPCE SA 5.125 01/25/2035",
           "isin": "FR001400FB22",
-          "weightPct": 0.108613
+          "weightPct": 0.108605
         },
         {
           "name": "UBS GROUP AG 3.25 02/12/2034",
           "isin": "CH1414003462",
-          "weightPct": 0.106524
+          "weightPct": 0.106516
         }
       ],
       "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sybc-gy.xlsx",
@@ -21758,15 +21758,16 @@
       "checkedAt": "2026-10-23"
     },
     "aum": {
-      "amount": 15859699160.3924,
-      "currency": "USD",
+      "amount": 12020000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-21",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "3a65862fb1d2da5ab3dd789f2cf6693ced156c7ac62d1aebfd505df4c873fb7a",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+      "sha256": "56ea3dc0816cdcca258b70489c26aec5b1c811350220b0c9bfd74a702e8ed522",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "12.02 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -21984,15 +21985,16 @@
       "modifiedAt": "2026-10-22"
     },
     "aum": {
-      "amount": 8205976973.44,
-      "currency": "USD",
+      "amount": 6140000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "422df237192c55e4e679326ed4b7514ff7fcab6b73660b2ec40b110d155a514f",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+      "sha256": "ce0ee2e7cc9331fdb76efb171607ee950fd98097953793ce46d8a6d0c7dae740",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "6.14 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -22349,15 +22351,16 @@
       "checkedAt": "2026-10-23"
     },
     "aum": {
-      "amount": 24743811963.65,
-      "currency": "EUR",
+      "amount": 20730000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "f7d284bd313a1e81f2f977b2f5b5722451ce899fc860ac5d34e3fe53ccce7731",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+      "sha256": "8d2b1e89efaa4e1ad145963135d95f7a9f61271e7edf7c485a121d3505c3a936",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "20.73 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -22410,15 +22413,16 @@
       "modifiedAt": "2026-10-16"
     },
     "aum": {
-      "amount": 204918640.31,
-      "currency": "USD",
+      "amount": 153330000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "fbfcfb71ca3ac6b4892c7dd837366fa2c4f439577843ec0010bad87dd42d4b9d",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "sha256": "de80225a5f5038581323334b5aa4eb6dad76cf65bf42b861dc31d2a9d146e507",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "153.33 M GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -22854,15 +22858,16 @@
       "checkedAt": "2026-10-23"
     },
     "aum": {
-      "amount": 9055342175.48,
-      "currency": "USD",
+      "amount": 6780000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "2f2ea0fc37876e312c91341eaea5f1c0a7a6770152bc52440b3cc446adf1daa4",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+      "sha256": "ed507bf0197ecfca13ef9d18611752df26df1e8011268ba2041eca3c8ca5ee8c",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "6.78 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -23102,15 +23107,16 @@
       "modifiedAt": "2026-10-22"
     },
     "aum": {
-      "amount": 4401093596.89,
-      "currency": "USD",
+      "amount": 3290000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-      "sha256": "92a10d247b6c412cfb667995abba19e5ad8b3d5c77a325cfd8ca9178b922f69d",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+      "sha256": "1c41aa31bc706dcc9caf2978195d4c65203cca136451807abbc8087ee23082bc",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "3.29 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -23401,15 +23407,16 @@
       "modifiedAt": "2026-10-22"
     },
     "aum": {
-      "amount": 776196881.44,
-      "currency": "USD",
+      "amount": 580790000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "1ab5d7aaefee8e17f6902f356a870aee1ffda95ebc4422954732a515ed7cb7aa",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+      "sha256": "fae325cb8b396b2ff87d9e108625bc915cd1aa526fcce2929efb8a0826c6b308",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "580.79 M GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -23670,15 +23677,16 @@
       "checkedAt": "2026-10-23"
     },
     "aum": {
-      "amount": 14356320880.58,
-      "currency": "USD",
+      "amount": 10730000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-21",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/historicaldata/download",
-      "sha256": "6a380199441e569df4418379d8a0284f37cc5882740646f970365199df0da5cd",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "sha256": "0711f2c0682134785f0ecf4c29294aa440b457a0035137093140a980ddc74f75",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "10.73 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -24039,15 +24047,16 @@
       "checkedAt": "2026-10-23"
     },
     "aum": {
-      "amount": 2688334933.89177,
-      "currency": "EUR",
+      "amount": 2250000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "82e928b33a60d96ffdec1ec9c1ff7c9c6bbc3bafe5a98f45a48ec2fb8aff9156",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+      "sha256": "68cb19a030d6467877a5e5723084d55e2637390e8f4642efab4f5e9f1a6fc002",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "2.25 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -24257,15 +24266,16 @@
       "modifiedAt": "2026-10-22"
     },
     "aum": {
-      "amount": 473294549121.443,
-      "currency": "JPY",
+      "amount": 2250000000.0,
+      "currency": "GBP",
       "scope": "fund",
       "asOf": "2026-10-22",
-      "exportDate": "2026-10-23",
-      "exportTimezone": "Europe/Berlin",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "cb92b7ecee1b9945378b3036dc7c3d5dea96b053020a0396392d684b00272082",
-      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "sha256": "d6cb04af1d2fd0a100d3cc20cadf5c107275dbad9aa5ce83613e67a08a32a138",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "2.25 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -26641,7 +26651,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-      "sha256": "a89605e1927df6fcc8ce4fcca3c8f12b14c5efd279cac0233597c0c3f5f6ab7c",
+      "sha256": "f6e61fc5e9518347be4c773f63e38bf8adfc090ab5f7f7cad983a7897697c095",
       "months": {
         "2026-09": 0.55
       },
@@ -26649,7 +26659,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-          "sha256": "a89605e1927df6fcc8ce4fcca3c8f12b14c5efd279cac0233597c0c3f5f6ab7c",
+          "sha256": "f6e61fc5e9518347be4c773f63e38bf8adfc090ab5f7f7cad983a7897697c095",
           "checkedAt": "2026-10-23",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -33490,7 +33500,7 @@
       },
       "asOf": "2026-10-22",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "fc2fe759ddf17f901884853d87a319e76f13ce5e767187888e514721acae21f3",
+      "sha256": "006ff050ce1ea9319dba8b5ee2e21b50e940046e8afd7a9ec7f69eff7082d8bc",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -34880,14 +34890,14 @@
       "scope": "share-class",
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f3ed62b78367926c9157b1b3e14322b99aaa8cf9b777b800bffe25d5d9fcc7cd",
+      "sha256": "f84550bff97b2c99f02e018689a8f2835b021f107ac01354bf76c1fe1cffa9ad",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f3ed62b78367926c9157b1b3e14322b99aaa8cf9b777b800bffe25d5d9fcc7cd",
+      "sha256": "f84550bff97b2c99f02e018689a8f2835b021f107ac01354bf76c1fe1cffa9ad",
       "terPct": 2.0,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -34904,7 +34914,7 @@
       },
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f3ed62b78367926c9157b1b3e14322b99aaa8cf9b777b800bffe25d5d9fcc7cd",
+      "sha256": "f84550bff97b2c99f02e018689a8f2835b021f107ac01354bf76c1fe1cffa9ad",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -35616,14 +35626,14 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+      "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+      "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
       "terPct": 0.45,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -35634,7 +35644,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+        "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
         "evidence": [
           "Performance History",
           "USD Accumulating",
@@ -35678,7 +35688,7 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+        "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
         "evidence": []
       },
       "holdings": {
@@ -35686,7 +35696,7 @@
         "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+        "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 21 Oct 2026",
@@ -35760,7 +35770,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "595d6d397e678c558d228e098fbc2a718ae4ccf7e75dfff04abb154ea14b3b52",
+        "sha256": "0e70e609e3e33c9f62bb1bd419572b489ea333d33df2b64203cdd56b66d468a2",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 30 Sep 2026",
@@ -35833,7 +35843,7 @@
       },
       "asOf": "2026-10-22",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "dc1135e9788befeb2f0b34fd4f2e2cf1301394078ce0e970f9e8f89aea0e6087",
+      "sha256": "f67984458b80b71cb6fd515e95523aa467edc8e6f9cbd9b94966387e22aa6c41",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -35879,7 +35889,7 @@
       },
       "asOf": "2026-10-22",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "05d0962dcf3dd31917df07a0680a8af4ff9e76f71be2f1d8cd72598cdf24876f",
+      "sha256": "c2f194a4955853032840d9e0ebcc3b06823ce805907f80e861adbaf5af550f57",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -38110,7 +38120,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "e0949e0ebaa4039c096ca65b60203dbd13e27babb873216091b67924c5dffcc2",
+      "sha256": "dedadce0372361f4182f1dfc745084a93f6025994548cdf85b55e4507ae4ef23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -38130,7 +38140,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "e0949e0ebaa4039c096ca65b60203dbd13e27babb873216091b67924c5dffcc2",
+      "sha256": "dedadce0372361f4182f1dfc745084a93f6025994548cdf85b55e4507ae4ef23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -38188,7 +38198,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "e0949e0ebaa4039c096ca65b60203dbd13e27babb873216091b67924c5dffcc2",
+      "sha256": "dedadce0372361f4182f1dfc745084a93f6025994548cdf85b55e4507ae4ef23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -38238,14 +38248,14 @@
       "asOf": "2026-10-22",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "e0949e0ebaa4039c096ca65b60203dbd13e27babb873216091b67924c5dffcc2",
+      "sha256": "dedadce0372361f4182f1dfc745084a93f6025994548cdf85b55e4507ae4ef23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "e0949e0ebaa4039c096ca65b60203dbd13e27babb873216091b67924c5dffcc2",
+      "sha256": "dedadce0372361f4182f1dfc745084a93f6025994548cdf85b55e4507ae4ef23",
       "terPct": 0.55,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -38543,7 +38553,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
-      "sha256": "dfb78f767ec46d31ecf91cc56ba2b6fafbc50369d5ec6aa057c2700127998cdc",
+      "sha256": "d732d53beb2c2b5b67d26953c6fa11a74a5e615b5f58c5480316cf3974d55295",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "1.00 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -38810,7 +38820,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-      "sha256": "ce6687eab86eedf18df16dc290c003b30e5d071534200fb5a4741ec09bffe5fb",
+      "sha256": "dbcd8662b7b3d1f0af436c78ffd6fbbd8cdcbfe95613afdb3fc9dd1a5cd0a1c2",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "705.12 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -39247,14 +39257,14 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+      "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+      "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
       "terPct": 0.65,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -39265,7 +39275,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+      "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -39301,7 +39311,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-          "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+          "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
           "checkedAt": "2026-10-23",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -39347,7 +39357,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+      "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -39397,7 +39407,7 @@
       "asOf": "2026-10-22",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+      "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -39406,7 +39416,7 @@
         "status": "not-published",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "48e43dedb6c242db3309283a79f0bd0baac17912cedb8ce5dcddae5ccce1f102",
+        "sha256": "923f2d0e101224499a9169eb4b56ab7a5b0b19621b5463ef7db206d97d1db9f7",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
