@@ -22,24 +22,41 @@ def main():
     from refresh_additional_etf import collect_one as additional
     from collect_exposure_expansion import collect as expansion
     from collect_non_bond_expansion import collect_one as nonbond
-    from collect_amundi_etf import collect as amundi
+    import collect_amundi_etf as amundi_module
+    real_amundi=amundi_module.fetch_api
+    def captured_amundi(payload):
+        value=real_amundi(payload)
+        data=json.dumps(value,sort_keys=True,separators=(',',':')).encode();digest=hashlib.sha256(data).hexdigest()
+        with lock:
+            (rawdir/(digest+'.gz')).write_bytes(gzip.compress(data,mtime=0))
+            manifest.append({'sourceUrl':amundi_module.API,'sha256':digest,'request':payload,'retrievedAt':dt.datetime.now(dt.timezone.utc).isoformat()})
+        return value
+    amundi_module.fetch_api=captured_amundi
+    def amundi(config,now):return amundi_module.collect(config,now,fetch=captured_amundi)
+    from collect_qualified_exposures import collect_one as qualified
     from collect_etf_pilot import collect as ishares
     from collect_ssga_etf import collect as ssga
     from market_transport import chart_response
     from refresh_monthly_history import yahoo_chart
     original=json.loads((ROOT/'reports/reliquat-2026-10-23/reconciliation-90-ecarts.json').read_text())['cases']
+    def share_result(report):
+        if report.get('failures'):raise ValueError(json.dumps(report['failures'],ensure_ascii=False))
+        if len(report.get('shares',[]))!=1:raise ValueError('Official response has no unique exact-share record')
+        return report['shares'][0]
     configs={}
-    for file,adapter in [('etf-pilot.json',lambda s,n:ishares({'instruments':[s]},{},n)['shares'][0]),
-                         ('ssga-etf.json',lambda s,n:ssga({'instruments':[s]},n)['shares'][0]),
-                         ('amundi-etf.json',lambda s,n:amundi({'instruments':[s]},n)['shares'][0]),
+    for file,adapter in [('etf-pilot.json',lambda s,n:share_result(ishares({'instruments':[s]},{s['isin']:{}},n))),
+                         ('ssga-etf.json',lambda s,n:share_result(ssga({'instruments':[s]},n))),
+                         ('amundi-etf.json',lambda s,n:share_result(amundi({'instruments':[s]},n))),
                          ('additional-etf-sources.json',additional),('exposure-etf-expansion.json',expansion),
-                         ('non-bond-expansion-sources.json',nonbond)]:
+                         ('non-bond-expansion-sources.json',nonbond),('qualified-exposure-sources.json',qualified)]:
         for s in json.loads((ROOT/'scripts'/file).read_text())['instruments']:configs[s['isin']]=(s,adapter)
     now=dt.datetime.now(transport.UTC)
     def one(isin):
         cases=[r for r in original if r['isin']==isin];result={'isin':isin,'attemptedAt':now.isoformat()}
         try:
-            source,adapter=configs[isin];value=adapter(source,now)
+            source,adapter=configs[isin]
+            source={**source,'currency':source.get('currency',cases[0]['navCurrency'])}
+            value=adapter(source,now)
             if value.get('isin')!=isin and value.get('productId')!=isin:raise ValueError('Unbound official share identity')
             performance=value.get('performance')
             if not performance or not performance.get('years'):raise ValueError('No qualified exact-share official calendar')
