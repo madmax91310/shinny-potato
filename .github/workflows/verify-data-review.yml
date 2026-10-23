@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [fix/data-review-complete-20261023]
-    paths: ['scripts/verify_data_review_sources.py', '.github/workflows/verify-data-review.yml']
+    paths: ['scripts/verify_data_review_sources.py', '.github/workflows/verify-data-review.yml', 'scripts/probe_review_routes.py']
 permissions:
   contents: read
 jobs:
@@ -37,3 +37,18 @@ jobs:
           name: data-review-${{ matrix.scope }}
           path: evidence/
           retention-days: 35
+
+  routes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python scripts/probe_review_routes.py --output evidence
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: data-review-routes
+          path: evidence/
