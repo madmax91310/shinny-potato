@@ -33,6 +33,12 @@ else
   git worktree add --detach "$task_dir/checkout" "$commit"
   result=''
   for attempt in 1 2 3; do
+    if (( attempt > 1 )); then
+      # Validation can regenerate tracked artifacts in this private checkout.
+      # Retry from its committed tree, then rebase and validate the new inputs.
+      # The caller's files/index stay untouched; real data conflicts still fail.
+      git -C "$task_dir/checkout" reset --hard HEAD
+    fi
     git -C "$task_dir/checkout" fetch origin master
     remote_head=$(git -C "$task_dir/checkout" rev-parse FETCH_HEAD)
     if [[ "$remote_head" != "$base" && -z "${VALIDATED_DATA_CHECK:-}" ]]; then
