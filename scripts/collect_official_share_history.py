@@ -13,7 +13,7 @@ import pathlib
 import re
 import urllib.parse
 from bs4 import BeautifulSoup
-from data_automation import UTC, get_json, write_json_atomic
+from data_automation import UTC, get_json, get_text, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_nav_history import (blackrock_nav, calendar_checks, dws_nav, monthly,
                                 vaneck_nav, wisdomtree_identity, wisdomtree_nav)
@@ -103,10 +103,15 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         if metadata['CurrencyName']!=native or metadata['Ticker']!=ticker.get_text(strip=True):raise ValueError('Wrong VanEck NAV context')
         path=metadata['DownloadUrl']
         if not path.startswith('/ucits/investments/mining-etf/downloads/fundhistoprices/'):raise ValueError('Unexpected NAV download target')
-        facts=pdf_text(document(source['factsheetUrl']))
+        from collect_vaneck_etf import download_document
+        from issuer_routes import vaneck_factsheet_candidates
+        pdf,pdf_url=download_document({'sourceUrl':source['factsheetUrl'],'fallbackUrls':vaneck_factsheet_candidates(source['factsheetUrl'])[1:]},fetch=document_fetch)
+        urls.append(pdf_url);hashes[pdf_url]=hashlib.sha256(pdf).hexdigest()
+        if capture:(capture/(hashes[pdf_url]+'.bin.gz')).write_bytes(gzip.compress(pdf))
+        facts=pdf_text(pdf)
         if isin not in facts or not re.search(r'Income Treatment\s+Reinvestment',facts) or not re.search(r'Distribution Frequency\s+None',facts):raise ValueError('Mining income reinvestment not confirmed')
         nav=vaneck_nav(document('https://www.vaneck.com'+path),'VanEck S&P Global Mining UCITS ETF - GDIG',now)
-        row=re.search(r'^\s*VanEck S&P Global Mining UCITS ETF\s+((?:-?\d+(?:\.\d+)?\s+){6}-?\d+(?:\.\d+)?)\s*$',facts,re.M)
+        row=re.search(r'(?:^|\s)VanEck S&P Global Mining UCITS ETF\s+((?:-?\d+(?:\.\d+)?\s+){6}-?\d+(?:\.\d+)?)\s*$',facts,re.M)
         if not row:raise ValueError('Official Mining calendar layout changed')
         tokens=row[1].split();years={str(2019+i):float(v)for i,v in enumerate(tokens)}
         calendar_precision={str(2019+i):len(v.split('.')[1])if'.'in v else 0 for i,v in enumerate(tokens)};credit='VanEck'
@@ -116,9 +121,25 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     checks=calendar_checks(nav,years,calendar_precision,now,identity_from)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
+    eligible=[d for d in nav if d<now.date().isoformat()]
+    latest=max(eligible)
+    if (now.date()-dt.date.fromisoformat(latest)).days>7:raise ValueError('Official latest NAV is stale')
+    factor=1;fx_date=None
+    if native!=source['currency']:
+        if (native,source['currency'])!=('USD','EUR'):raise ValueError('Unqualified daily NAV conversion')
+        from collect_ranking_sources import ECB,ecb_daily_usd
+        xml=get_text(ECB,('application/xml','text/xml'),8_000_000)
+        rates={d.isoformat():v for d,v in ecb_daily_usd(xml).items()};fx_date=max(d for d in rates if d<=latest)
+        if (dt.date.fromisoformat(latest)-dt.date.fromisoformat(fx_date)).days>4:raise ValueError('Official daily NAV/FX dates incompatible')
+        factor=1/rates[fx_date];urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
+    latest_level={'value':nav[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
+       'parser':'official-nav','valuationBasis':source['valuationBasis'],'nativeValue':nav[latest],'nativeCurrency':native,
+       'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
+       'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
+       'maxAgeDays':7,'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
     result={**source,'points':points,'anniversaryPoints':points,'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
-            'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
+            'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
             'financialConvention':'exact-share accumulated net NAV; no exchange-price claim',
             'calendarProof':{**calendar_proof,'checks':checks},'proofRows':proof_rows,
             'responseSha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),
@@ -144,14 +165,20 @@ def main():
             results.append({'id':source['id'],'status':'failed','reason':str(error)})
             print(source['id'],'FAILED',str(error),flush=True)
     report={'checkedAt':now.isoformat(),'series':results};write_json_atomic(args.output,report)
+    if args.apply and any(r['status']=='failed'for r in results):raise SystemExit(1)
     if args.apply:
         path=ROOT/'src/data/automated-etf-monthly.json';current=json.loads(path.read_text())
         config_path=ROOT/'scripts/monthly-automation.json';config=json.loads(config_path.read_text())
         if args.migrate_quote_records:
             archive={s['id']:{'record':current[s['id']],'configuration':next(r for r in config['series']if r['id']==s['id'])}for s in sources}
             archive_path=args.output.with_name('original-exchange-quote-records.json.gz')
-            if archive_path.exists():raise ValueError('Original quote archive already exists; refuse replacement')
-            archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
+            if archive_path.exists():
+                original=json.loads(gzip.decompress(archive_path.read_bytes()))
+                for id,prior in archive.items():
+                    if prior['record']['parser']!='official-nav' and original.get(id)!=prior:
+                        raise ValueError('Existing original archive differs; refuse replacement')
+            else:
+                archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
         for row in results:
             if row['status']!='validated':continue
             id=row['id'];record={k:v for k,v in row['record'].items()if k not in ['proofRows']}

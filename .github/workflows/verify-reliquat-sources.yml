@@ -23,6 +23,11 @@ jobs:
           python-version: '3.12'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: python -m pip install beautifulsoup4
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - name: Validate four exact-share official NAV sources
         id: nav
         continue-on-error: true
@@ -31,6 +36,10 @@ jobs:
         id: ibkr
         continue-on-error: true
         run: python scripts/verify_reliquat_sources.py --output "$RUNNER_TEMP/ibkr.json"
+      - name: Validate four complete WisdomTree portfolios
+        id: holdings
+        continue-on-error: true
+        run: python scripts/collect_dca_complete_holdings.py --only IE0002Y8CX98 IE000W8WMSL2 IE00BDVPNG13 IE00BJGWQN72 --output "$RUNNER_TEMP/holdings.json"
       - name: Preserve individually validated and failed observations
         if: always()
         uses: actions/upload-artifact@v7.0.1
@@ -39,6 +48,7 @@ jobs:
           path: |
             ${{ runner.temp }}/nav.json
             ${{ runner.temp }}/ibkr.json
+            ${{ runner.temp }}/holdings.json
           retention-days: 35
       - name: Print validation evidence
         if: always()
@@ -46,7 +56,7 @@ jobs:
           python - <<'PY'
           import json,os
           from pathlib import Path
-          for name in ['nav','ibkr']:
+          for name in ['nav','ibkr','holdings']:
             p=Path(os.environ['RUNNER_TEMP'])/(name+'.json')
             if not p.exists():print(name,'NO REPORT');continue
             value=json.loads(p.read_text())
@@ -57,5 +67,5 @@ jobs:
             else:print(json.dumps(value,ensure_ascii=False))
           PY
       - name: Fail if a real-source qualification failed
-        if: always() && (steps.nav.outcome != 'success' || steps.ibkr.outcome != 'success')
+        if: always() && (steps.nav.outcome != 'success' || steps.ibkr.outcome != 'success' || steps.holdings.outcome != 'success')
         run: exit 1
