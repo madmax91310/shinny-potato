@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
-      - name: Collect both exact shares from official DWS endpoints
+      - name: Collect exact shares and explicit fund totals from official DWS endpoints
         run: |
           python - <<'PY'
           import datetime as dt, json, pathlib, sys
@@ -28,13 +28,16 @@ jobs:
           from refresh_additional_etf import refresh
           config = json.loads(pathlib.Path('scripts/additional-etf-sources.json').read_text())
           config['instruments'] = [s for s in config['instruments'] if s['isin'] in ('IE00BM67HV82', 'IE00BM67HQ30')]
-          assert len(config['instruments']) == 2
+          config['instruments'] += [s for s in json.loads(pathlib.Path('scripts/exposure-etf-expansion.json').read_text())['instruments'] if s['isin']=='IE00BK1PV551']
+          assert len(config['instruments']) == 3
           _, report = refresh(config, {}, {}, dt.datetime.now(dt.timezone.utc))
           pathlib.Path('dws-aum-validation.json').write_text(json.dumps(report, indent=2))
           for result in report['shares']:
               assert result['status'] == 'validated', result
               aum = result['record']['aum']
-              assert aum['scope'] == 'fund' and aum['currency'] == 'USD' and aum['amount'] > 0
+              assert aum['scope'] == 'fund' and aum['sourceReportedAmount'].endswith(' '+aum['currency']) and aum['amount'] > 0
+              assert aum['sourceLabel'] == 'Total AUM of fund'
+              assert result['record']['currency'] == 'USD'  # share currency remains separate
               print(result['isin'], aum)
           PY
       - name: Qualify exact iShares AUM through production collection and application
