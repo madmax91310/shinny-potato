@@ -237,6 +237,7 @@ def collect_remake(today):
     from collect_corum import bbox_pages
     data = fetch(url)
     text = pdf_text(data)
+    required(r'\bRemake\s+Live\b',text)
     record = parse_remake(html,text,url,today)
     if expected_period and record['snapshot']['asOf']!=expected_period:
         raise ValueError('Remake bulletin filename period and financial date disagree')
