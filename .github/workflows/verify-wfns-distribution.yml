@@ -1,0 +1,48 @@
+name: Verify official distribution reconciliation
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/wfns-official-distribution-20261023]
+    paths:
+      - 'scripts/qualified_distributions.py'
+      - 'scripts/refresh_monthly_history.py'
+      - 'scripts/monthly-automation.json'
+      - '.github/workflows/verify-wfns-distribution.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: python -m pip install beautifulsoup4
+      - run: python -m unittest discover -s scripts -p test_qualified_distributions.py
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+      - name: Fetch and qualify the actual shared market history
+        run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --only etf_financials --output "$RUNNER_TEMP/wfns-status.json" --apply
+      - name: Preserve the actual consumed result and its proof
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.load(open('src/data/automated-etf-monthly.json'))['etf_financials']
+          e=json.load(open('scripts/source-snapshots/monthly-automated.json'))['etf_financials']
+          p=Path(os.environ['RUNNER_TEMP'])/'wfns-result.json';p.write_text(json.dumps({'record':r,'evidence':e},ensure_ascii=False))
+          print(json.dumps({'proof':r.get('distributionAdjustmentProof'),'months':len(r['points'])},ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: qualified-wfns-distribution
+          path: |
+            ${{ runner.temp }}/wfns-result.json
+            ${{ runner.temp }}/wfns-status.json
+          retention-days: 35

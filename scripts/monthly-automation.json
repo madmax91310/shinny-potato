@@ -1011,7 +1011,15 @@
       "mic": "XAMS",
       "listingEvidenceId": "IE00BJ5JP097-XAMS-WFNS-USD",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "timezone": "Europe/Amsterdam"
+      "timezone": "Europe/Amsterdam",
+      "distributionEvidence": {
+        "path": "reports/reliquat-2026-10-23/preuves/IE00BJ5JP097-blackrock.json.gz",
+        "sha256": "bf7fb9adf6223c3e155a0f6f4a8b29c3e926af227320fed9fd2ffe4bf9408b04",
+        "metadataPath": "reports/reliquat-2026-10-23/preuves/blackrock-collectes.json",
+        "dates": [
+          "2023-06-15"
+        ]
+      }
     },
     {
       "id": "etf_gold_miners",
