@@ -135,22 +135,38 @@
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
       "name": "ETF et compositions d’indices",
-      "runId": 39937623223,
+      "runId": 40011202978,
       "attempt": 1,
-      "headSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588",
-      "createdAt": "2026-10-23T10:13:58Z",
-      "completedAt": "2026-10-23T11:36:53Z",
-      "status": "success",
+      "headSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
+      "createdAt": "2026-10-23T19:24:46Z",
+      "completedAt": "2026-10-23T20:25:49Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-23T11:36:53Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "success",
+      "recordingStatus": "failure",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-23T11:36:53Z",
       "lastPublicationSuccessAt": "2026-10-23T08:04:14.843Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937623223",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-observation-IE00B5BMR087": {
+          "name": "ETF IE00B5BMR087",
+          "completedAt": "2026-10-23T20:25:49Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+          "cause": "Incomplete allocation"
+        }
+      }
     },
     "update-economic-data.yml": {
       "monitorVersion": 2,
@@ -4243,11 +4259,11 @@
       "publishedDataSha": "cc1db76dff189938a87321fd1ddc027666942651"
     }
   },
-  "updatedAt": "2026-10-23T18:32:00Z",
+  "updatedAt": "2026-10-23T20:25:49Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T20:26:36.660652+00:00",
-    "revision": 274,
+    "checkedAt": "2026-10-23T20:27:23.475118+00:00",
+    "revision": 275,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
         "name": "Amundi · structure et risques de l’ETC or",
@@ -4269,7 +4285,7 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -4290,7 +4306,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "overdue:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -4308,7 +4324,36 @@
         "cause": "Aucune exécution terminée depuis plus de 48 heures.",
         "id": "overdue:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-23T15:08:10.479207+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
+        "name": "iShares Core S&P 500 UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+        "to": "/bibliotheque-donnees?id=IE00B5BMR087",
+        "lastSuccessAt": "2026-10-23T11:36:53Z",
+        "completedAt": "2026-10-23T20:25:49Z",
+        "cause": "Incomplete allocation",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-core-s-p-500-ucits-etf-usd-acc-CSPX-IE00B5BMR087-46",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00B5BMR087",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
+        "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -4331,7 +4376,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -4360,7 +4405,7 @@
         "dataId": "history:etfIE00BDFBTQ78",
         "id": "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78",
         "firstSeenAt": "2026-10-23T20:25:41.863486+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -4388,7 +4433,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -4416,7 +4461,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -4443,7 +4488,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -4470,7 +4515,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -4497,7 +4542,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -4526,7 +4571,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -4555,7 +4600,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -4584,7 +4629,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -4611,7 +4656,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -4638,7 +4683,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -4660,7 +4705,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:4c3362f0091de10f80251dae": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4680,7 +4725,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4c3362f0091de10f80251dae",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:53ed9235fe9fe9fe6e5b95e6": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4700,7 +4745,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Taiwan:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:53ed9235fe9fe9fe6e5b95e6",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:6435e61844c83c784d6ea423": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4720,7 +4765,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6435e61844c83c784d6ea423",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:80525dea7d9f868ce9221e4e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4740,7 +4785,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:80525dea7d9f868ce9221e4e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:557209b962c2546382a62468": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4760,7 +4805,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:557209b962c2546382a62468",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:33c64bcb281658a32243d552": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4780,7 +4825,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c64bcb281658a32243d552",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:ef96176220f03d7291465c54": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4800,7 +4845,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ef96176220f03d7291465c54",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:652abd029e4edf33dc8bbd5b": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4820,7 +4865,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:652abd029e4edf33dc8bbd5b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:009bccefe6b8d09d7cab24b3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4840,7 +4885,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:009bccefe6b8d09d7cab24b3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:d5684ba01c7cce49ff929b2f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4860,7 +4905,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:d5684ba01c7cce49ff929b2f",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:6571393d1ff1c36bc6761e5c": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4880,7 +4925,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6571393d1ff1c36bc6761e5c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:fc4ff751fdd461132df1d976": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4900,7 +4945,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:fc4ff751fdd461132df1d976",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:693a3c90008da97d02ab1636": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4920,7 +4965,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:693a3c90008da97d02ab1636",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:483a1eb3ca1c9ba0a9ac1275": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4940,7 +4985,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Italy:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:483a1eb3ca1c9ba0a9ac1275",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:ed26659e68f08e7c32a25f3e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4960,7 +5005,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Sweden:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ed26659e68f08e7c32a25f3e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:736fff1d926c9fa76c21f534": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4980,7 +5025,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:736fff1d926c9fa76c21f534",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:79b0b52a606a84e1228fb76e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5000,7 +5045,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:79b0b52a606a84e1228fb76e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:cd7988476c2bb5544e2c8ac8": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5020,7 +5065,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:South Africa:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:cd7988476c2bb5544e2c8ac8",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:6b88bbe560baad8407db6696": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5040,7 +5085,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Mexico:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6b88bbe560baad8407db6696",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:f9c61b9d07f565352bb61490": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5060,7 +5105,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Belgium:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:f9c61b9d07f565352bb61490",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:1f12be33fec21d85d9592c45": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5080,7 +5125,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:1f12be33fec21d85d9592c45",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:683ec14d2988365b406744be": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5100,7 +5145,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Norway:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:683ec14d2988365b406744be",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:32cd7c7293a29e54c84b8115": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5120,7 +5165,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:32cd7c7293a29e54c84b8115",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:61504f15a5a7cd4ebee87628": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5140,7 +5185,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:61504f15a5a7cd4ebee87628",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:51096030b6e58dc48b6a5da9": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5160,7 +5205,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Cayman Islands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:51096030b6e58dc48b6a5da9",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:33c7232da829f19492e4b368": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5180,7 +5225,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c7232da829f19492e4b368",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:ac763c6cbdcf20d5dc112748": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5200,7 +5245,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ac763c6cbdcf20d5dc112748",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:24774469f7e74ea6711fff3a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5220,7 +5265,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:24774469f7e74ea6711fff3a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:4b65c84e71f8acf5261c24f7": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5240,7 +5285,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Jersey:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4b65c84e71f8acf5261c24f7",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:b3576866a9279c03559453e3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5260,7 +5305,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:b3576866a9279c03559453e3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:96242cd5106e391dcbb0c041": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5283,7 +5328,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:96242cd5106e391dcbb0c041",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:a196e10e49cd81cb863e6d65": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5306,7 +5351,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:a196e10e49cd81cb863e6d65",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:48efb4a62fc1bb48d3fdcf95": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5326,7 +5371,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:48efb4a62fc1bb48d3fdcf95",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:235ba88fa77ea52e6b88d99b": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5349,7 +5394,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:235ba88fa77ea52e6b88d99b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:94c601ea28a32dc05f7fdf0c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5372,7 +5417,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:94c601ea28a32dc05f7fdf0c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       },
       "radar:b7ae9c00f47ae63803663c7a": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5395,361 +5440,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Hong Kong:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:b7ae9c00f47ae63803663c7a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:26:36.660652+00:00"
+        "lastSeenAt": "2026-10-23T20:27:23.475118+00:00"
       }
     },
     "events": [
-      {
-        "revision": 245,
-        "at": "2026-10-22T13:44:32.199253+00:00",
-        "opened": [
-          "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BM8R0J59"
-        ],
-        "resolved": [
-          {
-            "name": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Fiches pratiques",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=FR0011550185",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "field": "countries",
-            "sourceUrls": [
-              "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
-              "https://live.euronext.com/en/product/etfs/FR0011550185-XPAR",
-              "https://www.justetf.com/en/etf-profile.html?isin=FR0011550185",
-              "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-FR0011550185",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550185",
-            "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=IE000QDFFK00",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "field": "countries",
-            "sourceUrls": [
-              "https://bourse.fortuneo.fr/trackers/cours-bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc-ANAU-IE000QDFFK00-23",
-              "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-              "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE000QDFFK00"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-IE000QDFFK00",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00",
-            "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "iShares S&P 500 Swap PEA UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Fiches pratiques",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=IE000DQLYVB9",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "field": "exposures",
-            "sourceUrls": [
-              "https://live.euronext.com/en/product/etfs/IE000DQLYVB9-XPAR",
-              "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
-              "https://www.ishares.com/ch/professionals/en/products/342916/",
-              "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
-              "https://www.justetf.com/fr/etf-profile.html?isin=IE000DQLYVB9"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-IE000DQLYVB9",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000DQLYVB9",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "Russell 2000",
-            "tools": [
-              "Coulisses des indices"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=russell-2000",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US2000USD",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-russell-2000-composition",
-            "id": "collection:collect-etf-pilot.yml:index-russell-2000-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "Indice STOXX Europe 600",
-            "tools": [
-              "Calculateur",
-              "Coulisses des indices",
-              "Fiches pratiques",
-              "Performance depuis"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=history%3Astoxx600",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://stoxx.com/index/sxxp/?factsheet=true",
-              "https://stoxx.com/index/sxxr/",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-stoxx600-composition",
-            "id": "collection:collect-etf-pilot.yml:index-stoxx600-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "EURO STOXX 50",
-            "tools": [
-              "Coulisses des indices",
-              "Fiches pratiques"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=eurostoxx50",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://stoxx.com/index/sx5e/?factsheet=true",
-              "https://stoxx.com/index/sx5t/",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-eurostoxx50-composition",
-            "id": "collection:collect-etf-pilot.yml:index-eurostoxx50-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "TOPIX",
-            "tools": [
-              "Coulisses des indices"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=topix",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/ENG/FRA/INSTITUTIONNEL/ETF/20260731",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-              "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-topix-composition",
-            "id": "collection:collect-etf-pilot.yml:index-topix-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "S&P 500",
-            "tools": [
-              "Coulisses des indices",
-              "Fiches pratiques"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=sp500-pea",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-              "https://www.spglobal.com/spdji/en/documents/commentary/market-attributes-us-equities-202512.pdf"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-sp500-pea-composition",
-            "id": "collection:collect-etf-pilot.yml:index-sp500-pea-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "NASDAQ-100 Notional Net Total Return",
-            "tools": [
-              "Coulisses des indices",
-              "Fiches pratiques"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=nasdaq-pea",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-nasdaq-pea-composition",
-            "id": "collection:collect-etf-pilot.yml:index-nasdaq-pea-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "S&P 500 Equal Weight",
-            "tools": [
-              "Coulisses des indices",
-              "Fiches pratiques"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=sp500-equal-weight",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
-            "sourceUrls": [
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/ENG/FRA/INSTITUTIONNEL/ETF/20260831",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.invesco.com/us-rest/contentdetail?contentId=e3fc7c23dbd92610VgnVCM1000006e36b50aRCRD&dnsName=us",
-              "https://www.spglobal.com/spdji/en/indices/equity/sp-500-equal-weight-index/"
-            ],
-            "kind": "collection",
-            "field": "Composition",
-            "dataId": "index-sp500-equal-weight-composition",
-            "id": "collection:collect-etf-pilot.yml:index-sp500-equal-weight-composition",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "Amundi PEA Monde (MSCI World) UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Fiches pratiques",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=FR001400U5Q4",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "HTTP Error 404: Not Found",
-            "field": "Collecte ETF",
-            "sourceUrls": [
-              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.justetf.com/en/etf-profile.html?isin=FR001400U5Q4",
-              "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
-              "https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e"
-            ],
-            "kind": "collection",
-            "dataId": "etf-presentation-performance-FR001400U5Q4",
-            "id": "collection:collect-etf-pilot.yml:etf-presentation-performance-FR001400U5Q4",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          },
-          {
-            "name": "Amundi Core EUR High Yield Bond UCITS ETF",
-            "tools": [
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39735839242",
-            "to": "/bibliotheque-donnees?id=LU2970735911",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-22T07:24:04Z",
-            "cause": "HTTP Error 404: Not Found",
-            "field": "Collecte ETF",
-            "sourceUrls": [
-              "https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf",
-              "https://extraetf.com/fr/etf-profile/LU2970735911",
-              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF",
-              "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911"
-            ],
-            "kind": "collection",
-            "dataId": "etf-presentation-performance-LU2970735911",
-            "id": "collection:collect-etf-pilot.yml:etf-presentation-performance-LU2970735911",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:41:14.470324+00:00",
-            "resolvedAt": "2026-10-22T13:44:32.199253+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 246,
         "at": "2026-10-22T14:37:07.793527+00:00",
@@ -8631,6 +8325,16 @@
         "at": "2026-10-23T20:25:41.863486+00:00",
         "opened": [
           "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78"
+        ],
+        "resolved": [],
+        "retired": [],
+        "escalated": []
+      },
+      {
+        "revision": 275,
+        "at": "2026-10-23T20:27:23.475118+00:00",
+        "opened": [
+          "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087"
         ],
         "resolved": [],
         "retired": [],
@@ -14704,15 +14408,15 @@
       "lastSuccessAt": "2026-10-21T15:07:24Z",
       "observedRunId": 39614203452,
       "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-23T20:26:36.693853+00:00"
+      "nextAttemptAt": "2026-10-23T20:27:23.495440+00:00"
     },
     "collect-etf-pilot.yml": {
       "attempts": [],
-      "reason": null,
+      "reason": "recording-failed",
       "lastSuccessAt": "2026-10-23T11:36:53Z",
-      "observedRunId": 39937623223,
-      "nextAttemptAt": null,
-      "status": "idle"
+      "observedRunId": 40011202978,
+      "nextAttemptAt": "2026-10-23T20:40:49+00:00",
+      "status": "waiting"
     },
     "update-market-monthly.yml": {
       "attempts": [
