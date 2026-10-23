@@ -4,7 +4,7 @@ import { latestCommonYears, HISTORICAL_YEARS } from './annual-window.js'
 // No monthly prices, benchmark backfills or automatic-allocation permission are inferred here.
 // Preserve the already published Mining manual/duel URL when its unqualified
 // exchange-price projection gives way to the explicitly labelled official NAV calendar.
-const EXISTING_MANUAL_IDS={IE00BDFBTQ78:'manual-IE00BDFBTQ78'}
+const EXISTING_MANUAL_IDS=Object.fromEntries(['IE00BDFBTQ78','IE00B42NKQ00','IE00B5W4TY14','IE00BD1F4L37','IE00BQN1K562','IE00BQT3WG13'].map(isin=>[isin,`manual-${isin}`]))
 export const ANNUAL_PORTFOLIO_FUNDS = Object.values(QUALIFIED_FUND_CALENDARS).flatMap(record => {
   const expiry=record.label.match(/\b(?:Dec|December|décembre)\s+(20\d{2})\b/i)?.[1]
   if(expiry && new Date().getUTCFullYear()>Number(expiry))return []

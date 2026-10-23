@@ -1,0 +1,77 @@
+[
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getDetailedQuoteBlock/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getHistoricalPriceBlock/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getIntradayPriceBlock/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/ajax/getNoticePublicData/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getOrderBookBlock/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getPerformancesBook/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/tech-leaders-block/143/FR0010342592-XPAR/undefined/undefined",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/related-instruments-block/etfs/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "POST",
+    "url": "https://live.euronext.com/en/ajax/getHistoricalPrice/FR0010342592-XPAR",
+    "body": "nbSession=5"
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getOrderBook/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getDetailedQuote/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getNoticePublicData/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/ajax/getPerformances/FR0010342592-XPAR",
+    "body": null
+  },
+  {
+    "method": "GET",
+    "url": "https://live.euronext.com/en/intraday_chart/getDetailedQuoteAjax/FR0010342592-XPAR/full",
+    "body": null
+  },
+  {
+    "method": "POST",
+    "url": "https://live.euronext.com/en/ajax/getIntradayPrice/FR0010342592-XPAR",
+    "body": null
+  }
+]

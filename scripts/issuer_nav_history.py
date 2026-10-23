@@ -74,6 +74,16 @@ def dws_nav(body, isin, currency, now):
                   for r in rows if re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', r.get('A', ''))], now)
 
 
+def ssga_nav(body, isin, currency, now):
+    rows = xlsx_rows(body)
+    for field, expected in [('ISIN:', isin), ('NAV Currency:', currency)]:
+        if unique([r.get('B') for r in rows if r.get('A') == field], field) != expected:
+            raise ValueError('Wrong State Street NAV identity/currency')
+    unique([r for r in rows if r.get('A') == 'Date' and r.get('B') == 'NAV'], 'State Street NAV column')
+    return dated([(dt.datetime.strptime(r['A'], '%d-%b-%Y').date().isoformat(), r['B'])
+                  for r in rows if re.fullmatch(r'\d{2}-[A-Za-z]{3}-\d{4}', r.get('A', ''))], now)
+
+
 def blackrock_nav(body, isin, currency, now):
     components = body['componentsByNameMap']
     facts = components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']

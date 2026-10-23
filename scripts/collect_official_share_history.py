@@ -1,4 +1,4 @@
-"""Repair four existing fund histories with explicitly identified official NAV series.
+"""Qualify existing fund histories with explicitly identified official NAV series.
 
 Exchange quotes are archived, never presented as repaired by this substitution.
 Only performance consumers accepting NAV total return use these active records.
@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 from data_automation import UTC, get_json, get_text, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_nav_history import (blackrock_nav, calendar_checks, dws_nav, monthly,
-                                vaneck_nav, wisdomtree_identity, wisdomtree_nav)
+                                vaneck_nav, wisdomtree_identity, wisdomtree_nav, ssga_nav)
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDS = ['etfEqualWeight', 'etfIE000U9ODG19', 'etfIE00BDFBTQ78', 'etfGB00B15KXQ89']
@@ -48,7 +48,8 @@ def configurations():
             'valuationBasis':'fund-nav-total-return',
             'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement',
             **extras[id]}.items()})
-    return result
+    remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
+    return result + remainder
 
 
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
@@ -87,6 +88,22 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
         if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
         calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
+    elif kind=='ssga':
+        from collect_ssga_etf import Inputs, parse_page
+        page=document(source['sourceUrl']).decode(); parsed=Inputs(); parsed.feed(page)
+        facts=parsed.data['fund-quick-info']['attrs']
+        if facts['isin']['value']!=isin or facts['fund-income-treatment']['value']!='Accumulation':
+            raise ValueError('State Street exact accumulating share not confirmed')
+        record,_=parse_page(page,{'isin':isin,'currency':native},now)
+        paths=[a['href'] for a in BeautifulSoup(page,'html.parser').find_all('a',href=True)
+               if '/navhist-emea-' in a['href']]
+        if len(set(paths))!=1:raise ValueError('Ambiguous State Street NAV export')
+        url=urllib.parse.urljoin(source['sourceUrl'],paths[0]);parts=urllib.parse.urlsplit(url)
+        if parts.scheme!='https' or parts.netloc!='www.ssga.com' or not parts.path.startswith('/library-content/products/fund-data/etfs/emea/navhist-emea-'):
+            raise ValueError('Unexpected State Street NAV export host/path')
+        nav=ssga_nav(document(url),isin,native,now)
+        years=record['performance']['years'];credit='State Street'
+        calendar_proof={'incomeTreatment':'Accumulation','sourceNavUrl':url}
     elif kind=='wisdomtree':
         identity=wisdomtree_identity(document(source['sourceUrl']).decode(),isin)
         if identity['fundCurrency']!=native or identity['useOfIncome']!='N/A':raise ValueError('Commodity currency/income changed')
@@ -125,7 +142,8 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
     eligible=[d for d in nav if d<now.date().isoformat()]
     latest=max(eligible)
-    if (now.date()-dt.date.fromisoformat(latest)).days>7:raise ValueError('Official latest NAV is stale')
+    daily_policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['series.dailyNav']
+    if (now.date()-dt.date.fromisoformat(latest)).days>daily_policy['dataDays']:raise ValueError('Official latest NAV is stale')
     factor=1;fx_date=None
     if native!=source['currency']:
         if (native,source['currency'])!=('USD','EUR'):raise ValueError('Unqualified daily NAV conversion')
@@ -139,7 +157,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
        'parser':'official-nav','valuationBasis':source['valuationBasis'],'nativeValue':nav[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
        'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
-       'maxAgeDays':7,'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
+       'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
     result={**source,'points':points,'anniversaryPoints':points,'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
@@ -152,7 +170,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--only',nargs='+',choices=IDS)
+    parser.add_argument('--only',nargs='+',choices=[s['id'] for s in configurations()])
     parser.add_argument('--capture-dir',type=pathlib.Path)
     parser.add_argument('--output',type=pathlib.Path,required=True)
     parser.add_argument('--apply',action='store_true')
@@ -170,28 +188,41 @@ def main():
     report={'checkedAt':now.isoformat(),'series':results};write_json_atomic(args.output,report)
     if args.apply and any(r['status']=='failed'for r in results):raise SystemExit(1)
     if args.apply:
-        path=ROOT/'src/data/automated-etf-monthly.json';current=json.loads(path.read_text())
-        config_path=ROOT/'scripts/monthly-automation.json';config=json.loads(config_path.read_text())
-        if args.migrate_quote_records:
-            archive={s['id']:{'record':current[s['id']],'configuration':next(r for r in config['series']if r['id']==s['id'])}for s in sources}
+        # Some existing histories belong to the isolated non-bond producer.
+        # Keep their configuration, observations and latest level in that producer.
+        groups = [
+            ('scripts/monthly-automation.json','src/data/automated-etf-monthly.json','src/data/anniversary-levels.json','scripts/source-snapshots/monthly-automated.json'),
+            ('scripts/non-bond-monthly-sources.json','src/data/non-bond-monthly-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json'),
+        ]
+        loaded = [(paths, [json.loads((ROOT/p).read_text()) for p in paths]) for paths in groups]
+        targets={}
+        for paths, (config,current,levels,evidence) in loaded:
+            for entry in config['series']:
+                if entry['id'] in targets:raise ValueError('Duplicate producer ownership')
+                targets[entry['id']]=(config,current,levels,evidence)
+        archive={}
+        for row in results:
+            id=row['id'];config,current,levels,evidence=targets[id]
+            old=current[id];record=row['record']
+            if old['isin']!=record['isin'] or old['currency']!=record['currency']:
+                raise ValueError('Wrong replacement identity/currency')
+            if old['parser']!='official-nav':
+                if not args.migrate_quote_records:raise ValueError('Quote/NAV migration needs its explicit original-evidence archive')
+                archive[id]={'record':old,'configuration':next(r for r in config['series']if r['id']==id),'latestLevel':levels.get(id)}
+        if archive:
             archive_path=args.output.with_name('original-exchange-quote-records.json.gz')
             if archive_path.exists():
                 original=json.loads(gzip.decompress(archive_path.read_bytes()))
-                for id,prior in archive.items():
-                    if prior['record']['parser']!='official-nav' and original.get(id)!=prior:
-                        raise ValueError('Existing original archive differs; refuse replacement')
-            else:
-                archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
+                if any(original.get(id)!=prior for id,prior in archive.items()):
+                    raise ValueError('Existing original archive differs; refuse replacement')
+            else:archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
         for row in results:
-            if row['status']!='validated':continue
-            id=row['id'];record={k:v for k,v in row['record'].items()if k not in ['proofRows']}
-            old=current.get(id)
-            if old and old['isin']!=record['isin']:raise ValueError('Wrong replacement instrument')
-            if old and old['currency']!=record['currency']:raise ValueError('Wrong replacement output currency')
-            if old and old['parser']!='official-nav' and not args.migrate_quote_records:raise ValueError('Quote/NAV migration needs its explicit original-evidence archive')
-            current[id]=record
+            id=row['id'];config,current,levels,evidence=targets[id]
+            current[id]={k:v for k,v in row['record'].items()if k!='proofRows'}
+            levels[id]=row['record']['latestLevel'];evidence[id]=row['record']
             config['series']=[next(s for s in sources if s['id']==id)if s['id']==id else s for s in config['series']]
-        write_json_atomic(path,current);write_json_atomic(config_path,config)
+        for paths,values in loaded:
+            for path,value in zip(paths,values):write_json_atomic(ROOT/path,value)
     if any(r['status']=='failed'for r in results):raise SystemExit(1)
 
 

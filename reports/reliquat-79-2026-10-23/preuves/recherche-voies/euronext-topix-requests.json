@@ -1,0 +1,17 @@
+[
+  {
+    "url": "https://live.euronext.com/en/popout-page/getHistoricalPrice/FR0013411998-XPAR",
+    "method": "GET",
+    "body": null
+  },
+  {
+    "url": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/FR0013411998-XPAR",
+    "method": "POST",
+    "body": "format=xls&decimal_separator=.&date_form=d%2Fm%2FY&adjusted=Y&startdate=2026-10-09&enddate=2026-10-22&nbSession=10"
+  },
+  {
+    "url": "https://live.euronext.com/en/ajax/getHistoricalPricePopup/FR0013411998-XPAR",
+    "method": "POST",
+    "body": "format=xls&decimal_separator=.&date_form=d%2Fm%2FY&adjusted=Y&enddate=2025-12-31&nbSession=20"
+  }
+]
