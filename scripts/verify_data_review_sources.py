@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -23,6 +23,7 @@ def main():
         'insurance': ['collect_insurance.py','--apply'],
         'pending': ['check_pending_sources.py'],
         'discovery': ['discover_holdings_sources.py'],
+        'financial':['verify_review_financial.py'],
         'fx': ['collect_ranking_sources.py','--only','fx','--apply'],
         'holdings': ['collect_dca_complete_holdings.py','--apply'],
         'metadata': ['collect_instrument_metadata.py','--only','IE00B0M62S72','IE0003R87OG3','IE00B579F325','IE00BD6FTQ80','--apply'],
@@ -46,8 +47,9 @@ def main():
         write_json_atomic(out/'conflict-registry.json',{s['isin']:merged[s['isin']] for s in shares})
     else:
         command=[sys.executable,str(ROOT/'scripts'/commands[args.scope][0]),*commands[args.scope][1:]]
-        if args.scope!='discovery':
+        if args.scope not in ['discovery','financial']:
             command += ['--report' if args.scope=='ai' else '--output',str(report)]
+        if args.scope=='financial':command += ['--output',str(out)]
         with (out/'collection.log').open('w') as log:
             result=subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=1700)
         code=result.returncode
