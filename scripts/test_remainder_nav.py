@@ -20,6 +20,24 @@ class StateStreetNav(unittest.TestCase):
             if row.get('A')=='Date':row['B']='Market price'
         with patch('issuer_nav_history.xlsx_rows',return_value=rows):
             with self.assertRaisesRegex(ValueError,'NAV column'):ssga_nav(body,'IE00BSPLC413','USD',NOW)
+    def test_existing_nav_without_company_baseline_is_refreshed_but_never_bootstrapped(self):
+        import json,copy
+        from refresh_monthly_history import refresh
+        proof=json.loads((ROOT/'reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json').read_text())
+        incoming=next(r['record'] for r in proof['series'] if r['id']=='etfSmallValueEurope')
+        source=next(r for r in json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text()) if r['id']==incoming['id'])
+        prior={k:v for k,v in incoming.items() if k!='proofRows'};current={source['id']:prior}
+        merged,report=refresh({'series':[source]},current,{},NOW,lambda *_:incoming)
+        self.assertEqual(report['series'][0]['status'],'validated')
+        self.assertEqual(merged,current)
+        _,report=refresh({'series':[source]},{},{},NOW,lambda *_:incoming)
+        self.assertEqual(report['series'][0]['status'],'failed')
+        self.assertIn('bootstrap',report['series'][0]['reason'])
+        for field,value in [('navCurrency','USD'),('isin','IE00BSPLC413'),('navProvider','blackrock')]:
+            bad=copy.deepcopy(incoming);bad[field]=value
+            merged,report=refresh({'series':[source]},current,{},NOW,lambda *_:bad)
+            self.assertEqual(report['series'][0]['status'],'failed')
+            self.assertEqual(merged,current)
     def test_year_end_weekend_and_unfinished_year(self):
         points={'2020-12-31':100,'2021-12-31':120,'2022-12-30':90,'2023-12-29':135}
         checks=calendar_checks(points,{'2021':20,'2022':-25,'2023':50,'2024':0},2,dt.datetime(2024,10,1,tzinfo=dt.timezone.utc))
