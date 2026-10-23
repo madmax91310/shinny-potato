@@ -1,23 +1,28 @@
 [
   {
     "path": "LIVRAISON.md",
-    "bytes": 9551,
-    "sha256": "bea159bd067505ba7e0464102c50ac948b6d9ab9c27eea73ed335645d590fbcb"
+    "bytes": 10311,
+    "sha256": "8b94afebc62849c674b109b7033aa939ff9ed7a7c2f1b8d8c2d947184573dd6c"
+  },
+  {
+    "path": "PUBLICATION.md",
+    "bytes": 275,
+    "sha256": "58bf95670c767b844eee2ca679abd8400ca2986224c9a2e3b9f888a162abd219"
   },
   {
     "path": "bilan-84-ecarts.json",
-    "bytes": 238,
-    "sha256": "5aa714b86a6ec8972d6408c121b47937407e1a9f2d1fff18963d9e60ab3817b8"
+    "bytes": 307,
+    "sha256": "260dbb7bd3f005259777dab2d9042a23dacec171ee76f0e8f131f10a579c4f44"
   },
   {
     "path": "bilan.json",
-    "bytes": 1025,
-    "sha256": "6d1383be910784a6f5c2c87a4692f8e247888db9b2907f6642f51bf176805e28"
+    "bytes": 1144,
+    "sha256": "999cf6fcbdba1f14cdaa8cb22431bbd5b3762810b75b9df8a108d0f583926b05"
   },
   {
     "path": "inceptions-53-parts.csv",
-    "bytes": 16883,
-    "sha256": "1c841e6aeaa3fec278b5dd1f8468d5af2968713c3dfb1106401b9deb46b30034"
+    "bytes": 18611,
+    "sha256": "97950560ee166f44ca2ba2bd93b7f66b26e128f58476946e4761cba8ef70859a"
   },
   {
     "path": "modules-verification.csv",
@@ -28,6 +33,26 @@
     "path": "performances-non-comparables.csv",
     "bytes": 11164,
     "sha256": "532e5c356e966df05a5e65e51ec1c89c73fad60f54bad963de829174f6ded6a2"
+  },
+  {
+    "path": "preuves/21shares-daily-proof.json",
+    "bytes": 884,
+    "sha256": "3c2fe7148acd06c6680ba9ccbd4e9b14cad4b74fa933ed61d22effc638428794"
+  },
+  {
+    "path": "preuves/21shares-product_details.json.gz",
+    "bytes": 1535,
+    "sha256": "caff6d6133256d06927b6aa5c14034803166c08fe0ef6b136755ecb53a31efd5"
+  },
+  {
+    "path": "preuves/21shares-product_performance_metrics.json.gz",
+    "bytes": 3782,
+    "sha256": "2d780f0ad172a7027e75eb145970e0e5335bacc67428ed6db5b06e9e9749be08"
+  },
+  {
+    "path": "preuves/21shares-product_valuation_history.json.gz",
+    "bytes": 92948,
+    "sha256": "6b7f7c62a82e8536d32115599d9998636d2fbe852e57fe886e8a4ae2b042f8d1"
   },
   {
     "path": "preuves/CH0454664001-inception.pdf.gz",
@@ -43,6 +68,11 @@
     "path": "preuves/DE000A0H08P6-blackrock.json.gz",
     "bytes": 286058,
     "sha256": "e26ceaf480e0a1919426057ee249f78b27f89d3e09f1145224490a531592c559"
+  },
+  {
+    "path": "preuves/DE000A27Z304-launch-extra.raw.gz",
+    "bytes": 86114,
+    "sha256": "0a19f59f0016a9f296ac66ecfb3762fe92e251100ae0d51cc3141a12195b1a40"
   },
   {
     "path": "preuves/FR0007054358-inception.pdf.gz",
@@ -63,6 +93,16 @@
     "path": "preuves/FR0010342592-inception.txt",
     "bytes": 34390,
     "sha256": "fd50def5b53abf9bc30d1724ccce3a8ae85b6717904326c6a19e6289e3ddc7f3"
+  },
+  {
+    "path": "preuves/FR0011550185-launch-extra.pdf.gz",
+    "bytes": 233197,
+    "sha256": "3e1c5ce758ddf74e651d5fa43797b74f9eaa1c61aca8714fdfe2be8698c03ee5"
+  },
+  {
+    "path": "preuves/FR0011550185-launch-extra.txt",
+    "bytes": 20707,
+    "sha256": "4d3d847c35e60b5440dbb68e5cea5ea9e4077a6219e10aab9b4e11749b8d46cc"
   },
   {
     "path": "preuves/FR0011871110-inception.pdf.gz",
@@ -120,6 +160,16 @@
     "sha256": "af40f40cab8274f9ddef321bcd2079a9f31906024a694d5bebf3ed9e5bc9f394"
   },
   {
+    "path": "preuves/IE000M7V94E1-vaneck-daily-meta.json",
+    "bytes": 2493,
+    "sha256": "72baf9cf4c2f4c0478f343a364f25c985e94f8e3dbdcd51a66f23c2c413a688d"
+  },
+  {
+    "path": "preuves/IE000M7V94E1-vaneck-daily.xlsx",
+    "bytes": 33455,
+    "sha256": "a4ecde59afbe9e7f127fa428c831bc5f94417b9a86c011d089cd8a06e1579282"
+  },
+  {
     "path": "preuves/IE000RDRMSD1-blackrock.json.gz",
     "bytes": 61076,
     "sha256": "f72c91cb6a8e9ba173dd7100b96ab31bac708f8cc0940988b486e455e7436739"
@@ -143,6 +193,16 @@
     "path": "preuves/IE000YU9K6K2-inception.txt",
     "bytes": 15073,
     "sha256": "4d2fb2a5d351644f47ada5d5a00f9ae301eb8a66c0a66dd4ea8dd2872fe22235"
+  },
+  {
+    "path": "preuves/IE000YU9K6K2-vaneck-daily-meta.json",
+    "bytes": 2490,
+    "sha256": "c2b2cde076451e1dae73726a1125b81629cc24f0276eea81d336fc1be357ada5"
+  },
+  {
+    "path": "preuves/IE000YU9K6K2-vaneck-daily.xlsx",
+    "bytes": 38352,
+    "sha256": "1ebecdc575db01ce56bbc43aaec2861843e2c430b9907dd5a7ec56a4f532a5a5"
   },
   {
     "path": "preuves/IE00B1XNHC34-blackrock.json.gz",
@@ -170,9 +230,24 @@
     "sha256": "92191f766cb5e6acfd53363bde9bfd45492dd59a929a3d171c6c45742c0b7688"
   },
   {
+    "path": "preuves/IE00B4556L06-launch-extra.raw.gz",
+    "bytes": 169637,
+    "sha256": "2d28c4dd339733f3ac9b509cb0feece3eda25c046f3b5d2ddf65f9b958b947dc"
+  },
+  {
     "path": "preuves/IE00B4JNQZ49-blackrock.json.gz",
     "bytes": 138016,
     "sha256": "555d0e03e128abb07fab0366cbaebe24e151e60b097696dffcfa18fec92c5da5"
+  },
+  {
+    "path": "preuves/IE00B4K6B022-launch-extra.pdf.gz",
+    "bytes": 445145,
+    "sha256": "20c0ff76f9bcd64505db0dfc9f1be5a64584224b4919ce99c3cb754b757e1096"
+  },
+  {
+    "path": "preuves/IE00B4K6B022-launch-extra.txt",
+    "bytes": 26362,
+    "sha256": "2bae8858e0347364ff4e06adaa209a1b8a9279b0578c68460e754b672c379cd0"
   },
   {
     "path": "preuves/IE00B579F325-inception.pdf.gz",
@@ -188,6 +263,11 @@
     "path": "preuves/IE00B5W4TY14-blackrock.json.gz",
     "bytes": 200968,
     "sha256": "6adbd36e5fa0782888a3106b391412e355af1c8e0b4d4c6b5a5acf90a5f8afa0"
+  },
+  {
+    "path": "preuves/IE00B5W4TY14-launch-extra.raw.gz",
+    "bytes": 233510,
+    "sha256": "0f10444e53a647c3dbbbb325fc338d2c400ea1d196d86f46770b587082578135"
   },
   {
     "path": "preuves/IE00BD1F4L37-blackrock.json.gz",
@@ -265,6 +345,16 @@
     "sha256": "ac2555d3ed5cc851101298db7ff3ad700fd931f1f2a16545107375cc77937ed3"
   },
   {
+    "path": "preuves/IE00BQQP9F84-vaneck-daily-meta.json",
+    "bytes": 2493,
+    "sha256": "ce4ddf7f039e781ec1aa8f4df258782209d1cbdf51d94e6aae53d7a1dfedaa65"
+  },
+  {
+    "path": "preuves/IE00BQQP9F84-vaneck-daily.xlsx",
+    "bytes": 95597,
+    "sha256": "79f68db71b2cd5273b3b29831ff560510f5309dfd7e2d3f45bdc08c29e3d81f6"
+  },
+  {
     "path": "preuves/IE00BQT3WG13-blackrock.json.gz",
     "bytes": 141188,
     "sha256": "602a8b3d1e7c1db92c810fa9a3b96bcfe94716dc7c1b1f7c7ebf6897215b0d0a"
@@ -278,6 +368,16 @@
     "path": "preuves/IE00BYWQWR46-inception.txt",
     "bytes": 14231,
     "sha256": "a1f637e093b986b94b13e2684d086b36b493fb2f89a1e7f4048fb3c75165a0c8"
+  },
+  {
+    "path": "preuves/IE00BYWQWR46-vaneck-daily-meta.json",
+    "bytes": 2492,
+    "sha256": "989d4d0db4686792cd450f5262683f77e14b279323d3e26f06708fda62804825"
+  },
+  {
+    "path": "preuves/IE00BYWQWR46-vaneck-daily.xlsx",
+    "bytes": 60647,
+    "sha256": "0cc581b87d4472f00ce86528d30d45fa2e7ffa814b20bf459790d4f12c7a2c97"
   },
   {
     "path": "preuves/IE00BYXG2H39-blackrock.json.gz",
@@ -370,6 +470,41 @@
     "sha256": "5ad1463db6f6932425373433423e5d3bc7dd77aebdf1c6b84d6384bdee3d6af2"
   },
   {
+    "path": "preuves/amundi-daily-proof.json",
+    "bytes": 690,
+    "sha256": "ac6d8a54949189e7581892494f8ac83565befb81b1ee713fea88a93b1a115d18"
+  },
+  {
+    "path": "preuves/amundi-daily-request.json",
+    "bytes": 1552,
+    "sha256": "32fbf9941be97a6727e9163b2db761947bf996aede14bc54e3f31642a6a63194"
+  },
+  {
+    "path": "preuves/amundi-daily-response.json.gz",
+    "bytes": 546393,
+    "sha256": "31131e99313cd8f589850b1f51b942db0fa6f047952248ebe3fbee61c66b55f2"
+  },
+  {
+    "path": "preuves/amundi-launch-proof.json",
+    "bytes": 310,
+    "sha256": "be9ca017b63d213d0fdae1b0b3cf11774cd2653ce05af0a02412b1ca87725c92"
+  },
+  {
+    "path": "preuves/amundi-launch-request.json",
+    "bytes": 524,
+    "sha256": "c548c99ed291da3c9c11114ba1142378d85a0a408e21ad608c652a8f2cf1269e"
+  },
+  {
+    "path": "preuves/amundi-launch-response.json.gz",
+    "bytes": 606,
+    "sha256": "6ddb47d5ff851b161f484baae900c13979d02ab3e8d400c33d01c0a40f5c6183"
+  },
+  {
+    "path": "preuves/amundi-product-ui.js.gz",
+    "bytes": 948762,
+    "sha256": "4a532ef4618ea5af5973fe64a6dde3597ffa75eb071c1919b0411af15d915015"
+  },
+  {
     "path": "preuves/blackrock-collectes.json",
     "bytes": 8312,
     "sha256": "a36e7202accecb1bf346026dc4b5aae8972062e1dfb79922bade6932ae781363"
@@ -388,6 +523,11 @@
     "path": "preuves/blackrock-raw.json",
     "bytes": 540092,
     "sha256": "4bd0399ece408dbd9b9c95f44fa00bde7380365314925b80aa1ac0d0611df0b9"
+  },
+  {
+    "path": "preuves/bnp-hsbc-launch-proof.json",
+    "bytes": 745,
+    "sha256": "2b08f6b5ebedd5048c8dc011c5db914c5095e24cedffaadc6b8028071fc9d195"
   },
   {
     "path": "preuves/brokers-alternatives.json",
@@ -1055,6 +1195,21 @@
     "sha256": "771a6f071948fec6ca040ef8e6b3e8c617f41d3a8783eca30678cb90583e6500"
   },
   {
+    "path": "preuves/launch-extra-proof.json",
+    "bytes": 1331,
+    "sha256": "26c036a8b907ddf40cb0794af22a254a184e743c9912e5ac295dcd75c45c12b1"
+  },
+  {
+    "path": "preuves/lg-inceptions-proof.json",
+    "bytes": 543,
+    "sha256": "053887be3e12931f3cae78f884a0ae6670dc2501e373c1194040b079c1b02a86"
+  },
+  {
+    "path": "preuves/lg-inceptions-response.json.gz",
+    "bytes": 32549,
+    "sha256": "3d00eae938018a9a654720de2d5830cdc57debdc557d536b6389705a00e94614"
+  },
+  {
     "path": "preuves/mining-facts.pdf",
     "bytes": 153177,
     "sha256": "3b1122bb79d100a7ab958ff5608114a0a4786a5eb4916ed6d0e53600734e9109"
@@ -1270,14 +1425,24 @@
     "sha256": "3fb8494c72a7d6d07acd9822d0439eb014f1377e3d93dc21f026ce69f8fcbe17"
   },
   {
+    "path": "preuves/research-amundi-daily.py",
+    "bytes": 1625,
+    "sha256": "f8794f4c57fb7df6e80b8d10dade026e52baad313d464086ffa74fedb4670621"
+  },
+  {
+    "path": "preuves/research-vaneck-daily.py",
+    "bytes": 2302,
+    "sha256": "cc0903f277bf570d34d06a506782bafc3b7c36f62db707f6335f7eb3815f8be6"
+  },
+  {
     "path": "preuves/scpi-reel.json",
     "bytes": 5516,
     "sha256": "7b6c3a9465d20e75603feae9769d7b54789f976881142822af75d91d6433b80f"
   },
   {
     "path": "preuves/sources-alternatives.json",
-    "bytes": 1703,
-    "sha256": "81b95adbc9872a22e195b4cfb3ca77b7c0c6d916dbe3a700b99da102e66ddf11"
+    "bytes": 1806,
+    "sha256": "49baefe22856a88dc22a41157d0264fa878e0c6af9e6ea4edfd9cd519e44f212"
   },
   {
     "path": "preuves/tests-inventory.log",
@@ -1303,6 +1468,11 @@
     "path": "preuves/vaneck-9014.js.gz",
     "bytes": 8682,
     "sha256": "5c044855cb31887dae051d49ffd4812ab1a84c09386748970562fc0e64d6144b"
+  },
+  {
+    "path": "preuves/vaneck-daily-collectes.json",
+    "bytes": 2624,
+    "sha256": "51887835371d8bb464422189606054a88ce30bf6e301cbb08832abd647a2bba0"
   },
   {
     "path": "preuves/vaneck-fund-js.js.gz",
@@ -1356,33 +1526,33 @@
   },
   {
     "path": "reconciliation-84-ecarts.csv",
-    "bytes": 275549,
-    "sha256": "7a9ce436d1fbf28a10fdcf1bf1812569b209c393553756d2cbec7dc58afadbee"
+    "bytes": 293753,
+    "sha256": "aea77b2c5688316201c1a634ff16e31db360989376f19408c453620debbe2494"
   },
   {
     "path": "reconciliation-90-ecarts.csv",
-    "bytes": 288982,
-    "sha256": "6a4eae845929d7a3cd976afff1d502f54ac8a5476830924533f543778acd92ef"
+    "bytes": 307186,
+    "sha256": "0a24737d8e8388d83fabf011b0dfce4a12d5e7d4e6ce13960a90b901742806f4"
   },
   {
     "path": "reconciliation-90-ecarts.json",
-    "bytes": 413829,
-    "sha256": "eeed6202db0bbc1a159d02d5a2950aa1c131bfd43a0e2e4bf5d343eb93a3a6bd"
+    "bytes": 435897,
+    "sha256": "97642fa0efdaa79ea58df877a321b01419c0b7208b9c650286040a5db538ea08"
   },
   {
     "path": "restant-a-verifier.csv",
-    "bytes": 113756,
-    "sha256": "667251a1badd37179fa8c42e648c426599b430e152083e59d17c9fe426992dad"
+    "bytes": 120041,
+    "sha256": "11fb441dfdb54bb7053031be963beca0e6aaf78bccd58888e51cdc819f158615"
   },
   {
     "path": "statut-19-actions.csv",
-    "bytes": 19594,
-    "sha256": "3e6fd2e9a09a373c569be38ba88937f8e58654f16d8cd2b4875e9aff5cf33475"
+    "bytes": 19601,
+    "sha256": "b6c7e09909df229840720871a6cd8cc1a31c62b08c5d645abe36dec2c9070795"
   },
   {
     "path": "statut-19-actions.json",
-    "bytes": 24772,
-    "sha256": "b724c0db1fe0232f86dc05bf41f1917deeeee4bff1528b9584d5e5071ee11db0"
+    "bytes": 24779,
+    "sha256": "558b063f891d5f3ba140eba00e54761435dcf6c3bcae9223f09e851f5f08a297"
   },
   {
     "path": "textes-reutilisables.csv",

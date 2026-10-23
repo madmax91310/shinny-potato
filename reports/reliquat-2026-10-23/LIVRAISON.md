@@ -6,10 +6,12 @@ Base relue : `master` `80bc745142687ae07a34ff90a245d8c88f976159`, après les PR 
 
 - **5 erreurs expliquées et corrigées**, contre 84 cas initialement inexpliqués. XDEW.MI, 2016–2020 : les deux niveaux annuels étiquetés EUR correspondent aux NAV officielles USD, à moins de 10⁻⁶ en ratio. L’erreur commune se situe dans la série de niveaux, pas dans la devise du calendrier DWS. La conversion BCE reste nécessaire.
 - **79 causes encore incomplètement expliquées**. Chaque ligne précise ses recherches, ses données et les pièces manquantes. Aucune différence de prix n’est baptisée prime/décote certifiée sans preuve de cotation.
-- **52/84 cas disposent de nouvelles observations quotidiennes officielles**, pour un total de **29 parts** avec série quotidienne obtenue dans cette investigation. Pour les 32 autres cas, la voie NAV quotidienne n’a pas été qualifiée dans ce lot.
+- **73/84 cas disposent de nouvelles observations quotidiennes officielles**, pour un total de **44 parts** avec série quotidienne obtenue dans cette investigation. Parmi les 50 parts des 84 cas, 43 disposent de ces preuves quotidiennes. Pour les 11 autres cas, la voie NAV quotidienne n’a pas été qualifiée dans ce lot.
 - Les **90 alertes originales**, leurs chiffres, seuils et empreintes sont conservés. Les **175 périodes non comparables** restent inchangées. La suppression des alertes par remplacement de la source ne compte pas comme une explication de l’ancienne divergence.
 
 DWS 2016 : 36,9434013367 et 42,1665000916 attribués à l’EUR contre 36,9434 et 42,1665 USD officiels. Rendement natif 14,138114 %, soit 17,884607 % après conversion cohérente avec les niveaux BCE du registre ; le CSV donne les calculs exacts propres à chaque année. Pour 2019 et 2020, les dernières NAV de décembre diffèrent aussi des jours utilisés par le fournisseur. DWS 2021 et CSKR présentent des indices de changement d’unité ; le reliquat non attribué reste ouvert. Les courbes BlackRock `priceData` anciennes ou d’une autre cotation ne servent pas de preuve de la clôture demandée.
+
+Les recherches supplémentaires ont identifié dans le JavaScript officiel Amundi les indicateurs `officialNav`, `countervalorisedAdjustedNAV` et `navCurrency`. Une collecte mutualisée vérifie la devise de chaque NAV historique, indépendamment de la devise de l’indice et du fonds. Treize cas supplémentaires restent donc inexpliqués malgré une devise NAV explicitement vérifiée. Les exports officiels de quatre autres fonds VanEck et la série ABTC ajustée du split 14:1 complètent les 73 preuves de cas ; aucun de ces nouveaux diagnostics ne change automatiquement un cours actif.
 
 ## Historiques et raccordements livrables
 
@@ -33,7 +35,7 @@ Copper : NAV quotidiennes officielles obtenues localement (2018 : −22,174131 %
 - **SCPI** : `internalReviewDue` et `deadlineBasis` remplacent l’ambiguïté d’une date de publication supposée ; `issuerPublicationDeadline=null`. Consultation Remake réelle, dernier bulletin et dates financières conservés. Aucun délai émetteur confirmé n’est inventé.
 - **Consommateurs dynamiques** : huit registres `src` restants ont des lecteurs déclarés de build, collecte ou validation, distincts des imports runtime. Le petit `holdings.json` est une projection de validation, pas le portefeuille complet utilisé par l’application. Aucun fichier supprimé.
 - **Chiffres vivants** : slots « Gestion » et swap des guides raccordés séparément aux preuves des caractéristiques communes. Les hypothèses, archives, phrases et verrous éditoriaux sont conservés. Les autres chiffres non typés restent à qualifier, pas automatiquement certifiés.
-- **Lancements** : dates officielles documentées pour **38/53 parts** contre 26/53 ; **15 restent non vérifiées**. FR0007054358 affiche une date de classe 20/09/2018 et une première VL 19/02/2001 : continuité à qualifier, sans blocage automatique de son historique sur ce seul constat. Les nouvelles preuves documentaires ne valent pas requalification universelle des historiques antérieurs.
+- **Lancements** : dates officielles documentées pour **53/53 parts** contre 26/53 ; une ambiguïté de date/continuité reste ouverte. FR0007054358 affiche une date de classe 20/09/2018 dans le PDF, LAUNCH_DATE 19/09/2018 dans l’API et une première VL 19/02/2001 : continuité à qualifier, sans blocage automatique de son historique sur ce seul constat. Les nouvelles preuves documentaires ne valent pas requalification universelle des historiques antérieurs.
 - **PEA** : deux cas toujours non résolus. Le factsheet BlackRock courant imprime « - » pour IE00B0M62S72 ; ce n’est pas un NON. La page Avantis essayée ne fournit pas de preuve PEA consommable dans ce lot. Conflit et inconnu sont préservés.
 
 ## État des 19 actions et vérifications
@@ -50,7 +52,7 @@ Contrôles locaux : suite Python, 113 commandes de validation du workflow princi
 
 PR, commit final, résultats des contrôles distants et version effectivement publiée : consignés dans `PUBLICATION.md` après validation. Aucun raccordement n’est annoncé en ligne dans ce rapport avant cette vérification.
 
-Les 201 lignes du suivi initial sont conservées ; 183 portent encore un suivi actif, ce décompte incluant les 81 modules et leurs limites de vérification. Ce n’est ni 183 actifs ni 183 collecteurs en panne. Les priorités restantes sont les 79 causes financières, les accès WisdomTree/Bourse Direct, les deux PEA, les 15 dates non vérifiées et les chiffres vivants/calendriers encore incomplets.
+Les 201 lignes du suivi initial sont conservées ; 169 portent encore un suivi actif, ce décompte incluant les 81 modules et leurs limites de vérification. Ce n’est ni 169 actifs ni 169 collecteurs en panne. Les priorités restantes sont les 79 causes financières, les accès WisdomTree/Bourse Direct, les deux PEA, l’ambiguïté de date/continuité de FR0007054358 et les chiffres vivants/calendriers encore incomplets.
 
 ## Rapports séparés
 

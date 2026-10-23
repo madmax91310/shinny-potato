@@ -1,7 +1,7 @@
 """Preserve all 90 original cases; quantify new official evidence without changing alert thresholds."""
 import csv,datetime as dt,gzip,json,math,re
 from pathlib import Path
-from issuer_nav_history import blackrock_nav,dws_nav,wisdomtree_nav,vaneck_nav,calendar_boundaries
+from issuer_nav_history import blackrock_nav,dws_nav,wisdomtree_nav,vaneck_nav,calendar_boundaries,dated
 ROOT=Path(__file__).resolve().parents[1];OLD=ROOT/'reports/corrections-2026-10-22';OUT=ROOT/'reports/reliquat-2026-10-23';P=OUT/'preuves'
 def csv_write(path,rows):
     fields=list(dict.fromkeys(k for r in rows for k in r))
@@ -27,6 +27,41 @@ def main():
         evidence[isin]={'nav':nav,'return':nav,'currency':currency,'basis':'official exact-share daily NAV'};sources[isin]=isin+'-dws.xlsx'
     isin='IE00BDFBTQ78';nav=vaneck_nav((P/'mining-official-nav.download').read_bytes(),'VanEck S&P Global Mining UCITS ETF - GDIG',now)
     evidence[isin]={'nav':nav,'return':nav,'currency':'USD','basis':'official accumulated exact-share NAV'};sources[isin]='mining-official-nav.download'
+    amundi_path=P/'amundi-daily-response.json.gz'
+    if amundi_path.exists():
+        body=json.loads(gzip.decompress(amundi_path.read_bytes()))
+        for product in body['products']:
+            isin=product['productId'];facts=product['characteristics']
+            if facts['ISIN']!=isin:raise ValueError('Wrong Amundi exact share')
+            series={h['indicator']:h['historicalData']for h in product['historics']}
+            stamp=lambda row:dt.datetime.fromtimestamp(row['date']/1000,dt.timezone.utc).date().isoformat()
+            currencies={stamp(r):r['data']for r in series['navCurrency']}
+            nav=dated([(stamp(r),r['data'])for r in series['officialNav']],now)
+            adjusted=dated([(stamp(r),r['data'])for r in series['countervalorisedAdjustedNAV']],now)
+            if any(currencies.get(day)!=facts['CURRENCY']for day in nav):raise ValueError('Unqualified historical Amundi NAV currency')
+            evidence[isin]={'nav':nav,'return':adjusted,'currency':facts['CURRENCY'],
+                'basis':'official adjusted NAV from public product UI; dated navCurrency verified independently of fund base/index currency'}
+            sources[isin]='amundi-daily-response.json.gz#'+isin
+    abtc_path=P/'21shares-product_details.json.gz'
+    if abtc_path.exists():
+        product=json.loads(gzip.decompress(abtc_path.read_bytes()))
+        history=json.loads(gzip.decompress((P/'21shares-product_valuation_history.json.gz').read_bytes()))
+        metrics=json.loads(gzip.decompress((P/'21shares-product_performance_metrics.json.gz').read_bytes()))
+        from collect_product_calendars import abtc_calendar
+        abtc_checked=dt.datetime.fromisoformat(json.loads((P/'21shares-daily-proof.json').read_text())[0]['checkedAt'])
+        abtc_calendar(product,history,metrics,{'isin':'CH0454664001','currency':'USD'},abtc_checked,'https://api.primary.21shares.com/api/product_valuation_history/ABTC')
+        nav=dated([(r['valuation_date'],r['nav_per_share'])for r in history['data']],now)
+        evidence['CH0454664001']={'nav':nav,'return':nav,'currency':'USD','basis':'official exact ETP NAV adjusted for the 14:1 split; monthly returns and split independently checked'}
+        sources['CH0454664001']='21shares-product_valuation_history.json.gz'
+    van_path=P/'vaneck-daily-collectes.json'
+    if van_path.exists():
+        for row in json.loads(van_path.read_text()):
+            if not row['ok']:continue
+            isin=row['isin'];text=(P/(isin+'-inception.txt')).read_text()
+            if not re.search(r'Income Treatment\s+Reinvestment',text)or not re.search(r'Distribution Frequency\s+None',text):raise ValueError('VanEck income convention not qualified')
+            nav=vaneck_nav((P/row['file']).read_bytes(),row['title'],now)
+            evidence[isin]={'nav':nav,'return':nav,'currency':row['currency'],'basis':'official exact-share accumulated NAV; issuer confirms no distribution and reinvestment'}
+            sources[isin]=row['file']
     results=[]
     for old in cases:
         row=dict(old);isin=old['isin'];year=int(old['year']);key=isin,year
@@ -84,6 +119,6 @@ def main():
     assert len(results)==90 and len(remainder)==84 and len({(r['isin'],r['year'])for r in results})==90
     (OUT/'reconciliation-90-ecarts.json').write_text(json.dumps({'cases':results},ensure_ascii=False,indent=2)+'\n')
     csv_write(OUT/'reconciliation-90-ecarts.csv',results);csv_write(OUT/'reconciliation-84-ecarts.csv',remainder)
-    stats={'originalCases':90,'originalUnexplained':84,'newlyExplainedAndCorrected':sum(r['status']=='erreur corrigée'for r in remainder),'stillUnexplained':sum(r['status']=='anomalie encore inexpliquée'for r in remainder),'casesWithNewDailyEvidence':sum(bool(r.get('officialDailyEvidence'))for r in remainder),'exactSharesWithDailyEvidence':len(evidence),'nonComparable175OriginalFileUnchanged':True}
+    stats={'originalCases':90,'originalUnexplained':84,'newlyExplainedAndCorrected':sum(r['status']=='erreur corrigée'for r in remainder),'stillUnexplained':sum(r['status']=='anomalie encore inexpliquée'for r in remainder),'casesWithNewDailyEvidence':sum(bool(r.get('officialDailyEvidence'))for r in remainder),'exactSharesWithDailyEvidence':len(evidence),'uniqueSharesAmong84':len({r['isin']for r in remainder}),'sharesWithDailyEvidenceAmong84':len({r['isin']for r in remainder if r.get('officialDailyEvidence')}),'nonComparable175OriginalFileUnchanged':True}
     (OUT/'bilan-84-ecarts.json').write_text(json.dumps(stats,indent=2)+'\n');print(stats)
 if __name__=='__main__':main()
