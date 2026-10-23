@@ -128,7 +128,8 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     if native!=source['currency']:
         if (native,source['currency'])!=('USD','EUR'):raise ValueError('Unqualified daily NAV conversion')
         from collect_ranking_sources import ECB,ecb_daily_usd
-        xml=get_text(ECB,('application/xml','text/xml'),8_000_000)
+        ECB=ECB.replace('eurofxref-hist.xml','eurofxref-hist-90d.xml')
+        xml=get_text(ECB,('application/xml','text/xml'),2_000_000)
         rates={d.isoformat():v for d,v in ecb_daily_usd(xml).items()};fx_date=max(d for d in rates if d<=latest)
         if (dt.date.fromisoformat(latest)-dt.date.fromisoformat(fx_date)).days>4:raise ValueError('Official daily NAV/FX dates incompatible')
         factor=1/rates[fx_date];urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
