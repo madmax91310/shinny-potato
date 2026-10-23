@@ -104,6 +104,9 @@ jobs:
               (out/'gdig-dk.pdf').write_bytes(raw)
               source=next(s for s in configurations() if s['id']=='etfIE00BDFBTQ78')
               source={**source,'factsheetUrl':url}
+              # This independent document probe keeps testing the PDF route;
+              # the active producer may now qualify its calendar via page APIs.
+              source.pop('navCalendarSource',None)
               def exact_document(target):
                   if '/library/fact-sheets/' in target:
                       if target!=url:raise ValueError('Other document routes disabled during this qualification')
