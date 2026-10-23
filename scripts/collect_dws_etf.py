@@ -278,11 +278,19 @@ def parse_aum_workbook(body, share, now, url, product):
         reject('DWS export predates its AUM valuation')
     # The product explicitly labels its AUM as FUND, not share-class. The
     # historical download supplies this field in the stated workbook currency.
-    facts = {i['key']: i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts'])}
-    if 'Total AUM of fund' not in facts or document_date(facts['NAV date'], now) != stamp:
-        reject('DWS dated fund-AUM context does not match the workbook')
+    fund_scope = [i for i in items(product['pdpResult']['pageSections']['keyFacts']) if i['key'] == 'Total AUM of fund']
+    nav_dates = [i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts']) if i['key'] == 'NAV date']
+    if len(fund_scope) != 1 or len(nav_dates) != 1:
+        reject('Missing/ambiguous DWS fund-AUM context')
+    nav_context_date = document_date(nav_dates[0], now)
+    # The dated workbook and the current NAV panel are separate publications.
+    # In the observed Utilities response the workbook ends on 21 October while
+    # the NAV panel already shows 22 October. Keep the actual AUM valuation date
+    # and workbook currency; neither the NAV date nor its displayed GBP amount
+    # is substituted for the independently published USD observation.
     return {'amount': amount, 'currency': share['currency'], 'scope': 'fund', 'asOf': stamp,
             'exportDate': export_date, 'exportTimezone': 'Europe/Berlin',
+            'navContextAsOf': nav_context_date,
             'sourceUrl': url, 'sha256': hashlib.sha256(body).hexdigest(),
             'method': 'DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets'}
 

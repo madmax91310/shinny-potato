@@ -1,0 +1,59 @@
+[
+  {
+    "isin": "IE00BM67HV82",
+    "aum": {
+      "amount": 1337200639.67,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "exportDate": "2026-10-23",
+      "exportTimezone": "Europe/Berlin",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
+      "sha256": "2d89b949c84318a2dd68183b369b4294c36d302ad27604f67d519d62d40e17f9",
+      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets"
+    },
+    "unavailable": [],
+    "captures": [
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+        "file": "IE00BM67HV82-0.json.gz",
+        "sha256": "94ebc66bacc5d0e13da4a78b6a95cb7f175b2483c972f09b10edf0285a58f46a"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download?startDate=2026-10-09&endDate=2026-10-23&includeTax=false",
+        "file": "IE00BM67HV82-1.xlsx",
+        "sha256": "2d89b949c84318a2dd68183b369b4294c36d302ad27604f67d519d62d40e17f9"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+        "file": "IE00BM67HV82-2.json.gz",
+        "sha256": "0f5634f109eba1f01abb9872f84f72766af00d168051dac461c99f0c7be83820"
+      }
+    ]
+  },
+  {
+    "isin": "IE00BM67HQ30",
+    "aum": null,
+    "unavailable": [
+      "aum: no separately published valuation date/currency qualified",
+      "aum: DWS dated fund-AUM context does not match the workbook"
+    ],
+    "captures": [
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+        "file": "IE00BM67HQ30-0.json.gz",
+        "sha256": "0d4c92cd4567a297e5bed4630ea00a7df2fe9b91707b992005f14752017d9a94"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/historicaldata/download?startDate=2026-10-09&endDate=2026-10-23&includeTax=false",
+        "file": "IE00BM67HQ30-1.xlsx",
+        "sha256": "1148b06a3cb611d128956429aabb607543728c2afa077151e8f03225940d1908"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
+        "file": "IE00BM67HQ30-2.json.gz",
+        "sha256": "96bba77e68332acc7214ebe71a1da12804fb3460cec5e896fb8cf419c579fd89"
+      }
+    ]
+  }
+]

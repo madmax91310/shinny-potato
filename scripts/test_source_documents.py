@@ -1,5 +1,6 @@
 """Regressions for official index parsers and independent/atomic refreshes."""
 import copy
+import gzip
 import datetime as dt
 import json
 import pathlib
@@ -241,6 +242,32 @@ class CompletedIssuerCoverage(unittest.TestCase):
                          ('06.10.2026','01.10.2026')]:
             with self.subTest(old=old,new=new), self.assertRaises(ValueError):
                 parse_aum_workbook(replace_string(old,new), share, now, '', product)
+
+    def test_dws_independent_publications_keep_workbook_date_and_currency(self):
+        # Actual official response: the GBP NAV panel has advanced a day before
+        # the separately dated USD AUM workbook. No currency conversion inferred.
+        product=json.loads(gzip.decompress((self.folder/'dws-utilities-keyfacts-20261023.json.gz').read_bytes()))
+        body=(self.folder/'dws-utilities-aum-20261023.xlsx').read_bytes()
+        share={'isin':'IE00BM67HQ30','currency':'USD'}
+        now=dt.datetime(2026,10,23,tzinfo=UTC)
+        r=parse_aum_workbook(body,share,now,'https://etf.dws.com/history',product)
+        self.assertEqual(r['asOf'],'2026-10-21')
+        self.assertEqual(r['navContextAsOf'],'2026-10-22')
+        self.assertEqual(r['currency'],'USD');self.assertEqual(r['scope'],'fund')
+        self.assertEqual(r['amount'],930235746.38)
+        self.assertNotEqual(r['amount'],705120000) # independently displayed GBP panel
+        self.assertEqual(r['exportDate'],'2026-10-23')
+
+    def test_dws_ambiguous_or_missing_fund_scope_still_rejected(self):
+        product=self.fixture('dws-exact-share.json');share=self.share('IE00BLNMYC90')
+        body=(self.folder/'dws-history.xlsx').read_bytes()
+        facts=product['pdpResult']['pageSections']['keyFacts']
+        fund=next(i for i in dws_items(facts) if i['key']=='Total AUM of fund')
+        bad=copy.deepcopy(product)
+        bad['pdpResult']['pageSections']['keyFacts']['extra']=[copy.deepcopy(fund)]
+        with self.assertRaises(ValueError):parse_aum_workbook(body,share,self.now,'',bad)
+        fund['key']='Unknown assets scope'
+        with self.assertRaises(ValueError):parse_aum_workbook(body,share,self.now,'',product)
 
     def test_dws_materials_country_is_published_not_inferred_from_isin(self):
         body = self.fixture('dws-materials-2026-10-07.json')
