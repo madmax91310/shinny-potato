@@ -1,6 +1,6 @@
 # Actions internationales — Portefeuilles IA
 
-Généré : 2026-10-23T07:02:55.276620+00:00
+Généré : 2026-10-23T10:40:06.930322+00:00
 Actions qualifiées : 18221 ; référence avant chantier : 281 ; nouveaux instruments qualifiés : 17950.
 
 
@@ -63,7 +63,7 @@ Le dénominateur est chaque fichier officiel daté réellement obtenu. Les pages
 
 Les ETF UCITS restent disponibles. Les cryptos au comptant et les ETC/ETN/ETP qualifiés sont admis séparément dans les nouvelles compétitions ; un ETC n’est pas présenté comme un ETF UCITS. Les matières premières sont suivies par leur produit coté exact, sans inventer une détention physique. Les règles des compétitions déjà lancées restent archivées.
 
-- ETF : 227 instruments, 656 cotations.
+- ETF : 227 instruments, 657 cotations.
 - ETC : 13 instruments, 20 cotations.
 - ETN : 3 instruments, 5 cotations.
 - ETP : 2 instruments, 2 cotations.
@@ -127,7 +127,7 @@ Les ETF UCITS restent disponibles. Les cryptos au comptant et les ETC/ETN/ETP qu
 ## Réexamen du registre initial
 
 - qualified : 288 avant ; après : {"qualified": 288}.
-- temporary-failure : 1071 avant ; après : {"qualified": 778, "temporary-failure": 293}.
+- temporary-failure : 1071 avant ; après : {"qualified": 779, "temporary-failure": 292}.
 - excluded : 102 avant ; après : {"excluded": 102}.
 - blocked : 17 avant ; après : {"blocked": 17}.
 

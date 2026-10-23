@@ -1,14 +1,14 @@
 # Qualification quotidienne — Portefeuilles IA
 
-Généré : 2026-10-23T07:01:31.293745+00:00
+Généré : 2026-10-23T10:40:00.268479+00:00
 
 - instrumentsInventoried : 62013
 - listingCandidates : 63771
 - technicalCandidates : 24974
 - testedCandidates : 22784
 - admittedInstruments : 20200
-- qualifiedListings : 21185
-- temporary-failure : 1370
+- qualifiedListings : 21186
+- temporary-failure : 1369
 - excluded : 38797
 - blocked : 2419
 - unprocessed : 0
@@ -35,7 +35,7 @@ Généré : 2026-10-23T07:01:31.293745+00:00
 | ETC / matières premières | 14 | 56 | 13 | 26 | 30 | 0 | 0 | 0 |
 | ETF (inventaire de marché) | 9625 | 9757 | 0 | 0 | 0 | 9757 | 0 | 0 |
 | ETF / produits matières premières | 2 | 8 | 2 | 6 | 2 | 0 | 0 | 0 |
-| ETF actions | 133 | 498 | 124 | 356 | 132 | 0 | 10 | 0 |
+| ETF actions | 133 | 498 | 124 | 357 | 131 | 0 | 10 | 0 |
 | ETF factoriels / dividendes / small caps | 34 | 141 | 34 | 102 | 37 | 0 | 2 | 0 |
 | ETF immobiliers | 6 | 17 | 6 | 13 | 4 | 0 | 0 | 0 |
 | ETF monétaires | 1 | 2 | 1 | 2 | 0 | 0 | 0 | 0 |

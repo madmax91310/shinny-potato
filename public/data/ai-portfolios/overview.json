@@ -32,22 +32,22 @@
         "region": null,
         "exposure": null,
         "discoveryBlock": null,
-        "status": "temporary-failure",
-        "reason": "Clôtures attendues manquantes : 2026-10-22",
-        "lastAttempt": "2026-10-23T07:01:04.424165+00:00",
-        "lastSuccess": "2026-10-22T11:17:25.167677+00:00",
+        "status": "qualified",
+        "reason": "Clôtures quotidiennes actualisées et contrôlées.",
+        "lastAttempt": "2026-10-23T10:39:50.275215+00:00",
+        "lastSuccess": "2026-10-23T10:39:50.275215+00:00",
         "coverageFrom": "2026-07-13",
-        "coverageThrough": "2026-10-21",
+        "coverageThrough": "2026-10-22",
         "calendarThrough": "2026-12-31",
-        "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-        "sourceRetrievedAt": "2026-10-22T10:58:44.791336+00:00",
-        "responseSha256": "c4aaf9fb39aed1b5b0b1cb2a66e8ba464ee9e7295db82b7b9873a947c4964fdb",
+        "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits",
+        "sourceRetrievedAt": "2026-10-23T10:39:50.275215+00:00",
+        "responseSha256": "fb234911e637c6a6ebacea24871c36adcf4defc9f8f5f1c6fc08ce192c49242e",
         "qualifiedSymbol": "CSPX.L",
         "observedSourceCurrency": "USD",
         "seriesFile": "series/32.json"
       }
     ],
-    "generatedAt": "2026-10-23T07:01:04.424165+00:00",
+    "generatedAt": "2026-10-23T10:39:50.275215+00:00",
     "calendarFrom": "2026-07-13",
     "calendarThrough": "2027-01-01",
     "calendars": {
@@ -3537,15 +3537,13 @@
       "ECB": {
         "ok": true,
         "asOf": "2026-10-22",
-        "attemptedAt": "2026-10-23T07:01:04.424165+00:00"
+        "attemptedAt": "2026-10-23T10:39:50.275215+00:00"
       },
       "IE00B5BMR087-XLON-CSPX-USD": {
-        "ok": false,
-        "attemptedAt": "2026-10-23T07:01:04.424165+00:00",
-        "error": "Clôtures attendues manquantes : 2026-10-22",
-        "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792738864&interval=1d&events=div%2Csplits",
-        "lastValidAsOf": "2026-10-21",
-        "lastSuccess": "2026-10-22T10:58:44.791336+00:00"
+        "ok": true,
+        "attemptedAt": "2026-10-23T10:39:50.275215+00:00",
+        "asOf": "2026-10-22",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits"
       },
       "CBC": {
         "ok": true,
@@ -6164,7 +6162,7 @@
         }
       },
       "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
-      "retrievedAt": "2026-10-23T07:01:04.424165+00:00",
+      "retrievedAt": "2026-10-23T10:39:50.275215+00:00",
       "observations": [
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -6181,6 +6179,13 @@
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
           "retrievedAt": "2026-10-23T07:01:04.424165+00:00",
+          "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
+          "from": "2026-07-06",
+          "through": "2026-10-22"
+        },
+        {
+          "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+          "retrievedAt": "2026-10-23T10:39:50.275215+00:00",
           "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
           "from": "2026-07-06",
           "through": "2026-10-22"
@@ -6875,25 +6880,23 @@
     },
     "collection": {
       "required": [
-        "IE00B5BMR087-XLON-CSPX-USD",
-        "IE00B5BMR087-XMEX"
+        "IE00B5BMR087-XLON-CSPX-USD"
       ],
       "requested": [
-        "IE00B5BMR087-XLON-CSPX-USD",
-        "IE00B5BMR087-XMEX"
+        "IE00B5BMR087-XLON-CSPX-USD"
       ],
       "reused": []
     },
     "inventoryCounts": {
-      "instruments": 62013,
-      "listings": 63771,
+      "instruments": 62014,
+      "listings": 63772,
       "permanentExcluded": 38797
     }
   },
   "state": {
     "version": 1,
     "revision": 0,
-    "generatedAt": "2026-10-23T07:01:04.424165+00:00",
+    "generatedAt": "2026-10-23T10:39:50.275215+00:00",
     "asOf": "2026-10-22",
     "daily": {},
     "weekly": {},
@@ -6961,8 +6964,8 @@
   },
   "catalogue": {
     "url": "catalogue.json",
-    "count": 24974,
-    "revision": "2026-10-23T07:01:04.424165+00:00"
+    "count": 24975,
+    "revision": "2026-10-23T10:39:50.275215+00:00"
   },
   "sourceRevisionCount": 1881
 }
