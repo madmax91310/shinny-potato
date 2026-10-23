@@ -12,7 +12,13 @@ const trustedHead=spawnSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).stdout
 const dataPaths=(process.env.AI_OWNER_DATA_PATHS??'data/ai-portfolios public/data/ai-portfolios').split(' ')
 if(JSON.stringify(dataPaths)!==JSON.stringify(['data/ai-portfolios','public/data/ai-portfolios']))throw Error('Périmètre d’écriture invalide.')
 function command(cmd,args){const r=spawnSync(cmd,args,{encoding:'utf8',maxBuffer:8*1024*1024});if(r.status!==0)throw Error(((r.stdout??'')+'\n'+(r.stderr??'')||'Traitement interrompu.').slice(-6000));return r.stdout}
-async function api(route,method,body){const r=await fetch(`https://api.github.com/repos/${repository}${route}`,{method,headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});if(!r.ok)throw Error('Journal GitHub indisponible ('+r.status+').');return r.json()}
+async function api(route,method,body){
+ for(let attempt=0;attempt<3;attempt++)try{
+  const r=await fetch(`https://api.github.com/repos/${repository}${route}`,{method,headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined})
+  if(!r.ok){const error=Error('Journal GitHub indisponible ('+r.status+').');error.retryable=r.status===429||r.status>=500;throw error}
+  return await r.json()
+ }catch(error){if(error.retryable===false||attempt===2)throw error;await new Promise(resolve=>setTimeout(resolve,500*(attempt+1)))}
+}
 async function status(value){await api(`/issues/${event.issue.number}/comments`,'POST',{body:'AI_PORTFOLIO_STATUS\n'+JSON.stringify({...value,updatedAt:new Date().toISOString()})})}
 try{
  const envelope=await decodeIssue(event),branch=envelope.testBranch??'master'
@@ -42,6 +48,11 @@ try{
  }
  if(!committed)throw lastError??Error('Modification concurrente : relancer le traitement.')
  const sha=command('git',['rev-parse','HEAD']).trim();if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,`${envelope.testBranch?'rehearsal_commit':'commit_sha'}=${sha}\n`)
- await status({state:'recorded',requestId:proposal.requestId,commit:sha,...(envelope.testBranch?{branch,scope:'isolated'}:{}),message:envelope.testBranch?'Recette enregistrée sur la branche isolée. Aucune publication ni modification du livre réel.':'Décision enregistrée durablement. Publication en cours ; exécution selon la clôture future prévue.'})
- await api(`/issues/${event.issue.number}`,'PATCH',{state:'closed',state_reason:'completed'})
+ // The commit and deployment output above are authoritative. A lost response
+ // from the notification API must never mark a saved decision as failed or
+ // prevent its publication. Reopening the issue remains idempotent.
+ try{
+  await status({state:'recorded',requestId:proposal.requestId,commit:sha,...(envelope.testBranch?{branch,scope:'isolated'}:{}),message:envelope.testBranch?'Recette enregistrée sur la branche isolée. Aucune publication ni modification du livre réel.':'Décision enregistrée durablement. Publication en cours ; exécution selon la clôture future prévue.'})
+  await api(`/issues/${event.issue.number}`,'PATCH',{state:'closed',state_reason:'completed'})
+ }catch(error){console.warn(`::warning::Livre enregistré dans ${sha}. Notification GitHub indisponible : ${error.message}. L’audit durable fait foi ; la publication reste autorisée.`)}
 }catch(e){await status({state:'failed',error:e.message});process.exitCode=1}finally{fs.rmSync(temp,{recursive:true,force:true})}
