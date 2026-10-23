@@ -8,6 +8,12 @@ on:
       - 'scripts/collect_vaneck_etf.py'
   workflow_dispatch:
     inputs:
+      runner:
+        description: Standard GitHub runner for an isolated public-route comparison
+        required: false
+        type: choice
+        default: ubuntu-latest
+        options: [ubuntu-latest, macos-15]
       scopes:
         description: JSON list of isolated collector scopes
         required: true
@@ -21,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         scope: ${{ fromJSON(inputs.scopes) }}
-    runs-on: ${{ matrix.scope == 'brokers-macos' && 'macos-15' || 'ubuntu-latest' }}
+    runs-on: ${{ inputs.runner || (matrix.scope == 'brokers-macos' && 'macos-15' || 'ubuntu-latest') }}
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7.0.1
