@@ -9,6 +9,7 @@
     "incident historique resolved": 100,
     "incident historique retired": 160,
     "échec individuel initial": 8,
+    "incident actif au contrôle final": 15,
     "reliquat historique initial": 201,
     "module qualifié": 115,
     "action historique": 19
@@ -307,22 +308,22 @@
     },
     "assetAutomation": {
       "profiles": 1571,
-      "fields": 6727,
+      "fields": 6736,
       "states": {
         "blocked": 176,
-        "connected": 765,
+        "connected": 756,
         "reference-only": 456,
-        "qualification-needed": 121,
+        "qualification-needed": 130,
         "scheduled-evidence": 53
       }
     },
     "consumerUsage": {
       "tools": 20,
-      "usages": 21014,
-      "required": 18366,
-      "connected": 15820,
+      "usages": 21023,
+      "required": 18375,
+      "connected": 15802,
       "blocked": 717,
-      "unconfirmed": 1829,
+      "unconfirmed": 1856,
       "unmapped": 0
     }
   },
@@ -346,6 +347,7 @@
     "checked": 90
   },
   "monitorActiveInitial": 13,
+  "monitorActiveFinal": 15,
   "productionMonitorManuallyChanged": false,
   "missingInitialCoverageRows": 0,
   "newCoverageRows": 0

@@ -99,6 +99,41 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39966451832",
       "artifactId": 12506572985,
       "interpretation": "8/8 barèmes et profils validés sur macOS-15 ; routage IBKR anglais unifié, table France exacte. Échecs Linux antérieurs conservés dans les preuves."
+    },
+    {
+      "scope": "copper",
+      "runId": 39969645450,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39969645450",
+      "artifactId": 12508083149,
+      "interpretation": "Collecteur officiel réel : HTTP403, zéro donnée admise ; blocage maintenu, ancienne observation conservée."
+    },
+    {
+      "scope": "dws",
+      "runId": 39970655100,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39970655100",
+      "artifactId": 12508168590,
+      "interpretation": "11/11 photographies courantes recoupées strictement ; nouvelles données de master préservées, ancienne divergence de pays non attribuée rétroactivement."
+    },
+    {
+      "scope": "publication",
+      "runId": 39970655100,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39970655100",
+      "artifactId": 12509575685,
+      "interpretation": "Fenêtre intrajournalière corrigée et testée ; contrôle GitHub refusé HTTP429, dernière clôture valide conservée. Aucune résolution réseau annoncée."
+    },
+    {
+      "scope": "publication-retry",
+      "runId": 39971268475,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39971268475",
+      "artifactId": 12509781020,
+      "interpretation": "Rejeu borné : dernier résultat dans preuves/publication-retry-observation.json.gz ; aucune donnée promue en cas de refus."
+    },
+    {
+      "scope": "publication-final",
+      "runId": 39972283341,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39972283341",
+      "artifactId": 12510240688,
+      "interpretation": "Attente intrajournalière qualifiée : deux routes XNDX concordantes, clôture conservée du 22/10 = précédente séance XNYS, référence previousClose concordante. Zéro nouvelle donnée, aucun dernier succès artificiellement renouvelé."
     }
   ]
 }

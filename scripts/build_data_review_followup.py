@@ -1,5 +1,5 @@
 """Reconcile every initial review dimension, preserving duplicates across different contracts."""
-import collections,csv,datetime as dt,gzip,json,pathlib,subprocess
+import collections,csv,datetime as dt,gzip,json,pathlib,subprocess,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'reports/data-review-2026-10-23';P=OUT/'preuves'
 
@@ -7,10 +7,11 @@ def read(path):return json.loads(path.read_text())
 def zipped(name):return json.loads(gzip.decompress((P/name).read_bytes()))
 def rowkey(r):return ':'.join(str(r.get(k,'')) for k in ['type','id','field'])
 def main():
-    review_after=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {buildReview} from './src/pages/data-review/lib.js';console.log(JSON.stringify(buildReview('2026-10-23')));"],cwd=ROOT))
-    initial=zipped('inventory-initial.json.gz');now=read(ROOT/'public/data/data-automation-inventory.json')
+    snapshots='--from-snapshots' in sys.argv
+    review_after=zipped('review-final.json.gz') if snapshots else json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {buildReview} from './src/pages/data-review/lib.js';console.log(JSON.stringify(buildReview('2026-10-23')));"],cwd=ROOT))
+    initial=zipped('inventory-initial.json.gz');now=zipped('inventory-final.json.gz') if snapshots else read(ROOT/'public/data/data-automation-inventory.json')
     review_before=zipped('review-initial.json.gz')
-    before_coverage=zipped('asset-field-coverage-initial.json.gz');after_coverage=read(ROOT/'public/data/asset-field-coverage.json')
+    before_coverage=zipped('asset-field-coverage-initial.json.gz');after_coverage=zipped('asset-field-coverage-final.json.gz') if snapshots else read(ROOT/'public/data/asset-field-coverage.json')
     monitor=zipped('automation-status-initial.json.gz')
     accesses=read(ROOT/'public/data/pending-source-checks.json');source_checks=accesses['observations']
     current_connections={rowkey(r):r for r in now['connections']};initial_connections={rowkey(r):r for r in initial['connections']}
@@ -69,6 +70,19 @@ def main():
     for workflow,w in monitor['workflows'].items():
         for key,b in w.get('dataFailures',{}).items():
             add('échec individuel initial',workflow+':'+key,'en échec','corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé',b.get('cause',''),b.get('runUrl',''),key,b.get('field',''),action='Une étape ou une publication verte ne clôture pas cet échec individuel.')
+    final_monitor=zipped('automation-status-final.json.gz')
+    for key,b in final_monitor['monitoring']['active'].items():
+        after='corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé'
+        proof='preuves/automation-status-final.json.gz ; network-executions.json'
+        if 'anniversary-nasdaq100' in key and (P/'publication-observation.json.gz').exists():
+            result=zipped('publication-final-observation.json.gz') if (P/'publication-final-observation.json.gz').exists() else zipped('publication-observation.json.gz')
+            if not result.get('errors') and result.get('successes'):after='corrigé et vérifié depuis GitHub, intégration attendue'
+            elif not result.get('errors') and result.get('waiting'):after='attente normale de publication vérifiée depuis GitHub ; dernière clôture conservée sans revalidation'
+        if 'radar:etf' in key and (P/'dws-observation.json.gz').exists():
+            result=zipped('dws-observation.json.gz')
+            if not result.get('errors') and len(result.get('verified',[]))==result.get('candidateCount',0)>0:
+                after='photographie courante recoupée depuis GitHub ; ancienne divergence conservée'
+        add('incident actif au contrôle final',key,'actif dans le moniteur de production',after,b.get('cause',''),proof,b.get('dataId',b.get('name','')),b.get('field',''),action='Le producteur et son moniteur de production restent inchangés avant intégration ; voir la preuve isolée et le reliquat documenté.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
     with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
@@ -89,7 +103,7 @@ def main():
     assert not duplicates,duplicates
     with (OUT/'suivi-avant-apres.csv').open('w',encoding='utf-8-sig',newline='')as f:
         writer=csv.DictWriter(f,fieldnames=list(rows[0]),delimiter=';');writer.writeheader();writer.writerows(rows)
-    counters={'dimensions':dict(collections.Counter(r['dimension']for r in rows)),'before':initial['summary'],'after':now['summary'],'reviewBefore':dict(collections.Counter(r['category']for r in review_before['items'])),'reviewAfter':dict(collections.Counter(r['category']for r in review_after['items'])),'financial':financial['summary'],'monitorActiveInitial':len(monitor['monitoring']['active']),'productionMonitorManuallyChanged':False,'missingInitialCoverageRows':sum(k not in new_cov for k in old_cov),'newCoverageRows':sum(k not in old_cov for k in new_cov)}
+    counters={'dimensions':dict(collections.Counter(r['dimension']for r in rows)),'before':initial['summary'],'after':now['summary'],'reviewBefore':dict(collections.Counter(r['category']for r in review_before['items'])),'reviewAfter':dict(collections.Counter(r['category']for r in review_after['items'])),'financial':financial['summary'],'monitorActiveInitial':len(monitor['monitoring']['active']),'monitorActiveFinal':len(final_monitor['monitoring']['active']),'productionMonitorManuallyChanged':False,'missingInitialCoverageRows':sum(k not in new_cov for k in old_cov),'newCoverageRows':sum(k not in old_cov for k in new_cov)}
     assert counters['missingInitialCoverageRows']==0
     (OUT/'bilan.json').write_text(json.dumps(counters,ensure_ascii=False,indent=2)+'\n')
     for name,value in [('review-final',review_after),('inventory-final',now),('asset-field-coverage-final',after_coverage)]:

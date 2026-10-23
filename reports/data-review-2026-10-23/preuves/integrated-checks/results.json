@@ -1,0 +1,50 @@
+[
+  {
+    "command": "node scripts/test-review-reconciliation.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-data-qualification.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-data-automation-inventory.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-fx-consistency.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-remainder-nav-consumers.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-remainder-financial.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/test-official-nav-consumers.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run test:dca",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run audit:broker-evidence",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run audit:data-review",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run audit:calculator-series",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run test:ai-portfolios",
+    "exitCode": 0
+  }
+]
