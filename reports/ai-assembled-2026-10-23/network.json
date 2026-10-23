@@ -1,0 +1,42 @@
+{
+  "testedAt": "2026-10-23T19:58:57.171Z",
+  "scope": "Vraies requêtes réseau en racine temporaire. Historique contrôlé à sa vraie borne ; disponibilité actuelle distincte. Aucun portefeuille créé ni lancé.",
+  "root": "/tmp/ai-final-network-sXDYtJ",
+  "asOf": "2026-10-22",
+  "currentReady": true,
+  "currentError": null,
+  "asset": {
+    "id": "IE00B5BMR087-XLON-CSPX-USD",
+    "name": "iShares Core S&P 500 UCITS ETF",
+    "isin": "IE00B5BMR087",
+    "symbol": "CSPX.L",
+    "currency": "USD",
+    "timezone": "Europe/London"
+  },
+  "historical": {
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?range=6mo&interval=1d&events=div%2Csplits",
+    "through": "2026-10-22",
+    "anchor": "2026-07-13",
+    "count": 73,
+    "responseSha256": "05078e36a12038bf269c752b217e926eb0a6a7fba9496666cc748a09b50809e7",
+    "currency": "USD",
+    "scale": 1,
+    "convention": "synthetic-total-return-100-at-anchor"
+  },
+  "collection": {
+    "required": [
+      "IE00B5BMR087-XLON-CSPX-USD"
+    ],
+    "requested": [],
+    "reused": [
+      "IE00B5BMR087-XLON-CSPX-USD"
+    ]
+  },
+  "fx": {
+    "ok": true,
+    "asOf": "2026-10-23",
+    "attemptedAt": "2026-10-23T19:58:30.290206+00:00"
+  },
+  "productionBookSha256": "90cdcab829091e6371660f42287e07c7b28ecb937a7ed987cac02964e5855633",
+  "productionBookUnchanged": true
+}

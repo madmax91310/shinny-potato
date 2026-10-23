@@ -1,0 +1,25 @@
+{
+  "testedAt": "2026-10-23T20:01:50.512Z",
+  "scope": "CLI réelle avec réseau, livre temporaire et sans lancement ; aucune compétition ni décision ajoutée aux données de production.",
+  "requestedAssets": [
+    "IE00B5BMR087-XLON-CSPX-USD",
+    "security:004810f8f891e640e8879902-XNAS-BSVN-USD",
+    "security:0072141d8e3ce72f1f769587-XNAS-CELU-USD",
+    "security:0075468dffd39c78c532d7c1-XNAS-CRSP-USD"
+  ],
+  "reused": [
+    "IE00B5BMR087-XLON-CSPX-USD"
+  ],
+  "restoredClose": "2026-10-21",
+  "anchorPreserved": true,
+  "decisionRecordedInTemporaryRoot": true,
+  "competitionRemainsDraft": true,
+  "duplicateRejectedBeforeCollection": true,
+  "productionBookUnchanged": true,
+  "fetchedListings": [
+    "security:004810f8f891e640e8879902-XNAS-BSVN-USD",
+    "security:0072141d8e3ce72f1f769587-XNAS-CELU-USD",
+    "security:0075468dffd39c78c532d7c1-XNAS-CRSP-USD"
+  ],
+  "note": "Requêtes nécessaires, incluant les revues complètes dues ; les modes individuels n’étaient pas capturés par cette version du rapport."
+}
