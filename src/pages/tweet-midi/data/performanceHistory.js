@@ -7,15 +7,10 @@ import { returnConvention } from '../../../lib/return-convention.js'
 import { performanceBasisLabel } from '../../../lib/performance-conventions.js'
 import { qualifyHistoryWindow }from '../../../data/history-window-quality.js'
 export { MONTHS_FULL } from '../../../data/market-history.js'
-const monthlyByIsin=new Map()
-for(const a of monthly.MARKET_ASSETS){
- if(!a.isin)continue
- monthlyByIsin.set(a.isin,[...monthlyByIsin.get(a.isin)??[],a])
-}
 const indexKey = a => `${canonicalIndexHistoryId(a.indexId ?? a.id)}|${a.currency}|${returnConvention(a)}`
 const existingIndices = new Set(monthly.MARKET_ASSETS.filter(a => a.priceUnit === 'points' && monthly.getAnnualReturnStartYears(a.id).length).map(a => indexKey({ ...a, detail: monthly.performanceBasis(a.id) })))
 const annual = [...Object.values(QUALIFIED_FUND_CALENDARS).filter(a => {
- const matches=monthlyByIsin.get(a.isin)??[]
+ const matches=monthly.MARKET_ASSETS.filter(r=>r.isin===a.isin)
  return !matches.some(r=>monthly.getAnnualReturnStartYears(r.id).length)||matches.some(r=>Object.keys(a.years).some(y=>qualifyHistoryWindow(r,`${Number(y)-1}-12`,`${y}-12`).code==='financial-window-unconfirmed'))
 }).map(a=>({...a,label:`${a.label} · calendrier VL`})),
   ...Object.values(QUALIFIED_INDEX_CALENDARS).filter(a => !existingIndices.has(indexKey(a))).map(a => ({ ...a, label: `${a.label} ${a.variant}` }))]

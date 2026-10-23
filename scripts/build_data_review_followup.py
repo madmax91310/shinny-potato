@@ -1,5 +1,5 @@
 """Reconcile every initial review dimension, preserving duplicates across different contracts."""
-import collections,csv,datetime as dt,gzip,json,pathlib,subprocess,sys
+import io,collections,csv,datetime as dt,gzip,json,pathlib,subprocess,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'reports/data-review-2026-10-23';P=OUT/'preuves'
 
@@ -7,6 +7,8 @@ def read(path):return json.loads(path.read_text())
 def zipped(name):return json.loads(gzip.decompress((P/name).read_bytes()))
 def rowkey(r):return ':'.join(str(r.get(k,'')) for k in ['type','id','field'])
 def main():
+    baseline_path=OUT/'reprise/suivi-avant-apres.csv.initial.gz'
+    baseline=list(csv.DictReader(io.StringIO(gzip.decompress(baseline_path.read_bytes()).decode('utf-8-sig')),delimiter=';')) if baseline_path.exists() else []
     snapshots='--from-snapshots' in sys.argv
     review_after=zipped('review-final.json.gz') if snapshots else json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {buildReview} from './src/pages/data-review/lib.js';console.log(JSON.stringify(buildReview('2026-10-23')));"],cwd=ROOT))
     initial=zipped('inventory-initial.json.gz');now=zipped('inventory-final.json.gz') if snapshots else read(ROOT/'public/data/data-automation-inventory.json')
@@ -71,9 +73,14 @@ def main():
         for key,b in w.get('dataFailures',{}).items():
             add('échec individuel initial',workflow+':'+key,'en échec','corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé',b.get('cause',''),b.get('runUrl',''),key,b.get('field',''),action='Une étape ou une publication verte ne clôture pas cet échec individuel.')
     final_monitor=read(P/'automation-status-latest.json') if (P/'automation-status-latest.json').exists() else zipped('automation-status-final.json.gz')
+    previous_monitor=final_monitor
+    resumed=OUT/'reprise/automation-status-reprise.json'
+    if resumed.exists():final_monitor=read(resumed)
     stability=read(P/'dws-stability-preview.json') if (P/'dws-stability-preview.json').exists() else {}
     stable_keys={r['key'] for r in stability.get('resolved',[])}
-    for key,b in final_monitor['monitoring']['active'].items():
+    monitor_union={**previous_monitor['monitoring']['active'],**final_monitor['monitoring']['active']}
+    resolved_now={r['id']:r for r in final_monitor['monitoring']['resolved']}
+    for key,b in monitor_union.items():
         after='corrigé dans la PR, intégration attendue'if any(x in key for x in fixed)else'blocage conservé'
         proof='preuves/automation-status-final.json.gz ; network-executions.json'
         if 'anniversary-nasdaq100' in key and (P/'publication-observation.json.gz').exists():
@@ -90,6 +97,11 @@ def main():
                 elif stability:
                     after='valeurs recoupées ; nouveau document, quatre heures de stabilité encore requises'
                 proof+=' ; preuves/dws-stability-preview.json ; preuves/dws-later-document-changes.json'
+        if key not in final_monitor['monitoring']['active']:
+            resolved=resolved_now.get(key)
+            after='résolu par le producteur ordinaire, preuve datée' if resolved else 'absent du moniteur courant ; résolution non prouvée'
+            proof='reprise/automation-status-reprise.json'
+            if resolved:proof+=' ; resolvedAt='+str(resolved.get('resolvedAt'))
         add('incident actif au contrôle final',key,'actif dans le moniteur de production',after,b.get('cause',''),proof,b.get('dataId',b.get('name','')),b.get('field',''),action='Le producteur et son moniteur de production restent inchangés avant intégration ; voir la preuve isolée et le reliquat documenté.')
     if (P/'holdings-ishares-promoted.json').exists():
         proof=read(P/'holdings-ishares-promoted.json')
@@ -155,6 +167,10 @@ def main():
         add('incident révélé par la CI','actor:tudigo:activity','ancienne page tarifaire remplacée ; collecte refusée','cessation qualifiée depuis GitHub ; anciennes conditions archivées',
             'Deux routes officielles servent le même avis. Jugement du 12/10 distinct du contrôle du 23/10 ; aucune nouvelle offre, aucun transfert effectif ni remboursement déduit.',
             'preuves/tudigo-activity.json ; scripts/fixtures/presentation-actors/tudigo-cessation-20261023.html','actor:tudigo','activity','Présentations',activity.get('sourceUrl',''),action='Conserver la cessation si la source échoue ; une réouverture exige une qualification explicite.')
+    # Never delete an initial follow-up line when current catalogue dimensions change.
+    current_keys={(r['dimension'],r['cle']) for r in rows}
+    for old in baseline:
+        if (old['dimension'],old['cle']) not in current_keys:rows.append(old)
     for r in rows:
         for k,v in r.items():
             if isinstance(v,(list,dict)):r[k]=json.dumps(v,ensure_ascii=False)
@@ -165,6 +181,8 @@ def main():
         writer=csv.DictWriter(f,fieldnames=list(rows[0]),delimiter=';');writer.writeheader();writer.writerows(rows)
     counters={'dimensions':dict(collections.Counter(r['dimension']for r in rows)),'before':initial['summary'],'after':now['summary'],'reviewBefore':dict(collections.Counter(r['category']for r in review_before['items'])),'reviewAfter':dict(collections.Counter(r['category']for r in review_after['items'])),'financial':financial['summary'],'monitorActiveInitial':len(monitor['monitoring']['active']),'monitorActiveFinal':len(final_monitor['monitoring']['active']),'productionMonitorManuallyChanged':False,'missingInitialCoverageRows':sum(k not in new_cov for k in old_cov),'newCoverageRows':sum(k not in old_cov for k in new_cov)}
     assert counters['missingInitialCoverageRows']==0
+    counters['reprise']={'initialRowsPreserved':len(baseline),'missingInitialRows':sum((r['dimension'],r['cle']) not in keys for r in baseline),'currentActiveSignals':len(final_monitor['monitoring']['active']),'resolvedSincePreviousControl':sum(k in resolved_now for k in previous_monitor['monitoring']['active'] if k not in final_monitor['monitoring']['active'])}
+    assert counters['reprise']['missingInitialRows']==0
     counters['dwsReadOnlyReconciliation']={'prepared':stability.get('resolvedCount',0),'productionWritten':False,'proof':'preuves/dws-stability-preview.json'}
     (OUT/'bilan.json').write_text(json.dumps(counters,ensure_ascii=False,indent=2)+'\n')
     for name,value in [('review-final',review_after),('inventory-final',now),('asset-field-coverage-final',after_coverage)]:

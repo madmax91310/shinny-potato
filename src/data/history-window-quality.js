@@ -1,15 +1,13 @@
-// Restrictions concern exact listings and observed windows, never an ISIN globally.
-// Repeated prices alone are an investigation signal, not a universal rejection rule.
+// Exact listing windows; qualified NAV histories stay independent.
 import RESTRICTIONS from './history-window-restrictions.json' with {type:'json'}
 import FINANCIAL from './financial-history-restrictions.json' with {type:'json'}
 
 function unresolvedFinancialWindow(asset,start,end,convention){
-  if(['fund-nav-total-return','nav-total-return'].includes(convention))return null
-  for(const[isin,symbol,native,years]of FINANCIAL){
-    if(asset.isin!==isin||(asset.originalCurrency??asset.currency)!==native||!(asset.symbol===symbol||(asset.sourceUrls??[asset.sourceUrl]).some(u=>u?.includes('/chart/'+encodeURIComponent(symbol)+'?'))))continue
-    const affected=years.filter(year=>start<=`${year}-12`&&end>=`${year-1}-12`)
-    if(affected.length)return {qualified:false,code:'financial-window-unconfirmed',reason:`${symbol} : rapprochement financier non résolu (${affected}).`}
-  }
+  if(['fund-nav-total-return','nav-total-return'].includes(convention))return
+  const rule=FINANCIAL.find(([isin,symbol,currency])=>asset.isin===isin
+    &&(asset.originalCurrency??asset.currency)===currency
+    &&(asset.symbol===symbol||(asset.sourceUrls??[asset.sourceUrl]).some(u=>u?.includes('/chart/'+encodeURIComponent(symbol)+'?'))))
+  if(rule?.[3].some(y=>start<=`${y}-12`&&end>=`${y-1}-12`))return {qualified:false,code:'financial-window-unconfirmed',reason:`${rule[1]} : rapprochement financier non résolu (${start} → ${end}).`}
 }
 
 const dateOf = p => Array.isArray(p) ? p[0] : p.date
@@ -36,8 +34,6 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
     if(rule.inceptionMonth)continue
     if (asset.isin !== rule.isin || (asset.originalCurrency ?? asset.currency) !== rule.currency || (asset.symbol ?? `${asset.ticker}.${({XSWX:'SW',XAMS:'AS'})[asset.mic]}`) !== rule.symbol || start > rule.end || end < rule.start) continue
     const observed = (asset.qualityPoints ?? points).filter(p => dateOf(p) >= rule.start && dateOf(p) <= rule.end)
-    // A changed source is investigated by the collector; this observed restriction
-    // only applies while the known multi-month carried-forward prices persist.
     if (observed.some((p,i) => i >= 2 && priceOf(p) === priceOf(observed[i-1]) && priceOf(p) === priceOf(observed[i-2]))) return { qualified: false, code:'unreliable-window', reason: rule.reason }
   }
   return { qualified: true, convention, start, end }

@@ -375,19 +375,8 @@ function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack)
 }
 
 function buildDilemmeText(item) {
-  const lines = [];
-  lines.push(item.contexteTexte);
-  lines.push("");
-  lines.push(`${item.choix} 👇`);
-  lines.push("");
-  lines.push(`🅰️ ${item.optionA}`);
-  lines.push("");
-  lines.push(`🅱️ ${item.optionB}`);
-  lines.push("");
-  lines.push(item.tension);
-  lines.push("");
-  lines.push(`💬 ${item.question}`);
-  return lines.join("\n");
+  return [item.contexteTexte, '', `${item.choix} 👇`, '', `🅰️ ${item.optionA}`, '',
+    `🅱️ ${item.optionB}`, '', item.tension, '', `💬 ${item.question}`].join('\n');
 }
 
 function findAsset(assetId) {
@@ -400,9 +389,7 @@ function findAsset(assetId) {
 // forcément à l'ordre dans lequel l'utilisateur a choisi les deux actifs dans les menus déroulants
 // (cf. bug trouvé le 29/08/2026 : un niveau saisi pour le bon actif se retrouvait affiché sous le
 // mauvais, silencieusement, faussant la performance calculée).
-function getMarketAsset(assetId) {
-  return findAsset(assetId);
-}
+const getMarketAsset = findAsset;
 
 function fmtAnniversaryLevel(asset, value) {
   return asset.priceUnit === 'points' ? `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(value, asset.currency);
@@ -421,19 +408,15 @@ function buildAnniversaireText(item, rawNiveauActuel) {
   const gainPct = hasCurrent ? ((niveauActuel - historicalPrice) / historicalPrice) * 100 : null;
 
   const phrase = yearsPhrase(item.yearsBack);
-  const lines = [];
   const since = hasCurrent ? `Depuis, ${anniversaryResult(asset, gainPct, fmtPct(gainPct))}` : 'Où en est-il aujourd’hui ?';
-  lines.push(`${asset.icon} Il y a ${phrase}, ${asset.tweetPhrase} ${asset.priceUnit === 'points' ? 'était à' : 'valait'} ${fmtAnniversaryLevel(asset, historicalPrice)}. ${since} 👇`);
-  lines.push("");
-  if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant, "");
-  lines.push(`📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, historicalPrice)}`);
-  lines.push(`📅 ${observation?.label ?? "Niveau actuel"} : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
-  lines.push("");
-  lines.push(`📈 Évolution sur la période : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
-  lines.push("");
-  lines.push(anniversaryClosing(asset, gainPct));
-  if (asset.sourceCredit) lines.push("", asset.sourceCredit);
-  return lines.join("\n");
+  return [
+    `${asset.icon} Il y a ${phrase}, ${asset.tweetPhrase} ${asset.priceUnit === 'points' ? 'était à' : 'valait'} ${fmtAnniversaryLevel(asset, historicalPrice)}. ${since} 👇`, '',
+    ...(asset.anniversaryVariant ? [asset.anniversaryVariant, ''] : []),
+    `📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, historicalPrice)}`,
+    `📅 ${observation?.label ?? "Niveau actuel"} : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`, '',
+    `📈 Évolution sur la période : ${hasCurrent ? fmtPct(gainPct) : "—"}`, '',
+    anniversaryClosing(asset, gainPct), ...(asset.sourceCredit ? ['', asset.sourceCredit] : [])
+  ].join('\n');
 }
 
 function fmtEcart(pctA, pctB) {
