@@ -25,3 +25,12 @@ IE00BQQP9F84 : rendement quotidien officiel2017 11,6563573883%, calendrier PDF11
 Après cette migration :24/79cas sur NAV distincte,1WFNS sur cotation réparée,54 anciennes cotations non réparées encore consommées sur33parts. Les14nouvelles voies NAV sécurisent20cas supplémentaires depuis la base initiale, sans expliquer l’ancienne divergence ; avec WFNS15instruments existants sont modifiés. 72preuves quotidiennes et7manquantes ; les79causes ne sont pas déclarées entièrement attribuées. Voir les rapports séparés et leurs valeurs originales inchangées.
 
 La publication effective et les contrôles sur le site servi sont consignés séparément après fusion dans PUBLICATION.md ; ce document de PR ne constitue pas une preuve de mise en ligne.
+
+
+## Complément après le producteur normal
+
+La CI complète9be6d1a a réussi, mais le producteur mensuel normal39996170288 a ensuite validé661/665séries et refusé quatre PDF VanEck redirigés vers le siteUS. Les observations et dernières valeurs ont été conservées : la sonde dédiée verte ne suffisait pas à démontrer cette voie du producteur normal. La fusion a été suspendue pour corriger ce raccordement.
+
+ESPO/NUCL/JEDI utilisent désormais les API publiques réellement appelées par leurs pages officielles UCITS : code interne dérivé de la page (UCTESPO, UCTNUCL, UCTJEDI), caractéristiques de revenu et de devise, table de cotations donnant uniquement l’ISIN exact, calendrier de la ligne du fonds avec sa devise et son lancement. Un ticker public américain homonyme est explicitement refusé. La convention NAV nette capitalisante reste inchangée. Aucune dépendance au PDF régional n’est utilisée pour ces trois NAV ; les caractéristiques et compositions des autres collecteurs ne sont pas annoncées réparées par ce changement. La sonde utilise désormais le vrai point d’entrée refresh_monthly_history.py --only, le même Ubuntu26.04/Node20 que le producteur planifié, et conserve les preuves complètes sans renouveler un historique inchangé.
+
+Mining conserve sa qualification et sa voie PDF antérieures : son calendrier API2022 à2,0% ne qualifie pas le rendement NAV quotidien1,9454868655% sous la précision explicite à une décimale. La preuve PDF antérieure publie2 sans décimale ; elle reste distincte et ses fenêtres qualifiées sont conservées. Aucun seuil ni précision API n’est assoupli pour admettre cette nouvelle voie. Le candidat API Mining reste non activé ; le candidat GDX reste refusé en2017. Ces deux limites sont hors des79cas initiaux.

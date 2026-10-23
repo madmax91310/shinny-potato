@@ -23,6 +23,61 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDS = ['etfEqualWeight', 'etfIE000U9ODG19', 'etfIE00BDFBTQ78', 'etfGB00B15KXQ89']
 
 
+def vaneck_page_calendar(soup, isin, native, title, ticker, now, fetch):
+    """The public UCITS page APIs, never the US fund sharing its public ticker."""
+    from decimal import Decimal
+    from issuer_documents import document_date
+    normalize=lambda s:' '.join(BeautifulSoup(s,'html.parser').get_text(' ',strip=True).split())
+    page_text=normalize(str(soup))
+    if not re.search(r'Performance data for the Irish domiciled ETFs is displayed on a Net Asset Value basis, in Base Currency terms, with net income reinvested, net of fees',page_text):
+        raise ValueError('VanEck page NAV currency/income convention not confirmed')
+    page_id=soup.find('ve-histopricesblock')['data-pageid']
+    def block(tag, controller):
+        element=soup.find(tag)
+        if not element or element.get('data-pageid')!=page_id or not re.fullmatch(r'\d+',element.get('data-blockid','')):
+            raise ValueError('VanEck official fund component changed')
+        query=urllib.parse.urlencode(dict(blockid=element['data-blockid'],pageid=page_id,ticker=ticker))
+        response=fetch('https://www.vaneck.com/Main/'+controller+'/GetContent/?'+query)
+        if response.get('blockId')!=int(element['data-blockid']):raise ValueError('Wrong VanEck component identity')
+        result=response['data']
+        if 'Ticker' in result and result['Ticker']!=ticker:raise ValueError('Wrong VanEck internal fund ticker')
+        return result
+    facts=block('ve-fund-details-block','FundDetailsBlock')
+    values={normalize(row['Title']):normalize(row['Value'])for row in facts['Values']}
+    required={'Income Treatment':'Reinvestment','Distribution Frequency':'None','Domicile':'Ireland','UCITS Compliant':'Yes','Base Currency':native,'Fund Ticker':title.rsplit(' - ',1)[1]}
+    if any(values.get(k)!=v for k,v in required.items()):raise ValueError('VanEck UCITS income/currency context not confirmed')
+    listings=block('ve-tradinginformationblock','TradingInformationBlock')
+    if not listings.get('Items') or {row.get('Isin')for row in listings['Items']}!={isin}:
+        raise ValueError('VanEck trading table exact share not confirmed')
+    launch=next((v for k,v in values.items()if k.startswith('Inception Date')),None)
+    inception=dt.datetime.strptime(launch,'%m/%d/%Y').date()
+    document_date(inception.isoformat(),now,max_age=36500)
+    asof=dt.datetime.strptime(facts['LongVersionAsOfDate'],'%m/%d/%Y').date().isoformat()
+    document_date(asof,now,max_age=75)
+    calendar=block('ve-performancepastyearschartblock','PerformancePastYearsChartBlock')
+    if calendar['AsOfDate']!=f'12/31/{now.year-1}' or not re.search(r'fund.s performance in '+re.escape(native)+r'\b',normalize(calendar['DisclaimerText'])):
+        raise ValueError('VanEck annual performance currency/date not confirmed')
+    stated_launch=re.search(r'Fund was launched on (\d{1,2} [A-Za-z]+ \d{4})',normalize(calendar['DisclaimerText']))
+    if not stated_launch or document_date(stated_launch[1],now,max_age=36500)!=inception.isoformat():
+        raise ValueError('VanEck annual performance fund launch mismatch')
+    categories=json.loads(calendar['Categories'])
+    if any(not re.fullmatch(r'20\d{2}\*?',str(y))for y in categories):raise ValueError('Invalid VanEck annual column')
+    categories=[str(y).rstrip('*')for y in categories]
+    if categories!=[str(y)for y in range(int(categories[0]),now.year)]:raise ValueError('Missing or duplicate VanEck annual column')
+    series=json.loads(calendar['Series'],parse_float=Decimal)
+    selected=[row for row in series if normalize(row['name'])==normalize(title.rsplit(' - ',1)[0])]
+    if len(selected)!=1 or len(selected[0]['data'])!=len(categories):raise ValueError('Wrong or missing VanEck fund calendar row')
+    first_full=inception.year+(0 if (inception.month,inception.day)==(1,1)else 1)
+    years={};precision={}
+    for year,value in zip(categories,selected[0]['data']):
+        if int(year)<first_full:continue
+        if isinstance(value,bool)or not isinstance(value,(int,Decimal))or not math.isfinite(value)or value<=-100:
+            raise ValueError('Missing complete VanEck annual observation')
+        years[year]=float(value);precision[year]=max(0,-Decimal(value).as_tuple().exponent)
+    if not years:raise ValueError('No complete VanEck annual observation')
+    return years,precision,{'isin':isin,'internalTicker':ticker,'fundInception':inception.isoformat(),'fundDataAsOf':asof,'calendarAsOf':calendar['AsOfDate'],'calendarCurrency':native,'incomeTreatment':values['Income Treatment']}
+
+
 def configurations():
     old = {r['id']:r for r in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']}
     extras = {
@@ -128,25 +183,31 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         path=metadata['DownloadUrl']
         slug=re.fullmatch(r'/[^/]+/[^/]+/investments/([^/]+)/?',urllib.parse.urlsplit(source['sourceUrl']).path)
         if not slug or path!='/ucits/investments/'+slug[1]+'/downloads/fundhistoprices/':raise ValueError('Unexpected NAV download target')
-        from collect_vaneck_etf import download_document, parse_calendar_performance
-        from issuer_routes import vaneck_factsheet_candidates
-        pdf,pdf_url=download_document({'sourceUrl':source['factsheetUrl'],'fallbackUrls':vaneck_factsheet_candidates(source['factsheetUrl'])[1:]},fetch=document_fetch)
-        urls.append(pdf_url);hashes[pdf_url]=hashlib.sha256(pdf).hexdigest()
-        if capture:(capture/(hashes[pdf_url]+'.bin.gz')).write_bytes(gzip.compress(pdf))
-        facts=pdf_text(pdf)
-        share_isins=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',facts))
-        base_currency=re.search(r'Base Currency\s+(USD|EUR|GBP)',facts)
-        if 'ISIN' not in facts or share_isins!={isin} or not base_currency or base_currency[1]!=native:
-            raise ValueError('VanEck factsheet exact share/currency not confirmed')
-        if not re.search(r'Income Treatment\s+Reinvestment',facts) or not re.search(r'Distribution Frequency\s+None',facts):raise ValueError('VanEck income reinvestment not confirmed')
-        convention=pdf_text(pdf,(190,410))
-        if not re.search(r'Performance data is displayed on a Net\s+Asset Value basis, in Base Currency terms, with net income reinvested, net of fees',convention):
-            raise ValueError('VanEck calendar currency/convention not confirmed')
-        nav=vaneck_nav(document('https://www.vaneck.com'+path),title,now)
-        performance,calendar_precision=parse_calendar_performance(facts,{'isin':isin,'currency':native},now)
-        if not performance:raise ValueError('Official VanEck calendar layout changed')
-        years=performance['years'];credit='VanEck'
-        calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None'}
+        if source.get('navCalendarSource')=='page-api':
+            years,calendar_precision,calendar_context=vaneck_page_calendar(soup,isin,native,title,ticker.get_text(strip=True),now,data)
+            nav=vaneck_nav(document('https://www.vaneck.com'+path),title,now)
+            credit='VanEck'
+            calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None','officialPageCalendar':calendar_context}
+        else:
+            from collect_vaneck_etf import download_document, parse_calendar_performance
+            from issuer_routes import vaneck_factsheet_candidates
+            pdf,pdf_url=download_document({'sourceUrl':source['factsheetUrl'],'fallbackUrls':vaneck_factsheet_candidates(source['factsheetUrl'])[1:]},fetch=document_fetch)
+            urls.append(pdf_url);hashes[pdf_url]=hashlib.sha256(pdf).hexdigest()
+            if capture:(capture/(hashes[pdf_url]+'.bin.gz')).write_bytes(gzip.compress(pdf))
+            facts=pdf_text(pdf)
+            share_isins=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',facts))
+            base_currency=re.search(r'Base Currency\s+(USD|EUR|GBP)',facts)
+            if 'ISIN' not in facts or share_isins!={isin} or not base_currency or base_currency[1]!=native:
+                raise ValueError('VanEck factsheet exact share/currency not confirmed')
+            if not re.search(r'Income Treatment\s+Reinvestment',facts) or not re.search(r'Distribution Frequency\s+None',facts):raise ValueError('VanEck income reinvestment not confirmed')
+            convention=pdf_text(pdf,(190,410))
+            if not re.search(r'Performance data is displayed on a Net\s+Asset Value basis, in Base Currency terms, with net income reinvested, net of fees',convention):
+                raise ValueError('VanEck calendar currency/convention not confirmed')
+            nav=vaneck_nav(document('https://www.vaneck.com'+path),title,now)
+            performance,calendar_precision=parse_calendar_performance(facts,{'isin':isin,'currency':native},now)
+            if not performance:raise ValueError('Official VanEck calendar layout changed')
+            years=performance['years'];credit='VanEck'
+            calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None'}
     else:raise ValueError('Unregistered official NAV provider')
     if identity_from:nav={d:v for d,v in nav.items()if d>=identity_from}
     checks=calendar_checks(nav,years,calendar_precision,now,identity_from)
