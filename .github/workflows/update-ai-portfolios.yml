@@ -129,6 +129,7 @@ jobs:
         run: |
           node scripts/playwright-ai-portfolios.mjs
           node scripts/playwright-ai-owner.mjs
+          node scripts/playwright-ai-owner.mjs --four
       - uses: actions/upload-artifact@v7.0.1
         if: always() && github.event_name == 'pull_request'
         with:
@@ -139,7 +140,9 @@ jobs:
             ${{ runner.temp }}/ai-final-rehearsal/browser-report.json
             ${{ runner.temp }}/ai-final-rehearsal/dossier-initial-*.txt
             ${{ runner.temp }}/ai-final-rehearsal/format-allocation-initiale.json
-            ${{ runner.temp }}/ai-final-rehearsal/owner-browser-report.json
+            ${{ runner.temp }}/ai-final-rehearsal/owner-browser-report-*.json
+            ${{ runner.temp }}/ai-final-rehearsal/assembled-*-proof.json
+            ${{ runner.temp }}/ai-final-rehearsal/weekly-*.txt
             ${{ runner.temp }}/ai-final-rehearsal/initial-*.txt
           retention-days: 35
       - uses: actions/upload-artifact@v7.0.1
