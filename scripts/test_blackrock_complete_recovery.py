@@ -1,10 +1,10 @@
 import copy,datetime as dt,json,unittest
 from collect_dca_complete_holdings import collect_blackrock_complete
-from test_dca_complete_realestate import CompleteRealEstate
+import test_dca_complete_realestate as fixtures
 
 class Recovery(unittest.TestCase):
     def setUp(self):
-        self.body=CompleteRealEstate().body()
+        self.body=fixtures.CompleteRealEstate().body()
         self.config={'isin':'IE00B0M63284','url':'https://www.blackrock.com/?portfolioId=251808','fundAssetClass':'Real Estate'}
         self.now=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
     def test_partial_component_retries_once_without_relaxing_validation(self):
