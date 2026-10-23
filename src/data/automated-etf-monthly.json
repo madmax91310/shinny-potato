@@ -23740,937 +23740,1207 @@
   },
   "etf_gold_miners": {
     "id": "etf_gold_miners",
-    "label": "VanEck Gold Miners UCITS ETF",
     "isin": "IE00BQQP9F84",
+    "label": "VanEck Gold Miners UCITS ETF · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
     "currency": "EUR",
     "periodStart": "2017-05",
-    "method": "Clôtures ajustées des distributions et divisions, dernière séance de chaque mois, recoupées avec la bougie mensuelle Yahoo ; part et cotation exactes",
-    "parser": "yahoo",
-    "symbol": "GDX.MI",
-    "field": "adjclose",
-    "precision": 6,
+    "precision": 8,
     "collectAnniversary": true,
-    "consumerScope": "catalog",
-    "ticker": "GDX",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BQQP9F84-ETFP-GDX-EUR",
-    "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
-    "timezone": "Europe/Rome",
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite ; ancienne cotation archivée séparément",
+    "navProvider": "vaneck",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+    "factsheetUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
+    "navTitle": "VanEck Gold Miners UCITS ETF - GDX",
+    "navCalendarSource": "page-api",
     "points": [
       [
         "2017-05",
-        21.290001
+        21.04179663
       ],
       [
         "2017-06",
-        20.540001
+        20.08412198
       ],
       [
         "2017-07",
-        20.254999
+        20.23620704
       ],
       [
         "2017-08",
-        21.465
+        21.63044397
       ],
       [
         "2017-09",
-        20.375
+        20.23716754
       ],
       [
         "2017-10",
-        20.059999
+        20.09451796
       ],
       [
         "2017-11",
-        19.75
+        19.67845388
       ],
       [
         "2017-12",
-        20.34
+        20.31935296
       ],
       [
         "2018-01",
-        19.83
+        19.93658184
       ],
       [
         "2018-02",
-        18.392
+        18.30686098
       ],
       [
         "2018-03",
-        18.332001
+        18.65027189
       ],
       [
         "2018-04",
-        19.33
+        19.33438199
       ],
       [
         "2018-05",
-        20.094999
+        19.98290452
       ],
       [
         "2018-06",
-        19.982
+        19.9914222
       ],
       [
         "2018-07",
-        19.038
+        18.97580095
       ],
       [
         "2018-08",
-        16.834
+        16.70757875
       ],
       [
         "2018-09",
-        16.790001
+        16.75708362
       ],
       [
         "2018-10",
-        17.436001
+        17.4624492
       ],
       [
         "2018-11",
-        17.606001
+        17.60454265
       ],
       [
         "2018-12",
-        18.954
+        19.36331878
       ],
       [
         "2019-01",
-        20.674999
+        20.73642061
       ],
       [
         "2019-02",
-        20.58
+        20.52382621
       ],
       [
         "2019-03",
-        21.195
+        21.00133511
       ],
       [
         "2019-04",
-        19.732
+        19.58637903
       ],
       [
         "2019-05",
-        20.305
+        20.29862793
       ],
       [
         "2019-06",
-        23.555
+        23.67047452
       ],
       [
         "2019-07",
-        25.905001
+        25.24795982
       ],
       [
         "2019-08",
-        28.674999
+        28.45596231
       ],
       [
         "2019-09",
-        25.709999
+        25.94728625
       ],
       [
         "2019-10",
-        26.280001
+        26.41473911
       ],
       [
         "2019-11",
-        25.77
+        25.88781643
       ],
       [
         "2019-12",
-        27.695
+        27.6597828
       ],
       [
         "2020-01",
-        27.969999
+        27.70086862
       ],
       [
         "2020-02",
-        25.415001
+        25.61264462
       ],
       [
         "2020-03",
-        23.459999
+        22.66794451
       ],
       [
         "2020-04",
-        32.334999
+        31.6347922
       ],
       [
         "2020-05",
-        33.060001
+        32.61853448
       ],
       [
         "2020-06",
-        34.465
+        34.49365958
       ],
       [
         "2020-07",
-        38.25
+        38.33727211
       ],
       [
         "2020-08",
-        37.349998
+        37.39865997
       ],
       [
         "2020-09",
-        35.555
+        35.35360437
       ],
       [
         "2020-10",
-        33.904999
+        33.88698923
       ],
       [
         "2020-11",
-        30.205
+        30.54340568
       ],
       [
         "2020-12",
-        31.355
+        31.16860892
       ],
       [
         "2021-01",
-        30.77
+        30.29581411
       ],
       [
         "2021-02",
-        27.5
+        27.40780464
       ],
       [
         "2021-03",
-        29.41
+        29.31002132
       ],
       [
         "2021-04",
-        30.424999
+        30.20195332
       ],
       [
         "2021-05",
-        34.259998
+        34.27342021
       ],
       [
         "2021-06",
-        30.315001
+        30.3264894
       ],
       [
         "2021-07",
-        31.285
+        31.22866033
       ],
       [
         "2021-08",
-        29.215
+        29.28342065
       ],
       [
         "2021-09",
-        27.405001
+        27.01096813
       ],
       [
         "2021-10",
-        29.42
+        28.95148132
       ],
       [
         "2021-11",
-        30.195
+        29.750066
       ],
       [
         "2021-12",
-        30.115
+        30.48825711
       ],
       [
         "2022-01",
-        28.665001
+        29.18967372
       ],
       [
         "2022-02",
-        33.125
+        33.2163586
       ],
       [
         "2022-03",
-        37.689999
+        37.31105306
       ],
       [
         "2022-04",
-        36.415001
+        36.06925996
       ],
       [
         "2022-05",
-        32.325001
+        32.15625875
       ],
       [
         "2022-06",
-        28.605
+        28.59054587
       ],
       [
         "2022-07",
-        27.705
+        27.76034517
       ],
       [
         "2022-08",
-        25.885
+        25.817
       ],
       [
         "2022-09",
-        26.945
+        26.59519902
       ],
       [
         "2022-10",
-        26.385
+        26.37885818
       ],
       [
         "2022-11",
-        29.709999
+        29.98361604
       ],
       [
         "2022-12",
-        29.24
+        29.48809301
       ],
       [
         "2023-01",
-        32.235001
+        32.322533
       ],
       [
         "2023-02",
-        28.32
+        28.2437141
       ],
       [
         "2023-03",
-        32.895
+        32.70344828
       ],
       [
         "2023-04",
-        33.634998
+        33.54976778
       ],
       [
         "2023-05",
-        31.959999
+        31.52485257
       ],
       [
         "2023-06",
-        29.945
+        30.21258973
       ],
       [
         "2023-07",
-        31.365
+        31.11947746
       ],
       [
         "2023-08",
-        29.495001
+        29.58962091
       ],
       [
         "2023-09",
-        27.844999
+        27.88748348
       ],
       [
         "2023-10",
-        29.309999
+        29.01685658
       ],
       [
         "2023-11",
-        31.33
+        31.32467295
       ],
       [
         "2023-12",
-        31.15
+        31.33393665
       ],
       [
         "2024-01",
-        29.375
+        28.80040602
       ],
       [
         "2024-02",
-        27.084999
+        27.0580085
       ],
       [
         "2024-03",
-        32.299999
+        32.38738322
       ],
       [
         "2024-04",
-        34.990002
+        34.64545624
       ],
       [
         "2024-05",
-        35.764999
+        36.24953926
       ],
       [
         "2024-06",
-        35.400002
+        35.37225596
       ],
       [
         "2024-07",
-        38.669998
+        38.76339121
       ],
       [
         "2024-08",
-        38.715
+        38.76882836
       ],
       [
         "2024-09",
-        39.535
+        39.55609146
       ],
       [
         "2024-10",
-        41.145
+        41.25528396
       ],
       [
         "2024-11",
-        39.634998
+        39.48589282
       ],
       [
         "2024-12",
-        36.294998
+        36.68688035
       ],
       [
         "2025-01",
-        42.709999
+        42.12065814
       ],
       [
         "2025-02",
-        42.380001
+        42.87676496
       ],
       [
         "2025-03",
-        47.424999
+        47.60795192
       ],
       [
         "2025-04",
-        48.330002
+        48.40147718
       ],
       [
         "2025-05",
-        49.525002
+        49.99206279
       ],
       [
         "2025-06",
-        49.264999
+        49.79607509
       ],
       [
         "2025-07",
-        50.75
+        50.66922943
       ],
       [
         "2025-08",
-        60.119999
+        60.52410362
       ],
       [
         "2025-09",
-        72.849998
+        73.01252023
       ],
       [
         "2025-10",
-        69.690002
+        69.89873637
       ],
       [
         "2025-11",
-        80.239998
+        80.47726094
       ],
       [
         "2025-12",
-        84.110001
+        82.93106383
       ],
       [
         "2026-01",
-        93.0
+        90.6334424
       ],
       [
         "2026-02",
-        110.110001
+        110.69207963
       ],
       [
         "2026-03",
-        88.25
+        89.53644112
       ],
       [
         "2026-04",
-        85.300003
+        85.29054862
       ],
       [
         "2026-05",
-        86.720001
+        86.63174167
       ],
       [
         "2026-06",
-        74.050003
+        74.77707565
       ],
       [
         "2026-07",
-        72.830002
+        73.21636918
       ],
       [
         "2026-08",
-        95.349998
+        96.35305278
       ],
       [
         "2026-09",
-        87.93
+        87.67327169
       ]
     ],
     "anniversaryPoints": [
       [
         "2017-05",
-        21.290001
+        21.04179663
       ],
       [
         "2017-06",
-        20.540001
+        20.08412198
       ],
       [
         "2017-07",
-        20.254999
+        20.23620704
       ],
       [
         "2017-08",
-        21.465
+        21.63044397
       ],
       [
         "2017-09",
-        20.375
+        20.23716754
       ],
       [
         "2017-10",
-        20.059999
+        20.09451796
       ],
       [
         "2017-11",
-        19.75
+        19.67845388
       ],
       [
         "2017-12",
-        20.34
+        20.31935296
       ],
       [
         "2018-01",
-        19.83
+        19.93658184
       ],
       [
         "2018-02",
-        18.392
+        18.30686098
       ],
       [
         "2018-03",
-        18.332001
+        18.65027189
       ],
       [
         "2018-04",
-        19.33
+        19.33438199
       ],
       [
         "2018-05",
-        20.094999
+        19.98290452
       ],
       [
         "2018-06",
-        19.982
+        19.9914222
       ],
       [
         "2018-07",
-        19.038
+        18.97580095
       ],
       [
         "2018-08",
-        16.834
+        16.70757875
       ],
       [
         "2018-09",
-        16.790001
+        16.75708362
       ],
       [
         "2018-10",
-        17.436001
+        17.4624492
       ],
       [
         "2018-11",
-        17.606001
+        17.60454265
       ],
       [
         "2018-12",
-        18.954
+        19.36331878
       ],
       [
         "2019-01",
-        20.674999
+        20.73642061
       ],
       [
         "2019-02",
-        20.58
+        20.52382621
       ],
       [
         "2019-03",
-        21.195
+        21.00133511
       ],
       [
         "2019-04",
-        19.732
+        19.58637903
       ],
       [
         "2019-05",
-        20.305
+        20.29862793
       ],
       [
         "2019-06",
-        23.555
+        23.67047452
       ],
       [
         "2019-07",
-        25.905001
+        25.24795982
       ],
       [
         "2019-08",
-        28.674999
+        28.45596231
       ],
       [
         "2019-09",
-        25.709999
+        25.94728625
       ],
       [
         "2019-10",
-        26.280001
+        26.41473911
       ],
       [
         "2019-11",
-        25.77
+        25.88781643
       ],
       [
         "2019-12",
-        27.695
+        27.6597828
       ],
       [
         "2020-01",
-        27.969999
+        27.70086862
       ],
       [
         "2020-02",
-        25.415001
+        25.61264462
       ],
       [
         "2020-03",
-        23.459999
+        22.66794451
       ],
       [
         "2020-04",
-        32.334999
+        31.6347922
       ],
       [
         "2020-05",
-        33.060001
+        32.61853448
       ],
       [
         "2020-06",
-        34.465
+        34.49365958
       ],
       [
         "2020-07",
-        38.25
+        38.33727211
       ],
       [
         "2020-08",
-        37.349998
+        37.39865997
       ],
       [
         "2020-09",
-        35.555
+        35.35360437
       ],
       [
         "2020-10",
-        33.904999
+        33.88698923
       ],
       [
         "2020-11",
-        30.205
+        30.54340568
       ],
       [
         "2020-12",
-        31.355
+        31.16860892
       ],
       [
         "2021-01",
-        30.77
+        30.29581411
       ],
       [
         "2021-02",
-        27.5
+        27.40780464
       ],
       [
         "2021-03",
-        29.41
+        29.31002132
       ],
       [
         "2021-04",
-        30.424999
+        30.20195332
       ],
       [
         "2021-05",
-        34.259998
+        34.27342021
       ],
       [
         "2021-06",
-        30.315001
+        30.3264894
       ],
       [
         "2021-07",
-        31.285
+        31.22866033
       ],
       [
         "2021-08",
-        29.215
+        29.28342065
       ],
       [
         "2021-09",
-        27.405001
+        27.01096813
       ],
       [
         "2021-10",
-        29.42
+        28.95148132
       ],
       [
         "2021-11",
-        30.195
+        29.750066
       ],
       [
         "2021-12",
-        30.115
+        30.48825711
       ],
       [
         "2022-01",
-        28.665001
+        29.18967372
       ],
       [
         "2022-02",
-        33.125
+        33.2163586
       ],
       [
         "2022-03",
-        37.689999
+        37.31105306
       ],
       [
         "2022-04",
-        36.415001
+        36.06925996
       ],
       [
         "2022-05",
-        32.325001
+        32.15625875
       ],
       [
         "2022-06",
-        28.605
+        28.59054587
       ],
       [
         "2022-07",
-        27.705
+        27.76034517
       ],
       [
         "2022-08",
-        25.885
+        25.817
       ],
       [
         "2022-09",
-        26.945
+        26.59519902
       ],
       [
         "2022-10",
-        26.385
+        26.37885818
       ],
       [
         "2022-11",
-        29.709999
+        29.98361604
       ],
       [
         "2022-12",
-        29.24
+        29.48809301
       ],
       [
         "2023-01",
-        32.235001
+        32.322533
       ],
       [
         "2023-02",
-        28.32
+        28.2437141
       ],
       [
         "2023-03",
-        32.895
+        32.70344828
       ],
       [
         "2023-04",
-        33.634998
+        33.54976778
       ],
       [
         "2023-05",
-        31.959999
+        31.52485257
       ],
       [
         "2023-06",
-        29.945
+        30.21258973
       ],
       [
         "2023-07",
-        31.365
+        31.11947746
       ],
       [
         "2023-08",
-        29.495001
+        29.58962091
       ],
       [
         "2023-09",
-        27.844999
+        27.88748348
       ],
       [
         "2023-10",
-        29.309999
+        29.01685658
       ],
       [
         "2023-11",
-        31.33
+        31.32467295
       ],
       [
         "2023-12",
-        31.15
+        31.33393665
       ],
       [
         "2024-01",
-        29.375
+        28.80040602
       ],
       [
         "2024-02",
-        27.084999
+        27.0580085
       ],
       [
         "2024-03",
-        32.299999
+        32.38738322
       ],
       [
         "2024-04",
-        34.990002
+        34.64545624
       ],
       [
         "2024-05",
-        35.764999
+        36.24953926
       ],
       [
         "2024-06",
-        35.400002
+        35.37225596
       ],
       [
         "2024-07",
-        38.669998
+        38.76339121
       ],
       [
         "2024-08",
-        38.715
+        38.76882836
       ],
       [
         "2024-09",
-        39.535
+        39.55609146
       ],
       [
         "2024-10",
-        41.145
+        41.25528396
       ],
       [
         "2024-11",
-        39.634998
+        39.48589282
       ],
       [
         "2024-12",
-        36.294998
+        36.68688035
       ],
       [
         "2025-01",
-        42.709999
+        42.12065814
       ],
       [
         "2025-02",
-        42.380001
+        42.87676496
       ],
       [
         "2025-03",
-        47.424999
+        47.60795192
       ],
       [
         "2025-04",
-        48.330002
+        48.40147718
       ],
       [
         "2025-05",
-        49.525002
+        49.99206279
       ],
       [
         "2025-06",
-        49.264999
+        49.79607509
       ],
       [
         "2025-07",
-        50.75
+        50.66922943
       ],
       [
         "2025-08",
-        60.119999
+        60.52410362
       ],
       [
         "2025-09",
-        72.849998
+        73.01252023
       ],
       [
         "2025-10",
-        69.690002
+        69.89873637
       ],
       [
         "2025-11",
-        80.239998
+        80.47726094
       ],
       [
         "2025-12",
-        84.110001
+        82.93106383
       ],
       [
         "2026-01",
-        93.0
+        90.6334424
       ],
       [
         "2026-02",
-        110.110001
+        110.69207963
       ],
       [
         "2026-03",
-        88.25
+        89.53644112
       ],
       [
         "2026-04",
-        85.300003
+        85.29054862
       ],
       [
         "2026-05",
-        86.720001
+        86.63174167
       ],
       [
         "2026-06",
-        74.050003
+        74.77707565
       ],
       [
         "2026-07",
-        72.830002
+        73.21636918
       ],
       [
         "2026-08",
-        95.349998
+        96.35305278
       ],
       [
         "2026-09",
-        87.93
+        87.67327169
       ]
     ],
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1493596800&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1493596800&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-12",
+    "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "f7adbbfa6acbd76bd4be8de6db43d9f48bdc1f28441f1218651b6bbea7780a6e"
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "sourceCredit": "VanEck",
+    "latestLevel": {
+      "value": 82.97367246764836,
+      "asOf": "2026-10-22",
+      "currency": "EUR",
+      "isin": "IE00BQQP9F84",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 92.972,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-22",
+      "fxFactor": 0.8924587237840249,
+      "sourceUrl": "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "7618dd7c55253a681fec2b67703a82c86e0902bd75d9707b14fbb0fc0f6c1110"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "sourceNavMetadata": {
+        "Ticker": "UCTGDX",
+        "Title": "NAVs",
+        "AsOfDateText": "as of",
+        "AsOfDate": "10/22/2026",
+        "TooltipText": "",
+        "Columns": [
+          {
+            "ColumnName": null,
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "",
+            "WrapperClass": "light_yellow",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Base Currency",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Daily Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "YTD Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV Price History",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Total Expense Ratio",
+            "WrapperClass": "data",
+            "CellClass": ""
+          }
+        ],
+        "PricesViewModel": {
+          "DisplayTicker": "GDX",
+          "NavCurrent": "$92.97",
+          "LastPriceCurrent": null,
+          "Volume30Day": null,
+          "Volume": null,
+          "NAVYTDPerc": "-4.59%",
+          "PriceYTDPerc": null,
+          "PremiumDiscountPercentage": null,
+          "PremiumDiscount": null,
+          "NavDailyChangePercentage": "-5.09%",
+          "NavDailyChange": "$-4.98",
+          "NavDailyChangeValue": -4.9833,
+          "LastPriceChangePerc": null,
+          "LastPriceChange": null,
+          "LastPriceChangeValue": null,
+          "ThirtyDayBidAskMedianFormatted": null,
+          "GrossExpenseRatio": " 0.53%"
+        },
+        "CurrencyName": "USD",
+        "CurrencySymbol": "$",
+        "DownloadUrlTarget": "_blank",
+        "DownloadUrl": "/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "ChartUrlTarget": "_blank",
+        "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTGDX",
+        "SwipeText": "Swipe<br>to view <br> full data",
+        "HistoPriceUrl": null,
+        "GrossExpenseRatio": null,
+        "CssClass": "etf_fund_prices",
+        "PremiumDiscountBlockID": 0,
+        "ChartSelectList": []
+      },
+      "incomeTreatment": "Reinvestment; distribution frequency None",
+      "officialPageCalendar": {
+        "isin": "IE00BQQP9F84",
+        "internalTicker": "UCTGDX",
+        "fundInception": "2015-03-25",
+        "fundDataAsOf": "2026-10-22",
+        "calendarAsOf": "12/31/2025",
+        "calendarCurrency": "USD",
+        "incomeTreatment": "Reinvestment",
+        "numberFormat": "verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted",
+        "numberFormatSource": "https://www.vaneck.com/static/eu/js/dist/main.js"
+      },
+      "outsideSuppliedWindowChecks": [
+        {
+          "year": 2016,
+          "scope": "outside supplied monthly history",
+          "requiredStart": "2015-12",
+          "suppliedStart": "2017-05",
+          "qualified": true,
+          "checks": [
+            {
+              "year": 2016,
+              "start": "2015-12-31",
+              "end": "2016-12-30",
+              "startValue": 14.236,
+              "endValue": 21.825,
+              "dailyDerived": 53.308513627423416,
+              "published": 53.3,
+              "publishedDecimalPlaces": 1
+            }
+          ]
+        },
+        {
+          "year": 2017,
+          "scope": "outside supplied monthly history",
+          "requiredStart": "2016-12",
+          "suppliedStart": "2017-05",
+          "qualified": false,
+          "reason": "Official daily/annual convention disagreement: 2017: 11.656357388316163 / 11.6"
+        }
+      ],
+      "checks": [
+        {
+          "year": 2018,
+          "start": "2017-12-29",
+          "end": "2018-12-31",
+          "startValue": 24.369,
+          "endValue": 22.171,
+          "dailyDerived": -9.019656120480946,
+          "published": -9.0,
+          "publishedDecimalPlaces": 0
+        },
+        {
+          "year": 2019,
+          "start": "2018-12-31",
+          "end": "2019-12-31",
+          "startValue": 22.171,
+          "endValue": 31.073,
+          "dailyDerived": 40.15154932118534,
+          "published": 40.2,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 31.073,
+          "endValue": 38.247,
+          "dailyDerived": 23.087567985067416,
+          "published": 23.1,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 38.247,
+          "endValue": 34.531,
+          "dailyDerived": -9.71579470285251,
+          "published": -9.7,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 34.531,
+          "endValue": 31.452,
+          "dailyDerived": -8.916625640728615,
+          "published": -8.9,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 31.452,
+          "endValue": 34.624,
+          "dailyDerived": 10.085209207681544,
+          "published": 10.1,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 34.624,
+          "endValue": 38.114,
+          "dailyDerived": 10.079713493530473,
+          "published": 10.1,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 38.114,
+          "endValue": 97.444,
+          "dailyDerived": 155.66458519179304,
+          "published": 155.7,
+          "publishedDecimalPlaces": 1
+        }
+      ]
+    },
+    "responseSha256": "7618dd7c55253a681fec2b67703a82c86e0902bd75d9707b14fbb0fc0f6c1110",
+    "rawSourceHashes": {
+      "https://www.vaneck.com/uk/en/investments/gold-miners-etf/": "b033115394cecd4f52a3ac918ff8da78022bf491204383b800c6efd696b5fbb8",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX": "6a11ebadf23bd74e5009e946c28b560a61725f21e7617c223b8ff4926b004cec",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX": "166d7789c497a35da5020a85631364b6e7b18b9c3c3eeab7710e122deda29bbb",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX": "0590384ad5f485f9e3ebf23d08b5b118ed92810dfb6f5af16118ec76b9b34139",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX": "a29f39b1c871feba617920f08064fab27c43bf25f0271cd7b6767ef3ea838f0e",
+      "https://www.vaneck.com/static/eu/js/dist/main.js": "18e4a235a946f446a48205b20d2c3411d15cb4759b90d27059fa4cdee9c8339f",
+      "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/": "67a9c5ebcbe7ec5d32d90ad357d3d9f65621df07e6ec1e412a99f65688235244",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
+    }
   },
   "etf_health": {
     "id": "etf_health",
