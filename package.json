@@ -53,7 +53,7 @@
     "test:rankings": "node scripts/test-performance-rankings.mjs",
     "audit:data-automation": "node scripts/data-automation-inventory.mjs --write && node scripts/test-data-automation-inventory.mjs",
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs",
-    "test:ai-portfolios": "node scripts/test-ai-portfolios.mjs && node scripts/test-ai-weekly.mjs && python3 -m unittest discover -s scripts -p test_ai_portfolios.py",
+    "test:ai-portfolios": "node scripts/test-ai-portfolios.mjs && node scripts/test-ai-weekly.mjs && node scripts/test-ai-request-transport.mjs && node scripts/test-ai-owner-issue.mjs && node scripts/test-ai-owner-status.mjs && node scripts/test-ai-owner-worker.mjs && python3 -m unittest discover -s scripts -p test_ai_portfolios.py",
     "test:ai-portfolios:browser": "node scripts/playwright-ai-portfolios.mjs",
     "refresh:ai-portfolios": "python3 scripts/collect_ai_portfolios.py && node scripts/ai-portfolios.mjs refresh",
     "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs"

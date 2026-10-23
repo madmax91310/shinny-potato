@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-23T11:22:59.584693+00:00",
+  "scope": "Version existante réellement publiée, avant la fonctionnalité de confirmation GitHub",
+  "site": "https://madmax91310.github.io/shinny-potato/",
+  "build": {
+    "sha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
+    "dataSha": "31f371818b078ae5ddbe0915e7e891344dcfde70",
+    "lane": "validated-data",
+    "builtAt": "2026-10-23T11:07:44.758Z"
+  },
+  "reference": {
+    "id": "IE00B5BMR087-XLON-CSPX-USD",
+    "isin": "IE00B5BMR087",
+    "symbol": "CSPX.L",
+    "currency": "USD",
+    "mic": "XLON",
+    "timezone": "Europe/London"
+  },
+  "status": {
+    "ok": true,
+    "attemptedAt": "2026-10-23T10:39:50.275215+00:00",
+    "asOf": "2026-10-22",
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits"
+  },
+  "series": {
+    "count": 73,
+    "from": "2026-07-13",
+    "through": "2026-10-22",
+    "convention": "synthetic-total-return-100-at-anchor"
+  },
+  "book": {
+    "revision": 0,
+    "competitions": 0
+  }
+}

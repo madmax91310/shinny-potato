@@ -1,5 +1,7 @@
 # Préparation du lancement après #886 — proposition non approuvée
 
+> Enregistrement autonome : voir [la procédure téléphone](ai-portfolios-autonomous.md). Les instructions CLI ci-dessous restent un secours technique, pas le parcours courant.
+
 Aucune compétition ni allocation réelle n’est créée par cette préparation. Le livre
 réel reste à la révision 0. Les modèles exacts et les règles ouvertes attendent le
 choix de l’utilisateur ; les réglages par défaut de l’application restent inchangés.
