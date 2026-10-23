@@ -11,6 +11,12 @@ ROUTES={
  'wisdom-copper-dataspan':'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/ETP/EU/EN-GB/GB00B15KXQ89',
  'wisdom-cloud-eu':'https://www.wisdomtree.eu/en-gb/etfs/thematic/wisdomtree-cloud-computing-ucits-etf-usd-acc',
 }
+# These identifiers were extracted from current public product pages and retained
+# with each exact ISIN and response hash in the dated proof directory.
+ROUTES['wisdom-copper-api']='https://www.wisdomtree.com/api/fund-history/1000073?view=navHistoryModal'
+for name,value in [('cloud',3104137),('ai',1123138),('defence',57124746),('quantum',58690128)]:
+ ROUTES['wisdom-'+name+'-api']='https://www.wisdomtree.com/api/fund-holdings/'+str(value)
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,required=True);a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
  def one(pair):
