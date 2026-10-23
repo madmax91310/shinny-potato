@@ -111,6 +111,33 @@
       "stage": "validation",
       "mechanism": "top-ten regression projection; not the runtime full holdings loader",
       "producer": "scripts/build-dca-exposures.mjs"
+    },
+    {
+      "pattern": "reports/amundi-distributions-2026-10-23/official-response.json.gz",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
+    },
+    {
+      "pattern": "reports/amundi-distributions-2026-10-23/official-provenance.json",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
+    },
+    {
+      "pattern": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etfFR0007054358.json.gz",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
     }
   ]
 }

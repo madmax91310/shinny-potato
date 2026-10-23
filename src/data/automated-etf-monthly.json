@@ -154082,290 +154082,314 @@
     "yahooInstrumentType": "ETF",
     "periodStart": "2015-01",
     "verifyMonthlyDisagreements": true,
+    "distributionEvidence": {
+      "provider": "amundi",
+      "path": "reports/amundi-distributions-2026-10-23/official-response.json.gz",
+      "sha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+      "metadataPath": "reports/amundi-distributions-2026-10-23/official-provenance.json",
+      "dates": [
+        "2015-07-08",
+        "2015-12-09",
+        "2016-07-06",
+        "2016-12-14",
+        "2017-07-12",
+        "2017-12-13",
+        "2018-07-11",
+        "2018-12-12",
+        "2019-07-10",
+        "2019-12-11",
+        "2020-07-08",
+        "2020-12-09"
+      ],
+      "quoteEvidence": {
+        "path": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etfFR0007054358.json.gz",
+        "sha256": "b460054402d0d807391c5cc44c42431bc29f8d62b9de2721bdb91083a0d0874d"
+      }
+    },
     "points": [
       [
         "2015-01",
-        33.388
+        27.263611
       ],
       [
         "2015-02",
-        35.838001
+        29.264206
       ],
       [
         "2015-03",
-        36.877998
+        30.113435
       ],
       [
         "2015-04",
-        36.235001
+        29.588383
       ],
       [
         "2015-05",
-        36.220001
+        29.576135
       ],
       [
         "2015-06",
-        34.895
+        28.49418
       ],
       [
         "2015-07",
-        35.518002
+        29.940065
       ],
       [
         "2015-08",
-        32.264999
+        27.197932
       ],
       [
         "2015-09",
-        30.593
+        25.788512
       ],
       [
         "2015-10",
-        33.794998
+        28.487651
       ],
       [
         "2015-11",
-        34.728001
+        29.27413
       ],
       [
         "2015-12",
-        32.463001
+        27.533325
       ],
       [
         "2016-01",
-        30.004999
+        25.448584
       ],
       [
         "2016-02",
-        29.103001
+        24.683558
       ],
       [
         "2016-03",
-        29.712999
+        25.200926
       ],
       [
         "2016-04",
-        30.073
+        25.506258
       ],
       [
         "2016-05",
-        30.9
+        26.207674
       ],
       [
         "2016-06",
-        29.018
+        24.611465
       ],
       [
         "2016-07",
-        29.223
+        25.705649
       ],
       [
         "2016-08",
-        29.540001
+        25.984496
       ],
       [
         "2016-09",
-        29.43
+        25.887735
       ],
       [
         "2016-10",
-        29.983
+        26.374174
       ],
       [
         "2016-11",
-        29.950001
+        26.345147
       ],
       [
         "2016-12",
-        32.108002
+        28.395372
       ],
       [
         "2017-01",
-        31.603001
+        27.948764
       ],
       [
         "2017-02",
-        32.502998
+        28.744696
       ],
       [
         "2017-03",
-        34.327999
+        30.358673
       ],
       [
         "2017-04",
-        35.042999
+        30.990998
       ],
       [
         "2017-05",
-        35.448002
+        31.34917
       ],
       [
         "2017-06",
-        34.452999
+        30.469219
       ],
       [
         "2017-07",
-        33.599998
+        30.551888
       ],
       [
         "2017-08",
-        33.380001
+        30.351848
       ],
       [
         "2017-09",
-        35.040001
+        31.861257
       ],
       [
         "2017-10",
-        35.735001
+        32.493208
       ],
       [
         "2017-11",
-        34.895
+        31.729411
       ],
       [
         "2017-12",
-        34.205002
+        31.22638
       ],
       [
         "2018-01",
-        35.174999
+        32.111908
       ],
       [
         "2018-02",
-        33.580002
+        30.655806
       ],
       [
         "2018-03",
-        32.860001
+        29.998503
       ],
       [
         "2018-04",
-        34.755001
+        31.728484
       ],
       [
         "2018-05",
-        33.970001
+        31.011843
       ],
       [
         "2018-06",
-        33.962502
+        31.004997
       ],
       [
         "2018-07",
-        34.275002
+        32.217747
       ],
       [
         "2018-08",
-        32.955002
+        30.976976
       ],
       [
         "2018-09",
-        33.075001
+        31.089772
       ],
       [
         "2018-10",
-        31.174999
+        29.303813
       ],
       [
         "2018-11",
-        30.905001
+        29.05002
       ],
       [
         "2018-12",
-        29.059999
+        27.435465
       ],
       [
         "2019-01",
-        30.74
+        29.021548
       ],
       [
         "2019-02",
-        32.125
+        30.329123
       ],
       [
         "2019-03",
-        32.709999
+        30.881419
       ],
       [
         "2019-04",
-        34.43
+        32.505267
       ],
       [
         "2019-05",
-        32.689999
+        30.862537
       ],
       [
         "2019-06",
-        34.625
+        32.689366
       ],
       [
         "2019-07",
-        33.57
+        32.663215
       ],
       [
         "2019-08",
-        33.240002
+        32.34213
       ],
       [
         "2019-09",
-        34.619999
+        33.684851
       ],
       [
         "2019-10",
-        35.035
+        34.088642
       ],
       [
         "2019-11",
-        35.990002
+        35.017848
       ],
       [
         "2019-12",
-        36.5
+        35.663919
       ],
       [
         "2020-01",
-        35.334999
+        34.525604
       ],
       [
         "2020-02",
-        32.395
+        31.65295
       ],
       [
         "2020-03",
-        27.105
+        26.484123
       ],
       [
         "2020-04",
-        28.57
+        27.915566
       ],
       [
         "2020-05",
-        29.99
+        29.303039
       ],
       [
         "2020-06",
-        31.870001
+        31.139976
       ],
       [
         "2020-07",
-        30.764999
+        30.639446
       ],
       [
         "2020-08",
-        31.83
+        31.7001
       ],
       [
         "2020-09",
-        31.08
+        30.953161
       ],
       [
         "2020-10",
-        28.77
+        28.652589
       ],
       [
         "2020-11",
-        33.950001
+        33.81145
       ],
       [
         "2020-12",
@@ -155216,12 +155240,279 @@
     ],
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     ],
     "timezone": "Europe/Berlin",
-    "checkedAt": "2026-10-18",
+    "distributionAdjustmentProof": [
+      {
+        "exDate": "2015-07-08",
+        "amount": 1.05,
+        "currency": "EUR",
+        "previousSession": "2015-07-07",
+        "previousClose": 33.54499816894531,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0323126653074706,
+        "backAdjustmentFactor": 0.9686987611472864,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2015-07-07",
+          "previousNav": 33.5287,
+          "exDateNav": 32.8071,
+          "observedIncomeFactor": 1.0320052548562926,
+          "expectedIncomeFactor": 1.032005267152537,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2015-12-09",
+        "amount": 0.2,
+        "currency": "EUR",
+        "previousSession": "2015-12-08",
+        "previousClose": 32.68299865722656,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0061570670279083,
+        "backAdjustmentFactor": 0.993880610463637,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2015-12-08",
+          "previousNav": 32.654,
+          "exDateNav": 32.2532,
+          "observedIncomeFactor": 1.0062008756644651,
+          "expectedIncomeFactor": 1.0062009351010133,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2016-07-06",
+        "amount": 1.02,
+        "currency": "EUR",
+        "previousSession": "2016-07-05",
+        "previousClose": 28.489999771118164,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0371314163996617,
+        "backAdjustmentFactor": 0.9641979639103392,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2016-07-05",
+          "previousNav": 28.5148,
+          "exDateNav": 26.9807,
+          "observedIncomeFactor": 1.0378047912156354,
+          "expectedIncomeFactor": 1.0378048012097536,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2016-12-14",
+        "amount": 0.17,
+        "currency": "EUR",
+        "previousSession": "2016-12-13",
+        "previousClose": 31.764999389648438,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0053805982998594,
+        "backAdjustmentFactor": 0.9946481975990404,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2016-12-13",
+          "previousNav": 31.766,
+          "exDateNav": 31.3509,
+          "observedIncomeFactor": 1.0054225480596481,
+          "expectedIncomeFactor": 1.005422491858288,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2017-07-12",
+        "amount": 0.95,
+        "currency": "EUR",
+        "previousSession": "2017-07-11",
+        "previousClose": 34.67499923706055,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.028169014721757,
+        "backAdjustmentFactor": 0.9726027391232169,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2017-07-11",
+          "previousNav": 34.6614,
+          "exDateNav": 34.2172,
+          "observedIncomeFactor": 1.0277638439056729,
+          "expectedIncomeFactor": 1.0277638146896881,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2017-12-13",
+        "amount": 0.14,
+        "currency": "EUR",
+        "previousSession": "2017-12-12",
+        "previousClose": 35.150001525878906,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.003998857295008,
+        "backAdjustmentFactor": 0.9960170698741811,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2017-12-12",
+          "previousNav": 35.1811,
+          "exDateNav": 34.8591,
+          "observedIncomeFactor": 1.0040162032008983,
+          "expectedIncomeFactor": 1.0040161679446686,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2018-07-11",
+        "amount": 1.0,
+        "currency": "EUR",
+        "previousSession": "2018-07-10",
+        "previousClose": 34.73749923706055,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0296406083027487,
+        "backAdjustmentFactor": 0.9712126657945163,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2018-07-10",
+          "previousNav": 34.7253,
+          "exDateNav": 33.2159,
+          "observedIncomeFactor": 1.0301060945124507,
+          "expectedIncomeFactor": 1.0301060636622823,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2018-12-12",
+        "amount": 0.13,
+        "currency": "EUR",
+        "previousSession": "2018-12-11",
+        "previousClose": 29.795000076293945,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0043822686555084,
+        "backAdjustmentFactor": 0.9956368518319477,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2018-12-11",
+          "previousNav": 29.7649,
+          "exDateNav": 30.1478,
+          "observedIncomeFactor": 1.004312057817732,
+          "expectedIncomeFactor": 1.004312089107663,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2019-07-10",
+        "amount": 1.04,
+        "currency": "EUR",
+        "previousSession": "2019-07-09",
+        "previousClose": 35.025001525878906,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0306017346860514,
+        "backAdjustmentFactor": 0.9703069249195728,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2019-07-09",
+          "previousNav": 35.0275,
+          "exDateNav": 33.909,
+          "observedIncomeFactor": 1.0306703273789237,
+          "expectedIncomeFactor": 1.0306703235129318,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2019-12-11",
+        "amount": 0.15,
+        "currency": "EUR",
+        "previousSession": "2019-12-10",
+        "previousClose": 35.70000076293945,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0042194091921475,
+        "backAdjustmentFactor": 0.9957983194175246,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2019-12-10",
+          "previousNav": 35.7026,
+          "exDateNav": 35.7049,
+          "observedIncomeFactor": 1.0042010550567282,
+          "expectedIncomeFactor": 1.0042011040501444,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2020-07-08",
+        "amount": 0.62,
+        "currency": "EUR",
+        "previousSession": "2020-07-07",
+        "previousClose": 32.79999923706055,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.0192666256898468,
+        "backAdjustmentFactor": 0.9810975605359324,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2020-07-07",
+          "previousNav": 32.8059,
+          "exDateNav": 31.8553,
+          "observedIncomeFactor": 1.0194629835551177,
+          "expectedIncomeFactor": 1.0194630092951564,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      {
+        "exDate": "2020-12-09",
+        "amount": 0.14,
+        "currency": "EUR",
+        "previousSession": "2020-12-08",
+        "previousClose": 34.30500030517578,
+        "providerAdjustmentRatio": 1.0,
+        "expectedAdjustmentRatio": 1.004097760829781,
+        "backAdjustmentFactor": 0.9959189622867055,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "evidenceCheckedAt": "2026-10-23T23:17:40.617350+00:00",
+        "evidenceSha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "officialCashDateCheck": {
+          "previousSession": "2020-12-08",
+          "previousNav": 34.3011,
+          "exDateNav": 34.1961,
+          "observedIncomeFactor": 1.0040940303489172,
+          "expectedIncomeFactor": 1.0040940341150013,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      }
+    ],
+    "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "841a7566ea19ec5e9359c0cce59122c1f6185d947d59f5c6ec496603065e1847"
+    "responseSha256": "8707b2028385f3054012485aea6cff04ead9dc8bf3bc16d46d6c8cadb11c5d46"
   },
   "etfFR0007056841": {
     "id": "etfFR0007056841",

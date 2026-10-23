@@ -13406,7 +13406,31 @@
       "collectAnniversary": true,
       "yahooInstrumentType": "ETF",
       "periodStart": "2015-01",
-      "verifyMonthlyDisagreements": true
+      "verifyMonthlyDisagreements": true,
+      "distributionEvidence": {
+        "provider": "amundi",
+        "path": "reports/amundi-distributions-2026-10-23/official-response.json.gz",
+        "sha256": "41f4ee20395e05c2e040eaef0c73539f75ebdce50279c04bfc143698bbc93ddf",
+        "metadataPath": "reports/amundi-distributions-2026-10-23/official-provenance.json",
+        "dates": [
+          "2015-07-08",
+          "2015-12-09",
+          "2016-07-06",
+          "2016-12-14",
+          "2017-07-12",
+          "2017-12-13",
+          "2018-07-11",
+          "2018-12-12",
+          "2019-07-10",
+          "2019-12-11",
+          "2020-07-08",
+          "2020-12-09"
+        ],
+        "quoteEvidence": {
+          "path": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etfFR0007054358.json.gz",
+          "sha256": "b460054402d0d807391c5cc44c42431bc29f8d62b9de2721bdb91083a0d0874d"
+        }
+      }
     },
     {
       "id": "etfFR0007056841",
