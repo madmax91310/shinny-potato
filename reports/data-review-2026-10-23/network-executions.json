@@ -419,7 +419,7 @@
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
   "reprise": {
-    "masterIntegrated": "f41b5a60791d56e8980ea322d2b234cbb374ffbe",
+    "masterIntegrated": "85ff841e1ef8fa5616b3b4a368f40a9f7f7809f5",
     "ordinaryWisdomRun": 40017262668,
     "ordinaryWisdomConclusion": "failure;177/181;quatre HTTP403 GB/IE/NL, API et navigateur; aucune promotion locale",
     "technicalBeforeReprise": {
@@ -437,6 +437,47 @@
     "safeQuoteCases": 52,
     "independentNavCases": 27,
     "merged": false,
-    "deployed": false
+    "deployed": false,
+    "sourceRecheck": {
+      "runId": 40022869635,
+      "conclusion": "failure",
+      "publication": "success; XNDX 2026-10-23 35394.7734375 USD TOTAL; deux réponses concordantes, séance close",
+      "dws": "success; 11 candidats recoupés, stabilité distincte",
+      "holdings-retry": "failure; HSBC valide, quatre WisdomTree HTTP403 GB/IE/NL",
+      "copper": "failure; HTTP403",
+      "metadata": "failure; autres champs validés, conflit PEA conservé",
+      "discovery": "job success; 0/6 nouvelles compositions qualifiées, deux WisdomTree HTTP403 et quatre L&G sans classe exacte"
+    },
+    "ordinaryWisdomRunLatest": 40022897634,
+    "localFinalValidation": {
+      "python": {
+        "tests": 965,
+        "conclusion": "success"
+      },
+      "nodeBuildChecks": {
+        "conclusion": "success",
+        "logs": [
+          "ci-node-merged.log.gz",
+          "ci-node-remaining.log.gz",
+          "ci-node-tail.log.gz",
+          "ci-node-last.log.gz"
+        ],
+        "note": "Les premières hypothèses de tests obsolètes sont conservées dans les journaux précédents ; leurs assertions sont remplacées par la vérification des refus exacts."
+      },
+      "build": "success; budgets unchanged",
+      "browserRecovery": {
+        "conclusion": "success",
+        "actualPngs": 15
+      },
+      "concurrentStories": {
+        "conclusion": "success",
+        "viewports": [
+          1440,
+          390,
+          360
+        ],
+        "deepEquality": true
+      }
+    }
   }
 }

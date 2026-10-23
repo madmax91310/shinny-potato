@@ -53,24 +53,24 @@
     "maxAgeDays": 7
   },
   "nasdaq100": {
-    "value": 35396.16015625,
-    "asOf": "2026-10-22",
+    "value": 35394.7734375,
+    "asOf": "2026-10-23",
     "currency": "USD",
     "parser": "yahoo",
     "symbol": "^XNDX",
     "indexCode": null,
     "variant": "TOTAL",
     "sourceUrl": "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
-    "sha256": "33dda5c1708e563fd4266f52fa4453dc29d203d814109930083880d1b9b7acdd",
-    "method": "Clôture XNDX Total Return USD, dividendes bruts réinvestis ; fenêtres Yahoo prises en charge concordantes et séance terminée",
+    "sha256": "2f8c0d0f5962007d71afea8f680b3fe42481c0450657293d192b8f0776955fa8",
+    "method": "Clôture XNDX Total Return USD, dividendes bruts réinvestis ; réponses quotidiennes concordantes sur deux hôtes Yahoo et séance terminée",
     "maxAgeDays": 7,
     "sourceUrls": [
       "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
       "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false"
     ],
     "sourceHashes": {
-      "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false": "e6f3e1263f66ec73cd910c42c2deda8bdf1e5f7c7efd6e758ab28e9c23a16aac",
-      "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false": "62f3c09fe511f163cac1836cab17f6e923c9f93879bfe25a405c11b290a5acb8"
+      "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false": "8c6a83564ba75bcbc2eb3b06bf412df9fa553b7c88a4f00f00364b558c877f74",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false": "6ecae2b90129026891f41fa1284eb611066f0c8cbd15c842bd76a520a76520ea"
     },
     "quoteMethod": "supported-xndx-ranges"
   },

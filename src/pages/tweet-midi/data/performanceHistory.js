@@ -30,5 +30,5 @@ export function getAnnualReturns(id, start) {
 }
 export function performanceBasis(id) {
   const asset = annualById[id]
-  return asset ? performanceBasisLabel({ currency: asset.currency, ...(asset.basis==='fund-nav'?{detail:`valeur liquidative de ${['ETC','ETN','ETP'].includes(asset.instrumentType)?'l’'+asset.instrumentType:'la part'}`} : {}), income: asset.basis === 'index-net' ? 'net' : asset.basis === 'index-gross' ? 'gross' : 'reinvested' }) : monthly.performanceBasis(id)
+  return asset ? performanceBasisLabel({ currency: asset.currency, ...(asset.basis==='fund-nav'?{detail:`valeur liquidative de ${['ETC','ETN','ETP'].includes(asset.instrumentType)?'l’'+asset.instrumentType:'la part · revenus réinvestis'}`} : {}), income: asset.basis === 'index-net' ? 'net' : asset.basis === 'index-gross' ? 'gross' : 'reinvested' }) : monthly.performanceBasis(id)
 }

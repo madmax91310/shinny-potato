@@ -130,6 +130,13 @@ try{
  assert((await page.locator('pre').innerText()).includes('valeur liquidative'))
  const nav=page.waitForEvent('download');await page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}).click()
  await(await nav).saveAs(`${out}/copper-annual-nav-2018.png`);pngCount++
+ const nasdaq=JSON.parse(fs.readFileSync('src/data/anniversary-levels.json')).nasdaq100
+ await page.goto(base+'/il-y-a-x-ans?asset=nasdaq100',{waitUntil:'networkidle'})
+ assert.equal(await page.locator('#subject-select').getAttribute('data-value'),'nasdaq100')
+ assert(Math.abs(Number(await page.locator('#niveau-actuel').inputValue())-nasdaq.value)<1e-6)
+ assert((await page.locator('pre').innerText()).includes('Clôture du '+nasdaq.asOf.split('-').reverse().join('/')))
+ const nasdaqDownload=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
+ await(await nasdaqDownload).saveAs(`${out}/nasdaq-completed-session.png`);pngCount++
  await page.goto(base+'/performance-depuis?asset=missing-history',{waitUntil:'networkidle'})
  await page.getByRole('alert').filter({hasText:'Aucun autre actif n’a été substitué'}).waitFor()
  assert.equal(await page.getByRole('button',{name:/Télécharger/}).count(),0)

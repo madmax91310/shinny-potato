@@ -1,5 +1,5 @@
 """Reconcile every initial review dimension, preserving duplicates across different contracts."""
-import io,collections,csv,datetime as dt,gzip,json,pathlib,subprocess,sys
+import re,io,collections,csv,datetime as dt,gzip,json,pathlib,subprocess,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'reports/data-review-2026-10-23';P=OUT/'preuves'
 
@@ -48,7 +48,7 @@ def main():
     financial=read(ROOT/'public/data/financial-reconciliation.json')
     for r in financial['rows']:
         check=r.get('latestCheck')or{}
-        add('comparaison financière',r['id'],r['initialStatus'],r['status'],r['reason'],'preuves/financial-final-observation.json.gz ; reconciliation-financiere.csv',r['isin'],str(r['year']),'Calculateur | Performance depuis | Classements | Duels', ' | '.join(r['sourceUrls']),r.get('missingPiece')or'Cause déjà documentée ; conserver les preuves originales.',category='cause non expliquée'if r['open']else'correction prouvée, résidu non attribué'if r.get('residualOpen')else'cause déjà qualifiée')
+        add('comparaison financière',r['id'],r['initialStatus'],r['status'],r['reason']+' '+(r.get('currentConsumer')or{}).get('secured',''),'preuves/financial-final-observation.json.gz ; reconciliation-financiere.csv ; reprise/admissions-financieres.json',r['isin'],str(r['year']),'Calculateur | Performance depuis | Classements | Duels', ' | '.join(r['sourceUrls']),r.get('missingPiece')or'Cause déjà documentée ; conserver les preuves originales.',category='cause non expliquée'if r['open']else'correction prouvée, résidu non attribué'if r.get('residualOpen')else'cause déjà qualifiée')
     # Required consumer contracts that were blocked/unconfirmed cannot disappear behind a healthy upstream file.
     current_usage={(t['path'],r['id'],r['key']):r for t in now['consumerUsage']['tools']for r in t['rows']}
     assets={r['id']:r for r in now['assets']}
@@ -167,6 +167,30 @@ def main():
         add('incident révélé par la CI','actor:tudigo:activity','ancienne page tarifaire remplacée ; collecte refusée','cessation qualifiée depuis GitHub ; anciennes conditions archivées',
             'Deux routes officielles servent le même avis. Jugement du 12/10 distinct du contrôle du 23/10 ; aucune nouvelle offre, aucun transfert effectif ni remboursement déduit.',
             'preuves/tudigo-activity.json ; scripts/fixtures/presentation-actors/tudigo-cessation-20261023.html','actor:tudigo','activity','Présentations',activity.get('sourceUrl',''),action='Conserver la cessation si la source échoue ; une réouverture exige une qualification explicite.')
+    if (OUT/'reprise/story-data-parity.json').exists():
+        add('validation reprise','tweet-bank-route-budget','échec du budget après intégration de #904','build réussi, budget inchangé',
+            'Contenus éditoriaux statiques séparés en JSON. Égalité profonde des trois récits, textes, sources et dates ; règles éditoriales et contrôle des empreintes inchangés. Les échecs de plusieurs workflows proviennent du même budget.',
+            'reprise/story-data-parity.json ; reprise/build-master-904-json.log.gz ; reprise/browser-stories-master-904.log.gz',field='build et données éditoriales',action='Préserver les récits concurrents et leurs règles de validation.')
+        add('validation reprise','performance-unavailable-link','support sans fenêtre annuelle pouvant retomber sur un autre actif','indisponibilité explicite, aucun export substitué',
+            'La route vérifie le support demandé dans le pool annuel réellement qualifié avant de monter le moteur. Les liens vers les calendriers VL distincts sont admis explicitement.',
+            'reprise/browser-final-all.log.gz',field='contrat de lien consommateur',tools='/performance-depuis',action='Conserver le refus si aucune observation compatible n’est publiée.')
+    source_path=OUT/'reprise/source-results.json'
+    if source_path.exists():
+        latest=read(source_path)
+        attempts={}
+        for error in latest['scopes']['holdings-retry']['observation']['errors']:
+            attempts[error['id'].split(':')[-1]]=error['error']
+        for isin,observation in latest['scopes']['discovery']['observation']['observations'].items():
+            if observation.get('error'):attempts[isin]=observation['error']
+        for r in rows:
+            if r['champ'] not in ['completeHoldings','Composition complète','Positions intégrales']:continue
+            for isin,error in attempts.items():
+                if isin not in r['id'] and isin not in r['cle']:continue
+                r['motif']+=' Dernier rejeu GitHub : '+error
+                r['preuve']+=' ; reprise/source-results.json'
+                urls=list(dict.fromkeys(re.findall(r'https://[^"\\\s]+',error)))
+                if urls:r['routes_essayees']=' | '.join(u+' => refus de transport dans GitHub' for u in urls)
+                r['dernier_controle_acces']=latest['scopes']['holdings-retry']['execution']['startedAt']
     # Never delete an initial follow-up line when current catalogue dimensions change.
     current_keys={(r['dimension'],r['cle']) for r in rows}
     for old in baseline:
