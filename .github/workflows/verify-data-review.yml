@@ -1,0 +1,39 @@
+name: Verify data review sources without publication
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/data-review-complete-20261023]
+    paths: ['scripts/verify_data_review_sources.py', '.github/workflows/verify-data-review.yml']
+permissions:
+  contents: read
+jobs:
+  sources:
+    strategy:
+      fail-fast: false
+      matrix:
+        scope: [fx, holdings, metadata, practical, copper, ai, conflict]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: pip install beautifulsoup4 openpyxl exchange_calendars
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Collect and validate exact sources in isolated checkout
+        env:
+          WISDOMTREE_BROWSER_CAPTURE: '1'
+        run: python scripts/verify_data_review_sources.py --scope ${{ matrix.scope }} --output evidence
+      - name: Preserve individual results and validated registries
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-review-${{ matrix.scope }}
+          path: evidence/
+          retention-days: 35
