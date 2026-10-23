@@ -35,7 +35,10 @@ def main():
         raw=f.read_bytes()if f.exists()else gzip.decompress(gz.read_bytes())
         archive=copied/(r['id']+'.json.gz')
         if not archive.exists():archive.write_bytes(gzip.compress(raw))
-        market=json.loads(raw)['1d']['chart']['result'][0];dates=[dt.datetime.fromtimestamp(t,dt.timezone.utc).date().isoformat()for t in market['timestamp']]
+        capture=json.loads(raw)
+        canonical_hash=hashlib.sha256(json.dumps(capture,sort_keys=True,allow_nan=False).encode()).hexdigest()
+        if canonical_hash!=r['marketHash']:raise ValueError('Original market capture hash changed: '+r['id'])
+        market=capture['1d']['chart']['result'][0];dates=[dt.datetime.fromtimestamp(t,dt.timezone.utc).date().isoformat()for t in market['timestamp']]
         vals={}
         for k,d in [('start',r['marketStartDate']),('end',r['marketEndDate'])]:
             i=dates.index(d);close=market['indicators']['quote'][0]['close'][i];adjusted=market['indicators']['adjclose'][0]['adjclose'][i];vals[k]=dict(date=d,close=close,adjusted=adjusted,factor=adjusted/close)
