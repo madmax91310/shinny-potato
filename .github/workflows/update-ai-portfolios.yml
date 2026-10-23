@@ -22,6 +22,9 @@ on:
       - 'scripts/*ai*equit*'
       - 'scripts/*ai*weekly*'
       - 'scripts/*ai*runtime*'
+      - 'scripts/*ai-owner*'
+      - 'scripts/test-ai-request-transport.mjs'
+      - '.github/workflows/ai-owner-requests.yml'
       - 'scripts/rehearse-ai-week.mjs'
       - 'scripts/measure-ai-mobile.mjs'
       - 'scripts/verify-ai-final-network.mjs'
@@ -72,6 +75,10 @@ jobs:
         run: |
           node scripts/test-ai-portfolios.mjs
           node scripts/test-ai-weekly.mjs
+          node scripts/test-ai-request-transport.mjs
+          node scripts/test-ai-owner-issue.mjs
+          node scripts/test-ai-owner-status.mjs
+          node scripts/test-ai-owner-worker.mjs
           node scripts/rehearse-ai-week.mjs
           node scripts/test-ai-equity-directory.mjs
           python -m unittest discover -s scripts -p test_ai_portfolios.py
@@ -119,7 +126,9 @@ jobs:
         env:
           AI_REHEARSAL_OUTPUT: ${{ runner.temp }}/ai-final-rehearsal
         if: github.event_name == 'pull_request'
-        run: node scripts/playwright-ai-portfolios.mjs
+        run: |
+          node scripts/playwright-ai-portfolios.mjs
+          node scripts/playwright-ai-owner.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always() && github.event_name == 'pull_request'
         with:
@@ -130,6 +139,8 @@ jobs:
             ${{ runner.temp }}/ai-final-rehearsal/browser-report.json
             ${{ runner.temp }}/ai-final-rehearsal/dossier-initial-*.txt
             ${{ runner.temp }}/ai-final-rehearsal/format-allocation-initiale.json
+            ${{ runner.temp }}/ai-final-rehearsal/owner-browser-report.json
+            ${{ runner.temp }}/ai-final-rehearsal/initial-*.txt
           retention-days: 35
       - uses: actions/upload-artifact@v7.0.1
         if: always()

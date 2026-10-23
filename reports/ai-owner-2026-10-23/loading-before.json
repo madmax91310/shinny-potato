@@ -1,0 +1,42 @@
+{
+  "measuredAt": "2026-10-23T11:04:27.374Z",
+  "device": "Chromium 390 × 844, cache froid, livre réellement publié vide",
+  "version": {
+    "sha": "00049a3705df37f4b1e42ce1855b789afb0530d8",
+    "dataSha": "621d3a40e3e1672caf33188813bcf0152a478733",
+    "lane": "validated-data",
+    "builtAt": "2026-10-23T10:44:47.867Z"
+  },
+  "opening": {
+    "requests": 17,
+    "bytes": 177811,
+    "data": [
+      {
+        "url": "https://madmax91310.github.io/shinny-potato/data/ai-portfolios/overview.json",
+        "bytes": 27064
+      }
+    ]
+  },
+  "catalogue": {
+    "requests": 3,
+    "bytes": 1559325,
+    "data": [
+      {
+        "url": "https://madmax91310.github.io/shinny-potato/data/ai-portfolios/catalogue.json",
+        "bytes": 1555272
+      }
+    ]
+  },
+  "resources": [
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/ai-portfolios/overview.json",
+      "encoded": 26875,
+      "decoded": 266619
+    },
+    {
+      "url": "https://madmax91310.github.io/shinny-potato/data/ai-portfolios/catalogue.json",
+      "encoded": 1554229,
+      "decoded": 12284080
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "scope": "Recette entièrement isolée et déterministe ; aucun résultat réseau fabriqué.",
+  "fixtures": [
+    {
+      "scope": "Données entièrement déterministes de recette, aucune preuve réseau ni décision réelle.",
+      "participants": 3,
+      "weeklyRun": [
+        {
+          "date": "2026-10-12",
+          "revision": 9,
+          "value": 10146.114301695226
+        },
+        {
+          "date": "2026-10-13",
+          "revision": 9,
+          "value": 10146.34127880543
+        },
+        {
+          "date": "2026-10-14",
+          "revision": 9,
+          "value": 10149.549998081464
+        },
+        {
+          "date": "2026-10-15",
+          "revision": 9,
+          "value": 10151.26710305284
+        },
+        {
+          "date": "2026-10-16",
+          "revision": 9,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-17",
+          "revision": 9,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-18",
+          "revision": 9,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-19",
+          "revision": 9,
+          "value": 10152.876641862491
+        }
+      ],
+      "independentTargets": 5,
+      "independentDailyValues": 412,
+      "current": [
+        {
+          "id": "chatgpt",
+          "value": 10157.59742020182,
+          "cash": 1015.2876641862488,
+          "fees": 13.74753441202266,
+          "performance": 1.5759742020182044
+        },
+        {
+          "id": "claude",
+          "value": 10165.018542145066,
+          "cash": 1998.4012789768176,
+          "fees": 7.9936051159072745,
+          "performance": 1.6501854214506562
+        },
+        {
+          "id": "gemini",
+          "value": 10165.018542145066,
+          "cash": 1998.4012789768176,
+          "fees": 7.9936051159072745,
+          "performance": 1.6501854214506562
+        },
+        {
+          "id": "world",
+          "value": 9844.04473816719,
+          "cash": 0,
+          "fees": 9.990009990009991,
+          "performance": -1.5595526183281083
+        }
+      ],
+      "method": "Coût moyen pondéré en devise commune, frais d’achat inclus. Résultat réalisé = ventes nettes de frais moins coût moyen cédé ; latent = valeur restante moins coût restant. Performance de l’investissement = (réalisé + latent) / achats cumulés frais inclus. Ce rendement sur capital cumulé n’est ni la variation du cours, ni un rendement annualisé ou pondéré dans le temps. Contribution nette = ce résultat / capital initial. Les résultats des lignes cédées restent inclus ; les frais ne sont pas déduits deux fois.",
+      "productionBookUntouched": true,
+      "scenarios": [
+        "hold",
+        "reinforce",
+        "partial-sale",
+        "full-sale",
+        "target",
+        "fees",
+        "cash",
+        "weekly-deadline",
+        "missing-reply",
+        "future-execution",
+        "daily-refresh",
+        "replay",
+        "missing-own-or-unrelated",
+        "missing-reference",
+        "provider-failure",
+        "closed-market",
+        "different-calendars",
+        "crypto-weekend",
+        "historical-FX",
+        "GBp",
+        "short-history",
+        "DST",
+        "all-six-publication-models"
+      ]
+    },
+    {
+      "scope": "Données entièrement déterministes de recette, aucune preuve réseau ni décision réelle.",
+      "participants": 4,
+      "weeklyRun": [
+        {
+          "date": "2026-10-12",
+          "revision": 10,
+          "value": 10146.114301695226
+        },
+        {
+          "date": "2026-10-13",
+          "revision": 10,
+          "value": 10146.34127880543
+        },
+        {
+          "date": "2026-10-14",
+          "revision": 10,
+          "value": 10149.549998081464
+        },
+        {
+          "date": "2026-10-15",
+          "revision": 10,
+          "value": 10151.26710305284
+        },
+        {
+          "date": "2026-10-16",
+          "revision": 10,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-17",
+          "revision": 10,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-18",
+          "revision": 10,
+          "value": 10152.98371271628
+        },
+        {
+          "date": "2026-10-19",
+          "revision": 10,
+          "value": 10152.876641862491
+        }
+      ],
+      "independentTargets": 6,
+      "independentDailyValues": 515,
+      "current": [
+        {
+          "id": "chatgpt",
+          "value": 10157.59742020182,
+          "cash": 1015.2876641862488,
+          "fees": 13.74753441202266,
+          "performance": 1.5759742020182044
+        },
+        {
+          "id": "claude",
+          "value": 10165.018542145066,
+          "cash": 1998.4012789768176,
+          "fees": 7.9936051159072745,
+          "performance": 1.6501854214506562
+        },
+        {
+          "id": "gemini",
+          "value": 10165.018542145066,
+          "cash": 1998.4012789768176,
+          "fees": 7.9936051159072745,
+          "performance": 1.6501854214506562
+        },
+        {
+          "id": "fourth",
+          "value": 10165.018542145066,
+          "cash": 1998.4012789768176,
+          "fees": 7.9936051159072745,
+          "performance": 1.6501854214506562
+        },
+        {
+          "id": "world",
+          "value": 9844.04473816719,
+          "cash": 0,
+          "fees": 9.990009990009991,
+          "performance": -1.5595526183281083
+        }
+      ],
+      "method": "Coût moyen pondéré en devise commune, frais d’achat inclus. Résultat réalisé = ventes nettes de frais moins coût moyen cédé ; latent = valeur restante moins coût restant. Performance de l’investissement = (réalisé + latent) / achats cumulés frais inclus. Ce rendement sur capital cumulé n’est ni la variation du cours, ni un rendement annualisé ou pondéré dans le temps. Contribution nette = ce résultat / capital initial. Les résultats des lignes cédées restent inclus ; les frais ne sont pas déduits deux fois.",
+      "productionBookUntouched": true,
+      "scenarios": [
+        "hold",
+        "reinforce",
+        "partial-sale",
+        "full-sale",
+        "target",
+        "fees",
+        "cash",
+        "weekly-deadline",
+        "missing-reply",
+        "future-execution",
+        "daily-refresh",
+        "replay",
+        "missing-own-or-unrelated",
+        "missing-reference",
+        "provider-failure",
+        "closed-market",
+        "different-calendars",
+        "crypto-weekend",
+        "historical-FX",
+        "GBp",
+        "short-history",
+        "DST",
+        "all-six-publication-models"
+      ]
+    }
+  ],
+  "investmentExample": {
+    "realized": 137.5,
+    "unrealized": 583.5,
+    "totalNet": 721,
+    "purchases": 2222,
+    "closedNet": 698.5
+  },
+  "durableCommit": "1e2ef4bd119d54a80d9c69f825cd479e0330dc92",
+  "durableReload": true,
+  "productionBookUnchanged": true
+}

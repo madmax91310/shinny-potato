@@ -5,6 +5,9 @@ import re
 import unittest
 from publish_automation_status import REGISTRY
 ROOT = Path(__file__).resolve().parents[1]
+# Owner-triggered writes are not scheduled collectors: absence of a decision
+# must never be reported as a stale daily source.
+MANUAL_WRITERS = {'ai-owner-requests.yml'}
 
 class WorkflowContracts(unittest.TestCase):
     def test_tweet_midi_partitions_preserve_the_publication_gate(self):
@@ -142,6 +145,20 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',caller)
             self.assertIn('producer: '+name,caller)
 
+    def test_owner_writer_is_authenticated_and_not_a_scheduled_collector(self):
+        workflow = (ROOT/'.github/workflows/ai-owner-requests.yml').read_text()
+        self.assertIn('  issues:', workflow)
+        self.assertNotIn('  schedule:', workflow)
+        self.assertIn('github.event.issue.user.id == github.event.repository.owner.id', workflow)
+        self.assertIn('github.event.sender.id == github.event.repository.owner.id', workflow)
+        self.assertIn('AI_OWNER_DATA_PATHS: data/ai-portfolios public/data/ai-portfolios', workflow)
+        self.assertIn('run: node scripts/process-ai-owner-issue.mjs', workflow)
+        self.assertIn("if: needs.record.outputs.commit_sha != ''", workflow)
+        worker = (ROOT/'scripts/process-ai-owner-issue.mjs').read_text()
+        self.assertIn("'HEAD:'+branch", worker)
+        self.assertIn("envelope.testBranch?'rehearsal_commit':'commit_sha'", worker)
+        self.assertIn("command('node',['scripts/ai-portfolios.mjs','import',file])", worker)
+
     def test_all_producers_require_every_primary_output(self):
         registry=json.loads((ROOT/'scripts/validated-data-producers.json').read_text())
         for filename,paths in registry.items():
@@ -152,7 +169,7 @@ class WorkflowContracts(unittest.TestCase):
             committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
             self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
-        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'})
+        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
 
     def test_full_gate_can_adopt_newer_data_without_a_code_or_data_rollback(self):
         workflow=(ROOT/'.github/workflows/deploy-pages.yml').read_text()
