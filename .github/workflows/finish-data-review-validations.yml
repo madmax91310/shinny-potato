@@ -1,0 +1,45 @@
+name: Finish superseded data review validations
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/finish-data-review-validations.yml'
+permissions:
+  contents: read
+  actions: write
+jobs:
+  finish-superseded:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/data-review-complete-20261023'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Cancel only obsolete validation runs of this PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          def request(req):
+              for attempt in range(3):
+                  try:return urllib.request.urlopen(req,timeout=20)
+                  except urllib.error.HTTPError as error:
+                      if error.code not in (429,502,503,504) or attempt==2:raise
+                  except (TimeoutError,urllib.error.URLError):
+                      if attempt==2:raise
+                  time.sleep(attempt+1)
+          ids = [40002490699,40002490800,40002490590,40002490762,40002490861,40002490672,40002490625,40002490767,40002490833,40002490690,40002490721,40002490835,40002490718,40002490735,40002490621,40002490675,40002490773]
+          obsolete = {'e6fc4ec85e16c4158b9031e01a850c84af7d61d1'}
+          base = 'https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/'
+          headers = {'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          for run_id in ids:
+              req=urllib.request.Request(base+str(run_id),headers=headers)
+              with request(req) as response:r=json.load(response)
+              if r['status']=='completed':continue
+              if r['head_branch']!='fix/data-review-complete-20261023' or r['head_sha'] not in obsolete or r['event']!='pull_request':
+                  raise SystemExit('Unexpected run identity: '+str(run_id))
+              req=urllib.request.Request(base+str(run_id)+'/cancel',headers=headers,method='POST',data=b'')
+              try:
+                  with request(req) as response:print(json.dumps({'runId':run_id,'supersededSha':r['head_sha'],'cancelStatus':response.status}))
+              except urllib.error.HTTPError as error:
+                  if error.code!=409:raise
+                  print(json.dumps({'runId':run_id,'alreadyFinished':True}))
+          PY
