@@ -257090,23 +257090,23 @@
       "source": "Yahoo daily adjusted closes",
       "symbolOrigin": "issuer-listing",
       "status": "qualified",
-      "reason": "Identité, place, type, devise, séances et cours quotidiens contrôlés.",
-      "lastAttempt": "2026-10-22T11:17:19.038441+00:00",
-      "lastSuccess": "2026-10-22T11:17:19.038441+00:00",
+      "reason": "Clôtures quotidiennes actualisées et contrôlées.",
+      "lastAttempt": "2026-10-23T13:13:32.084502+00:00",
+      "lastSuccess": "2026-10-23T13:13:32.084502+00:00",
       "coverageFrom": "2026-07-13",
-      "coverageThrough": "2026-10-21",
+      "coverageThrough": "2026-10-22",
       "calendarThrough": "2026-12-31",
       "observedCoverageFrom": "2026-07-13",
       "observedCoverageThrough": "2026-10-22",
-      "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-      "sourceRetrievedAt": "2026-10-22T10:58:22.280501+00:00",
-      "responseSha256": "ce00c46c9764774c50f3ee8b1cd5218b38616a9bc73b23c81c7d7b7d61e82c74",
+      "dailySourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits",
+      "sourceRetrievedAt": "2026-10-23T13:13:32.084502+00:00",
+      "responseSha256": "2b7b5b74a539e1c9cbaead2fa37ca21488a211f701a42d73004043728aeea967",
       "attempts": [
         {
-          "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits",
           "result": "qualified",
-          "at": "2026-10-22T11:17:19.038441+00:00",
-          "retrievedAt": "2026-10-22T10:58:22.280501+00:00"
+          "at": "2026-10-23T13:13:32.084502+00:00",
+          "retrievedAt": "2026-10-23T13:13:32.084502+00:00"
         }
       ],
       "qualifiedSymbol": "SWDA.MI",
@@ -1902310,17 +1902310,36 @@
           "close": 131.1999969482422,
           "adjusted": 131.1999969482422,
           "synthetic": 103.85497906008132
+        },
+        "2026-10-22": {
+          "close": 129.92999267578125,
+          "adjusted": 129.92999267578125,
+          "synthetic": 102.84967212265298
         }
       },
       "convention": "synthetic-total-return-100-at-anchor",
-      "responseSha256": "ce00c46c9764774c50f3ee8b1cd5218b38616a9bc73b23c81c7d7b7d61e82c74",
+      "responseSha256": "2b7b5b74a539e1c9cbaead2fa37ca21488a211f701a42d73004043728aeea967",
       "minimumUseDate": "2026-07-13",
       "sourceCurrency": "EUR",
       "priceScale": 1,
       "providerIdentityName": "iShares Core MSCI World UCITS ETF USD (Acc)",
       "providerFirstTradeDate": 1253862000,
-      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-      "retrievedAt": "2026-10-22T10:58:22.280501+00:00",
+      "collectionMode": "incremental",
+      "requestedFrom": "2026-10-07",
+      "fullCheckedAt": "2026-10-22T10:58:22.280501+00:00",
+      "observations": [
+        {
+          "from": "2026-10-07",
+          "through": "2026-10-22",
+          "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits",
+          "sha256": "2b7b5b74a539e1c9cbaead2fa37ca21488a211f701a42d73004043728aeea967",
+          "retrievedAt": "2026-10-23T13:13:32.084502+00:00",
+          "mode": "incremental",
+          "windowRetries": []
+        }
+      ],
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits",
+      "retrievedAt": "2026-10-23T13:13:32.084502+00:00",
       "isin": "IE00B4L5Y983",
       "listingEvidenceId": "IE00B4L5Y983-ETFP-SWDA-EUR",
       "symbol": "SWDA.MI",
@@ -2012043,8 +2012062,9 @@
   "status": {
     "IE00B4L5Y983-ETFP": {
       "ok": true,
-      "attemptedAt": "2026-10-22T11:17:19.038441+00:00",
-      "asOf": "2026-10-21"
+      "attemptedAt": "2026-10-23T13:13:32.084502+00:00",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits"
     },
     "IE00B5BMR087-XLON": {
       "ok": true,

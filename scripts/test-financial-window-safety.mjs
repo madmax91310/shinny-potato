@@ -17,6 +17,8 @@ for(const row of rows){
  if(!asset)continue
  const start=`${row.year-1}-12`,end=`${row.year}-12`
  const result=qualifyHistoryWindow(asset,start,end,{contiguous:false})
+ const reported=row.currentConsumer.windows.find(w=>w.id===asset.id)
+ assert.equal(reported.qualification.qualified,qualifyHistoryWindow(asset,start,end).qualified,'Review screen reports actual consumer admission')
  if(asset.historyConvention==='fund-nav-total-return'){
   assert.notEqual(result.code,'financial-window-unconfirmed');nav++;continue
  }

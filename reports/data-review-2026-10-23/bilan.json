@@ -9,7 +9,7 @@
     "incident historique resolved": 100,
     "incident historique retired": 160,
     "échec individuel initial": 8,
-    "incident actif au contrôle final": 124,
+    "incident actif au contrôle final": 125,
     "incident révélé par la CI": 7,
     "validation CI": 3,
     "contrôle de séance ultérieure": 1,
@@ -189,7 +189,7 @@
       "collector-output": 89,
       "logic": 22,
       "historical-fallback": 18,
-      "configuration": 18,
+      "configuration": 19,
       "editorial": 14,
       "manual-observation": 3,
       "simulation": 5
@@ -213,11 +213,11 @@
     "actionableConnections": 95,
     "unclassifiedFields": 0,
     "unclassifiedModules": 0,
-    "registries": 278,
+    "registries": 279,
     "registryModes": {
       "mixed-or-derived": 108,
       "scheduled-output": 89,
-      "manual-or-editorial": 81
+      "manual-or-editorial": 82
     },
     "catalogRecords": 1571,
     "catalogFields": 4544,
@@ -311,22 +311,22 @@
     },
     "assetAutomation": {
       "profiles": 1571,
-      "fields": 6737,
+      "fields": 6736,
       "states": {
         "blocked": 176,
-        "connected": 756,
+        "connected": 757,
         "reference-only": 457,
-        "qualification-needed": 130,
+        "qualification-needed": 129,
         "scheduled-evidence": 52
       }
     },
     "consumerUsage": {
       "tools": 20,
-      "usages": 21024,
-      "required": 18370,
-      "connected": 15802,
+      "usages": 21023,
+      "required": 18369,
+      "connected": 15804,
       "blocked": 717,
-      "unconfirmed": 1851,
+      "unconfirmed": 1848,
       "unmapped": 0
     }
   },
@@ -351,10 +351,16 @@
     "checked": 90
   },
   "monitorActiveInitial": 13,
-  "monitorActiveFinal": 124,
+  "monitorActiveFinal": 52,
   "productionMonitorManuallyChanged": false,
   "missingInitialCoverageRows": 0,
   "newCoverageRows": 0,
+  "reprise": {
+    "initialRowsPreserved": 8550,
+    "missingInitialRows": 0,
+    "currentActiveSignals": 52,
+    "resolvedSincePreviousControl": 73
+  },
   "dwsReadOnlyReconciliation": {
     "prepared": 73,
     "productionWritten": false,

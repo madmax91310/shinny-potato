@@ -130,6 +130,22 @@ try{
  assert((await page.locator('pre').innerText()).includes('valeur liquidative'))
  const nav=page.waitForEvent('download');await page.getByRole('button',{name:/Télécharger.*image|Télécharger.*PNG/i}).click()
  await(await nav).saveAs(`${out}/copper-annual-nav-2018.png`);pngCount++
+ await page.goto(base+'/performance-depuis?asset=missing-history',{waitUntil:'networkidle'})
+ await page.getByRole('alert').filter({hasText:'Aucun autre actif n’a été substitué'}).waitFor()
+ assert.equal(await page.getByRole('button',{name:/Télécharger/}).count(),0)
+ const monitor=JSON.parse(fs.readFileSync('reports/data-review-2026-10-23/reprise/automation-status-reprise.json'))
+ await page.unroute('**/automation-status/automation-status.json')
+ await page.route('**/automation-status/automation-status.json',r=>r.fulfill({json:monitor}))
+ await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
+ const monitoring=page.getByRole('region',{name:'Surveillance des données',exact:true})
+ const signalCount=Object.keys(monitor.monitoring.active).length
+ await monitoring.getByText(`${signalCount-4} point(s) à examiner · ${signalCount} signalement(s) conservé(s)`,{exact:false}).waitFor()
+ await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
+ assert.equal(await monitoring.locator('article').count(),1)
+ const signals=monitoring.getByText('2 signalements conservés pour cette donnée',{exact:true})
+ await signals.click()
+ assert((await monitoring.innerText()).includes('field:instrument:IE00BJGWQN72:completeHoldings'))
+ assert((await monitoring.innerText()).includes('collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72'))
  assert.deepEqual(errors,[])
  console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
 }finally{await browser?.close();server.kill()}

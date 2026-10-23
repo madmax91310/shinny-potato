@@ -1,6 +1,6 @@
 {
-  "publicationRequested": false,
-  "mergeRequested": false,
+  "publicationRequested": true,
+  "mergeRequested": true,
   "runs": [
     {
       "scope": "holdings",
@@ -416,5 +416,27 @@
       "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
       "interpretation": "CI complète relancée après intégration #899 ; état observé dans preuves/ci-after-master-dcbd.json, ne remplace pas la conclusion verte antérieure tant que ce run n’est pas terminé."
     }
-  ]
+  ],
+  "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
+  "reprise": {
+    "masterIntegrated": "f41b5a60791d56e8980ea322d2b234cbb374ffbe",
+    "ordinaryWisdomRun": 40017262668,
+    "ordinaryWisdomConclusion": "failure;177/181;quatre HTTP403 GB/IE/NL, API et navigateur; aucune promotion locale",
+    "technicalBeforeReprise": {
+      "runId": 40011921367,
+      "conclusion": "success"
+    },
+    "initialCodeFailure": {
+      "runId": 40017262415,
+      "conclusion": "failure; contrats de tests des fenêtres désormais refusées et budget de route; corrections et rejeu requis"
+    },
+    "monitor": "reprise/automation-status-reprise.json",
+    "monitorRawActive": 52,
+    "monitorPresentations": 48,
+    "financialAdmissions": "reprise/admissions-financieres.json",
+    "safeQuoteCases": 52,
+    "independentNavCases": 27,
+    "merged": false,
+    "deployed": false
+  }
 }

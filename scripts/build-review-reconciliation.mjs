@@ -1,6 +1,9 @@
 // Original financial alerts are immutable; a new fetch never explains their cause.
 import {readFileSync,writeFileSync,existsSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
+import {ASSETS} from '../src/data/market-history.js'
+import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
+import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.js'
 const original=JSON.parse(readFileSync(new URL('../reports/reliquat-2026-10-23/reconciliation-90-ecarts.json',import.meta.url)))
 const proof=new URL('../reports/data-review-2026-10-23/preuves/financial-final-observation.json.gz',import.meta.url)
 const observed=existsSync(proof)?JSON.parse(gunzipSync(readFileSync(proof))):null
@@ -26,6 +29,17 @@ const rows=original.cases.map(r=>{
    recollectedAdjustedReturn:check?.recollectedAdjustedReturn??null,currentPublishedAnnual:check?.currentPublishedAnnual??null}:null,
   proof:'https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv'}
 })
+for(const row of rows.filter(r=>r.open||r.residualOpen)){
+ const start=`${row.year-1}-12`,end=`${row.year}-12`
+ const windows=Object.values(ASSETS).filter(a=>a.isin===row.isin).map(a=>({id:a.id,currency:a.currency,convention:a.historyConvention??a.priceMethod,
+  start:a.points[0]?.date,end:a.points.at(-1)?.date,sourceUrls:a.sourceUrls??[],qualification:qualifyHistoryWindow(a,start,end)}))
+ const nav=windows.filter(w=>w.convention==='fund-nav-total-return'&&w.qualification.qualified)
+ const calendar=QUALIFIED_FUND_CALENDARS[row.isin]
+ const annualNav=Number.isFinite(calendar?.years[row.year])?{id:calendar.id,currency:calendar.currency,year:row.year,sourceUrls:calendar.sourceUrls}:null
+ row.currentConsumer={...row.currentConsumer,windows,annualNav,
+  secured:nav.length?`NAV indépendante qualifiée pour ${row.year} (${nav.map(w=>w.currency).join(', ')}), sans attribuer la divergence de cotation initiale.`
+   :`Fenêtre de cotation contestée refusée pour ${row.year} ; dernières observations conservées.${annualNav?' Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite.':''}`}
+}
 if(rows.length!==new Set(rows.map(r=>r.id)).size)throw Error('Duplicate original financial case')
 const summary={total:rows.length,open:rows.filter(r=>r.open).length,corrected:rows.filter(r=>r.status==='erreur corrigée').length,correctedWithResidual:rows.filter(r=>r.residualOpen).length,nonComparable:rows.filter(r=>r.status==='comparaison non pertinente').length,
  checked:rows.filter(r=>r.latestCheck).length}
