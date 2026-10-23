@@ -348,6 +348,15 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
         try:
             result=collect(source,now)
             old=baseline.get(source['id'])
+            prior=current.get(source['id'])
+            # The isolated non-bond producer has a company-only baseline. A
+            # reviewed NAV migration already has its own validated prior series;
+            # use that coverage, never authorize a new NAV bootstrap implicitly.
+            if (old is None and source.get('parser') == 'official-nav' and prior
+                    and prior.get('parser') == 'official-nav'
+                    and prior.get('valuationBasis') == 'fund-nav-total-return'):
+                old={'currency':prior['currency'],
+                     'points':[{'date':p[0],'price':p[1]} for p in prior['points']]}
             if old is None:
                 # Explicitly identified ETF parts and equities may bootstrap.
                 # Existing simulator histories still require their baseline.

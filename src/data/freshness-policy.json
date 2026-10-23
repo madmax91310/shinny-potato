@@ -9,6 +9,7 @@
     "etf.staticCharacteristic": { "checkDays": 365, "dataDays": 400, "fields": ["domicile", "replicationMethod"], "note": "Changes only through a prospectus amendment or a fund merger." },
     "etf.performance": { "checkDays": 7, "dataDays": 550, "note": "Calendar years: the last complete year is published in the following months." },
     "etf.monthly": { "checkDays": 40, "dataDays": 65 },
+    "series.dailyNav": { "checkDays": 2, "dataDays": 7, "note": "NAV après valorisation : tolérance des jours non ouvrés, sans report artificiel ; dates de contrôle et de données distinctes. Historique mensuel séparé." },
     "series.monthly": { "checkDays": 40, "dataDays": 65 },
     "index.facts": { "checkDays": 40, "dataDays": 120 },
     "index.returns": { "checkDays": 40, "dataDays": 550 },
