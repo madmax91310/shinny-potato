@@ -88,6 +88,19 @@ def main():
         add('incident révélé par la CI',proof['id'],'composant holdings absent dans une réponse du fournisseur',f"collecte GitHub validée ; photographie {proof['beforeAsOf']} → {proof['asOf']}",
             'Une réponse incomplète conserve les dernières données valides. Reprise bornée uniquement après identité exacte confirmée ; aucune erreur financière ou identité incorrecte n’est réessayée comme une panne transitoire. Ancien JSON incident absent : cause fournisseur non attribuée rétroactivement.',
             'preuves/holdings-ishares-observation.json.gz ; preuves/holdings-ishares-promoted.json ; network-executions.json',proof['id'],'completeHoldings','/le-dca-de',action='Collecteur et reprise validés ; conserver les futures erreurs individuelles si les deux tentatives restent incomplètes.')
+    if (P/'sector-fallback/qualification.json').exists():
+        proof=read(P/'sector-fallback/qualification.json')
+        add('incident révélé par la CI',proof['isin']+':sectors-primary','répartition sectorielle primaire invalide : douze zéros',
+            'secteurs du 22/10 qualifiés depuis les positions intégrales ; panne primaire conservée',
+            '504/504 positions et compteur officiel à même date ; somme 99.99996 %, avec liquidités et dérivés signés. Contrôle de couverture et arrondis à cinq décimales ; aucune renormalisation.',
+            'preuves/sector-fallback/qualification.json ; network-executions.json',proof['isin'],'sectors','/comparatif-etf | /le-dca-de',action='Conserver le signal de la table primaire invalide, même lorsque la voie intégrale qualifiée rend la donnée utilisable.')
+    add('validation CI','projections-dca','catalogue de test antérieur au snapshot compilé','projections DCA exactes du build transférées aux jobs navigateur',
+        'Le contrôle strict des dates HSBC a révélé une projection source non transférée, sans erreur du site compilé. Nouveau transport validated-dca-projections ; aucune assertion de date assouplie.',
+        'preuves/ci-browser-projection-mismatch.log.gz ; .github/workflows/deploy-pages.yml',field='artefacts de validation',action='Vérifier le nouveau run de CI de la tête finale de la PR.')
+    if (P/'ai-final23-execution.json.gz').exists():
+        add('contrôle de séance ultérieure','IE00B4L5Y983-ETFP:2026-10-23','séance du 23/10 terminée à Milan','attente normale de l’arrêté J−1 UTC',
+            'Le contrat IA collecte jusqu’à la veille UTC, avec marge de clôture de deux heures. Le contrôle GitHub après clôture réutilise les prix du 22/10 sans nouvelle requête ni renouvellement du dernier contrôle. Aucune observation du 23 inventée ; la séance sera requise au prochain arrêté.',
+            'preuves/ai-final23-orchestration.json ; network-executions.json','IE00B4L5Y983-ETFP','daily','/portefeuilles-ia',action='Collecte ordinaire ou rattrapage lors de l’arrêté suivant ; ne pas élargir la convention financière à une valorisation intrajournalière.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
     with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}

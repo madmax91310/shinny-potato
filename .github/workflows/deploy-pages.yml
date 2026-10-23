@@ -252,6 +252,12 @@ jobs:
           retention-days: 2
       - uses: actions/upload-artifact@v7.0.1
         with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles/*.json
+          if-no-files-found: error
+          retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
           name: tweet-midi-verifier
           path: test-artifacts/tweet-midi-verifier.mjs
           if-no-files-found: error
@@ -337,6 +343,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python scripts/test_radar_review_583.py
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
@@ -410,6 +417,10 @@ jobs:
         with:
           name: validated-generated-data
           path: src/data
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles
       - uses: actions/download-artifact@v4
         with:
           name: validated-site
@@ -513,6 +524,10 @@ jobs:
         with:
           name: validated-generated-data
           path: src/data
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles
       - uses: actions/download-artifact@v4
         with:
           name: validated-site

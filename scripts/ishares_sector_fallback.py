@@ -1,5 +1,5 @@
 """Qualified sector aggregation of the complete physical portfolio; no scaling."""
-import hashlib,json,math
+import hashlib,json,math,re
 from collect_etf_holdings import parse_holdings
 from collect_etf_pilot import source_date
 
@@ -24,8 +24,18 @@ def sectors_from_complete_holdings(body,share,now,primary):
         if sector not in SECTORS or (kind!='Equity' and (kind not in SIGNED or sector!='Cash and/or Derivatives')) or (kind=='Equity' and sector=='Cash and/or Derivatives'):
             raise ValueError('Unqualified sector or non-equity position in fallback')
         groups[sector].append(weight)
-    total=math.fsum(columns[1])
-    if not 99<=total<=101:raise ValueError('Incomplete sector fallback portfolio')
+    # This qualified API publishes five decimal NAV weights. Prove coverage
+    # against the separately dated issuer count as well as rounding bounds.
+    metric=body['componentsByNameMap']['fundamentalsAndRisk']['containersByNameMap']['default']['dataPointsByNameMap']['numHoldings']
+    count=metric.get('value')
+    equities=[identity for identity,kind in zip(p['isin']['value'],columns[2])if kind=='Equity']
+    if (type(count)not in (int,float) or not math.isfinite(count) or int(count)!=count or count<=0
+        or metric.get('active')is not True or source_date(metric['asOfDate'],now)!=holding['asOf']
+        or len(equities)!=count or len(set(equities))!=count
+        or any(not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',identity or '')for identity in equities)):
+        raise ValueError('Sector fallback identities or published holdings count do not prove complete coverage')
+    total=math.fsum(columns[1]);rounding_bound=len(columns[1])*.000005
+    if abs(total-100)>rounding_bound:raise ValueError('Sector fallback coverage exceeds published five-decimal rounding')
     return {'asOf':holding['asOf'],'basis':'fund','sourceComponent':'holdings.all',
         'method':'GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation',
         'portfolioWeightPct':total,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),

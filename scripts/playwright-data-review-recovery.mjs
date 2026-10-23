@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
+import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 import {buildTweet as buildBrokerPost} from '../src/pages/broker-comparator/data.js'
 const out='test-artifacts/data-review-recovery';fs.mkdirSync(out,{recursive:true})
 const report=JSON.parse(fs.readFileSync('dist/data/financial-reconciliation.json'))
@@ -70,11 +71,25 @@ try{
  for(const name of fs.readdirSync(out).filter(n=>n.endsWith('.png'))){
   const bytes=fs.readFileSync(`${out}/${name}`);assert.equal(bytes.subarray(1,4).toString(),'PNG');assert(bytes.length>30000)
  }
+ const sectors=JSON.parse(fs.readFileSync('src/data/automated-etf.json'))['IE00B5BMR087'].sectors
+ assert.equal(sectors.basis??'fund','fund')
+ const comparison=getComparatifEtfText('sp500-equal-weight')
+ const weight=Math.max(...sectors.rows.map(r=>r.weightPct)).toLocaleString('fr-FR',{maximumFractionDigits:2})
+ const sectorDate=sectors.asOf.split('-').reverse().join('/')
+ assert(comparison.includes(weight)&&comparison.includes(sectorDate))
+ for(const width of [1280,390]){
+  await page.setViewportSize({width,height:900})
+  await page.goto(base+'/comparatif-etf?subject=sp500-equal-weight',{waitUntil:'networkidle'})
+  await page.waitForFunction(({weight,date})=>{const text=document.querySelector('.tool-preview')?.innerText;return text?.includes(weight)&&text.includes(date)},{weight,date:sectorDate})
+  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
+  await(await pending).saveAs(`${out}/sp500-sectors-${width}.png`);pngCount++
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
+ }
  const details=await(await page.request.get(base+'/data/ai-portfolios/details/94.json')).json()
  assert.equal(details['IE00B4L5Y983-ETFP'].status.ok,true)
  assert.equal(details['IE00B4L5Y983-ETFP'].status.asOf,latest)
  const published=await(await page.request.get(base+'/data/ai-portfolios/series/94.json')).json()
  assert.deepEqual(published['IE00B4L5Y983-ETFP'].points,series.points)
  assert.deepEqual(errors,[])
- console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
+ console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
 }finally{await browser?.close();server.kill()}

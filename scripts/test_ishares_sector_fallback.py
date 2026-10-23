@@ -32,7 +32,17 @@ class Fallback(unittest.TestCase):
             if defect=='partial':p['holdingPercent']['value']=[w/2 for w in p['holdingPercent']['value']]
             with self.subTest(defect=defect),self.assertRaises(ValueError):parse_share(b,self.share,self.now)
     def test_signed_cash_is_retained_without_scaling(self):
-        p=self.points(self.body);i=p['assetClass']['value'].index('Cash');p['holdingPercent']['value'][i]=-.1
+        p=self.points(self.body);i=p['assetClass']['value'].index('Cash');difference=p['holdingPercent']['value'][i]+.2;p['holdingPercent']['value'][i]=-.2;p['holdingPercent']['value'][0]+=difference
         result=sectors_from_complete_holdings(self.body,self.share,self.now,self.primary(self.body))
         self.assertAlmostEqual(math.fsum(r['weightPct']for r in result['rows']),math.fsum(p['holdingPercent']['value']))
         self.assertLess(next(r['weightPct']for r in result['rows']if r['name']=='Cash and/or Derivatives'),0)
+
+    def test_small_truncation_and_unexplained_weight_gap_are_rejected(self):
+        for defect in ['count','gap']:
+            b=copy.deepcopy(self.body);p=self.points(b)
+            if defect=='count':
+                index=p['assetClass']['value'].index('Equity')
+                for point in p.values():
+                    if isinstance(point.get('value'),list):point['value'].pop(index)
+            else:p['holdingPercent']['value'][0]-=.1
+            with self.subTest(defect=defect),self.assertRaises(ValueError):parse_share(b,self.share,self.now)

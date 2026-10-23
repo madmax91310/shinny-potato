@@ -141,6 +141,27 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39975550161",
       "artifactId": 12510952320,
       "interpretation": "IE00BYX2JD69 : véritable collecteur validé 1/1 ; photographie 2026-10-21 → 2026-10-22, 355 positions, contrôle du 23/10 importé. L’ancienne réponse incomplète n’est pas archivée ; aucune cause fournisseur attribuée rétroactivement."
+    },
+    {
+      "scope": "sector-fallback",
+      "runId": 39980873537,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39980873537",
+      "artifactId": 12513467163,
+      "interpretation": "IE00B5BMR087 : agrégation GICS intégrale qualifiée, datée du 22/10, total publié 99.99996 %, sans renormalisation ; table primaire à zéro conservée comme échec individuel."
+    },
+    {
+      "scope": "ai-after-close",
+      "runId": 39984274482,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39984274482",
+      "artifactId": 12514169128,
+      "interpretation": "Arrêté IA J−1 UTC : prix SWDA du 22/10 réutilisés, requested=[] ; ni collecte ni revalidation d’une clôture du 23. Attente normale du prochain arrêté, sans changer la convention."
+    },
+    {
+      "scope": "sector-strict",
+      "runId": 39983805968,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39983805968",
+      "artifactId": 12514099526,
+      "interpretation": "Voie GICS complète confirmée avec les contrôles finaux : compteur 504 à même date et bornes d’arrondi cinq décimales, pas seulement une somme voisine de 100."
     }
   ]
 }

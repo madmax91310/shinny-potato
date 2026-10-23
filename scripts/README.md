@@ -444,3 +444,7 @@ du 30 septembre 2026 ; toute modification de données actives reste soumise aux 
 
 Les rapports sont raccordés au suivi des automatisations avec récupération par source.
 Voir `docs/publication-automation.md` pour les conventions, contrôles et limites QYLD/Russell 1000.
+
+### Secours sectoriel iShares depuis le portefeuille intégral
+
+`ishares_sector_fallback.py` est activé par `sectorFallback` dans `etf-pilot.json` uniquement pour IE00B5BMR087, qualifié dans `reports/data-review-2026-10-23/preuves/sector-fallback/`. Une table primaire entièrement nulle ne devient pas une allocation : le collecteur contrôle séparément les positions physiques intégrales, l’ISIN, la devise, les trois dates (table, positions, compteur), les identités et le nombre de positions publié. La somme doit correspondre aux seuls arrondis des poids NAV à cinq décimales. Les liquidités et dérivés signés restent dans leur catégorie ; aucun poids n’est recalculé pour atteindre 100 %. Une table positive partielle, une date différente, une classification inconnue ou une couverture incomplète restent bloquées. L’échec primaire continue dans `collectionErrors`, même si l’agrégation qualifiée permet de publier la donnée. Tester avec `python3 -m unittest discover -s scripts -p test_ishares_sector_fallback.py` ; la preuve de disponibilité reste une exécution GitHub réelle.
