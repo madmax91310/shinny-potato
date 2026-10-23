@@ -1,6 +1,6 @@
 # Reprise et sécurisation des consommateurs
 
-État avant intégration : master f41b5a60 (#900, #902 et suivi IA courant) intégré. La dernière instruction utilisateur autorise fusion et déploiement après validation. La PR n'est pas encore fusionnée à ce stade.
+État avant intégration : master d780e917 (#900, #902, #904, #901 et suivi IA courant) intégré. La dernière instruction utilisateur autorise fusion et déploiement après validation. La PR n'est pas encore fusionnée à ce stade.
 
 Les 8 550 lignes précédentes sont conservées dans le suivi actualisé de **8 553 lignes**. La ligne supplémentaire est le nouvel incident de table primaire CSPX du producteur 40011202978. Les originaux complets du suivi et du bilan sont archivés ici ; aucune disparition n'est interprétée comme une résolution. Les 73 conflits DWS disparus sont associés à leurs épisodes `resolved` datés dans le moniteur réel. Les 36 autres conflits attendent toujours quatre heures de stabilité du nouveau document : aucun délai n'est antidaté.
 
@@ -39,3 +39,5 @@ La suite Python finale comporte **965 tests réussis** après installation des r
 L’intégration de #904 a révélé un budget de banque de tweets dépassé dans plusieurs jobs GitHub : même cause regroupée, aucun contrôle supprimé. Le contenu statique est sérialisé en JSON, sans changer aucun texte, source, date ni empreinte de revue ; les trois récits passent leurs parcours à 1440, 390 et 360 px. Le suivi ajoute cette cause et le refus des liens sans historique qualifié.
 
 Le rejeu GitHub **40022869635** est globalement en échec : Copper, quatre WisdomTree et conflit PEA restent refusés. Publication XNDX du 23/10 et contrôle DWS 11/11 réussissent ; discovery finit sans promotion 0/6. Le producteur ordinaire **40022897634** confirme également **177/181** compositions et les quatre refus GB/IE/NL. Les observations et réponses sont archivées dans `github-40022869635/` ; aucune réussite de job n’est confondue avec une composition intégrale validée. La clôture XNDX est transmise au registre puis au consommateur Anniversaire et à son PNG réel.
+
+#901 est intégrée sans modifier son travail de récupération mobile et de vérification hebdomadaire. Les tests comptables et hebdomadaires IA passent sur l’ensemble assemblé ; le livre réel reste strictement identique à celui de master. La recherche des alertes conserve aussi les identifiants techniques et alias des signalements dédupliqués.

@@ -22,7 +22,7 @@ export default function MonitoringIncidents({ monitor }) {
   const retiredRows = [...(monitor.retired??[]),...removed.map(row=>({...row,retirementReason:retired.workflows[row.workflow].reason}))]
   const signals = prioritizeIncidents(Object.values(monitor.active).filter(row=>!Object.hasOwn(retired.workflows,row.workflow??'')))
   const active = incidentPresentations(signals)
-  const rows = active.filter(row => (kind === 'all' || row.kind === kind) && row.signals.map(signal=>`${signal.name} ${signal.dataId ?? ''} ${signal.field} ${signal.cause} ${(signal.tools ?? []).join(' ')}`).join(' ').toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr')))
+  const rows = active.filter(row => (kind === 'all' || row.kind === kind) && row.signals.map(signal=>`${signal.id} ${(signal.aliases??[]).join(' ')} ${signal.name} ${signal.dataId ?? ''} ${signal.field} ${signal.cause} ${(signal.tools ?? []).join(' ')}`).join(' ').toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr')))
   const groups=groupIncidents(rows)
   const age = Date.now() - Date.parse(monitor.checkedAt)
   const renderIncident=row=><article className="dr-item" key={row.id}>

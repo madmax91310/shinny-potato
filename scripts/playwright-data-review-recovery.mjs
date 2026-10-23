@@ -149,6 +149,8 @@ try{
  await monitoring.getByText(`${signalCount-4} point(s) à examiner · ${signalCount} signalement(s) conservé(s)`,{exact:false}).waitFor()
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
  assert.equal(await monitoring.locator('article').count(),1)
+ await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('field:instrument:IE00BJGWQN72:completeHoldings')
+ assert.equal(await monitoring.locator('article').count(),1)
  const signals=monitoring.getByText('2 signalements conservés pour cette donnée',{exact:true})
  await signals.click()
  assert((await monitoring.innerText()).includes('field:instrument:IE00BJGWQN72:completeHoldings'))
