@@ -14,3 +14,5 @@ Six scénarios Git réels isolés : mises à jour assurance-vie/SCPI indépendan
 La suite locale passe 918 tests Python, dont les huit nouvelles régressions ; le build passe. La collecte locale réelle des deux DWS réussit avec les réponses brutes archivées.
 
 Le statut global reste **12 actions corrigées, 6 partielles, 1 bloquée**. Ce complément ne résout pas les 79 divergences financières, les accès aux positions/historiques WisdomTree ni les deux conflits PEA. Les reprises planifiées et la version réellement publiée restent à vérifier avant d’être annoncées réussies.
+
+Les deux contrats complets ont été exécutés sur un vrai worktree local après une modification indépendante de mise en forme du fichier assurance-vie, sans modifier de valeur financière et sans publication : SCPI et publication réussissent, y compris npm ci, tests, build, audits et invariance des données observées. Quatre exports PNG DWS réussissent : les deux fiches affichent l’encours USD daté, les deux comparatifs gardent leur format actuel (ils ne publient pas d’encours).
