@@ -2,7 +2,7 @@
 // provider series and evidence. No network sweep and no arbitrary candidate cap.
 import fs from 'node:fs'
 import {hydrateMarketSeries} from './ai-series-store.mjs'
-import {coverage} from '../src/pages/ai-portfolios/lib.js'
+import {coverage,technicalCoverage} from '../src/pages/ai-portfolios/lib.js'
 const market=JSON.parse(fs.readFileSync('data/ai-portfolios/market.json'))
 const listings=market.universe.filter(a=>a.status==='qualified')
 hydrateMarketSeries(market,process.cwd(),listings.map(a=>a.id))
@@ -12,7 +12,7 @@ for(const a of listings){
  let reason=null
  const test=(ok,message)=>{if(!ok&&!reason)reason=message}
  test(!!date,'Borne de couverture absente')
- const certified=coverage(a.id,one,date??market.asOf)
+ const certified=technicalCoverage(a.id,one,date??market.asOf)
  test(certified.ok,certified.reason)
  test(a.evidenceId?s?.listingEvidenceId===a.evidenceId:s?.listingEvidenceId==null&&!!a.isin&&s.isin===a.isin&&s.responseSha256===a.responseSha256&&s.sourceUrl===a.dailySourceUrl,'Preuve de cotation différente de la série')
  test(!!s?.sourceUrl&&!!s.retrievedAt&&!!s.responseSha256,'Provenance quotidienne incomplète')

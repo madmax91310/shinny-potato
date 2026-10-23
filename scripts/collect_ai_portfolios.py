@@ -74,8 +74,10 @@ def parse_prices(raw, asset, calendar, now, previous=None, through=None, increme
     # observation for yesterday's report. Historical conflicting bars still fail.
     data=raw['chart']['result'][0];stamps=data.get('timestamp',[]);tz=ZoneInfo(meta['exchangeTimezoneName'])
     keep=[]
+    certified_start=min(calendar) if calendar else None
     for i,t in enumerate(stamps):
         day=dt.datetime.fromtimestamp(t,UTC).astimezone(tz).date().isoformat()
+        if certified_start and day<certified_start:continue
         if through is not None and day>through:continue
         if day in calendar and day not in completed:continue
         keep.append(i)
@@ -222,20 +224,36 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
                 'period1':int(dt.datetime.fromisoformat(begin).replace(tzinfo=UTC).timestamp()),
                 'period2':int(now.timestamp()),'interval':'1d','events':'div,splits'})
         url=price_url(request_start)
-        try:
-            raw, actual = chart_response(url, fetch)
+        window_attempts=[]
+        def read_window(begin, use_incremental):
+            query=price_url(begin)
+            raw,actual=chart_response(query,fetch)
             try:
-                series = parse_prices(raw, asset, output['calendars'][asset['calendar']], now, prior_series or None,through=(today-dt.timedelta(days=1)).isoformat(),incremental=incremental)
+                parsed=parse_prices(raw,asset,output['calendars'][asset['calendar']],now,prior_series or None,through=(today-dt.timedelta(days=1)).isoformat(),incremental=use_incremental)
+            except ValueError as error:
+                if not str(error).startswith('Clôtures attendues manquantes'):raise
+                # The same provider can return an incomplete period1/period2
+                # window while its range endpoint contains the actual session.
+                # Retry the SAME quote/convention once, with all identity,
+                # overlap, calendar and FX checks unchanged. A genuine gap fails.
+                window_attempts.append({'url':actual,'error':str(error)})
+                span=(today-dt.date.fromisoformat(begin)).days+7
+                interval=next((name for days,name in [(31,'1mo'),(93,'3mo'),(186,'6mo'),(366,'1y'),(732,'2y'),(1830,'5y'),(3660,'10y')] if days>=span),'max')
+                query='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(asset['symbol'],safe='')+'?'+urlencode({'range':interval,'interval':'1d','events':'div,splits'})
+                raw,actual=chart_response(query,fetch)
+                parsed=parse_prices(raw,asset,output['calendars'][asset['calendar']],now,prior_series or None,through=(today-dt.timedelta(days=1)).isoformat(),incremental=use_incremental)
+            return parsed,raw,actual
+        try:
+            try:
+                series,raw,actual=read_window(request_start,incremental)
             except ValueError as error:
                 if not incremental or not str(error).startswith('Révision à contrôler'):raise
-                # Never splice differently back-adjusted bases. Fetch and re-normalize
-                # the entire anchor history atomically; failure keeps the old series.
-                incremental=False;request_start=start;url=price_url(start)
-                raw,actual=chart_response(url,fetch)
-                series=parse_prices(raw,asset,output['calendars'][asset['calendar']],now,prior_series,through=(today-dt.timedelta(days=1)).isoformat())
+                # Revisions always reload and renormalize the complete anchor.
+                incremental=False;request_start=start
+                series,raw,actual=read_window(start,False)
             series.update(collectionMode='incremental' if incremental else 'full-anchor-review',requestedFrom=request_start,
                           fullCheckedAt=last_full if incremental else now.isoformat(),
-                          observations=[*prior_series.get('observations',[]),{'from':request_start,'through':max(series['points']),'sourceUrl':actual,'sha256':series['responseSha256'],'retrievedAt':now.isoformat(),'mode':'incremental' if incremental else 'full-anchor-review'}])
+                          observations=[*prior_series.get('observations',[]),{'from':request_start,'through':max(series['points']),'sourceUrl':actual,'sha256':series['responseSha256'],'retrievedAt':now.isoformat(),'mode':'incremental' if incremental else 'full-anchor-review','windowRetries':window_attempts}])
             series.update({'sourceUrl': actual, 'retrievedAt': now.isoformat(), 'isin': asset.get('isin'),
                            'listingEvidenceId': asset.get('evidenceId'), 'symbol': asset['symbol'], 'currency': asset['currency']})
             old = previous.get('series',{}).get(key,{}).get('points',{})
@@ -246,7 +264,7 @@ def collect(previous, universe, now, fetch=get_json, fetch_ecb=download, require
             output['series'][key] = series
             output['status'][key] = {'ok':True,'attemptedAt':now.isoformat(),'asOf':max(series['points']),'sourceUrl':actual}
         except Exception as error:
-            output['status'][key] = {'ok':False,'attemptedAt':now.isoformat(),'error':str(error),'requestedUrl':url}
+            output['status'][key] = {'ok':False,'attemptedAt':now.isoformat(),'error':str(error),'requestedUrl':url,'lastValidAsOf':max(prior_series.get('points',{}),default=None),'lastSuccess':prior_series.get('retrievedAt')}
     try:
         recent=bool(previous.get('fx',{}).get('rates')) and min(previous['fx']['rates'])<=start
         fx_url=ECB_RECENT if recent else ECB

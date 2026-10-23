@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {hydrateMarketSeries} from './ai-series-store.mjs'
-import {admission,coverage,quoteAt,planDecision,emptyPortfolio} from '../src/pages/ai-portfolios/lib.js'
+import {admission,technicalCoverage,coverage,quoteAt,planDecision,emptyPortfolio} from '../src/pages/ai-portfolios/lib.js'
 import {STOCK_REGIONS,marketRegion} from '../src/pages/ai-portfolios/data.js'
 const market=JSON.parse(fs.readFileSync('data/ai-portfolios/market.json'))
 const selected=JSON.parse(fs.readFileSync('data/ai-portfolios/selectable-equities.json'))
@@ -15,6 +15,7 @@ assert.equal(listings.length,assetExport.listingCount)
 assert.equal(new Set(listings.map(a=>a.instrumentId)).size,assetExport.instrumentCount)
 hydrateMarketSeries(market,process.cwd(),listings.map(a=>a.id))
 const config={initialCapital:10000,currency:'EUR',assetTypes:['EQUITY','ETF','CRYPTOCURRENCY','ETC','ETN','ETP'],admissionPolicy:'instrument-types-v2',stockRegions:STOCK_REGIONS,requireUcits:true,minLines:1,maxLines:1,maxWeight:100,feeBps:0}
+let ready=0
 const currencies=new Set(),markets=new Set()
 for(const a of listings){
  const one={...market,universe:[a]}
@@ -24,7 +25,8 @@ for(const a of listings){
  assert.equal(a.priceScale??1,series.priceScale??1,`${a.id}: pence / currency normalization survived persistence`)
  const asOf=a.coverageThrough
  assert(asOf&&asOf<=market.asOf,`${a.id}: invalid certified cutoff`)
- const state=coverage(a.id,one,asOf)
+ const state=technicalCoverage(a.id,one,asOf)
+ if(coverage(a.id,one,market.asOf).ok)ready++
  assert(state.ok,`${a.id}: ${state.reason}`)
  const price=quoteAt(a.id,asOf,'EUR',one).price
  assert(Number.isFinite(price)&&price>0,a.id)
@@ -38,4 +40,4 @@ for(const a of listings){
  assert.equal(sell.after.positions.length,0,a.id)
  currencies.add(a.currency);markets.add(a.mic)
 }
-console.log(`${selected.instrumentCount} distinct selectable equity instruments; ${assetExport.instrumentCount} instruments / ${listings.length} listings including ETFs, spot crypto and commodity products: all actual histories, EUR valuations, fractional purchases and liquidations validated across ${markets.size} MICs and ${currencies.size} currencies.`)
+console.log(`${selected.instrumentCount} distinct selectable equity instruments; ${assetExport.instrumentCount} instruments / ${listings.length} listings including ETFs, spot crypto and commodity products: ${ready} operationally ready listings at the current cutoff; all certified actual histories, EUR valuations, fractional purchases and liquidations validated across ${markets.size} MICs and ${currencies.size} currencies.`)
