@@ -49,7 +49,7 @@ def main():
                          ('amundi-etf.json',lambda s,n:share_result(amundi({'instruments':[s]},n))),
                          ('additional-etf-sources.json',additional),('exposure-etf-expansion.json',expansion),
                          ('non-bond-expansion-sources.json',nonbond),('qualified-exposure-sources.json',qualified)]:
-        for s in json.loads((ROOT/'scripts'/file).read_text())['instruments']:configs[s['isin']]=(s,adapter)
+        for s in json.loads((ROOT/'scripts'/file).read_text())['instruments']:configs.setdefault(s['isin'],(s,adapter))
     now=dt.datetime.now(transport.UTC)
     def one(isin):
         cases=[r for r in original if r['isin']==isin];result={'isin':isin,'attemptedAt':now.isoformat()}
