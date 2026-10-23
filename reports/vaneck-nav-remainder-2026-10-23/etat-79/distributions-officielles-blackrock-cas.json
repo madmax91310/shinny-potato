@@ -1,0 +1,506 @@
+[
+  {
+    "isin": "IE00B4556L06",
+    "year": "2025",
+    "id": "etcPalladium",
+    "currency": "USD",
+    "policy": "No Income",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00BJ5JP436",
+    "year": "2024",
+    "id": "etf_world_communication",
+    "currency": "USD",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2024-12-12",
+        "officialAmount": "0.03",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.03,
+        "previousSession": "2024-12-11",
+        "previousClose": 6.351600170135498,
+        "observedAdjustment": 1.0047456032892728,
+        "expectedAdjustment": 1.0047456338889837,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2024-12-12",
+            "change": 1.0047456032892728
+          }
+        ],
+        "expectedFromVendorCash": 1.0047456338889837,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2024-06-13",
+        "officialAmount": "0.0195",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.0195,
+        "previousSession": "2024-06-12",
+        "previousClose": 5.577600002288818,
+        "observedAdjustment": 1.0035083717724171,
+        "expectedAdjustment": 1.0035083931544897,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2024-06-13",
+            "change": 1.0035083717724171
+          }
+        ],
+        "expectedFromVendorCash": 1.0035083931544897,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2024-06-13",
+        "change": 1.0035083717724171
+      },
+      {
+        "date": "2024-12-12",
+        "change": 1.0047456032892728
+      }
+    ]
+  },
+  {
+    "isin": "IE00B1XNHC34",
+    "year": "2020",
+    "id": "etf_clean_energy",
+    "currency": "EUR",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2020-11-12",
+        "officialAmount": "0.0412",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.034884,
+        "previousSession": "2020-11-11",
+        "previousClose": 10.644000053405762,
+        "observedAdjustment": 1.0032879061771216,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.0032881156002438,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2020-05-14",
+        "officialAmount": "0.0317",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.029315,
+        "previousSession": "2020-05-13",
+        "previousClose": 5.828000068664551,
+        "observedAdjustment": 1.0050552851633796,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.0050554564789895,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2020-05-14",
+        "change": 1.0050552851633796
+      },
+      {
+        "date": "2020-11-12",
+        "change": 1.0032879061771216
+      }
+    ]
+  },
+  {
+    "isin": "IE00BJ5JP097",
+    "year": "2023",
+    "id": "etf_financials",
+    "currency": "USD",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2023-12-14",
+        "officialAmount": "0.0527",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.0527,
+        "previousSession": "2023-12-13",
+        "previousClose": 4.913899898529053,
+        "observedAdjustment": 1.0108408685752706,
+        "expectedAdjustment": 1.010840944849017,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2023-12-14",
+            "change": 1.0108408685752706
+          }
+        ],
+        "expectedFromVendorCash": 1.010840944849017,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2023-06-15",
+        "officialAmount": "0.1077",
+        "officialCurrency": "USD",
+        "vendorEvent": null,
+        "previousSession": "2023-06-14",
+        "previousClose": 4.690800189971924,
+        "observedAdjustment": 0.9999999380995902,
+        "expectedAdjustment": 1.0234993771760987,
+        "status": "missing-adjustment",
+        "nearbyAdjustmentJumps": []
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2023-12-14",
+        "change": 1.0108408685752706
+      }
+    ]
+  },
+  {
+    "isin": "IE00B42NKQ00",
+    "year": "2019",
+    "id": "etfIE00B42NKQ00",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B4JNQZ49",
+    "year": "2021",
+    "id": "etfIE00B4JNQZ49",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE000RDRMSD1",
+    "year": "2023",
+    "id": "etfIE000RDRMSD1",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE000RDRMSD1",
+    "year": "2025",
+    "id": "etfIE000RDRMSD1",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B43HR379",
+    "year": "2018",
+    "id": "etfIE00B43HR379",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B43HR379",
+    "year": "2019",
+    "id": "etfIE00B43HR379",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B5W4TY14",
+    "year": "2016",
+    "id": "etfIE00B5W4TY14",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B5W4TY14",
+    "year": "2017",
+    "id": "etfIE00B5W4TY14",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00BYXG2H39",
+    "year": "2018",
+    "id": "etfIE00BYXG2H39",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00BYXG2H39",
+    "year": "2023",
+    "id": "etfIE00BYXG2H39",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00B2QWCY14",
+    "year": "2023",
+    "id": "etfIE00B2QWCY14",
+    "currency": "EUR",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2023-07-13",
+        "officialAmount": "0.4893",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.437092,
+        "previousSession": "2023-07-12",
+        "previousClose": 74.72000122070312,
+        "observedAdjustment": 1.0058840356732242,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.005884152957733,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2023-01-12",
+        "officialAmount": "0.4673",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.432425,
+        "previousSession": "2023-01-11",
+        "previousClose": 74.83999633789062,
+        "observedAdjustment": 1.0058115574019808,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.0058115725621029,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2023-01-12",
+        "change": 1.0058115574019808
+      },
+      {
+        "date": "2023-07-13",
+        "change": 1.0058840356732242
+      }
+    ]
+  },
+  {
+    "isin": "IE00B2QWCY14",
+    "year": "2024",
+    "id": "etfIE00B2QWCY14",
+    "currency": "EUR",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2024-07-18",
+        "officialAmount": "0.5739",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.52579,
+        "previousSession": "2024-07-17",
+        "previousClose": 86.88999938964844,
+        "observedAdjustment": 1.006088181379411,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.00608805434237,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2024-01-11",
+        "officialAmount": "0.5373",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.49084,
+        "previousSession": "2024-01-10",
+        "previousClose": 77.7300033569336,
+        "observedAdjustment": 1.0063549118890731,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.0063548073110498,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2024-01-11",
+        "change": 1.0063549118890731
+      },
+      {
+        "date": "2024-07-18",
+        "change": 1.006088181379411
+      }
+    ]
+  },
+  {
+    "isin": "IE00B2QWCY14",
+    "year": "2025",
+    "id": "etfIE00B2QWCY14",
+    "currency": "EUR",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2025-07-17",
+        "officialAmount": "0.5772",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.498124,
+        "previousSession": "2025-07-16",
+        "previousClose": 76.45999908447266,
+        "observedAdjustment": 1.0065575375986626,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.0065575527124109,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2025-01-16",
+        "officialAmount": "0.5742",
+        "officialCurrency": "USD",
+        "vendorEvent": 0.557451,
+        "previousSession": "2025-01-15",
+        "previousClose": 92.6500015258789,
+        "observedAdjustment": 1.0060531318089103,
+        "status": "currency conversion of cash unqualified; no correction",
+        "expectedFromVendorCash": 1.006053160617409,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2025-01-16",
+        "change": 1.0060531318089103
+      },
+      {
+        "date": "2025-07-17",
+        "change": 1.0065575375986626
+      }
+    ]
+  },
+  {
+    "isin": "IE00BD1F4L37",
+    "year": "2017",
+    "id": "etfIE00BD1F4L37",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00BQN1K562",
+    "year": "2016",
+    "id": "etfIE00BQN1K562",
+    "currency": "EUR",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "IE00BQT3WG13",
+    "year": "2017",
+    "id": "etfIE00BQT3WG13",
+    "currency": "USD",
+    "policy": "Accumulating",
+    "officialEvents": [],
+    "providerAdjustmentJumps": []
+  },
+  {
+    "isin": "DE000A0H08P6",
+    "year": "2019",
+    "id": "etfEuropeRetail",
+    "currency": "EUR",
+    "policy": "Distributing",
+    "officialEvents": [
+      {
+        "date": "2019-10-15",
+        "officialAmount": "0.086569",
+        "officialCurrency": "EUR",
+        "vendorEvent": 0.086569,
+        "previousSession": "2019-10-14",
+        "previousClose": 31.959999084472656,
+        "observedAdjustment": 1.002716035331281,
+        "expectedAdjustment": 1.0027160239663748,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2019-10-15",
+            "change": 1.002716035331281
+          }
+        ],
+        "expectedFromVendorCash": 1.0027160239663748,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2019-07-15",
+        "officialAmount": "0.374603",
+        "officialCurrency": "EUR",
+        "vendorEvent": 0.374603,
+        "previousSession": "2019-07-12",
+        "previousClose": 31.270000457763672,
+        "observedAdjustment": 1.01212493702557,
+        "expectedAdjustment": 1.0121248804295886,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2019-07-15",
+            "change": 1.01212493702557
+          }
+        ],
+        "expectedFromVendorCash": 1.0121248804295886,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2019-04-15",
+        "officialAmount": "0.075611",
+        "officialCurrency": "EUR",
+        "vendorEvent": 0.075611,
+        "previousSession": "2019-04-12",
+        "previousClose": 32.27000045776367,
+        "observedAdjustment": 1.0023486396972099,
+        "expectedAdjustment": 1.002348576918944,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2019-04-15",
+            "change": 1.0023486396972099
+          }
+        ],
+        "expectedFromVendorCash": 1.002348576918944,
+        "matchesVendorCashAdjustment": true
+      },
+      {
+        "date": "2019-01-15",
+        "officialAmount": "0.211425",
+        "officialCurrency": "EUR",
+        "vendorEvent": 0.211425,
+        "previousSession": "2019-01-14",
+        "previousClose": 28.010000228881836,
+        "observedAdjustment": 1.0076055212209898,
+        "expectedAdjustment": 1.0076056056204037,
+        "status": "already-adjusted",
+        "nearbyAdjustmentJumps": [
+          {
+            "date": "2019-01-15",
+            "change": 1.0076055212209898
+          }
+        ],
+        "expectedFromVendorCash": 1.0076056056204037,
+        "matchesVendorCashAdjustment": true
+      }
+    ],
+    "providerAdjustmentJumps": [
+      {
+        "date": "2019-01-15",
+        "change": 1.0076055212209898
+      },
+      {
+        "date": "2019-04-15",
+        "change": 1.0023486396972099
+      },
+      {
+        "date": "2019-07-15",
+        "change": 1.01212493702557
+      },
+      {
+        "date": "2019-10-15",
+        "change": 1.002716035331281
+      }
+    ]
+  }
+]

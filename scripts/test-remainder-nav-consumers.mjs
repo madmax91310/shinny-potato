@@ -3,16 +3,17 @@ import fs from 'node:fs'
 import {ASSETS,ASSET_ORDER} from '../src/data/market-history.js'
 import {derive,buildTweetText} from '../src/pages/investment-calculator/lib.js'
 import {RANKING_ASSETS} from '../src/pages/performance-rankings/data.js'
-import {periodReturn} from '../src/pages/performance-rankings/engine.js'
+import {periodReturn,basisLabel,commonCoverage} from '../src/pages/performance-rankings/engine.js'
 import {getAnnualReturns,MARKET_ASSETS,ANNIVERSAIRE_ELIGIBLE_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'
 import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 const sources=JSON.parse(fs.readFileSync('scripts/official-nav-remainder-sources.json'))
-const proofs=JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series
+const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence}))]
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
+ assert.equal(RANKING_ASSETS[s.id].basis,'fund-nav-total-return');assert.equal(commonCoverage([RANKING_ASSETS[s.id],{...RANKING_ASSETS[s.id],id:'same-nav-fixture'}]).basis,'fund-nav-total-return');assert.equal(basisLabel(RANKING_ASSETS[s.id].basis),'Valeurs liquidatives · revenus réinvestis');
  assert.equal(a.isin,s.isin);assert.equal(a.historyConvention,'fund-nav-total-return');assert(!a.ticker&&!a.mic)
  for(const mode of ['lump','dca']){
   const state={assetId:s.id,amountRaw:'100',startYear:Number(s.periodStart.slice(0,4)),startMonth:Number(s.periodStart.slice(5)),mode,overridePriceRaw:''}

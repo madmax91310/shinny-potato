@@ -3351,21 +3351,31 @@
     "listingEvidenceId": "IE00B6YX5D40-ETFP-USDV-EUR"
   },
   "etfIE000M7V94E1": {
-    "value": 38.470001220703125,
+    "value": 38.793395805444,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "NUKL.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "56f6a3b11aa40ae02b4b5cdceca053e50d62af4c389266c4cc636d240c0e764c",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE000M7V94E1",
-    "ticker": "NUKL",
-    "mic": "XETR",
-    "listingEvidenceId": "IE000M7V94E1-XETR-NUKL-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 43.468,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "ca7398bfed4c8d4a9338d55b8a2eb5d26868c8c5c97da68cc14417dbca61cd5e"
   },
   "etfFR0010342592": {
     "value": 9.494999885559082,
@@ -3511,21 +3521,31 @@
     "sha256": "33f70b53cca7d1f40aed9437ea2c5bb5d11601024a4cf60e7ed597b5b6f9f0d0"
   },
   "etfIE00BYWQWR46": {
-    "value": 58.81999969482422,
+    "value": 58.764837126282906,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "ESP0.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ESP0.DE?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "700f73eac827366f74723ddf9eda699ab18e27bbd5ea6c616311bb0a69665f3f",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BYWQWR46",
-    "ticker": "ESP0",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00BYWQWR46-XETR-ESP0-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 65.846,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/esports-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "09f11a3b599f56446914342454ff12f582a7c249131ee9458b9876d4d7b83fb7"
   },
   "etfIE00B4KBBD01": {
     "value": 10.604999542236328,
@@ -3685,14 +3705,17 @@
     "sourceUrls": [
       "https://www.vaneck.com/DK/en/investments/mining-etf/",
       "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
-      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
       "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
     "checkedAt": "2026-10-23",
     "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
-    "sha256": "732c44d20e9bf9043d5206716c7eac3ec43bd17f98494f30b8aa74f1e2e19a01"
+    "sha256": "4ef5a4d7f595529c79f4b5db8e7b1d377b5ca183a9df3ec290892d00932e0c48"
   },
   "etfIE00B3T9LM79": {
     "value": 51.72999954223633,
@@ -3729,21 +3752,31 @@
     "listingEvidenceId": "IE00BDFL4P12-XLON-ICOM-USD"
   },
   "etfIE000YU9K6K2": {
-    "value": 60.61000061035156,
+    "value": 60.26327532351629,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "JEDI.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/JEDI.MI?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "9c970ad984c3942423c0d31cc18e05b1cc4bb003442a4331ccf02d9b14ea67af",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE000YU9K6K2",
-    "ticker": "JEDI",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE000YU9K6K2-ETFP-JEDI-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 67.525,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/space-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2da5e550655f0f142c3c41174bb2cd42511e34ebe46c817901014888eb9856c0"
   },
   "etfIE00BKPX3K41": {
     "value": 9.138999938964844,

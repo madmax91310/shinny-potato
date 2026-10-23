@@ -1,0 +1,52 @@
+{
+  "isin": "IE00BJ5JP097",
+  "listing": "WFNS.AS / XAMS / USD",
+  "start": "2022-12-30",
+  "end": "2023-12-29",
+  "marketStartClose": 4.469299793243408,
+  "marketEndClose": 5.0671000480651855,
+  "officialStartNav": 4.462887,
+  "officialEndNav": 5.064557,
+  "events": [
+    {
+      "exDate": "2023-12-14",
+      "currency": "USD",
+      "officialCash": 0.0527,
+      "previousSession": "2023-12-13",
+      "marketPreviousClose": 4.913899898529053,
+      "officialPreviousNav": 4.965759,
+      "marketExpectedAdjustment": 1.010840944849017,
+      "marketObservedAdjustment": 1.0108408685752706,
+      "officialNavExpectedAdjustment": 1.0107265147843736,
+      "officialNavObservedAdjustment": 1.0107265157997538,
+      "navFactorRelativeResidual": 1.0046043996680964e-09
+    },
+    {
+      "exDate": "2023-06-15",
+      "currency": "USD",
+      "officialCash": 0.1077,
+      "previousSession": "2023-06-14",
+      "marketPreviousClose": 4.690800189971924,
+      "officialPreviousNav": 4.661125,
+      "marketExpectedAdjustment": 1.0234993771760987,
+      "marketObservedAdjustment": 0.9999999380995902,
+      "officialNavExpectedAdjustment": 1.023652525296892,
+      "officialNavObservedAdjustment": 1.0236525191645194,
+      "navFactorRelativeResidual": -5.9906779537044486e-09
+    }
+  ],
+  "oldMarketAdjustedReturnPct": 14.60479839005524,
+  "marketReconstructedWithBothOfficialDividendsPct": 17.297943958411533,
+  "officialNavReconstructedWithSameBackAdjustmentConventionPct": 17.411812860389887,
+  "officialNavPerformanceChartPct": 17.41181226405717,
+  "oldDifferencePp": -2.807013874001928,
+  "componentsPp": {
+    "missingJuneAdjustment": -2.693145568356293,
+    "differentRawMarketAndNavBoundsAfterNavAdjustment": -0.10959783898000476,
+    "differentPreviousPricesUsedForDividendAdjustment": -0.004271062998342206,
+    "officialChartRoundingAndModelResidual": 5.963327183167166e-07
+  },
+  "arithmeticReconciliationResidualPp": -6.217248937900877e-15,
+  "interpretation": "Le défaut technique du dividende omis est démontré. Les facteurs aux détachements et le résidu annuel sont rapprochés quantitativement. Les différences restantes proviennent des prix d’entrée des calculs (cours fournisseur / NAV) et de leurs facteurs. Cela ne constitue pas une validation indépendante des clôtures Euronext de 2023 ni une attribution économique à une prime/décote ou un horaire précis.",
+  "missingIndependentPiece": "Clôtures officielles Euronext 2022–2023 et horaires/conventions de valorisation nécessaires pour attribuer l’origine économique des différences de prix ; hors fenêtre gratuite actuelle de deux ans."
+}
