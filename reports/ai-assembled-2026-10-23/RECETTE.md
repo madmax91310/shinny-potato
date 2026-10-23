@@ -2,7 +2,7 @@
 
 ## Correction
 
-Une demande retrouvée depuis un autre appareil chargeait son audit durable sans sélectionner sa compétition lorsque l'ancien instantané statique ne la connaissait pas encore. La vérification ouvre désormais la compétition désignée par l'audit, pour toute demande retrouvée ; le brouillon de l'autre sélection est conservé. Les dossiers indiquent le parcours de confirmation GitHub, sans demander d'export de fichier.
+Une demande retrouvée depuis un autre appareil chargeait son audit durable sans sélectionner sa compétition lorsque l'ancien instantané statique ne la connaissait pas encore. La vérification ouvre désormais la compétition désignée par l'audit, pour toute demande retrouvée ; le brouillon de l'autre sélection est conservé. Les dossiers indiquent le parcours de confirmation GitHub, sans demander d'export de fichier. Le lien de confirmation conserve maintenant son texte blanc : une règle de lien générique imposait du vert sombre sur son fond vert. Le test navigateur vérifie un contraste d’au moins 4,5:1.
 
 ## Recette déterministe isolée
 
