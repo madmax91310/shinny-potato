@@ -114,7 +114,15 @@ def cross_value(per_usd, usd_per_eur):
 def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', source_url=None):
     """TWD per EUR at the latest day of each completed month where both official series publish."""
     usd_per_eur = ecb_daily_usd(ecb_body)
-    per_usd = parse_fred_series(fred_body, series)
+    from urllib.parse import urlsplit
+    is_h10 = urlsplit(source_url or '').netloc == 'www.federalreserve.gov'
+    if is_h10:
+        if currency!='TWD' or series!='DEXTAUS': reject('Unqualified H.10 series mapping')
+        from h10_fx import parse as parse_h10
+        per_usd = parse_h10(fred_body, now)
+    else:
+        per_usd = parse_fred_series(fred_body, series)
+    if any(d>now.date() for d in per_usd):reject('Future cross-rate observation')
     boundary = dt.date(now.year, now.month, 1)
     observed = {}
     for day in sorted(set(usd_per_eur) & set(per_usd)):
@@ -136,6 +144,9 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', s
             reject('Stale cross-rate month-end observation')
     return {'sourceUrl': source_url or CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
             'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
+            'secondarySha256': hashlib.sha256(ecb_body).hexdigest(),
+            **({'sourceSeries':'H10/H10/RXI_N.B.TA','sourceDiscoveryUrl':'https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10',
+                'seriesEquivalence':'Federal Reserve H.10 RXI_N.B.TA is the primary daily TWD per USD series republished as FRED DEXTAUS; independently checked over all common observations'} if is_h10 else {}),
             'convention': f'{currency} per EUR = Federal Reserve H.10 noon buying rate ({currency} per USD, FRED {series}) '
                           '× ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places',
             'observations': dict(sorted(observed.items()))}
@@ -196,7 +207,8 @@ def cross_fx_document(currency, now, fetch=None):
     # Request only the period consumed by EUR conversions, instead of all data since 1971.
     window = canonical + '&cosd=1999-01-01&coed=' + now.date().isoformat()
     attempts = []
-    for url, timeout in [(window, 25), (canonical, 60)]:
+    from h10_fx import source_url
+    for url, timeout in [(window, 25), (canonical, 60), (source_url(now), 30)]:
         try:
             body = fetch(url, max_bytes=4_000_000, timeout=timeout, max_attempts=2)
             return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded'}]
