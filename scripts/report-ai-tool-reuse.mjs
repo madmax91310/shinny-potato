@@ -1,5 +1,5 @@
 // Review the actual consumers of the requested identities; never infer admission from AI prices.
-import {readFileSync,writeFileSync,existsSync} from 'node:fs'
+import {readFileSync,writeFileSync} from 'node:fs'
 import {ASSETS,ASSET_ORDER} from '../src/data/market-history.js'
 import {MARKET_ASSETS,getAnnualReturnStartYears} from '../src/pages/tweet-midi/data/performanceHistory.js'
 import {getValidYearsBackOptions,ANNIVERSAIRE_ELIGIBLE_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'

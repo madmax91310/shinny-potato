@@ -2,13 +2,13 @@ import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {execFileSync} from 'node:child_process'
 import {ASSETS,ASSET_ORDER} from '../src/data/market-history.js'
-import {qualifiedMonthlyWindows,qualifiedYearWindow} from '../src/pages/performance-rankings/selection-windows.js'
+import {qualifiedMonthlyWindows} from '../src/pages/performance-rankings/selection-windows.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import {derive} from '../src/pages/investment-calculator/lib.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
 import {RANKING_ASSETS,CATEGORIES} from '../src/pages/performance-rankings/data.js'
 import {convertAsset} from '../src/pages/performance-rankings/series.js'
-import {commonCoverage,buildRanking,periodReturn} from '../src/pages/performance-rankings/engine.js'
+import {buildRanking,periodReturn} from '../src/pages/performance-rankings/engine.js'
 import {annualRankingError} from '../src/pages/performance-rankings/annualRanking.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 import GLOBAL from '../src/data/global-equities.json' with {type:'json'}
@@ -87,7 +87,7 @@ for(const row of report.matrix){
 for(const p of report.profiles){
  assert.equal(p.status,'raccordé dans cette PR',p.id)
  assert(p.ids.length>=2 && p.ids.length<=6)
- const assets=p.ids.map(id=>convertAsset(RANKING_ASSETS[id],p.currency,FX)),coverage=commonCoverage(assets)
+ const assets=p.ids.map(id=>convertAsset(RANKING_ASSETS[id],p.currency,FX))
  const period=buildRanking(assets,{mode:'period',start:p.periodWindow.start,end:p.periodWindow.end})
  assert(period.columns[0].rows.every(r=>Number.isFinite(r.value)))
  if(p.annualWindow.length){const years=p.annualWindow;const result=buildRanking(assets,{mode:'years',startYear:years[0],endYear:years.at(-1)})
