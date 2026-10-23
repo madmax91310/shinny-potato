@@ -110,6 +110,57 @@
       "paths": [
         "etf-completeness.json"
       ]
+    },
+    {
+      "role": "logic",
+      "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+      "reviewedAt": "2026-10-23",
+      "paths": [
+        "evidence-freshness.js",
+        "history-visual-identities.js",
+        "history-window-quality.js",
+        "index-company-compositions.js",
+        "index-concentration-core.js",
+        "reusable-data-contracts.js"
+      ]
+    },
+    {
+      "role": "configuration",
+      "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+      "reviewedAt": "2026-10-23",
+      "paths": [
+        "data-source-conditions.json",
+        "dynamic-data-consumers.json",
+        "history-window-restrictions.json",
+        "index-history-identities.js",
+        "src/pages/ai-portfolios/data.js",
+        "src/pages/ai-portfolios/market-regions.json"
+      ]
+    },
+    {
+      "role": "editorial",
+      "reason": "Textes et liste de fiches ayant une revue éditoriale ; la qualification du rôle ne renouvelle ni cette revue ni les caractéristiques financières des parts.",
+      "reviewedAt": "2026-10-23",
+      "paths": [
+        "etf-presentation-copy.js",
+        "etf-presentation-reviewed-ids.json"
+      ]
+    },
+    {
+      "role": "manual-observation",
+      "reason": "Correspondances manuelles de titres et émetteurs, accompagnées de sources et de leurs dates propres ; aucune inférence à partir des seuls noms et aucune nouvelle preuve d’identité déduite de cette classification.",
+      "reviewedAt": "2026-10-23",
+      "paths": [
+        "index-company-identities.json"
+      ]
+    },
+    {
+      "role": "mixed-or-derived",
+      "reason": "Projection du build depuis les compositions qualifiées : approximations, indisponibilités, périmètres et dates des sources restent explicites ; le build ne recertifie pas les portefeuilles.",
+      "reviewedAt": "2026-10-23",
+      "paths": [
+        "index-company-compositions.json"
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 import RULES from '../data-qualification-rules.json' with {type:'json'}
 
-const roles=new Map(RULES.groups.flatMap(group=>group.paths.map(path=>[path.startsWith('src/')?path:`src/data/${path}`,{role:group.role,reason:group.reason,reviewedAt:RULES.reviewedAt}])));
+const roles=new Map(RULES.groups.flatMap(group=>group.paths.map(path=>[path.startsWith('src/')?path:`src/data/${path}`,{role:group.role,reason:group.reason,reviewedAt:group.reviewedAt??RULES.reviewedAt}])));
 export function registryQualification(registry){
  const reviewed=roles.get(registry.path);
  if(reviewed)return reviewed;

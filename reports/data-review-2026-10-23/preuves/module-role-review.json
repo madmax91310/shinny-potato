@@ -1,0 +1,146 @@
+[
+  {
+    "path": "src/data/evidence-freshness.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "c4f77011545c8d99c10fa76a9c576d302662ef7e6d862b86dcc6ee98494177dd"
+  },
+  {
+    "path": "src/data/history-visual-identities.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "038b69f59d1631ee82548812af33e4b86aaadc3e0e8e0faf26dc942e6af2c9a0"
+  },
+  {
+    "path": "src/data/history-window-quality.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "d71849a78f78cca124e3ef0c7d82dae9c879c2b8721d80875ab8633a6ea276e2"
+  },
+  {
+    "path": "src/data/index-company-compositions.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "d61aaf2dd11d4323703b65b141650fd73cb4b7165f31a21b49746e2782affd7f"
+  },
+  {
+    "path": "src/data/index-concentration-core.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "1d3d63a30084f43c5fd557e94993b30b9a28b4d7d2850e1fa8895ff1a2b1d6c2"
+  },
+  {
+    "path": "src/data/reusable-data-contracts.js",
+    "beforeRole": "unclassified",
+    "afterRole": "logic",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Fonctions examinées de fraîcheur, restriction des fenêtres, alias visuels, sélection de projections, concentration et insertion de frais qualifiés ; aucun relevé financier renouvelé dans ces modules.",
+    "sha256": "90c52d679d44113d80ac5c59975eab7161ec62082618a341c9285c45ec0679cf"
+  },
+  {
+    "path": "src/data/data-source-conditions.json",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "20c561f03862a887033e29650be7dc2e94b8e143c6d381dcd7eb4fb4e259662e"
+  },
+  {
+    "path": "src/data/dynamic-data-consumers.json",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "dea6ece7e97d7c68d47fd97e7da0d4b8f45f99effda1b8437cfb90e4b600dab0"
+  },
+  {
+    "path": "src/data/history-window-restrictions.json",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "ab0492f6fcd8667bdf4ee80082eaad2fb4ee8091900647b86b245ee2403bf132"
+  },
+  {
+    "path": "src/data/index-history-identities.js",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "5427b1e646347688b74e5a5e3170e2efa7174e08a6a2765fe1a506765f35202a"
+  },
+  {
+    "path": "src/pages/ai-portfolios/data.js",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "60900a6590a43e00edfed6297e3c3e8cdeb114a8dfe7e528370fd30c0fe428f8"
+  },
+  {
+    "path": "src/pages/ai-portfolios/market-regions.json",
+    "beforeRole": "unclassified",
+    "afterRole": "configuration",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+    "sha256": "6dcad1c9719dcaf50bfea8d865e486757cd8ba7744365b4797911cd940e12e32"
+  },
+  {
+    "path": "src/data/etf-presentation-copy.js",
+    "beforeRole": "unclassified",
+    "afterRole": "editorial",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Textes et liste de fiches ayant une revue éditoriale ; la qualification du rôle ne renouvelle ni cette revue ni les caractéristiques financières des parts.",
+    "sha256": "6bceb5c8fc2d8a8763afdf2a137faedff8183dc27c5034257146ab8f9e8e4bc3"
+  },
+  {
+    "path": "src/data/etf-presentation-reviewed-ids.json",
+    "beforeRole": "unclassified",
+    "afterRole": "editorial",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Textes et liste de fiches ayant une revue éditoriale ; la qualification du rôle ne renouvelle ni cette revue ni les caractéristiques financières des parts.",
+    "sha256": "a0ec374b717bcd331aa19b1e92f230c06d4835c341cc90ab62bc83316f07d66e"
+  },
+  {
+    "path": "src/data/index-company-identities.json",
+    "beforeRole": "unclassified",
+    "afterRole": "manual-observation",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Correspondances manuelles de titres et émetteurs, accompagnées de sources et de leurs dates propres ; aucune inférence à partir des seuls noms et aucune nouvelle preuve d’identité déduite de cette classification.",
+    "sha256": "7657d377d445152407aad5668ad15fdd1239beb6c8f77476e88bb19fcfecccfc"
+  },
+  {
+    "path": "src/data/index-company-compositions.json",
+    "beforeRole": "unclassified",
+    "afterRole": "mixed-or-derived",
+    "reviewedAt": "2026-10-23",
+    "scope": "rôle du module uniquement ; dates financières et restrictions conservées",
+    "reason": "Projection du build depuis les compositions qualifiées : approximations, indisponibilités, périmètres et dates des sources restent explicites ; le build ne recertifie pas les portefeuilles.",
+    "sha256": "7cdd04addf06ea3f9af87ba477d722d91e144615d117d454b376815447863b06"
+  }
+]

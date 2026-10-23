@@ -35,3 +35,6 @@ assert.match(failedPartial.reason,/HTTP 403/)
 assert.match(failedPartial.reason,/identités restent inconnues/)
 assert.equal(failedPartial.checkedAt,retained.checkedAt)
 assert.equal(failedPartial.unidentifiedWeightPct,1.49)
+
+assert.equal(registryQualification({path:'src/data/evidence-freshness.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-23')
+assert.equal(registryQualification({path:'src/data/annual-window.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-20','Classifying a new module must not redate already reviewed modules')

@@ -13,5 +13,6 @@ def vaneck_factsheet_candidates(url):
     route = ROUTES['vaneck']
     # The browser helper only reads English regional documents: /fr/fr/ is requested as /fr/en/.
     requested = re.sub(r'^(https://www\.vaneck\.com/[a-z]{2})/[a-z]{2}/', r'\1/en/', url)
-    alternatives = [route['factsheet'].format(region=region, name=name) for region in route['factsheetRegions']]
+    regions = route.get('factsheetRegionsByDocument', {}).get(name, route['factsheetRegions'])
+    alternatives = [route['factsheet'].format(region=region, name=name) for region in regions]
     return list(dict.fromkeys([requested, *alternatives]))
