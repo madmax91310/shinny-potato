@@ -10,7 +10,7 @@ export function authorizedIssue(event){
 }
 export async function decodeIssue(event){
  if(!authorizedIssue(event))throw Error('Seul le propriétaire authentifié peut confirmer une demande.')
- const matches=[...(event.issue.body??'').matchAll(/AI_PORTFOLIO_REQUEST_V1\n([A-Za-z0-9_-]+)\nEND_AI_PORTFOLIO_REQUEST/g)]
+ const matches=[...(event.issue.body??'').replaceAll('\r\n','\n').matchAll(/AI_PORTFOLIO_REQUEST_V1\n([A-Za-z0-9_-]+)\nEND_AI_PORTFOLIO_REQUEST/g)]
  if(matches.length!==1)throw Error('Une demande complète et unique est requise.')
  const p=await decodeProposal(matches[0][1])
  if(p?.version!==1||!Number.isSafeInteger(p.expectedRevision)||p.expectedRevision<0

@@ -17,3 +17,5 @@ console.log('Owner identity/sender/repository, unique payload, title/id, exact c
 
 assert(isRehearsalBranch('ai-rehearsal/20261023-test'))
 for(const branch of ['master','refs/heads/master','ai-rehearsal/../master','ai-rehearsal/short','ai-rehearsal/a%2fmaster']){assert(!isRehearsalBranch(branch));const encodedBad=await encodeProposal({...proposal,testBranch:branch});await assert.rejects(()=>proposalFromIssue({...event,issue:{...event.issue,body:'AI_PORTFOLIO_REQUEST_V1\n'+encodedBad+'\nEND_AI_PORTFOLIO_REQUEST'}},market),/production interdite/)}
+
+assert.deepEqual(await proposalFromIssue({...event,issue:{...event.issue,body:event.issue.body.replaceAll('\n','\r\n')}},market),proposal,'Mobile/native form CRLF preserves exact request')
