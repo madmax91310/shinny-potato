@@ -83154,13 +83154,13 @@
       "entity": "livret-a",
       "label": "Livret A",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A18000",
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-10-23",
       "scope": "Taux réglementé · date d’effet indiquée",
       "tool": "/simulateur-patrimoine",
       "field": "rate",
       "fieldLabel": "Taux annuel",
       "value": 1.7,
-      "sourceHash": "3a0fe7ec1e1b05c10c0ab444ff305792fa1fcd90e8fc0f2e8c05f0eedcb54ab0",
+      "sourceHash": "ab736cdf4e77561ab7e95b999c8560a68b673605354868cb38c126cbc391112d",
       "period": "2026-08-01",
       "unit": "%",
       "priority": "high"
@@ -84410,7 +84410,7 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "f2900b2dcaec12b3d79c4f40c1ca7e41ba087b0ce46943f73b468409ab0da87a",
+      "sourceHash": "f7652c8fe59322a718dd59b2b2080013e3c835c2c3e42e9d6ff43b6eb82418fe",
       "period": "2026-10-23"
     },
     "courtiers:bourso:profile:boursomarkets:86f73fda945c221a7a0a033a": {
@@ -84425,7 +84425,7 @@
       "field": "profile:boursomarkets",
       "fieldLabel": "Disponibilité du service boursomarkets",
       "value": true,
-      "sourceHash": "b491eed00ddb30c2f44f34a98a5b0073e7ab6ee79494625d70baaa8210ac7976",
+      "sourceHash": "8b731bbd9b3720e8459ae31e23f49b17d85b9e16fd0f4362b75865838ddab53b",
       "period": "2026-10-23"
     },
     "courtiers:bourso:profile:garde:9d4e962620fdb44cf84ce8ce": {
@@ -84596,7 +84596,7 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "66c951635318f9502aa1b01389eb6470113f2ef2998cac975bb955fc7da403a0",
+      "sourceHash": "c5bd82d6db399251b14eee4fe6a1d4b0931d1cd2dab480d3f75cd634b09dbc78",
       "period": "2026-10-23"
     },
     "courtiers:xtb:tariff:2df3f0b5b152f0a852e1c861": {
@@ -84716,7 +84716,7 @@
       "field": "profile:pea",
       "fieldLabel": "Disponibilité du service pea",
       "value": true,
-      "sourceHash": "92bbf15bbecc4af7331a68c31da89ab7614b2886cd914a4368fc252e0c44e4a4",
+      "sourceHash": "3fa1f762310bdd338b51c8e301b3fc388f5343804a58feee2a634e7e23e5379b",
       "period": "2026-10-23"
     },
     "courtiers:xtb:profile:pme:f6256845783d5884119c4740": {
@@ -84746,7 +84746,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": false,
-      "sourceHash": "92bbf15bbecc4af7331a68c31da89ab7614b2886cd914a4368fc252e0c44e4a4",
+      "sourceHash": "3fa1f762310bdd338b51c8e301b3fc388f5343804a58feee2a634e7e23e5379b",
       "period": "2026-10-23"
     },
     "courtiers:xtb:profile:ifu:981603acb8fff4075da075fc": {
@@ -84776,7 +84776,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "1fe5b8b0ba1703f64c52e60e6f40caff8e7ef44fe86edb2c2c2fbf88392f2273",
+      "sourceHash": "c5dd1b9d3bf5e6a81a856e178b4891c2a96a494d805fa2d67909fabbcc12a0e4",
       "period": "2026-10-23"
     },
     "courtiers:saxo:tariff:1cb4529e3c44e33283be3e48": {
@@ -84917,7 +84917,7 @@
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": false,
-      "sourceHash": "43d26f30f984c4c5a3bac5c7069fe61a9bf11693379be3bbad9ab7ae0f5c6437",
+      "sourceHash": "c8289df7c6dc0395465591b8c8791d13a5909579f92ddc3d1a2c6b06ea33e3d4",
       "period": "2026-10-23"
     },
     "courtiers:saxo:profile:pea:e2162c9e52579762945ebf7d": {
@@ -84962,7 +84962,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": false,
-      "sourceHash": "7677dbc1e61273c4f5383f687d17dd2d7f45f126f02f18f7e654b9cb9711f22e",
+      "sourceHash": "c48b24356c64b035bec6f16738da518fbb1bcd8c912ccaec98c658bf79125326",
       "period": "2026-10-23"
     },
     "courtiers:saxo:profile:ifu:1602d8b8fb3cb8436f65392e": {
@@ -84992,7 +84992,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "03e8a5ac247461e47bd92b497cc37c124f266cfaee9087235429856eeb183e5d",
+      "sourceHash": "683e18ea3e39b37337b8e78e9dd7da517e2c068bff264f80ac442408d5b0591d",
       "period": "2026-10-23"
     },
     "courtiers:caidf:tariff:3f506f16fd796113673297e8": {
@@ -85066,7 +85066,7 @@
       "entity": "caidf",
       "label": "caidf",
       "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-10-23",
       "scope": "caidf ; entrant ; conditions explicites de la page officielle",
       "tool": "/comparatif-courtiers",
       "priority": "high",
@@ -85077,22 +85077,22 @@
         "taxAgePreserved": 1
       },
       "sourceHash": "587d3013eac070d4481124bfe6489d9ac236962cb6c6a04bc73aea6c0d60c8dc",
-      "period": "2026-10-22"
+      "period": "2026-10-23"
     },
     "courtiers:caidf:profile:dca:4b9a4d8f56a4a03ef951df04": {
       "family": "courtiers",
       "entity": "caidf",
       "label": "caidf",
       "sourceUrl": "https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html",
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-10-23",
       "scope": "caidf ; dca ; portée exacte des sources publiques",
       "tool": "/comparatif-courtiers",
       "priority": "high",
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": true,
-      "sourceHash": "6dece615abbc99ca4c0d68b3148879d51ad44469f6e26b266d346169a10a9127",
-      "period": "2026-10-22"
+      "sourceHash": "338d82a4e2b15d6e9cdb9836e4d74ff92b566d9eccedb1346184fa1dec8b7b00",
+      "period": "2026-10-23"
     },
     "courtiers:caidf:profile:pea:57b2bc2a28768840177a0bd9": {
       "family": "courtiers",
@@ -85129,30 +85129,30 @@
       "entity": "caidf",
       "label": "caidf",
       "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-10-23",
       "scope": "caidf ; jeune ; portée exacte des sources publiques",
       "tool": "/comparatif-courtiers",
       "priority": "high",
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": true,
-      "sourceHash": "578aa9dc5617f219d1ed7e61ced784efe759ecc5f884b19ea1564f05ab594b66",
-      "period": "2026-10-22"
+      "sourceHash": "1ce125e985fa6a50ecb48c926219676e93fe1f2c6c75a41cfb88fb87a1738249",
+      "period": "2026-10-23"
     },
     "courtiers:caidf:profile:ifu:1f09211ed9d3e126c5287828": {
       "family": "courtiers",
       "entity": "caidf",
       "label": "caidf",
       "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
-      "checkedAt": "2026-10-22",
+      "checkedAt": "2026-10-23",
       "scope": "caidf ; ifu ; portée exacte des sources publiques",
       "tool": "/comparatif-courtiers",
       "priority": "high",
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "4d25b98410be23144f3a2c63feff4e9986ac8ee289d3f1588fe6fda22389be3c",
-      "period": "2026-10-22"
+      "sourceHash": "7771c8b6b5030a2a982cfdb7fdaf6992c4cc786a3f2eb3c5abaad45ad9c4f6e0",
+      "period": "2026-10-23"
     },
     "courtiers:ibkr:tariff:ca8deff7c75d60310886e99d": {
       "family": "courtiers",
@@ -85243,7 +85243,7 @@
       "field": "profile:pea",
       "fieldLabel": "Disponibilité du service pea",
       "value": true,
-      "sourceHash": "4d31683cf211692e2a0cff98bb924ec16ba7f80ec1e6ddd4f9e297f138b2a807",
+      "sourceHash": "87916e3047e8c340039be0afcf45b06174221516d10f4dbf0b8e105026d08379",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:ifu:c183fc0e28b58c0782719918": {
@@ -85258,7 +85258,7 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "4d31683cf211692e2a0cff98bb924ec16ba7f80ec1e6ddd4f9e297f138b2a807",
+      "sourceHash": "87916e3047e8c340039be0afcf45b06174221516d10f4dbf0b8e105026d08379",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:cash:2ec235b00164b793c3fb6b63": {
@@ -85273,7 +85273,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "6d591874b9886fef63a4340b6c2a22a6d4d76bb33fbe59d8614a1fa34bb6c3f3",
+      "sourceHash": "16dc02c5087ab7339a06d797f3f346c66f364b6e959d86e047de294f23fd007b",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:entrant:29bf93ca31d03e7d72f607a9": {
@@ -85288,7 +85288,7 @@
       "field": "profile:entrant",
       "fieldLabel": "Disponibilité du service entrant",
       "value": true,
-      "sourceHash": "1e6fa3793a5ea579cd1a8c7a39fdfc1c87ce8c0c75fe38446faed702564064ff",
+      "sourceHash": "3eaa417c75c6e6c9abe0fe77ed911c22b97df1711363799f0d1d8098b2396405",
       "period": "2026-10-23"
     },
     "courtiers:tr:tariff:963214fa25cbd914755e4c0d": {
@@ -85554,7 +85554,7 @@
       "family": "courtiers",
       "entity": "bd",
       "label": "bd",
-      "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6adb0cf56f86d1792740597",
+      "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6adb666a354781792763498",
       "checkedAt": "2026-10-23",
       "scope": "bd ; dca ; portée exacte des sources publiques",
       "tool": "/comparatif-courtiers",
@@ -85637,7 +85637,7 @@
       "field": "profile:entrant",
       "fieldLabel": "Disponibilité du service entrant",
       "value": true,
-      "sourceHash": "ef29469270c17af12ecbf71713e2ba8c886109e62a9c82e6ad0a5c17ede66391",
+      "sourceHash": "f65880993d7cbfc2c30197b2e72a09e855330fa966a19588160b6e004ab18bcd",
       "period": "2026-10-23"
     },
     "scpi:iroko-zen:price:356289a2936ee5470ef1e7f3": {
@@ -106789,7 +106789,7 @@
       "value": "Vanguard reduces fees on six equity ETFs",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/press-releases/uk-equity-etf-fee-reductions-press-release.pdf",
       "period": "2025-09-30",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -106807,7 +106807,7 @@
       "value": "Vanguard Reduces Fees Across Fixed Income ETF Range",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/en/vg-fi-ucits-etf-fee-cuts-press-release.pdf",
       "period": "2025-06-23",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108448,7 +108448,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108504,7 +108504,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108560,7 +108560,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-06",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108616,7 +108616,7 @@
         "status": "À préciser"
       },
       "period": "2026-09-10",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108644,7 +108644,7 @@
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": false,
-      "sourceHash": "3d30a5ab4f304514aec7cc17ba1ab00a12c223c8a5a0f88ea8995f42431686df",
+      "sourceHash": "ebcea789c4a665eccaa1e5c427d8dabd53da4b86ae52c77c1c219a8b6c0d6177",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:pme:bb0950e6eadce80c21ac7cf6": {
@@ -108659,7 +108659,7 @@
       "field": "profile:pme",
       "fieldLabel": "Disponibilité du service pme",
       "value": false,
-      "sourceHash": "7562c50d659fee76bfaa03b99210055751c713015b6c15a2a3280854c1693c6d",
+      "sourceHash": "cab8cfdd4f9a9fdebb54d4fb300c3f1fe718996362d2b32abe243eed89809299",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:jeune:efe7b9d1bf4100873b22637e": {
@@ -108674,7 +108674,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": false,
-      "sourceHash": "980084649cd43a0b702d448cdf46a618187be731c3e0de658778bb0c36500da1",
+      "sourceHash": "79cfee9c804506a77b9acfad122107e6bb56b8026437bd3fefab3458e9e68877",
       "period": "2026-10-23"
     },
     "etf:IE00B3F81G20:ter:c0b82f3f7d5b47401d420e3e": {
@@ -151362,7 +151362,7 @@
         "minimumOrder": 500,
         "maximumOrder": 100000
       },
-      "sourceHash": "c0001c94c64780534b55e67db8577279c5db47a02a01802c39c1f924731f9b95",
+      "sourceHash": "f20e5e3ec06872e7c2e1e8d6e4b62f9cc17619c5fa93441df0fd6e5b3ca8a12e",
       "period": "2026-10-23"
     },
     "epargne:pel:pelCeiling:594a106e661ff9997db33853": {
@@ -151392,7 +151392,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -151486,7 +151486,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-20",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -151514,7 +151514,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-19",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.vie-publique.fr/en-bref/305001-encadrement-des-loyers-quelles-evolutions-possibles",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155399,7 +155399,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-21",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155427,7 +155427,7 @@
         "status": "Application indiquée"
       },
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19067",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155453,7 +155453,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_QYLD_4e19b8c911.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155472,7 +155472,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_SYLD_7b53ce3ad1.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155491,7 +155491,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_XYLU_5d7a46d958.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155510,7 +155510,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_15_10_2026_EUSD_f7772bc0f3.pdf",
       "period": "2026-10-15",
-      "checkedAt": "2026-10-23T13:38:51.004Z",
+      "checkedAt": "2026-10-23T13:56:29.210Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155550,7 +155550,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-23",
-      "checkedAt": "2026-10-23T13:38:51.006Z",
+      "checkedAt": "2026-10-23T13:56:29.212Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19103",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -353474,9 +353474,9 @@
       "reason": "Changement d’une donnée publiée, à périmètre comparable."
     }
   ],
-  "lastCheckedAt": "2026-10-23T13:38:56.299Z",
-  "sourceRevision": "b073f62b7652eaf516ad17f826facce73405dbc5",
-  "lastErrorCount": 1,
+  "lastCheckedAt": "2026-10-23T13:56:36.010Z",
+  "sourceRevision": "93a8d00ef30677f624d9fad5a272c29591e28b88",
+  "lastErrorCount": 10,
   "conflicts": {
     "etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-07": {
       "accepted": {
@@ -389974,7 +389974,7 @@
             "reason": "Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées."
           },
           "firstSeenAt": "2026-10-23T10:23:23.207Z",
-          "lastSeenAt": "2026-10-23T13:38:56.299Z"
+          "lastSeenAt": "2026-10-23T13:56:36.010Z"
         }
       ]
     }
@@ -389983,56 +389983,56 @@
     "IE00BLNMYC90:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/e467de7ce2b918a2f12e7de81c5964e5e3152dd30797a571a2d22e7c64ec13c0.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ffc981331f820b67950496159d43a8d0b20c61031e4828f0e7481cca3bd6d717.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/c4d8e048db785d4917d25f5328885c518f3b4d5adde9f1926f06b7eb2ea1a010.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/fd28d799f261ecb4effe51e491070d83c86e0e7327f2c52281359f3754adeea1.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/54fd60ff6a73d1920fc948e77cc936521e175ff68f749823aaff0879941a7597.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/fbee9fb2c3a13e4a954688f1dedc125c7b0862cbfe382a99e93bb9ecc288e145.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/11acda85d0bc00be1e4ea7937ceb122445b1b04d1933ff6fc82dab528919669e.json",
       "status": "interrupted"
     },
@@ -390055,506 +390055,506 @@
     "IE00BM67HV82:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/53735e1d1f1b0348244d6250645db201c9c4ec0d62258fbc7acc3bee10a971cb.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-12": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/26dc12cb629e11bce0539443f871ecb71489dc7c7bb4d506ea9f2a01e5e7b287.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/bcb8af4afc10adcd97dcfaaeb02664629b784a53846d0a9e62ec8d523b378bb0.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/c5de83da70bc2109212791cff15873060e232fff90c2d0663945a7e2f46d13ac.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/9f904a9ae20dba464e987ea97dd3f3d2107f29d6ae0e385730a10bdf55f03fa3.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/9881460c16f54a73c552c82ec2475737dd7ab1117e4c39b18f3da42911cb4256.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b1af9ff23981c4e95a5c7a566f8d7c712a627c8f9a563d6f6db61820fad0f73f.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/18bd3dea7f18d311cfca2c627cd66f44e6285ef0ad3cc3d0a64dc56eee4169cd.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ca141078ea5033580a1097e0e4de9d27a1472c9f96f784e0cfb21c15992e3e2e.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b6129fd086b05087698c4400b9f7acc8fd52e88a2f5477d30260f9b1faaa1dd0.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-13": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/52f52d286db7b3b4d813b9ea7739fe809b0c12321c14aa9760ed8a65bce5f8a5.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b316090e5feced6cfdcafd8bb1063620ed20d08f6d142a8055cbf676582b63aa.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/de442a9ce7062df7053a7eab2272e1faaf3c8a304851fd5c56c8f478a1abb133.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/0c86bb7c15a66bf27b9355ea3be0d4350d733318e57933670e511675d69407d9.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/6676bf1774926e727726e2db9b96b53ac7c42b21db7fdd360879096bbdd43cf3.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/6dc45a5270d22dd66265ff70bee1679221412cd47cb02ea1bec10f5f7f5febd2.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/366b49cc70888daadbdc52e772495fe25c42972be476e74c19d78859d8151045.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/6b8faae7be40b73391276965ebe1fd9798133a4701bb2ccf2dd664847a701c89.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/6f0182baf21f9f336862254b1ec7cabf5b92de3aa08081b0ee5873ff1faf9578.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-14": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/fac35bb36eddeffd8f09d620525f0f0646e35ac2a03f60754d656a73e5e27f66.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/0f28c0ff82d0a079b1121cb0c952aaca927b2d4b21c18ce34609852e37448b57.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/de42d8c28ed16a6e2003aaab6550d3426e0809edc99133d70b7f4d8362eb597d.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/5c0d8ed693f82ef8dc8adaec4c756b090bf0406295e2c91e423873971469d4ef.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/be00237d00c806d6f2d1e6d6da9d0975b0b39a2fd8a95a57437d101830ef4e56.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b2eccdcfe77a439b1115960c82e55c685bd9dd7719e4e3780b73ebd2b20959a5.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/291d655c124ed6c2df73394c77dfbad1e6b42708913df9d88cc36a7128ee7cce.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/dce320772595c6a842e0b491c061f700d4b9e4b07193757570e80cce49339664.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/114d1f5d51422db019fab3852898aa370ddb4f4f6114899cc565c08c56aab93b.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-15": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ba7b4a9892548501022703f90d47de187fe9fdba16f22cde644b8cc58f8ba5d0.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/dfaf7121c72134a7d70011be449fa9e1dd950b5017c6bc0b2034d44e10eea9d1.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ba0e1dc8eac32f58605dac8fc30b355f7202531a983439e632d77f48aec23f83.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/1d5882add49da51dca96d3c2550076a8b61b617ee92b9c834813ee5849f6af01.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/a66dc59e532f7d409badd67b63086ba5fd50e6659337836465e1237b34cb1450.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/de41b12dc29e99d4bf634de8d6eb60954a72895869031cef889331e82c83f0c4.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/a0c5159a943022961a2b3e74e1d94555b9fbd28256fd259b689896a2f1695a9b.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/778daaf081d479735f32615f5f050a1d13ef5c8f5019cb548c621bea3cfa814d.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/faa3f8bca292aacce7a28ea24d8913b31b160e5753d094b76be5e63d407f1c48.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-16": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/41c0251c83c6df8b3c3e4ef2a4824cb66ee97ee9d35b056c4009a90231679d08.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/92b99fac156fcceb6ff17521480d2cdee74aae621323e5f9bbc48af915154665.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/9973f82cabdb2796ec8ed8a7e4db9b5d01da1f80d075d83d0257d9e1104a7fc1.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b5d7efc8bc3dbdebe0aa9d33469c3a6ae0dc941c82744445b9b4bd20e07ac9d9.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/96105ae72809eb5afdea5e5acc702cc5625340a271adad5a3c65643748eeb0fd.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/f4893550bd4482a798ea38ddc6b213d3d0e8b198330cb1fb5a52811ecd5d2950.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/918e84c1e7048cac420a27fc0a18904b3c4c8ab90014288dd6c8bef2c2f70dd9.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/e08da757b60c819b5a1bd9cc3698503aac9ed42f47f9554311a7e0eeede19324.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/704f326f4f495d974404aca1672bc7df607f3f051b3a9209b8a67ee847c85142.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-19": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/e26a58d995082aedf3283a128b15a1afc23dbf2003ff7c7169df329219792a8e.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/9fcea5e4a04f5e0b9b314cfbf50d915c2c32a29fd0dccf3885b57fc2c7d9547a.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/cebd4a10a30983fe88ffc3a03f48514d2e39492a825802325da03e2d62db7ad7.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/37773e732531b12e22f8f59853c1a4417bbb7d994f0fcd48f4e1b681ab0564b8.json",
       "status": "interrupted"
     },
     "IE00BM67HV82:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/54d9ffc521a80e0f499cd547986b72361dd431cec3549228cf13a81047138e83.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/e684867d476691ae8d9f30641da407ff12653831820c4f08f5ed9d7895041d12.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/7845345eff1045a210b710cf9c2233c3a16b49fda9409db277de53cf664b6fcc.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/4e5086b0b5ecb17ab2d8a8cf237781cf861f849bf38dcff5df98c25a944fcdbf.json",
       "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/fa44d04c79a3327c601fa43b6b035f1aee13715d88b20cd19486fa3406c17f6d.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-20": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-22T22:52:05.205Z",
-      "stableSince": "2026-10-22T22:52:05.205Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/dd065cec01729cb388b6d36327734b60f9e593abdca9c32bbeae440d348bc8f4.json",
       "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ab04f5dfd34e25ed67cab32b61d37d4bbe5caf44603b50c377fe1800c4906b92.json",
       "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/bae3afdae60e777faa124df28f485911de39f417eb001768fd3550496282212d.json",
       "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/47cf7f5bc7450663a566196a2dcf9dd4604aec46b1da3e5d21d1e2b6b03c5e26.json",
       "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-21": {
-      "sourceHash": "0c84d96c01af0ec4aceaab53a82e1311e68a1e1a16fad8322090a87fab5542cf",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-23T11:08:13.225630+00:00",
-      "stableSince": "2026-10-22T23:45:46.270946+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/0c84d96c01af0ec4aceaab53a82e1311e68a1e1a16fad8322090a87fab5542cf.json",
-      "status": "confirmed"
+      "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/edc16a0d810da3b8120489288bb8cf6065b3b7bd06b5b55596769da1ea45982c.json",
       "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/022f146a555e0f1b4da042b36a469b32f2cd9451aae6858f5a43e491b2983c05.json",
       "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-21": {
-      "sourceHash": "f11ee1202baaa2c3999be1ccff8db8de8e987487e66041ceacd362d1b34112d7",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-23T11:40:23.957109+00:00",
-      "stableSince": "2026-10-22T23:45:46.270946+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/f11ee1202baaa2c3999be1ccff8db8de8e987487e66041ceacd362d1b34112d7.json",
-      "status": "confirmed"
+      "status": "interrupted"
     },
     "LU1875395870:2026-10-21": {
       "sourceHash": "2676283bed947c664725720a474e798fa62a2ea7795845c6599840c75c7fcd4b",
@@ -390575,74 +390575,74 @@
     "IE00BM67HV82:2026-10-21": {
       "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T11:40:26.649Z",
-      "stableSince": "2026-10-23T11:40:26.649Z",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/9ad48a7c0d0c3a23ce2859ffa341e40359bc06ed59fd9709125dffc30540f2bf.json",
       "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-21": {
-      "sourceHash": "391d9cb991bc37ace9bb784f55de641ae8911ae42f0cbc5b3063df5e6c72fab0",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-23T11:40:23.957109+00:00",
-      "stableSince": "2026-10-22T23:45:46.270946+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/391d9cb991bc37ace9bb784f55de641ae8911ae42f0cbc5b3063df5e6c72fab0.json",
-      "status": "confirmed"
+      "status": "interrupted"
     },
     "IE00BLNMYC90:2026-10-22": {
-      "sourceHash": "a2ce8ae48e50c72870b01428e5f0898858ec23c9ade3d4c2b7df9ff1729ff0e9",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/a2ce8ae48e50c72870b01428e5f0898858ec23c9ade3d4c2b7df9ff1729ff0e9.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE0006WW1TQ4:2026-10-22": {
-      "sourceHash": "8cacb4010f98c70cf041dce0b209766d1bcecfa1ffc2c652a31e6bda50fe74f6",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/8cacb4010f98c70cf041dce0b209766d1bcecfa1ffc2c652a31e6bda50fe74f6.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE000L6ZMMC4:2026-10-22": {
-      "sourceHash": "d6ac6c3246eb96cf02e6de3300f82ffb61d016345843c5cf733db19e0450324b",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/d6ac6c3246eb96cf02e6de3300f82ffb61d016345843c5cf733db19e0450324b.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE00BGV5VN51:2026-10-22": {
-      "sourceHash": "b90efa92692c9093539b6a0a3eb4eac568f32571f8b29e7d1164211366d30406",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/b90efa92692c9093539b6a0a3eb4eac568f32571f8b29e7d1164211366d30406.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE00BM67HK77:2026-10-22": {
-      "sourceHash": "24fe268117a594f9908f8eb215c567f660ae2912126ff128e34bca23740fd793",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/24fe268117a594f9908f8eb215c567f660ae2912126ff128e34bca23740fd793.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE00BM67HS53:2026-10-22": {
-      "sourceHash": "ca4ae5d5430edb64b19c756f40f371325d945606d0d9aa7387a3dfc36906ddbe",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/ca4ae5d5430edb64b19c756f40f371325d945606d0d9aa7387a3dfc36906ddbe.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE00BTJRMP35:2026-10-22": {
-      "sourceHash": "38058664859eaf6287d5d8b4dd43e698088ba540a2ede867d8b390c6180a46b6",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/38058664859eaf6287d5d8b4dd43e698088ba540a2ede867d8b390c6180a46b6.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "LU1875395870:2026-10-22": {
       "sourceHash": "2e6f54b1efeb5b230ef1530ddb3d1f8833c7d062df586aabbcd077a5b2510842",
@@ -390661,111 +390661,111 @@
       "status": "pending"
     },
     "IE00BM67HV82:2026-10-22": {
-      "sourceHash": "60a9de834b05534bbd3a4bfa506198726b8ddfe0d1717962c5d5787201e087c9",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/60a9de834b05534bbd3a4bfa506198726b8ddfe0d1717962c5d5787201e087c9.json",
-      "status": "pending"
+      "status": "interrupted"
     },
     "IE00BM67HQ30:2026-10-22": {
-      "sourceHash": "4de063058bb953fb2c7f78bfb7c4f30bcc7c4e1b3e06635e6ab0ab663a3ed0f8",
+      "sourceHash": null,
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-23T13:38:53.447905+00:00",
-      "stableSince": "2026-10-23T13:35:32.726765+00:00",
+      "checkedAt": "2026-10-23T13:56:36.010Z",
+      "stableSince": "2026-10-23T13:56:36.010Z",
       "evidencePath": "dws-snapshots/4de063058bb953fb2c7f78bfb7c4f30bcc7c4e1b3e06635e6ab0ab663a3ed0f8.json",
-      "status": "pending"
+      "status": "interrupted"
     }
   },
   "ignoredObservations": {
     "etf:JE00B1VS3770:ter:d151ca9c7e140397514f2a9e": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:GB00BJYDH287:ter:ff09754c7ba98f59a53a9bb6": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE00BYPLS672:ter:2e9fc3131afb1360cdac5b66": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-06"
     },
     "etf:IE0002XZSHO1:ter:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE0002XZSHO1:characteristics:index:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE0002XZSHO1:characteristics:distribution:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:ter:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:characteristics:index:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:characteristics:distribution:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:GB00B15KXQ89:ter:d8e87c185144b921271680fb": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE0002Y8CX98:ter:e654b4d3b8ec7ad57f17cc64": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE000W8WMSL2:ter:49af775d00229420cd1d3760": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE00BZ56SW52:ter:053341b738f85d33cd9681dc": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T13:38:56.299Z",
+      "receivedAt": "2026-10-23T13:56:36.010Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     }
