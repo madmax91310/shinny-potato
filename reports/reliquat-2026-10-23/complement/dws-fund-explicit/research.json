@@ -1,0 +1,86 @@
+[
+  {
+    "isin": "IE00BM67HV82",
+    "aum": {
+      "amount": 1000000000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "sha256": "dfb78f767ec46d31ecf91cc56ba2b6fafbc50369d5ec6aa057c2700127998cdc",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "1.00 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained"
+    },
+    "unavailable": [],
+    "captures": [
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+        "file": "IE00BM67HV82-0.json.gz",
+        "sha256": "dfb78f767ec46d31ecf91cc56ba2b6fafbc50369d5ec6aa057c2700127998cdc"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+        "file": "IE00BM67HV82-1.json.gz",
+        "sha256": "0f5634f109eba1f01abb9872f84f72766af00d168051dac461c99f0c7be83820"
+      }
+    ]
+  },
+  {
+    "isin": "IE00BM67HQ30",
+    "aum": {
+      "amount": 705120000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "sha256": "ce6687eab86eedf18df16dc290c003b30e5d071534200fb5a4741ec09bffe5fb",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "705.12 M GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained"
+    },
+    "unavailable": [],
+    "captures": [
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+        "file": "IE00BM67HQ30-0.json.gz",
+        "sha256": "ce6687eab86eedf18df16dc290c003b30e5d071534200fb5a4741ec09bffe5fb"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
+        "file": "IE00BM67HQ30-1.json.gz",
+        "sha256": "96bba77e68332acc7214ebe71a1da12804fb3460cec5e896fb8cf419c579fd89"
+      }
+    ]
+  },
+  {
+    "isin": "IE00BK1PV551",
+    "aum": {
+      "amount": 23330000000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "sha256": "2680f885d3401e501b2bdfc9628587c49304b308e6f077732ac3c330c55b7934",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "23.33 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained"
+    },
+    "unavailable": [],
+    "captures": [
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+        "file": "IE00BK1PV551-0.json.gz",
+        "sha256": "2680f885d3401e501b2bdfc9628587c49304b308e6f077732ac3c330c55b7934"
+      },
+      {
+        "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/holdings",
+        "file": "IE00BK1PV551-1.json.gz",
+        "sha256": "46694b16eac6b43867d4ecd6fa2da3e2e5091e931c10417de54791a63ace2478"
+      }
+    ]
+  }
+]

@@ -7,6 +7,9 @@ on:
     branches: [master]
     paths:
       - '.github/workflows/update-publication-observations.yml'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/validate-producer-publication.sh'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/refresh_purchasing_power.py'
       - 'scripts/refresh_anniversary_levels.py'
       - 'scripts/issuer_nav_history.py'
@@ -17,6 +20,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/update-publication-observations.yml'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/validate-producer-publication.sh'
+      - 'scripts/test_observation_rebase.py'
       - 'scripts/*publication*'
       - 'scripts/fixtures/publication/**'
       - 'scripts/test-purchasing-power*'
@@ -106,6 +112,8 @@ jobs:
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh publication
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

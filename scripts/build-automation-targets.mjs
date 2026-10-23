@@ -68,8 +68,9 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  if(!hasPhysicalPortfolio(method,facts.replicationMethod??'',{issuer:share?.expansionKind}))continue
  if(['IE00BMVB5K07','IE00BMVB5M21','IE00BMVB5P51','IE00BMVB5R75'].includes(isin))holdings[isin]={isin,name,currency:'EUR',parser:'lifestrategy-lookthrough'}
  else if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
- else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
- else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'ssga',sourceUrl:url}
+ // A fund total may be displayed in another currency; it cannot identify a share.
+ else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:share?.currency??r.currency,parser:'dws',sourceUrl:url}
+ else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:share?.currency??r.currency,parser:'ssga',sourceUrl:url}
  else if(/^https:\/\/globalxetfs\.eu\/funds\/(?:botz|bug|copx|silv|urnu)\/?$/.test(url))holdings[isin]={isin,name,currency:'USD',parser:'globalx-complete',sourceUrl:url}
  else if(isin==='IE00B4K6B022')holdings[isin]={isin,name,currency:'EUR',parser:'hsbc-complete'}
  else if(isin==='IE0003UVYC20')holdings[isin]={isin,name,currency:'USD',parser:'jpm-complete'}

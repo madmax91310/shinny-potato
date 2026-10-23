@@ -58,6 +58,8 @@ def merge_collection(report, current, baseline, sibling_aum=None):
         old = next_records.get(isin, {})
         if old and (old['currency'] != share['currency'] or old['productId'] != share['productId']):
             reject('Active automated share identity changed')
+        if share.get('aum') and share['aum'].get('scope') not in ('fund', 'share-class'):
+            reject('Unqualified ETF AUM scope; previous observation preserved')
         from etf_anomalies import anomalies
         issues = anomalies(old, share, (sibling_aum or {}).get(isin, ()))
         if issues:

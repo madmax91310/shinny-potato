@@ -1,0 +1,103 @@
+[
+  {
+    "file": "src/data/automated-etf.json",
+    "isin": "IE00BM67HV82",
+    "observedAt": "2026-10-23T08:30:56.018188+00:00",
+    "before": {
+      "amount": 1337200639.67,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "exportDate": "2026-10-23",
+      "exportTimezone": "Europe/Berlin",
+      "navContextAsOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
+      "sha256": "db39e1da4f2ba7674caa0768acf29dfe4f1034fc591bb8ea19c16b8d478fa03d",
+      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "checkedAt": "2026-10-23",
+      "modifiedAt": "2026-10-23"
+    },
+    "after": {
+      "amount": 1000000000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "sha256": "dfb78f767ec46d31ecf91cc56ba2b6fafbc50369d5ec6aa057c2700127998cdc",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "1.00 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
+      "checkedAt": "2026-10-23",
+      "modifiedAt": "2026-10-23"
+    },
+    "scopeProof": "Explicit Total AUM of fund field with own date; no use of generic historical AUM column"
+  },
+  {
+    "file": "src/data/automated-etf.json",
+    "isin": "IE00BM67HQ30",
+    "observedAt": "2026-10-23T08:30:56.834923+00:00",
+    "before": {
+      "amount": 942365086.9,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "exportDate": "2026-10-23",
+      "exportTimezone": "Europe/Berlin",
+      "navContextAsOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/historicaldata/download",
+      "sha256": "0ed9609731847f6552a5244ed5c0d2fb114c7ff04f5ab8ec994f2c977cfff98c",
+      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "checkedAt": "2026-10-23",
+      "modifiedAt": "2026-10-23"
+    },
+    "after": {
+      "amount": 705120000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "sha256": "ce6687eab86eedf18df16dc290c003b30e5d071534200fb5a4741ec09bffe5fb",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "705.12 M GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
+      "checkedAt": "2026-10-23",
+      "modifiedAt": "2026-10-23"
+    },
+    "scopeProof": "Explicit Total AUM of fund field with own date; no use of generic historical AUM column"
+  },
+  {
+    "file": "src/data/exposure-etf-expansion-records.json",
+    "isin": "IE00BK1PV551",
+    "observedAt": "2026-10-23T08:30:57.596429+00:00",
+    "before": {
+      "amount": 31270193347.7151,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-21",
+      "exportDate": "2026-10-23",
+      "exportTimezone": "Europe/Berlin",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/historicaldata/download",
+      "sha256": "6779e40dada93887f51bef1f4a710db9d664a16b78b28a1bda51fd9d0196afbc",
+      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "checkedAt": "2026-10-22",
+      "modifiedAt": "2026-10-22"
+    },
+    "after": {
+      "amount": 23330000000.0,
+      "currency": "GBP",
+      "scope": "fund",
+      "asOf": "2026-10-22",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "sha256": "2680f885d3401e501b2bdfc9628587c49304b308e6f077732ac3c330c55b7934",
+      "sourceLabel": "Total AUM of fund",
+      "sourceReportedAmount": "23.33 B GBP",
+      "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
+      "method": "DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained",
+      "checkedAt": "2026-10-23",
+      "modifiedAt": "2026-10-23"
+    },
+    "scopeProof": "Explicit Total AUM of fund field with own date; no use of generic historical AUM column"
+  }
+]

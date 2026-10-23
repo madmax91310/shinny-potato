@@ -7,10 +7,10 @@ import pathlib
 import re
 import hashlib
 import math
+from decimal import Decimal
 import io
 import zipfile
 import xml.etree.ElementTree as ET
-from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 from issuer_documents import bounded_return, document_date, validated_rows, download
@@ -232,6 +232,11 @@ def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=No
 
 
 def parse_aum_workbook(body, share, now, url, product):
+    """Read an archived generic AUM column without certifying its asset scope.
+
+    The same export now returns a value incompatible with the explicitly
+    published fund total for World 1D. It is not a production fund-AUM source.
+    """
     ns = {'s': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
     with zipfile.ZipFile(io.BytesIO(body)) as book:
         if sum(i.file_size for i in book.infolist()) > 30_000_000:
@@ -276,26 +281,58 @@ def parse_aum_workbook(body, share, now, url, product):
     stamp, amount = max(points)
     if export_date < stamp:
         reject('DWS export predates its AUM valuation')
-    # The product explicitly labels its AUM as FUND, not share-class. The
-    # historical download supplies this field in the stated workbook currency.
-    facts = {i['key']: i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts'])}
-    if 'Total AUM of fund' not in facts or document_date(facts['NAV date'], now) != stamp:
-        reject('DWS dated fund-AUM context does not match the workbook')
-    return {'amount': amount, 'currency': share['currency'], 'scope': 'fund', 'asOf': stamp,
+    # Keep the surrounding publication dates for archive investigation only.
+    # A generic workbook heading does not establish fund versus share-class scope.
+    fund_scope = [i for i in items(product['pdpResult']['pageSections']['keyFacts']) if i['key'] == 'Total AUM of fund']
+    nav_dates = [i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts']) if i['key'] == 'NAV date']
+    if len(fund_scope) != 1 or len(nav_dates) != 1:
+        reject('Missing/ambiguous DWS fund-AUM context')
+    nav_context_date = document_date(nav_dates[0], now)
+    # The dated workbook and the current NAV panel are separate publications.
+    # In the observed Utilities response the workbook ends on 21 October while
+    # the NAV panel already shows 22 October. Keep the actual AUM valuation date
+    # and workbook currency; neither the NAV date nor its displayed GBP amount
+    # is substituted for the independently published USD observation.
+    return {'amount': amount, 'currency': share['currency'], 'scope': 'unqualified', 'asOf': stamp,
             'exportDate': export_date, 'exportTimezone': 'Europe/Berlin',
+            'navContextAsOf': nav_context_date,
             'sourceUrl': url, 'sha256': hashlib.sha256(body).hexdigest(),
-            'method': 'DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets'}
+            'method': 'Archived DWS historical AUM column; fund/share-class scope not qualified; not admissible for publication'}
+
+
+def parse_fund_aum(product, share, now, url, digest):
+    """Use the issuer's explicitly named, dated fund total in its own currency."""
+    identities = [i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts']) if i['key'] == 'ISIN']
+    if identities != [share['isin']]:
+        reject('Wrong/ambiguous DWS fund-AUM product identity')
+    header = product['pdpResult']['pageFrame']['productHeader']
+    if [i['value'] for i in header.get('identifier', []) if i.get('key') == 'ISIN'] != [share['isin']]:
+        reject('DWS fund-AUM header identity differs from the selected share')
+    values = header['tableValues']
+    rows = [r for r in values if r.get('key') == 'Total AUM of fund']
+    if len(rows) != 1 or rows[0].get('type') != 'STRING':
+        reject('Missing/ambiguous explicit DWS fund AUM')
+    row = rows[0]
+    value = re.fullmatch(r'([0-9]+(?:\.[0-9]+)?)\s+([KMB])\s+(EUR|USD|GBP|JPY)', str(row.get('value', '')))
+    date = re.fullmatch(r'As of (\d{2}/\d{2}/\d{4})', str(row.get('date', '')))
+    if not value or not date:
+        reject('DWS fund-AUM amount/currency/own valuation date changed')
+    amount = number(float(Decimal(value[1]) * {'K': 1000, 'M': 1000000, 'B': 1000000000}[value[2]]))
+    stamp = document_date(date[1], now)
+    return {'amount': amount, 'currency': value[3], 'scope': 'fund', 'asOf': stamp,
+            'sourceUrl': url, 'sha256': digest, 'sourceLabel': row['key'],
+            'sourceReportedAmount': row['value'],
+            **({'issuerCurrencyConversion': row['tooltip']} if row.get('tooltip') else {}),
+            'method': 'DWS explicitly published total fund AUM; issuer display currency and own valuation date; source rounding retained'}
 
 
 def collect_one(share, now, fetch=get_text, fetch_document=download):
-    body = json.loads(fetch(share['sourceUrl'], ('application/json',), 3_000_000),
+    raw = fetch(share['sourceUrl'], ('application/json',), 3_000_000)
+    body = json.loads(raw,
                       parse_constant=lambda _: reject('Non-finite issuer JSON'))
     result = parse_product(body, share, now)
-    history_url = share['sourceUrl'].split('?', 1)[0].rsplit('/', 1)[0] + '/historicaldata/download'
-    query = urlencode({'startDate': (now.date()-dt.timedelta(days=14)).isoformat(),
-                       'endDate': now.date().isoformat(), 'includeTax': 'false'})
     try:
-        result['aum'] = parse_aum_workbook(fetch_document(history_url + '?' + query), share, now, history_url, body)
+        result['aum'] = parse_fund_aum(body, share, now, share['sourceUrl'], hashlib.sha256(raw.encode()).hexdigest())
         result['unavailable'] = [v for v in result['unavailable'] if not v.startswith('aum:')]
     except Exception as error:
         result['unavailable'].append('aum: ' + str(error))

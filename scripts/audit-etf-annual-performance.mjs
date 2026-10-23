@@ -95,7 +95,9 @@ for (const product of snapshot.products) {
     const automated = AUTOMATED_ETF[product.isin].aum
     assert.equal(aum.source.amount, automated.amount)
     assert.equal(aum.source.asOf, automated.asOf)
-    assert.equal(aum.source.currency, product.currency)
+    // An issuer-displayed fund total has its own currency, independently of
+    // the exact share's return series checked below (e.g. GBP AUM / EUR returns).
+    assert.equal(aum.source.currency, automated.currency)
     assert.equal(aum.source.scope, automated.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte')
     assert.equal(aum.source.url, automated.sourceUrl ?? AUTOMATED_ETF[product.isin].sourceUrl)
     assert(automated.asOf >= product.asOf, 'La collecte ne doit pas régresser')

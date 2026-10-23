@@ -6,11 +6,27 @@ if [[ -n "${VALIDATED_DATA_ORIGINAL_BASE:-}" && "$(git rev-parse HEAD^)" == "$VA
   exit 0
 fi
 case "${1:-}" in
-  regulatory|holdings|non-bond) ;;
+  regulatory|holdings|non-bond|scpi|publication) ;;
   *) echo 'Unknown producer revalidation contract' >&2; exit 2 ;;
 esac
+if [[ "$1" == scpi || "$1" == publication ]]; then
+  python3 scripts/observation_rebase_guard.py --kind "$1" --base "${VALIDATED_DATA_ORIGINAL_BASE:?Missing collection base}"
+fi
 npm ci --ignore-scripts
 case "$1" in
+  scpi)
+    for pattern in test_scpi.py test_iroko_snapshot.py 'test_corum*.py' test_extended_scpi.py test_publication_periods.py; do
+      python3 -m unittest discover -s scripts -p "$pattern"
+    done
+    node scripts/test-scpi.mjs
+    ;;
+  publication)
+    python3 -m unittest discover -s scripts -p 'test_publication*.py'
+    node scripts/test-anniversary-indices.mjs
+    node scripts/test-publication-consumers.mjs
+    node scripts/test-household-benchmarks.mjs
+    node scripts/test-purchasing-power-editorial.mjs
+    ;;
   regulatory)
     python -m unittest discover -s scripts -p 'test_regulatory*.py'
     python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
@@ -38,6 +54,8 @@ npm run audit:data-catalog
 npm run audit:data-provenance
 if [[ "$1" == holdings ]]; then node scripts/test-dca-profiles.mjs; fi
 case "$1" in
+  scpi) git diff --exit-code HEAD -- src/data/automated-scpi.json ;;
+  publication) git diff --exit-code HEAD -- src/data/purchasing-power-observations.json src/data/anniversary-levels.json src/data/anniversary-index-history.json scripts/source-snapshots/anniversary-indices.json ;;
   regulatory) git diff --exit-code HEAD -- src/data/automated-regulatory.json src/data/automated-broker-tariffs.json ;;
   holdings) git diff --exit-code HEAD -- src/data/dca-complete-holdings.json src/data/dca-holdings-status.json ;;
   non-bond) git diff --exit-code HEAD -- src/data/non-bond-etf-records.json src/data/non-bond-qualified-records.json ;;

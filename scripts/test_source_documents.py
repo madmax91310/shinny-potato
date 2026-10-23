@@ -1,5 +1,6 @@
 """Regressions for official index parsers and independent/atomic refreshes."""
 import copy
+import gzip
 import datetime as dt
 import json
 import pathlib
@@ -8,7 +9,7 @@ import zipfile
 import unittest
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from data_automation import UTC
 from issuer_documents import document_date, validated_rows, pdf_text, download
 from collect_index_documents import msci_composition, msci_returns, ftse_composition, ftse_returns
@@ -17,7 +18,7 @@ from refresh_additional_etf import refresh
 from collect_amundi_index_exposure import parse_product as amundi_index
 from apply_etf_collection import merge_collection
 from collect_vanguard_etf import parse_api as vanguard_api
-from collect_dws_etf import parse_product as dws_product, items as dws_items, parse_aum_workbook, parse_holdings as dws_holdings
+from collect_dws_etf import parse_product as dws_product, items as dws_items, parse_aum_workbook, parse_fund_aum, collect_one as collect_dws, parse_holdings as dws_holdings
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,10,5,tzinfo=UTC)
@@ -204,12 +205,12 @@ class CompletedIssuerCoverage(unittest.TestCase):
             if item['key']=='Share class launch date':item['value']='08/04/2025'
         self.assertNotIn('performance',dws_product(p,s,self.now))
 
-    def test_dws_workbook_uses_actual_value_date_currency_and_fund_scope(self):
+    def test_dws_archived_workbook_keeps_dates_but_does_not_qualify_scope(self):
         body = (self.folder/'dws-history.xlsx').read_bytes()
         product = self.fixture('dws-exact-share.json'); share = self.share('IE00BLNMYC90')
         r = parse_aum_workbook(body, share, self.now, 'https://etf.dws.com/history', product)
         self.assertEqual(r['asOf'], '2026-10-02') # not the 06/10 export date
-        self.assertEqual(r['scope'], 'fund'); self.assertEqual(r['currency'], 'USD')
+        self.assertEqual(r['scope'], 'unqualified'); self.assertEqual(r['currency'], 'USD')
         self.assertAlmostEqual(r['amount'], 15294969181.9763)
         with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'currency':'EUR'}, self.now, '', product)
         with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'isin':'WRONG'}, self.now, '', product)
@@ -241,6 +242,74 @@ class CompletedIssuerCoverage(unittest.TestCase):
                          ('06.10.2026','01.10.2026')]:
             with self.subTest(old=old,new=new), self.assertRaises(ValueError):
                 parse_aum_workbook(replace_string(old,new), share, now, '', product)
+
+    def test_dws_independent_publications_keep_workbook_date_and_currency(self):
+        # Actual official response: the GBP NAV panel has advanced a day before
+        # the separately dated USD AUM workbook. No currency conversion inferred.
+        product=json.loads(gzip.decompress((self.folder/'dws-utilities-keyfacts-20261023.json.gz').read_bytes()))
+        body=(self.folder/'dws-utilities-aum-20261023.xlsx').read_bytes()
+        share={'isin':'IE00BM67HQ30','currency':'USD'}
+        now=dt.datetime(2026,10,23,tzinfo=UTC)
+        r=parse_aum_workbook(body,share,now,'https://etf.dws.com/history',product)
+        self.assertEqual(r['asOf'],'2026-10-21')
+        self.assertEqual(r['navContextAsOf'],'2026-10-22')
+        self.assertEqual(r['currency'],'USD');self.assertEqual(r['scope'],'unqualified')
+        self.assertEqual(r['amount'],930235746.38)
+        self.assertNotEqual(r['amount'],705120000) # independently displayed GBP panel
+        self.assertEqual(r['exportDate'],'2026-10-23')
+
+    def test_dws_ambiguous_or_missing_fund_scope_still_rejected(self):
+        product=self.fixture('dws-exact-share.json');share=self.share('IE00BLNMYC90')
+        body=(self.folder/'dws-history.xlsx').read_bytes()
+        facts=product['pdpResult']['pageSections']['keyFacts']
+        fund=next(i for i in dws_items(facts) if i['key']=='Total AUM of fund')
+        bad=copy.deepcopy(product)
+        bad['pdpResult']['pageSections']['keyFacts']['extra']=[copy.deepcopy(fund)]
+        with self.assertRaises(ValueError):parse_aum_workbook(body,share,self.now,'',bad)
+        fund['key']='Unknown assets scope'
+        with self.assertRaises(ValueError):parse_aum_workbook(body,share,self.now,'',product)
+
+    def test_dws_fund_aum_uses_explicit_field_currency_and_own_date(self):
+        product=json.loads(gzip.decompress((self.folder/'dws-utilities-keyfacts-20261023.json.gz').read_bytes()))
+        share={'isin':'IE00BM67HQ30','currency':'USD'};now=dt.datetime(2026,10,23,tzinfo=UTC)
+        r=parse_fund_aum(product,share,now,'https://etf.dws.com/product','a'*64)
+        self.assertEqual((r['amount'],r['currency'],r['scope'],r['asOf']),(705120000,'GBP','fund','2026-10-22'))
+        self.assertEqual(r['sourceLabel'],'Total AUM of fund')
+        row=next(v for v in product['pdpResult']['pageFrame']['productHeader']['tableValues'] if v['key']=='Total AUM of fund')
+        row['date']='As of 21/10/2026'
+        self.assertEqual(parse_fund_aum(product,share,now,'','a'*64)['asOf'],'2026-10-21')
+        with self.assertRaises(ValueError):parse_fund_aum(product,{**share,'isin':'IE00BLNMYC90'},now,'','a'*64)
+
+    def test_dws_fund_aum_requires_explicit_scope_date_and_currency(self):
+        original=json.loads(gzip.decompress((self.folder/'dws-utilities-keyfacts-20261023.json.gz').read_bytes()))
+        share={'isin':'IE00BM67HQ30','currency':'USD'};now=dt.datetime(2026,10,23,tzinfo=UTC)
+        for defect in ['duplicate','missing-date','unknown-scope','unknown-currency','future']:
+            product=copy.deepcopy(original);rows=product['pdpResult']['pageFrame']['productHeader']['tableValues'];row=next(v for v in rows if v['key']=='Total AUM of fund')
+            if defect=='duplicate':rows.append(copy.deepcopy(row))
+            if defect=='missing-date':row.pop('date')
+            if defect=='unknown-scope':row['key']='AUM'
+            if defect=='unknown-currency':row['value']='705.12 M GBX'
+            if defect=='future':row['date']='As of 24/10/2026'
+            with self.subTest(defect=defect),self.assertRaises((ValueError,KeyError)):parse_fund_aum(product,share,now,'','a'*64)
+
+    def test_unqualified_aum_scope_cannot_refresh_active_proof(self):
+        previous={'IE00BM67HQ30':{'currency':'USD','productId':'IE00BM67HQ30','aum':{'amount':10,'currency':'USD','scope':'fund','asOf':'2026-10-20','checkedAt':'2026-10-20'}}}
+        before=copy.deepcopy(previous)
+        observation={'isin':'IE00BM67HQ30','productId':'IE00BM67HQ30','currency':'USD','aum':{'amount':20,'currency':'USD','scope':'unqualified','asOf':'2026-10-22'}}
+        with self.assertRaises(ValueError):merge_collection({'checkedAt':'2026-10-23','shares':[observation]},previous,{})
+        self.assertEqual(previous,before)
+
+    def test_dws_current_fund_total_does_not_download_generic_history(self):
+        product=gzip.decompress((self.folder/'dws-utilities-keyfacts-20261023.json.gz').read_bytes()).decode()
+        holdings=gzip.decompress((self.folder/'dws-utilities-holdings-20261023.json.gz').read_bytes()).decode()
+        fetch=lambda url,*args:holdings if url.endswith('/holdings') else product
+        historical_download=Mock(side_effect=AssertionError('Generic AUM export must not be fetched'))
+        share={'isin':'IE00BM67HQ30','currency':'USD','sourceUrl':'https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium'}
+        r=collect_dws(share,dt.datetime(2026,10,23,tzinfo=UTC),fetch=fetch,fetch_document=historical_download)
+        historical_download.assert_not_called()
+        self.assertEqual(r['currency'],'USD');self.assertEqual(r['performance']['currency'],'USD')
+        self.assertEqual(r['aum']['currency'],'GBP');self.assertEqual(r['aum']['scope'],'fund')
+        self.assertEqual(r['aum']['asOf'],'2026-10-22');self.assertEqual(r['unavailable'],[])
 
     def test_dws_materials_country_is_published_not_inferred_from_isin(self):
         body = self.fixture('dws-materials-2026-10-07.json')
