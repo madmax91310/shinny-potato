@@ -360,7 +360,6 @@ function yearsPhrase(n) {
 function dePhrase(tweetPhrase) {
   if (tweetPhrase.startsWith("le ")) return "du " + tweetPhrase.slice(3);
   if (tweetPhrase.startsWith("un ")) return "d'un " + tweetPhrase.slice(3);
-  if (tweetPhrase.startsWith("l'")) return "de " + tweetPhrase;
   if (/^[AEIOUÀÉÈÊÎÔÛaeiouàéèêîôû]/.test(tweetPhrase)) return "d'" + tweetPhrase;
   return "de " + tweetPhrase;
 }
@@ -485,9 +484,9 @@ function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuel
   ordered.forEach(({ asset, observation, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
     if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
-    lines.push(`📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, hist)}`);
-    lines.push(`📅 ${observation?.label ?? "Niveau actuel"} : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
-    lines.push(`📈 Évolution : ${hasCur ? fmtPct(gain) : "—"}`);
+    lines.push(`📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, hist)}`,
+      `📅 ${observation?.label ?? "Niveau actuel"} : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`,
+      `📈 Évolution : ${hasCur ? fmtPct(gain) : "—"}`);
     if (i === 0) lines.push("");
   });
   lines.push("");
