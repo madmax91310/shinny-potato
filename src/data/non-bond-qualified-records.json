@@ -304,7 +304,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T12:36:23.988208+00:00",
+    "checkedAt": "2026-10-23T13:26:19.262360+00:00",
     "pageSha256": "cd516cbfb2fa5bc3f767b7bdec80fbe9134c433776c343ca71e6ca21b06acb71",
     "automatedRecord": {
       "currency": "USD",
@@ -645,89 +645,89 @@
       "asOf": "2026-10-22"
     },
     "countries": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 26.94
+          "weightPct": 27.22
         },
         {
           "name": "Spain",
-          "weightPct": 18.85
+          "weightPct": 18.71
         },
         {
           "name": "Italy",
-          "weightPct": 13.95
+          "weightPct": 13.85
         },
         {
           "name": "France",
-          "weightPct": 7.62
+          "weightPct": 7.54
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.55
+          "weightPct": 5.53
         },
         {
           "name": "Sweden",
-          "weightPct": 4.33
+          "weightPct": 4.31
         },
         {
           "name": "Germany",
-          "weightPct": 3.46
+          "weightPct": 3.48
         },
         {
           "name": "Finland",
-          "weightPct": 2.65
+          "weightPct": 2.67
         },
         {
           "name": "Austria",
-          "weightPct": 2.65
+          "weightPct": 2.58
         },
         {
           "name": "Poland",
-          "weightPct": 2.57
+          "weightPct": 2.56
         },
         {
           "name": "Denmark",
-          "weightPct": 2.36
+          "weightPct": 2.4
         },
         {
           "name": "Greece",
-          "weightPct": 2.09
+          "weightPct": 2.07
         },
         {
           "name": "Ireland",
-          "weightPct": 2.02
+          "weightPct": 2.0
         },
         {
           "name": "Norway",
-          "weightPct": 1.59
+          "weightPct": 1.65
         },
         {
           "name": "Belgium",
-          "weightPct": 1.45
+          "weightPct": 1.43
         },
         {
           "name": "Other",
-          "weightPct": 1.08
+          "weightPct": 1.1
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.85
+          "weightPct": 0.89
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "rows": [
         {
           "name": "Banks",
-          "weightPct": 99.15
+          "weightPct": 99.11
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.85
+          "weightPct": 0.89
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -750,57 +750,57 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "basis": "fund",
       "rows": [
         {
           "name": "HSBC HOLDINGS PLC",
-          "weightPct": 14.17446,
+          "weightPct": 14.36533,
           "isin": "GB0005405286"
         },
         {
           "name": "BANCO SANTANDER",
-          "weightPct": 8.90375,
+          "weightPct": 8.85197,
           "isin": "ES0113900J37"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
-          "weightPct": 6.37345,
+          "weightPct": 6.35812,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT",
-          "weightPct": 5.61925,
+          "weightPct": 5.54736,
           "isin": "IT0005239360"
         },
         {
           "name": "INTESA SANPAOLO",
-          "weightPct": 4.68396,
+          "weightPct": 4.66907,
           "isin": "IT0000072618"
         },
         {
           "name": "BNP PARIBAS SA",
-          "weightPct": 4.46966,
+          "weightPct": 4.4055,
           "isin": "FR0000131104"
         },
         {
           "name": "ING GROEP",
-          "weightPct": 4.24848,
+          "weightPct": 4.24974,
           "isin": "NL0011821202"
         },
         {
           "name": "LLOYDS BANKING GROUP PLC",
-          "weightPct": 3.54374,
+          "weightPct": 3.5741,
           "isin": "GB0008706128"
         },
         {
           "name": "BARCLAYS PLC",
-          "weightPct": 3.3368,
+          "weightPct": 3.38042,
           "isin": "GB0031348658"
         },
         {
           "name": "NATWEST GROUP PLC",
-          "weightPct": 3.1228,
+          "weightPct": 3.15507,
           "isin": "GB00BM8PJY71"
         }
       ]
@@ -857,27 +857,27 @@
         "value": 62.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 11.97123,
+        "value": 12.11742,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.49173,
+        "value": 1.50811,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -894,8 +894,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T12:36:23.988208+00:00",
-    "pageSha256": "ec3f97a98198ed05ee31084288b899aa336d90c274c8c7d3d4db919304f7d85a",
+    "checkedAt": "2026-10-23T13:26:19.262360+00:00",
+    "pageSha256": "fc74c27668292d28cb3d3504f2a918bc79afb1ffd0b381af811a5953ce71ad57",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
@@ -910,16 +910,16 @@
         "modifiedAt": "2026-10-23"
       },
       "sectors": {
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "rows": [
           {
             "name": "Banks",
-            "weightPct": 99.15,
+            "weightPct": 99.11,
             "label": "Banques"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.85,
+            "weightPct": 0.89,
             "label": "Cash and/or Derivatives"
           }
         ],
@@ -928,75 +928,75 @@
         "modifiedAt": "2026-10-23"
       },
       "countries": {
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 26.94
+            "weightPct": 27.22
           },
           {
             "name": "Spain",
-            "weightPct": 18.85
+            "weightPct": 18.71
           },
           {
             "name": "Italy",
-            "weightPct": 13.95
+            "weightPct": 13.85
           },
           {
             "name": "France",
-            "weightPct": 7.62
+            "weightPct": 7.54
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.55
+            "weightPct": 5.53
           },
           {
             "name": "Sweden",
-            "weightPct": 4.33
+            "weightPct": 4.31
           },
           {
             "name": "Germany",
-            "weightPct": 3.46
+            "weightPct": 3.48
           },
           {
             "name": "Finland",
-            "weightPct": 2.65
+            "weightPct": 2.67
           },
           {
             "name": "Austria",
-            "weightPct": 2.65
+            "weightPct": 2.58
           },
           {
             "name": "Poland",
-            "weightPct": 2.57
+            "weightPct": 2.56
           },
           {
             "name": "Denmark",
-            "weightPct": 2.36
+            "weightPct": 2.4
           },
           {
             "name": "Greece",
-            "weightPct": 2.09
+            "weightPct": 2.07
           },
           {
             "name": "Ireland",
-            "weightPct": 2.02
+            "weightPct": 2.0
           },
           {
             "name": "Norway",
-            "weightPct": 1.59
+            "weightPct": 1.65
           },
           {
             "name": "Belgium",
-            "weightPct": 1.45
+            "weightPct": 1.43
           },
           {
             "name": "Other",
-            "weightPct": 1.08
+            "weightPct": 1.1
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.85
+            "weightPct": 0.89
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
@@ -1004,57 +1004,57 @@
         "modifiedAt": "2026-10-23"
       },
       "holdings": {
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "basis": "fund",
         "rows": [
           {
             "name": "HSBC HOLDINGS PLC",
-            "weightPct": 14.17446,
+            "weightPct": 14.36533,
             "isin": "GB0005405286"
           },
           {
             "name": "BANCO SANTANDER",
-            "weightPct": 8.90375,
+            "weightPct": 8.85197,
             "isin": "ES0113900J37"
           },
           {
             "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
-            "weightPct": 6.37345,
+            "weightPct": 6.35812,
             "isin": "ES0113211835"
           },
           {
             "name": "UNICREDIT",
-            "weightPct": 5.61925,
+            "weightPct": 5.54736,
             "isin": "IT0005239360"
           },
           {
             "name": "INTESA SANPAOLO",
-            "weightPct": 4.68396,
+            "weightPct": 4.66907,
             "isin": "IT0000072618"
           },
           {
             "name": "BNP PARIBAS SA",
-            "weightPct": 4.46966,
+            "weightPct": 4.4055,
             "isin": "FR0000131104"
           },
           {
             "name": "ING GROEP",
-            "weightPct": 4.24848,
+            "weightPct": 4.24974,
             "isin": "NL0011821202"
           },
           {
             "name": "LLOYDS BANKING GROUP PLC",
-            "weightPct": 3.54374,
+            "weightPct": 3.5741,
             "isin": "GB0008706128"
           },
           {
             "name": "BARCLAYS PLC",
-            "weightPct": 3.3368,
+            "weightPct": 3.38042,
             "isin": "GB0031348658"
           },
           {
             "name": "NATWEST GROUP PLC",
-            "weightPct": 3.1228,
+            "weightPct": 3.15507,
             "isin": "GB00BM8PJY71"
           }
         ],
@@ -1138,7 +1138,7 @@
           "value": 62.0,
           "label": "Nombre de positions hors liquidités et dérivés",
           "unit": "positions",
-          "asOf": "2026-10-21",
+          "asOf": "2026-10-22",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
           "scope": "Fund portfolio",
@@ -1146,10 +1146,10 @@
           "modifiedAt": "2026-10-23"
         },
         "priceEarnings": {
-          "value": 11.97123,
+          "value": 12.11742,
           "label": "PER du portefeuille selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-21",
+          "asOf": "2026-10-22",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
           "scope": "Fund portfolio",
@@ -1157,10 +1157,10 @@
           "modifiedAt": "2026-10-23"
         },
         "priceBook": {
-          "value": 1.49173,
+          "value": 1.50811,
           "label": "Cours / actif net comptable selon l’émetteur",
           "unit": "fois",
-          "asOf": "2026-10-21",
+          "asOf": "2026-10-22",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
           "scope": "Fund portfolio",
@@ -1432,7 +1432,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T12:36:23.988208+00:00",
+    "checkedAt": "2026-10-23T13:26:19.262360+00:00",
     "pageSha256": "a5555958811479f2ee82a702535ef561f4dd8f895a5278d06d72bbc38c1e0ad4",
     "automatedRecord": {
       "currency": "EUR",
