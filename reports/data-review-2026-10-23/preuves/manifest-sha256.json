@@ -76,8 +76,8 @@
   },
   {
     "path": "asset-field-coverage-final.json.gz",
-    "bytes": 105444,
-    "sha256": "bb43be201f6d4981d7b8ba23a4465a89890dfb28bb4ff93b997c7f2a1a2a0be9"
+    "bytes": 105457,
+    "sha256": "8d176f772cac155426eafc196bb6880adae684274fdc96bdfd11d18ed5685b30"
   },
   {
     "path": "asset-field-coverage-initial.json.gz",
@@ -145,6 +145,11 @@
     "sha256": "85c5070b565e5057ef9524dbbc19e75befd3d6275f0065abb1873cb049bb2a13"
   },
   {
+    "path": "browser-ishares-delivery.log.gz",
+    "bytes": 131,
+    "sha256": "edf86f00500fb872ba02b50816f30a24e5e41e5d4a7478a56377e259dcd47d79"
+  },
+  {
     "path": "browser-physical-retry.log.gz",
     "bytes": 131,
     "sha256": "edf86f00500fb872ba02b50816f30a24e5e41e5d4a7478a56377e259dcd47d79"
@@ -173,6 +178,26 @@
     "path": "build-integrated-final.log.gz",
     "bytes": 72633,
     "sha256": "9999d9a76e3e2ec341228e327ef113d9d34c7a41fd6682b8ea89c9e30d043c2a"
+  },
+  {
+    "path": "build-ishares-delivery.log.gz",
+    "bytes": 72657,
+    "sha256": "b2146fca2160afab042517225bff0bf07da68cbb30ed558ef6b485f2d91aae8c"
+  },
+  {
+    "path": "ci-first-holdings.log.gz",
+    "bytes": 15195,
+    "sha256": "d881613b5103713a4f0da855bfc9350efa78ec8d39f7920994f15613bc76727e"
+  },
+  {
+    "path": "ci-first-python.log.gz",
+    "bytes": 18218,
+    "sha256": "8813121154f05e2498fa51b7ba9b534cdb0bf223bd846545bc97ec77a03410ea"
+  },
+  {
+    "path": "ci-followup.json",
+    "bytes": 625,
+    "sha256": "5dc6ce68b78746f59e29d335ef6c471388a0b20819e945954faff07e32fff1f4"
   },
   {
     "path": "conflict-execution.json.gz",
@@ -253,6 +278,16 @@
     "path": "exports/ibkr-390.png",
     "bytes": 1547650,
     "sha256": "ed6368e32936820b2a9c7c49e7db067aa117e33f040789333cb8c05998a6429f"
+  },
+  {
+    "path": "exports/ishares-1280-export.png",
+    "bytes": 567846,
+    "sha256": "e48628e1c7dbd17caa61dae065c1e1e2cb09dd38e251ef4e4789279a81e90831"
+  },
+  {
+    "path": "exports/ishares-390-export.png",
+    "bytes": 567846,
+    "sha256": "e48628e1c7dbd17caa61dae065c1e1e2cb09dd38e251ef4e4789279a81e90831"
   },
   {
     "path": "exports-manifest.json",
@@ -1005,6 +1040,26 @@
     "sha256": "cf52b8099ff86aec0acd9ff5961596f5ead9d490dd29fe43d4968e9cc792bbc1"
   },
   {
+    "path": "holdings-ishares-collection.log.gz",
+    "bytes": 79,
+    "sha256": "c06c76baf08fc18f0e07b28cacb53288e7d80058bfd0acbbba7ad777dbbbe34d"
+  },
+  {
+    "path": "holdings-ishares-execution.json.gz",
+    "bytes": 152,
+    "sha256": "ee4629ad1aea981f7790f5fdc1335d411aa31cd5105078c802298b44c0c081dc"
+  },
+  {
+    "path": "holdings-ishares-observation.json.gz",
+    "bytes": 109,
+    "sha256": "e43b90da8eb8b2ad0ea4eea46701e51f5a4e7c474b569e3072ac8a3392660aca"
+  },
+  {
+    "path": "holdings-ishares-promoted.json",
+    "bytes": 338,
+    "sha256": "86e54bacff5888fabefde575dd18c83250f220676178721e77fac4d6e99ecba2"
+  },
+  {
     "path": "holdings-observation.json.gz",
     "bytes": 2243,
     "sha256": "cb42248f8a01a4ea675268344a759e03401777b6d2a814cfa076bc1c6702cab8"
@@ -1146,8 +1201,8 @@
   },
   {
     "path": "inventory-final.json.gz",
-    "bytes": 1355754,
-    "sha256": "42afbf77973b770a185e1d9762758fbf38360dc79563e36146b9f7585bccfcb2"
+    "bytes": 1355815,
+    "sha256": "118c72fca575054e567bcb0a4650f495586c7c1d6d9b2db5d9972914c34e46ae"
   },
   {
     "path": "inventory-initial.json.gz",
@@ -1310,6 +1365,16 @@
     "sha256": "83aaa5ab4a5e2cc99d62dddfe8c52bef55494d8073cf110b005e54f6ff4fc9f2"
   },
   {
+    "path": "test-blackrock-recovery.log.gz",
+    "bytes": 54,
+    "sha256": "a3268bebfb866390a9271ef3e438433e796ed1d7a458befd0cbe7aa3dab05f3e"
+  },
+  {
+    "path": "test-inventory-recovery-delivery.log.gz",
+    "bytes": 109,
+    "sha256": "a3b29a6f358782feff6a6224e248b24b01d2e0d6735b628f5de8e30a7a361003"
+  },
+  {
     "path": "test-publication-waiting.log.gz",
     "bytes": 54,
     "sha256": "f0b8e8e5d9b939050a9eec4393ba811b6bf9baa19d2c5d54bdc2283643a153c6"
@@ -1333,6 +1398,11 @@
     "path": "tests-python-master-delivery.log.gz",
     "bytes": 1594,
     "sha256": "246d459dada6ee3d58942f55d89c17a94c8adee025354d36ebca9dd9018dc915"
+  },
+  {
+    "path": "tests-python-recovery-delivery.log.gz",
+    "bytes": 1595,
+    "sha256": "c8ebcc7aede0c9fd513171b63e6d3a20d3082027ddc5efb27fee7b9097866299"
   },
   {
     "path": "wisdomtree-class-identities.json",

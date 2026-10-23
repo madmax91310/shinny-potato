@@ -7,12 +7,13 @@ import {chromium} from 'playwright'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {REVIEWED_PERFORMANCE_META} from '../src/data/instrument-performance-review.js'
 const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
+const ishares=process.argv.includes('--ishares')
 const discovered=process.argv.includes('--discovered')
 const wisdomtree=process.argv.includes('--wisdomtree')
 const topix=process.argv.includes('--topix')
 const newIssuers=process.argv.includes('--new-issuers')
-const physical=process.argv.includes('--physical')||newIssuers||wisdomtree||discovered
-const selected=discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const physical=ishares||process.argv.includes('--physical')||newIssuers||wisdomtree||discovered
+const selected=ishares?['IE00BYX2JD69','IE00BFY0GT14']:discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 const lines=selected.map(isin=>{const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin);return {asset,isin,label:r.name,weight:50}})
 const expectedPair=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]]))).pairs[0]
 assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')
@@ -63,6 +64,12 @@ try{
   await page.getByRole('button',{name:new RegExp(selected[1])}).click()
   const weights=page.getByRole('spinbutton');await weights.nth(0).fill('50');await weights.nth(1).fill('50')
   await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
+  const pendingPng=page.waitForEvent('download')
+  await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
+  const png=await pendingPng,path=`test-artifacts/live-data-connections/${ishares?'ishares':selected[0]}-${width}-export.png`
+  await png.saveAs(path)
+  const bytes=readFileSync(path);assert.equal(bytes.subarray(1,4).toString(),'PNG');assert(bytes.length>30000)
+
   await page.getByText('Voir l’analyse détaillée',{exact:true}).click()
   await page.getByText(/^Recouvrement entre les supports ·/).click()
   await page.locator('.dca-pair-grid article').first().waitFor()

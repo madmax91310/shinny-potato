@@ -67,6 +67,7 @@ on:
       - 'scripts/collect_ssga_etf.py'
       - 'scripts/test_dca_dws_complete.py'
       - 'scripts/test_dca_localized_complete.py'
+      - 'scripts/test_dca_blackrock_recovery.py'
       - 'scripts/playwright-live-data-connections.mjs'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'

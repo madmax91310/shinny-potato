@@ -83,6 +83,11 @@ def main():
             if not result.get('errors') and len(result.get('verified',[]))==result.get('candidateCount',0)>0:
                 after='photographie courante recoupée depuis GitHub ; ancienne divergence conservée'
         add('incident actif au contrôle final',key,'actif dans le moniteur de production',after,b.get('cause',''),proof,b.get('dataId',b.get('name','')),b.get('field',''),action='Le producteur et son moniteur de production restent inchangés avant intégration ; voir la preuve isolée et le reliquat documenté.')
+    if (P/'holdings-ishares-promoted.json').exists():
+        proof=read(P/'holdings-ishares-promoted.json')
+        add('incident révélé par la CI',proof['id'],'composant holdings absent dans une réponse du fournisseur',f"collecte GitHub validée ; photographie {proof['beforeAsOf']} → {proof['asOf']}",
+            'Une réponse incomplète conserve les dernières données valides. Reprise bornée uniquement après identité exacte confirmée ; aucune erreur financière ou identité incorrecte n’est réessayée comme une panne transitoire. Ancien JSON incident absent : cause fournisseur non attribuée rétroactivement.',
+            'preuves/holdings-ishares-observation.json.gz ; preuves/holdings-ishares-promoted.json ; network-executions.json',proof['id'],'completeHoldings','/le-dca-de',action='Collecteur et reprise validés ; conserver les futures erreurs individuelles si les deux tentatives restent incomplètes.')
     # Keep all 201 legacy follow-up lines and all 115 module qualification records.
     with (ROOT/'reports/reliquat-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:legacy=list(csv.DictReader(f,delimiter=';'))
     with (ROOT/'reports/reliquat-79-2026-10-23/restant-a-verifier.csv').open(encoding='utf-8-sig')as f:updated_legacy={(r['type'],r['id']):r for r in csv.DictReader(f,delimiter=';')}
