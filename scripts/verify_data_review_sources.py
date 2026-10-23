@@ -12,12 +12,17 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
     report = out/'observation.json'
     commands = {
+        'actors': ['collect_presentation_actors.py','--apply'],
+        'brokers': ['collect_broker_tariffs.py','--apply'],
+        'insurance': ['collect_insurance.py','--apply'],
+        'pending': ['check_pending_sources.py'],
+        'discovery': ['discover_holdings_sources.py'],
         'fx': ['collect_ranking_sources.py','--only','fx','--apply'],
         'holdings': ['collect_dca_complete_holdings.py','--apply'],
         'metadata': ['collect_instrument_metadata.py','--only','IE00B0M62S72','IE0003R87OG3','IE00B579F325','IE00BD6FTQ80','--apply'],
@@ -41,12 +46,23 @@ def main():
         write_json_atomic(out/'conflict-registry.json',{s['isin']:merged[s['isin']] for s in shares})
     else:
         command=[sys.executable,str(ROOT/'scripts'/commands[args.scope][0]),*commands[args.scope][1:]]
-        command += ['--report' if args.scope=='ai' else '--output',str(report)]
+        if args.scope!='discovery':
+            command += ['--report' if args.scope=='ai' else '--output',str(report)]
         with (out/'collection.log').open('w') as log:
             result=subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,timeout=1700)
         code=result.returncode
         print((out/'collection.log').read_text(),flush=True)
+    if args.scope=='discovery': shutil.copy2(ROOT/'public/data/holdings-discovery.json',report)
     paths={
+        'actors':['src/data/automated-presentation-actors.json'],
+        'brokers':['src/data/automated-broker-tariffs.json'],
+        'insurance':['src/data/automated-insurance.json'],
+        'discovery':['public/data/holdings-discovery.json','scripts/generated-holdings-sources.json','src/data/dca-complete-holdings.json'],
+        'actors': ['collect_presentation_actors.py','--apply'],
+        'brokers': ['collect_broker_tariffs.py','--apply'],
+        'insurance': ['collect_insurance.py','--apply'],
+        'pending': ['check_pending_sources.py'],
+        'discovery': ['discover_holdings_sources.py'],
         'fx':['src/data/monthly-fx.json','scripts/source-snapshots/ranking-collection-status.json'],
         'holdings':['src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/dca-security-classifications.json'],
         'metadata':['src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json'],
@@ -57,6 +73,10 @@ def main():
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
         if source.is_dir(): shutil.copytree(source,target,dirs_exist_ok=True)
         elif source.exists():shutil.copy2(source,target)
+    if report.exists():
+        value=json.loads(report.read_text())
+        for key in ['errors','failures','failed','changed','observations']:
+            if key in value:print(key,json.dumps(value[key],ensure_ascii=False)[:20000],flush=True)
     (out/'execution.json').write_text(json.dumps({'scope':args.scope,'startedAt':started,'completedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'exitCode':code,'publication':'not-requested'},indent=2)+'\n')
     return code
 

@@ -5,6 +5,7 @@ ROUTES={
  'fred-short':'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-08-01',
  'fred-download':'https://fred.stlouisfed.org/graph/fredgraph.csv?cosd=1999-01-01&coed=2026-10-23&id=DEXTAUS',
  'fed-h10-history':'https://www.federalreserve.gov/releases/h10/hist/dat00_ta.htm',
+ 'fed-h10-daily-csv':'https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01/01/1999&to=10/23/2026&filetype=csv&label=include&layout=seriescolumn&type=package',
  'fed-h10-data':'https://www.federalreserve.gov/datadownload/Choose.aspx?rel=H10',
  'wisdom-copper-eu':'https://www.wisdomtree.eu/en-gb/etps/commodities/wisdomtree-copper',
  'wisdom-copper-dataspan':'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/ETP/EU/EN-GB/GB00B15KXQ89',
