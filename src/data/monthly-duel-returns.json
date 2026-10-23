@@ -907,49 +907,6 @@
     "responseSha256": "0fb62452ca41cc34b2c56630f6f23fe59cb4ccd91856c6a6a3eb42f4b3bca791",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00BQQP9F84": {
-    "isin": "IE00BQQP9F84",
-    "currency": "EUR",
-    "years": {
-      "2018": -6.814159292035393,
-      "2019": 46.11691463543315,
-      "2020": 13.215381837876873,
-      "2021": -3.9547121671184904,
-      "2022": -2.905528806242741,
-      "2023": 6.532147742818051,
-      "2024": 16.516847512038524,
-      "2025": 131.73992460338474
-    },
-    "calendarReturns": {
-      "2018": -6.814159292035393,
-      "2019": 46.11691463543315,
-      "2020": 13.215381837876873,
-      "2021": -3.9547121671184904,
-      "2022": -2.905528806242741,
-      "2023": 6.532147742818051,
-      "2024": 16.516847512038524,
-      "2025": 131.73992460338474
-    },
-    "values": [
-      13.215381837876873,
-      -3.9547121671184904,
-      -2.905528806242741,
-      6.532147742818051,
-      16.516847512038524,
-      131.73992460338474
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1493596800&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1493596800&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/GDX.MI?period1=1493596800&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-12",
-    "listingEvidenceId": "IE00BQQP9F84-ETFP-GDX-EUR",
-    "basis": "market-price",
-    "method": "Clôtures ajustées des distributions et divisions, dernière séance de chaque mois, recoupées avec la bougie mensuelle Yahoo ; part et cotation exactes",
-    "responseSha256": "f7adbbfa6acbd76bd4be8de6db43d9f48bdc1f28441f1218651b6bbea7780a6e",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "IE00BJ5JNZ06": {
     "isin": "IE00BJ5JNZ06",
     "currency": "USD",
