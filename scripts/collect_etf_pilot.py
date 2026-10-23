@@ -115,15 +115,24 @@ def parse_share(body, share, now):
     # Single-country funds may omit this component. Never invent a 100% allocation.
     countries = (allocation(exposure['geography']['subContainersByNameMap']['countries'], now)
                  if 'geography' in exposure else {'status': 'not-published', 'rows': []})
-    sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+    sector_failure=None
+    try:
+        sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+    except ValueError as error:
+        if str(error)!='Incomplete allocation' or share.get('sectorFallback')!='complete-physical-holdings' or not isinstance(body,dict):raise
+        from ishares_sector_fallback import sectors_from_complete_holdings
+        sectors=sectors_from_complete_holdings(body,share,now,exposure['sector'])
+        sectors['sourceUrl']=product_data_url(share)
+        sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':'Published sector table is all zero; separately qualified complete-holdings aggregation used without scaling','sha256':sectors['sha256'],'fallbackQualified':True}
+
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
-    if sectors.get('rows'): sectors['sourceComponent'] = 'exposureBreakdowns.sector'
+    if sectors.get('rows'): sectors.setdefault('sourceComponent','exposureBreakdowns.sector')
     calendar = components.get('performance', {}).get('containersByNameMap', {}).get('returns', {}).get('subContainersByNameMap', {}).get('calendar', {}).get('dataPointsByNameMap', {})
     types = calendar.get('returnTypes', {}).get('value', [])
     if not types and not share.get('requireFullHistory', True):
         return {**share, 'characteristics': {**identity, 'terPct': ter}, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
-            'countries': countries, 'sectors': sectors, 'rawComponents': components}
+            'countries': countries, 'sectors': sectors, 'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
     if not isinstance(types, list) or types.count('annualNav') != 1:
         reject('Calendar NAV total return missing or ambiguous')
     position = types.index('annualNav')
@@ -159,7 +168,7 @@ def parse_share(body, share, now):
             'performance': {'currency': share['currency'], 'basis': 'fund',
                             'method': 'calendar-year NAV total return, income reinvested, fund fees included',
                             'years': dict(sorted(returns.items()))},
-            'rawComponents': components}
+            'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
 
 
 def collect(config, baseline, now=None, fetch=get_text):

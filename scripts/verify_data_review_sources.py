@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication','holdings-ishares'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication','holdings-ishares','issuer-share'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -37,7 +37,24 @@ def main():
         'ai': ['collect_ai_portfolios.py','--assets','IE00B4L5Y983-ETFP'],
     }
     started = dt.datetime.now(dt.timezone.utc).isoformat()
-    if args.scope == 'dws':
+    if args.scope == 'issuer-share':
+        from collect_etf_pilot import collect,apply_valid_shares
+        from data_automation import UTC,get_text,write_json_atomic
+        import hashlib
+        raw=out/'raw';raw.mkdir()
+        def fetch(url,*args):
+            text=get_text(url,*args)
+            body=json.loads(text);canonical=json.dumps(body,sort_keys=True,allow_nan=False)
+            (raw/(hashlib.sha256(canonical.encode()).hexdigest()+'.json')).write_text(canonical)
+            return text
+        config=json.loads((ROOT/'scripts/etf-pilot.json').read_text())
+        config['instruments']=[r for r in config['instruments']if r['isin']=='IE00B5BMR087']
+        baseline=json.loads(subprocess.check_output(['node','scripts/export-etf-pilot-baseline.mjs'],cwd=ROOT))
+        value=collect(config,baseline,dt.datetime.now(UTC),fetch)
+        registry=out/'issuer-registry.json';shutil.copy2(ROOT/'src/data/automated-etf.json',registry)
+        apply_valid_shares(value,registry,baseline);write_json_atomic(report,value)
+        code=1 if value['failures']or not value['shares']else 0
+    elif args.scope == 'dws':
         from verify_dws_compositions import collect
         from data_automation import UTC,get_json,write_json_atomic
         raw=out/'raw';raw.mkdir()
