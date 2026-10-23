@@ -1,0 +1,61 @@
+name: Verify exact official sources for audit remainder
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/reliquat-20261023]
+    paths:
+      - 'scripts/issuer_nav_history.py'
+      - 'scripts/collect_official_share_history.py'
+      - 'scripts/verify_reliquat_sources.py'
+      - 'scripts/broker_profiles.py'
+      - 'scripts/broker_profile_sources.json'
+      - '.github/workflows/verify-reliquat-sources.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python -m pip install beautifulsoup4
+      - name: Validate four exact-share official NAV sources
+        id: nav
+        continue-on-error: true
+        run: python scripts/collect_official_share_history.py --output "$RUNNER_TEMP/nav.json"
+      - name: Validate IBKR cash and official PEA rule
+        id: ibkr
+        continue-on-error: true
+        run: python scripts/verify_reliquat_sources.py --output "$RUNNER_TEMP/ibkr.json"
+      - name: Preserve individually validated and failed observations
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: audit-remainder-official-sources
+          path: |
+            ${{ runner.temp }}/nav.json
+            ${{ runner.temp }}/ibkr.json
+          retention-days: 35
+      - name: Print validation evidence
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          for name in ['nav','ibkr']:
+            p=Path(os.environ['RUNNER_TEMP'])/(name+'.json')
+            if not p.exists():print(name,'NO REPORT');continue
+            value=json.loads(p.read_text())
+            if name=='nav':
+              for row in value['series']:
+                r=row.get('record',{})
+                print(json.dumps({'id':row['id'],'status':row['status'],'reason':row.get('reason'),'months':len(r.get('points',[])),'lastOfficialValuation':r.get('lastOfficialValuation'),'hashes':r.get('rawSourceHashes'),'calendarProof':r.get('calendarProof')},ensure_ascii=False))
+            else:print(json.dumps(value,ensure_ascii=False))
+          PY
+      - name: Fail if a real-source qualification failed
+        if: always() && (steps.nav.outcome != 'success' || steps.ibkr.outcome != 'success')
+        run: exit 1
