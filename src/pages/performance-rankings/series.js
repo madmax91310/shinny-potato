@@ -1,5 +1,5 @@
 import { commonCoverage, monthAt, monthIndex, portfolioReturn, validateSeries } from './engine.js'
-import { monthlyCurrencyFactor } from '../../data/history-currency.js'
+import { monthlyCurrencyFactor, monthlyFxEvidence } from '../../data/history-currency.js'
 
 export function convertAsset(asset, currency, fx) {
   if (!currency || currency === 'original' || currency === asset.currency) return asset
@@ -10,7 +10,8 @@ export function convertAsset(asset, currency, fx) {
   const latestRate = Object.keys(fx.months).sort().at(-1)
   const firstRate = Object.keys(fx.months).sort()[0]
   const covered = date => date >= firstRate && date <= latestRate
-  const common = { ...asset, currency, originalCurrency: asset.currency, qualityPoints: asset.points, fxConverted: true, fxSourceUrl: fx.sourceUrl }
+  const evidence=monthlyFxEvidence([asset.currency,currency],fx)
+  const common = { ...asset, currency, originalCurrency: asset.currency, qualityPoints: asset.points, fxConverted: true, fxSourceUrl:evidence.sourceUrls[0],fxSourceUrls:evidence.sourceUrls }
   if (asset.frequency === 'annual') {
     const years = Object.fromEntries(Object.entries(asset.years).filter(([year]) => covered(`${Number(year)-1}-12`) && covered(`${year}-12`)).map(([year, value]) => [year,
       ((1 + value / 100) * factor(`${year}-12`) / factor(`${Number(year) - 1}-12`) - 1) * 100]))

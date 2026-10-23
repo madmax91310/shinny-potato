@@ -64,20 +64,29 @@ def parse_fx(body, now):
             'sha256': hashlib.sha256(body).hexdigest(), 'months': dict(sorted(observed.items()))}
 
 
-def ecb_daily_usd(body):
-    """USD per EUR for every ECB reference day."""
+def ecb_daily_rates(body):
+    """Every daily ECB fixing, so a cross never mixes two month-end dates."""
     root = ET.fromstring(body)
     if root.tag != '{http://www.gesmes.org/xml/2002-08-01}Envelope':
         reject('Wrong ECB document')
     ns = '{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}'
     daily = {}
     for cube in root.iter(ns + 'Cube'):
-        if 'time' not in cube.attrib:
-            continue
-        rates = [float(row.attrib['rate']) for row in cube if row.attrib.get('currency') == 'USD']
-        if len(rates) == 1 and 0 < rates[0] < float('inf'):
-            daily[dt.date.fromisoformat(cube.attrib['time'])] = rates[0]
+        if 'time' not in cube.attrib:continue
+        day = dt.date.fromisoformat(cube.attrib['time'])
+        if day in daily:reject('Duplicate ECB daily fixing')
+        rates={'EUR':1.0}
+        for row in cube:
+            currency=row.attrib['currency'];value=float(row.attrib['rate'])
+            if currency in rates or not 0<value<float('inf'):reject('Invalid ECB daily fixing')
+            rates[currency]=value
+        if 'USD' not in rates:reject('Missing ECB daily USD')
+        daily[day]=rates
     return daily
+
+
+def ecb_daily_usd(body):
+    return {day:rates['USD'] for day,rates in ecb_daily_rates(body).items()}
 
 
 def parse_fred_series(body, series):
@@ -113,7 +122,8 @@ def cross_value(per_usd, usd_per_eur):
 
 def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', source_url=None):
     """TWD per EUR at the latest day of each completed month where both official series publish."""
-    usd_per_eur = ecb_daily_usd(ecb_body)
+    daily_ecb = ecb_daily_rates(ecb_body)
+    usd_per_eur = {day:rates['USD'] for day,rates in daily_ecb.items()}
     from urllib.parse import urlsplit
     is_h10 = urlsplit(source_url or '').netloc == 'www.federalreserve.gov'
     if is_h10:
@@ -130,7 +140,7 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS', s
             continue
         key = day.strftime('%Y-%m')
         observed[key] = {'asOf': day.isoformat(), 'usdPerEur': usd_per_eur[day], 'perUsd': per_usd[day],
-                         'value': cross_value(per_usd[day], usd_per_eur[day])}
+                         'value': cross_value(per_usd[day], usd_per_eur[day]), 'ecbRates':daily_ecb[day]}
     # The H.10 release is weekly: a month-end published less than eight days ago may still be
     # missing from FRED. Every older completed month is required; a newer one is taken when present.
     due = now.date() - dt.timedelta(days=8)
