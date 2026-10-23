@@ -10,6 +10,16 @@ const read = path => JSON.parse(readFileSync(path, 'utf8'))
 // CI regenerates this report from the current data just before the test (audit-asset-tool-routing.mjs --write).
 const routing = read('docs/asset-tool-routing.json')
 const candidates = read('scripts/listing-candidates.json').candidates
+// Issuer share identity stays independent from a fund total's display currency.
+const generatedHoldings = read('scripts/generated-holdings-sources.json')
+const issuerShares = new Map(['amundi-etf','additional-etf-sources','exposure-etf-expansion','non-bond-expansion-sources']
+  .flatMap(file => read(`scripts/${file}.json`).instruments).map(share => [share.isin,share]))
+for (const [isin,target] of Object.entries(generatedHoldings)) {
+  if (!['dws','ssga'].includes(target.parser)) continue
+  assert.equal(target.currency, issuerShares.get(isin)?.currency ?? AUTOMATED_ETF[isin].currency,
+    `${isin}: holdings identity must use the share currency, independently of AUM`)
+}
+assert.equal(generatedHoldings.IE00BK1PV551.currency, 'USD')
 const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 'qualification-pending', 'collection-pending', 'history-short']
 const SUFFIX = { XPAR:'.PA', XAMS:'.AS', XETR:'.DE', XLON:'.L', ETFP:'.MI', XSWX:'.SW' }
 const EXCHANGES = { XPAR:'Euronext Paris', XAMS:'Euronext Amsterdam', XETR:'Xetra', XLON:'London Stock Exchange', ETFP:'Borsa Italiana', XSWX:'SIX Swiss Exchange' }
