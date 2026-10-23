@@ -1,0 +1,33 @@
+name: Verify remainder exact-share NAV routes
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/reliquat-79-20261023]
+    paths:
+      - 'scripts/official-nav-remainder-sources.json'
+      - 'scripts/collect_official_share_history.py'
+      - '.github/workflows/verify-remainder-nav.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install beautifulsoup4
+      - name: Collect exact shares, verify identity, income, currency and annual bounds
+        run: |
+          python scripts/collect_official_share_history.py --only $(python -c 'import json; print(" ".join(r["id"] for r in json.load(open("scripts/official-nav-remainder-sources.json"))))') --output "$RUNNER_TEMP/nav.json" --capture-dir "$RUNNER_TEMP/nav-raw"
+      - name: Preserve real results even after a failure
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: remainder-exact-share-nav
+          path: |
+            ${{ runner.temp }}/nav.json
+            ${{ runner.temp }}/nav-raw
+          retention-days: 35

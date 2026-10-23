@@ -48,7 +48,8 @@ def configurations():
             'valuationBasis':'fund-nav-total-return',
             'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; aucune cotation de marché substituée silencieusement',
             **extras[id]}.items()})
-    return result
+    remainder = json.loads((ROOT/'scripts/official-nav-remainder-sources.json').read_text())
+    return result + remainder
 
 
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
@@ -152,7 +153,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--only',nargs='+',choices=IDS)
+    parser.add_argument('--only',nargs='+',choices=[s['id'] for s in configurations()])
     parser.add_argument('--capture-dir',type=pathlib.Path)
     parser.add_argument('--output',type=pathlib.Path,required=True)
     parser.add_argument('--apply',action='store_true')
