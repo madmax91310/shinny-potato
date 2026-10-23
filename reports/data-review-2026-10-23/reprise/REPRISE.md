@@ -49,3 +49,5 @@ La CI technique 40025337511 échoue dans trois partitions navigateur. Le build, 
 En local : calculs IA recoupés, 29 supports dans trois outils, 16 profils, classements et 709 exports anniversaire réussissent. Les quinze exports de reprise passent à nouveau. Les identifiants inconnus sont refusés dans Performance et Calculateur, sans actif de remplacement ni écrasement des préférences. Ces résultats ne remplacent pas la nouvelle CI GitHub.
 
 La comparaison réelle macOS 40026026342 ne restaure aucun accès fournisseur : mêmes refus Copper et WisdomTree ; aucune promotion discovery. La panne ne peut donc pas être attribuée au seul runner Ubuntu. L’origine précise des règles HTTP403 reste externe et non démontrée.
+
+La recette complète des liens passe : 245 parts exactes, formats ordinateur/mobile, allers-retours Performance/Calculateur, identifiants inconnus refusés et préférences conservées. Master 19344ba4 est intégré ; sa capture XNDX du 23/10, de valeur identique à notre preuve, et ses dernières données émetteurs sont conservées.

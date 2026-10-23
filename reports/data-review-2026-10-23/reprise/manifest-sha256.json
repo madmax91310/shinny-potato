@@ -1,8 +1,8 @@
 [
   {
     "path": "REPRISE.md",
-    "bytes": 8401,
-    "sha256": "f18c1ae8a18d0ed79340fae3301a0bd91db90cf0755c420eb84c74b3af0447ab"
+    "bytes": 10155,
+    "sha256": "fb41f0aed445924640c6c5c5cf374d5bb2e12b8811761a9816fcae0d67d570fe"
   },
   {
     "path": "admissions-financieres.json",
@@ -20,9 +20,19 @@
     "sha256": "adc09d616a44c4e4f092a0a589edb1f04106114ab0b4fa898a4c85e9f21aea32"
   },
   {
+    "path": "ai-reuse-qualified.log.gz",
+    "bytes": 190,
+    "sha256": "dc36a00342b49d648333623cc6d3b9c7809e34381896e896150f7ebefb816002"
+  },
+  {
     "path": "ai-weekly-latest-master.log.gz",
     "bytes": 213,
     "sha256": "4f97b68713f2c393f0ce08734283fdebdd85d796eeaa7662731307864c94e400"
+  },
+  {
+    "path": "anniversary-art-qualified.log.gz",
+    "bytes": 118,
+    "sha256": "d22eb0491005e56c5655e2bd35193b83c9e4d7d3f1129c2db7cfc9f6f0d57377"
   },
   {
     "path": "automation-status-reprise-initial.json",
@@ -38,6 +48,11 @@
     "path": "bilan.json.initial.gz",
     "bytes": 1636,
     "sha256": "888955a40145b9e6dfb39671c85505640fdefb0681e235329ee09b76918fc017"
+  },
+  {
+    "path": "browser-ai-reuse-qualified.log.gz",
+    "bytes": 184,
+    "sha256": "2b242ccf09265b6edb55e3858cb792e3d3591259d11f930f39b202cf6081704b"
   },
   {
     "path": "browser-candidate-final.log.gz",
@@ -58,6 +73,21 @@
     "path": "browser-final-all.log.gz",
     "bytes": 203,
     "sha256": "036f486d8be04b4b9b95e5926ebdd5c29c2001edb58107e44e917654e79e766b"
+  },
+  {
+    "path": "browser-links-qualified.log.gz",
+    "bytes": 171,
+    "sha256": "7fcb13324685cfc52dc1b6a0a3fdc450c9fba5bca01640675cc3f5b502a4d2f8"
+  },
+  {
+    "path": "browser-qualified-recovery.log.gz",
+    "bytes": 203,
+    "sha256": "efc233d5ec2e3f69eac533c88a74ef91be58f1f017ad7b9d750b3349eebc6e3d"
+  },
+  {
+    "path": "browser-rankings-qualified.log.gz",
+    "bytes": 139,
+    "sha256": "4274c0d2a3c611a036847df3b976749fd9a817091da74ceae158fd570e56f110"
   },
   {
     "path": "browser-stories-master-904.log.gz",
@@ -88,6 +118,11 @@
     "path": "build-master-904.log.gz",
     "bytes": 72566,
     "sha256": "ef76ffc8a3a04f574d03fe9171a90a1fd5e064c9ef09a20da7fdffda65311248"
+  },
+  {
+    "path": "build-qualified-links.log.gz",
+    "bytes": 72665,
+    "sha256": "cf47b291e3c83188c29bab0bff0a4003e05c1bec7681c3a3b7abf291ba65b516"
   },
   {
     "path": "cancelled-superseded.json",
@@ -140,6 +175,26 @@
     "sha256": "30f0e1a786401b53416c8aa14495139349a97d267aec3e85e73ed5059fdc10bb"
   },
   {
+    "path": "gha-49a9-browser0.log.gz",
+    "bytes": 13645,
+    "sha256": "5531869a90b3c40e2ee09c21592f4e55bde66dc8a024b764f73097f8366311ea"
+  },
+  {
+    "path": "gha-49a9-browser2.log.gz",
+    "bytes": 14066,
+    "sha256": "747db5ee2db757f6263314915ce0c432574120681156290985031810660fd0ff"
+  },
+  {
+    "path": "gha-49a9-browser3.log.gz",
+    "bytes": 15976,
+    "sha256": "1c6c11ca08112b80ffb79b5903e7c09985ee51b757f8c3badb572f9ddd83b3c7"
+  },
+  {
+    "path": "gha-49a9-rankings.log.gz",
+    "bytes": 98894,
+    "sha256": "0aaaa2028c57df420d0385069d6fa3d9c3eb920f3f976434f69a3326125436f5"
+  },
+  {
     "path": "github-40022869635/data-review-copper.zip",
     "bytes": 713,
     "sha256": "52d590c8da90327417837edd6e8c25f0e960097c6fdc408c503c33d94d852922"
@@ -173,6 +228,51 @@
     "path": "github-40022869635/data-review-routes.zip",
     "bytes": 498820,
     "sha256": "0d28cd8c8c179d12fb0307de9ec0dc1ceeca650dede7026185f22197cbd5db63"
+  },
+  {
+    "path": "github-macos-40026026342/copper-collection.log.gz",
+    "bytes": 69,
+    "sha256": "76779a0b57f77e8660c68a4a437208e28492abbd2112d3db6989ccbfb0ff39ee"
+  },
+  {
+    "path": "github-macos-40026026342/copper-execution.json.gz",
+    "bytes": 140,
+    "sha256": "a6cbfde3ce22c527af1ac1641c1c7f27ffe4aa85a6f6067e30e509884cb48d90"
+  },
+  {
+    "path": "github-macos-40026026342/copper-observation.json.gz",
+    "bytes": 168,
+    "sha256": "8ca4831b7321aafb54dae5732c15b9d39d561b8d12bb17ab9a5a5191c7baf0b9"
+  },
+  {
+    "path": "github-macos-40026026342/discovery-collection.log.gz",
+    "bytes": 97,
+    "sha256": "65958a17b71a2177ed7a1b62d5f80dbbd31daafa071fd2ad2ad6807e2846f5e9"
+  },
+  {
+    "path": "github-macos-40026026342/discovery-execution.json.gz",
+    "bytes": 147,
+    "sha256": "4b0b036ebf430518a591759be97922132ff54e92ff567c5b1bc6120b54edae8f"
+  },
+  {
+    "path": "github-macos-40026026342/discovery-observation.json.gz",
+    "bytes": 830,
+    "sha256": "afc0e8de00f86db9baeb3f71715980bda1f855baeb5386e18a1cc414eacee8d6"
+  },
+  {
+    "path": "github-macos-40026026342/holdings-retry-collection.log.gz",
+    "bytes": 435,
+    "sha256": "518d30829d68289e732560375edc80a115f8c346365a26e7df81fb74406a5e9a"
+  },
+  {
+    "path": "github-macos-40026026342/holdings-retry-execution.json.gz",
+    "bytes": 151,
+    "sha256": "88bfc0266de81c16ad4b5499da12fecf1a06c881184e801764dc840dad90bb4e"
+  },
+  {
+    "path": "github-macos-40026026342/holdings-retry-observation.json.gz",
+    "bytes": 501,
+    "sha256": "813770eb12bee9c1bd02de90f2569a8f99d9794a11449d8a2045b1470ab0d399"
   },
   {
     "path": "identites-positions.csv",
