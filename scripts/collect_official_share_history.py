@@ -112,27 +112,40 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         calendar_proof={'publicProduct':{k:identity.get(k)for k in ['ISIN','wtClassID','fundCurrency','useOfIncome','inceptionDt','NAV_Date']}}
         years=json.loads((ROOT/'src/data/automated-etf.json').read_text())[isin]['performance']['years']
     elif kind=='vaneck':
+        title=source.get('navTitle') or ('VanEck S&P Global Mining UCITS ETF - GDIG' if isin=='IE00BDFBTQ78' else None)
+        if not title:raise ValueError('Unregistered VanEck exact NAV context')
         page=document(source['sourceUrl']).decode();soup=BeautifulSoup(page,'html.parser')
         if isin not in soup.get_text(' ',strip=True):raise ValueError('Wrong VanEck exact share')
+        heading=soup.find('h1')
+        normalize=lambda s:' '.join(s.split()).casefold()
+        if not heading or normalize(title.rsplit(' - ',1)[0]) not in normalize(heading.get_text(' ',strip=True)):
+            raise ValueError('Wrong VanEck fund heading')
         block=soup.find('ve-histopricesblock');ticker=soup.find('ve-fundticker')
         if not block or not ticker:raise ValueError('VanEck official NAV export discovery changed')
         query=urllib.parse.urlencode({'blockid':block['data-blockid'],'pageid':block['data-pageid'],'ticker':ticker.get_text(strip=True)})
         metadata=data('https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?'+query)['data']
         if metadata['CurrencyName']!=native or metadata['Ticker']!=ticker.get_text(strip=True):raise ValueError('Wrong VanEck NAV context')
         path=metadata['DownloadUrl']
-        if not path.startswith('/ucits/investments/mining-etf/downloads/fundhistoprices/'):raise ValueError('Unexpected NAV download target')
-        from collect_vaneck_etf import download_document
+        slug=re.fullmatch(r'/[^/]+/[^/]+/investments/([^/]+)/?',urllib.parse.urlsplit(source['sourceUrl']).path)
+        if not slug or path!='/ucits/investments/'+slug[1]+'/downloads/fundhistoprices/':raise ValueError('Unexpected NAV download target')
+        from collect_vaneck_etf import download_document, parse_calendar_performance
         from issuer_routes import vaneck_factsheet_candidates
         pdf,pdf_url=download_document({'sourceUrl':source['factsheetUrl'],'fallbackUrls':vaneck_factsheet_candidates(source['factsheetUrl'])[1:]},fetch=document_fetch)
         urls.append(pdf_url);hashes[pdf_url]=hashlib.sha256(pdf).hexdigest()
         if capture:(capture/(hashes[pdf_url]+'.bin.gz')).write_bytes(gzip.compress(pdf))
         facts=pdf_text(pdf)
-        if isin not in facts or not re.search(r'Income Treatment\s+Reinvestment',facts) or not re.search(r'Distribution Frequency\s+None',facts):raise ValueError('Mining income reinvestment not confirmed')
-        nav=vaneck_nav(document('https://www.vaneck.com'+path),'VanEck S&P Global Mining UCITS ETF - GDIG',now)
-        row=re.search(r'(?:^|\s)VanEck S&P Global Mining UCITS ETF\s+((?:-?\d+(?:\.\d+)?\s+){6}-?\d+(?:\.\d+)?)\s*$',facts,re.M)
-        if not row:raise ValueError('Official Mining calendar layout changed')
-        tokens=row[1].split();years={str(2019+i):float(v)for i,v in enumerate(tokens)}
-        calendar_precision={str(2019+i):len(v.split('.')[1])if'.'in v else 0 for i,v in enumerate(tokens)};credit='VanEck'
+        share_isins=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',facts))
+        base_currency=re.search(r'Base Currency\s+(USD|EUR|GBP)',facts)
+        if 'ISIN' not in facts or share_isins!={isin} or not base_currency or base_currency[1]!=native:
+            raise ValueError('VanEck factsheet exact share/currency not confirmed')
+        if not re.search(r'Income Treatment\s+Reinvestment',facts) or not re.search(r'Distribution Frequency\s+None',facts):raise ValueError('VanEck income reinvestment not confirmed')
+        convention=pdf_text(pdf,(190,410))
+        if not re.search(r'Performance data is displayed on a Net\s+Asset Value basis, in Base Currency terms, with net income reinvested, net of fees',convention):
+            raise ValueError('VanEck calendar currency/convention not confirmed')
+        nav=vaneck_nav(document('https://www.vaneck.com'+path),title,now)
+        performance,calendar_precision=parse_calendar_performance(facts,{'isin':isin,'currency':native},now)
+        if not performance:raise ValueError('Official VanEck calendar layout changed')
+        years=performance['years'];credit='VanEck'
         calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None'}
     else:raise ValueError('Unregistered official NAV provider')
     if identity_from:nav={d:v for d,v in nav.items()if d>=identity_from}
