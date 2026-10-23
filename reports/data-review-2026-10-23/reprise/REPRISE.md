@@ -69,3 +69,7 @@ Build et budgets réussis après le correctif ; recettes propriétaires locales 
 Le run 40035153798 échoue avant la recette propriétaire : le téléchargement ne démarre pas après le clic, avec un aperçu présent et sans erreur JavaScript ni module réseau manquant. Ce signal ne prouve pas une panne fournisseur. L’export impératif est remplacé par une ressource Blob préparée avec le PNG courant, exposée dans un lien natif uniquement quand elle est prête ; les dimensions de l’aperçu sont réservées. La recette coupe toujours les anciens fichiers JavaScript et vérifie désormais l’égalité octet par octet du PNG téléchargé et de l’aperçu modifié. Les recettes locales complète et propriétaires à trois/quatre participants passent. Les traces de clic sont conservées en cas d’échec. Le nouveau rejeu GitHub reste requis.
 
 La validation technique 40032701777 (afaea9ef) est entièrement réussie, y compris les quatre partitions navigateur et les 709 exports anniversaire. Elle ne qualifie pas par avance les modifications IA ultérieures.
+
+## Dernière intégration de master #905
+
+Master 91898757 est intégré sans conflit. Son correctif de reprise des publications après un push concurrent est préservé ; les huit tests `test_validated_data_commit.py` passent sur l’ensemble assemblé. Le livre réel IA conserve le blob Git d96ba15bb2607b7306a401b1b7b2ed744c8dfe37. Cette intégration ne modifie aucune série, composition, décision ou donnée financière validée.
