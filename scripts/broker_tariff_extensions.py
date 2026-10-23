@@ -35,11 +35,11 @@ def parse(name,s,today,previous=None):
   if len(headings)!=1:raise ValueError('Table France absente ou ambiguë')
   h=headings[0];english=h.name=='h3'
   section=h.parent if english else h.find_parent('section')
-  tables=section.find_all('table') if section else []
-  if len(tables)!=1:raise ValueError('Table France absente ou ambiguë')
-  table=tables[0];text=table.get_text(' ',strip=True).replace('\xa0',' ')
   labels=['Tiered','Fixed - IB SmartRouting','Fixed - Direct Routing'] if english else ['Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct']
   minimum_label='Minimum per order (shares)' if english else 'Minimum par ordre (actions)'
+  tables=[t for t in section.find_all('table') if all(label in t.get_text(' ',strip=True) for label in [*labels,minimum_label])] if section else []
+  if len(tables)!=1:raise ValueError('Table France absente ou ambiguë')
+  table=tables[0];text=table.get_text(' ',strip=True).replace('\xa0',' ')
   require(text,*labels,minimum_label)
   rows=table.find_all('tr');header=rows[0].get_text(' ',strip=True)
   positions=[header.find(label) for label in labels]
