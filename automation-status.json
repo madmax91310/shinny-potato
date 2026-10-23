@@ -633,20 +633,20 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39962357942,
+      "runId": 39962646729,
       "attempt": 1,
-      "headSha": "dc441b48a56e98cf5892cb41cb2c2cde33b4a271",
-      "createdAt": "2026-10-23T13:34:36Z",
-      "completedAt": "2026-10-23T13:35:54Z",
+      "headSha": "b073f62b7652eaf516ad17f826facce73405dbc5",
+      "createdAt": "2026-10-23T13:36:41Z",
+      "completedAt": "2026-10-23T13:39:17Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-23T13:35:54Z",
+      "lastSuccessAt": "2026-10-23T13:39:17Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-23T13:35:54Z",
+      "lastCollectionSuccessAt": "2026-10-23T13:39:17Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962357942",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962646729",
       "failures": [],
       "dataFailures": {}
     },
@@ -2450,10 +2450,10 @@
       "publishedDataSha": "5feee6221927c38055d69f8faffcf1ecbd6c335d"
     }
   },
-  "updatedAt": "2026-10-23T13:37:27Z",
+  "updatedAt": "2026-10-23T13:39:17Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T13:38:44.841516+00:00",
+    "checkedAt": "2026-10-23T13:40:01.117612+00:00",
     "revision": 269,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
@@ -2476,7 +2476,7 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -2497,7 +2497,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -2520,7 +2520,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -2548,7 +2548,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -2576,7 +2576,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -2603,7 +2603,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -2630,7 +2630,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -2657,7 +2657,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -2686,7 +2686,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -2715,7 +2715,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2744,7 +2744,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -2771,7 +2771,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -2798,7 +2798,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2820,7 +2820,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T13:38:44.841516+00:00"
+        "lastSeenAt": "2026-10-23T13:40:01.117612+00:00"
       }
     },
     "events": [
@@ -10221,8 +10221,8 @@
     "update-editorial-radar.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-23T13:35:54Z",
-      "observedRunId": 39962357942,
+      "lastSuccessAt": "2026-10-23T13:39:17Z",
+      "observedRunId": 39962646729,
       "status": "idle",
       "nextAttemptAt": null
     },
