@@ -1,0 +1,596 @@
+{
+  "publicationRequested": true,
+  "mergeRequested": true,
+  "runs": [
+    {
+      "scope": "holdings",
+      "runId": 39958464588,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39958464588",
+      "artifactId": 12504312172,
+      "interpretation": "176/181 ; quatre HTTP403 ; dépendance xlrd absente de la sonde, reprise HSBC séparée"
+    },
+    {
+      "scope": "holdings-hsbc",
+      "runId": 39962442463,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962442463",
+      "artifactId": 12505063051,
+      "interpretation": "1/1 valide avec les dépendances du producteur ; total 177/181"
+    },
+    {
+      "scope": "ai",
+      "runId": 39959275848,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39959275848",
+      "artifactId": 12503957238,
+      "interpretation": "job AI réussi ; run ensuite annulé pour arrêter des sondes redondantes ; SWDA 22 octobre validé"
+    },
+    {
+      "scope": "practical",
+      "runId": 39960124696,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960124696",
+      "artifactId": 12503539844,
+      "interpretation": "job practical réussi, 11/11 ; run ensuite annulé pendant installation navigateur d’une sonde FX redondante"
+    },
+    {
+      "scope": "metadata",
+      "runId": 39961260241,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39961260241",
+      "artifactId": 12503574947,
+      "interpretation": "job terminé ; deux distributions renouvelées ; deux PEA inconnus/conflit maintenus"
+    },
+    {
+      "scope": "financial",
+      "runId": 39962852559,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962852559",
+      "artifactId": 12504778522,
+      "interpretation": "53/53 calendriers et 53/53 historiques contrôlés ; 90 cas conservés, 79 causes toujours ouvertes"
+    },
+    {
+      "scope": "fx",
+      "runId": 39963529117,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39963529117",
+      "artifactId": 12505977470,
+      "interpretation": "333 mois, source H.10 qualifiée et snapshots BCE aux mêmes dates"
+    },
+    {
+      "scope": "actors",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12503869778,
+      "interpretation": "11/11 observations ; pièces contractuelles non publiées ou non qualifiées maintenues"
+    },
+    {
+      "scope": "insurance",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12504742439,
+      "interpretation": "contrats courants qualifiés ; contrat Avenir 2 remplacé conservé comme archive, pas réactivé"
+    },
+    {
+      "scope": "discovery",
+      "runId": 39960631959,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39960631959",
+      "artifactId": 12505300111,
+      "interpretation": "six sources sans admission : HTTP403 ou état exact L&G absent ; aucun panier PCF qualifié comme portefeuille"
+    },
+    {
+      "scope": "pending",
+      "runId": 39961428567,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39961428567",
+      "artifactId": 12504323808,
+      "interpretation": "79 routes publiques, 94 raccordements conservés ; contrôle d’accès seulement"
+    },
+    {
+      "scope": "routes",
+      "runId": 39962442463,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39962442463",
+      "artifactId": 12506280473,
+      "interpretation": "13 routes, dont API exactes WisdomTree ; refus maintenus, accès H.10 réussi"
+    },
+    {
+      "scope": "ssga",
+      "runId": 39964490079,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39964490079",
+      "artifactId": 12506885419,
+      "interpretation": "top10 du 22/10 somme 1.146616 %, classeur sha256 ; conflit initial non clôturé"
+    },
+    {
+      "scope": "brokers-repaired",
+      "runId": 39966451832,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39966451832",
+      "artifactId": 12506572985,
+      "interpretation": "8/8 barèmes et profils validés sur macOS-15 ; routage IBKR anglais unifié, table France exacte. Échecs Linux antérieurs conservés dans les preuves."
+    },
+    {
+      "scope": "copper",
+      "runId": 39969645450,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39969645450",
+      "artifactId": 12508083149,
+      "interpretation": "Collecteur officiel réel : HTTP403, zéro donnée admise ; blocage maintenu, ancienne observation conservée."
+    },
+    {
+      "scope": "dws",
+      "runId": 39970655100,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39970655100",
+      "artifactId": 12508168590,
+      "interpretation": "11/11 photographies courantes recoupées strictement ; nouvelles données de master préservées, ancienne divergence de pays non attribuée rétroactivement."
+    },
+    {
+      "scope": "publication",
+      "runId": 39970655100,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39970655100",
+      "artifactId": 12509575685,
+      "interpretation": "Fenêtre intrajournalière corrigée et testée ; contrôle GitHub refusé HTTP429, dernière clôture valide conservée. Aucune résolution réseau annoncée."
+    },
+    {
+      "scope": "publication-retry",
+      "runId": 39971268475,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39971268475",
+      "artifactId": 12509781020,
+      "interpretation": "Rejeu borné : dernier résultat dans preuves/publication-retry-observation.json.gz ; aucune donnée promue en cas de refus."
+    },
+    {
+      "scope": "publication-final",
+      "runId": 39972283341,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39972283341",
+      "artifactId": 12510240688,
+      "interpretation": "Attente intrajournalière qualifiée : deux routes XNDX concordantes, clôture conservée du 22/10 = précédente séance XNYS, référence previousClose concordante. Zéro nouvelle donnée, aucun dernier succès artificiellement renouvelé."
+    },
+    {
+      "scope": "holdings-ishares",
+      "runId": 39975550161,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39975550161",
+      "artifactId": 12510952320,
+      "interpretation": "IE00BYX2JD69 : véritable collecteur validé 1/1 ; photographie 2026-10-21 → 2026-10-22, 355 positions, contrôle du 23/10 importé. L’ancienne réponse incomplète n’est pas archivée ; aucune cause fournisseur attribuée rétroactivement."
+    },
+    {
+      "scope": "sector-fallback",
+      "runId": 39980873537,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39980873537",
+      "artifactId": 12513467163,
+      "interpretation": "IE00B5BMR087 : agrégation GICS intégrale qualifiée, datée du 22/10, total publié 99.99996 %, sans renormalisation ; table primaire à zéro conservée comme échec individuel."
+    },
+    {
+      "scope": "ai-after-close",
+      "runId": 39984274482,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39984274482",
+      "artifactId": 12514169128,
+      "interpretation": "Arrêté IA J−1 UTC : prix SWDA du 22/10 réutilisés, requested=[] ; ni collecte ni revalidation d’une clôture du 23. Attente normale du prochain arrêté, sans changer la convention."
+    },
+    {
+      "scope": "sector-strict",
+      "runId": 39983805968,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39983805968",
+      "artifactId": 12514099526,
+      "interpretation": "Voie GICS complète confirmée avec les contrôles finaux : compteur 504 à même date et bornes d’arrondi cinq décimales, pas seulement une somme voisine de 100."
+    },
+    {
+      "scope": "dws-final",
+      "runId": 39992832187,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39992832187",
+      "artifactId": 12518566863,
+      "interpretation": "11/11 portefeuilles courants recoupés à 17:11 ; anciennes et nouvelles classifications rejouées pour les 109 conflits pays ; attente de stabilité du radar conservée."
+    },
+    {
+      "scope": "actors-cessation",
+      "runId": 39994738052,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39994738052",
+      "artifactId": 12519348271,
+      "interpretation": "11/11 ; cessation Tudigo qualifiée séparément des anciens tarifs conservés à leur date ; deux routes concordantes, SHA256 ad395ba6c780096cc74393c7457ccb23237126c7674c8a2e2f48a6f369a7468e."
+    },
+    {
+      "scope": "ci-integrated-tudigo",
+      "runId": 39998020151,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39998020151",
+      "interpretation": "Validation technique complète réussie, Tudigo compris, avant dernière synchronisation master.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T17:47:54Z",
+      "headSha": "7ac3c146654fa080f16972eb38badfc18a069878",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:27:28Z"
+    },
+    {
+      "scope": "monthly-producer",
+      "runId": 39998020515,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39998020515",
+      "interpretation": "Producteur mensuel ordinaire réussi depuis la branche PR ; voie H.10/BCE exercée en plus de la sonde isolée.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T17:47:54Z",
+      "headSha": "7ac3c146654fa080f16972eb38badfc18a069878",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:27:45Z"
+    },
+    {
+      "scope": "vaneck-route",
+      "runId": 40002490699,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40002490699",
+      "interpretation": "Route DK exacte qualifiée : fiche 30/09, GDIG exact, sept années, capitalisation et NAV USD/BCE validées ; PDF/CSV bruts archivés.",
+      "artifactId": 12522827689,
+      "conclusion": "success",
+      "createdAt": "2026-10-23T18:20:31Z",
+      "headSha": "e6fc4ec85e16c4158b9031e01a850c84af7d61d1",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:22:03Z"
+    },
+    {
+      "scope": "vaneck-scoped-final",
+      "runId": 40007345547,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345547",
+      "interpretation": "Qualification automatique depuis le code final 74b49801 réussie ; route limitée au document GDIG, autres documents inchangés.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T18:55:55Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:57:16Z"
+    },
+    {
+      "scope": "publication-vaneck-msci-partial",
+      "runId": 40002490621,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40002490621",
+      "interpretation": "Producteur réel : GDIG valide, Nasdaq en attente normale ; deux timeouts MSCI individuels restent visibles malgré les autres résultats utilisables.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T18:20:31Z",
+      "headSha": "e6fc4ec85e16c4158b9031e01a850c84af7d61d1",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:25:48Z"
+    },
+    {
+      "scope": "msci-transport-recheck",
+      "runId": 40005725976,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40005725976",
+      "interpretation": "2/2 voies officielles revalidées ; GRTR USD 22/10, registres avant/après strictement identiques. Pas de publication.",
+      "artifactId": 12523239621,
+      "conclusion": "success",
+      "createdAt": "2026-10-23T18:44:05Z",
+      "headSha": "e21f27faaaa0b3ae53132d71a1cfdca491a5b729",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:46:37Z"
+    },
+    {
+      "scope": "dws-stability-final",
+      "runId": 40008126119,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40008126119",
+      "interpretation": "11/11 vérifiés à 19:02. Rejeu en lecture seule à 19:05 : 73 réconciliations stables préparées, 36 attendent quatre heures après changement documentaire de libellé. Aucun signal ETF ni écriture de production.",
+      "artifactId": 12525680174,
+      "conclusion": "success",
+      "createdAt": "2026-10-23T19:01:43Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:02:55Z"
+    },
+    {
+      "scope": "ai-png-first-timeout",
+      "runId": 39993469192,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39993469192",
+      "interpretation": "Délai téléchargement PNG dépassé ; cause initiale non attribuée. Journal de l’échec conservé, aucun relâchement de délai/assertion.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T17:14:42Z",
+      "headSha": "21f1a109404d7495965d1acb0fa81fc40065fa98",
+      "status": "completed",
+      "updatedAt": "2026-10-23T17:18:16Z"
+    },
+    {
+      "scope": "ai-png-recheck-1",
+      "runId": 39996039012,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39996039012",
+      "interpretation": "Recette navigateur complète et propriétaire isolée réussie, mobile/ordinateur, aucun changement du portefeuille réel.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T17:33:26Z",
+      "headSha": "d35a0112f12cc5b7aa48ad2c25a1b8cef56e55ff",
+      "status": "completed",
+      "updatedAt": "2026-10-23T17:47:45Z"
+    },
+    {
+      "scope": "ai-png-recheck-2",
+      "runId": 39998020358,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39998020358",
+      "interpretation": "Second rejeu complet réussi ; n’attribue pas la cause initiale intermittente.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T17:47:54Z",
+      "headSha": "7ac3c146654fa080f16972eb38badfc18a069878",
+      "status": "completed",
+      "updatedAt": "2026-10-23T17:53:24Z"
+    },
+    {
+      "scope": "active-etf-final",
+      "runId": 40007345592,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345592",
+      "jobId": 120598508772,
+      "log": "preuves/gha-final-120598508772.log.gz",
+      "interpretation": "Seul échec individuel : IE00B5BMR087 sectors-primary, table à zéro ; agrégation intégrale qualifiée conservée. Le report-failures rend le workflow rouge.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T18:55:55Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:04:57Z"
+    },
+    {
+      "scope": "holdings-final",
+      "runId": 40007345630,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345630",
+      "jobId": 120598508872,
+      "log": "preuves/gha-final-120598508872.log.gz",
+      "interpretation": "177/181 ; quatre refus WisdomTree HTTP403, tous remontés. Aucun autre échec de composition.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T18:55:55Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:58:53Z"
+    },
+    {
+      "scope": "publication-final-master-de5",
+      "runId": 40007345496,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345496",
+      "jobId": 120598508686,
+      "log": "preuves/gha-final-120598508686.log.gz",
+      "interpretation": "Producteur ordinaire réussi : GDIG et deux MSCI valides, zéro erreur ; Nasdaq attente normale. Aucun déploiement sur branche PR.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T18:55:55Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:58:48Z"
+    },
+    {
+      "scope": "ai-final-master-de5",
+      "runId": 40007345551,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345551",
+      "jobId": 120598508562,
+      "log": "preuves/gha-final-120598508562.log.gz",
+      "interpretation": "Collecte et recette complète PNG/propriétaire isolée réussies sur code final 74b49801 ; portefeuille réel inchangé.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T18:55:55Z",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "status": "completed",
+      "updatedAt": "2026-10-23T18:59:44Z"
+    },
+    {
+      "scope": "ci-final-master-de5",
+      "runId": 40007345266,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40007345266",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "74b49801847e15e55d413dbe5d5e70a150bbc061",
+      "interpretation": "Validation technique complète réussie, build/Python, quatre partitions navigateur et quatre Tweet Midi, exposition et smoke. Tous les déploiements ignorés. Quatre SHA de preuves DWS et suivi complétés ensuite, valeurs financières inchangées, build et douze PNG rejoués."
+    },
+    {
+      "scope": "master-899-normal-four-api",
+      "runId": 40004946052,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40004946052",
+      "interpretation": "Preuve déjà fusionnée de #899 préservée : quatre NAV API exactes via le producteur normal, prix/devises/profondeurs inchangés ; GDX non admis. Voir reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/."
+    },
+    {
+      "scope": "gdig-probe-integration-refused",
+      "runId": 40011921279,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921279",
+      "interpretation": "Après #899, la sonde PDF héritait de la nouvelle configuration API et refusait à raison l’absence de PDF dans la provenance. Correction limitée à la copie de configuration de la sonde ; le producteur normal conserve API.",
+      "conclusion": "failure",
+      "createdAt": "2026-10-23T19:30:17Z",
+      "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:31:55Z"
+    },
+    {
+      "scope": "gdig-pdf-after-899",
+      "runId": 40012347232,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40012347232",
+      "interpretation": "Sonde PDF indépendante explicitée et validée dans GitHub sur e3098a13 ; sept années et NAV USD/BCE. Texte PDF extrait identique à la qualification antérieure malgré empreinte binaire différente. Voie API active conservée.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T19:33:32Z",
+      "headSha": "e3098a13fd6c46f54ff12dc58bddc3e219759c7a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:34:55Z",
+      "artifactId": 12527315885
+    },
+    {
+      "scope": "msci-after-899",
+      "runId": 40012327278,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40012327278",
+      "interpretation": "Deux MSCI et contrôle des routes réussis après intégration #899 ; collecte isolée sans publication.",
+      "conclusion": "success",
+      "createdAt": "2026-10-23T19:33:23Z",
+      "headSha": "e3098a13fd6c46f54ff12dc58bddc3e219759c7a",
+      "status": "completed",
+      "updatedAt": "2026-10-23T19:34:30Z"
+    },
+    {
+      "scope": "active-etf-after-899",
+      "runId": 40011921373,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921373",
+      "jobId": 120614190406,
+      "log": "preuves/after899-120614190406.log.gz",
+      "interpretation": "Seule erreur réelle de champ : table primaire CSPX à zéro, agrégation complète qualifiée disponible ; report-failures rouge conservé. Le HTTP502 nommé unavailable appartient au test négatif, pas à une nouvelle panne fournisseur."
+    },
+    {
+      "scope": "holdings-after-899",
+      "runId": 40011921374,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921374",
+      "jobId": 120614190686,
+      "log": "preuves/after899-120614190686.log.gz",
+      "interpretation": "177/181 encore valides ; quatre seuls refus WisdomTree HTTP403, sans autre erreur de portefeuille."
+    },
+    {
+      "scope": "ci-after-master-dcbd",
+      "runId": 40011921367,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011921367",
+      "status": "queued",
+      "conclusion": "",
+      "headSha": "ba49446347d7b9b70b8eab1e5e2a7cbdce8abc0a",
+      "interpretation": "CI complète relancée après intégration #899 ; état observé dans preuves/ci-after-master-dcbd.json, ne remplace pas la conclusion verte antérieure tant que ce run n’est pas terminé."
+    },
+    {
+      "scope": "technical-integration-49a9",
+      "runId": 40025337511,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40025337511",
+      "conclusion": "failure",
+      "passed": [
+        "build",
+        "python-965",
+        "exposure-browser",
+        "tweet-midi-4-jobs",
+        "smoke",
+        "browser-checks-1"
+      ],
+      "failed": [
+        "browser-checks-0: obsolete unknown-identity substitution assertion",
+        "browser-checks-2: disallowed anniversary test horizon",
+        "browser-checks-3: prepared selection proposed an unqualified financial window"
+      ],
+      "proof": "reprise/gha-49a9-*.log.gz",
+      "resolution": "Corrections présentes ; nouvelle CI requise."
+    },
+    {
+      "scope": "macos-source-comparison",
+      "runId": 40026026342,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40026026342",
+      "interpretation": "Copper et les quatre compositions WisdomTree restent en HTTP403 ; discovery 0/6, deux WisdomTree403 et quatre L&G sans état de part exacte. Aucun résultat promu.",
+      "proof": "reprise/github-macos-40026026342/"
+    },
+    {
+      "scope": "ai-producer-confirmation-lifecycle",
+      "runId": 40032904711,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032904711",
+      "headSha": "afaea9ef6250d150816bbe2d5103ae07645e4115",
+      "conclusion": "failure",
+      "cause": "Contraste : style vide lu pendant le remplacement du lien de confirmation ; recette isolée, aucun échec du livre réel déduit.",
+      "proof": "reprise/gha-ai-confirmation-failure.log.gz",
+      "resolution": "Ancien lien immédiatement masqué et lecture atomique du nœud courant ; nouvelle validation GitHub requise."
+    },
+    {
+      "scope": "ai-retained-png-download",
+      "runId": 40035153798,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40035153798",
+      "headSha": "2dc775fda12091cfacc1241312f37902986c559a",
+      "conclusion": "failure",
+      "cause": "Retained PNG: timeout without download event; preview present, no JavaScript exception or missing-module request.",
+      "resolution": "Prepared native Blob link; edited preview/file equality and ordinary GitHub replay required.",
+      "proof": "reprise/gha-ai-retained-png-failure.log.gz"
+    },
+    {
+      "scope": "technical-core-afaea",
+      "runId": 40032701777,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032701777",
+      "headSha": "afaea9ef6250d150816bbe2d5103ae07645e4115",
+      "conclusion": "success",
+      "interpretation": "Full build, Python, all four browser partitions, all four publication partitions, exposure, smoke passed. 709 actual anniversary PNG exports. Subsequent AI fixes require their own validation."
+    },
+    {
+      "scope": "ai-native-download-attempt",
+      "runId": 40036945324,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40036945324",
+      "conclusion": "failure",
+      "interpretation": "Native link did not resolve the eleventh burst download. Original renderer restored; paced real clicks and byte-for-byte PNG verification retained.",
+      "proof": "reprise/gha-ai-native-png-failure.log.gz"
+    },
+    {
+      "scope": "ordinary-monthly-history",
+      "runId": 40032904522,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032904522",
+      "conclusion": "success",
+      "validatedHistories": 665,
+      "rankingFxStep": "skipped in pull_request; production verification still required",
+      "proof": "reprise/github-final-monthly/"
+    },
+    {
+      "scope": "dws-after-stability-window-read-only",
+      "runId": 40037136081,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40037136081",
+      "conclusion": "success",
+      "verified": 11,
+      "publication": "not-requested",
+      "proof": "reprise/github-final-dws-stability/"
+    },
+    {
+      "scope": "ai-producer-paced",
+      "runId": 40038414227,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40038414227",
+      "headSha": "ed437bb4e52017018b66b98d8d9fd42819f149af",
+      "actualCheckout": "dde9594: merge ed437bb4 into 91898757",
+      "conclusion": "success",
+      "interpretation": "Real daily collector and accounting checks passed; complete desktop/mobile/retained-PNG recipe and both 3/4 participant owner recipes passed. UI GitHub authentication and prices are deterministic fixtures; no actual login or write to the production book claimed.",
+      "proof": "reprise/github-paced-ai-success/ ; reprise/gha-paced-ai-success.log.gz"
+    }
+  ],
+  "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
+  "reprise": {
+    "masterIntegrated": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+    "ordinaryWisdomRun": 40017262668,
+    "ordinaryWisdomConclusion": "failure;177/181;quatre HTTP403 GB/IE/NL, API et navigateur; aucune promotion locale",
+    "technicalBeforeReprise": {
+      "runId": 40011921367,
+      "conclusion": "success"
+    },
+    "initialCodeFailure": {
+      "runId": 40017262415,
+      "conclusion": "failure; contrats de tests des fenêtres désormais refusées et budget de route; corrections et rejeu requis"
+    },
+    "monitor": "reprise/automation-status-reprise.json",
+    "monitorRawActive": 52,
+    "monitorPresentations": 48,
+    "financialAdmissions": "reprise/admissions-financieres.json",
+    "safeQuoteCases": 52,
+    "independentNavCases": 27,
+    "merged": false,
+    "deployed": false,
+    "sourceRecheck": {
+      "runId": 40022869635,
+      "conclusion": "failure",
+      "publication": "success; XNDX 2026-10-23 35394.7734375 USD TOTAL; deux réponses concordantes, séance close",
+      "dws": "success; 11 candidats recoupés, stabilité distincte",
+      "holdings-retry": "failure; HSBC valide, quatre WisdomTree HTTP403 GB/IE/NL",
+      "copper": "failure; HTTP403",
+      "metadata": "failure; autres champs validés, conflit PEA conservé",
+      "discovery": "job success; 0/6 nouvelles compositions qualifiées, deux WisdomTree HTTP403 et quatre L&G sans classe exacte"
+    },
+    "ordinaryWisdomRunLatest": 40022897634,
+    "localFinalValidation": {
+      "python": {
+        "tests": 965,
+        "conclusion": "success"
+      },
+      "nodeBuildChecks": {
+        "conclusion": "success",
+        "logs": [
+          "ci-node-merged.log.gz",
+          "ci-node-remaining.log.gz",
+          "ci-node-tail.log.gz",
+          "ci-node-last.log.gz"
+        ],
+        "note": "Les premières hypothèses de tests obsolètes sont conservées dans les journaux précédents ; leurs assertions sont remplacées par la vérification des refus exacts."
+      },
+      "build": "success; budgets unchanged",
+      "browserRecovery": {
+        "conclusion": "success",
+        "actualPngs": 15
+      },
+      "concurrentStories": {
+        "conclusion": "success",
+        "viewports": [
+          1440,
+          390,
+          360
+        ],
+        "deepEquality": true
+      }
+    }
+  },
+  "lastMasterIntegrated": "7bdce5f5c9b3e33035f217253478f2b14da6f303",
+  "preMergeValidation": {
+    "codeBuild": {
+      "runId": 40038723147,
+      "sha": "60c85efdd3e8a3be05a3d3f78a1727784d7bd117",
+      "build": "success",
+      "python": "success",
+      "exposure": "success",
+      "smoke": "success",
+      "browserAndPublicationPartitions": "in_progress at this capture"
+    },
+    "master906Integrated": {
+      "unit": "success",
+      "build": "success",
+      "browser": "success",
+      "shardPlanning": "success"
+    },
+    "productionBookBlob": "d96ba15bb2607b7306a401b1b7b2ed744c8dfe37",
+    "merged": false,
+    "deployed": false
+  }
+}

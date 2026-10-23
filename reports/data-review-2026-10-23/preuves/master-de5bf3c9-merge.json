@@ -1,0 +1,101 @@
+{
+  "master": "de5bf3c9b0ba3b9ec0a912f3795c6262d3c00d46",
+  "previousMaster": "b0754186d85542379c3185a45493611e872a84b9",
+  "commits": [
+    {
+      "sha": "509894159c22d2d5a123c01fb5bf9b3fa241402e",
+      "message": "Update SEC 13F portfolios and preserve prior quarters"
+    },
+    {
+      "sha": "de5bf3c9b0ba3b9ec0a912f3795c6262d3c00d46",
+      "message": "Refresh validated monthly market histories"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/asset-tool-routing.json",
+      "sha": "896baf91284311e538e0fb0e429fddf4fb74403a",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "public/data/investors/ackman.json",
+      "sha": "1e0b040c6fa264b65c88e342e289e1826a0d33c5",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "public/data/investors/review-metadata.json",
+      "sha": "bdac515b3638f9361cdecb7210cc461313dbc557",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-automated.json",
+      "sha": "57274a638a095f29bd5708896b971833769e93d3",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "scripts/source-snapshots/monthly-collection-status.json",
+      "sha": "21f27d7a53300069150f92c26d55929dced74f21",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "scripts/source-snapshots/ranking-collection-status.json",
+      "sha": "c7829bf02f6e6294484460cc634a8aa8b3a3c434",
+      "decision": "latest master series and ECB; qualified H.10 retained separately from newer legacy FRED failure"
+    },
+    {
+      "path": "scripts/source-snapshots/ranking-histories.json",
+      "sha": "ff301e45543cab59a40e6f91113c66c41136f261",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/automated-etf-monthly.json",
+      "sha": "ab2a312971451815f610a0238b1bd7c44e066e5d",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/automated-indices.json",
+      "sha": "be924c758d2495e08cc2b5b315a983b104cfa9e2",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/automated-monthly.json",
+      "sha": "9e3ffbc90d1f5bbcc1f240f9b381ccf9c2ddda8a",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/equity-duel-returns.json",
+      "sha": "a2a5480a73db4f20bffa4e2ed49e0b5bd7b27a5f",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/monthly-duel-returns.json",
+      "sha": "8dcb2dd6c6b52eb635eefdc7de7f1afdc8c6845d",
+      "decision": "preserved latest validated master file"
+    },
+    {
+      "path": "src/data/ranking-histories.json",
+      "sha": "5559dfcace7684b78b89a45d716f9d6912a7692a",
+      "decision": "preserved latest validated master file"
+    }
+  ],
+  "financialLevel": {
+    "isin": "IE00BDFBTQ78",
+    "unchangedFields": [
+      "value",
+      "asOf",
+      "currency",
+      "isin",
+      "parser",
+      "valuationBasis",
+      "nativeValue",
+      "nativeCurrency",
+      "fxAsOf",
+      "fxFactor"
+    ],
+    "updatedFields": [
+      "sourceUrls",
+      "sha256"
+    ],
+    "qualificationRun": 40002490699
+  }
+}

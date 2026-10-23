@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-22T20:21:41.061Z",
+  "checkedAt": "2026-10-23T22:11:15.135Z",
   "scope": "29 actifs exacts ; 16 profils demandés ; statuts fondés sur les consommateurs actuels",
   "matrix": [
     {
@@ -68,8 +68,28 @@
             "end": "2026-09",
             "months": 23,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2024-11",
+                "end": "2026-09",
+                "months": 23
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "nebius",
+            "starts": [
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -92,15 +112,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-11 → 2026-09, 23 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2024-11 → 2026-09, 23 clôtures réelles continues. Périodes qualifiées : 2024-11 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-11 → 2026-09, 23 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2024-11 → 2026-09, 23 clôtures réelles continues. Périodes qualifiées : 2024-11 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -136,7 +156,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Netherlands ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Netherlands ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -269,8 +289,37 @@
             "end": "2026-09",
             "months": 79,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2020-03",
+                "end": "2026-09",
+                "months": 79
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "vertiv",
+            "starts": [
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -293,15 +342,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2020-03 → 2026-09, 79 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2020-03 → 2026-09, 79 clôtures réelles continues. Périodes qualifiées : 2020-03 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2020-03 → 2026-09, 79 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2020-03 → 2026-09, 79 clôtures réelles continues. Périodes qualifiées : 2020-03 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -337,7 +386,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -470,8 +519,35 @@
             "end": "2026-09",
             "months": 61,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-09",
+                "end": "2026-09",
+                "months": 61
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "rocket-lab",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -494,15 +570,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-09 → 2026-09, 61 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-09 → 2026-09, 61 clôtures réelles continues. Périodes qualifiées : 2021-09 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-09 → 2026-09, 61 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-09 → 2026-09, 61 clôtures réelles continues. Périodes qualifiées : 2021-09 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -538,7 +614,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -671,8 +747,35 @@
             "end": "2026-09",
             "months": 65,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-05",
+                "end": "2026-09",
+                "months": 65
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "ast-spacemobile",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -695,15 +798,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Périodes qualifiées : 2021-05 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Périodes qualifiées : 2021-05 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -739,7 +842,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -872,8 +975,35 @@
             "end": "2026-09",
             "months": 63,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-07",
+                "end": "2026-09",
+                "months": 63
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "sofi",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -896,15 +1026,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-07 → 2026-09, 63 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-07 → 2026-09, 63 clôtures réelles continues. Périodes qualifiées : 2021-07 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-07 → 2026-09, 63 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-07 → 2026-09, 63 clôtures réelles continues. Périodes qualifiées : 2021-07 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -940,7 +1070,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1072,8 +1202,35 @@
             "end": "2026-09",
             "months": 62,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-08",
+                "end": "2026-09",
+                "months": 62
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "robinhood",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -1096,15 +1253,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Périodes qualifiées : 2021-08 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Périodes qualifiées : 2021-08 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1140,7 +1297,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1267,8 +1424,35 @@
             "end": "2026-09",
             "months": 65,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-05",
+                "end": "2026-09",
+                "months": 65
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "coinbase",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -1291,15 +1475,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Périodes qualifiées : 2021-05 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-05 → 2026-09, 65 clôtures réelles continues. Périodes qualifiées : 2021-05 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1335,7 +1519,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1463,8 +1647,63 @@
             "end": "2026-09",
             "months": 339,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "1998-07",
+                "end": "2026-09",
+                "months": 339
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "strategy",
+            "starts": [
+              1999,
+              2000,
+              2001,
+              2002,
+              2003,
+              2004,
+              2005,
+              2006,
+              2007,
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -1486,15 +1725,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "1998-07 → 2026-09, 339 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "1998-07 → 2026-09, 339 clôtures réelles continues. Périodes qualifiées : 1998-07 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "1998-07 → 2026-09, 339 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "1998-07 → 2026-09, 339 clôtures réelles continues. Périodes qualifiées : 1998-07 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1530,7 +1769,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1663,8 +1902,39 @@
             "end": "2026-09",
             "months": 84,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2019-10",
+                "end": "2026-09",
+                "months": 84
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "cloudflare",
+            "starts": [
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -1687,15 +1957,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Périodes qualifiées : 2019-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Périodes qualifiées : 2019-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1731,7 +2001,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1859,8 +2129,41 @@
             "end": "2026-09",
             "months": 102,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2018-04",
+                "end": "2026-09",
+                "months": 102
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "zscaler",
+            "starts": [
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -1883,15 +2186,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2018-04 → 2026-09, 102 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2018-04 → 2026-09, 102 clôtures réelles continues. Périodes qualifiées : 2018-04 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2018-04 → 2026-09, 102 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2018-04 → 2026-09, 102 clôtures réelles continues. Périodes qualifiées : 2018-04 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1927,7 +2230,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2055,8 +2358,39 @@
             "end": "2026-09",
             "months": 84,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2019-10",
+                "end": "2026-09",
+                "months": 84
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "datadog",
+            "starts": [
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -2079,15 +2413,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Périodes qualifiées : 2019-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2019-10 → 2026-09, 84 clôtures réelles continues. Périodes qualifiées : 2019-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2123,7 +2457,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2250,8 +2584,37 @@
             "end": "2026-09",
             "months": 72,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2020-10",
+                "end": "2026-09",
+                "months": 72
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "snowflake",
+            "starts": [
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -2274,15 +2637,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2020-10 → 2026-09, 72 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2020-10 → 2026-09, 72 clôtures réelles continues. Périodes qualifiées : 2020-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2020-10 → 2026-09, 72 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2020-10 → 2026-09, 72 clôtures réelles continues. Périodes qualifiées : 2020-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2318,7 +2681,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2445,8 +2808,29 @@
             "end": "2026-09",
             "months": 30,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2024-04",
+                "end": "2026-09",
+                "months": 30
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "reddit",
+            "starts": [
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -2469,15 +2853,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-04 → 2026-09, 30 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2024-04 → 2026-09, 30 clôtures réelles continues. Périodes qualifiées : 2024-04 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-04 → 2026-09, 30 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2024-04 → 2026-09, 30 clôtures réelles continues. Périodes qualifiées : 2024-04 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2513,7 +2897,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2640,8 +3024,35 @@
             "end": "2026-09",
             "months": 62,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2021-08",
+                "end": "2026-09",
+                "months": 62
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "duolingo",
+            "starts": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -2664,15 +3075,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Périodes qualifiées : 2021-08 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2021-08 → 2026-09, 62 clôtures réelles continues. Périodes qualifiées : 2021-08 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2708,7 +3119,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:54:15.254124+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2835,8 +3246,54 @@
             "end": "2026-09",
             "months": 229,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2007-09",
+                "end": "2026-09",
+                "months": 229
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "mercadolibre",
+            "starts": [
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -2859,15 +3316,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2007-09 → 2026-09, 229 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2007-09 → 2026-09, 229 clôtures réelles continues. Périodes qualifiées : 2007-09 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2007-09 → 2026-09, 229 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2007-09 → 2026-09, 229 clôtures réelles continues. Périodes qualifiées : 2007-09 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2903,7 +3360,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3030,8 +3487,33 @@
             "end": "2026-09",
             "months": 57,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2022-01",
+                "end": "2026-09",
+                "months": 57
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "nu",
+            "starts": [
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -3054,15 +3536,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2022-01 → 2026-09, 57 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2022-01 → 2026-09, 57 clôtures réelles continues. Périodes qualifiées : 2022-01 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2022-01 → 2026-09, 57 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2022-01 → 2026-09, 57 clôtures réelles continues. Périodes qualifiées : 2022-01 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3098,7 +3580,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Brazil ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:54:15.254124+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Brazil ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3226,8 +3708,29 @@
             "end": "2026-09",
             "months": 29,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2024-05",
+                "end": "2026-09",
+                "months": 29
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "ge-vernova",
+            "starts": [
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -3250,15 +3753,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-05 → 2026-09, 29 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2024-05 → 2026-09, 29 clôtures réelles continues. Périodes qualifiées : 2024-05 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2024-05 → 2026-09, 29 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2024-05 → 2026-09, 29 clôtures réelles continues. Périodes qualifiées : 2024-05 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3294,7 +3797,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3427,8 +3930,33 @@
             "end": "2026-09",
             "months": 55,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2022-03",
+                "end": "2026-09",
+                "months": 55
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "constellation-energy",
+            "starts": [
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -3451,15 +3979,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2022-03 → 2026-09, 55 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2022-03 → 2026-09, 55 clôtures réelles continues. Périodes qualifiées : 2022-03 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2022-03 → 2026-09, 55 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2022-03 → 2026-09, 55 clôtures réelles continues. Périodes qualifiées : 2022-03 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3495,7 +4023,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Utilities. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Utilities. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3627,8 +4155,65 @@
             "end": "2026-09",
             "months": 366,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "1996-04",
+                "end": "2026-09",
+                "months": 366
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "cameco",
+            "starts": [
+              1997,
+              1998,
+              1999,
+              2000,
+              2001,
+              2002,
+              2003,
+              2004,
+              2005,
+              2006,
+              2007,
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -3650,15 +4235,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "1996-04 → 2026-09, 366 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "1996-04 → 2026-09, 366 clôtures réelles continues. Périodes qualifiées : 1996-04 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "1996-04 → 2026-09, 366 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "1996-04 → 2026-09, 366 clôtures réelles continues. Périodes qualifiées : 1996-04 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3694,7 +4279,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Canada ; secteur Energy. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Canada ; secteur Energy. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3826,8 +4411,61 @@
             "end": "2026-09",
             "months": 320,
             "currency": "SEK",
+            "qualifiedRanges": [
+              {
+                "start": "2000-02",
+                "end": "2026-09",
+                "months": 320
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "saab-b",
+            "starts": [
+              2001,
+              2002,
+              2003,
+              2004,
+              2005,
+              2006,
+              2007,
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "SEK"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -3850,15 +4488,15 @@
         },
         "investmentLump": {
           "status": "raccordé dans cette PR",
-          "reason": "2000-02 → 2026-09, 320 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2000-02 → 2026-09, 320 clôtures réelles continues. Périodes qualifiées : 2000-02 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "raccordé dans cette PR",
-          "reason": "2000-02 → 2026-09, 320 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2000-02 → 2026-09, 320 clôtures réelles continues. Périodes qualifiées : 2000-02 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3894,7 +4532,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Sweden ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-21, contrôle 2026-10-22T19:58:34.922185+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Sweden ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -4109,8 +4747,41 @@
             "end": "2026-09",
             "months": 96,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2018-10",
+                "end": "2026-09",
+                "months": 96
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfLock",
+            "starts": [
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -4133,15 +4804,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2018-10 → 2026-09, 96 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2018-10 → 2026-09, 96 clôtures réelles continues. Périodes qualifiées : 2018-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2018-10 → 2026-09, 96 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2018-10 → 2026-09, 96 clôtures réelles continues. Périodes qualifiées : 2018-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -4177,7 +4848,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.76267999999999}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.74937999999992}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -4382,8 +5053,45 @@
             "end": "2026-09",
             "months": 120,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2016-10",
+                "end": "2026-09",
+                "months": 120
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etf_robotics",
+            "starts": [
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -4406,15 +5114,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2016-10 → 2026-09, 120 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2016-10 → 2026-09, 120 clôtures réelles continues. Périodes qualifiées : 2016-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2016-10 → 2026-09, 120 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2016-10 → 2026-09, 120 clôtures réelles continues. Périodes qualifiées : 2016-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -4450,7 +5158,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.66870999999995}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.66351999999998}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -4656,8 +5364,71 @@
             "end": "2026-09",
             "months": 224,
             "currency": "EUR",
+            "qualifiedRanges": [
+              {
+                "start": "2008-02",
+                "end": "2019-11",
+                "months": 142
+              },
+              {
+                "start": "2021-01",
+                "end": "2026-09",
+                "months": 69
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etf_clean_energy",
+            "starts": [
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "EUR"
+          },
+          {
+            "id": "annual-IE00B1XNHC34",
+            "starts": [
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "annual",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -4676,19 +5447,19 @@
       "tools": {
         "performance": {
           "status": "déjà raccordé",
-          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Années de départ admissibles : 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Devise native et conversion EUR/USD selon la période."
+          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Années de départ admissibles : 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2022, 2023, 2024, 2025. Devise native et conversion EUR/USD selon la période."
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Périodes qualifiées : 2008-02 → 2019-11 ; 2021-01 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2008-02 → 2026-09, 224 clôtures réelles continues. Périodes qualifiées : 2008-02 → 2019-11 ; 2021-01 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -4696,7 +5467,7 @@
         },
         "rankingAnnual": {
           "status": "déjà raccordé",
-          "reason": "Années complètes : 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
+          "reason": "Années complètes : 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2022, 2023, 2024, 2025. Au moins deux années communes ; image limitée à sept années et six actifs. Admission individuelle, à revérifier avec chaque sélection."
         },
         "rankingManualPortfolios": {
           "status": "déjà raccordé",
@@ -4724,7 +5495,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.68758}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.77582999999996}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -4936,8 +5707,52 @@
             "end": "2026-09",
             "months": 204,
             "currency": "EUR",
+            "qualifiedRanges": [
+              {
+                "start": "2009-10",
+                "end": "2026-09",
+                "months": 204
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfIE00B4L5Y983",
+            "starts": [
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "EUR"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -4960,15 +5775,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2009-10 → 2026-09, 204 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2009-10 → 2026-09, 204 clôtures réelles continues. Périodes qualifiées : 2009-10 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2009-10 → 2026-09, 204 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2009-10 → 2026-09, 204 clôtures réelles continues. Périodes qualifiées : 2009-10 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5004,7 +5819,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.54503}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.54103000000009}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -5184,8 +5999,51 @@
             "end": "2026-09",
             "months": 196,
             "currency": "EUR",
+            "qualifiedRanges": [
+              {
+                "start": "2010-06",
+                "end": "2026-09",
+                "months": 196
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfIE00B53SZB19",
+            "starts": [
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "EUR"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -5208,15 +6066,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2010-06 → 2026-09, 196 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2010-06 → 2026-09, 196 clôtures réelles continues. Périodes qualifiées : 2010-06 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2010-06 → 2026-09, 196 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2010-06 → 2026-09, 196 clôtures réelles continues. Périodes qualifiées : 2010-06 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5252,7 +6110,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.96417999999997}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.95876000000007}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -5438,8 +6296,49 @@
             "end": "2026-09",
             "months": 174,
             "currency": "EUR",
+            "qualifiedRanges": [
+              {
+                "start": "2012-04",
+                "end": "2026-09",
+                "months": 174
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfIE00B6R52259",
+            "starts": [
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "EUR"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -5462,15 +6361,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2012-04 → 2026-09, 174 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2012-04 → 2026-09, 174 clôtures réelles continues. Périodes qualifiées : 2012-04 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2012-04 → 2026-09, 174 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2012-04 → 2026-09, 174 clôtures réelles continues. Périodes qualifiées : 2012-04 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5506,7 +6405,7 @@
         },
         "exposures": {
           "status": "déjà raccordé",
-          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-21\",\"complete\":true,\"identifiedCoverage\":99.62616999999995}. Poids non renormalisés, dates et couverture conservées."
+          "reason": "Compositions réellement publiées : {\"asOf\":\"2026-10-22\",\"complete\":true,\"identifiedCoverage\":99.62645}. Poids non renormalisés, dates et couverture conservées."
         },
         "overlap": {
           "status": "déjà raccordé",
@@ -5721,8 +6620,49 @@
             "end": "2026-09",
             "months": 172,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2012-06",
+                "end": "2026-09",
+                "months": 172
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfIE00B3RBWM25",
+            "starts": [
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -5745,15 +6685,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2012-06 → 2026-09, 172 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2012-06 → 2026-09, 172 clôtures réelles continues. Périodes qualifiées : 2012-06 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2012-06 → 2026-09, 172 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2012-06 → 2026-09, 172 clôtures réelles continues. Périodes qualifiées : 2012-06 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5977,8 +6917,39 @@
             "end": "2026-09",
             "months": 86,
             "currency": "EUR",
+            "qualifiedRanges": [
+              {
+                "start": "2019-08",
+                "end": "2026-09",
+                "months": 86
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfVwce",
+            "starts": [
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "EUR"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -6001,15 +6972,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2019-08 → 2026-09, 86 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2019-08 → 2026-09, 86 clôtures réelles continues. Périodes qualifiées : 2019-08 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2019-08 → 2026-09, 86 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2019-08 → 2026-09, 86 clôtures réelles continues. Périodes qualifiées : 2019-08 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6247,8 +7218,50 @@
             "end": "2026-09",
             "months": 185,
             "currency": "USD",
+            "qualifiedRanges": [
+              {
+                "start": "2011-05",
+                "end": "2026-09",
+                "months": 185
+              }
+            ],
             "convention": "adjusted-income-and-splits"
           }
+        ],
+        "performanceSources": [
+          {
+            "id": "etfIE00B4ND3602",
+            "starts": [
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021,
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "frequency": "monthly",
+            "currency": "USD"
+          }
+        ],
+        "anniversaryHorizons": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
         ],
         "aiDaily": {
           "from": "2026-07-13",
@@ -6271,15 +7284,15 @@
         },
         "investmentLump": {
           "status": "déjà raccordé",
-          "reason": "2011-05 → 2026-09, 185 clôtures réelles continues. Tous les mois observés sont sélectionnables. Unités théoriques ajustées, aucun prix d’achat brut inventé."
+          "reason": "2011-05 → 2026-09, 185 clôtures réelles continues. Périodes qualifiées : 2011-05 → 2026-09 ; les autres fenêtres sont refusées. Unités théoriques ajustées, aucun prix d’achat brut inventé."
         },
         "investmentDca": {
           "status": "déjà raccordé",
-          "reason": "2011-05 → 2026-09, 185 clôtures réelles continues. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
+          "reason": "2011-05 → 2026-09, 185 clôtures réelles continues. Périodes qualifiées : 2011-05 → 2026-09. Achats mensuels de fin de mois, revenus réinvestis, hors courtage/fiscalité ; change historique lorsque choisi."
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-22 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6386,6 +7399,13 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2024-11",
+        "end": "2026-09",
+        "startYear": 2025,
+        "endYear": 2025
+      },
+      "annualWindow": [],
       "modes": {
         "current": [
           "period",
@@ -6402,11 +7422,11 @@
         },
         {
           "id": "vertiv",
-          "returnPct": 76.33242896118998
+          "returnPct": 76.33244004323868
         },
         {
           "id": "nvidia",
-          "returnPct": 54.069161059689996
+          "returnPct": 54.069177820910475
         },
         {
           "id": "arista",
@@ -6440,6 +7460,18 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2021-09",
+        "end": "2026-09",
+        "startYear": 2022,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6483,6 +7515,17 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2022-01",
+        "end": "2026-09",
+        "startYear": 2023,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6534,6 +7577,18 @@
         "basis": "mixed-total",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2021-05",
+        "end": "2026-09",
+        "startYear": 2022,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6585,6 +7640,20 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2019-10",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6645,6 +7714,20 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2019-10",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6682,40 +7765,40 @@
       ],
       "compositionReview": {
         "isin": "IE00BG0J4C88",
-        "asOf": "2026-10-21",
-        "checkedAt": "2026-10-22T13:47:44.264291+00:00",
+        "asOf": "2026-10-22",
+        "checkedAt": "2026-10-23T15:34:53.226281+00:00",
         "complete": true,
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "identifiedWeightPct": 99.76267999999999,
+        "identifiedWeightPct": 99.74937999999992,
         "requestedCompanies": [
           {
             "id": "crowdstrike",
             "isin": "US22788C1053",
-            "weightPct": 2.97666,
+            "weightPct": 2.95898,
             "observation": "Position observée à cette date"
           },
           {
             "id": "palo-alto-networks",
             "isin": "US6974351057",
-            "weightPct": 2.67283,
+            "weightPct": 2.73162,
             "observation": "Position observée à cette date"
           },
           {
             "id": "fortinet",
             "isin": "US34959E1091",
-            "weightPct": 2.52279,
+            "weightPct": 2.50706,
             "observation": "Position observée à cette date"
           },
           {
             "id": "cloudflare",
             "isin": "US18915M1071",
-            "weightPct": 2.60895,
+            "weightPct": 2.57807,
             "observation": "Position observée à cette date"
           },
           {
             "id": "zscaler",
             "isin": "US98980G1022",
-            "weightPct": 3.68624,
+            "weightPct": 3.78836,
             "observation": "Position observée à cette date"
           }
         ]
@@ -6746,6 +7829,19 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2020-10",
+        "end": "2026-09",
+        "startYear": 2021,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6770,7 +7866,7 @@
         },
         {
           "id": "salesforce",
-          "returnPct": 3.766964463241629
+          "returnPct": 3.7669712924425003
         }
       ]
     },
@@ -6795,6 +7891,13 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2024-04",
+        "end": "2026-09",
+        "startYear": 2025,
+        "endYear": 2025
+      },
+      "annualWindow": [],
       "modes": {
         "current": [
           "period",
@@ -6844,6 +7947,17 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2022-01",
+        "end": "2026-09",
+        "startYear": 2023,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6885,6 +7999,13 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2024-05",
+        "end": "2026-09",
+        "startYear": 2025,
+        "endYear": 2025
+      },
+      "annualWindow": [],
       "modes": {
         "current": [
           "period",
@@ -6901,7 +8022,7 @@
         },
         {
           "id": "constellation-energy",
-          "returnPct": 13.25800800713286
+          "returnPct": 13.25802438694923
         },
         {
           "id": "cameco",
@@ -6942,6 +8063,21 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2016-01",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -6954,7 +8090,7 @@
       "sample": [
         {
           "id": "saab-b",
-          "returnPct": 861.1629456639579
+          "returnPct": 861.1630727890881
         },
         {
           "id": "rheinmetall",
@@ -6962,7 +8098,7 @@
         },
         {
           "id": "thales",
-          "returnPct": 290.42623397167705
+          "returnPct": 290.4262068121878
         },
         {
           "id": "bae-systems",
@@ -6999,6 +8135,21 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2016-10",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -7015,11 +8166,11 @@
         },
         {
           "id": "keyence",
-          "returnPct": 182.4918023467601
+          "returnPct": 182.4919224723334
         },
         {
           "id": "abb",
-          "returnPct": 526.3307070293723
+          "returnPct": 526.330793565416
         },
         {
           "id": "intuitive-surgical",
@@ -7028,28 +8179,28 @@
       ],
       "compositionReview": {
         "isin": "IE00BYZK4552",
-        "asOf": "2026-10-21",
-        "checkedAt": "2026-10-22T13:47:44.264291+00:00",
+        "asOf": "2026-10-22",
+        "checkedAt": "2026-10-23T15:34:53.226281+00:00",
         "complete": true,
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "identifiedWeightPct": 99.66870999999995,
+        "identifiedWeightPct": 99.66351999999998,
         "requestedCompanies": [
           {
             "id": "keyence",
             "isin": "JP3236200006",
-            "weightPct": 2.99307,
+            "weightPct": 3.06461,
             "observation": "Position observée à cette date"
           },
           {
             "id": "abb",
             "isin": "CH0012221716",
-            "weightPct": 2.35154,
+            "weightPct": 2.3165,
             "observation": "Position observée à cette date"
           },
           {
             "id": "intuitive-surgical",
             "isin": "US46120E6023",
-            "weightPct": 2.73977,
+            "weightPct": 2.90994,
             "observation": "Position observée à cette date"
           }
         ]
@@ -7079,6 +8230,20 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2019-08",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -7136,6 +8301,21 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2010-06",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -7171,9 +8351,6 @@
         "start": "2018-10",
         "end": "2026-09",
         "years": [
-          2019,
-          2020,
-          2021,
           2022,
           2023,
           2024,
@@ -7183,6 +8360,18 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2021-01",
+        "end": "2026-09",
+        "startYear": 2022,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",
@@ -7195,19 +8384,19 @@
       "sample": [
         {
           "id": "etfLock",
-          "returnPct": 187.78730243335295
+          "returnPct": 92.54249714966008
         },
         {
           "id": "etf_robotics",
-          "returnPct": 235.51477633926098
+          "returnPct": 93.80490851828847
         },
         {
           "id": "etf_clean_energy",
-          "returnPct": 127.2157341578536
+          "returnPct": -36.38623999009587
         },
         {
           "id": "etfIE00B4L5Y983",
-          "returnPct": 175.81418311128277
+          "returnPct": 115.3576652433272
         }
       ]
     },
@@ -7244,6 +8433,21 @@
         "basis": "adjusted",
         "frequency": "monthly"
       },
+      "periodWindow": {
+        "start": "2011-05",
+        "end": "2026-09",
+        "startYear": 2020,
+        "endYear": 2025
+      },
+      "annualWindow": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
       "modes": {
         "current": [
           "period",

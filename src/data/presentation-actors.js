@@ -160,6 +160,18 @@ export function applyActorOffer(record, offerId = record.offers?.[0]?.id) {
     highlights: selected.highlights, checkedAt: observations[record.id]?.checkedAt ?? record.checkedAt,
     verification: 'public-terms',
     sources: [...new Map([...record.sources, ...Object.values(selected.fields).flatMap(field => (field.sourceUrls ?? [field.sourceUrl]).map(url => ({ label: 'Conditions publiques de l’offre', url })))].map(source => [source.url, source])).values()] }
+  const activity=observations[record.id]?.activity
+  if(activity?.status==='ceased')Object.assign(result,{
+    activity, offer:'Cessation d’activité — information aux investisseurs existants',
+    intro:`${record.name} annonce avoir cessé son activité. Le jugement de liquidation est daté du ${activity.judgmentAt.split('-').reverse().join('/')}.`,
+    vehicle:'Investissements déjà souscrits, selon leurs contrats',
+    distinction:'Cet avis de cessation ne décrit aucune nouvelle offre et ne garantit pas la récupération des sommes investies.',
+    mechanism:activity.notice,
+    access:'La plateforme a mis fin à ses activités. Les anciennes modalités de souscription sont conservées uniquement en archive.',
+    income:'Le devenir des investissements existants reste à suivre dans leurs documents et auprès de leur gestionnaire.',
+    liquidity:'Le transfert vers Run Off est annoncé ; les accès ne sont pas encore ouverts selon l’avis contrôlé. Aucun délai de récupération ni montant remboursé n’est établi.',
+    highlights:[['Statut','Activité cessée'],['Jugement',activity.judgmentAt.split('-').reverse().join('/')],['Suivi','Gestion extinctive']],
+  })
   const cache = offerCache.get(record) ?? new Map()
   cache.set(offerId, result); offerCache.set(record, cache)
   return result
@@ -215,6 +227,13 @@ function shortActorField(record, field) {
 }
 export function buildActorTweet(record) {
   const offer = record.selectedOffer
+  if(record.activity?.status==='ceased')return [
+    record.intro, record.mechanism,
+    `📦 ${record.vehicle}. ${record.distinction}`,
+    `🚪 ${record.liquidity}`,
+    `⚠️ Le capital et les revenus ne sont pas garantis. ${record.risks}`,
+    `Avis officiel contrôlé le ${record.activity.checkedAt.split('-').reverse().join('/')} : ${record.activity.sourceUrl}`,
+  ].join('\n\n')
   return [
     `${record.intro} 👇`,
     offer?.scopeType === 'platform' ? `📄 Fiche générale : ${record.name}. Conditions selon le projet et ses documents.` : `📄 L’offre présentée : ${record.offer}.`,

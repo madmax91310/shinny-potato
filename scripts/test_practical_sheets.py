@@ -1,4 +1,5 @@
 import io
+import pathlib
 import os
 import urllib.error
 import json
@@ -51,6 +52,48 @@ class CollectionTests(unittest.TestCase):
             fetch.return_value.__enter__.return_value.read.return_value=self.document()
             _,record,_=c.collect('test',self.config(),previous,'2026-10-10')
         self.assertTrue(record['reviewRequired'])
+    def test_review_is_bound_to_exact_content_url_and_date(self):
+        from tempfile import TemporaryDirectory
+        with TemporaryDirectory() as folder:
+            review=pathlib.Path(folder)/'reviews.json'
+            parsed=c.parse(self.document(),self.config())
+            approval={'contentHash':parsed['contentHash'],'sourceUrl':self.config()['url'],
+                      'reviewedAt':'2026-10-23','evidence':'versioned-review.md'}
+            previous={**parsed,'reviewRequired':True,'checkedAt':'2026-10-22'}
+            for mutation, expected in [({},False),({'contentHash':'old'},True),
+                                       ({'sourceUrl':'https://other.example'},True),
+                                       ({'reviewedAt':'2026-10-24'},True)]:
+                review.write_text(json.dumps({'test':{**approval,**mutation}}))
+                with patch.object(c,'REVIEWS',review),patch.object(c,'fetch_document',return_value=self.document()):
+                    _,record,error=c.collect('test',self.config(),previous,'2026-10-23')
+                self.assertIsNone(error)
+                self.assertEqual(record['reviewRequired'],expected)
+            review.write_text(json.dumps({'test':approval}))
+            with patch.object(c,'REVIEWS',review),patch.object(c,'fetch_document',return_value=self.document('New policy')):
+                _,record,error=c.collect('test',self.config(),previous,'2026-10-23')
+            self.assertIsNone(error)
+            self.assertTrue(record['reviewRequired'])
+
+    def test_regressing_publication_preserves_last_valid_evidence(self):
+        previous={'publishedAt':'2026-10-22','checkedAt':'2026-10-22','contentHash':'valid'}
+        with patch.object(c,'fetch_document',return_value=self.document()),patch.object(c,'parse',return_value={'publishedAt':'2026-10-21','contentHash':'old'}):
+            _,record,error=c.collect('test',self.config(),previous,'2026-10-23')
+        self.assertIn('regression',error)
+        self.assertEqual(record['contentHash'],'valid')
+        self.assertEqual(record['checkedAt'],'2026-10-22')
+        self.assertEqual(record['lastAttemptAt'],'2026-10-23')
+
+    def test_retry_is_bounded_and_does_not_retry_permanent_refusal(self):
+        with patch('urllib.request.urlopen',side_effect=TimeoutError('timeout')) as fetch,patch.object(c.time,'sleep') as sleep:
+            with self.assertRaises(TimeoutError):c.fetch_document('https://example.org')
+        self.assertEqual(fetch.call_count,3)
+        self.assertEqual([call.args[0] for call in sleep.call_args_list],[1,2])
+        refusal=urllib.error.HTTPError('https://example.org',403,'Forbidden',{},None)
+        with patch('urllib.request.urlopen',side_effect=refusal) as fetch,patch.object(c.time,'sleep') as sleep:
+            with self.assertRaises(urllib.error.HTTPError):c.fetch_document('https://example.org')
+        self.assertEqual(fetch.call_count,1)
+        sleep.assert_not_called()
+
     def test_daily_market_metrics_do_not_change_editorial_hash(self):
         config={**self.config(),'editorialSelector':'.policy','editorialMarkers':['ETF indice']}
         html='<html><body><main><h1>ETF</h1><div class=policy>'+('ETF indice description '*20)+'</div><div class=policy>'+('ETF indice risques '*20)+'</div><div class=nav>{}</div></main></body></html>'

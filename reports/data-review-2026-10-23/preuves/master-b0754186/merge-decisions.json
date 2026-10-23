@@ -1,0 +1,37 @@
+{
+  "master": "b0754186",
+  "choices": [
+    {
+      "file": "public/data/holdings-discovery.json",
+      "decision": "preserve newer validated master observations/configuration"
+    },
+    {
+      "file": "public/data/pending-source-checks.json",
+      "decision": "preserve newer validated master observations/configuration"
+    },
+    {
+      "file": "scripts/instrument-metadata-sources.json",
+      "decision": "preserve newer validated master observations/configuration"
+    },
+    {
+      "file": "src/data/dca-complete-holdings.json",
+      "decision": "preserve newer validated master observations/configuration"
+    },
+    {
+      "file": "src/data/dca-holdings-status.json",
+      "decision": "preserve newer validated master observations/configuration"
+    },
+    {
+      "file": "src/data/automated-instrument-metadata.json",
+      "decision": "master fields, with two actually revalidated distribution proofs from the PR (23/10 instead of 21/10)"
+    },
+    {
+      "file": "src/data/instrument-metadata-status.json",
+      "decision": "latest master failed attempts retained (15:40, HTTP403); last qualified distribution evidence from actual PR success (13:07, 23/10) retained separately with original dates"
+    },
+    {
+      "file": "scripts/source-snapshots/ranking-collection-status.json",
+      "decision": "latest master series and ECB checks, qualified H.10 branch retained; later failure of the unpatched production FRED branch explicitly preserved separately"
+    }
+  ]
+}

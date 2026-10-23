@@ -391,6 +391,18 @@
       ]
     },
     {
+      "host": "www.federalreserve.gov",
+      "access": "Programme public H.10, export quotidien officiel, vérifié depuis GitHub Actions",
+      "reuseStatus": "unverified",
+      "license": null,
+      "attribution": "Federal Reserve Board, H.10 ; croisement explicite avec BCE",
+      "termsUrl": "https://www.federalreserve.gov/aboutthefed/disclaimer.htm",
+      "reviewStatus": "Qualification financière du champ TWD/USD documentée ; conditions de réutilisation à examiner pour chaque usage.",
+      "configurations": [
+        "scripts/h10_fx.py"
+      ]
+    },
+    {
       "host": "www.fortuneo.fr",
       "access": "HTTP/API/PDF public selon le collecteur ; restrictions possibles",
       "reuseStatus": "unverified",

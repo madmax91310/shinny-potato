@@ -1,3 +1,4 @@
+import {fieldQualification} from './lib/data-qualification.mjs'
 import assert from 'node:assert/strict'
 import { access } from 'node:fs/promises'
 import { PRESENTATION_ACTORS, ACTOR_FAMILIES, applyActorOffer, buildActorTweet } from '../src/data/presentation-actors.js'
@@ -65,13 +66,14 @@ assert.notDeepEqual(presentationReliefModel(forets,'actor').highlights,presentat
 assert(buildActorTweet(byId('bricks')).includes('1,2 € TTC'))
 for (const actor of PRESENTATION_ACTORS) for (const offer of actor.offers) {
   const record=applyActorOffer(actor,offer.id),text=buildActorTweet(record)
-  assert(text.includes('👇') && text.includes('💸'))
+  if(record.activity?.status==='ceased'){assert(text.includes('cessé son activité'));assert(!text.includes('💸'))}
+  else assert(text.includes('👇') && text.includes('💸'))
   assert(text.length < 1700, `${actor.id}/${offer.id}`)
-  assert(text.split('\n\n').at(-1).startsWith('💬 '))
+  assert(text.split('\n\n').at(-1).startsWith(record.activity?.status==='ceased'?'Avis officiel contrôlé':'💬 '))
   assert(!/undefined|NaN|qualifié|qualifiée/.test(text))
   assert.equal((text.match(/🔎 /g) ?? []).length,offer.warnings.length ? 1 : 0)
   // Retain the selected offer's main fee rates and warnings, while omitting secondary costs.
-  for (const figure of offer.fields.fees.value.split('. ').slice(0, actor.id === 'bacchus' ? 0 : 2).join(' ').match(/\d+(?:[.,]\d+)?/g) ?? []) {
+  for (const figure of (record.activity?.status==='ceased'?'':offer.fields.fees.value).split('. ').slice(0, actor.id === 'bacchus' ? 0 : 2).join(' ').match(/\d+(?:[.,]\d+)?/g) ?? []) {
     assert(text.includes(figure), `${actor.id}/${offer.id}: missing main fee ${figure}`)
   }
   for (const warning of offer.warnings) assert(text.includes(warning))
@@ -86,3 +88,13 @@ for (const id of ['bricks','enerfip','hectarea','matis']) {
   const catalog=DATA_CATALOG.find(row=>row.id === `actor:${id}`)
   assert(catalog.fields.some(row=>row.label?.includes('Conditions variables') || row.name?.includes('Conditions variables')))
 }
+
+const ceased=byId('tudigo')
+assert.equal(ceased.activity.status,'ceased')
+assert(buildActorTweet(ceased).includes('cessé son activité'))
+assert(!buildActorTweet(ceased).includes('Souscription :'))
+assert(presentationReliefModel(ceased,'actor').qualifier.includes('Activité cessée'))
+const archive=DATA_CATALOG.find(r=>r.id==='actor:tudigo')
+assert.equal(archive.fields.filter(f=>f.archived).length,5)
+assert(archive.fields.some(f=>f.label==='Statut de l’activité'))
+for(const f of archive.fields.filter(f=>f.archived))assert.equal(fieldQualification(f,archive).kind,'archive')

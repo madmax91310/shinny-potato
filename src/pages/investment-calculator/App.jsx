@@ -16,7 +16,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { getSimulationAssetId, getAnnualPerformanceHref } from '../../data/simulation-links.js'
+import { getAnnualPerformanceHref } from '../../data/simulation-links.js'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS,
@@ -245,14 +245,16 @@ function ResultCard({ state, d, copied, onCopy }) {
 
 export default function App() {
   const { search } = useLocation()
+  const params=new URLSearchParams(search)
+  if(params.has('asset')&&!ASSET_ORDER.includes(params.get('asset')))return <main><h1>Calculateur d’investissement</h1><p role="alert">Le support demandé est indisponible. Aucun autre actif n’a été substitué.</p><Link to="/calculateur-investissement">Choisir un support</Link></main>
   return <InvestmentWorkspace key={search} search={search} />
 }
 
 function InvestmentWorkspace({ search }) {
   const [state, setState] = useState(() => {
     const params = new URLSearchParams(search)
-    const assetId = getSimulationAssetId(params.get('asset'))
-    if (params.has('asset') && !assetId) return INITIAL_STATE
+    const requested=params.get('asset')
+    const assetId=ASSET_ORDER.includes(requested)?requested:null
     if (!assetId) return readPreference('investment-settings', INITIAL_STATE, validSavedSettings)
     const minDate = getAssetMinDate(assetId)
     const maxDate = ASSETS[assetId].points.at(-1).date
@@ -586,7 +588,7 @@ function InvestmentEditor({state,setState}){
         {crisisMode ? <CrisisResult comparison={crisisComparison} copied={copied} onCopy={handleCopy} /> : resultBlocked ? (
           <div className="ic-card ic-card-invalid">
             <p className="ic-invalid-message">
-              {amountInvalid
+              {calculation.error ? calculation.error : amountInvalid
                 ? 'Indique un montant supérieur à 0 pour voir le résultat de la simulation.'
                   : startDateInvalid
                   ? startDateAfterLast

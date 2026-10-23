@@ -1,0 +1,129 @@
+name: Verify data review sources without publication
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/verify-data-review.yml'
+      - 'scripts/issuer-access-routes.json'
+      - 'scripts/collect_official_share_history.py'
+      - 'scripts/collect_vaneck_etf.py'
+  workflow_dispatch:
+    inputs:
+      scopes:
+        description: JSON list of isolated collector scopes
+        required: true
+        default: '["fx","holdings","metadata","practical","copper","ai","conflict"]'
+permissions:
+  contents: read
+jobs:
+  sources:
+    if: github.event_name == 'workflow_dispatch'
+    strategy:
+      fail-fast: false
+      matrix:
+        scope: ${{ fromJSON(inputs.scopes) }}
+    runs-on: ${{ matrix.scope == 'brokers-macos' && 'macos-15' || 'ubuntu-latest' }}
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+        if: runner.os == 'Linux'
+      - run: brew install poppler
+        if: runner.os == 'macOS'
+      - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+        if: contains(fromJSON('["holdings","holdings-retry","copper","financial","discovery"]'), matrix.scope)
+      - name: Collect and validate exact sources in isolated checkout
+        env:
+          WISDOMTREE_BROWSER_CAPTURE: '1'
+        run: python scripts/verify_data_review_sources.py --scope ${{ matrix.scope }} --output evidence
+      - name: Preserve individual results and validated registries
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-review-${{ matrix.scope }}
+          path: evidence/
+          retention-days: 35
+
+  routes:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python scripts/probe_review_routes.py --output evidence
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: data-review-routes
+          path: evidence/
+
+  vaneck-route:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
+      - run: npm ci
+      - name: Prepare official document readers
+        timeout-minutes: 5
+        run: |
+          if ! command -v pdftotext >/dev/null; then sudo apt-get update && sudo apt-get install -y poppler-utils; fi
+          if ! test -x /usr/bin/google-chrome && ! test -x /usr/bin/chromium; then npx playwright install --with-deps chromium; fi
+      - name: Qualify the Danish public route with the full official NAV validator
+        run: |
+          python3 - <<'PY'
+          import datetime as dt, hashlib, json, pathlib, sys
+          sys.path.insert(0,'scripts')
+          from data_automation import UTC, write_json_atomic
+          from issuer_documents import download
+          from collect_vaneck_etf import download_document
+          from collect_official_share_history import configurations, collect_one
+          out=pathlib.Path('vaneck-evidence');out.mkdir(exist_ok=True)
+          url='https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf'
+          now=dt.datetime.now(UTC)
+          try:
+              raw,actual=download_document({'sourceUrl':url,'fallbackUrls':[]})
+              if actual!=url:raise ValueError('Unexpected route used for qualification')
+              (out/'gdig-dk.pdf').write_bytes(raw)
+              source=next(s for s in configurations() if s['id']=='etfIE00BDFBTQ78')
+              source={**source,'factsheetUrl':url}
+              # This independent document probe keeps testing the PDF route;
+              # the active producer may now qualify its calendar via page APIs.
+              source.pop('navCalendarSource',None)
+              def exact_document(target):
+                  if '/library/fact-sheets/' in target:
+                      if target!=url:raise ValueError('Other document routes disabled during this qualification')
+                      return raw
+                  return download(target)
+              record=collect_one(source,now,document_fetch=exact_document,capture=out/'raw')
+              if url not in record['sourceUrls']:raise ValueError('Qualified route missing from provenance')
+              write_json_atomic(out/'record.json',record)
+              proof={'checkedAt':now.isoformat(),'status':'qualified','route':url,'sha256':hashlib.sha256(raw).hexdigest(),'isin':source['isin'],'latestLevel':record['latestLevel'],'calendarProof':record['calendarProof'],'publication':'not-requested'}
+              write_json_atomic(out/'qualification.json',proof);print(json.dumps(proof,ensure_ascii=False))
+          except Exception as error:
+              write_json_atomic(out/'qualification.json',{'checkedAt':now.isoformat(),'status':'blocked','route':url,'error':str(error),'publication':'not-requested'})
+              raise
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: data-review-vaneck-dk
+          path: vaneck-evidence/
+          retention-days: 35

@@ -25,7 +25,7 @@ class RankingSourcesTest(unittest.TestCase):
         ecb = document([('1999-01-28', 1.1), ('1999-01-29', 1.2), ('1999-02-25', 1.3), ('1999-02-26', 1.35), ('1999-03-01', 1.4)])
         # 29 January is a FRED holiday ('.'): the January rate uses the 28th; February uses the 26th.
         cross = parse_cross_fx(fred([('1999-01-28', 32.0), ('1999-01-29', '.'), ('1999-02-25', 33.0), ('1999-02-26', 33.5), ('1999-03-01', 34.0)]), ecb, now)
-        self.assertEqual(cross['observations']['1999-01'], {'asOf': '1999-01-28', 'usdPerEur': 1.1, 'perUsd': 32.0, 'value': 35.2})
+        self.assertEqual(cross['observations']['1999-01'], {'asOf': '1999-01-28', 'usdPerEur': 1.1, 'perUsd': 32.0, 'value': 35.2, 'ecbRates':{'EUR':1.0,'USD':1.1}})
         self.assertEqual(cross['observations']['1999-02']['asOf'], '1999-02-26')
         self.assertEqual(cross['observations']['1999-02']['value'], round(33.5 * 1.35, 4))
         self.assertNotIn('1999-03', cross['observations'])

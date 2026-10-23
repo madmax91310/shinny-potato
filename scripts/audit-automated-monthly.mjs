@@ -76,7 +76,8 @@ for (const [id, record] of Object.entries(records)) {
   assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].periodEnd, record.periodEnd);
   const startYm = record.periodStart > '2020-01' ? record.periodStart : '2020-01';
   const prices=ASSETS[id].points.filter(p=>p.date>=startYm);
-  if(!qualifyHistoryWindow(ASSETS[id],startYm,record.periodEnd).qualified){assert.throws(()=>derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''}),/cours reportés/);continue}
+  const qualification=qualifyHistoryWindow(ASSETS[id],startYm,record.periodEnd)
+  if(!qualification.qualified){assert.throws(()=>derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''}),{message:qualification.reason});continue}
   for (const mode of ['lump','dca']) {
     const expected=(mode==='lump'?100/prices[0].price:prices.reduce((n,p)=>n+100/p.price,0))*prices.at(-1).price;
     const d=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode,overridePriceRaw:''});

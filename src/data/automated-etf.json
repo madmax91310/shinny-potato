@@ -403,72 +403,77 @@
       "modifiedAt": "2026-10-23"
     },
     "sectors": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
+      "basis": "fund",
+      "sourceComponent": "holdings.all",
+      "method": "GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "portfolioWeightPct": 99.99996,
+      "sha256": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
       "rows": [
         {
-          "name": "Information Technology",
-          "weightPct": 38.22,
-          "label": "Information Technology"
+          "name": "Energy",
+          "weightPct": 3.72984,
+          "label": "Energy"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 1.6981,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.03538,
+          "label": "Utilities"
         },
         {
           "name": "Financials",
-          "weightPct": 11.78,
+          "weightPct": 12.06728,
           "label": "Financials"
         },
         {
           "name": "Health Care",
-          "weightPct": 9.68,
+          "weightPct": 9.93024,
           "label": "Health Care"
         },
         {
-          "name": "Communication",
-          "weightPct": 9.39,
-          "label": "Communication"
-        },
-        {
-          "name": "Consumer Discretionary",
-          "weightPct": 9.0,
-          "label": "Consumer Discretionary"
-        },
-        {
           "name": "Industrials",
-          "weightPct": 8.0,
+          "weightPct": 8.02037,
           "label": "Industrials"
         },
         {
-          "name": "Consumer Staples",
-          "weightPct": 4.74,
-          "label": "Consumer Staples"
-        },
-        {
-          "name": "Energy",
-          "weightPct": 3.71,
-          "label": "Energy"
-        },
-        {
-          "name": "Utilities",
-          "weightPct": 1.97,
-          "label": "Utilities"
-        },
-        {
           "name": "Real Estate",
-          "weightPct": 1.71,
+          "weightPct": 1.74781,
           "label": "Immobilier"
         },
         {
-          "name": "Materials",
-          "weightPct": 1.67,
-          "label": "Materials"
+          "name": "Communication",
+          "weightPct": 9.21684,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 4.94514,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.95565,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 37.52611,
+          "label": "Information Technology"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.13,
+          "weightPct": 0.1272,
           "label": "Cash and/or Derivatives"
         }
       ],
-      "sourceComponent": "exposureBreakdowns.sector",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-23",
-      "modifiedAt": "2026-10-22"
+      "modifiedAt": "2026-10-23"
     },
     "performance": {
       "currency": "USD",
@@ -500,24 +505,24 @@
     },
     "provider": "iShares",
     "countries": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99682
+          "weightPct": 99.99669
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.002
+          "weightPct": 0.00202
         },
         {
           "name": "Mexico",
-          "weightPct": 0.00101
+          "weightPct": 0.00102
         },
         {
           "name": "European Union",
-          "weightPct": 0.00022
+          "weightPct": 0.00023
         },
         {
           "name": "Other",
@@ -529,58 +534,58 @@
       "modifiedAt": "2026-10-23"
     },
     "holdings": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "basis": "fund",
       "rows": [
         {
           "name": "NVIDIA",
-          "weightPct": 8.03124,
+          "weightPct": 7.77189,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE",
-          "weightPct": 7.50583,
+          "weightPct": 7.69093,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT",
-          "weightPct": 5.91681,
+          "weightPct": 5.85569,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 3.85036,
+          "weightPct": 3.71929,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 2.93695,
+          "weightPct": 2.87922,
           "isin": "US02079K3059"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 2.40281,
+          "weightPct": 2.32732,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET CLASS C",
-          "weightPct": 2.35192,
+          "weightPct": 2.30735,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS CLASS A",
-          "weightPct": 2.29966,
+          "weightPct": 2.16533,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.62843,
+          "weightPct": 1.59761,
           "isin": "US88160R1014"
         },
         {
-          "name": "MICRON TECHNOLOGY",
-          "weightPct": 1.54279,
-          "isin": "US5951121038"
+          "name": "ELI LILLY",
+          "weightPct": 1.58231,
+          "isin": "US5324571083"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -588,24 +593,24 @@
       "modifiedAt": "2026-10-23"
     },
     "countriesRisk": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99682
+          "weightPct": 99.99669
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.002
+          "weightPct": 0.00202
         },
         {
           "name": "Mexico",
-          "weightPct": 0.00101
+          "weightPct": 0.00102
         },
         {
           "name": "European Union",
-          "weightPct": 0.00022
+          "weightPct": 0.00023
         },
         {
           "name": "Other",
@@ -654,7 +659,7 @@
         "value": 504.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
@@ -20527,6 +20532,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "96933fb2eb2125e9bdda911982ded6b15b5d9b3441f27a2c544b24ff1ea9fce7",
       "rows": [
         {
           "name": "GOLDMAN SACHS GROUP INC 3.5 01/23/2033",

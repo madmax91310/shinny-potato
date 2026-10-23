@@ -69,7 +69,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const params = new URLSearchParams(search);
   const requestedAsset = initialFormat === FORMATS.PERFORMANCE_DEPUIS
     ? (params.has('isin') ? getPerformanceAssetId(params.get('isin'))
-      : getSimulationAssetId(params.get('asset'))) : initialFormat === FORMATS.ANNIVERSAIRE && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === params.get('asset')) ? params.get('asset') : null;
+      : (getSimulationAssetId(params.get('asset')) ?? params.get('asset'))) : initialFormat === FORMATS.ANNIVERSAIRE && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === params.get('asset')) ? params.get('asset') : null;
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
   const hasComparisonSubject = id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id));
