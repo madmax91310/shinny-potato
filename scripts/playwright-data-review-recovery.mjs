@@ -11,7 +11,13 @@ const latest=Object.keys(series.points).sort().at(-1)
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4397','--strictPort'],{stdio:'ignore'})
 const base='http://127.0.0.1:4397/shinny-potato';let browser
 try{
- for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
+ let ready=false;const deadline=Date.now()+30000
+ while(Date.now()<deadline){
+  if(server.exitCode!==null)throw Error(`Preview exited ${server.exitCode}`)
+  try{if((await fetch(base+'/',{signal:AbortSignal.timeout(1000)})).ok){ready=true;break}}catch{}
+  await new Promise(r=>setTimeout(r,100))
+ }
+ assert(ready,'Preview did not become available within 30 seconds')
  browser=await chromium.launch({headless:true})
  const page=await browser.newPage({viewport:{width:1280,height:900},acceptDownloads:true}),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
@@ -24,6 +30,11 @@ try{
  assert.equal(await section.locator('article').count(),report.rows.filter(r=>r.open&&r.isin==='GB00B15KXQ89').length)
  const pending=page.waitForEvent('download');await section.getByRole('link',{name:`Télécharger les ${report.summary.total} comparaisons (JSON)`}).click()
  const file=await pending;await file.saveAs(out+'/financial-reconciliation.json');assert.deepEqual(JSON.parse(fs.readFileSync(out+'/financial-reconciliation.json')),report)
+ if(report.summary.correctedWithResidual){
+  const residual=report.rows.find(r=>r.residualOpen)
+  await section.getByRole('textbox',{name:'Rechercher un écart financier'}).fill(residual.isin)
+  assert((await section.innerText()).includes(residual.reason),'The proved correction and remaining residual must reach the real review screen')
+ }
  await page.screenshot({path:out+'/review-desktop.png',fullPage:true})
  let pngCount=0
  for(const width of [1280,390]){

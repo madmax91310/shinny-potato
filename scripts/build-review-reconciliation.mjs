@@ -14,10 +14,12 @@ const currentCases=new Map(integrated.rows.map(r=>[key(r),r]))
 const rows=original.cases.map(r=>{
  const check=diagnostics.get(key(r)),share=shares.get(r.isin)
  const current=currentCases.get(key(r))
- return {id:key(r),isin:r.isin,name:r.name,year:r.year,status:r.status,open:r.status==='anomalie encore inexpliquée',
+ const status=current?.status||r.status
+ return {id:key(r),isin:r.isin,name:r.name,year:r.year,initialStatus:r.status,status,open:status==='anomalie encore inexpliquée',residualOpen:status.startsWith('erreur corrigée ;'),
   original:{marketReturn:r.recollectedMarketReturn,officialReturn:r.recollectedNavReturn,convertedOfficialReturn:r.recollectedNavConverted,differencePp:r.recollectedDifferencePp,
    marketCurrency:r.currency,navCurrency:r.navCurrency,marketStartDate:r.marketStartDate,marketEndDate:r.marketEndDate,marketSymbol:r.marketSymbol,marketMic:r.marketMic},
-  reason:r.demonstratedCause,missingPiece:current?.missingPiece||r.missingPiece||null,
+  reason:current?.demonstratedCause||r.demonstratedCause,missingPiece:current?.missingPiece||r.missingPiece||null,
+  resolutionEvidence:status!==r.status?'https://github.com/madmax91310/shinny-potato/blob/master/'+integrated.source:null,
   currentConsumer:current?{route:current.voie_active_apres,secured:current.usage_securise,dailyEvidence:current.preuve_quotidienne_apres,officialCloseCheck:current.clotures_officielles_recoupees,proof:integrated.source}:null,
   sourceUrls:[...new Set([r.navSource,...(()=>{try{return JSON.parse(r.marketSource)}catch{return []}})()].filter(Boolean))],
   latestCheck:share?{runUrl:financialRun,attemptedAt:share.attemptedAt,officialStatus:share.official.status,officialError:share.official.error??null,marketStatus:share.market.status,
@@ -25,8 +27,8 @@ const rows=original.cases.map(r=>{
   proof:'https://github.com/madmax91310/shinny-potato/blob/master/reports/reliquat-2026-10-23/reconciliation-90-ecarts.csv'}
 })
 if(rows.length!==new Set(rows.map(r=>r.id)).size)throw Error('Duplicate original financial case')
-const summary={total:rows.length,open:rows.filter(r=>r.open).length,corrected:rows.filter(r=>r.status==='erreur corrigée').length,nonComparable:rows.filter(r=>r.status==='comparaison non pertinente').length,
+const summary={total:rows.length,open:rows.filter(r=>r.open).length,corrected:rows.filter(r=>r.status==='erreur corrigée').length,correctedWithResidual:rows.filter(r=>r.residualOpen).length,nonComparable:rows.filter(r=>r.status==='comparaison non pertinente').length,
  checked:rows.filter(r=>r.latestCheck).length}
-if(summary.total!==summary.open+summary.corrected+summary.nonComparable)throw Error('Unaccounted financial case')
+if(summary.total!==summary.open+summary.corrected+summary.correctedWithResidual+summary.nonComparable)throw Error('Unaccounted financial case')
 writeFileSync(new URL('../public/data/financial-reconciliation.json',import.meta.url),JSON.stringify({schemaVersion:1,summary,sourceCheckedAt:observed?.attemptedAt??null,rows},null,2)+'\n')
 console.log('Original financial cases preserved:',summary)

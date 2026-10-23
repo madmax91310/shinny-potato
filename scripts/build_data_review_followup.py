@@ -46,7 +46,7 @@ def main():
     financial=read(ROOT/'public/data/financial-reconciliation.json')
     for r in financial['rows']:
         check=r.get('latestCheck')or{}
-        add('comparaison financière',r['id'],r['status'],r['status'],r['reason'],'preuves/financial-final-observation.json.gz ; reconciliation-financiere.csv',r['isin'],str(r['year']),'Calculateur | Performance depuis | Classements | Duels', ' | '.join(r['sourceUrls']),r.get('missingPiece')or'Cause déjà documentée ; conserver les preuves originales.',category='cause non expliquée'if r['open']else'cause déjà qualifiée')
+        add('comparaison financière',r['id'],r['initialStatus'],r['status'],r['reason'],'preuves/financial-final-observation.json.gz ; reconciliation-financiere.csv',r['isin'],str(r['year']),'Calculateur | Performance depuis | Classements | Duels', ' | '.join(r['sourceUrls']),r.get('missingPiece')or'Cause déjà documentée ; conserver les preuves originales.',category='cause non expliquée'if r['open']else'correction prouvée, résidu non attribué'if r.get('residualOpen')else'cause déjà qualifiée')
     # Required consumer contracts that were blocked/unconfirmed cannot disappear behind a healthy upstream file.
     current_usage={(t['path'],r['id'],r['key']):r for t in now['consumerUsage']['tools']for r in t['rows']}
     assets={r['id']:r for r in now['assets']}
