@@ -1,5 +1,5 @@
 """Complete physical equity holdings, kept separately from editorial top tens."""
-import argparse, datetime as dt, json, re, hashlib, copy
+import argparse, datetime as dt, json, re, hashlib, copy, time
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlsplit, parse_qs
@@ -7,6 +7,30 @@ from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 ROOT=Path(__file__).resolve().parents[1]
+def collect_blackrock_complete(config,now,fetch=get_text,sleep=time.sleep):
+    """Retry only a missing component on an otherwise exact product response."""
+    attempts=[]
+    for attempt in range(2):
+        raw=fetch(config['url'],('application/json',),25_000_000)
+        body=json.loads(raw)
+        digest=hashlib.sha256(raw.encode()).hexdigest()
+        components=body.get('componentsByNameMap',{})
+        if 'holdings' not in components:
+            facts=components.get('keyFundFacts',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
+            product=parse_qs(urlsplit(config['url']).query).get('portfolioId',[])
+            if facts.get('isin',{}).get('value')!=config['isin'] or product!=[str(body.get('productId'))]:
+                raise ValueError('Wrong BlackRock identity in response without complete holdings')
+            attempts.append({'attempt':attempt+1,'sha256':digest,'status':'missing-holdings-component'})
+            if attempt==0:
+                sleep(2)
+                continue
+            raise ValueError('BlackRock exact-share holdings component absent after two bounded attempts: '+json.dumps(attempts))
+        record,securities=parse_complete(body,config['isin'],config['url'],now,config.get('fundAssetClass','Equity'))
+        record['sha256']=digest
+        if attempts:
+            record['sourceAttempts']=[*attempts,{'attempt':attempt+1,'sha256':digest,'status':'validated'}]
+        return record,securities
+
 def physical_ssga_page(page):
     from bs4 import BeautifulSoup
     soup=BeautifulSoup(page,'html.parser')
@@ -101,10 +125,7 @@ def main():
                             if p.get('column_5',{}).get('value')=='Mutual Fund' or p.get('header',{}).get('value') in LIQUIDITY_FUNDS}
                 qualifications={fund_isin:qualify_liquidity_fund(fund_isin,now) for fund_isin in fund_isins}
                 return isin, (parse_holdings(body, c, now, url, complete=True,non_equity_funds=qualifications)['completeHoldings'], []), None
-            raw=get_text(c['url'],('application/json',),25_000_000)
-            h,securities=parse_complete(json.loads(raw),isin,c['url'],now,c.get('fundAssetClass','Equity'))
-            h['sha256']=hashlib.sha256(raw.encode()).hexdigest()
-            return isin,(h,securities),None
+            return isin,collect_blackrock_complete({**c,'isin':isin},now),None
         except Exception as e:return isin,None,str(e)
     direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}
     with ThreadPoolExecutor(max_workers=6) as pool:

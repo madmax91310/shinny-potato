@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication','holdings-ishares'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -27,6 +27,7 @@ def main():
         'discovery': ['discover_holdings_sources.py'],
         'financial':['verify_review_financial.py'],
         'fx': ['collect_ranking_sources.py','--only','fx','--apply'],
+        'holdings-ishares':['collect_dca_complete_holdings.py','--apply','--only','IE00BYX2JD69'],
         'holdings-hsbc':['collect_dca_complete_holdings.py','--apply','--only','IE00B4K6B022'],
         'holdings-retry':['collect_dca_complete_holdings.py','--apply','--only','IE00B4K6B022','IE00BJGWQN72','IE00BDVPNG13','IE0002Y8CX98','IE000W8WMSL2'],
         'holdings': ['collect_dca_complete_holdings.py','--apply'],
@@ -95,7 +96,7 @@ def main():
         'practical':['src/data/automated-practical-sheets.json'],
         'ai':['data/ai-portfolios'],
     }
-    for relative in paths.get('holdings' if args.scope in ['holdings-retry','holdings-hsbc'] else args.scope.removesuffix('-macos'),[]):
+    for relative in paths.get('holdings' if args.scope in ['holdings-retry','holdings-hsbc','holdings-ishares'] else args.scope.removesuffix('-macos'),[]):
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
         if source.is_dir(): shutil.copytree(source,target,dirs_exist_ok=True)
         elif source.exists():shutil.copy2(source,target)
