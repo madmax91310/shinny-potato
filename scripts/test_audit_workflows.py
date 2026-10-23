@@ -159,6 +159,31 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn("envelope.testBranch?'rehearsal_commit':'commit_sha'", worker)
         self.assertIn("command('node',['scripts/ai-portfolios.mjs','import',file])", worker)
 
+    def test_ai_book_writers_share_a_queue_independent_of_bulk_market_collectors(self):
+        # A weekly decision must not wait behind legacy ETF/monthly catalogue jobs.
+        # The two workflows that can mutate this book must still serialize together.
+        writers = []
+        for path in (ROOT/'.github/workflows').glob('*.yml'):
+            text = path.read_text()
+            if 'data/ai-portfolios' in text:
+                writers.append(path.name)
+                self.assertIn('group: ai-portfolio-book-', text, path.name)
+                self.assertNotIn('group: active-market-data-', text, path.name)
+                self.assertIn('cancel-in-progress: false', text, path.name)
+                self.assertIn('queue: max', text, path.name)
+        self.assertEqual(set(writers), {'ai-owner-requests.yml', 'update-ai-portfolios.yml'})
+        owner = (ROOT/'.github/workflows/ai-owner-requests.yml').read_text()
+        collector = (ROOT/'.github/workflows/update-ai-portfolios.yml').read_text()
+        self.assertIn('group: ai-portfolio-book-production', owner)
+        self.assertIn("|| 'production' }}", collector)
+        self.assertIn('bash scripts/commit-validated-data.sh', collector)
+        # Legacy writers keep their own queue and their original fail-closed CAS.
+        legacy = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
+        self.assertIn('group: active-market-data-', legacy)
+        helper = (ROOT/'scripts/commit-validated-data.sh').read_text()
+        self.assertIn('Remote inputs changed after collection.', helper)
+        self.assertIn('no unvalidated rebase will be published.', helper)
+
     def test_all_producers_require_every_primary_output(self):
         registry=json.loads((ROOT/'scripts/validated-data-producers.json').read_text())
         for filename,paths in registry.items():
