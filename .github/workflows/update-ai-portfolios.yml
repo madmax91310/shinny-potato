@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 90
     concurrency:
-      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      group: ai-portfolio-book-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
     permissions:
