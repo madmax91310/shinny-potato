@@ -2,7 +2,7 @@ name: Qualify existing VanEck NAV routes
 on:
   workflow_dispatch:
   push:
-    branches: [fix/vaneck-nav-remainder-20261023, probe/vaneck-calendar-format-20261023]
+    branches: [fix/vaneck-nav-remainder-20261023, probe/vaneck-calendar-format-20261023, probe/gdx-window-20261023]
     paths:
       - 'scripts/collect_official_share_history.py'
       - 'scripts/collect_vaneck_etf.py'
@@ -29,15 +29,14 @@ jobs:
       - run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
       - run: python -m pip install beautifulsoup4
       - run: python -m unittest discover -s scripts -p 'test_vaneck_nav_routes.py'
-      - name: Qualify exact shares through the normal monthly producer
+      - name: Qualify the existing GDX share on its supplied history without applying it
         run: |
-          node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
-          python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --only $(python -c 'import json; print(" ".join(r["id"] for r in json.load(open("scripts/monthly-automation.json"))["series"] if r.get("navCalendarSource")=="page-api"))') --output "$RUNNER_TEMP/monthly-observation.json" --evidence-output "$RUNNER_TEMP/nav.json" --apply
+          python scripts/collect_official_share_history.py --only etf_gold_miners --output "$RUNNER_TEMP/nav.json" --capture-dir "$RUNNER_TEMP/nav-raw"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: vaneck-exact-share-nav
           path: |
             ${{ runner.temp }}/nav.json
-            ${{ runner.temp }}/monthly-observation.json
+            ${{ runner.temp }}/nav-raw
           retention-days: 35

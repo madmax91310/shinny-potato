@@ -62,9 +62,17 @@ class VanEckRoutes(unittest.TestCase):
         def prelaunch(s,p,m):s['periodStart']='2010-01';return s,p,m
         for mutation in [wrong_currency,wrong_download,wrong_heading,prelaunch]:
             with self.subTest(mutation=mutation.__name__),self.assertRaises(ValueError):self.collect(isin,mutation)
-    def test_gold_mining_calendar_disagreement_is_not_silenced(self):
+    def test_gold_partial_history_qualifies_only_its_complete_windows(self):
+        r=self.collect('IE00BQQP9F84')
+        self.assertEqual(r['periodStart'],'2017-05')
+        self.assertEqual([c['year']for c in r['calendarProof']['checks']],list(range(2018,2026)))
+        outside=next(c for c in r['calendarProof']['outsideSuppliedWindowChecks']if c['year']==2017)
+        self.assertFalse(outside['qualified']);self.assertIn('2017: 11.656',outside['reason'])
+        self.assertEqual(outside['requiredStart'],'2016-12')
+    def test_gold_full_2017_remains_unqualified_if_its_bounds_are_supplied(self):
+        def full(s,p,m):s['periodStart']='2016-12';return s,p,m
         with self.assertRaisesRegex(ValueError,'2017: 11.656'):
-            self.collect('IE00BQQP9F84')
+            self.collect('IE00BQQP9F84',full)
     def test_wrong_us_fund_share_currency_income_and_calendar_fail_closed(self):
         def mutation(kind):
             def change(controller,result):
