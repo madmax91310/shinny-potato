@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 45
     concurrency:
-      group: active-market-data-production
+      # Serialize the financial book with its collector, not unrelated bulk collectors.
+      group: ai-portfolio-book-production
       cancel-in-progress: false
       queue: max
     permissions:

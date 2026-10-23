@@ -13,6 +13,8 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/qualified_distributions.py'
+      - 'scripts/test_qualified_distributions.py'
       - 'scripts/issuer_nav_history.py'
       - 'scripts/collect_official_share_history.py'
       - 'scripts/qualify_monthly_candidates.py'

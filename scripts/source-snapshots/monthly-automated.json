@@ -57613,405 +57613,564 @@
     "listingEvidenceId": "IE00BJ5JP097-XAMS-WFNS-USD",
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "timezone": "Europe/Amsterdam",
+    "distributionEvidence": {
+      "path": "reports/reliquat-2026-10-23/preuves/IE00BJ5JP097-blackrock.json.gz",
+      "sha256": "bf7fb9adf6223c3e155a0f6f4a8b29c3e926af227320fed9fd2ffe4bf9408b04",
+      "metadataPath": "reports/reliquat-2026-10-23/preuves/blackrock-collectes.json",
+      "dates": [
+        "2023-06-15"
+      ],
+      "quoteEvidence": {
+        "path": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etf_financials.json.gz",
+        "sha256": "a3c3eff6bd7977e3219d4974c65c4f0404a17ae1230f74b329c5212f6152f6e6"
+      }
+    },
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits",
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     ],
     "proofRows": [
       {
         "date": "2021-05-31",
         "close": 5.036200046539307,
         "monthlyClose": 5.036200046539307,
-        "value": 4.461908340454102
+        "value": 4.359464125519994,
+        "providerAdjustedValue": 4.46190881729126,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-06-30",
         "close": 4.864200115203857,
         "monthlyClose": 4.864200115203857,
-        "value": 4.315070152282715
+        "value": 4.215996852082386,
+        "providerAdjustedValue": 4.315070152282715,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-07-30",
         "close": 4.867599964141846,
         "monthlyClose": 4.867599964141846,
-        "value": 4.31808614730835
+        "value": 4.21894360035883,
+        "providerAdjustedValue": 4.31808614730835,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-08-31",
         "close": 5.054299831390381,
         "monthlyClose": 5.054299831390381,
-        "value": 4.483709335327148
+        "value": 4.380763175473223,
+        "providerAdjustedValue": 4.483708381652832,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-09-30",
         "close": 4.996200084686279,
         "monthlyClose": 4.996200084686279,
-        "value": 4.4321675300598145
+        "value": 4.330406159235399,
+        "providerAdjustedValue": 4.432168006896973,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-10-29",
         "close": 5.305500030517578,
         "monthlyClose": 5.305500030517578,
-        "value": 4.706550598144531
+        "value": 4.598488971366265,
+        "providerAdjustedValue": 4.706550598144531,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-11-30",
         "close": 4.968400001525879,
         "monthlyClose": 4.968400001525879,
-        "value": 4.407505989074707
+        "value": 4.306310843170674,
+        "providerAdjustedValue": 4.407506465911865,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2021-12-31",
         "close": 5.104100227355957,
         "monthlyClose": 5.104100227355957,
-        "value": 4.573179721832275
+        "value": 4.468180734303068,
+        "providerAdjustedValue": 4.573180198669434,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-01-31",
         "close": 5.107600212097168,
         "monthlyClose": 5.107600212097168,
-        "value": 4.5763163566589355
+        "value": 4.471244420732458,
+        "providerAdjustedValue": 4.576315879821777,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-02-28",
         "close": 5.014900207519531,
         "monthlyClose": 5.014900207519531,
-        "value": 4.493258476257324
+        "value": 4.390093069699952,
+        "providerAdjustedValue": 4.493257522583008,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-03-31",
         "close": 5.052599906921387,
         "monthlyClose": 5.052599906921387,
-        "value": 4.527036666870117
+        "value": 4.42309665039612,
+        "providerAdjustedValue": 4.527036666870117,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-04-29",
         "close": 4.6442999839782715,
         "monthlyClose": 4.6442999839782715,
-        "value": 4.161207675933838
+        "value": 4.065667032856317,
+        "providerAdjustedValue": 4.161207675933838,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-05-31",
         "close": 4.697199821472168,
         "monthlyClose": 4.697199821472168,
-        "value": 4.208603858947754
+        "value": 4.111975939090343,
+        "providerAdjustedValue": 4.20860481262207,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-06-30",
         "close": 4.139599800109863,
         "monthlyClose": 4.139599800109863,
-        "value": 3.79573917388916
+        "value": 3.708589627442521,
+        "providerAdjustedValue": 3.79573917388916,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-07-29",
         "close": 4.318999767303467,
         "monthlyClose": 4.318999767303467,
-        "value": 3.9602372646331787
+        "value": 3.8693106361638936,
+        "providerAdjustedValue": 3.9602370262145996,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-08-31",
         "close": 4.220399856567383,
         "monthlyClose": 4.220399856567383,
-        "value": 3.8698275089263916
+        "value": 3.780977139450809,
+        "providerAdjustedValue": 3.8698277473449707,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-09-30",
         "close": 3.9019999504089355,
         "monthlyClose": 3.9019999504089355,
-        "value": 3.577875852584839
+        "value": 3.4957281791786246,
+        "providerAdjustedValue": 3.5778756141662598,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-10-31",
         "close": 4.179299831390381,
         "monthlyClose": 4.179299831390381,
-        "value": 3.832141399383545
+        "value": 3.7441560638333478,
+        "providerAdjustedValue": 3.832141399383545,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-11-30",
         "close": 4.590700149536133,
         "monthlyClose": 4.590700149536133,
-        "value": 4.2093682289123535
+        "value": 4.1127218274683015,
+        "providerAdjustedValue": 4.2093682289123535,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2022-12-30",
         "close": 4.469299793243408,
         "monthlyClose": 4.469299793243408,
-        "value": 4.139917373657227
+        "value": 4.044866018303487,
+        "providerAdjustedValue": 4.139917850494385,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-01-31",
         "close": 4.820000171661377,
         "monthlyClose": 4.820000171661377,
-        "value": 4.464771747589111
+        "value": 4.3622613234096015,
+        "providerAdjustedValue": 4.464771747589111,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-02-28",
         "close": 4.763000011444092,
         "monthlyClose": 4.763000011444092,
-        "value": 4.411972999572754
+        "value": 4.3106743600650885,
+        "providerAdjustedValue": 4.411972522735596,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-03-31",
         "close": 4.491000175476074,
         "monthlyClose": 4.491000175476074,
-        "value": 4.160019397735596
+        "value": 4.064505571440796,
+        "providerAdjustedValue": 4.1600189208984375,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-04-28",
         "close": 4.624599933624268,
         "monthlyClose": 4.624599933624268,
-        "value": 4.283772945404053
+        "value": 4.185417758031374,
+        "providerAdjustedValue": 4.2837724685668945,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-05-31",
         "close": 4.396999835968018,
         "monthlyClose": 4.396999835968018,
-        "value": 4.072946071624756
+        "value": 3.9794323663385494,
+        "providerAdjustedValue": 4.072946548461914,
+        "officialDividendFactor": 0.9770401646545843
       },
       {
         "date": "2023-06-30",
         "close": 4.583499908447266,
         "monthlyClose": 4.583499908447266,
-        "value": 4.245701313018799
+        "value": 4.245701313018799,
+        "providerAdjustedValue": 4.245701313018799,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-07-31",
         "close": 4.806399822235107,
         "monthlyClose": 4.806399822235107,
-        "value": 4.452173709869385
+        "value": 4.452173709869385,
+        "providerAdjustedValue": 4.452173709869385,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-08-31",
         "close": 4.601399898529053,
         "monthlyClose": 4.601399898529053,
-        "value": 4.262282371520996
+        "value": 4.262282371520996,
+        "providerAdjustedValue": 4.262282371520996,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-09-29",
         "close": 4.512800216674805,
         "monthlyClose": 4.512800216674805,
-        "value": 4.180212020874023
+        "value": 4.180212020874023,
+        "providerAdjustedValue": 4.180212020874023,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-10-31",
         "close": 4.281400203704834,
         "monthlyClose": 4.281400203704834,
-        "value": 3.9658663272857666
+        "value": 3.9658665657043457,
+        "providerAdjustedValue": 3.9658665657043457,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-11-30",
         "close": 4.792900085449219,
         "monthlyClose": 4.792900085449219,
-        "value": 4.439669609069824
+        "value": 4.439669132232666,
+        "providerAdjustedValue": 4.439669132232666,
+        "officialDividendFactor": 1
       },
       {
         "date": "2023-12-29",
         "close": 5.0671000480651855,
         "monthlyClose": 5.0671000480651855,
-        "value": 4.744544506072998
+        "value": 4.744544506072998,
+        "providerAdjustedValue": 4.744544506072998,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-01-31",
         "close": 5.135499954223633,
         "monthlyClose": 5.135499954223633,
-        "value": 4.808589935302734
+        "value": 4.808589935302734,
+        "providerAdjustedValue": 4.808589935302734,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-02-29",
         "close": 5.258200168609619,
         "monthlyClose": 5.258200168609619,
-        "value": 4.9234795570373535
+        "value": 4.923480033874512,
+        "providerAdjustedValue": 4.923480033874512,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-03-28",
         "close": 5.519999980926514,
         "monthlyClose": 5.519999980926514,
-        "value": 5.168614387512207
+        "value": 5.168614387512207,
+        "providerAdjustedValue": 5.168614387512207,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-04-30",
         "close": 5.3267998695373535,
         "monthlyClose": 5.3267998695373535,
-        "value": 4.987712383270264
+        "value": 4.987712383270264,
+        "providerAdjustedValue": 4.987712383270264,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-05-31",
         "close": 5.532599925994873,
         "monthlyClose": 5.532599925994873,
-        "value": 5.1804118156433105
+        "value": 5.1804118156433105,
+        "providerAdjustedValue": 5.1804118156433105,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-06-28",
         "close": 5.437699794769287,
         "monthlyClose": 5.437699794769287,
-        "value": 5.187626838684082
+        "value": 5.18762731552124,
+        "providerAdjustedValue": 5.18762731552124,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-07-31",
         "close": 5.753200054168701,
         "monthlyClose": 5.753200054168701,
-        "value": 5.488617897033691
+        "value": 5.488617897033691,
+        "providerAdjustedValue": 5.488617897033691,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-08-30",
         "close": 5.9274001121521,
         "monthlyClose": 5.9274001121521,
-        "value": 5.654806613922119
+        "value": 5.654807090759277,
+        "providerAdjustedValue": 5.654807090759277,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-09-30",
         "close": 6.092100143432617,
         "monthlyClose": 6.092100143432617,
-        "value": 5.811932563781738
+        "value": 5.811932563781738,
+        "providerAdjustedValue": 5.811932563781738,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-10-31",
         "close": 6.055200099945068,
         "monthlyClose": 6.055200099945068,
-        "value": 5.776729583740234
+        "value": 5.776729583740234,
+        "providerAdjustedValue": 5.776729583740234,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-11-29",
         "close": 6.521500110626221,
         "monthlyClose": 6.521500110626221,
-        "value": 6.221585273742676
+        "value": 6.221584796905518,
+        "providerAdjustedValue": 6.221584796905518,
+        "officialDividendFactor": 1
       },
       {
         "date": "2024-12-31",
         "close": 6.178400039672852,
         "monthlyClose": 6.178400039672852,
-        "value": 5.945146083831787
+        "value": 5.945146083831787,
+        "providerAdjustedValue": 5.945146083831787,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-01-31",
         "close": 6.571599960327148,
         "monthlyClose": 6.571599960327148,
-        "value": 6.3235015869140625
+        "value": 6.3235015869140625,
+        "providerAdjustedValue": 6.3235015869140625,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-02-28",
         "close": 6.609000205993652,
         "monthlyClose": 6.609000205993652,
-        "value": 6.359489440917969
+        "value": 6.359489440917969,
+        "providerAdjustedValue": 6.359489440917969,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-03-31",
         "close": 6.484300136566162,
         "monthlyClose": 6.484300136566162,
-        "value": 6.239497661590576
+        "value": 6.239497661590576,
+        "providerAdjustedValue": 6.239497661590576,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-04-30",
         "close": 6.600200176239014,
         "monthlyClose": 6.600200176239014,
-        "value": 6.351022243499756
+        "value": 6.351021766662598,
+        "providerAdjustedValue": 6.351021766662598,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-05-30",
         "close": 7.010499954223633,
         "monthlyClose": 7.010499954223633,
-        "value": 6.745831489562988
+        "value": 6.74583101272583,
+        "providerAdjustedValue": 6.74583101272583,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-06-30",
         "close": 7.135000228881836,
         "monthlyClose": 7.135000228881836,
-        "value": 6.974891662597656
+        "value": 6.974891662597656,
+        "providerAdjustedValue": 6.974891662597656,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-07-31",
         "close": 7.220799922943115,
         "monthlyClose": 7.220799922943115,
-        "value": 7.058765888214111
+        "value": 7.058765888214111,
+        "providerAdjustedValue": 7.058765888214111,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-08-29",
         "close": 7.456500053405762,
         "monthlyClose": 7.456500053405762,
-        "value": 7.289176940917969
+        "value": 7.289176940917969,
+        "providerAdjustedValue": 7.289176940917969,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-09-30",
         "close": 7.4517998695373535,
         "monthlyClose": 7.4517998695373535,
-        "value": 7.284582138061523
+        "value": 7.284582138061523,
+        "providerAdjustedValue": 7.284582138061523,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-10-31",
         "close": 7.361000061035156,
         "monthlyClose": 7.361000061035156,
-        "value": 7.195819854736328
+        "value": 7.195819854736328,
+        "providerAdjustedValue": 7.195819854736328,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-11-28",
         "close": 7.48390007019043,
         "monthlyClose": 7.48390007019043,
-        "value": 7.315961837768555
+        "value": 7.315962314605713,
+        "providerAdjustedValue": 7.315962314605713,
+        "officialDividendFactor": 1
       },
       {
         "date": "2025-12-31",
         "close": 7.839799880981445,
         "monthlyClose": 7.839799880981445,
-        "value": 7.724254131317139
+        "value": 7.724254131317139,
+        "providerAdjustedValue": 7.724254131317139,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-01-30",
         "close": 7.803999900817871,
         "monthlyClose": 7.803999900817871,
-        "value": 7.688981533050537
+        "value": 7.688981533050537,
+        "providerAdjustedValue": 7.688981533050537,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-02-27",
         "close": 7.777599811553955,
         "monthlyClose": 7.777599811553955,
-        "value": 7.662970542907715
+        "value": 7.662970542907715,
+        "providerAdjustedValue": 7.662970542907715,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-03-31",
         "close": 7.206200122833252,
         "monthlyClose": 7.206200122833252,
-        "value": 7.099992275238037
+        "value": 7.099992275238037,
+        "providerAdjustedValue": 7.099992275238037,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-04-30",
         "close": 7.873300075531006,
         "monthlyClose": 7.873300075531006,
-        "value": 7.757260322570801
+        "value": 7.757260322570801,
+        "providerAdjustedValue": 7.757260322570801,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-05-29",
         "close": 7.915999889373779,
         "monthlyClose": 7.915999889373779,
-        "value": 7.799330711364746
+        "value": 7.799330711364746,
+        "providerAdjustedValue": 7.799330711364746,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-06-30",
         "close": 8.067000389099121,
         "monthlyClose": 8.067000389099121,
-        "value": 8.067000389099121
+        "value": 8.067000389099121,
+        "providerAdjustedValue": 8.067000389099121,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-07-31",
         "close": 8.619000434875488,
         "monthlyClose": 8.619000434875488,
-        "value": 8.619000434875488
+        "value": 8.619000434875488,
+        "providerAdjustedValue": 8.619000434875488,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-08-31",
         "close": 8.722999572753906,
         "monthlyClose": 8.722999572753906,
-        "value": 8.722999572753906
+        "value": 8.722999572753906,
+        "providerAdjustedValue": 8.722999572753906,
+        "officialDividendFactor": 1
       },
       {
         "date": "2026-09-30",
         "close": 8.279999732971191,
         "monthlyClose": 8.279999732971191,
-        "value": 8.279999732971191
+        "value": 8.279999732971191,
+        "providerAdjustedValue": 8.279999732971191,
+        "officialDividendFactor": 1
+      }
+    ],
+    "distributionAdjustmentProof": [
+      {
+        "exDate": "2023-06-15",
+        "amount": 0.1077,
+        "currency": "USD",
+        "previousSession": "2023-06-14",
+        "previousClose": 4.690800189971924,
+        "providerAdjustmentRatio": 0.9999999380995902,
+        "expectedAdjustmentRatio": 1.0234993771760987,
+        "backAdjustmentFactor": 0.9770401646545843,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "evidenceCheckedAt": "2026-10-23T04:39:21.635047+00:00",
+        "evidenceSha256": "bf7fb9adf6223c3e155a0f6f4a8b29c3e926af227320fed9fd2ffe4bf9408b04"
       }
     ],
     "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "4389b5c642eb326a98031a0e2646116ba43cb1a8a790404e855a8f461a4e3c11"
+    "responseSha256": "577bd7512c1d0ce0a6790afaf550cf6fc8e6ee314c19d33f54d0c215cb918489"
   },
   "etf_gold_miners": {
     "id": "etf_gold_miners",

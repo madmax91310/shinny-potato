@@ -181,8 +181,12 @@ def collect_yahoo(config, now, fetch=get_json):
         'requestedStart':config['periodStart'],'retainedStart':points[0][0], 'excluded':excluded,
         'method':'Latest continuous suffix of independently verified full months; no missing month filled',
     }} if excluded else {})
-    return {**qualification, **({'verifiedDailyWindowMonths':sorted(window_months)} if window_months else {}), 'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
+    result = {**qualification, **({'verifiedDailyWindowMonths':sorted(window_months)} if window_months else {}), 'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}
+    if config.get('distributionEvidence'):
+        from qualified_distributions import reconcile_adjustments
+        result=reconcile_adjustments(config,result,daily,now)
+    return result
 
 
 def msci_rows(body, config):
