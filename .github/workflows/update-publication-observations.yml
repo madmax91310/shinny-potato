@@ -58,6 +58,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - name: Install official NAV document parser
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
       - run: npm ci
       - run: npx playwright install --with-deps chromium
