@@ -1,8 +1,11 @@
 """Real Git regression tests: dirty generators, concurrent writers, conflicts."""
 import os
 from pathlib import Path
+import shlex
 import subprocess
+import sys
 import tempfile
+import textwrap
 import unittest
 
 SCRIPT = Path(__file__).with_name('commit-validated-data.sh').resolve()
@@ -42,6 +45,68 @@ class CommitValidatedData(unittest.TestCase):
         self.git(self.other, 'add', name)
         self.git(self.other, 'commit', '-m', 'concurrent')
         self.git(self.other, 'push', 'origin', 'master')
+
+    def racing_validation(self, conflict=False, fail_retry=False):
+        """Advance the remote after fetch, while validation dirties its checkout."""
+        script = self.root / 'validate-race.py'
+        script.write_text(textwrap.dedent(f'''\
+            from pathlib import Path
+            import os
+            import subprocess
+            root = Path({str(self.root)!r})
+            assert os.environ['VALIDATED_DATA_ORIGINAL_BASE'] == {self.git(self.local, 'rev-parse', 'HEAD')!r}
+            counter = root / 'validation-count'
+            attempt = int(counter.read_text()) + 1 if counter.exists() else 1
+            counter.write_text(str(attempt))
+            Path('generated.json').write_text('temporary validation output\\n')
+            if attempt == 1:
+                other = root / 'other'
+                target = {'validated.json' if conflict else 'other.txt'!r}
+                (other / target).write_text('concurrent update\\n')
+                for args in [('add', target), ('commit', '-m', 'racing writer'), ('push', 'origin', 'master')]:
+                    subprocess.run(['git', '-C', str(other), *args], check=True)
+            elif {fail_retry!r}:
+                raise SystemExit(23)
+            else:
+                assert Path('other.txt').read_text() == 'concurrent update\\n'
+            '''))
+        return f'{shlex.quote(sys.executable)} {shlex.quote(str(script))}'
+
+    def test_retry_after_rejection_discards_only_private_validation_outputs(self):
+        (self.local / 'validated.json').write_text('validated update\n')
+        (self.local / 'generated.json').write_text('caller staged output\n')
+        self.git(self.local, 'add', 'generated.json')
+        before_index = (self.local / '.git/index').read_bytes()
+        before_head = self.git(self.local, 'rev-parse', 'HEAD')
+        result = self.publish({'VALIDATED_DATA_CHECK': self.racing_validation()})
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual((self.root / 'validation-count').read_text(), '2')
+        self.assertEqual(self.git(self.remote, 'show', 'master:validated.json'), 'validated update')
+        self.assertEqual(self.git(self.remote, 'show', 'master:other.txt'), 'concurrent update')
+        self.assertEqual(self.git(self.remote, 'show', 'master:generated.json'), 'original')
+        self.assertEqual(self.git(self.local, 'rev-parse', 'HEAD'), before_head)
+        self.assertEqual((self.local / '.git/index').read_bytes(), before_index)
+        self.assertEqual((self.local / 'generated.json').read_text(), 'caller staged output\n')
+        self.assertEqual((self.local / 'validated.json').read_text(), 'validated update\n')
+
+    def test_retry_does_not_resolve_a_racing_data_conflict(self):
+        (self.local / 'validated.json').write_text('validated update\n')
+        result = self.publish({'VALIDATED_DATA_CHECK': self.racing_validation(conflict=True)})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('CONFLICT', result.stdout + result.stderr)
+        self.assertEqual((self.root / 'validation-count').read_text(), '1')
+        self.assertEqual(self.git(self.remote, 'show', 'master:validated.json'), 'concurrent update')
+        self.assertEqual((self.local / 'validated.json').read_text(), 'validated update\n')
+        self.assertFalse((self.root / 'output').exists())
+
+    def test_retry_runs_financial_revalidation_and_propagates_failure(self):
+        (self.local / 'validated.json').write_text('validated update\n')
+        result = self.publish({'VALIDATED_DATA_CHECK': self.racing_validation(fail_retry=True)})
+        self.assertEqual(result.returncode, 23, result.stdout + result.stderr)
+        self.assertEqual((self.root / 'validation-count').read_text(), '2')
+        self.assertEqual(self.git(self.remote, 'show', 'master:validated.json'), 'original')
+        self.assertEqual(self.git(self.remote, 'show', 'master:other.txt'), 'concurrent update')
+        self.assertFalse((self.root / 'output').exists())
 
     def test_dirty_files_and_index_preserved_with_concurrent_remote(self):
         (self.local / 'validated.json').write_text('validated update\n')

@@ -1,0 +1,75 @@
+.....FFF
+======================================================================
+FAIL: test_retry_after_rejection_discards_only_private_validation_outputs (test_validated_data_commit.CommitValidatedData.test_retry_after_rejection_discards_only_private_validation_outputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/reliquat-79/scripts/test_validated_data_commit.py", line 80, in test_retry_after_rejection_discards_only_private_validation_outputs
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : HEAD is now at 66cfb0f validated update
+HEAD is up to date.
+[master 460ad77] racing writer
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Preparing worktree (detached HEAD 66cfb0f)
+From /tmp/tmp55_qi6qr/remote
+ * branch            master     -> FETCH_HEAD
+To /tmp/tmp55_qi6qr/remote.git
+   06fd567..460ad77  master -> master
+To /tmp/tmp55_qi6qr/remote.git
+ ! [rejected]        HEAD -> master (fetch first)
+error: failed to push some refs to '/tmp/tmp55_qi6qr/remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+Push refused (attempt 1/3); checking the new remote head.
+From /tmp/tmp55_qi6qr/remote
+ * branch            master     -> FETCH_HEAD
+   06fd567..460ad77  master     -> origin/master
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
+
+
+======================================================================
+FAIL: test_retry_does_not_resolve_a_racing_data_conflict (test_validated_data_commit.CommitValidatedData.test_retry_does_not_resolve_a_racing_data_conflict)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/reliquat-79/scripts/test_validated_data_commit.py", line 95, in test_retry_does_not_resolve_a_racing_data_conflict
+    self.assertIn('CONFLICT', result.stdout + result.stderr)
+AssertionError: 'CONFLICT' not found in "HEAD is now at 58ef30a validated update\nHEAD is up to date.\n[master 412ec13] racing writer\n 1 file changed, 1 insertion(+), 1 deletion(-)\nPreparing worktree (detached HEAD 58ef30a)\nFrom /tmp/tmpbh6uc3lp/remote\n * branch            master     -> FETCH_HEAD\nTo /tmp/tmpbh6uc3lp/remote.git\n   454a062..412ec13  master -> master\nTo /tmp/tmpbh6uc3lp/remote.git\n ! [rejected]        HEAD -> master (fetch first)\nerror: failed to push some refs to '/tmp/tmpbh6uc3lp/remote.git'\nhint: Updates were rejected because the remote contains work that you do not\nhint: have locally. This is usually caused by another repository pushing to\nhint: the same ref. If you want to integrate the remote changes, use\nhint: 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\nPush refused (attempt 1/3); checking the new remote head.\nFrom /tmp/tmpbh6uc3lp/remote\n * branch            master     -> FETCH_HEAD\n   454a062..412ec13  master     -> origin/master\nerror: cannot rebase: You have unstaged changes.\nerror: Please commit or stash them.\n"
+
+======================================================================
+FAIL: test_retry_runs_financial_revalidation_and_propagates_failure (test_validated_data_commit.CommitValidatedData.test_retry_runs_financial_revalidation_and_propagates_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/reliquat-79/scripts/test_validated_data_commit.py", line 104, in test_retry_runs_financial_revalidation_and_propagates_failure
+    self.assertEqual(result.returncode, 23, result.stdout + result.stderr)
+AssertionError: 1 != 23 : HEAD is now at 58ef30a validated update
+HEAD is up to date.
+[master 4336bd0] racing writer
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Preparing worktree (detached HEAD 58ef30a)
+From /tmp/tmpb3ccxks6/remote
+ * branch            master     -> FETCH_HEAD
+To /tmp/tmpb3ccxks6/remote.git
+   454a062..4336bd0  master -> master
+To /tmp/tmpb3ccxks6/remote.git
+ ! [rejected]        HEAD -> master (fetch first)
+error: failed to push some refs to '/tmp/tmpb3ccxks6/remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+Push refused (attempt 1/3); checking the new remote head.
+From /tmp/tmpb3ccxks6/remote
+ * branch            master     -> FETCH_HEAD
+   454a062..4336bd0  master     -> origin/master
+error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.012s
+
+FAILED (failures=3)
