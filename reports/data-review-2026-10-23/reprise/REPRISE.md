@@ -73,3 +73,9 @@ La validation technique 40032701777 (afaea9ef) est entièrement réussie, y comp
 ## Dernière intégration de master #905
 
 Master 91898757 est intégré sans conflit. Son correctif de reprise des publications après un push concurrent est préservé ; les huit tests `test_validated_data_commit.py` passent sur l’ensemble assemblé. Le livre réel IA conserve le blob Git d96ba15bb2607b7306a401b1b7b2ed744c8dfe37. Cette intégration ne modifie aucune série, composition, décision ou donnée financière validée.
+
+## Rejeu réel du téléchargement : piste native non concluante
+
+40036945324 échoue aussi avec le lien natif : onze clics connectés sont tracés avec notification de départ, mais le dernier téléchargement de la rafale ne démarre pas. Cette tentative ne résout pas l’incident et le moteur d’export #901 est restauré. La recette utilise désormais des activations de 200 ms, sans retirer de fichier, sans lever une protection navigateur et sans augmenter son délai d’attente. La comparaison du PNG conservé avec l’aperçu modifié reste exacte. Les recettes complète et propriétaires 3/4 participants passent localement ; vérification GitHub encore requise.
+
+Le workflow mensuel ordinaire 40032904522 réussit : 665 historiques validés, dérivation d’indices sans non-qualification et contrôles exhaustifs réussis. Son étape ranking/FX est réservée à la production et ignorée dans une PR ; ce résultat ne constitue donc pas une nouvelle collecte TWD. La preuve TWD isolée antérieure reste distincte et son producteur publiant doit être contrôlé après intégration. Le contrôle GitHub DWS 40037136081 du 23:04 UTC recoupe 11/11 documents, sans erreur ; il ne publie ni clôture aucune alerte de production.

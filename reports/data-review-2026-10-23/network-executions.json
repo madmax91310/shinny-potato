@@ -471,6 +471,32 @@
       "headSha": "afaea9ef6250d150816bbe2d5103ae07645e4115",
       "conclusion": "success",
       "interpretation": "Full build, Python, all four browser partitions, all four publication partitions, exposure, smoke passed. 709 actual anniversary PNG exports. Subsequent AI fixes require their own validation."
+    },
+    {
+      "scope": "ai-native-download-attempt",
+      "runId": 40036945324,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40036945324",
+      "conclusion": "failure",
+      "interpretation": "Native link did not resolve the eleventh burst download. Original renderer restored; paced real clicks and byte-for-byte PNG verification retained.",
+      "proof": "reprise/gha-ai-native-png-failure.log.gz"
+    },
+    {
+      "scope": "ordinary-monthly-history",
+      "runId": 40032904522,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032904522",
+      "conclusion": "success",
+      "validatedHistories": 665,
+      "rankingFxStep": "skipped in pull_request; production verification still required",
+      "proof": "reprise/github-final-monthly/"
+    },
+    {
+      "scope": "dws-after-stability-window-read-only",
+      "runId": 40037136081,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40037136081",
+      "conclusion": "success",
+      "verified": 11,
+      "publication": "not-requested",
+      "proof": "reprise/github-final-dws-stability/"
     }
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
