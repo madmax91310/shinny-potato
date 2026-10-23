@@ -1,4 +1,4 @@
-"""Repair four existing fund histories with explicitly identified official NAV series.
+"""Qualify existing fund histories with explicitly identified official NAV series.
 
 Exchange quotes are archived, never presented as repaired by this substitution.
 Only performance consumers accepting NAV total return use these active records.
@@ -142,7 +142,8 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
     eligible=[d for d in nav if d<now.date().isoformat()]
     latest=max(eligible)
-    if (now.date()-dt.date.fromisoformat(latest)).days>7:raise ValueError('Official latest NAV is stale')
+    daily_policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['series.dailyNav']
+    if (now.date()-dt.date.fromisoformat(latest)).days>daily_policy['dataDays']:raise ValueError('Official latest NAV is stale')
     factor=1;fx_date=None
     if native!=source['currency']:
         if (native,source['currency'])!=('USD','EUR'):raise ValueError('Unqualified daily NAV conversion')
@@ -156,7 +157,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
        'parser':'official-nav','valuationBasis':source['valuationBasis'],'nativeValue':nav[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
        'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
-       'maxAgeDays':7,'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
+       'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
     result={**source,'points':points,'anniversaryPoints':points,'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
@@ -187,28 +188,41 @@ def main():
     report={'checkedAt':now.isoformat(),'series':results};write_json_atomic(args.output,report)
     if args.apply and any(r['status']=='failed'for r in results):raise SystemExit(1)
     if args.apply:
-        path=ROOT/'src/data/automated-etf-monthly.json';current=json.loads(path.read_text())
-        config_path=ROOT/'scripts/monthly-automation.json';config=json.loads(config_path.read_text())
-        if args.migrate_quote_records:
-            archive={s['id']:{'record':current[s['id']],'configuration':next(r for r in config['series']if r['id']==s['id'])}for s in sources}
+        # Some existing histories belong to the isolated non-bond producer.
+        # Keep their configuration, observations and latest level in that producer.
+        groups = [
+            ('scripts/monthly-automation.json','src/data/automated-etf-monthly.json','src/data/anniversary-levels.json','scripts/source-snapshots/monthly-automated.json'),
+            ('scripts/non-bond-monthly-sources.json','src/data/non-bond-monthly-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json'),
+        ]
+        loaded = [(paths, [json.loads((ROOT/p).read_text()) for p in paths]) for paths in groups]
+        targets={}
+        for paths, (config,current,levels,evidence) in loaded:
+            for entry in config['series']:
+                if entry['id'] in targets:raise ValueError('Duplicate producer ownership')
+                targets[entry['id']]=(config,current,levels,evidence)
+        archive={}
+        for row in results:
+            id=row['id'];config,current,levels,evidence=targets[id]
+            old=current[id];record=row['record']
+            if old['isin']!=record['isin'] or old['currency']!=record['currency']:
+                raise ValueError('Wrong replacement identity/currency')
+            if old['parser']!='official-nav':
+                if not args.migrate_quote_records:raise ValueError('Quote/NAV migration needs its explicit original-evidence archive')
+                archive[id]={'record':old,'configuration':next(r for r in config['series']if r['id']==id),'latestLevel':levels.get(id)}
+        if archive:
             archive_path=args.output.with_name('original-exchange-quote-records.json.gz')
             if archive_path.exists():
                 original=json.loads(gzip.decompress(archive_path.read_bytes()))
-                for id,prior in archive.items():
-                    if prior['record']['parser']!='official-nav' and original.get(id)!=prior:
-                        raise ValueError('Existing original archive differs; refuse replacement')
-            else:
-                archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
+                if any(original.get(id)!=prior for id,prior in archive.items()):
+                    raise ValueError('Existing original archive differs; refuse replacement')
+            else:archive_path.write_bytes(gzip.compress(json.dumps(archive,ensure_ascii=False).encode()))
         for row in results:
-            if row['status']!='validated':continue
-            id=row['id'];record={k:v for k,v in row['record'].items()if k not in ['proofRows']}
-            old=current.get(id)
-            if old and old['isin']!=record['isin']:raise ValueError('Wrong replacement instrument')
-            if old and old['currency']!=record['currency']:raise ValueError('Wrong replacement output currency')
-            if old and old['parser']!='official-nav' and not args.migrate_quote_records:raise ValueError('Quote/NAV migration needs its explicit original-evidence archive')
-            current[id]=record
+            id=row['id'];config,current,levels,evidence=targets[id]
+            current[id]={k:v for k,v in row['record'].items()if k!='proofRows'}
+            levels[id]=row['record']['latestLevel'];evidence[id]=row['record']
             config['series']=[next(s for s in sources if s['id']==id)if s['id']==id else s for s in config['series']]
-        write_json_atomic(path,current);write_json_atomic(config_path,config)
+        for paths,values in loaded:
+            for path,value in zip(paths,values):write_json_atomic(ROOT/path,value)
     if any(r['status']=='failed'for r in results):raise SystemExit(1)
 
 

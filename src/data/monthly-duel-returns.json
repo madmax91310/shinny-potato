@@ -2144,51 +2144,6 @@
     "responseSha256": "5a927cb7bf0fade22723979868a73cdbe2df6d3e77032b2cab24f6b9d95d03f8",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00BSPLC413": {
-    "isin": "IE00BSPLC413",
-    "currency": "EUR",
-    "years": {
-      "2017": -3.754266211604085,
-      "2018": -11.782720825274017,
-      "2019": 27.40727937145988,
-      "2020": -1.8499955915677102,
-      "2021": 48.21741530632917,
-      "2022": -5.402210066991142,
-      "2023": 19.112134222592747,
-      "2024": 14.068240977489399,
-      "2025": 2.991251633954528
-    },
-    "calendarReturns": {
-      "2017": -3.754266211604085,
-      "2018": -11.782720825274017,
-      "2019": 27.40727937145988,
-      "2020": -1.8499955915677102,
-      "2021": 48.21741530632917,
-      "2022": -5.402210066991142,
-      "2023": 19.112134222592747,
-      "2024": 14.068240977489399,
-      "2025": 2.991251633954528
-    },
-    "values": [
-      -1.8499955915677102,
-      48.21741530632917,
-      -5.402210066991142,
-      19.112134222592747,
-      14.068240977489399,
-      2.991251633954528
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ZPRV.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/ZPRV.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/ZPRV.DE?period1=1451606400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00BSPLC413-XETR-ZPRV-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "31ff1cac3bba8bb87b4970ca6ff4e20936dbb7b991c12230ff1d87587200233a",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "IE00BP3QZD73": {
     "isin": "IE00BP3QZD73",
     "currency": "USD",
@@ -2592,53 +2547,6 @@
     "responseSha256": "b5182ea35d6ed52179587b69df3fdcd101fce56ab1063e1b27c20b386c62d8e9",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00B42NKQ00": {
-    "isin": "IE00B42NKQ00",
-    "currency": "USD",
-    "years": {
-      "2016": 28.06662165203693,
-      "2017": -1.0544815465729385,
-      "2018": -18.117229129662515,
-      "2019": 8.703904555314534,
-      "2020": -33.34996258418559,
-      "2021": 51.94610778443114,
-      "2022": 63.84236453201968,
-      "2023": -0.6313890559230373,
-      "2024": 3.872919818456877,
-      "2025": 9.816487037576472
-    },
-    "calendarReturns": {
-      "2016": 28.06662165203693,
-      "2017": -1.0544815465729385,
-      "2018": -18.117229129662515,
-      "2019": 8.703904555314534,
-      "2020": -33.34996258418559,
-      "2021": 51.94610778443114,
-      "2022": 63.84236453201968,
-      "2023": -0.6313890559230373,
-      "2024": 3.872919818456877,
-      "2025": 9.816487037576472
-    },
-    "values": [
-      -33.34996258418559,
-      51.94610778443114,
-      63.84236453201968,
-      -0.6313890559230373,
-      3.872919818456877,
-      9.816487037576472
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IUES.L?period1=1448928000&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/IUES.L?period1=1448928000&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/IUES.L?period1=1448928000&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00B42NKQ00-XLON-IUES-USD",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "532fdb535ff1bee0f84ac7899acb54df8e8b5c82564a105f1c61d0a001a44547",
-    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "CH0454664001": {
     "isin": "CH0454664001",
     "currency": "EUR",
@@ -2845,51 +2753,6 @@
     "basis": "market-price",
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "cba021b19b03e3333f5c1ca31b57c44f68ed6dece1be25d42957d739c41c955e",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
-  "IE00B4JNQZ49": {
-    "isin": "IE00B4JNQZ49",
-    "currency": "EUR",
-    "years": {
-      "2017": 7.915194346289733,
-      "2018": -10.707269155206289,
-      "2019": 35.4052071873854,
-      "2020": -12.200406228842242,
-      "2021": 48.50400987045034,
-      "2022": -6.231176653858128,
-      "2023": 8.439472809834992,
-      "2024": 37.12593197834746,
-      "2025": 3.009086846417408
-    },
-    "calendarReturns": {
-      "2017": 7.915194346289733,
-      "2018": -10.707269155206289,
-      "2019": 35.4052071873854,
-      "2020": -12.200406228842242,
-      "2021": 48.50400987045034,
-      "2022": -6.231176653858128,
-      "2023": 8.439472809834992,
-      "2024": 37.12593197834746,
-      "2025": 3.009086846417408
-    },
-    "values": [
-      -12.200406228842242,
-      48.50400987045034,
-      -6.231176653858128,
-      8.439472809834992,
-      37.12593197834746,
-      3.009086846417408
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/QDVH.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/QDVH.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/QDVH.DE?period1=1451606400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00B4JNQZ49-XETR-QDVH-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "17a65e4b6554d0642d1d37dc09455ed3ab918150ec14032f55cf32d67b412d3e",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "FR0013412012": {
@@ -3868,39 +3731,6 @@
     "responseSha256": "7444a96dee6bb3ae32ed729f84e4ee098c5cfa70602765f9e0adc50989f172b5",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE000RDRMSD1": {
-    "isin": "IE000RDRMSD1",
-    "currency": "USD",
-    "years": {
-      "2023": 207.25983652184104,
-      "2024": 19.010841271203404,
-      "2025": 25.382365901534264
-    },
-    "calendarReturns": {
-      "2023": 207.25983652184104,
-      "2024": 19.010841271203404,
-      "2025": 25.382365901534264
-    },
-    "values": [
-      null,
-      null,
-      null,
-      207.25983652184104,
-      19.010841271203404,
-      25.382365901534264
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BLKC.AS?period1=1664582400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/BLKC.AS?period1=1664582400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/BLKC.AS?period1=1664582400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE000RDRMSD1-XAMS-BLKC-USD",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "ff8c3f4cc3cce33fc42b726643eff3f0dec857ecb83a7d69cef088520f8dbc03",
-    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "IE00B8GKDB10": {
     "isin": "IE00B8GKDB10",
     "currency": "EUR",
@@ -4014,51 +3844,6 @@
     "basis": "market-price",
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "165fa5b75e0c42f8d1ab2064dfe6418182089410506badac0157438db4c04262",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
-  "IE00B43HR379": {
-    "isin": "IE00B43HR379",
-    "currency": "EUR",
-    "years": {
-      "2017": 7.281344248168886,
-      "2018": 8.895582329317264,
-      "2019": 24.74645030425964,
-      "2020": 1.685144124168514,
-      "2021": 37.810728303532514,
-      "2022": 3.301687763713068,
-      "2023": -1.7359338302869398,
-      "2024": 8.469292320482191,
-      "2025": 1.647825253880053
-    },
-    "calendarReturns": {
-      "2017": 7.281344248168886,
-      "2018": 8.895582329317264,
-      "2019": 24.74645030425964,
-      "2020": 1.685144124168514,
-      "2021": 37.810728303532514,
-      "2022": 3.301687763713068,
-      "2023": -1.7359338302869398,
-      "2024": 8.469292320482191,
-      "2025": 1.647825253880053
-    },
-    "values": [
-      1.685144124168514,
-      37.810728303532514,
-      3.301687763713068,
-      -1.7359338302869398,
-      8.469292320482191,
-      1.647825253880053
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/QDVG.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/QDVG.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/QDVG.DE?period1=1451606400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00B43HR379-XETR-QDVG-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "a98f45a3d92532d1f6880715faceaee6ad3a1cb18312f7e73362d5365d0be4e1",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "IE00BYWQWR46": {
@@ -4205,53 +3990,6 @@
     "responseSha256": "7bbeccb3c95332a9216a3f23f13be644ba81bdf8ac17b57079db4d41f841d6f8",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00B5W4TY14": {
-    "isin": "IE00B5W4TY14",
-    "currency": "EUR",
-    "years": {
-      "2016": 19.116103823081954,
-      "2017": 22.345664918707243,
-      "2018": -18.03831900842151,
-      "2019": 13.917698765432096,
-      "2020": 31.457258681966383,
-      "2021": -0.6595202087307461,
-      "2022": -24.946055878284934,
-      "2023": 16.45289056603596,
-      "2024": -17.37561570770011,
-      "2025": 77.64499101850141
-    },
-    "calendarReturns": {
-      "2016": 19.116103823081954,
-      "2017": 22.345664918707243,
-      "2018": -18.03831900842151,
-      "2019": 13.917698765432096,
-      "2020": 31.457258681966383,
-      "2021": -0.6595202087307461,
-      "2022": -24.946055878284934,
-      "2023": 16.45289056603596,
-      "2024": -17.37561570770011,
-      "2025": 77.64499101850141
-    },
-    "values": [
-      31.457258681966383,
-      -0.6595202087307461,
-      -24.946055878284934,
-      16.45289056603596,
-      -17.37561570770011,
-      77.64499101850141
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSKR.MI?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/CSKR.MI?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/CSKR.MI?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00B5W4TY14-ETFP-CSKR-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "aaec6ced6c5f2cfa30d2e03549d356e5f8be226e9b1b6e0b4a252e5aaf9c3065",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "LU1834983550": {
     "isin": "LU1834983550",
     "currency": "EUR",
@@ -4311,49 +4049,6 @@
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "3250dd720afd34f4a85c3d653170667f65de3bf3c2eec30478ad162965ebae05",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
-  "IE00BYXG2H39": {
-    "isin": "IE00BYXG2H39",
-    "currency": "USD",
-    "years": {
-      "2018": -11.222797927461137,
-      "2019": 25.56904400606981,
-      "2020": 27.399488728793852,
-      "2021": -0.49252097774535875,
-      "2022": -11.915673693858842,
-      "2023": 6.222684703433923,
-      "2024": -1.998432601880873,
-      "2025": 32.866853258696494
-    },
-    "calendarReturns": {
-      "2018": -11.222797927461137,
-      "2019": 25.56904400606981,
-      "2020": 27.399488728793852,
-      "2021": -0.49252097774535875,
-      "2022": -11.915673693858842,
-      "2023": 6.222684703433923,
-      "2024": -1.998432601880873,
-      "2025": 32.866853258696494
-    },
-    "values": [
-      27.399488728793852,
-      -0.49252097774535875,
-      -11.915673693858842,
-      6.222684703433923,
-      -1.998432601880873,
-      32.866853258696494
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BTEC.L?period1=1509494400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/BTEC.L?period1=1509494400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/BTEC.L?period1=1509494400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-16",
-    "listingEvidenceId": "IE00BYXG2H39-XLON-BTEC-USD",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "15a6ca1024fb1996210f15685dc6c5516b7c7e8086117f472e69dfcd64a47ab5",
-    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "IE000YYE6WK5": {
     "isin": "IE000YYE6WK5",
@@ -6673,51 +6368,6 @@
     "responseSha256": "a76919e617351dfb309b346e5a97024e5ea07db32ca5c56ec9e4f85b4d63030d",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00BD1F4L37": {
-    "isin": "IE00BD1F4L37",
-    "currency": "USD",
-    "years": {
-      "2017": 50.229222992829435,
-      "2018": -6.905320813771509,
-      "2019": 33.32632906072703,
-      "2020": 16.091410559495657,
-      "2021": 27.55905511811023,
-      "2022": -20.742869306087698,
-      "2023": 30.92520478044851,
-      "2024": 22.461538461538467,
-      "2025": 12.49581909547739
-    },
-    "calendarReturns": {
-      "2017": 50.229222992829435,
-      "2018": -6.905320813771509,
-      "2019": 33.32632906072703,
-      "2020": 16.091410559495657,
-      "2021": 27.55905511811023,
-      "2022": -20.742869306087698,
-      "2023": 30.92520478044851,
-      "2024": 22.461538461538467,
-      "2025": 12.49581909547739
-    },
-    "values": [
-      16.091410559495657,
-      27.55905511811023,
-      -20.742869306087698,
-      30.92520478044851,
-      22.461538461538467,
-      12.49581909547739
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IUQA.L?period1=1477958400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/IUQA.L?period1=1477958400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/IUQA.L?period1=1477958400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-17",
-    "listingEvidenceId": "IE00BD1F4L37-XLON-IUQA-USD",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "82f28d4f6866b2ba7538ee71160ef186955da82768529f1f7f5c6ea2ef3ccbd5",
-    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "IE00BD1F4M44": {
     "isin": "IE00BD1F4M44",
     "currency": "USD",
@@ -6886,53 +6536,6 @@
     "responseSha256": "3a2491c37d36f6cc5f02b210c0d752212d87e205e5f69594a3eea15faf85e5bb",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
-  "IE00BQN1K562": {
-    "isin": "IE00BQN1K562",
-    "currency": "EUR",
-    "years": {
-      "2016": -3.726169844020799,
-      "2017": 10.26102610261026,
-      "2018": -6.8571428571428505,
-      "2019": 31.67397020157756,
-      "2020": 1.1448349307774164,
-      "2021": 26.783364043169257,
-      "2022": -12.104225059690632,
-      "2023": 14.763198299279544,
-      "2024": 4.291447977770924,
-      "2025": 10.14406946911388
-    },
-    "calendarReturns": {
-      "2016": -3.726169844020799,
-      "2017": 10.26102610261026,
-      "2018": -6.8571428571428505,
-      "2019": 31.67397020157756,
-      "2020": 1.1448349307774164,
-      "2021": 26.783364043169257,
-      "2022": -12.104225059690632,
-      "2023": 14.763198299279544,
-      "2024": 4.291447977770924,
-      "2025": 10.14406946911388
-    },
-    "values": [
-      1.1448349307774164,
-      26.783364043169257,
-      -12.104225059690632,
-      14.763198299279544,
-      4.291447977770924,
-      10.14406946911388
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IEQU.MI?period1=1425168000&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/IEQU.MI?period1=1425168000&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/IEQU.MI?period1=1425168000&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-17",
-    "listingEvidenceId": "IE00BQN1K562-ETFP-IEQU-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "ec7d5d9d2eee81a25d83a2a4ce82c1b2352e9416021d04cc7ea2a60bc7072947",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
   "IE00BQN1K786": {
     "isin": "IE00BQN1K786",
     "currency": "EUR",
@@ -7026,54 +6629,6 @@
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "08b1a0e869d83b4c212d2a0b54c797244d5e1f1ddae11f7722b384ff239f2ec4",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
-  "IE00BQT3WG13": {
-    "isin": "IE00BQT3WG13",
-    "currency": "USD",
-    "years": {
-      "2016": -18.35367312754248,
-      "2017": 30.02637749120749,
-      "2018": -26.07911642060182,
-      "2019": 34.654672968440316,
-      "2020": 42.323369565217384,
-      "2021": 3.3015115354017466,
-      "2022": -26.191759722757023,
-      "2023": -14.179883138564275,
-      "2024": 11.112462006079028,
-      "2025": 26.244665718349935
-    },
-    "calendarReturns": {
-      "2016": -18.35367312754248,
-      "2017": 30.02637749120749,
-      "2018": -26.07911642060182,
-      "2019": 34.654672968440316,
-      "2020": 42.323369565217384,
-      "2021": 3.3015115354017466,
-      "2022": -26.191759722757023,
-      "2023": -14.179883138564275,
-      "2024": 11.112462006079028,
-      "2025": 26.244665718349935
-    },
-    "values": [
-      42.323369565217384,
-      3.3015115354017466,
-      -26.191759722757023,
-      -14.179883138564275,
-      11.112462006079028,
-      26.244665718349935
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CNYA.L?period1=1430438400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/CNYA.L?period1=1430438400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/CNYA.L?period1=1430438400&period2=1790812800&interval=1mo&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/CNYA.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-17",
-    "listingEvidenceId": "IE00BQT3WG13-XLON-CNYA-USD",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "fc7e37750487dfcca412b45d55147eab74143854d6cf145bb8c0aa0982de1a85",
-    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "IE00BYX2JD69": {
     "isin": "IE00BYX2JD69",
@@ -9164,51 +8719,6 @@
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "735dbca63ad0d0b78804635f2160765b081c99118eac207f0fee6e6686d40b85",
     "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
-  },
-  "IE00BSPLC298": {
-    "isin": "IE00BSPLC298",
-    "currency": "EUR",
-    "years": {
-      "2017": 12.887391837987083,
-      "2018": -19.203590127654515,
-      "2019": 29.0159730866274,
-      "2020": -3.520203573413483,
-      "2021": 27.581086486486495,
-      "2022": -13.51551896979053,
-      "2023": 15.284746716846364,
-      "2024": 4.2813195427880535,
-      "2025": 26.81336484053116
-    },
-    "calendarReturns": {
-      "2017": 12.887391837987083,
-      "2018": -19.203590127654515,
-      "2019": 29.0159730866274,
-      "2020": -3.520203573413483,
-      "2021": 27.581086486486495,
-      "2022": -13.51551896979053,
-      "2023": 15.284746716846364,
-      "2024": 4.2813195427880535,
-      "2025": 26.81336484053116
-    },
-    "values": [
-      -3.520203573413483,
-      27.581086486486495,
-      -13.51551896979053,
-      15.284746716846364,
-      4.2813195427880535,
-      26.81336484053116
-    ],
-    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ZPRX.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/ZPRX.DE?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/ZPRX.DE?period1=1451606400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "checkedAt": "2026-10-13",
-    "listingEvidenceId": "IE00BSPLC298-XETR-ZPRX-EUR",
-    "basis": "market-price",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "responseSha256": "2432829651ecdfafb97b3b2f7ae6b794ffd6c93a5aa8d30ef6f68ff1823cadb1",
-    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
   "JE00B78CGV99": {
     "isin": "JE00B78CGV99",

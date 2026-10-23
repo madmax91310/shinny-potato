@@ -17,21 +17,25 @@
     "listingEvidenceId": "IE000L2SA8K5-XLON-IEWQ-USD"
   },
   "etfSmallValueEurope": {
-    "value": 70.16000366210938,
-    "asOf": "2026-10-21",
+    "value": 69.3043,
+    "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "ZPRX.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ZPRX.DE?period1=1791331200&period2=1792627200&interval=1d&events=splits",
-    "sha256": "199469cd37de7bc85fbd93e788d4011a96a91a53d414e8e5bb2ece6bfae735e1",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BSPLC298",
-    "ticker": "ZPRX",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00BSPLC298-XETR-ZPRX-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 69.3043,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy",
+    "sourceUrls": [
+      "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprx-gy.xlsx"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "fdc39aa426a992bff695c0e4b589594cc8b0f982d95d43294e27985f5abee63a"
   },
   "etc_brent_crude_oil": {
     "value": 107.47000122070312,

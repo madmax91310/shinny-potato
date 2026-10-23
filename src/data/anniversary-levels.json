@@ -2659,21 +2659,26 @@
     "listingEvidenceId": "IE00BF0M2Z96-XLON-BATT-USD"
   },
   "etfUsaSmallValue": {
-    "value": 81.77999877929688,
+    "value": 82.31325301204818,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "ZPRV.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ZPRV.DE?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "0b97fcdffeadf7588126c935a42cfda548566efac928fc7545c3402336b64e6c",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BSPLC413",
-    "ticker": "ZPRV",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00BSPLC413-XETR-ZPRV-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 92.232,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+    "sourceUrls": [
+      "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+      "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "8d0d4df9363d7f644c0599951beb0f49954f6dc5c4e3b29c654540fa8b08be6e"
   },
   "etfWorldMidEqual": {
     "value": 59.7400016784668,
@@ -2829,21 +2834,24 @@
     "listingEvidenceId": "IE00B579F325-XAMS-SGLD-EUR"
   },
   "etfIE00B42NKQ00": {
-    "value": 14.140000343322754,
+    "value": 14.390796,
     "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "IUES.L",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IUES.L?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "842d54ce16828df508d5484e35a521ae09b8804c170b6ad6acabba473e17c100",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B42NKQ00",
-    "ticker": "IUES",
-    "mic": "XLON",
-    "listingEvidenceId": "IE00B42NKQ00-XLON-IUES-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 14.390796,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "ff72f648a8ee7d693078f5e5ec93d2b51b16996e4ad31fee4e215c918bfbc55b"
   },
   "etfCH0454664001": {
     "value": 23.90399932861328,
@@ -2948,21 +2956,25 @@
     "listingEvidenceId": "IE0007Y8Y157-XETR-QUTM-EUR"
   },
   "etfIE00B4JNQZ49": {
-    "value": 14.942000389099121,
+    "value": 15.000921909861669,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "QDVH.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/QDVH.DE?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "8add4234fc17c85128b19c32e6d5410eeba47f964b77a90afa5106f76a6e61e6",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B4JNQZ49",
-    "ticker": "QDVH",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00B4JNQZ49-XETR-QDVH-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 16.808533,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "da711b4dc3708484d320d4a367ca0f823e51926c3cc3abad0c94f2d801848f1c"
   },
   "etfFR0013412012": {
     "value": 36.900001525878906,
@@ -3407,21 +3419,24 @@
     "listingEvidenceId": "IE00BKPSFC54-XAMS-WQDA-USD"
   },
   "etfIE000RDRMSD1": {
-    "value": 14.326000213623047,
+    "value": 14.254977,
     "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "BLKC.AS",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BLKC.AS?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "5eeef68c82b818b663584dfb85ca53b64ab2eecd443ba7ebe617e390a2b85310",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE000RDRMSD1",
-    "ticker": "BLKC",
-    "mic": "XAMS",
-    "listingEvidenceId": "IE000RDRMSD1-XAMS-BLKC-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 14.254977,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "5f21319158560cd5dca4f8096c5b0867fcd3b437b793fb238b726173dace2922"
   },
   "etfIE00B8GKDB10": {
     "value": 82.18000030517578,
@@ -3475,21 +3490,25 @@
     "listingEvidenceId": "IE00B2NPKV68-XETR-IUS7-EUR"
   },
   "etfIE00B43HR379": {
-    "value": 13.140000343322754,
+    "value": 13.087345827755465,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "QDVG.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/QDVG.DE?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "3ee21a313226c31e631b21741ae1bab3f6ee8fbb58ddfe837f37c62d97f6dad6",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B43HR379",
-    "ticker": "QDVG",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00B43HR379-XETR-QDVG-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 14.664371,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "9c94b8336b0ef707325a10491bcc97df30382a7deadced40089e7bedf2db590f"
   },
   "etfIE00BYWQWR46": {
     "value": 58.81999969482422,
@@ -3560,21 +3579,25 @@
     "listingEvidenceId": "IE00BK5BR733-ETFP-VFEA-EUR"
   },
   "etfIE00B5W4TY14": {
-    "value": 374.54998779296875,
+    "value": 379.2131316376617,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "CSKR.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSKR.MI?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "fb7abaea5d80e26760dfae988d87de84240bcab7296ada063287605c66c808cd",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B5W4TY14",
-    "ticker": "CSKR",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00B5W4TY14-ETFP-CSKR-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 424.908314,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "670a42e2d4ea31f888634a3dfcd929e898a031f72cb9d26013778a850d06586b"
   },
   "etfLU1834983550": {
     "value": 127.0,
@@ -3611,21 +3634,24 @@
     "listingEvidenceId": "IE00BZ56SW52-XPAR-GGRA-EUR"
   },
   "etfIE00BYXG2H39": {
-    "value": 10.385000228881836,
+    "value": 10.307187,
     "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "BTEC.L",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTEC.L?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "eed5266259712728cfb6a4d1213a75782071b057c2a5d6619eecd3753090b6d9",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BYXG2H39",
-    "ticker": "BTEC",
-    "mic": "XLON",
-    "listingEvidenceId": "IE00BYXG2H39-XLON-BTEC-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 10.307187,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "c3c56e442410b7311168723709531c896b71125561e9050efd89460f3411d4d1"
   },
   "etfIE000YYE6WK5": {
     "value": 50.88199996948242,
@@ -8813,21 +8839,24 @@
     "listingEvidenceId": "IE00B53QG562-XSWX-CSEMU-EUR"
   },
   "etfIE00BD1F4L37": {
-    "value": 18.94499969482422,
+    "value": 18.947521,
     "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "IUQA.L",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IUQA.L?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "bdcd387d5b01308c5e4cc88d512f29cd26291f0263ebbb37d5683b02168d193f",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BD1F4L37",
-    "ticker": "IUQA",
-    "mic": "XLON",
-    "listingEvidenceId": "IE00BD1F4L37-XLON-IUQA-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 18.947521,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "3c0d296006e00ea93ae006d4f6314f5b49ac66df4151948bc35b02586bcc257d"
   },
   "etfIE00BD1F4M44": {
     "value": 18.53499984741211,
@@ -8898,21 +8927,24 @@
     "listingEvidenceId": "IE00BJ5JPG56-XAMS-ICHN-USD"
   },
   "etfIE00BQN1K562": {
-    "value": 12.258000373840332,
+    "value": 12.248527,
     "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "IEQU.MI",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IEQU.MI?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "5772ea059ccff4a1cb98a7cb459a44f80957fe6024fb53b82e7092a8d9342af5",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BQN1K562",
-    "ticker": "IEQU",
-    "mic": "ETFP",
-    "listingEvidenceId": "IE00BQN1K562-ETFP-IEQU-EUR"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 12.248527,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "f96311ae6b6dd1d7b2a1649977a5d830d2a33090602856ff11f882588b085cd7"
   },
   "etfIE00BQN1K786": {
     "value": 15.434000015258789,
@@ -8949,21 +8981,24 @@
     "listingEvidenceId": "IE00BQN1K901-XLON-IEVL-EUR"
   },
   "etfIE00BQT3WG13": {
-    "value": 5.272500038146973,
+    "value": 5.269612,
     "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "CNYA.L",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CNYA.L?period1=1791417600&period2=1792713600&interval=1d&events=splits",
-    "sha256": "683606f9783039e3dced52d83f22bf384f357cc4f28a721dfb83b9b80ac5c534",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BQT3WG13",
-    "ticker": "CNYA",
-    "mic": "XLON",
-    "listingEvidenceId": "IE00BQT3WG13-XLON-CNYA-USD"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 5.269612,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2210b77d96c8b225e5748fadd806cc39bac87f4ac54ffe3406b1bd5eb7252098"
   },
   "etfIE00BYX2JD69": {
     "value": 14.28499984741211,
