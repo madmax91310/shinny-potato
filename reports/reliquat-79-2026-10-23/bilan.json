@@ -18,5 +18,24 @@
     "corrigée": 12,
     "bloquée": 1
   },
-  "note": "Une voie NAV distincte n’explique pas une ancienne cotation. Chargée ne signifie pas erronée : les 58 cotations restantes demandent investigation, sans blocage automatique de leurs fenêtres."
+  "note": "58 cotations anciennes chargées dont WFNS réparée ; 57 restent à investiguer. 21 voies NAV ne démontrent pas la cause de l’ancienne divergence. Un résidu marché/NAV demeure après réparation du dividende WFNS.",
+  "explications_partielles_etayees_sans_cloture": 3,
+  "comparaisons_quotidiennes_executees_hors_reseau": 72,
+  "source_raw_reutilisee": "preuves capturées dans les audits précédents, empreintes originales contrôlées",
+  "pr": 892,
+  "commit_pr": "1b8756f0259c4684732f77d61ffb085a7b206339",
+  "commit_fusion": "6b715bf556bfe454e03f7dc78ca4989a919bdfdb",
+  "erreurs_financieres_corrigees": 1,
+  "cause_partiellement_expliquee_et_reparee": "WFNS 2023 : dividende omis, résidu marché/NAV non attribué",
+  "residus_distincts_non_attribues_de_cas_repares": 1,
+  "anciennes_cotations_non_reparees_chargees": 57,
+  "cas_sur_cotation_reparee": 1,
+  "parts_concernees_par_une_correction_ou_nav": 12,
+  "tests_python": 935,
+  "exports_png_locaux": 52,
+  "pr_second_lot": 895,
+  "commit_pr_second_lot": "d78417a880d39af0ef612d4be0fa76f5a563f8ae",
+  "causes_completement_expliquees": 0,
+  "cas_sans_reparation_demontree_hors_nav": 78,
+  "precision_comptage": "Un défaut WFNS corrigé et cause principale partiellement expliquée, mais résidu non attribué : aucune des 79 divergences n’est entièrement attribuée. 78 autres cas à investiguer ; 21 d’entre eux disposent d’une voie NAV sûre distincte."
 }
