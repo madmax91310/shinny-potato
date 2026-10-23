@@ -14,7 +14,9 @@ NOW=dt.datetime(2026,10,23,tzinfo=dt.timezone.utc)
 FX='<g:Envelope xmlns:g="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref"><Cube><Cube time="2026-10-22"><Cube currency="USD" rate="1.17"/></Cube></Cube></g:Envelope>'
 
 class VanEckRoutes(unittest.TestCase):
-    def source(self,isin):return next(s for s in configurations()if s['isin']==isin)
+    def source(self,isin):
+        candidates=json.loads((ROOT/'reports/vaneck-nav-remainder-2026-10-23/candidats.json').read_text())
+        return next(s for s in configurations()+candidates if s['isin']==isin)
     def collect(self,isin,change=None):
         source=copy.deepcopy(self.source(isin))
         titles={r['isin']:r for r in json.loads((P/'vaneck-daily-collectes.json').read_text())}

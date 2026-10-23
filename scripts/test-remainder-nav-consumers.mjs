@@ -9,7 +9,7 @@ import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 const sources=JSON.parse(fs.readFileSync('scripts/official-nav-remainder-sources.json'))
-const proofs=JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series
+const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github/nav.json')).series.filter(r=>r.status==='validated')]
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
