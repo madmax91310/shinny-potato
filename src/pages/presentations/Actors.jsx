@@ -43,13 +43,14 @@ export default function Actors({ family }) {
         </ChoicePicker>}
         <div className="scpi-evidence">
           <h2>{record.name}</h2><p>{record.role}</p>
+          {record.activity?.status === 'ceased' && <p className="data-warning">Activité cessée. Jugement de liquidation du {dateLabel(record.activity.judgmentAt)} ; avis contrôlé le {dateLabel(record.activity.checkedAt)}. <a href={record.activity.sourceUrl} target="_blank" rel="noreferrer">Avis officiel</a></p>}
           <h3>{record.selectedOffer?.scopeType === 'platform' ? 'Fonctionnement de la plateforme' : 'L’offre présentée'}</h3><p>{record.offer}</p><p>{record.selectedOffer?.scope}</p>
           {record.selectedOffer?.availability?.status === 'closed' && <p className="data-warning">Souscriptions clôturées le {dateLabel(record.selectedOffer.availability.asOf)}. <a href={record.selectedOffer.availability.sourceUrl} target="_blank" rel="noreferrer">Statut publié par l’acteur</a></p>}
           <h3>Ce que tu détiens</h3><p>{record.vehicle}</p><p>{record.distinction}</p>
           <h3>Fonctionnement</h3><p>{record.mechanism}</p>
           <h3>Accès, revenus et sortie</h3><p>{record.access}</p><p>{record.income}</p><p>{record.liquidity}</p>
           {record.selectedOffer && <>
-            <h3>Frais et durée de l’offre</h3>
+            <h3>{record.activity?.status === 'ceased' ? 'Archive des conditions antérieures — aucune nouvelle offre' : 'Frais et durée de l’offre'}</h3>
             {[record.selectedOffer.fields.fees, record.selectedOffer.fields.duration].map(field => <p key={field.label}>{field.value}{field.effectiveAt && <> Conditions datées du {dateLabel(field.effectiveAt)}.</>}</p>)}
             {record.selectedOffer.warnings.map(warning => <p className="data-warning" key={warning}>{warning}</p>)}
             {record.selectedOffer.projectRequirements?.length > 0 && <><h3>Conditions propres à chaque projet</h3>{record.selectedOffer.projectRequirements.map(value => <p key={value}>{value}</p>)}</>}
@@ -57,7 +58,7 @@ export default function Actors({ family }) {
           </>}
           <h3>Risques propres à l’exposition</h3><p>{record.risks}</p>
           <details><summary>Sources et périmètre de la fiche</summary>
-            <p>Conditions publiques de l’offre collectées le {dateLabel(record.checkedAt)}. Le fonctionnement général de l’acteur reste une explication éditoriale vérifiée manuellement le {dateLabel(record.editorialCheckedAt)}. {record.selectedOffer?.availability?.status === 'closed' ? 'La clôture des souscriptions est publiée par l’acteur et signalée ci-dessus.' : 'La disponibilité d’une souscription n’est pas établie par cette fiche.'}</p>
+            <p>{record.activity?.status === 'ceased' ? 'Archive des anciennes conditions contrôlées le ' : 'Conditions publiques de l’offre collectées le '}{dateLabel(record.checkedAt)}. Le fonctionnement général de l’acteur reste une explication éditoriale vérifiée manuellement le {dateLabel(record.editorialCheckedAt)}. {record.selectedOffer?.availability?.status === 'closed' ? 'La clôture des souscriptions est publiée par l’acteur et signalée ci-dessus.' : 'La disponibilité d’une souscription n’est pas établie par cette fiche.'}</p>
             <p>Collecte quotidienne des conditions publiques accessibles ; les données précédentes sont conservées si la source échoue. Les informations manquantes, la fiscalité et les performances réalisées restent à qualifier dans les documents du véhicule choisi.</p>
             {record.sources.map(source => <p key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a></p>)}
           </details>

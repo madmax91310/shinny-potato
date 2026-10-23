@@ -68,6 +68,23 @@ try{
   await (await dcaDownload).saveAs(`${out}/dca-${width}.png`);pngCount++
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
  }
+ for(const width of [1280,390]){
+  await page.setViewportSize({width,height:900})
+  await page.goto(base+'/presentations?famille=private-equity',{waitUntil:'networkidle'})
+  await page.getByRole('group',{name:'Choisir un acteur',exact:true}).getByRole('button',{name:'Tudigo',exact:true}).click()
+  await page.getByText('Activité cessée. Jugement de liquidation du', {exact:false}).waitFor({state:'attached'})
+  await page.getByRole('heading',{name:'Archive des conditions antérieures — aucune nouvelle offre',exact:true}).waitFor({state:'attached'})
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
+  const text=await page.locator('#actor-draft').inputValue()
+  assert(text.includes('cessé son activité')&&text.includes('12/10/2026'))
+  assert(!text.includes('Souscription :')&&!text.includes('Pour commencer'))
+  await page.getByRole('tab',{name:'Image',exact:true}).click()
+  await page.getByRole('img',{name:'Visuel de Tudigo',exact:true}).waitFor({state:'attached'})
+  const download=page.waitForEvent('download')
+  await page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()
+  await (await download).saveAs(`${out}/tudigo-cessation-${width}.png`);pngCount++
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
+ }
  for(const name of fs.readdirSync(out).filter(n=>n.endsWith('.png'))){
   const bytes=fs.readFileSync(`${out}/${name}`);assert.equal(bytes.subarray(1,4).toString(),'PNG');assert(bytes.length>30000)
  }
@@ -91,5 +108,5 @@ try{
  const published=await(await page.request.get(base+'/data/ai-portfolios/series/94.json')).json()
  assert.deepEqual(published['IE00B4L5Y983-ETFP'].points,series.points)
  assert.deepEqual(errors,[])
- console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
+ console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
 }finally{await browser?.close();server.kill()}

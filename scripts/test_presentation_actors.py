@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_presentation_actors import parse,refresh,SOURCES
+from collect_presentation_actors import parse,refresh,SOURCES,platform_activity
 ROOT=pathlib.Path(__file__).parent
 TODAY=dt.date(2026,10,9)
 class ActorTermsTests(unittest.TestCase):
@@ -87,4 +87,24 @@ class ActorTermsTests(unittest.TestCase):
   newer=copy.deepcopy(previous['mymarguerit']);newer['offers'][0]['fields']['fees']['effectiveAt']='2025-01-01'
   data,report=refresh(previous,{'mymarguerit':lambda day:newer},TODAY)
   self.assertEqual(data,previous);self.assertEqual(report['observations'][0]['status'],'failure')
+class PlatformActivityTests(unittest.TestCase):
+ def test_real_notice_identity_dates_and_consistent_routes(self):
+  doc=(ROOT/'fixtures/presentation-actors/tudigo-cessation-20261023.html').read_text()
+  day=dt.date(2026,10,23);a=platform_activity('tudigo',[doc,doc],day)
+  self.assertEqual(a['status'],'ceased');self.assertEqual(a['judgmentAt'],'2026-10-12')
+  self.assertEqual(a['checkedAt'],'2026-10-23')
+  for changed in [doc.replace('Tudigo','Autre plateforme'),doc.replace('12 octobre 2026','12 octobre 2027'),doc.replace('Vos accès ne sont pas encore ouverts','Accès ouverts')]:
+   with self.assertRaises(ValueError):platform_activity('tudigo',[changed,changed],day)
+  with self.assertRaises(ValueError):platform_activity('tudigo',[doc,'Conditions Tudigo'],day)
+ def test_activity_does_not_renew_archived_terms_or_silently_reopen(self):
+  doc=(ROOT/'fixtures/presentation-actors/tudigo-cessation-20261023.html').read_text();day=dt.date(2026,10,23)
+  old=parse('tudigo',ActorTermsTests().fixtures()['tudigo'],TODAY);previous={'tudigo':old}
+  activity=platform_activity('tudigo',[doc,doc],day)
+  merged,report=refresh(previous,{'tudigo':lambda d:{'id':'tudigo','activity':activity}},day)
+  self.assertEqual(report['observations'][0]['scope'],'platform-activity')
+  self.assertEqual(merged['tudigo']['offers'],old['offers']);self.assertEqual(merged['tudigo']['checkedAt'],old['checkedAt'])
+  self.assertNotIn('activity',previous['tudigo'])
+  reopened=parse('tudigo',ActorTermsTests().fixtures()['tudigo'],day)
+  kept,report=refresh(merged,{'tudigo':lambda d:reopened},day)
+  self.assertEqual(kept,merged);self.assertEqual(report['observations'][0]['status'],'failure')
 if __name__=='__main__':unittest.main()

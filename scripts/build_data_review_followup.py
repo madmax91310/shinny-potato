@@ -114,6 +114,14 @@ def main():
     with (OUT/'statut-19-actions.csv').open(encoding='utf-8-sig')as f:actions=list(csv.DictReader(f,delimiter=';'))
     for i,b in enumerate(actions):
         ident=next(iter(b.values()));add('action historique',ident,b['statut_avant'],b['statut_apres'],b['complement_cette_intervention'],'LIVRAISON.md ; network-executions.json',ident,action='Voir les cas individuels et leurs causes restantes.')
+    activity=read(ROOT/'src/data/automated-presentation-actors.json').get('tudigo',{}).get('activity',{})
+    if activity.get('status')=='ceased':
+        for r in rows:
+            if r['dimension']=='usage requis initial' and r['id']=='actor:tudigo':
+                r.update(apres='archived',classe='archive',motif='Anciennes conditions conservées à leur date ; avis officiel de cessation qualifié séparément.',preuve='preuves/tudigo-activity.json ; scripts/fixtures/presentation-actors/tudigo-cessation-20261023.html',action_reliquat='Aucune nouvelle souscription présentée ; suivi des investissements existants selon l’avis, transfert et récupération non établis.')
+        add('incident révélé par la CI','actor:tudigo:activity','ancienne page tarifaire remplacée ; collecte refusée','cessation qualifiée depuis GitHub ; anciennes conditions archivées',
+            'Deux routes officielles servent le même avis. Jugement du 12/10 distinct du contrôle du 23/10 ; aucune nouvelle offre, aucun transfert effectif ni remboursement déduit.',
+            'preuves/tudigo-activity.json ; scripts/fixtures/presentation-actors/tudigo-cessation-20261023.html','actor:tudigo','activity','Présentations',activity.get('sourceUrl',''),action='Conserver la cessation si la source échoue ; une réouverture exige une qualification explicite.')
     for r in rows:
         for k,v in r.items():
             if isinstance(v,(list,dict)):r[k]=json.dumps(v,ensure_ascii=False)

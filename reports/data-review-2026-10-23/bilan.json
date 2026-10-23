@@ -10,7 +10,7 @@
     "incident historique retired": 160,
     "échec individuel initial": 8,
     "incident actif au contrôle final": 124,
-    "incident révélé par la CI": 2,
+    "incident révélé par la CI": 3,
     "validation CI": 1,
     "contrôle de séance ultérieure": 1,
     "reliquat historique initial": 201,
@@ -354,5 +354,12 @@
   "monitorActiveFinal": 124,
   "productionMonitorManuallyChanged": false,
   "missingInitialCoverageRows": 0,
-  "newCoverageRows": 0
+  "newCoverageRows": 0,
+  "postSnapshotChanges": {
+    "actor": "tudigo",
+    "archivedFields": 5,
+    "newQualifiedActivity": 1,
+    "qualifiedRun": 39994738052,
+    "countersSnapshot": "Moniteur 17:02 ; inventaire intégral avant ajout du statut de cessation. Le prochain build régénère les compteurs complets."
+  }
 }
