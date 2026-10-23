@@ -74,6 +74,8 @@ try{
   await page.getByRole('group',{name:'Choisir un acteur',exact:true}).getByRole('button',{name:'Tudigo',exact:true}).click()
   await page.getByText('Activité cessée. Jugement de liquidation du', {exact:false}).waitFor({state:'attached'})
   await page.getByRole('heading',{name:'Archive des conditions antérieures — aucune nouvelle offre',exact:true}).waitFor({state:'attached'})
+  const preview=page.getByRole('button',{name:'Aperçu',exact:true})
+  if(await preview.isVisible())await preview.click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   const text=await page.locator('#actor-draft').inputValue()
   assert(text.includes('cessé son activité')&&text.includes('12/10/2026'))

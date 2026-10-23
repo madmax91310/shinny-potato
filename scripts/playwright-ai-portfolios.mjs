@@ -71,7 +71,14 @@ try{
  await choose(formatPicker,'individual');const original=await page.locator('.ai-image').first().getAttribute('src');await page.getByRole('textbox',{name:'Titre temporaire',exact:true}).fill('Titre temporaire de recette');assert.notEqual(await page.locator('.ai-image').first().getAttribute('src'),original);assert.deepEqual(fixtures.three.book,full.book)
  // A tab already open with its image renderer loaded must download after the
  // old deployment's JS files disappear. Downloads use retained canvases, not imports.
- await page.route('**/assets/*.js',r=>r.abort('failed'));const [retained]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/Télécharger PNG/}).first().click()]);await retained.saveAs(output+'/onglet-apres-deploiement.png');await page.unroute('**/assets/*.js')
+ const retiredRequests=[];page.on('requestfailed',r=>retiredRequests.push({url:r.url(),type:r.resourceType(),error:r.failure()?.errorText}))
+ await page.route('**/assets/*.js',r=>r.abort('failed'));let retained
+ try{[retained]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/Télécharger PNG/}).first().click()])}
+ catch(error){
+  console.error('Retained PNG failure:',JSON.stringify({errors,requests:retiredRequests.slice(-20),visibleText:(await page.locator('body').innerText()).slice(0,5000),images:await page.locator('.ai-image').count()}))
+  await page.screenshot({path:output+'/retained-png-failure.png',fullPage:true});throw error
+ }
+ await retained.saveAs(output+'/onglet-apres-deploiement.png');await page.unroute('**/assets/*.js')
  active='four';await page.reload();await page.getByRole('button',{name:'Images',exact:true}).click();await choose(page.getByRole('group',{name:'Format de l’image',exact:true}),'curves');const boxes=page.getByRole('checkbox');if(!await boxes.last().isChecked())await boxes.last().check();const [four]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/Télécharger PNG/}).first().click()]);await four.saveAs(output+'/quatre-courbes.png')
  for(const n of [1,2]){for(let i=0;i<await boxes.count();i++)await boxes.nth(i).setChecked(i<n);const [f]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/Télécharger PNG/}).first().click()]);await f.saveAs(output+'/courbes-'+n+'-participant.png')}
  active='stress';await page.reload();await page.getByRole('button',{name:'Images',exact:true}).click();await page.locator('.ai-image').first().waitFor();assert.equal(await page.getByRole('button',{name:/Télécharger PNG/}).count(),4);for(let i=0;i<4;i++){const [f]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:/Télécharger PNG/}).nth(i).click()]);await f.saveAs(output+'/vingt-lignes-'+(i+1)+'.png')}
