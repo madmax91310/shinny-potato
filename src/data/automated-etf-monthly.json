@@ -23177,106 +23177,118 @@
     "listingEvidenceId": "IE00BJ5JP097-XAMS-WFNS-USD",
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "timezone": "Europe/Amsterdam",
+    "distributionEvidence": {
+      "path": "reports/reliquat-2026-10-23/preuves/IE00BJ5JP097-blackrock.json.gz",
+      "sha256": "bf7fb9adf6223c3e155a0f6f4a8b29c3e926af227320fed9fd2ffe4bf9408b04",
+      "metadataPath": "reports/reliquat-2026-10-23/preuves/blackrock-collectes.json",
+      "dates": [
+        "2023-06-15"
+      ],
+      "quoteEvidence": {
+        "path": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etf_financials.json.gz",
+        "sha256": "a3c3eff6bd7977e3219d4974c65c4f0404a17ae1230f74b329c5212f6152f6e6"
+      }
+    },
     "points": [
       [
         "2021-05",
-        4.461908
+        4.359464
       ],
       [
         "2021-06",
-        4.31507
+        4.215997
       ],
       [
         "2021-07",
-        4.318086
+        4.218944
       ],
       [
         "2021-08",
-        4.483709
+        4.380763
       ],
       [
         "2021-09",
-        4.432168
+        4.330406
       ],
       [
         "2021-10",
-        4.706551
+        4.598489
       ],
       [
         "2021-11",
-        4.407506
+        4.306311
       ],
       [
         "2021-12",
-        4.57318
+        4.468181
       ],
       [
         "2022-01",
-        4.576316
+        4.471244
       ],
       [
         "2022-02",
-        4.493258
+        4.390093
       ],
       [
         "2022-03",
-        4.527037
+        4.423097
       ],
       [
         "2022-04",
-        4.161208
+        4.065667
       ],
       [
         "2022-05",
-        4.208604
+        4.111976
       ],
       [
         "2022-06",
-        3.795739
+        3.70859
       ],
       [
         "2022-07",
-        3.960237
+        3.869311
       ],
       [
         "2022-08",
-        3.869828
+        3.780977
       ],
       [
         "2022-09",
-        3.577876
+        3.495728
       ],
       [
         "2022-10",
-        3.832141
+        3.744156
       ],
       [
         "2022-11",
-        4.209368
+        4.112722
       ],
       [
         "2022-12",
-        4.139917
+        4.044866
       ],
       [
         "2023-01",
-        4.464772
+        4.362261
       ],
       [
         "2023-02",
-        4.411973
+        4.310674
       ],
       [
         "2023-03",
-        4.160019
+        4.064506
       ],
       [
         "2023-04",
-        4.283773
+        4.185418
       ],
       [
         "2023-05",
-        4.072946
+        3.979432
       ],
       [
         "2023-06",
@@ -23296,11 +23308,11 @@
       ],
       [
         "2023-10",
-        3.965866
+        3.965867
       ],
       [
         "2023-11",
-        4.43967
+        4.439669
       ],
       [
         "2023-12",
@@ -23703,11 +23715,28 @@
     ],
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits",
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "distributionAdjustmentProof": [
+      {
+        "exDate": "2023-06-15",
+        "amount": 0.1077,
+        "currency": "USD",
+        "previousSession": "2023-06-14",
+        "previousClose": 4.690800189971924,
+        "providerAdjustmentRatio": 0.9999999380995902,
+        "expectedAdjustmentRatio": 1.0234993771760987,
+        "backAdjustmentFactor": 0.9770401646545843,
+        "status": "missing-adjustment",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "evidenceCheckedAt": "2026-10-23T04:39:21.635047+00:00",
+        "evidenceSha256": "bf7fb9adf6223c3e155a0f6f4a8b29c3e926af227320fed9fd2ffe4bf9408b04"
+      }
     ],
     "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "4389b5c642eb326a98031a0e2646116ba43cb1a8a790404e855a8f461a4e3c11"
+    "responseSha256": "577bd7512c1d0ce0a6790afaf550cf6fc8e6ee314c19d33f54d0c215cb918489"
   },
   "etf_gold_miners": {
     "id": "etf_gold_miners",
