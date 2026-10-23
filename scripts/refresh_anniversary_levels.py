@@ -106,15 +106,17 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             **({'sourceUrls':list(body['sources']),'sourceHashes':body['sources'],'quoteMethod':'supported-xndx-ranges'}if config['id']=='nasdaq100'and parser=='yahoo' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
 
-# A 1d response drops the previous close as soon as today's session opens.
-# Use the supported 5d daily window on both hosts; compare completed sessions
-# strictly, including intraday, without accepting a forming candle.
-XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'5d')]]
+XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'1d')]]
+
+class PublicationPending(ValueError):
+    def __init__(self, evidence):
+        super().__init__('XNDX: only the current unfinished session is published')
+        self.evidence=evidence
 
 def xndx_supported_ranges(config,now,fetch):
     if (config.get('symbol'),config.get('currency'),config.get('variant'))!=('^XNDX','USD','TOTAL'):reject('Wrong XNDX convention')
-    observations=[];proofs={}
-    for url,window in zip(XNDX_URLS,['5d','5d']):
+    observations=[];proofs={};pending=[]
+    for url,window in zip(XNDX_URLS,['5d','1d']):
         data=fetch(url);rows,zone=yahoo_chart(data,config,'1d')
         payload=data['chart']['result'][0];meta=payload['meta']
         if (meta.get('instrumentType'),meta.get('longName'),meta.get('range'))!=('INDEX','NASDAQ-100 Total Return',window):reject('Wrong XNDX index or supported range')
@@ -137,11 +139,28 @@ def xndx_supported_ranges(config,now,fetch):
                     value=number(meta.get('regularMarketPrice'))
                     if abs(value-current[-1][1])>.005:reject('XNDX close and regular quote disagree')
                     candidates.append((today,current[-1][1]))
-        if not candidates:reject('No completed XNDX session in supported range')
+        proofs[url]=hashlib.sha256(json.dumps(data,sort_keys=True,allow_nan=False).encode()).hexdigest()
+        if not candidates:
+            # XNDX can expose just one quote even for range=5d. A forming
+            # candle is not a close. Account for normal publication only after
+            # both exact routes and their previous-close references agree.
+            regular=meta.get('currentTradingPeriod',{}).get('regular',{})
+            start,end,stamp=(regular.get('start'),regular.get('end'),meta.get('regularMarketTime'))
+            if current and all(type(v)in (int,float)for v in [start,end,stamp]):
+                begin=dt.datetime.fromtimestamp(start,UTC).astimezone(ZoneInfo(zone))
+                finish=dt.datetime.fromtimestamp(end,UTC).astimezone(ZoneInfo(zone))
+                if (begin.date()==finish.date()==today and begin.time()==dt.time(9,30)
+                    and finish.time()in [dt.time(13),dt.time(16)] and start<=stamp<=now.timestamp()<end+900
+                    and payload['timestamp'][-1]==stamp and meta.get('priceHint')==2):
+                    pending.append({'session':today.isoformat(),'previousClose':number(meta.get('chartPreviousClose'))})
+                    continue
+            reject('No completed XNDX session in supported range')
         day,value=max(candidates)
         if (today-day).days>7 or value<=0:reject('Stale or invalid XNDX close')
         observations.append((day.isoformat(),value))
-        proofs[url]=hashlib.sha256(json.dumps(data,sort_keys=True,allow_nan=False).encode()).hexdigest()
+    if pending:
+        if len(pending)!=2 or pending[0]!=pending[1]:reject('Incomplete XNDX publication references disagree')
+        raise PublicationPending({**pending[0],'sourceHashes':proofs})
     if observations[0]!=observations[1]:reject('Supported XNDX windows disagree')
     return observations[0][0],observations[0][1],XNDX_URLS[0],{'sources':proofs}
 
@@ -157,12 +176,32 @@ def xndx_source_upgrade(identifier,old,record):
 
 
 def refresh(current, now, collect=collect_one, selected=None):
-    merged=current.copy();successes=[];errors=[]
+    merged=current.copy();successes=[];errors=[];waiting=[]
     def one(config):
         try:return config['id'],collect(config,now),None
+        except PublicationPending as e:return config['id'],None,e
         except Exception as e:return config['id'],None,str(e)
     with ThreadPoolExecutor(max_workers=4) as pool:
         for id_,record,error in pool.map(one,configurations() if selected is None else selected):
+            if isinstance(error,PublicationPending):
+                try:
+                    import exchange_calendars as xcals
+                    calendar=xcals.get_calendar('XNYS')
+                    session=error.evidence['session']
+                    if not calendar.is_session(session):reject('XNDX unfinished quote is not an exchange session')
+                    expected=calendar.previous_session(session).date().isoformat()
+                    old=merged.get(id_,{})
+                    if (id_!='nasdaq100' or old.get('asOf')!=expected or old.get('symbol')!='^XNDX'
+                        or old.get('parser')!='yahoo' or old.get('currency')!='USD' or old.get('variant')!='TOTAL'
+                        or old.get('quoteMethod')!='supported-xndx-ranges'
+                        or set(old.get('sourceHashes',{}))!=set(XNDX_URLS)
+                        or any(not re.fullmatch(r'[a-f0-9]{64}',h or '')for h in old['sourceHashes'].values())
+                        or abs(number(old.get('value'))-error.evidence['previousClose'])>.005):
+                        reject('Retained XNDX close is stale, unqualified or disagrees with the previous-close reference')
+                    waiting.append({'id':'anniversary-'+id_,'status':'waiting-publication','lastAttemptAt':now.isoformat(),
+                        'retainedAsOf':old['asOf'],'reason':str(error),'evidence':error.evidence})
+                except Exception as e:errors.append({'id':'anniversary-'+id_,'error':str(e)})
+                continue
             if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
             old=merged.get(id_)
             # Older equity/index observations predate exact-identity metadata.
@@ -178,7 +217,7 @@ def refresh(current, now, collect=collect_one, selected=None):
             merged[id_]=record;successes.append({'id':'anniversary-'+id_})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.
     try:
-        if selected is not None:return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors}
+        if selected is not None:return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors,'waiting':waiting}
         gold=json.loads((ROOT/'src/data/worldbank-gold-monthly.json').read_text());period,value=gold['points'][-1]
         if gold.get('unit') != 'USD per troy ounce' or gold.get('column') != 'Gold' or not gold.get('url', '').startswith('https://thedocs.worldbank.org/'): reject('Identité ou unité de la moyenne d’or modifiée')
         if (now.date()-dt.date.fromisoformat(period+'-01')).days>75:reject('Moyenne mensuelle de l’or trop ancienne')
@@ -189,7 +228,7 @@ def refresh(current, now, collect=collect_one, selected=None):
                       'maxAgeDays':75}
         successes.append({'id':'anniversary-or'})
     except Exception as e:errors.append({'id':'anniversary-or','error':str(e)})
-    return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors}
+    return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors,'waiting':waiting}
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--apply',action='store_true');p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--only',nargs='+')
