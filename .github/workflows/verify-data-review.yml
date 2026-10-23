@@ -25,9 +25,10 @@ jobs:
         with:
           node-version: 24
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - run: pip install beautifulsoup4 openpyxl exchange_calendars
+      - run: pip install beautifulsoup4 openpyxl xlrd exchange_calendars
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+        if: contains(fromJSON('["holdings","holdings-retry","copper","financial","discovery"]'), matrix.scope)
       - name: Collect and validate exact sources in isolated checkout
         env:
           WISDOMTREE_BROWSER_CAPTURE: '1'

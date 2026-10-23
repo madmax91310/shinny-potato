@@ -12,7 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -25,6 +25,7 @@ def main():
         'discovery': ['discover_holdings_sources.py'],
         'financial':['verify_review_financial.py'],
         'fx': ['collect_ranking_sources.py','--only','fx','--apply'],
+        'holdings-retry':['collect_dca_complete_holdings.py','--apply','--only','IE00B4K6B022','IE00BJGWQN72','IE00BDVPNG13','IE0002Y8CX98','IE000W8WMSL2'],
         'holdings': ['collect_dca_complete_holdings.py','--apply'],
         'metadata': ['collect_instrument_metadata.py','--only','IE00B0M62S72','IE0003R87OG3','IE00B579F325','IE00BD6FTQ80','--apply'],
         'practical': ['collect_practical_sheets.py','--apply'],
@@ -66,7 +67,7 @@ def main():
         'practical':['src/data/automated-practical-sheets.json'],
         'ai':['data/ai-portfolios'],
     }
-    for relative in paths.get(args.scope,[]):
+    for relative in paths.get('holdings' if args.scope=='holdings-retry' else args.scope,[]):
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
         if source.is_dir(): shutil.copytree(source,target,dirs_exist_ok=True)
         elif source.exists():shutil.copy2(source,target)
