@@ -14,7 +14,8 @@ export function evidenceCheckedAt(text, records = AUTOMATED_ETF) {
 }
 function reviewed(tweet, reviewedAt, maxAge = 30) {
   const evidence = evidenceCheckedAt(tweet.text)
-  return { kind: 'reviewed', reviewedAt, checkedAt: evidence && evidence < reviewedAt ? evidence : (evidence ?? reviewedAt), evidence, maxAge }
+  // A registry check cannot renew the editorial review of unchanged prose.
+  return { kind: 'reviewed', reviewedAt, checkedAt: evidence && evidence < reviewedAt ? evidence : reviewedAt, evidence, maxAge }
 }
 const reviewedPedagogyIds = new Set(['pedagogy:world-sp500', 'pedagogy:dividendes-cto', 'pedagogy:projet-trois-ans', 'pedagogy:epargne-precaution', 'pedagogy:world-emergents', 'pedagogy:etf-frais', 'pedagogy:ordre-limite-etf', 'pedagogy:etf-change-euro', 'pedagogy:reequilibrer-portefeuille', 'pedagogy:investir-somme-en-plusieurs-fois', 'pedagogy:etf-obligataire-taux', 'pedagogy:world-ex-usa-chiffre', 'pedagogy:world-small-chiffre', 'pedagogy:world-acwi-imi-chiffre', 'pedagogy:world-acwi-chiffre', 'pedagogy:world-europe-chiffre', 'pedagogy:emergents-retirer-chine', 'pedagogy:world-quality-pays', 'pedagogy:oblig-courtes-longues-reel', 'pedagogy:em-dette-dollar-local'])
 const generalIds = new Set([2, 20, 28, 34, 39, 44])
