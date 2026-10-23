@@ -539,8 +539,8 @@
       "maxAgeDays": 60,
       "field": "countries:United States",
       "fieldLabel": "Poids du pays United States",
-      "value": 99.99682,
-      "period": "2026-10-21",
+      "value": 99.99669,
+      "period": "2026-10-22",
       "completeComposition": false,
       "threshold": 2,
       "unit": "%",
@@ -558,8 +558,8 @@
       "maxAgeDays": 60,
       "field": "countries:United Kingdom",
       "fieldLabel": "Poids du pays United Kingdom",
-      "value": 0.002,
-      "period": "2026-10-21",
+      "value": 0.00202,
+      "period": "2026-10-22",
       "completeComposition": false,
       "threshold": 2,
       "unit": "%",
@@ -577,8 +577,8 @@
       "maxAgeDays": 60,
       "field": "countries:Mexico",
       "fieldLabel": "Poids du pays Mexico",
-      "value": 0.00101,
-      "period": "2026-10-21",
+      "value": 0.00102,
+      "period": "2026-10-22",
       "completeComposition": false,
       "threshold": 2,
       "unit": "%",
@@ -596,8 +596,8 @@
       "maxAgeDays": 60,
       "field": "countries:European Union",
       "fieldLabel": "Poids du pays European Union",
-      "value": 0.00022,
-      "period": "2026-10-21",
+      "value": 0.00023,
+      "period": "2026-10-22",
       "completeComposition": false,
       "threshold": 2,
       "unit": "%",
@@ -616,7 +616,7 @@
       "field": "countries:Other",
       "fieldLabel": "Poids du pays Other",
       "value": 0,
-      "period": "2026-10-21",
+      "period": "2026-10-22",
       "completeComposition": false,
       "threshold": 2,
       "unit": "%",
@@ -862,8 +862,8 @@
       "maxAgeDays": 60,
       "field": "top10",
       "fieldLabel": "Poids des dix premières lignes",
-      "value": 38.466800000000006,
-      "period": "2026-10-21",
+      "value": 37.89694,
+      "period": "2026-10-22",
       "threshold": 2,
       "unit": "%",
       "reason": "Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées."
@@ -84403,7 +84403,7 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "f7652c8fe59322a718dd59b2b2080013e3c835c2c3e42e9d6ff43b6eb82418fe",
+      "sourceHash": "00db66758a0c27e626df6a3c7b29341a91d3e71898b4307ad203520668764df7",
       "period": "2026-10-23"
     },
     "courtiers:bourso:profile:boursomarkets:86f73fda945c221a7a0a033a": {
@@ -84418,7 +84418,7 @@
       "field": "profile:boursomarkets",
       "fieldLabel": "Disponibilité du service boursomarkets",
       "value": true,
-      "sourceHash": "8b731bbd9b3720e8459ae31e23f49b17d85b9e16fd0f4362b75865838ddab53b",
+      "sourceHash": "e8f463d4a60f835ceda98588d1b3682532169a144b6e170b943283832ef20ed9",
       "period": "2026-10-23"
     },
     "courtiers:bourso:profile:garde:9d4e962620fdb44cf84ce8ce": {
@@ -84709,7 +84709,7 @@
       "field": "profile:pea",
       "fieldLabel": "Disponibilité du service pea",
       "value": true,
-      "sourceHash": "3fa1f762310bdd338b51c8e301b3fc388f5343804a58feee2a634e7e23e5379b",
+      "sourceHash": "92bbf15bbecc4af7331a68c31da89ab7614b2886cd914a4368fc252e0c44e4a4",
       "period": "2026-10-23"
     },
     "courtiers:xtb:profile:pme:f6256845783d5884119c4740": {
@@ -84739,7 +84739,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": false,
-      "sourceHash": "3fa1f762310bdd338b51c8e301b3fc388f5343804a58feee2a634e7e23e5379b",
+      "sourceHash": "92bbf15bbecc4af7331a68c31da89ab7614b2886cd914a4368fc252e0c44e4a4",
       "period": "2026-10-23"
     },
     "courtiers:xtb:profile:ifu:981603acb8fff4075da075fc": {
@@ -84769,7 +84769,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "c5dd1b9d3bf5e6a81a856e178b4891c2a96a494d805fa2d67909fabbcc12a0e4",
+      "sourceHash": "1fe5b8b0ba1703f64c52e60e6f40caff8e7ef44fe86edb2c2c2fbf88392f2273",
       "period": "2026-10-23"
     },
     "courtiers:saxo:tariff:1cb4529e3c44e33283be3e48": {
@@ -84910,7 +84910,7 @@
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": false,
-      "sourceHash": "c8289df7c6dc0395465591b8c8791d13a5909579f92ddc3d1a2c6b06ea33e3d4",
+      "sourceHash": "a333b1cc82cc4c03b04770c0ea23e70c69ae6a6a77a8bc7b61ade4fa17e1809c",
       "period": "2026-10-23"
     },
     "courtiers:saxo:profile:pea:e2162c9e52579762945ebf7d": {
@@ -84985,7 +84985,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "683e18ea3e39b37337b8e78e9dd7da517e2c068bff264f80ac442408d5b0591d",
+      "sourceHash": "860469e686417445e0a317c25d3fe5b2187e4d4d84cc6b8aaf7f7d8fab7c558e",
       "period": "2026-10-23"
     },
     "courtiers:caidf:tariff:3f506f16fd796113673297e8": {
@@ -85084,7 +85084,7 @@
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": true,
-      "sourceHash": "338d82a4e2b15d6e9cdb9836e4d74ff92b566d9eccedb1346184fa1dec8b7b00",
+      "sourceHash": "3194985139d228d64eb25fcc78bcf32590a23a33864f2bc98b613bc4c29d7d53",
       "period": "2026-10-23"
     },
     "courtiers:caidf:profile:pea:57b2bc2a28768840177a0bd9": {
@@ -85129,7 +85129,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": true,
-      "sourceHash": "1ce125e985fa6a50ecb48c926219676e93fe1f2c6c75a41cfb88fb87a1738249",
+      "sourceHash": "4e41e1238b802672ce1fd5d9afa096403808e2766dfe6fe2b24011b7f123ab4d",
       "period": "2026-10-23"
     },
     "courtiers:caidf:profile:ifu:1f09211ed9d3e126c5287828": {
@@ -85144,14 +85144,14 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "7771c8b6b5030a2a982cfdb7fdaf6992c4cc786a3f2eb3c5abaad45ad9c4f6e0",
+      "sourceHash": "7a7f7ba12c8a56463d78b71fbe6490bce81d37e1a652166eae9eda2b1d916567",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:tariff:ca8deff7c75d60310886e99d": {
       "family": "courtiers",
       "entity": "ibkr",
       "label": "Interactive Brokers",
-      "sourceUrl": "https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php",
+      "sourceUrl": "https://www.interactivebrokers.ie/en/pricing/commissions-stocks.php",
       "checkedAt": "2026-10-23",
       "scope": "IBKR direct ; actions entières France ; premier palier dégressif, fixe SmartRouting et routage direct",
       "tool": "/comparatif-courtiers",
@@ -85166,7 +85166,7 @@
         "fixedMinimum": 3,
         "directMinimum": 4
       },
-      "sourceHash": "e64b8755402c81b732b68db8deee3e4f7da1b1f7d986b6ffdd0d097a5b42cb80",
+      "sourceHash": "5d7f80f1485c90bbdba860ba5310217ed3b004647988d2a78ea7fd587e499a18",
       "period": "2026-10-23",
       "discovery": true,
       "angle": "Combien coûte le même ordre chez deux courtiers, sur le même marché ?"
@@ -85236,7 +85236,7 @@
       "field": "profile:pea",
       "fieldLabel": "Disponibilité du service pea",
       "value": true,
-      "sourceHash": "87916e3047e8c340039be0afcf45b06174221516d10f4dbf0b8e105026d08379",
+      "sourceHash": "adcddff222bc7eae2946ed7c7d3b3b0e5d6a8863ecd3267b2ebec95ed19b270d",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:ifu:c183fc0e28b58c0782719918": {
@@ -85251,7 +85251,7 @@
       "field": "profile:ifu",
       "fieldLabel": "Disponibilité du service ifu",
       "value": true,
-      "sourceHash": "87916e3047e8c340039be0afcf45b06174221516d10f4dbf0b8e105026d08379",
+      "sourceHash": "adcddff222bc7eae2946ed7c7d3b3b0e5d6a8863ecd3267b2ebec95ed19b270d",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:cash:2ec235b00164b793c3fb6b63": {
@@ -85266,7 +85266,7 @@
       "field": "profile:cash",
       "fieldLabel": "Disponibilité du service cash",
       "value": true,
-      "sourceHash": "16dc02c5087ab7339a06d797f3f346c66f364b6e959d86e047de294f23fd007b",
+      "sourceHash": "12ede95cac22e64492c4dabdc75ff7abee7d7dbc7f7c3366aa9da7fa69cafb29",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:entrant:29bf93ca31d03e7d72f607a9": {
@@ -85281,7 +85281,7 @@
       "field": "profile:entrant",
       "fieldLabel": "Disponibilité du service entrant",
       "value": true,
-      "sourceHash": "3eaa417c75c6e6c9abe0fe77ed911c22b97df1711363799f0d1d8098b2396405",
+      "sourceHash": "8e8b61d927b44f1e42961119df8b7e8ebf864bc6a3d19fac5747066e0e25eeba",
       "period": "2026-10-23"
     },
     "courtiers:tr:tariff:963214fa25cbd914755e4c0d": {
@@ -85547,7 +85547,7 @@
       "family": "courtiers",
       "entity": "bd",
       "label": "bd",
-      "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6adb666a354781792763498",
+      "sourceUrl": "https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6adb699ce99521792764316",
       "checkedAt": "2026-10-23",
       "scope": "bd ; dca ; portée exacte des sources publiques",
       "tool": "/comparatif-courtiers",
@@ -85630,7 +85630,7 @@
       "field": "profile:entrant",
       "fieldLabel": "Disponibilité du service entrant",
       "value": true,
-      "sourceHash": "f65880993d7cbfc2c30197b2e72a09e855330fa966a19588160b6e004ab18bcd",
+      "sourceHash": "7190d4c0bb4fc4731f029328efbb855fb671952e3ccf18ea13de09c177df4eaf",
       "period": "2026-10-23"
     },
     "scpi:iroko-zen:price:356289a2936ee5470ef1e7f3": {
@@ -106782,7 +106782,7 @@
       "value": "Vanguard reduces fees on six equity ETFs",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/press-releases/uk-equity-etf-fee-reductions-press-release.pdf",
       "period": "2025-09-30",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -106800,7 +106800,7 @@
       "value": "Vanguard Reduces Fees Across Fixed Income ETF Range",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/en/vg-fi-ucits-etf-fee-cuts-press-release.pdf",
       "period": "2025-06-23",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108445,7 +108445,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108501,7 +108501,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108557,7 +108557,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-06",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108613,7 +108613,7 @@
         "status": "À préciser"
       },
       "period": "2026-09-10",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108641,7 +108641,7 @@
       "field": "profile:dca",
       "fieldLabel": "Disponibilité du service dca",
       "value": false,
-      "sourceHash": "ebcea789c4a665eccaa1e5c427d8dabd53da4b86ae52c77c1c219a8b6c0d6177",
+      "sourceHash": "95c5ee158063f707ad9e03fccbace0f4d4b40ecbbdcac4a3f444278947c61379",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:pme:bb0950e6eadce80c21ac7cf6": {
@@ -108656,7 +108656,7 @@
       "field": "profile:pme",
       "fieldLabel": "Disponibilité du service pme",
       "value": false,
-      "sourceHash": "cab8cfdd4f9a9fdebb54d4fb300c3f1fe718996362d2b32abe243eed89809299",
+      "sourceHash": "a44891b837bc5af73628b6a1da593e7d251a5019d39a7297eda6250b9a5a5938",
       "period": "2026-10-23"
     },
     "courtiers:ibkr:profile:jeune:efe7b9d1bf4100873b22637e": {
@@ -108671,7 +108671,7 @@
       "field": "profile:jeune",
       "fieldLabel": "Disponibilité du service jeune",
       "value": false,
-      "sourceHash": "79cfee9c804506a77b9acfad122107e6bb56b8026437bd3fefab3458e9e68877",
+      "sourceHash": "be8c6bc3bea9fac423bed5e9ddbb33b03395ecd72a5fdd56b266262400742c09",
       "period": "2026-10-23"
     },
     "etf:IE00B3F81G20:ter:c0b82f3f7d5b47401d420e3e": {
@@ -151390,7 +151390,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-16",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -151484,7 +151484,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-20",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155400,7 +155400,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-21",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155428,7 +155428,7 @@
         "status": "Application indiquée"
       },
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19067",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -155454,7 +155454,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_QYLD_4e19b8c911.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155473,7 +155473,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_SYLD_7b53ce3ad1.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155492,7 +155492,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_22_10_2026_XYLU_5d7a46d958.pdf",
       "period": "2026-10-22",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155511,7 +155511,7 @@
       "sourceUrl": "https://globalxetfs.eu/news",
       "documentUrl": "https://gxeustrapi.blob.core.windows.net/webpublic/uploads/Dividend_Announcement_15_10_2026_EUSD_f7772bc0f3.pdf",
       "period": "2026-10-15",
-      "checkedAt": "2026-10-23T22:11:03.378Z",
+      "checkedAt": "2026-10-23T23:47:52.099Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -155551,7 +155551,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-23",
-      "checkedAt": "2026-10-23T22:11:03.380Z",
+      "checkedAt": "2026-10-23T23:47:52.101Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19103",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -156668,6 +156668,246 @@
       "period": "2026-10-23",
       "priority": "high",
       "reason": "Modification d’une caractéristique de la part exacte ; vérifier le document émetteur avant publication."
+    },
+    "etf:IE00B5BMR087:sectors:Energy:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Energy",
+      "fieldLabel": "Poids du secteur Energy",
+      "value": 3.72984,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Materials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Materials",
+      "fieldLabel": "Poids du secteur Materials",
+      "value": 1.6981,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Utilities:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Utilities",
+      "fieldLabel": "Poids du secteur Utilities",
+      "value": 2.03538,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Financials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Financials",
+      "fieldLabel": "Poids du secteur Financials",
+      "value": 12.06728,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Health Care:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Health Care",
+      "fieldLabel": "Poids du secteur Health Care",
+      "value": 9.93024,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Industrials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Industrials",
+      "fieldLabel": "Poids du secteur Industrials",
+      "value": 8.02037,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Real Estate:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Real Estate",
+      "fieldLabel": "Poids du secteur Real Estate",
+      "value": 1.74781,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Communication:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Communication",
+      "fieldLabel": "Poids du secteur Communication",
+      "value": 9.21684,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Consumer Staples:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Consumer Staples",
+      "fieldLabel": "Poids du secteur Consumer Staples",
+      "value": 4.94514,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Consumer Discretionary:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Consumer Discretionary",
+      "fieldLabel": "Poids du secteur Consumer Discretionary",
+      "value": 8.95565,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Information Technology:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "value": 37.52611,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Cash and/or Derivatives:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Cash and/or Derivatives",
+      "fieldLabel": "Poids du secteur Cash and/or Derivatives",
+      "value": 0.1272,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
     }
   },
   "anchors": {
@@ -309258,6 +309498,246 @@
       "period": "2026-10-23",
       "priority": "high",
       "reason": "Modification d’une caractéristique de la part exacte ; vérifier le document émetteur avant publication."
+    },
+    "etf:IE00B5BMR087:sectors:Energy:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Energy",
+      "fieldLabel": "Poids du secteur Energy",
+      "value": 3.72984,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Materials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Materials",
+      "fieldLabel": "Poids du secteur Materials",
+      "value": 1.6981,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Utilities:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Utilities",
+      "fieldLabel": "Poids du secteur Utilities",
+      "value": 2.03538,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Financials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Financials",
+      "fieldLabel": "Poids du secteur Financials",
+      "value": 12.06728,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Health Care:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Health Care",
+      "fieldLabel": "Poids du secteur Health Care",
+      "value": 9.93024,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Industrials:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Industrials",
+      "fieldLabel": "Poids du secteur Industrials",
+      "value": 8.02037,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Real Estate:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Real Estate",
+      "fieldLabel": "Poids du secteur Real Estate",
+      "value": 1.74781,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Communication:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Communication",
+      "fieldLabel": "Poids du secteur Communication",
+      "value": 9.21684,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Consumer Staples:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Consumer Staples",
+      "fieldLabel": "Poids du secteur Consumer Staples",
+      "value": 4.94514,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Consumer Discretionary:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Consumer Discretionary",
+      "fieldLabel": "Poids du secteur Consumer Discretionary",
+      "value": 8.95565,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Information Technology:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "value": 37.52611,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    "etf:IE00B5BMR087:sectors:Cash and/or Derivatives:6c7556665385d2ab33309fd6": {
+      "family": "etf",
+      "entity": "IE00B5BMR087",
+      "label": "iShares Core S&P 500 UCITS ETF",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B5BMR087 · fund · GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "sectors:Cash and/or Derivatives",
+      "fieldLabel": "Poids du secteur Cash and/or Derivatives",
+      "value": 0.1272,
+      "sourceHash": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+      "period": "2026-10-22",
+      "completeComposition": false,
+      "threshold": 2,
+      "unit": "%",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
     }
   },
   "events": [
@@ -355570,8 +356050,8 @@
       "reason": "Changement d’une donnée publiée, à périmètre comparable."
     }
   ],
-  "lastCheckedAt": "2026-10-23T22:11:10.067Z",
-  "sourceRevision": "19344ba472f15cc9eb6cf40a575b081b7354f34c",
+  "lastCheckedAt": "2026-10-23T23:48:00.911Z",
+  "sourceRevision": "b96074bf49fc043ecb7498769c79cb1a5f086f23",
   "lastErrorCount": 38,
   "conflicts": {
     "etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-07": {
@@ -392093,6 +392573,29 @@
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
           "lastSeenAt": "2026-10-23T22:11:10.067Z"
+        },
+        {
+          "id": "e81e0fd7bbe6b310e14ad911",
+          "observation": {
+            "family": "etf",
+            "entity": "IE00B3T9LM79",
+            "label": "SPDR € Corp Bond UCITS ETF",
+            "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sybc-gy.xlsx",
+            "checkedAt": "2026-10-23",
+            "scope": "IE00B3T9LM79 · fund · dix lignes publiées",
+            "tool": "/fiches-etf",
+            "maxAgeDays": 60,
+            "field": "top10",
+            "fieldLabel": "Poids des dix premières lignes",
+            "value": 1.146695,
+            "sourceHash": "96933fb2eb2125e9bdda911982ded6b15b5d9b3441f27a2c544b24ff1ea9fce7",
+            "period": "2026-10-22",
+            "threshold": 2,
+            "unit": "%",
+            "reason": "Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées."
+          },
+          "firstSeenAt": "2026-10-23T23:48:00.911Z",
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -393747,7 +394250,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -393823,7 +394326,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -393899,7 +394402,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -393975,7 +394478,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394051,7 +394554,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394127,7 +394630,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394203,7 +394706,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394279,7 +394782,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394355,7 +394858,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394431,7 +394934,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394507,7 +395010,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394583,7 +395086,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394659,7 +395162,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394735,7 +395238,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394811,7 +395314,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394887,7 +395390,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -394963,7 +395466,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395039,7 +395542,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395115,7 +395618,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395191,7 +395694,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395267,7 +395770,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395343,7 +395846,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395419,7 +395922,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395495,7 +395998,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395572,7 +396075,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395648,7 +396151,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395725,7 +396228,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395801,7 +396304,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395878,7 +396381,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -395954,7 +396457,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -396030,7 +396533,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -396106,7 +396609,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -399027,7 +399530,7 @@
             "absenceEvidence": "Absent from a validated complete allocation"
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -399105,7 +399608,7 @@
             "absenceEvidence": "Absent from a validated complete allocation"
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -399183,7 +399686,7 @@
             "absenceEvidence": "Absent from a validated complete allocation"
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -399261,7 +399764,7 @@
             "absenceEvidence": "Absent from a validated complete allocation"
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     },
@@ -399500,7 +400003,7 @@
             "reason": "Variation cumulée de l’encours d’au moins 20 %, même part/fonds et même devise. Ce n’est pas une mesure des flux nets."
           },
           "firstSeenAt": "2026-10-23T22:11:10.067Z",
-          "lastSeenAt": "2026-10-23T22:11:10.067Z"
+          "lastSeenAt": "2026-10-23T23:48:00.911Z"
         }
       ]
     }
@@ -400117,7 +400620,7 @@
     "IE00BLNMYC90:2026-10-22": {
       "sourceHash": "7272940775972b33bee59b6ee149973aa2665d0a590d7f3b3a8e3c7115056678",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/7272940775972b33bee59b6ee149973aa2665d0a590d7f3b3a8e3c7115056678.json",
       "status": "confirmed"
@@ -400125,7 +400628,7 @@
     "IE0006WW1TQ4:2026-10-22": {
       "sourceHash": "fddb937a87a4d56696c4e1d298b29711c5c16568414845d9adae49af2a9a12b3",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/fddb937a87a4d56696c4e1d298b29711c5c16568414845d9adae49af2a9a12b3.json",
       "status": "confirmed"
@@ -400133,7 +400636,7 @@
     "IE000L6ZMMC4:2026-10-22": {
       "sourceHash": "2a8406da7fa6eb824236740fed05fbb60d3902c9a3caad1abd44189beeac5e5b",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T22:11:05.975403+00:00",
       "evidencePath": "dws-snapshots/2a8406da7fa6eb824236740fed05fbb60d3902c9a3caad1abd44189beeac5e5b.json",
       "status": "pending"
@@ -400141,7 +400644,7 @@
     "IE00BGV5VN51:2026-10-22": {
       "sourceHash": "8a04c063cfcae100d069a11cf3a74077ed3c4c318857804e4f833ea2424b2633",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T22:11:05.975403+00:00",
       "evidencePath": "dws-snapshots/8a04c063cfcae100d069a11cf3a74077ed3c4c318857804e4f833ea2424b2633.json",
       "status": "pending"
@@ -400149,7 +400652,7 @@
     "IE00BM67HK77:2026-10-22": {
       "sourceHash": "884d7553543fb85fdc072614cf77ca45c0adeb48170c77a0e92d9196cb449b99",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/884d7553543fb85fdc072614cf77ca45c0adeb48170c77a0e92d9196cb449b99.json",
       "status": "confirmed"
@@ -400157,7 +400660,7 @@
     "IE00BM67HS53:2026-10-22": {
       "sourceHash": "f7d1203142dadefc84f4a913f93b52346d15179867ff62269364e554a0c171c4",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/f7d1203142dadefc84f4a913f93b52346d15179867ff62269364e554a0c171c4.json",
       "status": "confirmed"
@@ -400165,7 +400668,7 @@
     "IE00BTJRMP35:2026-10-22": {
       "sourceHash": "87612d54eda362892e9bb7c91c130f0e20b7612c4b54ef1b5896f1457ef596e1",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/87612d54eda362892e9bb7c91c130f0e20b7612c4b54ef1b5896f1457ef596e1.json",
       "status": "confirmed"
@@ -400173,7 +400676,7 @@
     "LU1875395870:2026-10-22": {
       "sourceHash": "e2b1c55cd4e65aec1b7002e58fa56064412ff68ba316e03523ca09b9934ee2ae",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/e2b1c55cd4e65aec1b7002e58fa56064412ff68ba316e03523ca09b9934ee2ae.json",
       "status": "confirmed"
@@ -400181,7 +400684,7 @@
     "LU2196470426:2026-10-22": {
       "sourceHash": "14de2a6850000b647ac56688a846a66cb14f6de10894ce340d6ab4ca61448115",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/14de2a6850000b647ac56688a846a66cb14f6de10894ce340d6ab4ca61448115.json",
       "status": "confirmed"
@@ -400189,7 +400692,7 @@
     "IE00BM67HV82:2026-10-22": {
       "sourceHash": "35f46cc0cbe8872026cc57166c633bf13f60d00c1338ff9574b3e0d45c8cd2ce",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/35f46cc0cbe8872026cc57166c633bf13f60d00c1338ff9574b3e0d45c8cd2ce.json",
       "status": "confirmed"
@@ -400197,7 +400700,7 @@
     "IE00BM67HQ30:2026-10-22": {
       "sourceHash": "09b6a9e800891c9d44f68a5a873cbc0377334aa73f0c363570b40f91bc45c15f",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-23T22:11:05.975403+00:00",
+      "checkedAt": "2026-10-23T23:47:58.834550+00:00",
       "stableSince": "2026-10-23T14:48:07.167385+00:00",
       "evidencePath": "dws-snapshots/09b6a9e800891c9d44f68a5a873cbc0377334aa73f0c363570b40f91bc45c15f.json",
       "status": "confirmed"
@@ -400207,91 +400710,91 @@
     "etf:JE00B1VS3770:ter:d151ca9c7e140397514f2a9e": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:GB00BJYDH287:ter:ff09754c7ba98f59a53a9bb6": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE00BYPLS672:ter:2e9fc3131afb1360cdac5b66": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-06"
     },
     "etf:IE0002XZSHO1:ter:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE0002XZSHO1:characteristics:index:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE0002XZSHO1:characteristics:distribution:1e2504087f3d575cc4888434": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:ter:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:characteristics:index:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:IE000DQLYVB9:characteristics:distribution:35e741f44aa20303db37b193": {
       "period": "2026-10-06",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-16"
     },
     "etf:GB00B15KXQ89:ter:d8e87c185144b921271680fb": {
       "period": "2026-09-30",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE0002Y8CX98:ter:e654b4d3b8ec7ad57f17cc64": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE000W8WMSL2:ter:49af775d00229420cd1d3760": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     },
     "etf:IE00BZ56SW52:ter:053341b738f85d33cd9681dc": {
       "period": "2026-08-31",
       "checkedAt": "2026-10-23",
-      "receivedAt": "2026-10-23T22:11:10.067Z",
+      "receivedAt": "2026-10-23T23:48:00.911Z",
       "reason": "older-observation",
       "retainedPeriod": "2026-10-15"
     }
