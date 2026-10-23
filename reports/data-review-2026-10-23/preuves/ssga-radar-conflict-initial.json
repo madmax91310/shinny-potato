@@ -1,0 +1,47 @@
+{
+  "etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22": {
+    "accepted": {
+      "family": "etf",
+      "entity": "IE00B3T9LM79",
+      "label": "SPDR € Corp Bond UCITS ETF",
+      "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sybc-gy.xlsx",
+      "checkedAt": "2026-10-23",
+      "scope": "IE00B3T9LM79 · fund · dix lignes publiées",
+      "tool": "/fiches-etf",
+      "maxAgeDays": 60,
+      "field": "top10",
+      "fieldLabel": "Poids des dix premières lignes",
+      "value": 1.146701,
+      "period": "2026-10-22",
+      "threshold": 2,
+      "unit": "%",
+      "reason": "Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées."
+    },
+    "period": "2026-10-22",
+    "firstSeenAt": "2026-10-23T10:23:23.207Z",
+    "proposals": [
+      {
+        "id": "329cd3f46afece73b8827c1e",
+        "observation": {
+          "family": "etf",
+          "entity": "IE00B3T9LM79",
+          "label": "SPDR € Corp Bond UCITS ETF",
+          "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-sybc-gy.xlsx",
+          "checkedAt": "2026-10-23",
+          "scope": "IE00B3T9LM79 · fund · dix lignes publiées",
+          "tool": "/fiches-etf",
+          "maxAgeDays": 60,
+          "field": "top10",
+          "fieldLabel": "Poids des dix premières lignes",
+          "value": 1.146616,
+          "period": "2026-10-22",
+          "threshold": 2,
+          "unit": "%",
+          "reason": "Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées."
+        },
+        "firstSeenAt": "2026-10-23T10:23:23.207Z",
+        "lastSeenAt": "2026-10-23T12:48:03.239Z"
+      }
+    ]
+  }
+}

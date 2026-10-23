@@ -3,6 +3,7 @@ import argparse
 import datetime as dt
 import json
 import pathlib
+import os
 import shutil
 import subprocess
 import sys
@@ -35,6 +36,7 @@ def main():
     }
     started = dt.datetime.now(dt.timezone.utc).isoformat()
     if args.scope == 'conflict':
+        os.environ['SSGA_SOURCE_PROOF_DIR']=str(out/'raw')
         from data_automation import UTC, write_json_atomic
         from refresh_additional_etf import refresh
         shares=[]
