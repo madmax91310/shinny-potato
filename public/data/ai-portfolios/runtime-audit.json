@@ -1,13 +1,13 @@
 {
   "version": 1,
   "asOf": "2026-10-22",
-  "sourceGeneratedAt": "2026-10-23T04:59:17.398445+00:00",
+  "sourceGeneratedAt": "2026-10-23T07:01:04.424165+00:00",
   "method": "Contrôle exhaustif des séries réelles et certificats conservés, sans collecte intégrale.",
   "legacyEvidenceWithoutId": 0,
-  "listingCount": 21186,
+  "listingCount": 21185,
   "instrumentCount": 20400,
-  "technicalUsable": 21186,
-  "readyAtPublishedCutoff": 0,
+  "technicalUsable": 21185,
+  "readyAtPublishedCutoff": 1,
   "exceptions": [],
   "catchupRequired": [
     {
@@ -33988,28 +33988,6 @@
       "reason": "Clôture attendue manquante : CSP1 2026-10-22.",
       "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSP1.L?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
       "sha256": "040b7a9a018215e9b6bc3285b143ded4f9cbcd0b07a47ba708b980f9955ebd50"
-    },
-    {
-      "id": "IE00B5BMR087-XLON-CSPX-USD",
-      "instrumentId": "IE00B5BMR087",
-      "family": "ETF actions",
-      "certifiedThrough": "2026-10-21",
-      "technicalUsable": true,
-      "operationReadyAtCutoff": false,
-      "reason": "Dernière collecte en échec : Clôtures attendues manquantes : 2026-10-22",
-      "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-      "sha256": "c4aaf9fb39aed1b5b0b1cb2a66e8ba464ee9e7295db82b7b9873a947c4964fdb"
-    },
-    {
-      "id": "IE00B5BMR087-XMEX",
-      "instrumentId": "IE00B5BMR087",
-      "family": "ETF actions",
-      "certifiedThrough": "2026-10-21",
-      "technicalUsable": true,
-      "operationReadyAtCutoff": false,
-      "reason": "Clôture attendue manquante : CSPX 2026-10-22.",
-      "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSPXN.MX?period1=1783900800&period2=1792645596&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
-      "sha256": "86300a8d51085d7f4947d06817fb6ba84d414439e3b2e6e2b4e76a760331a0c9"
     },
     {
       "id": "IE00B5M1WJ87-ETFP",
@@ -233074,9 +233052,9 @@
       "ready": 0
     },
     "ETF actions": {
-      "listings": 357,
-      "technicalUsable": 357,
-      "ready": 0
+      "listings": 356,
+      "technicalUsable": 356,
+      "ready": 1
     },
     "ETF sectoriels / thématiques": {
       "listings": 122,
