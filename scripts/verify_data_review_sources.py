@@ -58,11 +58,6 @@ def main():
         'brokers':['src/data/automated-broker-tariffs.json'],
         'insurance':['src/data/automated-insurance.json'],
         'discovery':['public/data/holdings-discovery.json','scripts/generated-holdings-sources.json','src/data/dca-complete-holdings.json'],
-        'actors': ['collect_presentation_actors.py','--apply'],
-        'brokers': ['collect_broker_tariffs.py','--apply'],
-        'insurance': ['collect_insurance.py','--apply'],
-        'pending': ['check_pending_sources.py'],
-        'discovery': ['discover_holdings_sources.py'],
         'fx':['src/data/monthly-fx.json','scripts/source-snapshots/ranking-collection-status.json'],
         'holdings':['src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/dca-security-classifications.json'],
         'metadata':['src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json'],
@@ -73,6 +68,7 @@ def main():
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
         if source.is_dir(): shutil.copytree(source,target,dirs_exist_ok=True)
         elif source.exists():shutil.copy2(source,target)
+        else:raise FileNotFoundError('Required validated registry missing from proof: '+relative)
     if report.exists():
         value=json.loads(report.read_text())
         for key in ['errors','failures','failed','changed','observations']:
