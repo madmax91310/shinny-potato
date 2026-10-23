@@ -4,7 +4,7 @@ import os from 'node:os'
 import path from 'node:path'
 import {defaultConfig} from '../src/pages/ai-portfolios/data.js'
 import {weeklyWindow,weeklyStatus,WEEKLY_WINDOW} from '../src/pages/ai-portfolios/weekly.js'
-import {briefing,parseResponse,individualReportReady} from '../src/pages/ai-portfolios/briefing.js'
+import {briefing,parseResponse,responseTemplate,individualReportReady} from '../src/pages/ai-portfolios/briefing.js'
 import {addDays,clone,coverage,periodReport,validateDecision} from '../src/pages/ai-portfolios/lib.js'
 import {register,refresh} from './ai-portfolios.mjs'
 import {publishRuntime} from './ai-runtime-projection.mjs'
@@ -90,4 +90,39 @@ try{
  assert(loaded.market.universe.some(a=>a.name==='Searchable 999'),'Search discovers the last candidate, no sample cap')
  await assert.rejects(()=>loadCatalogue(boot,async()=>({ok:true,json:async()=>({...encoded,asOf:'1999-01-01'})}),'/'),/Publication en cours/)
 }finally{fs.rmSync(root,{recursive:true})}
+// Initial dossiers require no positions and never reveal another participant's answer.
+const launchConfig={...config,participants:defaultConfig().participants.map(p=>({...p,model:'Modèle de recette '+p.name}))}
+let launchBook={version:1,revision:0,competitions:[],audit:[]}
+const launchRequest=operation=>({version:1,expectedRevision:launchBook.revision,requestId:'initial-dossier-'+n++,competitionId:launchBook.competitions[0]?.id,operation})
+const launchMarket={...clone(market),asOf:'2026-01-04',generatedAt:'2026-01-05T12:00:00Z'}
+launchBook=register(launchBook,launchRequest({type:'create',config:launchConfig}),launchMarket,launchMarket.generatedAt)
+const initialDraft=launchBook.competitions[0],draftBefore=JSON.stringify(initialDraft)
+const launchBriefs=launchConfig.participants.map(p=>briefing(initialDraft,p.id,launchMarket,'2026-01-04',null,launchMarket.generatedAt))
+for(const [i,b] of launchBriefs.entries()){
+ assert(b.complete);assert(/10\s000/.test(b.text));assert(b.text.includes('Aucune position'));assert(b.text.includes('Référence exacte : a'))
+ assert(b.text.includes('Aucun apport ni retrait externe'));assert(b.text.includes('100 % en liquidités'));assert(b.text.includes('schéma à compléter'));assert(b.text.includes('2026-01-06'))
+ for(const other of launchConfig.participants.filter((_,j)=>j!==i))assert(!b.text.includes(other.model),'No other participant model/answer in initial dossier')
+ const common=t=>t.slice(t.indexOf('RÈGLES'),t.indexOf('RÉPONSE À FOURNIR'))
+ assert.equal(common(b.text),common(launchBriefs[0].text),'Identical shared rules and universe')
+ assert.deepEqual(responseTemplate(launchConfig.participants[i].id,launchConfig.participants[i].model,'2026-01-05',true).weights,{})
+}
+assert.equal(JSON.stringify(initialDraft),draftBefore,'Generating initial dossiers cannot create positions or decisions')
+assert.throws(()=>briefing({...initialDraft,config:{...launchConfig,minLines:7}},'chatgpt',launchMarket,'2026-01-04'),/lignes/)
+const initialResponse={version:1,participant:'chatgpt',model:launchConfig.participants[0].model,decisionDate:'2026-01-05',kind:'target',weights:{a:30,b:30,c:30},reason:'RECETTE uniquement, pas une allocation attribuée à une IA.'}
+const parsedInitial=parseResponse(initialResponse,initialDraft,'chatgpt',launchMarket)
+validateDecision(parsedInitial,initialDraft,launchMarket,launchMarket.asOf,launchMarket.generatedAt)
+for(const weights of [{a:36,b:32,c:32},{a:35,b:35,c:35},{a:30,b:30}])assert.throws(()=>validateDecision({...parsedInitial,weights},initialDraft,launchMarket,launchMarket.asOf,launchMarket.generatedAt),/Poids|poids|lignes/)
+assert.throws(()=>register(launchBook,launchRequest({type:'decision',decision:{...parsedInitial,kind:'trades',weights:undefined,amounts:{a:5000,b:5000,c:5000}}}),launchMarket,launchMarket.generatedAt),/Liquidités/,'Initial purchases cannot exceed available cash')
+const blockedReference=clone(launchMarket);blockedReference.status.a={ok:false,error:'Clôture attendue absente — test isolé'}
+assert(briefing(initialDraft,'chatgpt',blockedReference,'2026-01-04',null,launchMarket.generatedAt).text.includes('Clôture attendue absente'))
+assert.throws(()=>validateDecision(parsedInitial,initialDraft,blockedReference,blockedReference.asOf,launchMarket.generatedAt),/collecte en échec/)
+for(const p of launchConfig.participants){const d={...parsedInitial,participant:p.id,model:p.model};if(p.id==='claude'){d.kind='hold';delete d.weights}launchBook=register(launchBook,launchRequest({type:'decision',decision:d}),launchMarket,launchMarket.generatedAt)}
+assert(launchBook.competitions[0].decisions.every(d=>d.status==='recorded'))
+assert.throws(()=>register(launchBook,launchRequest({type:'launch'}),blockedReference,launchMarket.generatedAt),/collecte en échec/)
+launchBook=register(launchBook,launchRequest({type:'launch'}),launchMarket,launchMarket.generatedAt)
+const launched=launchBook.competitions[0];assert.equal(launched.startDate,'2026-01-06');assert(launched.decisions.every(d=>d.executionDate===launched.startDate),'All participants and benchmark share the future initial close')
+const initialResult=refresh(launchBook,{...launchMarket,asOf:'2026-01-06',generatedAt:'2026-01-07T12:00:00Z'})
+for(const row of initialResult.state.current[launched.id].rows){assert.equal(row.value,10000);assert.equal(row.cash,row.id==='claude'?10000:row.id==='world'?0:1000)}
+assert.equal(JSON.stringify(refresh(initialResult.book,{...launchMarket,asOf:'2026-01-06'}).book),JSON.stringify(initialResult.book),'Retry cannot duplicate initial execution')
+console.log('Initial empty dossiers, common rules, exact reference, target template, residual cash, missing reference and shared future launch validated in isolation.')
 console.log('Weekly windows/DST, common future execution, missing responses, financial briefings, exact import, stale coverage and lazy exhaustive catalogue validated.')
