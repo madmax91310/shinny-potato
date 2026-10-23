@@ -1,6 +1,6 @@
 # Réutilisation des 29 actifs IA
 
-Contrôle : 2026-10-23T21:31:02.885Z. Avant : 75ebe707c1504ee655bf5f871b84e5d57928c153.
+Contrôle : 2026-10-23T22:11:15.135Z. Avant : 75ebe707c1504ee655bf5f871b84e5d57928c153.
 
 Les statuts « déjà raccordé » portent sur les consommateurs vérifiés avant la PR. Une absence dans ce registre ne signifie jamais une absence de toute l’application. Le quotidien IA est une série synthétique distincte : aucune unité base 100 n’entre dans les historiques de cours.
 

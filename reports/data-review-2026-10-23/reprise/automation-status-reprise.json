@@ -36,7 +36,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T17:36:04Z",
-      "lastPublicationSuccessAt": "2026-10-23T20:42:54.467Z",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39993735401",
       "failures": [],
       "dataFailures": {},
@@ -75,27 +75,31 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "cc1db76dff189938a87321fd1ddc027666942651",
-      "publishedDataSha": "05f080499ce6cd93fff50ae318ddf81bbb7fd078"
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     },
     "update-market-monthly.yml": {
       "monitorVersion": 2,
       "name": "Historiques mensuels des marchés",
-      "runId": 40011202967,
+      "runId": 40019944385,
       "attempt": 1,
-      "headSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
-      "createdAt": "2026-10-23T19:24:46Z",
-      "completedAt": "2026-10-23T20:33:14Z",
+      "headSha": "f41b5a60791d56e8980ea322d2b234cbb374ffbe",
+      "createdAt": "2026-10-23T20:31:58Z",
+      "completedAt": "2026-10-23T21:49:00Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T15:09:29Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
+      "recordingStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T16:00:42Z",
       "lastPublicationSuccessAt": "2026-10-23T20:42:54.467Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202967",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944385",
       "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        },
         {
           "job": "report-failures",
           "step": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -104,51 +108,31 @@
       "dataFailures": {
         "history:fx:TWD": {
           "name": "history:fx:TWD",
-          "completedAt": "2026-10-23T20:33:14Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202967",
+          "completedAt": "2026-10-23T21:49:00Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944385",
           "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-23: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
           "field": "Change"
         }
-      },
-      "publicationReceipt": {
-        "commit": "79da7243482e9eee19c0d608a0d3d7366ffe359e",
-        "files": {
-          "src/data/anniversary-levels.json": "99a4fc6f9358d8736b97c5ae71ea07a67614c61b",
-          "src/data/auto-history-identities.json": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
-          "src/data/automated-etf-monthly.json": "866b1f116264ee2729014643dc93ae8d2ef27a04",
-          "src/data/automated-indices.json": "b0fe4c2ca744791114bfc6dc0067b86762411536",
-          "src/data/automated-monthly.json": "d585234cfe7c3a6efe337b6eb5dbb156428f0e31",
-          "src/data/monthly-fx.json": "14e4b86067f7e90ae2f54cab46f3a658d7389da9",
-          "src/data/qualified-listing-records.json": "6d1de8be47a4a72c510edbfee035bf601a3d1197",
-          "src/data/ranking-histories.json": "854ca488b5491e77fad4b397f89d3059d8fe660b"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "cc1db76dff189938a87321fd1ddc027666942651",
-      "publishedDataSha": "05f080499ce6cd93fff50ae318ddf81bbb7fd078"
+      }
     },
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
       "name": "ETF et compositions d’indices",
-      "runId": 40011202978,
+      "runId": 40019944348,
       "attempt": 1,
-      "headSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
-      "createdAt": "2026-10-23T19:24:46Z",
-      "completedAt": "2026-10-23T20:25:49Z",
+      "headSha": "f41b5a60791d56e8980ea322d2b234cbb374ffbe",
+      "createdAt": "2026-10-23T20:31:58Z",
+      "completedAt": "2026-10-23T22:10:13Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-23T11:36:53Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "failure",
-      "publicationStatus": "not-run",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T11:36:53Z",
-      "lastPublicationSuccessAt": "2026-10-23T08:04:14.843Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944348",
       "failures": [
-        {
-          "job": "refresh",
-          "step": "Commit validated observations"
-        },
         {
           "job": "report-failures",
           "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -157,11 +141,23 @@
       "dataFailures": {
         "etf-observation-IE00B5BMR087": {
           "name": "ETF IE00B5BMR087",
-          "completedAt": "2026-10-23T20:25:49Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+          "completedAt": "2026-10-23T22:10:13Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944348",
           "cause": "Incomplete allocation"
         }
-      }
+      },
+      "publicationReceipt": {
+        "commit": "19344ba472f15cc9eb6cf40a575b081b7354f34c",
+        "files": {
+          "src/data/annual-fx.json": "7d26be5dbc395c3fa7c9feaa82eb5b8b4c3bc3aa",
+          "src/data/automated-etf.json": "3e3abb56097df7668e3954db96b5ef20c14313d0",
+          "src/data/automated-indices.json": "79f914c010878a59c29f524fdf7bc55465ffb285",
+          "src/data/official-performance-currencies.json": "8a29089880e0d3b3a008c361c5f490cda5b83435"
+        },
+        "schemaVersion": 1
+      },
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     },
     "update-economic-data.yml": {
       "monitorVersion": 2,
@@ -568,7 +564,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T12:46:34Z",
-      "lastPublicationSuccessAt": "2026-10-23T20:42:54.467Z",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39955158223",
       "failures": [],
       "dataFailures": {},
@@ -579,8 +575,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "cc1db76dff189938a87321fd1ddc027666942651",
-      "publishedDataSha": "05f080499ce6cd93fff50ae318ddf81bbb7fd078"
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -625,56 +621,45 @@
     "update-publication-observations.yml": {
       "monitorVersion": 2,
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 40011202808,
-      "attempt": 1,
-      "headSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
-      "createdAt": "2026-10-23T19:24:46Z",
-      "completedAt": "2026-10-23T19:39:26Z",
+      "runId": 40019944379,
+      "attempt": 2,
+      "headSha": "f41b5a60791d56e8980ea322d2b234cbb374ffbe",
+      "createdAt": "2026-10-23T20:31:58Z",
+      "completedAt": "2026-10-23T21:06:16Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-23T10:32:43Z",
-      "collectionStatus": "failure",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "failure",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-23T13:28:24Z",
+      "lastCollectionSuccessAt": "2026-10-23T21:06:16Z",
       "lastPublicationSuccessAt": "2026-10-23T18:30:15.890Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202808",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944379",
       "failures": [
         {
           "job": "refresh",
           "step": "Commit validated observations"
-        },
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\""
         }
       ],
-      "dataFailures": {
-        "anniversary-nasdaq100": {
-          "name": "anniversary-nasdaq100",
-          "completedAt": "2026-10-23T19:39:26Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202808",
-          "cause": "No completed XNDX session in supported range"
-        }
-      }
+      "dataFailures": {}
     },
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 40019717278,
+      "runId": 40030286294,
       "attempt": 1,
-      "headSha": "39d45d6f5d286c5321593e31ad0b1fb29486114c",
-      "createdAt": "2026-10-23T20:30:16Z",
-      "completedAt": "2026-10-23T20:31:30Z",
+      "headSha": "8c5d522c0144491165610b902a31340cf46cc53e",
+      "createdAt": "2026-10-23T21:56:21Z",
+      "completedAt": "2026-10-23T21:57:33Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-23T20:31:30Z",
+      "lastSuccessAt": "2026-10-23T21:57:33Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-23T20:31:30Z",
+      "lastCollectionSuccessAt": "2026-10-23T21:57:33Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019717278",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40030286294",
       "failures": [],
       "dataFailures": {}
     },
@@ -796,7 +781,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T11:06:04Z",
-      "lastPublicationSuccessAt": "2026-10-23T20:42:54.467Z",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39939094443",
       "failures": [],
       "dataFailures": {},
@@ -807,8 +792,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "cc1db76dff189938a87321fd1ddc027666942651",
-      "publishedDataSha": "05f080499ce6cd93fff50ae318ddf81bbb7fd078"
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -2675,24 +2660,24 @@
     "update-exposure-expansion.yml": {
       "monitorVersion": 2,
       "name": "35 ETF des allocations",
-      "runId": 39937623007,
+      "runId": 40011202848,
       "attempt": 1,
-      "headSha": "1c9a4e65ace09ee557b334362bdbfd8024d51588",
-      "createdAt": "2026-10-23T10:13:58Z",
-      "completedAt": "2026-10-23T11:36:21Z",
+      "headSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
+      "createdAt": "2026-10-23T19:24:46Z",
+      "completedAt": "2026-10-23T20:43:46Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-23T11:36:21Z",
+      "lastSuccessAt": "2026-10-23T20:43:46Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-23T11:36:21Z",
-      "lastPublicationSuccessAt": "2026-10-23T13:19:33Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39937623007",
+      "lastCollectionSuccessAt": "2026-10-23T20:43:46Z",
+      "lastPublicationSuccessAt": "2026-10-23T20:43:41Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202848",
       "failures": [],
       "dataFailures": {},
       "publicationReceipt": {
-        "commit": "31f371818b078ae5ddbe0915e7e891344dcfde70",
+        "commit": "cc1db76dff189938a87321fd1ddc027666942651",
         "files": {
           "public/data/ai-portfolios/book.json": "acb25842ab75162420fdf1e9a33ebf36d541bb4a",
           "public/data/ai-portfolios/catalogue.json": "79e2effff038797a7a6996503c346c1bd75f6e9f",
@@ -3225,14 +3210,14 @@
           "public/data/ai-portfolios/series/ff.json": "10576e90c704d429553cf3312a34c2bd13bf0875",
           "public/data/ai-portfolios/snapshot.json": "ca8a28c0e2039adff5bd71ef252c4b1c0aedd701",
           "public/data/ai-portfolios/source-revisions.json": "437c4edf5b7c0d29efbc846891736955edef1c34",
-          "public/data/asset-automation.csv": "1b79727004ce5dff27ef179ffc0a207b1cd41af9",
-          "public/data/asset-field-coverage.json": "29c38ee6aabbfaf966bd3553dfb1aeba56fb4224",
-          "public/data/data-automation-inventory.json": "b2ced4ba4f2c1be4b9bc7a68b036655c1d9e1b3c",
-          "public/data/data-automation-inventory.md": "03297b280ba2b363a071b9bd808cda720e029846",
-          "public/data/data-automation-summary.json": "7318f664bc1e2ad145b993b5f885ce491b9eea85",
-          "public/data/data-connections-backlog.csv": "77e140c08201952a18c544412618f6ea1412667d",
-          "public/data/holdings-discovery.json": "aa603c3369567270fca2b367ba87f3216464e18b",
-          "public/data/investors/ackman.json": "68a4e8861315a2653ad9c817d0124f9b5035c18e",
+          "public/data/asset-automation.csv": "8df3bd7ddb070b4688dd5bb2f3cd9ca691c5ee8c",
+          "public/data/asset-field-coverage.json": "e4b05d21a457a6c8d5c3906ba98f0930cdcff24d",
+          "public/data/data-automation-inventory.json": "6e621d37aa87f0cb2191d2a3ba60c1d78db3fe13",
+          "public/data/data-automation-inventory.md": "4b18a05473cd845b98d644c60a22473532c57f04",
+          "public/data/data-automation-summary.json": "24fe9cd22c11e0ebeccd56ef52c2c5092dbe61f3",
+          "public/data/data-connections-backlog.csv": "34f7321602ae9dbea1ef3e182a76fa6b9a0199cd",
+          "public/data/holdings-discovery.json": "f9e1eaf1c608a6cb3192049068a6e5560a26b84b",
+          "public/data/investors/ackman.json": "1e0b040c6fa264b65c88e342e289e1826a0d33c5",
           "public/data/investors/aschenbrenner.json": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
           "public/data/investors/baker-bros.json": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
           "public/data/investors/berkshire.json": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
@@ -3255,15 +3240,15 @@
           "public/data/investors/morfit.json": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
           "public/data/investors/pabrai.json": "92fde4822555660dead1e3026b61b9885e10d30e",
           "public/data/investors/renaissance.json": "11327fe1778e1154023a628cbebadd9b179ee878",
-          "public/data/investors/review-metadata.json": "3ceade006b0003dac1d73e7834e3e85d12951637",
+          "public/data/investors/review-metadata.json": "bdac515b3638f9361cdecb7210cc461313dbc557",
           "public/data/investors/tepper.json": "c866c552fc8e1299caa17fce85999995396f9a95",
           "public/data/investors/terry-smith.json": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
           "public/data/investors/thiel.json": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
           "public/data/investors/vinall.json": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
           "public/data/investors/watsa.json": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
-          "public/data/pea-automation.csv": "4318134d5addd0a6fbc3b5827ba441b349bcb1ff",
-          "public/data/pending-source-checks.json": "27e618212db07c61bd842388157d66b75fd48201",
-          "public/data/shared-market-coverage.json": "70a0ca74bc47599304c1984245e47fb576a10015",
+          "public/data/pea-automation.csv": "ae31f0c428046d5300056b859352c429000f3eb9",
+          "public/data/pending-source-checks.json": "bc5dcb7fb69de80ab68055e6cf21bf8b2d8a1719",
+          "public/data/shared-market-coverage.json": "9a6cbfd14100bcf6f72972759c999e8a2c53bc86",
           "scripts/source-snapshots/anniversary-indices.json": "41351158e419e791e48fd4444db1c5572399a794",
           "scripts/source-snapshots/automation-recovery-2026-10-10.json": "aa7cbfb38cf221de839d4e5d09cdd5485e7a373c",
           "scripts/source-snapshots/bitcoin-automated.json": "7c88dc2fc9186abade8f9d188c33d59d38ad560c",
@@ -3313,17 +3298,17 @@
           "scripts/source-snapshots/investors-2026-10-03.json": "9362666dfe9bd1085531be64e062c6d49f7cad65",
           "scripts/source-snapshots/live-data-connections-2026-10-20.json": "5120bb7bbc987a578075d0eacb602e5f7962cf62",
           "scripts/source-snapshots/monthly-automated-round4.json": "fd91fb369758f0e77a98d86e855722d9f7cce65e",
-          "scripts/source-snapshots/monthly-automated.json": "bc92674ae8905dc43dca34207eb48459ee6c8bf6",
-          "scripts/source-snapshots/monthly-collection-status.json": "3451c95be3fefdbbd4fe2e980e212d515346ceca",
+          "scripts/source-snapshots/monthly-automated.json": "310b1295934910a9320258e48b9818e93a158a2e",
+          "scripts/source-snapshots/monthly-collection-status.json": "21f27d7a53300069150f92c26d55929dced74f21",
           "scripts/source-snapshots/monthly-history-additions-2026-10-03.json": "f909f75635d69b5f41446fb8fffecf52ac6b07b4",
           "scripts/source-snapshots/monthly-lifestrategy.json": "2503909b7ea6a6ba2a42c3299eb4debaec54b4ee",
           "scripts/source-snapshots/monthly-qualification-status.json": "86f01bf53677d4d5845a9a0e4f257836d618f620",
           "scripts/source-snapshots/nasdaq-price-legacy.json": "0225a4ba735d8db64f24f0bf95c5beda9cf67212",
-          "scripts/source-snapshots/non-bond-monthly-active.json": "d24a0ec149e38d6d2b02135268c0f2765e9169a1",
+          "scripts/source-snapshots/non-bond-monthly-active.json": "7238c7ed34d5676bb0e41e0240561977006a4a71",
           "scripts/source-snapshots/non-bond-monthly-validation.json": "a0e9d08e6f1c77aea2670b7fb13d837cf3e257ca",
           "scripts/source-snapshots/property-infrastructure-2026-10-05.json": "b8a5b11681ee3343dd90a021c0be82f6109db78d",
-          "scripts/source-snapshots/ranking-collection-status.json": "5cf3113365558e140defbba83e07be2865fb47af",
-          "scripts/source-snapshots/ranking-histories.json": "27e8a2c9c37865cac007b93e82e6d7570c2ab083",
+          "scripts/source-snapshots/ranking-collection-status.json": "c7829bf02f6e6294484460cc634a8aa8b3a3c434",
+          "scripts/source-snapshots/ranking-histories.json": "ff301e45543cab59a40e6f91113c66c41136f261",
           "scripts/source-snapshots/remaining-sources-2026-10-10.json": "4b4f48712ef36e9bd504d56cbdeb3961dfb60f68",
           "scripts/source-snapshots/roadmap-monthly-validation.json": "9d76641fcb1f03bf90f9897c446898d79f36567b",
           "scripts/source-snapshots/silver-returns-2026-10-03.json": "dedc82f95d21f9ce883e8c41985040b992592fe8",
@@ -3332,31 +3317,31 @@
           "src/data/allocation-cases.js": "10bc4aabad395d355fa8a356b4c795aba48894e8",
           "src/data/anniversary-index-history.json": "a5e535fdfccff92c4ce787367aa224768640092c",
           "src/data/anniversary-levels.js": "40145419c38c97685d3d3ac6355fb0b46a1e5dba",
-          "src/data/anniversary-levels.json": "913af68d8e616d1b80c0433b5ace230a689c60f9",
+          "src/data/anniversary-levels.json": "99a4fc6f9358d8736b97c5ae71ea07a67614c61b",
           "src/data/annual-fx.json": "670ea95a94915569898e73f854b8a5f5c3b498d8",
           "src/data/annual-performance-currency.js": "8c02f44c19592de42ce84f37162c3090b30559af",
-          "src/data/annual-portfolio-funds.js": "e0d56d2f7ee6a1a9d37417ca6f07fd5deec5f80d",
+          "src/data/annual-portfolio-funds.js": "860d9c55d46365a9ee4b1b4f9a3acacca6704983",
           "src/data/annual-window.js": "31cb88aa5578e949c2524f8915fcb842ebb55e61",
           "src/data/archive-source-review.js": "6fc78bf11fcde87f35a37e5564b2c2b931369d3c",
           "src/data/asset-labels.js": "c49cbc67f5178763efe11c21a21992265d21cb68",
           "src/data/asset-selection.js": "53d20c3c8c3546123051d10900ed628cc6c89680",
           "src/data/auto-history-identities.json": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
-          "src/data/automated-broker-tariffs.json": "db6716559e7e2e2fad8a9f9b14192a5c38f6c1c3",
+          "src/data/automated-broker-tariffs.json": "fd3545221575548828a446d44bc3abff517555c9",
           "src/data/automated-characteristics.js": "2a8e63bdc2e81db66d57da8926afbbd04afe5aac",
-          "src/data/automated-economic.json": "62b824c6eac447f7df8c77596358328bca091d9c",
+          "src/data/automated-economic.json": "d5e352a1c518fd3cc981d1fdbc376bcbfb86ac05",
           "src/data/automated-equity-history.js": "5b3184f1ea17ce538bbe734d5fdd3bcd15ec7434",
-          "src/data/automated-etf-monthly.json": "9ef742b6a52087b359879e4837ad6816e8e7b1e2",
+          "src/data/automated-etf-monthly.json": "ea20ba04f40e218318ec4c3b2be50f932150acad",
           "src/data/automated-etf.js": "856e11a79b7b660a2ce51c2cfaf6b042ab955383",
-          "src/data/automated-etf.json": "ab4d0ea2743b84df9bcdd011b189416871502600",
+          "src/data/automated-etf.json": "e9948778e4ab668d0e5c32ee35b37f6c63536de6",
           "src/data/automated-index-sheets.js": "5aaad6698199f57969f5f05a9ad538125c16d563",
           "src/data/automated-indices.js": "758cce8fa90c7e0de363c3b4732eb7d3f3ab62a6",
-          "src/data/automated-indices.json": "49e75f10865316b341786a098ccda1fb76b7902c",
-          "src/data/automated-instrument-metadata.json": "d174fe3928ebfb5e11b9f6e64809462fb6ee3243",
-          "src/data/automated-insurance.json": "17800aa4a22a68d685b812255747fbb5cca64402",
-          "src/data/automated-monthly.json": "567be06c2f27ad240f3b9ad1f3fa059e7ce65a2c",
+          "src/data/automated-indices.json": "be924c758d2495e08cc2b5b315a983b104cfa9e2",
+          "src/data/automated-instrument-metadata.json": "24a8eb0051ea69f034241ec407a7f85031b0b4fc",
+          "src/data/automated-insurance.json": "43b82055c9be3eb5376a6d65dafb3d262f98b8b0",
+          "src/data/automated-monthly.json": "9e3ffbc90d1f5bbcc1f240f9b381ccf9c2ddda8a",
           "src/data/automated-portfolio-funds.js": "767cb6b2c546ed3bbbcd5bb6474fedc99cacdde3",
-          "src/data/automated-practical-sheets.json": "29b1bbd26bb4a02af795b37bec5191db04f66692",
-          "src/data/automated-presentation-actors.json": "efb3546c12692a4faeb524e82ef97f8b28562cc0",
+          "src/data/automated-practical-sheets.json": "64a65ed4c993ed66f3516e0136913eff9841d3b4",
+          "src/data/automated-presentation-actors.json": "336b5e428ff3090a97cda8835b4a76066d6e816f",
           "src/data/automated-regulatory.json": "7390d9e1e78da6a1cdcd9edb15e793b3b1ac9e0a",
           "src/data/automated-scpi.json": "24f6fe29fe93c5f06182183f99a6cfb0f30a2520",
           "src/data/automation-workflows.json": "22bd701b7d56d3fc615a11920c5667ffaf7f0851",
@@ -3378,10 +3363,10 @@
           "src/data/comparator-return-evidence.js": "5346806e540a67b6f1f10589b0ed011b22f4876d",
           "src/data/comparison-etf-details.js": "8cbeed70958ca9d76f54a562b539ba7efb975640",
           "src/data/data-source-conditions.json": "1ab2867ce1a186008c99e871da3204d894d267ed",
-          "src/data/dca-complete-holdings.json": "38b469b827b54cae38355d5f066b2b3035351bad",
-          "src/data/dca-equity-exposures.json": "5d6086915fb0c7a2ccde0959a381e8268a0e087b",
-          "src/data/dca-holdings-status.json": "a096efd1a255d3225a779509d00e5a078db266b9",
-          "src/data/dca-security-classifications.json": "3865b4c0dbc2f4431da0e6aeb16f4d24444ee074",
+          "src/data/dca-complete-holdings.json": "843fc1c2d6de315b878d65fc8c6c9c4fb7aeb325",
+          "src/data/dca-equity-exposures.json": "bed85d7ad1e505421a4f0813ae986473694fd1c8",
+          "src/data/dca-holdings-status.json": "fbd0968790f290da221089ad3ea5567e9baf4c0f",
+          "src/data/dca-security-classifications.json": "300eaf96366031f785251ce1fdf92b11ed146e1c",
           "src/data/distinct-asset-selections.js": "31d609e2be111b0e3ab92f655d7f310e25f8c8e9",
           "src/data/distinct-portfolio-assets.js": "fbbb21ec125e9116d65c84b9c0a5f3f9cb5e524b",
           "src/data/diversification-history.js": "2615695d110896568477885a886a42032ca996e5",
@@ -3392,9 +3377,9 @@
           "src/data/editorial-cases.js": "8dfa5c93b74cab352cdb3f1623aa64c2a44fe348",
           "src/data/envelope-fees.js": "249436ff54d73d9e5956be97ea205fa6ee0bc247",
           "src/data/equity-candidates.json": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
-          "src/data/equity-duel-returns.json": "1c339d2085cb66bec7d9c0a83d82df7ba7242f43",
+          "src/data/equity-duel-returns.json": "a2a5480a73db4f20bffa4e2ed49e0b5bd7b27a5f",
           "src/data/equity-history-identities.js": "4aac8ca90da498a0861bc70328ed589e663b6711",
-          "src/data/equity-history-links.json": "b4afe5d11a9edafce903bbcb9257b38a3869ddd8",
+          "src/data/equity-history-links.json": "c70e5f3313a18e06d8adb245918acd09de601f31",
           "src/data/etf-cards.js": "b066350a429587b83fcebf0eed2b8f7129f7f6c2",
           "src/data/etf-development.js": "75272ab9644442310f34968a71a26adac44f72ea",
           "src/data/etf-history-identities.js": "2f8585b0062a94f623cb1adb43b241a3f8268482",
@@ -3409,14 +3394,14 @@
           "src/data/evidence-freshness.js": "82ef98dff124ff59f40cbbe28d5d04b5aed706b8",
           "src/data/evidence.js": "aa30e2d7b85943a349135dfaf7a117038c2df8aa",
           "src/data/exposure-additions.js": "b41d6536b90338fdfaf0f0a01e9d2577dacb98e6",
-          "src/data/exposure-etf-expansion-records.json": "00262293086a7f988b8d6d7aadebb4fe789e6c06",
+          "src/data/exposure-etf-expansion-records.json": "7db8ef8c76f4645f763489ac18e32c75e210c513",
           "src/data/exposure-etf-expansion.js": "85a3671835c729e94daf4c8052707334c668842f",
           "src/data/exposure-observations.js": "0cdce4c0352116568b56a8023e2b11a553c050d7",
-          "src/data/exposure-sleeves.json": "9e0e41c09aa6568210b05e4e31a5c610e17ba1e5",
+          "src/data/exposure-sleeves.json": "f0ab87b8c5cad2f7d154af3d6ce9aec6c0eeba0a",
           "src/data/fee-comparison-assets.js": "83a3c304465ce7f6cb425c8243ef32d37ff267e7",
           "src/data/financial-lexicon.js": "6b4307c26cccdbadc42084ea36a73c996b185fe0",
           "src/data/french-characteristics.js": "eb57909680c31a53073d66325b1d9f233df422c2",
-          "src/data/freshness-policy.json": "76d4df4ac1edef7d9ae7300810c2f554eb8456a6",
+          "src/data/freshness-policy.json": "adeb6fcba067542838dd1310c682e8ca60bb41ff",
           "src/data/global-equities.json": "ce5c7191941103077adfafa862e4ca5f0953f88f",
           "src/data/history-browser.js": "6828f578c8a8ce48f9a75baab2e1b36c51486ce9",
           "src/data/history-currency.js": "b2340a68b7313cf6d1765b5f6d86682fd83a0980",
@@ -3431,8 +3416,8 @@
           "src/data/index-company-compositions.js": "d419db63b8e0393cedc88a0b9d524eeb7d9f6dd0",
           "src/data/index-company-facts.js": "425cfa8582a3e06f830d9b504d2cb0b61526a526",
           "src/data/index-company-identities.json": "8152d33cc38dd24f5e83107f11b1f09f12dd9ea1",
-          "src/data/index-company-observations.json": "ee4c34ff0619f53498c0801c5fe5265f9e67e60d",
-          "src/data/index-company-qualified.json": "58fa8db6226f7234183a687ffb607d3291b22701",
+          "src/data/index-company-observations.json": "16d49013b0189c072bb226fe15cc30cea1c22e6c",
+          "src/data/index-company-qualified.json": "61213dbcf59b3fe7cd2e28c8ac04dca2f3aaa6f0",
           "src/data/index-comparison-composition.js": "50d0abcdca3ec423983b02dae78dae124b33a9c5",
           "src/data/index-comparison-editorial.js": "95c81c46c58f2c694a8c0e170bae2abb118ecaef",
           "src/data/index-comparison-pairs.js": "b06cbbc8b6cff11a5d11873f8b10cf64d718799d",
@@ -3455,7 +3440,7 @@
           "src/data/instrument-comparator-returns.js": "55ee563072fbebe53d3e7b8bffcef7275d3ee9ee",
           "src/data/instrument-facts.js": "119f5e2d7b15af349ed1b8021b73d6575b70237e",
           "src/data/instrument-listings.js": "e8b7946b0448fac1893f20556755b7eaa7a919de",
-          "src/data/instrument-metadata-status.json": "f15d0c00757572ae70aa3993e73e01df72ab8a4b",
+          "src/data/instrument-metadata-status.json": "0e4015545f4e9d0b9f1ae149c019d9b1bcca73c4",
           "src/data/instrument-metadata.js": "0ff262c49a84992ce1ce67a2bc1a24908fa89664",
           "src/data/instrument-pea.js": "f05758a1ee37bedb85a3fcd49008954cea64cd1c",
           "src/data/instrument-performance-review.js": "ffe50e8790e996f65eed0b5b086160b139f4c6e0",
@@ -3474,17 +3459,17 @@
           "src/data/market-history.js": "8cc21c18abb6299bd79338493c10448c3f6ce7de",
           "src/data/market-story-selection.js": "7c0949187a46181ff7d86ffb7f15b96bdaeea635",
           "src/data/monthly-automation.js": "f030364ea6b36d3974564adf8d3bf3fc636e18a8",
-          "src/data/monthly-duel-returns.json": "8c7b73e9aa038f98ca181236a0cbf9fcb1a9cbd3",
-          "src/data/monthly-fx.json": "333307b0a0625dcdb01c56087f45c78eb6aa092b",
+          "src/data/monthly-duel-returns.json": "bc4c3f502a97e7e019e7502dff5e9a18f6dcd962",
+          "src/data/monthly-fx.json": "14e4b86067f7e90ae2f54cab46f3a658d7389da9",
           "src/data/monthly-history-additions.js": "8cdc34d6a7365168d3adb23da423882087ced435",
           "src/data/msci-history.js": "bb3b567d7977bb337749e859875cf6388bfb35b4",
           "src/data/new-index-returns.js": "7aa5ad0ff2a7aeaf5767ec7ec1c607abc0c7b4eb",
           "src/data/non-bond-company-histories.json": "288732cbdaf47b8894be159fc38ada47d10987c5",
-          "src/data/non-bond-etf-records.json": "eeb0d9b53b6c6409c9c5913f29b7964d4f0bb32f",
+          "src/data/non-bond-etf-records.json": "5ee5e88caccc8e5df61521df3ad6f660da1c8ef0",
           "src/data/non-bond-expansion.js": "6b91922d8002e983a0ee9de793d8f3c64577a362",
-          "src/data/non-bond-levels.json": "456f105b570f5fc87a333e7b905aae91d441abaa",
-          "src/data/non-bond-monthly-records.json": "b39e9b76228631456f8cf3c811adbb5966deba5e",
-          "src/data/non-bond-qualified-records.json": "750c68673aab390d3846256964cb976a302fb7db",
+          "src/data/non-bond-levels.json": "d5fc41a9301b14fdded9d87ef2778138e81a8f8c",
+          "src/data/non-bond-monthly-records.json": "04437d5529ae21cf4ea7f386a63cb2be22e2366e",
+          "src/data/non-bond-qualified-records.json": "1a3dadff3a08a809e93514483f49f2266efa0b97",
           "src/data/official-performance-currencies.json": "8a29089880e0d3b3a008c361c5f490cda5b83435",
           "src/data/pea-group-status.js": "88cc2038bcbce9cbcd8effe98a824e851878cb8a",
           "src/data/pea-sector-completion.js": "bc265d72655afde0fef464a1ba77742e4b351e4b",
@@ -3505,19 +3490,19 @@
           "src/data/presentation-etf-additions.js": "432b782cd8bcfa78aee7dda15f91587e792d3cd9",
           "src/data/presentation-etf-expansion.js": "626566034b621be9b28fba0d24ac3149213a4637",
           "src/data/property-infrastructure-additions.js": "1466a686abe6df58796f49d50652e99e2f323353",
-          "src/data/purchasing-power-observations.json": "bf3a79b03f00abc830fe2db0f6f9878ef5ab8b0a",
+          "src/data/purchasing-power-observations.json": "5fa7ac329f70b98a6e0144f1e539837925a2c946",
           "src/data/purchasing-power.js": "a1227cc5ba6b7678b20da6829638896e2a44675a",
           "src/data/qualified-annual-calendars.js": "d00cb05cf4d859af7f776beda233c368e43f1fcf",
           "src/data/qualified-etf-comparisons.js": "4dbcb2b83c5876fa9782a94bdb84b374c18c7012",
-          "src/data/qualified-exposure-etfs.json": "caf2381bead371bb8d932ddb77903772e7dd0220",
+          "src/data/qualified-exposure-etfs.json": "ad4cfaae43cdae6195bebe6a989d86f436d253da",
           "src/data/qualified-exposure-metrics.js": "0d5b5a5fc6f867368448f9725117a2706e4b6fcc",
           "src/data/qualified-exposure-sheets.js": "dc6221f18603cbca2c81c8cf2e89d4cfd6336610",
-          "src/data/qualified-listing-records.json": "5c0722234090805713466c7395611cd6a0a37550",
+          "src/data/qualified-listing-records.json": "6d1de8be47a4a72c510edbfee035bf601a3d1197",
           "src/data/qualified-listings.js": "4a41d8b254005b3e38e7d2d18a17c89f1211a345",
-          "src/data/ranking-annual.json": "bebc520114c53eaeeb150740369d5c9c20c58d5a",
+          "src/data/ranking-annual.json": "ddb7d58affe9c024f40f06c5bc85f115f7502bb4",
           "src/data/ranking-ftse.json": "701312f59f9372db718a9645adaf47f8bf2ef7b8",
-          "src/data/ranking-histories.json": "3fb8cbd0ad63b3da8c7736a6563e0549674ed273",
-          "src/data/ranking-index-annual.json": "fb555c15543e9e4f38b7032f848616c68662fde4",
+          "src/data/ranking-histories.json": "5559dfcace7684b78b89a45d716f9d6912a7692a",
+          "src/data/ranking-index-annual.json": "62d19114e777c31437ad4da7fd22d9d593e4820f",
           "src/data/regulatory-data.js": "334e20ed46db54c190d24b9302afd4cecdc84434",
           "src/data/resource-selections.js": "0f5df8adca3ef691f06be46128bba32a0165be73",
           "src/data/retired-automations.json": "c23d1187c500ccdb949081ebca3d45fa8a3f0151",
@@ -3543,50 +3528,48 @@
           "src/data/verified-returns.js": "c7c27ab3a0b263a531889568c147f7f95b0d2af5",
           "src/data/world-factor-additions.js": "2f8aeef16c9d47e81d70f7a91de4beab007e425b",
           "src/data/worldbank-gold-monthly.json": "9130eced22c23ec98efd5832148eca21f4e2f446",
-          "src/pages/dca-profiles/catalog.json": "2a67cfc7c224563567afc7844a4e8e704702b856",
-          "src/pages/dca-profiles/exposures-extra-0.json": "f4356f6a77c0f72bff1978aa0751ae96940695c9",
-          "src/pages/dca-profiles/exposures-extra-1.json": "11681a4ef548a7ecc3a60ecaa16b40842d4af672",
-          "src/pages/dca-profiles/exposures-extra-2.json": "a1281629f420ff9b5d661600a3f691c86c762710",
-          "src/pages/dca-profiles/exposures.json": "74a10e9768cd36d434cba1b3d714f61294e4655d",
-          "src/pages/dca-profiles/holdings-0.json": "c257397449d3a2fce2da2790770411fbf4bf8da7",
-          "src/pages/dca-profiles/holdings-1.json": "f77eb71c53f566d786119c59eb737afba6fe8e20",
-          "src/pages/dca-profiles/holdings-10.json": "e779cc491a1d4c3adbc60e8f2b6d9d2ad2d466d2",
-          "src/pages/dca-profiles/holdings-11.json": "008f82eea5f0a0cc233fb2172767ce76e173cff6",
-          "src/pages/dca-profiles/holdings-12.json": "4a5d85562307251b8d3638ec06e3ec6c36272627",
-          "src/pages/dca-profiles/holdings-13.json": "82f2102b169a62298f9a104d4a3c575ea6109366",
-          "src/pages/dca-profiles/holdings-14.json": "8339456c07083d5c072a8fc685994719d1bc9fb7",
-          "src/pages/dca-profiles/holdings-15.json": "4de86630c3c841ab3e85809381ec7107f581a84f",
-          "src/pages/dca-profiles/holdings-16.json": "c5370b2b28d75de51db02985fe78b65e1f82e6a3",
-          "src/pages/dca-profiles/holdings-17.json": "ea36995fb4d5d78238e089d950e8ddb89e7a0279",
-          "src/pages/dca-profiles/holdings-18.json": "2f860016a235af17d17b18bb3c087f50cfe87d8a",
-          "src/pages/dca-profiles/holdings-19.json": "bf24d70f1fb3a7ca92a3ba785f8c86bfe14c0ef0",
-          "src/pages/dca-profiles/holdings-2.json": "867db04b4a50b99f6d21a6253da71a31faff2391",
-          "src/pages/dca-profiles/holdings-20.json": "bfb4d3ba93b314a151c9e0745c9f5ae540574bfe",
-          "src/pages/dca-profiles/holdings-21.json": "481ab4a39f1671296f60ba7f7463e9b50b67e5e5",
-          "src/pages/dca-profiles/holdings-22.json": "bbf2f95fb6b31742a9683574d90cb81a8fb9ad10",
-          "src/pages/dca-profiles/holdings-23.json": "adb4ae155afc0d30a523b12f5ec04b66f1f97bf6",
-          "src/pages/dca-profiles/holdings-24.json": "9e66f1b9aa87b7708a0e8b5bfb808121b3b87648",
-          "src/pages/dca-profiles/holdings-25.json": "fb957eb9466329f085f93bcd613f154f4321a583",
-          "src/pages/dca-profiles/holdings-26.json": "a3dc3d219f73a17096ca1c6c602bbee2a0080dd1",
-          "src/pages/dca-profiles/holdings-27.json": "7e516beeb07cc4eed509526bdd601ff6e682da37",
-          "src/pages/dca-profiles/holdings-28.json": "2271db79d8fba1c4db15c25f1a25689b1f3b19de",
-          "src/pages/dca-profiles/holdings-29.json": "62d107766588823d047488680a03a59e1ede9f72",
-          "src/pages/dca-profiles/holdings-3.json": "4f4e52156e8e7461bcf0e43d320c2fda0ddc55a4",
-          "src/pages/dca-profiles/holdings-30.json": "8c525394dd9531570e271fb473e2ca53614edaa9",
-          "src/pages/dca-profiles/holdings-31.json": "da25a40a36273001e9e71c68a53c984d3df4b9d7",
-          "src/pages/dca-profiles/holdings-4.json": "7ff1951c4f54b003c76e3f3de1075e2aee127874",
-          "src/pages/dca-profiles/holdings-5.json": "06434856fdbb681765e071467beed4e705a0d9a0",
-          "src/pages/dca-profiles/holdings-6.json": "fbc613b289d83e5c27de770143a8673587b5f8c9",
-          "src/pages/dca-profiles/holdings-7.json": "b12200a95f3c2f0dbfc14dc15f82dce99780b094",
-          "src/pages/dca-profiles/holdings-8.json": "c57e3e72969e2f08e3e5d16616cccf1e53e4f9bf",
-          "src/pages/dca-profiles/holdings-9.json": "698f900618b758b2c0062ce7fc4e18dc6de48643",
+          "src/pages/dca-profiles/catalog.json": "c40af52e00f9f8f7c897ff9c01807925abac0479",
+          "src/pages/dca-profiles/exposures-extra-0.json": "f853ff2d7f3c5eb1dd7e91b91781405c2b419dcc",
+          "src/pages/dca-profiles/exposures-extra-1.json": "105d718bb3c1b5be4891ccf1ea1da197d51eaae6",
+          "src/pages/dca-profiles/exposures-extra-2.json": "9ff0befd22a96c58e00b3dd559d5ab9bcaad1792",
+          "src/pages/dca-profiles/exposures.json": "bec55086e31474b27803ef836c3282565dc92f5b",
+          "src/pages/dca-profiles/holdings-0.json": "07631bd20f252273a2db33eeca66c315931299b1",
+          "src/pages/dca-profiles/holdings-1.json": "180c9bd6800d8003ff74d7939562167e2f27a880",
+          "src/pages/dca-profiles/holdings-10.json": "58a6d115325d3c90fca1b982f7b7bab3516dcdad",
+          "src/pages/dca-profiles/holdings-11.json": "0cc7a610bcb4bdb36bf5a29b573c7b9c41198365",
+          "src/pages/dca-profiles/holdings-12.json": "e72b432e29a77866a3bbf9ad237946291942b214",
+          "src/pages/dca-profiles/holdings-13.json": "4d34c7ecccdd7c54fea4356abcf0ef2d9d933040",
+          "src/pages/dca-profiles/holdings-14.json": "83f0bc004e8256baa5e0e632e1af73c5c23d32ea",
+          "src/pages/dca-profiles/holdings-15.json": "9ff8d64b4531a44889e40c55c2de0c3af7fc1cfa",
+          "src/pages/dca-profiles/holdings-16.json": "1e0070dc107ea95a7f6e0142761f87b534d6b90d",
+          "src/pages/dca-profiles/holdings-17.json": "a78e7cef63b550db94ee763dac2f5965a5953591",
+          "src/pages/dca-profiles/holdings-18.json": "e13784910209e6243de9e7140eae30d491dce014",
+          "src/pages/dca-profiles/holdings-19.json": "6ac86c695bbe2549f81327fa82e87684f588e943",
+          "src/pages/dca-profiles/holdings-2.json": "52d6de0fbcb939302460ac29131484b297375fbc",
+          "src/pages/dca-profiles/holdings-20.json": "cf7f91e66946eb2ad7210f2ceebf4dc813e72d12",
+          "src/pages/dca-profiles/holdings-21.json": "858735ad3a93fc7ecdc2a06e3b586f26cadc2719",
+          "src/pages/dca-profiles/holdings-22.json": "3751543a0ebada47b87b750f4d95149126d0d077",
+          "src/pages/dca-profiles/holdings-23.json": "a843259e0c0684a76634108e23d2cb63bc586a2f",
+          "src/pages/dca-profiles/holdings-24.json": "1de763e94d31bbf97371ed837040d04e4cd1c435",
+          "src/pages/dca-profiles/holdings-25.json": "27e2f35e2f8f782658a7968b1673ba3cdeec63d4",
+          "src/pages/dca-profiles/holdings-26.json": "efd835b2e2852a7920396db76505b57ce60b2a47",
+          "src/pages/dca-profiles/holdings-27.json": "5ec4988b6f866263ce16793fd7ba381288f7584e",
+          "src/pages/dca-profiles/holdings-28.json": "94878faf7654ccc0798704bcd0ceebbccae508bc",
+          "src/pages/dca-profiles/holdings-29.json": "a011c2a2a4b3a6be7a15c015ba4a92046be24b16",
+          "src/pages/dca-profiles/holdings-3.json": "6b06e6ba81bd04df4aeae8dcc707111d2675cada",
+          "src/pages/dca-profiles/holdings-30.json": "0116627744f67ca123a009e292af6f051cdb8c47",
+          "src/pages/dca-profiles/holdings-31.json": "55dc87ba2fd2c28688880281f3f15c738da35354",
+          "src/pages/dca-profiles/holdings-4.json": "ed69f2fa3923a092cea4eb264a90910b295f804f",
+          "src/pages/dca-profiles/holdings-5.json": "f82439f19aaf12ed1eb8a113db5a5c8aa47753a1",
+          "src/pages/dca-profiles/holdings-6.json": "46acabbbff5447f7479ec40e7078e164517031a5",
+          "src/pages/dca-profiles/holdings-7.json": "10e0c67ed933b371df1859cdcc3c49ace7083f08",
+          "src/pages/dca-profiles/holdings-8.json": "6c3a1d1ec2fe6f7c91dc456894dd913313fd8ac1",
+          "src/pages/dca-profiles/holdings-9.json": "b734676a06161139577accecdf3f22e378ec7a1c",
           "src/pages/dca-profiles/holdings-manifest.json": "ebb8975fd1d4f2096ed03f89bbfa0fe15df80b45",
-          "src/pages/dca-profiles/holdings.json": "a7afe6aab9ffb0d5d96b477efc2de4e41ea31296"
+          "src/pages/dca-profiles/holdings.json": "338810abdebe45a9f8a28cd93a8be72dc9cd2699"
         },
         "schemaVersion": 1
-      },
-      "publishedCodeSha": "5feee6221927c38055d69f8faffcf1ecbd6c335d",
-      "publishedDataSha": "5feee6221927c38055d69f8faffcf1ecbd6c335d"
+      }
     },
     "update-instrument-metadata.yml": {
       "monitorVersion": 2,
@@ -3603,7 +3586,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-23T20:42:54.467Z",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39968438961",
       "failures": [
         {
@@ -3628,8 +3611,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "cc1db76dff189938a87321fd1ddc027666942651",
-      "publishedDataSha": "05f080499ce6cd93fff50ae318ddf81bbb7fd078"
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     },
     "onboard-assets.yml": {
       "monitorVersion": 2,
@@ -3689,11 +3672,11 @@
     "update-ai-portfolios.yml": {
       "monitorVersion": 2,
       "name": "Portefeuilles IA · clôtures et suivi quotidien",
-      "runId": 39938100866,
+      "runId": 40017941632,
       "attempt": 1,
-      "headSha": "f3bb6261501cc8a6203fc607f028b83579cad3ff",
-      "createdAt": "2026-10-23T10:17:57Z",
-      "completedAt": "2026-10-23T10:53:29Z",
+      "headSha": "cc1db76dff189938a87321fd1ddc027666942651",
+      "createdAt": "2026-10-23T20:16:29Z",
+      "completedAt": "2026-10-23T20:35:51Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-22T10:27:18Z",
       "collectionStatus": "failure",
@@ -3701,8 +3684,8 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T10:27:18Z",
-      "lastPublicationSuccessAt": "2026-10-23T20:19:58.332Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39938100866",
+      "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40017941632",
       "failures": [],
       "dataFailures": {
         "IE00B4L5Y983-ETFP": {
@@ -3714,7 +3697,7 @@
         }
       },
       "publicationReceipt": {
-        "commit": "621d3a40e3e1672caf33188813bcf0152a478733",
+        "commit": "05f080499ce6cd93fff50ae318ddf81bbb7fd078",
         "files": {
           "public/data/ai-portfolios/book.json": "acb25842ab75162420fdf1e9a33ebf36d541bb4a",
           "public/data/ai-portfolios/catalogue.json": "79e2effff038797a7a6996503c346c1bd75f6e9f",
@@ -3782,7 +3765,7 @@
           "public/data/ai-portfolios/details/3d.json": "d2f325362ff6f7b0c9fdaf4e4587b9b1e6ce3275",
           "public/data/ai-portfolios/details/3e.json": "ef719174527df48b9c806b18a35b8a5f8d5e3987",
           "public/data/ai-portfolios/details/3f.json": "d03b2136e98caaa9a700be61e18e6fbb8170303f",
-          "public/data/ai-portfolios/details/40.json": "bf96d4391e984c6a8ffe68163af3977be30c65e3",
+          "public/data/ai-portfolios/details/40.json": "6236c73e16368a53e3d3323b9a34a77dc6008e2a",
           "public/data/ai-portfolios/details/41.json": "1418a3ca6262e26b78fea5da7cdfbe92127f6e5e",
           "public/data/ai-portfolios/details/42.json": "cd6f37d6592d2e3e3bc4c777815f22b1b0ad82c6",
           "public/data/ai-portfolios/details/43.json": "e1e41bc746f2dcdf4ea253f8893cff3b7797eb65",
@@ -3975,20 +3958,20 @@
           "public/data/ai-portfolios/details/fe.json": "6d2e514c062932c081c698df74a1cad0de2c40eb",
           "public/data/ai-portfolios/details/ff.json": "1d6e1df3ad40bc1388062adca1b3111042428e8b",
           "public/data/ai-portfolios/equity-catalogue.csv": "2e97e38a725ef5888a15212f44651c7ce1f5d135",
-          "public/data/ai-portfolios/equity-catalogue.json": "187b055c3b1ed3aae540908710dac7b242f01e11",
-          "public/data/ai-portfolios/equity-coverage.json": "6c4401028ca39c7fd7ad77a0cd482cb5aee5d757",
-          "public/data/ai-portfolios/equity-coverage.md": "c710ed7ae371e4c0b2d732cea85def5c92c75d33",
+          "public/data/ai-portfolios/equity-catalogue.json": "1db67c9fa7fd05c26584e192533721f15fdd4f78",
+          "public/data/ai-portfolios/equity-coverage.json": "e11d216dfc30b851965a6783b5b90b46c3c63eb7",
+          "public/data/ai-portfolios/equity-coverage.md": "3db72c82ec3b8ce5969ad105c8f2cad6cd50709f",
           "public/data/ai-portfolios/final-network-validation.json": "904b4f3114d73be8c23ad85682006cf4b23f3e28",
           "public/data/ai-portfolios/launch-reference-verification.json": "f0fc3f273220b2cf6f36debe2ca51ee4a10ad0e3",
-          "public/data/ai-portfolios/overview.json": "19cecaf72ac034a7782aefa92cdcc18da5ab6d5c",
+          "public/data/ai-portfolios/overview.json": "4d45f196130816e0c61c98df5f91c147527e969c",
           "public/data/ai-portfolios/qualification.csv": "b24f4f7cf481630d15ae71205332b867b7139495",
-          "public/data/ai-portfolios/qualification.json": "ac190e36350e065fa22f781586b2a156d61323a7",
-          "public/data/ai-portfolios/qualification.md": "68bf20c179c7b1cadf32e5c8053b51ff3188516f",
-          "public/data/ai-portfolios/runtime-audit.json": "c3f9d78cfad29b03b4aa36c1fc748f5f1f967683",
+          "public/data/ai-portfolios/qualification.json": "505b7fba662a1045efd1f1b1b6152e28caee5270",
+          "public/data/ai-portfolios/qualification.md": "f689e4b159bac649401c6f2881e5cfe6e874b28f",
+          "public/data/ai-portfolios/runtime-audit.json": "4956aa3981be15797fed3e92388f9db4796713f3",
           "public/data/ai-portfolios/selectable-assets.csv": "3ec6490c98065956515a190e71c63a1f4d9a0405",
-          "public/data/ai-portfolios/selectable-assets.json": "17459d300a16d2714065c4ab12f2971df456140e",
+          "public/data/ai-portfolios/selectable-assets.json": "ff86ad1e4c83fa3c02a86dc02bd3e0b5e611ba02",
           "public/data/ai-portfolios/selectable-equities.csv": "38ff08a65b236800cc8f884ec79e14e98f16711f",
-          "public/data/ai-portfolios/selectable-equities.json": "eb43011ea9a04f792188464cc68a0c8f79f57235",
+          "public/data/ai-portfolios/selectable-equities.json": "1e5c2cc2f8cb744b3bf81e058c78acc09adb55b7",
           "public/data/ai-portfolios/series/00.json": "e7b3e49d93399442199da2aaf6f65115c1d46e67",
           "public/data/ai-portfolios/series/01.json": "f6648cb423e38f6077dc295963d47f69ce6610f1",
           "public/data/ai-portfolios/series/02.json": "f23a14a2a0491c000fa18f2673512096a07a39a0",
@@ -4245,20 +4228,20 @@
           "public/data/ai-portfolios/series/fd.json": "d490b34c3025eda4693c6f7f3d0801a80d4c84fe",
           "public/data/ai-portfolios/series/fe.json": "0191ae7b7ecc9fffafb9576bf88e7bfa3b67d713",
           "public/data/ai-portfolios/series/ff.json": "10576e90c704d429553cf3312a34c2bd13bf0875",
-          "public/data/ai-portfolios/snapshot.json": "ca8a28c0e2039adff5bd71ef252c4b1c0aedd701",
+          "public/data/ai-portfolios/snapshot.json": "54d12a1e18c18eeed0e825c8784dd4fe5bc6b9ea",
           "public/data/ai-portfolios/source-revisions.json": "437c4edf5b7c0d29efbc846891736955edef1c34"
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "93ffc5965748007d3dc6d6fc4ae6cfbe4fa90b7c",
-      "publishedDataSha": "79da7243482e9eee19c0d608a0d3d7366ffe359e"
+      "publishedCodeSha": "d780e917c6a87e60195b7cd49ffcb45ed85df8ba",
+      "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     }
   },
-  "updatedAt": "2026-10-23T20:33:14Z",
+  "updatedAt": "2026-10-23T22:10:13Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T20:46:54.708583+00:00",
-    "revision": 276,
+    "checkedAt": "2026-10-23T22:11:04.714640+00:00",
+    "revision": 278,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
         "name": "Amundi · structure et risques de l’ETC or",
@@ -4280,28 +4263,25 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
-      "collection:update-publication-observations.yml:anniversary-nasdaq100": {
-        "name": "anniversary-nasdaq100",
+      "workflow:update-publication-observations.yml": {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
         "tools": [
           "Pouvoir d’achat",
           "Il y a X ans"
         ],
         "impactScope": "collector",
         "workflow": "update-publication-observations.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202808",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944379",
         "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-23T13:28:24Z",
-        "completedAt": "2026-10-23T19:39:26Z",
-        "cause": "No completed XNDX session in supported range",
-        "sourceUrls": [],
+        "lastSuccessAt": "2026-10-23T21:06:16Z",
         "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "anniversary-nasdaq100",
-        "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
-        "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Commit validated observations",
+        "id": "workflow:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-23T21:02:38.156215+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "overdue:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -4319,7 +4299,7 @@
         "cause": "Aucune exécution terminée depuis plus de 48 heures.",
         "id": "overdue:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-23T15:08:10.479207+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -4332,10 +4312,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202978",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944348",
         "to": "/bibliotheque-donnees?id=IE00B5BMR087",
         "lastSuccessAt": "2026-10-23T11:36:53Z",
-        "completedAt": "2026-10-23T20:25:49Z",
+        "completedAt": "2026-10-23T22:10:13Z",
         "cause": "Incomplete allocation",
         "sourceUrls": [
           "https://bourse.fortuneo.fr/trackers/cours-ishares-core-s-p-500-ucits-etf-usd-acc-CSPX-IE00B5BMR087-46",
@@ -4348,7 +4328,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -4360,10 +4340,10 @@
         ],
         "impactScope": "collector",
         "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202967",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40019944385",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-23T20:33:14Z",
+        "completedAt": "2026-10-23T21:49:00Z",
         "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-23: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
         "field": "Change",
         "sourceUrls": [],
@@ -4371,7 +4351,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -4399,7 +4379,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -4427,7 +4407,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -4454,7 +4434,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -4481,7 +4461,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -4508,7 +4488,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -4537,7 +4517,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -4563,10 +4543,242 @@
         "checkedAt": "2026-10-22T19:45:46.750336+00:00",
         "asOf": "2026-10-15",
         "lastSuccessAt": "2026-10-22T19:45:46.750336+00:00",
-        "evaluatedAt": "2026-10-23",
+        "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BDVPNG13:aum": {
+        "id": "field:instrument:IE00BDVPNG13:aum",
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BDVPNG13"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BDVPNG13:countries": {
+        "id": "field:instrument:IE00BDVPNG13:countries",
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BDVPNG13"
+        ],
+        "field": "Pays",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BDVPNG13:sectors": {
+        "id": "field:instrument:IE00BDVPNG13:sectors",
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BDVPNG13"
+        ],
+        "field": "Secteurs",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BDVPNG13:holdings": {
+        "id": "field:instrument:IE00BDVPNG13:holdings",
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BDVPNG13"
+        ],
+        "field": "Principales positions",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BKLF1R75:aum": {
+        "id": "field:instrument:IE00BKLF1R75:aum",
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BKLF1R75"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BKLF1R75:countries": {
+        "id": "field:instrument:IE00BKLF1R75:countries",
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BKLF1R75"
+        ],
+        "field": "Pays",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BKLF1R75:sectors": {
+        "id": "field:instrument:IE00BKLF1R75:sectors",
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BKLF1R75"
+        ],
+        "field": "Secteurs",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BKLF1R75:holdings": {
+        "id": "field:instrument:IE00BKLF1R75:holdings",
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "aliases": [
+          "IE00BKLF1R75"
+        ],
+        "field": "Principales positions",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -4592,10 +4804,123 @@
         "checkedAt": "2026-10-22T19:45:46.750336+00:00",
         "asOf": "2026-10-21",
         "lastSuccessAt": "2026-10-22T19:45:46.750336+00:00",
-        "evaluatedAt": "2026-10-23",
+        "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE00BYZK4776:listings": {
+        "id": "field:instrument:IE00BYZK4776:listings",
+        "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+        "aliases": [
+          "IE00BYZK4776"
+        ],
+        "field": "Cotations",
+        "kind": "freshness",
+        "cause": "Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": null,
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:GB00B15KXQ89:aum": {
+        "id": "field:instrument:GB00B15KXQ89:aum",
+        "name": "WisdomTree Copper",
+        "aliases": [
+          "GB00B15KXQ89"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:GB00BJYDH287:aum": {
+        "id": "field:instrument:GB00BJYDH287:aum",
+        "name": "WisdomTree Physical Bitcoin",
+        "aliases": [
+          "GB00BJYDH287"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE0002XZSHO1:aum": {
+        "id": "field:instrument:IE0002XZSHO1:aum",
+        "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+        "aliases": [
+          "IE0002XZSHO1"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Fiches pratiques",
+          "Présentation ETF",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.ishares.com/ch/professionals/en/products/335178/"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -4619,10 +4944,38 @@
         "checkedAt": "2026-10-22T19:45:46.750336+00:00",
         "asOf": "2026-10-15",
         "lastSuccessAt": "2026-10-22T19:45:46.750336+00:00",
-        "evaluatedAt": "2026-10-23",
+        "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:IE000DQLYVB9:aum": {
+        "id": "field:instrument:IE000DQLYVB9:aum",
+        "name": "iShares S&P 500 Swap PEA UCITS ETF",
+        "aliases": [
+          "IE000DQLYVB9"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Fiches pratiques",
+          "Présentation ETF",
+          "Impact des frais",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.ishares.com/ch/professionals/en/products/342916/"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -4646,10 +4999,38 @@
         "checkedAt": "2026-10-22T19:45:46.750336+00:00",
         "asOf": "2026-10-15",
         "lastSuccessAt": "2026-10-22T19:45:46.750336+00:00",
-        "evaluatedAt": "2026-10-23",
+        "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
+      },
+      "field:instrument:JE00B1VS3770:aum": {
+        "id": "field:instrument:JE00B1VS3770:aum",
+        "name": "WisdomTree Physical Gold",
+        "aliases": [
+          "JE00B1VS3770"
+        ],
+        "field": "Encours",
+        "kind": "freshness",
+        "cause": "check-overdue; dernière observation conservée à sa date d’origine.",
+        "category": "check-overdue",
+        "tools": [
+          "Présentation ETF",
+          "Générateur de portefeuilles",
+          "Duels de portefeuilles",
+          "Comparatif ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold"
+        ],
+        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "lastSuccessAt": "2026-10-16",
+        "evaluatedAt": "2026-10-24",
+        "to": "/donnees-a-revoir",
+        "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -4671,7 +5052,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:4c3362f0091de10f80251dae": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4691,7 +5072,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4c3362f0091de10f80251dae",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:53ed9235fe9fe9fe6e5b95e6": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4711,7 +5092,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Taiwan:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:53ed9235fe9fe9fe6e5b95e6",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:6435e61844c83c784d6ea423": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4731,7 +5112,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6435e61844c83c784d6ea423",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:80525dea7d9f868ce9221e4e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4751,7 +5132,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:80525dea7d9f868ce9221e4e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:557209b962c2546382a62468": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4771,7 +5152,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:557209b962c2546382a62468",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:33c64bcb281658a32243d552": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4791,7 +5172,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c64bcb281658a32243d552",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:ef96176220f03d7291465c54": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4811,7 +5192,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ef96176220f03d7291465c54",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:652abd029e4edf33dc8bbd5b": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4831,7 +5212,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:652abd029e4edf33dc8bbd5b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:009bccefe6b8d09d7cab24b3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4851,7 +5232,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:009bccefe6b8d09d7cab24b3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:d5684ba01c7cce49ff929b2f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4871,7 +5252,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:d5684ba01c7cce49ff929b2f",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:6571393d1ff1c36bc6761e5c": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4891,7 +5272,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6571393d1ff1c36bc6761e5c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:fc4ff751fdd461132df1d976": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4911,7 +5292,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:fc4ff751fdd461132df1d976",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:693a3c90008da97d02ab1636": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4931,7 +5312,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:693a3c90008da97d02ab1636",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:483a1eb3ca1c9ba0a9ac1275": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4951,7 +5332,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Italy:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:483a1eb3ca1c9ba0a9ac1275",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:ed26659e68f08e7c32a25f3e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4971,7 +5352,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Sweden:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ed26659e68f08e7c32a25f3e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:736fff1d926c9fa76c21f534": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4991,7 +5372,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:736fff1d926c9fa76c21f534",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:79b0b52a606a84e1228fb76e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5011,7 +5392,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:79b0b52a606a84e1228fb76e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:cd7988476c2bb5544e2c8ac8": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5031,7 +5412,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:South Africa:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:cd7988476c2bb5544e2c8ac8",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:6b88bbe560baad8407db6696": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5051,7 +5432,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Mexico:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6b88bbe560baad8407db6696",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:f9c61b9d07f565352bb61490": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5071,7 +5452,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Belgium:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:f9c61b9d07f565352bb61490",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:1f12be33fec21d85d9592c45": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5091,7 +5472,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:1f12be33fec21d85d9592c45",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:683ec14d2988365b406744be": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5111,7 +5492,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Norway:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:683ec14d2988365b406744be",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:32cd7c7293a29e54c84b8115": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5131,7 +5512,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:32cd7c7293a29e54c84b8115",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:61504f15a5a7cd4ebee87628": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5151,7 +5532,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:61504f15a5a7cd4ebee87628",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:51096030b6e58dc48b6a5da9": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5171,7 +5552,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Cayman Islands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:51096030b6e58dc48b6a5da9",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:33c7232da829f19492e4b368": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5191,7 +5572,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c7232da829f19492e4b368",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:ac763c6cbdcf20d5dc112748": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5211,7 +5592,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ac763c6cbdcf20d5dc112748",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:24774469f7e74ea6711fff3a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5231,7 +5612,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:24774469f7e74ea6711fff3a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:4b65c84e71f8acf5261c24f7": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5251,7 +5632,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Jersey:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4b65c84e71f8acf5261c24f7",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:b3576866a9279c03559453e3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5271,7 +5652,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:b3576866a9279c03559453e3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:96242cd5106e391dcbb0c041": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5294,7 +5675,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:96242cd5106e391dcbb0c041",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:a196e10e49cd81cb863e6d65": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5317,7 +5698,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:a196e10e49cd81cb863e6d65",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:48efb4a62fc1bb48d3fdcf95": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5337,7 +5718,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:48efb4a62fc1bb48d3fdcf95",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:235ba88fa77ea52e6b88d99b": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5360,7 +5741,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:235ba88fa77ea52e6b88d99b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:94c601ea28a32dc05f7fdf0c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5383,7 +5764,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:94c601ea28a32dc05f7fdf0c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       },
       "radar:b7ae9c00f47ae63803663c7a": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5406,67 +5787,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Hong Kong:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:b7ae9c00f47ae63803663c7a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:46:54.708583+00:00"
+        "lastSeenAt": "2026-10-23T22:11:04.714640+00:00"
       }
     },
     "events": [
-      {
-        "revision": 247,
-        "at": "2026-10-22T14:46:46.685287+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Radar · pouvoir-achat",
-            "tools": [
-              "Radar éditorial"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-editorial-radar.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39789448375",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-21T12:23:36Z",
-            "completedAt": "2026-10-22T13:45:33Z",
-            "cause": "La liste Banque de France a changé de format.",
-            "field": "Sources du radar",
-            "sourceUrls": [],
-            "kind": "collection",
-            "dataId": "radar:pouvoir-achat",
-            "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
-            "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
-            "lastSeenAt": "2026-10-22T14:45:09.248428+00:00",
-            "resolvedAt": "2026-10-22T14:46:46.685287+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
-      {
-        "revision": 248,
-        "at": "2026-10-22T17:43:08.876122+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Portefeuilles des investisseurs",
-            "tools": [
-              "Présentation investisseur"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-investor-13f.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39643117324",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-21T17:34:24Z",
-            "kind": "checks",
-            "field": "Contrôle après publication",
-            "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; deploy / publish-code / exposure-browser-check : Run node scripts/playwright-exposure-scope.mjs",
-            "id": "checks:update-investor-13f.yml",
-            "firstSeenAt": "2026-10-21T17:34:46.663710+00:00",
-            "lastSeenAt": "2026-10-22T16:07:41.611516+00:00",
-            "resolvedAt": "2026-10-22T17:43:08.876122+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 249,
         "at": "2026-10-22T22:55:03.365040+00:00",
@@ -8334,9 +8658,87 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 277,
+        "at": "2026-10-23T21:02:38.156215+00:00",
+        "opened": [
+          "workflow:update-publication-observations.yml"
+        ],
+        "resolved": [
+          {
+            "name": "anniversary-nasdaq100",
+            "tools": [
+              "Pouvoir d’achat",
+              "Il y a X ans"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-publication-observations.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202808",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-23T13:28:24Z",
+            "completedAt": "2026-10-23T19:39:26Z",
+            "cause": "No completed XNDX session in supported range",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "anniversary-nasdaq100",
+            "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
+            "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
+            "lastSeenAt": "2026-10-23T21:01:44.455772+00:00",
+            "resolvedAt": "2026-10-23T21:02:38.156215+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
+      },
+      {
+        "revision": 278,
+        "at": "2026-10-23T22:11:04.714640+00:00",
+        "opened": [
+          "field:instrument:IE00BDVPNG13:aum",
+          "field:instrument:IE00BDVPNG13:countries",
+          "field:instrument:IE00BDVPNG13:sectors",
+          "field:instrument:IE00BDVPNG13:holdings",
+          "field:instrument:IE00BKLF1R75:aum",
+          "field:instrument:IE00BKLF1R75:countries",
+          "field:instrument:IE00BKLF1R75:sectors",
+          "field:instrument:IE00BKLF1R75:holdings",
+          "field:instrument:IE00BYZK4776:listings",
+          "field:instrument:GB00B15KXQ89:aum",
+          "field:instrument:GB00BJYDH287:aum",
+          "field:instrument:IE0002XZSHO1:aum",
+          "field:instrument:IE000DQLYVB9:aum",
+          "field:instrument:JE00B1VS3770:aum"
+        ],
+        "resolved": [],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "anniversary-nasdaq100",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202808",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-23T13:28:24Z",
+        "completedAt": "2026-10-23T19:39:26Z",
+        "cause": "No completed XNDX session in supported range",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "anniversary-nasdaq100",
+        "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
+        "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
+        "lastSeenAt": "2026-10-23T21:01:44.455772+00:00",
+        "resolvedAt": "2026-10-23T21:02:38.156215+00:00"
+      },
       {
         "name": "VanEck S&P Global Mining UCITS ETF",
         "tools": [
@@ -10756,34 +11158,6 @@
         "impactScope": "asset",
         "sourceUrls": [
           "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc"
-        ],
-        "checkedAt": "2026-10-21T12:07:11.427420+00:00",
-        "asOf": "2026-10-15",
-        "lastSuccessAt": "2026-10-21T12:07:11.427420+00:00",
-        "evaluatedAt": "2026-10-23",
-        "to": "/donnees-a-revoir",
-        "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-22T22:51:57.857178+00:00",
-        "resolvedAt": "2026-10-22T22:55:03.365040+00:00"
-      },
-      {
-        "id": "field:instrument:IE000W8WMSL2:completeHoldings",
-        "name": "WisdomTree Quantum Computing UCITS ETF",
-        "aliases": [
-          "IE000W8WMSL2"
-        ],
-        "field": "Positions intégrales",
-        "kind": "collection",
-        "cause": "HTTP Error 403: Forbidden",
-        "category": "current",
-        "tools": [
-          "Présentation ETF",
-          "Impact des frais",
-          "Comparatif ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
         ],
         "checkedAt": "2026-10-21T12:07:11.427420+00:00",
         "asOf": "2026-10-15",
@@ -14330,8 +14704,8 @@
     "update-editorial-radar.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-23T20:31:30Z",
-      "observedRunId": 40019717278,
+      "lastSuccessAt": "2026-10-23T21:57:33Z",
+      "observedRunId": 40030286294,
       "status": "idle",
       "nextAttemptAt": null
     },
@@ -14363,8 +14737,8 @@
         }
       ],
       "reason": "recording-failed",
-      "lastSuccessAt": "2026-10-23T13:28:24Z",
-      "observedRunId": 40011202808,
+      "lastSuccessAt": "2026-10-23T21:06:16Z",
+      "observedRunId": 40019944379,
       "status": "budget-exhausted",
       "nextAttemptAt": "2026-10-24T08:00:48.905289+00:00"
     },
@@ -14407,15 +14781,15 @@
       "lastSuccessAt": "2026-10-21T15:07:24Z",
       "observedRunId": 39614203452,
       "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-23T20:46:54.732450+00:00"
+      "nextAttemptAt": "2026-10-23T22:11:04.738295+00:00"
     },
     "collect-etf-pilot.yml": {
       "attempts": [],
-      "reason": "recording-failed",
+      "reason": null,
       "lastSuccessAt": "2026-10-23T11:36:53Z",
-      "observedRunId": 40011202978,
-      "nextAttemptAt": "2026-10-23T20:40:49+00:00",
-      "status": "awaiting-current-run"
+      "observedRunId": 40019944348,
+      "nextAttemptAt": null,
+      "status": "idle"
     },
     "update-market-monthly.yml": {
       "attempts": [
@@ -14444,9 +14818,9 @@
           "error": null
         }
       ],
-      "reason": "transient-source",
+      "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
-      "observedRunId": 40011202967,
+      "observedRunId": 40019944385,
       "nextAttemptAt": "2026-10-23T22:26:26.717569+00:00",
       "status": "budget-exhausted"
     },
@@ -14567,8 +14941,8 @@
     "update-exposure-expansion.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-23T11:36:21Z",
-      "observedRunId": 39937623007,
+      "lastSuccessAt": "2026-10-23T20:43:46Z",
+      "observedRunId": 40011202848,
       "status": "idle",
       "nextAttemptAt": null
     },
@@ -14584,7 +14958,7 @@
       "attempts": [],
       "reason": null,
       "lastSuccessAt": "2026-10-22T10:27:18Z",
-      "observedRunId": 39938100866,
+      "observedRunId": 40017941632,
       "status": "idle",
       "nextAttemptAt": null
     }

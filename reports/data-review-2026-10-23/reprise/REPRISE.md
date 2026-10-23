@@ -2,7 +2,7 @@
 
 État avant intégration : master d780e917 (#900, #902, #904, #901 et suivi IA courant) intégré. La dernière instruction utilisateur autorise fusion et déploiement après validation. La PR n'est pas encore fusionnée à ce stade.
 
-Les 8 550 lignes précédentes sont conservées dans le suivi actualisé de **8 555 lignes**. La ligne supplémentaire est le nouvel incident de table primaire CSPX du producteur 40011202978. Les originaux complets du suivi et du bilan sont archivés ici ; aucune disparition n'est interprétée comme une résolution. Les 73 conflits DWS disparus sont associés à leurs épisodes `resolved` datés dans le moniteur réel. Les 36 autres conflits attendent toujours quatre heures de stabilité du nouveau document : aucun délai n'est antidaté.
+Les 8 550 lignes précédentes sont conservées dans le suivi actualisé de **8 570 lignes**. La ligne supplémentaire est le nouvel incident de table primaire CSPX du producteur 40011202978. Les originaux complets du suivi et du bilan sont archivés ici ; aucune disparition n'est interprétée comme une résolution. Les 73 conflits DWS disparus sont associés à leurs épisodes `resolved` datés dans le moniteur réel. Les 36 autres conflits attendent toujours quatre heures de stabilité du nouveau document : aucun délai n'est antidaté.
 
 ## Fonctionnement corrigé
 
@@ -51,3 +51,9 @@ En local : calculs IA recoupés, 29 supports dans trois outils, 16 profils, clas
 La comparaison réelle macOS 40026026342 ne restaure aucun accès fournisseur : mêmes refus Copper et WisdomTree ; aucune promotion discovery. La panne ne peut donc pas être attribuée au seul runner Ubuntu. L’origine précise des règles HTTP403 reste externe et non démontrée.
 
 La recette complète des liens passe : 245 parts exactes, formats ordinateur/mobile, allers-retours Performance/Calculateur, identifiants inconnus refusés et préférences conservées. Master 19344ba4 est intégré ; sa capture XNDX du 23/10, de valeur identique à notre preuve, et ses dernières données émetteurs sont conservées.
+
+## Moniteur ordinaire du 23/10 à 22:10 UTC
+
+La capture courante contient 66 signaux. Les quinze ajouts sont conservés individuellement : quatorze dépassements de contrôle (huit champs WisdomTree AI/Quality Dividend, cinq encours WisdomTree et une cotation ancienne non renouvelée iShares Healthcare Innovation), plus le refus de commit du producteur de publication 40019944379. Ce dernier a correctement refusé de réappliquer des observations après les changements concurrents de #901 ; aucun écrasement de données. La collecte ultérieure 8c5d522c et ses observations sont intégrées, mais la résolution du signal technique reste attendue du producteur ordinaire. Le passage au 24/10 dans les diagnostics suit la date de maintenance Europe/Paris à minuit, distincte du 23/10 UTC ; aucune date source n’est avancée. Les anciennes observations et dates sont conservées. Les refus HTTP403 connus expliquent les contrôles WisdomTree non renouvelés ; aucun champ ne reçoit une nouvelle date par déduction. La cotation iShares exige encore une preuve exacte, sans substituer une autre place. Une ligne retirée est rapprochée de son historique de résolution.
+
+Le suivi comporte désormais 8 570 lignes, dont les 8 550 précédentes toutes préservées ; 66 signaux donnent 62 présentations, sans perte des causes ni des impacts. Le build complet, le test de rapprochement, les classements et les calculs IA passent après intégration de 19344ba4.
