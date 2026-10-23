@@ -101,17 +101,20 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':('Clôture XNDX Total Return USD, dividendes bruts réinvestis ; fenêtres Yahoo prises en charge concordantes et séance terminée' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
+            'method':('Clôture XNDX Total Return USD, dividendes bruts réinvestis ; réponses quotidiennes concordantes sur deux hôtes Yahoo et séance terminée' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({'sourceUrls':list(body['sources']),'sourceHashes':body['sources'],'quoteMethod':'supported-xndx-ranges'}if config['id']=='nasdaq100'and parser=='yahoo' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
 
-XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'1d')]]
+# A 1d response drops the previous close as soon as today's session opens.
+# Use the supported 5d daily window on both hosts; compare completed sessions
+# strictly, including intraday, without accepting a forming candle.
+XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'5d')]]
 
 def xndx_supported_ranges(config,now,fetch):
     if (config.get('symbol'),config.get('currency'),config.get('variant'))!=('^XNDX','USD','TOTAL'):reject('Wrong XNDX convention')
     observations=[];proofs={}
-    for url,window in zip(XNDX_URLS,['5d','1d']):
+    for url,window in zip(XNDX_URLS,['5d','5d']):
         data=fetch(url);rows,zone=yahoo_chart(data,config,'1d')
         payload=data['chart']['result'][0];meta=payload['meta']
         if (meta.get('instrumentType'),meta.get('longName'),meta.get('range'))!=('INDEX','NASDAQ-100 Total Return',window):reject('Wrong XNDX index or supported range')

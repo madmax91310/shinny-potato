@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -36,7 +36,31 @@ def main():
         'ai': ['collect_ai_portfolios.py','--assets','IE00B4L5Y983-ETFP'],
     }
     started = dt.datetime.now(dt.timezone.utc).isoformat()
-    if args.scope == 'conflict':
+    if args.scope == 'dws':
+        from verify_dws_compositions import collect
+        from data_automation import UTC,get_json,write_json_atomic
+        raw=out/'raw';raw.mkdir()
+        def fetch(url):
+            body=get_json(url)
+            (raw/(url.split('/')[-2]+'.json')).write_text(json.dumps(body,sort_keys=True,allow_nan=False))
+            return body
+        value=collect(json.loads((ROOT/'src/data/automated-etf.json').read_text()),dt.datetime.now(UTC),fetch)
+        write_json_atomic(report,value)
+        code=0 if not value['errors'] and value['candidateCount']==len(value['verified'])+len(value['deferred']) else 1
+    elif args.scope == 'publication':
+        from refresh_anniversary_levels import configurations,refresh,collect_one
+        from data_automation import UTC,get_json,write_json_atomic
+        import hashlib
+        raw=out/'raw';raw.mkdir()
+        def fetch(url):
+            body=get_json(url);canonical=json.dumps(body,sort_keys=True,allow_nan=False)
+            (raw/(hashlib.sha256(canonical.encode()).hexdigest()+'.json')).write_text(canonical)
+            return body
+        current=json.loads((ROOT/'src/data/anniversary-levels.json').read_text())
+        merged,value=refresh(current,dt.datetime.now(UTC),lambda config,now:collect_one(config,now,json_fetch=fetch),selected=[c for c in configurations() if c['id']=='nasdaq100'])
+        write_json_atomic(report,value);write_json_atomic(out/'anniversary-levels.json',merged)
+        code=1 if value['errors'] else 0
+    elif args.scope == 'conflict':
         os.environ['SSGA_SOURCE_PROOF_DIR']=str(out/'raw')
         from data_automation import UTC, write_json_atomic
         from refresh_additional_etf import refresh

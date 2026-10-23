@@ -93,6 +93,18 @@ class PublicationTests(unittest.TestCase):
         record=collect_level(config,NOW,json_fetch=fetch)
         self.assertEqual((record['value'],record['asOf']),(36000.25,'2026-10-07'))
         self.assertEqual(calls,XNDX_URLS);self.assertEqual(set(record['sourceHashes']),set(XNDX_URLS))
+        def intraday(url):
+            data=body(url);payload=data['chart']['result'][0]
+            today=int(dt.datetime(2026,10,8,14,tzinfo=UTC).timestamp())
+            payload['timestamp'].append(today)
+            payload['indicators']['quote'][0]['close'].append(36100.0)
+            return data
+        # Both supported five-day windows retain the last complete session.
+        # Today's forming candle must never replace it.
+        midday=dt.datetime(2026,10,8,15,tzinfo=UTC)
+        previous=collect_level(config,midday,json_fetch=intraday)
+        self.assertEqual((previous['asOf'],previous['value']),('2026-10-07',36000.25))
+        self.assertTrue(all('range=5d' in url for url in XNDX_URLS))
         old={'value':35900.1,'asOf':'2026-10-06','parser':'fred','symbol':'XNDX','seriesId':'NASDAQXNDX','currency':'USD','variant':'TOTAL','indexCode':None}
         merged,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:record,selected=[config])
         self.assertFalse(report['errors']);self.assertEqual(merged['nasdaq100'],record)

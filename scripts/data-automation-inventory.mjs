@@ -140,7 +140,16 @@ export function buildDataAutomationInventory(){
  const discoveryPath='public/data/holdings-discovery.json'
  const discovery=existsSync(resolve(ROOT,discoveryPath))?JSON.parse(read(discoveryPath)):null
  if(discovery?.schemaVersion===1)for(const connection of connections){
-  if(connection.field==='completeHoldings'&&discovery.observations?.[connection.id])connection.sourceDiscovery=discovery.observations[connection.id]
+  if(connection.field==='completeHoldings'&&discovery.observations?.[connection.id]){
+   const proof=discovery.observations[connection.id]
+   connection.sourceDiscovery=proof
+   if(connection.actionState==='connector-needed'&&proof.status==='qualification-required'){
+    connection.reason=`Découverte du portefeuille intégral non qualifiée : ${proof.error}. Aucune donnée financière admise par ce contrôle.`
+    connection.sourceUrl??=proof.sourceUrl
+    connection.lastAttemptAt=proof.lastAttemptAt??connection.lastAttemptAt
+    connection.configuredSourceUrls=[...new Set([...connection.configuredSourceUrls,proof.sourceUrl,proof.discoveredSourceUrl].filter(Boolean))]
+   }
+  }
  }
  for(const connection of connections.filter(r=>r.type==='instrument'&&r.field==='performance')) {
   const alternative=marketCalendarPerformance(connection.id)
