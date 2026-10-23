@@ -2,7 +2,7 @@
   "version": 2,
   "book": {
     "version": 1,
-    "revision": 1,
+    "revision": 2,
     "competitions": [
       {
         "id": "dbb02f4b-581d-4e3c-9971-ace44e4957e0",
@@ -18533,7 +18533,81 @@
           ]
         },
         "status": "draft",
-        "decisions": [],
+        "decisions": [
+          {
+            "participant": "chatgpt",
+            "kind": "target",
+            "model": "Test technique isolé — aucun modèle réel",
+            "reason": "Recette technique isolée : 50 % cible, solde en liquidités. Aucune décision réelle d’une IA.",
+            "original": "",
+            "decisionDate": "2026-10-23",
+            "weights": {
+              "IE00B5BMR087-XLON-CSPX-USD": 50
+            },
+            "id": "cd75c372-24fe-4eaa-a3e5-019126add3bb",
+            "status": "recorded",
+            "registeredAt": "2026-10-23T14:31:39.201Z",
+            "rules": {
+              "name": "RECETTE ISOLÉE · ne pas utiliser pour la compétition réelle",
+              "initialCapital": 10000,
+              "currency": "EUR",
+              "launchDate": "2026-10-23",
+              "minLines": 1,
+              "maxLines": 6,
+              "maxWeight": 100,
+              "frequency": "weekly",
+              "weeklyWindow": {
+                "timezone": "Europe/Paris",
+                "startDay": "monday",
+                "deadline": "sunday-23:59:59",
+                "missingDecision": "keep-positions"
+              },
+              "feeBps": 10,
+              "executionPolicy": "affected-markets-v2",
+              "admissionPolicy": "instrument-types-v2",
+              "stockRegions": [
+                "Europe",
+                "Asie",
+                "USA"
+              ],
+              "assetTypes": [
+                "ETF",
+                "EQUITY",
+                "CRYPTOCURRENCY",
+                "ETC",
+                "ETN",
+                "ETP"
+              ],
+              "requireUcits": true,
+              "cash": "unremunerated",
+              "income": "synthetic-total-return",
+              "benchmark": "IE00B5BMR087-XLON-CSPX-USD",
+              "participants": [
+                {
+                  "id": "chatgpt",
+                  "name": "ChatGPT · RECETTE",
+                  "model": "Test technique isolé — aucun modèle réel",
+                  "color": "#17866b"
+                },
+                {
+                  "id": "claude",
+                  "name": "Claude · RECETTE",
+                  "model": "Test technique isolé — aucun modèle réel",
+                  "color": "#be6b43"
+                },
+                {
+                  "id": "gemini",
+                  "name": "Gemini · RECETTE",
+                  "model": "Test technique isolé — aucun modèle réel",
+                  "color": "#6d68b1"
+                }
+              ],
+              "universeCount": 18468,
+              "archive": "book.json"
+            },
+            "executionDate": "2026-10-26"
+          }
+        ],
         "createdAt": "2026-10-23T14:25:27.919Z",
         "ruleHistory": []
       }
@@ -18546,6 +18620,14 @@
         "operation": "create",
         "competitionId": "dbb02f4b-581d-4e3c-9971-ace44e4957e0",
         "reason": ""
+      },
+      {
+        "proposalHash": "26b05bc30733f5fe05765227163ddad98b32a247302523b7b4393fccc542fe53",
+        "requestId": "cd75c372-24fe-4eaa-a3e5-019126add3bb",
+        "at": "2026-10-23T14:31:39.201Z",
+        "operation": "decision",
+        "competitionId": "dbb02f4b-581d-4e3c-9971-ace44e4957e0",
+        "reason": null
       }
     ]
   },
@@ -18590,7 +18672,7 @@
         "seriesFile": "series/32.json"
       }
     ],
-    "generatedAt": "2026-10-23T10:39:50.275215+00:00",
+    "generatedAt": "2026-10-23T14:31:27.418775+00:00",
     "calendarFrom": "2026-07-13",
     "calendarThrough": "2027-01-01",
     "calendars": {
@@ -22079,8 +22161,8 @@
     "status": {
       "ECB": {
         "ok": true,
-        "asOf": "2026-10-22",
-        "attemptedAt": "2026-10-23T10:39:50.275215+00:00"
+        "asOf": "2026-10-23",
+        "attemptedAt": "2026-10-23T14:31:27.418775+00:00"
       },
       "IE00B5BMR087-XLON-CSPX-USD": {
         "ok": true,
@@ -24702,10 +24784,41 @@
           "THB": 37.811,
           "ZAR": 18.5058,
           "TWD": 36.425214000000004
+        },
+        "2026-10-23": {
+          "USD": 1.1193,
+          "JPY": 175.51,
+          "CZK": 24.327,
+          "DKK": 7.4748,
+          "GBP": 0.83728,
+          "HUF": 366.73,
+          "PLN": 4.3945,
+          "RON": 5.3492,
+          "SEK": 11.131,
+          "CHF": 0.9227,
+          "ISK": 136.2,
+          "NOK": 10.4665,
+          "TRY": 55.6715,
+          "AUD": 1.5939,
+          "BRL": 5.6485,
+          "CAD": 1.5665,
+          "CNY": 7.466,
+          "HKD": 8.7793,
+          "IDR": 20268.06,
+          "ILS": 3.4939,
+          "INR": 106.272,
+          "KRW": 1482.46,
+          "MXN": 21.0226,
+          "MYR": 4.5729,
+          "NZD": 1.9682,
+          "PHP": 71.235,
+          "SGD": 1.431,
+          "THB": 37.771,
+          "ZAR": 18.5777
         }
       },
-      "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
-      "retrievedAt": "2026-10-23T10:39:50.275215+00:00",
+      "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+      "retrievedAt": "2026-10-23T14:31:27.418775+00:00",
       "observations": [
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -24732,6 +24845,13 @@
           "responseSha256": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b",
           "from": "2026-07-06",
           "through": "2026-10-22"
+        },
+        {
+          "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+          "retrievedAt": "2026-10-23T14:31:27.418775+00:00",
+          "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+          "from": "2026-07-06",
+          "through": "2026-10-23"
         }
       ],
       "supplementalGaps": {
@@ -25425,10 +25545,10 @@
       "required": [
         "IE00B5BMR087-XLON-CSPX-USD"
       ],
-      "requested": [
+      "requested": [],
+      "reused": [
         "IE00B5BMR087-XLON-CSPX-USD"
-      ],
-      "reused": []
+      ]
     },
     "inventoryCounts": {
       "instruments": 62014,
@@ -25438,8 +25558,8 @@
   },
   "state": {
     "version": 1,
-    "revision": 1,
-    "generatedAt": "2026-10-23T10:39:50.275215+00:00",
+    "revision": 2,
+    "generatedAt": "2026-10-23T14:31:27.418775+00:00",
     "asOf": "2026-10-22",
     "daily": {},
     "weekly": {},
@@ -25508,7 +25628,7 @@
   "catalogue": {
     "url": "catalogue.json",
     "count": 24975,
-    "revision": "2026-10-23T10:39:50.275215+00:00"
+    "revision": "2026-10-23T14:31:27.418775+00:00"
   },
   "sourceRevisionCount": 1881
 }
