@@ -1,0 +1,13 @@
+
+> patrimoine-et-compagnie@0.0.0 test:radar
+> node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs
+
+DWS: 34 source revisions reconciled; missing, stale, partial, changing and replayed evidence remain guarded; no editorial signal.
+Radar : seuils cumulés, périmètres, dates, bootstrap, publications, déduplication, conservation et 7200 observations vérifiés.
+All qualified ETFs monitored once; metric thresholds and same-date revisions verified.
+Editorial radar: relevance, factual titles, grouping, launch evidence, future announcements, ambiguous multi-fund documents, failure preservation and no duplicate launch verified.
+13F radar: same-quarter revisions, legacy migration, pending notifications, unchanged later quarter and unknown periods verified.
+Notifications radar : silence initial, seuils, issue suivie, preuves, attribution, reprise, pagination, issues fermées et déduplication vérifiés.
+Issue suivie du radar : fenêtre glissante, fermeture et réouverture automatiques, anciennes issues regroupées.
+Veille pouvoir d’achat : thèmes, statuts, dates, sécurité, déduplication, bootstrap, révisions, conservation et reprise validés.
+Lois adoptées : votes intermédiaires exclus, adoption définitive et promulgation acceptées, anciens textes retirés.

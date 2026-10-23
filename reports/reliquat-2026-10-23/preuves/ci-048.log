@@ -1,0 +1,8 @@
+
+> patrimoine-et-compagnie@0.0.0 audit:etf-consistency
+> node scripts/audit-etf-consistency.mjs
+
+664 lignes de fonds collectées (Fiches ETF: 258, Tweets ETF: 338, Comparateur d'indices: 68, Bibliothèque de données: 0).
+258 ISIN distincts, dont 246 présents dans plusieurs sources.
+
+OK — aucune divergence de TER trouvée sur les ISIN partagés entre les 3 sources.
