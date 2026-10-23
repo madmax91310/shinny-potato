@@ -5,11 +5,17 @@ on:
 permissions:
   contents: read
   actions: read
+  statuses: write
 jobs:
   inspect:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
+      - name: Expose the diagnostic run URL on its isolated commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api "repos/$GH_REPO/statuses/$GITHUB_SHA" -f state=pending -f context=pages-queue-diagnostic -f target_url="https://github.com/$GH_REPO/actions/runs/$GITHUB_RUN_ID" -f description='Read-only production queue inspection'
       - name: Inspect active and queued workflows without mutation
         env:
           GH_TOKEN: ${{ github.token }}
