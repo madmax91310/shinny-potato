@@ -83,3 +83,13 @@ Le workflow mensuel ordinaire 40032904522 réussit : 665 historiques validés, d
 ## Archivage de la production ranking/FX
 
 Le rapport individuel ranking/FX et `src/data/monthly-fx.json` sont ajoutés à l’artefact du workflow mensuel, y compris quand une autre étape échoue. Les 14 tests d’audit des workflows passent. Le registre conservé garde ses dates réelles ; sa présence dans un artefact PR ne signifierait pas une nouvelle collecte FX puisque cette étape y est ignorée. La vérification de la production après intégration reste nécessaire.
+
+## Validation finale des corrections et master #906
+
+Le producteur IA 40038414227 est entièrement réussi après cadence des clics : vraie collecte quotidienne et moteur comptable, puis recette UI complète et propriétaires à trois/quatre participants, avec tous les PNG conservés et comparaison exacte du fichier. Les interfaces de confirmation GitHub des recettes restent simulées ; aucune authentification réelle ni écriture du livre de production n’est prétendue. Build, Python, exposition et smoke de 40038723147 réussissent ; ses partitions générales restent en cours à cette capture.
+
+Master 7bdce5f5 (#906) est intégré ; son contrôle de dates éditoriales, son build, son parcours navigateur et le plan des partitions passent sur l’ensemble assemblé. Les textes et champs de nos trois récits JSON restent préservés.
+
+L’examen local ciblé VanEck conserve les sources et leur date dans `identity-local/`. Le fichier complet GDIG omet lui aussi les quatre ISINs. Le CUSIP publié de Solaris ne trouve pas de correspondance OpenFIGI, et d’autres valeurs sont vides ou mal formées. Aucune identité n’est admise depuis cette inspection ; les vingt positions restent non attribuées, sans normalisation ni rapprochement par nom.
+
+Ces rapports sont des captures avant intégration et publication, non une déclaration de réussite des fournisseurs. L’état définitif de la PR et du déploiement figure dans la description de #898.

@@ -497,6 +497,16 @@
       "verified": 11,
       "publication": "not-requested",
       "proof": "reprise/github-final-dws-stability/"
+    },
+    {
+      "scope": "ai-producer-paced",
+      "runId": 40038414227,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40038414227",
+      "headSha": "ed437bb4e52017018b66b98d8d9fd42819f149af",
+      "actualCheckout": "dde9594: merge ed437bb4 into 91898757",
+      "conclusion": "success",
+      "interpretation": "Real daily collector and accounting checks passed; complete desktop/mobile/retained-PNG recipe and both 3/4 participant owner recipes passed. UI GitHub authentication and prices are deterministic fixtures; no actual login or write to the production book claimed.",
+      "proof": "reprise/github-paced-ai-success/ ; reprise/gha-paced-ai-success.log.gz"
     }
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
@@ -562,5 +572,25 @@
       }
     }
   },
-  "lastMasterIntegrated": "91898757cd744b72be39b02ad7bf8df3cd5bbae7"
+  "lastMasterIntegrated": "7bdce5f5c9b3e33035f217253478f2b14da6f303",
+  "preMergeValidation": {
+    "codeBuild": {
+      "runId": 40038723147,
+      "sha": "60c85efdd3e8a3be05a3d3f78a1727784d7bd117",
+      "build": "success",
+      "python": "success",
+      "exposure": "success",
+      "smoke": "success",
+      "browserAndPublicationPartitions": "in_progress at this capture"
+    },
+    "master906Integrated": {
+      "unit": "success",
+      "build": "success",
+      "browser": "success",
+      "shardPlanning": "success"
+    },
+    "productionBookBlob": "d96ba15bb2607b7306a401b1b7b2ed744c8dfe37",
+    "merged": false,
+    "deployed": false
+  }
 }

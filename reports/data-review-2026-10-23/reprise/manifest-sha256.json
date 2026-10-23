@@ -1,8 +1,8 @@
 [
   {
     "path": "REPRISE.md",
-    "bytes": 16349,
-    "sha256": "a5cab46c9517b5a8f90a679808ae70008cbefbc46d7d25b33abe0b662d6bdfa0"
+    "bytes": 17816,
+    "sha256": "d5779b10a321902efc244f9fd42c4e43f55da3aee07458c3a4c0203b322a887c"
   },
   {
     "path": "admissions-financieres.json",
@@ -95,6 +95,11 @@
     "sha256": "7fcb13324685cfc52dc1b6a0a3fdc450c9fba5bca01640675cc3f5b502a4d2f8"
   },
   {
+    "path": "browser-master-906.log.gz",
+    "bytes": 95,
+    "sha256": "3c2c252a19b12ef47b79f2da3e274d1d93ddb9f0deb896eabba69c0e5b3c0470"
+  },
+  {
     "path": "browser-qualified-recovery.log.gz",
     "bytes": 203,
     "sha256": "efc233d5ec2e3f69eac533c88a74ef91be58f1f017ad7b9d750b3349eebc6e3d"
@@ -103,6 +108,11 @@
     "path": "browser-rankings-qualified.log.gz",
     "bytes": 139,
     "sha256": "4274c0d2a3c611a036847df3b976749fd9a817091da74ceae158fd570e56f110"
+  },
+  {
+    "path": "browser-shards-master-906.log.gz",
+    "bytes": 149,
+    "sha256": "74093562ca575481c33f38d4c7c4833db959f0eee5a0d955338833932759e35f"
   },
   {
     "path": "browser-stories-master-904.log.gz",
@@ -143,6 +153,11 @@
     "path": "build-master-904.log.gz",
     "bytes": 72566,
     "sha256": "ef76ffc8a3a04f574d03fe9171a90a1fd5e064c9ef09a20da7fdffda65311248"
+  },
+  {
+    "path": "build-master-906.log.gz",
+    "bytes": 72668,
+    "sha256": "6067a4097f579df54f8153f59f8dc3d443b840a0e54631605857fbd82cf48fa6"
   },
   {
     "path": "build-native-ai-png.log.gz",
@@ -210,6 +225,11 @@
     "sha256": "30f0e1a786401b53416c8aa14495139349a97d267aec3e85e73ed5059fdc10bb"
   },
   {
+    "path": "editorial-master-906.log.gz",
+    "bytes": 88,
+    "sha256": "ca6eaaca4121ba4570ebacdb7729ce43095e49b9e5a3f0f81d60e020377b341b"
+  },
+  {
     "path": "gha-49a9-browser0.log.gz",
     "bytes": 13645,
     "sha256": "5531869a90b3c40e2ee09c21592f4e55bde66dc8a024b764f73097f8366311ea"
@@ -245,9 +265,19 @@
     "sha256": "7b266d86ec73bf558eb65402170132d72ad4f59473162971677d2e863d6fd324"
   },
   {
+    "path": "gha-paced-ai-success.log.gz",
+    "bytes": 114193,
+    "sha256": "c0f3ce2b8bda98a63fac1d77cd53a443396642efcbf2c7f75703991f1836fac5"
+  },
+  {
     "path": "gha-publication-commit-concurrency.log.gz",
     "bytes": 112227,
     "sha256": "5703aa8c3bbac0845dc52192cfe05f176bd53da669dd155c7cc82fb09459b5b4"
+  },
+  {
+    "path": "gha-python-code60-success.log.gz",
+    "bytes": 25464,
+    "sha256": "efe92f77b2461210960c406b2f25b405775758960d4a5c11245df88ddf07315f"
   },
   {
     "path": "github-40022869635/data-review-copper.zip",
@@ -405,9 +435,74 @@
     "sha256": "813770eb12bee9c1bd02de90f2569a8f99d9794a11449d8a2045b1470ab0d399"
   },
   {
+    "path": "github-paced-ai-success/assembled-3-proof.json.gz",
+    "bytes": 518,
+    "sha256": "c717a6ffe6fdef0d193b3ed3622e693e93db066132ff2a7574e70fd35d482632"
+  },
+  {
+    "path": "github-paced-ai-success/assembled-4-proof.json.gz",
+    "bytes": 539,
+    "sha256": "1160ea4fd20f3aeab59f5b75a13f161c47e8f577c6b3a337d5105707ed2d8eb0"
+  },
+  {
+    "path": "github-paced-ai-success/browser-report.json.gz",
+    "bytes": 303,
+    "sha256": "47e670dce36c762af0b4da74fc64e128beb0d6b864bd03d6337d6fde1ff62d30"
+  },
+  {
+    "path": "github-paced-ai-success/format-allocation-initiale.json.gz",
+    "bytes": 228,
+    "sha256": "234d3b37fb125db9007f982126b996d6d33489212540b6ecf1c524439c981ec5"
+  },
+  {
+    "path": "github-paced-ai-success/onglet-apres-deploiement.png",
+    "bytes": 205263,
+    "sha256": "77b951f8bab898cfcf55d5fed8e773e3266b5d5411d198b750b4386cbb593392"
+  },
+  {
+    "path": "github-paced-ai-success/owner-browser-report-3.json.gz",
+    "bytes": 439,
+    "sha256": "94a1137c1c432fdf7d31adc14858eca57a7511cc927519bae9ffc17dead59e23"
+  },
+  {
+    "path": "github-paced-ai-success/owner-browser-report-4.json.gz",
+    "bytes": 439,
+    "sha256": "e5999115790f8cd8c0970d7ec6de8a6b90363a014e1f85313ea14bf3cb7d796a"
+  },
+  {
+    "path": "github-paced-ai-success/report.json.gz",
+    "bytes": 1319,
+    "sha256": "ba5e35fd59bc2b29af5e3a8b44a8e753ae92ff92f5a2ca65ae4de10fc686da79"
+  },
+  {
     "path": "identites-positions.csv",
-    "bytes": 8738,
-    "sha256": "2ca62f3e7c24d86c21f0f51fd1a53a7d0a10991c1cd6b463ff9689a05dcbdea8"
+    "bytes": 9652,
+    "sha256": "82fd7b74de2333fecb4a28d0f791f9cba2b0b740bbaeb918069d5808afa7e57a"
+  },
+  {
+    "path": "identity-local/GDIG_asof_20261022.xlsx",
+    "bytes": 16199,
+    "sha256": "bbc7fa6400b6caa85e25dcedcbaf6c6de1e81ab78b5364e942318d98ce35cdad"
+  },
+  {
+    "path": "identity-local/IE000YYE6WK5-identity-source.json.gz",
+    "bytes": 4415,
+    "sha256": "20f54d0ad17ce79580a54284cd40691eaeb73f88540059897e628a95bf69a2ff"
+  },
+  {
+    "path": "identity-local/IE00BDFBTQ78-identity-source.json.gz",
+    "bytes": 12810,
+    "sha256": "e1d19a96f9c57b9be9556379622d30316269348b27280977c5bd55d214af7cf1"
+  },
+  {
+    "path": "identity-local/qualification.json",
+    "bytes": 1946,
+    "sha256": "7c42adc2bb41b3e943d43f76103d09af38d6d07bf290fa64fc7059cf6f87002e"
+  },
+  {
+    "path": "identity-local/solariscandidate-cusip.json",
+    "bytes": 349,
+    "sha256": "34b965d9c5317aa38cb7a8f6ae55e1dbe66e43414a2851b0a515b6c31f1369b6"
   },
   {
     "path": "monthly-artifact-workflow-test.log.gz",

@@ -206,6 +206,15 @@ def main():
                 urls=list(dict.fromkeys(re.findall(r'https://[^"\\\s]+',error)))
                 if urls:r['routes_essayees']=' | '.join(u+' => refus de transport dans GitHub' for u in urls)
                 r['dernier_controle_acces']=attempted_at
+    # A technical repair needs its own successful producer proof; unrelated green
+    # collection jobs never close a data, identity or financial alert.
+    executions=read(OUT/'network-executions.json')
+    ai_proof=next((r for r in reversed(executions.get('runs',[])) if r.get('scope')=='ai-producer-paced' and r.get('conclusion')=='success'),None)
+    if ai_proof:
+        for r in rows:
+            if r['dimension']=='validation reprise' and r['cle'] in ['ai-confirmation-lifecycle','ai-retained-png-download']:
+                r.update(apres='corrigé et vérifié dans GitHub ; publication attendue',classe='correction technique prouvée',action_reliquat='Conserver les contrôles de contraste, tous les exports et l’égalité du PNG ; vérifier la publication de master.')
+                r['preuve']+=' ; '+ai_proof['runUrl']+' ; reprise/github-paced-ai-success/'
     # Never delete an initial follow-up line when current catalogue dimensions change.
     current_keys={(r['dimension'],r['cle']) for r in rows}
     for old in baseline:
