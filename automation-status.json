@@ -81,11 +81,11 @@
     "update-market-monthly.yml": {
       "monitorVersion": 2,
       "name": "Historiques mensuels des marchés",
-      "runId": 39972605089,
+      "runId": 39997456621,
       "attempt": 1,
-      "headSha": "d61805e804024eed540450cc475cfb31a6634080",
-      "createdAt": "2026-10-23T14:47:13Z",
-      "completedAt": "2026-10-23T16:46:17Z",
+      "headSha": "509894159c22d2d5a123c01fb5bf9b3fa241402e",
+      "createdAt": "2026-10-23T17:43:49Z",
+      "completedAt": "2026-10-23T18:32:00Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T15:09:29Z",
       "collectionStatus": "failure",
@@ -93,8 +93,8 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:00:42Z",
-      "lastPublicationSuccessAt": "2026-10-23T17:27:15.157Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39972605089",
+      "lastPublicationSuccessAt": "2026-10-23T18:31:49Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39997456621",
       "failures": [
         {
           "job": "report-failures",
@@ -104,28 +104,33 @@
       "dataFailures": {
         "history:fx:TWD": {
           "name": "history:fx:TWD",
-          "completedAt": "2026-10-23T16:46:17Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39972605089",
+          "completedAt": "2026-10-23T18:32:00Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39997456621",
           "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-23: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
           "field": "Change"
+        },
+        "history:etfIE00BDFBTQ78": {
+          "name": "history:etfIE00BDFBTQ78",
+          "completedAt": "2026-10-23T18:32:00Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39997456621",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Historique mensuel"
         }
       },
       "publicationReceipt": {
-        "commit": "b0754186d85542379c3185a45493611e872a84b9",
+        "commit": "de5bf3c9b0ba3b9ec0a912f3795c6262d3c00d46",
         "files": {
           "src/data/anniversary-levels.json": "919c0c459d32fdc672c4f5cc1b7cb636de22632f",
           "src/data/auto-history-identities.json": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
-          "src/data/automated-etf-monthly.json": "8d478521a65c9ff65a2019165abe752e5fbefec9",
-          "src/data/automated-indices.json": "221820879e0370f63e12157061bf491be800e806",
-          "src/data/automated-monthly.json": "084e1c9c636a8cb8664398348418fcf2b4ef5e34",
+          "src/data/automated-etf-monthly.json": "ab2a312971451815f610a0238b1bd7c44e066e5d",
+          "src/data/automated-indices.json": "be924c758d2495e08cc2b5b315a983b104cfa9e2",
+          "src/data/automated-monthly.json": "9e3ffbc90d1f5bbcc1f240f9b381ccf9c2ddda8a",
           "src/data/monthly-fx.json": "14e4b86067f7e90ae2f54cab46f3a658d7389da9",
           "src/data/qualified-listing-records.json": "6d1de8be47a4a72c510edbfee035bf601a3d1197",
-          "src/data/ranking-histories.json": "f707ff03436d2e689e762141b1cbfdbe36ff6b32"
+          "src/data/ranking-histories.json": "5559dfcace7684b78b89a45d716f9d6912a7692a"
         },
         "schemaVersion": 1
-      },
-      "publishedCodeSha": "aa8bcff061a1af1774a81f9e4bfaef331455ac2f",
-      "publishedDataSha": "509894159c22d2d5a123c01fb5bf9b3fa241402e"
+      }
     },
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
@@ -4238,11 +4243,11 @@
       "publishedDataSha": "cc1db76dff189938a87321fd1ddc027666942651"
     }
   },
-  "updatedAt": "2026-10-23T19:41:30Z",
+  "updatedAt": "2026-10-23T18:32:00Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T20:24:23.276018+00:00",
-    "revision": 273,
+    "checkedAt": "2026-10-23T20:25:41.863486+00:00",
+    "revision": 274,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
         "name": "Amundi · structure et risques de l’ETC or",
@@ -4264,7 +4269,7 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -4285,7 +4290,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-23T13:35:11.423419+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "overdue:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -4303,7 +4308,7 @@
         "cause": "Aucune exécution terminée depuis plus de 48 heures.",
         "id": "overdue:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-23T15:08:10.479207+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -4315,10 +4320,10 @@
         ],
         "impactScope": "collector",
         "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39972605089",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39997456621",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-23T16:46:17Z",
+        "completedAt": "2026-10-23T18:32:00Z",
         "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-23: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
         "field": "Change",
         "sourceUrls": [],
@@ -4326,7 +4331,36 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
+      },
+      "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78": {
+        "name": "VanEck S&P Global Mining UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39997456621",
+        "to": "/bibliotheque-donnees?id=IE00BDFBTQ78",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-23T18:32:00Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Historique mensuel",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-vaneck-s-p-global-mining-ucits-etf-a-usd-acc-GDIG-IE00BDFBTQ78-23",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFBTQ78",
+          "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+          "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "history:etfIE00BDFBTQ78",
+        "id": "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78",
+        "firstSeenAt": "2026-10-23T20:25:41.863486+00:00",
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -4354,7 +4388,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -4382,7 +4416,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -4409,7 +4443,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -4436,7 +4470,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -4463,7 +4497,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -4492,7 +4526,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -4521,7 +4555,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -4550,7 +4584,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -4577,7 +4611,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -4604,7 +4638,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -4626,7 +4660,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:4c3362f0091de10f80251dae": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4646,7 +4680,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4c3362f0091de10f80251dae",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:53ed9235fe9fe9fe6e5b95e6": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4666,7 +4700,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Taiwan:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:53ed9235fe9fe9fe6e5b95e6",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:6435e61844c83c784d6ea423": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4686,7 +4720,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6435e61844c83c784d6ea423",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:80525dea7d9f868ce9221e4e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4706,7 +4740,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:80525dea7d9f868ce9221e4e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:557209b962c2546382a62468": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4726,7 +4760,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:557209b962c2546382a62468",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:33c64bcb281658a32243d552": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4746,7 +4780,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c64bcb281658a32243d552",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:ef96176220f03d7291465c54": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4766,7 +4800,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ef96176220f03d7291465c54",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:652abd029e4edf33dc8bbd5b": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4786,7 +4820,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:652abd029e4edf33dc8bbd5b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:009bccefe6b8d09d7cab24b3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4806,7 +4840,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:009bccefe6b8d09d7cab24b3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:d5684ba01c7cce49ff929b2f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4826,7 +4860,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:d5684ba01c7cce49ff929b2f",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:6571393d1ff1c36bc6761e5c": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4846,7 +4880,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6571393d1ff1c36bc6761e5c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:fc4ff751fdd461132df1d976": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4866,7 +4900,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:fc4ff751fdd461132df1d976",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:693a3c90008da97d02ab1636": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4886,7 +4920,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:693a3c90008da97d02ab1636",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:483a1eb3ca1c9ba0a9ac1275": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4906,7 +4940,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Italy:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:483a1eb3ca1c9ba0a9ac1275",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:ed26659e68f08e7c32a25f3e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4926,7 +4960,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Sweden:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ed26659e68f08e7c32a25f3e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:736fff1d926c9fa76c21f534": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4946,7 +4980,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:736fff1d926c9fa76c21f534",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:79b0b52a606a84e1228fb76e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4966,7 +5000,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:79b0b52a606a84e1228fb76e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:cd7988476c2bb5544e2c8ac8": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4986,7 +5020,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:South Africa:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:cd7988476c2bb5544e2c8ac8",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:6b88bbe560baad8407db6696": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5006,7 +5040,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Mexico:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6b88bbe560baad8407db6696",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:f9c61b9d07f565352bb61490": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5026,7 +5060,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Belgium:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:f9c61b9d07f565352bb61490",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:1f12be33fec21d85d9592c45": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5046,7 +5080,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:1f12be33fec21d85d9592c45",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:683ec14d2988365b406744be": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5066,7 +5100,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Norway:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:683ec14d2988365b406744be",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:32cd7c7293a29e54c84b8115": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5086,7 +5120,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:32cd7c7293a29e54c84b8115",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:61504f15a5a7cd4ebee87628": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5106,7 +5140,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:61504f15a5a7cd4ebee87628",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:51096030b6e58dc48b6a5da9": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5126,7 +5160,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Cayman Islands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:51096030b6e58dc48b6a5da9",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:33c7232da829f19492e4b368": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5146,7 +5180,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c7232da829f19492e4b368",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:ac763c6cbdcf20d5dc112748": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5166,7 +5200,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ac763c6cbdcf20d5dc112748",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:24774469f7e74ea6711fff3a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5186,7 +5220,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:24774469f7e74ea6711fff3a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:4b65c84e71f8acf5261c24f7": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5206,7 +5240,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Jersey:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4b65c84e71f8acf5261c24f7",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:b3576866a9279c03559453e3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5226,7 +5260,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:b3576866a9279c03559453e3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:96242cd5106e391dcbb0c041": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5249,7 +5283,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:96242cd5106e391dcbb0c041",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:a196e10e49cd81cb863e6d65": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5272,7 +5306,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:a196e10e49cd81cb863e6d65",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:48efb4a62fc1bb48d3fdcf95": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5292,7 +5326,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:48efb4a62fc1bb48d3fdcf95",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:235ba88fa77ea52e6b88d99b": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5315,7 +5349,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:235ba88fa77ea52e6b88d99b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:94c601ea28a32dc05f7fdf0c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5338,7 +5372,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:94c601ea28a32dc05f7fdf0c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       },
       "radar:b7ae9c00f47ae63803663c7a": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5361,49 +5395,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Hong Kong:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:b7ae9c00f47ae63803663c7a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T20:24:23.276018+00:00"
+        "lastSeenAt": "2026-10-23T20:25:41.863486+00:00"
       }
     },
     "events": [
-      {
-        "revision": 244,
-        "at": "2026-10-22T13:41:14.470324+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Amundi MSCI New Energy UCITS ETF Dist",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-market-monthly.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39731701929",
-            "to": "/bibliotheque-donnees?id=FR0010524777",
-            "lastSuccessAt": "2026-10-18T16:00:42Z",
-            "completedAt": "2026-10-22T07:18:45Z",
-            "cause": "HTTP Error 404: Not Found",
-            "field": "Cotation",
-            "sourceUrls": [
-              "https://bourse.fortuneo.fr/trackers/cours-amundi-msci-new-energy-ucits-etf-eur-dis-NRJ-FR0010524777-23",
-              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
-              "https://www.justetf.com/en/etf-profile.html?isin=FR0010524777"
-            ],
-            "kind": "collection",
-            "dataId": "listing:FR0010524777",
-            "id": "collection:update-market-monthly.yml:listing:FR0010524777",
-            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-            "lastSeenAt": "2026-10-22T13:19:25.024542+00:00",
-            "resolvedAt": "2026-10-22T13:41:14.470324+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 245,
         "at": "2026-10-22T13:44:32.199253+00:00",
@@ -8628,6 +8623,16 @@
             "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
           }
         ],
+        "retired": [],
+        "escalated": []
+      },
+      {
+        "revision": 274,
+        "at": "2026-10-23T20:25:41.863486+00:00",
+        "opened": [
+          "collection:update-market-monthly.yml:history:etfIE00BDFBTQ78"
+        ],
+        "resolved": [],
         "retired": [],
         "escalated": []
       }
@@ -14699,7 +14704,7 @@
       "lastSuccessAt": "2026-10-21T15:07:24Z",
       "observedRunId": 39614203452,
       "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-23T20:24:23.306023+00:00"
+      "nextAttemptAt": "2026-10-23T20:25:41.893414+00:00"
     },
     "collect-etf-pilot.yml": {
       "attempts": [],
@@ -14738,7 +14743,7 @@
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
-      "observedRunId": 39972605089,
+      "observedRunId": 39997456621,
       "nextAttemptAt": "2026-10-23T22:26:26.717569+00:00",
       "status": "budget-exhausted"
     },
