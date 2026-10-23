@@ -78747,377 +78747,558 @@
   },
   "etfIE000M7V94E1": {
     "id": "etfIE000M7V94E1",
-    "label": "VanEck Uranium and Nuclear Technologies UCITS ETF",
     "isin": "IE000M7V94E1",
-    "ticker": "NUKL",
-    "mic": "XETR",
-    "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "NUKL.DE",
-    "field": "adjclose",
-    "precision": 6,
-    "consumerScope": "catalog",
-    "listingEvidenceId": "IE000M7V94E1-XETR-NUKL-EUR",
+    "label": "VanEck Uranium and Nuclear Technologies UCITS ETF · VL",
     "instrumentType": "ETF",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "collectAnniversary": true,
+    "consumerScope": "catalog",
+    "currency": "EUR",
     "periodStart": "2023-03",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite ; ancienne cotation archivée séparément",
+    "navProvider": "vaneck",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+    "factsheetUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+    "navTitle": "VanEck Uranium and Nuclear Technologies UCITS ETF - NUCL",
+    "navCalendarSource": "page-api",
     "points": [
       [
         "2023-03",
-        16.705999
+        16.52229885
       ],
       [
         "2023-04",
-        16.278
+        16.33639924
       ],
       [
         "2023-05",
-        16.528
+        16.741552
       ],
       [
         "2023-06",
-        18.306
+        18.26339039
       ],
       [
         "2023-07",
-        18.808001
+        18.79343192
       ],
       [
         "2023-08",
-        20.4
+        20.26407803
       ],
       [
         "2023-09",
-        22.379999
+        22.06154427
       ],
       [
         "2023-10",
-        21.655001
+        21.3221584
       ],
       [
         "2023-11",
-        22.0
+        22.18461257
       ],
       [
         "2023-12",
-        22.309999
+        22.34751131
       ],
       [
         "2024-01",
-        25.139999
+        24.99769309
       ],
       [
         "2024-02",
-        24.695
+        24.72011823
       ],
       [
         "2024-03",
-        26.799999
+        26.52206086
       ],
       [
         "2024-04",
-        26.639999
+        26.46575854
       ],
       [
         "2024-05",
-        27.209999
+        27.53225212
       ],
       [
         "2024-06",
-        27.174999
+        26.70247548
       ],
       [
         "2024-07",
-        26.385
+        26.57277429
       ],
       [
         "2024-08",
-        25.434999
+        25.4514296
       ],
       [
         "2024-09",
-        27.91
+        27.92247231
       ],
       [
         "2024-10",
-        31.559999
+        31.51626539
       ],
       [
         "2024-11",
-        34.990002
+        34.51050937
       ],
       [
         "2024-12",
-        30.795
+        30.6757147
       ],
       [
         "2025-01",
-        32.91
+        32.12450688
       ],
       [
         "2025-02",
-        28.299999
+        28.50062434
       ],
       [
         "2025-03",
-        25.075001
+        25.20943135
       ],
       [
         "2025-04",
-        26.389999
+        26.44157214
       ],
       [
         "2025-05",
-        34.345001
+        34.39721316
       ],
       [
         "2025-06",
-        38.294998
+        38.63822526
       ],
       [
         "2025-07",
-        42.650002
+        42.27852525
       ],
       [
         "2025-08",
-        42.220001
+        42.63252702
       ],
       [
         "2025-09",
-        49.16
+        49.04522613
       ],
       [
         "2025-10",
-        57.48
+        57.40955513
       ],
       [
         "2025-11",
-        47.43
+        47.08282898
       ],
       [
         "2025-12",
-        46.654999
+        45.81361702
       ],
       [
         "2026-01",
-        56.759998
+        56.05084319
       ],
       [
         "2026-02",
-        55.720001
+        55.79076662
       ],
       [
         "2026-03",
-        48.215
+        48.61106279
       ],
       [
         "2026-04",
-        53.169998
+        53.86002393
       ],
       [
         "2026-05",
-        51.66
+        51.89625558
       ],
       [
         "2026-06",
-        46.490002
+        46.77549588
       ],
       [
         "2026-07",
-        42.939999
+        43.4253374
       ],
       [
         "2026-08",
-        47.02
+        47.05415661
       ],
       [
         "2026-09",
-        43.82
+        43.44165566
       ]
     ],
     "anniversaryPoints": [
       [
         "2023-03",
-        16.705999
+        16.52229885
       ],
       [
         "2023-04",
-        16.278
+        16.33639924
       ],
       [
         "2023-05",
-        16.528
+        16.741552
       ],
       [
         "2023-06",
-        18.306
+        18.26339039
       ],
       [
         "2023-07",
-        18.808001
+        18.79343192
       ],
       [
         "2023-08",
-        20.4
+        20.26407803
       ],
       [
         "2023-09",
-        22.379999
+        22.06154427
       ],
       [
         "2023-10",
-        21.655001
+        21.3221584
       ],
       [
         "2023-11",
-        22.0
+        22.18461257
       ],
       [
         "2023-12",
-        22.309999
+        22.34751131
       ],
       [
         "2024-01",
-        25.139999
+        24.99769309
       ],
       [
         "2024-02",
-        24.695
+        24.72011823
       ],
       [
         "2024-03",
-        26.799999
+        26.52206086
       ],
       [
         "2024-04",
-        26.639999
+        26.46575854
       ],
       [
         "2024-05",
-        27.209999
+        27.53225212
       ],
       [
         "2024-06",
-        27.174999
+        26.70247548
       ],
       [
         "2024-07",
-        26.385
+        26.57277429
       ],
       [
         "2024-08",
-        25.434999
+        25.4514296
       ],
       [
         "2024-09",
-        27.91
+        27.92247231
       ],
       [
         "2024-10",
-        31.559999
+        31.51626539
       ],
       [
         "2024-11",
-        34.990002
+        34.51050937
       ],
       [
         "2024-12",
-        30.795
+        30.6757147
       ],
       [
         "2025-01",
-        32.91
+        32.12450688
       ],
       [
         "2025-02",
-        28.299999
+        28.50062434
       ],
       [
         "2025-03",
-        25.075001
+        25.20943135
       ],
       [
         "2025-04",
-        26.389999
+        26.44157214
       ],
       [
         "2025-05",
-        34.345001
+        34.39721316
       ],
       [
         "2025-06",
-        38.294998
+        38.63822526
       ],
       [
         "2025-07",
-        42.650002
+        42.27852525
       ],
       [
         "2025-08",
-        42.220001
+        42.63252702
       ],
       [
         "2025-09",
-        49.16
+        49.04522613
       ],
       [
         "2025-10",
-        57.48
+        57.40955513
       ],
       [
         "2025-11",
-        47.43
+        47.08282898
       ],
       [
         "2025-12",
-        46.654999
+        45.81361702
       ],
       [
         "2026-01",
-        56.759998
+        56.05084319
       ],
       [
         "2026-02",
-        55.720001
+        55.79076662
       ],
       [
         "2026-03",
-        48.215
+        48.61106279
       ],
       [
         "2026-04",
-        53.169998
+        53.86002393
       ],
       [
         "2026-05",
-        51.66
+        51.89625558
       ],
       [
         "2026-06",
-        46.490002
+        46.77549588
       ],
       [
         "2026-07",
-        42.939999
+        43.4253374
       ],
       [
         "2026-08",
-        47.02
+        47.05415661
       ],
       [
         "2026-09",
-        43.82
+        43.44165566
       ]
     ],
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "timezone": "Europe/Berlin",
-    "checkedAt": "2026-10-16",
+    "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "6ca63f180d8484c7c1728c0963e2c6fcfbd7dcb726e89255aba0b9c002d2fdd3"
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "sourceCredit": "VanEck",
+    "latestLevel": {
+      "value": 38.793395805444,
+      "asOf": "2026-10-22",
+      "currency": "EUR",
+      "isin": "IE000M7V94E1",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 43.468,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-22",
+      "fxFactor": 0.8924587237840249,
+      "sourceUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "ca7398bfed4c8d4a9338d55b8a2eb5d26868c8c5c97da68cc14417dbca61cd5e"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "sourceNavMetadata": {
+        "Ticker": "UCTNUCL",
+        "Title": "NAVs",
+        "AsOfDateText": "as of",
+        "AsOfDate": "10/22/2026",
+        "TooltipText": "",
+        "Columns": [
+          {
+            "ColumnName": null,
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "",
+            "WrapperClass": "light_yellow",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Base Currency",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Daily Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "YTD Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV Price History",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Total Expense Ratio",
+            "WrapperClass": "data",
+            "CellClass": ""
+          }
+        ],
+        "PricesViewModel": {
+          "DisplayTicker": "NUCL",
+          "NavCurrent": "$43.47",
+          "LastPriceCurrent": null,
+          "Volume30Day": null,
+          "Volume": null,
+          "NAVYTDPerc": "-19.25%",
+          "PriceYTDPerc": null,
+          "PremiumDiscountPercentage": null,
+          "PremiumDiscount": null,
+          "NavDailyChangePercentage": "-2.60%",
+          "NavDailyChange": "$-1.16",
+          "NavDailyChangeValue": -1.1606,
+          "LastPriceChangePerc": null,
+          "LastPriceChange": null,
+          "LastPriceChangeValue": null,
+          "ThirtyDayBidAskMedianFormatted": null,
+          "GrossExpenseRatio": " 0.55%"
+        },
+        "CurrencyName": "USD",
+        "CurrencySymbol": "$",
+        "DownloadUrlTarget": "_blank",
+        "DownloadUrl": "/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+        "ChartUrlTarget": "_blank",
+        "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTNUCL",
+        "SwipeText": "Swipe<br>to view <br> full data",
+        "HistoPriceUrl": null,
+        "GrossExpenseRatio": null,
+        "CssClass": "etf_fund_prices",
+        "PremiumDiscountBlockID": 0,
+        "ChartSelectList": []
+      },
+      "incomeTreatment": "Reinvestment; distribution frequency None",
+      "officialPageCalendar": {
+        "isin": "IE000M7V94E1",
+        "internalTicker": "UCTNUCL",
+        "fundInception": "2023-02-03",
+        "fundDataAsOf": "2026-10-22",
+        "calendarAsOf": "12/31/2025",
+        "calendarCurrency": "USD",
+        "incomeTreatment": "Reinvestment",
+        "numberFormat": "verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted",
+        "numberFormatSource": "https://www.vaneck.com/static/eu/js/dist/main.js"
+      },
+      "checks": [
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 24.694,
+          "endValue": 31.869,
+          "dailyDerived": 29.05564104640803,
+          "published": 29.1,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 31.869,
+          "endValue": 53.831,
+          "dailyDerived": 68.91336408421978,
+          "published": 68.9,
+          "publishedDecimalPlaces": 1
+        }
+      ]
+    },
+    "responseSha256": "ca7398bfed4c8d4a9338d55b8a2eb5d26868c8c5c97da68cc14417dbca61cd5e",
+    "rawSourceHashes": {
+      "https://www.vaneck.com/uk/en/investments/nuclear-etf/": "9908bbe512ac9a8cc9c9e46753eb3873878b3d0e8e13d9d7693beb5e604a588f",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL": "1299130590b5975eff6a5f7252a384f44ff85c899a8bce6c151d1e5931657d32",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL": "96d6321f0fb421f8227d002b33a2d768419019d88b63851a34bb99876da9c837",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL": "8a9ba0c6e868cc20e4eec13ac4bdc116be919ca29f3ea1958b8829096157eaf0",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL": "e5247150b3429596069d3aefd2c86f300fd4bbaa86d352faf78a607e522f8549",
+      "https://www.vaneck.com/static/eu/js/dist/main.js": "18e4a235a946f446a48205b20d2c3411d15cb4759b90d27059fa4cdee9c8339f",
+      "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/": "e10296c4b4b7bffe0411de9f579b2a960d839d7630cd1ecb38dbb5d94eb97eb7",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
+    }
   },
   "etfFR0010342592": {
     "id": "etfFR0010342592",
@@ -85674,729 +85855,950 @@
   },
   "etfIE00BYWQWR46": {
     "id": "etfIE00BYWQWR46",
-    "label": "VanEck Video Gaming and eSports UCITS ETF",
     "isin": "IE00BYWQWR46",
-    "ticker": "ESP0",
-    "mic": "XETR",
-    "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "ESP0.DE",
-    "field": "adjclose",
-    "precision": 6,
-    "consumerScope": "catalog",
-    "listingEvidenceId": "IE00BYWQWR46-XETR-ESP0-EUR",
+    "label": "VanEck Video Gaming and eSports UCITS ETF · VL",
     "instrumentType": "ETF",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "collectAnniversary": true,
+    "consumerScope": "catalog",
+    "currency": "EUR",
     "periodStart": "2019-07",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite ; ancienne cotation archivée séparément",
+    "navProvider": "vaneck",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+    "factsheetUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+    "navTitle": "VanEck Video Gaming and eSports UCITS ETF - ESPO",
+    "navCalendarSource": "page-api",
     "points": [
       [
         "2019-07",
-        18.486
+        18.23513586
       ],
       [
         "2019-08",
-        18.608
+        18.51214208
       ],
       [
         "2019-09",
-        18.84
+        18.78960419
       ],
       [
         "2019-10",
-        18.688
+        18.62829478
       ],
       [
         "2019-11",
-        19.716
+        19.75414314
       ],
       [
         "2019-12",
-        20.76
+        20.60263486
       ],
       [
         "2020-01",
-        21.195
+        21.30021716
       ],
       [
         "2020-02",
-        20.940001
+        21.23622119
       ],
       [
         "2020-03",
-        21.77
+        21.44213217
       ],
       [
         "2020-04",
-        23.9
+        23.44979772
       ],
       [
         "2020-05",
-        25.459999
+        25.67618534
       ],
       [
         "2020-06",
-        28.184999
+        28.05143776
       ],
       [
         "2020-07",
-        28.99
+        28.88166779
       ],
       [
         "2020-08",
-        31.41
+        31.43718593
       ],
       [
         "2020-09",
-        31.959999
+        31.72446191
       ],
       [
         "2020-10",
-        31.205
+        30.94204137
       ],
       [
         "2020-11",
-        32.985001
+        33.11435726
       ],
       [
         "2020-12",
-        34.404999
+        34.64183848
       ],
       [
         "2021-01",
-        36.535
+        36.26647989
       ],
       [
         "2021-02",
-        36.244999
+        36.02013035
       ],
       [
         "2021-03",
-        35.415001
+        35.2315565
       ],
       [
         "2021-04",
-        35.869999
+        35.59758318
       ],
       [
         "2021-05",
-        35.290001
+        35.32005573
       ],
       [
         "2021-06",
-        37.25
+        37.16088859
       ],
       [
         "2021-07",
-        34.73
+        34.62114204
       ],
       [
         "2021-08",
-        35.34
+        35.41997634
       ],
       [
         "2021-09",
-        34.27
+        34.24820796
       ],
       [
         "2021-10",
-        36.310001
+        36.1391155
       ],
       [
         "2021-11",
-        39.110001
+        39.0125847
       ],
       [
         "2021-12",
-        36.505001
+        36.82588734
       ],
       [
         "2022-01",
-        34.435001
+        34.80190032
       ],
       [
         "2022-02",
-        34.150002
+        33.98071256
       ],
       [
         "2022-03",
-        33.400002
+        33.13845599
       ],
       [
         "2022-04",
-        30.645
+        30.04079696
       ],
       [
         "2022-05",
-        30.91
+        30.83076636
       ],
       [
         "2022-06",
-        28.51
+        28.71377684
       ],
       [
         "2022-07",
-        30.93
+        31.11296333
       ],
       [
         "2022-08",
-        29.73
+        30.017
       ],
       [
         "2022-09",
-        26.615
+        26.40849405
       ],
       [
         "2022-10",
-        25.66
+        25.52955417
       ],
       [
         "2022-11",
-        27.084999
+        27.43542791
       ],
       [
         "2022-12",
-        25.485001
+        25.7744234
       ],
       [
         "2023-01",
-        28.76
+        28.77780855
       ],
       [
         "2023-02",
-        28.09
+        27.99510312
       ],
       [
         "2023-03",
-        30.924999
+        30.97747126
       ],
       [
         "2023-04",
-        29.219999
+        29.43812039
       ],
       [
         "2023-05",
-        31.225
+        31.33857531
       ],
       [
         "2023-06",
-        32.415001
+        32.51058347
       ],
       [
         "2023-07",
-        33.744999
+        33.72675315
       ],
       [
         "2023-08",
-        31.684999
+        31.65807876
       ],
       [
         "2023-09",
-        30.684999
+        30.61166698
       ],
       [
         "2023-10",
-        29.575001
+        29.46322629
       ],
       [
         "2023-11",
-        31.75
+        31.81319184
       ],
       [
         "2023-12",
-        32.84
+        32.7719457
       ],
       [
         "2024-01",
-        33.814999
+        33.83500969
       ],
       [
         "2024-02",
-        36.255001
+        36.41511177
       ],
       [
         "2024-03",
-        37.105
+        36.94385348
       ],
       [
         "2024-04",
-        36.055
+        35.91155066
       ],
       [
         "2024-05",
-        37.830002
+        38.1524143
       ],
       [
         "2024-06",
-        39.955002
+        39.83278842
       ],
       [
         "2024-07",
-        40.23
+        40.22626524
       ],
       [
         "2024-08",
-        40.470001
+        40.73780103
       ],
       [
         "2024-09",
-        43.895
+        43.96570204
       ],
       [
         "2024-10",
-        43.970001
+        44.02040066
       ],
       [
         "2024-11",
-        51.330002
+        51.13520167
       ],
       [
         "2024-12",
-        51.82
+        51.79901819
       ],
       [
         "2025-01",
-        54.43
+        53.84874435
       ],
       [
         "2025-02",
-        56.209999
+        56.06858131
       ],
       [
         "2025-03",
-        51.369999
+        51.50161812
       ],
       [
         "2025-04",
-        53.68
+        53.74923063
       ],
       [
         "2025-05",
-        57.619999
+        57.88429315
       ],
       [
         "2025-06",
-        59.82
+        60.08703072
       ],
       [
         "2025-07",
-        61.0
+        60.81163725
       ],
       [
         "2025-08",
-        63.049999
+        63.4251158
       ],
       [
         "2025-09",
-        67.129997
+        67.35371774
       ],
       [
         "2025-10",
-        64.080002
+        64.18123594
       ],
       [
         "2025-11",
-        62.240002
+        62.36641881
       ],
       [
         "2025-12",
-        58.700001
+        58.32765957
       ],
       [
         "2026-01",
-        55.630001
+        56.33442403
       ],
       [
         "2026-02",
-        52.599998
+        52.83439221
       ],
       [
         "2026-03",
-        50.900002
+        51.1775961
       ],
       [
         "2026-04",
-        51.669998
+        51.63049051
       ],
       [
         "2026-05",
-        50.509998
+        50.62263827
       ],
       [
         "2026-06",
-        52.110001
+        52.03440407
       ],
       [
         "2026-07",
-        53.740002
+        54.36656508
       ],
       [
         "2026-08",
-        55.380001
+        55.67437047
       ],
       [
         "2026-09",
-        56.66
+        56.77498899
       ]
     ],
     "anniversaryPoints": [
       [
         "2019-07",
-        18.486
+        18.23513586
       ],
       [
         "2019-08",
-        18.608
+        18.51214208
       ],
       [
         "2019-09",
-        18.84
+        18.78960419
       ],
       [
         "2019-10",
-        18.688
+        18.62829478
       ],
       [
         "2019-11",
-        19.716
+        19.75414314
       ],
       [
         "2019-12",
-        20.76
+        20.60263486
       ],
       [
         "2020-01",
-        21.195
+        21.30021716
       ],
       [
         "2020-02",
-        20.940001
+        21.23622119
       ],
       [
         "2020-03",
-        21.77
+        21.44213217
       ],
       [
         "2020-04",
-        23.9
+        23.44979772
       ],
       [
         "2020-05",
-        25.459999
+        25.67618534
       ],
       [
         "2020-06",
-        28.184999
+        28.05143776
       ],
       [
         "2020-07",
-        28.99
+        28.88166779
       ],
       [
         "2020-08",
-        31.41
+        31.43718593
       ],
       [
         "2020-09",
-        31.959999
+        31.72446191
       ],
       [
         "2020-10",
-        31.205
+        30.94204137
       ],
       [
         "2020-11",
-        32.985001
+        33.11435726
       ],
       [
         "2020-12",
-        34.404999
+        34.64183848
       ],
       [
         "2021-01",
-        36.535
+        36.26647989
       ],
       [
         "2021-02",
-        36.244999
+        36.02013035
       ],
       [
         "2021-03",
-        35.415001
+        35.2315565
       ],
       [
         "2021-04",
-        35.869999
+        35.59758318
       ],
       [
         "2021-05",
-        35.290001
+        35.32005573
       ],
       [
         "2021-06",
-        37.25
+        37.16088859
       ],
       [
         "2021-07",
-        34.73
+        34.62114204
       ],
       [
         "2021-08",
-        35.34
+        35.41997634
       ],
       [
         "2021-09",
-        34.27
+        34.24820796
       ],
       [
         "2021-10",
-        36.310001
+        36.1391155
       ],
       [
         "2021-11",
-        39.110001
+        39.0125847
       ],
       [
         "2021-12",
-        36.505001
+        36.82588734
       ],
       [
         "2022-01",
-        34.435001
+        34.80190032
       ],
       [
         "2022-02",
-        34.150002
+        33.98071256
       ],
       [
         "2022-03",
-        33.400002
+        33.13845599
       ],
       [
         "2022-04",
-        30.645
+        30.04079696
       ],
       [
         "2022-05",
-        30.91
+        30.83076636
       ],
       [
         "2022-06",
-        28.51
+        28.71377684
       ],
       [
         "2022-07",
-        30.93
+        31.11296333
       ],
       [
         "2022-08",
-        29.73
+        30.017
       ],
       [
         "2022-09",
-        26.615
+        26.40849405
       ],
       [
         "2022-10",
-        25.66
+        25.52955417
       ],
       [
         "2022-11",
-        27.084999
+        27.43542791
       ],
       [
         "2022-12",
-        25.485001
+        25.7744234
       ],
       [
         "2023-01",
-        28.76
+        28.77780855
       ],
       [
         "2023-02",
-        28.09
+        27.99510312
       ],
       [
         "2023-03",
-        30.924999
+        30.97747126
       ],
       [
         "2023-04",
-        29.219999
+        29.43812039
       ],
       [
         "2023-05",
-        31.225
+        31.33857531
       ],
       [
         "2023-06",
-        32.415001
+        32.51058347
       ],
       [
         "2023-07",
-        33.744999
+        33.72675315
       ],
       [
         "2023-08",
-        31.684999
+        31.65807876
       ],
       [
         "2023-09",
-        30.684999
+        30.61166698
       ],
       [
         "2023-10",
-        29.575001
+        29.46322629
       ],
       [
         "2023-11",
-        31.75
+        31.81319184
       ],
       [
         "2023-12",
-        32.84
+        32.7719457
       ],
       [
         "2024-01",
-        33.814999
+        33.83500969
       ],
       [
         "2024-02",
-        36.255001
+        36.41511177
       ],
       [
         "2024-03",
-        37.105
+        36.94385348
       ],
       [
         "2024-04",
-        36.055
+        35.91155066
       ],
       [
         "2024-05",
-        37.830002
+        38.1524143
       ],
       [
         "2024-06",
-        39.955002
+        39.83278842
       ],
       [
         "2024-07",
-        40.23
+        40.22626524
       ],
       [
         "2024-08",
-        40.470001
+        40.73780103
       ],
       [
         "2024-09",
-        43.895
+        43.96570204
       ],
       [
         "2024-10",
-        43.970001
+        44.02040066
       ],
       [
         "2024-11",
-        51.330002
+        51.13520167
       ],
       [
         "2024-12",
-        51.82
+        51.79901819
       ],
       [
         "2025-01",
-        54.43
+        53.84874435
       ],
       [
         "2025-02",
-        56.209999
+        56.06858131
       ],
       [
         "2025-03",
-        51.369999
+        51.50161812
       ],
       [
         "2025-04",
-        53.68
+        53.74923063
       ],
       [
         "2025-05",
-        57.619999
+        57.88429315
       ],
       [
         "2025-06",
-        59.82
+        60.08703072
       ],
       [
         "2025-07",
-        61.0
+        60.81163725
       ],
       [
         "2025-08",
-        63.049999
+        63.4251158
       ],
       [
         "2025-09",
-        67.129997
+        67.35371774
       ],
       [
         "2025-10",
-        64.080002
+        64.18123594
       ],
       [
         "2025-11",
-        62.240002
+        62.36641881
       ],
       [
         "2025-12",
-        58.700001
+        58.32765957
       ],
       [
         "2026-01",
-        55.630001
+        56.33442403
       ],
       [
         "2026-02",
-        52.599998
+        52.83439221
       ],
       [
         "2026-03",
-        50.900002
+        51.1775961
       ],
       [
         "2026-04",
-        51.669998
+        51.63049051
       ],
       [
         "2026-05",
-        50.509998
+        50.62263827
       ],
       [
         "2026-06",
-        52.110001
+        52.03440407
       ],
       [
         "2026-07",
-        53.740002
+        54.36656508
       ],
       [
         "2026-08",
-        55.380001
+        55.67437047
       ],
       [
         "2026-09",
-        56.66
+        56.77498899
       ]
     ],
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/ESP0.DE?period1=1561939200&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/ESP0.DE?period1=1561939200&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "timezone": "Europe/Berlin",
-    "checkedAt": "2026-10-16",
+    "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "bf04cbc641ca504557a7fadedefc33b3d2e5864d503b087f0709be5e02fa3cc8"
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/esports-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "sourceCredit": "VanEck",
+    "latestLevel": {
+      "value": 58.764837126282906,
+      "asOf": "2026-10-22",
+      "currency": "EUR",
+      "isin": "IE00BYWQWR46",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 65.846,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-22",
+      "fxFactor": 0.8924587237840249,
+      "sourceUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "09f11a3b599f56446914342454ff12f582a7c249131ee9458b9876d4d7b83fb7"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "sourceNavMetadata": {
+        "Ticker": "UCTESPO",
+        "Title": "NAVs",
+        "AsOfDateText": "as of",
+        "AsOfDate": "10/22/2026",
+        "TooltipText": "",
+        "Columns": [
+          {
+            "ColumnName": null,
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "",
+            "WrapperClass": "light_yellow",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Base Currency",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Daily Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "YTD Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV Price History",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Total Expense Ratio",
+            "WrapperClass": "data",
+            "CellClass": ""
+          }
+        ],
+        "PricesViewModel": {
+          "DisplayTicker": "ESPO",
+          "NavCurrent": "$65.85",
+          "LastPriceCurrent": null,
+          "Volume30Day": null,
+          "Volume": null,
+          "NAVYTDPerc": "-3.92%",
+          "PriceYTDPerc": null,
+          "PremiumDiscountPercentage": null,
+          "PremiumDiscount": null,
+          "NavDailyChangePercentage": "-1.27%",
+          "NavDailyChange": "$-0.85",
+          "NavDailyChangeValue": -0.8463,
+          "LastPriceChangePerc": null,
+          "LastPriceChange": null,
+          "LastPriceChangeValue": null,
+          "ThirtyDayBidAskMedianFormatted": null,
+          "GrossExpenseRatio": " 0.55%"
+        },
+        "CurrencyName": "USD",
+        "CurrencySymbol": "$",
+        "DownloadUrlTarget": "_blank",
+        "DownloadUrl": "/ucits/investments/esports-etf/downloads/fundhistoprices/",
+        "ChartUrlTarget": "_blank",
+        "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTESPO",
+        "SwipeText": "Swipe<br>to view <br> full data",
+        "HistoPriceUrl": null,
+        "GrossExpenseRatio": null,
+        "CssClass": "etf_fund_prices",
+        "PremiumDiscountBlockID": 0,
+        "ChartSelectList": []
+      },
+      "incomeTreatment": "Reinvestment; distribution frequency None",
+      "officialPageCalendar": {
+        "isin": "IE00BYWQWR46",
+        "internalTicker": "UCTESPO",
+        "fundInception": "2019-06-24",
+        "fundDataAsOf": "2026-10-22",
+        "calendarAsOf": "12/31/2025",
+        "calendarCurrency": "USD",
+        "incomeTreatment": "Reinvestment",
+        "numberFormat": "verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted",
+        "numberFormatSource": "https://www.vaneck.com/static/eu/js/dist/main.js"
+      },
+      "checks": [
+        {
+          "year": 2020,
+          "start": "2019-12-31",
+          "end": "2020-12-31",
+          "startValue": 23.145,
+          "endValue": 42.509,
+          "dailyDerived": 83.66385828472673,
+          "published": 83.7,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2021,
+          "start": "2020-12-31",
+          "end": "2021-12-31",
+          "startValue": 42.509,
+          "endValue": 41.709,
+          "dailyDerived": -1.8819544096544183,
+          "published": -1.9,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2022,
+          "start": "2021-12-31",
+          "end": "2022-12-30",
+          "startValue": 41.709,
+          "endValue": 27.491,
+          "dailyDerived": -34.08856601692681,
+          "published": -34.1,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 27.491,
+          "endValue": 36.213,
+          "dailyDerived": 31.726746935360662,
+          "published": 31.7,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 36.213,
+          "endValue": 53.814,
+          "dailyDerived": 48.60409245298649,
+          "published": 48.6,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 53.814,
+          "endValue": 68.535,
+          "dailyDerived": 27.35533504292562,
+          "published": 27.4,
+          "publishedDecimalPlaces": 1
+        }
+      ]
+    },
+    "responseSha256": "09f11a3b599f56446914342454ff12f582a7c249131ee9458b9876d4d7b83fb7",
+    "rawSourceHashes": {
+      "https://www.vaneck.com/uk/en/investments/esports-etf/": "addd304978b64befe765a0a3b976bdf7d007d344e60fd8582bcb1dea8c47804b",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO": "3380ee9b15dead20dfee3e48f40e0cf1ebc4d790f40e7d23d0d267589d995512",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO": "76c589410eed6816bcb9b6baebde9883fe45385e8b652ab6ccb9f2992be58502",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO": "ccd47654e7a48a4167fd580a7e172df2f4828291284376ad2f04e6d13246e482",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO": "1bfdba24453521b19ab04365e7f8f7a421965249250f7c82ef453e64843c8bf1",
+      "https://www.vaneck.com/static/eu/js/dist/main.js": "18e4a235a946f446a48205b20d2c3411d15cb4759b90d27059fa4cdee9c8339f",
+      "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/": "14fd3512614cf47e3073fab97ea94d4ca1bd187fd20b82e85de76ce4d8f2f11a",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
+    }
   },
   "etfIE00B4KBBD01": {
     "id": "etfIE00B4KBBD01",
@@ -91437,6 +91839,7 @@
     "navCurrency": "USD",
     "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
     "factsheetUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+    "navCalendarSource": "page-api",
     "points": [
       [
         "2018-06",
@@ -92246,7 +92649,10 @@
     "sourceUrls": [
       "https://www.vaneck.com/DK/en/investments/mining-etf/",
       "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
-      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
       "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
       "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     ],
@@ -92266,14 +92672,17 @@
       "sourceUrls": [
         "https://www.vaneck.com/DK/en/investments/mining-etf/",
         "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
-        "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
         "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
         "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
       ],
       "checkedAt": "2026-10-23",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "ee485a45160761d002c4db691b4d8ba69254e399325649641a575fb0d8dcf5cc"
+      "sha256": "4ef5a4d7f595529c79f4b5db8e7b1d377b5ca183a9df3ec290892d00932e0c48"
     },
     "nativeValuationCurrency": "USD",
     "lastOfficialValuation": "2026-10-22",
@@ -92376,6 +92785,17 @@
         "ChartSelectList": []
       },
       "incomeTreatment": "Reinvestment; distribution frequency None",
+      "officialPageCalendar": {
+        "isin": "IE00BDFBTQ78",
+        "internalTicker": "UCTGDIG",
+        "fundInception": "2018-04-18",
+        "fundDataAsOf": "2026-10-22",
+        "calendarAsOf": "12/31/2025",
+        "calendarCurrency": "USD",
+        "incomeTreatment": "Reinvestment",
+        "numberFormat": "verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted",
+        "numberFormatSource": "https://www.vaneck.com/static/eu/js/dist/main.js"
+      },
       "checks": [
         {
           "year": 2019,
@@ -92449,13 +92869,16 @@
         }
       ]
     },
-    "responseSha256": "ee485a45160761d002c4db691b4d8ba69254e399325649641a575fb0d8dcf5cc",
+    "responseSha256": "4ef5a4d7f595529c79f4b5db8e7b1d377b5ca183a9df3ec290892d00932e0c48",
     "rawSourceHashes": {
-      "https://www.vaneck.com/DK/en/investments/mining-etf/": "db8ec7711f481e42ca81fd06bb0e585ab925227ed255a7df0e51711a80f8e769",
+      "https://www.vaneck.com/DK/en/investments/mining-etf/": "0cd12eefae3ac974bb725a5ae59bb122cd9013bacfc8834a674dec50a6b83978",
       "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG": "10eb03caffe2cc8335f8180ce3db9d11def5e0293b37004967a6013b589750fd",
-      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf": "43ed7fa351de405e8be0ac6265a8258aed7c9590c8cae4e7771dfc16bb10fe8c",
-      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/": "88bd74d2a9cad0612803ff34e6ddfb5eb52a5c4cea511d15502681008e89c9e2",
-      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "de1353c5b67ed4c04f1e9c1f7246fec82f8ddc6041880ef0b1345f82157e197b"
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG": "2d86c6295f3a666530dd0e5375b3744e760312a591c847758d66be022985c310",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG": "14f24b8ac39a31b54e65df308aa2be877e77ce5ab123c32431569de1cb95fb6d",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG": "60e354a97d84cbd8952821c381725088eb01414a71b8d57ca975183ed842f97e",
+      "https://www.vaneck.com/static/eu/js/dist/main.js": "18e4a235a946f446a48205b20d2c3411d15cb4759b90d27059fa4cdee9c8339f",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/": "add8f27110587f743d9d465c6e6b7ceea38da47c1ea2c2e104c4b31bf0a98cd1",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
     }
   },
   "etfIE00B3T9LM79": {
@@ -94528,417 +94951,608 @@
   },
   "etfIE000YU9K6K2": {
     "id": "etfIE000YU9K6K2",
-    "label": "VanEck Space Innovators UCITS ETF",
     "isin": "IE000YU9K6K2",
-    "ticker": "JEDI",
-    "mic": "ETFP",
-    "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "JEDI.MI",
-    "field": "adjclose",
-    "precision": 6,
-    "consumerScope": "catalog",
-    "listingEvidenceId": "IE000YU9K6K2-ETFP-JEDI-EUR",
+    "label": "VanEck Space Innovators UCITS ETF · VL",
     "instrumentType": "ETF",
-    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
-    "collectAnniversary": true,
+    "consumerScope": "catalog",
+    "currency": "EUR",
     "periodStart": "2022-10",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite ; ancienne cotation archivée séparément",
+    "navProvider": "vaneck",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+    "factsheetUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+    "navTitle": "VanEck Space Innovators UCITS ETF - JEDI",
+    "navCalendarSource": "page-api",
     "points": [
       [
         "2022-10",
-        19.742001
+        21.18519266
       ],
       [
         "2022-11",
-        20.530001
+        20.66595991
       ],
       [
         "2022-12",
-        20.264999
+        20.25407838
       ],
       [
         "2023-01",
-        22.1
+        22.2357611
       ],
       [
         "2023-02",
-        22.315001
+        22.12261042
       ],
       [
         "2023-03",
-        20.959999
+        21.22758621
       ],
       [
         "2023-04",
-        20.684999
+        20.6301794
       ],
       [
         "2023-05",
-        21.93
+        21.85715623
       ],
       [
         "2023-06",
-        22.295
+        22.35781336
       ],
       [
         "2023-07",
-        22.65
+        22.63630591
       ],
       [
         "2023-08",
-        22.5
+        22.33621642
       ],
       [
         "2023-09",
-        20.825001
+        20.63904097
       ],
       [
         "2023-10",
-        19.348
+        19.14022036
       ],
       [
         "2023-11",
-        20.09
+        19.87924252
       ],
       [
         "2023-12",
-        21.790001
+        21.82986425
       ],
       [
         "2024-01",
-        19.993999
+        19.64473563
       ],
       [
         "2024-02",
-        20.084999
+        20.10253094
       ],
       [
         "2024-03",
-        20.27
+        20.4856165
       ],
       [
         "2024-04",
-        19.722
+        19.47938048
       ],
       [
         "2024-05",
-        21.285
+        21.25783266
       ],
       [
         "2024-06",
-        21.120001
+        21.13498365
       ],
       [
         "2024-07",
-        23.594999
+        23.7162911
       ],
       [
         "2024-08",
-        23.895
+        23.70614233
       ],
       [
         "2024-09",
-        24.959999
+        24.64183637
       ],
       [
         "2024-10",
-        25.25
+        25.11578754
       ],
       [
         "2024-11",
-        33.139999
+        32.90285931
       ],
       [
         "2024-12",
-        33.02
+        33.03205313
       ],
       [
         "2025-01",
-        35.93
+        35.1313384
       ],
       [
         "2025-02",
-        34.080002
+        34.29065412
       ],
       [
         "2025-03",
-        31.709999
+        31.59315765
       ],
       [
         "2025-04",
-        30.215
+        30.33588323
       ],
       [
         "2025-05",
-        33.264999
+        33.11932269
       ],
       [
         "2025-06",
-        40.174999
+        40.02474403
       ],
       [
         "2025-07",
-        43.310001
+        42.75205312
       ],
       [
         "2025-08",
-        46.07
+        47.22250815
       ],
       [
         "2025-09",
-        48.549999
+        49.11506686
       ],
       [
         "2025-10",
-        55.599998
+        55.78154752
       ],
       [
         "2025-11",
-        48.535
+        48.58291544
       ],
       [
         "2025-12",
-        58.18
+        57.23404255
       ],
       [
         "2026-01",
-        70.18
+        70.20807115
       ],
       [
         "2026-02",
-        67.160004
+        68.1965269
       ],
       [
         "2026-03",
-        68.989998
+        70.48617151
       ],
       [
         "2026-04",
-        83.730003
+        83.55751154
       ],
       [
         "2026-05",
-        111.050003
+        113.94967365
       ],
       [
         "2026-06",
-        86.709999
+        88.24469019
       ],
       [
         "2026-07",
-        67.739998
+        68.39703962
       ],
       [
         "2026-08",
-        68.260002
+        68.71076233
       ],
       [
         "2026-09",
-        70.599998
+        69.46367239
       ]
     ],
     "anniversaryPoints": [
       [
         "2022-10",
-        19.742001
+        21.18519266
       ],
       [
         "2022-11",
-        20.530001
+        20.66595991
       ],
       [
         "2022-12",
-        20.264999
+        20.25407838
       ],
       [
         "2023-01",
-        22.1
+        22.2357611
       ],
       [
         "2023-02",
-        22.315001
+        22.12261042
       ],
       [
         "2023-03",
-        20.959999
+        21.22758621
       ],
       [
         "2023-04",
-        20.684999
+        20.6301794
       ],
       [
         "2023-05",
-        21.93
+        21.85715623
       ],
       [
         "2023-06",
-        22.295
+        22.35781336
       ],
       [
         "2023-07",
-        22.65
+        22.63630591
       ],
       [
         "2023-08",
-        22.5
+        22.33621642
       ],
       [
         "2023-09",
-        20.825001
+        20.63904097
       ],
       [
         "2023-10",
-        19.348
+        19.14022036
       ],
       [
         "2023-11",
-        20.09
+        19.87924252
       ],
       [
         "2023-12",
-        21.790001
+        21.82986425
       ],
       [
         "2024-01",
-        19.993999
+        19.64473563
       ],
       [
         "2024-02",
-        20.084999
+        20.10253094
       ],
       [
         "2024-03",
-        20.27
+        20.4856165
       ],
       [
         "2024-04",
-        19.722
+        19.47938048
       ],
       [
         "2024-05",
-        21.285
+        21.25783266
       ],
       [
         "2024-06",
-        21.120001
+        21.13498365
       ],
       [
         "2024-07",
-        23.594999
+        23.7162911
       ],
       [
         "2024-08",
-        23.895
+        23.70614233
       ],
       [
         "2024-09",
-        24.959999
+        24.64183637
       ],
       [
         "2024-10",
-        25.25
+        25.11578754
       ],
       [
         "2024-11",
-        33.139999
+        32.90285931
       ],
       [
         "2024-12",
-        33.02
+        33.03205313
       ],
       [
         "2025-01",
-        35.93
+        35.1313384
       ],
       [
         "2025-02",
-        34.080002
+        34.29065412
       ],
       [
         "2025-03",
-        31.709999
+        31.59315765
       ],
       [
         "2025-04",
-        30.215
+        30.33588323
       ],
       [
         "2025-05",
-        33.264999
+        33.11932269
       ],
       [
         "2025-06",
-        40.174999
+        40.02474403
       ],
       [
         "2025-07",
-        43.310001
+        42.75205312
       ],
       [
         "2025-08",
-        46.07
+        47.22250815
       ],
       [
         "2025-09",
-        48.549999
+        49.11506686
       ],
       [
         "2025-10",
-        55.599998
+        55.78154752
       ],
       [
         "2025-11",
-        48.535
+        48.58291544
       ],
       [
         "2025-12",
-        58.18
+        57.23404255
       ],
       [
         "2026-01",
-        70.18
+        70.20807115
       ],
       [
         "2026-02",
-        67.160004
+        68.1965269
       ],
       [
         "2026-03",
-        68.989998
+        70.48617151
       ],
       [
         "2026-04",
-        83.730003
+        83.55751154
       ],
       [
         "2026-05",
-        111.050003
+        113.94967365
       ],
       [
         "2026-06",
-        86.709999
+        88.24469019
       ],
       [
         "2026-07",
-        67.739998
+        68.39703962
       ],
       [
         "2026-08",
-        68.260002
+        68.71076233
       ],
       [
         "2026-09",
-        70.599998
+        69.46367239
       ]
     ],
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/JEDI.MI?period1=1664582400&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/JEDI.MI?period1=1664582400&period2=1790812800&interval=1mo&events=div%2Csplits"
-    ],
-    "timezone": "Europe/Rome",
-    "checkedAt": "2026-10-16",
+    "checkedAt": "2026-10-23",
     "periodEnd": "2026-09",
-    "responseSha256": "6695c45de01798818f4743eef9c62d228909a666d2ecc4ed38a98589761dca1c"
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/investments/space-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+      "https://www.vaneck.com/static/eu/js/dist/main.js",
+      "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "sourceCredit": "VanEck",
+    "latestLevel": {
+      "value": 60.26327532351629,
+      "asOf": "2026-10-22",
+      "currency": "EUR",
+      "isin": "IE000YU9K6K2",
+      "parser": "official-nav",
+      "valuationBasis": "fund-nav-total-return",
+      "nativeValue": 67.525,
+      "nativeCurrency": "USD",
+      "fxAsOf": "2026-10-22",
+      "fxFactor": 0.8924587237840249,
+      "sourceUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "checkedAt": "2026-10-23",
+      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "maxAgeDays": 7,
+      "sha256": "2da5e550655f0f142c3c41174bb2cd42511e34ebe46c817901014888eb9856c0"
+    },
+    "nativeValuationCurrency": "USD",
+    "lastOfficialValuation": "2026-10-22",
+    "financialConvention": "exact-share accumulated net NAV; no exchange-price claim",
+    "calendarProof": {
+      "sourceNavMetadata": {
+        "Ticker": "UCTJEDI",
+        "Title": "NAVs",
+        "AsOfDateText": "as of",
+        "AsOfDate": "10/22/2026",
+        "TooltipText": "",
+        "Columns": [
+          {
+            "ColumnName": null,
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "",
+            "WrapperClass": "light_yellow",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Base Currency",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Daily Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "{0:##0.00}",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "YTD Change NAV",
+            "WrapperClass": "data",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "NAV Price History",
+            "WrapperClass": "",
+            "CellClass": ""
+          },
+          {
+            "ColumnName": "",
+            "NumberFormat": "",
+            "ThirtyDayBidAskMedian": false,
+            "HeaderText": "Total Expense Ratio",
+            "WrapperClass": "data",
+            "CellClass": ""
+          }
+        ],
+        "PricesViewModel": {
+          "DisplayTicker": "JEDI",
+          "NavCurrent": "$67.53",
+          "LastPriceCurrent": null,
+          "Volume30Day": null,
+          "Volume": null,
+          "NAVYTDPerc": "+0.41%",
+          "PriceYTDPerc": null,
+          "PremiumDiscountPercentage": null,
+          "PremiumDiscount": null,
+          "NavDailyChangePercentage": "-4.09%",
+          "NavDailyChange": "$-2.88",
+          "NavDailyChangeValue": -2.8785,
+          "LastPriceChangePerc": null,
+          "LastPriceChange": null,
+          "LastPriceChangeValue": null,
+          "ThirtyDayBidAskMedianFormatted": null,
+          "GrossExpenseRatio": " 0.55%"
+        },
+        "CurrencyName": "USD",
+        "CurrencySymbol": "$",
+        "DownloadUrlTarget": "_blank",
+        "DownloadUrl": "/ucits/investments/space-etf/downloads/fundhistoprices/",
+        "ChartUrlTarget": "_blank",
+        "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTJEDI",
+        "SwipeText": "Swipe<br>to view <br> full data",
+        "HistoPriceUrl": null,
+        "GrossExpenseRatio": null,
+        "CssClass": "etf_fund_prices",
+        "PremiumDiscountBlockID": 0,
+        "ChartSelectList": []
+      },
+      "incomeTreatment": "Reinvestment; distribution frequency None",
+      "officialPageCalendar": {
+        "isin": "IE000YU9K6K2",
+        "internalTicker": "UCTJEDI",
+        "fundInception": "2022-06-24",
+        "fundDataAsOf": "2026-10-22",
+        "calendarAsOf": "12/31/2025",
+        "calendarCurrency": "USD",
+        "incomeTreatment": "Reinvestment",
+        "numberFormat": "verified issuer JavaScript Number + percent; insignificant trailing zeroes omitted",
+        "numberFormatSource": "https://www.vaneck.com/static/eu/js/dist/main.js"
+      },
+      "checks": [
+        {
+          "year": 2023,
+          "start": "2022-12-30",
+          "end": "2023-12-29",
+          "startValue": 21.603,
+          "endValue": 24.122,
+          "dailyDerived": 11.660417534601674,
+          "published": 11.7,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2024,
+          "start": "2023-12-29",
+          "end": "2024-12-31",
+          "startValue": 24.122,
+          "endValue": 34.317,
+          "dailyDerived": 42.264323024624815,
+          "published": 42.3,
+          "publishedDecimalPlaces": 1
+        },
+        {
+          "year": 2025,
+          "start": "2024-12-31",
+          "end": "2025-12-31",
+          "startValue": 34.317,
+          "endValue": 67.25,
+          "dailyDerived": 95.96701343357519,
+          "published": 96.0,
+          "publishedDecimalPlaces": 0
+        }
+      ]
+    },
+    "responseSha256": "2da5e550655f0f142c3c41174bb2cd42511e34ebe46c817901014888eb9856c0",
+    "rawSourceHashes": {
+      "https://www.vaneck.com/uk/en/investments/space-etf/": "36d4d2cc6e30275634fccc0711fe1999fda0aa4681e7f7bb940303069005353f",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI": "192bbe454b6ecd0590d96bfb8ced0110bab611d831e816ff73ea7309cdccb25d",
+      "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI": "c33a2584638581ff71bc8c45a594b2a79d5e51fa5233c56927ebd3160df42c61",
+      "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI": "8a428689fc516a5af05be9ce7d9e1197835eca214678a53a4743249c3d9d4922",
+      "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI": "bb469674d943fb6f13285a1b586ed67510954a68a05b1f1138da32e542578f36",
+      "https://www.vaneck.com/static/eu/js/dist/main.js": "18e4a235a946f446a48205b20d2c3411d15cb4759b90d27059fa4cdee9c8339f",
+      "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/": "24a9f48d21cc4e13b1cc03f0efab7d40b1ea42e7559e10b4dca369a7e8d0f893",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
+    }
   },
   "etfIE00BKPX3K41": {
     "id": "etfIE00BKPX3K41",

@@ -122,7 +122,7 @@ export function rollingRegularity(assets, months) {
 export const formatPercent = value => `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} %`
 export const formatMonth = (value, short = false) => new Date(`${value}-01T00:00:00Z`).toLocaleDateString('fr-FR', { month: short ? 'short' : 'long', year: 'numeric', timeZone: 'UTC' })
 export function basisLabel(basis) {
-  return ({ adjusted: 'Cours ajustés · revenus réinvestis', 'fund-nav': 'Calendriers NAV officiels · revenus réinvestis', 'mixed-total': 'Rendements totaux et clôtures des actifs sans revenus', portfolio: 'Allocations pondérées · revenus réinvestis', 'index-net': 'Indices · dividendes nets réinvestis', 'index-gross': 'Indices · dividendes bruts réinvestis', 'spot-close': 'Cours de clôture' })[basis] ?? basis
+  return ({ adjusted: 'Cours ajustés · revenus réinvestis', 'fund-nav-total-return': 'Valeurs liquidatives · revenus réinvestis', 'fund-nav': 'Calendriers NAV officiels · revenus réinvestis', 'mixed-total': 'Rendements totaux et clôtures des actifs sans revenus', portfolio: 'Allocations pondérées · revenus réinvestis', 'index-net': 'Indices · dividendes nets réinvestis', 'index-gross': 'Indices · dividendes bruts réinvestis', 'spot-close': 'Cours de clôture' })[basis] ?? basis
 }
 export function supportLabel(assets) {
   return [...new Set(assets.map(a => a.portfolio ? 'Portefeuilles' : a.instrumentType === 'EQUITY' ? 'Actions' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indices' : a.basis === 'adjusted' ? 'Actions' : 'Actifs au comptant'))].join(' / ')

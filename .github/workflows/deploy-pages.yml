@@ -356,6 +356,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
+      - run: python -m unittest discover -s scripts -p 'test_vaneck_nav_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
       - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'

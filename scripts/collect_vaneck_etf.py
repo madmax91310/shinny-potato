@@ -9,6 +9,46 @@ from data_automation import reject
 from issuer_documents import download,pdf_text,document_date,proof,validated_rows,bounded_return
 
 
+def parse_calendar_performance(text,share,now):
+    """Official fund row only; shared by factsheet and NAV consumers."""
+    if 'Past Performance as of'not in text:return None,{}
+    block=text.split('Past Performance as of',1)[1].split('Past performance does not',1)[0]
+    years=[];values=[]
+    for line in block.splitlines():
+        cells=re.split(r' {2,}',line.strip())
+        # An asterisk marks a documented benchmark change, not a partial year.
+        header=re.search(r'(?:^| {2,})(20\d{2}\*?(?:\s+20\d{2}\*?)*)\s*$',line.strip())
+        if header: years=re.findall(r'20\d{2}',header[1])
+        if 'VanEck ' in line and 'Benchmark' not in line:
+            # Numeric columns are separated from the ETF label by two or
+            # more spaces. Integer returns (9, 16...) are valid observations.
+            cells=re.split(r' {2,}',line.split('VanEck ',1)[1].strip(),maxsplit=1)
+            numeric=cells[1].split() if len(cells)==2 else []
+            if numeric and any(not re.fullmatch(r'-?\d+(?:\.\d+)?',c) for c in numeric):
+                reject('Invalid VanEck numerical calendar row')
+            if numeric: values=numeric
+    header=re.search(r'Fund Data\s+(20\d{2}(?:\s+20\d{2})*)',block)
+    if header: years=re.findall(r'20\d{2}',header[1])
+    if years and values and len(values)<=len(years):
+        import datetime as dt
+        launch=re.search(r'Inception Date\s+(\d{1,2} [A-Za-z]+ 20\d{2})',text)
+        if not launch: reject('Missing VanEck fund inception date')
+        inception=dt.date.fromisoformat(document_date(launch[1],now,max_age=36500))
+        first_full=inception.year + (0 if (inception.month,inception.day)==(1,1) else 1)
+        numeric_years=list(map(int,years))
+        if numeric_years != list(range(min(numeric_years),now.year)):
+            reject('Missing, duplicate or unfinished VanEck calendar column')
+        years=[y for y in years if int(y)>=first_full]
+        if len(values)!=len(years): reject('Missing complete VanEck calendar observation')
+        performance={'currency':share['currency'],'basis':'fund',
+            'method':('calendar-year NAV total return, income distributions gross of Dutch withholding tax, net of fund fees'
+                      if share['isin'].startswith('NL') else 'calendar-year NAV total return, net income reinvested, net of fees'),
+            'years':{y:bounded_return(float(v))for y,v in zip(years,values)}}
+        precision={y:len(v.split('.')[1])if'.'in v else 0 for y,v in zip(years,values)}
+        return performance,precision
+    return None,{}
+
+
 def parse_document(body,share,now):
     text=pdf_text(body)
     if share['isin']not in text:reject('Wrong VanEck UCITS share identity')
@@ -38,40 +78,9 @@ def parse_document(body,share,now):
     validated_rows(holdings,complete=False)
     result['holdings']={'asOf':stamp,'basis':'fund','sourceUrl':share['sourceUrl'],'rows':holdings}
     result['unavailable'].append('sectors: factsheet does not publish a complete sector table')
-    # An exact numerical ETF row is used, never the benchmark row or the bar chart.
     if 'Past Performance as of'in text:
-        block=text.split('Past Performance as of',1)[1].split('Past performance does not',1)[0]
-        years=[];values=[]
-        for line in block.splitlines():
-            cells=re.split(r' {2,}',line.strip())
-            # An asterisk marks a documented benchmark change, not a partial year.
-            header=re.search(r'(?:^| {2,})(20\d{2}\*?(?:\s+20\d{2}\*?)*)\s*$',line.strip())
-            if header: years=re.findall(r'20\d{2}',header[1])
-            if 'VanEck ' in line and 'Benchmark' not in line:
-                # Numeric columns are separated from the ETF label by two or
-                # more spaces. Integer returns (9, 16...) are valid observations.
-                cells=re.split(r' {2,}',line.split('VanEck ',1)[1].strip(),maxsplit=1)
-                numeric=cells[1].split() if len(cells)==2 else []
-                if numeric and any(not re.fullmatch(r'-?\d+(?:\.\d+)?',c) for c in numeric):
-                    reject('Invalid VanEck numerical calendar row')
-                if numeric: values=numeric
-        header=re.search(r'Fund Data\s+(20\d{2}(?:\s+20\d{2})*)',block)
-        if header: years=re.findall(r'20\d{2}',header[1])
-        if years and values and len(values)<=len(years):
-            import datetime as dt
-            launch=re.search(r'Inception Date\s+(\d{1,2} [A-Za-z]+ 20\d{2})',text)
-            if not launch: reject('Missing VanEck fund inception date')
-            inception=dt.date.fromisoformat(document_date(launch[1],now,max_age=36500))
-            first_full=inception.year + (0 if (inception.month,inception.day)==(1,1) else 1)
-            numeric_years=list(map(int,years))
-            if numeric_years != list(range(min(numeric_years),now.year)):
-                reject('Missing, duplicate or unfinished VanEck calendar column')
-            years=[y for y in years if int(y)>=first_full]
-            if len(values)!=len(years): reject('Missing complete VanEck calendar observation')
-            result['performance']={'currency':share['currency'],'basis':'fund',
-                'method':('calendar-year NAV total return, income distributions gross of Dutch withholding tax, net of fund fees'
-                          if share['isin'].startswith('NL') else 'calendar-year NAV total return, net income reinvested, net of fees'),
-                'years':{y:bounded_return(float(v))for y,v in zip(years,values)}}
+        performance,_=parse_calendar_performance(text,share,now)
+        if performance:result['performance']=performance
         else:result['unavailable'].append('performance: numerical calendar-year row not qualified')
     return result
 
