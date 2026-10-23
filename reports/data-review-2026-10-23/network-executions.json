@@ -443,6 +443,16 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40026026342",
       "interpretation": "Copper et les quatre compositions WisdomTree restent en HTTP403 ; discovery 0/6, deux WisdomTree403 et quatre L&G sans état de part exacte. Aucun résultat promu.",
       "proof": "reprise/github-macos-40026026342/"
+    },
+    {
+      "scope": "ai-producer-confirmation-lifecycle",
+      "runId": 40032904711,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032904711",
+      "headSha": "afaea9ef6250d150816bbe2d5103ae07645e4115",
+      "conclusion": "failure",
+      "cause": "Contraste : style vide lu pendant le remplacement du lien de confirmation ; recette isolée, aucun échec du livre réel déduit.",
+      "proof": "reprise/gha-ai-confirmation-failure.log.gz",
+      "resolution": "Ancien lien immédiatement masqué et lecture atomique du nœud courant ; nouvelle validation GitHub requise."
     }
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",

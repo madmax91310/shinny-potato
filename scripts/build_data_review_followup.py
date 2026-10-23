@@ -180,6 +180,9 @@ def main():
         add('validation reprise','anniversary-valid-horizon','recette anniversaire supposant un horizon continu jusqu’au maximum','chaque horizon choisi appartient aux options réellement qualifiées',
             'Les horizons et comparaisons sont pris dans les ensembles admissibles exacts. Les protections de dates et de conventions restent inchangées ; 709 exports réels ont été contrôlés localement.',
             'reprise/anniversary-art-qualified.log.gz',field='validation des exports',tools='Anniversaire',action='Ne pas confondre ancienneté maximale et admissibilité de tous les horizons intermédiaires.')
+        add('validation reprise','ai-confirmation-lifecycle','recette du producteur IA échouée lors du remplacement du lien de confirmation','ancien lien masqué immédiatement ; mesure sur le lien attaché et stylé',
+            'Le producteur 40032904711 échoue en lisant un style vide lors du remplacement du lien. La préparation masque désormais le lien précédent avant la génération asynchrone du nouveau. La recette lit le nœud courant dans une tâche navigateur atomique et conserve le seuil de contraste 4,5. Aucun livre réel modifié.',
+            'reprise/gha-ai-confirmation-failure.log.gz ; reprise/owner-confirmation-3.log.gz ; reprise/owner-confirmation-4.log.gz',field='interface et validation du producteur ordinaire',tools='Portefeuilles IA',action='Vérification GitHub du nouveau commit requise ; ne pas annoncer le producteur réussi avant son rejeu complet.')
     source_path=OUT/'reprise/source-results.json'
     if source_path.exists():
         latest=read(source_path)
