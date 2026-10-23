@@ -36,6 +36,7 @@ jobs:
       - id: record
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          AI_OWNER_DATA_PATHS: data/ai-portfolios public/data/ai-portfolios
         run: node scripts/process-ai-owner-issue.mjs
   deploy:
     needs: record

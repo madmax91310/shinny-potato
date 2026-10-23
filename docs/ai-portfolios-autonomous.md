@@ -41,3 +41,11 @@ Actualisations programmées à **05:20 et 09:20 UTC**, délais GitHub Actions po
 La recette isolée simule la connexion/confirmation GitHub et les réponses du fournisseur ; elle ne constitue pas une preuve d’authentification réelle en production. Aucun scénario de recette ne doit écrire dans le livre réel. Un essai d’authentification du propriétaire et du formulaire publié peut être fait sans soumettre de compétition. La création d’une compétition réelle reste une action ultérieure explicite de l’utilisateur.
 
 Les demandes et réponses originales sont **publiques** dans ce dépôt public. L’application le signale avant confirmation. Il ne faut pas y mettre de secrets. Aucun appel automatique aux IA, ordre réel ou publication sur X.
+
+## Recette du traitement réellement hébergé
+
+Un environnement de recette peut être préparé par les développeurs dans une branche `ai-rehearsal/<identifiant>`, avec le marqueur `.ai-portfolio-rehearsal.json`. Le paramètre `?ai-rehearsal=<branche>` charge uniquement ses données, affiche une bannière RECETTE ISOLÉE et sépare ses brouillons locaux. Les actifs et historiques restent ceux réellement collectés ; les règles et noms de recette sont explicitement fictifs. Aucun portefeuille de recette n’est créé sur master.
+
+Le même traitement GitHub est utilisé. Il refuse les branches hors de cet espace, l’absence de marqueur et toute différence de code avec son instantané de confiance. Les commits de recette n’alimentent jamais la sortie déclenchant le déploiement. La collecte quotidienne de production ne lit que son livre sur master. Le script `prepare-ai-owner-rehearsal.mjs` est un outil de test protégé par le nom de branche, pas une étape du parcours utilisateur.
+
+Un commit peut être confirmé par le journal GitHub avant d’être disponible sur son CDN. L’interface affiche alors « enregistrement durable confirmé, tableau en cours de disponibilité », garde le tableau précédent et permet une nouvelle vérification. Elle ne recrée pas la demande.

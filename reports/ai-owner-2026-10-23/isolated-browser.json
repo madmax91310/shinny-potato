@@ -1,6 +1,6 @@
 {
   "scope": "Deterministic isolated UI. GitHub confirmation/authentication and data provider simulated; no production write, no real GitHub login asserted.",
-  "root": "/tmp/ai-owner-ui-Apf2nP",
+  "root": "/tmp/ai-owner-ui-O4havb",
   "mobile": true,
   "desktop": true,
   "initialDossiers": 3,
@@ -11,6 +11,7 @@
   "durableReload": true,
   "secondContext": true,
   "crossDeviceRequestTracking": true,
+  "delayedCdnReceipt": true,
   "explicitLaunch": true,
   "commonFutureClose": "2026-10-26",
   "unauthorized": true,
