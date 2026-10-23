@@ -1487,33 +1487,27 @@
     "update-publication-observations.yml": {
       "monitorVersion": 2,
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 39939003159,
+      "runId": 39956309436,
       "attempt": 1,
-      "headSha": "5b88f28925ca038a33b4fc8552cc8a9145f5e1d3",
-      "createdAt": "2026-10-23T10:25:31Z",
-      "completedAt": "2026-10-23T10:32:43Z",
-      "status": "success",
+      "headSha": "df02156644c3d68881d5f504385918da0195d78b",
+      "createdAt": "2026-10-23T12:49:56Z",
+      "completedAt": "2026-10-23T13:09:51Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-23T10:32:43Z",
       "collectionStatus": "success",
       "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-23T10:32:43Z",
+      "recordingStatus": "failure",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-23T13:09:51Z",
       "lastPublicationSuccessAt": "2026-10-23T12:44:16.076Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39939003159",
-      "failures": [],
-      "dataFailures": {},
-      "publicationReceipt": {
-        "commit": "49626863142c934063533bb2cd1595b2d977656e",
-        "files": {
-          "src/data/anniversary-index-history.json": "a5e535fdfccff92c4ce787367aa224768640092c",
-          "src/data/anniversary-levels.json": "913af68d8e616d1b80c0433b5ace230a689c60f9",
-          "src/data/purchasing-power-observations.json": "bf3a79b03f00abc830fe2db0f6f9878ef5ab8b0a"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "31f371818b078ae5ddbe0915e7e891344dcfde70",
-      "publishedDataSha": "0d045d448a6f5d53f39033d7ea5002fda84604c3"
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39956309436",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        }
+      ],
+      "dataFailures": {}
     },
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
@@ -3342,11 +3336,11 @@
       "publishedDataSha": "0d045d448a6f5d53f39033d7ea5002fda84604c3"
     }
   },
-  "updatedAt": "2026-10-23T12:48:18Z",
+  "updatedAt": "2026-10-23T13:09:51Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T13:04:48.985009+00:00",
-    "revision": 267,
+    "checkedAt": "2026-10-23T13:10:21.721851+00:00",
+    "revision": 268,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
         "name": "Amundi · structure et risques de l’ETC or",
@@ -3368,7 +3362,25 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
+      },
+      "workflow:update-publication-observations.yml": {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39956309436",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-23T13:09:51Z",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Commit validated observations",
+        "id": "workflow:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-23T13:10:21.721851+00:00",
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -3391,7 +3403,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -3419,7 +3431,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -3447,7 +3459,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -3474,7 +3486,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -3501,7 +3513,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -3528,7 +3540,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -3557,7 +3569,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -3586,7 +3598,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -3615,7 +3627,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -3642,7 +3654,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -3669,7 +3681,7 @@
         "evaluatedAt": "2026-10-23",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -3691,51 +3703,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-23T13:04:48.985009+00:00"
+        "lastSeenAt": "2026-10-23T13:10:21.721851+00:00"
       }
     },
     "events": [
-      {
-        "revision": 238,
-        "at": "2026-10-22T01:00:14.437964+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Fiches pratiques",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
-            "to": "/bibliotheque-donnees?id=FR0011550193",
-            "lastSuccessAt": "2026-10-21T12:22:45Z",
-            "completedAt": "2026-10-21T19:45:20Z",
-            "cause": "HTTP Error 503: Service Unavailable",
-            "field": "Collecte ETF",
-            "sourceUrls": [
-              "https://docfinder.bnpparibas-am.com/api/files/85e997cf-94fd-48ba-9406-225f0a281549/1024",
-              "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
-              "https://live.euronext.com/en/product/etfs/FR0011550193-XPAR",
-              "https://www.justetf.com/en/etf-profile.html?isin=FR0011550193",
-              "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-FR0011550193",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550193",
-            "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-            "lastSeenAt": "2026-10-22T00:41:25.946803+00:00",
-            "resolvedAt": "2026-10-22T01:00:14.437964+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 239,
         "at": "2026-10-22T11:43:29.272463+00:00",
@@ -5067,6 +5038,16 @@
             "resolvedAt": "2026-10-23T12:44:45.755769+00:00"
           }
         ],
+        "retired": [],
+        "escalated": []
+      },
+      {
+        "revision": 268,
+        "at": "2026-10-23T13:10:21.721851+00:00",
+        "opened": [
+          "workflow:update-publication-observations.yml"
+        ],
+        "resolved": [],
         "retired": [],
         "escalated": []
       }
@@ -11153,11 +11134,11 @@
           "error": null
         }
       ],
-      "reason": null,
-      "lastSuccessAt": "2026-10-23T10:32:43Z",
-      "observedRunId": 39939003159,
-      "status": "idle",
-      "nextAttemptAt": null
+      "reason": "recording-failed",
+      "lastSuccessAt": "2026-10-23T13:09:51Z",
+      "observedRunId": 39956309436,
+      "status": "waiting",
+      "nextAttemptAt": "2026-10-23T14:17:43.851576+00:00"
     },
     "update-insurance.yml": {
       "attempts": [
