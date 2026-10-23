@@ -1,8 +1,20 @@
 import {useMemo,useState,useEffect} from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
-import {downloadImage} from '../../design-system/downloadImage.js'
 import {FORMATS,PERIODS,publication,publicationTweet,periodBounds} from './publication.js'
 import {renderCards} from './cards.js'
+// Retain the prepared PNG as a browser resource. The native download does not
+// import, render or encode anything when an old tab is used after deployment.
+function ImageExport({canvas,filename,label,alt}){
+ const preview=useMemo(()=>canvas.toDataURL('image/png'),[canvas])
+ const [resource,setResource]=useState(null)
+ useEffect(()=>{
+  const bytes=Uint8Array.from(atob(preview.split(',')[1]),ch=>ch.charCodeAt(0))
+  const href=URL.createObjectURL(new Blob([bytes],{type:'image/png'}))
+  setResource({preview,href})
+  return ()=>{setTimeout(()=>URL.revokeObjectURL(href),60000)}
+ },[preview])
+ return <div>{resource?.preview===preview?<a className="ai-download" href={resource.href} download={filename}>{label}</a>:<p role="status">Préparation du PNG…</p>}<img className="ai-image" src={preview} width={canvas.width} height={canvas.height} alt={alt}/></div>
+}
 export default function Images({comp,bundle,participant,chooseParticipant,copy}){
  const [format,setFormat]=useState('individual'),[period,setPeriod]=useState('all'),[end,setEnd]=useState(bundle.market.asOf),[selected,setSelected]=useState(comp?.config.participants.slice(0,3).map(p=>p.id)??[]),[title,setTitle]=useState(''),[subtitle,setSubtitle]=useState(''),[editor,setEditor]=useState(null)
  useEffect(()=>{setTitle('');setSubtitle('');setEditor(null)},[format,period,end,participant,selected])
@@ -16,6 +28,6 @@ export default function Images({comp,bundle,participant,chooseParticipant,copy})
  <div className="ai-form-grid"><label className="ai-field"><span>Titre temporaire</span><input maxLength={80} value={title} onChange={e=>setTitle(e.target.value)}/></label><label className="ai-field"><span>Sous-titre temporaire</span><input maxLength={100} value={subtitle} onChange={e=>setSubtitle(e.target.value)}/></label></div>
  {output.error?<p role="status" className="ai-alert">{output.error}</p>:<><p>{output.model.start} → {output.model.end}. {output.model.opening?'Capital initial avant frais d’entrée comme base de départ.':'Après la clôture de début, jusqu’à la clôture de fin incluse.'} Les courbes sont rebasées sur cette période. Référence : {output.model.reference?.name} · {output.model.reference?.isin} · {output.model.reference?.ticker} {output.model.reference?.mic}. {output.model.reference?.instrumentType==='ETF'?'Performance du fonds identifié, pas de l’indice exact.':'Performance de l’instrument de référence identifié.'} Conversion historique en devise commune ; la convention de la compétition archivée est conservée.</p>
  <label className="ai-field"><span>Tweet temporaire</span><textarea rows="5" value={editor??text} onChange={e=>setEditor(e.target.value)}/></label><button onClick={()=>copy(editor??text)}>Copier le tweet</button>
- <p>{output.canvases.length>1?`${output.canvases.length} images : toutes les lignes sont conservées.`:'Une image prête à télécharger.'}</p>{output.canvases.map((canvas,i)=><div key={i}><button onClick={()=>downloadImage(canvas,`portefeuilles-ia-${format}-${end}-${i+1}.png`)}>Télécharger PNG {i+1}/{output.canvases.length}</button><img className="ai-image" src={canvas.toDataURL('image/png')} alt={`Aperçu ${FORMATS.find(x=>x[0]===format)[1]} · image ${i+1}`}/></div>)}</>}
+ <p>{output.canvases.length>1?`${output.canvases.length} images : toutes les lignes sont conservées.`:'Une image prête à télécharger.'}</p>{output.canvases.map((canvas,i)=><ImageExport key={i} canvas={canvas} filename={`portefeuilles-ia-${format}-${end}-${i+1}.png`} label={`Télécharger PNG ${i+1}/${output.canvases.length}`} alt={`Aperçu ${FORMATS.find(x=>x[0]===format)[1]} · image ${i+1}`}/>)}</>}
  </section>
 }

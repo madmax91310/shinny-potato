@@ -453,6 +453,24 @@
       "cause": "Contraste : style vide lu pendant le remplacement du lien de confirmation ; recette isolée, aucun échec du livre réel déduit.",
       "proof": "reprise/gha-ai-confirmation-failure.log.gz",
       "resolution": "Ancien lien immédiatement masqué et lecture atomique du nœud courant ; nouvelle validation GitHub requise."
+    },
+    {
+      "scope": "ai-retained-png-download",
+      "runId": 40035153798,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40035153798",
+      "headSha": "2dc775fda12091cfacc1241312f37902986c559a",
+      "conclusion": "failure",
+      "cause": "Retained PNG: timeout without download event; preview present, no JavaScript exception or missing-module request.",
+      "resolution": "Prepared native Blob link; edited preview/file equality and ordinary GitHub replay required.",
+      "proof": "reprise/gha-ai-retained-png-failure.log.gz"
+    },
+    {
+      "scope": "technical-core-afaea",
+      "runId": 40032701777,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40032701777",
+      "headSha": "afaea9ef6250d150816bbe2d5103ae07645e4115",
+      "conclusion": "success",
+      "interpretation": "Full build, Python, all four browser partitions, all four publication partitions, exposure, smoke passed. 709 actual anniversary PNG exports. Subsequent AI fixes require their own validation."
     }
   ],
   "authorization": "Dernière instruction utilisateur : Quand tu as fini fusionne et deploie. Fusion et déploiement conditionnés à la validation technique finale.",
