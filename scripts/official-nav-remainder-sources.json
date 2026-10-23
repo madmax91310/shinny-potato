@@ -169,5 +169,41 @@
     "navCurrency": "USD",
     "productId": 273192,
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data"
+  },
+  {
+    "id": "etfUsaSmallValue",
+    "isin": "IE00BSPLC413",
+    "label": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2016-01",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; ancienne cotation archivée séparément",
+    "navProvider": "ssga",
+    "navCurrency": "USD",
+    "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy"
+  },
+  {
+    "id": "etfSmallValueEurope",
+    "isin": "IE00BSPLC298",
+    "label": "State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2016-01",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; conversion mensuelle BCE explicite si nécessaire ; ancienne cotation archivée séparément",
+    "navProvider": "ssga",
+    "navCurrency": "EUR",
+    "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy"
   }
 ]
