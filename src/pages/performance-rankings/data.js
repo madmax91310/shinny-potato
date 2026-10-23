@@ -141,6 +141,7 @@ const INDEX_BASIS = {
   msciWorldMomentum: 'index-net', msciWorldQuality: 'index-net', msciWorldValue: 'index-net', msciAcwiImi: 'index-net', msciWorldExUsa: 'index-net', msciAcwi: 'index-net',
 }
 export function comparisonBasis(id, asset) {
+  if (asset.valuationBasis === 'fund-nav-total-return') return 'fund-nav-total-return'
   if (id === 'or') return 'monthly-average'
   if (id === 'cac40') return 'price-index'
   if (id === 'silver') return 'futures-price'
