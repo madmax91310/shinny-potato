@@ -662,7 +662,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:13:59Z",
-      "lastPublicationSuccessAt": "2026-10-23T08:04:14.843Z",
+      "lastPublicationSuccessAt": "2026-10-23T08:54:04.481Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39784256327",
       "failures": [],
       "dataFailures": {},
@@ -673,8 +673,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "a0e1ca2b048daee64b45deb1a64f4a46a2e0c663",
-      "publishedDataSha": "a0d2240d593e446232151a00c3326fc9abb86647"
+      "publishedCodeSha": "164bf38a759cca1efee9af3439e9df73dee972bf",
+      "publishedDataSha": "949cc1238304cac1b9a76538e275264685c8bad6"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -787,7 +787,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T10:34:42Z",
-      "lastPublicationSuccessAt": "2026-10-23T08:04:14.843Z",
+      "lastPublicationSuccessAt": "2026-10-23T08:54:04.481Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39763727431",
       "failures": [],
       "dataFailures": {},
@@ -798,8 +798,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "a0e1ca2b048daee64b45deb1a64f4a46a2e0c663",
-      "publishedDataSha": "a0d2240d593e446232151a00c3326fc9abb86647"
+      "publishedCodeSha": "164bf38a759cca1efee9af3439e9df73dee972bf",
+      "publishedDataSha": "949cc1238304cac1b9a76538e275264685c8bad6"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -816,7 +816,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T13:02:10Z",
-      "lastPublicationSuccessAt": "2026-10-23T08:04:14.843Z",
+      "lastPublicationSuccessAt": "2026-10-23T08:54:04.481Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39782485527",
       "failures": [],
       "dataFailures": {},
@@ -830,8 +830,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "a0e1ca2b048daee64b45deb1a64f4a46a2e0c663",
-      "publishedDataSha": "a0d2240d593e446232151a00c3326fc9abb86647"
+      "publishedCodeSha": "164bf38a759cca1efee9af3439e9df73dee972bf",
+      "publishedDataSha": "949cc1238304cac1b9a76538e275264685c8bad6"
     },
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
@@ -1660,7 +1660,7 @@
   "updatedAt": "2026-10-23T08:19:16Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-23T08:37:09.966456+00:00",
+    "checkedAt": "2026-10-23T08:55:32.012020+00:00",
     "revision": 260,
     "active": {
       "collection:update-practical-sheets.yml:practical:gold": {
@@ -1683,7 +1683,7 @@
         "dataId": "practical:gold",
         "id": "collection:update-practical-sheets.yml:practical:gold",
         "firstSeenAt": "2026-10-22T23:47:46.816969+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "workflow:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -1701,7 +1701,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-23T07:36:46.920652+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "workflow:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -1718,7 +1718,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-scpi.yml",
         "firstSeenAt": "2026-10-23T07:28:28.322874+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1741,7 +1741,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1769,7 +1769,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -1797,7 +1797,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -1824,7 +1824,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1851,7 +1851,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:stoxx600": {
         "name": "Indice STOXX Europe 600",
@@ -1878,7 +1878,7 @@
         "dataId": "stoxx600",
         "id": "collection:refresh-automated-index-sheets.yml:stoxx600",
         "firstSeenAt": "2026-10-22T12:26:18.416092+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1905,7 +1905,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -1934,7 +1934,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-23T08:37:09.966456+00:00"
+        "lastSeenAt": "2026-10-23T08:55:32.012020+00:00"
       }
     },
     "events": [
