@@ -263522,7 +263522,7 @@
       "symbolOrigin": "issuer-listing",
       "status": "temporary-failure",
       "reason": "Clôtures attendues manquantes : 2026-10-23",
-      "lastAttempt": "2026-10-24T08:49:04.279382+00:00",
+      "lastAttempt": "2026-10-24T09:38:21.582179+00:00",
       "lastSuccess": "2026-10-23T10:39:50.275215+00:00",
       "coverageFrom": "2026-07-13",
       "coverageThrough": "2026-10-22",
@@ -263534,9 +263534,9 @@
       "responseSha256": "fb234911e637c6a6ebacea24871c36adcf4defc9f8f5f1c6fc08ce192c49242e",
       "attempts": [
         {
-          "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits",
+          "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792834701&interval=1d&events=div%2Csplits",
           "result": "Clôtures attendues manquantes : 2026-10-23",
-          "at": "2026-10-24T08:49:04.279382+00:00"
+          "at": "2026-10-24T09:38:21.582179+00:00"
         }
       ],
       "qualifiedSymbol": "CSPX.L",
@@ -1898456,7 +1898456,7 @@
       "errorCategory": "stale-identity-evidence"
     }
   ],
-  "generatedAt": "2026-10-24T08:49:04.279382+00:00",
+  "generatedAt": "2026-10-24T09:38:21.582179+00:00",
   "calendarFrom": "2026-07-13",
   "calendarThrough": "2027-01-02",
   "calendars": {
@@ -2012087,7 +2012087,7 @@
     "ECB": {
       "ok": true,
       "asOf": "2026-10-23",
-      "attemptedAt": "2026-10-24T08:49:04.279382+00:00"
+      "attemptedAt": "2026-10-24T09:38:21.582179+00:00"
     },
     "US0378331005-XNAS": {
       "ok": true,
@@ -2015010,9 +2015010,9 @@
     },
     "IE00B5BMR087-XLON-CSPX-USD": {
       "ok": false,
-      "attemptedAt": "2026-10-24T08:49:04.279382+00:00",
+      "attemptedAt": "2026-10-24T09:38:21.582179+00:00",
       "error": "Clôtures attendues manquantes : 2026-10-23",
-      "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits",
+      "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792834701&interval=1d&events=div%2Csplits",
       "lastValidAsOf": "2026-10-22",
       "lastSuccess": "2026-10-23T10:39:50.275215+00:00"
     },
@@ -2154020,7 +2154020,7 @@
       }
     },
     "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
-    "retrievedAt": "2026-10-24T08:49:04.279382+00:00",
+    "retrievedAt": "2026-10-24T09:38:21.582179+00:00",
     "observations": [
       {
         "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -2154072,6 +2154072,13 @@
       {
         "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
         "retrievedAt": "2026-10-24T08:49:04.279382+00:00",
+        "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+        "from": "2026-07-06",
+        "through": "2026-10-23"
+      },
+      {
+        "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+        "retrievedAt": "2026-10-24T09:38:21.582179+00:00",
         "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
         "from": "2026-07-06",
         "through": "2026-10-23"
@@ -2154768,11 +2154775,9 @@
   },
   "collection": {
     "required": [
-      "IE00B4L5Y983-ETFP",
       "IE00B5BMR087-XLON-CSPX-USD"
     ],
     "requested": [
-      "IE00B4L5Y983-ETFP",
       "IE00B5BMR087-XLON-CSPX-USD"
     ],
     "reused": []
