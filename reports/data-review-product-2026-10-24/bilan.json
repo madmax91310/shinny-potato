@@ -1,0 +1,441 @@
+{
+  "checkedAt": "2026-10-24T16:18:52.962Z",
+  "monitorCheckedAt": "2026-10-24T16:08:11.098455+00:00",
+  "monitorHealthy": true,
+  "counts": {
+    "issues": 4429,
+    "signals": 9519,
+    "byKind": {
+      "failure": 36,
+      "connection": 167,
+      "qualification": 3051,
+      "waiting": 14,
+      "not-applicable": 280,
+      "editorial": 779,
+      "monitoring": 2,
+      "history": 100
+    },
+    "fields": 4274,
+    "consumerTools": 23,
+    "requiredUsages": 27987,
+    "financialOpenOrResidual": 79
+  },
+  "workflowScope": [
+    {
+      "id": "automation-status.yml",
+      "scope": "independent-browser-heartbeat",
+      "consumerPublication": false,
+      "note": ""
+    },
+    {
+      "id": "collect-etf-pilot.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "deploy-pages.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "onboard-assets.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "probe-bitcoin-monthly.yml",
+      "scope": "observation-only-pilot",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "publish-validated-data.yml",
+      "scope": "supervised-in-parent-run",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "refresh-automated-index-sheets.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "rehearse-refresh.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "retire-closed-pr-validation.yml",
+      "scope": "closed-pr-cleanup",
+      "consumerPublication": false,
+      "note": ""
+    },
+    {
+      "id": "review-freshness.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-bitcoin-monthly.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-economic-data.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-editorial-radar.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-exposure-expansion.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-gold-monthly.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-inflation.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-instrument-metadata.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-insurance.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-investor-13f.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-lifestrategy.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-market-monthly.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-non-bond-expansion.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-practical-sheets.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-presentation-actors.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-publication-observations.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-qualified-exposures.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-regulatory-data.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "update-scpi.yml",
+      "scope": "supervised",
+      "consumerPublication": true,
+      "note": ""
+    },
+    {
+      "id": "validate-asset-automation.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-automation-lots.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-code-data-refresh.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-dws-aum.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-global-equities.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-issuer-recovery.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-non-bond-expansion.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-performance-rankings.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-roadmap-34.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-russell-composition.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-sp-public-data.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "validate-tool-expansion-round3.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "validate-tool-expansion-round4.yml",
+      "scope": "pull-request-validation",
+      "consumerPublication": false,
+      "note": "PR control results are gated in PR CI; production build/check failures are supervised in deploy-pages."
+    },
+    {
+      "id": "verify-amundi-distributions.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "verify-data-review.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "verify-reliquat-sources.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "verify-remainder-nav.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "verify-vaneck-nav.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    },
+    {
+      "id": "verify-wfns-distribution.yml",
+      "scope": "manual-isolated-qualification",
+      "consumerPublication": false,
+      "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "test-artifacts/review-product/all-1440.json",
+      "bytes": 296646,
+      "sha256": "ae87878597d3bacb62f44b7c0b71afc6342016f137d3cc8758f852897def5ab6"
+    },
+    {
+      "path": "test-artifacts/review-product/all-390.json",
+      "bytes": 296646,
+      "sha256": "0e26bdfa39087d7bfc3223c46cb2774452759067ff0ac4f2d598677983d96b48"
+    },
+    {
+      "path": "test-artifacts/review-product/monitor-absent.png",
+      "bytes": 69193,
+      "sha256": "c8771c41476abe76fbfe45eadd115008bd8f4f672a84801776488a3c7f3d3ecf"
+    },
+    {
+      "path": "test-artifacts/review-product/monitor-invalid.png",
+      "bytes": 69193,
+      "sha256": "c8771c41476abe76fbfe45eadd115008bd8f4f672a84801776488a3c7f3d3ecf"
+    },
+    {
+      "path": "test-artifacts/review-product/monitor-stale.png",
+      "bytes": 71910,
+      "sha256": "bb6a3b6ede9228c134cc6724af749fe780e41eca468cab5b56a515dcaebd8e95"
+    },
+    {
+      "path": "test-artifacts/review-product/queue-1440.png",
+      "bytes": 134566,
+      "sha256": "f7c8964ebeedc9e0ea34257a99314ef5cb61b09ea4bec987874d93eb2df545f4"
+    },
+    {
+      "path": "test-artifacts/review-product/queue-390.png",
+      "bytes": 62976,
+      "sha256": "672fc581e657616e722840f02474a77276671c36233c9bda2d9c76d8cab3559c"
+    },
+    {
+      "path": "test-artifacts/review-product/results.json",
+      "bytes": 313,
+      "sha256": "b11c3034a7f68b63a8cc9f27784fb1bca467720d9cea87204f489d94eaa591d2"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/copper-annual-nav-2018.png",
+      "bytes": 2864013,
+      "sha256": "76b783da5590500fbd2328efae90dafed9533199507f773e352fc4557573cc96"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/copper-compatible-2026.png",
+      "bytes": 2738253,
+      "sha256": "53c59a02330355f074698a991ffdb04294663cbd61eb6dfa93cc04c5e94ea83a"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/dca-1280.png",
+      "bytes": 581317,
+      "sha256": "0945ddf337316da957a1a8a66a72b30b2bc3a6c3bed0c6245695a33c2428e00a"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/dca-390.png",
+      "bytes": 581317,
+      "sha256": "0945ddf337316da957a1a8a66a72b30b2bc3a6c3bed0c6245695a33c2428e00a"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/financial-reconciliation.json",
+      "bytes": 398458,
+      "sha256": "47ce062ba8f2995136907532d94aed9bd469ea981a35077b68b2000252a70c83"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/gold-av-cto-1280.png",
+      "bytes": 1859729,
+      "sha256": "46c6fc55fae89064884de49198737666caaff4167524a031be9e67c7dc87c289"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/gold-av-cto-390.png",
+      "bytes": 1859729,
+      "sha256": "46c6fc55fae89064884de49198737666caaff4167524a031be9e67c7dc87c289"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/gold-physical-1280.png",
+      "bytes": 1842483,
+      "sha256": "2a667eaba72696f30bf2fe3c0cc0ab33b820c5047c3b93ada6f5b676f9efa0b9"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/gold-physical-390.png",
+      "bytes": 1842483,
+      "sha256": "2a667eaba72696f30bf2fe3c0cc0ab33b820c5047c3b93ada6f5b676f9efa0b9"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/ibkr-1280.png",
+      "bytes": 1547650,
+      "sha256": "ed6368e32936820b2a9c7c49e7db067aa117e33f040789333cb8c05998a6429f"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/ibkr-390.png",
+      "bytes": 1547650,
+      "sha256": "ed6368e32936820b2a9c7c49e7db067aa117e33f040789333cb8c05998a6429f"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/nasdaq-completed-session.png",
+      "bytes": 2804239,
+      "sha256": "dc3e2c90f1f4cb2f6de9af0c2acf9ee487c81ed79b3846e349b5c1e4cb0d5d7d"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/review-desktop.png",
+      "bytes": 5230570,
+      "sha256": "be137306d30ccfa13f104454ba283bc40f0a2ba7cf52088805a1c36fbf80476d"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/sp500-sectors-1280.png",
+      "bytes": 1242721,
+      "sha256": "ebd60cd056ac2f5988b0cf12e2e85d9f6973685c06526c054c1676c079503d49"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/sp500-sectors-390.png",
+      "bytes": 1242721,
+      "sha256": "ebd60cd056ac2f5988b0cf12e2e85d9f6973685c06526c054c1676c079503d49"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/tudigo-cessation-1280.png",
+      "bytes": 1922633,
+      "sha256": "bf1dedd425881ad6e30fd95abf6961b6d79d0ead5eb364671be89da8a50ec59b"
+    },
+    {
+      "path": "test-artifacts/data-review-recovery/tudigo-cessation-390.png",
+      "bytes": 1922633,
+      "sha256": "bf1dedd425881ad6e30fd95abf6961b6d79d0ead5eb364671be89da8a50ec59b"
+    }
+  ],
+  "limits": [
+    "Source transport and financial qualification belong to producers; supervisor tests do not certify their success.",
+    "Legacy reports without attemptedIds remain explicitly unqualified for attempted scope completeness.",
+    "Job-only producers cannot certify per-field coverage.",
+    "Historical archived resolutions without explicit evidence remain labelled unqualified.",
+    "Manual isolated qualification workflows and the observation-only Bitcoin pilot do not publish active data and are outside continuous producer supervision."
+  ]
+}

@@ -11,3 +11,16 @@
 .dr-links button{border:1px solid var(--ui-line);border-radius:.6rem;padding:.65rem .8rem;background:var(--ui-soft);color:var(--ui-accent);font:inherit;cursor:pointer}.dr-links button:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}.dr-copy-fallback{display:grid;gap:.5rem;font-size:.85rem;margin-top:1rem}.dr-copy-fallback textarea{box-sizing:border-box;width:100%;min-height:220px;padding:.7rem;border:1px solid var(--ui-line);border-radius:.6rem;background:var(--ui-surface);color:var(--ui-ink);font:inherit;resize:vertical}
 
 .dr-incident-search{display:grid;gap:.5rem;font-size:.9rem}.dr-incident-search input{box-sizing:border-box;width:100%;padding:.8rem;border:1px solid var(--ui-line);border-radius:.6rem;background:var(--ui-surface);color:var(--ui-ink)}.dr-incident-search input:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}
+
+.dr-inbox {padding:1.25rem;border:1px solid var(--ui-line);border-radius:1rem;margin:1.5rem 0;background:var(--ui-surface)}
+.dr-health-error {padding:1rem;border:2px solid #b45309;border-radius:.5rem;font-weight:600}
+.dr-pagination {display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.dr-pagination button,.dr-inbox button,.dr-inbox select {min-height:44px}
+.dr-inbox dd,.dr-inbox a,.dr-inbox p,.dr-inbox summary {overflow-wrap:anywhere}
+.dr-inbox textarea {width:100%;min-height:12rem}
+.dr-inbox details {padding:.75rem 0}
+@media(max-width:600px){.dr-inbox{padding:.75rem}.dr-inbox .dr-controls{grid-template-columns:1fr}.dr-inbox dl{display:block}.dr-inbox dd{margin:0 0 .7rem}}
+
+.dr-inbox h2{font-size:1.25rem;font-weight:700;margin:.5rem 0 1rem}.dr-inbox .dr-item h3{font-size:1rem;font-weight:650;margin:.65rem 0;line-height:1.5;overflow-wrap:anywhere}.dr-inbox>p{line-height:1.6;margin:.65rem 0}.dr-inbox button,.dr-pagination button{padding:.6rem .85rem;border:1px solid var(--ui-line);border-radius:.6rem;background:var(--ui-surface);color:var(--ui-ink);font-weight:600}.dr-inbox button:hover,.dr-pagination button:hover{background:var(--ui-soft)}.dr-inbox button:focus-visible,.dr-pagination button:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}.dr-pagination button:disabled{opacity:.45;cursor:default}.dr-inbox>label{display:flex;gap:.65rem;align-items:center;margin:1rem 0}.dr-inbox input[type=checkbox]{width:1.1rem;height:1.1rem;flex-shrink:0}.dr-inbox pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem}
+
+.dr-neutral{background:var(--ui-soft);color:var(--ui-muted)}

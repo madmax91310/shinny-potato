@@ -1,3 +1,4 @@
+import PagedList from './PagedList.jsx'
 import {useMemo,useState} from 'react'
 const LABELS={connected:'Raccordé',blocked:'À compléter','qualification-needed':'Renouvellement à qualifier','scheduled-evidence':'Cycles à confirmer',reference:'Référence',excluded:'Archive ou hypothèse','not-required':'Non requis ou publication attendue'}
 export default function ConsumerUsage({report,query}){
@@ -12,8 +13,8 @@ export default function ConsumerUsage({report,query}){
   <label>Outil consommateur <select value={tool?.path??''} onChange={e=>setSelected(e.target.value)}>{usage.tools.map(t=><option key={t.path} value={t.path}>{t.name}</option>)}</select></label>
   <label><input type="checkbox" checked={pending} onChange={e=>setPending(e.target.checked)}/>Afficher seulement les champs à compléter ou à confirmer</label>
   {tool&&<p>{tool.assets} actifs · {tool.required} champs requis · {tool.connected} raccordés · {tool.blocked} à compléter · {tool.unconfirmed} renouvellements à confirmer.</p>}
-  <p>{rows.length} usages correspondants · {Math.min(rows.length,50)} affichés.</p>
-  <div className="dr-list">{rows.slice(0,50).map(r=><article className="dr-item" key={`${r.id}:${r.key}`}><h3>{r.name} · {r.field}</h3><p>{r.id} · {LABELS[r.state]??r.state}</p><p>{r.nextAction}</p><dl><dt>Dernier contrôle de la source</dt><dd>{r.checkedAt??'Non documenté'}</dd><dt>Date de la donnée</dt><dd>{r.asOf??'Non documentée'}</dd></dl>{r.scope&&<p>{r.scope}</p>}{r.currency&&<p>Devise : {r.currency}</p>}{r.workflows.map(w=><p key={w.path}>Collecte : {w.name}</p>)}{r.sourceUrls.map(url=><p key={url}><a href={url} target="_blank" rel="noreferrer">Source ↗</a></p>)}</article>)}</div>
+  <p>{rows.length} usages correspondants</p>
+  <PagedList key={query} label="Pages du détail">{rows.map(r=><article className="dr-item" key={`${r.id}:${r.key}`}><h3>{r.name} · {r.field}</h3><p>{r.id} · {LABELS[r.state]??r.state}</p><p>{r.nextAction}</p><dl><dt>Dernier contrôle de la source</dt><dd>{r.checkedAt??'Non documenté'}</dd><dt>Date de la donnée</dt><dd>{r.asOf??'Non documentée'}</dd></dl>{r.scope&&<p>{r.scope}</p>}{r.currency&&<p>Devise : {r.currency}</p>}{r.workflows.map(w=><p key={w.path}>Collecte : {w.name}</p>)}{r.sourceUrls.map(url=><p key={url}><a href={url} target="_blank" rel="noreferrer">Source ↗</a></p>)}</article>)}</PagedList>
   <p><a href={`${import.meta.env.BASE_URL}data/consumer-data-usage.json`} download>Télécharger tous les usages, sources et statuts (JSON)</a></p>
   {usage.unmapped.length>0&&<p role="status">{usage.unmapped.length} usages sans outil identifié restent à raccorder ; ils ne sont pas comptés comme automatisés.</p>}
  </>

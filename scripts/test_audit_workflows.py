@@ -60,6 +60,11 @@ class WorkflowContracts(unittest.TestCase):
 
     def test_publishers_use_isolated_recording_and_known_phase_steps(self):
         for filename, config in REGISTRY.items():
+            if config.get('controlOnly'):
+                self.assertEqual(filename, 'deploy-pages.yml')
+                self.assertTrue(config['publishes'])
+                self.assertFalse(config['collectionSteps'])
+                continue  # Deployment validates/publishes existing data; it is not a source writer.
             if config.get('publishes') is False:
                 workflow=(ROOT/'.github/workflows'/filename).read_text()
                 self.assertNotIn('commit-validated-data.sh',workflow)
@@ -140,7 +145,7 @@ class WorkflowContracts(unittest.TestCase):
             committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
             self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
-        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
+        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and not c.get('controlOnly') and name!='update-editorial-radar.yml'} | MANUAL_WRITERS)
 
     def test_full_gate_can_adopt_newer_data_without_a_code_or_data_rollback(self):
         workflow=(ROOT/'.github/workflows/deploy-pages.yml').read_text()

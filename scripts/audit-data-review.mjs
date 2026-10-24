@@ -129,7 +129,12 @@ assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/
 assert.equal(new Set(current.schedule.map(x => x.id)).size, current.schedule.length)
 assert(current.schedule.every(x => x.nextReviewAt || x.category === 'undated'))
 assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, INVESTORS.length)
-assert(current.schedule.filter(x => x.id.startsWith('investor:')).every(x => x.nextReviewAt === '2026-11-14'))
+for(const row of current.schedule.filter(x=>x.id.startsWith('investor:'))){
+  const year=Number(row.metadata.asOf.slice(0,4)),quarter=row.metadata.asOf.slice(5)
+  const deadlines={'03-31':`${year}-08-14`,'06-30':`${year}-11-14`,'09-30':`${year+1}-02-14`,'12-31':`${year+1}-05-15`}
+  assert(Object.hasOwn(deadlines,quarter),'Le trimestre source doit être explicite')
+  assert.equal(row.nextReviewAt,deadlines[quarter],row.id+' : échéance du trimestre réellement enregistré')
+}
 
 // Exercise calendar boundaries against a fixed publication fixture. Live gold and
 // issuer controls can legitimately advance beyond this historical test date.
@@ -149,6 +154,7 @@ assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuil
 assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, INVESTORS.length)
 assert.equal(groups.find(group => group.id === 'event').total, offerKeys(datedOffers).length)
 assert.equal(fixedGroups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
+
 const groupFixture = summarizeCadences([
   { cadence: 'monthly', nextReviewAt: '2026-09-01', category: 'stale', dataType: 'Cours mensuels' },
   { cadence: 'monthly', nextReviewAt: '2026-10-03', category: 'stale', dataType: 'Cours mensuels' },

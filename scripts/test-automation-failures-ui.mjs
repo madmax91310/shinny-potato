@@ -5,12 +5,13 @@ import { chromium } from 'playwright'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4317','--strictPort'],{stdio:'ignore'})
 let browser
 try {
- for(let n=0;;n++){try{if((await fetch('http://127.0.0.1:4317/shinny-potato/')).ok)break}catch{}assert(n<100);await new Promise(r=>setTimeout(r,100))}
+ for(let n=0;;n++){try{if((await fetch('http://127.0.0.1:4317/shinny-potato/')).ok)break}catch{}assert(n<300);await new Promise(r=>setTimeout(r,100))}
  browser=await chromium.launch({executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH})
  const page=await browser.newPage({viewport:{width:390,height:844}})
+ await page.route('https://api.github.com/**/actions/workflows/automation-status.yml/runs?**',r=>r.fulfill({json:{workflow_runs:[{id:1,head_branch:'master',event:'schedule',status:'completed',conclusion:'success'}]}}))
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  let status={schemaVersion:1,workflows:{economic:{name:'Données économiques',status:'success',completedAt:'2026-10-07T10:00:00Z',lastSuccessAt:'2026-10-01T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1',dataFailures:{wealth:{name:'Patrimoine des ménages',completedAt:'2026-10-07T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}}
- await page.route('**/automation-status/automation-status.json',route=>route.fulfill({json:status}))
+ await page.route('**/automation-status/automation-status.json',route=>route.fulfill({json:{monitoring:{schemaVersion:1,checkedAt:new Date().toISOString(),active:{},resolved:[]},...status}}))
  await page.goto('http://127.0.0.1:4317/shinny-potato/donnees-a-revoir',{waitUntil:'networkidle'})
  const shared=page.locator('details').filter({has:page.locator('summary',{hasText:'Actions, historiques et expositions'})})
  await shared.locator('summary').click()
@@ -88,7 +89,7 @@ try {
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('introuvable')
  await monitoring.getByText('Aucun incident pour cette sélection.').waitFor()
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('Coulisses')
- assert.equal(await monitoring.locator('.dr-item').count(),1)
+ assert.equal(await monitoring.locator(':scope > .dr-list .dr-item').count(),1)
  await page.evaluate(() => { window.copiedDiagnostic = null; Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.copiedDiagnostic = text } } }) })
  await monitoring.getByRole('button', {name:'Copier le diagnostic',exact:true}).click()
  await monitoring.getByRole('status').filter({hasText:'Diagnostic copié.'}).waitFor()
@@ -106,8 +107,8 @@ try {
  await page.reload({waitUntil:'networkidle'})
  await monitoring.getByRole('button',{name:'Historique incomplet · 1',exact:true}).click()
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('TEST-ISIN')
- assert.equal(await monitoring.locator('.dr-item').count(),1)
- assert.match(await monitoring.locator('.dr-item').textContent(),/2026-09/)
+ assert.equal(await monitoring.locator(':scope > .dr-list .dr-item').count(),1)
+ assert.match(await monitoring.locator(':scope > .dr-list .dr-item').textContent(),/2026-09/)
  assert.equal(await monitoring.getByRole('button',{name:'Valeur suspecte · 0',exact:true}).count(),0)
  await monitoring.screenshot({path:'test-artifacts/alert-center-mobile.png'})
  await page.setViewportSize({width:1440,height:1000})

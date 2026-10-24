@@ -1,3 +1,4 @@
+import {waitPreview} from './wait-preview.mjs'
 import assert from 'node:assert/strict'
 import {spawn} from 'node:child_process'
 import {readFileSync,mkdirSync} from 'node:fs'
@@ -9,7 +10,7 @@ const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','1
 const base='http://127.0.0.1:4391/shinny-potato'
 let browser
 try{
- for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
+ await waitPreview(server,base)
  browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
  mkdirSync('test-artifacts/data-automation-inventory',{recursive:true})
  for(const width of [390,1280]){
@@ -21,7 +22,7 @@ try{
   await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
   const section=page.locator('section').filter({has:page.getByRole('heading',{name:'Inventaire de toutes les données',exact:true})})
   await section.getByText(`${report.summary.catalogRecords} fiches · ${report.summary.catalogFields} champs de catalogue · ${report.summary.registries} modules examinés.`,{exact:true}).waitFor()
-  assert(!requests.some(url=>url.endsWith('/data-automation-inventory.json')),'the large audit must load only when requested')
+  assert(!requests.some(url=>url.endsWith('/data-automation-inventory.json')),'the full technical audit remains lazy; the primary inbox uses its exhaustive compact projection')
   await section.locator('summary').click()
   const search=section.getByRole('textbox',{name:'Rechercher dans l’inventaire'})
   await search.waitFor();await search.fill('IE0006WW1TQ4')
@@ -32,7 +33,7 @@ try{
   await search.fill('')
   await section.getByRole('combobox',{name:'Nature des données',exact:true}).selectOption('archive')
   const archiveCount=report.fields.filter(f=>f.nature.kind==='archive').length
-  await section.getByText(`${archiveCount} champs correspondants · ${Math.min(archiveCount,50)} affichés`,{exact:true}).waitFor()
+  await section.getByText(`${archiveCount} champs correspondants`,{exact:true}).waitFor()
   await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('actions')
   const first=report.backlog[0]
   if(first){
