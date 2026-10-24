@@ -143,7 +143,7 @@ try{
  assert(monitor.monitoring.active[removedSignal],'Keep the historical fixture intact')
  const signalCount=Object.keys(monitor.monitoring.active).length-1
  await monitoring.getByText(`${signalCount-4} point(s) à examiner · ${signalCount} signalement(s) conservé(s)`,{exact:false}).waitFor()
- await monitoring.getByText(/Retirés du périmètre/).waitFor()
+ await monitoring.getByText(/Retirés du périmètre/).click()
  assert((await monitoring.innerText()).includes('Ces incidents ne sont pas comptés comme des données réparées.'))
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
  assert.equal(await monitoring.locator('article').count(),1)
