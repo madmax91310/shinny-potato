@@ -12,7 +12,7 @@ class IndexReportOwnership(unittest.TestCase):
   state=update_status({},run(workflow=workflow),[],[{'errors':[{'id':'cac40','error':'Official source offline'}]}])
   report=self.report();updated=update_status(state,run(2,'success',workflow=workflow),[],[report])
   self.assertIn('cac40',updated['workflows'][workflow]['dataFailures']);self.assertFalse(report['sourceAttempted']);self.assertEqual(report['scope']['networkRequestedIds'],[])
-  self.assertEqual(report['successes'][0]['id'],'qualification:cac40');self.assertEqual(report['successes'][0]['checkedAt'],'2026-10-01');self.assertEqual(report['outcomes'][1]['status'],'not-applicable')
+  self.assertEqual(report['successes'][0]['id'],'qualification:cac40');self.assertEqual(report['successes'][0]['checkedAt'],'2026-10-01');self.assertEqual(report['outcomes'][1]['status'],'not-attempted')
  def test_retention_after_qualification_failure_is_never_both_success_and_error(self):
   report=self.report(True);self.assertEqual(report['successes'],[]);self.assertEqual(report['errors'][0]['id'],'qualification:cac40');self.assertEqual(normalize_report(report)['errors'][0]['sourceId'],'cac40')
 if __name__=='__main__':unittest.main()

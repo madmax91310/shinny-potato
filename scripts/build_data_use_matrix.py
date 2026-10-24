@@ -20,6 +20,7 @@ def matrix(inventory,monitor,manifest,today,root=ROOT):
  sources={};records={};hashes={}
  for path,digest in manifest.get('files',{}).items():
   p=root/path
+  if path.startswith('public/data/')and not path.startswith('public/data/investors/'):continue  # Inventories and supervision cannot certify their own claims.
   if not path.endswith('.json')or not p.is_file():continue
   b=p.read_bytes();hashes[path]=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==digest
   if not hashes[path]:continue
