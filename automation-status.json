@@ -88857,15 +88857,16 @@
           "at": "2026-10-24T18:32:54.884984+00:00",
           "reason": "recording-failed",
           "sourceRunId": 40119662231,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-23T11:36:53Z",
       "observedRunId": 40119662231,
       "nextAttemptAt": "2026-10-24T19:32:54.884984+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-market-monthly.yml": {
       "attempts": [
