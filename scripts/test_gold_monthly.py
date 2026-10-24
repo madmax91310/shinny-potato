@@ -81,6 +81,13 @@ class GoldRefreshTests(unittest.TestCase):
         self.assertEqual(current['workbookUpdatedAt'],previous['workbookUpdatedAt'])
         self.assertFalse(changed)
 
+    def test_unchanged_workbook_keeps_original_dated_crosscheck(self):
+        body=fixture();previous,_=prepare(BASE,body,URL,TODAY)
+        previous['crossCheck']={'checkedAt':'2026-11-01','sourceUrl':'https://issuer.test/original.pdf'}
+        current,changed=prepare(previous,body,URL,TODAY+dt.timedelta(days=1))
+        self.assertFalse(changed);self.assertEqual(current['crossCheck'],previous['crossCheck'])
+        self.assertEqual(current['crossCheck']['checkedAt'],'2026-11-01')
+
     def test_main_persists_verified_unchanged_control_and_failure_report(self):
         body=fixture();previous,_=prepare(BASE,body,URL,TODAY)
         with tempfile.TemporaryDirectory()as directory:

@@ -176,13 +176,21 @@ def xndx_source_upgrade(identifier,old,record):
 
 
 def refresh(current, now, collect=collect_one, selected=None):
-    merged=current.copy();successes=[];errors=[];waiting=[]
+    merged=current.copy();successes=[];errors=[];waiting=[];derived=[];outcomes=[]
+    requested=configurations() if selected is None else selected
+    def report():
+        for error in errors:
+            prior=current.get(error['id'].removeprefix('anniversary-'),{})
+            error.update(attemptedAt=now.isoformat(),lastSuccessAt=prior.get('checkedAt'),asOf=prior.get('asOf'))
+        pending=[{'id':r['id'],'status':'waiting','attemptedAt':r.get('lastAttemptAt'),'asOf':r.get('retainedAsOf'),'reason':r.get('reason'),'sourceAttempted':True}for r in waiting]
+        failed=[{**r,'status':'failed','sourceAttempted':r['id']!='anniversary-or'}for r in errors]
+        return {'checkedAt':now.isoformat(),'scope':{'requestedIds':['anniversary-'+c['id']for c in requested],'expectedIds':['anniversary-'+c['id']for c in requested],'derivedIds':['anniversary-or']if selected is None else[]},'successes':successes,'errors':errors,'waiting':waiting,'derived':derived,'outcomes':outcomes+pending+failed}
     def one(config):
         try:return config['id'],collect(config,now),None
         except PublicationPending as e:return config['id'],None,e
         except Exception as e:return config['id'],None,str(e)
     with ThreadPoolExecutor(max_workers=4) as pool:
-        for id_,record,error in pool.map(one,configurations() if selected is None else selected):
+        for id_,record,error in pool.map(one,requested):
             if isinstance(error,PublicationPending):
                 try:
                     import exchange_calendars as xcals
@@ -214,21 +222,28 @@ def refresh(current, now, collect=collect_one, selected=None):
             if xndx_source_upgrade(id_,old,record):convention_changed=False
             if old and (record['asOf'] < old['asOf'] or convention_changed):
                 errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
-            merged[id_]=record;successes.append({'id':'anniversary-'+id_})
+            merged[id_]={**record,'checkedAt':now.isoformat()}
+            successes.append({'id':'anniversary-'+id_,'checkedAt':now.isoformat(),'asOf':record['asOf'],'sourceUrl':record.get('sourceUrl'),'responseSha256':record.get('sha256')})
+            outcomes.append({**successes[-1],'status':'unchanged-verified'if old and old.get('value')==record['value']and old.get('asOf')==record['asOf']else'succeeded','sourceAttempted':True})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.
     try:
-        if selected is not None:return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors,'waiting':waiting}
+        if selected is not None:return merged,report()
         gold=json.loads((ROOT/'src/data/worldbank-gold-monthly.json').read_text());period,value=gold['points'][-1]
+        if not re.fullmatch(r'[a-f0-9]{64}',gold.get('workbookSha256','')):reject('Preuve de la source or absente')
         if gold.get('unit') != 'USD per troy ounce' or gold.get('column') != 'Gold' or not gold.get('url', '').startswith('https://thedocs.worldbank.org/'): reject('Identité ou unité de la moyenne d’or modifiée')
+        checked=dt.datetime.fromisoformat(gold.get('checkedAt','')).date()
+        max_check_age=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['series.monthly']['checkDays']
+        if not 0<=(now.date()-checked).days<=max_check_age:reject('Contrôle source de l’or absent, futur ou périmé ; une lecture locale ne le renouvelle pas')
         if (now.date()-dt.date.fromisoformat(period+'-01')).days>75:reject('Moyenne mensuelle de l’or trop ancienne')
         if period >= now.strftime('%Y-%m'): reject('Moyenne mensuelle d’or inachevée')
         if merged.get('or', {}).get('asOf', '') > period: reject('Régression de la période de l’or')
         merged['or']={'value':number(value),'asOf':period,'currency':'USD','method':'Moyenne mensuelle Banque mondiale, USD par once',
                       'sourceUrl':gold['url'], 'sha256':gold['workbookSha256'],
-                      'maxAgeDays':75}
-        successes.append({'id':'anniversary-or'})
+                      'maxAgeDays':75,'checkedAt':gold['checkedAt'],'derivedAt':now.isoformat()}
+        derived.append({'id':'anniversary-or','status':'derived-validated','sourceAttempted':False,'checkedAt':gold['checkedAt'],'validatedAt':now.isoformat(),'asOf':period,'sourceUrl':gold['url'],'responseSha256':gold['workbookSha256']})
+        outcomes.append({**derived[-1],'status':'not-attempted','derivationStatus':'validated'})
     except Exception as e:errors.append({'id':'anniversary-or','error':str(e)})
-    return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors,'waiting':waiting}
+    return merged,report()
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--apply',action='store_true');p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--only',nargs='+')

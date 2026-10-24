@@ -1,5 +1,5 @@
 import unittest
-from build_consolidated_data_followup import consolidate
+from build_consolidated_data_followup import consolidate,apply_use_contracts,write_views
 
 ISIN='IE00BJ5JP097'
 def old(d,k,id='',field=''):
@@ -56,5 +56,25 @@ class ConsolidatedFollowup(unittest.TestCase):
         previous=self.run_case(source)
         later=self.run_case(source,previous=previous)
         self.assertEqual(sum(len(r['origines'])for r in later),1)
+
+    def test_evidence_view_joins_the_single_followup_and_keeps_origins(self):
+        rows=self.run_case([],inventory={'connections':[],'consumerUsage':{'tools':[{'path':'/tool','rows':[{'id':'A','key':'history','state':'connected','required':True}]}]}})
+        proof={'id_suivi':'usage:/tool|A|history','etat':'B','chaine':'one','blocage':'Publication non démontrée'}
+        apply_use_contracts(rows,[proof]);self.assertTrue(rows[0]['reliquat_actif']);self.assertEqual(rows[0]['statut_donnees'],'B');self.assertEqual(rows[0]['origines'],[])
+        with self.assertRaises(AssertionError):apply_use_contracts(rows,[proof,proof])
+        with self.assertRaises(AssertionError):apply_use_contracts(rows,[{**proof,'id_suivi':'unknown'}])
+
+    def test_global_validation_does_not_close_unverified_new_correction(self):
+        rows=self.run_case([],validated=True,repairs=[{'id':'correction:source','axe':'collecte','type':'producteur','probleme':'Échec','preuves':['local.log'],'productionValidated':False}])
+        self.assertTrue(rows[0]['reliquat_actif']);self.assertIn('GitHub et publication requis',rows[0]['niveau_preuve'])
+
+    def test_retired_action_view_is_not_counted_as_repaired(self):
+        import csv,pathlib,tempfile
+        rows=self.run_case([],actions=[{'action':'P2-04','statut':'partiellement corrigée','limitation':'Ancienne limite IA'}])
+        self.assertEqual(rows[0]['statut_donnees'],'périmètre supprimé')
+        with tempfile.TemporaryDirectory()as tmp:
+            write_views(rows,pathlib.Path(tmp))
+            with(pathlib.Path(tmp)/'statut-19-actions.csv').open(encoding='utf-8-sig')as f:written=list(csv.DictReader(f,delimiter=';'))
+            self.assertEqual(written[0]['statut'],'périmètre supprimé');self.assertIn('aucune donnée financière déclarée réparée',written[0]['limitation'])
 
 if __name__=='__main__':unittest.main()
