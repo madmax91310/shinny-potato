@@ -138,6 +138,15 @@ class ProductContracts(unittest.TestCase):
         self.assertIn('gold-observation.json',update_status(old,run,jobs(w),[report])['workflows'][w]['reportQualifications'])
         monitor=evaluate_monitoring(new,CTX,{w:REGISTRY[w]},'2026-10-24T14:00:00Z',{'errors':[]})
         self.assertNotIn('collection:'+w+':x',monitor['active'])
+        # The listing adapter uses the plural schema name, including targeted retries.
+        listing={'validated':['IE0000000000','IE0000000001'],'failed':[{'isin':'IE0000000002','reason':'Untargeted old failure'}],
+                 'scope':{'expectedIds':['IE0000000000'],'requestedIds':['IE0000000000']}}
+        targeted=normalize_report(listing)
+        self.assertEqual(targeted['successes'],[{'id':'listing:IE0000000000'}]);self.assertFalse(targeted['errors'])
+        with self.assertRaises(ValueError):normalize_report({**listing,'scope':{'expectedIds':['missing'],'requestedIds':['missing']}})
+        empty=normalize_report({**listing,'scope':{'expectedIds':[],'requestedIds':[]}})
+        self.assertFalse(empty['successes']);self.assertFalse(empty['errors'])
+
     def test_cache_does_not_renew_source_success(self):
         workflow='update-scpi.yml';old=update_status({},event(workflow),jobs(workflow),[{'successes':[{'id':'x'}],'errors':[]}])
         old['workflows'][workflow]['lastCollectionSuccessAt']='2026-10-20'

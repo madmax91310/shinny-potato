@@ -13,6 +13,7 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 | Artefact absent sans résultat source explicite | Incident de preuve lié au producteur, run et tentative | absence, expiration, récupération de l'artefact exact |
 | JSON inconnu assimilable à un rapport vide réussi | Contrats nom/producteur/famille et identité des résultats | 40 fichiers réels de 19 producteurs, aucun rejet de leur schéma actuel |
 | TypeError/KeyError pouvait arrêter un cycle | Isolation par rapport et par producteur ; incident d'observation | payloads invalides et maintien du résultat indépendant |
+| Reprise ciblée des cotations rejetée par un nom de format singulier/pluriel incohérent | Adaptateur `listings` raccordé au contrat explicite | reprise ciblée, périmètre vide et résultat attendu absent |
 | Couverture d'une reprise ciblée ambiguë | `attemptedIds` vérifié lorsqu'émis ; qualification visible sinon | périmètre vide, résultat tenté absent, résultat hors périmètre |
 | Cache et succès global confondus avec contrôle source | Dates par champ, artefact et publication distinctes | cache, absence de changement, résultat partiel |
 | Nouvelle tentative pouvait réparer une preuve historique différente | Identité run/tentative immuable ; relecture exacte et bornée | nouveau run, rerun, archive datée hors tentative, réparation exacte |

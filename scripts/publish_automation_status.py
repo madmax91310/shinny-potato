@@ -209,7 +209,7 @@ def normalize_report(report):
         if shape == 'series':
             observed = {r['id'] for r in report['series'] + list(report.get('fxSources', {}).values())}
             report['attemptedIds'] = expected
-        elif shape == 'listing':
+        elif shape == 'listings':
             observed = set(report['validated']) | {r['isin'] for r in report['failed']}
             report['validated'] = [v for v in report['validated'] if v in expected]
             report['failed'] = [r for r in report['failed'] if r['isin'] in expected]
