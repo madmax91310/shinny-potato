@@ -80,6 +80,7 @@ jobs:
           node scripts/test-ai-portfolios.mjs
           node scripts/test-ai-weekly.mjs
           node scripts/test-ai-request-transport.mjs
+          node scripts/test-ai-catalogue-recovery.mjs
           node scripts/test-ai-owner-issue.mjs
           node scripts/test-ai-owner-status.mjs
           node scripts/test-ai-owner-worker.mjs
@@ -137,6 +138,7 @@ jobs:
           node scripts/playwright-ai-portfolios.mjs
           node scripts/playwright-ai-owner.mjs
           node scripts/playwright-ai-owner.mjs --four
+          node scripts/playwright-ai-catalogue-recovery.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always() && github.event_name == 'pull_request'
         with:
