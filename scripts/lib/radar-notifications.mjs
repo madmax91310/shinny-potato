@@ -54,7 +54,7 @@ export function planNotifications(events, ledger, now = new Date(), mode = 'dige
     const assessment = editorialAssessment(group.event, +now)
     const date = group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt)
     const age = (+now-Date.parse(date))/86400000
-    return assessment.reliability.usable && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && (mode !== 'major' || assessment.major)
+    return assessment.reliability.usable && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && !group.event.backfill && (mode !== 'major' || assessment.major)
   })
   const majorBudget = ledger.majorDay === parisClock(now).date ? Math.max(0, 3-(ledger.majorGroups ?? 0)) : 3
   if (mode === 'major' && !majorBudget) return { events: [], pending: groups.length }

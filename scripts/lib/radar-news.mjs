@@ -111,8 +111,9 @@ export function extractProducts(text) {
   // A cell row or paragraph is a proof boundary. Global fees never fill products.
   const blocks = /<\w/.test(text) ? [...text.matchAll(/<(tr|p)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(m => cleanText(m[2])) : text.split(/\n\s*\n/)
   for (const block of blocks) {
-    const names = [...new Set(block.replace(/\s+/g, ' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan) [A-Z][A-Za-z0-9 &’'()–-]{2,140}?\bUCITS ETF\b/g) ?? [])]
-    const isins = [...new Set(block.replace(/\s+/g, ' ').match(/\b[A-Z]{2}[A-Z0-9]{9}\d\b/g) ?? [])]
+    let names = [...new Set(block.replace(/[®™]/g,'').replace(/\s+/g, ' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan|JPM|BNP Paribas|HANetf|Trading Central|Sprott|YieldMax|Infrastructure Capital|Franklin|PIMCO|State Street) [A-Z][A-Za-z0-9 .&’'()–-]{2,140}?\bUCITS ETF\b/g) ?? [])]
+    if(!names.length) names = [...new Set(block.replace(/\s+/g,' ').match(/\bBNP Paribas Easy [A-Z][A-Za-z -]{3,85}?(?=,|\sand\sBNP|\.)/g) ?? [])]
+    const isins = [...new Set(block.replace(/[®™]/g,'').replace(/\s+/g, ' ').match(/\b[A-Z]{2}[A-Z0-9]{9}\d\b/g) ?? [])]
     if (names.length === 1) {
       const local = isins.length === 1 ? parseLaunchDetails(block.replace(/\s+(TER|Benchmark|Indice|Frais|Distribution policy|Politique de distribution|First trading date|Date de premi[eè]re cotation)\s*:/gi, '\n$1:')) : {}
       products.push({ name: names[0], isin: local.isin ?? null, fees: local.fees ?? null, index: local.index ?? null, management: /gestion active|actively managed/i.test(block) ? 'Active' : /gestion passive|passively managed/i.test(block) ? 'Passive' : null, distribution: local.distribution ?? null, pea: local.pea ?? null, tradingDate: local.tradingDate ?? null, availability: null, evidence: block })
@@ -129,10 +130,12 @@ export function extractProducts(text) {
       if (cells.length !== headers.length) continue
       const fields = Object.fromEntries(headers.map((h,i) => [h,cells[i]]))
       const isin = fields.ISIN?.trim()
-      const names = cells.join(' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan) [A-Z][A-Za-z0-9 &’'()–-]{2,140}?\bUCITS ETF\b/g) ?? []
+      let names = cells.join(' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan|JPM|BNP Paribas|HANetf|Trading Central|Sprott|YieldMax|Infrastructure Capital|Franklin|PIMCO|State Street) [A-Z][A-Za-z0-9 .&’'()–-]{2,140}?\bUCITS ETF\b/g) ?? []
+      const nameHeader=headers.find(h=>/^(ETF Name|Name|Nom|Product name)$/i.test(h))
+      if(nameHeader && /\bUCITS\s+ETF\b/.test(fields[nameHeader]) && !/ETC|ETN/.test(fields[nameHeader])) names=[fields[nameHeader]]
       if (!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(isin ?? '') || names.length !== 1) continue
-      const product = products.find(p => p.isin === isin)
-      if (!product) continue
+      let product = products.find(p => p.isin === isin)
+      if (!product) {product={name:names[0],isin,fees:null,index:null,management:null,distribution:null,pea:null,tradingDate:null,availability:null};products.push(product)}
       for (const [header,value] of Object.entries(fields)) {
         if (/^(TER|Frais courants|Total expense ratio)$/i.test(header) && /^\d[\d.,]*\s*%$/.test(value)) product.fees = value
         if (/^(Index|Benchmark|Indice)$/i.test(header)) product.index = value || null
@@ -142,9 +145,10 @@ export function extractProducts(text) {
     }
   }
   const unique = new Map()
-  const namedShares = new Set(products.filter(p => p.isin).map(p => p.name))
-  for (const product of products.filter(p => p.isin || !namedShares.has(p.name))) {
-    const key = product.isin ?? product.name
+  const namedShares = new Set(products.filter(p => p.isin).map(p => p.name.replace(/[–-]/g,'-')))
+  for (const product of products.filter(p => p.isin || !namedShares.has(p.name.replace(/[–-]/g,'-')))) {
+    product.name=product.name.trim()
+    const key = product.isin ?? product.name.replace(/[–-]/g,'-')
     const previous = unique.get(key)
     if (!previous || previous.evidence.length > product.evidence.length) unique.set(key, product)
   }
@@ -152,7 +156,12 @@ export function extractProducts(text) {
 }
 export function parseEtfDocument(htmlOrText, title) {
   const html = /<\w/.test(htmlOrText)
-  const body = html ? htmlOrText.replace(/<(script|style|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '') : htmlOrText
+  let selected = htmlOrText
+  const model = htmlOrText.match(/<vue-media-releases-details-page[^>]*:model="([^"]+)"/i)?.[1]
+  if(model) { const data = JSON.parse(model.replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')); if(typeof data.htmlContent !== 'string') throw Error('Corps du communiqué Xtrackers absent'); selected = data.htmlContent }
+  else if(/class=['"][^'"]*avia_textblock fs18/.test(htmlOrText)) selected = [...htmlOrText.matchAll(/<div\b[^>]*class=['"][^'"]*avia_textblock fs18[^'"]*['"][^>]*>([\s\S]*?)<\/div>/gi)].map(m=>m[1]).join('\n')
+  else if(html) selected = htmlOrText.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1] ?? htmlOrText.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? htmlOrText
+  const body = html ? selected.replace(/<(script|style|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '') : htmlOrText
   const text = html ? cleanText(body) : body
   const paragraphs = html ? [...body.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m => cleanText(m[1])) : text.split(/\n\s*\n/)
   const initial = etfAnnouncement(title)
@@ -161,6 +170,8 @@ export function parseEtfDocument(htmlOrText, title) {
   let announcementEvidence = initial?.stage === 'candidate' ? excerpt ? { type: 'announcement', stage: 'announced', label: 'Nouvelle offre annoncée par l’émetteur', evidence: excerpt } : initial : initial
   const feeChange = paragraphs.find(p => /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(p))
   if (!initial && feeChange && /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(title)) announcementEvidence = { type: 'characteristic-change', stage: 'changed', label: 'Modification de frais annoncée', evidence: feeChange }
+  if(/(?:ETF|exchange.traded) share class|part (?:ETF|cotee).*(?:fonds existant)/i.test(text) && /launch|introduc|lanc/i.test(title+' '+text)) announcementEvidence = { type:'share-class',stage:'announced',label:'Nouvelle part ETF d’un fonds annoncée',evidence:paragraphs.find(p=>/share class|part ETF/i.test(p))??title }
+  if(!announcementEvidence && /announc.*listing/i.test(text) && /ETF|exchange.traded/.test(text)) announcementEvidence={type:'trading',stage:'announced',label:'Cotation annoncée par l’émetteur',evidence:paragraphs.find(p=>/announc.*listing/i.test(p))??title}
   const products = extractProducts(body)
   // Single-ISIN legacy extraction is still deliberately conservative.
   const launchDetails = parseLaunchDetails(html ? body.replace(/<\/(?:p|tr|div)>/gi, '\n').replace(/<[^>]*>/g, ' ') : text)

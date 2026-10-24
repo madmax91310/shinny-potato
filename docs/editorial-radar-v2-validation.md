@@ -48,13 +48,15 @@ La simulation couvre un échec **après création de l’issue mais avant commen
 
 - DARES : page de vérification de sécurité, y compris en HTTP 200 ; pas de contournement ni de flux inventé.
 - Endettement Banque de France : découverte des documents effective, extraction numérique bloquée par la représentation graphique ; aucune lecture approximative ni reprise d’un chiffre d’un autre périmètre.
-- iShares, BNP Paribas, State Street/SPDR, Invesco, VanEck, UBS et JPMorgan : portails testés, mais archives de publications UCITS/extractions non qualifiées. Ils sont affichés **non raccordés**, avec contrôle d’accès quotidien. Cela n’est pas une couverture achevée.
+- iShares, State Street/SPDR, Invesco, VanEck, UBS et JPMorgan : portails testés, mais archives de publications UCITS/extractions non qualifiées. Ils sont affichés **non raccordés**, avec contrôle d’accès quotidien. Cela n’est pas une couverture achevée.
 - Profondeur bornée à la fenêtre officielle RSS ou à la page/modèle rendu pour INSEE, DREES, DWS, WisdomTree, BDF et canaux existants ; aucune pagination non testée n’est déclarée. Le sitemap Amundi fournit une archive plus profonde.
 - Champs inconnus dans les annonces conservés comme tels ; aucune disponibilité commerciale déduite d’une place de cotation.
 - Le flux conserve les secondaires récents ; leur archive intégrale reste dans l’état Git, sans pagination distante intégrée à l’écran.
 
 ## Statut de livraison
 
-Implémenté et testé localement ; contrôle réel des sources effectué ; PR sur `master`. La CI sera à lire sur le commit de la PR, séparément des résultats locaux. Ni fusion ni déploiement autorisés ou effectués par ce travail. Aucun envoi réel de notification et aucune publication X pendant les tests. La réception sur téléphone reste non vérifiée.
+Implémenté et testé localement ; contrôle réel des sources effectué ; PR sur `master`. La CI sera à lire sur le commit de la PR, séparément des résultats locaux. Ce relevé décrit la validation initiale avant autorisation de livraison. La demande suivante autorise fusion et déploiement ; leurs preuves seront consignées séparément. Aucun envoi réel de notification et aucune publication X pendant les tests. La réception sur téléphone reste non vérifiée.
 
 Preuves visuelles de la recette locale : [INSEE sur ordinateur](../reports/radar-publications-2026-10-24/preuves/insee-desktop.png), [Amundi sur mobile](../reports/radar-publications-2026-10-24/preuves/amundi-mobile.png). Les valeurs du scénario historique restent isolées des registres vivants ; la comparaison salaire rejouée est 2 190 → 2 238 euros pour la médiane et 4 334 → 4 441 euros pour le D9.
+
+Extension : voir [les sources et conventions immobilières](editorial-radar-extensions.md), les tests `test-radar-extensions.mjs` et la vérification réelle `verify-radar-production.mjs`.

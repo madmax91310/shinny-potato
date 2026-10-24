@@ -1,17 +1,19 @@
 import { readableSignal } from './presentation.js'
 import { EDITORIAL_STATES, EDITORIAL_LIMIT, EDITORIAL_DAYS, FACT_LABELS, factType, editorialAssessment, selectEditorial, editorialState, editorialAudience, etfAnnouncement, groupSignals, recentEditorial, investorFilingType } from '../../lib/radar-editorial.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { fetchRadar, FAMILIES, markRead, readIds, READ_EVENT, staleFeed, cacheSignalGroups } from './client.js'
 import './style.css'
 
+const HousingDetails = lazy(() => import('./HousingDetails.jsx'))
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(new Date(value)) : 'Non documenté'
 function Signal({ event, read, onRead }) {
   const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
   const filing = investorFilingType(event), canPublish = !filing || filing === 'publication'
+  const [housingOpen,setHousingOpen]=useState(false)
   const [draft, setDraft] = useState(event.draft), [message, setMessage] = useState('')
   async function copy() {
     try { await copyPublicationText(draft); setMessage('Brouillon copié.') } catch { setMessage('Copie indisponible : sélectionne le texte du brouillon.') }
@@ -20,6 +22,7 @@ function Signal({ event, read, onRead }) {
     <div className="radar-card-top"><span className="radar-label">{FAMILIES[event.family]}</span>{!read && <span className="radar-unread">Non lu</span>}<time dateTime={event.detectedAt}>{date(event.detectedAt)}</time></div>
     <span className={`radar-maturity radar-maturity--${editorialState(event)}`}>{EDITORIAL_STATES[editorialState(event)]}</span>
     <h2>{event.title}</h2>
+    {event.publicationDateNote&&<p className="radar-warning">{event.publicationDateNote}</p>}
     <p className="radar-scope">{FACT_LABELS[factType(event)]} · Publication : {event.publishedAt ?? 'date non documentée'} · Collecte : {date(event.checkedAt)}</p>
     <details className="radar-score"><summary>Intérêt éditorial : {editorialAssessment(event).score}/100</summary><ul>{editorialAssessment(event).criteria.map(row => <li key={row.key}>{row.reason} : {row.points}/{row.maximum}{row.unknown ? ' · inconnu' : ''}</li>)}</ul><p>La fiabilité du fait est vérifiée séparément. Ce score ne prédit pas les vues.</p></details>
     <p className="radar-audience"><strong>Qui est concerné ?</strong> {editorialAudience(event)}</p>
@@ -28,6 +31,7 @@ function Signal({ event, read, onRead }) {
     <p className="radar-entity">{event.family !== 'pouvoir-achat' && event.field !== 'announcement' && event.label} {/^[A-Z]{2}[A-Z0-9]{10}$/.test(event.entity) && <small>{event.entity}</small>}</p>
     {event.family === 'etf' && event.field === 'announcement' ? null : event.factType === 'statistical-publication' && event.summary ? <div className="radar-news-detail"><p><strong>Période des données : {event.referencePeriod ?? 'voir le résumé officiel'}</strong></p><blockquote>{event.summary}</blockquote></div> : event.family === 'pouvoir-achat' ? <div className="radar-news-detail"><p><strong>{event.topicLabel} · {event.status}</strong></p><p>{event.summary}</p>{event.originalLabel ? <details><summary>Lire le texte officiel</summary><p>{event.originalLabel}</p><p>{event.originalSummary}</p><p>{event.statusEvidence}</p></details> : event.statusEvidence && <p className="radar-scope">Formulation de la source : {event.statusEvidence}</p>}<p className="radar-scope">{event.publisher} · publié le {event.period}</p></div> : <div className="radar-comparison"><div><span>Avant · {event.beforePeriod ?? 'premier relevé'}</span><strong>{event.beforeText}</strong></div><div><span>Après · {event.period}</span><strong>{event.afterText}</strong></div></div>}
     {event.family !== 'pouvoir-achat' && <><p className="radar-scope">{event.scope}</p><p>{event.reason}</p></>}
+    {event.housing && <details onToggle={e=>setHousingOpen(e.currentTarget.open)}><summary>Conventions immobilières et scénario</summary>{housingOpen&&<Suspense fallback={<p>Chargement…</p>}><HousingDetails housing={event.housing}/></Suspense>}</details>}
     {event.evidence?.excerpt && <details className="radar-proof"><summary>Preuves de l’extraction</summary><blockquote>{event.evidence.excerpt}</blockquote><p className="radar-scope">{event.evidence.method} · Empreinte de la source : {event.evidence.sourceHash}</p></details>}
     <div className="radar-angle"><strong>{canPublish ? 'Une piste pour ton post' : 'Point à vérifier'}</strong><p>{event.angle}</p></div>
     <div className="radar-actions"><a href={event.sourceUrl} target="_blank" rel="noreferrer">Voir la source ↗</a>{event.documentUrl && event.documentUrl !== event.sourceUrl && <a href={event.documentUrl} target="_blank" rel="noreferrer">Communiqué émetteur ↗</a>}{event.previousSourceUrl && event.previousSourceUrl !== event.sourceUrl && <a href={event.previousSourceUrl} target="_blank" rel="noreferrer">Source précédente ↗</a>}{event.tool && <Link to={event.tool}>Ouvrir l’outil</Link>}<Button onClick={() => onRead(event.id)} disabled={read}>{read ? 'Lu' : 'Marquer comme lu'}</Button></div>

@@ -51,6 +51,7 @@ if (ref) {
     ledger = JSON.parse(Buffer.from(notificationBlob.content, 'base64').toString('utf8'))
   }
 }
+const policyRollout=ledger?.editorialVersion!==2
 ledger = migrateNotificationPolicy(previous, notificationState(previous, ledger))
 const refresh = !previousFeed || shouldRefreshRadar(previous, { eventName: process.env.GITHUB_EVENT_NAME, sourceRevision: process.env.RADAR_SOURCE_SHA })
 let result, nextTree, nextCommit
@@ -77,6 +78,10 @@ if (refresh) {
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
     verifiedCompositions: verification.verified.map(({ canonicalBody: _canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
+  if(policyRollout) {
+    for(const event of result.newEvents)event.backfill=true
+    result.state.editorialRolloutAt=new Date().toISOString()
+  }
   result.state.publications = publications.state
   result.state.purchasingCache = purchasing.cache
   result.state.documentQueue = launches.queue

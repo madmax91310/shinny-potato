@@ -53,7 +53,7 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const beforeText = before ? displayValue(before.value, after.unit) : 'Pas encore suivi'
   const afterText = displayValue(after.value, after.unit)
   const purchasing = after.family === 'pouvoir-achat'
-  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
+  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
   if (after.family === 'economie' && isPublication && after.evidence?.sourceHash) metadata.factType = 'statistical-publication'
   if (before && after.factType === 'statistical-publication' && before.period === after.period && before.publicationId === after.publicationId) metadata.factType = 'source-revision'
   const title = after.rule === 'announcement' ? `Nouveau communiqué officiel : ${after.label}` : kind === 'new' ? `${after.label} : nouvelle donnée suivie` : isPublication ? `${after.label} : nouvelle publication` : `${after.label} : ${after.fieldLabel.toLocaleLowerCase('fr-FR')} en mouvement`
@@ -205,7 +205,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // Enrich an existing announcement without inventing a second launch alert.
   for (const row of valid.filter(row => row.family === 'etf' && row.field === 'announcement' && row.launchDetails)) {
     for (const event of state.events.filter(event => event.entity === row.entity && event.period === row.period && event.label === row.label)) {
-      for (const key of ['exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
+      for (const key of ['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
     }
   }
   for (const event of state.events) { event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }

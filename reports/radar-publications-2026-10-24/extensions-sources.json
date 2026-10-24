@@ -1,0 +1,972 @@
+{
+  "checkedAt": "2026-10-24T16:45:11.994Z",
+  "notifications": "disabled: publisher not imported",
+  "sources": [
+    {
+      "id": "xetra",
+      "name": "Deutsche Börse / Xetra · cotations ETF",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
+      "method": "extra-links",
+      "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 10,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 8,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bnp",
+      "name": "BNP Paribas AM · communiqués",
+      "url": "https://www.bnpparibas-am.com/en/media-centre/",
+      "method": "extra-bnp",
+      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 2,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "xtrackers",
+      "name": "Xtrackers · salle de presse",
+      "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
+      "method": "extra-links",
+      "depth": "Table datée de la salle de presse ETF, année courante rendue",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 10,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 8,
+        "done": 0,
+        "error": 2,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "hanetf",
+      "name": "HANetf · communiqués UCITS",
+      "url": "https://hanetf.com/press-releases/",
+      "method": "extra-links",
+      "depth": "Communiqués rendus par le site, indépendants du catalogue",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 9,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 7,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "notaires-paris",
+      "name": "Notaires du Grand Paris · conjoncture",
+      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+      "method": "extra-links",
+      "depth": "Première page des communications immobilières officielles",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 8,
+      "etag": "\"1792860315-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 16:45:15 GMT",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 6,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "credit-logement",
+      "name": "Observatoire Crédit Logement / CSA",
+      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
+      "method": "extra-links",
+      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 6,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 4,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "oll",
+      "name": "Observatoires locaux des loyers / ANIL",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "method": "extra-links",
+      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 10,
+        "done": 1,
+        "error": 0,
+        "rejected": 1
+      }
+    },
+    {
+      "id": "dvf",
+      "name": "DVF · DGFiP / data.gouv.fr",
+      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+      "method": "extra-dvf",
+      "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 1,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 13,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 12,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 21,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 20,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "amundi",
+      "name": "Amundi · actualités et avis",
+      "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
+      "method": "sitemap",
+      "depth": "Toutes les URL françaises des actualités du sitemap",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 83,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "queue": {
+        "pending": 82,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 22,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 21,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 12,
+      "etag": "\"1792855120-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:18:40 GMT",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 11,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-savings",
+      "name": "Banque de France · Épargne des ménages",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 12,
+      "etag": "\"1792854616-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:10:16 GMT",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 11,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-debt",
+      "name": "Banque de France · Endettement des ménages et des SNF",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 12,
+      "etag": "\"1792856044-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:34:04 GMT",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 11,
+        "done": 0,
+        "error": 1,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 5,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "drees",
+      "name": "DREES",
+      "url": "https://drees.solidarites-sante.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "discovered": 3,
+      "etag": null,
+      "lastModified": "Sat, 24 Oct 2026 16:34:17 GMT",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "lastSuccessAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T17:45:11.994Z",
+      "queue": {
+        "pending": 2,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "dares",
+      "name": "DARES",
+      "url": "https://dares.travail-emploi.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "status": "error",
+      "error": "Accès refusé ou page anti-robot, même si HTTP 200",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      }
+    }
+  ],
+  "accessGaps": [
+    {
+      "id": "ubs",
+      "name": "UBS",
+      "url": "https://www.ubs.com/global/en/media.html",
+      "reason": "Portail média accessible ; archive ETF européenne datée non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ubs.com/global/en/media.html",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    },
+    {
+      "id": "spdr",
+      "name": "State Street / SPDR",
+      "url": "https://www.ssga.com/fr/fr/about-us",
+      "reason": "Portail institutionnel accessible ; liste de communiqués ETF européens non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ssga.com/fr/fr/about-us",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    },
+    {
+      "id": "notaires-france",
+      "name": "Notaires de France · conjoncture",
+      "url": "https://www.notaires.fr/fr/actualites",
+      "reason": "Accès au portail national refusé HTTP 403 lors de la qualification ; les Notaires du Grand Paris et INSEE sont exploités séparément.",
+      "status": "error",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 403,
+      "finalUrl": "https://www.notaires.fr/fr/actualites",
+      "error": "HTTP 403",
+      "lastSuccessAt": null
+    },
+    {
+      "id": "jpmorgan",
+      "name": "JPMorgan AM",
+      "url": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "reason": "Portail conseiller accessible ; découverte datée des annonces UCITS non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    },
+    {
+      "id": "ishares",
+      "name": "iShares / BlackRock",
+      "url": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "reason": "Liste corporate accessible ; couverture des lancements UCITS européens et profondeur non qualifiées.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "reason": "Media hub accessible ; communiqués PDF et archive ETF à qualifier.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    },
+    {
+      "id": "vaneck",
+      "name": "VanEck",
+      "url": "https://www.vaneck.com/fr/fr/",
+      "reason": "Accès public refusé lors de la vérification initiale ; aucun flux supposé.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T16:45:11.994Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T16:45:11.994Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.vaneck.com/fr/fr/",
+      "checkedAt": "2026-10-24T16:45:11.994Z"
+    }
+  ],
+  "purchasingSources": [
+    {
+      "id": "service-public",
+      "name": "Service Public",
+      "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 3
+    },
+    {
+      "id": "bercy",
+      "name": "Ministère de l’Économie",
+      "url": "https://www.economie.gouv.fr/rss/toutesactualites",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 4
+    },
+    {
+      "id": "vie-publique-actualites",
+      "name": "Vie publique · actualités",
+      "url": "https://www.vie-publique.fr/actualites-feeds.xml",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 0
+    },
+    {
+      "id": "vie-publique-lois",
+      "name": "Vie publique · lois",
+      "url": "https://www.vie-publique.fr/lois-feeds.xml",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 100,
+      "relevant": 0
+    },
+    {
+      "id": "banque-france-credit",
+      "name": "Banque de France · crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 12,
+      "relevant": 1
+    },
+    {
+      "id": "cre-prix",
+      "name": "CRE · prix de l’énergie",
+      "url": "https://www.cre.fr/documents/communiques-de-presse.html",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "status": "ok",
+      "articles": 7,
+      "relevant": 1
+    }
+  ],
+  "legacyEtfNews": {
+    "observations": 6,
+    "errors": []
+  },
+  "references": [
+    {
+      "url": "https://www.insee.fr/fr/statistiques/9087193",
+      "discovered": true,
+      "extracted": true,
+      "status": "done"
+    },
+    {
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+      "discovered": true,
+      "extracted": true,
+      "status": "done"
+    }
+  ],
+  "extractions": [
+    {
+      "title": "DVF : Valeurs foncières 2026 - Premier semestre",
+      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+      "publishedAt": null,
+      "referencePeriod": "Valeurs foncières 2026 - Premier semestre",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "47a232cab384e9c935e0ea70197cce24bdcf6d3b21fdb4add66318bbba8b748f"
+    },
+    {
+      "title": "Les retraités et les retraites – Édition 2026",
+      "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
+      "publishedAt": "2026-10-14",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "a2c891704a61654225a9d0c424e9f084087bc5063939dd21d59486f07ca6bd62"
+    },
+    {
+      "title": "Crédits aux particuliers - 2026-08",
+      "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+      "publishedAt": "2026-10-06",
+      "referencePeriod": "2026-08",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "75d9993443dfc2d700919e6494310f60103ceeec8a07ca62777b90462b7f77c6"
+    },
+    {
+      "title": "Epargne des ménages - 2026-Q1",
+      "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
+      "publishedAt": "2026-08-17",
+      "referencePeriod": "2026-Q1",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "686ad15a80d83ca8e698f5ff6fa0ac8f6f786ce04423fc6f8aa2d10677540c41"
+    },
+    {
+      "title": "Analyse marché immobilier septembre 2026",
+      "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+      "publishedAt": null,
+      "referencePeriod": "2026-09",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "e4cc0462715850e94d69fdf5fe412339dc82e1dd49923a08feac656990bb696d"
+    },
+    {
+      "title": "Analyse marché immobilier Août 2026",
+      "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-aout-2026",
+      "publishedAt": null,
+      "referencePeriod": "2026-08",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "16413de6de5647bde27c535ec2db5018aab21d960f6538614ec4b81e03721ca5"
+    },
+    {
+      "title": "Résultats 2025 de l'observatoire des loyers de la Gironde",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/resultats-2025-de-lobservatoire-des-loyers-de-la-gironde",
+      "publishedAt": "2026-10-16",
+      "referencePeriod": "2025",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "780706af91a41abc9904248ba6a992e2448062643b2a8423239901da68edf28e"
+    },
+    {
+      "title": "DWS strengthens Xtrackers presence in the Middle East with senior sales appointment",
+      "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
+      "publishedAt": "2026-07-07",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "fec3863ae886ba604adbc180f1f94833f619a66e886885d4347dce32fcbd76b2"
+    },
+    {
+      "title": "Les salaires dans le secteur privé en 2025",
+      "url": "https://www.insee.fr/fr/statistiques/9087193",
+      "publishedAt": "2026-10-22",
+      "referencePeriod": "2025",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de"
+    },
+    {
+      "title": "New ETF and ETP Listings on October 21, 2026, on Deutsche Börse",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+      "publishedAt": "2026-10-21",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "Amundi Eurozone Equity Enhanced Active UCITS ETF",
+          "isin": "IE000I0VZEH9",
+          "fees": null
+        },
+        {
+          "name": "Amundi Europe Equity Enhanced Active UCITS ETF",
+          "isin": "IE000L1NIQD8",
+          "fees": null
+        },
+        {
+          "name": "Amundi World Equity Enhanced Active UCITS ETF",
+          "isin": "IE000SUZX5N6",
+          "fees": null
+        }
+      ],
+      "sourceHash": "5e4761b533f8c917109ff25e9bbffe9e08af78c7302ee7d7e5ce28af6d262fee"
+    },
+    {
+      "title": "Q3/2026: Deutsche Börse Group Continues Strong Growth in the Third Quarter and Raises Its Total Net Revenue Guidance for 2026 Again",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/Q3-2026-Deutsche-B-rse-Group-Continues-Strong-Growth-in-the-Third-Quarter-and-Raises-Its-Total-Net-Revenue-Guidance-for-2026-Again-5650876",
+      "publishedAt": "2026-10-20",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "cae37b8927a68f8dd89e8a9385c34c276b0f221ef1c9bd884ca20806bfee9b59"
+    },
+    {
+      "title": "En octobre 2026, les perspectives de mises en chantier continuent de baisser fortement dans la promotion immobilière",
+      "url": "https://www.insee.fr/fr/statistiques/9096575",
+      "publishedAt": "2026-10-23",
+      "referencePeriod": "2026-10",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "6ff3e9e57c379ffafcc6798e7fb3fc2ef0ed7fd5b8e48eb97b4d060471115fc6"
+    },
+    {
+      "title": "Albemarle Street Partners to become WisdomTree Portfolio Solutions",
+      "url": "https://www.wisdomtree.com/fr/press-room/albemarle-street-partners-to-become-wisdomtree-portfolio-solutions",
+      "publishedAt": "2026-10-20",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "d93ef4f0f323ed89e290a8b22fff0ef8acaed0bae5e30e2b8428512eefb4d17f"
+    },
+    {
+      "title": "BNP Paribas Asset Management enters the next generation of actively-managed ETFs",
+      "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-enters-the-next-generation-of-actively-managed-etfs",
+      "publishedAt": "2026-06-24",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "BNP Paribas Easy Equity Premium Income",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy European Equity Buffer",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Global Equity Long Short",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Managed Futures",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "77349bb52cdce3bdd3fa34f47a6d8c4d5881dd7dc654cdade92f6a373b7b9bc1"
+    },
+    {
+      "title": "BNP Paribas Asset Management strengthens UK presence with the listing of fourteen ETFs on London Stock Exchange",
+      "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-strengthens-uk-presence-with-the-listing-of-fourteen-etfs-on-london-stock-exchange",
+      "publishedAt": "2025-11-04",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "BNP Paribas Easy ETF range",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy MSCI USA SMALL CAP Min TE UCITS ETF",
+          "isin": "IE000ZME9TM4",
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy MSCI World Equal Weight Select UCITS ETF",
+          "isin": "IE000ALI2E45",
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Alpha Enhanced US UCITS ETF",
+          "isin": "IE000V3AQGW3",
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Alpha Enhanced World UCITS ETF",
+          "isin": "IE0009WYJCP8",
+          "fees": null
+        }
+      ],
+      "sourceHash": "2a46e368b8b62530000dc41a4e5fdb7d572fe56249feba68e4f2969045c3b3b4"
+    },
+    {
+      "title": "Conjoncture immobilière en Ile-de-France de mai à juillet 2026",
+      "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+      "publishedAt": "2026-10-01",
+      "referencePeriod": "2026-05 / 2026-07",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "7f50d9fb71cd6f8aabc72b0f877d07ae311aee9bedc9e76b627228f7a4d67182"
+    },
+    {
+      "title": "Conjoncture immobilière en Ile-de-France au 2e trimestre 2026",
+      "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-au-2e-trimestre-2026",
+      "publishedAt": "2026-09-08",
+      "referencePeriod": "2026-Q2",
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [],
+      "sourceHash": "d54923909ed02a96fce916f2bebb8c0a4a008f58fe61144407915ec33430da6a"
+    },
+    {
+      "title": "Trading Central expand UCITS range with two more quantamental equally weighted UCITS ETFs",
+      "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
+      "publishedAt": "2026-10-13",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "Trading Central Quant U.S. 50 Equity Index UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Trading Central Quant Global 50 Equity Index UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "4809004d9e396a642c8cf8d0aba03ea033acda131435f646eb8ff3dd19cbaf06"
+    },
+    {
+      "title": "YieldMax® discloses latest distribution rates for its European products highlighting the covered call strategy’s income potential",
+      "url": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-october-2026",
+      "publishedAt": "2026-10-08",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "YieldMax Big Tech Option Income UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "YieldMax Future of Defence Option Income UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "f76011d6b2d3fab4aefba1e685aad122957b5669774f9ad38240dd6e67215185"
+    },
+    {
+      "title": "Amundi renforce son offre d’ETF thématiques avec trois nouvelles solutions pour capter les thèmes de l’Intelligence Artificielle (IA) et des technologies du futur",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+      "publishedAt": "2026-10-14",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T16:45:11.994Z",
+      "products": [
+        {
+          "name": "Amundi Global Space Technologies UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Critical Metals & Rare Earths UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Electrification Infrastructure UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "b2735d1ce9388d7e398a572f542ff88feb6aa45548dac3117a8c91df72a21254"
+    }
+  ],
+  "failures": [
+    {
+      "family": "economie",
+      "entity": "DARES",
+      "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q4",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "etf",
+      "entity": "https://etf.dws.com/en-gb/about-us/press-releases/dws-reduces-all-in-fee-for-the-xtrackers-ftse-all-world-ucits-etf-and-offers-the-most-cost-efficient-ucits-etf-for-broad-global-equity-indices",
+      "reason": "HTTP 500"
+    },
+    {
+      "family": "etf",
+      "entity": "https://etf.dws.com/en-gb/about-us/press-releases/dws-expands-xtrackers-fixed-income-etf-offering-with-first-global-credit-etfs",
+      "reason": "HTTP 500"
+    }
+  ],
+  "metrics": {
+    "sampleDocuments": 241,
+    "successfulExtractions": 20,
+    "rejected": [
+      {
+        "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/metropole-tourangelle-resultats-2025",
+        "reason": "Publication hors des thèmes ménages suivis"
+      }
+    ],
+    "delays": [
+      {
+        "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+        "publicationToDetectionHours": null,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
+        "publicationToDetectionHours": 256.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+        "publicationToDetectionHours": 448.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
+        "publicationToDetectionHours": 1648.7533316666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+        "publicationToDetectionHours": null,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-aout-2026",
+        "publicationToDetectionHours": null,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/resultats-2025-de-lobservatoire-des-loyers-de-la-gironde",
+        "publicationToDetectionHours": 208.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
+        "publicationToDetectionHours": 2632.753331666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9087193",
+        "publicationToDetectionHours": 64.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+        "publicationToDetectionHours": 88.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/Q3-2026-Deutsche-B-rse-Group-Continues-Strong-Growth-in-the-Third-Quarter-and-Raises-Its-Total-Net-Revenue-Guidance-for-2026-Again-5650876",
+        "publicationToDetectionHours": 112.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9096575",
+        "publicationToDetectionHours": 40.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.wisdomtree.com/fr/press-room/albemarle-street-partners-to-become-wisdomtree-portfolio-solutions",
+        "publicationToDetectionHours": 112.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-enters-the-next-generation-of-actively-managed-etfs",
+        "publicationToDetectionHours": 2944.753331666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-strengthens-uk-presence-with-the-listing-of-fourteen-etfs-on-london-stock-exchange",
+        "publicationToDetectionHours": 8512.753331666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+        "publicationToDetectionHours": 568.7533316666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-au-2e-trimestre-2026",
+        "publicationToDetectionHours": 1120.7533316666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
+        "publicationToDetectionHours": 280.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-october-2026",
+        "publicationToDetectionHours": 400.75333166666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+        "publicationToDetectionHours": 256.75333166666667,
+        "detectionToAvailabilityHours": 0
+      }
+    ]
+  },
+  "limits": "Échantillon borné, sans prétendre mesurer un rappel exhaustif ni les faux positifs de tout le Web. Accès non qualifié ≠ source raccordée."
+}

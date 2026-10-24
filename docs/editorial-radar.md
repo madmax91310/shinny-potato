@@ -55,7 +55,7 @@ La preuve datée et les limites se trouvent dans [le relevé réel](../reports/r
 | Vie publique actualités et lois | Deux RSS officiels existants | Fenêtre de chaque flux ; horaire ; mêmes exclusions législatives et parlementaires qu’avant | Opérationnels ; zéro article pertinent peut être un résultat sain |
 | CRE | Communiqués officiels HTML existants | Liste rendue ; horaire ; cartes datées sur les prix/tarifs ménages | Opérationnel |
 | iShares / BlackRock | Page officielle corporate de communiqués testée HTTP 200 | Accès revérifié quotidiennement ; couverture des archives UCITS européennes non qualifiée | **Pas raccordé** à la découverte des lancements |
-| BNP Paribas AM | Portail officiel accessible | Contrôle quotidien ; découverte datée des ETF non qualifiée | **Pas raccordé** |
+| BNP Paribas AM | API publique de la salle de presse | Deux pages, extraction réelle d’une annonce de quatre ETF | **Raccordé**, champs absents inconnus |
 | State Street / SPDR | Portail officiel accessible | Contrôle quotidien ; archive européenne ETF non qualifiée | **Pas raccordé** |
 | Invesco | Media hub officiel accessible, dont des PDF | Contrôle quotidien ; archive ETF et extraction automatique non qualifiées | **Pas raccordé** |
 | VanEck | Accès variable : premier contrôle refusé, contrôle Node ultérieur HTTP 200 | Contrôle quotidien ; archive datée et adaptateur non qualifiés | **Pas raccordé** ; ne pas assimiler accès HTTP et couverture |
@@ -116,3 +116,5 @@ node scripts/check-radar-sources.mjs --passes 3 --output /tmp/radar-sources.json
 Dans un environnement avec proxy et Node 24, utiliser `NODE_USE_ENV_PROXY=1` pour les contrôles réseau. Le workflow GitHub n’exige pas ce réglage. Pour continuer une vérification de file locale : `--state /tmp/radar-state.json`. La commande ne charge jamais `publish-editorial-radar.mjs`.
 
 Le résultat de livraison, les avant/après et les limites de mesure sont dans [le compte rendu de validation](editorial-radar-v2-validation.md).
+
+La qualification complémentaire ETF et immobilier, ses preuves et limites actualisées figurent dans [la matrice des extensions](editorial-radar-extensions.md).

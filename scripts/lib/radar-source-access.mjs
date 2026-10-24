@@ -1,8 +1,8 @@
 // These are audited access points, explicitly NOT functioning discovery adapters.
 // Keep their gap visible until a dated official publication is extracted and tested.
 export const SOURCE_ACCESS_GAPS = [
+  {id:'notaires-france',name:'Notaires de France · conjoncture',url:'https://www.notaires.fr/fr/actualites',reason:'Accès au portail national refusé HTTP 403 lors de la qualification ; les Notaires du Grand Paris et INSEE sont exploités séparément.'},
   { id:'ishares', name:'iShares / BlackRock', url:'https://www.blackrock.com/corporate/newsroom/media/press-releases', reason:'Liste corporate accessible ; couverture des lancements UCITS européens et profondeur non qualifiées.' },
-  { id:'bnp', name:'BNP Paribas AM', url:'https://www.bnpparibas-am.com/fr-fr/', reason:'Portail public accessible ; découverte datée des annonces ETF à qualifier.' },
   { id:'spdr', name:'State Street / SPDR', url:'https://www.ssga.com/fr/fr/about-us', reason:'Portail institutionnel accessible ; liste de communiqués ETF européens non qualifiée.' },
   { id:'invesco', name:'Invesco', url:'https://www.invesco.com/uk/en/about-us/media-hub.html', reason:'Media hub accessible ; communiqués PDF et archive ETF à qualifier.' },
   { id:'vaneck', name:'VanEck', url:'https://www.vaneck.com/fr/fr/', reason:'Accès public refusé lors de la vérification initiale ; aucun flux supposé.' },

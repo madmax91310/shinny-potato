@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { EXTRA_SOURCES } from './lib/radar-extra-sources.mjs'
 import { parsePublication, PUBLICATION_SOURCES } from './lib/radar-publications.mjs'
 import { mkdir, readFile } from 'node:fs/promises'
 import { advanceRadar } from './lib/editorial-radar.mjs'
@@ -143,6 +144,29 @@ try{
  await page.reload()
  await page.getByRole('heading',{name:/Salaire médian du privé :/}).waitFor()
  await page.screenshot({path:'test-artifacts/radar/insee-desktop.png',fullPage:true})
+ // Housing conventions and an explicitly hypothetical mortgage scenario on mobile/desktop.
+ const housingSource=EXTRA_SOURCES.find(s=>s.id==='credit-logement')
+ const housing=parsePublication(await readFile('scripts/fixtures/radar-extensions/credit-logement.html','utf8'),housingSource,'https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026',scenarioNow)
+ feed=advanceRadar(salaryStart.state,[housing],{now:scenarioNow}).feed
+ feed.checkedAt=stamp;feed.events=feed.events.map(event=>({...event,detectedAt:stamp}))
+ await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
+ await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
+ await mobile.getByRole('button',{name:'À suivre',exact:true}).click()
+ await mobile.getByRole('heading',{name:'Analyse marché immobilier septembre 2026',exact:true}).waitFor()
+ await mobile.getByText('Conventions immobilières et scénario',{exact:true}).click()
+ await mobile.getByText('Explorer un scénario théorique de budget immobilier',{exact:true}).click()
+ await mobile.getByLabel('Taux nominal hypothétique (%)',{exact:true}).fill('3')
+ await mobile.getByText(/de capital théorique/).waitFor()
+ await mobile.getByText(/ne représente pas un taux de marché collecté/).waitFor()
+ await mobile.screenshot({path:'test-artifacts/radar/housing-mobile.png',fullPage:true})
+ assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+ await page.reload()
+ await page.getByRole('button',{name:'À suivre',exact:true}).click()
+ await page.getByRole('heading',{name:'Analyse marché immobilier septembre 2026',exact:true}).waitFor()
+ await page.getByText('Conventions immobilières et scénario',{exact:true}).click()
+ await page.getByText('Explorer un scénario théorique de budget immobilier',{exact:true}).click()
+ await page.getByLabel('Taux nominal hypothétique (%)',{exact:true}).fill('3')
+ await page.getByText(/de capital théorique/).waitFor()
  feed=initial.feed
  await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()

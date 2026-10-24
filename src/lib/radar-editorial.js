@@ -37,18 +37,20 @@ export function etfAnnouncement(title = '') {
   if (/\b(?:report|research|study|webinar|survey|guide|rapport|etude|guide)\b/.test(t)) return null
   if (/\b(?:not|no|may|might|could|considering|rumour|rumor)\b|ne .*pas|pourrait|envisage/.test(t)) return null
   if (/\b(?:will|plans? to|expected to|scheduled to)\b|lancera|sera |va lancer/.test(t) && /launch|lanc/.test(t)) return { type: 'launch', stage: 'announced', label: 'Lancement annoncé', evidence: title }
+  if (/registered for distribution in france|commercialisation.*france|available.*retail.*france/.test(t)) return {type:'france-distribution',stage:'announced',label:/registered/.test(t)?'Enregistrement pour distribution en France annoncé':'Commercialisation en France annoncée',evidence:title}
   if (/nouvelle place de cotation|additional listing|cross.list/.test(t)) return { type: 'listing', stage: 'trading', label: 'Nouvelle place de cotation annoncée', evidence: title }
   if (/premiere cotation|first trading date|first listing/.test(t)) return { type: 'first-trading', stage: /will|prevu|annonce|sera/.test(t) ? 'announced' : 'trading', label: 'Première cotation annoncée', evidence: title }
   if (/cote .*sur|lists? .*on|(?:will|expected to).{0,20}(?:trad|list)|seront cotes|sera cote/.test(t)) return { type: 'trading', stage: /will|expected|sera/.test(t) ? 'announced' : 'trading', label: 'Cotation ou négociation annoncée', evidence: title }
   if (/\b(?:now trading|begins? trading|starts? trading|commences? trading|listed today)\b|desormais (?:cote|negociable)|debut des negociations/.test(t)) return { type: 'trading', stage: 'trading', label: 'Négociation annoncée par l’émetteur', evidence: title }
   if (/\b(?:will launch|plans? to launch|to launch|upcoming launch)\b|lancera|va lancer|lancement (?:prevu|annonce)|sera lance/.test(t)) return { type: 'launch', stage: 'announced', label: 'Lancement annoncé', evidence: title }
   if (/\blaunch(?:es|ed|ing)?\b|\bintroduces?\b|\blance\b|\blancement\b/.test(t)) return { type: 'launch', stage: 'launched', label: 'Lancement déclaré par l’émetteur', evidence: title }
-  if (/renforce (?:sa gamme|son offre)|enrichit (?:sa gamme|son offre)|nouvelles solutions|elargit (?:sa gamme|son offre)/.test(t)) return { type: 'announcement', stage: 'candidate', label: 'Nouvelle offre à qualifier', evidence: title }
+  if (/expands?.*(?:range|offering)|renforce (?:sa gamme|son offre)|enrichit (?:sa gamme|son offre)|nouvelles solutions|elargit (?:sa gamme|son offre)/.test(t)) return { type: 'announcement', stage: 'candidate', label: 'Nouvelle offre à qualifier', evidence: title }
   return null
 }
 
 export function editorialState(event) {
   if (replicationWordingEvent(event) || event.status === 'wording-only') return 'secondary'
+  if(['dataset-release','publication-watch'].includes(event.factType))return 'watch'
   const field = event.field ?? ''
   if (event.factType === 'source-revision') return 'secondary'
   if (event.status === 'source-conflict') return 'secondary'
@@ -77,16 +79,16 @@ export function editorialState(event) {
 }
 
 export function factType(event) {
-  if (event.field === 'announcement' && ['listing','first-trading','trading','characteristic-change'].includes(event.announcementEvidence?.type)) return event.announcementEvidence.type
+  if (event.field === 'announcement' && ['listing','first-trading','trading','characteristic-change','share-class','france-distribution'].includes(event.announcementEvidence?.type)) return event.announcementEvidence.type
   if (event.factType) return event.factType
   if (event.kind === 'new' && event.field !== 'announcement' && event.family !== 'pouvoir-achat') return 'coverage'
   if (event.family === 'pouvoir-achat') return 'regulatory-measure'
-  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading','trading','characteristic-change'].includes(type) ? type : 'product-announcement' }
+  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading','trading','characteristic-change','share-class','france-distribution'].includes(type) ? type : 'product-announcement' }
   if (event.beforePeriod === event.period && (event.kind === 'publication' || event.family === 'economie')) return 'source-revision'
   if (event.family === 'economie' && event.publishedAt && event.evidence?.sourceHash) return 'statistical-publication'
   return 'characteristic-change'
 }
-export const FACT_LABELS = { 'statistical-publication': 'Publication statistique', 'regulatory-measure': 'Mesure réglementaire', 'product-announcement': 'Annonce de produit', listing: 'Nouvelle place de cotation', trading: 'Cotation ou négociation', 'first-trading': 'Première négociation', 'characteristic-change': 'Changement de caractéristique', 'source-revision': 'Révision de source', coverage: 'Nouvelle donnée raccordée' }
+export const FACT_LABELS = { 'dataset-release':'Livraison de données brutes', 'publication-watch':'Publication à qualifier', 'share-class':'Nouvelle part de fonds', 'france-distribution':'Commercialisation en France', 'statistical-publication': 'Publication statistique', 'regulatory-measure': 'Mesure réglementaire', 'product-announcement': 'Annonce de produit', listing: 'Nouvelle place de cotation', trading: 'Cotation ou négociation', 'first-trading': 'Première négociation', 'characteristic-change': 'Changement de caractéristique', 'source-revision': 'Révision de source', coverage: 'Nouvelle donnée raccordée' }
 export function reliability(event) {
   const reasons = []
   try { if (new URL(event.sourceUrl).protocol !== 'https:') reasons.push('Source HTTPS manquante') } catch { reasons.push('Source manquante') }
@@ -97,12 +99,13 @@ export function reliability(event) {
 }
 export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES) {
   const state = editorialState(event), type = factType(event)
+  const broadEtf = event.field==='announcement' && event.documentHash && event.products?.some(p => p.pea && /Éligible/.test(p.pea) || /(?:MSCI World|All.World|S&P 500|Euro Stoxx 50)/i.test(p.index ?? p.name))
   const household = event.family === 'economie' || event.family === 'pouvoir-achat'
   const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family)
   const composition = /^(top10|countries:|sectors:)/.test(event.field ?? '')
   const factors = {
-    audience: [household ? 1 : savings ? .7 : composition && state === 'ready' ? .65 : .35, household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
-    impact: [household || savings ? 1 : /ter|pea|fees|price/.test(event.field ?? '') ? .8 : composition && state === 'ready' ? .8 : .3, household ? 'Revenus, budget ou patrimoine' : savings ? 'Conditions concrètes de l’épargne' : composition ? 'Évolution de l’exposition, sans achat ni vente déduit' : 'Caractéristiques du placement'],
+    audience: [household ? 1 : broadEtf ? .7 : savings ? .7 : composition && state === 'ready' ? .65 : .35, broadEtf ? 'Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu' : household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
+    impact: [household || savings ? 1 : broadEtf ? .8 : /ter|pea|fees|price/.test(event.field ?? '') ? .8 : composition && state === 'ready' ? .8 : .3, household ? 'Revenus, budget ou patrimoine' : savings ? 'Conditions concrètes de l’épargne' : composition ? 'Évolution de l’exposition, sans achat ni vente déduit' : 'Caractéristiques du placement'],
     novelty: [type === 'coverage' || type === 'source-revision' || state === 'secondary' ? 0 : 1, type === 'coverage' ? 'Extension de couverture' : type === 'source-revision' ? 'Révision sans nouvelle période' : state === 'secondary' ? 'Variation technique' : 'Publication ou changement documenté'],
     comparison: [household || event.before !== null && event.before !== undefined ? 1 : event.products?.length ? .7 : null, household ? 'Permet de situer une situation ou un budget' : event.before !== null && event.before !== undefined ? 'Avant/après conservé avec périmètre' : event.products?.length ? 'Expositions nommées dans le communiqué' : 'Comparaison non documentée'],
   }

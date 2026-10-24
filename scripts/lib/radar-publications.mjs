@@ -1,8 +1,11 @@
+import { EXTRA_SOURCES, extraDiscovery, extraDate, extraSummary, tagContent, statisticalPeriod } from './radar-extra-sources.mjs'
+import { housingTopic, housingConventions, qualifyDvfSales } from '../../src/lib/radar-housing.js'
 import { createHash } from 'node:crypto'
 import { parseOfficialListing } from './purchasing-power-sources.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
 import { parseEtfDocument } from './radar-news.mjs'
 export const PUBLICATION_SOURCES = [
+  ...EXTRA_SOURCES,
   { id: 'insee-publications', name: 'INSEE · publications nationales', url: 'https://www.insee.fr/fr/flux/2', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
   { id: 'insee-conjoncture', name: 'INSEE · conjoncture et inflation', url: 'https://www.insee.fr/fr/flux/3', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
   { id: 'amundi', name: 'Amundi · actualités et avis', url: 'https://www.amundietf.fr/sitemap/sitemap.xml', method: 'sitemap', host: 'www.amundietf.fr', family: 'etf', depth: 'Toutes les URL françaises des actualités du sitemap' },
@@ -18,7 +21,7 @@ export const PUBLICATION_SOURCES = [
 ]
 const hash = text => createHash('sha256').update(text).digest('hex')
 const normal = value => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
-export const statisticalTopic = text => /salaires?|remunerations?|patrimoine|niveaux? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
+export const statisticalTopic = text => housingTopic(text) || /salaires?|remunerations?|patrimoine|niveaux? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
 const tag = (text, name) => cleanText(text.match(new RegExp(`<${name}\\b[^>]*>([\\s\\S]*?)<\\/${name}>`, 'i'))?.[1] ?? '')
 export function canonicalUrl(value) {
   const url = new URL(value)
@@ -106,13 +109,19 @@ export function publicationDate(html, source) {
   return date
 }
 export function parsePublication(html, source, url, now = new Date(), listing = {}) {
-  const publishedAt = (source.id === 'dws' || source.id.startsWith('bdf-')) && listing.publishedAt ? listing.publishedAt : publicationDate(html, source)
+  if(source.id==='dvf'){
+    const dataset=JSON.parse(html),resource=dataset.resources?.[0]
+    if(dataset.slug!=='demandes-de-valeurs-foncieres'||!resource)throw Error('Livraison DVF invalide')
+    return {family:'economie',entity:'dvf-dgfip',field:'release',fieldLabel:'Livraison de données DVF',factType:'dataset-release',label:`DVF : ${resource.title}`,value:{resources:dataset.resources.map(r=>({id:r.id,title:r.title,updatedAt:r.last_modified,checksum:r.checksum??null}))},sourceUrl:source.url,publicationId:`dvf:${resource.id}:${resource.last_modified}`,publishedAt:null,period:resource.title,referencePeriod:resource.title,checkedAt:now.toISOString(),scope:'France, couverture et exclusions DGFiP décrites dans la notice DVF',rule:'publication',discovery:true,summary:dataset.description.slice(0,1500),evidence:{sourceHash:hash(html),excerpt:resource.title,method:'Métadonnées API officielles ; last_modified ne prouve pas une date de publication statistique.'},housing:{...housingConventions(dataset.description,'dvf'),license:dataset.license,resourceUpdatedAt:resource.last_modified,localQualification:{...qualifyDvfSales([]),sampleSize:null,reason:'Aucun lot de transactions locales qualifié ; aucun prix local ni évolution mensuelle produit.'}},reason:'Nouvelle livraison ou révision de données brutes ; aucun prix local déduit du nom du fichier.',angle:'Attendre une série de transactions comparables et représentatives avant de calculer un prix local.'}
+  }
+  const publishedAt = source.method.startsWith('extra-') ? extraDate(html,source,listing) : (source.id === 'dws' || source.id.startsWith('bdf-')) && listing.publishedAt ? listing.publishedAt : publicationDate(html, source)
   if (Date.parse(publishedAt) > +now) throw new Error('Publication datée dans le futur')
   const title = source.host === 'www.insee.fr' ? cleanText(html.match(/<span\b[^>]*class="titre-titre"[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '') : tag(html, 'h1') || listing.title
   if (!title || title.length > 700) throw new Error('Titre de publication absent ou anormal')
-  const base = { family: source.family, entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
+  const base = { ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
   if (source.family === 'etf') {
     const parsed = parseEtfDocument(html, title)
+    if(source.id==='xetra' && /listing|listed|trad/i.test(title+' '+cleanText(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''))) parsed.announcementEvidence={type:'trading',stage:'trading',label:'Cotation annoncée par Deutsche Börse',evidence:title}
     const docId = cleanText(html).match(/Doc ID:\s*(\d{5,12})/)?.[1]
     return { ...base, ...(docId ? { publicationId: `${source.id}:document:${docId}` } : {}), value: title, ...parsed, documentUrl: url, documentHash: hash(html), documentCheckedAt: now.toISOString(), reason: 'Communiqué officiel daté, noms et caractéristiques limités aux associations prouvées.', angle: 'Comparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.' }
   }
@@ -129,13 +138,18 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     const table = [...html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)].map(match => match[1]).find(text => /20\d{2}/.test(cleanText(text)))
     if (table) paragraphs = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].slice(0,5).map(match => [...match[1].matchAll(/<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi)].map(cell=>cleanText(cell[1])).join(' · '))
   }
-  const summary = paragraphs.join('\n\n')
+  let summary
+  try { summary = source.method.startsWith('extra-') ? extraSummary(html,source) : paragraphs.join('\n\n') } catch(error) {
+    if(source.id!=='oll')throw error
+    summary = tagContent(html,'h1')
+  }
+  const metadataOnly = source.id==='credit-logement' || source.id==='oll' && !/[%€]|euros/i.test(summary)
   if (!summary || !/\d/.test(summary)) throw new Error('Résumé statistique chiffré absent : extraction à adapter')
   // A publication's edition year is not necessarily its statistical reference year.
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
-  const year = source.id === 'drees' ? null : title.match(/\b(20\d{2}(?:-Q[1-4])?)\b/)?.[1]
+  const year = source.id === 'drees' ? null : statisticalPeriod(title)
   const dataPeriods = years
-  return { ...base, field: 'publication', rule: 'publication', factType: 'statistical-publication', referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: 'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
+  return { ...base, field: 'publication', rule: 'publication', factType: metadataOnly ? 'publication-watch' : 'statistical-publication', ...(source.id==='credit-logement'?{publishedAt:null,sourceDeclaredPublicationDate:publishedAt,publicationDateNote:'La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.'}:{}), referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: 'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
 }
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.
@@ -158,9 +172,9 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now) {
         const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000)
         if (!result.unchanged) {
-          const rows = discoverPublications(result.content, source)
+          const rows = await extraDiscovery(result.content,source,request) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
-          for (const row of rows) state.documents[row.url] ??= { ...row, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: 'pending' }
+          for (const row of rows) state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: 'pending' }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
         report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = 'ok'; delete report.error
@@ -172,8 +186,11 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const due = Object.entries(state.documents).filter(([, item]) => !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now)
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
-  const queues = sources.map(source => due.filter(([, item]) => item.source === source.id)), chosen = []
+  const start=(state.nextSourceIndex ?? 0)%sources.length
+  const order=[...sources.slice(start),...sources.slice(0,start)]
+  const queues = order.map(source => due.filter(([, item]) => item.source === source.id)), chosen = []
   while (chosen.length < budget && queues.some(q => q.length)) for (const q of queues) if (q.length && chosen.length < budget) chosen.push(q.shift())
+  if(chosen.length) state.nextSourceIndex=(sources.findIndex(source=>source.id===chosen.at(-1)[1].source)+1)%sources.length
   const processingStarted = Date.now()
   for (const [url, item] of chosen) {
     if (Date.now()-processingStarted > 90000) break // remaining documents stay pending durably
@@ -184,7 +201,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       if (!result.unchanged) {
         const observation = parsePublication(result.content, source, url, now, item)
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected }
-        else { item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
+        else { observation.backfill = item.observation && observation.publishedAt > item.observation.publishedAt ? false : item.backfill ?? false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
         item.etag = result.etag; item.lastModified = result.lastModified
       }
       item.nextAttemptAt = new Date(+now+7*86400000).toISOString(); delete item.error
