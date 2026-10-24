@@ -21,11 +21,11 @@ class AnniversaryProvenance(unittest.TestCase):
   with patch('refresh_anniversary_levels.ROOT',self.fixture()),patch('refresh_anniversary_levels.configurations',return_value=[]):
    updated,report=refresh({},NOW)
   self.assertEqual(updated['or']['checkedAt'],'2026-10-10');self.assertEqual(updated['or']['derivedAt'],NOW.isoformat());self.assertEqual(updated['or']['asOf'],'2026-09');self.assertEqual(report['successes'],[])
-  self.assertFalse(report['derived'][0]['sourceAttempted']);self.assertEqual(report['outcomes'][0]['status'],'not-attempted');self.assertEqual(report['scope']['requestedIds'],[]);self.assertEqual(report['scope']['derivedIds'],['anniversary-or'])
+  self.assertFalse(report['derived'][0]['sourceAttempted']);self.assertEqual(report['outcomes'][0]['status'],'not-attempted');self.assertEqual(report['scope']['requestedIds'],['anniversary-or']);self.assertEqual(report['scope']['networkRequestedIds'],[]);self.assertEqual(report['scope']['derivedIds'],['anniversary-or'])
  def test_unqualified_cached_proof_preserves_the_previous_level_and_dates(self):
   prior={'or':{'value':4319,'asOf':'2026-09','checkedAt':'2026-10-03'}}
   for root in [self.fixture('2026-07-01'),self.fixture('2026-11-01'),self.fixture(sha='invalid')]:
    with self.subTest(root=root),patch('refresh_anniversary_levels.ROOT',root),patch('refresh_anniversary_levels.configurations',return_value=[]):
     retained,report=refresh(prior,NOW)
-   self.assertEqual(retained,prior);self.assertEqual(report['successes'],[]);self.assertEqual(report['derived'],[]);self.assertEqual(report['errors'][0]['lastSuccessAt'],'2026-10-03')
+   self.assertEqual(retained,prior);self.assertEqual(report['successes'],[]);self.assertEqual(report['derived'],[]);self.assertEqual(report['errors'][0]['lastSuccessAt'],'2026-10-03');self.assertIn(report['errors'][0]['id'],report['scope']['expectedIds'])
 if __name__=='__main__':unittest.main()
