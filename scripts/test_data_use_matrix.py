@@ -10,7 +10,7 @@ class DataUseMatrix(unittest.TestCase):
   self.manifest={'files':{self.path:hashlib.sha1(b'blob '+str(len(body)).encode()+b'\0'+body).hexdigest()},'codeSha':'code','dataSha':'data'}
   self.field={'key':'aum','label':'Encours','currency':'USD','kind':'live','state':'connected','sourceUrls':['https://issuer.test/exact'],'checkedAt':'2026-10-24','asOf':'2026-10-23','workflows':[{'path':'.github/workflows/collect.yml','crons':['0 1 * * *']}]}
   self.inventory={'registries':[{'path':self.path,'writers':['.github/workflows/collect.yml']}],'fields':[],'assets':[{'id':'A','name':'Exact part','type':'instrument','fields':[self.field]}],'consumerUsage':{'externalAssets':[],'summary':{'usages':1},'tools':[{'path':'/tool','name':'Tool','rows':[{'id':'A','key':'aum','required':True}]}]}}
-  self.monitor={'workflows':{'collect.yml':{'collectionStatus':'success','validationStatus':'success','recordingStatus':'success','publicationStatus':'success','lastCollectionSuccessAt':'2026-10-24','runUrl':'https://github.test/run'}}}
+  self.monitor={'workflows':{'collect.yml':{'collectionStatus':'success','validationStatus':'success','recordingStatus':'success','publicationStatus':'success','publicationReceipt':{'files':self.manifest['files']},'lastCollectionSuccessAt':'2026-10-24','runUrl':'https://github.test/run'}}}
  def row(self):return matrix(self.inventory,self.monitor,self.manifest,dt.date(2026,10,24),self.root)[0]
  def test_matching_published_source_real_execution_and_dates(self):
   row=self.row();self.assertEqual(row['etat'],'A');self.assertEqual(row['publication_code'],'code');self.assertEqual(row['publication_donnees'],'data')
@@ -19,6 +19,11 @@ class DataUseMatrix(unittest.TestCase):
  def test_failed_latest_run_and_prior_global_success_are_not_specific_proof(self):
   self.monitor['workflows']['collect.yml']['recordingStatus']='failure';self.assertEqual(self.row()['etat'],'B')
   self.monitor['workflows']['collect.yml']['recordingStatus']='success';self.monitor['workflows']['collect.yml']['lastCollectionSuccessAt']='2026-10-25';self.assertEqual(self.row()['etat'],'B')
+ def test_targeted_receipt_cannot_certify_an_unattempted_registry(self):
+  self.monitor['workflows']['collect.yml']['publicationReceipt']={'files':{'other.json':'a'*40}};self.assertEqual(self.row()['etat'],'B')
+ def test_later_matching_publication_does_not_rewrite_the_failed_attempt(self):
+  self.monitor['workflows']['collect.yml']['publicationStatus']='failure'
+  row=self.row();self.assertEqual(row['etat'],'A');self.assertIn('adoptées',row['publication_mecanisme']);self.assertEqual(self.monitor['workflows']['collect.yml']['publicationStatus'],'failure')
  def test_current_local_file_is_not_proof_of_publication(self):
   (self.root/self.path).write_text('{}');self.assertEqual(self.row()['etat'],'B')
  def test_future_and_expired_checks_are_not_qualified(self):
