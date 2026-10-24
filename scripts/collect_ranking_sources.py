@@ -220,6 +220,7 @@ def cross_fx_document(currency, now, fetch=None):
     attempts = []
     from h10_fx import source_url
     for url, timeout in [(window, 25), (canonical, 60), (source_url(now), 30)]:
+        requested_at = dt.datetime.now(UTC).isoformat()
         try:
             body = fetch(url, max_bytes=4_000_000, timeout=timeout, max_attempts=2)
             digest = hashlib.sha256(body).hexdigest()
@@ -229,7 +230,8 @@ def cross_fx_document(currency, now, fetch=None):
                 directory.mkdir(parents=True, exist_ok=True)
                 (directory / (digest + '.raw')).write_bytes(body)
                 write_json_atomic(directory / (digest + '.json'), {'sourceUrl':url,
-                    'attemptedAt':now.isoformat(), 'sha256':digest, 'bytes':len(body),
+                    'collectionStartedAt':now.isoformat(), 'attemptedAt':requested_at,
+                    'receivedAt':dt.datetime.now(UTC).isoformat(), 'sha256':digest, 'bytes':len(body),
                     'sourceAttempts':attempts, 'qualification':'pending-parser-validation'})
             return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded', 'sha256':digest}]
         except (urllib.error.URLError, TimeoutError, ConnectionError) as error:

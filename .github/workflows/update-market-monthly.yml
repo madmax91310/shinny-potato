@@ -113,7 +113,6 @@ jobs:
         continue-on-error: true
         env:
           RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
-          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
@@ -124,6 +123,7 @@ jobs:
         continue-on-error: true
         env:
           RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
