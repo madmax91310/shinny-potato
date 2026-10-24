@@ -13,6 +13,55 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parents[1]
 
+def amundi_events(config, payload, reference, source):
+    if source['sourceUrl'] != 'https://www.amundietf.fr/mapi/ProductAPI/getProductsData':
+        raise ValueError('Unqualified official Amundi distribution source')
+    products=[p for p in payload['products'] if p.get('productId')==config['isin']]
+    if len(products)!=1 or products[0]['characteristics']['ISIN']!=config['isin']:
+        raise ValueError('Wrong Amundi share identity')
+    product=products[0]
+    def history(indicator):
+        columns=[r for r in product['historics'] if r['indicator']==indicator]
+        if len(columns)!=1 or not isinstance(columns[0]['historicalData'],list):
+            raise ValueError('Official Amundi distribution columns changed')
+        values={}
+        for row in columns[0]['historicalData']:
+            day=dt.datetime.fromtimestamp(row['date']/1000,dt.timezone.utc).date().isoformat()
+            if day in values:raise ValueError('Duplicate Amundi historical date')
+            values[day]=row['data']
+        return values
+    amounts,currencies=history('dividendAmount'),history('dividendCurrency')
+    nav,adjusted,nav_currency=history('officialNav'),history('countervalorisedAdjustedNAV'),history('navCurrency')
+    if set(amounts)!=set(currencies) or set(reference['dates'])!=set(amounts):
+        raise ValueError('Official Amundi distribution dates incomplete')
+    events={};checks={}
+    # Current capitalisation does not describe the share's historical distributions.
+    # The API's generic date is accepted as an ex-date only when the official
+    # adjusted-NAV factor confirms that exact cash amount on that same session.
+    for day,value in sorted(amounts.items()):
+        amount=float(value)
+        previous=sorted(d for d in nav.keys() & adjusted.keys() if d<day)
+        if not previous or day not in nav or day not in adjusted:
+            raise ValueError('Official cash date or previous NAV missing')
+        before=previous[-1]
+        if (dt.date.fromisoformat(day)-dt.date.fromisoformat(before)).days>4:
+            raise ValueError('Official cash sessions too far apart')
+        if any(c!=config['currency'] for c in [currencies[day],nav_currency.get(day),nav_currency.get(before)]):
+            raise ValueError('Official Amundi dividend/NAV currency not qualified')
+        levels=[nav[before],nav[day],adjusted[before],adjusted[day],amount]
+        if not all(isinstance(v,(int,float)) and math.isfinite(v) and v>0 for v in levels):
+            raise ValueError('Official Amundi cash/NAV values invalid')
+        observed=(adjusted[day]/nav[day])/(adjusted[before]/nav[before])
+        expected=1+amount/nav[day]
+        if not math.isclose(observed,expected,rel_tol=1e-6,abs_tol=1e-8):
+            raise ValueError('Official cash date/factor not qualified; possible split or other unit event')
+        checks[day]=dict(previousSession=before,previousNav=nav[before],exDateNav=nav[day],
+            observedIncomeFactor=observed,expectedIncomeFactor=expected,
+            qualification='Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards')
+        events[day]=amount
+    source={**source,'officialCashDateChecks':checks}
+    return events,source
+
 def official_events(config):
     reference=config['distributionEvidence']
     path=ROOT/reference['path']
@@ -24,6 +73,9 @@ def official_events(config):
     if len(matches)!=1 or not matches[0].get('ok') or not matches[0].get('checkedAt'):
         raise ValueError('Official distribution capture provenance missing')
     source=matches[0]
+    provider=reference.get('provider','blackrock')
+    if provider=='amundi':return amundi_events(config,json.loads(body),reference,source)
+    if provider!='blackrock':raise ValueError('Unqualified official distribution provider')
     if not source['sourceUrl'].startswith('https://www.blackrock.com/varnish-api/'):
         raise ValueError('Unqualified official distribution source')
     components=json.loads(body)['componentsByNameMap']
@@ -91,6 +143,8 @@ def reconcile_adjustments(config,result,daily,now):
             previousClose=q0,providerAdjustmentRatio=observed,expectedAdjustmentRatio=1/factor,
             backAdjustmentFactor=factor,status=status,sourceUrl=source['sourceUrl'],
             evidenceCheckedAt=source['checkedAt'],evidenceSha256=source['sha256']))
+        if day in source.get('officialCashDateChecks',{}):
+            checks[-1]['officialCashDateCheck']=source['officialCashDateChecks'][day]
     result=copy.deepcopy(result)
     def factor_for(day):return math.prod(factor for exdate,factor in repairs if day<exdate)
     precision=config['precision']
