@@ -1,6 +1,6 @@
 # Actions internationales — Portefeuilles IA
 
-Généré : 2026-10-24T07:51:42.123777+00:00
+Généré : 2026-10-24T08:49:22.656337+00:00
 Actions qualifiées : 18221 ; référence avant chantier : 281 ; nouveaux instruments qualifiés : 17950.
 
 
@@ -133,7 +133,7 @@ Les ETF UCITS restent disponibles. Les cryptos au comptant et les ETC/ETN/ETP qu
 
 ## Références World et Nasdaq-100
 
-- IE00B4L5Y983-ETFP : temporary-failure — Clôtures attendues manquantes : 2026-10-23 (couverture 2026-10-22, tentative 2026-10-24T07:51:24.462853+00:00).
+- IE00B4L5Y983-ETFP : temporary-failure — Clôtures attendues manquantes : 2026-10-23 (couverture 2026-10-22, tentative 2026-10-24T08:49:04.279382+00:00).
 - IE00B4L5Y983-XAMS : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.040360+00:00).
 - IE00B4L5Y983-XETR : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.055529+00:00).
 - IE00B4L5Y983-XLON-IWDA-USD : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.059275+00:00).

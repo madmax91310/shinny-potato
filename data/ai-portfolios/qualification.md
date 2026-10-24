@@ -1,6 +1,6 @@
 # Qualification quotidienne — Portefeuilles IA
 
-Généré : 2026-10-24T07:51:34.302759+00:00
+Généré : 2026-10-24T08:49:14.103985+00:00
 
 - instrumentsInventoried : 62013
 - listingCandidates : 63771
