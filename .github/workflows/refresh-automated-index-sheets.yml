@@ -71,6 +71,7 @@ jobs:
           msci-world-health-care msci-world-financials msci-world-energy
       - run: node scripts/build-index-company-compositions.mjs --apply --report "${{ runner.temp }}/index-company-qualification-observations.json"
       - run: node scripts/test-index-proxy-identity.mjs
+      - run: python -m unittest discover -s scripts -p test_index_report_ownership.py
       - run: npm run test:index-concentration
       - name: "Validate observations: node scripts test-automated-index-sheets.mjs"
         run: node scripts/test-automated-index-sheets.mjs
