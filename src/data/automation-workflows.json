@@ -632,8 +632,14 @@
       "Collect exact daily closes and ECB FX"
     ],
     "validationSteps": [
-      "Validate observations build",
+      "Validate accounting and daily coverage",
+      "Validate every selectable equity against the accounting engine",
+      "Audit retained source identities",
       "Validate collected observations"
-    ]
+    ],
+    "dataFailureTools": [
+      "Portefeuilles IA"
+    ],
+    "dataFailureTo": "/portefeuilles-ia"
   }
 }

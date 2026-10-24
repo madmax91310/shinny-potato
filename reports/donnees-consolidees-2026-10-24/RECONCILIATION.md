@@ -23,8 +23,12 @@ Copper/WisdomTree, deux PEA non conclusifs, continuité juridique FR0007054358, 
 
 ## Coordination des fichiers et PR
 
-À cette capture, seule #903 reste ouverte (`codex/guide-etf-sectoriels-pea`) : elle modifie `src/pages/tweet-bank/data.js`. Ce fichier et ce guide sont hors de notre lot ; aucune fusion de cette PR n’est demandée ici. #908 est fusionnée, sa branche n’a aucun commit supplémentaire à reprendre. Les anciennes branches de qualification et sondes sont conservées ; absence de PR ouverte ne vaut pas autorisation de les écraser.
+À cette capture, seule #903 reste ouverte (`codex/guide-etf-sectoriels-pea`) : elle modifie `src/pages/tweet-bank/data.js`. Ce fichier et ce guide sont hors de notre lot ; aucune fusion de cette PR n’est demandée ici. #908 est fusionnée ; sa branche de travail n’est plus présente sur le distant et aucun complément ouvert de ce lot n’est à fusionner. Les anciennes branches de qualification et sondes sont conservées ; absence de PR ouverte ne vaut pas autorisation de les écraser.
 
 Une seule branche de continuation : `fix/suivi-donnees-consolide-20261024`. Périmètre réservé : stockage des séries IA, régressions correspondantes, contexte des incidents IA et suivi consolidé. Pas de retouche des collecteurs DWS/VanEck, calendriers financiers, seuils, textes ou données du guide #903. Vérification de master avant intégration et de toute nouvelle PR avant fusion.
 
 Le suivi consolidé associera chaque entrée héritée à sa provenance, son axe, son état courant, son niveau de preuve et sa pièce manquante. Les défauts de données et de supervision seront séparés, avec un lien lorsqu’ils ont une cause commune. Les 8 600 lignes héritées et les 79 cas financiers seront réconciliés sans additionner leurs chevauchements comme de nouvelles pannes.
+
+## Complément de coordination — #913
+
+PR #913 apparue pendant la validation : reprise du catalogue IA côté interface. Ses fichiers App/lib/runtime/request-transport, projections et scénarios navigateur restent réservés à cette PR. Le seul fichier commun est `update-ai-portfolios.yml` : #913 ajoute deux appels de tests, ce lot sépare les contrôles ultérieurs et les déclare dans la supervision. Les hunks sont distincts ; conserver les deux séries de changements à l’intégration. La demande utilisateur enregistrée sur master `3f729f9b` est reprise intacte ; les recettes utilisent des livres isolés.

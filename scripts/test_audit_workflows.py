@@ -79,17 +79,19 @@ class WorkflowContracts(unittest.TestCase):
 
     def test_second_ai_audit_failure_fails_workflow_step(self):
         import subprocess, tempfile, os
-        workflow = (ROOT/'.github/workflows/update-ai-portfolios.yml').read_text()
-        step = workflow.split('name: Validate every selectable equity against the accounting engine\n')[1].split('      - name:')[0]
-        self.assertIn('run: |',step)
-        command = '\n'.join(line[10:] for line in step.split('run: |\n')[1].splitlines() if line.startswith('          '))
+        import yaml
+        steps = yaml.safe_load((ROOT/'.github/workflows/update-ai-portfolios.yml').read_text())['jobs']['refresh']['steps']
+        engine = next(s for s in steps if s.get('name') == 'Validate every selectable equity against the accounting engine')
+        audit = next(s for s in steps if s.get('name') == 'Audit retained source identities')
+        self.assertEqual(audit['if'], 'always()')
+        self.assertFalse(audit.get('continue-on-error', False))
         with tempfile.TemporaryDirectory() as folder:
             fake = Path(folder)/'node'
             fake.write_text('#!/bin/sh\necho "$1" >> "$CALLS"\ncase "$1" in *audit-ai-runtime.mjs) exit 23;; esac\n')
             fake.chmod(0o755)
             calls = Path(folder)/'calls'
-            result = subprocess.run(['bash','-e','-c',command], env={**os.environ,'PATH':folder+':'+os.environ['PATH'],'CALLS':str(calls)})
-            self.assertEqual(result.returncode,23)
+            results = [subprocess.run(['bash','-e','-c',step['run']], env={**os.environ,'PATH':folder+':'+os.environ['PATH'],'CALLS':str(calls)}) for step in [engine,audit]]
+            self.assertEqual([r.returncode for r in results],[0,23])
             self.assertEqual(calls.read_text().splitlines(),['scripts/test-ai-equity-coverage.mjs','scripts/audit-ai-runtime.mjs'])
 
     def test_partial_failure_signal_cannot_block_validated_publication(self):

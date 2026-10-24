@@ -1,0 +1,38 @@
+[
+  {
+    "id": "correction:ia-stockage-certifie",
+    "axe": "fiabilité",
+    "type": "défaut de stockage des données",
+    "donnees": "21 séries certifiées restaurées dans les fragments, points et dates authentiques conservés",
+    "probleme": "Hydratation Python remplaçant les versions certifiées en mémoire par des fragments antérieurs ; blocage ultérieur du producteur.",
+    "preuves": [
+      "preuves/hydratation-avant.json",
+      "preuves/stockage-repare.json",
+      "scripts/test_ai_series_persistence.py"
+    ]
+  },
+  {
+    "id": "correction:ia-contexte-incidents",
+    "axe": "supervision",
+    "type": "défaut du tableau de supervision",
+    "supervision": "Consommateur IA et source réellement essayée ; dates tentative/donnée/dernière réussite séparées",
+    "probleme": "Les erreurs de clôture IA étaient attribuées aux outils ETF indépendants ; le lien et les sources génériques ne décrivaient pas la chaîne en panne.",
+    "preuves": [
+      "scripts/test_ai_incident_context.py",
+      "scripts/automation_monitoring.py",
+      "src/data/automation-workflows.json"
+    ]
+  },
+  {
+    "id": "correction:ia-validation-visible",
+    "axe": "supervision",
+    "type": "défaut du tableau de supervision",
+    "supervision": "Échec technique visible indépendamment des erreurs fournisseur ; audit exhaustif conservé même après échec du premier contrôle",
+    "probleme": "Le premier échec de test empêchait le diagnostic indépendant ; une erreur fournisseur pouvait masquer la validation défaillante.",
+    "preuves": [
+      "scripts/test_ai_workflow_diagnostics.py",
+      "scripts/test_audit_workflows.py",
+      "scripts/test_ai_incident_context.py"
+    ]
+  }
+]

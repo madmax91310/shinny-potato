@@ -55,15 +55,33 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add('overdue:' + workflow, {**base, 'kind': 'overdue', 'field': 'Fréquence de collecte', 'cause': f"Aucune exécution terminée depuis plus de {config['maxAgeHours']} heures.", 'lastSuccessAt': row.get('lastCollectionSuccessAt')})
         for identifier, failure in row.get('dataFailures', {}).items():
             details = incident_context(identifier, context, failure.get('name', identifier))
-            if not details['tools']:
+            # Daily quotes and issuer characteristics have different consumers.
+            if 'dataFailureTools' in config:
+                details['tools'] = config['dataFailureTools']
+                details['to'] = config.get('dataFailureTo', '/donnees-a-revoir')
+                details['sourceUrls'] = failure.get('sourceUrls', [])
+            elif not details['tools']:
                 details['tools'] = tools
+            if 'sourceUrls' in failure:
+                details['sourceUrls'] = failure['sourceUrls']
             # An official document that changed wording or identity is not a broken collector:
             # the previous value is kept and a person must compare old and new text.
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
             add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
-        if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):
+        validation_steps = set(config.get('validationSteps', []))
+        validation_failures = [f for f in row.get('failures', []) if f['step'] in validation_steps or f['job'] == 'report-validation-failures']
+        validation_failed = row.get('validationStatus') == 'failure' or bool(validation_failures)
+        if validation_failed:
+            add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
+                'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
+        other_failures = [f for f in row.get('failures', []) if f['step'] not in validation_steps
+                          and f['step'] not in config.get('collectionSteps', [])
+                          and f['job'] not in ('report-failures', 'report-validation-failures')
+                          and not f['job'].startswith('deploy /')]
+        if row.get('status') == 'failure' and (row.get('publicationStatus') == 'failure' or other_failures
+                or not row.get('dataFailures') and not validation_failed):
             publishing = row.get('publicationStatus') == 'failure'
             # Data-only lane: the data reached the site; only a check after publication needs repair.
             checks_only = (not publishing and row.get('publicationStatus') == 'success' and row.get('failures')
