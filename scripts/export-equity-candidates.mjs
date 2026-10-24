@@ -47,7 +47,7 @@ export function buildCandidates(){
     skipped.push({id:expected.id,isin:item.isin,reason:'Qualified common directory listing changed or is unavailable'});continue
    }
    symbol=ai.symbol
-   listingEvidence={isin:item.isin,ticker:ai.ticker,exchange:ai.mic,currency:ai.currency,sourceUrl:ai.sourceUrl,asOf:ai.sourceAsOf,
+   listingEvidence={isin:item.isin,ticker:ai.ticker,exchange:ai.mic,currency:ai.currency,sourceUrl:ai.listingObservation?.sourceUrl??ai.sourceUrl,asOf:ai.listingObservation?.asOf??ai.sourceAsOf,
     identitySourceUrl:r.sourceUrl,identityAsOf:r.asOf,aiListingId:ai.id,companyId:ai.companyId,shareClass:ai.shareClass}
   }
   if(expected?.symbol&&expected.symbol!==symbol){skipped.push({id:expected.id,isin:item.isin,reason:`Expected listing ${expected.symbol} differs from the issuer-held listing ${symbol}; no substitution`});continue}

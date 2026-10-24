@@ -138,8 +138,13 @@ try{
  await page.route('**/automation-status/automation-status.json',r=>r.fulfill({json:monitor}))
  await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
  const monitoring=page.getByRole('region',{name:'Surveillance des données',exact:true})
- const signalCount=Object.keys(monitor.monitoring.active).length
+ // This historic fixture retains one signal from the now-removed IA collector.
+ const removedSignal='collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP'
+ assert(monitor.monitoring.active[removedSignal],'Keep the historical fixture intact')
+ const signalCount=Object.keys(monitor.monitoring.active).length-1
  await monitoring.getByText(`${signalCount-4} point(s) à examiner · ${signalCount} signalement(s) conservé(s)`,{exact:false}).waitFor()
+ await monitoring.getByText(/Retirés du périmètre/).waitFor()
+ assert((await monitoring.innerText()).includes('Ces incidents ne sont pas comptés comme des données réparées.'))
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
  assert.equal(await monitoring.locator('article').count(),1)
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('field:instrument:IE00BJGWQN72:completeHoldings')
@@ -149,5 +154,5 @@ try{
  assert((await monitoring.innerText()).includes('field:instrument:IE00BJGWQN72:completeHoldings'))
  assert((await monitoring.innerText()).includes('collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72'))
  assert.deepEqual(errors,[])
- console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
+ console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; current common data are reachable through their actual consumers.`)
 }finally{await browser?.close();server.kill()}

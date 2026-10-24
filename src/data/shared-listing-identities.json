@@ -28,7 +28,15 @@
       "checkedAt": "2026-10-22T09:01:50.921813+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "identityDetailSourceUrl": "https://api.nasdaq.com/api/nordic/instruments/TX240/info?assetClass=SHARES&lang=en",
+        "identityDetailSha256": "cd198bb54ae9d5ce5111d24b64f2486596885bbb8f2b9ee9c08d199cfa836c21",
+        "sourceUrl": "https://api.nasdaq.com/api/nordic/screener/shares?category=MAIN_MARKET&tableonly=true&page=1&size=1000&segment=LARGE_CAP&segment=MID_CAP&segment=SPAC&segment=SMALL_CAP&lang=en",
+        "asOf": "2026-10-24",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "e371ad1ce5f47f1e495c6bc6af44d6c1ef91ace8424e2e5ddcc075cf5f36749d"
+      }
     },
     {
       "id": "security:02638197ede57819a2b12907-XNYS-NET-USD",
@@ -56,7 +64,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:0f172bb4a65a91c33116ec90-XNAS-ZS-USD",
@@ -84,7 +98,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:1b791339e4bf11dd06a03b0f-XNAS-COIN-USD",
@@ -112,7 +132,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:2e52093a1cadce3fc7074256-XNYS-RDDT-USD",
@@ -140,7 +166,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:41937f72830a742d03ea62af-XNAS-NBIS-USD",
@@ -168,7 +200,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:4c3fba0de1707bcb0eb33fc1-XNYS-NU-USD",
@@ -196,7 +234,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:558c4aa259d26af1f5544508-XNYS-GEV-USD",
@@ -224,7 +268,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:61df0650d2908939a1da6ebe-XNAS-RKLB-USD",
@@ -252,7 +302,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:64cba68efbfc09103fe20b8f-XNYS-SNOW-USD",
@@ -280,7 +336,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:7b6e1d772b3e3fac56d04ece-XNAS-DDOG-USD",
@@ -308,7 +370,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:7bf339dd370f0e825aabcfa1-XNAS-SOFI-USD",
@@ -364,7 +432,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:b46448b9350ddbb79e4b9261-XNAS-ASTS-USD",
@@ -392,7 +466,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:b4ba52e2d84de86a4997678b-XNYS-SPOT-USD",
@@ -420,7 +500,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:c883cef69d1d7a699848a783-XNAS-MSTR-USD",
@@ -448,7 +534,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:c978712ab185af2e178d11c5-XNAS-DUOL-USD",
@@ -476,7 +568,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:cbbc98498c49c21c572ea17e-XNYS-VRT-USD",
@@ -504,7 +602,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:cfa0ec5c7fc6917ba362c0b1-XNYS-CCJ-USD",
@@ -532,7 +636,13 @@
       "checkedAt": "2026-10-22T08:17:08.137997+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "94335ed3f4abc4bbd58a4415d105d453184f5484eaf6a2884d1bfb0120d850c9"
+      }
     },
     {
       "id": "security:d65c888cdbe39d1045f256b5-XNAS-MELI-USD",
@@ -560,7 +670,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "security:d6aa035e9c2966e8f9645fa2-XNAS-HOOD-USD",
@@ -588,7 +704,13 @@
       "checkedAt": "2026-10-22T08:17:07.940435+00:00",
       "identityClassSourceUrl": null,
       "identityClassSourceAsOf": null,
-      "identityReviewedAt": null
+      "identityReviewedAt": null,
+      "listingObservation": {
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-23",
+        "checkedAt": "2026-10-24T12:13:34.673418+00:00",
+        "sha256": "59ac9b74ff663c6de40f5c93a54d5e12eb3fbef74f82e8a7cfc1456ad9f969ec"
+      }
     },
     {
       "id": "IE00BG0J4C88-ETFP",

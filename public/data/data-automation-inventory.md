@@ -1,10 +1,10 @@
 # Inventaire de l’automatisation des données
 
-Généré le 2026-10-24T11:45:54.113Z.
+Généré le 2026-10-24T12:09:14.037Z.
 
 Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
 
-281 modules de données ; 4544 champs du catalogue ; 4274 lignes de couverture détaillée.
+282 modules de données ; 4544 champs du catalogue ; 4274 lignes de couverture détaillée.
 
 PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
@@ -236,7 +236,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/data/search-text.js | manual-or-editorial |  | 64 |
 | src/data/security-identifier-observations.json | scheduled-output | .github/workflows/update-qualified-exposures.yml | 1 |
 | src/data/shared-index-history.js | mixed-or-derived | .github/workflows/update-publication-observations.yml | 49 |
-| src/data/shared-listing-identities.json | manual-or-editorial |  | 2 |
+| src/data/shared-listing-identities.json | scheduled-output | .github/workflows/update-market-monthly.yml | 2 |
 | src/data/shared-qualified-histories.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 49 |
 | src/data/simulation-links.js | mixed-or-derived | .github/workflows/update-market-monthly.yml | 10 |
 | src/data/simulation-links.json | scheduled-output | .github/workflows/update-market-monthly.yml | 10 |
@@ -309,6 +309,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | src/pages/tweet-bank/market-stories.json | manual-or-editorial |  | 5 |
 | src/pages/tweet-midi/data/dilemmes-data.json | manual-or-editorial |  | 5 |
 | src/pages/tweet-midi/engine.js | mixed-or-derived | .github/workflows/update-market-monthly.yml, .github/workflows/collect-etf-pilot.yml | 19 |
+| src/pages/tweet-midi/officialAnniversaryLogos.json | manual-or-editorial |  | 18 |
 | src/pages/wealth-simulator/data.js | mixed-or-derived | .github/workflows/update-economic-data.yml, .github/workflows/update-regulatory-data.yml | 2 |
 
 ## Qualification et raccordements

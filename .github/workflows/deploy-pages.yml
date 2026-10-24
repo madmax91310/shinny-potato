@@ -393,6 +393,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
       - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'
+      - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py'

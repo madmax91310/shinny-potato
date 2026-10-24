@@ -26,12 +26,12 @@ Trois utilitaires de reconstitution des audits datés sont conservés par pruden
 
 Les automatisations IA ne sont plus exigées. Leurs incidents actifs passent en **périmètre supprimé**, jamais en donnée réparée. Pour un incident commun, seule l’attribution IA est retirée ; la cause, la source, la date et les autres outils restent suivis. Le tableau gère aussi une ancienne capture de statut pendant la transition de publication.
 
-Les générateurs ont été actualisés avant les inventaires publics : aucune obligation de catalogue ou de cours IA n’est produite. Les 25 workflows de collecte communs restent programmés. Une exécution ciblée du producteur de métadonnées commun doit confirmer le fonctionnement dans GitHub, sans collecte massive.
+Les générateurs ont été actualisés avant les inventaires publics : aucune obligation de catalogue ou de cours IA n’est produite. Les 25 workflows de collecte communs restent programmés. La consultation ciblée des 21 identités actions partagées est rattachée à la collecte commune des cotations ; quatre requêtes d’annuaires remplacent l’ancien parcours d’univers IA, sans cours ni nouveaux actifs. Le test réel local renouvelle 20 identités ; SoFi conserve sa preuve antérieure car le libellé/classe source a changé, ce qui reste à qualifier. Les neuf autres preuves de provenance concernent des fonds dont les caractéristiques continuent leur collecte commune existante. Une exécution ciblée du producteur de métadonnées commun est vérifiée séparément dans GitHub, sans collecte massive. Le prochain passage planifié du nouveau raccord d’annuaires n’est pas annoncé comme déjà observé.
 
 ## Validation
 
 - Build local, budgets de routes et couverture publiée : réussis.
-- Suite Python : 963 tests au premier passage, puis tests ciblés de suppression/supervision et du générateur.
+- Suite Python : 966 tests réussis au dernier passage, dont suppression/supervision, vérification des identités partagées et générateur.
 - Contrôles communs : 29 actifs et leurs observations/calculs, LifeStrategy, classement annuel, DCA/expositions, inventaire et supervision.
 - Navigateur local mobile/ordinateur : disparition des liens, redirection des anciennes URL, aucune requête IA, fiche ETF commune et PNG, absence d’incidents IA actifs.
 - Les preuves GitHub et de production sont ajoutées au reçu de livraison après leur observation. Aucune réussite fournisseur ni publication n’est déduite d’un test local.
