@@ -23,6 +23,11 @@ def observe_monitor_history(state,api,repo,now,read_job_log=None):
                 if r['event']not in latest or timestamp(r['updated_at'])>timestamp(latest[r['event']]['updated_at']):latest[r['event']]=r
         pending={f'{r["id"]}:{r.get("run_attempt",1)}':r for r in rows if r['conclusion']!='success'and f'{r["id"]}:{r.get("run_attempt",1)}'not in ledger['failures']or r['conclusion']!='success'and ledger['failures'].get(f'{r["id"]}:{r.get("run_attempt",1)}',{}).get('qualificationPending')}
         pending.update({f'{r["id"]}:{r.get("run_attempt",1)}':r for event,r in latest.items()if ledger['successRuns'].get(event)!=f'{r["id"]}:{r.get("run_attempt",1)}'})
+        # A rerun or API-window rollover cannot remove an unqualified old attempt.
+        for key,failure in ledger['failures'].items():
+            if failure.get('qualificationPending'):
+                pending.setdefault(key,{'id':failure['runId'],'run_attempt':failure['attempt'],'conclusion':'failure','updated_at':failure['completedAt'],'html_url':failure['runUrl']})
+
         for key,run in pending.items():
             if run['conclusion']!='success':ledger['failures'].setdefault(key,{'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],'completedAt':run['updated_at'],'firstObservedAt':now,'qualificationPending':True,'failedChecks':{'unqualified':{'step':'Étape défaillante à qualifier','failedAt':run['updated_at']}}})
         processed=set();log_reads=0
@@ -55,7 +60,7 @@ def observe_monitor_history(state,api,repo,now,read_job_log=None):
                 for signature,proof in successes.items():
                     previous=ledger['successes'].get(signature)
                     if not previous or timestamp(proof['checkedAt'])>timestamp(previous['checkedAt']):ledger['successes'][signature]=proof
-                if failed:ledger['failures'][key]={'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],'completedAt':run['updated_at'],'firstObservedAt':now,'failedChecks':failed,'qualificationPending':unknown,**({'diagnostic':' · '.join(diagnostics)[:3200]}if diagnostics else{})}
+                if failed:ledger['failures'][key]={'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],'completedAt':run['updated_at'],'firstObservedAt':ledger['failures'].get(key,{}).get('firstObservedAt',now),'failedChecks':failed,'qualificationPending':unknown,**({'diagnostic':' · '.join(diagnostics)[:3200]}if diagnostics else{})}
                 if run['conclusion']=='success':ledger['successRuns'][run['event']]=key
                 if not unknown:processed.add(key)
                 errors.pop(observer,None)
