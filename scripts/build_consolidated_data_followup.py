@@ -8,7 +8,9 @@ def read_csv(path):
 def digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 def identity(row):
     d,k=row['dimension'],row['cle']
+    if d=='contrôle de séance ultérieure':return 'incident:collection:update-ai-portfolios.yml:'+row['id']
     if d=='comparaison financière':return 'financial:'+k
+    if d=='incident après intégration' and row.get('champ')=='Clôture quotidienne ajustée':return 'incident:collection:update-ai-portfolios.yml:'+row['id']
     if d=='reliquat historique initial'and (row['id'].startswith(('scripts/','src/'))):return 'module:'+row['id']
     if d=='reliquat historique initial'and re.fullmatch(r'P[0-3]-\d+',row['id']):return 'action:'+row['id']
     if d=='échec individuel initial':return 'incident:collection:'+k
@@ -21,7 +23,7 @@ def identity(row):
     if d=='action historique':return 'action:'+k
     return d+':'+k
 
-def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,review,repairs=None,validated=False):
+def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,review,repairs=None,validated=False,reconciliations=None):
     cases={}
     def item(key,axis=None,kind=None):
         result=cases.setdefault(key,{'id_suivi':key,'axe':axis or 'fiabilité','type_defaut':kind or 'qualification','statut_donnees':'non revérifié dans cette reprise','statut_supervision':'non applicable','reliquat_actif':False,'niveau_preuve':'instantané hérité, pas nouvelle certification','probleme':'','piece_manquante':'','outils':[],'preuves':[],'origines':[],'details':{}})
@@ -62,17 +64,26 @@ def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,rev
     for k,c in list(cases.items()):
         if k.startswith('incident:')and k[9:]not in active:
             old=resolved.get(k[9:])or retired.get(k[9:]);c.update(axe='supervision',statut_supervision='résolution/retour historique prouvé'if old else'non actif dans la capture ; clôture financière non déduite',reliquat_actif=False)
+            historical_resolution=any(o['etat_source'] in ('resolved','résolu dans le moniteur de production') for o in c['origines'])
+            if old or historical_resolution:
+                c.update(statut_donnees='non applicable (cycle de supervision)',statut_supervision='résolution documentée dans le cycle courant' if old else 'résolution documentée dans l’instantané hérité ; absent de la capture actuelle',verification_en_attente=False,niveau_preuve='preuve du cycle de supervision, pas nouvelle certification financière')
+            else:c['verification_en_attente']=True
             if old:c['details']['cycle_actuel']=old
     for key,r in active.items():
         c=item('incident:'+key,'supervision','signal courant');c.update(statut_donnees='dernière donnée à qualifier séparément',statut_supervision='actif dans le moniteur observé',reliquat_actif=True,niveau_preuve='moniteur de production, capture datée',probleme=r.get('cause',''),outils=r.get('tools',[]),details=r,preuves=['preuves/moniteur-courant.json'])
     for r in repairs or []:
         item(r['id'],r['axe'],r['type']).update(statut_donnees=r.get('donnees','sans changement de valeur'),statut_supervision=r.get('supervision','non applicable'),reliquat_actif=not validated,niveau_preuve='tests et publication vérifiés'if validated else'correction locale prouvée ; GitHub et publication requis',probleme=r['probleme'],details=r,preuves=r['preuves'])
+    for reconciliation in reconciliations or []:
+        assert reconciliation['id_suivi'] in cases, 'Rapprochement sans origine : '+reconciliation['id_suivi']
+        c=cases[reconciliation['id_suivi']]
+        c['details']['rapprochement']=reconciliation['rapprochement']
+        c.update({k:v for k,v in reconciliation.items()if k not in ('id_suivi','rapprochement')})
     assert sum(len(c['origines'])for c in cases.values())==len(legacy),'Une entrée héritée a disparu'
     assert len([k for k in cases if k.startswith('financial:')])==len(financial['rows'])
     if repairs and not validated and 'action:P2-04' in cases:
         cases['action:P2-04'].update(statut_donnees='réouverte : régression de stockage démontrée, correction en validation',reliquat_actif=True)
     for c in cases.values():
-        c['verification_en_attente']=c['statut_donnees']=='non revérifié dans cette reprise' or c['id_suivi'].startswith('module:') and c['details'].get('reliquat_initial_81')=='True'
+        c.setdefault('verification_en_attente', c['statut_donnees']=='non revérifié dans cette reprise' or c['id_suivi'].startswith('module:') and c['details'].get('reliquat_initial_81')=='True')
     return sorted(cases.values(),key=lambda c:c['id_suivi'])
 
 def write_reports(cases,legacy,output,metadata):
@@ -81,6 +92,9 @@ def write_reports(cases,legacy,output,metadata):
         w=csv.DictWriter(f,list(cases[0]),delimiter=';');w.writeheader();w.writerows({k:json.dumps(v,ensure_ascii=False,separators=(',',':'))if isinstance(v,(dict,list))else v for k,v in c.items()}for c in cases)
     active=[c for c in cases if c['reliquat_actif']]
     summary={'schemaVersion':1,**metadata,'lignes_heritees':len(legacy),'origines_reconciliees':sum(len(c['origines'])for c in cases),'cas_uniques':len(cases),'actifs_ou_usages_non_additionnables_aux_cas':True,'suivi_par_axe':dict(collections.Counter(c['axe']for c in active)),'reliquat_actif_cas':len(active),'verification_en_attente':sum(c.get('verification_en_attente',False)for c in cases),'financier':{'comparaisons':sum(c['id_suivi'].startswith('financial:')for c in cases),'encore_ouverts':sum(c['id_suivi'].startswith('financial:')for c in active)},'non_reverifies':sum(c['statut_donnees']=='non revérifié dans cette reprise'for c in cases),'limite':'Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause.'}
+    summary['actions_19']={'total':sum(c['id_suivi'].startswith('action:') for c in cases),'statuts':dict(collections.Counter(c['statut_donnees'] for c in cases if c['id_suivi'].startswith('action:')))}
+    summary['supervision']={'signaux_actifs_moniteur':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision']=='actif dans le moniteur observé' for c in cases),'cycles_resolus_documentes':sum(c['id_suivi'].startswith('incident:') and c['statut_donnees']=='non applicable (cycle de supervision)' for c in cases)}
+    summary['definitions']={'cas_uniques':'Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.','verification_en_attente':'Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.','productionValidated':'Concerne exclusivement les trois corrections de ce lot, pas la certification de tous les éléments inventoriés.'}
     (output/'bilan.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
     return summary
 
@@ -88,7 +102,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--monitor',type=pathlib.Path,required=True);p.add_argument('--review',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,default=REPORT);p.add_argument('--inventory',type=pathlib.Path,default=ROOT/'public/data/data-automation-inventory.json');p.add_argument('--financial',type=pathlib.Path,default=ROOT/'public/data/financial-reconciliation.json');p.add_argument('--validated',action='store_true');args=p.parse_args()
     load=lambda p:json.loads(p.read_text());legacy=read_csv(ROOT/'reports/data-review-2026-10-23/suivi-avant-apres.csv')
     repairs=load(REPORT/'corrections.json')if(REPORT/'corrections.json').exists()else[]
-    cases=consolidate(legacy,load(args.inventory),load(args.financial),read_csv(REPORT/'sources/reconciliation-79-ecarts.csv'),read_csv(REPORT/'sources/statut-19-actions.csv'),read_csv(REPORT/'sources/modules-verification.csv'),load(args.monitor),load(args.review),repairs,args.validated)
+    cases=consolidate(legacy,load(args.inventory),load(args.financial),read_csv(REPORT/'sources/reconciliation-79-ecarts.csv'),read_csv(REPORT/'sources/statut-19-actions.csv'),read_csv(REPORT/'sources/modules-verification.csv'),load(args.monitor),load(args.review),repairs,args.validated,reconciliations=load(REPORT/'rapprochements-livres.json'))
     (args.output/'preuves').mkdir(parents=True,exist_ok=True)
     for src,name in [(args.monitor,'moniteur-courant.json'),(args.review,'revue-courante.json')]:
         if src.resolve()!=(args.output/'preuves'/name).resolve():(args.output/'preuves'/name).write_bytes(src.read_bytes())

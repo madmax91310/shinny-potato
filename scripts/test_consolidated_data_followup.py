@@ -24,4 +24,13 @@ class ConsolidatedFollowup(unittest.TestCase):
     def test_module_verification_and_old_remainder_share_one_record(self):
         rows=self.run_case([old('reliquat historique initial','0:scripts/helper.py','scripts/helper.py'),old('module qualifié','scripts/helper.py','scripts/helper.py')],modules=[{'module':'scripts/helper.py','statut':'scénario local uniquement','reliquat_initial_81':'True','reliquat':'transport non vérifié'}])
         self.assertEqual(len(rows),1);self.assertTrue(rows[0]['verification_en_attente']);self.assertEqual(len(rows[0]['origines']),2)
+    def test_documented_resolved_signal_is_not_reintroduced_as_an_unverified_financial_case(self):
+        row=old('incident historique résolu','0:collection:daily:world');row['apres']='resolved'
+        result=self.run_case([row])[0]
+        self.assertFalse(result['verification_en_attente']);self.assertFalse(result['reliquat_actif'])
+        self.assertIn('pas nouvelle certification financière',result['niveau_preuve'])
+    def test_legacy_daily_gap_joins_the_current_source_incident(self):
+        daily=old('incident après intégration','quote:2026-10-23','quote','Clôture quotidienne ajustée')
+        rows=self.run_case([daily],monitor={'monitoring':{'active':{'collection:update-ai-portfolios.yml:quote':{'cause':'Missing close'}}}})
+        self.assertEqual(len(rows),1);self.assertEqual(len(rows[0]['origines']),1);self.assertTrue(rows[0]['reliquat_actif'])
 if __name__=='__main__':unittest.main()

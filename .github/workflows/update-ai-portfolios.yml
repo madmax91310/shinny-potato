@@ -127,7 +127,7 @@ jobs:
       - name: Audit retained source identities
         if: always()
         run: node scripts/audit-ai-runtime.mjs
-      - name: Validate collected observations
+      - name: Validate observations build
         run: npm run build
       - if: github.event_name == 'pull_request'
         run: npx playwright install --with-deps chromium

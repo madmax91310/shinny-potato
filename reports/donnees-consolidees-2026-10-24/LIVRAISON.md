@@ -16,6 +16,6 @@ Les 79 comparaisons historiques ne sont pas closes par ce lot de stockage : 77 c
 
 ## Validation
 
-987 tests Python, puis cinq tests du rapprochement, passent localement. Le build et les contrôles de couverture publiable passent. Ces preuves locales ne valent pas validation fournisseur ni publication ; les trois corrections restent en validation dans le suivi jusqu’aux exécutions GitHub et à la vérification du site. Les chiffres de clôtures techniquement qualifiées ne signifient pas qu’il faut recollecter chaque jour les actifs non détenus.
+993 tests Python passent sur le dernier état local. Les nouveaux scénarios sont également ajoutés aux contrôles GitHub. Le build et les contrôles de couverture publiable passent. Ces preuves locales ne valent pas validation fournisseur ni publication ; les trois corrections restent en validation dans le suivi jusqu’aux exécutions GitHub et à la vérification du site. Les chiffres de clôtures techniquement qualifiées ne signifient pas qu’il faut recollecter chaque jour les actifs non détenus.
 
 Le bilan, le suivi CSV, les sources héritées et les preuves sont livrés séparément. Le reçu final sera complété après intégration ; aucune résolution en production n’est annoncée ici.

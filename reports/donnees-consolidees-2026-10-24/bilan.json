@@ -1,26 +1,45 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T06:59:07.765744+00:00",
-  "sourceCommit": "d8e84c7d5a936e7ede4f48d2c3857fb0035112cf",
-  "inventoryGeneratedAt": "2026-10-24T06:51:45.229Z",
+  "generatedAt": "2026-10-24T07:20:34.849984+00:00",
+  "sourceCommit": "17b878035542f858066db2482fe2ddc6fd1147f3",
+  "inventoryGeneratedAt": "2026-10-24T07:02:26.262Z",
   "monitorCheckedAt": "2026-10-24T06:13:30.563144+00:00",
   "productionValidated": false,
   "lignes_heritees": 8600,
   "origines_reconciliees": 8600,
-  "cas_uniques": 8342,
+  "cas_uniques": 8340,
   "actifs_ou_usages_non_additionnables_aux_cas": true,
   "suivi_par_axe": {
-    "fiabilité": 115,
+    "fiabilité": 116,
     "raccordement": 770,
     "collecte et actualisation": 54,
     "supervision": 45
   },
-  "reliquat_actif_cas": 984,
-  "verification_en_attente": 533,
+  "reliquat_actif_cas": 985,
+  "verification_en_attente": 117,
   "financier": {
     "comparaisons": 90,
     "encore_ouverts": 79
   },
-  "non_reverifies": 452,
-  "limite": "Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause."
+  "non_reverifies": 36,
+  "limite": "Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause.",
+  "actions_19": {
+    "total": 19,
+    "statuts": {
+      "partiellement corrigée": 5,
+      "corrigée": 11,
+      "bloquée": 1,
+      "réouverte : régression de stockage démontrée, correction en validation": 1,
+      "déjà résolue": 1
+    }
+  },
+  "supervision": {
+    "signaux_actifs_moniteur": 43,
+    "cycles_resolus_documentes": 380
+  },
+  "definitions": {
+    "cas_uniques": "Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.",
+    "verification_en_attente": "Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.",
+    "productionValidated": "Concerne exclusivement les trois corrections de ce lot, pas la certification de tous les éléments inventoriés."
+  }
 }
