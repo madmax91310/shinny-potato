@@ -2,7 +2,7 @@
   "version": 2,
   "book": {
     "version": 1,
-    "revision": 1,
+    "revision": 2,
     "competitions": [
       {
         "id": "6cd1b5b0-cf58-45d1-b652-dde376f2369b",
@@ -45,19 +45,19 @@
             {
               "id": "chatgpt",
               "name": "ChatGPT",
-              "model": "À renseigner",
+              "model": "Gratuit",
               "color": "#17866b"
             },
             {
               "id": "claude",
               "name": "Perplexity",
-              "model": "À renseigner",
+              "model": "Gratuit",
               "color": "#be6b43"
             },
             {
               "id": "gemini",
               "name": "Gemini",
-              "model": "À renseigner",
+              "model": "Gratuit",
               "color": "#6d68b1"
             }
           ],
@@ -18535,7 +18535,128 @@
         "status": "draft",
         "decisions": [],
         "createdAt": "2026-10-24T06:26:24.242Z",
-        "ruleHistory": []
+        "ruleHistory": [
+          {
+            "at": "2026-10-24T08:09:01.731Z",
+            "before": {
+              "name": "Portefeuilles IA",
+              "initialCapital": 10000,
+              "currency": "EUR",
+              "launchDate": "2026-10-24",
+              "minLines": 3,
+              "maxLines": 6,
+              "maxWeight": 50,
+              "frequency": "weekly",
+              "weeklyWindow": {
+                "timezone": "Europe/Paris",
+                "startDay": "monday",
+                "deadline": "sunday-23:59:59",
+                "missingDecision": "keep-positions"
+              },
+              "feeBps": 0,
+              "executionPolicy": "affected-markets-v2",
+              "admissionPolicy": "instrument-types-v2",
+              "stockRegions": [
+                "Europe",
+                "Asie",
+                "USA"
+              ],
+              "assetTypes": [
+                "ETF",
+                "EQUITY",
+                "CRYPTOCURRENCY",
+                "ETC",
+                "ETN",
+                "ETP"
+              ],
+              "requireUcits": true,
+              "cash": "unremunerated",
+              "income": "synthetic-total-return",
+              "benchmark": "IE00B5BMR087-XLON-CSPX-USD",
+              "participants": [
+                {
+                  "id": "chatgpt",
+                  "name": "ChatGPT",
+                  "model": "À renseigner",
+                  "color": "#17866b"
+                },
+                {
+                  "id": "claude",
+                  "name": "Perplexity",
+                  "model": "À renseigner",
+                  "color": "#be6b43"
+                },
+                {
+                  "id": "gemini",
+                  "name": "Gemini",
+                  "model": "À renseigner",
+                  "color": "#6d68b1"
+                }
+              ],
+              "universeCount": 18468,
+              "archive": "book.json"
+            },
+            "after": {
+              "name": "Portefeuilles IA",
+              "initialCapital": 10000,
+              "currency": "EUR",
+              "launchDate": "2026-10-24",
+              "minLines": 3,
+              "maxLines": 6,
+              "maxWeight": 50,
+              "frequency": "weekly",
+              "weeklyWindow": {
+                "timezone": "Europe/Paris",
+                "startDay": "monday",
+                "deadline": "sunday-23:59:59",
+                "missingDecision": "keep-positions"
+              },
+              "feeBps": 0,
+              "executionPolicy": "affected-markets-v2",
+              "admissionPolicy": "instrument-types-v2",
+              "stockRegions": [
+                "Europe",
+                "Asie",
+                "USA"
+              ],
+              "assetTypes": [
+                "ETF",
+                "EQUITY",
+                "CRYPTOCURRENCY",
+                "ETC",
+                "ETN",
+                "ETP"
+              ],
+              "requireUcits": true,
+              "cash": "unremunerated",
+              "income": "synthetic-total-return",
+              "benchmark": "IE00B5BMR087-XLON-CSPX-USD",
+              "participants": [
+                {
+                  "id": "chatgpt",
+                  "name": "ChatGPT",
+                  "model": "Gratuit",
+                  "color": "#17866b"
+                },
+                {
+                  "id": "claude",
+                  "name": "Perplexity",
+                  "model": "Gratuit",
+                  "color": "#be6b43"
+                },
+                {
+                  "id": "gemini",
+                  "name": "Gemini",
+                  "model": "Gratuit",
+                  "color": "#6d68b1"
+                }
+              ],
+              "universeCount": 18468,
+              "archive": "book.json"
+            },
+            "reason": ""
+          }
+        ]
       }
     ],
     "audit": [
@@ -18544,6 +18665,14 @@
         "requestId": "6cd1b5b0-cf58-45d1-b652-dde376f2369b",
         "at": "2026-10-24T06:26:24.242Z",
         "operation": "create",
+        "competitionId": "6cd1b5b0-cf58-45d1-b652-dde376f2369b",
+        "reason": ""
+      },
+      {
+        "proposalHash": "5c9b5105d792d82f90a4a6983609ca9c18245c0478c8477fdd98b794eb9d91b2",
+        "requestId": "7dfe2d4b-9644-4e65-963d-98885b090cf6",
+        "at": "2026-10-24T08:09:01.731Z",
+        "operation": "configure",
         "competitionId": "6cd1b5b0-cf58-45d1-b652-dde376f2369b",
         "reason": ""
       }
@@ -25497,7 +25626,7 @@
   },
   "state": {
     "version": 1,
-    "revision": 1,
+    "revision": 2,
     "generatedAt": "2026-10-24T07:51:24.462853+00:00",
     "asOf": "2026-10-23",
     "daily": {},
