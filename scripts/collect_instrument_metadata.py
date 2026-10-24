@@ -14,7 +14,7 @@ from issuer_routes import vaneck_factsheet_candidates
 from metadata_transport import TRANSPORT
 from metadata_incidents import qualification_failures, report_incidents
 ROOT=Path(__file__).resolve().parents[1]
-FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
+FIELDS=tuple(json.loads((ROOT/'scripts/instrument-metadata-fields.json').read_text())['owned'])
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
 # shared with the field freshness report (report-asset-fields.mjs).
 POLICY=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
@@ -723,10 +723,24 @@ def field_diagnostics(source, values, failures, old, now):
     return result
 
 
+def select_sources(sources, requested):
+    """Reject misspelled/empty explicit scopes before any request or write."""
+    if requested is None:return sources
+    identifiers=list(dict.fromkeys(piece.upper() for value in requested for piece in re.split(r'[,\s]+',value.strip()) if piece))
+    if not identifiers:raise ValueError('Ciblage vide : fournir au moins un ISIN enregistré.')
+    unknown=set(identifiers)-{source['isin'] for source in sources}
+    if unknown:raise ValueError('ISIN non enregistré : '+', '.join(sorted(unknown)))
+    selected=set(identifiers)
+    return [source for source in sources if source['isin'] in selected]
+
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--only',nargs='+');p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--validate-scope',action='store_true');p.add_argument('--only',nargs='+');p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     sources=json.loads((ROOT/'scripts/instrument-metadata-sources.json').read_text())['instruments']
-    if a.only:sources=[s for s in sources if s['isin'] in a.only]
+    try:sources=select_sources(sources,a.only)
+    except ValueError as error:p.error(str(error))
+    if a.validate_scope:
+        print(f'Ciblage validé : {len(sources)} instrument(s) ; aucune collecte ni écriture.');return
     path=ROOT/'src/data/automated-instrument-metadata.json';records=json.loads(path.read_text())
     status_path=ROOT/'src/data/instrument-metadata-status.json';status=json.loads(status_path.read_text());now=dt.datetime.now(UTC)
     def one(s):return s['isin'],*collect(s,now)

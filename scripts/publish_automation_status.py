@@ -14,6 +14,7 @@ import tempfile
 import urllib.error
 import urllib.request
 
+from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
@@ -342,6 +343,10 @@ def update_status(state, run, jobs, reports=None):
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': run['updated_at'],
                 'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {}),
                 **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods') if key in error}}
+    retired_failures=previous.get('retiredDataFailures',{}).copy()
+    for identifier in list(data_failures):
+        if not owns_failure(REGISTRY[workflow],identifier):
+            retired_failures[identifier]={**data_failures.pop(identifier),'retiredAt':run['updated_at'],'retirementReason':RETIREMENT_REASON}
     failures = []
     for job in jobs:
         if job.get('conclusion') not in ('failure', 'timed_out'):
@@ -395,7 +400,7 @@ def update_status(state, run, jobs, reports=None):
         'collectionStatus': collection_status, 'validationStatus': validation_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
         'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
-        'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}
+        'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures,'retiredDataFailures':retired_failures}
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result

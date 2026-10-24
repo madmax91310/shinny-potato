@@ -545,10 +545,12 @@
       "Portefeuille / DCA"
     ],
     "collectionSteps": [
-      "Collect exact metadata observations"
+      "Collect exact metadata observations",
+      "Check active field freshness"
     ],
     "validationSteps": [
       "Validate metadata observations",
+      "Validate metadata build and routing",
       "Validate collected observations"
     ],
     "paths": [
@@ -557,7 +559,9 @@
       "/generateur-portefeuilles",
       "/le-dca-de",
       "/bibliotheque-donnees"
-    ]
+    ],
+    "dataFailureFieldContract": "instrument-metadata-fields.json",
+    "dataFailureEntityContract": "instrument-metadata-sources.json"
   },
   "onboard-assets.yml": {
     "name": "Intégration des nouveaux actifs",

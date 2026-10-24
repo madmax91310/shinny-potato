@@ -1,4 +1,5 @@
 """Incident lifecycle and one grouped GitHub notification, independent of Pages."""
+from automation_contracts import owns_failure, RETIREMENT_REASON
 import datetime as dt
 import hashlib
 import json
@@ -54,6 +55,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         elif (current - completed).total_seconds() > config['maxAgeHours'] * 3600:
             add('overdue:' + workflow, {**base, 'kind': 'overdue', 'field': 'Fréquence de collecte', 'cause': f"Aucune exécution terminée depuis plus de {config['maxAgeHours']} heures.", 'lastSuccessAt': row.get('lastCollectionSuccessAt')})
         for identifier, failure in row.get('dataFailures', {}).items():
+            if not owns_failure(config,identifier):continue
             details = incident_context(identifier, context, failure.get('name', identifier))
             # Daily quotes and issuer characteristics have different consumers.
             if 'dataFailureTools' in config:
@@ -127,10 +129,14 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
-    retired = [{**row, 'retiredAt': now, 'retirementReason': RETIRED_WORKFLOWS[row['workflow']]['reason']}
-               for key, row in old.items() if key not in active and row.get('workflow') in RETIRED_WORKFLOWS]
+    def retired_reason(row):
+        if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
+        if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
+        return None
+    retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row)}
+               for key, row in old.items() if key not in active and retired_reason(row)]
     resolved = [{**row, 'resolvedAt': now} for key, row in old.items()
-                if key not in active and row.get('workflow') not in RETIRED_WORKFLOWS]
+                if key not in active and not retired_reason(row)]
     opened = [row for key, row in active.items() if key not in old]
     # A date/run change alone is not a new incident. Notify only an increased
     # severity, wider impact or additional missing/invalid periods.
