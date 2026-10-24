@@ -1,4 +1,4 @@
-import { readableSignal } from './presentation.js'
+import { readableSignal, formatRadarDate } from './presentation.js'
 import { EDITORIAL_STATES, EDITORIAL_LIMIT, EDITORIAL_DAYS, FACT_LABELS, factType, editorialAssessment, selectEditorial, editorialState, editorialAudience, etfAnnouncement, groupSignals, recentEditorial, investorFilingType } from '../../lib/radar-editorial.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
@@ -9,7 +9,7 @@ import { fetchRadar, FAMILIES, markRead, readIds, READ_EVENT, staleFeed, cacheSi
 import './style.css'
 
 const HousingDetails = lazy(() => import('./HousingDetails.jsx'))
-const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(new Date(value)) : 'Non documenté'
+const date = formatRadarDate
 function Signal({ event, read, onRead }) {
   const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
   const filing = investorFilingType(event), canPublish = !filing || filing === 'publication'

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { editorialState, etfAnnouncement, groupSignals, factualTitle, recentEditorial, investorFilingType } from '../src/lib/radar-editorial.js'
 import { parseLaunchDetails, officialNewsDocument, enrichEtfLaunches, parseVanguardNews, parseGlobalXNews } from './lib/radar-news.mjs'
 import { pendingNotifications } from './lib/radar-notifications.mjs'
-import { readableSignal } from '../src/pages/editorial-radar/presentation.js'
+import { readableSignal, formatRadarDate } from '../src/pages/editorial-radar/presentation.js'
 import { advanceRadar } from './lib/editorial-radar.mjs'
 const now = new Date('2026-10-20T12:00:00Z')
 const event = { id: 'a', family: 'etf', entity: 'IE0002XZSHO1', label: 'ETF Monde', field: 'ter', fieldLabel: 'Frais annuels', kind: 'change', before: .2, after: .15, beforeText: '0,2 %', afterText: '0,15 %', period: '2026-10-19', detectedAt: now.toISOString() }
@@ -100,3 +100,8 @@ console.log('Editorial radar: relevance, factual titles, grouping, launch eviden
   assert.equal(groupSignals([legacy,publication]).filter(group=>group.state==='ready').length,1)
   console.log('13F radar: same-quarter revisions, legacy migration, pending notifications, unchanged later quarter and unknown periods verified.')
 }
+
+assert.equal(formatRadarDate('2026-10-22'),'22/10/2026 (heure non documentée)')
+assert.match(formatRadarDate('2026-10-22T22:54:00Z'),/23\/10\/2026.*00:54/)
+assert.equal(formatRadarDate(null),'Non documenté')
+assert.equal(formatRadarDate('2026-02-30'),'Non documenté')
