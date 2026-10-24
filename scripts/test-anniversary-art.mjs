@@ -101,12 +101,20 @@ try {
     return records
   })
   assert.ok(!requests.some(url=>!url.startsWith(`http://127.0.0.1:${port}`)), 'External request during export')
-  // A failed visual load must not silently export a wrong generic logo, and retry works.
+  // A failed logo load uses a clean name; failed cache entries allow recovery.
   const retry=await browser.newPage();await retry.goto(base)
-  await retry.route('**/asset-art/apple.svg', route=>route.abort())
-  const failed=await retry.evaluate(async()=>{try{const{renderAnniversaryImage}=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js');await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200');return false}catch{return true}})
-  assert.ok(failed,'Missing logo should block export')
-  await retry.unroute('**/asset-art/apple.svg')
-  assert.ok(await retry.evaluate(async()=>{const{renderAnniversaryImage}=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js');return(await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200')).toDataURL().startsWith('data:image/png;')}),'Retry after missing logo failed')
-  console.log(`${records.length} titanium exports: every eligible identity, units, ratios, comparisons, long levels, local resources and retry verified.`)
+  await retry.route('**/asset-art/official-logos/apple.svg', route=>route.abort())
+  const inspectApple = async () => {
+    const labels = [], original = CanvasRenderingContext2D.prototype.fillText
+    CanvasRenderingContext2D.prototype.fillText = function(value, ...args) { labels.push(value); return original.call(this, value, ...args) }
+    try {
+      const {renderAnniversaryImage} = await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
+      const canvas = await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200')
+      return { names: labels.filter(value => value === 'APPLE').length, png: canvas.toDataURL().startsWith('data:image/png;') }
+    } finally { CanvasRenderingContext2D.prototype.fillText = original }
+  }
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:2,png:true}, 'Missing logo must export a clean text fallback')
+  await retry.unroute('**/asset-art/official-logos/apple.svg')
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true}, 'Retry must restore the official logo')
+  console.log(`${records.length} anniversary exports: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}
