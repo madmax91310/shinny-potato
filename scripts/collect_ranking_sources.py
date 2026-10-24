@@ -4,6 +4,7 @@ import copy
 import datetime as dt
 import hashlib
 import json
+import os
 from decimal import Decimal, ROUND_HALF_UP
 import pathlib
 import xml.etree.ElementTree as ET
@@ -221,7 +222,16 @@ def cross_fx_document(currency, now, fetch=None):
     for url, timeout in [(window, 25), (canonical, 60), (source_url(now), 30)]:
         try:
             body = fetch(url, max_bytes=4_000_000, timeout=timeout, max_attempts=2)
-            return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded'}]
+            digest = hashlib.sha256(body).hexdigest()
+            evidence = os.environ.get('CROSS_FX_EVIDENCE_DIR')
+            if evidence:
+                directory = pathlib.Path(evidence)
+                directory.mkdir(parents=True, exist_ok=True)
+                (directory / (digest + '.raw')).write_bytes(body)
+                write_json_atomic(directory / (digest + '.json'), {'sourceUrl':url,
+                    'attemptedAt':now.isoformat(), 'sha256':digest, 'bytes':len(body),
+                    'sourceAttempts':attempts, 'qualification':'pending-parser-validation'})
+            return body, url, attempts + [{'sourceUrl':url, 'status':'downloaded', 'sha256':digest}]
         except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
             attempts.append({'sourceUrl':url, 'error':str(error)})
     raise ValueError('Official cross-rate access failed: ' + ' | '.join(a['sourceUrl'] + ': ' + a['error'] for a in attempts))
@@ -259,6 +269,7 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
         return old_fx, reports
     derived = copy.deepcopy(old_fx.get('derived', {}))
     for currency in due:
+        raw, source_url, attempts = None, None, []
         try:
             raw, source_url, attempts = cross_fx_document(currency, now)
             cross = parse_cross_fx(raw, body, now, currency, source_url=source_url)
@@ -269,7 +280,9 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
             reports[currency] = {'id': 'fx:' + currency, 'status': 'validated', 'checkedAt': checked, 'sourceUrl':source_url, 'sourceAttempts':attempts}
             print(currency, 'cross FX:', len(cross['observations']), 'months', flush=True)
         except Exception as error:
-            reports[currency] = {'id': 'fx:' + currency, 'status': 'failed', 'checkedAt': checked, 'reason': str(error)}
+            reports[currency] = {'id': 'fx:' + currency, 'status': 'failed', 'checkedAt': checked, 'reason': str(error),
+                                'sourceUrl':source_url, 'sourceAttempts':attempts,
+                                'responseSha256':hashlib.sha256(raw).hexdigest() if raw is not None else None}
             print(currency, 'cross FX failed:', error, flush=True)
     return apply_cross_rates(fx, derived), reports
 

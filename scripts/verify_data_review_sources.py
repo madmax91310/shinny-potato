@@ -96,6 +96,7 @@ def main():
         write_json_atomic(out/'conflict-registry.json',{s['isin']:merged[s['isin']] for s in shares})
     else:
         if args.scope=='actors':os.environ['ACTOR_SOURCE_PROOF_DIR']=str(out/'raw')
+        if args.scope=='fx':os.environ['CROSS_FX_EVIDENCE_DIR']=str(out/'raw')
         command=[sys.executable,str(ROOT/'scripts'/commands[args.scope][0]),*commands[args.scope][1:]]
         if args.scope not in ['discovery','financial']:
             command += ['--report' if args.scope=='ai' else '--output',str(report)]
