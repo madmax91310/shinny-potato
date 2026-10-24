@@ -38,22 +38,19 @@ def main():
     }
     started = dt.datetime.now(dt.timezone.utc).isoformat()
     if args.scope == 'issuer-share':
-        from collect_etf_pilot import collect,apply_valid_shares
-        from data_automation import UTC,get_text,write_json_atomic
-        import hashlib
-        raw=out/'raw';raw.mkdir()
-        def fetch(url,*args):
-            text=get_text(url,*args)
-            body=json.loads(text);canonical=json.dumps(body,sort_keys=True,allow_nan=False)
-            (raw/(hashlib.sha256(canonical.encode()).hexdigest()+'.json')).write_text(canonical)
-            return text
-        config=json.loads((ROOT/'scripts/etf-pilot.json').read_text())
-        config['instruments']=[r for r in config['instruments']if r['isin']=='IE00B5BMR087']
-        baseline=json.loads(subprocess.check_output(['node','scripts/export-etf-pilot-baseline.mjs'],cwd=ROOT))
-        value=collect(config,baseline,dt.datetime.now(UTC),fetch)
-        registry=out/'issuer-registry.json';shutil.copy2(ROOT/'src/data/automated-etf.json',registry)
-        apply_valid_shares(value,registry,baseline);write_json_atomic(report,value)
-        code=1 if value['failures']or not value['shares']else 0
+        from collect_document_etf import collect_legacy
+        from data_automation import UTC,write_json_atomic
+        config=json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())
+        shares=config['instruments'] if 'instruments' in config else config['shares']
+        value={'checkedAt':started,'shares':[],'failures':[],'publication':'not-requested'}
+        for share in shares:
+            if share['isin'] not in ('IE0002XZSHO1','IE000DQLYVB9'):continue
+            share={k:v for k,v in share.items() if k!='factsheetUrl'}
+            try:value['shares'].append(collect_legacy(share,dt.datetime.now(UTC)))
+            except Exception as error:value['failures'].append({'isin':share['isin'],'error':str(error)})
+        write_json_atomic(report,value)
+        print(json.dumps(value,ensure_ascii=False))
+        code=1 if value['failures'] or len(value['shares'])!=2 else 0
     elif args.scope == 'dws':
         from verify_dws_compositions import collect
         from data_automation import UTC,get_json,write_json_atomic
