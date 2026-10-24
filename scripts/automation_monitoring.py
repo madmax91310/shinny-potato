@@ -71,7 +71,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:
             return
         row = {**row, 'tools': [t for t in row.get('tools', []) if t not in REMOVED_TOOL_NAMES]}
-        prior = old.get(key, {})
+        prior = active.get(key,old.get(key, {}))
         observations = prior.get('observations', []).copy()
         def evidence(value):
             return {k: value.get(k) for k in ('cause', 'runUrl', 'attemptedAt', 'completedAt', 'asOf', 'lastSuccessAt', 'sourceUrls') if value.get(k) is not None}
@@ -91,7 +91,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     for workflow, config in registry.items():
         row = state.get('workflows', {}).get(workflow, {})
         tools = config.get('tools', [])
-        base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir', 'lastSuccessAt': row.get('lastCollectionSuccessAt')}
+        base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir', 'lastSuccessAt': row.get('lastCollectionSuccessAt'),
+                'completedAt':row.get('completedAt'),'sourcePhaseCompletedAt':row.get('sourcePhaseCompletedAt'),'runId':row.get('runId'),'attempt':row.get('attempt'),'attemptedDataIds':row.get('attemptedDataIds',[])}
         availability = state.get('workflowAvailability', {}).get(workflow, {})
         if availability.get('state') and availability['state'] != 'active':
             add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
@@ -123,6 +124,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
             add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
                 'lastSuccessAt': failure.get('lastSuccessAt') if 'lastSuccessAt' in failure else row.get('sourceChecks', {}).get(identifier, {}).get('checkedAt'),
+                **({'kind':'qualification','originalKind':'collection','cause':failure.get('unverifiedReason','Reprise déclarée sans date de contrôle source qualifiée ; résolution non démontrée.')+' Erreur antérieure : '+failure.get('cause','')}if failure.get('unverifiedRecovery')else{}),
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
         if row.get('publicationStatus') == 'unverified':
@@ -131,6 +133,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add('evidence:' + workflow, {**base, 'kind': 'monitoring', 'field': 'Preuve de publication', 'cause': row['publicationEvidenceError']})
         validation_steps = set(config.get('validationSteps', []))
         validation_failures = [f for f in row.get('failures', []) if f['step'] in validation_steps or f['job'] == 'report-validation-failures']
+        if config.get('controlOnly'):validation_failures=[f for f in row.get('failures',[])if not f['job'].startswith('deploy')]
         validation_failed = row.get('validationStatus') == 'failure' or bool(validation_failures)
         if validation_failed:
             add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
@@ -139,6 +142,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                           and f['step'] not in config.get('collectionSteps', [])
                           and f['job'] not in ('report-failures', 'report-validation-failures')
                           and not f['job'].startswith('deploy /')]
+        if config.get('controlOnly')and validation_failed:other_failures=[]
         if row.get('status') == 'failure' and (row.get('publicationStatus') == 'failure' or other_failures
                 or not row.get('dataFailures') and not validation_failed):
             publishing = row.get('publicationStatus') == 'failure'
@@ -149,6 +153,22 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
                 'failedSteps': row.get('failures', []), 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+    for pending in state.get('inFlightRuns',{}).values():
+        workflow=pending['workflow'];run=pending['run'];config=registry.get(workflow)
+        if not config:continue
+        base={'name':config['name'],'tools':config.get('tools',[]),'impactScope':'collector','workflow':workflow,
+              'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run.get('html_url'),'to':'/donnees-a-revoir',
+              'completedAt':pending.get('phaseCompletedAt'),'attemptedDataIds':sorted({r['id']for report in pending.get('reports',[])for r in report.get('successes',[])if not r['id'].startswith(('report-read:','artifact-read:'))})}
+        base['sourcePhaseCompletedAt']=max([r['_reportEvidence']['sourcePhaseCompletedAt']for r in pending.get('reports',[])if r.get('_reportEvidence',{}).get('sourcePhaseCompletedAt')],default=None)
+        failures=pending.get('failures',[])
+        if failures:
+            publishing=any(f['job'].startswith('deploy')for f in failures)
+            kind='publication'if publishing else'checks'
+            add(kind+':'+workflow,{**base,'kind':kind,'field':'Publication'if publishing else'Validation / enregistrement',
+                'failedSteps':failures,'cause':'Étape en échec dans une exécution non terminée : '+' ; '.join(f['job']+' : '+f['step']for f in failures)})
+        created=timestamp(run.get('run_started_at')or run.get('created_at'))
+        if created and (current-created).total_seconds()>config['maxAgeHours']*3600:
+            add('running-overdue:'+str(run['id'])+':'+str(run.get('run_attempt',1)),{**base,'kind':'overdue','field':'Exécution bloquée','cause':'Exécution toujours '+run['status']+' au-delà du délai du producteur ; aucune fin ni publication déduite.'})
     for row in context['alerts']:
         add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else row.get('reason', 'Repli sur une valeur manuelle.') if row['category'] == 'manual-fallback' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
     if 'historyAlerts' in context:
@@ -238,10 +258,23 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if key.startswith('radar:'):
             return (radar or {}).get('resolvedConflicts', {}).get(row.get('conflictId'))
         if key.startswith('publication:'):
-            return workflow.get('publicationEvidence') if workflow.get('publicationStatus') == 'success' else None
+            proof=workflow.get('publicationEvidence')if workflow.get('publicationStatus')=='success'else None
+            checked=timestamp(proof.get('checkedAt'))if proof else None
+            failed=timestamp(row.get('completedAt'))
+            source_bound=timestamp(row.get('sourcePhaseCompletedAt'))
+            published_source=timestamp(workflow.get('sourcePhaseCompletedAt'))
+            if not proof or failed and(not checked or checked<failed):return None
+            if source_bound and(not published_source or published_source<source_bound):return None
+            if row.get('attemptedDataIds')and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            return proof
         if key.startswith(('workflow:', 'checks:')):
             failed_steps = row.get('failedSteps', [])
             if not failed_steps or any(workflow.get('stepResults', {}).get(f['job'] + '\n' + f['step']) != 'success' for f in failed_steps):return None
+            if row.get('attemptedDataIds') and not set(row['attemptedDataIds'])<=set(workflow.get('validatedDataIds',[])):return None
+            bound=timestamp(row.get('completedAt'))
+            checked=timestamp(workflow.get('completedAt'))
+            if bound and (not checked or checked<bound):return None
+            if row.get('runId')and workflow.get('runId',0)<row['runId']:return None
             return {'runUrl': workflow.get('runUrl'), 'completedAt': workflow.get('completedAt'), 'checks': failed_steps}
         return {'checkedAt': now, 'scope': key, 'kind': 'observer-or-heartbeat-recovered'}
     proofs = {}
@@ -251,7 +284,9 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if proof:
             proofs[key] = proof
         else:
-            add(key, {**row, 'proofStatus': 'resolution-unproven', 'action': 'Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.'})
+            add(key, {**row,'originalKind':row.get('originalKind',row.get('kind')),
+                'kind':row.get('kind')if row.get('kind')in('conflict','anomaly','history')else'qualification',
+                'proofStatus': 'resolution-unproven', 'action': 'Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.'})
     retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row),
                 'retirementStatus': retirement_status(row),
                 'retirementEvidence': state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {}).get('retirementEvidence')}
@@ -261,7 +296,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     opened = [row for key, row in active.items() if key not in old]
     # A date/run change alone is not a new incident. Notify only an increased
     # severity, wider impact or additional missing/invalid periods.
-    severity = {'checks': 0, 'unobserved': 1, 'overdue': 1, 'freshness': 1, 'review': 2, 'collection': 2, 'history': 2, 'conflict': 3, 'anomaly': 3, 'publication': 3}
+    severity = {'checks': 0, 'qualification':0, 'monitoring':1, 'unobserved': 1, 'overdue': 1, 'freshness': 1, 'review': 2, 'collection': 2, 'history': 2, 'conflict': 3, 'anomaly': 3, 'publication': 3}
     escalated = [row for key, row in active.items() if key in old and (
         severity.get(row.get('kind'), 1) > severity.get(old[key].get('kind'), 1)
         or any(set(row.get(field, [])) - set(old[key].get(field, [])) for field in ('tools', 'missingPeriods', 'invalidPeriods')))]
@@ -343,7 +378,7 @@ def sync_monitoring_issue(monitor, api, repo):
                         and (stamp := timestamp(c.get('created_at')))], default=None)
     quiet = bool(now and last_comment and (now - last_comment).total_seconds() < QUIET_HOURS * 3600)
     closing = not monitor['active']
-    recovered_data = any(row.get('kind') not in ('checks', 'unobserved') for row in recovered)
+    recovered_data = any(row.get('originalKind',row.get('kind')) not in ('checks', 'unobserved') for row in recovered)
     comment = (bool(opened_ids) and (material or not quiet)) or bool(escalated_rows) or recovered_data or closing
     receipts = sorted(known | ({monitor['revision']} if not comment else set()))[-30:]
     # Reconcile open/closed state and body before the notification receipt.

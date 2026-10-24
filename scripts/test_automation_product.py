@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_reports, normalize_report,
-    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence)
+    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows)
 from automation_monitoring import evaluate_monitoring, restore_history
 
 NOW='2026-10-24T12:00:00Z'
@@ -21,7 +21,7 @@ def event(workflow, number=100, conclusion='success'):
 
 def jobs(workflow, failure=None):
     config=REGISTRY[workflow]
-    names=list(dict.fromkeys([*config.get('collectionSteps',[]),*config.get('validationSteps',[]),'Validate collected observations','Commit validated observations']))
+    names=list(dict.fromkeys([*config.get('collectionSteps',[]),*config.get('validationSteps',[]),*REPORT_CONTRACTS.get(workflow,{}).get('activationSteps',[]),'Validate collected observations','Commit validated observations']))
     return [{'name':config['collectionJob'],'conclusion':'failure' if failure else 'success','steps':[
         {'name':n,'conclusion':'failure' if failure==n else 'success'} for n in names]}]
 
@@ -183,6 +183,56 @@ class ProductContracts(unittest.TestCase):
         repaired=merge_proof_retry(later,event(w),[{'successes':[{'id':'artifact-read:scpi-observations'}],'errors':[]}])
         self.assertNotIn(key,repaired['workflows'][w]['proofFailures'])
         self.assertEqual(repaired['workflows'][w]['runId'],101)
+
+    def test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache(self):
+        w='update-scpi.yml';running={**event(w,101),'status':'in_progress','run_started_at':'2026-10-24T10:00:00Z'}
+        state=update_status({},event(w,90),jobs(w),[{'successes':[{'id':'old'}]}])
+        phase={**jobs(w)[0],'started_at':'2026-10-24T10:00:00Z','completed_at':'2026-10-24T11:00:00Z'}
+        calls=[];outage=False;finished=False
+        def api(path):
+            if outage:raise OSError('Network unavailable')
+            if '/jobs?'in path:return {'jobs':[phase,{'name':'deploy / build','conclusion':None,'steps':[]}]}
+            if '/attempts/'in path:return {**running,'status':'completed','conclusion':'failure'}
+            return {'workflow_runs':[running]if 'status=in_progress&'in path and not finished else[]}
+        def reports(run,js):
+            calls.append(run['id'])
+            return [{'successes':[],'errors':[{'id':'bad','error':'Exact source failure','asOf':'2026-09'}],
+                '_reportEvidence':{'file':'scpi-observation.json','sha256':'proof','reportedAt':'2026-10-24T10:05:00Z','scopeExplicit':True,'sourcePhaseStartedAt':phase['started_at'],'sourcePhaseCompletedAt':phase['completed_at']}}]
+        observed,terminal=observe_running_workflows(state,{w:REGISTRY[w]},api,'test/repo',NOW,reports)
+        self.assertFalse(terminal);self.assertEqual(observed['workflows'][w]['runId'],90)
+        self.assertIn('bad',observed['workflows'][w]['dataFailures'])
+        monitor=evaluate_monitoring(observed,CTX,{w:REGISTRY[w]},NOW,{'errors':[]})
+        self.assertIn('collection:'+w+':bad',monitor['active'])
+        again,_=observe_running_workflows(observed,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:06:00Z',reports)
+        self.assertEqual(calls,[101]);self.assertEqual(again['workflows'][w]['dataFailures']['bad']['completedAt'],phase['completed_at'])
+        outage=True
+        unavailable,_=observe_running_workflows(again,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:12:00Z',reports)
+        self.assertTrue(unavailable['observerErrors']);self.assertTrue(unavailable['inFlightRuns']);self.assertIn('bad',unavailable['workflows'][w]['dataFailures'])
+        outage=False;finished=True
+        done,terminal=observe_running_workflows(unavailable,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:18:00Z',reports)
+        self.assertFalse(done['inFlightRuns']);self.assertEqual(terminal[0]['status'],'completed');self.assertNotIn('inflight:101:1',done['observerErrors'])
+
+    def test_composite_issuer_success_does_not_repair_an_unproved_branch(self):
+        w='update-scpi.yml'
+        old=update_status({},event(w),jobs(w),[{'errors':[{'id':'share:sectors-primary','error':'Empty primary branch'}]}])
+        report={'successes':[{'id':'share:sectors-primary','checkedAt':'2026-10-25T12:00:00Z'}],
+                '_reportEvidence':{'file':'issuer.json','sha256':'proof','schema':'shares','reportedAt':'2026-10-25T12:00:00Z'}}
+        for result in (update_status(old,event(w,101),jobs(w),[report]),merge_proof_retry(old,event(w,101),[report])):
+            failure=result['workflows'][w]['dataFailures']['share:sectors-primary']
+            self.assertTrue(failure['unverifiedRecovery'])
+            self.assertEqual(failure['cause'],'Empty primary branch')
+
+    def test_old_gold_workflow_did_not_promise_a_new_report(self):
+        w='update-gold-monthly.yml';old=jobs(w)
+        old[0]['steps']=[s for s in old[0]['steps']if s['name']not in REPORT_CONTRACTS[w]['activationSteps']]
+        with tempfile.TemporaryDirectory()as directory:
+            result=artifact_reports('test/repo',w,old,[],directory)
+        self.assertFalse(result[0]['errors']);self.assertIn('_legacyReportCoverage',result[0])
+
+    def test_code_publication_requires_code_identity_even_if_data_bytes_match(self):
+        state={'workflows':{'deploy-pages.yml':{'publicationStatus':'failure','publicationReceipt':{'schemaVersion':1,'commit':'a'*40,'files':{'src/data/x.json':'1'*40}}}}}
+        result=reconcile_publication(state,{'sha':'b'*40,'builtAt':NOW},{'schemaVersion':1,'files':{'src/data/x.json':'1'*40}},lambda a,b:'ahead')
+        self.assertEqual(result['workflows']['deploy-pages.yml']['publicationStatus'],'failure')
 
     def test_rerun_archive_is_not_old_attempt_proof(self):
         run={**event('update-scpi.yml'),'run_started_at':'2026-10-24T10:00:00Z','updated_at':'2026-10-24T11:00:00Z'}

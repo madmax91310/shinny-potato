@@ -1,5 +1,6 @@
 """Publish only real automation failures independently of the application build."""
 import argparse
+import http.client
 import datetime as dt
 import base64
 import json
@@ -376,6 +377,10 @@ def read_report(path, workflow):
             record = records.get(success['id'].split(':', 1)[-1], {})
             if record.get('checkedAt'):
                 success['checkedAt'] = record['checkedAt']
+    if shape == 'practical':
+        for success in result.get('successes',[]):
+            record=report['sources'].get(success['id'].removeprefix('practical:'),{})
+            if record.get('lastSuccessfulCheckAt'):success['checkedAt']=record['lastSuccessfulCheckAt']
     outcomes = {r['id']:r for r in report.get('outcomes', [])}
     for kind in ('successes', 'errors'):
         for row in result.get(kind, []):
@@ -426,6 +431,7 @@ def bind_attempt(identifier, run):
 def attempt_artifacts(artifacts, run):
     """A new rerun's archive does not restore the missing proof of an old attempt."""
     start, end = timestamp(run.get('run_started_at')), timestamp(run.get('updated_at'))
+    if run.get('status') != 'completed':end = dt.datetime.now(dt.timezone.utc)
     if not start or not end:
         return []
     return [a for a in artifacts if (created := timestamp(a.get('created_at'))) and start <= created <= end]
@@ -451,6 +457,24 @@ def merge_proof_retry(state, run, reports):
                         failures.pop(key)
                         checks[key] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
                 checks[identifier] = {'runUrl':run['html_url'], 'evidence':evidence, 'readAt':dt.datetime.now(dt.timezone.utc).isoformat()}
+            else:
+                failure=row.get('dataFailures',{}).get(identifier,{})
+                failed_at=timestamp(failure.get('sourcePhaseCompletedAt') or failure.get('completedAt'))
+                if failure and (evidence or{}).get('schema')=='shares':
+                    failure['unverifiedRecovery']=True;failure['unverifiedReason']='Le rapport composite ne prouve pas le contrôle ciblé de la branche initialement en échec.';failure['recoveryEvidence']=evidence
+                    continue
+                checked=timestamp(success.get('checkedAt') or (evidence or {}).get('reportedAt'))
+                start=timestamp((evidence or {}).get('sourcePhaseStartedAt'))
+                previous=row.get('sourceChecks',{}).get(identifier,{})
+                previous_at=timestamp(previous.get('recordedAt'))
+                end=timestamp((evidence or {}).get('sourcePhaseCompletedAt') or run['updated_at'])
+                if previous_at and end and end<previous_at:continue
+                if failed_at and not (checked and checked>failed_at or success.get('verifiedInAttempt') and start and start>failed_at):continue
+                row.setdefault('dataFailures',{}).pop(identifier,None)
+                row.setdefault('sourceChecks',{})[identifier]={'checkedAt':success.get('checkedAt')or(evidence or{}).get('reportedAt'),
+                    'recordedAt':(evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
+                    'runUrl':run['html_url'],'evidence':evidence,'verifiedInAttempt':bool(success.get('verifiedInAttempt')),
+                    **{k:success[k]for k in ('asOf','responseSha256')if k in success}}
         for error in report.get('errors', []):
             identifier = bind_attempt(error['id'], run)
             if technical_proof(identifier):
@@ -458,17 +482,23 @@ def merge_proof_retry(state, run, reports):
             else:
                 # A late discovery must not overwrite newer, qualified field evidence.
                 source = row.get('sourceChecks', {}).get(identifier, {})
-                observed = timestamp(source.get('checkedAt') or source.get('recordedAt'))
+                observed = timestamp(source.get('recordedAt') if source.get('verifiedInAttempt') else source.get('checkedAt') or source.get('recordedAt'))
                 old_failure = row.setdefault('dataFailures', {}).get(identifier, {})
-                if observed and observed > timestamp(run['updated_at']):continue
-                if timestamp(old_failure.get('completedAt')) and timestamp(old_failure['completedAt']) > timestamp(run['updated_at']):continue
+                error_bound=timestamp((evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'])
+                if observed and observed > error_bound:continue
+                old_bound=timestamp(old_failure.get('sourcePhaseCompletedAt') or old_failure.get('completedAt'))
+                if old_bound and old_bound > error_bound:continue
                 row['dataFailures'][identifier] = {'name':error.get('name',identifier), 'cause':error['error'], 'field':error.get('field'),
-                    'runUrl':run['html_url'], 'completedAt':run['updated_at'], 'historicalDiscovery':True}
+                    'runUrl':run['html_url'], 'completedAt':(evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
+                    'sourcePhaseCompletedAt':(evidence or{}).get('sourcePhaseCompletedAt'),'evidence':evidence,
+                    **{k:error[k]for k in ('sourceUrls','asOf','lastSuccessAt','attemptedAt')if k in error},'historicalDiscovery':True}
         if evidence:
             history = row.setdefault('reportEvidenceHistory', [])
             if not any(r.get('runId') == run['id'] and r.get('attempt') == run.get('run_attempt',1) and r.get('file') == evidence['file'] for r in history):
                 history.append({**evidence,'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],
                     'readAt':dt.datetime.now(dt.timezone.utc).isoformat(),'successes':report.get('successes',[]),'errors':report.get('errors',[])})
+            if report.get('_scopeWarning'):
+                row.setdefault('reportQualifications',{})[evidence['file']]={'cause':report['_scopeWarning'],'runUrl':run['html_url'],'evidence':evidence,'attemptedAt':evidence.get('reportedAt')}
     return result
 
 
@@ -476,6 +506,8 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
     """The contract is conditional on executed steps, never on unattempted fields."""
     contract = REPORT_CONTRACTS[workflow]
     steps = [s for j in jobs for s in (j.get('steps') or [])]
+    if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and not any(a.get('name')==contract['artifact']for a in artifacts):
+        return [{'successes':[],'errors':[],'_legacyReportCoverage':'Cette ancienne version du producteur ne déclarait pas encore cet artefact ; aucun succès source individuel déduit.'}]
     attempted = {s['name'] for s in steps if s.get('conclusion') in ('success', 'failure', 'timed_out')}
     required = [r for r in contract['reports'] if attempted.intersection(r['steps'])]
     expected = bool(required) or any(j.get('name') == REGISTRY[workflow]['collectionJob'] and j.get('conclusion') == 'success' for j in jobs)
@@ -500,12 +532,86 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
             reports.append(read_report_safely(path, workflow))
             if reports[-1].get('_reportEvidence'):
                 reports[-1]['_reportEvidence']['artifactId'] = max(a.get('id', 0) for a in available)
+                source_jobs=[j for j in jobs if j['name']==REGISTRY[workflow]['collectionJob']or j['name'].startswith(REGISTRY[workflow]['collectionJob']+' (')]
+                for field,job_field,select in [('sourcePhaseStartedAt','started_at',min),('sourcePhaseCompletedAt','completed_at',max)]:
+                    dates=[j[job_field]for j in source_jobs if timestamp(j.get(job_field))]
+                    if dates:reports[-1]['_reportEvidence'][field]=select(dates,key=timestamp)
         if not paths:
             return [report_error(key, 'Artefact vide : aucun rapport lisible')]
         reports.append({'successes': [{'id': key,'evidence':{'artifactId':max(a.get('id',0)for a in available),'files':[r['_reportEvidence']for r in reports if r.get('_reportEvidence')]}}], 'errors': []})
         return reports
     except (subprocess.SubprocessError, OSError, ValueError, TypeError, KeyError, zipfile.BadZipFile) as error:
         return [report_error(key, 'Artefact illisible : ' + type(error).__name__ + ': ' + str(error)[:300])]
+
+
+def observe_running_workflows(state, registry, api, repo, now, read_reports):
+    """Observe source-phase failures while a parent waits for validation/publication.
+
+    No completed workflow or source timestamp is invented. API/read failures retain
+    the previous observations; terminal runs are handed back to the ordinary reducer.
+    """
+    result=json.loads(json.dumps(state));current=timestamp(now)
+    last=timestamp(result.get('inFlightCheckedAt'))
+    if last and 0<=(current-last).total_seconds()<300:return result,[]
+    previous=result.get('inFlightRuns',{});active={};terminals=[];complete=True
+    for status in ('queued','in_progress','waiting','pending','requested'):
+        key='inflight-list:'+status
+        try:
+            page=1
+            while True:
+                batch=api(f'/actions/runs?branch=master&status={status}&per_page=100&page={page}')['workflow_runs']
+                if not isinstance(batch,list)or any(not isinstance(r,dict)or not isinstance(r.get('id'),int)or not isinstance(r.get('path'),str)for r in batch):raise ValueError('Format des exécutions en cours invalide')
+                for run in batch:
+                    workflow=run['path'].split('/')[-1]
+                    if (workflow not in registry or run.get('head_branch')!='master'
+                            or run.get('event')not in('schedule','push','workflow_dispatch','workflow_run')
+                            or run.get('head_repository',{}).get('full_name',repo)!=repo):continue
+                    active[f'{run["id"]}:{run.get("run_attempt",1)}']={'workflow':workflow,'run':run}
+                if len(batch)<100:break
+                page+=1
+            result.setdefault('observerErrors',{}).pop(key,None)
+        except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError)as error:
+            complete=False
+            result.setdefault('observerErrors',{})[key]={'cause':'Exécutions intermédiaires non observables : '+str(error)[:250]}
+    for key,old in previous.items():
+        if key in active:continue
+        if not complete:active[key]=old;continue
+        try:
+            r=old['run'];run=api(f'/actions/runs/{r["id"]}/attempts/{r.get("run_attempt",1)}')
+            if run.get('status')=='completed':
+                terminals.append({**run,'_inflightTerminal':True})
+                result.setdefault('observerErrors',{}).pop('inflight:'+key,None)
+            else:active[key]={'workflow':old['workflow'],'run':run}
+        except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError)as error:
+            active[key]=old
+            result.setdefault('observerErrors',{})['inflight:'+key]={'cause':'Fin d’exécution non vérifiable : '+str(error)[:250]}
+    for key,entry in list(active.items()):
+        workflow=entry['workflow'];run=entry['run'];old=previous.get(key,{})
+        try:
+            jobs=[];page=1
+            while True:
+                batch=api(f'/actions/runs/{run["id"]}/attempts/{run.get("run_attempt",1)}/jobs?per_page=100&page={page}')['jobs']
+                jobs.extend(batch)
+                if len(batch)<100:break
+                page+=1
+            failures=[{'job':j['name'],'step':s['name']}for j in jobs if j.get('conclusion')in('failure','timed_out')for s in j.get('steps',[])if s.get('conclusion')in('failure','timed_out')]
+            phase_jobs=[j for j in jobs if j['name']==registry[workflow]['collectionJob']or j['name'].startswith(registry[workflow]['collectionJob']+' (')]
+            source_done=bool(phase_jobs)and all(j.get('conclusion')in('success','failure','timed_out')for j in phase_jobs)
+            reports=old.get('reports',[])
+            if source_done and (not old.get('sourceProofCaptured') or old.get('proofReadFailed')):
+                reports=read_reports(run,jobs)if registry[workflow].get('artifact') else[]
+                if reports:result=merge_proof_retry(result,run,reports)
+            proof_failed=any(technical_proof(e['id'])for r in reports for e in r.get('errors',[]))
+            ends=[j['completed_at']for j in jobs if timestamp(j.get('completed_at'))]
+            active[key]={'workflow':workflow,'run':run,'checkedAt':now,'sourceProofCaptured':source_done,
+                         'proofReadFailed':proof_failed,'reports':reports,'failures':failures,
+                         'phaseCompletedAt':max(ends,key=timestamp)if ends else None}
+            result.setdefault('observerErrors',{}).pop('inflight:'+key,None)
+        except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError,subprocess.SubprocessError)as error:
+            active[key]={**old,**entry}
+            result.setdefault('observerErrors',{})['inflight:'+key]={'cause':'Lecture intermédiaire impossible : '+str(error)[:250],'runUrl':run.get('html_url')}
+    result['inFlightRuns']=active;result['inFlightCheckedAt']=now
+    return result,terminals
 
 
 def publication_summary(run, jobs):
@@ -629,13 +735,27 @@ def update_status(state, run, jobs, reports=None):
                 continue
             checked = timestamp(success.get('checkedAt') or (evidence or {}).get('reportedAt'))
             failed_at = timestamp(data_failures.get(success['id'], {}).get('completedAt'))
+            old_failure=data_failures.get(success['id'],{})
+            if evidence and evidence.get('schema')=='shares'and old_failure:
+                old_failure['unverifiedRecovery']=True;old_failure['unverifiedReason']='Le rapport composite ne prouve pas le contrôle ciblé du champ ou de la branche initialement en échec.'
+                old_failure['recoveryEvidence']=evidence
+                continue
+            previous_field=source_checks.get(success['id'],{})
+            previous_bound=timestamp((previous_field.get('evidence')or{}).get('sourcePhaseCompletedAt')or previous_field.get('recordedAt'))
+            current_bound=timestamp((evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'])
+            if previous_bound and current_bound and previous_bound>current_bound:continue
+            if not checked and evidence and success['id'] in data_failures:
+                data_failures[success['id']]['unverifiedRecovery']=True
+                data_failures[success['id']]['recoveryEvidence']=evidence
+                continue
             if checked and failed_at and checked <= failed_at and not success.get('verifiedInAttempt'):
                 continue  # An older retained record is not a successful source retry.
             data_failures.pop(success['id'], None)
             retired_failures.pop(success['id'], None)
             if not success['id'].startswith(('report-read:', 'artifact-read:')):
                 source_checks[success['id']] = {'checkedAt': success.get('checkedAt') or (evidence or {}).get('reportedAt'),
-                    'recordedAt': run['updated_at'], 'runUrl': run['html_url'], 'evidence': evidence,
+                    'recordedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'], 'runUrl': run['html_url'], 'evidence': evidence,
+                    'runId':run['id'],'attempt':run.get('run_attempt',1),
                     **{k:success[k] for k in ('verifiedInAttempt','responseSha256','asOf') if k in success}}
         for error in report.get('errors', []):
             id_ = error['id']
@@ -644,7 +764,8 @@ def update_status(state, run, jobs, reports=None):
                     'runId':run['id'], 'attempt':run.get('run_attempt',1), 'runUrl':run['html_url'], 'completedAt':run['updated_at']}
                 continue
             retired_failures.pop(id_, None)
-            data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': run['updated_at'],
+            data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
+                'sourcePhaseCompletedAt':(evidence or{}).get('sourcePhaseCompletedAt'),'evidence':evidence,
                 'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {}),
                 **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods') if key in error}}
     for identifier in list(data_failures):
@@ -717,6 +838,7 @@ def update_status(state, run, jobs, reports=None):
         last_source_success = run['updated_at']  # Legacy explicit per-source success, not a retained record.
     entries[workflow] = {'monitorVersion': 3, 'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'headSha': run.get('head_sha'), 'createdAt': run.get('created_at'),
+        'sourcePhaseCompletedAt':max([r['_reportEvidence']['sourcePhaseCompletedAt']for r in reports if r.get('_reportEvidence',{}).get('sourcePhaseCompletedAt')],default=None),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
         'collectionStatus': collection_status, 'validationStatus': validation_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
@@ -726,6 +848,11 @@ def update_status(state, run, jobs, reports=None):
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures,'retiredDataFailures':retired_failures,
         'stepResults': {j['name']+'\n'+step['name']:step.get('conclusion') for j in jobs for step in (j.get('steps')or[])},
         'publicationEvidence': {'runUrl':run['html_url'],'checkedAt':published_at,'kind':'explicit-public-artifact-check'} if publication_status=='success' else None,
+        'attemptedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])}),
+        'validatedDataIds':sorted({r['id']for p in reports for r in p.get('successes',[])if not technical_proof(r['id'])
+            and source_checks.get(r['id'],{}).get('runId')==run['id']and source_checks.get(r['id'],{}).get('attempt')==run.get('run_attempt',1)
+            and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
+        'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
         'reportQualifications': qualifications, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
     entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks)
     result['schemaVersion'] = 1
@@ -773,13 +900,15 @@ def reconcile_publication(state, build, manifest, compare):
             or not timestamp(build.get('builtAt'))
             or any(not isinstance(k, str) or not re.fullmatch(r'[a-f0-9]{40}', str(v)) for k, v in manifest['files'].items())):
         raise ValueError('Preuve publique invalide : version, identité ou empreintes absentes')
-    for row in result.get('workflows', {}).values():
+    for workflow,row in result.get('workflows', {}).items():
         receipt = row.get('publicationReceipt', {})
         files = receipt.get('files', {})
         if not qualified_receipt(receipt):
             if receipt:
                 row['publicationEvidenceError'] = 'Reçu de publication invalide ; aucune livraison déduite'
             continue
+        if REGISTRY.get(workflow,{}).get('controlOnly') and build['sha']!=receipt['commit']:
+            continue  # Source bytes alone cannot prove that a code release reached Pages.
         exact = all(manifest.get('files', {}).get(name) == sha for name, sha in files.items())
         included = exact
         # An ancestor may contain a removed/excluded field. Only the actual
@@ -787,7 +916,7 @@ def reconcile_publication(state, build, manifest, compare):
         if included:
             row['publicationStatus'] = 'success'
             row['lastPublicationSuccessAt'] = build['builtAt']
-            row['publicationEvidence'] = {'kind':'matching-public-source-fingerprints','checkedAt':build['builtAt'],'codeSha':build['sha'],'dataSha':build.get('dataSha',build['sha']),'receiptCommit':receipt['commit'],'fileCount':len(files)}
+            row['publicationEvidence'] = {'kind':'matching-public-source-fingerprints','checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'publishedAt':build['builtAt'],'codeSha':build['sha'],'dataSha':build.get('dataSha',build['sha']),'receiptCommit':receipt['commit'],'fileCount':len(files)}
             row['publishedCodeSha'] = build['sha']
             row['publishedDataSha'] = build.get('dataSha', build['sha'])
     return result
@@ -878,12 +1007,23 @@ def main():
             raise
         state = {'schemaVersion': 1, 'workflows': {}}
         sha = None
+    state=include_configured_workflows(state)
+    def reports_for_run(run,jobs):
+        workflow=run['path'].split('/')[-1]
+        if workflow not in REPORT_CONTRACTS:
+            return [report_error('artifact-read:'+REPORT_ARTIFACTS[workflow],'Contrat de rapport absent pour ce producteur ; résultat individuel non qualifié')]if workflow in REPORT_ARTIFACTS else[]
+        try:
+            artifacts=attempt_artifacts(api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts'],run)
+            with tempfile.TemporaryDirectory()as directory:return artifact_reports(repo,workflow,jobs,artifacts,directory)
+        except (urllib.error.URLError,ValueError,KeyError,TypeError,OSError)as error:
+            return [report_error('artifact-read:'+REPORT_ARTIFACTS[workflow],str(error))]
+    state,terminal_runs=observe_running_workflows(state,REGISTRY,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),reports_for_run)
     state['workflowAvailability'] = state.get('workflowAvailability', {})
     for workflow in WORKFLOWS:
         try:
             observed = api('/actions/workflows/' + workflow)
             state['workflowAvailability'][workflow] = {'state': observed['state'], 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
-        except (urllib.error.URLError, KeyError, ValueError) as error:
+        except (urllib.error.URLError,OSError,http.client.IncompleteRead,KeyError,ValueError,TypeError,AttributeError) as error:
             state.setdefault('observerErrors', {})['availability:' + workflow] = {'cause': 'Disponibilité non vérifiable : ' + str(error)[:300]}
         else:
             state.setdefault('observerErrors', {}).pop('availability:' + workflow, None)
@@ -892,7 +1032,7 @@ def main():
         for workflow in WORKFLOWS:
             try:
                 candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
-            except (urllib.error.URLError, ValueError, TypeError, KeyError) as error:
+            except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError) as error:
                 state.setdefault('observerErrors', {})['runs:'+workflow]={'cause':'Exécutions non lisibles : '+str(error)[:300]}
                 continue
             if not isinstance(candidates,list) or any(not isinstance(r,dict) or not isinstance(r.get('id'),int) or not isinstance(r.get('path'),str) for r in candidates):
@@ -918,6 +1058,8 @@ def main():
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
+    runs.extend(terminal_runs)
+    runs=list({(r['id'],r.get('run_attempt',1)):r for r in runs}.values())
     pending_proofs = [(failure.get('lastProofReadAt',''),workflow,key,failure) for workflow,row in state.get('workflows',{}).items() if workflow in REPORT_ARTIFACTS for key,failure in row.get('proofFailures',{}).items() if failure.get('runId')]
     for _, workflow, key, failure in sorted(pending_proofs,key=lambda r:r[0])[:4]:
         failure['lastProofReadAt']=dt.datetime.now(dt.timezone.utc).isoformat()
@@ -933,7 +1075,7 @@ def main():
         workflow = run['path'].split('/')[-1]
         try:
             previous_run = state.get('workflows', {}).get(run['path'].split('/')[-1], {})
-            if run['id'] < previous_run.get('runId', 0) and not run.get('_proofRetry'):
+            if run['id'] < previous_run.get('runId', 0) and not run.get('_proofRetry') and not run.get('_inflightTerminal'):
                 continue
             jobs = []
             page = 1
@@ -951,16 +1093,9 @@ def main():
                         job['annotations'] = api(f"/check-runs/{job['id']}/annotations?per_page=50")
                     except (urllib.error.HTTPError, urllib.error.URLError, ValueError):
                         job['annotations'] = []
-            reports = []
+            reports = reports_for_run(run,jobs)
             workflow = run['path'].split('/')[-1]
-            if workflow in REPORT_ARTIFACTS:
-                try:
-                    artifacts = attempt_artifacts(api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts'], run)
-                    with tempfile.TemporaryDirectory() as directory:
-                        reports = artifact_reports(repo, workflow, jobs, artifacts, directory)
-                except (urllib.error.URLError, ValueError, KeyError, TypeError, OSError) as error:
-                    reports = [report_error('artifact-read:' + REPORT_ARTIFACTS[workflow], str(error))]
-            if run.get('_proofRetry'):
+            if run.get('_proofRetry') or run['id']<previous_run.get('runId',0):
                 state = merge_proof_retry(state,run,reports)
                 state.setdefault('observerErrors',{}).pop('proof-retry:'+workflow,None)
                 continue
@@ -989,7 +1124,7 @@ def main():
                 row['publicationEvidenceError'] = 'Reçu de publication attendu absent ou non qualifié ; périmètre livré non démontré.'
             publication_history.append((run, jobs))
             state.setdefault('observerErrors', {}).pop(workflow, None)
-        except (urllib.error.URLError, OSError, ValueError, TypeError, KeyError, AttributeError, subprocess.SubprocessError) as error:
+        except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,TypeError,KeyError,AttributeError,subprocess.SubprocessError) as error:
             state.setdefault('observerErrors', {})[workflow] = {'cause': type(error).__name__ + ': ' + str(error)[:400], 'runUrl': run.get('html_url'), 'attemptedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
     if args.backfill:
         state = repair_publication_history(state, publication_history)
@@ -1056,7 +1191,7 @@ def main():
                     state.setdefault('observerErrors', {}).pop('radar-proofs', None)
                 except (urllib.error.URLError, ValueError, KeyError, TypeError) as error:
                     state.setdefault('observerErrors', {})['radar-proofs'] = {'cause': 'Preuves du radar non lisibles : ' + str(error)[:300]}
-    except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError):
+    except (urllib.error.HTTPError,urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError):
         print('Radar non lisible ; alertes précédentes conservées.')
     # Only trusted master collectors; reserve dispatches in the same durable status
     # document before calling Actions. Never run code from a triggering PR.
@@ -1071,7 +1206,7 @@ def main():
                 current_runs[workflow] = [run for run in api(f'/actions/workflows/{workflow}/runs?branch=master&per_page=100')['workflow_runs']
                                          if run.get('event') in ('schedule','push','workflow_dispatch','workflow_run')]
                 state.setdefault('observerErrors',{}).pop('recovery:'+workflow,None)
-            except (urllib.error.URLError,ValueError,KeyError,TypeError) as error:
+            except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError) as error:
                 recovery_registry.pop(workflow,None)
                 state.setdefault('observerErrors',{})['recovery:'+workflow]={'cause':'État des reprises non observable ; aucun déclenchement aveugle : '+str(error)[:200]}
     state['recovery'], recovery_plans = plan_recovery(state, recovery_registry, now, current_runs)
