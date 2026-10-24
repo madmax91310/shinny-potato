@@ -1,275 +1,3513 @@
 {
   "base": "http://127.0.0.1:4315/shinny-potato/",
+  "preflight": [
+    {
+      "id": "nvidia",
+      "width": 191,
+      "height": 150,
+      "originClean": true
+    },
+    {
+      "id": "apple",
+      "width": 14,
+      "height": 17,
+      "originClean": true
+    },
+    {
+      "id": "microsoft",
+      "width": 512,
+      "height": 512,
+      "originClean": true
+    },
+    {
+      "id": "asml",
+      "width": 300,
+      "height": 83,
+      "originClean": true
+    },
+    {
+      "id": "tesla",
+      "width": 300,
+      "height": 31,
+      "originClean": true
+    },
+    {
+      "id": "bitcoin",
+      "width": 300,
+      "height": 63,
+      "originClean": true
+    },
+    {
+      "id": "ethereum",
+      "width": 800,
+      "height": 1303,
+      "originClean": true
+    },
+    {
+      "id": "sap",
+      "width": 300,
+      "height": 148,
+      "originClean": true
+    },
+    {
+      "id": "lvmh",
+      "width": 428,
+      "height": 96,
+      "originClean": true
+    },
+    {
+      "id": "meta",
+      "width": 50,
+      "height": 11,
+      "originClean": true
+    },
+    {
+      "id": "airliquide",
+      "width": 184,
+      "height": 43,
+      "originClean": true
+    },
+    {
+      "id": "cocacola",
+      "width": 125,
+      "height": 20,
+      "originClean": true
+    },
+    {
+      "id": "visa",
+      "width": 1920,
+      "height": 622,
+      "originClean": true
+    },
+    {
+      "id": "procter-gamble",
+      "width": 150,
+      "height": 150,
+      "originClean": true
+    },
+    {
+      "id": "johnson-johnson",
+      "width": 308,
+      "height": 30,
+      "originClean": true
+    },
+    {
+      "id": "jpmorgan",
+      "width": 300,
+      "height": 43,
+      "originClean": true
+    },
+    {
+      "id": "unitedhealth",
+      "width": 142,
+      "height": 35,
+      "originClean": true
+    },
+    {
+      "id": "paypal",
+      "width": 150,
+      "height": 150,
+      "originClean": true
+    },
+    {
+      "id": "qualcomm",
+      "width": 1280,
+      "height": 235,
+      "originClean": true
+    },
+    {
+      "id": "bank-of-america",
+      "width": 425,
+      "height": 68,
+      "originClean": true
+    },
+    {
+      "id": "novartis",
+      "width": 40,
+      "height": 45,
+      "originClean": true
+    },
+    {
+      "id": "goldman-sachs",
+      "width": 1022,
+      "height": 429,
+      "originClean": true
+    },
+    {
+      "id": "sbux",
+      "width": 77,
+      "height": 79,
+      "originClean": true
+    },
+    {
+      "id": "honeywell",
+      "width": 402,
+      "height": 101,
+      "originClean": true
+    },
+    {
+      "id": "axa",
+      "width": 303,
+      "height": 303,
+      "originClean": true
+    },
+    {
+      "id": "bmw",
+      "width": 238,
+      "height": 132,
+      "originClean": true
+    },
+    {
+      "id": "palo-alto-networks",
+      "width": 372,
+      "height": 90,
+      "originClean": true
+    },
+    {
+      "id": "pepsico",
+      "width": 1500,
+      "height": 456,
+      "originClean": true
+    },
+    {
+      "id": "safran",
+      "width": 985,
+      "height": 258,
+      "originClean": true
+    },
+    {
+      "id": "exxonmobil",
+      "width": 306,
+      "height": 80,
+      "originClean": true
+    },
+    {
+      "id": "danone",
+      "width": 360,
+      "height": 400,
+      "originClean": true
+    },
+    {
+      "id": "allianz",
+      "width": 428,
+      "height": 127,
+      "originClean": true
+    },
+    {
+      "id": "loreal",
+      "width": 147,
+      "height": 46,
+      "originClean": true
+    },
+    {
+      "id": "ibm",
+      "width": 1034,
+      "height": 780,
+      "originClean": true
+    },
+    {
+      "id": "servicenow",
+      "width": 140,
+      "height": 28,
+      "originClean": true
+    },
+    {
+      "id": "morgan-stanley",
+      "width": 1069,
+      "height": 213,
+      "originClean": true
+    },
+    {
+      "id": "munich-re",
+      "width": 230,
+      "height": 65,
+      "originClean": true
+    },
+    {
+      "id": "walmart",
+      "width": 215,
+      "height": 51,
+      "originClean": true
+    },
+    {
+      "id": "salesforce",
+      "width": 220,
+      "height": 158,
+      "originClean": true
+    },
+    {
+      "id": "adobe",
+      "width": 69,
+      "height": 20,
+      "originClean": true
+    },
+    {
+      "id": "applied-materials",
+      "width": 1475,
+      "height": 461,
+      "originClean": true
+    },
+    {
+      "id": "deutsche-boerse",
+      "width": 224,
+      "height": 53,
+      "originClean": true
+    },
+    {
+      "id": "adidas",
+      "width": 677,
+      "height": 190,
+      "originClean": true
+    },
+    {
+      "id": "bnp-paribas",
+      "width": 234,
+      "height": 61,
+      "originClean": true
+    },
+    {
+      "id": "nestle",
+      "width": 1378,
+      "height": 432,
+      "originClean": true
+    },
+    {
+      "id": "merck",
+      "width": 58,
+      "height": 20,
+      "originClean": true
+    },
+    {
+      "id": "conocophillips",
+      "width": 439,
+      "height": 156,
+      "originClean": true
+    },
+    {
+      "id": "oracle",
+      "width": 247,
+      "height": 46,
+      "originClean": true
+    },
+    {
+      "id": "hermes",
+      "width": 64,
+      "height": 29,
+      "originClean": true
+    },
+    {
+      "id": "abbott",
+      "width": 1328,
+      "height": 283,
+      "originClean": true
+    },
+    {
+      "id": "samsung",
+      "width": 128,
+      "height": 27,
+      "originClean": true
+    },
+    {
+      "id": "eli-lilly",
+      "width": 96,
+      "height": 55,
+      "originClean": true
+    },
+    {
+      "id": "blackrock",
+      "width": 166,
+      "height": 33,
+      "originClean": true
+    },
+    {
+      "id": "low",
+      "width": 135,
+      "height": 67,
+      "originClean": true
+    },
+    {
+      "id": "cl",
+      "width": 304,
+      "height": 74,
+      "originClean": true
+    },
+    {
+      "id": "unp",
+      "width": 42,
+      "height": 47,
+      "originClean": true
+    },
+    {
+      "id": "adp",
+      "width": 75,
+      "height": 37,
+      "originClean": true
+    },
+    {
+      "id": "tt",
+      "width": 669,
+      "height": 219,
+      "originClean": true
+    },
+    {
+      "id": "regn",
+      "width": 446,
+      "height": 74,
+      "originClean": true
+    },
+    {
+      "id": "zts",
+      "width": 91,
+      "height": 38,
+      "originClean": true
+    },
+    {
+      "id": "ubs",
+      "width": 136,
+      "height": 55,
+      "originClean": true
+    },
+    {
+      "id": "bbva",
+      "width": 900,
+      "height": 269,
+      "originClean": true
+    },
+    {
+      "id": "diageo",
+      "width": 140,
+      "height": 37,
+      "originClean": true
+    },
+    {
+      "id": "lseg",
+      "width": 128,
+      "height": 56,
+      "originClean": true
+    },
+    {
+      "id": "rolls-royce",
+      "width": 194,
+      "height": 303,
+      "originClean": true
+    },
+    {
+      "id": "dhl",
+      "width": 210,
+      "height": 66,
+      "originClean": true
+    },
+    {
+      "id": "enel",
+      "width": 83,
+      "height": 34,
+      "originClean": true
+    },
+    {
+      "id": "keyence",
+      "width": 97,
+      "height": 22,
+      "originClean": true
+    },
+    {
+      "id": "hitachi",
+      "width": 345,
+      "height": 60,
+      "originClean": true
+    },
+    {
+      "id": "mitsubishi-electric",
+      "width": 116,
+      "height": 53,
+      "originClean": true
+    },
+    {
+      "id": "advantest",
+      "width": 278,
+      "height": 49,
+      "originClean": true
+    },
+    {
+      "id": "softbank-group",
+      "width": 455,
+      "height": 130,
+      "originClean": true
+    },
+    {
+      "id": "dbs",
+      "width": 100,
+      "height": 34,
+      "originClean": true
+    },
+    {
+      "id": "fortinet",
+      "width": 522,
+      "height": 89,
+      "originClean": true
+    },
+    {
+      "id": "pfe",
+      "width": 1605,
+      "height": 717,
+      "originClean": true
+    },
+    {
+      "id": "richemont",
+      "width": 455,
+      "height": 55,
+      "originClean": true
+    },
+    {
+      "id": "sika",
+      "width": 415,
+      "height": 359,
+      "originClean": true
+    },
+    {
+      "id": "dsv",
+      "width": 107,
+      "height": 36,
+      "originClean": true
+    },
+    {
+      "id": "nordea",
+      "width": 145,
+      "height": 38,
+      "originClean": true
+    },
+    {
+      "id": "pernod-ricard",
+      "width": 122,
+      "height": 50,
+      "originClean": true
+    },
+    {
+      "id": "capgemini",
+      "width": 303,
+      "height": 83,
+      "originClean": true
+    },
+    {
+      "id": "publicis",
+      "width": 1399,
+      "height": 1412,
+      "originClean": true
+    },
+    {
+      "id": "societe-generale",
+      "width": 155,
+      "height": 38,
+      "originClean": true
+    },
+    {
+      "id": "renault",
+      "width": 104,
+      "height": 51,
+      "originClean": true
+    },
+    {
+      "id": "bat",
+      "width": 223,
+      "height": 86,
+      "originClean": true
+    },
+    {
+      "id": "hsbc",
+      "width": 338,
+      "height": 107,
+      "originClean": true
+    },
+    {
+      "id": "rio-tinto",
+      "width": 790,
+      "height": 208,
+      "originClean": true
+    },
+    {
+      "id": "glencore",
+      "width": 233,
+      "height": 51,
+      "originClean": true
+    },
+    {
+      "id": "philips",
+      "width": 93,
+      "height": 22,
+      "originClean": true
+    },
+    {
+      "id": "stmicroelectronics",
+      "width": 200,
+      "height": 113,
+      "originClean": true
+    },
+    {
+      "id": "asm-international",
+      "width": 1200,
+      "height": 374,
+      "originClean": true
+    },
+    {
+      "id": "wolters-kluwer",
+      "width": 172,
+      "height": 37,
+      "originClean": true
+    },
+    {
+      "id": "ing",
+      "width": 151,
+      "height": 45,
+      "originClean": true
+    },
+    {
+      "id": "adyen",
+      "width": 85,
+      "height": 31,
+      "originClean": true
+    },
+    {
+      "id": "stellantis",
+      "width": 364,
+      "height": 96,
+      "originClean": true
+    },
+    {
+      "id": "equinor",
+      "width": 429,
+      "height": 187,
+      "originClean": true
+    },
+    {
+      "id": "volvo",
+      "width": 103,
+      "height": 15,
+      "originClean": true
+    },
+    {
+      "id": "dhr",
+      "width": 636,
+      "height": 363,
+      "originClean": true
+    },
+    {
+      "id": "marvell",
+      "width": 128,
+      "height": 43,
+      "originClean": true
+    },
+    {
+      "id": "philip-morris",
+      "width": 209,
+      "height": 61,
+      "originClean": true
+    },
+    {
+      "id": "shw",
+      "width": 1280,
+      "height": 500,
+      "originClean": true
+    },
+    {
+      "id": "3m",
+      "width": 168,
+      "height": 39,
+      "originClean": true
+    },
+    {
+      "id": "bhp",
+      "width": 1576,
+      "height": 604,
+      "originClean": true
+    },
+    {
+      "id": "cloudflare",
+      "width": 365,
+      "height": 180,
+      "originClean": true
+    },
+    {
+      "id": "coinbase",
+      "width": 36,
+      "height": 36,
+      "originClean": true
+    },
+    {
+      "id": "reddit",
+      "width": 828,
+      "height": 270,
+      "originClean": true
+    },
+    {
+      "id": "rocket-lab",
+      "width": 600,
+      "height": 222,
+      "originClean": true
+    },
+    {
+      "id": "sofi",
+      "width": 89,
+      "height": 30,
+      "originClean": true
+    },
+    {
+      "id": "vertiv",
+      "width": 203,
+      "height": 60,
+      "originClean": true
+    },
+    {
+      "id": "zscaler",
+      "width": 222,
+      "height": 57,
+      "originClean": true
+    },
+    {
+      "id": "accenture",
+      "width": 32,
+      "height": 34,
+      "originClean": true
+    },
+    {
+      "id": "generali",
+      "width": 95,
+      "height": 78,
+      "originClean": true
+    },
+    {
+      "id": "prosus",
+      "width": 567,
+      "height": 152,
+      "originClean": true
+    },
+    {
+      "id": "datadog",
+      "width": 346,
+      "height": 88,
+      "originClean": true
+    },
+    {
+      "id": "intel",
+      "width": 55,
+      "height": 25,
+      "originClean": true
+    },
+    {
+      "id": "booking",
+      "width": 269,
+      "height": 65,
+      "originClean": true
+    }
+  ],
   "results": [
     {
-      "device": "desktop",
-      "id": "nvidia",
-      "width": 1600,
-      "height": 2000,
-      "hash": "6c9271797b0f048a200e14f7f1db545b602920d2d678e65756bd03562e821880"
-    },
-    {
-      "device": "desktop",
-      "id": "apple",
-      "width": 1600,
-      "height": 2000,
-      "hash": "82af082e463ed51668565780ffbcefb22f953577d3e20b38b935059fc6fdc862"
-    },
-    {
-      "device": "desktop",
-      "id": "microsoft",
-      "width": 1600,
-      "height": 2000,
-      "hash": "40dbe6647a5952a0d642949320383b420f815c6ca1209431f7ad5730a379d9d2"
-    },
-    {
-      "device": "desktop",
-      "id": "asml",
-      "width": 1600,
-      "height": 2000,
-      "hash": "ff33cfb0054e093aa26aa6fa96f3e4fba1e213edb8fcae7ef949b7763fc87432"
-    },
-    {
-      "device": "desktop",
-      "id": "tesla",
-      "width": 1600,
-      "height": 2000,
-      "hash": "54da118459de5f02fe715dc1c5d1b658ab102d9f46830eff5b703844397bee19"
-    },
-    {
-      "device": "desktop",
-      "id": "bitcoin",
-      "width": 1600,
-      "height": 2000,
-      "hash": "a2919f9eb9e5bee4c958f6cf014b26bbe4c6d07495f98a3fee640d80448582b2"
-    },
-    {
-      "device": "desktop",
-      "id": "ethereum",
-      "width": 1600,
-      "height": 2000,
-      "hash": "b4240a85e753031d7e49d14731a33fb5d57623639df0a0da91e2bb0df7974346"
-    },
-    {
-      "device": "desktop",
-      "id": "sap",
-      "width": 1600,
-      "height": 2000,
-      "hash": "6aab26cd14147c672c476d32fc9bdd3d1ef10debf20944d8f3b14808aba346d4"
-    },
-    {
-      "device": "desktop",
-      "id": "lvmh",
-      "width": 1600,
-      "height": 2000,
-      "hash": "8c0e13f221ca08d5707d708377baaf81a6f4dee00f3a497bd8b5b1c73515cfce"
-    },
-    {
-      "device": "desktop",
-      "id": "meta",
-      "width": 1600,
-      "height": 2000,
-      "hash": "c9f7ad168486302d10200259c87036407ae9fd600492e85c0039c7d9e97c014d"
-    },
-    {
-      "device": "desktop",
-      "id": "airliquide",
-      "width": 1600,
-      "height": 2000,
-      "hash": "dcb2cb4118d9205576db81f428c43872f60ba2ee0fb32975d5e480861770cb1c"
-    },
-    {
-      "device": "desktop",
-      "id": "cocacola",
-      "width": 1600,
-      "height": 2000,
-      "hash": "e0c92ae73f559fe179d5221d8b6a49a8477e229711bbdf3e2d0f5c89705101d2"
-    },
-    {
-      "device": "desktop",
-      "id": "visa",
-      "width": 1600,
-      "height": 2000,
-      "hash": "ff602edf42d56d91c31e61878f0fc8ebb29324db1fa1d8afd3303672507178f3"
-    },
-    {
-      "device": "desktop",
-      "id": "procter-gamble",
-      "width": 1600,
-      "height": 2000,
-      "hash": "7f53788c2b60becad747861d2225e960f1031c18aa12e3ccbcd89f92f34bb908"
-    },
-    {
-      "device": "desktop",
-      "id": "johnson-johnson",
-      "width": 1600,
-      "height": 2000,
-      "hash": "133119c5b897ae69a11d3cfce2059890ea2052423ed43b536737d913255617aa"
-    },
-    {
-      "device": "desktop",
-      "id": "jpmorgan",
-      "width": 1600,
-      "height": 2000,
-      "hash": "d4ae8651f881e65f4baa735490ede16706e9f034e17028c5ab9a616652364c49"
-    },
-    {
-      "device": "desktop",
-      "id": "unitedhealth",
-      "width": 1600,
-      "height": 2000,
-      "hash": "d2ae845fa10b271ff8e68d3e23fdcb4fff1a57e6eba13e78749a74acb350a5f5"
-    },
-    {
-      "device": "desktop",
-      "id": "paypal",
-      "width": 1600,
-      "height": 2000,
-      "hash": "2a3b3cc3fad58104796b533532f57b25b123928bad6891b6dfc1fcc2a03d0a5e"
-    },
-    {
-      "device": "desktop",
-      "id": "broadcom",
-      "width": 1600,
-      "height": 2000,
-      "hash": "96074077e20f5044d32c0cbf88efc1a779fb9faedd9c38f31bcc4e6701289630"
-    },
-    {
       "device": "mobile",
       "id": "nvidia",
       "width": 1600,
       "height": 2000,
-      "hash": "449f261c418a6f88e740e0f2772807d2d795fe30a8c7826fa34ea17c2bc000e9"
+      "hash": "aba02520239e97300f9e15d1c0114e47c1daa115c09b46d03e6fd3def5219e20",
+      "logoHash": "c036d24351f3aa1e34c7584ca5fc585dcd71043686c4a32d69b648ac1757181e",
+      "downloadedHash": "e7b092839f3d4f8936e784c49cfd6f71d6a21d561ffcde40cdc79c19764a5e87",
+      "downloadedPreviewHash": "e7b092839f3d4f8936e784c49cfd6f71d6a21d561ffcde40cdc79c19764a5e87",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "nvidia",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6820b46c0f22ba0549454181cced2de59c063f5b1a3464e544511e3b98d3b3f0",
+      "logoHash": "c036d24351f3aa1e34c7584ca5fc585dcd71043686c4a32d69b648ac1757181e",
+      "downloadedHash": "6820b46c0f22ba0549454181cced2de59c063f5b1a3464e544511e3b98d3b3f0",
+      "downloadedPreviewHash": "6820b46c0f22ba0549454181cced2de59c063f5b1a3464e544511e3b98d3b3f0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "apple",
       "width": 1600,
       "height": 2000,
-      "hash": "3cf441fd21ac226efb9d23270f7ec5e61521a33141ab4c760ae5420cbe04331c"
+      "hash": "43ef82d57c791ef63867feb0f0ed334b5df98fca992fcc407550bff9db5e6a82",
+      "logoHash": "50c99998aaaecc21aff2dc7ffba3cf68c6b1f4b4f7eb6891720682dff1104984",
+      "downloadedHash": "43ef82d57c791ef63867feb0f0ed334b5df98fca992fcc407550bff9db5e6a82",
+      "downloadedPreviewHash": "43ef82d57c791ef63867feb0f0ed334b5df98fca992fcc407550bff9db5e6a82",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "apple",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6822e4ed6df4a0627bbd82a8244b5e46fc394d1f839143b857270bec3a6efd4f",
+      "logoHash": "50c99998aaaecc21aff2dc7ffba3cf68c6b1f4b4f7eb6891720682dff1104984",
+      "downloadedHash": "6822e4ed6df4a0627bbd82a8244b5e46fc394d1f839143b857270bec3a6efd4f",
+      "downloadedPreviewHash": "6822e4ed6df4a0627bbd82a8244b5e46fc394d1f839143b857270bec3a6efd4f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "microsoft",
       "width": 1600,
       "height": 2000,
-      "hash": "1a74cb177b1c807beff23b2741e6edf768117ef0e5ba617877f018fbfb21428a"
+      "hash": "1a74cb177b1c807beff23b2741e6edf768117ef0e5ba617877f018fbfb21428a",
+      "logoHash": "274bf95f77246c40334f2b85acac6fe8b69bbab382f0366b3685c97e93290343",
+      "downloadedHash": "1a74cb177b1c807beff23b2741e6edf768117ef0e5ba617877f018fbfb21428a",
+      "downloadedPreviewHash": "1a74cb177b1c807beff23b2741e6edf768117ef0e5ba617877f018fbfb21428a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "microsoft",
+      "width": 1600,
+      "height": 2000,
+      "hash": "40dbe6647a5952a0d642949320383b420f815c6ca1209431f7ad5730a379d9d2",
+      "logoHash": "274bf95f77246c40334f2b85acac6fe8b69bbab382f0366b3685c97e93290343",
+      "downloadedHash": "40dbe6647a5952a0d642949320383b420f815c6ca1209431f7ad5730a379d9d2",
+      "downloadedPreviewHash": "40dbe6647a5952a0d642949320383b420f815c6ca1209431f7ad5730a379d9d2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "asml",
       "width": 1600,
       "height": 2000,
-      "hash": "165b2aaf20515dea4bc13072dacab555794fd971cfb63e78a6efedd14177a764"
+      "hash": "ff33cfb0054e093aa26aa6fa96f3e4fba1e213edb8fcae7ef949b7763fc87432",
+      "logoHash": "9a4e578b6b7b472abe2d950383667ef3ed5d23d8da40aa3375e9afcdf3c6f2e7",
+      "downloadedHash": "ff33cfb0054e093aa26aa6fa96f3e4fba1e213edb8fcae7ef949b7763fc87432",
+      "downloadedPreviewHash": "ff33cfb0054e093aa26aa6fa96f3e4fba1e213edb8fcae7ef949b7763fc87432",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "asml",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b769ace9868972cd99bf70c8e91cf69fab1093b7890f1813aab41284a021f1fb",
+      "logoHash": "9a4e578b6b7b472abe2d950383667ef3ed5d23d8da40aa3375e9afcdf3c6f2e7",
+      "downloadedHash": "b769ace9868972cd99bf70c8e91cf69fab1093b7890f1813aab41284a021f1fb",
+      "downloadedPreviewHash": "b769ace9868972cd99bf70c8e91cf69fab1093b7890f1813aab41284a021f1fb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "tesla",
       "width": 1600,
       "height": 2000,
-      "hash": "583e9106558019ea95e95e62d6b2e6c31c2494870abd3bb3f7e193b568f21f67"
+      "hash": "0e0fe8245ab9ed544c9184bc88a208d8ad64b9ce012b82df8fd1d951d46088bb",
+      "logoHash": "87e510aeeba4ece2330228dceadab44358cf5c277c090304cfe59bda6f4cde8d",
+      "downloadedHash": "0e0fe8245ab9ed544c9184bc88a208d8ad64b9ce012b82df8fd1d951d46088bb",
+      "downloadedPreviewHash": "0e0fe8245ab9ed544c9184bc88a208d8ad64b9ce012b82df8fd1d951d46088bb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "tesla",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7f96971711809dff2b13a59a17c61c8aa4913fbcd828e6ebe35d4839bb51c193",
+      "logoHash": "87e510aeeba4ece2330228dceadab44358cf5c277c090304cfe59bda6f4cde8d",
+      "downloadedHash": "7f96971711809dff2b13a59a17c61c8aa4913fbcd828e6ebe35d4839bb51c193",
+      "downloadedPreviewHash": "7f96971711809dff2b13a59a17c61c8aa4913fbcd828e6ebe35d4839bb51c193",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "bitcoin",
       "width": 1600,
       "height": 2000,
-      "hash": "94d1a46e6a26062b109368d3f0f8d86a3a4f7026746ec87bab3d7e12419822ed"
+      "hash": "57531deff0f43701ff9f55af2a6936391ca0f10e8dd953580e3a2fbab0edbf6a",
+      "logoHash": "67e32683f4063021c80b8c401f4e21c29a9aff1efd8b162227a2aa3a8e23abeb",
+      "downloadedHash": "57531deff0f43701ff9f55af2a6936391ca0f10e8dd953580e3a2fbab0edbf6a",
+      "downloadedPreviewHash": "57531deff0f43701ff9f55af2a6936391ca0f10e8dd953580e3a2fbab0edbf6a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bitcoin",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d6db89fa8df0fc7bc79f0b08589c5bd964415445c0cfc21846e5120b9cd6e96b",
+      "logoHash": "67e32683f4063021c80b8c401f4e21c29a9aff1efd8b162227a2aa3a8e23abeb",
+      "downloadedHash": "d6db89fa8df0fc7bc79f0b08589c5bd964415445c0cfc21846e5120b9cd6e96b",
+      "downloadedPreviewHash": "d6db89fa8df0fc7bc79f0b08589c5bd964415445c0cfc21846e5120b9cd6e96b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "ethereum",
       "width": 1600,
       "height": 2000,
-      "hash": "6c148216bdee1640f7480dc965e57a6e68220f86ffc54858447ee08a1e58b8dd"
+      "hash": "e4a2dc298c6173f70fa93c6a274d2c736134349a6a390e647964aa9df1c8d366",
+      "logoHash": "4f4054bf8f61e79e93c607537142420323eacd3d15097dfe6112a2c3196cd3c2",
+      "downloadedHash": "e4a2dc298c6173f70fa93c6a274d2c736134349a6a390e647964aa9df1c8d366",
+      "downloadedPreviewHash": "e4a2dc298c6173f70fa93c6a274d2c736134349a6a390e647964aa9df1c8d366",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "ethereum",
+      "width": 1600,
+      "height": 2000,
+      "hash": "16da61b1405bc8896161a669150c5cef991d585e060216e7581041eccfcbe1c8",
+      "logoHash": "4f4054bf8f61e79e93c607537142420323eacd3d15097dfe6112a2c3196cd3c2",
+      "downloadedHash": "16da61b1405bc8896161a669150c5cef991d585e060216e7581041eccfcbe1c8",
+      "downloadedPreviewHash": "16da61b1405bc8896161a669150c5cef991d585e060216e7581041eccfcbe1c8",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "sap",
+      "width": 1600,
+      "height": 2000,
+      "hash": "bc173dc69f19429c3f4a3da6f78d4ce64d7c94035d978d754a485c1354f8a0a7",
+      "logoHash": "149abc039f34d8cf498be41d12e25fa925fc14f5c3b049af41aa3ddc61b96f0c",
+      "downloadedHash": "bc173dc69f19429c3f4a3da6f78d4ce64d7c94035d978d754a485c1354f8a0a7",
+      "downloadedPreviewHash": "bc173dc69f19429c3f4a3da6f78d4ce64d7c94035d978d754a485c1354f8a0a7",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "sap",
       "width": 1600,
       "height": 2000,
-      "hash": "a09cc4a539fbdb4cb6e10ac457ca6257e1955bb847afd1d39d6b1a7ccc5b2460"
+      "hash": "4086f82d8f33708c682c5fac63c5ee25cf7a11c7a2c98fe36e942b915428283b",
+      "logoHash": "149abc039f34d8cf498be41d12e25fa925fc14f5c3b049af41aa3ddc61b96f0c",
+      "downloadedHash": "4086f82d8f33708c682c5fac63c5ee25cf7a11c7a2c98fe36e942b915428283b",
+      "downloadedPreviewHash": "4086f82d8f33708c682c5fac63c5ee25cf7a11c7a2c98fe36e942b915428283b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "lvmh",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ebb3f73f27817643291fb6775dc65df206421f2629b595626e8bfd596e29d668",
+      "logoHash": "42979bbc5dae47aae8b979cee23b1396e74390d09f413333ca7f34551d97e6f8",
+      "downloadedHash": "ebb3f73f27817643291fb6775dc65df206421f2629b595626e8bfd596e29d668",
+      "downloadedPreviewHash": "ebb3f73f27817643291fb6775dc65df206421f2629b595626e8bfd596e29d668",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "lvmh",
       "width": 1600,
       "height": 2000,
-      "hash": "63d6b52d5c5e28fea661fcc119d06ad662e4dcce42cb9bd9a36856c65a705ba1"
+      "hash": "63d6b52d5c5e28fea661fcc119d06ad662e4dcce42cb9bd9a36856c65a705ba1",
+      "logoHash": "42979bbc5dae47aae8b979cee23b1396e74390d09f413333ca7f34551d97e6f8",
+      "downloadedHash": "63d6b52d5c5e28fea661fcc119d06ad662e4dcce42cb9bd9a36856c65a705ba1",
+      "downloadedPreviewHash": "63d6b52d5c5e28fea661fcc119d06ad662e4dcce42cb9bd9a36856c65a705ba1",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "meta",
+      "width": 1600,
+      "height": 2000,
+      "hash": "094e08bee66872782a17a6a1a0c744d1cbb313c71c16b37d0410820843eb51e0",
+      "logoHash": "7b053439698eb9ea2d255eac54a0acc4a4ccbaf3d321dd0d2bb5e970695a0b80",
+      "downloadedHash": "094e08bee66872782a17a6a1a0c744d1cbb313c71c16b37d0410820843eb51e0",
+      "downloadedPreviewHash": "094e08bee66872782a17a6a1a0c744d1cbb313c71c16b37d0410820843eb51e0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "meta",
       "width": 1600,
       "height": 2000,
-      "hash": "094e08bee66872782a17a6a1a0c744d1cbb313c71c16b37d0410820843eb51e0"
+      "hash": "5044555890ab765f0938b3a284161092f453edd293669a80c0c2700d0bb05254",
+      "logoHash": "7b053439698eb9ea2d255eac54a0acc4a4ccbaf3d321dd0d2bb5e970695a0b80",
+      "downloadedHash": "5044555890ab765f0938b3a284161092f453edd293669a80c0c2700d0bb05254",
+      "downloadedPreviewHash": "5044555890ab765f0938b3a284161092f453edd293669a80c0c2700d0bb05254",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "airliquide",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8e212d23bec8012007a88f14c2eb8a762accf0ec045bcd4b7d9518df5f469379",
+      "logoHash": "ac4ef2611cfbdc8ce6233c50cc5ea4347e02308acdbc3e8775b04f3a79eb8605",
+      "downloadedHash": "8e212d23bec8012007a88f14c2eb8a762accf0ec045bcd4b7d9518df5f469379",
+      "downloadedPreviewHash": "8e212d23bec8012007a88f14c2eb8a762accf0ec045bcd4b7d9518df5f469379",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "airliquide",
       "width": 1600,
       "height": 2000,
-      "hash": "dcb2cb4118d9205576db81f428c43872f60ba2ee0fb32975d5e480861770cb1c"
+      "hash": "43556547319e45b1a8dc0e9e7be71be535089ad0a52f81eb86fb8d0ef2fe4178",
+      "logoHash": "ac4ef2611cfbdc8ce6233c50cc5ea4347e02308acdbc3e8775b04f3a79eb8605",
+      "downloadedHash": "43556547319e45b1a8dc0e9e7be71be535089ad0a52f81eb86fb8d0ef2fe4178",
+      "downloadedPreviewHash": "43556547319e45b1a8dc0e9e7be71be535089ad0a52f81eb86fb8d0ef2fe4178",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "cocacola",
+      "width": 1600,
+      "height": 2000,
+      "hash": "18b2a09d027ebb845a9c08fddb8842333ba68909fc3b001a3be41b13428d075d",
+      "logoHash": "4c3a75bc6eef1688b1ae831aa5bfc1a806a53af4ad481baa1f257bb5298368cd",
+      "downloadedHash": "18b2a09d027ebb845a9c08fddb8842333ba68909fc3b001a3be41b13428d075d",
+      "downloadedPreviewHash": "18b2a09d027ebb845a9c08fddb8842333ba68909fc3b001a3be41b13428d075d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "cocacola",
       "width": 1600,
       "height": 2000,
-      "hash": "b14625c7ee6bbc481cfcfc45477de14e9a4c4b15d9dca6203a3a1d833494e6c6"
+      "hash": "da11087cbbcd6325d57be81c91e7b03aa243b3f46379d9bbdbf95c2ea18c600d",
+      "logoHash": "4c3a75bc6eef1688b1ae831aa5bfc1a806a53af4ad481baa1f257bb5298368cd",
+      "downloadedHash": "c5c4456cfa4d00a7eea4e73862800bd9b424fcee1211ca795f724929a23bfb89",
+      "downloadedPreviewHash": "c5c4456cfa4d00a7eea4e73862800bd9b424fcee1211ca795f724929a23bfb89",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "visa",
+      "width": 1600,
+      "height": 2000,
+      "hash": "e8009e0361ac4f82e5c85a3a88256223c1e1013ea6ff08e586f9cf36f5c054bb",
+      "logoHash": "ae0ee9bbee2717e1af785923b7c0baec0c6e39b225ccc25b8d4bf9ccb6f6ae35",
+      "downloadedHash": "e8009e0361ac4f82e5c85a3a88256223c1e1013ea6ff08e586f9cf36f5c054bb",
+      "downloadedPreviewHash": "e8009e0361ac4f82e5c85a3a88256223c1e1013ea6ff08e586f9cf36f5c054bb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "visa",
       "width": 1600,
       "height": 2000,
-      "hash": "f47196b0de0eae915adb15a5e2ebc053cdef155d8cf1d596dec1ae4b5499b255"
+      "hash": "f0a4e3da527e8fbe6f8cc494d92b9bb3126257b4e21e865e77599dccf6d897e6",
+      "logoHash": "ae0ee9bbee2717e1af785923b7c0baec0c6e39b225ccc25b8d4bf9ccb6f6ae35",
+      "downloadedHash": "f0a4e3da527e8fbe6f8cc494d92b9bb3126257b4e21e865e77599dccf6d897e6",
+      "downloadedPreviewHash": "f0a4e3da527e8fbe6f8cc494d92b9bb3126257b4e21e865e77599dccf6d897e6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "procter-gamble",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7f53788c2b60becad747861d2225e960f1031c18aa12e3ccbcd89f92f34bb908",
+      "logoHash": "d74b032c101f673a3450e5abf699fef1d8b7a25ce981f7fb0951dceebc73bbf6",
+      "downloadedHash": "7f53788c2b60becad747861d2225e960f1031c18aa12e3ccbcd89f92f34bb908",
+      "downloadedPreviewHash": "7f53788c2b60becad747861d2225e960f1031c18aa12e3ccbcd89f92f34bb908",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "procter-gamble",
       "width": 1600,
       "height": 2000,
-      "hash": "d29c36e3ac778edd349f4e15760bd41aeb679c6a6ed1f70a24ef0f5bb293476f"
+      "hash": "dc94f8d55933eb2ed178b0d8c3d8338230968364897497b5b6e662de93bc6acb",
+      "logoHash": "d74b032c101f673a3450e5abf699fef1d8b7a25ce981f7fb0951dceebc73bbf6",
+      "downloadedHash": "dc94f8d55933eb2ed178b0d8c3d8338230968364897497b5b6e662de93bc6acb",
+      "downloadedPreviewHash": "dc94f8d55933eb2ed178b0d8c3d8338230968364897497b5b6e662de93bc6acb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "johnson-johnson",
+      "width": 1600,
+      "height": 2000,
+      "hash": "133119c5b897ae69a11d3cfce2059890ea2052423ed43b536737d913255617aa",
+      "logoHash": "9f447216327572164acde2ac952f08d54f2948b4a15c7db7f31e51c31fd51e35",
+      "downloadedHash": "133119c5b897ae69a11d3cfce2059890ea2052423ed43b536737d913255617aa",
+      "downloadedPreviewHash": "133119c5b897ae69a11d3cfce2059890ea2052423ed43b536737d913255617aa",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "johnson-johnson",
       "width": 1600,
       "height": 2000,
-      "hash": "6b627fe93651b3c04d1c4be2b762361fa2479040778f295e6efe91c7fb839013"
+      "hash": "aa34511851981f3ea30625427e607fea71314f618a7e26dae6ef6d9e30808c69",
+      "logoHash": "9f447216327572164acde2ac952f08d54f2948b4a15c7db7f31e51c31fd51e35",
+      "downloadedHash": "aa34511851981f3ea30625427e607fea71314f618a7e26dae6ef6d9e30808c69",
+      "downloadedPreviewHash": "aa34511851981f3ea30625427e607fea71314f618a7e26dae6ef6d9e30808c69",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "jpmorgan",
+      "width": 1600,
+      "height": 2000,
+      "hash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "logoHash": "afe5d6b3e31ec7c2a0cdc1ea2de1f4973d32964dd172d7224cb7892d698b2a56",
+      "downloadedHash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "downloadedPreviewHash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "jpmorgan",
       "width": 1600,
       "height": 2000,
-      "hash": "b2a4001824a47f2eb13339e60f0fe44787a7d0c32eaf0de84794d79aefdf6efa"
+      "hash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "logoHash": "afe5d6b3e31ec7c2a0cdc1ea2de1f4973d32964dd172d7224cb7892d698b2a56",
+      "downloadedHash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "downloadedPreviewHash": "063d44c5881d972581df82f6332674b235f25c9211454212dcb5f8ac1d63d0d0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "unitedhealth",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d678af8b1c77cc8bba725a18b5c67757eb50d6fbae45c5bd9087c8f636b10a70",
+      "logoHash": "8b68160d406f3d4f32fc000d940d79b0d88902dfa92238e9a2ab702ccdb22cc8",
+      "downloadedHash": "d678af8b1c77cc8bba725a18b5c67757eb50d6fbae45c5bd9087c8f636b10a70",
+      "downloadedPreviewHash": "d678af8b1c77cc8bba725a18b5c67757eb50d6fbae45c5bd9087c8f636b10a70",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "unitedhealth",
       "width": 1600,
       "height": 2000,
-      "hash": "9db61ee64859de21c498ff689f092f005bbc53bb2b913806f962653903a98a58"
+      "hash": "398301a535a913a4d638b95dd036b2456ec4de5f4fc7c1359d67fc926068bf99",
+      "logoHash": "8b68160d406f3d4f32fc000d940d79b0d88902dfa92238e9a2ab702ccdb22cc8",
+      "downloadedHash": "398301a535a913a4d638b95dd036b2456ec4de5f4fc7c1359d67fc926068bf99",
+      "downloadedPreviewHash": "398301a535a913a4d638b95dd036b2456ec4de5f4fc7c1359d67fc926068bf99",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "paypal",
+      "width": 1600,
+      "height": 2000,
+      "hash": "2a3b3cc3fad58104796b533532f57b25b123928bad6891b6dfc1fcc2a03d0a5e",
+      "logoHash": "9047c0ed2994218d3d692758869dcf2f142cc302b982f377f8ec055eb3b2f148",
+      "downloadedHash": "2a3b3cc3fad58104796b533532f57b25b123928bad6891b6dfc1fcc2a03d0a5e",
+      "downloadedPreviewHash": "2a3b3cc3fad58104796b533532f57b25b123928bad6891b6dfc1fcc2a03d0a5e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "paypal",
       "width": 1600,
       "height": 2000,
-      "hash": "7360e8c5c3d751850e1f99f32ec1774b8dac0292645eb192493814d05e47d129"
+      "hash": "d9a3e003c07caaa3efa651df1a747a4cb464e7ee3ac508090664c5c95881c37a",
+      "logoHash": "9047c0ed2994218d3d692758869dcf2f142cc302b982f377f8ec055eb3b2f148",
+      "downloadedHash": "d9a3e003c07caaa3efa651df1a747a4cb464e7ee3ac508090664c5c95881c37a",
+      "downloadedPreviewHash": "d9a3e003c07caaa3efa651df1a747a4cb464e7ee3ac508090664c5c95881c37a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "qualcomm",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3e120bbb86403a26b327fb97adee3e3561e832024133ac840d4daa35258fa8f7",
+      "logoHash": "edc03c5511dfaea56e3ce2cc5c70966cf054fe0f68a4676d35fb98f063107fb6",
+      "downloadedHash": "3e120bbb86403a26b327fb97adee3e3561e832024133ac840d4daa35258fa8f7",
+      "downloadedPreviewHash": "3e120bbb86403a26b327fb97adee3e3561e832024133ac840d4daa35258fa8f7",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "qualcomm",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a66718a76a331370facb301d37fb127381674ec18cec73ce9a96bba888019b6e",
+      "logoHash": "edc03c5511dfaea56e3ce2cc5c70966cf054fe0f68a4676d35fb98f063107fb6",
+      "downloadedHash": "a66718a76a331370facb301d37fb127381674ec18cec73ce9a96bba888019b6e",
+      "downloadedPreviewHash": "a66718a76a331370facb301d37fb127381674ec18cec73ce9a96bba888019b6e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bank-of-america",
+      "width": 1600,
+      "height": 2000,
+      "hash": "2e967f1a7142128edd96a1f7e0e01692dbb925fefcbdb91c93cd342318bcbb12",
+      "logoHash": "d93a5c7fb8f7b6594df35a99b69840f552fff5c3a8a147837658075f24bae334",
+      "downloadedHash": "2e967f1a7142128edd96a1f7e0e01692dbb925fefcbdb91c93cd342318bcbb12",
+      "downloadedPreviewHash": "2e967f1a7142128edd96a1f7e0e01692dbb925fefcbdb91c93cd342318bcbb12",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bank-of-america",
+      "width": 1600,
+      "height": 2000,
+      "hash": "08b073e72b7ec4a837f32e9165028535dae45f1ca87296ac89112b59a1bb729b",
+      "logoHash": "d93a5c7fb8f7b6594df35a99b69840f552fff5c3a8a147837658075f24bae334",
+      "downloadedHash": "08b073e72b7ec4a837f32e9165028535dae45f1ca87296ac89112b59a1bb729b",
+      "downloadedPreviewHash": "08b073e72b7ec4a837f32e9165028535dae45f1ca87296ac89112b59a1bb729b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "novartis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "eae70b05b12daceb8acb6d68eb11123179e2b0fed6547325badf66e6b8683441",
+      "logoHash": "c3f15250a6849cf67524685143b46cb9e047e54cb96d007433ab308f4f6efca4",
+      "downloadedHash": "eae70b05b12daceb8acb6d68eb11123179e2b0fed6547325badf66e6b8683441",
+      "downloadedPreviewHash": "eae70b05b12daceb8acb6d68eb11123179e2b0fed6547325badf66e6b8683441",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "novartis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f11fdd27c5cd17534da10fa04d77ac7335f47a42df62001b67a02d99907bba8e",
+      "logoHash": "c3f15250a6849cf67524685143b46cb9e047e54cb96d007433ab308f4f6efca4",
+      "downloadedHash": "f11fdd27c5cd17534da10fa04d77ac7335f47a42df62001b67a02d99907bba8e",
+      "downloadedPreviewHash": "f11fdd27c5cd17534da10fa04d77ac7335f47a42df62001b67a02d99907bba8e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "goldman-sachs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a75fd4eed36dec40ddc59b72c2986f68368241a34d8dc4695335dbeff525701b",
+      "logoHash": "64af8acd6639b574ed82d9c974d1f385dc465ae04424d2b6416bfcabcfe98164",
+      "downloadedHash": "a75fd4eed36dec40ddc59b72c2986f68368241a34d8dc4695335dbeff525701b",
+      "downloadedPreviewHash": "a75fd4eed36dec40ddc59b72c2986f68368241a34d8dc4695335dbeff525701b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "goldman-sachs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "96638f5eab1241cd48f8bbd78cc4982df03588f221b594488f988c46e25581c0",
+      "logoHash": "64af8acd6639b574ed82d9c974d1f385dc465ae04424d2b6416bfcabcfe98164",
+      "downloadedHash": "96638f5eab1241cd48f8bbd78cc4982df03588f221b594488f988c46e25581c0",
+      "downloadedPreviewHash": "96638f5eab1241cd48f8bbd78cc4982df03588f221b594488f988c46e25581c0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "sbux",
+      "width": 1600,
+      "height": 2000,
+      "hash": "25cd6a71549d2b43b040ee7951ee3eb3a2c4bfc0b4d0d36b06a4b8c682b21c89",
+      "logoHash": "b73b6e2c94f9bf187f4d97b07d0998d4d36f16f67bc48bf4035c8058566709e9",
+      "downloadedHash": "25cd6a71549d2b43b040ee7951ee3eb3a2c4bfc0b4d0d36b06a4b8c682b21c89",
+      "downloadedPreviewHash": "25cd6a71549d2b43b040ee7951ee3eb3a2c4bfc0b4d0d36b06a4b8c682b21c89",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "sbux",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6f13e5aabc0cb449c429318b29d687a1bb9b1eda56fe8804af869ee32130f604",
+      "logoHash": "b73b6e2c94f9bf187f4d97b07d0998d4d36f16f67bc48bf4035c8058566709e9",
+      "downloadedHash": "6f13e5aabc0cb449c429318b29d687a1bb9b1eda56fe8804af869ee32130f604",
+      "downloadedPreviewHash": "6f13e5aabc0cb449c429318b29d687a1bb9b1eda56fe8804af869ee32130f604",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "honeywell",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9aa20ee80bff15c1053ccd6de0ad4d883bf269f6e28a69090cf28f425db384b3",
+      "logoHash": "6f4d9263bc8565ed2bd80df033388f89dd272b43bc206371c1e0c99113c78d4b",
+      "downloadedHash": "9aa20ee80bff15c1053ccd6de0ad4d883bf269f6e28a69090cf28f425db384b3",
+      "downloadedPreviewHash": "9aa20ee80bff15c1053ccd6de0ad4d883bf269f6e28a69090cf28f425db384b3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "honeywell",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4da19e793c321735e3d44ebbdf5fefed5c42f0eb1f779af01b7b6ad178093c85",
+      "logoHash": "6f4d9263bc8565ed2bd80df033388f89dd272b43bc206371c1e0c99113c78d4b",
+      "downloadedHash": "4da19e793c321735e3d44ebbdf5fefed5c42f0eb1f779af01b7b6ad178093c85",
+      "downloadedPreviewHash": "4da19e793c321735e3d44ebbdf5fefed5c42f0eb1f779af01b7b6ad178093c85",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "axa",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ff3761d9ed93a42b9e11560902ff3494b61813b84f7a0832f8388ee56f25f786",
+      "logoHash": "1a62aba7f61b8d3d3fa5d3711268c791fa0c78e2cc760455cdf602e6a82f4f2a",
+      "downloadedHash": "ff3761d9ed93a42b9e11560902ff3494b61813b84f7a0832f8388ee56f25f786",
+      "downloadedPreviewHash": "ff3761d9ed93a42b9e11560902ff3494b61813b84f7a0832f8388ee56f25f786",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "axa",
+      "width": 1600,
+      "height": 2000,
+      "hash": "98df676c2a29ccfe23f913f40fcbda35d289459fcd308902b39345e633be19d0",
+      "logoHash": "1a62aba7f61b8d3d3fa5d3711268c791fa0c78e2cc760455cdf602e6a82f4f2a",
+      "downloadedHash": "98df676c2a29ccfe23f913f40fcbda35d289459fcd308902b39345e633be19d0",
+      "downloadedPreviewHash": "98df676c2a29ccfe23f913f40fcbda35d289459fcd308902b39345e633be19d0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bmw",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0eb363bdf850a5de203f352f56f7b8a7bd57f2a79323b6f68653862785febb48",
+      "logoHash": "32d332e842be75ba059216aa5c047484524318f621e9c810e25bcbebd93f3339",
+      "downloadedHash": "0eb363bdf850a5de203f352f56f7b8a7bd57f2a79323b6f68653862785febb48",
+      "downloadedPreviewHash": "0eb363bdf850a5de203f352f56f7b8a7bd57f2a79323b6f68653862785febb48",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bmw",
+      "width": 1600,
+      "height": 2000,
+      "hash": "daa66d25ad5e4c5d2adba8fb601cef35089515ac88047ade4b30f1c027b4a9e0",
+      "logoHash": "32d332e842be75ba059216aa5c047484524318f621e9c810e25bcbebd93f3339",
+      "downloadedHash": "daa66d25ad5e4c5d2adba8fb601cef35089515ac88047ade4b30f1c027b4a9e0",
+      "downloadedPreviewHash": "daa66d25ad5e4c5d2adba8fb601cef35089515ac88047ade4b30f1c027b4a9e0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "palo-alto-networks",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0d4d8afd0a87100cd56fc3077c7e7d5cbcfb49bf2c4b03b82c386f17ce0d4f25",
+      "logoHash": "1d8fc064b16c5e081ce3f74063d6b2ec8ada4bf220cc9deca0de7ff9c6465e42",
+      "downloadedHash": "0d4d8afd0a87100cd56fc3077c7e7d5cbcfb49bf2c4b03b82c386f17ce0d4f25",
+      "downloadedPreviewHash": "0d4d8afd0a87100cd56fc3077c7e7d5cbcfb49bf2c4b03b82c386f17ce0d4f25",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "palo-alto-networks",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b1c5cb782d793503fcca815c229863752a912921a274b64852a733a977c38ab9",
+      "logoHash": "1d8fc064b16c5e081ce3f74063d6b2ec8ada4bf220cc9deca0de7ff9c6465e42",
+      "downloadedHash": "b1c5cb782d793503fcca815c229863752a912921a274b64852a733a977c38ab9",
+      "downloadedPreviewHash": "b1c5cb782d793503fcca815c229863752a912921a274b64852a733a977c38ab9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "pepsico",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d5e959bad615ce9283e737e55ed8510bbf025115bb63fb82512acfe5fe09f206",
+      "logoHash": "e39fab817fe51fac905795bed489692cd399e7d25dbf7c39a24b696bdf294562",
+      "downloadedHash": "d5e959bad615ce9283e737e55ed8510bbf025115bb63fb82512acfe5fe09f206",
+      "downloadedPreviewHash": "d5e959bad615ce9283e737e55ed8510bbf025115bb63fb82512acfe5fe09f206",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "pepsico",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5973ec5eb9670ec60248b2282cac4c65ac79df50215d12f9896b7fa949a42b41",
+      "logoHash": "e39fab817fe51fac905795bed489692cd399e7d25dbf7c39a24b696bdf294562",
+      "downloadedHash": "5973ec5eb9670ec60248b2282cac4c65ac79df50215d12f9896b7fa949a42b41",
+      "downloadedPreviewHash": "5973ec5eb9670ec60248b2282cac4c65ac79df50215d12f9896b7fa949a42b41",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "safran",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f01e7390e6dcc5b991ad6d01cf2db245a1e5ffd18ac6fa6809b37690c3d690f1",
+      "logoHash": "b18f0dbe356a8e7f075c27b30322276847d8ef45eef88f6af83dc818aed0fee4",
+      "downloadedHash": "f01e7390e6dcc5b991ad6d01cf2db245a1e5ffd18ac6fa6809b37690c3d690f1",
+      "downloadedPreviewHash": "f01e7390e6dcc5b991ad6d01cf2db245a1e5ffd18ac6fa6809b37690c3d690f1",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "safran",
+      "width": 1600,
+      "height": 2000,
+      "hash": "951f14f17c862afa83df2e028ecf4abd41fa80d6f774460a1863c793bddcf821",
+      "logoHash": "b18f0dbe356a8e7f075c27b30322276847d8ef45eef88f6af83dc818aed0fee4",
+      "downloadedHash": "951f14f17c862afa83df2e028ecf4abd41fa80d6f774460a1863c793bddcf821",
+      "downloadedPreviewHash": "951f14f17c862afa83df2e028ecf4abd41fa80d6f774460a1863c793bddcf821",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "exxonmobil",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ff0ebc5cf9a659e7c13b2690d66111138046830f53a77c121fa91546a939fee9",
+      "logoHash": "aa66a2875017074ef88c6b4c4834db723c436edba44dae7cf43f77f351cbe40d",
+      "downloadedHash": "ff0ebc5cf9a659e7c13b2690d66111138046830f53a77c121fa91546a939fee9",
+      "downloadedPreviewHash": "ff0ebc5cf9a659e7c13b2690d66111138046830f53a77c121fa91546a939fee9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "exxonmobil",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a20a5fd6fb4229ade7452588f09e544231e1e78237db37f0053401da666f263e",
+      "logoHash": "aa66a2875017074ef88c6b4c4834db723c436edba44dae7cf43f77f351cbe40d",
+      "downloadedHash": "a20a5fd6fb4229ade7452588f09e544231e1e78237db37f0053401da666f263e",
+      "downloadedPreviewHash": "a20a5fd6fb4229ade7452588f09e544231e1e78237db37f0053401da666f263e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "danone",
+      "width": 1600,
+      "height": 2000,
+      "hash": "262e9b0c7aa80d76fe620f4909e6c570e250803073bb8fda64c8a6eaa612fd8f",
+      "logoHash": "18168af652506c3664d5e5f9d82a311810b90c8ec889b7e938ed65afbbfd91d3",
+      "downloadedHash": "262e9b0c7aa80d76fe620f4909e6c570e250803073bb8fda64c8a6eaa612fd8f",
+      "downloadedPreviewHash": "262e9b0c7aa80d76fe620f4909e6c570e250803073bb8fda64c8a6eaa612fd8f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "danone",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b3bf23d2bac4254255743a1c854ed56f0e9f1f41e12cea9dc29f981525032dbc",
+      "logoHash": "18168af652506c3664d5e5f9d82a311810b90c8ec889b7e938ed65afbbfd91d3",
+      "downloadedHash": "b3bf23d2bac4254255743a1c854ed56f0e9f1f41e12cea9dc29f981525032dbc",
+      "downloadedPreviewHash": "b3bf23d2bac4254255743a1c854ed56f0e9f1f41e12cea9dc29f981525032dbc",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "allianz",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b8ef5ab1567e386c19715ca15c7666dca698e63700b6d9090891a3975b90758a",
+      "logoHash": "e05f347b8268b2a802afd5e5c07a79979b65c4e509ce85ba6639385075980bd0",
+      "downloadedHash": "b8ef5ab1567e386c19715ca15c7666dca698e63700b6d9090891a3975b90758a",
+      "downloadedPreviewHash": "b8ef5ab1567e386c19715ca15c7666dca698e63700b6d9090891a3975b90758a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "allianz",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f1e6227f364a587f3f0a6bc782344a42eac419d0bee1566cb351ac06bd485ade",
+      "logoHash": "e05f347b8268b2a802afd5e5c07a79979b65c4e509ce85ba6639385075980bd0",
+      "downloadedHash": "f1e6227f364a587f3f0a6bc782344a42eac419d0bee1566cb351ac06bd485ade",
+      "downloadedPreviewHash": "f1e6227f364a587f3f0a6bc782344a42eac419d0bee1566cb351ac06bd485ade",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "loreal",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d38ab69de19aaa684b2dc88deb5ce5f06623085abff08e2544958de5d39fd63e",
+      "logoHash": "6d0f0763721faf6cc5032b4aa9c8189c503b79d6bd8c55d3d590b202b98f0d59",
+      "downloadedHash": "d38ab69de19aaa684b2dc88deb5ce5f06623085abff08e2544958de5d39fd63e",
+      "downloadedPreviewHash": "d38ab69de19aaa684b2dc88deb5ce5f06623085abff08e2544958de5d39fd63e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "loreal",
+      "width": 1600,
+      "height": 2000,
+      "hash": "53c4dc7b716ea858084bd2fa0e91a78f2dfbabb7ae946aca1c58b332bc90f4ef",
+      "logoHash": "6d0f0763721faf6cc5032b4aa9c8189c503b79d6bd8c55d3d590b202b98f0d59",
+      "downloadedHash": "53c4dc7b716ea858084bd2fa0e91a78f2dfbabb7ae946aca1c58b332bc90f4ef",
+      "downloadedPreviewHash": "53c4dc7b716ea858084bd2fa0e91a78f2dfbabb7ae946aca1c58b332bc90f4ef",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "ibm",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d4cd16e707f31666e78565a2ca8e0eb9b9fbf65a3faf2fbda8c397f81ce4498d",
+      "logoHash": "6c7b0c1381f178e79422fd2cb9d6051b3cb04191597176c052ecc7bdeb858f69",
+      "downloadedHash": "d4cd16e707f31666e78565a2ca8e0eb9b9fbf65a3faf2fbda8c397f81ce4498d",
+      "downloadedPreviewHash": "d4cd16e707f31666e78565a2ca8e0eb9b9fbf65a3faf2fbda8c397f81ce4498d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "ibm",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f14a17e3e2c7b69b92d512df4ee5f2c282928235a86376d81d8d39c20705aa20",
+      "logoHash": "6c7b0c1381f178e79422fd2cb9d6051b3cb04191597176c052ecc7bdeb858f69",
+      "downloadedHash": "f14a17e3e2c7b69b92d512df4ee5f2c282928235a86376d81d8d39c20705aa20",
+      "downloadedPreviewHash": "f14a17e3e2c7b69b92d512df4ee5f2c282928235a86376d81d8d39c20705aa20",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "servicenow",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4889e34b7be014e64324a6b5d5ecdc40e7e07409b2c9802aba43e0a3532603d9",
+      "logoHash": "f0e5d70733eaefa76a94c9f61b8217ca39affdd820273a09cce3e7c0a076537c",
+      "downloadedHash": "4889e34b7be014e64324a6b5d5ecdc40e7e07409b2c9802aba43e0a3532603d9",
+      "downloadedPreviewHash": "4889e34b7be014e64324a6b5d5ecdc40e7e07409b2c9802aba43e0a3532603d9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "servicenow",
+      "width": 1600,
+      "height": 2000,
+      "hash": "597e5d0f1962f729bf3df69fd3ee0a8511fb1ca4aa5f3cac607b4a8416129850",
+      "logoHash": "f0e5d70733eaefa76a94c9f61b8217ca39affdd820273a09cce3e7c0a076537c",
+      "downloadedHash": "597e5d0f1962f729bf3df69fd3ee0a8511fb1ca4aa5f3cac607b4a8416129850",
+      "downloadedPreviewHash": "597e5d0f1962f729bf3df69fd3ee0a8511fb1ca4aa5f3cac607b4a8416129850",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "morgan-stanley",
+      "width": 1600,
+      "height": 2000,
+      "hash": "626e736af6a9a69d4e1baadc5cb01f86731f63b8e48ba1928eff4c4768c32f0c",
+      "logoHash": "09917127027fdde56aba4727a180775f59f0f9daf998c8cd4af7053248fa7626",
+      "downloadedHash": "626e736af6a9a69d4e1baadc5cb01f86731f63b8e48ba1928eff4c4768c32f0c",
+      "downloadedPreviewHash": "626e736af6a9a69d4e1baadc5cb01f86731f63b8e48ba1928eff4c4768c32f0c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "morgan-stanley",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1696781aa93eea768404bbe003470c829ec6f702b148943cfedb4f2d3f2ab76e",
+      "logoHash": "09917127027fdde56aba4727a180775f59f0f9daf998c8cd4af7053248fa7626",
+      "downloadedHash": "1696781aa93eea768404bbe003470c829ec6f702b148943cfedb4f2d3f2ab76e",
+      "downloadedPreviewHash": "1696781aa93eea768404bbe003470c829ec6f702b148943cfedb4f2d3f2ab76e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "munich-re",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "logoHash": "1c23ebe9ea02657281893861db0df563a999a93f94632cfa6041059b7c343308",
+      "downloadedHash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "downloadedPreviewHash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "munich-re",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "logoHash": "1c23ebe9ea02657281893861db0df563a999a93f94632cfa6041059b7c343308",
+      "downloadedHash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "downloadedPreviewHash": "3ca6335a1bfb518275babf45acf21556909a8c46c9d71a554cbe6c1fed50a6fd",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "walmart",
+      "width": 1600,
+      "height": 2000,
+      "hash": "27e490e59dc1d2aa2d10e993ee429787ab51271c5e09d669a27fa3c19d97c9b3",
+      "logoHash": "a8ee09e0661eecb2f50ae4c7a611a794dfbe9390a424ae7b1ea898f38314ac3b",
+      "downloadedHash": "27e490e59dc1d2aa2d10e993ee429787ab51271c5e09d669a27fa3c19d97c9b3",
+      "downloadedPreviewHash": "27e490e59dc1d2aa2d10e993ee429787ab51271c5e09d669a27fa3c19d97c9b3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "walmart",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f34766ff7afedd110d9b93e5e1b4bc615edaf3b90578c8f2eb8a4eaa38e43bd6",
+      "logoHash": "a8ee09e0661eecb2f50ae4c7a611a794dfbe9390a424ae7b1ea898f38314ac3b",
+      "downloadedHash": "5609ec929e2a8663b382a69fb3cbff1891226fdb80dc20823f01e5efbbd16e78",
+      "downloadedPreviewHash": "5609ec929e2a8663b382a69fb3cbff1891226fdb80dc20823f01e5efbbd16e78",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "salesforce",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "logoHash": "e58bda24ae813810ad759e143293261eced420a0f5d944e4ef4102a6355adc85",
+      "downloadedHash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "downloadedPreviewHash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "salesforce",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "logoHash": "e58bda24ae813810ad759e143293261eced420a0f5d944e4ef4102a6355adc85",
+      "downloadedHash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "downloadedPreviewHash": "9b566e98b842fb7e29b962f47326e51c252c0038433f10a715fce47710ce525e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "adobe",
+      "width": 1600,
+      "height": 2000,
+      "hash": "469b345d3db7750c717e1439ab59e326d2969eb5e662b8db3136b2a624d0f38f",
+      "logoHash": "98fe63ed20f24360ee6606c7de203cf7fb5aa11178d6b2806673c0b35ab3ceae",
+      "downloadedHash": "469b345d3db7750c717e1439ab59e326d2969eb5e662b8db3136b2a624d0f38f",
+      "downloadedPreviewHash": "469b345d3db7750c717e1439ab59e326d2969eb5e662b8db3136b2a624d0f38f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "adobe",
+      "width": 1600,
+      "height": 2000,
+      "hash": "e4d1eb98b60cdd21da6e19f0bd83f44a7dcb068d4d01dd6e91131b460e6464e0",
+      "logoHash": "98fe63ed20f24360ee6606c7de203cf7fb5aa11178d6b2806673c0b35ab3ceae",
+      "downloadedHash": "e4d1eb98b60cdd21da6e19f0bd83f44a7dcb068d4d01dd6e91131b460e6464e0",
+      "downloadedPreviewHash": "e4d1eb98b60cdd21da6e19f0bd83f44a7dcb068d4d01dd6e91131b460e6464e0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "applied-materials",
+      "width": 1600,
+      "height": 2000,
+      "hash": "859412e79b21b763595b09a61b0f9eeaa9218e9dde3cb2370c7131a6058745a6",
+      "logoHash": "6262e82cd359d6de61cf40db3a1febf39fddf770fae8b49d133c4b7f9d687d4a",
+      "downloadedHash": "859412e79b21b763595b09a61b0f9eeaa9218e9dde3cb2370c7131a6058745a6",
+      "downloadedPreviewHash": "859412e79b21b763595b09a61b0f9eeaa9218e9dde3cb2370c7131a6058745a6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "applied-materials",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a99b42e064df9810e64db69fc82e3ffb412eb615b85883353b733df3c047be5a",
+      "logoHash": "6262e82cd359d6de61cf40db3a1febf39fddf770fae8b49d133c4b7f9d687d4a",
+      "downloadedHash": "a99b42e064df9810e64db69fc82e3ffb412eb615b85883353b733df3c047be5a",
+      "downloadedPreviewHash": "a99b42e064df9810e64db69fc82e3ffb412eb615b85883353b733df3c047be5a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "deutsche-boerse",
+      "width": 1600,
+      "height": 2000,
+      "hash": "487161c220b44a2d07645009d1630514ed551190f85615b3dfd79a741eb56a07",
+      "logoHash": "3a0162b141c3c6fc5e16433503484a5c93e2b8363b1b248205eb258d95e1cfab",
+      "downloadedHash": "487161c220b44a2d07645009d1630514ed551190f85615b3dfd79a741eb56a07",
+      "downloadedPreviewHash": "487161c220b44a2d07645009d1630514ed551190f85615b3dfd79a741eb56a07",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "deutsche-boerse",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9c21ab7eead3009033c3c5da85413f86fa03f13bce5fc0089abde454408fe0f6",
+      "logoHash": "3a0162b141c3c6fc5e16433503484a5c93e2b8363b1b248205eb258d95e1cfab",
+      "downloadedHash": "9c21ab7eead3009033c3c5da85413f86fa03f13bce5fc0089abde454408fe0f6",
+      "downloadedPreviewHash": "9c21ab7eead3009033c3c5da85413f86fa03f13bce5fc0089abde454408fe0f6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "adidas",
+      "width": 1600,
+      "height": 2000,
+      "hash": "affd0f439c86a474b72e92297c2af6d619f000d832849b84c85498133f1212cc",
+      "logoHash": "0f9b4b6ee5ec1eddca4cfbef609d3068d0d45efb66813d511f22a8bdfd73d6b1",
+      "downloadedHash": "affd0f439c86a474b72e92297c2af6d619f000d832849b84c85498133f1212cc",
+      "downloadedPreviewHash": "affd0f439c86a474b72e92297c2af6d619f000d832849b84c85498133f1212cc",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "adidas",
+      "width": 1600,
+      "height": 2000,
+      "hash": "affd0f439c86a474b72e92297c2af6d619f000d832849b84c85498133f1212cc",
+      "logoHash": "0f9b4b6ee5ec1eddca4cfbef609d3068d0d45efb66813d511f22a8bdfd73d6b1",
+      "downloadedHash": "f914c54913026b8c2198543096101e83564def728cdca9c8ecb554204a7af3f6",
+      "downloadedPreviewHash": "f914c54913026b8c2198543096101e83564def728cdca9c8ecb554204a7af3f6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bnp-paribas",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3b9621ec87cce51fdaf4eadb5ccfd7866c95bcc43917001898ee923e315d33e2",
+      "logoHash": "e1ebb56a92e6385928489eb605d28765af92b10089a8333d929fee61811642f8",
+      "downloadedHash": "3b9621ec87cce51fdaf4eadb5ccfd7866c95bcc43917001898ee923e315d33e2",
+      "downloadedPreviewHash": "3b9621ec87cce51fdaf4eadb5ccfd7866c95bcc43917001898ee923e315d33e2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bnp-paribas",
+      "width": 1600,
+      "height": 2000,
+      "hash": "fb6307356d4f0c142cb295bcf34284f4dee6bc48fc7a3e4eb05f27ee4363531f",
+      "logoHash": "e1ebb56a92e6385928489eb605d28765af92b10089a8333d929fee61811642f8",
+      "downloadedHash": "fb6307356d4f0c142cb295bcf34284f4dee6bc48fc7a3e4eb05f27ee4363531f",
+      "downloadedPreviewHash": "fb6307356d4f0c142cb295bcf34284f4dee6bc48fc7a3e4eb05f27ee4363531f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "nestle",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b8ed15ac72327e707a07d38fe0d9fd53fd54c213d243b3313dee26d1c710caa9",
+      "logoHash": "82e8562750fbfdc4dbc6e25fd54c834dc292da0dbb9f456fbabe6cafcee17d2a",
+      "downloadedHash": "b8ed15ac72327e707a07d38fe0d9fd53fd54c213d243b3313dee26d1c710caa9",
+      "downloadedPreviewHash": "b8ed15ac72327e707a07d38fe0d9fd53fd54c213d243b3313dee26d1c710caa9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "nestle",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1246ba6f0c1f33bb2ace25efb14d9efee03bf1ad9f6194e79ac640920bcba29a",
+      "logoHash": "82e8562750fbfdc4dbc6e25fd54c834dc292da0dbb9f456fbabe6cafcee17d2a",
+      "downloadedHash": "1246ba6f0c1f33bb2ace25efb14d9efee03bf1ad9f6194e79ac640920bcba29a",
+      "downloadedPreviewHash": "1246ba6f0c1f33bb2ace25efb14d9efee03bf1ad9f6194e79ac640920bcba29a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "merck",
+      "width": 1600,
+      "height": 2000,
+      "hash": "26908efb64d5c7d15a860fef3b7b049a7c9e780a4de13ac074d66ff6ac4b0510",
+      "logoHash": "da309a63c58a02409bb7a7555a03ce03ca44bc1af0bb682bbe7b65345acbb5c7",
+      "downloadedHash": "26908efb64d5c7d15a860fef3b7b049a7c9e780a4de13ac074d66ff6ac4b0510",
+      "downloadedPreviewHash": "26908efb64d5c7d15a860fef3b7b049a7c9e780a4de13ac074d66ff6ac4b0510",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "merck",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a0ae3384a15c29f034ea8b40d972d083aa9077557d1896a6b18b65bdb66c5adb",
+      "logoHash": "da309a63c58a02409bb7a7555a03ce03ca44bc1af0bb682bbe7b65345acbb5c7",
+      "downloadedHash": "a0ae3384a15c29f034ea8b40d972d083aa9077557d1896a6b18b65bdb66c5adb",
+      "downloadedPreviewHash": "a0ae3384a15c29f034ea8b40d972d083aa9077557d1896a6b18b65bdb66c5adb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "conocophillips",
+      "width": 1600,
+      "height": 2000,
+      "hash": "fe165d2c92340434ed1883f7ab951e6726f63b1c4aeb3293318af6f231b9c96e",
+      "logoHash": "ebd03f5028d1e1ec930019ca39d0c756ca768302b22b7d126559ad8a9dfcf53c",
+      "downloadedHash": "fe165d2c92340434ed1883f7ab951e6726f63b1c4aeb3293318af6f231b9c96e",
+      "downloadedPreviewHash": "fe165d2c92340434ed1883f7ab951e6726f63b1c4aeb3293318af6f231b9c96e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "conocophillips",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ad8d1ec760c36f04fc561738c70d175ca38953fd9ece2638db8e3cfdff321436",
+      "logoHash": "ebd03f5028d1e1ec930019ca39d0c756ca768302b22b7d126559ad8a9dfcf53c",
+      "downloadedHash": "ad8d1ec760c36f04fc561738c70d175ca38953fd9ece2638db8e3cfdff321436",
+      "downloadedPreviewHash": "ad8d1ec760c36f04fc561738c70d175ca38953fd9ece2638db8e3cfdff321436",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "oracle",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d623fe8734d831114af235e0ce689a878ffd3524b7d498d60d35eaf83381e70b",
+      "logoHash": "22e8719c5202fd09e8f0d0910cb34276a59c8ceeab0ed89ce72abd76f151e004",
+      "downloadedHash": "d623fe8734d831114af235e0ce689a878ffd3524b7d498d60d35eaf83381e70b",
+      "downloadedPreviewHash": "d623fe8734d831114af235e0ce689a878ffd3524b7d498d60d35eaf83381e70b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "oracle",
+      "width": 1600,
+      "height": 2000,
+      "hash": "87a2a976a6be04f5de81fca715e0ccf0fb3b76b24b10f2651a966cb6aa44ce5e",
+      "logoHash": "22e8719c5202fd09e8f0d0910cb34276a59c8ceeab0ed89ce72abd76f151e004",
+      "downloadedHash": "87a2a976a6be04f5de81fca715e0ccf0fb3b76b24b10f2651a966cb6aa44ce5e",
+      "downloadedPreviewHash": "87a2a976a6be04f5de81fca715e0ccf0fb3b76b24b10f2651a966cb6aa44ce5e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "hermes",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f41a75d5a1d2425ae40b2b4c047d50f17d27cded33bdd5637ebfb25e8498a5b3",
+      "logoHash": "49680b92a36aa383e610c264c050ecb449dc5d94d5c91f27e3c892ab70d080bb",
+      "downloadedHash": "f41a75d5a1d2425ae40b2b4c047d50f17d27cded33bdd5637ebfb25e8498a5b3",
+      "downloadedPreviewHash": "f41a75d5a1d2425ae40b2b4c047d50f17d27cded33bdd5637ebfb25e8498a5b3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "hermes",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8ea459803b03444d644b2f52d3d3b8053546d62b102c03ee6e8137767c0bee4e",
+      "logoHash": "49680b92a36aa383e610c264c050ecb449dc5d94d5c91f27e3c892ab70d080bb",
+      "downloadedHash": "f8ba68fffe26cb027224800ee4d32ca1e5e48b1012ea31f4438cff59186c98f6",
+      "downloadedPreviewHash": "f8ba68fffe26cb027224800ee4d32ca1e5e48b1012ea31f4438cff59186c98f6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "abbott",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b6f4d2d9133deebf0a0988f42ecedf7dc1e4921254fefc5b1cd5ef9b03a7287e",
+      "logoHash": "4ecdef74d5ba231cd109e8801c678a8ce9ecd76affc2f3a6bb0e9b48fec3327c",
+      "downloadedHash": "b6f4d2d9133deebf0a0988f42ecedf7dc1e4921254fefc5b1cd5ef9b03a7287e",
+      "downloadedPreviewHash": "b6f4d2d9133deebf0a0988f42ecedf7dc1e4921254fefc5b1cd5ef9b03a7287e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "abbott",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7a0bab64e7bdd8033488925ecfd60388ace9ed3dd00e9fb66f87be8a7cc8731c",
+      "logoHash": "4ecdef74d5ba231cd109e8801c678a8ce9ecd76affc2f3a6bb0e9b48fec3327c",
+      "downloadedHash": "7a0bab64e7bdd8033488925ecfd60388ace9ed3dd00e9fb66f87be8a7cc8731c",
+      "downloadedPreviewHash": "7a0bab64e7bdd8033488925ecfd60388ace9ed3dd00e9fb66f87be8a7cc8731c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "samsung",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6782ff926c30cc151e070dece04730727d3b3ff2fc0e0c7420825eac99b53bdd",
+      "logoHash": "21a2038fc484d3791887661cef1281b7b85c62e32d24694682ec2166c6df1ab8",
+      "downloadedHash": "6782ff926c30cc151e070dece04730727d3b3ff2fc0e0c7420825eac99b53bdd",
+      "downloadedPreviewHash": "6782ff926c30cc151e070dece04730727d3b3ff2fc0e0c7420825eac99b53bdd",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "samsung",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6c730d5c14e21933553c292a03d741765d669ca61f7fd34a4c313ad1b860aee1",
+      "logoHash": "21a2038fc484d3791887661cef1281b7b85c62e32d24694682ec2166c6df1ab8",
+      "downloadedHash": "6c730d5c14e21933553c292a03d741765d669ca61f7fd34a4c313ad1b860aee1",
+      "downloadedPreviewHash": "6c730d5c14e21933553c292a03d741765d669ca61f7fd34a4c313ad1b860aee1",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "eli-lilly",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0716464bc7abb9773c02ea9673a73d67cfba62f6e78e135d2a58adbd2f4919f9",
+      "logoHash": "9cf576efa04ee071c1b0bcfeaaecea90ae89211f987a514e79e44688684c22f8",
+      "downloadedHash": "0716464bc7abb9773c02ea9673a73d67cfba62f6e78e135d2a58adbd2f4919f9",
+      "downloadedPreviewHash": "0716464bc7abb9773c02ea9673a73d67cfba62f6e78e135d2a58adbd2f4919f9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "eli-lilly",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3f495468669f23518b2abb2c83341c8ef6c5c4676fb85d10b5080b9c1531dd6d",
+      "logoHash": "9cf576efa04ee071c1b0bcfeaaecea90ae89211f987a514e79e44688684c22f8",
+      "downloadedHash": "3f495468669f23518b2abb2c83341c8ef6c5c4676fb85d10b5080b9c1531dd6d",
+      "downloadedPreviewHash": "3f495468669f23518b2abb2c83341c8ef6c5c4676fb85d10b5080b9c1531dd6d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "blackrock",
+      "width": 1600,
+      "height": 2000,
+      "hash": "55fb665fc5d189771b1e739f7716d53e981b068d73146223c764fa3e56363c8a",
+      "logoHash": "34d771c32f04aa959161a2e9634aec1b4b9fe4a20bb29899edea96f37aae813c",
+      "downloadedHash": "55fb665fc5d189771b1e739f7716d53e981b068d73146223c764fa3e56363c8a",
+      "downloadedPreviewHash": "55fb665fc5d189771b1e739f7716d53e981b068d73146223c764fa3e56363c8a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "blackrock",
+      "width": 1600,
+      "height": 2000,
+      "hash": "32b4c4845ba2a6a411290db9a46c673edc1e2d6652d3fc53991a7c81a3aef010",
+      "logoHash": "34d771c32f04aa959161a2e9634aec1b4b9fe4a20bb29899edea96f37aae813c",
+      "downloadedHash": "32b4c4845ba2a6a411290db9a46c673edc1e2d6652d3fc53991a7c81a3aef010",
+      "downloadedPreviewHash": "32b4c4845ba2a6a411290db9a46c673edc1e2d6652d3fc53991a7c81a3aef010",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "low",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6b43a9925727ae3bdbeeadc48157c458d195e766eda2a156fdef2077029a9c05",
+      "logoHash": "467ea4005a7291861b78fb24a076a7a41fae29b0423360168d7b88c8f2692bf1",
+      "downloadedHash": "6b43a9925727ae3bdbeeadc48157c458d195e766eda2a156fdef2077029a9c05",
+      "downloadedPreviewHash": "6b43a9925727ae3bdbeeadc48157c458d195e766eda2a156fdef2077029a9c05",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "low",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1936946df37ddbf401ab952df5cfbd775da042415965181989b86c7bd382fcd3",
+      "logoHash": "467ea4005a7291861b78fb24a076a7a41fae29b0423360168d7b88c8f2692bf1",
+      "downloadedHash": "1936946df37ddbf401ab952df5cfbd775da042415965181989b86c7bd382fcd3",
+      "downloadedPreviewHash": "1936946df37ddbf401ab952df5cfbd775da042415965181989b86c7bd382fcd3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "cl",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5329ec982f68496b4ed5ae05b57cbbdca7b5679eeb31e7859a0334f2c6d65866",
+      "logoHash": "371b4d7098824bff884715bf9b917306009d66e65e0b4f8963d959524fcff7b5",
+      "downloadedHash": "5329ec982f68496b4ed5ae05b57cbbdca7b5679eeb31e7859a0334f2c6d65866",
+      "downloadedPreviewHash": "5329ec982f68496b4ed5ae05b57cbbdca7b5679eeb31e7859a0334f2c6d65866",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "cl",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5592acc0f1852c589b29cf7fe225dcf4dac7932c03b7f615fdd69c3e5fd6d94b",
+      "logoHash": "371b4d7098824bff884715bf9b917306009d66e65e0b4f8963d959524fcff7b5",
+      "downloadedHash": "5592acc0f1852c589b29cf7fe225dcf4dac7932c03b7f615fdd69c3e5fd6d94b",
+      "downloadedPreviewHash": "5592acc0f1852c589b29cf7fe225dcf4dac7932c03b7f615fdd69c3e5fd6d94b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "unp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1bdeed159ad271f56e6afbd8b7fe61b325c5ec985da362e4e3b98cbdb3dc2f86",
+      "logoHash": "5306d0e14768103682b9fa586b7352feb20f258a7e4ee14ab1af1db18235e6d8",
+      "downloadedHash": "1bdeed159ad271f56e6afbd8b7fe61b325c5ec985da362e4e3b98cbdb3dc2f86",
+      "downloadedPreviewHash": "1bdeed159ad271f56e6afbd8b7fe61b325c5ec985da362e4e3b98cbdb3dc2f86",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "unp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "701c0cce270d1a0a9d1d958054581b5a60686e6c302c1cc1a2e8881ec4d72ac0",
+      "logoHash": "5306d0e14768103682b9fa586b7352feb20f258a7e4ee14ab1af1db18235e6d8",
+      "downloadedHash": "701c0cce270d1a0a9d1d958054581b5a60686e6c302c1cc1a2e8881ec4d72ac0",
+      "downloadedPreviewHash": "701c0cce270d1a0a9d1d958054581b5a60686e6c302c1cc1a2e8881ec4d72ac0",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "adp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "833a6e621caeabb4db1d83fde6aa5fe02ba1c693ec8185acfc1e63a0ed90e768",
+      "logoHash": "d741aa58aa98e74543b939ef6c72f2f3fb8f88581b40de73eb65d55fa7a5ba4f",
+      "downloadedHash": "833a6e621caeabb4db1d83fde6aa5fe02ba1c693ec8185acfc1e63a0ed90e768",
+      "downloadedPreviewHash": "833a6e621caeabb4db1d83fde6aa5fe02ba1c693ec8185acfc1e63a0ed90e768",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "adp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "aaee0c7db8a3c9a7fbe77bbf6ef3e840c472b98d946217573d15406ceeaf62eb",
+      "logoHash": "d741aa58aa98e74543b939ef6c72f2f3fb8f88581b40de73eb65d55fa7a5ba4f",
+      "downloadedHash": "df087ba2c26fc817328a6fc97bf3dcf9b2ac7c53b5dbe535d731f2ac3a277a6e",
+      "downloadedPreviewHash": "df087ba2c26fc817328a6fc97bf3dcf9b2ac7c53b5dbe535d731f2ac3a277a6e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "tt",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b59635e887bfe7be4902b45a0f60926a236623a4f152981c368d3ad34c54415b",
+      "logoHash": "a186b6f99a88e780fb99214603907d0d470f08ae60eb4ed895cd91cfc46604c0",
+      "downloadedHash": "b59635e887bfe7be4902b45a0f60926a236623a4f152981c368d3ad34c54415b",
+      "downloadedPreviewHash": "b59635e887bfe7be4902b45a0f60926a236623a4f152981c368d3ad34c54415b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "tt",
+      "width": 1600,
+      "height": 2000,
+      "hash": "eba9bbdbbc444faedf19e211adff1db63ffbc72040ea8a269edbac3c1dde6cec",
+      "logoHash": "a186b6f99a88e780fb99214603907d0d470f08ae60eb4ed895cd91cfc46604c0",
+      "downloadedHash": "61c3282a1135a3ca274000479ba011cee5f62bc5a25600ef5a279cc64402fbc1",
+      "downloadedPreviewHash": "61c3282a1135a3ca274000479ba011cee5f62bc5a25600ef5a279cc64402fbc1",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "regn",
+      "width": 1600,
+      "height": 2000,
+      "hash": "c5b43be9b7a2773263df95f235ef7a51ee558eb69161b4d1683d64ed8fae5143",
+      "logoHash": "d946dfd3cd514b158db2b3459d3ec03576855c50870d412c9c70810afc612c41",
+      "downloadedHash": "c5b43be9b7a2773263df95f235ef7a51ee558eb69161b4d1683d64ed8fae5143",
+      "downloadedPreviewHash": "c5b43be9b7a2773263df95f235ef7a51ee558eb69161b4d1683d64ed8fae5143",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "zts",
+      "width": 1600,
+      "height": 2000,
+      "hash": "82279ba9dbe518128a04a3a9ea69bc7cdfc5aa1660a0d151cc43ddc18c262734",
+      "logoHash": "90ada5237dc51aaaba1fe6a9243af56d2f0e788954ba8b588169f45b67248c1d",
+      "downloadedHash": "82279ba9dbe518128a04a3a9ea69bc7cdfc5aa1660a0d151cc43ddc18c262734",
+      "downloadedPreviewHash": "82279ba9dbe518128a04a3a9ea69bc7cdfc5aa1660a0d151cc43ddc18c262734",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "regn",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7c0a0f1f826fb137a18ef0349ae3ddb12a9d60b65456a944745a8f7a2d43d88d",
+      "logoHash": "d946dfd3cd514b158db2b3459d3ec03576855c50870d412c9c70810afc612c41",
+      "downloadedHash": "7c0a0f1f826fb137a18ef0349ae3ddb12a9d60b65456a944745a8f7a2d43d88d",
+      "downloadedPreviewHash": "7c0a0f1f826fb137a18ef0349ae3ddb12a9d60b65456a944745a8f7a2d43d88d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "ubs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d536bccfe11bf6571063b6ad49bae976f1f3de4bca5b69ce7bdd9bfd646bef4c",
+      "logoHash": "d82d19d2e30ff9e198019864e8aee3a3b85133c2db67dabebab8229167595b4d",
+      "downloadedHash": "d536bccfe11bf6571063b6ad49bae976f1f3de4bca5b69ce7bdd9bfd646bef4c",
+      "downloadedPreviewHash": "d536bccfe11bf6571063b6ad49bae976f1f3de4bca5b69ce7bdd9bfd646bef4c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "zts",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ad81caf9e801c66b1b57a941970d7396286fd8abeb307e3f877275481643a435",
+      "logoHash": "90ada5237dc51aaaba1fe6a9243af56d2f0e788954ba8b588169f45b67248c1d",
+      "downloadedHash": "ad81caf9e801c66b1b57a941970d7396286fd8abeb307e3f877275481643a435",
+      "downloadedPreviewHash": "ad81caf9e801c66b1b57a941970d7396286fd8abeb307e3f877275481643a435",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bbva",
+      "width": 1600,
+      "height": 2000,
+      "hash": "861854fb003b9834a9510279adc1e8efec83c57e4cd61df9dce19d31f812410c",
+      "logoHash": "0eab0b007102cf79e039377f4d6da30ceac00921b3e7d699fc937cd2b62c2c3d",
+      "downloadedHash": "861854fb003b9834a9510279adc1e8efec83c57e4cd61df9dce19d31f812410c",
+      "downloadedPreviewHash": "861854fb003b9834a9510279adc1e8efec83c57e4cd61df9dce19d31f812410c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "ubs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6450e6eda8d8d946c360ea68454771aa85fd813b96146ba06fe8c79e502fe7ee",
+      "logoHash": "d82d19d2e30ff9e198019864e8aee3a3b85133c2db67dabebab8229167595b4d",
+      "downloadedHash": "6450e6eda8d8d946c360ea68454771aa85fd813b96146ba06fe8c79e502fe7ee",
+      "downloadedPreviewHash": "6450e6eda8d8d946c360ea68454771aa85fd813b96146ba06fe8c79e502fe7ee",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "diageo",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d693dd1bb23cf7a3b0912a12afe02366341fdb5a8f7508be0a0af144f27aaa6e",
+      "logoHash": "b976fe46496438b18b5aa13c5a4aa6e444ac628368ef2a300b5a3ae7c01d84ae",
+      "downloadedHash": "d693dd1bb23cf7a3b0912a12afe02366341fdb5a8f7508be0a0af144f27aaa6e",
+      "downloadedPreviewHash": "d693dd1bb23cf7a3b0912a12afe02366341fdb5a8f7508be0a0af144f27aaa6e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bbva",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7d97eb1814f139993682104f5c184ee01dea05a3047f47fe7764fc55223a3e93",
+      "logoHash": "0eab0b007102cf79e039377f4d6da30ceac00921b3e7d699fc937cd2b62c2c3d",
+      "downloadedHash": "7d97eb1814f139993682104f5c184ee01dea05a3047f47fe7764fc55223a3e93",
+      "downloadedPreviewHash": "7d97eb1814f139993682104f5c184ee01dea05a3047f47fe7764fc55223a3e93",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "lseg",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5e4b705be3e8117819a5fe2fd65bf91311e632b98f33a13c2589c2cf9b2e1f3f",
+      "logoHash": "742aeeaa2ac7e6007ca8d7178e61b978e5b69e467adf2118e5dabbed2d3db9e0",
+      "downloadedHash": "5e4b705be3e8117819a5fe2fd65bf91311e632b98f33a13c2589c2cf9b2e1f3f",
+      "downloadedPreviewHash": "5e4b705be3e8117819a5fe2fd65bf91311e632b98f33a13c2589c2cf9b2e1f3f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "diageo",
+      "width": 1600,
+      "height": 2000,
+      "hash": "297e15f43754a2b5962bd172c11aac00240ad9fb6fe854fb65d9f5c90b4ee82e",
+      "logoHash": "b976fe46496438b18b5aa13c5a4aa6e444ac628368ef2a300b5a3ae7c01d84ae",
+      "downloadedHash": "297e15f43754a2b5962bd172c11aac00240ad9fb6fe854fb65d9f5c90b4ee82e",
+      "downloadedPreviewHash": "297e15f43754a2b5962bd172c11aac00240ad9fb6fe854fb65d9f5c90b4ee82e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "rolls-royce",
+      "width": 1600,
+      "height": 2000,
+      "hash": "625e3800ea96632ccaa40d1557a3d5e68e77de4b88d47d42a521221fab8468f4",
+      "logoHash": "c2af93970fa3df6758d1c816c78b727c6d90e8efaa113536574151399bed9cf9",
+      "downloadedHash": "625e3800ea96632ccaa40d1557a3d5e68e77de4b88d47d42a521221fab8468f4",
+      "downloadedPreviewHash": "625e3800ea96632ccaa40d1557a3d5e68e77de4b88d47d42a521221fab8468f4",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "lseg",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b54b8345f60b720538bf63643a65f010f23bd3ebc8834bb2f7bf54d86eebeab0",
+      "logoHash": "742aeeaa2ac7e6007ca8d7178e61b978e5b69e467adf2118e5dabbed2d3db9e0",
+      "downloadedHash": "eeb03e6e37bb5ec7050b7f5f5e189fb7143efb055dbf45b8055d210a68448d2c",
+      "downloadedPreviewHash": "eeb03e6e37bb5ec7050b7f5f5e189fb7143efb055dbf45b8055d210a68448d2c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "dhl",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9e054d7d893e1066d6375f3b634b36a1529fc7bb5129efef73371a47e68952db",
+      "logoHash": "01bdde18a8b2e9f0b505d9968b785ef2cbfd9dd1603a321c641e762d923d9742",
+      "downloadedHash": "9e054d7d893e1066d6375f3b634b36a1529fc7bb5129efef73371a47e68952db",
+      "downloadedPreviewHash": "9e054d7d893e1066d6375f3b634b36a1529fc7bb5129efef73371a47e68952db",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "rolls-royce",
+      "width": 1600,
+      "height": 2000,
+      "hash": "09f4718b7d9c2696d237f724177db06860fde528be759edb70fcb0658815621c",
+      "logoHash": "c2af93970fa3df6758d1c816c78b727c6d90e8efaa113536574151399bed9cf9",
+      "downloadedHash": "09f4718b7d9c2696d237f724177db06860fde528be759edb70fcb0658815621c",
+      "downloadedPreviewHash": "09f4718b7d9c2696d237f724177db06860fde528be759edb70fcb0658815621c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "enel",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9c522a39f358b2628010f7fb343825a6d8c4902827863d953595f8992904e536",
+      "logoHash": "817763c5941373acc119fa180db7bc2c8ce435f3dc3fe90d4b9b31e9c95707ff",
+      "downloadedHash": "9c522a39f358b2628010f7fb343825a6d8c4902827863d953595f8992904e536",
+      "downloadedPreviewHash": "9c522a39f358b2628010f7fb343825a6d8c4902827863d953595f8992904e536",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "dhl",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3ea6630c6ca98603b30fdce92f75a4fe08aaeedc0110634b6e59dd3d74177a4f",
+      "logoHash": "01bdde18a8b2e9f0b505d9968b785ef2cbfd9dd1603a321c641e762d923d9742",
+      "downloadedHash": "3ea6630c6ca98603b30fdce92f75a4fe08aaeedc0110634b6e59dd3d74177a4f",
+      "downloadedPreviewHash": "3ea6630c6ca98603b30fdce92f75a4fe08aaeedc0110634b6e59dd3d74177a4f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "keyence",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4a4a6997fe074c3c0d7bbc29b792eac3ca6f825b38ec3544c9d83d8a6cabd88e",
+      "logoHash": "ad2a57122cb8cc8ad9705a2ed3d32508fbddb49306a1f09c2ba7fe91409ae8a3",
+      "downloadedHash": "4a4a6997fe074c3c0d7bbc29b792eac3ca6f825b38ec3544c9d83d8a6cabd88e",
+      "downloadedPreviewHash": "4a4a6997fe074c3c0d7bbc29b792eac3ca6f825b38ec3544c9d83d8a6cabd88e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "enel",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9ece3dc2242424a493162f07fb077dd9e870f4d0f48fe17adec8cc5e3824dc4f",
+      "logoHash": "817763c5941373acc119fa180db7bc2c8ce435f3dc3fe90d4b9b31e9c95707ff",
+      "downloadedHash": "85eb5a12655de45afdf896216dc30cd2fd3c4a24780234dc8d2830fee5e2ed49",
+      "downloadedPreviewHash": "85eb5a12655de45afdf896216dc30cd2fd3c4a24780234dc8d2830fee5e2ed49",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "hitachi",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5e34b4501e2516fd3b99c41642fa533c4f60bbaa4dc53ab53dd2008c869bad3c",
+      "logoHash": "9fece2fe1811c3e94ada4a5efb8c34b60ac4493df6dc9e53cba42d37df756078",
+      "downloadedHash": "5e34b4501e2516fd3b99c41642fa533c4f60bbaa4dc53ab53dd2008c869bad3c",
+      "downloadedPreviewHash": "5e34b4501e2516fd3b99c41642fa533c4f60bbaa4dc53ab53dd2008c869bad3c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "keyence",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9a1defa575077bf9809f6d805b6010676deaa466e3b240c1b0a2599856e50557",
+      "logoHash": "ad2a57122cb8cc8ad9705a2ed3d32508fbddb49306a1f09c2ba7fe91409ae8a3",
+      "downloadedHash": "9a1defa575077bf9809f6d805b6010676deaa466e3b240c1b0a2599856e50557",
+      "downloadedPreviewHash": "9a1defa575077bf9809f6d805b6010676deaa466e3b240c1b0a2599856e50557",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "mitsubishi-electric",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ebeb196a97ddcb43b98bbdc924b52e27212ec2300da87fcf9e092b6a147fcad6",
+      "logoHash": "2828daef48bc163bf42f528396c17e6671860a6567415564744a2e872c754d42",
+      "downloadedHash": "ebeb196a97ddcb43b98bbdc924b52e27212ec2300da87fcf9e092b6a147fcad6",
+      "downloadedPreviewHash": "ebeb196a97ddcb43b98bbdc924b52e27212ec2300da87fcf9e092b6a147fcad6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "hitachi",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d385d95f7f771d6799e7121db2384d2ad62366daaf7c2cd89b650a01617dcbb3",
+      "logoHash": "9fece2fe1811c3e94ada4a5efb8c34b60ac4493df6dc9e53cba42d37df756078",
+      "downloadedHash": "d385d95f7f771d6799e7121db2384d2ad62366daaf7c2cd89b650a01617dcbb3",
+      "downloadedPreviewHash": "d385d95f7f771d6799e7121db2384d2ad62366daaf7c2cd89b650a01617dcbb3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "advantest",
+      "width": 1600,
+      "height": 2000,
+      "hash": "72fef7f02a7fdf68c64575004ae7d7bbbde7c18ba8b721fbbf451e0c3f1d5b47",
+      "logoHash": "ead254da97a9e4731782c83c0af608c553c5456837e17559dd1fc908afa83aba",
+      "downloadedHash": "72fef7f02a7fdf68c64575004ae7d7bbbde7c18ba8b721fbbf451e0c3f1d5b47",
+      "downloadedPreviewHash": "72fef7f02a7fdf68c64575004ae7d7bbbde7c18ba8b721fbbf451e0c3f1d5b47",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "mitsubishi-electric",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7f7b7b95d02b7768d08de5b9ac62438911c9cd1ba0ba2080b477b64bf4052dcd",
+      "logoHash": "2828daef48bc163bf42f528396c17e6671860a6567415564744a2e872c754d42",
+      "downloadedHash": "7f7b7b95d02b7768d08de5b9ac62438911c9cd1ba0ba2080b477b64bf4052dcd",
+      "downloadedPreviewHash": "7f7b7b95d02b7768d08de5b9ac62438911c9cd1ba0ba2080b477b64bf4052dcd",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "softbank-group",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8b0ac714b2bd92fe34df849b699f38bfa755c7044a30cdf49745263f8648ecb7",
+      "logoHash": "94236f1cca5fcefb94c43818081f5cf9f0dba755a1a6dc31721668108e5398dd",
+      "downloadedHash": "8b0ac714b2bd92fe34df849b699f38bfa755c7044a30cdf49745263f8648ecb7",
+      "downloadedPreviewHash": "8b0ac714b2bd92fe34df849b699f38bfa755c7044a30cdf49745263f8648ecb7",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "advantest",
+      "width": 1600,
+      "height": 2000,
+      "hash": "2ac4f2fa7199da5b4867e6d8d0b5b1d8f3b113259b60fb0e0ce227d8ec8bdf7f",
+      "logoHash": "ead254da97a9e4731782c83c0af608c553c5456837e17559dd1fc908afa83aba",
+      "downloadedHash": "2ac4f2fa7199da5b4867e6d8d0b5b1d8f3b113259b60fb0e0ce227d8ec8bdf7f",
+      "downloadedPreviewHash": "2ac4f2fa7199da5b4867e6d8d0b5b1d8f3b113259b60fb0e0ce227d8ec8bdf7f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "dbs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "57dcaad9abb702ff695f27a967aa9ee786c2b4306bc4ab22d2172398be51dcc6",
+      "logoHash": "282e0640c58b4044cdf3514e68155cd6470b3cf97904fd539a87a067efc2b447",
+      "downloadedHash": "57dcaad9abb702ff695f27a967aa9ee786c2b4306bc4ab22d2172398be51dcc6",
+      "downloadedPreviewHash": "57dcaad9abb702ff695f27a967aa9ee786c2b4306bc4ab22d2172398be51dcc6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "softbank-group",
+      "width": 1600,
+      "height": 2000,
+      "hash": "876e34a60882543a724bd35729ff8801ad859f5dce510f732d2e9497df12c31d",
+      "logoHash": "94236f1cca5fcefb94c43818081f5cf9f0dba755a1a6dc31721668108e5398dd",
+      "downloadedHash": "876e34a60882543a724bd35729ff8801ad859f5dce510f732d2e9497df12c31d",
+      "downloadedPreviewHash": "876e34a60882543a724bd35729ff8801ad859f5dce510f732d2e9497df12c31d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "fortinet",
+      "width": 1600,
+      "height": 2000,
+      "hash": "58efae15a10af75021f5d5df7f1e15808e365c8da792fd17c73bf27ac7e6561a",
+      "logoHash": "a4d34474f678c31fa5415837142c8210fb9887990de3267f8e30fe7464542a17",
+      "downloadedHash": "58efae15a10af75021f5d5df7f1e15808e365c8da792fd17c73bf27ac7e6561a",
+      "downloadedPreviewHash": "58efae15a10af75021f5d5df7f1e15808e365c8da792fd17c73bf27ac7e6561a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "dbs",
+      "width": 1600,
+      "height": 2000,
+      "hash": "fa759e5de45a8b16ba2beaf009185cc9676161f32968f30b9c2e55ef91111ada",
+      "logoHash": "282e0640c58b4044cdf3514e68155cd6470b3cf97904fd539a87a067efc2b447",
+      "downloadedHash": "fa759e5de45a8b16ba2beaf009185cc9676161f32968f30b9c2e55ef91111ada",
+      "downloadedPreviewHash": "fa759e5de45a8b16ba2beaf009185cc9676161f32968f30b9c2e55ef91111ada",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "pfe",
+      "width": 1600,
+      "height": 2000,
+      "hash": "895142552940442e480bcefff8f047d84d4febe36b2b939dac9aac164fcb5819",
+      "logoHash": "bc992d82ae0fee98c764995a00d90fa397b397b54919c1441804298ad8062e7f",
+      "downloadedHash": "895142552940442e480bcefff8f047d84d4febe36b2b939dac9aac164fcb5819",
+      "downloadedPreviewHash": "895142552940442e480bcefff8f047d84d4febe36b2b939dac9aac164fcb5819",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "fortinet",
+      "width": 1600,
+      "height": 2000,
+      "hash": "22db1d1f2001fef1e228878939c1ae5fee06399ecf6d11b0f8213ea68fa68c0b",
+      "logoHash": "a4d34474f678c31fa5415837142c8210fb9887990de3267f8e30fe7464542a17",
+      "downloadedHash": "22db1d1f2001fef1e228878939c1ae5fee06399ecf6d11b0f8213ea68fa68c0b",
+      "downloadedPreviewHash": "22db1d1f2001fef1e228878939c1ae5fee06399ecf6d11b0f8213ea68fa68c0b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "richemont",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4062ce69b49205df507cf73599b470dcc85e2f3f498656fa5e9aa1d7f94b9da6",
+      "logoHash": "3775d94f8dcd23b376abebbe3d8f4fc338c942a0fcf2681f3af423fa097de72a",
+      "downloadedHash": "4062ce69b49205df507cf73599b470dcc85e2f3f498656fa5e9aa1d7f94b9da6",
+      "downloadedPreviewHash": "4062ce69b49205df507cf73599b470dcc85e2f3f498656fa5e9aa1d7f94b9da6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "pfe",
+      "width": 1600,
+      "height": 2000,
+      "hash": "3a7f3ff071d032992785cb21b9a163b6df7dd9b0fa41d4cd06c54cca40f80ece",
+      "logoHash": "bc992d82ae0fee98c764995a00d90fa397b397b54919c1441804298ad8062e7f",
+      "downloadedHash": "3a7f3ff071d032992785cb21b9a163b6df7dd9b0fa41d4cd06c54cca40f80ece",
+      "downloadedPreviewHash": "3a7f3ff071d032992785cb21b9a163b6df7dd9b0fa41d4cd06c54cca40f80ece",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "sika",
+      "width": 1600,
+      "height": 2000,
+      "hash": "ab80f22570dfd89e0ce501a980344ef06234ab38282b676558e775f99f0555d9",
+      "logoHash": "db3cbebce1e0b2800c8a311218ff85e34b33449821e00d76d5b87b609cdd5d87",
+      "downloadedHash": "ab80f22570dfd89e0ce501a980344ef06234ab38282b676558e775f99f0555d9",
+      "downloadedPreviewHash": "ab80f22570dfd89e0ce501a980344ef06234ab38282b676558e775f99f0555d9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "richemont",
+      "width": 1600,
+      "height": 2000,
+      "hash": "26ee87735c1231fbc0458dfe1d3a5ffe6b11db5ddebaf26f9b1264fc8ae44829",
+      "logoHash": "3775d94f8dcd23b376abebbe3d8f4fc338c942a0fcf2681f3af423fa097de72a",
+      "downloadedHash": "26ee87735c1231fbc0458dfe1d3a5ffe6b11db5ddebaf26f9b1264fc8ae44829",
+      "downloadedPreviewHash": "26ee87735c1231fbc0458dfe1d3a5ffe6b11db5ddebaf26f9b1264fc8ae44829",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "dsv",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d9f1e0218f831bfd0ea97824015fbaed17c8508c570945593f23c1b9408ba0e3",
+      "logoHash": "870c956e3e169e8d15fbcf302b23e9447fad0e4aa7284e9a6592b8abec003a20",
+      "downloadedHash": "d9f1e0218f831bfd0ea97824015fbaed17c8508c570945593f23c1b9408ba0e3",
+      "downloadedPreviewHash": "d9f1e0218f831bfd0ea97824015fbaed17c8508c570945593f23c1b9408ba0e3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "sika",
+      "width": 1600,
+      "height": 2000,
+      "hash": "68bb81fdad45599fe750493999d4b3658b3b2ceb3c3a4a3b096a80096c6f8cb9",
+      "logoHash": "db3cbebce1e0b2800c8a311218ff85e34b33449821e00d76d5b87b609cdd5d87",
+      "downloadedHash": "68bb81fdad45599fe750493999d4b3658b3b2ceb3c3a4a3b096a80096c6f8cb9",
+      "downloadedPreviewHash": "68bb81fdad45599fe750493999d4b3658b3b2ceb3c3a4a3b096a80096c6f8cb9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "nordea",
+      "width": 1600,
+      "height": 2000,
+      "hash": "31ef38af99f360f35c68f686deb840f30dfec2e4d2512658b2567a0f274a0090",
+      "logoHash": "e16ea7a9e76ba29a8c4086e94439ba0735056515f207b24b9532b150f1d61f2c",
+      "downloadedHash": "31ef38af99f360f35c68f686deb840f30dfec2e4d2512658b2567a0f274a0090",
+      "downloadedPreviewHash": "31ef38af99f360f35c68f686deb840f30dfec2e4d2512658b2567a0f274a0090",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "dsv",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d46073424d3188477718392486f190f176f08d3dce469872f602eb40d5343bae",
+      "logoHash": "870c956e3e169e8d15fbcf302b23e9447fad0e4aa7284e9a6592b8abec003a20",
+      "downloadedHash": "d46073424d3188477718392486f190f176f08d3dce469872f602eb40d5343bae",
+      "downloadedPreviewHash": "d46073424d3188477718392486f190f176f08d3dce469872f602eb40d5343bae",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "pernod-ricard",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d416d811fab5ff9d1c34b2e328feee41cb85315e92a4a1e702cf9bf3306cb1c2",
+      "logoHash": "06ac73699cb66c2d7e1c539f745671ac6a0bb3844bfddd6f985dd105945a4b45",
+      "downloadedHash": "d416d811fab5ff9d1c34b2e328feee41cb85315e92a4a1e702cf9bf3306cb1c2",
+      "downloadedPreviewHash": "d416d811fab5ff9d1c34b2e328feee41cb85315e92a4a1e702cf9bf3306cb1c2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "nordea",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8cd284193ae3ba2fd141d872a415ccc4cf9f55090fd35d87d8b53ddb9925e74e",
+      "logoHash": "e16ea7a9e76ba29a8c4086e94439ba0735056515f207b24b9532b150f1d61f2c",
+      "downloadedHash": "8cd284193ae3ba2fd141d872a415ccc4cf9f55090fd35d87d8b53ddb9925e74e",
+      "downloadedPreviewHash": "8cd284193ae3ba2fd141d872a415ccc4cf9f55090fd35d87d8b53ddb9925e74e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "capgemini",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0e1d0326203a8cc700ef6265cd26c370ca271c427a3cb8b21a4f8a76e5d87854",
+      "logoHash": "3691e8fc0710fb8ee488499a1e9e175f8b9dc986d3075046e87323e88ef4f3de",
+      "downloadedHash": "0e1d0326203a8cc700ef6265cd26c370ca271c427a3cb8b21a4f8a76e5d87854",
+      "downloadedPreviewHash": "0e1d0326203a8cc700ef6265cd26c370ca271c427a3cb8b21a4f8a76e5d87854",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "pernod-ricard",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9f4a75f751d09054eaed104bd5cea067a1e7edd57a503f5787ebe10394f21243",
+      "logoHash": "06ac73699cb66c2d7e1c539f745671ac6a0bb3844bfddd6f985dd105945a4b45",
+      "downloadedHash": "8b3bd3bd9861b57341e0ae9889e1ee78557863f21eef266dd8b9b664350ed2c1",
+      "downloadedPreviewHash": "8b3bd3bd9861b57341e0ae9889e1ee78557863f21eef266dd8b9b664350ed2c1",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "publicis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "logoHash": "564c44bd92f70dabae0ee2b772ea8e7894b9fefb6448f2d9aba21cebf4925946",
+      "downloadedHash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "downloadedPreviewHash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "capgemini",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d790c76c5376e75eb8e99df3a363b32e74b7774910308c78ac380e236b2ea493",
+      "logoHash": "3691e8fc0710fb8ee488499a1e9e175f8b9dc986d3075046e87323e88ef4f3de",
+      "downloadedHash": "c383b87b0b2486e0b4f2f754e250fd4aacd6bc5af865121068dc95676e0316b2",
+      "downloadedPreviewHash": "c383b87b0b2486e0b4f2f754e250fd4aacd6bc5af865121068dc95676e0316b2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "societe-generale",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f8314175db619676a934aa6c2c1e53564beccc1d41addc5f70fe234bbf580f3f",
+      "logoHash": "740e9c8e9be56e0fa06dd2f501a7c87ced3409e1db7eb9bf35b6c22d86bfe6f1",
+      "downloadedHash": "f8314175db619676a934aa6c2c1e53564beccc1d41addc5f70fe234bbf580f3f",
+      "downloadedPreviewHash": "f8314175db619676a934aa6c2c1e53564beccc1d41addc5f70fe234bbf580f3f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "publicis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "logoHash": "564c44bd92f70dabae0ee2b772ea8e7894b9fefb6448f2d9aba21cebf4925946",
+      "downloadedHash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "downloadedPreviewHash": "870ac37efb461cbac2267f601c9667a82445da2d950ae5c9a3517a7d13c4acb5",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "renault",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b56d7cc687249ec15742c0e2fc6d3741e21abbba0cb03b0697076e7383dafe84",
+      "logoHash": "3bf542f34d995a5e4c728ad129ca2f91b7de325f0d697cb5328dc4eb67c8f51f",
+      "downloadedHash": "b56d7cc687249ec15742c0e2fc6d3741e21abbba0cb03b0697076e7383dafe84",
+      "downloadedPreviewHash": "b56d7cc687249ec15742c0e2fc6d3741e21abbba0cb03b0697076e7383dafe84",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "societe-generale",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b3ac4d4feb950bcfe5e46e82203c41f01777183e8eacff8a50a9eee90f4e5177",
+      "logoHash": "740e9c8e9be56e0fa06dd2f501a7c87ced3409e1db7eb9bf35b6c22d86bfe6f1",
+      "downloadedHash": "b3ac4d4feb950bcfe5e46e82203c41f01777183e8eacff8a50a9eee90f4e5177",
+      "downloadedPreviewHash": "b3ac4d4feb950bcfe5e46e82203c41f01777183e8eacff8a50a9eee90f4e5177",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bat",
+      "width": 1600,
+      "height": 2000,
+      "hash": "49888db6896d4c1e608ff9fb9fa4b9fa7819fcfcc35b4aec06fc6a9e0aae3895",
+      "logoHash": "f29a4c0d70aa1124d971e555a1012201e9ff77d40430e6d2d08ab2fafef50cfa",
+      "downloadedHash": "49888db6896d4c1e608ff9fb9fa4b9fa7819fcfcc35b4aec06fc6a9e0aae3895",
+      "downloadedPreviewHash": "49888db6896d4c1e608ff9fb9fa4b9fa7819fcfcc35b4aec06fc6a9e0aae3895",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "renault",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5e75c9e38539faa3f0feb7c052f1e548d5266c6236d4ad78ff4a91740f6ad3e6",
+      "logoHash": "3bf542f34d995a5e4c728ad129ca2f91b7de325f0d697cb5328dc4eb67c8f51f",
+      "downloadedHash": "5e75c9e38539faa3f0feb7c052f1e548d5266c6236d4ad78ff4a91740f6ad3e6",
+      "downloadedPreviewHash": "5e75c9e38539faa3f0feb7c052f1e548d5266c6236d4ad78ff4a91740f6ad3e6",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "hsbc",
+      "width": 1600,
+      "height": 2000,
+      "hash": "af8e05d45817d367732bacfe2a8bc2307025e5139cb9e1ffdef45c8e3dc8a41f",
+      "logoHash": "cdd80c313bab8b8827c7314df85b014fd81cff64aa4982c75c6fc98de95f6440",
+      "downloadedHash": "af8e05d45817d367732bacfe2a8bc2307025e5139cb9e1ffdef45c8e3dc8a41f",
+      "downloadedPreviewHash": "af8e05d45817d367732bacfe2a8bc2307025e5139cb9e1ffdef45c8e3dc8a41f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bat",
+      "width": 1600,
+      "height": 2000,
+      "hash": "691bc36da5717157c7df5b4baf4b6ba5b387acc69b69f92bb39fa8150fa0686d",
+      "logoHash": "f29a4c0d70aa1124d971e555a1012201e9ff77d40430e6d2d08ab2fafef50cfa",
+      "downloadedHash": "691bc36da5717157c7df5b4baf4b6ba5b387acc69b69f92bb39fa8150fa0686d",
+      "downloadedPreviewHash": "691bc36da5717157c7df5b4baf4b6ba5b387acc69b69f92bb39fa8150fa0686d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "rio-tinto",
+      "width": 1600,
+      "height": 2000,
+      "hash": "5d5e758faf5556b7af5c476d3a2edcca4297c56f02e9151a98352267a2164d59",
+      "logoHash": "1aa489bb1736b20050344284ba6113208486eda3653e38d0a724df24f5814619",
+      "downloadedHash": "5d5e758faf5556b7af5c476d3a2edcca4297c56f02e9151a98352267a2164d59",
+      "downloadedPreviewHash": "5d5e758faf5556b7af5c476d3a2edcca4297c56f02e9151a98352267a2164d59",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "hsbc",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8817ee5ea46831d5c6bb5bb06da112933daa538b5924b97e7c86e6fa5118f545",
+      "logoHash": "cdd80c313bab8b8827c7314df85b014fd81cff64aa4982c75c6fc98de95f6440",
+      "downloadedHash": "8817ee5ea46831d5c6bb5bb06da112933daa538b5924b97e7c86e6fa5118f545",
+      "downloadedPreviewHash": "8817ee5ea46831d5c6bb5bb06da112933daa538b5924b97e7c86e6fa5118f545",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "glencore",
+      "width": 1600,
+      "height": 2000,
+      "hash": "02249b9efdf8fb99980a4ecb4c7422ef894544e7eca162204c984c16ae9250c2",
+      "logoHash": "09c8d7df475d455fc7a099790f0200bd4a6313c52e6edeb9c49e339d3f342fd4",
+      "downloadedHash": "02249b9efdf8fb99980a4ecb4c7422ef894544e7eca162204c984c16ae9250c2",
+      "downloadedPreviewHash": "02249b9efdf8fb99980a4ecb4c7422ef894544e7eca162204c984c16ae9250c2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "rio-tinto",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8ba872ad07badbd7e3755cf5d5c3df58c7b38abda506ccd549a85f3287e5b068",
+      "logoHash": "1aa489bb1736b20050344284ba6113208486eda3653e38d0a724df24f5814619",
+      "downloadedHash": "8ba872ad07badbd7e3755cf5d5c3df58c7b38abda506ccd549a85f3287e5b068",
+      "downloadedPreviewHash": "8ba872ad07badbd7e3755cf5d5c3df58c7b38abda506ccd549a85f3287e5b068",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "philips",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b2e4c31d20f3065548f14f6e8f589478a05745cc088b770ffdf1f259710db723",
+      "logoHash": "80aeb43439293ef1520aac93430ee2989ef65a07467317c028b66dee7fa863ed",
+      "downloadedHash": "b2e4c31d20f3065548f14f6e8f589478a05745cc088b770ffdf1f259710db723",
+      "downloadedPreviewHash": "b2e4c31d20f3065548f14f6e8f589478a05745cc088b770ffdf1f259710db723",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "glencore",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4e936baaf201bb41f8fd9971aa902e0d1bb8483a7af4429ad0fab3de0e7162ee",
+      "logoHash": "09c8d7df475d455fc7a099790f0200bd4a6313c52e6edeb9c49e339d3f342fd4",
+      "downloadedHash": "4e936baaf201bb41f8fd9971aa902e0d1bb8483a7af4429ad0fab3de0e7162ee",
+      "downloadedPreviewHash": "4e936baaf201bb41f8fd9971aa902e0d1bb8483a7af4429ad0fab3de0e7162ee",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "stmicroelectronics",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1757547ebc16b6b5a7f6f5e257639cd93bd7d9bd4b84e15641aafc5488f23179",
+      "logoHash": "613be805dd25374a9e2ed9cd5da454a19f258c3bf91141dd508f8c6ce7eb5b8a",
+      "downloadedHash": "1757547ebc16b6b5a7f6f5e257639cd93bd7d9bd4b84e15641aafc5488f23179",
+      "downloadedPreviewHash": "1757547ebc16b6b5a7f6f5e257639cd93bd7d9bd4b84e15641aafc5488f23179",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "asm-international",
+      "width": 1600,
+      "height": 2000,
+      "hash": "866ac756dc33517ccff7ca1d4e1dcca13f9351b4e548b77224b4d085121a1b7c",
+      "logoHash": "92898a286b226407e11c19174ca9ced9ced46709f3d2b4f1e62a1adc3104c7fa",
+      "downloadedHash": "866ac756dc33517ccff7ca1d4e1dcca13f9351b4e548b77224b4d085121a1b7c",
+      "downloadedPreviewHash": "866ac756dc33517ccff7ca1d4e1dcca13f9351b4e548b77224b4d085121a1b7c",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "philips",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6b819c0a16aed730edc8957fe7c4bc038647ffacee2523cc65c6615ad248bb3f",
+      "logoHash": "80aeb43439293ef1520aac93430ee2989ef65a07467317c028b66dee7fa863ed",
+      "downloadedHash": "6b819c0a16aed730edc8957fe7c4bc038647ffacee2523cc65c6615ad248bb3f",
+      "downloadedPreviewHash": "6b819c0a16aed730edc8957fe7c4bc038647ffacee2523cc65c6615ad248bb3f",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "wolters-kluwer",
+      "width": 1600,
+      "height": 2000,
+      "hash": "4aeda486389c31fac0bdfd88c561800586b89f8536deaf1b25c7da2fe724499a",
+      "logoHash": "18879822544dd5a3437945ed21ab7e448e377fae5ee79e0483c64c76716338f7",
+      "downloadedHash": "4aeda486389c31fac0bdfd88c561800586b89f8536deaf1b25c7da2fe724499a",
+      "downloadedPreviewHash": "4aeda486389c31fac0bdfd88c561800586b89f8536deaf1b25c7da2fe724499a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "stmicroelectronics",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7ef1f13e0167cc7309a7cd8dc2fe7881081921acb8630d23b73ada2bf4b84c4e",
+      "logoHash": "613be805dd25374a9e2ed9cd5da454a19f258c3bf91141dd508f8c6ce7eb5b8a",
+      "downloadedHash": "7ef1f13e0167cc7309a7cd8dc2fe7881081921acb8630d23b73ada2bf4b84c4e",
+      "downloadedPreviewHash": "7ef1f13e0167cc7309a7cd8dc2fe7881081921acb8630d23b73ada2bf4b84c4e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "ing",
+      "width": 1600,
+      "height": 2000,
+      "hash": "853dcd9e443538bb5b42f7759f3214dc04221aa42460e497591639599812d811",
+      "logoHash": "e2452a2e276abde04b219827a3002d188bcf7f539f4aed4624f8389db1150547",
+      "downloadedHash": "853dcd9e443538bb5b42f7759f3214dc04221aa42460e497591639599812d811",
+      "downloadedPreviewHash": "853dcd9e443538bb5b42f7759f3214dc04221aa42460e497591639599812d811",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "asm-international",
+      "width": 1600,
+      "height": 2000,
+      "hash": "eb82f4b5bb085928f8ae74a61fb47d7d4e679c90252564397b96d613e12e265d",
+      "logoHash": "92898a286b226407e11c19174ca9ced9ced46709f3d2b4f1e62a1adc3104c7fa",
+      "downloadedHash": "eb82f4b5bb085928f8ae74a61fb47d7d4e679c90252564397b96d613e12e265d",
+      "downloadedPreviewHash": "eb82f4b5bb085928f8ae74a61fb47d7d4e679c90252564397b96d613e12e265d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "adyen",
+      "width": 1600,
+      "height": 2000,
+      "hash": "03c13601ac592a150661678cc9c9b1df6cacbb526508d8cdaa8ce59d9ec9ce8b",
+      "logoHash": "0ce53763605f460da59689da537d923076556266e60853d1d7c6a1df407ebe95",
+      "downloadedHash": "03c13601ac592a150661678cc9c9b1df6cacbb526508d8cdaa8ce59d9ec9ce8b",
+      "downloadedPreviewHash": "03c13601ac592a150661678cc9c9b1df6cacbb526508d8cdaa8ce59d9ec9ce8b",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "wolters-kluwer",
+      "width": 1600,
+      "height": 2000,
+      "hash": "f06cc55e1f7f3694879f8dabaf05060ce3342a36eedd973560d941ffd04ef597",
+      "logoHash": "18879822544dd5a3437945ed21ab7e448e377fae5ee79e0483c64c76716338f7",
+      "downloadedHash": "f06cc55e1f7f3694879f8dabaf05060ce3342a36eedd973560d941ffd04ef597",
+      "downloadedPreviewHash": "f06cc55e1f7f3694879f8dabaf05060ce3342a36eedd973560d941ffd04ef597",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "stellantis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8640620399eaeed8d137e9f10f73d36ff3415c086d31757dda2ece12752aba39",
+      "logoHash": "9166c0120f5a1c506eaefcf99e2f2872e7592f680160b9132baa5018588325b4",
+      "downloadedHash": "8640620399eaeed8d137e9f10f73d36ff3415c086d31757dda2ece12752aba39",
+      "downloadedPreviewHash": "8640620399eaeed8d137e9f10f73d36ff3415c086d31757dda2ece12752aba39",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "ing",
+      "width": 1600,
+      "height": 2000,
+      "hash": "20b26d482a2e9f11a3de0d4ed11fec636ef983e3bde0357d807321f6801f5ed8",
+      "logoHash": "e2452a2e276abde04b219827a3002d188bcf7f539f4aed4624f8389db1150547",
+      "downloadedHash": "20b26d482a2e9f11a3de0d4ed11fec636ef983e3bde0357d807321f6801f5ed8",
+      "downloadedPreviewHash": "20b26d482a2e9f11a3de0d4ed11fec636ef983e3bde0357d807321f6801f5ed8",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "equinor",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d4cefd389724801f78b279c91084eda1f41b2609d4df26e2be14db2f8bc6f242",
+      "logoHash": "54b9031b33fe2324cacba9e010adde87255189dc9f80166bc70dfd9640123ee8",
+      "downloadedHash": "d4cefd389724801f78b279c91084eda1f41b2609d4df26e2be14db2f8bc6f242",
+      "downloadedPreviewHash": "d4cefd389724801f78b279c91084eda1f41b2609d4df26e2be14db2f8bc6f242",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "adyen",
+      "width": 1600,
+      "height": 2000,
+      "hash": "cc0119a28962147a8c4d3eca5f9be82ad338e6673376e56beb85f1a102f3e011",
+      "logoHash": "0ce53763605f460da59689da537d923076556266e60853d1d7c6a1df407ebe95",
+      "downloadedHash": "cc0119a28962147a8c4d3eca5f9be82ad338e6673376e56beb85f1a102f3e011",
+      "downloadedPreviewHash": "cc0119a28962147a8c4d3eca5f9be82ad338e6673376e56beb85f1a102f3e011",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "volvo",
+      "width": 1600,
+      "height": 2000,
+      "hash": "05d3cc9dab4ef21f296d7f3b202e5b2dd096785557549e8cd8aa392115cd8780",
+      "logoHash": "a2bb59cd9c406de11e0ed3ebdf5bcee79d910073a5dec90cc65b38addcb4000f",
+      "downloadedHash": "05d3cc9dab4ef21f296d7f3b202e5b2dd096785557549e8cd8aa392115cd8780",
+      "downloadedPreviewHash": "05d3cc9dab4ef21f296d7f3b202e5b2dd096785557549e8cd8aa392115cd8780",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "stellantis",
+      "width": 1600,
+      "height": 2000,
+      "hash": "94c62b240548707e4c3af9a21a9937026c7bc2d4c74ae8fc8b9d653473c63d25",
+      "logoHash": "9166c0120f5a1c506eaefcf99e2f2872e7592f680160b9132baa5018588325b4",
+      "downloadedHash": "94c62b240548707e4c3af9a21a9937026c7bc2d4c74ae8fc8b9d653473c63d25",
+      "downloadedPreviewHash": "94c62b240548707e4c3af9a21a9937026c7bc2d4c74ae8fc8b9d653473c63d25",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "dhr",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d40923695c87f623ea35c8b0896769e2e359475999ae81f846af64143f0032ac",
+      "logoHash": "4b1207795c1cb2c727ba19469e79fe51afbde2e36fb73ed6ae5aebac19929e02",
+      "downloadedHash": "d40923695c87f623ea35c8b0896769e2e359475999ae81f846af64143f0032ac",
+      "downloadedPreviewHash": "d40923695c87f623ea35c8b0896769e2e359475999ae81f846af64143f0032ac",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "equinor",
+      "width": 1600,
+      "height": 2000,
+      "hash": "14ecd4cb60ca012c8be5257fc3997cd5d062fd4a799eb12b5e1ca60b026c6121",
+      "logoHash": "54b9031b33fe2324cacba9e010adde87255189dc9f80166bc70dfd9640123ee8",
+      "downloadedHash": "14ecd4cb60ca012c8be5257fc3997cd5d062fd4a799eb12b5e1ca60b026c6121",
+      "downloadedPreviewHash": "14ecd4cb60ca012c8be5257fc3997cd5d062fd4a799eb12b5e1ca60b026c6121",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "marvell",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b483157558598fd69a8d1e6ff0eff127180df326ed9e29f3b668230d849a7c13",
+      "logoHash": "0249de9def4c9208dc0480e12a5dd7cd47ee8467ecb8e15be2e96fdc6c988860",
+      "downloadedHash": "b483157558598fd69a8d1e6ff0eff127180df326ed9e29f3b668230d849a7c13",
+      "downloadedPreviewHash": "b483157558598fd69a8d1e6ff0eff127180df326ed9e29f3b668230d849a7c13",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "volvo",
+      "width": 1600,
+      "height": 2000,
+      "hash": "cea2711811eccbd8e95dc9d6910853061e8ddea7ac4c468bd0808c7a5b00869a",
+      "logoHash": "a2bb59cd9c406de11e0ed3ebdf5bcee79d910073a5dec90cc65b38addcb4000f",
+      "downloadedHash": "a8e950416942ab256924785d632ac921d76457cb93979c86bb8676b7f09e3bc2",
+      "downloadedPreviewHash": "a8e950416942ab256924785d632ac921d76457cb93979c86bb8676b7f09e3bc2",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "philip-morris",
+      "width": 1600,
+      "height": 2000,
+      "hash": "7a9a7b9551d9f01073b9fd77fa79df21f68ac72e9bc6ea35084589cf1a2d8aff",
+      "logoHash": "a393379b2bde6efc7af970371cc0c0bb4aeeebce9d96c3a6cc95b8d719300452",
+      "downloadedHash": "7a9a7b9551d9f01073b9fd77fa79df21f68ac72e9bc6ea35084589cf1a2d8aff",
+      "downloadedPreviewHash": "7a9a7b9551d9f01073b9fd77fa79df21f68ac72e9bc6ea35084589cf1a2d8aff",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "dhr",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0c59f526fda743bdc9cae9c9b8d2d77e12ab7ebf473d6da7930e359322e91246",
+      "logoHash": "4b1207795c1cb2c727ba19469e79fe51afbde2e36fb73ed6ae5aebac19929e02",
+      "downloadedHash": "0c59f526fda743bdc9cae9c9b8d2d77e12ab7ebf473d6da7930e359322e91246",
+      "downloadedPreviewHash": "0c59f526fda743bdc9cae9c9b8d2d77e12ab7ebf473d6da7930e359322e91246",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "shw",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8aef96eb8cf54a9497757a193ddf989295c64b7fe276021679d355a7b27a2cf4",
+      "logoHash": "2d81b4c04e0ad048d94397cfc8c8697173cb4d9333a7aa181c639d969efc92c6",
+      "downloadedHash": "8aef96eb8cf54a9497757a193ddf989295c64b7fe276021679d355a7b27a2cf4",
+      "downloadedPreviewHash": "8aef96eb8cf54a9497757a193ddf989295c64b7fe276021679d355a7b27a2cf4",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "marvell",
+      "width": 1600,
+      "height": 2000,
+      "hash": "167d9db0f5799310f0801292919bd434426dbe00f314b414153001ded608026e",
+      "logoHash": "0249de9def4c9208dc0480e12a5dd7cd47ee8467ecb8e15be2e96fdc6c988860",
+      "downloadedHash": "8d13fb72fbaaadf0a0fa6b758b0277b1a50d1a2cc3ab5cfda75c1a9f3fb6aa86",
+      "downloadedPreviewHash": "8d13fb72fbaaadf0a0fa6b758b0277b1a50d1a2cc3ab5cfda75c1a9f3fb6aa86",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "3m",
+      "width": 1600,
+      "height": 2000,
+      "hash": "cefacfa3219794f5c1c655e90ea5421f8217c28991310c671ceb7b667f6f2b1d",
+      "logoHash": "475ae551ee4dee00771bfd57ffa3d8c74900edb2083c4bc47034e7c9edd911b4",
+      "downloadedHash": "cefacfa3219794f5c1c655e90ea5421f8217c28991310c671ceb7b667f6f2b1d",
+      "downloadedPreviewHash": "cefacfa3219794f5c1c655e90ea5421f8217c28991310c671ceb7b667f6f2b1d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "philip-morris",
+      "width": 1600,
+      "height": 2000,
+      "hash": "6175365a448a3f29414b569604a813d595ecbfeec79e03d236225019feb4f313",
+      "logoHash": "a393379b2bde6efc7af970371cc0c0bb4aeeebce9d96c3a6cc95b8d719300452",
+      "downloadedHash": "6175365a448a3f29414b569604a813d595ecbfeec79e03d236225019feb4f313",
+      "downloadedPreviewHash": "6175365a448a3f29414b569604a813d595ecbfeec79e03d236225019feb4f313",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "bhp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "938ec9b5bc8083c00dd51e6d2410bbe406f2bf7376f5873029058a38c8397bc3",
+      "logoHash": "aae434407075a886131825b7968ca05386d774fdcb877a0157e9316b60e31fa7",
+      "downloadedHash": "938ec9b5bc8083c00dd51e6d2410bbe406f2bf7376f5873029058a38c8397bc3",
+      "downloadedPreviewHash": "938ec9b5bc8083c00dd51e6d2410bbe406f2bf7376f5873029058a38c8397bc3",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "shw",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0422fa2a0859f78df7ead5db1523bf6c6328818c87019b645cb3a2491305db89",
+      "logoHash": "2d81b4c04e0ad048d94397cfc8c8697173cb4d9333a7aa181c639d969efc92c6",
+      "downloadedHash": "0422fa2a0859f78df7ead5db1523bf6c6328818c87019b645cb3a2491305db89",
+      "downloadedPreviewHash": "0422fa2a0859f78df7ead5db1523bf6c6328818c87019b645cb3a2491305db89",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "cloudflare",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a42d5a2b2e4bca596f8bec7bf75838e879dec1bb85335a4faca426dd5c85e341",
+      "logoHash": "169ebf21cf698d9f3a5eaf71d7d63bc9113d322803bb264cc735f9521916306e",
+      "downloadedHash": "a42d5a2b2e4bca596f8bec7bf75838e879dec1bb85335a4faca426dd5c85e341",
+      "downloadedPreviewHash": "a42d5a2b2e4bca596f8bec7bf75838e879dec1bb85335a4faca426dd5c85e341",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "3m",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b2a5bd1fe13b00c7568d004450f22ca24d7f76e8ebb3387abe3dde950460fd88",
+      "logoHash": "475ae551ee4dee00771bfd57ffa3d8c74900edb2083c4bc47034e7c9edd911b4",
+      "downloadedHash": "b2a5bd1fe13b00c7568d004450f22ca24d7f76e8ebb3387abe3dde950460fd88",
+      "downloadedPreviewHash": "b2a5bd1fe13b00c7568d004450f22ca24d7f76e8ebb3387abe3dde950460fd88",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "coinbase",
+      "width": 1600,
+      "height": 2000,
+      "hash": "44b0f00af74b04054c7746fe937009f5d23ca35b30a79f0ee862da3bb51a48c5",
+      "logoHash": "4dee27c7316c279f15fcc2ab6e467d48cae6d9dbc1d2c7be61628c9c950ecd5f",
+      "downloadedHash": "44b0f00af74b04054c7746fe937009f5d23ca35b30a79f0ee862da3bb51a48c5",
+      "downloadedPreviewHash": "44b0f00af74b04054c7746fe937009f5d23ca35b30a79f0ee862da3bb51a48c5",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "bhp",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b0df96dff1fac2f61cf63915f875946af5374396edd494d3f8f2a81503130913",
+      "logoHash": "aae434407075a886131825b7968ca05386d774fdcb877a0157e9316b60e31fa7",
+      "downloadedHash": "b0df96dff1fac2f61cf63915f875946af5374396edd494d3f8f2a81503130913",
+      "downloadedPreviewHash": "b0df96dff1fac2f61cf63915f875946af5374396edd494d3f8f2a81503130913",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "reddit",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "logoHash": "29a35ac4584605b9f9b41390a0ca0eebc403127ccc0c620ed051a50eaf5b605f",
+      "downloadedHash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "downloadedPreviewHash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "cloudflare",
+      "width": 1600,
+      "height": 2000,
+      "hash": "d1368343248fa5aff984f74082fd17a90e800f2eb599171dfc8ab7ab03db0e67",
+      "logoHash": "169ebf21cf698d9f3a5eaf71d7d63bc9113d322803bb264cc735f9521916306e",
+      "downloadedHash": "d1368343248fa5aff984f74082fd17a90e800f2eb599171dfc8ab7ab03db0e67",
+      "downloadedPreviewHash": "d1368343248fa5aff984f74082fd17a90e800f2eb599171dfc8ab7ab03db0e67",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "rocket-lab",
+      "width": 1600,
+      "height": 2000,
+      "hash": "98d7c037dd2ba57dff1134401ee6f5231c6387a64228dc83132f8055e0cc2257",
+      "logoHash": "55037ce2aaf7e70156539338d01b567477ddbc0b73ce9529e35a9d7cb1f75841",
+      "downloadedHash": "98d7c037dd2ba57dff1134401ee6f5231c6387a64228dc83132f8055e0cc2257",
+      "downloadedPreviewHash": "98d7c037dd2ba57dff1134401ee6f5231c6387a64228dc83132f8055e0cc2257",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "coinbase",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0da5b65c3ee682779120ed9cb28a9788dc1f0b782caa28b56c02110346533f1d",
+      "logoHash": "4dee27c7316c279f15fcc2ab6e467d48cae6d9dbc1d2c7be61628c9c950ecd5f",
+      "downloadedHash": "0da5b65c3ee682779120ed9cb28a9788dc1f0b782caa28b56c02110346533f1d",
+      "downloadedPreviewHash": "0da5b65c3ee682779120ed9cb28a9788dc1f0b782caa28b56c02110346533f1d",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "sofi",
+      "width": 1600,
+      "height": 2000,
+      "hash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "logoHash": "18f964abefa1273966e2508234d96684651ee3ce1465d3875081767eaaf2db96",
+      "downloadedHash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "downloadedPreviewHash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "reddit",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "logoHash": "29a35ac4584605b9f9b41390a0ca0eebc403127ccc0c620ed051a50eaf5b605f",
+      "downloadedHash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "downloadedPreviewHash": "0058ad8c2da74f96c67189a3f5f7b7aa0a35aa07973187e124fdf9c2335479cb",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "vertiv",
+      "width": 1600,
+      "height": 2000,
+      "hash": "9465bba5b3ff4d177ef8a4460bc6ff424c1401b6611303b17f7b67afb64eaa75",
+      "logoHash": "ae1d79a10229fc64ccc5778d04e5f3616d25bc046fe66255cac07eac3bb14985",
+      "downloadedHash": "9465bba5b3ff4d177ef8a4460bc6ff424c1401b6611303b17f7b67afb64eaa75",
+      "downloadedPreviewHash": "9465bba5b3ff4d177ef8a4460bc6ff424c1401b6611303b17f7b67afb64eaa75",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "rocket-lab",
+      "width": 1600,
+      "height": 2000,
+      "hash": "1f3ceee6513ef63ae23c90c0c45321837036b8ad3ce7af02de2bee6af04c49ef",
+      "logoHash": "55037ce2aaf7e70156539338d01b567477ddbc0b73ce9529e35a9d7cb1f75841",
+      "downloadedHash": "1f3ceee6513ef63ae23c90c0c45321837036b8ad3ce7af02de2bee6af04c49ef",
+      "downloadedPreviewHash": "1f3ceee6513ef63ae23c90c0c45321837036b8ad3ce7af02de2bee6af04c49ef",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "zscaler",
+      "width": 1600,
+      "height": 2000,
+      "hash": "fa460d649edd500aca0f6a67a71932348ae2cce1c2dc152f6d2dcf161ff06749",
+      "logoHash": "f3366dcaf67df8cb62cdb8938b3965010cc2fea9c20f78830e557f36d3fe7f84",
+      "downloadedHash": "fa460d649edd500aca0f6a67a71932348ae2cce1c2dc152f6d2dcf161ff06749",
+      "downloadedPreviewHash": "fa460d649edd500aca0f6a67a71932348ae2cce1c2dc152f6d2dcf161ff06749",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "sofi",
+      "width": 1600,
+      "height": 2000,
+      "hash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "logoHash": "18f964abefa1273966e2508234d96684651ee3ce1465d3875081767eaaf2db96",
+      "downloadedHash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "downloadedPreviewHash": "97eacd4f21498b9c86c46baa27a93ea7a3753833f303963df164ce305339a7b5",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "accenture",
+      "width": 1600,
+      "height": 2000,
+      "hash": "8ea9ffcae3896885c74437f08b80781699dd1dc4101043abe2d11b479a4205ed",
+      "logoHash": "b4261c2e3a1de238d95854b0ac56d8be1a85b425ee05b80aa8f255a23b2e62cd",
+      "downloadedHash": "8ea9ffcae3896885c74437f08b80781699dd1dc4101043abe2d11b479a4205ed",
+      "downloadedPreviewHash": "8ea9ffcae3896885c74437f08b80781699dd1dc4101043abe2d11b479a4205ed",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "vertiv",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a8ca84908362ad2472c442cfb7b517d3fab5d22001f62f3ca53b80871ad74917",
+      "logoHash": "ae1d79a10229fc64ccc5778d04e5f3616d25bc046fe66255cac07eac3bb14985",
+      "downloadedHash": "a8ca84908362ad2472c442cfb7b517d3fab5d22001f62f3ca53b80871ad74917",
+      "downloadedPreviewHash": "a8ca84908362ad2472c442cfb7b517d3fab5d22001f62f3ca53b80871ad74917",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "generali",
+      "width": 1600,
+      "height": 2000,
+      "hash": "bfcf4fedb1a05458cc6b59ac032e5a98453c3b22dd42923d733fd4024a01b004",
+      "logoHash": "83f132f728f905730dd1e188e0769681536a1b960f7695080e4ff0e033f74f9b",
+      "downloadedHash": "bfcf4fedb1a05458cc6b59ac032e5a98453c3b22dd42923d733fd4024a01b004",
+      "downloadedPreviewHash": "bfcf4fedb1a05458cc6b59ac032e5a98453c3b22dd42923d733fd4024a01b004",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "zscaler",
+      "width": 1600,
+      "height": 2000,
+      "hash": "628212c9217b2d1bb968e8a03037fae1bdf62d84b2241b89bf82c34b1bff42bc",
+      "logoHash": "f3366dcaf67df8cb62cdb8938b3965010cc2fea9c20f78830e557f36d3fe7f84",
+      "downloadedHash": "628212c9217b2d1bb968e8a03037fae1bdf62d84b2241b89bf82c34b1bff42bc",
+      "downloadedPreviewHash": "628212c9217b2d1bb968e8a03037fae1bdf62d84b2241b89bf82c34b1bff42bc",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "prosus",
+      "width": 1600,
+      "height": 2000,
+      "hash": "eec4f988108b2590fc0e1997a7a80044c9cadc4e9a4f767b83ab14017ec405cf",
+      "logoHash": "116e15ed43891944ad523a19384a7d9ed7cb4df6c30420e49e8fcbcd57529c5f",
+      "downloadedHash": "eec4f988108b2590fc0e1997a7a80044c9cadc4e9a4f767b83ab14017ec405cf",
+      "downloadedPreviewHash": "eec4f988108b2590fc0e1997a7a80044c9cadc4e9a4f767b83ab14017ec405cf",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "accenture",
+      "width": 1600,
+      "height": 2000,
+      "hash": "730842d177161e913b7f999b015ca0a2368a99e786c40eea1985e1418a557300",
+      "logoHash": "b4261c2e3a1de238d95854b0ac56d8be1a85b425ee05b80aa8f255a23b2e62cd",
+      "downloadedHash": "730842d177161e913b7f999b015ca0a2368a99e786c40eea1985e1418a557300",
+      "downloadedPreviewHash": "730842d177161e913b7f999b015ca0a2368a99e786c40eea1985e1418a557300",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "datadog",
+      "width": 1600,
+      "height": 2000,
+      "hash": "0f6547d7ef96c680a30efe56d20f6ff4eaa99d14c8e5570ad9e6722990314631",
+      "logoHash": "869f43c5bca4dd260e69b7dd10df603c955eba242bad132b37da08d1d09da060",
+      "downloadedHash": "0f6547d7ef96c680a30efe56d20f6ff4eaa99d14c8e5570ad9e6722990314631",
+      "downloadedPreviewHash": "0f6547d7ef96c680a30efe56d20f6ff4eaa99d14c8e5570ad9e6722990314631",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "generali",
+      "width": 1600,
+      "height": 2000,
+      "hash": "20b887d9c674d790cc7d10b90d620b2a90532bfa0b4b6c59a58ec54fb44f245a",
+      "logoHash": "83f132f728f905730dd1e188e0769681536a1b960f7695080e4ff0e033f74f9b",
+      "downloadedHash": "1092e3e39f0ebd4e5c5dbdf7cc78434092a0ab0169ca341ad38149dc63eba296",
+      "downloadedPreviewHash": "1092e3e39f0ebd4e5c5dbdf7cc78434092a0ab0169ca341ad38149dc63eba296",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "intel",
+      "width": 1600,
+      "height": 2000,
+      "hash": "b4f131bd38a94f8fad344966499e9b00807f3ec9aa3025d80ee25426a0e20fa9",
+      "logoHash": "2301ee40c46b935fdf974233d89bcc05980cdda556c8ae24b354b94486a30e12",
+      "downloadedHash": "b4f131bd38a94f8fad344966499e9b00807f3ec9aa3025d80ee25426a0e20fa9",
+      "downloadedPreviewHash": "b4f131bd38a94f8fad344966499e9b00807f3ec9aa3025d80ee25426a0e20fa9",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "prosus",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a7927d4224a2ac877820639cf3b0a12d55f85b3b6cd9d3b8f6b78fb6974481bf",
+      "logoHash": "116e15ed43891944ad523a19384a7d9ed7cb4df6c30420e49e8fcbcd57529c5f",
+      "downloadedHash": "a7927d4224a2ac877820639cf3b0a12d55f85b3b6cd9d3b8f6b78fb6974481bf",
+      "downloadedPreviewHash": "a7927d4224a2ac877820639cf3b0a12d55f85b3b6cd9d3b8f6b78fb6974481bf",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "booking",
+      "width": 1600,
+      "height": 2000,
+      "hash": "df6bc1f5296f990a4fccdb5a14ae0a11bf79e9bb9f669fba364bc72730eceb7a",
+      "logoHash": "f9b92652afdff2ff48b7625690c3b87fc4ddff269b940cd93b071c15cdbc383e",
+      "downloadedHash": "df6bc1f5296f990a4fccdb5a14ae0a11bf79e9bb9f669fba364bc72730eceb7a",
+      "downloadedPreviewHash": "df6bc1f5296f990a4fccdb5a14ae0a11bf79e9bb9f669fba364bc72730eceb7a",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "datadog",
+      "width": 1600,
+      "height": 2000,
+      "hash": "a07607188d28a2667abc2b2e4dd5064e5eacd27b6f3c6c86de5f0cc93f1b01c8",
+      "logoHash": "869f43c5bca4dd260e69b7dd10df603c955eba242bad132b37da08d1d09da060",
+      "downloadedHash": "a07607188d28a2667abc2b2e4dd5064e5eacd27b6f3c6c86de5f0cc93f1b01c8",
+      "downloadedPreviewHash": "a07607188d28a2667abc2b2e4dd5064e5eacd27b6f3c6c86de5f0cc93f1b01c8",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "desktop",
+      "id": "broadcom",
+      "width": 1600,
+      "height": 2000,
+      "hash": "290d18c7d3f521b1a9b14d28a5f4b4178914a22c8d617e9babeb86d7e2e118e1",
+      "logoHash": "35ebf39dcdd5ee2b6aa9f140fd34edabf3b8558d3cae38fd286afa5235e42d9a",
+      "downloadedHash": "290d18c7d3f521b1a9b14d28a5f4b4178914a22c8d617e9babeb86d7e2e118e1",
+      "downloadedPreviewHash": "290d18c7d3f521b1a9b14d28a5f4b4178914a22c8d617e9babeb86d7e2e118e1",
+      "textAndLayoutIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "intel",
+      "width": 1600,
+      "height": 2000,
+      "hash": "c4917d509b103e47641a75f8baa47fbd3d69cb8e8fdac131a4b29a5b37323ec0",
+      "logoHash": "2301ee40c46b935fdf974233d89bcc05980cdda556c8ae24b354b94486a30e12",
+      "downloadedHash": "b3e15993c3cf02510b3f301137b80a4ca0039bb6284d67a80b3ac40ca64d8ccf",
+      "downloadedPreviewHash": "b3e15993c3cf02510b3f301137b80a4ca0039bb6284d67a80b3ac40ca64d8ccf",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
+    },
+    {
+      "device": "mobile",
+      "id": "booking",
+      "width": 1600,
+      "height": 2000,
+      "hash": "2e5f1b48e31eefe3c2eeab6e456df65cb70c97fb4ac16473f1c37d126169928e",
+      "logoHash": "f9b92652afdff2ff48b7625690c3b87fc4ddff269b940cd93b071c15cdbc383e",
+      "downloadedHash": "2e5f1b48e31eefe3c2eeab6e456df65cb70c97fb4ac16473f1c37d126169928e",
+      "downloadedPreviewHash": "2e5f1b48e31eefe3c2eeab6e456df65cb70c97fb4ac16473f1c37d126169928e",
+      "textAndLayoutIdentical": true,
+      "logoPixelsIdentical": true
     },
     {
       "device": "mobile",
       "id": "broadcom",
       "width": 1600,
       "height": 2000,
-      "hash": "76d22b39c0e6c4126e4347675d1ea4ad3aca1a49e311dd566b033475e12f6821"
+      "hash": "a96a21e7fab7795aba07bc53abe08205328966e0e97183a299de6418bbba7092",
+      "logoHash": "fd2e95a80eb87aa64fc3fa2715cdefb571ccb757f6f5e66d20e30562bcb3bd1d",
+      "downloadedHash": "a96a21e7fab7795aba07bc53abe08205328966e0e97183a299de6418bbba7092",
+      "downloadedPreviewHash": "a96a21e7fab7795aba07bc53abe08205328966e0e97183a299de6418bbba7092",
+      "textAndLayoutIdentical": true
     }
   ],
   "checks": [
-    "both PNG download buttons match preview pixels",
+    "both PNG download buttons match exact logo pixels and text/layout commands; full hashes retained as diagnostics",
     "desktop and mobile picker changes; stale render ignored",
     "delayed logo blocks PNG completion",
     "missing and corrupt logos fall back and recover",

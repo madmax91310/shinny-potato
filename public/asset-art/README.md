@@ -2,7 +2,9 @@
 
 The anniversary tool now uses the first-party files listed in
 [`official-logos/sources.json`](official-logos/sources.json). Each entry records the
-company page, exact download URL, retrieval date and any SVG wrapper adjustment.
+company page, exact download URL, retrieval date, SHA-256 hashes and any SVG wrapper adjustment.
+116 distinct eligible assets now have a verified official logo; the registry check
+requires at least 100 distinct files and detects an unrecorded asset change.
 The official ASML vector already in this repository is reused. Legacy Simple Icons
 silhouettes and generated Apple artwork are no longer used by this tool.
 
@@ -18,14 +20,17 @@ logos in a 1160 × 620 maximum area around (800, 605), with raster caps where ne
 No metallic surface, extrusion, shadow, reflection, arbitrary recolouring, source
 crop or added rectangular background is applied to a logo. The native white LVMH
 SVG was rejected for lack of contrast; the official dark transparent PNG is used.
-Apple and Tesla use original inline corporate SVG paths in standalone wrappers;
-Apple's empty navigation padding and NVIDIA's excess empty SVG canvas are reduced
-without cutting any paths. Marks remain the property of their respective owners.
+Inline corporate vectors are copied from the official page with their original
+paths, fills and gradients in standalone SVG wrappers. Excess empty SVG canvas
+is fitted around the complete geometry with padding; no path is cut or redrawn. Marks remain the property of their respective owners.
 
 Both the preview and downloaded PNG use `renderAnniversaryImage`. It waits for all
 local images and the font before drawing. Failed logo cache entries are cleared so
 a later export can retry; background/font failures still use the existing error UI.
-No remote brand service is contacted at runtime. `import.meta.env.BASE_URL` retains
+No remote brand service is contacted at runtime. The full provenance manifest is
+kept separate from the compact runtime registry to preserve the route bundle budget.
+After adding a verified asset, run `node scripts/sync-anniversary-logo-registry.mjs`;
+CI checks its hashes and the generated registry with `--check`. `import.meta.env.BASE_URL` retains
 the `/shinny-potato/` GitHub Pages prefix. Financial data, currency, units, source
 credits, dates and calculations are unchanged.
 

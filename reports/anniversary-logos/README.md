@@ -1,63 +1,103 @@
-# Logos « Il y a X ans » — vérification du 24 octobre 2026
+# Logos « Il y a X ans » — 116 actifs vérifiés
 
-L’aperçu et les deux téléchargements PNG utilisent les mêmes fichiers officiels
-locaux, sans métal, relief, recoloration, étirement ou fond ajouté. La pomme
-incorporée au fond généré est remplacée par le véritable SVG Apple sur le fond
-vierge existant. Le moteur attend les images ; un fichier absent ou illisible
-produit un remplacement textuel et peut être retenté au téléchargement suivant.
-Les données, calculs, textes financiers et réglages sont conservés.
+La correction couvre **116 actifs distincts**. Chaque logo a une source officielle
+documentée et un
+fichier local ; aucun logo n’est dessiné, généré ou récupéré auprès d’un agrégateur.
+Les [sources, variantes et empreintes SHA-256](../../public/asset-art/official-logos/sources.json)
+renvoient aux sites des entreprises ou aux CDN qu’ils utilisent pour publier leurs
+ressources. Les logos ne sont jamais téléchargés depuis ces sites pendant l’export.
 
-18 logos intégrés : Nvidia, Microsoft, Apple, ASML (fichier officiel existant
-réutilisé), Tesla, Bitcoin, Ethereum, SAP, LVMH, Meta, Air Liquide, Coca-Cola Company,
-Visa, Procter & Gamble, Johnson & Johnson, JPMorgan Chase, UnitedHealth et PayPal.
-[Sources officielles et variantes](../../public/asset-art/official-logos/sources.json).
-Les variantes blanches peu lisibles ont été écartées ; LVMH utilise son PNG sombre
-officiel à sa résolution native.
+Les entreprises supplémentaires comprennent notamment Qualcomm, Bank of America,
+Adobe, Intel, Oracle, Salesforce, IBM, Goldman Sachs, Allianz, AXA, BNP Paribas,
+Safran, Hermès, L’Oréal, Nestlé, PepsiCo, Danone, Novartis, Pfizer, Booking Holdings,
+Samsung, UBS, HSBC, ING,
+Capgemini, Renault, Philips, STMicroelectronics, Coinbase, Cloudflare et Reddit.
+La [liste exhaustive](coverage.csv) identifie les 116 logos effectivement intégrés
+et le rendu de chaque autre actif. ASML réutilise le fichier officiel déjà présent.
+
+## Fidélité et intégration
+
+Les tracés, couleurs, gradients d’origine et transparence sont conservés. Les
+variantes sombres ou colorées appropriées au fond clair sont retenues ; les
+variantes blanches illisibles, logos de partenaires, marques de produits et slogans
+seuls sont écartés. Les canevas SVG sont ajustés autour de la géométrie complète,
+avec une marge, sans retracer, étirer ni découper les marques. Les PNG conservent
+leurs octets d’origine et sont plafonnés à leur résolution native.
+
+Trois SVG officiels — Deutsche Börse, BNP Paribas et Danaher — contenaient un
+`foreignObject` d’Adobe Illustrator non visible. Hébergé en HTTP, ce bloc empêchait
+l’export du canvas dans Chromium. Seules ces métadonnées d’édition ont été retirées.
+Les [captures avant/après sont strictement identiques](svg-authoring-cleanup.json).
+Le contrôle du registre rejette désormais ces blocs et les dépendances externes.
+Les [fins de ligne des fichiers SVG ont aussi été normalisées](svg-packaging-check.json),
+avec vérification que tous les éléments et attributs de dessin restent identiques.
+
+L’aperçu et les deux téléchargements partagent toujours le même moteur. Le logo
+est chargé avant le rendu ; fichier absent/corrompu → texte propre, puis nouvelle
+tentative possible. Les chiffres, calculs, unités, dates, textes et réglages sont
+conservés. Les informations de provenance sont séparées du registre d’exécution
+compact (environ 8 ko) pour respecter le budget de chargement de l’outil.
 
 ## Actifs sans fichier validé
 
-La couverture n’est pas exhaustive : sur 689 actifs admissibles, 18 ont un logo,
-669 conservent une identité textuelle et l’or/l’argent gardent leurs illustrations.
-La [liste complète](coverage.csv) signale chaque actif, notamment Broadcom, Amazon,
-Alphabet, Nestlé, Netflix, Nike, Disney, Berkshire Hathaway et les indices/fonds.
+Sur 689 actifs admissibles : **116 logos, 571 remplacements textuels et les deux
+illustrations de matières premières (or/argent)**. Broadcom, Amazon, Alphabet,
+Netflix, Nike et Disney font notamment partie des actifs restant en texte.
+[Liste complète des actifs et du fichier utilisé](coverage.csv).
+
 Cela signifie « aucun fichier officiel exploitable vérifié dans cette correction »,
-pas « l’entreprise n’a pas de logo ». Aucun logo d’émetteur n’est attribué à un
-indice ou un fonds. Les petites images opaques de Broadcom/Disney et les variantes
-blanches Home Depot/ExxonMobil ont été écartées plutôt que retouchées ou inventées.
+pas « l’entreprise n’a pas de logo ». Aucun logo d’émetteur ne remplace un indice
+ou un fonds. Le minimum de 100 est vérifié sur des actifs admissibles, des fichiers
+et des pages officielles distincts ; les variantes d’une marque ne gonflent pas le
+compteur.
 
 ## Vérifications
 
 | Contrôle | Résultat |
 | --- | --- |
-| `npm run build` | Réussi, prébuild et audits de bundles/couverture compris |
-| Oxlint sur les cinq fichiers JS modifiés/ajoutés | Réussi |
-| `test-browser-shards.mjs` | Réussi ; nouveau test intégré à la CI navigateur existante |
-| `test-anniversary-art.mjs` | 709 exports : 689 actifs et 20 comparatifs ; chiffres, unités, labels, dimensions, textes longs, repli et reprise |
-| `test-anniversary-logos.mjs` sur le build de production | 38 aperçus, 76 vrais téléchargements via les deux boutons ; pixels identiques à l’aperçu |
-| Chromium 1440 × 1000 et émulation iPhone 13 | Les 18 logos et Broadcom sans logo, proportions, marges, centrage, transparence et changement d’actif vérifiés |
-| Chargement retardé, changement pendant ce chargement | Pas d’export prématuré ; une ancienne réponse ne remplace pas le nouvel actif |
-| Logo absent / SVG corrompu | Aperçu et PNG textuels sans image cassée ; le logo revient après reprise |
-| `test-shared-history-art.mjs`, `test-anniversary-editorial.mjs`, `test-anniversary-indices.mjs` | Réussis |
+| `npm run build`, compilation finale et audits de bundles/couverture | Réussis |
+| Oxlint et répartition des contrôles CI | Réussis |
+| `sync-anniversary-logo-registry.mjs --check` | 116 actifs admissibles, fichiers locaux, sources, empreintes et registre concordants |
+| `test-anniversary-art.mjs` | 709 exports réussis : 689 actifs et 20 comparatifs ; chiffres, unités, labels, dimensions, textes longs, repli et reprise |
+| Précontrôle HTTP sur le build de production | 116 logos décodés et exportables, sans canvas contaminé |
+| `test-anniversary-logos.mjs` | Réussi : 234 aperçus et 468 téléchargements via les deux boutons sur ordinateur et mobile ; logos et commandes de texte identiques |
+| Chargement retardé, changement d’actif, réponse obsolète, fichiers absents/corrompus et reprise | Réussis |
+| Historiques partagés, textes éditoriaux et indices | Réussis |
 
-[Résultats détaillés et empreintes des pixels](browser-results.json).
-Les 18 PNG et leurs variantes mobiles ont aussi été examinés visuellement.
-Les tests n’utilisent aucun service de logos externe. Tous les chemins passent par
-`/shinny-potato/asset-art/` sur le build destiné à GitHub Pages. Il n’y a eu aucun
-déploiement : la vérification des nouveaux fichiers sur le domaine public devra
-suivre un futur déploiement autorisé. L’émulation mobile utilise Chromium, pas un
-iPhone physique ni Safari.
+Les contrôles en interface utilisent Chromium 1440 × 1000 et l’émulation iPhone 13,
+pas un iPhone physique ni Safari. Ils vérifient les pixels des vrais PNG téléchargés
+contre l’aperçu : pixels exacts de la zone du logo et commandes de texte identiques
+(contenu, police, taille et position). Les empreintes complètes sont conservées comme
+diagnostic : l’anticrénelage du texte peut varier entre deux canvas dans Chromium.
+Les proportions, le centrage, les marges et l’absence d’effets ou d’images cassées
+sont contrôlés séparément. Les contextes de navigateur sont renouvelés entre les actifs pour
+borner la mémoire pendant les centaines de téléchargements. Les comparaisons
+utilisent le canvas logiciel de Chromium pour limiter les variations de rendu.
+
+Tous les chemins sont vérifiés sous `/shinny-potato/asset-art/` dans le build destiné
+à GitHub Pages. Aucun déploiement n’a été effectué : les nouveaux fichiers ne sont
+pas encore vérifiables sur le domaine public. Aucune fusion.
 
 ## Exemples visuels
 
-La planche ci-dessous rassemble des PNG réellement téléchargés, sans retouche des
-logos ni des informations. Les périodes peuvent varier car l’outil conserve son
-tirage de période existant.
+Les cinq planches couvrent les 116 logos à partir des PNG réellement téléchargés
+en interface, sans retoucher les marques. Les périodes restent celles de l’outil,
+dont le tirage existant est conservé.
 
-![PNG téléchargés : logos compacts, larges, hauts et remplacement textuel](examples/downloaded-pngs.png)
+![Sélection de PNG téléchargés](examples/downloaded-pngs.png)
 
-PNG originaux téléchargés : [Nvidia](examples/nvidia.png),
-[Microsoft](examples/microsoft.png), [Apple](examples/apple.png).
+PNG originaux : [Nvidia](examples/nvidia.png), [Microsoft](examples/microsoft.png),
+[Apple](examples/apple.png). Aperçus : [ordinateur](examples/desktop-preview.png),
+[mobile](examples/mobile-preview.png).
 
-Aperçus dans l’interface : [ordinateur](examples/desktop-preview.png),
-[mobile](examples/mobile-preview.png). Le mobile permet de faire défiler le visuel ;
-les PNG téléchargés conservent les 1600 × 2000 pixels complets.
+[Résultats détaillés et empreintes des PNG](browser-results.json).
+
+Les 116 logos, répartis sur cinq planches :
+
+- [Planche 1](examples/catalogue-01.png)
+- [Planche 2](examples/catalogue-02.png)
+- [Planche 3](examples/catalogue-03.png)
+- [Planche 4](examples/catalogue-04.png)
+- [Planche 5](examples/catalogue-05.png)
+
+[Collecte et exemples de ressources écartées](collection-summary.json).

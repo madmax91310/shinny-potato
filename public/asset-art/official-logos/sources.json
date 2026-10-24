@@ -4,14 +4,16 @@
     "page": "https://www.nvidia.com/en-us/about-nvidia/legal-info/logo-brand-usage/",
     "source": "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/nvidia-logo-vert.svg",
     "notes": "Official green/black stacked logo. ViewBox tightened around the complete paths with padding; paths, fills and proportions unchanged.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "3c2038bc410017dc43236e98cb42237729a1978e924928bcd4d5bc47aebec951"
   },
   "apple": {
     "file": "official-logos/apple.svg",
     "page": "https://www.apple.com/",
     "source": "https://www.apple.com/",
     "notes": "Inline globalnav SVG, black by default. Only the empty navigation padding is removed from the SVG viewBox; complete original path retained.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "1a92c8d127281093cf9b656e8f8c8da76bc97e5ce8c626b85ad28bd30b8d1eb1"
   },
   "microsoft": {
     "file": "official-logos/microsoft.png",
@@ -20,42 +22,48 @@
     "notes": "Unmodified 512px transparent corporate symbol from the Microsoft newsroom; capped at native resolution.",
     "retrieved": "2026-10-24",
     "maxWidth": 512,
-    "maxHeight": 512
+    "maxHeight": 512,
+    "sha256": "42dce33474a8dad0b8aa2d0ff116993c4d29d3080a061861e0258197c54759c2"
   },
   "asml": {
     "file": "asml.svg",
     "page": "https://www.asml.com/",
     "source": "https://www.asml.com/images/icons/asml-logo.svg",
     "notes": "Reused existing official paths. Standalone SVG wrapper already present in repository.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "26ff89963879e07cba2fc1d083f7a0167f2ddd4f6cf332c51d3e29cab945abec"
   },
   "tesla": {
     "file": "official-logos/tesla.svg",
     "page": "https://www.tesla.com/",
     "source": "https://www.tesla.com/",
     "notes": "Official inline tds-icon-logo-wordmark symbol, standalone SVG wrapper; default black currentColor retained.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "e3acfe2d3c4e03b0c988dce298745dd24085466085a40ca855863225e9b9571b"
   },
   "bitcoin": {
     "file": "official-logos/bitcoin.svg",
     "page": "https://bitcoin.org/en/",
     "source": "https://bitcoin.org/img/icons/logotop.svg",
     "notes": "Unmodified official orange/black wordmark.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "785eb928cb63ebe7b8ab71d6930c277c3ad04fa6252ce667a939898bbb8882c6"
   },
   "ethereum": {
     "file": "official-logos/ethereum.png",
     "page": "https://ethereum.org/en/assets/",
     "source": "https://ethereum.org/_next/static/media/eth-diamond-black.31u_5ih2w7osr.png",
     "notes": "Unmodified black transparent diamond from official assets page.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "5757cab46715dcaa7aac07a9682915da59f4d626d9159af261f3607f716a451e"
   },
   "sap": {
     "file": "official-logos/sap.svg",
     "page": "https://www.sap.com/",
     "source": "https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg",
     "notes": "Unmodified official blue/white SVG.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "f1d179ede6a6293481f6276b8ea23bb4387a0f348750a6415cf7da089085bb18"
   },
   "lvmh": {
     "file": "official-logos/lvmh.png",
@@ -64,69 +72,995 @@
     "notes": "Unmodified official dark corporate PNG linked from homepage; capped at native resolution. White SVG rejected on the light background.",
     "retrieved": "2026-10-24",
     "maxWidth": 428,
-    "maxHeight": 96
+    "maxHeight": 96,
+    "sha256": "3b1303d8d39f1b8f1306d13c8af897cd2f5cd605ad78263c8f0d971cf8d5ef1b"
   },
   "meta": {
     "file": "official-logos/meta.svg",
     "page": "https://about.meta.com/",
     "source": "https://static.xx.fbcdn.net/rsrc.php/y9/r/tL_v571NdZ0.svg",
     "notes": "Unmodified official corporate SVG linked by homepage Organization schema.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "7a0430c375fc8563eafa7636869b5b132e6da4461711a81d384bc0044a20d039"
   },
   "airliquide": {
     "file": "official-logos/airliquide.svg",
     "page": "https://www.airliquide.com/",
     "source": "https://www.airliquide.com/sites/airliquide.com/files/air-liquide_0.svg",
     "notes": "Unmodified official header SVG.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "1d14ac4be72ff4807aeccb908d6054f7b8f06ef99ef2fd11fd3cb8688e1b4e42"
   },
   "cocacola": {
     "file": "official-logos/cocacola.svg",
     "page": "https://www.coca-colacompany.com/",
     "source": "https://www.coca-colacompany.com/content/dam/corporate/us/en/header-footer/Header%20Icon.svg",
     "notes": "Unmodified official corporate wordmark, rather than the beverage product mark.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "fb264c0d0e5a11310c1c5e8499f980bcfb87ac457e0458df4e2955f228ffeedd"
   },
   "visa": {
     "file": "official-logos/visa.png",
     "page": "https://corporate.visa.com/en/about-visa/mediakits.html",
     "source": "https://corporate.visa.com/content/dam/VCOM/corporate/about-visa/images/visa-brandmark-blue-1960x622.png",
     "notes": "Unmodified official transparent Visa Blue wordmark, 1920 × 622 pixels.",
-    "retrieved": "2026-10-24"
+    "retrieved": "2026-10-24",
+    "sha256": "7b0b7f701755a409ee169f77ee3116c9d669ec6dfc82135fe2e3b48ecc51b788"
   },
   "procter-gamble": {
     "file": "official-logos/procter-gamble.svg",
     "page": "https://us.pg.com/",
     "source": "https://images.ctfassets.net/oggad6svuzkv/7znyJc3Y7SecEoKSYKWoaQ/4a24e9015c360799cfb072adcd92cc5e/P_G_Logo_RGB.svg",
     "retrieved": "2026-10-24",
-    "notes": "Unmodified official corporate logo linked from the company homepage."
+    "notes": "Unmodified official corporate logo linked from the company homepage.",
+    "sha256": "80cfe6d9ad348d61fc3bf262fd6bab453ed3dc10e965f88aa4a7136de577fc4f"
   },
   "johnson-johnson": {
     "file": "official-logos/johnson-johnson.svg",
     "page": "https://www.jnj.com/",
     "source": "https://jnj-content-lab2.brightspotcdn.com/ac/25/bd2078f54d5992dd486ed26140ce/johnson-johnson-logo.svg",
     "retrieved": "2026-10-24",
-    "notes": "Unmodified official corporate logo linked from the company homepage."
+    "notes": "Unmodified official corporate logo linked from the company homepage.",
+    "sha256": "f3f08c93ca7404ea061ae2581918b2d9bf4327d9cc9b70f28ecc753637ef98e4"
   },
   "jpmorgan": {
     "file": "official-logos/jpmorgan.svg",
     "page": "https://www.jpmorganchase.com/",
     "source": "https://www.jpmorganchase.com/content/dam/jpmorganchase/images/logos/jpmc-logo.svg",
     "retrieved": "2026-10-24",
-    "notes": "Unmodified official corporate logo linked from the company homepage."
+    "notes": "Unmodified official corporate logo linked from the company homepage.",
+    "sha256": "3a2138bfe8eb81abaf6e6ecaca6ed682e07982fc79877894d7cb26dcba1db772"
   },
   "unitedhealth": {
     "file": "official-logos/unitedhealth.svg",
     "page": "https://www.unitedhealthgroup.com/",
     "source": "https://www.unitedhealthgroup.com/content/dam/uhg/icons/Icons/uhg-logo--stacked-2022.svg",
     "retrieved": "2026-10-24",
-    "notes": "Unmodified official corporate logo linked from the company homepage."
+    "notes": "Unmodified official corporate logo linked from the company homepage.",
+    "sha256": "6f19ffd2dcd2e6b53ad7119a09f78624ffc7a579dbba8d132e61fa4453f7208e"
   },
   "paypal": {
     "file": "official-logos/paypal.svg",
     "page": "https://www.paypal.com/",
     "source": "https://www.paypalobjects.com/marketing/web/logos/paypal-mark-color_new.svg",
     "retrieved": "2026-10-24",
-    "notes": "Unmodified official colour corporate symbol. White monochrome wordmark rejected on the light background."
+    "notes": "Unmodified official colour corporate symbol. White monochrome wordmark rejected on the light background.",
+    "sha256": "8766a4211434d2c318fbfa412ea9633b385ecf1cab6119f8894019d91ed7e027"
+  },
+  "qualcomm": {
+    "file": "official-logos/qualcomm.png",
+    "page": "https://www.qualcomm.com/",
+    "source": "https://cdn.cookielaw.org/logos/b0a5f2cc-0b29-4907-89bf-3f6b380a03c8/019b2956-bc55-75aa-8570-6d773b2bae4b/5e4f142a-c83a-4c87-9ff6-54a22a735113/1280px-Qualcomm-Logo.svg.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "39e9c77801673c4c38df0d97a227db567ee4c09380725f9677b2069a1964be9c",
+    "sha256": "39e9c77801673c4c38df0d97a227db567ee4c09380725f9677b2069a1964be9c",
+    "maxWidth": 1160,
+    "maxHeight": 235
+  },
+  "bank-of-america": {
+    "file": "official-logos/bank-of-america.svg",
+    "page": "https://about.bankofamerica.com/en",
+    "source": "https://about.bankofamerica.com/content/dam/about/images/logos/logo-color.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "229e010d1aaf935d739ad93a5c149fe53200ad2b77ad39586dfd878f46dec368",
+    "sha256": "016cc06a97ed2646b45252c55b9569063093815caeb48e0567ad866b501fa944"
+  },
+  "novartis": {
+    "file": "official-logos/novartis.svg",
+    "page": "https://www.novartis.com/",
+    "source": "https://www.novartis.com/themes/custom/cosmos/mobile_logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "4bf42bf26e1bbb14e0783493a019bb0595f67538d37fbf02974f70fd8c10d5a7",
+    "sha256": "d77a4ff86bb634f3a97fddd64ce33e130f0404119fb14beef80aee1050ec639e"
+  },
+  "goldman-sachs": {
+    "file": "official-logos/goldman-sachs.png",
+    "page": "https://www.goldmansachs.com/",
+    "source": "https://www.goldmansachs.com/images/gs-wordmark-black.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "d0351a6acf2103d4ba8ccf8c281abf91afa67915a4f83a0a7820bd367bc8a806",
+    "sha256": "d0351a6acf2103d4ba8ccf8c281abf91afa67915a4f83a0a7820bd367bc8a806",
+    "maxWidth": 1022,
+    "maxHeight": 429
+  },
+  "sbux": {
+    "file": "official-logos/sbux.svg",
+    "page": "https://about.starbucks.com/",
+    "source": "https://about.starbucks.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "cf4fc57c36b79411d699150cf31f67ca550ddf74bd1c7fc357713c1ea700f2ef",
+    "sha256": "10c52d5b3e6090482ccf06ec97d763d6b965f5b0fd1e137ab28a71840c1e0eaf"
+  },
+  "honeywell": {
+    "file": "official-logos/honeywell.svg",
+    "page": "https://www.honeywell.com/us/en",
+    "source": "https://www.honeywell.com/content/dam/honcorp/us-en/common-assets/logos/hon-honeywell-technologies-logo-full-horizontal.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "f44bae61500ee98fea9493927c20c2aa2380ce030d93bacb1f772f070a4bbf3a",
+    "sha256": "a9deba1e7c66bfde42c71cd546b8b9db11a76609c9eb746099de717acdd78aad"
+  },
+  "axa": {
+    "file": "official-logos/axa.svg",
+    "page": "https://www.axa.com/",
+    "source": "https://www.axa.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "689cb1962a3052185a41c129ca94d30aa284aaf8dd0d2bd14d6f7018b310bb3d",
+    "sha256": "86396d379ad6201a30559b9d963593a5cdb866266c1703db39b652dfaec9cd91"
+  },
+  "bmw": {
+    "file": "official-logos/bmw.svg",
+    "page": "https://www.bmwgroup.com/en.html",
+    "source": "https://www.bmwgroup.com/etc.clientlibs/grpw-web/clientlibs/grpw-base/resources/images/logo/BMWGroup_light.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "fad75f4f8b75bfcb426d41d1e7e2c528b0537f3c0719c03615315771dfa15d80",
+    "sha256": "975fcdfc6f0540161d39505e60fbfd6cf765884bef1bc3223f3fc1d1de0a13d4"
+  },
+  "palo-alto-networks": {
+    "file": "official-logos/palo-alto-networks.svg",
+    "page": "https://www.paloaltonetworks.com/",
+    "source": "https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/pan-logo-dark.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e04c0ad0fce19b803a15633b751e3a603ab1b99bc35a6d52e64cdc57058e22ea",
+    "sha256": "4fb8ebc838d79ca935ed00d2706d2b99c37d21efb2cf0698253f37f4ff12590f"
+  },
+  "pepsico": {
+    "file": "official-logos/pepsico.png",
+    "page": "https://www.pepsico.com/",
+    "source": "https://digitalassets.pepsico.com/asset/fe5c5aad-b8cd-4dd5-a1b2-d79302ff1f1c/Presentation-PNG/PepsiCo-Logo-header.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "2d1a173b90e36f5fd5259536c3c6e419991c13758eb667756bd23aa395b689f2",
+    "sha256": "2d1a173b90e36f5fd5259536c3c6e419991c13758eb667756bd23aa395b689f2",
+    "maxWidth": 1160,
+    "maxHeight": 456
+  },
+  "safran": {
+    "file": "official-logos/safran.svg",
+    "page": "https://www.safran-group.com/",
+    "source": "https://www.safran-group.com/themes/custom/safran_fo/public/images/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "55f05732209f52508c30bba0bcf511e04673be375eebbebb35c8c6ddea087e20",
+    "sha256": "2148ebfddfd98304f4ddb6086e6e75500582f46ad1b1ab81052247cad94843d9"
+  },
+  "exxonmobil": {
+    "file": "official-logos/exxonmobil.png",
+    "page": "https://corporate.exxonmobil.com/",
+    "source": "https://corporate.exxonmobil.com/-/media/global/icons/logos/exxonmobillogocolor2x.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "9dc0b5103ba0f21f4f0f6550054b80243f176387baf081d41e159cfc1a1f60f9",
+    "sha256": "9dc0b5103ba0f21f4f0f6550054b80243f176387baf081d41e159cfc1a1f60f9",
+    "maxWidth": 306,
+    "maxHeight": 80
+  },
+  "danone": {
+    "file": "official-logos/danone.png",
+    "page": "https://www.danone.com/",
+    "source": "https://www.danone.com/content/dam/corp/global/danonecom/danone-renew/logo/logo-footer.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "ff14395011f3926be5ea58250834cf983e5f6351198844f67fee52ab646ac545",
+    "sha256": "ff14395011f3926be5ea58250834cf983e5f6351198844f67fee52ab646ac545",
+    "maxWidth": 360,
+    "maxHeight": 400
+  },
+  "allianz": {
+    "file": "official-logos/allianz.svg",
+    "page": "https://www.allianz.com/en.html",
+    "source": "https://www.allianz.com/content/dam/onemarketing/system/allianz-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e4b3c599f88fd312008bbee02e74a5212242b205bc89c539167576182c14055a",
+    "sha256": "862bacbb44b281e2c1ac3d2ccd5f5f4250d106f0b7b38111f92c809ad111259c"
+  },
+  "loreal": {
+    "file": "official-logos/loreal.svg",
+    "page": "https://www.loreal.com/en/",
+    "source": "https://www.loreal.com/en/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7625598009b3f4113a1c129c694b0599c3622d74eef6d1c2521b5b18a13a65f3",
+    "sha256": "182d4ee58386cf840cd01dcc35bc67391a1e90dea1c4decb13dd13351bef1b6f"
+  },
+  "ibm": {
+    "file": "official-logos/ibm.png",
+    "page": "https://www.ibm.com/us-en",
+    "source": "https://www.ibm.com/content/dam/worldwide-content/creative-assets/s-migr/ul/g/18/f9/ibm_logo_pos_blue60_rgb.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b6d57351a76a90de4671e1e7c4da686663c4cff4d0cb3d97075066fad2d473e1",
+    "sha256": "b6d57351a76a90de4671e1e7c4da686663c4cff4d0cb3d97075066fad2d473e1",
+    "maxWidth": 1034,
+    "maxHeight": 620
+  },
+  "servicenow": {
+    "file": "official-logos/servicenow.svg",
+    "page": "https://www.servicenow.com/",
+    "source": "https://www.servicenow.com/content/dam/servicenow-assets/images/naas/servicenow-header-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e5fd9b13b986472173ef1c6b77e752eb63aef409f8c499f59dc6cc5cf3038153",
+    "sha256": "ed9d6495efe8839e46046bc5d5c9d521e1653e1f38af2c218f019e524762c9b6"
+  },
+  "morgan-stanley": {
+    "file": "official-logos/morgan-stanley.svg",
+    "page": "https://www.morganstanley.com/",
+    "source": "https://www.morganstanley.com/etc.clientlibs/msdotcomr5/clientlibs/components/site/resources/svg/logo/logo-dark.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "2e814699d3b9ed785e4ac56ca0b0deb13f6d2591d1aaeb96f04b2c0e95367b51",
+    "sha256": "71e35abd2af9e2d247f37734b772390c86109f9507278f18813d118509142867"
+  },
+  "munich-re": {
+    "file": "official-logos/munich-re.svg",
+    "page": "https://www.munichre.com/en.html",
+    "source": "https://www.munichre.com/content/dam/munichre/contentlounge/website-pieces/administrative/left-logos/munichre_logo.svg/_jcr_content/renditions/original.media_file.file/munichre_logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "f41c607f4e48fbfb8cfd66cd75569a8e02400dd71f49f1bafd301c6f0fda6163",
+    "sha256": "b0cf0fb182aef12115208ab0b2b8d8b75300212c8166f26d7730e6a721a28271"
+  },
+  "walmart": {
+    "file": "official-logos/walmart.svg",
+    "page": "https://corporate.walmart.com/",
+    "source": "https://corporate.walmart.com/content/dam/corporate/site-images/WMT-Wordmark-New-Small-Black_RGB.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "c2e8fa08a6ae91294caaccd8838e14d8dc146b79ebc7ffdf087298792da96b63",
+    "sha256": "158f54393a169358591a647c878eac47701e0cf0c8a02467a63fdb79149079c5"
+  },
+  "salesforce": {
+    "file": "official-logos/salesforce.svg",
+    "page": "https://www.salesforce.com/fr/?ir=1&bc=OTH",
+    "source": "https://wp.sfdcdigital.com/en-us/wp-content/uploads/sites/4/2024/11/logo-salesforce.svg?w=1024",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "29bc87240df68c546f04cb1bf3398b524b7d5e37a2d56f3b102b62f349244703",
+    "sha256": "a460e957f1194abe475ef3cd93b4e697120e067eada976dd172586a6cbae8865"
+  },
+  "adobe": {
+    "file": "official-logos/adobe.svg",
+    "page": "https://www.adobe.com/",
+    "source": "https://www.adobe.com/content/dam/cc/icons/adobe_wordmark_red.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "54213e56d564e8174ec2de6aa5f91907aebadc38215f4c3597d1e9b83cce127a",
+    "sha256": "f3bf1cf9705823e9614dfa4791b51927d5e911f73e16a60fde3feddf233efdc8"
+  },
+  "applied-materials": {
+    "file": "official-logos/applied-materials.png",
+    "page": "https://www.appliedmaterials.com/",
+    "source": "https://www.appliedmaterials.com/content/dam/applied-materials/Applied-Materials-Logo-No-Tag-Line.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "a2c2958fe1689090233e4ba4ee88e5cc3d233de93e9d7c7af1e84cc18f3dc052",
+    "sha256": "a2c2958fe1689090233e4ba4ee88e5cc3d233de93e9d7c7af1e84cc18f3dc052",
+    "maxWidth": 1160,
+    "maxHeight": 461
+  },
+  "deutsche-boerse": {
+    "file": "official-logos/deutsche-boerse.svg",
+    "page": "https://www.deutsche-boerse.com/dbg-de/",
+    "source": "https://www.deutsche-boerse.com/resource/crblob/115604/77ffb464a75872f98166baddef9913d3/data/svg-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Removed unused Adobe Illustrator foreignObject/pgfRef authoring metadata to keep hosted SVG canvas exports origin-clean; before/after screenshots are identical. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "64a48a8b4883fa34b1334858c9755270e2cbc46b5fd29d9f1728863c24c8e521",
+    "sha256": "91f03c75c4aa918195501d9d2fd8241deb35baaabe095a289eaef2c947cc3bbc"
+  },
+  "adidas": {
+    "file": "official-logos/adidas.svg",
+    "page": "https://www.adidas-group.com/en/",
+    "source": "https://www.adidas-group.com/en/public/adidas-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b123341c635fe2fbe28f734a52e37e63fd8c79149e375bfcced77ad199f05741",
+    "sha256": "6f809b6fc1f4396564ef5d0a8bca244c23981c114108f46c14bbfe49f8fca641"
+  },
+  "bnp-paribas": {
+    "file": "official-logos/bnp-paribas.svg",
+    "page": "https://group.bnpparibas/",
+    "source": "https://cdn-group.bnpparibas.com/build/images/logo-bnp.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Removed unused Adobe Illustrator foreignObject/pgfRef authoring metadata to keep hosted SVG canvas exports origin-clean; before/after screenshots are identical. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "ee5906a33a8cc2b8e11f95b29fe45ea9d19d7c8744012ec292d527abc2e62e1f",
+    "sha256": "614b4900e6e0a68223bdab782eb6b374a4e0f40c1b55efdb70d4eb50ef9fc342"
+  },
+  "nestle": {
+    "file": "official-logos/nestle.svg",
+    "page": "https://www.nestle.com/",
+    "source": "https://www.nestle.com/themes/custom/da_vinci_code/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "8be965825d368ced7fc0660be1bd73100597d21bc5f8555590276284d8eb2137",
+    "sha256": "64e8f8a3fffd577f90454f29847fb6525258de043bab2fcc50dd05956b9d3bec"
+  },
+  "merck": {
+    "file": "official-logos/merck.svg",
+    "page": "https://www.merck.com/",
+    "source": "https://www.merck.com/wp-content/uploads/sites/124/2025/08/site-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "6f4886ba2c5a2495a51174c94d9fe9f49ecf02661f4d3043f1d96c2ad6fdfdd3",
+    "sha256": "5d222a876a5efe84b17e3ccf5cb84ba77757e50023c142725228f7dc9a462ede"
+  },
+  "conocophillips": {
+    "file": "official-logos/conocophillips.svg",
+    "page": "https://www.conocophillips.com/",
+    "source": "https://www.conocophillips.com/images/logo-black.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "1f590c9b58993fd60fe028bafbbdba83c35ab7e9dcb171448ddba25d8d32f437",
+    "sha256": "6859c8a6846a4d4fd5d80abd08373db7ad54b1aafbe066a516fb105040896917"
+  },
+  "oracle": {
+    "file": "official-logos/oracle.svg",
+    "page": "https://www.oracle.com/",
+    "source": "https://www.oracle.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "663e0863c961408467848e6b098eb5b6deba9f4506fab9070b42b608d0627c19",
+    "sha256": "79a26e2fd2ebb52b610720166146dbfd78ce15486e5b5180b4a42145e1fe4f63"
+  },
+  "hermes": {
+    "file": "official-logos/hermes.svg",
+    "page": "https://finance.hermes.com/",
+    "source": "https://finance.hermes.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "18d206b2e9b69dd8a5375d9e3773bb14585396097e046d5218afc0a431c2a08d",
+    "sha256": "1674b0f5cc808f999bdda2030d93c53d9c3913237584aede4922b2855c9c1903"
+  },
+  "abbott": {
+    "file": "official-logos/abbott.png",
+    "page": "https://www.abbott.com/en-us/homepage",
+    "source": "https://www.abbott.com/content/dam/corp/abbottglobal/test-hub/Abbott-Logo.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "8d665a32b0d7818b201f5b525cce96ef37d06aa5373119112f92dc7b3b4093e3",
+    "sha256": "8d665a32b0d7818b201f5b525cce96ef37d06aa5373119112f92dc7b3b4093e3",
+    "maxWidth": 1160,
+    "maxHeight": 283
+  },
+  "samsung": {
+    "file": "official-logos/samsung.svg",
+    "page": "https://www.samsung.com/fr/",
+    "source": "https://www.samsung.com/fr/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "95bcc4ecdce86b648f7fbe9af9a7b203c45c77fc58e4d77710272a877db350bc",
+    "sha256": "bb3087746a37205799bb090244dc90c3b19f58148587316e0f3b4d0f56ef7625"
+  },
+  "eli-lilly": {
+    "file": "official-logos/eli-lilly.svg",
+    "page": "https://www.lilly.com/",
+    "source": "https://delivery-p137454-e1438138.adobeaemcloud.com/adobe/assets/urn:aaid:aem:2843cade-80ee-42b6-b285-a1450fef6b77/renditions/original/as/LillyLogo_RGB_Red_v3.svg?assetname=LillyLogo_RGB_Red_v3.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e40c82fd9d5c0184af7e939fcf9aa29d7bd325c263ed8ee07784857ef08d5d51",
+    "sha256": "bdaf358223ece14b40658e32d9d81bcd9eb5e0a8629f30cfda77978f60d2068c"
+  },
+  "blackrock": {
+    "file": "official-logos/blackrock.svg",
+    "page": "https://www.blackrock.com/corporate",
+    "source": "https://www.blackrock.com/corporate",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e3a26a8f94dfbb550c7845234ce2d0e48a85b3b527ff58b9e2c8fadc521bce23",
+    "sha256": "29c0e21a41d02206cbc5db648d3545fbe62f4d62ef182452b69adbb86632e94e"
+  },
+  "low": {
+    "file": "official-logos/low.svg",
+    "page": "https://corporate.lowes.com/",
+    "source": "https://corporate.lowes.com/sites/lowes-corp/files/lowes-corp/lowes-blue-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "9c9ad1049883d9068290a606221742cb2ae19b12b5b3786da1cd7a534c5be19e",
+    "sha256": "c0b1d2ddcac6a0d4b48325940843f1ad60f38e7fa7b26ed80c0aa4ef7eb1dff1"
+  },
+  "cl": {
+    "file": "official-logos/cl.svg",
+    "page": "https://www.colgatepalmolive.fr/",
+    "source": "https://www.colgatepalmolive.fr/content/experience-fragments/cp-sites-aem/corporate/corporate/fr_fr/structure/header/master/_jcr_content/root/container/container_1578944328/image.coreimg.svg/1753442478781/logo-new.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "c0e44f65d116defc399166ccfa700591a26d8a3b37266f7bd572a3e6bc3e0b04",
+    "sha256": "bc8a73f4d082396d9dadd7369d629cc52de48c26d47b45f687489a7843d3bf61"
+  },
+  "unp": {
+    "file": "official-logos/unp.svg",
+    "page": "https://www.up.com/",
+    "source": "https://www.up.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "829025ddacc347cbdbb86ddf0e888f2e4824f94861a93093f80c9582ab37c54c",
+    "sha256": "deed354dfd8f499f35937ace75176a676d4aa23eed8000547109e3585e4f98ad"
+  },
+  "adp": {
+    "file": "official-logos/adp.svg",
+    "page": "https://www.adp.com/",
+    "source": "https://www.adp.com/-/media/adp2025/ui/logo-adp.svg?rev=2ffd0a893eca4842b0f071c1e9c186b8&hash=85D6D9870432E605FE0FD7F830F16744",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "d34eb6787c5b2d7a7aa8337c8f7067fa74c773498b70dd3cb5cbaea81c3218f1",
+    "sha256": "d3b6a9e2b3f0941c7f4086301b8000d1cb77f0ce270b2af11bf182033c60ab48"
+  },
+  "tt": {
+    "file": "official-logos/tt.svg",
+    "page": "https://www.tranetechnologies.com/en/index.html",
+    "source": "https://www.tranetechnologies.com/content/dam/cs-corporate/images/logos/logo-TT.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "976f10a70ecf8f5698acaf531693f081ac8c55875e673241fa39654efcfd75af",
+    "sha256": "bc32719668b5c7fc7530440e37dc227ed73784db9b0d39d62fe1b1fac0bc6f9f"
+  },
+  "regn": {
+    "file": "official-logos/regn.svg",
+    "page": "https://www.regeneron.com/",
+    "source": "https://www.regeneron.com/images/logo/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "21e0e9956eb9b057a93057a847921c99b71871427ff035588e12207dd2531ae9",
+    "sha256": "d9b8b4e8180756ac5a693f78b9bd7363c95af2da0a9107b323b329c861b5418f"
+  },
+  "zts": {
+    "file": "official-logos/zts.svg",
+    "page": "https://www.zoetis.com/",
+    "source": "https://www.zoetis.com/_assets/img/zoetis_logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "eff77211d889dcea38f8ad502a7382bbf338b768aa358b72dc9a9f99518e0eb2",
+    "sha256": "ebb87742aa7c457ea8e04054f18a3b9330ec7f39b84f3e7b2e71680b329231dc"
+  },
+  "ubs": {
+    "file": "official-logos/ubs.svg",
+    "page": "https://www.ubs.com/fr/en.html",
+    "source": "https://www.ubs.com/etc.clientlibs/ubs/fit/design/resources/img/logo/UBS_Logo_Semibold.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "93235948b9fc64cb3035b1bb481686f7174c423123fdd4a292d3a07704e3dbf1",
+    "sha256": "420748477fc334dd774df8ccb9229777a67258a203206d38fee38ab7e6d8aca2"
+  },
+  "bbva": {
+    "file": "official-logos/bbva.png",
+    "page": "https://www.bbva.com/en/",
+    "source": "https://www.bbva.com/wp-content/themes/coronita-bbvacom/assets/images/logos/bbva-logo-900x269.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7ddf272860d7072a62e30e7a00fceb1aca53d255d25f14d619fd76df42db2c89",
+    "sha256": "7ddf272860d7072a62e30e7a00fceb1aca53d255d25f14d619fd76df42db2c89",
+    "maxWidth": 900,
+    "maxHeight": 269
+  },
+  "diageo": {
+    "file": "official-logos/diageo.svg",
+    "page": "https://www.diageo.com/en",
+    "source": "https://www.diageo.com/~/media/Images/D/Diageo-V2/Universal/logo/Logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "dfaf2769bca6a192b1cf28712681f4b25efbda33555a015284ef52ff2a965161",
+    "sha256": "ed8cc58729161b5c3841fd6999ab11fc19e8440427378e2ebe245e18b8241506"
+  },
+  "lseg": {
+    "file": "official-logos/lseg.svg",
+    "page": "https://www.lseg.com/en",
+    "source": "https://www.lseg.com/content/dam/lseg/en_us/images/logos/bespoke/lseg-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "ea32175d1075595c43fe02257d512a6c8f13a95e4d4d52c499df86a1e233dc82",
+    "sha256": "526b0a1f1aafde4a1aaddded05ba6280bb65f0e15f2b8074d2b037ae7cc79939"
+  },
+  "rolls-royce": {
+    "file": "official-logos/rolls-royce.svg",
+    "page": "https://www.rolls-royce.com/",
+    "source": "https://www.rolls-royce.com/~/media/Images/R/Rolls-Royce/logo/rr-logo-svg.svg?h=96&iar=0&w=59",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "43cc6d8faabe41b4d8c19e4c44224a3c5638a4d102a4ca2ac556d190fbdfcb07",
+    "sha256": "7a67c6268dd48c4f6b75da9f8e45d186da300862de649a317890017b6f54fbe2"
+  },
+  "dhl": {
+    "file": "official-logos/dhl.svg",
+    "page": "https://group.dhl.com/en.html",
+    "source": "https://group.dhl.com/content/dam/deutschepostdhl/en/logos/DHL_Group_logo_rgb_BG.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "84569c21c4ceecc190c2ac7a7bd6d6dc31d7d78ecafacb6367d59620fad94dca",
+    "sha256": "718b9cc75bc4f5e5446c469f2f42d4870db37ff5dd46791147fa3b969dcd4f70"
+  },
+  "enel": {
+    "file": "official-logos/enel.svg",
+    "page": "https://www.enel.com/",
+    "source": "https://www.enel.com/content/dam/enel-com/immagini/enel-logo/logo-solido.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "6d416fc83336996d00d22c3ccdc0a37331cc776b07a3a35f24efead75d97ea0f",
+    "sha256": "85598ea46f2a49cca0bfa8ae7f19b04b27689309627cf8f8c1e47656bf8c358e"
+  },
+  "keyence": {
+    "file": "official-logos/keyence.svg",
+    "page": "https://www.keyence.com/",
+    "source": "https://www.keyence.com/img/core/logo_header_01.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "0ccd044c487892468ea7423789da3e64afc7b82418b95f2c386fdc67a9343eec",
+    "sha256": "fe9e79a8f6a36f0a4544ca954e0478b5fbbc4e9c31e9688b5575890badf39893"
+  },
+  "hitachi": {
+    "file": "official-logos/hitachi.png",
+    "page": "https://www.hitachi.com/en/",
+    "source": "https://www.hitachi.com/content/dam/hitachi/common/image/hitachi-logo.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b1765b28ea881c413534f441f3553ddf49df5b9e4fa34a9df7a24ffb2d2a211b",
+    "sha256": "b1765b28ea881c413534f441f3553ddf49df5b9e4fa34a9df7a24ffb2d2a211b",
+    "maxWidth": 345,
+    "maxHeight": 60
+  },
+  "mitsubishi-electric": {
+    "file": "official-logos/mitsubishi-electric.svg",
+    "page": "https://www.mitsubishielectric.com/en/",
+    "source": "https://www.mitsubishielectric.com/global/common/img/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7fa9f162f66f9e9f75ac1fc571c53ab1c8bc1c392d08e5dfe1190de25204603c",
+    "sha256": "ce318ad21badca8206519c7577478e06d8f79decd107528781f99bb6ebcf949a"
+  },
+  "advantest": {
+    "file": "official-logos/advantest.svg",
+    "page": "https://www.advantest.com/en/",
+    "source": "https://www.advantest.com/img/common/logo-advantest.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "8d1bd7cf22788ff3ab816fa1f8b8fabe463ccc77d4f6473782219a707351a835",
+    "sha256": "ff556ad2813eba8eae8abb6043656f82b679d619fc9b18cf3161c3c95221e262"
+  },
+  "softbank-group": {
+    "file": "official-logos/softbank-group.svg",
+    "page": "https://group.softbank/",
+    "source": "https://group.softbank/media/Project/sbg/sbg/themes/custom/sbg/sbg-logo.svg?iar=0",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "18a715fa5eefe7f1b955eb0948cf36e6fd14f06f52ededff05f6e1d0f22a75c6",
+    "sha256": "03e509dce49be5cd71803dd31a8e25ce7903efdbc2b41fc8b51ac20148958521"
+  },
+  "dbs": {
+    "file": "official-logos/dbs.svg",
+    "page": "https://www.dbs.com/default.page",
+    "source": "https://www.dbs.com/iwov-resources/flp/images/dbs_logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "17db6c6208625a56acd0380b00747a5b6db8a79f2adbe272844f0cff6ba923c7",
+    "sha256": "2a5acdbfa7a43272d3639698b039f39c5a7a6d7b4d53a677d10673eabe63e2f9"
+  },
+  "fortinet": {
+    "file": "official-logos/fortinet.svg",
+    "page": "https://www.fortinet.com/",
+    "source": "https://www.fortinet.com/content/dam/fortinet/images/general/fortinet-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "57e367546766312fefd36a98e0fb6f6c2885768616fc186ec42435bf85eb48f2",
+    "sha256": "1893aaa1bc8b1807d184e7b384a84b73748ab85028838a72f683aaa2cd912dc2"
+  },
+  "pfe": {
+    "file": "official-logos/pfe.svg",
+    "page": "https://www.pfizer.com/",
+    "source": "https://www.pfizer.com/profiles/pfecpfizercomus_profile/themes/pfecpfizercomus/public/assets/images/logo-blue.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b13e6a61ef07f7e0699b26c768f3f4f1808ff8fb6cdfc9c73eb905b08d150569",
+    "sha256": "3aba00c8b23f13eb838f18b9a5aabc1d05d2e97175cfe3392e011ccfad6b5c3a"
+  },
+  "richemont": {
+    "file": "official-logos/richemont.svg",
+    "page": "https://www.richemont.com/",
+    "source": "https://www.richemont.com/media/ruchy3dr/richmontlogo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "aea74934d459fed15bca9768672dc349ac7aae12e99c9bebadd391e14aa0eef0",
+    "sha256": "f2df9ccfa3ed5b4d0cb6297ad57415236535f3f0e163f8c2a74aa7ef25256a06"
+  },
+  "sika": {
+    "file": "official-logos/sika.png",
+    "page": "https://www.sika.com/",
+    "source": "https://www.sika.com/content/dam/media/sika-global/logo/Sika_NoClaim_pos_rgb_mobile.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "062cc0adaca431088ba9459843b4ec15dcec37a8d5b4fef16cff65bc8b7732c3",
+    "sha256": "062cc0adaca431088ba9459843b4ec15dcec37a8d5b4fef16cff65bc8b7732c3",
+    "maxWidth": 415,
+    "maxHeight": 359
+  },
+  "dsv": {
+    "file": "official-logos/dsv.svg",
+    "page": "https://www.dsv.com/en",
+    "source": "https://www.dsv.com/en",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "f7917da7d292373dcf773969663d857746b9aa01e15a74a554ec58ca736c31b3",
+    "sha256": "c627808caefe74bf03c0d15ea4ee3eb67b2b003234be95ac9e4d7a8598a1cf06"
+  },
+  "nordea": {
+    "file": "official-logos/nordea.svg",
+    "page": "https://www.nordea.com/en",
+    "source": "https://www.nordea.com/en",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7a2c12c3f63464b9fd62c4862b63b5ff652b770f7c14a1455bbc6d21639b23f2",
+    "sha256": "eb588d5e775d00ac05bb60e3bfa5cc96d14131a7924ad96d87465a593644600e"
+  },
+  "pernod-ricard": {
+    "file": "official-logos/pernod-ricard.svg",
+    "page": "https://www.pernod-ricard.com/en",
+    "source": "https://www.pernod-ricard.com/themes/custom/pr2021_front/assets/images/mobile-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b6e648ca6e5271218cc4ff1fa02f94012145c78b848b16ef03bccbcaa5ad3fa6",
+    "sha256": "9405702490cf3c760482212ccd0fd5a508b8bd7f10b842903a83d092d7912387"
+  },
+  "capgemini": {
+    "file": "official-logos/capgemini.svg",
+    "page": "https://www.capgemini.com/",
+    "source": "https://www.capgemini.com/wp-content/themes/capgemini2025/assets/images/capgeminiBlue.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7c32998ea3afdfc0f1fede03f824a5b402824e65f5b60ab78553e81936df426c",
+    "sha256": "cf34eea05fc9e35f7d9298552a5ffbe3f83d35157e4340080399689360f6207c"
+  },
+  "publicis": {
+    "file": "official-logos/publicis.svg",
+    "page": "https://www.publicisgroupe.com/fr/splash",
+    "source": "https://www.publicisgroupe.com/themes/custom/publicis/images/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "8b9ed783068abea6eac2f2f3b3c7f1bbdca2cbe8cd4a26e93d1c2d952adaeb7f",
+    "sha256": "1491857d79d78bba8e8175a5d63b389698d18696229d2e2cd9a4365a10ebed42"
+  },
+  "societe-generale": {
+    "file": "official-logos/societe-generale.svg",
+    "page": "https://www.societegenerale.com/fr",
+    "source": "https://www.societegenerale.com/sites/default/files/image/logo/soc103-1.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "a1f48c1f699734baaf7d1f2d8d52a20d0f7b3b9e8c8e691bcf02f28a895a3c9d",
+    "sha256": "df5afed66219e77db4ef947ff6918347f0753bdf0f0617b8bf2ef9065bcdc22b"
+  },
+  "renault": {
+    "file": "official-logos/renault.svg",
+    "page": "https://www.renaultgroup.com/",
+    "source": "https://www.renaultgroup.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "4540fbf832c5109fcfbaaaab44555c5fb63ef6aa8698c247f961c07c53e13160",
+    "sha256": "dc7416e6bee75f1b143b54868b2a70c24cc4ebf6b845548c46049aa1e08206e4"
+  },
+  "bat": {
+    "file": "official-logos/bat.svg",
+    "page": "https://www.bat.com/",
+    "source": "https://www.bat.com/experience-fragments/batcom/global/en/header/master/_jcr_content/root/container/batcom_header/image.coreimg.svg/1723662821452/bat-logo-black.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "11eb6e1c065885943481b9e17d5abcd664a8dc21b7e8392e5c31f00e68cc3970",
+    "sha256": "58b210297a8fc3d7cc26d99bd5dc7406621b6e181516df7c8bf51bed5ad69496"
+  },
+  "hsbc": {
+    "file": "official-logos/hsbc.svg",
+    "page": "https://www.hsbc.com/",
+    "source": "https://www.hsbc.com/-/files/hsbc/header/hsbc-logo-200x25.svg?la=en-GB&h=25&hash=FCDFB4DC1991B6B5EE0AB98E7208CB82",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "c54ff461737c5f44be46d9d1f9e4b3a64db412af82d795736f78b9bc3298ca2c",
+    "sha256": "1e002e6b6b723199c42d399ec9d3146d3bb96534660c6d354641b4ffd8105fe9"
+  },
+  "rio-tinto": {
+    "file": "official-logos/rio-tinto.svg",
+    "page": "https://www.riotinto.com/",
+    "source": "https://cdn-rio.dataweavers.io/-/media/project/riotinto/shared/riologo.svg?rev=-1",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "90dfb5be1c88fc2f205c672dab3d1abb8336cdfdb353c0b4f52f72340972220d",
+    "sha256": "cc8bab9029a50f11d50672e5f158ed59e19a1dc17ff3891ba772da6a36de6950"
+  },
+  "glencore": {
+    "file": "official-logos/glencore.svg",
+    "page": "https://www.glencore.com/",
+    "source": "https://www.glencore.com/.resources/gc/webresources/img/Glencore_logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "6e2218d25318fcbf70c244fa773f4bb9d774d0245b430a91b3e6e5fc8adfc95c",
+    "sha256": "4faad10c48eaebe17f4dccbc9addc40743c03e0192f586be79b6e035676e1fcf"
+  },
+  "philips": {
+    "file": "official-logos/philips.svg",
+    "page": "https://www.philips.fr/",
+    "source": "https://www.philips.fr/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "ca7a21d739ccd9e2fee3afe0f0db7a560e29b5cba98e4189d8c97c68826453cd",
+    "sha256": "94f448de81dbff2d3ab820f26e589ad3fc26f17028b10cacd41c0485cb465e09"
+  },
+  "stmicroelectronics": {
+    "file": "official-logos/stmicroelectronics.svg",
+    "page": "https://www.st.com/content/st_com/en.html",
+    "source": "https://www.st.com/content/st_com/en.html",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "ae9c77ad007e1ac0e8b1535b8208b161527bdc577e2687eb5c66f8934924b420",
+    "sha256": "208543fa981ebd61a08c197613a39c99a9102e214673fe53f95882b15caacdc5"
+  },
+  "asm-international": {
+    "file": "official-logos/asm-international.png",
+    "page": "https://www.asm.com/",
+    "source": "https://www.asm.com/media/uotnslj4/asm-logo2022_rgb_innovationpurple-1.png?width=1200&amp;height=630&amp;v=1d9745f45065ba0",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "99d096148eaebc90ade7922638c52d599feb295df7b32109afc0e3b503c57ac0",
+    "sha256": "99d096148eaebc90ade7922638c52d599feb295df7b32109afc0e3b503c57ac0",
+    "maxWidth": 1160,
+    "maxHeight": 374
+  },
+  "wolters-kluwer": {
+    "file": "official-logos/wolters-kluwer.svg",
+    "page": "https://www.wolterskluwer.com/en",
+    "source": "https://cdn.wolterskluwer.io/wk/jumpstart-v3-assets/0.x.x/logo/wk-logo-primary-pos-medium.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "19ee44999ac3e33475046884e21e6d520b89c332a4b58a7e9742da7b3b5f3758",
+    "sha256": "c6da1fac80b532df492ce6aeb47d067139c50b373720ffea7679940610f109ec"
+  },
+  "ing": {
+    "file": "official-logos/ing.svg",
+    "page": "https://ing.com/",
+    "source": "https://ing.com/webfiles/1792143907485/images/ing-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "6e2a19f26018c591803ef5cc16de3790285a2ced061f62b054508cf394ff20be",
+    "sha256": "b3c4d7b8e6baef5d50296dcfdb2e5d73ca8f99b225874ff4980bf389c6553968"
+  },
+  "adyen": {
+    "file": "official-logos/adyen.svg",
+    "page": "https://www.adyen.com/",
+    "source": "https://www.adyen.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "924c60a280a436e4ecb4c4b6b63e212acd6e9b54c9f6dc3a97c2f6a9bb4cd18d",
+    "sha256": "6a4d656b6327f3c122a47acdd0cce1919fd6e3916504dab08d657668a7855ed8"
+  },
+  "stellantis": {
+    "file": "official-logos/stellantis.svg",
+    "page": "https://www.stellantis.com/en",
+    "source": "https://www.stellantis.com/content/dam/stellantis-corporate/assets/stell-logo-blue.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "1c7c7722a2d34d7fa0ac24122901b32b24c9d7d0d3195d4e35a3550007a22426",
+    "sha256": "ecd497e8b55389e400bf84689c309e2e91d5e78eeed88ea251e0e2cabf670ae1"
+  },
+  "equinor": {
+    "file": "official-logos/equinor.svg",
+    "page": "https://www.equinor.com/",
+    "source": "https://www.equinor.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "897994270a1262fd8bfb24d246051417a24e218a25432d1977712f745267b3e8",
+    "sha256": "f546706ff4ab40aa3021cffc229696dc2c04ce6ae73528567d273cf878e9eb25"
+  },
+  "volvo": {
+    "file": "official-logos/volvo.svg",
+    "page": "https://www.volvogroup.com/en/",
+    "source": "https://www.volvogroup.com/en/_jcr_content/root/header/logo.coreimg.svg/1731586347834/logo-volvo-group.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "cb601e292ae3308d7a97c0571474bbc2253368018fac643de5efffd500d838bb",
+    "sha256": "2d36d2e9e6cea063473bf7cf6b29c45290f0a824ab73ca06c6666927b85a49f4"
+  },
+  "dhr": {
+    "file": "official-logos/dhr.svg",
+    "page": "https://www.danaher.com/",
+    "source": "https://www.danaher.com/themes/custom/danaher/logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Removed unused Adobe Illustrator foreignObject/pgfRef authoring metadata to keep hosted SVG canvas exports origin-clean; before/after screenshots are identical. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "92b3a223412ed09c0ea56ae7026732d019766bd69d9eebe4668beb86f798cac8",
+    "sha256": "84e8c893793689f2d2aa4217fabd0c521329b12b1a6afd6c7144eeafe8ebbc8e"
+  },
+  "marvell": {
+    "file": "official-logos/marvell.svg",
+    "page": "https://www.marvell.com/",
+    "source": "https://www.marvell.com/etc.clientlibs/marvell-com/clientlibs/clientlib-refresh/resources/images/marvell-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b72d3a845413709017b69e329e062da80fb072ce4d40c713c455ae851c880cbb",
+    "sha256": "0496bf5cf08542ee42ef0e88cddc7f6c52e60776da2d76b328c7d71f21e7487d"
+  },
+  "philip-morris": {
+    "file": "official-logos/philip-morris.svg",
+    "page": "https://www.pmi.com/",
+    "source": "https://www.pmi.com/content/dam/pmicom/global/images/logos/pmi-logoaaf115bd6c7468f696e2ff0400458fff.svg?imwidth=640&imdensity=1",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "bf679dbf73f6e7ecd79794e4e2d728c77422ca9058e4ba2a81a0910e0a1377db",
+    "sha256": "6cbe4a9256c06717a4afb047a1f243acd6c326f3bc34ef858ca7eb842e42fd34"
+  },
+  "shw": {
+    "file": "official-logos/shw.png",
+    "page": "https://corporate.sherwin-williams.com/us/en/our-company.html",
+    "source": "https://corporate.sherwin-williams.com/content/experience-fragments/sherwin/corp/corp-aem-sherwin/us/en/site/header/master/_jcr_content/root/container_1596074899/container_457167789/megamenu/mainLogo.coreimg.png/1752688245012/shw-horizontal-nobox.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "78fb3dd8c4d46d241f8b7c5bf87a7b92ee7a6e8f0b0ffba776191d7c2dff1851",
+    "sha256": "78fb3dd8c4d46d241f8b7c5bf87a7b92ee7a6e8f0b0ffba776191d7c2dff1851",
+    "maxWidth": 1160,
+    "maxHeight": 500
+  },
+  "3m": {
+    "file": "official-logos/3m.svg",
+    "page": "https://www.3m.com/",
+    "source": "https://www.3m.com/3m_theme_assets/themes/3MTheme/assets/images/unicorn/Logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "b0182c10ca5694444ceb639d3c744265447d3eba4814ebf4d3fe09ddbdf3049b",
+    "sha256": "1e2defb95473c90549f0e7d50630864169b8df635245fb9560f25226c08d5be8"
+  },
+  "bhp": {
+    "file": "official-logos/bhp.png",
+    "page": "https://www.bhp.com/",
+    "source": "https://www.bhp.com/-/media/project/bhp1ip/bhp1ip-en/bhp-orange.png?h=604&iar=0&w=1576&hash=478FE45C6F8B8B58F2ED5430D4DB0D10",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "72d09112b0fbb1b8d455320788883f573cb2f6bccc3dccf10f4ddf0fddcbe3c6",
+    "sha256": "72d09112b0fbb1b8d455320788883f573cb2f6bccc3dccf10f4ddf0fddcbe3c6",
+    "maxWidth": 1160,
+    "maxHeight": 604
+  },
+  "cloudflare": {
+    "file": "official-logos/cloudflare.svg",
+    "page": "https://www.cloudflare.com/",
+    "source": "https://www.cloudflare.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e3929f8a768fbcfa345fb9d2cbb42b78e55b0915a2e3d0708f8b5d1e3494bf03",
+    "sha256": "8fd47ac985d580a989240dd20f2df52c807100f0b141c02e852d51be5856daa4"
+  },
+  "coinbase": {
+    "file": "official-logos/coinbase.svg",
+    "page": "https://www.coinbase.com/fr-fr",
+    "source": "https://static-assets.coinbase.com/ui-infra/illustration/v1/pictogram/svg/light/coinbaseLogoNavigation-4.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "7be694dd0481db697aefb5008b5ea5b43763962d40f3bcb544069ad0b9463c17",
+    "sha256": "58fa2dcef3aa1a8325ac474b7d69b20d50188f8fa73c486cacde1ca65406a052"
+  },
+  "reddit": {
+    "file": "official-logos/reddit.svg",
+    "page": "https://redditinc.com/",
+    "source": "https://redditinc.com/hubfs/Reddit%20Inc/Content/Brand%20Page/Reddit_Lockup_Logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "08fa0553a017d23ac43e75454eede96ac75bfee4d91efd2d8c0dec38659d76c0",
+    "sha256": "e25f7eaf0200371e15ff88b6a0664439d2fd0daaca7cc82725114f60e1f5a35a"
+  },
+  "rocket-lab": {
+    "file": "official-logos/rocket-lab.png",
+    "page": "https://rocketlabcorp.com/",
+    "source": "https://rocketlabcorp.com/_resources/themes/base/production/images/admin_logo.png?m=1747131331",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "872ba808d3fbd91f27748fa67123acd59f4faf2e488545722d2175522ca8bc42",
+    "sha256": "872ba808d3fbd91f27748fa67123acd59f4faf2e488545722d2175522ca8bc42",
+    "maxWidth": 600,
+    "maxHeight": 222
+  },
+  "sofi": {
+    "file": "official-logos/sofi.svg",
+    "page": "https://www.sofi.com/",
+    "source": "https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "765536f2c73d46a4dd624acffb0b2a7ba637803c0f6683d5de817b3afeca6378",
+    "sha256": "b6611994259f5339fced6706e3ca9fb348da054933f3fadb6ea3a29c2b5fc9dd"
+  },
+  "vertiv": {
+    "file": "official-logos/vertiv.svg",
+    "page": "https://www.vertiv.com/fr-emea/",
+    "source": "https://www.vertiv.com/Content/images/phase3/about/timeline/Vertiv-Logo.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "d555bd5399a1961800f74fb8da7cce312977c9da4802bf39134276c70cbc2beb",
+    "sha256": "1b9943f7f8f3b46fc92b096ec3fa96efd36a47f4529854f3dbf873dcbbef0b44"
+  },
+  "zscaler": {
+    "file": "official-logos/zscaler.svg",
+    "page": "https://www.zscaler.com/",
+    "source": "https://www.zscaler.com/",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "e371bda576e515b5b29044772555ae972e55c141fc15b01a4a830ca681f4d66e",
+    "sha256": "409546adb35374080eb63cd86024d8189614adebfede77d716757a891e8180a3"
+  },
+  "accenture": {
+    "file": "official-logos/accenture.svg",
+    "page": "https://www.accenture.com/en",
+    "source": "https://www.accenture.com/en",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "8cbe23f0776a4ddcdf336133aba24b2efee8afdd4bbe5cf5bad1af421e527e59",
+    "sha256": "dda1b177a9a21b3160ed1615478131914f996c546ebb8bf9dccba31ee9c27c69"
+  },
+  "generali": {
+    "file": "official-logos/generali.svg",
+    "page": "https://www.generali.com/",
+    "source": "https://www.generali.com/.resources/generalicom-templating-light/webresources/images/generali-logo-big.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "89a221d8d029456f6c1cc18677c2f5693cbe6583c7d7c7da952cb677c9f37e1b",
+    "sha256": "bd06ed26c4080200a1167978c2b6cdeae825bfdc4c144b921077fcab0dec98fd"
+  },
+  "prosus": {
+    "file": "official-logos/prosus.png",
+    "page": "https://www.prosus.com/",
+    "source": "https://www.prosus.com/~/media/Images/P/prosus-corp-v2/logo/logo.png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "827aa643485cf16b44bb7983c5a001da79479699ea22a582293c9108fb6c7eac",
+    "sha256": "827aa643485cf16b44bb7983c5a001da79479699ea22a582293c9108fb6c7eac",
+    "maxWidth": 567,
+    "maxHeight": 152
+  },
+  "datadog": {
+    "file": "official-logos/datadog.png",
+    "page": "https://www.datadoghq.com/",
+    "source": "https://corp.dd-static.net/img/datadog_rbg_n_2x.png?format=png",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Original raster file unchanged; display capped at native resolution.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "52f9cc9c164a6b1c9c6097334be8b459cc98511819be67e493086f0b5ff01780",
+    "sha256": "52f9cc9c164a6b1c9c6097334be8b459cc98511819be67e493086f0b5ff01780",
+    "maxWidth": 346,
+    "maxHeight": 88
+  },
+  "intel": {
+    "file": "official-logos/intel.svg",
+    "page": "https://www.intel.fr/content/www/fr/fr/homepage.html",
+    "source": "https://www.intel.fr/content/www/fr/fr/homepage.html",
+    "notes": "Original inline corporate SVG extracted from the official page; standalone wrapper. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed. Line endings and trailing whitespace normalized; SVG drawing elements and attributes verified unchanged.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "f9d5c453ed58033937ce7083f8c3bae9e3aeec41c91a9aa937e6bb3daa05afc3",
+    "sha256": "6df203d70b9489f248790c56d225cc54be08f6fb8a9a362bfdb6a20342e11913"
+  },
+  "booking": {
+    "file": "official-logos/booking.svg",
+    "page": "https://www.bookingholdings.com/",
+    "source": "https://www.bookingholdings.com/wp-content/themes/booking-group/img/svg/bkng_global-desktop-logoblack.svg",
+    "notes": "Official corporate asset published on the linked company page; source colours and geometry retained. Only the outer SVG viewport/dimensions are fitted around the complete original geometry with padding; no path, fill, gradient or proportion changed.",
+    "retrieved": "2026-10-24",
+    "sourceSha256": "9c9aa51b5e9e061f395adf6adbad9388eae0d3c91ad73f46f15594677b0382bf",
+    "sha256": "d6e64afcdb01412fa590c662a80ff44ca7bfdb611d84d89579e861f620bd6a6f"
   }
 }
