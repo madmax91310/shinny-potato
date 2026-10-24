@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "auditedAt": "2026-10-24T06:38:39.795Z",
+  "auditedAt": "2026-10-24T07:52:03.111Z",
   "asOf": "2026-10-23",
-  "sourceGeneratedAt": "2026-10-24T00:04:56.936185+00:00",
+  "sourceGeneratedAt": "2026-10-24T07:51:24.462853+00:00",
   "method": "Contrôle exhaustif des séries réelles et certificats conservés, sans collecte intégrale.",
   "legacyEvidenceWithoutId": 0,
-  "listingCount": 21185,
+  "listingCount": 21184,
   "instrumentCount": 20400,
-  "technicalUsable": 21185,
+  "technicalUsable": 21184,
   "readyAtPublishedCutoff": 0,
   "exceptions": [],
   "catchupRequired": [
@@ -33483,17 +33483,6 @@
       "reason": "Clôture attendue manquante : IUUS 2026-10-23.",
       "source": "https://query2.finance.yahoo.com/v8/finance/chart/IUUS.L?period1=1783900800&period2=1792666443&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
       "sha256": "a01c20a18bb17b8fa074d09c20be6a8468a771780b912fba19281b94f4eb9fae"
-    },
-    {
-      "id": "IE00B4L5Y983-ETFP",
-      "instrumentId": "IE00B4L5Y983",
-      "family": "ETF actions",
-      "certifiedThrough": "2026-10-22",
-      "technicalUsable": true,
-      "operationReadyAtCutoff": false,
-      "reason": "Clôture attendue manquante : SWDA 2026-10-23.",
-      "source": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits",
-      "sha256": "2b7b5b74a539e1c9cbaead2fa37ca21488a211f701a42d73004043728aeea967"
     },
     {
       "id": "IE00B4L5Y983-XAMS",
@@ -233064,8 +233053,8 @@
       "ready": 0
     },
     "ETF actions": {
-      "listings": 356,
-      "technicalUsable": 356,
+      "listings": 355,
+      "technicalUsable": 355,
       "ready": 0
     },
     "ETF sectoriels / thématiques": {
