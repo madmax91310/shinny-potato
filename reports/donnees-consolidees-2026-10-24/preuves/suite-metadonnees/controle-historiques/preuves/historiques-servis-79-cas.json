@@ -1,0 +1,1584 @@
+{
+  "checkedAt": "2026-10-24T10:39:46.102Z",
+  "before": {
+    "sha": "6124113127807037b1ab765a177ce87788268471",
+    "dataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c",
+    "lane": "validated-data",
+    "builtAt": "2026-10-24T10:28:10.770Z"
+  },
+  "after": {
+    "sha": "6124113127807037b1ab765a177ce87788268471",
+    "dataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c",
+    "lane": "validated-data",
+    "builtAt": "2026-10-24T10:28:10.770Z"
+  },
+  "actualRecords": 50,
+  "cases": 79,
+  "allPublishedBytesMatch": true,
+  "note": "Actual public per-asset JSON consumed by calculator/history loaders, not only a registry or declared publication manifest. A loaded corrected point does not grant a disputed calculation window.",
+  "records": [
+    {
+      "id": "etc_brent_crude_oil",
+      "isin": "JE00B78CGV99",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/2006b982f70731440fbb.json",
+      "sha256": "2006b982f70731440fbb2d06898116d1883f640de22eed317239ca899c3daee5",
+      "bytes": 6583,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etc_cocoa",
+      "isin": "JE00B2QXZK10",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/579658e83c08b47ac650.json",
+      "sha256": "579658e83c08b47ac6504e53578dc00b4c30715be16507611b4cc88acbfc4203",
+      "bytes": 6232,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etc_coffee",
+      "isin": "JE00BN7KB557",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4fe950a94197eb196a75.json",
+      "sha256": "4fe950a94197eb196a75438edf2f6fa4f16a4ca4c8f9c22c0d4e6e5c2d69a529",
+      "bytes": 6581,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etc_natural_gas",
+      "isin": "JE00BN7KB334",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6a509a22272f05e4fa6c.json",
+      "sha256": "6a509a22272f05e4fa6c94c9c3efaf3c141f03caeeb0d45904e2624530a594df",
+      "bytes": 6525,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etc_wheat",
+      "isin": "JE00BN7KB664",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/db44883cdb2a9e393410.json",
+      "sha256": "db44883cdb2a9e3934103daf61ef4f8c0509207e2a4a5e62c4e078a61566d38d",
+      "bytes": 6524,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etc_wti_crude_oil",
+      "isin": "GB00B15KXV33",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/fb79bdb97048fa34de76.json",
+      "sha256": "fb79bdb97048fa34de769dd37756c3ed20ba691a5ca45e324fd1d177e2e5ef86",
+      "bytes": 6235,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etcPalladium",
+      "isin": "IE00B4556L06",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/084bdfab6066b50f5e58.json",
+      "sha256": "084bdfab6066b50f5e58ffe93d771fd7abfe394147175804189f8e55a203b3a1",
+      "bytes": 14438,
+      "currency": "USD",
+      "loadedMonths": 185,
+      "first": "2011-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etf_clean_energy",
+      "isin": "IE00B1XNHC34",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/8d6560438285f21447ac.json",
+      "sha256": "8d6560438285f21447ace6a1613cc2f5bb6107c143b2b695672d8852c19aca3c",
+      "bytes": 16413,
+      "currency": "EUR",
+      "loadedMonths": 224,
+      "first": "2008-02",
+      "last": "2026-09"
+    },
+    {
+      "id": "etf_financials",
+      "isin": "IE00BJ5JP097",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/cf6b7313433ee7be0a4b.json",
+      "sha256": "cf6b7313433ee7be0a4b6600f8dc7280f3d3dbfb9681b1a153c2de9925ad6e97",
+      "bytes": 5691,
+      "currency": "USD",
+      "loadedMonths": 65,
+      "first": "2021-05",
+      "last": "2026-09",
+      "repairedLoadedReturn2023": 17.29795251560866
+    },
+    {
+      "id": "etf_gold_miners",
+      "isin": "IE00BQQP9F84",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5ed3767ffeeb9469c916.json",
+      "sha256": "5ed3767ffeeb9469c916ecd3c6dac5a9463922963cef6096f224f9af8a096fa7",
+      "bytes": 10109,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 113,
+      "first": "2017-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etf_world_communication",
+      "isin": "IE00BJ5JP436",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/056f59f6278b29873366.json",
+      "sha256": "056f59f6278b298733660206fe4d3b51db9e922db8dd5b9b43ca0f12cfc55a83",
+      "bytes": 4588,
+      "currency": "USD",
+      "loadedMonths": 53,
+      "first": "2022-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfCH0454664001",
+      "isin": "CH0454664001",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/3b106461046b18f993f2.json",
+      "sha256": "3b106461046b18f993f2f951f6b29f5b9bc6053772d41cc292ca6a2d24534aca",
+      "bytes": 5176,
+      "currency": "EUR",
+      "loadedMonths": 63,
+      "first": "2021-07",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfCloudWisdomtree",
+      "isin": "IE00BJGWQN72",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9d0d3b1b38b2d01a3b95.json",
+      "sha256": "9d0d3b1b38b2d01a3b95a4bedf51568d431c1c8af667212403e955d0124feaa5",
+      "bytes": 6946,
+      "currency": "USD",
+      "loadedMonths": 84,
+      "first": "2019-10",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfDE000A27Z304",
+      "isin": "DE000A27Z304",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/60976e1690d37bbdaccf.json",
+      "sha256": "60976e1690d37bbdaccf3ac8d103051c886dc207ae453626e46f57531a24f9bf",
+      "bytes": 6174,
+      "currency": "EUR",
+      "loadedMonths": 75,
+      "first": "2020-07",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfEqualWeight",
+      "isin": "IE00BLNMYC90",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/860ade72dec00155b2dd.json",
+      "sha256": "860ade72dec00155b2dd38c320e3de2c5cab3a9abe33888de1e244139f50707f",
+      "bytes": 11524,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 136,
+      "first": "2015-06",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfEuropeRetail",
+      "isin": "DE000A0H08P6",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/e1fcd1f534a99c0c13f2.json",
+      "sha256": "e1fcd1f534a99c0c13f29728c06d9886447bd0b9a11a8ac319aea38e016d752d",
+      "bytes": 11066,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0007054358",
+      "isin": "FR0007054358",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/12544b6897e4a8ebed5a.json",
+      "sha256": "12544b6897e4a8ebed5a58871e854ce8935abe870f15a330781eca41c5a56377",
+      "bytes": 11086,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09",
+      "repairedLoadedReturn2020": -2.885047490153836
+    },
+    {
+      "id": "etfFR0010342592",
+      "isin": "FR0010342592",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/351cb8c1c8e3d4560017.json",
+      "sha256": "351cb8c1c8e3d4560017c253e182a1f69b41229386733bd853106ce1bf0b1179",
+      "bytes": 10421,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0010755611",
+      "isin": "FR0010755611",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f3d57cf3b041821698f9.json",
+      "sha256": "f3d57cf3b041821698f955ba648b3be4afde5cdebc159fd58bbbff845425f54c",
+      "bytes": 10772,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0011550185",
+      "isin": "FR0011550185",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/459b44b50fa1c0f51116.json",
+      "sha256": "459b44b50fa1c0f511164619fa7c53cb9bba966ec61753a0f5baee554c21d0cb",
+      "bytes": 10781,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0011871110",
+      "isin": "FR0011871110",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/474826871bb5bc221d5b.json",
+      "sha256": "474826871bb5bc221d5b08ce49ecf89047e1754ef423163b8a2d0b965f66541d",
+      "bytes": 10912,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0011871128",
+      "isin": "FR0011871128",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/57ad3e36174d7c8c5a65.json",
+      "sha256": "57ad3e36174d7c8c5a6586fa18727f86108186fa20217759fc3423569f357245",
+      "bytes": 10852,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0013411998",
+      "isin": "FR0013411998",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/3dfd300fac0b415ce681.json",
+      "sha256": "3dfd300fac0b415ce681711d469361e8eb19610b97086edc4bf17bb495660661",
+      "bytes": 7155,
+      "currency": "EUR",
+      "loadedMonths": 89,
+      "first": "2019-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0013412004",
+      "isin": "FR0013412004",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b672950ba686a5ed1117.json",
+      "sha256": "b672950ba686a5ed111789c680860b0197adbf586c3ad9974614d3b8496c7588",
+      "bytes": 7193,
+      "currency": "EUR",
+      "loadedMonths": 89,
+      "first": "2019-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfFR0013416716",
+      "isin": "FR0013416716",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/7a473aac1da1c343e8ec.json",
+      "sha256": "7a473aac1da1c343e8ec0e46225446ff1308f816220e76a2790db84524ba6ce2",
+      "bytes": 7134,
+      "currency": "EUR",
+      "loadedMonths": 86,
+      "first": "2019-08",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfGB00B15KXQ89",
+      "isin": "GB00B15KXQ89",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6fb835b410f002de85c4.json",
+      "sha256": "6fb835b410f002de85c4613d60e812b273d4fe1f3467ce0d093a26fed3d98a2e",
+      "bytes": 10326,
+      "currency": "USD",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "isin": "IE000M7V94E1",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/c1b43ff98783720a4afb.json",
+      "sha256": "c1b43ff98783720a4afb3564d90e7a588e0605626ad9049f221972e1acd31c80",
+      "bytes": 4709,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 43,
+      "first": "2023-03",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE000RDRMSD1",
+      "isin": "IE000RDRMSD1",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/0dd5ab1fbda7c45dae28.json",
+      "sha256": "0dd5ab1fbda7c45dae28a812a09d1c56353cf9fb181d8e7bbc077d778dd26968",
+      "bytes": 4478,
+      "currency": "USD",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 48,
+      "first": "2022-10",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "isin": "IE000YU9K6K2",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/de7c3ce4c56802df632e.json",
+      "sha256": "de7c3ce4c56802df632ea75e00535b4334fbb66428b48d3879bee0336dc15e6e",
+      "bytes": 5065,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 48,
+      "first": "2022-10",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "isin": "IE00B2QWCY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/49e76a294753acff4842.json",
+      "sha256": "49e76a294753acff484226eec21828792e256a9c75027c5844a0083322d45e0e",
+      "bytes": 11125,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B42NKQ00",
+      "isin": "IE00B42NKQ00",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/38cd21d636a0f6d9efab.json",
+      "sha256": "38cd21d636a0f6d9efabced5fd48648b00f0df724a7ff496c0ee9a36acce0230",
+      "bytes": 10296,
+      "currency": "USD",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 130,
+      "first": "2015-12",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "isin": "IE00B43HR379",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4bcc5a32772f4b5e09ec.json",
+      "sha256": "4bcc5a32772f4b5e09ec90211b1b606229c5f9f0dae504485a6723de2e6fef7a",
+      "bytes": 10881,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 129,
+      "first": "2016-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "isin": "IE00B4JNQZ49",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9e1bd6ad98512889ceba.json",
+      "sha256": "9e1bd6ad98512889cebad5092a7203273ed462ed8e473671f9fdc570d77ad9cf",
+      "bytes": 10883,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 129,
+      "first": "2016-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B4K6B022",
+      "isin": "IE00B4K6B022",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/dd1664c911da694f3325.json",
+      "sha256": "dd1664c911da694f3325bfeb1df69ac7e85e2a678f971db0ff54ff6c11d638c1",
+      "bytes": 11194,
+      "currency": "EUR",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "isin": "IE00B5W4TY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/623db0b5e4d966669cbb.json",
+      "sha256": "623db0b5e4d966669cbb1927f4f2a1adb52266e68d371643cff0fe493651ea23",
+      "bytes": 12269,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 141,
+      "first": "2015-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BD1F4L37",
+      "isin": "IE00BD1F4L37",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b006991e3894a029d179.json",
+      "sha256": "b006991e3894a029d17998900616aa61dbe08b41975ccffa8cbebe0fa13d4577",
+      "bytes": 9632,
+      "currency": "USD",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 119,
+      "first": "2016-11",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4774751e98f44aa055f2.json",
+      "sha256": "4774751e98f44aa055f2335111c18ed986c41fb8fa7f6f0e16b8e8eda1a2879c",
+      "bytes": 9134,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 100,
+      "first": "2018-06",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BDVPNG13",
+      "isin": "IE00BDVPNG13",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/cab466a2da604619ef09.json",
+      "sha256": "cab466a2da604619ef09414b63787137e69e48f7748ff62fd28ad8bc7cd62782",
+      "bytes": 7666,
+      "currency": "USD",
+      "loadedMonths": 94,
+      "first": "2018-12",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BK5BCH80",
+      "isin": "IE00BK5BCH80",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/731cb65bf84fee230b68.json",
+      "sha256": "731cb65bf84fee230b681745c8cc7b5f131e1f49b7fbb759d25752dddb3cb587",
+      "bytes": 5488,
+      "currency": "EUR",
+      "loadedMonths": 70,
+      "first": "2020-12",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BQN1K562",
+      "isin": "IE00BQN1K562",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/70ff349557e2f1c1bd97.json",
+      "sha256": "70ff349557e2f1c1bd97f51bc36c9b08695c228e79a8bbd32cb1bae0242aa365",
+      "bytes": 11030,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 139,
+      "first": "2015-03",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BQT3WG13",
+      "isin": "IE00BQT3WG13",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6f60a24dc65303c6d0c2.json",
+      "sha256": "6f60a24dc65303c6d0c20f8353ba3290c7dfa45c6d9fb0bfbe14f2f2f4da749a",
+      "bytes": 10806,
+      "currency": "USD",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 137,
+      "first": "2015-05",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "isin": "IE00BYWQWR46",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/ab9f5be6326c59502e2e.json",
+      "sha256": "ab9f5be6326c59502e2ea6f1a6769c9c6782e4c9f6495beb580c2b637f3364cf",
+      "bytes": 8111,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 87,
+      "first": "2019-07",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfIE00BYXG2H39",
+      "isin": "IE00BYXG2H39",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f9dfa175da1e099bb2a6.json",
+      "sha256": "f9dfa175da1e099bb2a6b060104879cea0351ab324a6072500b9cc1c7ecdbfc2",
+      "bytes": 8666,
+      "currency": "USD",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 107,
+      "first": "2017-11",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfLgArtificialIntelligence",
+      "isin": "IE00BK5BCD43",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/ca6f7c698eefa31e2735.json",
+      "sha256": "ca6f7c698eefa31e2735283164e47dcf31de8295e206f903613a4454aef264ef",
+      "bytes": 6445,
+      "currency": "USD",
+      "loadedMonths": 81,
+      "first": "2020-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfLU1737652823",
+      "isin": "LU1737652823",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9ca3e077b8579a95804f.json",
+      "sha256": "9ca3e077b8579a95804f1e59be7c271b67f7b01767452979d7fd43a317245510",
+      "bytes": 8396,
+      "currency": "EUR",
+      "loadedMonths": 104,
+      "first": "2018-02",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfLU1875395870",
+      "isin": "LU1875395870",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/d0c2e2b34612669db023.json",
+      "sha256": "d0c2e2b34612669db023701dbfa3e405dbfeff996bc2ff4b6a2e2c06e5a3f043",
+      "bytes": 7644,
+      "currency": "EUR",
+      "loadedMonths": 94,
+      "first": "2018-12",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfLU2089238385",
+      "isin": "LU2089238385",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b2b2cbfb09173a6287c6.json",
+      "sha256": "b2b2cbfb09173a6287c6ba50a2f22de68765fd426b5554c8f5ab972af47dfb16",
+      "bytes": 6422,
+      "currency": "EUR",
+      "loadedMonths": 80,
+      "first": "2020-02",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfLU2196470426",
+      "isin": "LU2196470426",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/184bbd61306325dbb32a.json",
+      "sha256": "184bbd61306325dbb32a5b3fa553305bc6e641cacf010598b815f6a50406520f",
+      "bytes": 5930,
+      "currency": "EUR",
+      "loadedMonths": 70,
+      "first": "2020-12",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfSmallValueEurope",
+      "isin": "IE00BSPLC298",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/045aece16a3bf3760500.json",
+      "sha256": "045aece16a3bf37605008e17586b0d10352c95ddb79dd238ee5e951b6968dbed",
+      "bytes": 9933,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 129,
+      "first": "2016-01",
+      "last": "2026-09"
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "isin": "IE00BSPLC413",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5fb44a2275c4721c0576.json",
+      "sha256": "5fb44a2275c4721c0576d34ef501c312b1ba4f00c1ea37beeff7918ea93470d8",
+      "bytes": 11025,
+      "currency": "EUR",
+      "historyConvention": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-total-return",
+      "loadedMonths": 129,
+      "first": "2016-01",
+      "last": "2026-09"
+    }
+  ],
+  "consumerCases": [
+    {
+      "isin": "IE00BLNMYC90",
+      "year": 2021,
+      "id": "etfEqualWeight",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/860ade72dec00155b2dd.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      }
+    },
+    {
+      "isin": "IE00B4556L06",
+      "year": 2025,
+      "id": "etcPalladium",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/084bdfab6066b50f5e58.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00BJ5JP436",
+      "year": 2024,
+      "id": "etf_world_communication",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/056f59f6278b29873366.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCMS.AS : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "IE00B1XNHC34",
+      "year": 2020,
+      "id": "etf_clean_energy",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/8d6560438285f21447ac.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IQQH.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      }
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "year": 2023,
+      "id": "etf_financials",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/cf6b7313433ee7be0a4b.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WFNS.AS : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2018,
+      "id": "etf_gold_miners",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5ed3767ffeeb9469c916.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      }
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2019,
+      "id": "etf_gold_miners",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5ed3767ffeeb9469c916.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      }
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2025,
+      "id": "etf_gold_miners",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5ed3767ffeeb9469c916.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "year": 2020,
+      "id": "etfCloudWisdomtree",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9d0d3b1b38b2d01a3b95.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+      }
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "year": 2023,
+      "id": "etfCloudWisdomtree",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9d0d3b1b38b2d01a3b95.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "IE00BK5BCD43",
+      "year": 2023,
+      "id": "etfLgArtificialIntelligence",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/ca6f7c698eefa31e2735.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2023,
+      "id": "etfUsaSmallValue",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5fb44a2275c4721c0576.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      }
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2024,
+      "id": "etfUsaSmallValue",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5fb44a2275c4721c0576.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2023-12",
+        "end": "2024-12"
+      }
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2025,
+      "id": "etfUsaSmallValue",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/5fb44a2275c4721c0576.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "FR0013411998",
+      "year": 2025,
+      "id": "etfFR0013411998",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/3dfd300fac0b415ce681.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00B42NKQ00",
+      "year": 2019,
+      "id": "etfIE00B42NKQ00",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/38cd21d636a0f6d9efab.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      }
+    },
+    {
+      "isin": "CH0454664001",
+      "year": 2024,
+      "id": "etfCH0454664001",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/3b106461046b18f993f2.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "CH0454664001",
+      "year": 2025,
+      "id": "etfCH0454664001",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/3b106461046b18f993f2.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00B4JNQZ49",
+      "year": 2021,
+      "id": "etfIE00B4JNQZ49",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9e1bd6ad98512889ceba.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      }
+    },
+    {
+      "isin": "FR0013412004",
+      "year": 2025,
+      "id": "etfFR0013412004",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b672950ba686a5ed1117.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00BK5BCH80",
+      "year": 2025,
+      "id": "etfIE00BK5BCH80",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/731cb65bf84fee230b68.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "LU1737652823",
+      "year": 2024,
+      "id": "etfLU1737652823",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/9ca3e077b8579a95804f.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "IE000M7V94E1",
+      "year": 2025,
+      "id": "etfIE000M7V94E1",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/c1b43ff98783720a4afb.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2021,
+      "id": "etfFR0010342592",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/351cb8c1c8e3d4560017.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2023,
+      "id": "etfFR0010342592",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/351cb8c1c8e3d4560017.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2024,
+      "id": "etfFR0010342592",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/351cb8c1c8e3d4560017.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "year": 2023,
+      "id": "etfIE000RDRMSD1",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/0dd5ab1fbda7c45dae28.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      }
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "year": 2025,
+      "id": "etfIE000RDRMSD1",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/0dd5ab1fbda7c45dae28.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "IE00B43HR379",
+      "year": 2018,
+      "id": "etfIE00B43HR379",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4bcc5a32772f4b5e09ec.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      }
+    },
+    {
+      "isin": "IE00B43HR379",
+      "year": 2019,
+      "id": "etfIE00B43HR379",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4bcc5a32772f4b5e09ec.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      }
+    },
+    {
+      "isin": "IE00BYWQWR46",
+      "year": 2020,
+      "id": "etfIE00BYWQWR46",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/ab9f5be6326c59502e2e.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2019-12",
+        "end": "2020-12"
+      }
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "year": 2016,
+      "id": "etfIE00B5W4TY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/623db0b5e4d966669cbb.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      }
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "year": 2017,
+      "id": "etfIE00B5W4TY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/623db0b5e4d966669cbb.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      }
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "year": 2018,
+      "id": "etfIE00BYXG2H39",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f9dfa175da1e099bb2a6.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      }
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "year": 2023,
+      "id": "etfIE00BYXG2H39",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f9dfa175da1e099bb2a6.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      }
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2019,
+      "id": "etfIE00BDFBTQ78",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4774751e98f44aa055f2.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      }
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2021,
+      "id": "etfIE00BDFBTQ78",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4774751e98f44aa055f2.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      }
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2025,
+      "id": "etfIE00BDFBTQ78",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4774751e98f44aa055f2.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "IE000YU9K6K2",
+      "year": 2025,
+      "id": "etfIE000YU9K6K2",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/de7c3ce4c56802df632e.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      }
+    },
+    {
+      "isin": "FR0010755611",
+      "year": 2021,
+      "id": "etfFR0010755611",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f3d57cf3b041821698f9.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "FR0010755611",
+      "year": 2024,
+      "id": "etfFR0010755611",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/f3d57cf3b041821698f9.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "FR0011871110",
+      "year": 2021,
+      "id": "etfFR0011871110",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/474826871bb5bc221d5b.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PUST.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "FR0011871128",
+      "year": 2021,
+      "id": "etfFR0011871128",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/57ad3e36174d7c8c5a65.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PSP5.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2021,
+      "id": "etfDE000A27Z304",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/60976e1690d37bbdaccf.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2023,
+      "id": "etfDE000A27Z304",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/60976e1690d37bbdaccf.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2024,
+      "id": "etfDE000A27Z304",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/60976e1690d37bbdaccf.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "FR0013416716",
+      "year": 2025,
+      "id": "etfFR0013416716",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/7a473aac1da1c343e8ec.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "GLDA.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2023,
+      "id": "etfIE00B2QWCY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/49e76a294753acff4842.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2024,
+      "id": "etfIE00B2QWCY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/49e76a294753acff4842.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2025,
+      "id": "etfIE00B2QWCY14",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/49e76a294753acff4842.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "IE00BD1F4L37",
+      "year": 2017,
+      "id": "etfIE00BD1F4L37",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b006991e3894a029d179.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      }
+    },
+    {
+      "isin": "IE00BQN1K562",
+      "year": 2016,
+      "id": "etfIE00BQN1K562",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/70ff349557e2f1c1bd97.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      }
+    },
+    {
+      "isin": "IE00BQT3WG13",
+      "year": 2017,
+      "id": "etfIE00BQT3WG13",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6f60a24dc65303c6d0c2.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      }
+    },
+    {
+      "isin": "FR0007054358",
+      "year": 2020,
+      "id": "etfFR0007054358",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/12544b6897e4a8ebed5a.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      }
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "year": 2018,
+      "id": "etfGB00B15KXQ89",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6fb835b410f002de85c4.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+      }
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "year": 2019,
+      "id": "etfGB00B15KXQ89",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6fb835b410f002de85c4.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      }
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "year": 2019,
+      "id": "etfIE00BDVPNG13",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/cab466a2da604619ef09.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      }
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "year": 2023,
+      "id": "etfIE00BDVPNG13",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/cab466a2da604619ef09.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "LU2089238385",
+      "year": 2025,
+      "id": "etfLU2089238385",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/b2b2cbfb09173a6287c6.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PRAJ.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "LU1875395870",
+      "year": 2019,
+      "id": "etfLU1875395870",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/d0c2e2b34612669db023.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      }
+    },
+    {
+      "isin": "LU2196470426",
+      "year": 2025,
+      "id": "etfLU2196470426",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/184bbd61306325dbb32a.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "FR0011550185",
+      "year": 2021,
+      "id": "etfFR0011550185",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/459b44b50fa1c0f51116.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "IE00B4K6B022",
+      "year": 2024,
+      "id": "etfIE00B4K6B022",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/dd1664c911da694f3325.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "IE00BSPLC298",
+      "year": 2019,
+      "id": "etfSmallValueEurope",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/045aece16a3bf3760500.json",
+      "storedOldQuote": false,
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      }
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2021,
+      "id": "etc_brent_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/2006b982f70731440fbb.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2022,
+      "id": "etc_brent_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/2006b982f70731440fbb.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      }
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2023,
+      "id": "etc_brent_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/2006b982f70731440fbb.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2021,
+      "id": "etc_wti_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/fb79bdb97048fa34de76.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      }
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2022,
+      "id": "etc_wti_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/fb79bdb97048fa34de76.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      }
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2023,
+      "id": "etc_wti_crude_oil",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/fb79bdb97048fa34de76.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB334",
+      "year": 2022,
+      "id": "etc_natural_gas",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/6a509a22272f05e4fa6c.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2022,
+      "id": "etc_coffee",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4fe950a94197eb196a75.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2024,
+      "id": "etc_coffee",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4fe950a94197eb196a75.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2025,
+      "id": "etc_coffee",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/4fe950a94197eb196a75.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      }
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "year": 2023,
+      "id": "etc_cocoa",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/579658e83c08b47ac650.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "year": 2024,
+      "id": "etc_cocoa",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/579658e83c08b47ac650.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "year": 2022,
+      "id": "etc_wheat",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/db44883cdb2a9e393410.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      }
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "year": 2023,
+      "id": "etc_wheat",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/db44883cdb2a9e393410.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      }
+    },
+    {
+      "isin": "DE000A0H08P6",
+      "year": 2019,
+      "id": "etfEuropeRetail",
+      "url": "https://madmax91310.github.io/shinny-potato/data/history/e1fcd1f534a99c0c13f2.json",
+      "storedOldQuote": true,
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      }
+    }
+  ]
+}

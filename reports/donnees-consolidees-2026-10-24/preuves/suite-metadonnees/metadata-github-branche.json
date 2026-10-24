@@ -1,0 +1,140 @@
+{
+  "runId": 40084175331,
+  "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40084175331",
+  "headSha": "9fdfad2ea6d62204abe780d1fa7d368c8e7556f2",
+  "scope": [
+    "FR0007054358"
+  ],
+  "productionWrites": false,
+  "realSourceCollection": true,
+  "checkedAt": "2026-10-24T10:05:53.287224+00:00",
+  "successIds": [
+    {
+      "id": "FR0007054358:distribution:qualification"
+    },
+    {
+      "id": "FR0007054358:replicationMethod:qualification"
+    },
+    {
+      "id": "FR0007054358:listings:qualification"
+    },
+    {
+      "id": "FR0007054358:domicile:qualification"
+    },
+    {
+      "id": "FR0007054358:pea:qualification"
+    },
+    {
+      "id": "FR0007054358:currencyHedge:qualification"
+    },
+    {
+      "id": "FR0007054358:distribution"
+    },
+    {
+      "id": "FR0007054358:replicationMethod"
+    },
+    {
+      "id": "FR0007054358:listings"
+    },
+    {
+      "id": "FR0007054358:domicile"
+    },
+    {
+      "id": "FR0007054358:pea"
+    },
+    {
+      "id": "FR0007054358:currencyHedge"
+    }
+  ],
+  "errors": [],
+  "observations": {
+    "distribution": {
+      "value": "Capitalisation",
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
+      "sha256": "0d6a887304f03fcce152163f3694575427aea51837608172d25a472506c035c4"
+    },
+    "replicationMethod": {
+      "value": "Direct(Physical)",
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "LYSX",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYSX.DE",
+          "excerpt": "FR0007054358 | Xetra | LYSX GY | EUR | LYSX.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-24",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-XETR-LYSX-EUR"
+        },
+        {
+          "ticker": "MSE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "MSE.PA",
+          "excerpt": "FR0007054358 | Euronext Paris | MSE FP | EUR | MSE.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-24",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-XPAR-MSE-EUR"
+        },
+        {
+          "ticker": "MSE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "MSE.MI",
+          "excerpt": "FR0007054358 | Borsa Italiana | MSE IM | EUR | MSE.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-24",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-ETFP-MSE-EUR"
+        },
+        {
+          "ticker": "MSE",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "EUR",
+          "symbol": "MSE.S",
+          "excerpt": "FR0007054358 | SIX Swiss Ex | MSE SW | EUR | MSE.S",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-24",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-XSWX-MSE-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de"
+    },
+    "domicile": {
+      "value": "France",
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
+      "sha256": "0d6a887304f03fcce152163f3694575427aea51837608172d25a472506c035c4"
+    },
+    "pea": {
+      "value": true,
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-amundi-euro-stoxx-50-ii-ucits-etf-acc-MSE-FR0007054358-23",
+      "sha256": "523e6de47b5eab2f3043f4dd57737dd8d06de0066433353d2203203dbfdb0161"
+    },
+    "currencyHedge": {
+      "value": false,
+      "checkedAt": "2026-10-24",
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
+      "sha256": "0d6a887304f03fcce152163f3694575427aea51837608172d25a472506c035c4"
+    }
+  },
+  "unrelatedPendingNotRetested": 148,
+  "artifactId": 12556925911,
+  "artifactSha256": "834781596fb7824bf47f62d98b5362544d9aab93e5e7171982fae3386388341f"
+}

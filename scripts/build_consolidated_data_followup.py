@@ -1,5 +1,5 @@
 """One provenance-preserving follow-up for reliability and Données à revoir; no collection."""
-import argparse, collections, csv, datetime as dt, hashlib, json, pathlib, re, subprocess
+import argparse, collections, copy, csv, datetime as dt, hashlib, json, pathlib, re, subprocess
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 REPORT=ROOT/'reports/donnees-consolidees-2026-10-24'
 
@@ -23,8 +23,19 @@ def identity(row):
     if d=='action historique':return 'action:'+k
     return d+':'+k
 
-def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,review,repairs=None,validated=False,reconciliations=None):
+def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,review,repairs=None,validated=False,reconciliations=None,previous=None):
     cases={}
+    # Episodes discovered after the initial audit must survive the next capture.
+    # Their disappearance from active/resolved lists is not a proof of recovery.
+    for row in previous or []:
+        if not row['id_suivi'].startswith('incident:'):continue
+        retained=copy.deepcopy(row)
+        for key in ['origines','details','preuves','outils']:
+            if isinstance(retained.get(key),str):retained[key]=json.loads(retained[key])
+        for key in ['reliquat_actif','verification_en_attente']:
+            if isinstance(retained.get(key),str):retained[key]=retained[key]=='True'
+        retained['origines']=[]  # Reattached exactly once from the immutable inventory below.
+        cases[row['id_suivi']]=retained
     def item(key,axis=None,kind=None):
         result=cases.setdefault(key,{'id_suivi':key,'axe':axis or 'fiabilité','type_defaut':kind or 'qualification','statut_donnees':'non revérifié dans cette reprise','statut_supervision':'non applicable','reliquat_actif':False,'niveau_preuve':'instantané hérité, pas nouvelle certification','probleme':'','piece_manquante':'','outils':[],'preuves':[],'origines':[],'details':{}})
         if axis is not None:result['axe']=axis
@@ -103,10 +114,10 @@ def write_reports(cases,legacy,output,metadata):
     return summary
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--monitor',type=pathlib.Path,required=True);p.add_argument('--review',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,default=REPORT);p.add_argument('--inventory',type=pathlib.Path,default=ROOT/'public/data/data-automation-inventory.json');p.add_argument('--financial',type=pathlib.Path,default=ROOT/'public/data/financial-reconciliation.json');p.add_argument('--validated',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--monitor',type=pathlib.Path,required=True);p.add_argument('--review',type=pathlib.Path,required=True);p.add_argument('--output',type=pathlib.Path,default=REPORT);p.add_argument('--inventory',type=pathlib.Path,default=ROOT/'public/data/data-automation-inventory.json');p.add_argument('--financial',type=pathlib.Path,default=ROOT/'public/data/financial-reconciliation.json');p.add_argument('--validated',action='store_true');p.add_argument('--previous',type=pathlib.Path,default=REPORT/'suivi-consolide.csv');args=p.parse_args()
     load=lambda p:json.loads(p.read_text());legacy=read_csv(ROOT/'reports/data-review-2026-10-23/suivi-avant-apres.csv')
     repairs=load(REPORT/'corrections.json')if(REPORT/'corrections.json').exists()else[]
-    cases=consolidate(legacy,load(args.inventory),load(args.financial),read_csv(REPORT/'sources/reconciliation-79-ecarts.csv'),read_csv(REPORT/'sources/statut-19-actions.csv'),read_csv(REPORT/'sources/modules-verification.csv'),load(args.monitor),load(args.review),repairs,args.validated,reconciliations=load(REPORT/'rapprochements-livres.json'))
+    cases=consolidate(legacy,load(args.inventory),load(args.financial),read_csv(REPORT/'sources/reconciliation-79-ecarts.csv'),read_csv(REPORT/'sources/statut-19-actions.csv'),read_csv(REPORT/'sources/modules-verification.csv'),load(args.monitor),load(args.review),repairs,args.validated,reconciliations=load(REPORT/'rapprochements-livres.json'),previous=read_csv(args.previous)if args.previous.exists()else None)
     (args.output/'preuves').mkdir(parents=True,exist_ok=True)
     for src,name in [(args.monitor,'moniteur-courant.json'),(args.review,'revue-courante.json')]:
         if src.resolve()!=(args.output/'preuves'/name).resolve():(args.output/'preuves'/name).write_bytes(src.read_bytes())

@@ -42,4 +42,19 @@ class ConsolidatedFollowup(unittest.TestCase):
         self.assertFalse(result['verification_en_attente'])
         self.assertEqual(result['details']['cycle_actuel']['completedAt'],'2026-10-23')
 
+    def test_episode_found_after_the_initial_audit_does_not_disappear(self):
+        key='collection:daily:new-episode'
+        previous=self.run_case([],monitor={'monitoring':{'active':{key:{'cause':'Missing close'}}}})
+        later=self.run_case([],previous=previous)
+        self.assertEqual([r['id_suivi']for r in later],['incident:'+key])
+        self.assertTrue(later[0]['verification_en_attente'])
+        self.assertIn('clôture financière non déduite',later[0]['statut_supervision'])
+        self.assertFalse(previous[0].get('verification_en_attente',False))
+
+    def test_previous_capture_does_not_duplicate_immutable_origins(self):
+        source=[old('incident actif initial','collection:daily:world')]
+        previous=self.run_case(source)
+        later=self.run_case(source,previous=previous)
+        self.assertEqual(sum(len(r['origines'])for r in later),1)
+
 if __name__=='__main__':unittest.main()
