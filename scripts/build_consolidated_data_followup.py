@@ -53,11 +53,12 @@ def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,rev
         elif r['actionState']=='collection-error':c['type_defaut']='donnée ou accès fournisseur'
         elif r['actionState']in ['not-applicable','outside-equity-scope']:c.update(type_defaut='non applicable',reliquat_actif=False)
     usage={t['path']+'|'+r['id']+'|'+r['key']:{**r,'tool':t['path']}for t in inventory['consumerUsage']['tools']for r in t['rows']}
+    for key,r in usage.items():
+        c=item('usage:'+key,'raccordement','contrat de donnée par usage')
+        c.update(statut_donnees=r['state'],reliquat_actif=bool(r.get('required')and r['state']in ['blocked','unconfirmed','qualification-needed','scheduled-evidence']),niveau_preuve='contrat actuel du consommateur ; pas admission déduite de la collecte',outils=[r['tool']],details=r,preuves=['public/data/data-automation-inventory.json'])
     for key,c in cases.items():
-        if not key.startswith('usage:'):continue
-        r=usage.get(key[6:])
-        if r:c.update(axe='raccordement',statut_donnees=r['state'],reliquat_actif=bool(r.get('required')and r['state']in ['blocked','unconfirmed']),niveau_preuve='contrat actuel du consommateur ; pas admission déduite de la collecte',outils=[r['tool']],details=r,preuves=['public/data/data-automation-inventory.json'])
-        else:c.update(statut_donnees='contrat absent du registre actuel, à vérifier',niveau_preuve='non vérifié ; absence ne vaut pas résolution',piece_manquante='Identité du contrat courant ou preuve de retrait.')
+        if key.startswith('usage:')and key[6:]not in usage:
+            c.update(statut_donnees='contrat absent du registre actuel, à vérifier',niveau_preuve='non vérifié ; absence ne vaut pas résolution',piece_manquante='Identité du contrat courant ou preuve de retrait.')
     forensic={r['isin']+'/'+r['year']:r for r in forensics}
     for r in financial['rows']:
         k=r['isin']+'/'+str(r['year']);c=item('financial:'+k)
@@ -95,18 +96,17 @@ def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,rev
         c.update({k:v for k,v in reconciliation.items()if k not in ('id_suivi','rapprochement')})
     assert sum(len(c['origines'])for c in cases.values())==len(legacy),'Une entrée héritée a disparu'
     assert len([k for k in cases if k.startswith('financial:')])==len(financial['rows'])
-    if repairs and not validated and 'action:P2-04' in cases:
-        cases['action:P2-04'].update(statut_donnees='réouverte : régression de stockage démontrée, correction en validation',reliquat_actif=True)
     removed=json.loads((ROOT/'src/data/retired-automations.json').read_text())['workflows']
     removed_names={r['toolName']for r in removed.values()if r.get('toolName')}
     removed_paths=[p for tool in json.loads((ROOT/'scripts/removed-tool-scopes.json').read_text())['tools']for p in tool['paths']]
+    removed_followups={p for tool in json.loads((ROOT/'scripts/removed-tool-scopes.json').read_text())['tools']for p in tool.get('followupIds',[])}
     for c in cases.values():
         labels=c['outils'] or (re.split(r'\s*[;|]\s*',c['details'].get('outils',''))if isinstance(c['details'].get('outils'),str)else [])
         exclusive=bool(labels) and set(labels) <= removed_names
         component=c['id_suivi'].removeprefix('module:')
         removed_component=any(component==p or component.startswith(p+'/')for p in removed_paths)
         retired_workflow=next((wf for wf in removed if wf in c['id_suivi']),None)
-        if exclusive or retired_workflow or removed_component:
+        if exclusive or retired_workflow or removed_component or c['id_suivi']in removed_followups:
             c.update(statut_donnees='périmètre supprimé',statut_supervision='périmètre supprimé ; aucune donnée réparée',reliquat_actif=False,verification_en_attente=False)
         else:c['outils']=[t for t in c['outils']if t not in removed_names]
     for c in cases.values():
@@ -121,7 +121,7 @@ def write_reports(cases,legacy,output,metadata):
     summary={'schemaVersion':1,**metadata,'lignes_heritees':len(legacy),'origines_reconciliees':sum(len(c['origines'])for c in cases),'cas_uniques':len(cases),'actifs_ou_usages_non_additionnables_aux_cas':True,'suivi_par_axe':dict(collections.Counter(c['axe']for c in active)),'reliquat_actif_cas':len(active),'verification_en_attente':sum(c.get('verification_en_attente',False)for c in cases),'financier':{'comparaisons':sum(c['id_suivi'].startswith('financial:')for c in cases),'encore_ouverts':sum(c['id_suivi'].startswith('financial:')for c in active)},'non_reverifies':sum(c['statut_donnees']=='non revérifié dans cette reprise'for c in cases),'limite':'Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause.'}
     summary['actions_19']={'total':sum(c['id_suivi'].startswith('action:') for c in cases),'statuts':dict(collections.Counter(c['statut_donnees'] for c in cases if c['id_suivi'].startswith('action:')))}
     summary['supervision']={'signaux_actifs_moniteur':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision']=='actif dans le moniteur observé' for c in cases),'cycles_resolus_documentes':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision'].startswith('résolution documentée') for c in cases),'attributions_retirees_documentees':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision'].startswith('retrait documenté') for c in cases)}
-    summary['definitions']={'cas_uniques':'Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.','verification_en_attente':'Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.','productionValidated':'Concerne exclusivement les trois corrections de ce lot, pas la certification de tous les éléments inventoriés.'}
+    summary['definitions']={'cas_uniques':'Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.','verification_en_attente':'Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.','productionValidated':'Concerne les corrections dotées de preuves de production dans ce suivi ; ne certifie pas toutes les données ni les modules.'}
     (output/'bilan.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
     return summary
 

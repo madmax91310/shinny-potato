@@ -54,7 +54,7 @@ export function assetAutomation(inventory,now=inventory.generatedAt){
   }
   if(!['excluded','reference','not-required'].includes(state)&&/^\d{4}-\d{2}-\d{2}/.test(field.asOf??'')&&field.asOf.slice(0,10)>now.slice(0,10))state='blocked'
   const consumers=[...new Map([...(connection?.tools??[]),...(field.consumers??[])].map(c=>[consumerPath(c),typeof c==='string'?{path:consumerPath(c)}:c])).values()]
-  add(field.id,field.type,field.name,{key:`catalog:${field.fieldIndex}`,label:field.field,state,kind,
+  add(field.id,field.type,field.name,{key:`catalog:${field.fieldIndex}`,label:field.field,state,kind,registry:field.registry,
    checkedAt:field.checkedAt,asOf:field.asOf,sourceUrls:field.sourceUrls,consumers,coverageReference:field.coverageReference??null,
    currency:field.currency??null,scope:field.scope,method:field.method,
    workflows:scheduled.map(path=>({path,name:workflows.get(path).name,crons:workflows.get(path).crons})),

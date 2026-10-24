@@ -178,7 +178,8 @@ export function buildDataAutomationInventory(){
  report.summary.priorityMarkets=priorityMarkets
  report.assets=certification.assets;report.summary.assetAutomation=certification.summary
  const externalAssets=externalConsumerAssets(workflows,report.generatedAt)
- report.consumerUsage={...consumerUsage([...report.assets,...externalAssets]),externalAssets}
+ const allConsumerAssets=[...report.assets,...externalAssets].map(asset=>({...asset,fields:asset.fields.map(field=>({...field,consumers:[...(field.consumers??[]),{path:'/bibliotheque-donnees'}]}))}))
+ report.consumerUsage={...consumerUsage(allConsumerAssets),externalAssets}
  report.summary.consumerUsage=report.consumerUsage.summary
  return report
 }

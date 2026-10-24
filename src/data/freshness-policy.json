@@ -2,21 +2,99 @@
   "schemaVersion": 1,
   "description": "Single freshness policy: how long a field may go without a successful check (checkDays) and how old its publication may be (dataDays) before it is reported. Read by report-asset-fields.mjs, collect_instrument_metadata.py and collect_scpi.py. Per-workflow run cadence stays in automation-workflows.json (maxAgeHours).",
   "fields": {
-    "investor.13f": {"checkDays": 7, "dataDays": 155, "note": "Contrôle quotidien des nouvelles déclarations ; la période 13F conserve sa date trimestrielle et son délai réglementaire de publication."},
-    "etf.default": { "checkDays": 7, "dataDays": 65, "note": "Countries, sectors, holdings, AUM: issuers republish monthly." },
-    "etf.ter": { "checkDays": 7, "dataDays": 400, "note": "Annual fee: may legitimately date from the last financial year." },
-    "etf.characteristic": { "checkDays": 7, "dataDays": 400, "fields": ["distribution", "pea", "currencyHedge", "listings"] },
-    "etf.staticCharacteristic": { "checkDays": 365, "dataDays": 400, "fields": ["domicile", "replicationMethod"], "note": "Changes only through a prospectus amendment or a fund merger." },
-    "etf.performance": { "checkDays": 7, "dataDays": 550, "note": "Calendar years: the last complete year is published in the following months." },
-    "etf.monthly": { "checkDays": 40, "dataDays": 65 },
-    "series.dailyNav": { "checkDays": 2, "dataDays": 7, "note": "NAV après valorisation : tolérance des jours non ouvrés, sans report artificiel ; dates de contrôle et de données distinctes. Historique mensuel séparé." },
-    "series.monthly": { "checkDays": 40, "dataDays": 65 },
-    "index.facts": { "checkDays": 40, "dataDays": 120 },
-    "index.returns": { "checkDays": 40, "dataDays": 550 },
-    "product.default": { "checkDays": 7, "dataDays": 120, "note": "SCPI and life-insurance presentations." },
-    "product.annual": { "checkDays": 7, "dataDays": 550, "fields": ["annual", "euroFunds"] }
+    "investor.13f": {
+      "checkDays": 7,
+      "dataDays": 155,
+      "note": "Contrôle quotidien des nouvelles déclarations ; la période 13F conserve sa date trimestrielle et son délai réglementaire de publication."
+    },
+    "etf.default": {
+      "checkDays": 7,
+      "dataDays": 65,
+      "note": "Countries, sectors, holdings, AUM: issuers republish monthly."
+    },
+    "etf.ter": {
+      "checkDays": 7,
+      "dataDays": 400,
+      "note": "Annual fee: may legitimately date from the last financial year."
+    },
+    "etf.characteristic": {
+      "checkDays": 7,
+      "dataDays": 400,
+      "fields": [
+        "distribution",
+        "pea",
+        "currencyHedge",
+        "listings"
+      ]
+    },
+    "etf.staticCharacteristic": {
+      "checkDays": 365,
+      "dataDays": 400,
+      "fields": [
+        "domicile",
+        "replicationMethod"
+      ],
+      "note": "Changes only through a prospectus amendment or a fund merger."
+    },
+    "etf.performance": {
+      "checkDays": 7,
+      "dataDays": 550,
+      "note": "Calendar years: the last complete year is published in the following months."
+    },
+    "etf.monthly": {
+      "checkDays": 40,
+      "dataDays": 65
+    },
+    "series.dailyNav": {
+      "checkDays": 2,
+      "dataDays": 7,
+      "note": "NAV après valorisation : tolérance des jours non ouvrés, sans report artificiel ; dates de contrôle et de données distinctes. Historique mensuel séparé."
+    },
+    "series.monthly": {
+      "checkDays": 40,
+      "dataDays": 65
+    },
+    "index.facts": {
+      "checkDays": 40,
+      "dataDays": 120
+    },
+    "index.returns": {
+      "checkDays": 40,
+      "dataDays": 550
+    },
+    "product.default": {
+      "checkDays": 7,
+      "dataDays": 120,
+      "note": "SCPI and life-insurance presentations."
+    },
+    "product.annual": {
+      "checkDays": 7,
+      "dataDays": 550,
+      "fields": [
+        "annual",
+        "euroFunds"
+      ]
+    },
+    "purchasing.prices": {
+      "checkDays": 7,
+      "dataDays": 65,
+      "note": "Indices INSEE mensuels ; contrôle de source distinct du mois observé, même base 2025."
+    },
+    "purchasing.irl": {
+      "checkDays": 7,
+      "dataDays": 140,
+      "note": "IRL trimestriel : surveillance interne après le trimestre suivant et son délai de diffusion. Ce délai interne ne constitue pas une date annoncée par INSEE."
+    },
+    "purchasing.smic": {
+      "checkDays": 7,
+      "dataDays": 65,
+      "note": "Montant mensuel en vigueur, non une clôture de marché ; mois effectif et contrôle séparés."
+    }
   },
   "calendars": {
-    "scpi.quarterlyBulletin": { "graceDaysAfterNextQuarterEnd": 45, "note": "Internal monitoring interval only; not a regulatory or issuer publication deadline. A missing publication after this interval requires investigation; it does not establish an issuer delay." }
+    "scpi.quarterlyBulletin": {
+      "graceDaysAfterNextQuarterEnd": 45,
+      "note": "Internal monitoring interval only; not a regulatory or issuer publication deadline. A missing publication after this interval requires investigation; it does not establish an issuer delay."
+    }
   }
 }
