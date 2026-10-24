@@ -6,6 +6,10 @@ on:
     - cron: '10 0 * * *'
   workflow_dispatch:
     inputs:
+      assets:
+        description: 'Identifiants exacts à rattraper, séparés par des virgules (en plus des positions et références requises)'
+        type: string
+        default: ''
       qualification_mode:
         description: 'Reprise du catalogue (aucune décision automatisée)'
         type: choice
@@ -100,8 +104,11 @@ jobs:
       - name: Collect exact daily closes and ECB FX
         id: collect
         continue-on-error: true
+        env:
+          REQUESTED_ASSETS: ${{ inputs.assets }}
         run: |
           args=()
+          if [[ -n "$REQUESTED_ASSETS" ]]; then args+=(--assets "$REQUESTED_ASSETS"); fi
           python scripts/collect_ai_portfolios.py "${args[@]}" --report "$RUNNER_TEMP/ai-portfolio-observations.json"
       - name: Reconcile international scope and exhaustive exports
         run: python scripts/report_ai_equities.py
