@@ -30,3 +30,26 @@ assert.ok(!alreadyPublished(newer,composed.info,()=>false,{changed:()=>['src/dat
 assert.ok(!alreadyPublished(newer,composed.info,ancestor,{changed:()=>{throw new Error('missing object')},allowed:base.allowed}))
 assert.ok(!alreadyPublished('invalid',composed.info,ancestor,{changed:()=>[],allowed:base.allowed}))
 console.log('Composed code/data publications recognized only with an included data prefix and proven unchanged code.')
+
+// Exercise ancestry and changed paths with a real isolated Git history.
+const {mkdtempSync,writeFileSync,rmSync}=await import('node:fs')
+const {tmpdir}=await import('node:os')
+const {join}=await import('node:path')
+const {execFileSync}=await import('node:child_process')
+const directory=mkdtempSync(join(tmpdir(),'published-prefix-'))
+try{
+ const git=(...args)=>execFileSync('git',['-C',directory,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
+ git('init');git('config','user.name','Isolated publication test');git('config','user.email','test@example.invalid')
+ const commit=()=>{git('add','.');git('commit','-m','Isolated marker');return git('rev-parse','HEAD')}
+ writeFileSync(join(directory,'consumer.js'),'export const convention="unchanged"\n');writeFileSync(join(directory,'active.json'),'{}\n');const code=commit()
+ writeFileSync(join(directory,'active.json'),'{"marker":"collected"}\n');const data=commit()
+ writeFileSync(join(directory,'collector.js'),'export const convention="new-code"\n');const unservedCode=commit()
+ writeFileSync(join(directory,'active.json'),'{"marker":"later"}\n');const laterData=commit()
+ const ancestry=(a,b)=>{try{git('merge-base','--is-ancestor',a,b);return true}catch{return false}}
+ const evidence={changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),allowed:['active.json']}
+ assert.ok(alreadyPublished(data,{sha:code,dataSha:data},ancestry,evidence))
+ assert.ok(!alreadyPublished(unservedCode,{sha:code,dataSha:laterData},ancestry,evidence),'a published data prefix never certifies its unserved collector code')
+ assert.ok(!alreadyPublished(laterData,{sha:code,dataSha:data},ancestry,evidence))
+ assert.deepEqual(planSnapshot({requested:data,master:laterData,info:{sha:code,dataSha:data},ancestor:ancestry,...evidence,fullGate:true}),{candidate:data,current:false})
+}finally{rmSync(directory,{recursive:true,force:true})}
+console.log('Real isolated Git: served data stops its duplicate gate; unserved code and missing data remain unqualified.')
