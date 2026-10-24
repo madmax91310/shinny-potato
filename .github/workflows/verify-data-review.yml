@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         scope: ${{ fromJSON(inputs.scopes) }}
-    runs-on: ${{ contains(fromJSON('["brokers-macos","issuer-share"]'), matrix.scope) && 'macos-15' || 'ubuntu-latest' }}
+    runs-on: ${{ contains(fromJSON('["brokers-macos","issuer-share","fx"]'), matrix.scope) && 'macos-15' || 'ubuntu-latest' }}
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v7.0.1
