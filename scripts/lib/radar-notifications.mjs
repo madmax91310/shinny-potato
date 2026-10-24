@@ -1,6 +1,8 @@
 import { replicationWordingEvent } from '../../src/lib/replication-method.js'
 import { createHash } from 'node:crypto'
 import { datedEtfSnapshot } from './editorial-radar.mjs'
+import { groupSignals, selectEditorial, editorialAssessment, publicationKey } from '../../src/lib/radar-editorial.js'
+import { parisClock } from './radar-schedule.mjs'
 import { investorFilingType } from '../../src/lib/radar-editorial.js'
 
 const EVENT_ID = /^[a-f0-9]{24}$/
@@ -42,6 +44,25 @@ export function notifiableEvents(events) {
   })
 }
 
+export function migrateNotificationPolicy(previous, ledger) {
+  if (ledger.editorialVersion === 2) return ledger
+  return { ...ledger, editorialVersion: 2, acknowledged: [...new Set([...ledger.acknowledged, ...(previous?.events ?? []).map(event => event.id)])] }
+}
+export function planNotifications(events, ledger, now = new Date(), mode = 'digest') {
+  const pending = pendingNotifications(events, ledger).filter(event => !(ledger.acknowledgedPublications ?? []).includes(publicationKey(event)))
+  const groups = groupSignals(pending, +now).filter(group => {
+    const assessment = editorialAssessment(group.event, +now)
+    const date = group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt)
+    const age = (+now-Date.parse(date))/86400000
+    return assessment.reliability.usable && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && (mode !== 'major' || assessment.major)
+  })
+  const majorBudget = ledger.majorDay === parisClock(now).date ? Math.max(0, 3-(ledger.majorGroups ?? 0)) : 3
+  if (mode === 'major' && !majorBudget) return { events: [], pending: groups.length }
+  if (mode === 'digest' && ledger.lastDigest === parisClock(now).date) return { events: [], pending: groups.length }
+  const { selected } = selectEditorial(groups, mode === 'major' ? Math.min(2, majorBudget) : 5)
+  return { events: selected.flatMap(group => group.events), pending: groups.length, deferred: groups.length-selected.length }
+}
+
 export function pendingNotifications(events, ledger) {
   const seen = new Set(ledger.acknowledged)
   return notifiableEvents(events).filter(event => !seen.has(event.id)).sort((a, b) => a.detectedAt.localeCompare(b.detectedAt) || a.id.localeCompare(b.id))
@@ -62,7 +83,7 @@ function eventBody(event, repo, revision, compact = false) {
   const toolUrl = tool ? `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}${tool}` : null
   const details = compact ? archiveNote : typeof event.before === 'object' && event.before !== null || typeof event.after === 'object'
     ? `\n<details><summary>Valeurs complètes publiées</summary>\n\n<pre>${JSON.stringify({ before: event.before, after: event.after }, null, 2).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/@/g, '&#64;')}</pre>\n\n</details>\n` : ''
-  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
+  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Publication : ${text(event.publishedAt ?? 'date non documentée')} ; type : ${text(event.factType ?? 'changement')}.\n- Priorité : ${editorialAssessment(original).score}/100. ${editorialAssessment(original).criteria.map(row => `${text(row.reason)} (${row.points}/${row.maximum})`).join(' ; ')}.\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
 }
 
 // Sections for a list of events, split into bodies that respect GitHub's limit.
@@ -87,15 +108,14 @@ export function trackerBody({ recent, receipts, repo, revision, now }) {
   const listed = recent.slice(0, MAX_LISTED)
   let body = header
   for (const event of listed) {
-    let section = eventBody(event, repo, revision, true)
+    let section = eventBody(event, repo, revision, true).replaceAll('editorial-radar-event:', 'editorial-radar-listed:')
     if (Buffer.byteLength(body + section) > BODY_LIMIT - MAX_RECEIPTS * 50) break
     body += section
   }
-  const shown = (body.match(/<!-- editorial-radar-event:/g) ?? []).length
+  const shown = (body.match(/<!-- editorial-radar-listed:/g) ?? []).length
   if (recent.length > shown) body += `\n${recent.length - shown} autre(s) signal(aux) récent(s) dans l’historique complet.\n`
   if (!recent.length) body += '\nAucun signal récent : cette issue se rouvrira au prochain signal validé.\n'
-  const listedIds = new Set(listed.slice(0, shown).map(event => event.id))
-  const extra = [...receipts].filter(id => !listedIds.has(id)).slice(-MAX_RECEIPTS)
+  const extra = [...receipts].slice(-MAX_RECEIPTS)
   if (extra.length) body += `\n<!-- Accusés de notification -->\n${extra.map(marker).join('\n')}\n`
   return body
 }
@@ -112,8 +132,11 @@ export function correctReplicationNotification(body, events) {
   })
 }
 
-export async function notifyRadar({ events, archiveEvents = events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false }) {
+export async function notifyRadar({ events, archiveEvents = events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false, mode = 'all' }) {
   if (!/^(?:[a-f0-9]{40}|radar-data)$/.test(evidenceRevision)) throw new Error('Révision de preuve invalide.')
+  const allEvents = events
+  const plan = mode === 'all' ? null : planNotifications(events, ledger, now, mode)
+  if (plan) events = plan.events
   const pending = pendingNotifications(events, ledger)
   if (!pending.length && !maintain) return { ledger, issues: [], sent: 0, recovered: 0 }
   const receipts = new Set()
@@ -139,7 +162,7 @@ export async function notifyRadar({ events, archiveEvents = events, ledger, api,
   }
   if (tracker) {
     if (!tracker.assignees?.some(user => user.login.toLowerCase() === assignee.toLowerCase())) unassignedReceipts.add(tracker.number)
-    for (const match of (tracker.body ?? '').matchAll(/<!-- editorial-radar-event:([a-f0-9]{24}) -->/g)) receipts.add(match[1])
+    for (const match of (tracker.body ?? '').split('<!-- Accusés de notification -->')[1]?.matchAll(/<!-- editorial-radar-event:([a-f0-9]{24}) -->/g) ?? []) receipts.add(match[1])
     for (let page = 1; ; page++) {
       const comments = await api(`issues/${tracker.number}/comments?per_page=100&page=${page}`)
       for (const comment of comments) {
@@ -152,12 +175,12 @@ export async function notifyRadar({ events, archiveEvents = events, ledger, api,
     }
   }
   const unsent = pending.filter(event => !receipts.has(event.id))
-  const recent = recentSignals(events, now)
+  const recent = recentSignals(mode === 'all' ? events : allEvents.filter(event => { const a = editorialAssessment(event,+now); return a.reliability.usable && a.state === 'ready' }), now)
   // Render every body before any side effect to reject invalid content early.
-  const header = `@${assignee}, de nouveaux signaux sourcés ont été validés par le radar éditorial.\n`
+  const header = `@${assignee}, ${mode === 'major' ? 'événement majeur' : mode === 'digest' ? 'récap quotidien des meilleurs nouveaux sujets' : 'de nouveaux signaux sourcés ont été validés par le radar éditorial'}.\n`
   const comments = batches(unsent, repo, evidenceRevision, header)
   const acknowledged = [...new Set([...ledger.acknowledged, ...pending.map(event => event.id)])]
-  const body = trackerBody({ recent, receipts: new Set([...receipts, ...acknowledged]), repo, revision: evidenceRevision, now })
+  const body = trackerBody({ recent, receipts: new Set([...receipts, ...ledger.acknowledged]), repo, revision: evidenceRevision, now })
   const state = recent.length ? 'open' : 'closed'
   const title = recent.length ? `Radar éditorial : ${signals(recent.length)} récent${recent.length > 1 ? 's' : ''} à traiter` : 'Radar éditorial : aucun signal récent'
   const issues = []
@@ -183,11 +206,15 @@ export async function notifyRadar({ events, archiveEvents = events, ledger, api,
     const digest = createHash('sha256').update(batch.events.map(event => event.id).sort().join(':')).digest('hex').slice(0, 12)
     await api(`issues/${tracker.number}/comments`, 'POST', { body: `${batch.body}\n<!-- radar-batch:${digest} -->\n` })
   }
+  // Only successful comments/legacy receipts acknowledge delivery. A crash here
+  // is recovered from the bot comments before the next POST.
+  const deliveredBody = trackerBody({ recent, receipts: new Set([...receipts, ...acknowledged]), repo, revision: evidenceRevision, now })
+  if (deliveredBody !== body) await api(`issues/${tracker.number}`, 'PATCH', { body: deliveredBody })
   // Earlier one-issue-per-batch notifications stay readable as receipts; once
   // their signals are acknowledged they are closed in favour of the tracked issue.
   for (const issue of legacy) {
     await api(`issues/${issue.number}/comments`, 'POST', { body: `Signaux regroupés dans l’issue suivie #${tracker.number} ; cette issue est fermée automatiquement.` })
     await api(`issues/${issue.number}`, 'PATCH', { state: 'closed' })
   }
-  return { ledger: { ...ledger, acknowledged }, issues, sent: unsent.length, recovered: pending.length - unsent.length, closedLegacy: legacy.length }
+  return { ledger: { ...ledger, acknowledged, ...(mode !== 'all' ? { acknowledgedPublications: [...new Set([...(ledger.acknowledgedPublications ?? []), ...pending.map(publicationKey)])] } : {}), ...(mode === 'major' && unsent.length ? { majorDay: parisClock(now).date, majorGroups: (ledger.majorDay === parisClock(now).date ? ledger.majorGroups ?? 0 : 0)+groupSignals(unsent,+now).length } : {}), ...(mode === 'digest' ? { lastDigest: parisClock(now).date } : {}), delivery: { checkedAt: now.toISOString(), mode, sent: unsent.length, pending: plan?.pending ?? 0 } }, issues, sent: unsent.length, recovered: pending.length - unsent.length, closedLegacy: legacy.length }
 }
