@@ -22,7 +22,7 @@ export function indexMethodNote({ name, variant, currency, income }) {
 
 // Mention de conversion quand une série est affichée dans une autre devise que sa source.
 export function conversionNote({ method }) {
-  return `${method === 'official' ? 'série officielle' : 'conversion BCE'}, sans couverture de change`
+  return `${method === 'official' ? 'série officielle' : method === 'h10-ecb' ? 'conversion Federal Reserve H.10 et BCE aux mêmes dates' : 'conversion BCE'}, sans couverture de change`
 }
 
 // Période « de début 2016 à fin 2025 » à partir de rendements annuels.

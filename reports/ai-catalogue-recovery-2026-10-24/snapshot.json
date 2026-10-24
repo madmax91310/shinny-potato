@@ -1,0 +1,18 @@
+{
+  "sourceMaster": "3f729f9b2381a46c1c62dd14ce082b0b0f09b821",
+  "productionBookSha256": "ddf7f2c9eae7bc65444b1be63c93c7c41ed621e9b39b6f202de5f6a73db61222",
+  "competition": "6cd1b5b0-cf58-45d1-b652-dde376f2369b",
+  "revision": 1,
+  "status": "draft",
+  "decisions": 0,
+  "universe": 18468,
+  "overviewIdentities": 1,
+  "catalogueIdentities": 24975,
+  "missingSelectedIds": [],
+  "issues": {
+    "909": "recorded at 3f729f9; create revision 0; models À renseigner",
+    "910": "same request replay, same durable commit; no second creation",
+    "911": "different create request at revision 0; refused after book advanced to revision 1; models À renseigner"
+  },
+  "productionWrites": false
+}

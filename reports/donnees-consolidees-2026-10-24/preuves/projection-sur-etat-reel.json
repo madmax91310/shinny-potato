@@ -1,0 +1,64 @@
+{
+  "scope": "Projection locale du nouveau lecteur sur la capture réelle ; aucune écriture du moniteur",
+  "sourceCheckedAt": "2026-10-24T06:13:30.563144+00:00",
+  "rows": [
+    {
+      "name": "iShares Core MSCI World UCITS ETF (Acc)",
+      "tools": [
+        "Portefeuilles IA"
+      ],
+      "impactScope": "asset",
+      "workflow": "update-ai-portfolios.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39901062632",
+      "to": "/portefeuilles-ia",
+      "lastSuccessAt": "2026-10-22T10:27:18Z",
+      "completedAt": "2026-10-23T04:37:19Z",
+      "cause": "Clôtures attendues manquantes : 2026-10-22",
+      "field": "Clôture quotidienne / change",
+      "sourceUrls": [],
+      "kind": "collection",
+      "dataId": "IE00B4L5Y983-ETFP",
+      "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
+      "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
+      "lastSeenAt": "2026-10-24T07:16:01.256041+00:00"
+    },
+    {
+      "name": "iShares Core S&P 500 UCITS ETF",
+      "tools": [
+        "Portefeuilles IA"
+      ],
+      "impactScope": "asset",
+      "workflow": "update-ai-portfolios.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40062245637",
+      "to": "/portefeuilles-ia",
+      "lastSuccessAt": "2026-10-22T10:27:18Z",
+      "completedAt": "2026-10-24T04:31:06Z",
+      "cause": "Clôtures attendues manquantes : 2026-10-23",
+      "field": "Clôture quotidienne / change",
+      "sourceUrls": [],
+      "kind": "collection",
+      "dataId": "IE00B5BMR087-XLON-CSPX-USD",
+      "id": "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD",
+      "firstSeenAt": "2026-10-24T01:01:25.269676+00:00",
+      "lastSeenAt": "2026-10-24T07:16:01.256041+00:00"
+    },
+    {
+      "name": "Portefeuilles IA · clôtures et suivi quotidien",
+      "tools": [
+        "Portefeuilles IA"
+      ],
+      "impactScope": "collector",
+      "workflow": "update-ai-portfolios.yml",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40062245637",
+      "to": "/donnees-a-revoir",
+      "lastSuccessAt": "2026-10-22T10:27:18Z",
+      "kind": "checks",
+      "field": "Validation des données",
+      "cause": "refresh : Validate every selectable equity against the accounting engine",
+      "id": "checks:update-ai-portfolios.yml",
+      "firstSeenAt": "2026-10-24T07:16:01.256041+00:00",
+      "lastSeenAt": "2026-10-24T07:16:01.256041+00:00"
+    }
+  ],
+  "inputUnchanged": true
+}

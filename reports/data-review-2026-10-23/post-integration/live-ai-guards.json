@@ -1,0 +1,34 @@
+[
+  {
+    "id": "IE00B5BMR087-XLON-CSPX-USD",
+    "lastValid": "2026-10-22",
+    "retained": {
+      "ok": true,
+      "reason": "73 clôtures · CSPX · dernière 2026-10-22"
+    },
+    "missing": {
+      "ok": false,
+      "reason": "Clôture attendue manquante : CSPX 2026-10-23."
+    },
+    "decision": {
+      "ok": false,
+      "reason": "Dernière collecte en échec : Clôtures attendues manquantes : 2026-10-23"
+    }
+  },
+  {
+    "id": "IE00B4L5Y983-ETFP",
+    "lastValid": "2026-10-22",
+    "retained": {
+      "ok": true,
+      "reason": "74 clôtures · SWDA · dernière 2026-10-22"
+    },
+    "missing": {
+      "ok": false,
+      "reason": "Clôture attendue manquante : SWDA 2026-10-23."
+    },
+    "decision": {
+      "ok": false,
+      "reason": "Clôture attendue manquante : SWDA 2026-10-23."
+    }
+  }
+]

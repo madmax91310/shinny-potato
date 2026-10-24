@@ -1,0 +1,24 @@
+verify	Preserve the consumed result and matching fresh observation	﻿2026-10-23T23:35:54.6568066Z ##[group]Run python - <<'PY'
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6568402Z [36;1mpython - <<'PY'[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6568645Z [36;1mimport json,os[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6568890Z [36;1mfrom pathlib import Path[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6569319Z [36;1mout=Path(os.environ['RUNNER_TEMP']);s=json.load(open(out/'amundi-status.json'))[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6570222Z [36;1mr=json.load(open('src/data/automated-etf-monthly.json'))['etfFR0007054358'];e=json.load(open('scripts/source-snapshots/monthly-automated.json'))['etfFR0007054358'][0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6571052Z [36;1massert len(s['series'])==1 and s['series'][0]['status']=='validated'[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6571640Z [36;1massert r['responseSha256']==s['series'][0]['responseSha256'] and r['checkedAt']==s['checkedAt'][0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6572306Z [36;1m(out/'amundi-result.json').write_text(json.dumps({'record':r,'evidence':e},ensure_ascii=False))[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6572987Z [36;1mprint('Actual producer result, historical evidence date and raw-price convention retained')[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6573500Z [36;1mPY[0m
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6636182Z shell: /usr/bin/bash -e {0}
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6636694Z env:
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6636976Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6637444Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6637904Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6638296Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6638682Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6639079Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.6639414Z ##[endgroup]
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.9062294Z Traceback (most recent call last):
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.9063061Z   File "<stdin>", line 6, in <module>
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.9063875Z AssertionError
+verify	Preserve the consumed result and matching fresh observation	2026-10-23T23:35:54.9127535Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,171 @@
+{
+  "monitorCheckedAt": "2026-10-24T10:20:16.389392+00:00",
+  "workflow": {
+    "monitorVersion": 2,
+    "name": "Caractéristiques et statut PEA par ISIN",
+    "runId": 40084861648,
+    "attempt": 1,
+    "headSha": "b594f3d61764743c49de6de9d32247ce4b0a859d",
+    "createdAt": "2026-10-24T10:10:33Z",
+    "completedAt": "2026-10-24T10:18:01Z",
+    "status": "failure",
+    "lastSuccessAt": "2026-10-18T16:32:07Z",
+    "collectionStatus": "failure",
+    "validationStatus": "success",
+    "recordingStatus": "failure",
+    "publicationStatus": "not-run",
+    "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
+    "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
+    "failures": [
+      {
+        "job": "refresh",
+        "step": "Commit validated observations"
+      },
+      {
+        "job": "report-failures",
+        "step": "Run exit 1"
+      }
+    ],
+    "dataFailures": {
+      "IE00B0M62S72:pea:qualification": {
+        "name": "IE00B0M62S72:pea:qualification",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "field": "pea"
+      },
+      "IE00BYZK4776:listings": {
+        "name": "IE00BYZK4776:listings",
+        "completedAt": "2026-10-24T10:18:01Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
+        "cause": "check-overdue; checked=2026-10-16, published=unknown",
+        "field": "Cotations",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "lastSuccessAt": "2026-10-16"
+      }
+    },
+    "retiredDataFailures": {
+      "IE00BDVPNG13:aum": {
+        "name": "IE00BDVPNG13:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BDVPNG13:countries": {
+        "name": "IE00BDVPNG13:countries",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Pays",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BDVPNG13:sectors": {
+        "name": "IE00BDVPNG13:sectors",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Secteurs",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BDVPNG13:holdings": {
+        "name": "IE00BDVPNG13:holdings",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Principales positions",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BKLF1R75:aum": {
+        "name": "IE00BKLF1R75:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BKLF1R75:countries": {
+        "name": "IE00BKLF1R75:countries",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Pays",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BKLF1R75:sectors": {
+        "name": "IE00BKLF1R75:sectors",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Secteurs",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE00BKLF1R75:holdings": {
+        "name": "IE00BKLF1R75:holdings",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Principales positions",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "GB00B15KXQ89:aum": {
+        "name": "GB00B15KXQ89:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "GB00BJYDH287:aum": {
+        "name": "GB00BJYDH287:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE0002XZSHO1:aum": {
+        "name": "IE0002XZSHO1:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "IE000DQLYVB9:aum": {
+        "name": "IE000DQLYVB9:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      "JE00B1VS3770:aum": {
+        "name": "JE00B1VS3770:aum",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "retiredAt": "2026-10-24T10:18:01Z",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      }
+    }
+  },
+  "notFinalProductionReceipt": true
+}

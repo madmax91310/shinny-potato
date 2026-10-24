@@ -1,0 +1,18 @@
+Diagnostic Épargnant Libre · Collecte échouée
+Incident : collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD
+Actif / collecte : iShares Core S&P 500 UCITS ETF
+Identifiant : IE00B5BMR087-XLON-CSPX-USD
+Champ : Clôture quotidienne / change
+Cause : Clôtures attendues manquantes : 2026-10-23
+Outils : Portefeuilles IA
+Détecté depuis : 2026-10-24T01:01:25.269676+00:00
+Dernier contrôle du suivi : 2026-10-24T08:56:18.938413+00:00
+Dernier contrôle de collecte réussi : 2026-10-23T10:39:50.275215+00:00
+Dernière tentative de collecte : 2026-10-24T08:49:04.279382+00:00
+Période de la donnée conservée : 2026-10-22
+Devise : Non documenté
+Méthode : Non documenté
+Sources : https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits
+Exécution : https://github.com/madmax91310/shinny-potato/actions/runs/40079425823
+Action : Vérifier l’accès à la source et la lecture du document, puis relancer la collecte concernée.
+Conserver les dernières valeurs validées et leurs dates. Vérifier ensuite le résultat dans les outils concernés.

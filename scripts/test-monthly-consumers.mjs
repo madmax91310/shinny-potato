@@ -59,8 +59,9 @@ try {
     const startYm = record.periodStart > '2020-01' ? record.periodStart : '2020-01';
     const points=ASSETS[id].points.filter(p=>p.date>=startYm);
     const expected=points.reduce((n,p)=>n+100/p.price,0)*points.at(-1).price;
-    if (!qualifyHistoryWindow(ASSETS[id],startYm,record.periodEnd).qualified) {
-      assert.throws(()=>derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''}), /cours reportés/);
+    const qualification=qualifyHistoryWindow(ASSETS[id],startYm,record.periodEnd)
+    if (!qualification.qualified) {
+      assert.throws(()=>derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''}), {message:qualification.reason});
       continue;
     }
     const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});

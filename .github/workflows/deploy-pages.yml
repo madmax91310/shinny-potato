@@ -114,6 +114,7 @@ jobs:
       - run: node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
+      - run: node scripts/test-shared-listing-identities.mjs
       - run: node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
       - run: node scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
@@ -147,7 +148,7 @@ jobs:
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
       - run: node scripts/test-consumer-usage.mjs
-      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
+      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-financial-window-safety.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
@@ -252,6 +253,12 @@ jobs:
           retention-days: 2
       - uses: actions/upload-artifact@v7.0.1
         with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles/*.json
+          if-no-files-found: error
+          retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
           name: tweet-midi-verifier
           path: test-artifacts/tweet-midi-verifier.mjs
           if-no-files-found: error
@@ -304,7 +311,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2
+      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2 exchange_calendars==4.13.2
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python scripts/audit_broker_coverage.py
@@ -337,6 +344,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python scripts/test_radar_review_583.py
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
@@ -367,13 +375,13 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_sec_transport.py'
-      - run: python -m unittest discover -s scripts -p 'test_ai_security_classifications.py'
       - run: python -m unittest discover -s scripts -p 'test_holdings_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_source_download_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
@@ -383,6 +391,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_pending_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+      - run: python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
+      - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'
+      - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py'
@@ -413,6 +424,10 @@ jobs:
           path: src/data
       - uses: actions/download-artifact@v4
         with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles
+      - uses: actions/download-artifact@v4
+        with:
           name: validated-site
           path: dist
       - uses: actions/cache@v4
@@ -420,6 +435,10 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-data-review-recovery.mjs
+        if: matrix.shard == 0
+      - run: node scripts/playwright-removed-ai.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-data-automation-inventory.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-official-nav.mjs
@@ -512,6 +531,10 @@ jobs:
         with:
           name: validated-generated-data
           path: src/data
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-dca-projections
+          path: src/pages/dca-profiles
       - uses: actions/download-artifact@v4
         with:
           name: validated-site

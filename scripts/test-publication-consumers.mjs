@@ -37,6 +37,6 @@ for(const [id,record] of Object.entries(LEVELS)) {
 const item={format:FORMATS.ANNIVERSAIRE,assetId:'bitcoin',yearsBack:1,mode:MODES.SIMPLE}
 const auto=resolveAnniversaryLevel('bitcoin','')
 if(auto)assert.ok(buildAnniversaireText(item,'').includes(auto.label))
-assert.ok(buildAnniversaireText(item,'100000').includes('Niveau saisi manuellement'))
-assert.ok(buildAnniversaireComparatifText({...item,mode:MODES.COMPARATIF,assetIdA:'bitcoin',assetIdB:'ethereum'},'100000','3000').includes('Niveau saisi manuellement'))
+assert.ok(buildAnniversaireText(item,'100000').includes('Aujourd’hui'))
+assert.ok(buildAnniversaireComparatifText({...item,mode:MODES.COMPARATIF,assetIdA:'bitcoin',assetIdB:'ethereum'},'100000','3000').includes('Aujourd’hui'))
 console.log(`Ratios INSEE, SMIC, ${Object.keys(LEVELS).length} observations, dates, péremption et overrides validés.`)

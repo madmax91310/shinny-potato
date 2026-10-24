@@ -231,7 +231,23 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             calendar_proof={'sourceNavMetadata':metadata,'incomeTreatment':'Reinvestment; distribution frequency None'}
     else:raise ValueError('Unregistered official NAV provider')
     if identity_from:nav={d:v for d,v in nav.items()if d>=identity_from}
-    checks=calendar_checks(nav,years,calendar_precision,now,identity_from)
+    checked_nav=nav
+    if kind=='vaneck'and source.get('navCalendarSource')=='page-api':
+        # Qualify the history actually supplied to consumers. A complete year
+        # requiring a December before periodStart cannot be calculated by them.
+        checked_nav={d:v for d,v in nav.items()if d[:7]>=source['periodStart']}
+        outside=[]
+        for year,value in sorted(years.items()):
+            if f'{int(year)-1}-12'>=source['periodStart']:continue
+            item={'year':int(year),'scope':'outside supplied monthly history','requiredStart':f'{int(year)-1}-12','suppliedStart':source['periodStart']}
+            try:
+                proof=calendar_checks(nav,{year:value},calendar_precision,now,identity_from)
+                item.update(qualified=bool(proof),checks=proof)
+            except ValueError as error:
+                item.update(qualified=False,reason=str(error))
+            outside.append(item)
+        if outside:calendar_proof['outsideSuppliedWindowChecks']=outside
+    checks=calendar_checks(checked_nav,years,calendar_precision,now,identity_from)
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]

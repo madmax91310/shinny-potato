@@ -39,7 +39,7 @@ try{
   for(const years of [1,3,5,10]){
    const ym=canonical.ymForYearsBack(years,new Date('2026-10-17'))
    let expected
-   try {expected=canonical.getHistoricalPrice(asset.id,ym)} catch(error) {assert.match(error.message,/cours reportés/);assert.throws(()=>projected.getHistoricalPrice(asset.id,ym),{message:error.message});continue}
+   try {expected=canonical.getHistoricalPrice(asset.id,ym)} catch(error) {assert.match(error.message,/cours reportés|rapprochement financier non résolu/);assert.throws(()=>projected.getHistoricalPrice(asset.id,ym),{message:error.message});continue}
    assert.equal(projected.getHistoricalPrice(asset.id,ym),expected,asset.id+' '+ym)
   }
  }

@@ -978,7 +978,7 @@
     }
   },
   "FR0007054358": {
-    "checkedAt": "2026-10-23T15:40:30.233316+00:00",
+    "checkedAt": "2026-10-24T10:13:59.968381+00:00",
     "observed": [
       "distribution",
       "replicationMethod",
@@ -994,8 +994,8 @@
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -1008,8 +1008,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -1022,8 +1022,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -1036,8 +1036,8 @@
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -1050,8 +1050,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -1064,8 +1064,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:13:59.968381+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "https://www.justetf.com/fr/etf-profile.html?isin=FR0007054358",
@@ -15076,7 +15076,7 @@
         "status": "retained",
         "category": "source-unavailable",
         "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-21",
+        "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
@@ -15099,7 +15099,13 @@
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
             "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
           }
-        ]
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+          "sha256": "d9f3a644123637a44984c321fdda201b168abc81180b32a15525ef49132d01f8"
+        }
       },
       "domicile": {
         "status": "observed",
@@ -15217,7 +15223,7 @@
         "status": "retained",
         "category": "source-unavailable",
         "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-21",
+        "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15240,7 +15246,13 @@
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
             "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
           }
-        ]
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+          "sha256": "d12cc98e3037483a48a8363f7dab3915f76a73e546630f620ee49f89473a5e25"
+        }
       },
       "domicile": {
         "status": "observed",
@@ -23744,40 +23756,29 @@
     }
   },
   "IE00BYZK4776": {
-    "checkedAt": "2026-10-23T15:40:30.233316+00:00",
+    "checkedAt": "2026-10-24T10:24:49.677843+00:00",
     "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "currencyHedge"
     ],
-    "firstPendingAt": {
-      "currencyHedge": "2026-10-19T21:13:03.557366+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "<urlopen error timed out>"
       }
     ],
     "fields": {
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23792,8 +23793,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23808,8 +23809,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23824,8 +23825,8 @@
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23838,10 +23839,10 @@
         "sourceErrors": []
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-19",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23850,27 +23851,14 @@
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-23",
+        "lastAttemptAt": "2026-10-24T10:24:49.677843+00:00",
+        "lastSuccessAt": "2026-10-24",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",

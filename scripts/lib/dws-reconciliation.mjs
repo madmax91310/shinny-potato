@@ -12,11 +12,14 @@ export function reconcileDws(state, observations, proofs, now, failedEntities = 
   for (const row of Object.values(state.current)) if (failedEntities.includes(row.entity) &&
       /^(countries|sectors):/.test(row.field)) state.compositionChecks[`${row.entity}:${row.period}`] ??= {}
   for (const [key, check] of Object.entries(state.compositionChecks)) if (failedEntities.some(entity => key.startsWith(entity + ':'))) {
-    state.compositionChecks[key] = { ...check, sourceHash: null, stableSince: now.toISOString(),
+    state.compositionChecks[key] = { ...check, sourceHash: null, stabilitySourceHash: null, stableSince: now.toISOString(),
       checkedAt: now.toISOString(), status: 'interrupted' }
   }
   for (const proof of proofs) {
     const { entity, period, sourceHash, sourceUrl, method, checkedAt } = proof
+    const stabilityScope = 'complete-document-except-display-name-of-checksummed-isin-v1'
+    if (proof.stabilitySourceHash != null && (!/^[a-f0-9]{64}$/.test(proof.stabilitySourceHash)
+        || proof.stabilityScope !== stabilityScope)) continue
     if (failedEntities.includes(entity)) continue
     if (!/^[A-Z]{2}[A-Z0-9]{10}$/.test(entity ?? '') ||
         sourceUrl !== `https://etf.dws.com/api/pdp/en-gb/etf/${entity}/holdings` ||
@@ -43,7 +46,11 @@ export function reconcileDws(state, observations, proofs, now, failedEntities = 
     let since = checkedAt
     if (old) {
       if (Date.parse(checkedAt) <= Date.parse(old.checkedAt)) continue
-      if (old.sourceHash === sourceHash) since = old.stableSince
+      // A renamed display label does not change a checksummed ISIN's identity.
+      // The independently parsed signature still contains every other raw field.
+      // Legacy checks retain their clock only when their complete raw hash matches.
+      if (old.sourceHash === sourceHash || (proof.stabilitySourceHash &&
+          old.stabilityScope === proof.stabilityScope && old.stabilitySourceHash === proof.stabilitySourceHash)) since = old.stableSince
     } else {
       // Bootstrap from timestamped historical source hashes, not repeated reads
       // of today's local files. A later competing hash resets the stability clock.
@@ -55,6 +62,7 @@ export function reconcileDws(state, observations, proofs, now, failedEntities = 
     }
     const stable = Date.parse(checkedAt) - Date.parse(since) >= STABILITY_MS
     state.compositionChecks[key] = { sourceHash, sourceUrl, checkedAt, stableSince: since,
+      ...(proof.stabilitySourceHash ? {stabilitySourceHash: proof.stabilitySourceHash, stabilityScope: proof.stabilityScope} : {}),
       evidencePath: `dws-snapshots/${sourceHash}.json`, status: stable ? 'confirmed' : 'pending' }
     if (!stable) continue
     for (const row of rows) {

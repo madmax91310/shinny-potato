@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import {consumerUsage} from './lib/consumer-usage.mjs'
-import {groupIncidents} from '../src/pages/data-review/incident-priority.js'
+import {groupIncidents,incidentPresentations} from '../src/pages/data-review/incident-priority.js'
 import {buildDataAutomationInventory} from './data-automation-inventory.mjs'
 import {hasPhysicalPortfolio} from './lib/physical-replication.mjs'
 
@@ -28,3 +28,14 @@ assert(report.consumerUsage.tools.some(t=>t.path==='/portefeuilles-investisseurs
 assert(report.consumerUsage.tools.flatMap(t=>t.rows).some(r=>r.id.startsWith('lexicon:')&&r.required),'Variable regulatory data remain required')
 assert(report.consumerUsage.tools.every(t=>!t.path.includes('analyse-entreprise')))
 console.log('Consumed fields: required observations, alias deduplication, unknown consumers, retired financial accounts, household/regulatory/13F coverage and incident roots passed.')
+
+const duplicateSignals = ['IE00BJGWQN72','IE00BDVPNG13'].flatMap(isin=>[
+ {...rows[0],id:`collection:update-qualified-exposures.yml:dca-holdings:${isin}`,tools:['A'],sourceUrls:['https://issuer.example/a']},
+ {...rows[1],id:`field:instrument:${isin}:completeHoldings`,tools:['B'],cause:'Different diagnostic retained',sourceUrls:['https://issuer.example/b']}
+])
+const presentations=incidentPresentations(duplicateSignals)
+assert.equal(presentations.length,2)
+assert.deepEqual(presentations.flatMap(r=>r.signals.map(s=>s.id)).sort(),duplicateSignals.map(r=>r.id).sort())
+assert(presentations.every(r=>r.tools.length===2&&r.sourceUrls.length===2))
+assert.equal(incidentPresentations([...duplicateSignals,{...rows[0],id:'field:instrument:IE00BJGWQN72:topHoldings'}]).length,3)
+assert(duplicateSignals.every(r=>!r.signals),'No mutation of monitoring history')

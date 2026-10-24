@@ -7,9 +7,14 @@ import {periodReturn,basisLabel,commonCoverage} from '../src/pages/performance-r
 import {getAnnualReturns,MARKET_ASSETS,ANNIVERSAIRE_ELIGIBLE_ASSETS} from '../src/pages/tweet-midi/data/marketHistory.js'
 import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {monthlyCurrencyFactor} from '../src/data/history-currency.js'
+import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
+import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
+import BASE_LEVELS from '../src/data/anniversary-levels.json' with {type:'json'}
+import NON_BOND_LEVELS from '../src/data/non-bond-levels.json' with {type:'json'}
+const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS}
 const sources=JSON.parse(fs.readFileSync('scripts/official-nav-remainder-sources.json'))
-const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence}))]
+const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence})),...JSON.parse(fs.readFileSync('reports/gdx-window-2026-10-23/github/nav.json')).series]
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
@@ -29,8 +34,22 @@ for(const s of sources){
   assert(Math.abs(periodReturn(RANKING_ASSETS[s.id],start,end)-expected)<1e-5)
  }
  assert(getAnnualReturns(s.id,2025).length)
- const l=resolveAnniversaryLevel(s.id,'',new Date(r.latestLevel.asOf+'T12:00:00Z'))
+ // The archived qualification is a lower bound, not a clock for a newer NAV.
+ // Never backdate today's source to make an older receipt appear current.
+ const published=LEVELS[s.id]
+ assert(published&&published.asOf>=r.latestLevel.asOf,'Current NAV must preserve the qualified baseline date')
+ assert(published.asOf<=new Date().toISOString().slice(0,10),'A published NAV cannot be future-dated')
+ const l=resolveAnniversaryLevel(s.id,'',new Date(published.asOf+'T12:00:00Z'))
  assert(l&&l.valuationBasis==='fund-nav-total-return')
+ assert.equal(l.value,published.value);assert.equal(l.isin,s.isin);assert.equal(l.currency,s.currency)
+ const before=new Date(published.asOf+'T00:00:00Z');before.setUTCDate(before.getUTCDate()-1)
+ assert.equal(resolveAnniversaryLevel(s.id,'',before),null,'A newer NAV cannot be used at an earlier date')
+ const expired=new Date(published.asOf+'T00:00:00Z');expired.setUTCDate(expired.getUTCDate()+published.maxAgeDays+1)
+ assert.equal(resolveAnniversaryLevel(s.id,'',expired),null,'The existing NAV freshness limit remains strict')
  if(s.currency!==s.navCurrency)assert.notEqual(monthlyCurrencyFactor('2025-12',s.navCurrency,s.currency,FX),1)
 }
 console.log(`${sources.length} existing shares: selectors, lump/DCA, text, annual/ranking calculations, EUR conversion and matching current NAV levels passed.`)
+
+assert.equal(DUEL_ASSETS.find(a=>a.id==='manual-IE00BQQP9F84')?.isin,'IE00BQQP9F84')
+assert.equal(PORTFOLIO_ASSETS.find(a=>a.id==='gold-miners-vaneck')?.manualOnly,false)
+console.log('Original GDX Duel URL and already qualified automatic role preserved.')

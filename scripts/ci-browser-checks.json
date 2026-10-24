@@ -32,6 +32,7 @@
   "node scripts/test-publication-studio.mjs",
   "node scripts/playwright-publication.mjs",
   "node scripts/test-anniversary-art.mjs",
+  "node scripts/test-anniversary-logos.mjs",
   "node scripts/test-etf-art.mjs",
   "node scripts/test-stylized-formats.mjs",
   "node scripts/test-investment-emerald.mjs",
@@ -47,5 +48,8 @@
   "node scripts/playwright-selected-records.mjs",
   "node scripts/playwright-consumed-data.mjs",
   "node scripts/playwright-live-data-connections.mjs --discovered",
-  "node scripts/playwright-index-concentration.mjs"
+  "node scripts/playwright-index-concentration.mjs",
+  "node scripts/playwright-editorial-proof-clock.mjs",
+  "node scripts/playwright-amundi-distributions.mjs",
+  "node scripts/playwright-sector-guide.mjs"
 ]

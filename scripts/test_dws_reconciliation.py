@@ -6,7 +6,7 @@ import pathlib
 import unittest
 
 from collect_dws_etf import parse_holdings
-from verify_dws_compositions import verify, collect, check_report
+from verify_dws_compositions import verify, collect, check_report, stability_hash
 
 
 class VerificationTests(unittest.TestCase):
@@ -83,6 +83,33 @@ class VerificationTests(unittest.TestCase):
         report = collect({self.isin: self.record}, self.now, fail)
         self.assertEqual(report['verified'], [])
         self.assertIn('DWS timeout', report['errors'][0]['reason'])
+
+    def test_stability_ignores_only_display_name_with_unchanged_checksummed_isin(self):
+        baseline = stability_hash(self.body)
+        renamed = copy.deepcopy(self.body)
+        row = renamed['tables'][0]['values'][0]
+        row['column_0']['value'] = 'New display spelling'
+        self.assertEqual(stability_hash(renamed), baseline)
+        proof = verify(self.isin, self.record, self.now, lambda url: renamed)
+        self.assertEqual(proof['stabilitySourceHash'], baseline)
+        self.assertNotEqual(proof['sourceHash'], self.record['countries']['sha256'])
+        for field, key, value in [('header','value','US0378331005'),
+                                  ('column_1','sortValue',0.123456),
+                                  ('column_2','sortValue',123456),
+                                  ('column_3','value','France'),
+                                  ('column_4','value','Finance'),
+                                  ('column_5','value','Preferred Stock')]:
+            changed = copy.deepcopy(self.body)
+            changed['tables'][0]['values'][0][field][key] = value
+            with self.subTest(field=field):
+                self.assertNotEqual(stability_hash(changed), baseline)
+        for identity in ['cash', 'US0378331006']:
+            unknown = copy.deepcopy(self.body)
+            unknown['tables'][0]['values'][0]['header']['value'] = identity
+            changed = copy.deepcopy(unknown)
+            changed['tables'][0]['values'][0]['column_0']['value'] = 'Different unidentified holding'
+            self.assertNotEqual(stability_hash(changed), stability_hash(unknown))
+        self.assertEqual(json.loads(verify(self.isin,self.record,self.now,lambda url:self.body)['canonicalBody']),self.body)
 
     def test_official_reit_class_preserves_country_industry_and_weights(self):
         body = copy.deepcopy(self.body)

@@ -5,6 +5,11 @@ on:
     # Recover transient failures daily without downloading healthy histories.
     - cron: '45 6 * * *'
   workflow_dispatch:
+    inputs:
+      retry_failed:
+        description: 'Reprendre uniquement les sources échouées ou manquantes ; conserver les données déjà qualifiées'
+        type: boolean
+        default: false
   push:
     branches: [master]
     paths:
@@ -26,12 +31,15 @@ on:
       - 'src/data/qualified-listing-records.json'
       - 'scripts/qualified-listing-sources.json'
       - 'scripts/refresh_qualified_listings.py'
+      - 'scripts/exchange_listing_refresh.py'
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
       - 'scripts/collect_ranking_sources.py'
       - 'scripts/market_transport.py'
       - 'scripts/test_market_transport.py'
       - 'scripts/test_cross_fx_fallback.py'
+      - 'scripts/h10_fx.py'
+      - 'scripts/test_h10_fx.py'
   pull_request:
     paths:
       - '.github/workflows/update-market-monthly.yml'
@@ -83,6 +91,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_h10_fx.py'
       - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
@@ -109,7 +118,7 @@ jobs:
         id: collect
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
@@ -119,7 +128,8 @@ jobs:
         if: github.event_name != 'pull_request'
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
@@ -160,6 +170,8 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
             ${{ runner.temp }}/listing-observation.json
             ${{ runner.temp }}/ranking-collection-status.json
+            src/data/monthly-fx.json
+            ${{ runner.temp }}/cross-fx-evidence/
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations
@@ -174,7 +186,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/shared-listing-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

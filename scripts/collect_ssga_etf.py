@@ -4,6 +4,8 @@ from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 from html.parser import HTMLParser
 import io
+import hashlib
+import gzip
 import json
 import os
 import re
@@ -138,8 +140,8 @@ def parse_holdings(body, share, now, *, complete=False):
         if any(not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r['isin']) for r in holdings):
             reject('Unqualified complete State Street security identities')
         if sum(weights)>100.5 or any(w<0 for w in weights):reject('Non-long-only complete State Street holdings')
-        return {'asOf':stamp,'basis':'fund','complete':True,'rows':sorted(holdings,key=lambda p:-p['weightPct'])}
-    return {'asOf':stamp,'basis':'fund','rows':sorted(holdings,key=lambda p:-p['weightPct'])[:10]}
+        return {'asOf':stamp,'basis':'fund','complete':True,'sha256':hashlib.sha256(body).hexdigest(),'rows':sorted(holdings,key=lambda p:-p['weightPct'])}
+    return {'asOf':stamp,'basis':'fund','sha256':hashlib.sha256(body).hexdigest(),'rows':sorted(holdings,key=lambda p:-p['weightPct'])[:10]}
 
 
 def collect(config,now=None,fetch=get_text,download=get_xlsx):
@@ -149,7 +151,11 @@ def collect(config,now=None,fetch=get_text,download=get_xlsx):
         if share.get('collectComposition'):
             if not path:reject('Missing State Street holdings download')
             url=urljoin(share['sourceUrl'],path)
-            result['holdings']=parse_holdings(download(url),share,now);result['holdings']['sourceUrl']=url
+            body=download(url)
+            result['holdings']=parse_holdings(body,share,now);result['holdings']['sourceUrl']=url
+            if os.environ.get('SSGA_SOURCE_PROOF_DIR'):
+                folder=pathlib.Path(os.environ['SSGA_SOURCE_PROOF_DIR']);folder.mkdir(parents=True,exist_ok=True)
+                (folder/(result['holdings']['sha256']+'.xlsx.gz')).write_bytes(gzip.compress(body,mtime=0))
         return result
     def one(share):
         try:

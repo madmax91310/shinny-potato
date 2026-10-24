@@ -5,6 +5,7 @@ import assert from 'node:assert/strict'
 import { isStock } from '../src/lib/is-stock.js'
 import { CATEGORIES, EXPOSURE_CATEGORIES, ANNUAL_PEA_CATEGORIES, RANKING_ASSETS, buildRankingAssets, derivedGroup } from '../src/pages/performance-rankings/data.js'
 import { lastCompleteYear } from '../src/data/annual-window.js'
+import {qualifyHistoryWindow}from '../src/data/history-window-quality.js'
 import { annualColumns, buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, publicationRanking, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
 
 const make = (id, rate = .01, start = '2019-12', count = 85) => ({ id, label: id, currency: 'EUR', basis: 'adjusted', points: Array.from({ length: count }, (_, i) => ({ date: monthAt(monthIndex(start) + i), price: 100 * (1 + rate) ** i })) })
@@ -61,7 +62,13 @@ for (const category of CATEGORIES) {
   }
   // Recent funds remain usable for their exact common period, before a full calendar year exists.
   for (const mode of c.years.length ? ['years', 'period'] : ['period']) {
-    const result = buildRanking(assets, { mode, startYear: c.years.at(-6) ?? c.years[0], endYear: c.years.at(-1), start: c.start, end: c.end })
+    const options={ mode, startYear: c.years.at(-6) ?? c.years[0], endYear: c.years.at(-1), start: c.start, end: c.end }
+    const missing=mode==='period'?assets.map(a=>qualifyHistoryWindow(a,c.start,c.end)).find(q=>!q.qualified):null
+    if(missing){assert.throws(()=>buildRanking(assets,options),e=>e.message===missing.reason);continue}
+    if(mode==='years'&&Array.from({length:options.endYear-options.startYear+1},(_,i)=>options.startYear+i).some(y=>!c.years.includes(y))){
+      assert.throws(()=>buildRanking(assets,options),/entièrement couvertes/);continue
+    }
+    const result = buildRanking(assets, options)
     const text = buildTweet(result, category.label, rollingRegularity(assets, 60))
     assert(!/undefined|NaN|Infinity/.test(text), text)
     assert(text.includes('Le détail année par année dans l’image 👇'))
@@ -214,8 +221,12 @@ let selection = { ...BENCHMARK_CATEGORIES[0], categoryId: BENCHMARK_CATEGORIES[0
 for (const reference of BENCHMARK_OPTIONS) {
   const next = replaceBenchmark(selection, reference.id)
   assert.deepEqual(next.ids.slice(0,5), selection.ids.slice(0,5))
-  assert.deepEqual(next.dates, selection.dates)
-  assert.equal(next.adjusted, false)
+  const members = next.ids.map(id => convertAsset(RANKING_ASSETS[id], next.currency, FX))
+  let previousWindowUsable = true
+  try { buildRanking(members, {...selection.dates, mode: selection.mode}) } catch { previousWindowUsable = false }
+  assert.equal(next.adjusted, !previousWindowUsable)
+  if (previousWindowUsable) assert.deepEqual(next.dates, selection.dates)
+  assert.doesNotThrow(() => buildRanking(members, {...next.dates, mode: next.mode}))
   assert.equal(next.ids[5], reference.id)
   selection = { ...selection, ...next }
   assert.equal(validateFavoriteSelection(selection).benchmarkId, reference.id)
@@ -284,10 +295,11 @@ console.log(`${EXPOSURE_CATEGORIES.length} exposure universes and ${ANNUAL_PEA_C
 // Every prepared comparison remains reachable through exactly one family.
 const { comparisonFamily, comparisonTags, filterComparisons } = await import('../src/pages/performance-rankings/comparisonCatalog.js')
 const catalogSources = { ...RANKING_ASSETS, ...ANNUAL_ASSETS }
-for (const [id, family] of [['world', 'etfs'], ['fr-stocks', 'stocks'], ['us-stocks-benchmark', 'mixed'], ['multi-asset', 'general'], ['regions-indices', 'general'], ['commodities', 'general'], ['exposure-crypto', 'general']]) {
+for (const [id, family] of [['world', 'etfs'], ['fr-stocks', 'stocks'], ['us-stocks-benchmark', 'mixed'], ['multi-asset', 'general'], ['regions-indices', 'general'], ['commodities', 'general']]) {
   const category = ALL_CATEGORIES.find(c => c.id === id)
   assert.equal(comparisonFamily(category, catalogSources), family)
 }
+assert.equal(comparisonFamily({ids:['bitcoin','ethereum']}, catalogSources), 'general')
 const france = filterComparisons(ALL_CATEGORIES, catalogSources, { family: 'stocks', tag: 'France', query: 'hermes' })
 assert(france.some(c => c.id === 'fr-stocks'))
 assert(!france.some(c => c.id === 'us-stocks'))

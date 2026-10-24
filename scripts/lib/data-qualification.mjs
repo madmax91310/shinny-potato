@@ -1,6 +1,6 @@
 import RULES from '../data-qualification-rules.json' with {type:'json'}
 
-const roles=new Map(RULES.groups.flatMap(group=>group.paths.map(path=>[path.startsWith('src/')?path:`src/data/${path}`,{role:group.role,reason:group.reason,reviewedAt:RULES.reviewedAt}])));
+const roles=new Map(RULES.groups.flatMap(group=>group.paths.map(path=>[path.startsWith('src/')?path:`src/data/${path}`,{role:group.role,reason:group.reason,reviewedAt:group.reviewedAt??RULES.reviewedAt}])));
 export function registryQualification(registry){
  const reviewed=roles.get(registry.path);
  if(reviewed)return reviewed;
@@ -11,6 +11,8 @@ export function registryQualification(registry){
 const FIELD_KEYS={'Frais annuels (%)':'ter','Encours':'aum','Éligibilité PEA':'pea','Caractéristiques':null};
 export function fieldQualification(field,record){
  const label=field.label, registry=field.registry;
+ if(registry==='src/data/presentation-actors.js'&&field.archived===true)return {kind:'archive',reason:'Anciennes conditions conservées à leur date ; cessation d’activité qualifiée séparément, aucune offre actuelle.'};
+ if(registry==='src/data/presentation-actors.js'&&label==='Statut de l’activité')return {kind:'reference',reason:'Avis officiel sur l’activité de la plateforme, distinct des anciens tarifs.'};
  if(registry==='src/data/presentation-actors.js'&&label.endsWith(' · Conditions variables selon le projet'))return {kind:'reference',reason:'Limites de la fiche générale de plateforme ; les conditions d’une opération non sélectionnée ne sont pas des observations manquantes de la plateforme.'};
  if(registry==='src/data/simulation-proxies.js'||label.startsWith('Historique de simulation'))return {kind:'simulation',reason:'Proxy de simulation identifié ; aucune attribution de son rendement à la part exacte.'};
  if(registry==='src/data/instrument-aum-observations.js'||(label.startsWith('Photographie ·')||label.startsWith('Archive performance ·'))||record.name?.endsWith(' · archive'))return {kind:'archive',reason:'Photographie historique conservée à sa date et dans son périmètre ; ne pas la renouveler avec la date du build.'};
@@ -53,7 +55,12 @@ export function qualifyCoverage(row,{record={},holdingStatus,holdingSource,metad
    reason=holdingStatus.error;
   }else if(!row.present&&!holdingSource){actionState='connector-needed';reason='Source de positions intégrales et contrôle de l’identité du fonds à raccorder.';}
  }
- if(row.field==='completeHoldings'&&row.present&&row.unidentifiedWeightPct>0){actionState='unqualified';reason=`Composition officielle complète raccordée ; ${row.unidentifiedSecurityCount} identités restent inconnues (${row.unidentifiedWeightPct} % des poids publiés), sans renormalisation.`;}
+ if(row.field==='completeHoldings'&&row.present&&row.unidentifiedWeightPct>0){
+  const identityReason=`Composition officielle complète raccordée ; ${row.unidentifiedSecurityCount} identités restent inconnues (${row.unidentifiedWeightPct} % des poids publiés), sans renormalisation.`;
+  // A retained partial identity qualification cannot hide today's transport failure.
+  if(actionState==='collection-error'||actionState==='lookthrough-needed')reason=`${reason} ${identityReason}`;
+  else {actionState='unqualified';reason=identityReason;}
+ }
  if(row.diagnostic?.code==='retained-source-failure'&&actionState==='current')actionState='collection-error';
  const passive=['current','archived','not-applicable','outside-equity-scope','waiting-first-year','waiting-publication'];
  const actions={

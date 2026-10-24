@@ -1,0 +1,28 @@
+{
+  "isin": "IE00B5BMR087",
+  "field": "sectors",
+  "asOf": "2026-10-22",
+  "currency": "USD",
+  "basis": "fund",
+  "sourceComponent": "holdings.all",
+  "portfolioWeightPct": 99.99996,
+  "sha256": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
+  "primaryRejected": "Twelve published sector weights equal zero; no positive partial table is replaced by this fallback.",
+  "fallbackScope": "Exact physical equity share, complete holdings, matching snapshot, known GICS sectors, cash/derivatives retained, no scaling.",
+  "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39983805968",
+  "artifactId": 12514099526,
+  "underlyingPrimaryFailureStillReported": true,
+  "equityPositions": 504,
+  "issuerHoldingsCount": 504,
+  "issuerCountAsOf": "2026-10-22",
+  "weightPrecisionDecimals": 5,
+  "maxRoundingGapPct": 0.00255,
+  "otherValidatedFieldsConnected": [
+    "holdings",
+    "countries",
+    "countriesRisk",
+    "metrics"
+  ],
+  "firstRunUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39980873537",
+  "validatorSha256": "59f6eb47564f73260a19c9d2082084b2adf9ba9333f343786d34f56c6750bcae"
+}

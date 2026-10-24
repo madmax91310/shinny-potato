@@ -44,3 +44,19 @@ for (const [currency, info] of Object.entries(monthlyFx.derived ?? {})) {
   }
 }
 console.log(`Change : ${compared} taux annuels BCE identiques à la dernière observation de décembre ; conversion des duels vérifiée ; ${crossMonths} mois de taux croisés recomposés.`)
+
+// Different Fed and ECB month ends must not create a mixed-date TWD/USD rate.
+const {monthlyCurrencyFactor,historyInCurrency}=await import('../src/data/history-currency.js')
+const fixture={sourceUrl:'https://www.ecb.europa.eu/reference',months:{'2026-09':{asOf:'2026-09-30',rates:{EUR:1,USD:1.25,JPY:180,TWD:33}}},derived:{TWD:{sourceUrl:'https://www.federalreserve.gov/h10',observations:{'2026-09':{asOf:'2026-09-29',value:33,perUsd:30,usdPerEur:1.1,ecbRates:{EUR:1,USD:1.1,JPY:165}}}}}}
+assert.equal(monthlyCurrencyFactor('2026-09','TWD','USD',fixture),1.1/33)
+assert.equal(monthlyCurrencyFactor('2026-09','TWD','JPY',fixture),165/33)
+assert.equal(monthlyCurrencyFactor('2026-09','EUR','USD',fixture),1.25)
+assert(Math.abs(monthlyCurrencyFactor('2026-09','USD','TWD',fixture)*monthlyCurrencyFactor('2026-09','TWD','USD',fixture)-1)<1e-14)
+const converted=historyInCurrency({currency:'TWD',points:[{date:'2026-09',price:3300}]},'USD',undefined,undefined,fixture)
+assert.equal(converted.points[0].price,110)
+assert.equal(converted.fxSourceUrls.length,2)
+assert.match(converted.methodNote,/mêmes dates/)
+const legacy=structuredClone(fixture);delete legacy.derived.TWD.observations['2026-09'].ecbRates
+assert.equal(monthlyCurrencyFactor('2026-09','TWD','USD',legacy),1.1/33)
+assert.throws(()=>monthlyCurrencyFactor('2026-09','TWD','JPY',legacy),/absent/)
+console.log('Mixed-date TWD cross refused; same-day USD/JPY, reverse conversion and source labels passed.')

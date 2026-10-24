@@ -14,7 +14,10 @@ assert.equal(new Set(CATALOG.map((asset) => asset.isin ?? asset.id)).size, CATAL
 const inspect = (duel) => {
   assert.equal(duel.currency, 'EUR')
   assert.ok(duel.years.length >= 3)
-  assert.equal(duel.years.at(-1), 2025)
+  const members=[...duel.a.assets,...duel.b.assets]
+  const common=Object.keys(members[0].calendarReturns).map(Number).filter(year=>year>=2020&&year<new Date().getUTCFullYear()&&members.every(asset=>Number.isFinite(euroReturn(asset,year)))).sort((a,b)=>b-a)
+  const expected=common.map(end=>{const years=[];for(let year=end;common.includes(year)&&years.length<6;year--)years.unshift(year);return years}).find(years=>years.length>=3)
+  assert.deepEqual(duel.years,expected,'Only the latest complete consecutive common period is offered')
   assert.ok(duel.sources.every((source) => source.url?.startsWith('https://')))
   for (const portfolio of [duel.a, duel.b]) {
     assert.ok(portfolio.assets.length >= 1 && portfolio.assets.length <= 3)

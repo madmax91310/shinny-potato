@@ -1,0 +1,267 @@
+{
+  "checkedAt": "2026-10-23T18:21:34.030733+00:00",
+  "status": "qualified",
+  "route": "https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf",
+  "sha256": "ad3f5a03aece90dbdf8f76449974eb3159348d1789ef809b41402a015962a054",
+  "isin": "IE00BDFBTQ78",
+  "latestLevel": {
+    "value": 51.580544399821505,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "IE00BDFBTQ78",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 57.796,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "6edcab15304b2d8bed7de78082186cdb3ffffe24c27f17841a9cb7e9b0fab7f1"
+  },
+  "calendarProof": {
+    "sourceNavMetadata": {
+      "Ticker": "UCTGDIG",
+      "Title": "NAVs",
+      "AsOfDateText": "as of",
+      "AsOfDate": "10/22/2026",
+      "TooltipText": "",
+      "Columns": [
+        {
+          "ColumnName": null,
+          "NumberFormat": "",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "",
+          "WrapperClass": "light_yellow",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "Base Currency",
+          "WrapperClass": "",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "{0:##0.00}",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "NAV",
+          "WrapperClass": "data",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "{0:##0.00}",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "Daily Change NAV",
+          "WrapperClass": "data",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "{0:##0.00}",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "YTD Change NAV",
+          "WrapperClass": "data",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "NAV Price History",
+          "WrapperClass": "",
+          "CellClass": ""
+        },
+        {
+          "ColumnName": "",
+          "NumberFormat": "",
+          "ThirtyDayBidAskMedian": false,
+          "HeaderText": "Total Expense Ratio",
+          "WrapperClass": "data",
+          "CellClass": ""
+        }
+      ],
+      "PricesViewModel": {
+        "DisplayTicker": "GDIG",
+        "NavCurrent": "$57.80",
+        "LastPriceCurrent": null,
+        "Volume30Day": null,
+        "Volume": null,
+        "NAVYTDPerc": "+2.06%",
+        "PriceYTDPerc": null,
+        "PremiumDiscountPercentage": null,
+        "PremiumDiscount": null,
+        "NavDailyChangePercentage": "-4.48%",
+        "NavDailyChange": "$-2.71",
+        "NavDailyChangeValue": -2.7098,
+        "LastPriceChangePerc": null,
+        "LastPriceChange": null,
+        "LastPriceChangeValue": null,
+        "ThirtyDayBidAskMedianFormatted": null,
+        "GrossExpenseRatio": " 0.50%"
+      },
+      "CurrencyName": "USD",
+      "CurrencySymbol": "$",
+      "DownloadUrlTarget": "_blank",
+      "DownloadUrl": "/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "ChartUrlTarget": "_blank",
+      "ChartUrl": "/ucits/en/chart.aspx?tkr=UCTGDIG",
+      "SwipeText": "Swipe<br>to view <br> full data",
+      "HistoPriceUrl": null,
+      "GrossExpenseRatio": null,
+      "CssClass": "etf_fund_prices",
+      "PremiumDiscountBlockID": 0,
+      "ChartSelectList": []
+    },
+    "incomeTreatment": "Reinvestment; distribution frequency None",
+    "checks": [
+      {
+        "year": 2019,
+        "start": "2018-12-31",
+        "end": "2019-12-31",
+        "startValue": 16.761,
+        "endValue": 21.348,
+        "dailyDerived": 27.367102201539282,
+        "published": 27.4,
+        "publishedDecimalPlaces": 1
+      },
+      {
+        "year": 2020,
+        "start": "2019-12-31",
+        "end": "2020-12-31",
+        "startValue": 21.348,
+        "endValue": 27.645,
+        "dailyDerived": 29.49690837549186,
+        "published": 29.5,
+        "publishedDecimalPlaces": 1
+      },
+      {
+        "year": 2021,
+        "start": "2020-12-31",
+        "end": "2021-12-31",
+        "startValue": 27.645,
+        "endValue": 30.378,
+        "dailyDerived": 9.88605534454694,
+        "published": 9.9,
+        "publishedDecimalPlaces": 1
+      },
+      {
+        "year": 2022,
+        "start": "2021-12-31",
+        "end": "2022-12-30",
+        "startValue": 30.378,
+        "endValue": 30.969,
+        "dailyDerived": 1.945486865494761,
+        "published": 2,
+        "publishedDecimalPlaces": 0
+      },
+      {
+        "year": 2023,
+        "start": "2022-12-30",
+        "end": "2023-12-29",
+        "startValue": 30.969,
+        "endValue": 32.47,
+        "dailyDerived": 4.846782266137106,
+        "published": 4.8,
+        "publishedDecimalPlaces": 1
+      },
+      {
+        "year": 2024,
+        "start": "2023-12-29",
+        "end": "2024-12-31",
+        "startValue": 32.47,
+        "endValue": 29.724,
+        "dailyDerived": -8.457037265167845,
+        "published": -8.5,
+        "publishedDecimalPlaces": 1
+      },
+      {
+        "year": 2025,
+        "start": "2024-12-31",
+        "end": "2025-12-31",
+        "startValue": 29.724,
+        "endValue": 56.627,
+        "dailyDerived": 90.50935271161352,
+        "published": 90.5,
+        "publishedDecimalPlaces": 1
+      }
+    ]
+  },
+  "publication": "not-requested",
+  "failedRun": 39998020395,
+  "qualifiedRun": 40002490699,
+  "qualifiedJob": 120581900752,
+  "artifactId": 12522827689,
+  "artifactDigest": "sha256:c8327b941009d115587d0760c29ad7ed091f0016cd034bfff44455ec132efa03",
+  "ordinaryProducerRun": 40002490621,
+  "ordinaryProducerTargetValidated": true,
+  "routesTriedBefore": [
+    "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+    "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+    "https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf"
+  ],
+  "before": {
+    "value": 51.580544399821505,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "IE00BDFBTQ78",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 57.796,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "732c44d20e9bf9043d5206716c7eac3ec43bd17f98494f30b8aa74f1e2e19a01"
+  },
+  "after": {
+    "value": 51.580544399821505,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "IE00BDFBTQ78",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 57.796,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.8924587237840249,
+    "sourceUrl": "https://www.vaneck.com/DK/en/investments/mining-etf/",
+    "sourceUrls": [
+      "https://www.vaneck.com/DK/en/investments/mining-etf/",
+      "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+      "https://www.vaneck.com/dk/en/library/fact-sheets/gdig-fact-sheet.pdf",
+      "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-23",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "6edcab15304b2d8bed7de78082186cdb3ffffe24c27f17841a9cb7e9b0fab7f1"
+  },
+  "changedFields": [
+    "sourceUrls",
+    "sha256"
+  ]
+}

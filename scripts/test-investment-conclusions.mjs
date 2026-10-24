@@ -18,7 +18,8 @@ for (const assetId of Object.keys(ASSETS)) for (const mode of ['lump','dca']) {
   const [year, month] = asset.points[0].date.split('-').map(Number)
   const s = {...state, assetId, mode, startYear:Math.max(year,2020), startMonth:year>=2020?month:1}
   const start=`${s.startYear}-${String(s.startMonth).padStart(2,'0')}`
-  if(!qualifyHistoryWindow(asset,start,asset.points.at(-1).date,{contiguous:false}).qualified){assert.throws(()=>derive(s),/cours reportés/);continue}
+  const qualification=qualifyHistoryWindow(asset,start,asset.points.at(-1).date,{contiguous:false})
+  if(!qualification.qualified){assert.throws(()=>derive(s),{message:qualification.reason});continue}
   const d = derive(s)
   const text = buildTweetText(s,d)
   assert.doesNotMatch(text,/undefined|NaN|Tu as commencé avec|Tu as du Bitcoin en portefeuille/)

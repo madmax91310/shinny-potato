@@ -1,0 +1,48 @@
+[
+  {
+    "id": "CSPX.L-daily5d",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?range=5d&interval=1d&events=div%2Csplits",
+    "attemptedAt": "2026-10-24T09:36:05.051152+00:00",
+    "status": 200,
+    "contentType": "application/json;charset=utf-8",
+    "sourceDate": "Sat, 24 Oct 2026 09:36:04 GMT",
+    "sha256": "0373ac69c7186e1d8ec69f1bed91f02eecd0c81774d1dfb24be773dde0256be0",
+    "bytes": 1722,
+    "lastDates": [
+      "2026-10-21T07:00:00+00:00",
+      "2026-10-22T07:00:00+00:00",
+      "2026-10-23T07:00:00+00:00"
+    ],
+    "meta": {
+      "symbol": "CSPX.L",
+      "currency": "USD",
+      "regularMarketTime": 1792779223,
+      "regularMarketPrice": 826.43,
+      "previousClose": null,
+      "longName": "iShares Core S&P 500 UCITS ETF USD (Acc)"
+    }
+  },
+  {
+    "id": "SWDA.MI-daily5d",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?range=5d&interval=1d&events=div%2Csplits",
+    "attemptedAt": "2026-10-24T09:36:05.052076+00:00",
+    "status": 200,
+    "contentType": "application/json;charset=utf-8",
+    "sourceDate": "Sat, 24 Oct 2026 09:36:05 GMT",
+    "sha256": "b6955e474808f70dd72c2560be6d14d9547e8e443b0bc40b9b52e2f940f7bfba",
+    "bytes": 1755,
+    "lastDates": [
+      "2026-10-21T07:00:00+00:00",
+      "2026-10-22T07:00:00+00:00",
+      "2026-10-23T07:00:00+00:00"
+    ],
+    "meta": {
+      "symbol": "SWDA.MI",
+      "currency": "EUR",
+      "regularMarketTime": 1792769729,
+      "regularMarketPrice": 129.89,
+      "previousClose": null,
+      "longName": "iShares Core MSCI World UCITS ETF USD (Acc)"
+    }
+  }
+]

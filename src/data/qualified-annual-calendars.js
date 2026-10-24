@@ -3,6 +3,7 @@ import INDICES from './automated-indices.json' with { type: 'json' }
 import { currentEvidence as currentAnnualEvidence } from './evidence-freshness.js'
 export { currentAnnualEvidence }
 import { ETFS } from './etf-cards.js'
+import { INSTRUMENTS_BY_ISIN }from './instruments.js'
 
 export function closedCalendarYears(values, now = new Date()) {
   return Object.fromEntries(Object.entries(values ?? {}).filter(([year, value]) => /^\d{4}$/.test(year)
@@ -19,7 +20,7 @@ export function qualifyFundCalendar(isin, record, identity, now = new Date()) {
     || /proxy/i.test(performance.method)
     || !['EUR', 'USD'].includes(performance.currency) || typeof source !== 'string' || !source.startsWith('https://')
     || !Object.keys(years).length || !currentAnnualEvidence(performance.checkedAt, asOf, 'etf.performance', now)) return null
-  return { id: `annual-${isin}`, isin, label: identity.name, shortLabel: identity.name, instrumentType: identity.instrumentType ?? (identity.name.match(/\bET[CNP]\b/)?.[0] ?? 'ETF'),
+  return { id: `annual-${isin}`, isin, label: identity.name, shortLabel: identity.name, instrumentType: identity.instrumentType ?? INSTRUMENTS_BY_ISIN[isin]?.instrumentType ?? (identity.name.match(/\bET[CNP]\b/)?.[0] ?? 'ETF'),
     frequency: 'annual', basis: 'fund-nav', currency: performance.currency, years, pea: identity.pea === true,
     group: `Calendriers annuels · ${identity.category ?? 'ETF'}`, sourceUrls: [source], checkedAt: performance.checkedAt, asOf, method: performance.method }
 }

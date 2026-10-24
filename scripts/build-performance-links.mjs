@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises'
 import { ASSETS, ASSET_ORDER, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, getAssetMinDate } from '../src/data/market-history.js'
-import { MARKET_ASSETS, getAnnualReturnStartYears } from '../src/pages/tweet-midi/data/performanceHistory.js'
+import { ASSETS as PERFORMANCE_ASSETS, MARKET_ASSETS, getAnnualReturnStartYears } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import { getAnnualReturnStartYears as getMonthlyAnnualYears } from '../src/pages/tweet-midi/data/marketHistory.js'
 
 // Only exact ETF share classes with usable annual histories. This small index
@@ -11,8 +11,8 @@ for (const asset of MARKET_ASSETS) {
   if (!asset.isin || !getAnnualReturnStartYears(id).length) continue
   const previous=links[asset.isin]
   if(previous) {
-    const a=ASSETS[previous],b=ASSETS[id]
-    const exactHistory=r=>r?.currency&&((r.ticker&&r.mic)||(r.valuationBasis==='fund-nav-total-return'&&r.isin===asset.isin&&r.sourceUrls?.some(url=>url.startsWith('https://'))))
+    const a=PERFORMANCE_ASSETS[previous],b=PERFORMANCE_ASSETS[id]
+    const exactHistory=r=>r?.currency&&((r.ticker&&r.mic)||((r.valuationBasis==='fund-nav-total-return'||r.frequency==='annual'&&r.basis==='fund-nav')&&r.isin===asset.isin&&r.sourceUrls?.some(url=>url.startsWith('https://'))))
     if(![a,b].every(exactHistory))throw new Error(`Ambiguous performance history: ${asset.isin}`)
     // Same exact share, explicitly labelled listings. Prefer the most qualified
     // annual windows; never splice prices or replace one currency's series.

@@ -60,7 +60,9 @@ try {
       bounds.push(box);labels.push(String(value));return original.call(this,value,x,y,...rest)
     }
     for(const asset of ANNIVERSAIRE_ELIGIBLE_ASSETS){
-      const yearsBack=Math.min(7,...[Math.max(...getValidYearsBackOptions(asset.id,TODAY))])
+      const options=getValidYearsBackOptions(asset.id,TODAY)
+      const yearsBack=options.filter(year=>year<=7).at(-1)??options[0]
+      if(!options.includes(yearsBack))throw new Error(`No qualified anniversary window: ${asset.id}`)
       const past=getHistoricalPrice(asset.id,ymForYearsBack(yearsBack,TODAY))
       const current=past*1.5
       labels=[];bounds=[]
@@ -79,7 +81,8 @@ try {
       records.push({name:asset.id})
     }
     for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
-      const yearsBack=Math.min(3,Math.max(...getValidYearsBackOptions(a,TODAY)),Math.max(...getValidYearsBackOptions(b,TODAY))), pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
+      const common=getValidYearsBackOptions(a,TODAY).filter(year=>getValidYearsBackOptions(b,TODAY).includes(year))
+      const yearsBack=common.filter(year=>year<=3).at(-1)??common[0], pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
       if(!labels.includes('+50,0 %')||!labels.includes('−25,0 %'))throw new Error('Comparative inputs mixed up')
@@ -98,12 +101,20 @@ try {
     return records
   })
   assert.ok(!requests.some(url=>!url.startsWith(`http://127.0.0.1:${port}`)), 'External request during export')
-  // A failed visual load must not silently export a wrong generic logo, and retry works.
+  // A failed logo load uses a clean name; failed cache entries allow recovery.
   const retry=await browser.newPage();await retry.goto(base)
-  await retry.route('**/asset-art/apple.svg', route=>route.abort())
-  const failed=await retry.evaluate(async()=>{try{const{renderAnniversaryImage}=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js');await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200');return false}catch{return true}})
-  assert.ok(failed,'Missing logo should block export')
-  await retry.unroute('**/asset-art/apple.svg')
-  assert.ok(await retry.evaluate(async()=>{const{renderAnniversaryImage}=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js');return(await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200')).toDataURL().startsWith('data:image/png;')}),'Retry after missing logo failed')
-  console.log(`${records.length} titanium exports: every eligible identity, units, ratios, comparisons, long levels, local resources and retry verified.`)
+  await retry.route('**/asset-art/official-logos/apple.svg', route=>route.abort())
+  const inspectApple = async () => {
+    const labels = [], original = CanvasRenderingContext2D.prototype.fillText
+    CanvasRenderingContext2D.prototype.fillText = function(value, ...args) { labels.push(value); return original.call(this, value, ...args) }
+    try {
+      const {renderAnniversaryImage} = await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
+      const canvas = await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:1},'200')
+      return { names: labels.filter(value => value === 'APPLE').length, png: canvas.toDataURL().startsWith('data:image/png;') }
+    } finally { CanvasRenderingContext2D.prototype.fillText = original }
+  }
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:2,png:true}, 'Missing logo must export a clean text fallback')
+  await retry.unroute('**/asset-art/official-logos/apple.svg')
+  assert.deepEqual(await retry.evaluate(inspectApple), {names:1,png:true}, 'Retry must restore the official logo')
+  console.log(`${records.length} anniversary exports: every eligible identity, units, ratios, comparisons, long levels, local resources and fallback/retry verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}

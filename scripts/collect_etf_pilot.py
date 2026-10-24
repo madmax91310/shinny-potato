@@ -72,6 +72,19 @@ def allocation(container, now):
             'rows': [{'name': name, 'weightPct': weight} for name, weight in zip(labels, weights)]}
 
 
+def replication_characteristics(facts, combined=False):
+    """Preserve each producer display convention and the exact two API inputs."""
+    structure = facts.get('productStructure', {}).get('value')
+    method = facts.get('fundMethodologyTypeCode', {}).get('value')
+    raw = {'productStructure': structure, 'fundMethodologyTypeCode': method}
+    parts = [v for v in (structure, method) if isinstance(v, str) and v.strip()]
+    if not parts:
+        return {}
+    label = f'{structure} ({method})' if combined and len(parts) == 2 else (method if isinstance(method, str) and method.strip() else parts[0])
+    return {'replicationMethod': label, 'replicationMethodRaw': raw,
+            **({'productStructure': structure} if isinstance(structure, str) and structure.strip() else {})}
+
+
 def parse_share(body, share, now):
     if isinstance(body, dict):
         if str(body['productId']) != str(share['productId']) or body['currencyCode'] != share['currency']:
@@ -93,10 +106,11 @@ def parse_share(body, share, now):
         reject('Unexpected distribution policy')
     # Keep exact issuer characteristics in the shared record, not only in config.
     identity = {'distribution': value('useOfProfitsCode'), 'index': None if share.get('physicalMetal') else value('indexSeriesName')}
-    for target, source in [('domicile','domicile'), ('replicationMethod','fundMethodologyTypeCode'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
+    for target, source in [('domicile','domicile'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
         published = facts.get(source, {}).get('value')
         if isinstance(published, (str, int)) and not isinstance(published, bool) and str(published).strip():
             identity[target] = str(published)
+    identity.update(replication_characteristics(facts))
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
@@ -115,15 +129,24 @@ def parse_share(body, share, now):
     # Single-country funds may omit this component. Never invent a 100% allocation.
     countries = (allocation(exposure['geography']['subContainersByNameMap']['countries'], now)
                  if 'geography' in exposure else {'status': 'not-published', 'rows': []})
-    sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+    sector_failure=None
+    try:
+        sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+    except ValueError as error:
+        if str(error)!='Incomplete allocation' or share.get('sectorFallback')!='complete-physical-holdings' or not isinstance(body,dict):raise
+        from ishares_sector_fallback import sectors_from_complete_holdings
+        sectors=sectors_from_complete_holdings(body,share,now,exposure['sector'])
+        sectors['sourceUrl']=product_data_url(share)
+        sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':'Published sector table is all zero; separately qualified complete-holdings aggregation used without scaling','sha256':sectors['sha256'],'fallbackQualified':True}
+
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
-    if sectors.get('rows'): sectors['sourceComponent'] = 'exposureBreakdowns.sector'
+    if sectors.get('rows'): sectors.setdefault('sourceComponent','exposureBreakdowns.sector')
     calendar = components.get('performance', {}).get('containersByNameMap', {}).get('returns', {}).get('subContainersByNameMap', {}).get('calendar', {}).get('dataPointsByNameMap', {})
     types = calendar.get('returnTypes', {}).get('value', [])
     if not types and not share.get('requireFullHistory', True):
         return {**share, 'characteristics': {**identity, 'terPct': ter}, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
-            'countries': countries, 'sectors': sectors, 'rawComponents': components}
+            'countries': countries, 'sectors': sectors, 'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
     if not isinstance(types, list) or types.count('annualNav') != 1:
         reject('Calendar NAV total return missing or ambiguous')
     position = types.index('annualNav')
@@ -159,7 +182,7 @@ def parse_share(body, share, now):
             'performance': {'currency': share['currency'], 'basis': 'fund',
                             'method': 'calendar-year NAV total return, income reinvested, fund fees included',
                             'years': dict(sorted(returns.items()))},
-            'rawComponents': components}
+            'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
 
 
 def collect(config, baseline, now=None, fetch=get_text):

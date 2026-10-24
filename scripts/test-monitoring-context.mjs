@@ -59,3 +59,13 @@ assert.equal(fields[0].asOf,'2026-09-30')
 assert.equal(fields[1].kind,'freshness')
 assert.equal(fields[0].evaluatedAt,'2026-10-20')
 assert.deepEqual(fieldAlerts({checkedAt:'2026-10-20',rows:[rows[0]]},[{aliases:['A'],tools:['Portefeuille & DCA']}])[0].tools,['Portefeuille & DCA'])
+
+// An explicit unknown success cannot become a successful proof via checkedAt.
+const {incidentSuccessAt,INCIDENT_LABELS,incidentAction}=await import('../src/pages/data-review/incident-diagnostic.js')
+const failed={kind:'checks',lastSuccessAt:null,checkedAt:'2026-10-24',attemptedAt:'2026-10-24T06:00:00Z'}
+assert.equal(incidentSuccessAt(failed),null)
+assert.equal(incidentSuccessAt({checkedAt:'2026-10-20'}),'2026-10-20','Legacy source check remains usable only when no explicit success field exists')
+assert.match(incidentDiagnostic(failed,{}),/Dernier contrôle de collecte réussi : Non documenté/)
+assert.match(incidentDiagnostic(failed,{}),/Dernière tentative de collecte : 2026-10-24T06:00:00Z/)
+assert(!INCIDENT_LABELS.checks.includes('Publiée'),'A failed prepublication check does not prove publication')
+assert(!incidentAction('checks').includes('déclarée réussie'))

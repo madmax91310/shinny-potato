@@ -1,0 +1,372 @@
+{
+  "sourceCommit": "ad00aa83b3942a4b3e9c3a084d8e7f48f45bb10c",
+  "financialAndCommonRegistries": {
+    "src/data/anniversary-index-history.json": "e253a13305085d16e961546c6ad0290edcdd39e824e94915e634611d70256b02",
+    "src/data/anniversary-levels.json": "ec2c85d6e36e63d03c37f6255391600d61c1dacec41667ccc294dc31664855fc",
+    "src/data/annual-fx.json": "f9325541ef1a28a18ba4b4b91f268c5ba56bb42d89513eb090c267ffe4823e1d",
+    "src/data/auto-history-identities.json": "56d0530e5400968143c57f44309fd7ed1691f0323130203bf74572560575f98c",
+    "src/data/automated-broker-tariffs.json": "c89a29ba22be1e8f36bc9a3dde0ff54195ada054fac7845139cffa63389e9095",
+    "src/data/automated-economic.json": "4f08f07c545d059a1a9d512857462eef74ac3debd97d12bc8dc0a8a205c67a1b",
+    "src/data/automated-etf-monthly.json": "dd129f555e8805764c9c8191cb24304d1071caa96205b3eac6fcc8625d923d8e",
+    "src/data/automated-etf.json": "cdf4e407130a79de9f13f04a6577c50114501f1ead78870e299190ac8806fe33",
+    "src/data/automated-indices.json": "9a40734183e204caac2f804d9ae408ca89d7665e24f26242dd7f45315b9673fb",
+    "src/data/automated-instrument-metadata.json": "ee211b4830d22f8d9f2b03d7204804b611a8b9840cb48e27286d967a3a7ce42e",
+    "src/data/automated-insurance.json": "a161a39c7f6bc5cf47aca11af554e29242206e6e215ad00e6b9922eae42e7cfb",
+    "src/data/automated-monthly.json": "2c6c447e73eac4003c2b20904ef306634de783f088f202498d35857b4dc69295",
+    "src/data/automated-practical-sheets.json": "211b8f32d3ce2212329bfc0dfdd07ea0195d4c5a26ffb894d1898d98347bcd23",
+    "src/data/automated-presentation-actors.json": "b8db26969bde0aff2e8723d3f74708e9605423c6c25d0a61629c662e57b0d407",
+    "src/data/automated-regulatory.json": "30fe77ac2e307b951dafac0be658304c071f4a7b4451e6164e965a4c08983305",
+    "src/data/automated-scpi.json": "c8809178ce0672de7df2b63000bd6143e0581fac46d8d945819ac0cc95875f00",
+    "src/data/benchmark-changes.json": "18f051fc5f89ab9b18508c5353008c196c634e3cfd69be25991a371a89dbc1d9",
+    "src/data/bitcoin-yahoo-monthly.json": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+    "src/data/data-source-conditions.json": "20c561f03862a887033e29650be7dc2e94b8e143c6d381dcd7eb4fb4e259662e",
+    "src/data/dca-complete-holdings.json": "2d5026a0cc0e0fd3f0e45c45c67cd391b9221a07f471baac4e4613d179637700",
+    "src/data/dca-equity-exposures.json": "c96caf373d7fbfa5e86f4d8dabeea8f5b9a6243202dc15c010fea527462988ea",
+    "src/data/dca-holdings-status.json": "0971e743e51b61b44eefdd9836f4b5b5c18851f438ae418af1d81772bd451a05",
+    "src/data/dca-security-classifications.json": "e51a55db934182bbec67eaa620f8a788c1d3da462d3fd8374cbfe51f221c612c",
+    "src/data/equity-candidates.json": "550b8a7890554ca3abe0a86ed8ea196aab4cf5390f3a66e2ab857a26a47fb8d1",
+    "src/data/equity-duel-returns.json": "e3fc5c0b27226d05e3d1d05b36997a0842713720fe395fec288d8574398e2ce1",
+    "src/data/equity-history-links.json": "6edb0aca6cf9fb07224d234011e9d084ff947cf7fd9dc86c81b08438a6b7d939",
+    "src/data/etf-presentation-reviewed-ids.json": "a0ec374b717bcd331aa19b1e92f230c06d4835c341cc90ab62bc83316f07d66e",
+    "src/data/exposure-etf-expansion-records.json": "ea3226cbc4c890472f8267d756a8e7d41023365f21a81cce120451364f2f9dc9",
+    "src/data/exposure-sleeves.json": "bbec0e5116b3297cffd005b73089496198d9938d131dddc1567cdb3a03faf4d4",
+    "src/data/financial-history-restrictions.json": "4899a929c915e704b4b5146ddc06d4c5c56062c1baa38f2d121598fa181296b5",
+    "src/data/financial-source-repairs.json": "2cf0bef40f192978c8d519187f599d686e1bda41e5403a18ef27313f17eac118",
+    "src/data/freshness-policy.json": "63afee40afce6929cd49ce2a8509488eabef0ffaf9de66936f156688365f65d0",
+    "src/data/global-equities.json": "4aebd32880caa64481c343012063b430d63cd7f2453745de1395a035c93dd843",
+    "src/data/history-window-restrictions.json": "ab0492f6fcd8667bdf4ee80082eaad2fb4ee8091900647b86b245ee2403bf132",
+    "src/data/index-company-identities.json": "7657d377d445152407aad5668ad15fdd1239beb6c8f77476e88bb19fcfecccfc",
+    "src/data/index-company-observations.json": "b299b225ddb63a5755fe80b7f97338242de2873d61013863b67c20f7a8d436a1",
+    "src/data/index-company-qualified.json": "cf4610b986ae0718363ccb11f410aa9fab94905103fa1b8e93e7577b3ae76fca",
+    "src/data/instrument-metadata-status.json": "948da9e3e56feccc29ac0d19911fa6fa8209c0c931c4d9228856a9e99f5ae0c4",
+    "src/data/lifestrategy.json": "cdb7003b4f7649d6ccb6df2da1b5f3dd1d3f78976d2f74007ecdf9180c5b839f",
+    "src/data/monthly-duel-returns.json": "d615be16ed86a433d7f17c5b9d8001609e456fab50d03fcd28b1e59538f311c0",
+    "src/data/monthly-fx.json": "ca2930c9cb1a0b084da9c42cbaaf7d3386d4c7b8e651bdc3f04957d9e10ecf97",
+    "src/data/non-bond-company-histories.json": "059009e05b32afeabe7ba3d44b1045a69d927f2eb2069bbf992679f7de142726",
+    "src/data/non-bond-etf-records.json": "162329aca8e9450bb2c9e28e51f9b6aa17e461929e68bf33cd301baadbf39b1d",
+    "src/data/non-bond-levels.json": "8cc010d820c043351cbefa05453b122bafde11d74be5e4d7cea6d1898f7f3a11",
+    "src/data/non-bond-monthly-records.json": "b7de181761b8c5f3671e1a1bb983346911a9125a6c01e1ff57d0f1b2f3293a17",
+    "src/data/non-bond-qualified-records.json": "41ce7165c8df15d36204b02a405a263014db4929990173e6246c943a10951295",
+    "src/data/official-performance-currencies.json": "89576bab229035d3862725c046987aec53c8a0149de60ad5d89aac90e16aa137",
+    "src/data/performance-links.json": "d44988532b93dcbc993a5273b5251758e13446af9d213a9a596a0f73adfb150e",
+    "src/data/purchasing-power-observations.json": "94b5659baab91a548a7ed11a30d917ef0ced33305203ef3dec629e132de8b3f6",
+    "src/data/qualified-exposure-etfs.json": "d35d58085e123d15c1dd9aaf99fe1021ebdcdefbdd89688e95473f6bf8d86db1",
+    "src/data/qualified-listing-records.json": "a87c4fbce292002adba6753eff7439363454b8df44415d72aa3acc4ff43d38cc",
+    "src/data/ranking-ftse.json": "66d0054208618967d68fd738907eda00c3881fa8586c596c0e7c99bca9a0d334",
+    "src/data/ranking-histories.json": "be61a6142fd5ab9aca6dd816097152f04f84cadb78372afa48c9d65412dda878",
+    "src/data/ranking-index-annual.json": "f7a8b0c89a2393843ca1115e82a22fef7493aebe85cee5a247dab178a2380025",
+    "src/data/reviewed-broker-profiles.json": "5281254d683ec43f46e94a8b99751c02b899c6a5f026c7dcc42ca0681e49bbf5",
+    "src/data/security-identifier-observations.json": "a187e23f93336913de885215193d8a0512394ebaff5df532cdff65d76cc00a0e",
+    "src/data/simulation-links.json": "fca000f6cb3f848a1137edad934b83f4dae5d0b983cefe6f96b75fadc94c556a",
+    "src/data/tool-links.json": "6d1cb98bcc34cff32cabb6220c39cf63438220122366e0d9e396355cee523ae2",
+    "src/data/vanguard-equity-underliers.json": "11c2d9bac9d693ddc6f3f56649c6f00468d8f8cddc485b30b82b4e8c71637dd3",
+    "src/data/worldbank-gold-monthly.json": "7899d234f25317473fea8396f3a92a0fcb5843cb18031a5a642e97de43dd215c"
+  },
+  "normalization": "JSON key order and top-level build generatedAt only; values, source dates, identifiers and conventions retained.",
+  "omittedDerivedProjections": {
+    "src/data/ranking-annual.json": "Build refreshes four LifeStrategy checkedAt fields from the unchanged canonical issuer source; tested by shared annual-ranking and LifeStrategy checks."
+  },
+  "verificationAtRemoval": {
+    "src/data/anniversary-index-history.json": {
+      "beforeSha256": "739cd0de9f4b2407ebc4e00e407a2cc4d06cb9cca1e433f38d7e024fc7018ed2",
+      "afterSha256": "739cd0de9f4b2407ebc4e00e407a2cc4d06cb9cca1e433f38d7e024fc7018ed2",
+      "equal": true
+    },
+    "src/data/anniversary-levels.json": {
+      "beforeSha256": "01eaf3761e826ea38728f17bc788748e8c68b51f9bc84069f1324abb700a86c6",
+      "afterSha256": "01eaf3761e826ea38728f17bc788748e8c68b51f9bc84069f1324abb700a86c6",
+      "equal": true
+    },
+    "src/data/annual-fx.json": {
+      "beforeSha256": "b7b763acc299b0d83f55f7693f1776e5d99c015c9336ed4764e9733a6a38ef41",
+      "afterSha256": "b7b763acc299b0d83f55f7693f1776e5d99c015c9336ed4764e9733a6a38ef41",
+      "equal": true
+    },
+    "src/data/auto-history-identities.json": {
+      "beforeSha256": "8797d6534d838cdd376420ed776e88584f311a35e27c8720b7a4cb2c856dad6b",
+      "afterSha256": "8797d6534d838cdd376420ed776e88584f311a35e27c8720b7a4cb2c856dad6b",
+      "equal": true
+    },
+    "src/data/automated-broker-tariffs.json": {
+      "beforeSha256": "d624092af06746566028b386ee7637845bb6d46b0c5603edf8b2f7323cac51e5",
+      "afterSha256": "d624092af06746566028b386ee7637845bb6d46b0c5603edf8b2f7323cac51e5",
+      "equal": true
+    },
+    "src/data/automated-economic.json": {
+      "beforeSha256": "ef2d9ef04dfb3de5ad9551cc49744bf0dcf25f291fd82dbe0e01564f11b7122f",
+      "afterSha256": "ef2d9ef04dfb3de5ad9551cc49744bf0dcf25f291fd82dbe0e01564f11b7122f",
+      "equal": true
+    },
+    "src/data/automated-etf-monthly.json": {
+      "beforeSha256": "3b4f409de0e1f71767cbcc5529e2a3bfe4682ba3bdf1ab59c6cea36127f25f3d",
+      "afterSha256": "3b4f409de0e1f71767cbcc5529e2a3bfe4682ba3bdf1ab59c6cea36127f25f3d",
+      "equal": true
+    },
+    "src/data/automated-etf.json": {
+      "beforeSha256": "2fbbf2c269a362339735f82f21c80bac090a5e5c5fd02eb753c1619f6739406e",
+      "afterSha256": "2fbbf2c269a362339735f82f21c80bac090a5e5c5fd02eb753c1619f6739406e",
+      "equal": true
+    },
+    "src/data/automated-indices.json": {
+      "beforeSha256": "f7deba4df50575e37745d925603eafd6a17fb528c54f8b02babe95bef92ffc50",
+      "afterSha256": "f7deba4df50575e37745d925603eafd6a17fb528c54f8b02babe95bef92ffc50",
+      "equal": true
+    },
+    "src/data/automated-instrument-metadata.json": {
+      "beforeSha256": "7c8884220f579d345c8b57086790e69cce428d61455ca071d0684b38eec18a17",
+      "afterSha256": "7c8884220f579d345c8b57086790e69cce428d61455ca071d0684b38eec18a17",
+      "equal": true
+    },
+    "src/data/automated-insurance.json": {
+      "beforeSha256": "d6e7392f0fd9c91e682da4bcd5c69eeb986e0db718920caf91aeee625571979c",
+      "afterSha256": "d6e7392f0fd9c91e682da4bcd5c69eeb986e0db718920caf91aeee625571979c",
+      "equal": true
+    },
+    "src/data/automated-monthly.json": {
+      "beforeSha256": "c527651eb55b34196f9173e30032cfadd5a7c4570819116cc5f8d776e642f8d4",
+      "afterSha256": "c527651eb55b34196f9173e30032cfadd5a7c4570819116cc5f8d776e642f8d4",
+      "equal": true
+    },
+    "src/data/automated-practical-sheets.json": {
+      "beforeSha256": "a0b07d00a7b508f217f31a70b113c885bfc764eb53f4737cc50bbc4c487ce3a2",
+      "afterSha256": "a0b07d00a7b508f217f31a70b113c885bfc764eb53f4737cc50bbc4c487ce3a2",
+      "equal": true
+    },
+    "src/data/automated-presentation-actors.json": {
+      "beforeSha256": "a5378115c4ce6bdc1bb0a74c34f27bff5b4429844ab2bafc0ecf8d3f80364979",
+      "afterSha256": "a5378115c4ce6bdc1bb0a74c34f27bff5b4429844ab2bafc0ecf8d3f80364979",
+      "equal": true
+    },
+    "src/data/automated-regulatory.json": {
+      "beforeSha256": "12248cc0a33c3416ca30651a0af8ad00ce45342c22b31ec6439dc1517646b64d",
+      "afterSha256": "12248cc0a33c3416ca30651a0af8ad00ce45342c22b31ec6439dc1517646b64d",
+      "equal": true
+    },
+    "src/data/automated-scpi.json": {
+      "beforeSha256": "9981dcc059b1e5d650868676f24138d96c45d51bde7506c1db6e2ddc31f80e48",
+      "afterSha256": "9981dcc059b1e5d650868676f24138d96c45d51bde7506c1db6e2ddc31f80e48",
+      "equal": true
+    },
+    "src/data/benchmark-changes.json": {
+      "beforeSha256": "a755ee753869340d03f14b6e96d57614e3c1fbdb2142ed47a56023a35a5e3419",
+      "afterSha256": "a755ee753869340d03f14b6e96d57614e3c1fbdb2142ed47a56023a35a5e3419",
+      "equal": true
+    },
+    "src/data/bitcoin-yahoo-monthly.json": {
+      "beforeSha256": "f20ec3e95eda79de60a8b60bb59057f0a5b036cdd2374749eb0927768ce8bc4c",
+      "afterSha256": "f20ec3e95eda79de60a8b60bb59057f0a5b036cdd2374749eb0927768ce8bc4c",
+      "equal": true
+    },
+    "src/data/data-source-conditions.json": {
+      "beforeSha256": "0d5a867c6de3f2b1f74ce5031f4601556a5ade444f4539585000ef2593e839b0",
+      "afterSha256": "0d5a867c6de3f2b1f74ce5031f4601556a5ade444f4539585000ef2593e839b0",
+      "equal": true
+    },
+    "src/data/dca-complete-holdings.json": {
+      "beforeSha256": "d421e9f22607857469368977d75931fe9ad39e4061e066cfeb059778bc16ffa1",
+      "afterSha256": "d421e9f22607857469368977d75931fe9ad39e4061e066cfeb059778bc16ffa1",
+      "equal": true
+    },
+    "src/data/dca-equity-exposures.json": {
+      "beforeSha256": "b3d53747b6895f3d2567577d3fd006702b8978bc28d4f900cfad82c270afb908",
+      "afterSha256": "b3d53747b6895f3d2567577d3fd006702b8978bc28d4f900cfad82c270afb908",
+      "equal": true
+    },
+    "src/data/dca-holdings-status.json": {
+      "beforeSha256": "531cfb404501da26c92ad29470e0fa6ef4e9c8a15e68c745bcf841801b12b25e",
+      "afterSha256": "531cfb404501da26c92ad29470e0fa6ef4e9c8a15e68c745bcf841801b12b25e",
+      "equal": true
+    },
+    "src/data/dca-security-classifications.json": {
+      "beforeSha256": "4da69cf21e30fa6951246e793cbe43f072b81896df0b4af46b4187c8ae811900",
+      "afterSha256": "4da69cf21e30fa6951246e793cbe43f072b81896df0b4af46b4187c8ae811900",
+      "equal": true
+    },
+    "src/data/equity-candidates.json": {
+      "beforeSha256": "7ff9d1d9139a4b66e8779a3c36f8d8bb7e18561ab1730506f3933d4347221a70",
+      "afterSha256": "7ff9d1d9139a4b66e8779a3c36f8d8bb7e18561ab1730506f3933d4347221a70",
+      "equal": true
+    },
+    "src/data/equity-duel-returns.json": {
+      "beforeSha256": "d9a81041813604c20636dcfdd8e2277ccea25784ccd34fcb11504f567245dabf",
+      "afterSha256": "d9a81041813604c20636dcfdd8e2277ccea25784ccd34fcb11504f567245dabf",
+      "equal": true
+    },
+    "src/data/equity-history-links.json": {
+      "beforeSha256": "357d07e7e3f804318b759d8e0c709f24e463c0b0a4e1f8278189d80a56ca4359",
+      "afterSha256": "357d07e7e3f804318b759d8e0c709f24e463c0b0a4e1f8278189d80a56ca4359",
+      "equal": true
+    },
+    "src/data/etf-presentation-reviewed-ids.json": {
+      "beforeSha256": "b3079499e1badfcef2869b37bc48a810e3988fe61044738b159d2d0e832b4cb6",
+      "afterSha256": "b3079499e1badfcef2869b37bc48a810e3988fe61044738b159d2d0e832b4cb6",
+      "equal": true
+    },
+    "src/data/exposure-etf-expansion-records.json": {
+      "beforeSha256": "38dc5e8eb7afe76cacc3d5f4495d13f287e0f06614f3f222696a28970ac56777",
+      "afterSha256": "38dc5e8eb7afe76cacc3d5f4495d13f287e0f06614f3f222696a28970ac56777",
+      "equal": true
+    },
+    "src/data/exposure-sleeves.json": {
+      "beforeSha256": "ddbc3d54766f8718ed3a50405bdc33af5e61ce865799432f110ad5716425f2a0",
+      "afterSha256": "ddbc3d54766f8718ed3a50405bdc33af5e61ce865799432f110ad5716425f2a0",
+      "equal": true
+    },
+    "src/data/financial-history-restrictions.json": {
+      "beforeSha256": "abf0ed6560205110f7fca46dffd951960c5b7fb874416d7bde8e94ce708742eb",
+      "afterSha256": "abf0ed6560205110f7fca46dffd951960c5b7fb874416d7bde8e94ce708742eb",
+      "equal": true
+    },
+    "src/data/financial-source-repairs.json": {
+      "beforeSha256": "8cca2536cdc04126bd32cb99de84ac1fca4d9e5c215915b274a18be875199557",
+      "afterSha256": "8cca2536cdc04126bd32cb99de84ac1fca4d9e5c215915b274a18be875199557",
+      "equal": true
+    },
+    "src/data/freshness-policy.json": {
+      "beforeSha256": "5b0e4cb06df709347e78c8ea772ba034fee5de600f863285384f933c6ae4eb7e",
+      "afterSha256": "5b0e4cb06df709347e78c8ea772ba034fee5de600f863285384f933c6ae4eb7e",
+      "equal": true
+    },
+    "src/data/global-equities.json": {
+      "beforeSha256": "81630c5b501a1287c91230f292598ee0ea2e0963f06b11e095ee3c63c4ba8a8d",
+      "afterSha256": "81630c5b501a1287c91230f292598ee0ea2e0963f06b11e095ee3c63c4ba8a8d",
+      "equal": true
+    },
+    "src/data/history-window-restrictions.json": {
+      "beforeSha256": "00543dd3874b255ca73e1eb200111c3413d146abb0fe7f62022338a179d0f3ee",
+      "afterSha256": "00543dd3874b255ca73e1eb200111c3413d146abb0fe7f62022338a179d0f3ee",
+      "equal": true
+    },
+    "src/data/index-company-identities.json": {
+      "beforeSha256": "f6eeaa191b30127bcaa413f7a9f81a7d4c71f44d28b40afa0be16e18f10d0e15",
+      "afterSha256": "f6eeaa191b30127bcaa413f7a9f81a7d4c71f44d28b40afa0be16e18f10d0e15",
+      "equal": true
+    },
+    "src/data/index-company-observations.json": {
+      "beforeSha256": "b42f6a37bfb295afeaa865c9be256d934d9b87ea0e2857a7c081449ecd6293c7",
+      "afterSha256": "b42f6a37bfb295afeaa865c9be256d934d9b87ea0e2857a7c081449ecd6293c7",
+      "equal": true
+    },
+    "src/data/index-company-qualified.json": {
+      "beforeSha256": "4d305f25f1bab75596917e5c09ad7b664d1b1d19ea663742d169d74c787a3519",
+      "afterSha256": "4d305f25f1bab75596917e5c09ad7b664d1b1d19ea663742d169d74c787a3519",
+      "equal": true
+    },
+    "src/data/instrument-metadata-status.json": {
+      "beforeSha256": "1158c56f11538d3f014333a20748cb1b4a4cbab373fb01aa0b862538b173cc9f",
+      "afterSha256": "1158c56f11538d3f014333a20748cb1b4a4cbab373fb01aa0b862538b173cc9f",
+      "equal": true
+    },
+    "src/data/lifestrategy.json": {
+      "beforeSha256": "d7678b0e41e29ab446934fdacd3a35aafa1139908fb315ddda11792f074bedb0",
+      "afterSha256": "d7678b0e41e29ab446934fdacd3a35aafa1139908fb315ddda11792f074bedb0",
+      "equal": true
+    },
+    "src/data/monthly-duel-returns.json": {
+      "beforeSha256": "6c3ca21c4fcadd596281b10649f8efa176c2944f09125116947e958134c0e362",
+      "afterSha256": "6c3ca21c4fcadd596281b10649f8efa176c2944f09125116947e958134c0e362",
+      "equal": true
+    },
+    "src/data/monthly-fx.json": {
+      "beforeSha256": "554663e17baa2a28920e3e97f40b5fa0e14528b4c2c4df6e8db98533af5f4b59",
+      "afterSha256": "554663e17baa2a28920e3e97f40b5fa0e14528b4c2c4df6e8db98533af5f4b59",
+      "equal": true
+    },
+    "src/data/non-bond-company-histories.json": {
+      "beforeSha256": "c8d6a4129efc1ddc3964fe8c8309e129837a33bad973b059a995b6c3e485a026",
+      "afterSha256": "c8d6a4129efc1ddc3964fe8c8309e129837a33bad973b059a995b6c3e485a026",
+      "equal": true
+    },
+    "src/data/non-bond-etf-records.json": {
+      "beforeSha256": "2ffded6886f9e8825158e4d9ae45406217dc178600e3877d4c25bef4af31a3f0",
+      "afterSha256": "2ffded6886f9e8825158e4d9ae45406217dc178600e3877d4c25bef4af31a3f0",
+      "equal": true
+    },
+    "src/data/non-bond-levels.json": {
+      "beforeSha256": "c569827cdffa4f7d7ba7a225290cbc3570c4bc2830261a62fc3a28880160ca65",
+      "afterSha256": "c569827cdffa4f7d7ba7a225290cbc3570c4bc2830261a62fc3a28880160ca65",
+      "equal": true
+    },
+    "src/data/non-bond-monthly-records.json": {
+      "beforeSha256": "7e04992a54a270fd1ccf57bae8b95164a7d0ed1ab9411dc1dc6a1bceaea34c05",
+      "afterSha256": "7e04992a54a270fd1ccf57bae8b95164a7d0ed1ab9411dc1dc6a1bceaea34c05",
+      "equal": true
+    },
+    "src/data/non-bond-qualified-records.json": {
+      "beforeSha256": "68a9d96239254e84183197f7f88eed3c5360161402cb2a7db8af102cb7d0f940",
+      "afterSha256": "68a9d96239254e84183197f7f88eed3c5360161402cb2a7db8af102cb7d0f940",
+      "equal": true
+    },
+    "src/data/official-performance-currencies.json": {
+      "beforeSha256": "758e8d391b66a9567104cfdb4cf759c8afe2e12a5b8c8459ab53dba9befda40c",
+      "afterSha256": "758e8d391b66a9567104cfdb4cf759c8afe2e12a5b8c8459ab53dba9befda40c",
+      "equal": true
+    },
+    "src/data/performance-links.json": {
+      "beforeSha256": "166a09aa4335ef804fdef6d7921337ce2e69db9c7cc0fbd430bb4a83492e1661",
+      "afterSha256": "166a09aa4335ef804fdef6d7921337ce2e69db9c7cc0fbd430bb4a83492e1661",
+      "equal": true
+    },
+    "src/data/purchasing-power-observations.json": {
+      "beforeSha256": "43f65344e5434ab97545c062141a6223722a209c7a7b2f3a6b93eb51e09ca46c",
+      "afterSha256": "43f65344e5434ab97545c062141a6223722a209c7a7b2f3a6b93eb51e09ca46c",
+      "equal": true
+    },
+    "src/data/qualified-exposure-etfs.json": {
+      "beforeSha256": "e5c971c5d410a3e17afe42876b53bce431111dbd085f894660c9c9ff54ec970f",
+      "afterSha256": "e5c971c5d410a3e17afe42876b53bce431111dbd085f894660c9c9ff54ec970f",
+      "equal": true
+    },
+    "src/data/qualified-listing-records.json": {
+      "beforeSha256": "3215ea7fe5fbcce223fa0e5d7c884e5f4710b149267d7b17374d91f516402233",
+      "afterSha256": "3215ea7fe5fbcce223fa0e5d7c884e5f4710b149267d7b17374d91f516402233",
+      "equal": true
+    },
+    "src/data/ranking-ftse.json": {
+      "beforeSha256": "ca074a444ea961629b06641e1a93728bb34e1d6a65777d928fdf437d36c5cc33",
+      "afterSha256": "ca074a444ea961629b06641e1a93728bb34e1d6a65777d928fdf437d36c5cc33",
+      "equal": true
+    },
+    "src/data/ranking-histories.json": {
+      "beforeSha256": "3d612b83e206ee8c66644945dc94895a358641b41805bbcc7a06a852688146b3",
+      "afterSha256": "3d612b83e206ee8c66644945dc94895a358641b41805bbcc7a06a852688146b3",
+      "equal": true
+    },
+    "src/data/ranking-index-annual.json": {
+      "beforeSha256": "c96a55652b048ed9ca25aea9a78d836b2d2d2cdd77e66883799fc38c88f6e0cc",
+      "afterSha256": "c96a55652b048ed9ca25aea9a78d836b2d2d2cdd77e66883799fc38c88f6e0cc",
+      "equal": true
+    },
+    "src/data/reviewed-broker-profiles.json": {
+      "beforeSha256": "8323d2af41d08bfae2054fc8797e48a04cda4ee78002a1eb2e7ce9a9ee79fb89",
+      "afterSha256": "8323d2af41d08bfae2054fc8797e48a04cda4ee78002a1eb2e7ce9a9ee79fb89",
+      "equal": true
+    },
+    "src/data/security-identifier-observations.json": {
+      "beforeSha256": "e4e9ca751837e30de6adf3702604303467016b40865330bc048f49a59d7311ba",
+      "afterSha256": "e4e9ca751837e30de6adf3702604303467016b40865330bc048f49a59d7311ba",
+      "equal": true
+    },
+    "src/data/simulation-links.json": {
+      "beforeSha256": "c92954d579b4b4bda2ed27870af1f31388db3d5fea523b211819961709e51d2c",
+      "afterSha256": "c92954d579b4b4bda2ed27870af1f31388db3d5fea523b211819961709e51d2c",
+      "equal": true
+    },
+    "src/data/tool-links.json": {
+      "beforeSha256": "49d4d5ad0cd107179a06b610cfa4f2a3d907a7fb32f1181669c23a88c438aa14",
+      "afterSha256": "49d4d5ad0cd107179a06b610cfa4f2a3d907a7fb32f1181669c23a88c438aa14",
+      "equal": true
+    },
+    "src/data/vanguard-equity-underliers.json": {
+      "beforeSha256": "9329e2654fa1bbcbca3b8d26aeb2a79a36817b7994b362fbdc0b7f745652e035",
+      "afterSha256": "9329e2654fa1bbcbca3b8d26aeb2a79a36817b7994b362fbdc0b7f745652e035",
+      "equal": true
+    },
+    "src/data/worldbank-gold-monthly.json": {
+      "beforeSha256": "9f3d829c7c110eb6aec51696a29770657fa738de11fcb7b6611d4ff12a35e0c9",
+      "afterSha256": "9f3d829c7c110eb6aec51696a29770657fa738de11fcb7b6611d4ff12a35e0c9",
+      "equal": true
+    }
+  },
+  "initialBaseCommit": "be7bffe00b2c061c38684c516fe3e2e9d18d1585"
+}

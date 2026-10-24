@@ -1,0 +1,60 @@
+[
+  {
+    "id": "blackrock-fr-legal",
+    "url": "https://www.blackrock.com/varnish-api/fr-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2CregulatoryInformation&locale=fr_FR&portfolioId=251787&targetSite=ishares-fr&userType=individual&excludeContent=true&includeConfig=true",
+    "attemptedAt": "2026-10-24T09:35:13.167357+00:00",
+    "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+    "id": "blackrock-fr-product",
+    "url": "https://www.ishares.com/fr/particuliers/fr/produits/251787/ishares-euro-dividend-ucits-etf",
+    "attemptedAt": "2026-10-24T09:35:13.168188+00:00",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "cspx-hourly",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?range=5d&interval=1h&events=div%2Csplits",
+    "attemptedAt": "2026-10-24T09:35:13.168618+00:00",
+    "status": 200,
+    "contentType": "application/json;charset=utf-8",
+    "sourceDate": "Sat, 24 Oct 2026 09:35:13 GMT",
+    "sha256": "0fd6ea0c386d3fab86f8f0404d6d9de5f109fdb99f3cc5122c4088380aa2ed51",
+    "bytes": 5503,
+    "lastDates": [
+      "2026-10-23T14:00:00+00:00",
+      "2026-10-23T15:00:00+00:00",
+      "2026-10-23T15:30:00+00:00"
+    ],
+    "meta": {
+      "symbol": "CSPX.L",
+      "currency": "USD",
+      "regularMarketTime": 1792779223,
+      "regularMarketPrice": 826.43,
+      "previousClose": 827.06,
+      "longName": "iShares Core S&P 500 UCITS ETF USD (Acc)"
+    }
+  },
+  {
+    "id": "swda-hourly",
+    "url": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?range=5d&interval=1h&events=div%2Csplits",
+    "attemptedAt": "2026-10-24T09:35:13.322371+00:00",
+    "status": 200,
+    "contentType": "application/json;charset=utf-8",
+    "sourceDate": "Sat, 24 Oct 2026 09:35:13 GMT",
+    "sha256": "3a2b2c482a3214b6fb1a5535290f17354fe8f1b16cd6267076cd3f1ed2a5da58",
+    "bytes": 5705,
+    "lastDates": [
+      "2026-10-23T14:00:00+00:00",
+      "2026-10-23T15:00:00+00:00",
+      "2026-10-23T15:30:00+00:00"
+    ],
+    "meta": {
+      "symbol": "SWDA.MI",
+      "currency": "EUR",
+      "regularMarketTime": 1792769729,
+      "regularMarketPrice": 129.89,
+      "previousClose": 129.93,
+      "longName": "iShares Core MSCI World UCITS ETF USD (Acc)"
+    }
+  }
+]

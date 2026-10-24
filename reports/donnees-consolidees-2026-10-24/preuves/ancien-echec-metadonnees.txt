@@ -1,0 +1,6 @@
+2026-10-24T01:18:24.5051551Z ##[group]Run npm run build && node scripts/test-full-auto-routing.mjs
+2026-10-24T01:18:24.5052089Z [36;1mnpm run build && node scripts/test-full-auto-routing.mjs[0m
+2026-10-24T01:18:53.7518843Z AssertionError [ERR_ASSERTION]: manual-FR0007054358: no market-price projection inferred from NAV
+2026-10-24T01:18:53.7541426Z     at file:///home/runner/work/shinny-potato/shinny-potato/scripts/test-full-auto-routing.mjs:39:11
+2026-10-24T01:18:53.7543924Z   actual: {
+2026-10-24T01:18:53.7559455Z   expected: undefined,

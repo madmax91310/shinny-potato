@@ -18,23 +18,6 @@
       "producer": "scripts/build-dca-exposures.mjs"
     },
     {
-      "pattern": "public/data/ai-portfolios/*.json",
-      "consumers": [
-        "src/pages/ai-portfolios/App.jsx",
-        "src/pages/ai-portfolios/series.js"
-      ],
-      "mechanism": "fetch public et fragments sélectionnés",
-      "producer": "scripts/ai-portfolios.mjs"
-    },
-    {
-      "pattern": "data/ai-portfolios/*",
-      "consumers": [
-        "src/pages/ai-portfolios/App.jsx"
-      ],
-      "mechanism": "projection publique versionnée ; les sources de comptabilité ne sont pas des imports Vite",
-      "producer": "scripts/ai-portfolios.mjs"
-    },
-    {
       "pattern": "src/data/dca-equity-exposures.json",
       "consumers": [
         "scripts/build-dca-exposures.mjs"
@@ -58,8 +41,7 @@
       "pattern": "src/data/dca-security-classifications.json",
       "consumers": [
         "scripts/build-dca-exposures.mjs",
-        "scripts/build-equity-history-links.mjs",
-        "scripts/ai-portfolio-universe.mjs"
+        "scripts/build-equity-history-links.mjs"
       ],
       "stage": "build",
       "mechanism": "security identity projection and catalogue admission",
@@ -111,6 +93,61 @@
       "stage": "validation",
       "mechanism": "top-ten regression projection; not the runtime full holdings loader",
       "producer": "scripts/build-dca-exposures.mjs"
+    },
+    {
+      "pattern": "reports/amundi-distributions-2026-10-23/official-response.json.gz",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
+    },
+    {
+      "pattern": "reports/amundi-distributions-2026-10-23/official-provenance.json",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
+    },
+    {
+      "pattern": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etfFR0007054358.json.gz",
+      "consumers": [
+        "scripts/qualified_distributions.py"
+      ],
+      "stage": "collection",
+      "mechanism": "distributionEvidence in monthly-automation.json ; immutable historical cash and exact quote-unit evidence",
+      "producer": null
+    },
+    {
+      "pattern": "reports/amundi-distributions-2026-10-23/github-result.json",
+      "consumers": [
+        "scripts/build-review-reconciliation.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "immutable GitHub-validated cash-repair evidence; no live return substitution",
+      "producer": null
+    },
+    {
+      "pattern": "reports/wfns-dividend-2026-10-23/github-qualification/wfns-result.json",
+      "consumers": [
+        "scripts/build-review-reconciliation.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "immutable GitHub-validated cash-repair evidence; no live return substitution",
+      "producer": null
+    },
+    {
+      "pattern": "src/data/shared-listing-identities.json",
+      "consumers": [
+        "scripts/export-equity-candidates.mjs",
+        "scripts/report-ai-tool-reuse.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "Preuves de cotation partagées transférées sans modifier identités, dates ou sources ; aucun historique IA utilisé",
+      "producer": "scripts/refresh_qualified_listings.py"
     }
   ]
 }

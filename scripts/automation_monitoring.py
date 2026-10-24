@@ -1,4 +1,5 @@
 """Incident lifecycle and one grouped GitHub notification, independent of Pages."""
+from automation_contracts import owns_failure, RETIREMENT_REASON
 import datetime as dt
 import hashlib
 import json
@@ -6,6 +7,9 @@ import re
 from pathlib import Path
 
 RETIRED_WORKFLOWS = json.loads((Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
+
+REMOVED_TOOL_NAMES = {r['toolName'] for r in RETIRED_WORKFLOWS.values() if r.get('toolName')}
+REMOVED_SCOPE_REASON = 'Périmètre supprimé : l’outil consommateur a été retiré. Aucune réparation de donnée déduite.'
 
 MARKER = '<!-- data-reliability-monitor:v1 -->'
 QUIET_HOURS = 6  # minimum spacing between comments that only report checks or recoveries
@@ -43,6 +47,9 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     old = previous.get('active', {})
     active = {}
     def add(key, row):
+        if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:
+            return
+        row = {**row, 'tools': [t for t in row.get('tools', []) if t not in REMOVED_TOOL_NAMES]}
         active[key] = {**row, 'id': key, 'firstSeenAt': old.get(key, {}).get('firstSeenAt', now), 'lastSeenAt': now}
     for workflow, config in registry.items():
         row = state.get('workflows', {}).get(workflow, {})
@@ -54,16 +61,35 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         elif (current - completed).total_seconds() > config['maxAgeHours'] * 3600:
             add('overdue:' + workflow, {**base, 'kind': 'overdue', 'field': 'Fréquence de collecte', 'cause': f"Aucune exécution terminée depuis plus de {config['maxAgeHours']} heures.", 'lastSuccessAt': row.get('lastCollectionSuccessAt')})
         for identifier, failure in row.get('dataFailures', {}).items():
+            if not owns_failure(config,identifier):continue
             details = incident_context(identifier, context, failure.get('name', identifier))
-            if not details['tools']:
+            # Daily quotes and issuer characteristics have different consumers.
+            if 'dataFailureTools' in config:
+                details['tools'] = config['dataFailureTools']
+                details['to'] = config.get('dataFailureTo', '/donnees-a-revoir')
+                details['sourceUrls'] = failure.get('sourceUrls', [])
+            elif not details['tools']:
                 details['tools'] = tools
+            if 'sourceUrls' in failure:
+                details['sourceUrls'] = failure['sourceUrls']
             # An official document that changed wording or identity is not a broken collector:
             # the previous value is kept and a person must compare old and new text.
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
             add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
-        if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):
+        validation_steps = set(config.get('validationSteps', []))
+        validation_failures = [f for f in row.get('failures', []) if f['step'] in validation_steps or f['job'] == 'report-validation-failures']
+        validation_failed = row.get('validationStatus') == 'failure' or bool(validation_failures)
+        if validation_failed:
+            add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
+                'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
+        other_failures = [f for f in row.get('failures', []) if f['step'] not in validation_steps
+                          and f['step'] not in config.get('collectionSteps', [])
+                          and f['job'] not in ('report-failures', 'report-validation-failures')
+                          and not f['job'].startswith('deploy /')]
+        if row.get('status') == 'failure' and (row.get('publicationStatus') == 'failure' or other_failures
+                or not row.get('dataFailures') and not validation_failed):
             publishing = row.get('publicationStatus') == 'failure'
             # Data-only lane: the data reached the site; only a check after publication needs repair.
             checks_only = (not publishing and row.get('publicationStatus') == 'success' and row.get('failures')
@@ -109,10 +135,16 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
-    retired = [{**row, 'retiredAt': now, 'retirementReason': RETIRED_WORKFLOWS[row['workflow']]['reason']}
-               for key, row in old.items() if key not in active and row.get('workflow') in RETIRED_WORKFLOWS]
+    def retired_reason(row):
+        if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
+        if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
+        if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
+        return None
+    retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row),
+                'retirementStatus': ('scope-removed' if RETIRED_WORKFLOWS.get(row.get('workflow'),{}).get('status')=='scope-removed' or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution')}
+               for key, row in old.items() if key not in active and retired_reason(row)]
     resolved = [{**row, 'resolvedAt': now} for key, row in old.items()
-                if key not in active and row.get('workflow') not in RETIRED_WORKFLOWS]
+                if key not in active and not retired_reason(row)]
     opened = [row for key, row in active.items() if key not in old]
     # A date/run change alone is not a new incident. Notify only an increased
     # severity, wider impact or additional missing/invalid periods.

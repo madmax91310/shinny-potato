@@ -228,6 +228,9 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   priceUnit: ASSETS[id].priceUnit,
   instrumentType: ASSETS[id].instrumentType,
   isin: ASSETS[id].isin,
+  sourceUrls: ASSETS[id].sourceUrls,
+  valuationBasis: ASSETS[id].valuationBasis,
+  originalCurrency: ASSETS[id].originalCurrency,
   symbol: ASSETS[id].symbol, ticker: ASSETS[id].ticker, mic: ASSETS[id].mic,
 }));
 

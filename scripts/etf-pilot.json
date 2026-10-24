@@ -20,7 +20,8 @@
       "distribution": "Accumulating",
       "requireFullHistory": false,
       "collectHoldings": true,
-      "provider": "iShares"
+      "provider": "iShares",
+      "sectorFallback": "complete-physical-holdings"
     },
     {
       "isin": "IE00BKM4GZ66",

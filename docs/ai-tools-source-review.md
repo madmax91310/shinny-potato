@@ -4,7 +4,7 @@ La matrice JSON et Markdown couvre les 29 actifs et 16 destinations ou modes. Le
 
 ## Identités et continuité
 
-Les annuaires Nasdaq/NYSE et Nasdaq Nordic utilisés par Portefeuilles IA donnent la classe, le MIC, la devise et un identifiant de société. Les positions complètes BlackRock apportent l’ISIN exact et la classification pays de risque/secteur. Ces deux preuves restent distinctes. Le pays de risque de Nu est le Brésil ; cela ne prouve pas son domicile juridique. Aucun domicile n’est déduit de sa cotation NYSE. Cameco utilise CCJ, NYSE/USD : la position détenue par BlackRock en CCO/Toronto/CAD sert à identifier la même action ordinaire, jamais à remplacer les cours américains.
+Les preuves d’annuaires Nasdaq/NYSE et Nasdaq Nordic conservées dans `src/data/shared-listing-identities.json` donnent la classe, le MIC, la devise et un identifiant de société. Les positions complètes BlackRock apportent l’ISIN exact et la classification pays de risque/secteur. Ces deux preuves restent distinctes. Le pays de risque de Nu est le Brésil ; cela ne prouve pas son domicile juridique. Aucun domicile n’est déduit de sa cotation NYSE. Cameco utilise CCJ, NYSE/USD : la position détenue par BlackRock en CCO/Toronto/CAD sert à identifier la même action ordinaire, jamais à remplacer les cours américains.
 
 Les décisions et URL primaires sont conservées dans `global-equities.json`, `monthly-automation.json` et les observations :
 
