@@ -11,6 +11,7 @@ import unittest
 from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_reports, normalize_report,
     read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows)
 from automation_monitoring import evaluate_monitoring, restore_history
+from automation_status_storage import pack_report_scopes,expand_report_scopes,encode_status
 
 NOW='2026-10-24T12:00:00Z'
 CTX={'schemaVersion':1,'alerts':[],'entities':[],'historyAlerts':[],'fieldAlerts':[]}
@@ -26,6 +27,24 @@ def jobs(workflow, failure=None):
         {'name':n,'conclusion':'failure' if failure==n else 'success'} for n in names]}]
 
 class ProductContracts(unittest.TestCase):
+    def test_shared_report_scopes_are_lossless_small_and_keep_every_field(self):
+        ids=['exact-field:'+str(i)for i in range(700)]
+        scope={'kind':'targeted','expectedIds':ids,'requestedIds':ids,'networkRequestedIds':ids[:400]}
+        proof={'file':'observation.json','sha256':'a'*64,'scope':scope,'reportedAt':'2026-10-23T12:00:00Z'}
+        state={'schemaVersion':1,'workflows':{'producer':{'sourceChecks':{i:{'checkedAt':'2026-10-23','asOf':'2026-09','evidence':proof}for i in ids},'dataFailures':{'blocked':{'cause':'Still failed','evidence':proof}}}},'monitoring':{'resolved':[{'id':'original','evidence':proof}],'active':{'blocked':{'evidence':proof}}}}
+        original=copy.deepcopy(state);packed=pack_report_scopes(state)
+        self.assertEqual(state,original);self.assertEqual(expand_report_scopes(json.loads(json.dumps(packed))),state)
+        self.assertEqual(json.loads(base64.b64decode(encode_status(packed))),packed)
+        self.assertEqual(pack_report_scopes(packed),packed);self.assertEqual(len(packed['reportScopes']),1)
+        self.assertLess(len(json.dumps(packed)),len(json.dumps(state))//10)
+        self.assertEqual(set(packed['workflows']['producer']['sourceChecks']),set(ids))
+        self.assertEqual(packed['workflows']['producer']['dataFailures']['blocked']['cause'],'Still failed')
+        broken=copy.deepcopy(packed);broken['reportScopes'].clear()
+        with self.assertRaises(ValueError):pack_report_scopes(broken)
+        with self.assertRaises(ValueError):expand_report_scopes(broken)
+        mutated=copy.deepcopy(packed);next(iter(mutated['reportScopes'].values()))['kind']='forged'
+        with self.assertRaises(ValueError):pack_report_scopes(mutated)
+
     def test_every_registered_producer_and_fault_class(self):
         # This matrix invokes the actual reducer for EVERY producer, not a copy of its implementation.
         for workflow in REGISTRY:
