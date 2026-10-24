@@ -1,3 +1,4 @@
+import{readFileSync}from'node:fs'
 import assert from'node:assert/strict'
 import{retiredRuns}from'./cancel-closed-pr-validation.mjs'
 const repo='owner/repo',pr={number:9,state:'closed',head:{sha:'head',ref:'feature',repo:{full_name:repo}}}
@@ -8,3 +9,7 @@ assert.deepEqual(retiredRuns([run],{...pr,state:'open'},repo),[])
 assert.deepEqual(retiredRuns([{...run,pull_requests:[]}],pr,repo,[]),[42])
 assert.deepEqual(retiredRuns([{...run,pull_requests:[]}],pr,repo,[{state:'open',head:pr.head}]),[])
 console.log('Closed PR cleanup cannot cancel master, publications, forks, other PRs, collectors or completed runs.')
+
+const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
+assert.match(deploy,/group: pages-validation-v3-.*github\.ref/)
+assert.match(deploy,/cancel-in-progress: \$\{\{ github\.event_name == 'pull_request' \}\}/,'Only superseded PR validations may be cancelled; production validations remain serialized')

@@ -18,3 +18,5 @@ Intégration réalisée après fusion #924 : master `16a895e5`, deux conflits r�
 Actualisation finale : master `3ecbbee9` (#926 et #928) intégré ; PR #929 (preuves communes) et #930 (reprise conditionnelle radar) examinées sans modification de leurs fichiers. La supervision intermédiaire lit les jobs ordinaires en cours ; elle ne relance ni ne modifie leurs collecteurs. Les preuves de réparation restent par champ, branche et tentative.
 
 Complément de livraison : PR #931, branche `fix/data-review-inflight-20261024`. Fichiers pris en charge : le lecteur et le réducteur de supervision, contrats/recette, `review-inbox.js` et diagnostics. Le raccordement du format `listings` au périmètre ciblé est corrigé côté supervision ; aucun producteur modifié.
+
+File de recette : `.github/workflows/deploy-pages.yml` annule uniquement les révisions remplacées de la même PR. Le groupe par PR reste distinct de master, les validations et publications de production ne sont jamais annulées par cette règle. Les suites de contrôles et les seuils restent intacts.
