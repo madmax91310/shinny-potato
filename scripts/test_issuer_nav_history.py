@@ -63,14 +63,17 @@ class NavRefreshSafety(unittest.TestCase):
         from refresh_monthly_history import refresh
         old={'id':'example','parser':'official-nav','currency':'EUR','navCurrency':'USD','navProvider':'dws',
              'valuationBasis':'fund-nav-total-return','method':'NAV','periodStart':'2026-01','periodEnd':'2026-01',
-             'points':[['2026-01',100]],'checkedAt':'2026-02-01'}
+             'points':[['2026-01',100]],'checkedAt':'2026-02-01','responseSha256':'a'*64}
         baseline={'example':{'currency':'EUR','points':[{'date':'2026-01','price':100}]}}
         for collector in [lambda *_:(_ for _ in ()).throw(TimeoutError('offline')),lambda *_:{**old,'navCurrency':'EUR','proofRows':[]}]:
             result,report=refresh({'series':[old]},{'example':old},baseline,NOW,collector)
             self.assertEqual(result['example'],old)
             self.assertEqual(report['series'][0]['status'],'failed')
-        fresh={**old,'proofRows':[]}
+        fresh={**old,'proofRows':[],'checkedAt':NOW.date().isoformat(),'responseSha256':'b'*64}
         result,report=refresh({'series':[old]},{'example':old},baseline,NOW,lambda *_:fresh)
         self.assertEqual(report['series'][0]['status'],'validated')
-        self.assertEqual(result['example']['checkedAt'],'2026-02-01','An unchanged successful poll does not renew the financial evidence date')
+        self.assertEqual(result['example']['checkedAt'],NOW.date().isoformat(),'A real successful check renews the control date')
+        self.assertEqual(result['example']['periodEnd'],old['periodEnd'],'The NAV period is never renewed by a check')
+        self.assertEqual(result['example']['points'],old['points'])
+        self.assertEqual(old['checkedAt'],'2026-02-01','Original proof object is not mutated')
 if __name__=='__main__':unittest.main()

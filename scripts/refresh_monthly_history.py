@@ -384,8 +384,12 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                 if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
                 if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom']):
                     reject('Existing exact series identity changed')
-                if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):active=previous
-            return {'id':source['id'],'status':'validated','record':active,'evidence':result}
+                if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):
+                    # This collector really fetched and validated the response.
+                    # Renew its control proof, never the period or the prices.
+                    active={**previous,'checkedAt':active['checkedAt'],'responseSha256':active['responseSha256']}
+            unchanged=bool(previous and previous['points']==active['points'] and previous.get('anniversaryPoints',[])==active.get('anniversaryPoints',[]))
+            return {'id':source['id'],'status':'validated','sourceState':'unchanged-verified'if unchanged else'succeeded','record':active,'evidence':result}
         except Exception as error:
             return {'id':source['id'],'status':'failed','reason':str(error)}
     with ThreadPoolExecutor(max_workers=3) as pool: observations=list(pool.map(one,config['series']))
@@ -397,8 +401,8 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
 
 def monitoring_report(report):
     """Keep diagnostics bounded; full prices/proofs remain in the validated registries."""
-    return {'checkedAt': report['checkedAt'], 'series': [
-        {key: row[key] for key in ('id', 'status', 'reason') if key in row} |
+    return {'checkedAt': report['checkedAt'], **({'scope':report['scope']}if 'scope'in report else{}), 'series': [
+        {key: row[key] for key in ('id', 'status', 'sourceState', 'reason') if key in row} |
         ({'periodEnd': row['record']['periodEnd'],
           'responseSha256': row['evidence'].get('responseSha256')}
          if row['status'] == 'validated' else {})
@@ -421,6 +425,7 @@ def main():
     status=json.loads(status_path.read_text()) if status_path.exists() else {'series':{}}
     config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
     merged,report=refresh(config,current,json.loads(args.baseline.read_text()))
+    report['scope']={'requestedIds':[s['id']for s in config['series']],'expectedIds':[s['id']for s in config['series']],'selection':'failed-or-missing'if args.retry_failed else'explicit'if args.only is not None else'configured-universe'}
     if args.evidence_output:write_json_atomic(args.evidence_output,report)
     write_json_atomic(args.output,monitoring_report(report))
     if args.apply and report['series']:
@@ -443,7 +448,8 @@ def main():
     for observation in report['series']:
         if observation['status']=='validated':
             result=observation['evidence']
-            if evidence.get(observation['id'],{}).get('responseSha256') != observation['record']['responseSha256']:
+            if (evidence.get(observation['id'],{}).get('responseSha256') != observation['record']['responseSha256'] or
+                    evidence.get(observation['id'],{}).get('checkedAt') != result.get('checkedAt')):
                 # Persist proof for the active version, not a subsequent unchanged check.
                 if result['responseSha256']==observation['record']['responseSha256']:
                     evidence[observation['id']]={k:v for k,v in result.items() if k not in ['rawResponse','points','anniversaryPoints']}
@@ -465,6 +471,7 @@ def select_series(config,status,only=None,retry_failed=False):
     if retry_failed:
         # Bootstrap the observation once; later daily checks only contact failures.
         selected=({key for key,value in status.get('series',{}).items() if value['status']=='failed'} | (ids-set(status.get('series',{})))) if status.get('series') else ids
+        if only is not None:selected &= set(only)
     else:
         selected=set(only) if only is not None else ids
     return {**config,'series':[s for s in config['series'] if s['id'] in selected]}

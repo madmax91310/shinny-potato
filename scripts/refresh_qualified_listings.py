@@ -53,9 +53,13 @@ def main():
  if args.apply:write_json_atomic(path,records)
  from exchange_listing_refresh import refresh
  shared_path=ROOT/'src/data/shared-listing-identities.json'
- shared,identity_report=refresh(json.loads(shared_path.read_text()),dt.datetime.now(UTC))
+ shared_original=json.loads(shared_path.read_text())
+ shared,identity_report=refresh(shared_original,dt.datetime.now(UTC))
  if args.apply:write_json_atomic(shared_path,shared)
  report={'checkedAt':checked,'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}
+ expected=[r['id']for r in identity_report['successes']]+[r['id']for r in identity_report['errors']]+[s['isin']for s in sources]
+ report['scope']={'kind':'common-listing-identities'if args.common_identities_only else'qualified-listings','requestedIds':expected,'expectedIds':expected}
+ report['outcomes']=identity_report['successes']+[{'id':r['id'],'status':'failed','field':'listing-identity','attemptedAt':r['attemptedAt'],'reason':r['error'],'lastSuccessAt':r['lastSuccessAt'],'sourceUrl':r['sourceUrl']}for r in identity_report['errors']]
  report['validated'] += [r['id']for r in identity_report['successes']]
  report['failed'] += [{'isin':r['id'],'reason':r['error'],'sourceUrl':r['sourceUrl'],'lastSuccessAt':r['lastSuccessAt']}for r in identity_report['errors']]
  if args.output:write_json_atomic(args.output,report)

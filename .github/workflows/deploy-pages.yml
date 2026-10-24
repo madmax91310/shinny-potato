@@ -114,6 +114,8 @@ jobs:
       - run: node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
+      - run: node scripts/test-required-data-gaps.mjs
+      - run: node scripts/test-index-proxy-identity.mjs
       - run: node scripts/test-shared-listing-identities.mjs
       - run: node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs
       - run: node scripts/test-tool-projections.mjs
@@ -394,6 +396,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
       - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'
+      - run: python -m unittest discover -s scripts -p 'test_projection_recording.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
+      - run: python -m unittest discover -s scripts -p 'test_data_use_matrix.py'
       - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'

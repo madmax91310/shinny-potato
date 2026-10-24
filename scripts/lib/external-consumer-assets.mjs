@@ -1,4 +1,5 @@
 import {readFileSync} from 'node:fs'
+import{collectObservationsSync}from '../update-editorial-radar.mjs'
 import {INVESTORS} from '../../src/data/investor-roster.js'
 import {normalizePortfolio} from '../../src/pages/investor-portfolio/data.js'
 import POLICY from '../../src/data/freshness-policy.json' with {type:'json'}
@@ -30,7 +31,7 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
     reason:error??null,nextAction:error??'Confirmer le renouvellement des positions et leur publication dans le bilan du collecteur 13F.'})
   }
   const reviewAge=(Date.parse(now)-Date.parse(review?.lastSuccessfulPollAt??review?.as_of))/86400000
-  if(review)fields.push({key:'investor:filing-availability',label:'Disponibilité de la déclaration',state:workflow&&Number.isFinite(reviewAge)&&reviewAge>=0&&reviewAge<=POLICY.fields['investor.13f'].checkDays?'scheduled-evidence':'blocked',kind:'live',
+  if(review)fields.push({key:'investor:filing-availability',freshnessPolicyKey:'investor.13f',label:'Disponibilité de la déclaration',state:workflow&&Number.isFinite(reviewAge)&&reviewAge>=0&&reviewAge<=POLICY.fields['investor.13f'].checkDays?'scheduled-evidence':'blocked',kind:'live',
    checkedAt:review.lastSuccessfulPollAt??review.as_of,asOf:review.data.snapshot.periodEnd,currency:null,scope:'Période disponible ; ce contrôle ne renouvelle pas les poids conservés.',
    method:'Revue de disponibilité du trimestre, distincte du téléchargement des positions.',sourceUrls:[review.data.sourceUrl].filter(Boolean),
    consumers:[{path:'/portefeuilles-investisseurs'}],workflows:workflow?[{path:workflow.path,name:workflow.name,crons:workflow.crons}]:[],
@@ -40,7 +41,7 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
  const makeField=(id,label,observation,producer,consumers,policyKey)=>{
   const writer=workflows.find(w=>w.path.endsWith('/'+producer)),age=(Date.parse(now)-Date.parse(observation?.checkedAt))/86400000
   const valid=writer&&observation?.sourceUrl&&/^[a-f0-9]{64}$/.test(observation?.sha256??'')&&Number.isFinite(age)&&age>=0&&age<=POLICY.fields[policyKey].checkDays
-  return {key:id,label,state:valid?'scheduled-evidence':'blocked',kind:'live',checkedAt:observation?.checkedAt??null,asOf:observation?.asOf??observation?.publishedAt??null,
+  return {key:id,label,freshnessPolicyKey:policyKey,state:valid?'scheduled-evidence':'blocked',kind:'live',checkedAt:observation?.checkedAt??null,asOf:observation?.asOf??observation?.publishedAt??null,
    currency:observation?.currency??null,scope:observation?.scope??null,method:observation?.method??null,
    sourceUrls:[...new Set([observation?.sourceUrl,observation?.secondarySourceUrl].filter(Boolean))],consumers:consumers.map(path=>({path})),
    workflows:writer?[{path:writer.path,name:writer.name,crons:writer.crons}]:[],reason:valid?null:'Preuve du champ absente ou contrôle à renouveler.',
@@ -66,5 +67,21 @@ export function externalConsumerAssets(workflows,now=new Date().toISOString()){
   if(!Number.isFinite(fx.months?.[last]?.rates?.[currency])){field.state='blocked';field.reason='Dernier taux requis absent ; aucune substitution par 1.'}
   return {id:`fx:${currency}`,name:`Change ${currency}/EUR`,type:'series',fields:[field]}
  })
- return [...portfolios,...regulations,...rates]
+ const purchasing=read('src/data/purchasing-power-observations.json'),powerWorkflow=workflows.find(w=>w.path.endsWith('/update-publication-observations.yml'))
+ const powerFields=['general','alimentation','energie','irl','smic'].map(id=>{
+  const family=['general','alimentation','energie'].includes(id)?purchasing.prices:purchasing[id],source=family.sources?.[id]??family.source
+  const checked=source?.checkedAt??family.checkedAt,age=(Date.parse(now)-Date.parse(checked))/86400000
+  return{id:`purchasing:${id}`,name:source.title,type:'purchasing',fields:[{key:'insee-series',label:'Série INSEE utilisée et dernier niveau',kind:'history',state:powerWorkflow&&Number.isFinite(age)&&age>=0&&age<=7?'scheduled-evidence':'blocked',consumerCode:'src/data/purchasing-power.js',registry:'src/data/purchasing-power-observations.json',sourceIdentity:id,checkedAt:checked??null,asOf:family.asOf,currency:id==='smic'?'EUR':null,unit:id==='smic'?'EUR/mois':'points',scope:source.title,method:'Même base et même population INSEE ; périodes de départ et dernière publication réellement disponibles.',sourceUrls:[source.sourceUrl],consumers:[{path:'/pouvoir-achat'}],workflows:powerWorkflow?[{path:powerWorkflow.path,name:powerWorkflow.name,crons:powerWorkflow.crons}]:[],freshnessPolicyKey:id==='irl'?'purchasing.irl':id==='smic'?'purchasing.smic':'purchasing.prices',reason:checked?null:'Date de contrôle source distincte de la date de publication non encore enregistrée.'}]}
+ })
+ const radarWorkflow=workflows.find(w=>w.path.endsWith('/update-editorial-radar.yml')),radarGroups=new Map()
+ for(const o of collectObservationsSync().observations){
+  const groupKey=o.family+':'+o.entity+':'+o.field.split(':')[0]
+  if(!radarGroups.has(groupKey))radarGroups.set(groupKey,[])
+  radarGroups.get(groupKey).push(o)
+ }
+ const radar=[...radarGroups].map(([id,observations])=>{
+  const first=observations[0],checks=observations.map(o=>o.checkedAt).filter(Boolean).sort(),checked=checks[0],age=(Date.parse(now)-Date.parse(checked))/86400000
+  return{id:'radar:'+id,name:first.label,type:first.family==='etf'?'instrument':first.family==='indices'?'index':'radar',fields:[{key:first.field.split(':')[0],label:first.fieldLabel,kind:'live',state:checked&&Number.isFinite(age)&&age>=0&&age<=(first.maxAgeDays??90)?'scheduled-evidence':'blocked',consumerCode:'scripts/update-editorial-radar.mjs#collectObservationsSync',sourceIdentity:first.entity,checkedAt:checked??null,asOf:observations.map(o=>o.period).filter(Boolean).sort().at(-1),scope:first.scope,method:'Observations exactes du lecteur Radar commun ; seuils et rapprochements existants, aucune observation nouvelle déduite de la génération du flux.',unit:first.unit??null,sourceUrls:[...new Set(observations.map(o=>o.sourceUrl).filter(Boolean))],members:observations.map(o=>o.field),freshnessContract:{checkDays:first.maxAgeDays??90,dataDays:null,authority:'existing-radar-consumer'},consumers:[{path:'/radar-editorial'}],workflows:radarWorkflow?[{path:radarWorkflow.path,name:radarWorkflow.name,crons:radarWorkflow.crons}]:[],reason:checked?null:'Contrôle source non documenté, sans utiliser sa date de publication.'}]}
+ })
+ return [...portfolios,...regulations,...rates,...powerFields,...radar]
 }

@@ -20,13 +20,17 @@ def partial_failures(paths):
     errors = []
     for path in map(pathlib.Path, paths):
         if not path.exists():
-            # A missing report means the collection step itself failed: already visible.
-            print(f'{path.name} : rapport absent, échec complet déjà signalé par l’étape de collecte.')
+            errors.append(f'{path.name} : rapport de collecte attendu absent ; aucune réussite source démontrée')
             continue
-        report = json.loads(path.read_text())
-        if isinstance(report, dict):
+        try:
+            report = json.loads(path.read_text())
+            if not isinstance(report,dict):raise ValueError('racine non structurée')
             report['_collector'] = path.stem
-            errors.extend(f"{row.get('id')} : {row.get('error')}" for row in normalize_report(report).get('errors', []))
+            normalized=normalize_report(report)
+            if not any(key in normalized for key in ['successes','errors','inactive']):raise ValueError('format de résultat inconnu')
+            errors.extend(f"{row.get('id')} : {row.get('error')}" for row in normalized.get('errors', []))
+        except (ValueError,TypeError,KeyError)as error:
+            errors.append(f'{path.name} : contrat de résultat invalide : {error}')
     return errors
 
 

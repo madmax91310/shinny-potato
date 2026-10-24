@@ -45,6 +45,16 @@ export function roundedComposition(concentration) {
 }
 
 // Failed refreshes retain a complete, previously qualified render model and date.
+// Product structure and replication methodology are separate issuer fields.
+// An optimised physical fund remains an explicitly labelled approximation;
+// this does not certify the official index constituents or weights.
+export function qualifyPhysicalProxyIdentity(observed, proxy) {
+  if (observed?.index !== proxy.observedBenchmark) throw new Error('Le benchmark actuellement collecté a changé : qualification à revoir')
+  const structure = observed?.productStructure ?? observed?.replicationMethodRaw?.productStructure ?? observed?.replicationMethod
+  if (!/^(Physical|Physique|Physisch|Direct Replication \(physically\))/.test(structure ?? '')) throw new Error('Structure physique non confirmée ; aucun panier synthétique admis')
+  return {structure,methodology:observed?.replicationMethodRaw?.fundMethodologyTypeCode??observed?.replicationMethod}
+}
+
 export function retainQualifiedComposition(candidate, previous) {
   if (candidate?.available && previous?.available && candidate.asOf < previous.asOf) return { ...previous, retained: true, refresh: { ...previous.refresh, status: 'failed', error: 'Date de composition en recul : dernière photographie valide conservée.' } }
   if (candidate?.available) return candidate
