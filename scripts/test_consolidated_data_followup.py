@@ -16,7 +16,7 @@ class ConsolidatedFollowup(unittest.TestCase):
         self.assertEqual(rows[0]['type_defaut'],'non applicable');self.assertFalse(rows[0]['reliquat_actif'])
     def test_current_incident_replaces_stale_snapshot_without_losing_provenance(self):
         key='collection:daily:world'
-        rows=self.run_case([old('incident actif initial',key),old('incident actif au contrôle final',key)],monitor={'monitoring':{'active':{key:{'cause':'Missing2026-10-23','tools':['Portefeuilles IA']}}}})
+        rows=self.run_case([old('incident actif initial',key),old('incident actif au contrôle final',key)],monitor={'monitoring':{'active':{key:{'cause':'Missing2026-10-23','tools':['Outil de recette']}}}})
         self.assertEqual(len(rows),1);self.assertEqual(rows[0]['axe'],'supervision');self.assertEqual(len(rows[0]['origines']),2);self.assertEqual(rows[0]['probleme'],'Missing2026-10-23')
     def test_unobserved_contract_is_not_marked_resolved(self):
         rows=self.run_case([old('usage requis initial','/outil|part|champ')])
@@ -30,8 +30,8 @@ class ConsolidatedFollowup(unittest.TestCase):
         self.assertFalse(result['verification_en_attente']);self.assertFalse(result['reliquat_actif'])
         self.assertIn('pas nouvelle certification financière',result['niveau_preuve'])
     def test_legacy_daily_gap_joins_the_current_source_incident(self):
-        daily=old('incident après intégration','quote:2026-10-23','quote','Clôture quotidienne ajustée')
-        rows=self.run_case([daily],monitor={'monitoring':{'active':{'collection:update-ai-portfolios.yml:quote':{'cause':'Missing close'}}}})
+        daily=old('incident actif initial','collection:fixture-daily.yml:quote')
+        rows=self.run_case([daily],monitor={'monitoring':{'active':{'collection:fixture-daily.yml:quote':{'cause':'Missing close'}}}})
         self.assertEqual(len(rows),1);self.assertEqual(len(rows[0]['origines']),1);self.assertTrue(rows[0]['reliquat_actif'])
     def test_retired_attribution_is_not_a_recovery_even_on_a_later_cycle(self):
         key='collection:update-instrument-metadata.yml:'+ISIN+':aum'

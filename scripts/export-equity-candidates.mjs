@@ -1,3 +1,4 @@
+import {ordinaryListing} from './shared-listing-identities.mjs'
 import {readFileSync} from 'node:fs'
 const read=path=>JSON.parse(readFileSync(new URL('../'+path,import.meta.url)))
 const catalog=Object.values(read('src/pages/dca-profiles/catalog.json'))
@@ -7,7 +8,6 @@ const classifications=read('src/data/dca-security-classifications.json')
 // exact listing. Issuer holdings qualify the ISIN; a reviewed directory listing can
 // qualify a different venue of the same ordinary share without replacing its prices.
 const curated=new Map(read('scripts/global-equity-candidates.json').candidates.map(c=>[c.isin,c]))
-const aiListings=new Map(read('data/ai-portfolios/selectable-assets.json').listings.map(r=>[r.id,r]))
 // Exchange labels as published in BlackRock complete holdings, mapped to the Yahoo suffix of
 // the same venue and its trading timezone. A venue absent from this map is never guessed.
 export const exchanges={
@@ -42,9 +42,9 @@ export function buildCandidates(){
   // A US ordinary-share listing must not silently become its Canadian quotation.
   // Reuse the qualified directory identity, keeping the issuer ISIN proof separate.
   if(expected?.aiListingId){
-   const ai=aiListings.get(expected.aiListingId)
-   if(!ai || ai.status!=='qualified' || ai.instrumentType!=='EQUITY' || ai.symbol!==expected.symbol || ai.currency!==expected.currency || (ai.isin && ai.isin!==item.isin)){
-    skipped.push({id:expected.id,isin:item.isin,reason:'Qualified AI directory listing changed or is unavailable'});continue
+   const ai=ordinaryListing(expected.aiListingId,{...expected,isin:item.isin})
+   if(!ai || ai.instrumentType!=='EQUITY' || ai.symbol!==expected.symbol || ai.currency!==expected.currency || (ai.isin && ai.isin!==item.isin)){
+    skipped.push({id:expected.id,isin:item.isin,reason:'Qualified common directory listing changed or is unavailable'});continue
    }
    symbol=ai.symbol
    listingEvidence={isin:item.isin,ticker:ai.ticker,exchange:ai.mic,currency:ai.currency,sourceUrl:ai.sourceUrl,asOf:ai.sourceAsOf,

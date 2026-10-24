@@ -12,35 +12,13 @@ import {buildRanking,periodReturn} from '../src/pages/performance-rankings/engin
 import {annualRankingError} from '../src/pages/performance-rankings/annualRanking.js'
 import FX from '../src/data/monthly-fx.json' with {type:'json'}
 import GLOBAL from '../src/data/global-equities.json' with {type:'json'}
-import {inventory} from './ai-portfolio-universe.mjs'
-import {directoryCandidates} from './ai-equity-directory.mjs'
-import {VENUES} from './ai-portfolio-universe.mjs'
 execFileSync(process.execPath,['scripts/report-ai-tool-reuse.mjs'],{stdio:'inherit'})
 const report=JSON.parse(readFileSync('docs/ai-tools-matrix.json'))
 const proof=JSON.parse(readFileSync('scripts/source-snapshots/monthly-automated.json'))
 const daily=JSON.parse(readFileSync('src/data/anniversary-levels.json'))
-const aiBefore=new Map(JSON.parse(readFileSync('data/ai-portfolios/selectable-assets.json')).listings.map(a=>[a.id,a]))
-const aiAfter=inventory()
-const preservedProofs=JSON.parse(readFileSync('docs/ai-identity-refresh-proof.json')).listingProofs
-for(const original of preservedProofs){
- const current=aiAfter.find(a=>a.id===original.id)
- assert.equal(current?.evidenceId,original.evidenceId,'Existing AI price series must still pass the exact listing-proof guard')
- assert.equal(current?.isin,original.isin,'The financial ISIN of cached AI series must not be silently migrated')
-}
-const wrongClass={...aiAfter.find(a=>a.id===preservedProofs[0].id),shareType:'depositary-receipt'}
-directoryCandidates([wrongClass],VENUES)
-assert.match(wrongClass.discoveryBlock,/Classe ou nature/,'An ordinary share cannot silently become an ADR')
 assert.equal(report.matrix.length,29)
 assert.equal(new Set(report.matrix.map(r=>r.identity.isin)).size,29)
 assert.equal(new Set(ASSET_ORDER).size,ASSET_ORDER.length)
-const fundIsins=new Set(report.matrix.filter(r=>r.identity.instrumentType!=='EQUITY').map(r=>r.identity.isin))
-for(const prior of aiBefore.values())if(fundIsins.has(prior.isin))assert(aiAfter.some(a=>a.id===prior.id&&a.instrumentId===prior.instrumentId),'Existing ETF/ETC AI listing identifiers must stay stable')
-for(const link of GLOBAL.filter(a=>a.aiListingId)){
- const original=aiBefore.get(link.aiListingId),current=aiAfter.find(a=>a.id===original?.id)
- assert(current&&!current.discoveryBlock,'Adding a common ISIN must keep the established AI listing collectable')
- for(const key of ['id','instrumentId','isin','symbol','mic','currency','sourceCurrency','priceScale','calendar','timezone','instrumentType','shareClass'])assert.equal(current[key],original[key],`${link.id}: AI ${key} changed`)
- assert.equal(current.sharedIsin,link.isin)
-}
 for(const row of report.matrix){
  const h=row.after.history[0],asset=ASSETS[h.id],source=row.automation.monthly
  assert(source && asset && RANKING_ASSETS[h.id],row.identity.name)

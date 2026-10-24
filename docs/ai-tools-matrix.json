@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-23T22:11:15.135Z",
+  "checkedAt": "2026-10-24T11:51:57.862Z",
   "scope": "29 actifs exacts ; 16 profils demandés ; statuts fondés sur les consommateurs actuels",
   "matrix": [
     {
@@ -91,11 +91,6 @@
         "anniversaryHorizons": [
           1
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -120,7 +115,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -156,7 +151,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Netherlands ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Netherlands ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -321,11 +316,6 @@
           5,
           6
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -350,7 +340,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -386,7 +376,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -549,11 +539,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -578,7 +563,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -614,7 +599,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -777,11 +762,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -806,7 +786,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -842,7 +822,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1005,11 +985,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -1034,7 +1009,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1070,7 +1045,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1232,11 +1207,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -1261,7 +1231,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1297,7 +1267,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1454,11 +1424,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -1483,7 +1448,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1519,7 +1484,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1705,11 +1670,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -1733,7 +1693,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -1769,7 +1729,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -1936,11 +1896,6 @@
           6,
           7
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -1965,7 +1920,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2001,7 +1956,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2165,11 +2120,6 @@
           7,
           8
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -2194,7 +2144,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2230,7 +2180,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2392,11 +2342,6 @@
           6,
           7
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -2421,7 +2366,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2457,7 +2402,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2616,11 +2561,6 @@
           5,
           6
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -2645,7 +2585,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2681,7 +2621,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Information Technology. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -2832,11 +2772,6 @@
           1,
           2
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -2861,7 +2796,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -2897,7 +2832,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Communication. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3054,11 +2989,6 @@
           4,
           5
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -3083,7 +3013,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3119,7 +3049,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3295,11 +3225,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -3324,7 +3249,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3360,7 +3285,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Consumer Discretionary. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3515,11 +3440,6 @@
           3,
           4
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -3544,7 +3464,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3580,7 +3500,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Brazil ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Brazil ; secteur Financials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3732,11 +3652,6 @@
           1,
           2
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -3761,7 +3676,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -3797,7 +3712,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -3958,11 +3873,6 @@
           3,
           4
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -3987,7 +3897,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -4023,7 +3933,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque United States ; secteur Utilities. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque United States ; secteur Utilities. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -4215,11 +4125,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -4243,7 +4148,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -4279,7 +4184,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Canada ; secteur Energy. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Canada ; secteur Energy. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -4467,11 +4372,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "SEK",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -4496,7 +4396,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "raccordé dans cette PR",
@@ -4532,7 +4432,7 @@
         },
         "exposures": {
           "status": "raccordé dans cette PR",
-          "reason": "Pays de risque Sweden ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T15:34:53.226281+00:00. Domicile et revenus géographiques non déduits."
+          "reason": "Pays de risque Sweden ; secteur Industrials. https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true ; photo 2026-10-22, contrôle 2026-10-23T23:59:33.920005+00:00. Domicile et revenus géographiques non déduits."
         },
         "overlap": {
           "status": "raccordé dans cette PR",
@@ -4783,11 +4683,6 @@
           7,
           8
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -4812,7 +4707,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5093,11 +4988,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -5122,7 +5012,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5430,11 +5320,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "EUR",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -5459,7 +5344,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -5546,7 +5431,7 @@
       "identity": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
         "isin": "IE00B4L5Y983",
-        "aiListingId": "IE00B4L5Y983-ETFP",
+        "aiListingId": "IE00B4L5Y983-XAMS",
         "companyId": null,
         "companyIdentityConvention": null,
         "companyIdentitySource": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -5754,11 +5639,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "EUR",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -5783,7 +5663,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6045,11 +5925,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "EUR",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -6074,7 +5949,7 @@
         },
         "anniversary": {
           "status": "raccordé dans cette PR",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6340,11 +6215,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "EUR",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -6369,7 +6239,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6664,11 +6534,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -6693,7 +6558,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -6951,11 +6816,6 @@
           6,
           7
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "EUR",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -6980,7 +6840,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -7263,11 +7123,6 @@
           9,
           10
         ],
-        "aiDaily": {
-          "from": "2026-07-13",
-          "through": "2026-10-21",
-          "convention": "synthetic-total-return-100-at-anchor"
-        },
         "convention": "Cours de la cotation exacte ajustés des revenus et divisions ; simulation de réinvestissement avant frais du courtier et fiscalité. ETF : frais du fonds reflétés ; ETC or : aucun dividende.",
         "currency": "USD",
         "conversion": "BCE aux deux bornes ; EUR/USD proposés selon couverture. BCE mensuelle 1999-01 → 2026-09. Périodes antérieures conservées en devise native.",
@@ -7292,7 +7147,7 @@
         },
         "anniversary": {
           "status": "déjà raccordé",
-          "reason": "Horizons réellement proposés au 2026-10-23 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
+          "reason": "Horizons réellement proposés au 2026-10-24 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 an(s). Clôtures historiques hors revenus et clôture récente datée ; pas de base 100 IA."
         },
         "rankingCurrent": {
           "status": "déjà raccordé",
@@ -7426,7 +7281,7 @@
         },
         {
           "id": "nvidia",
-          "returnPct": 54.069177820910475
+          "returnPct": 54.069161059689996
         },
         {
           "id": "arista",
@@ -7434,7 +7289,7 @@
         },
         {
           "id": "microsoft",
-          "returnPct": 14.213603046601708
+          "returnPct": 14.213619725748018
         }
       ]
     },
@@ -7766,7 +7621,7 @@
       "compositionReview": {
         "isin": "IE00BG0J4C88",
         "asOf": "2026-10-22",
-        "checkedAt": "2026-10-23T15:34:53.226281+00:00",
+        "checkedAt": "2026-10-23T23:59:33.920005+00:00",
         "complete": true,
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "identifiedWeightPct": 99.74937999999992,
@@ -7866,7 +7721,7 @@
         },
         {
           "id": "salesforce",
-          "returnPct": 3.7669712924425003
+          "returnPct": 3.766964463241629
         }
       ]
     },
@@ -8022,7 +7877,7 @@
         },
         {
           "id": "constellation-energy",
-          "returnPct": 13.25802438694923
+          "returnPct": 13.258016461231037
         },
         {
           "id": "cameco",
@@ -8030,7 +7885,7 @@
         },
         {
           "id": "vertiv",
-          "returnPct": 135.85976614644596
+          "returnPct": 135.85978544388988
         }
       ]
     },
@@ -8090,19 +7945,19 @@
       "sample": [
         {
           "id": "saab-b",
-          "returnPct": 861.1630727890881
+          "returnPct": 861.1628730210413
         },
         {
           "id": "rheinmetall",
-          "returnPct": 1661.1848567864322
+          "returnPct": 1661.1851162404246
         },
         {
           "id": "thales",
-          "returnPct": 290.4262068121878
+          "returnPct": 290.4261864425733
         },
         {
           "id": "bae-systems",
-          "returnPct": 240.39233713201554
+          "returnPct": 240.39241790745666
         }
       ]
     },
@@ -8166,11 +8021,11 @@
         },
         {
           "id": "keyence",
-          "returnPct": 182.4919224723334
+          "returnPct": 182.4918924447743
         },
         {
           "id": "abb",
-          "returnPct": 526.330793565416
+          "returnPct": 526.3306637613595
         },
         {
           "id": "intuitive-surgical",
@@ -8180,7 +8035,7 @@
       "compositionReview": {
         "isin": "IE00BYZK4552",
         "asOf": "2026-10-22",
-        "checkedAt": "2026-10-23T15:34:53.226281+00:00",
+        "checkedAt": "2026-10-23T23:59:33.920005+00:00",
         "complete": true,
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "identifiedWeightPct": 99.66351999999998,

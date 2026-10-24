@@ -12,14 +12,6 @@ navigation, routes et modules. La collecte ETF quotidienne versionne son actuali
 Le comparateur d’indices reste un moteur interne sans route publique. Les moteurs
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
-## Portefeuilles IA
-
-Saisie manuelle des décisions, suivi quotidien fictif, classement et focus texte/PNG.
-La [notice et l’audit](docs/portefeuilles-ia.md) décrivent les sources validées, la méthode
-en unités synthétiques et l’import JSON nécessaire pour enregistrer les demandes dans le dépôt.
-Le catalogue quotidien dérive de tout le registre, avec qualification exhaustive et reprise par lots.
-Le [rapport généré](data/ai-portfolios/qualification.md) distingue les admissions, échecs et blocages.
-Aucune connexion aux IA ou à un courtier.
 
 ## Démarrer
 
@@ -126,3 +118,7 @@ modifier leurs registres sources, puis relancer la compilation.
 échéances, liens de maintenance et fiches exportées. Les budgets par route et les
 tests navigateur vérifient aussi l’absence de chargements financiers sans rapport
 avec les formats légers, ainsi que la reprise d’une fiche après une erreur réseau.
+
+## Outil retiré
+
+Portefeuilles IA a été retiré. L’ancienne URL revient à l’accueil ; les données et collectes utilisées par les autres outils sont conservées. Le [périmètre et les vérifications](docs/suppression-portefeuilles-ia.md) distinguent les composants supprimés des éléments partagés.

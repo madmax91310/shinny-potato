@@ -20,7 +20,8 @@ export default function MonitoringIncidents({ monitor }) {
   if (!monitor || monitor.schemaVersion !== 1 || !monitor.active || typeof monitor.active !== 'object' || Array.isArray(monitor.active) || !Array.isArray(monitor.resolved)) return null
   const removed = Object.values(monitor.active).filter(row=>Object.hasOwn(retired.workflows,row.workflow??''))
   const retiredRows = [...(monitor.retired??[]),...removed.map(row=>({...row,retirementReason:retired.workflows[row.workflow].reason}))]
-  const signals = prioritizeIncidents(Object.values(monitor.active).filter(row=>!Object.hasOwn(retired.workflows,row.workflow??'')))
+  const removedNames=new Set(Object.values(retired.workflows).map(w=>w.toolName).filter(Boolean))
+  const signals = prioritizeIncidents(Object.values(monitor.active).filter(row=>!Object.hasOwn(retired.workflows,row.workflow??'')).filter(row=>!row.tools?.length||row.tools.some(t=>!removedNames.has(t))).map(row=>({...row,tools:(row.tools??[]).filter(t=>!removedNames.has(t))})))
   const active = incidentPresentations(signals)
   const rows = active.filter(row => (kind === 'all' || row.kind === kind) && row.signals.map(signal=>`${signal.id} ${(signal.aliases??[]).join(' ')} ${signal.name} ${signal.dataId ?? ''} ${signal.field} ${signal.cause} ${(signal.tools ?? []).join(' ')}`).join(' ').toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr')))
   const groups=groupIncidents(rows)
@@ -32,7 +33,7 @@ export default function MonitoringIncidents({ monitor }) {
       {row.signals.length>1&&<details><summary>{row.signals.length} signalements conservés pour cette donnée</summary>{row.signals.map(signal=><p key={signal.id}>{signal.id} · {signal.cause} · dernier signalement : {date(signal.lastSeenAt)}{safeLink(signal.runUrl)&&<> · <a href={signal.runUrl} target="_blank" rel="noreferrer">Exécution ↗</a></>}</p>)}</details>}
       <p><strong>Action à mener :</strong> {incidentAction(row.kind)}</p>
       <div className="dr-links"><button type="button" onClick={() => copy(row)}>Copier le diagnostic</button>
-      {typeof row.to === 'string' && /^\/(bibliotheque-donnees\?|portefeuilles-investisseurs|portefeuilles-ia(?:$|[/?])|fiches-pratiques)/.test(row.to) && <a href={`/shinny-potato${row.to}`}>Voir la donnée et ses sources ↗</a>}
+      {typeof row.to === 'string' && /^\/(bibliotheque-donnees\?|portefeuilles-investisseurs|fiches-pratiques)/.test(row.to) && <a href={`/shinny-potato${row.to}`}>Voir la donnée et ses sources ↗</a>}
       {safeLink(row.runUrl) && <a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a>}</div>
       {copied === row.id && <p role="status">Diagnostic copié.</p>}
       {manual?.id === row.id && <label className="dr-copy-fallback">La copie automatique est indisponible. Sélectionne ce diagnostic pour le copier.<textarea aria-label="Diagnostic à copier" readOnly value={manual.text} onFocus={event => event.target.select()} /></label>}
@@ -40,7 +41,7 @@ export default function MonitoringIncidents({ monitor }) {
   return <section className="dr-automation" aria-label="Surveillance des données">
     <h2>Alertes des données automatisées</h2>
     <p>{active.length} point(s) à examiner · {signals.length} signalement(s) conservé(s) · dernier contrôle : {date(monitor.checkedAt)}.</p>
-    {retiredRows.length>0&&<details><summary>Retirés du périmètre · {retiredRows.length}</summary><p>{retiredRows[0].retirementReason}</p><p>Ces incidents ne sont pas comptés comme des données réparées.</p></details>}
+    {retiredRows.length>0&&<details><summary>Retirés du périmètre · {retiredRows.length}</summary>{[...new Set(retiredRows.map(row=>row.retirementReason))].map(reason=><p key={reason}>{reason}</p>)}<p>Ces incidents ne sont pas comptés comme des données réparées.</p></details>}
     {(!Number.isFinite(age) || age < 0 || age > 2 * 3600000) && <p role="status">Le contrôle horaire n’est plus à jour. Ce bilan ne confirme pas l’état actuel des sources.</p>}
     <p className="dr-note">Un retard demande une vérification, sans prouver une erreur de valeur. Les contradictions restent à examiner dans les sources. Les dernières données validées sont conservées. Les incidents qui touchent une publication ou un calcul passent en premier, puis ceux qui concernent le plus d’outils.</p>
     <p className="dr-note"><a href="https://github.com/madmax91310/shinny-potato/issues/583" target="_blank" rel="noreferrer">Suivre les alertes sur GitHub ↗</a> · Les notifications sur téléphone dépendent de ton abonnement à cette issue et des réglages GitHub.</p>

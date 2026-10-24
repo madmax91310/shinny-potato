@@ -6,7 +6,6 @@ import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
 // Each tool and its data are fetched only when its route is opened.
-const AiPortfolios = lazy(() => import('./pages/ai-portfolios/App'))
 const DcaProfiles = lazy(() => import('./pages/dca-profiles/App'))
 const PracticalSheets = lazy(() => import('./pages/practical-sheets/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
@@ -40,7 +39,6 @@ const FORMAT_COMPONENTS = {
 // Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
-  '/portefeuilles-ia': <AiPortfolios />,
   '/classements-performances': <PerformanceRankings />,
   '/le-dca-de': <DcaProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
@@ -74,6 +72,7 @@ export default function App() {
             element={tool.format ? <FormatRoute tool={tool} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
+        <Route path="portefeuilles-ia/*" element={<Navigate to="/" replace />} />
         <Route path="presentation-assurance-vie" element={<Navigate to="/presentations?famille=insurance" replace />} />
         <Route path="presentation-scpi" element={<Navigate to="/presentations?famille=scpi" replace />} />
         <Route path="tweet-midi" element={<TweetMidi />} />

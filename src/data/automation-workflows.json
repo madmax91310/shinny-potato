@@ -618,33 +618,5 @@
       "/donnees-a-revoir"
     ],
     "publishes": false
-  },
-  "update-ai-portfolios.yml": {
-    "name": "Portefeuilles IA · clôtures et suivi quotidien",
-    "workflowName": "Update AI portfolio daily tracking",
-    "collectionJob": "refresh",
-    "maxAgeHours": 36,
-    "artifact": "ai-portfolio-observations",
-    "tools": [
-      "Portefeuilles IA"
-    ],
-    "paths": [
-      "/portefeuilles-ia"
-    ],
-    "collectionSteps": [
-      "Collect SEC fund classifications",
-      "Collect exact daily closes and ECB FX"
-    ],
-    "validationSteps": [
-      "Validate accounting and daily coverage",
-      "Validate every selectable equity against the accounting engine",
-      "Audit retained source identities",
-      "Validate observations build",
-      "Validate collected observations"
-    ],
-    "dataFailureTools": [
-      "Portefeuilles IA"
-    ],
-    "dataFailureTo": "/portefeuilles-ia"
   }
 }

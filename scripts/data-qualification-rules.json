@@ -93,7 +93,8 @@
         "non-bond-company-histories.json",
         "property-infrastructure-additions.js",
         "verified-returns.js",
-        "world-factor-additions.js"
+        "world-factor-additions.js",
+        "shared-listing-identities.json"
       ]
     },
     {
@@ -126,16 +127,14 @@
     },
     {
       "role": "configuration",
-      "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts et des règles de simulation IA ; ne certifie aucune licence ni observation financière.",
+      "reason": "Configuration des conditions de sources non certifiées, des liaisons de consommateurs, des restrictions historiques, des alias exacts ; ne certifie aucune licence ni observation financière.",
       "reviewedAt": "2026-10-23",
       "paths": [
         "data-source-conditions.json",
         "dynamic-data-consumers.json",
         "history-window-restrictions.json",
         "financial-history-restrictions.json",
-        "index-history-identities.js",
-        "src/pages/ai-portfolios/data.js",
-        "src/pages/ai-portfolios/market-regions.json"
+        "index-history-identities.js"
       ]
     },
     {

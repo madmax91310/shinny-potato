@@ -7,7 +7,7 @@ from publish_automation_status import REGISTRY
 ROOT = Path(__file__).resolve().parents[1]
 # Owner-triggered writes are not scheduled collectors: absence of a decision
 # must never be reported as a stale daily source.
-MANUAL_WRITERS = {'ai-owner-requests.yml'}
+MANUAL_WRITERS = set()
 
 class WorkflowContracts(unittest.TestCase):
     def test_tweet_midi_partitions_preserve_the_publication_gate(self):
@@ -77,25 +77,6 @@ class WorkflowContracts(unittest.TestCase):
             self.assertLess(job.index('name: Validate collected observations'),job.index('bash scripts/commit-validated-data.sh'))
             self.assertIn('steps.commit.outputs.commit_sha', job)
 
-    def test_second_ai_audit_failure_fails_workflow_step(self):
-        import subprocess, tempfile, os
-        workflow = (ROOT/'.github/workflows/update-ai-portfolios.yml').read_text()
-        def step(name):
-            block = workflow.split('      - name: '+name+'\n',1)[1].split('\n      - ',1)[0]
-            return block, re.search(r'^        run: (.+)$', block, re.MULTILINE).group(1)
-        engine, engine_command = step('Validate every selectable equity against the accounting engine')
-        audit, audit_command = step('Audit retained source identities')
-        self.assertIn('        if: always()', audit)
-        self.assertNotIn('continue-on-error: true', audit)
-        with tempfile.TemporaryDirectory() as folder:
-            fake = Path(folder)/'node'
-            fake.write_text('#!/bin/sh\necho "$1" >> "$CALLS"\ncase "$1" in *audit-ai-runtime.mjs) exit 23;; esac\n')
-            fake.chmod(0o755)
-            calls = Path(folder)/'calls'
-            results = [subprocess.run(['bash','-e','-c',command], env={**os.environ,'PATH':folder+':'+os.environ['PATH'],'CALLS':str(calls)}) for command in [engine_command,audit_command]]
-            self.assertEqual([r.returncode for r in results],[0,23])
-            self.assertEqual(calls.read_text().splitlines(),['scripts/test-ai-equity-coverage.mjs','scripts/audit-ai-runtime.mjs'])
-
     def test_partial_failure_signal_cannot_block_validated_publication(self):
         for filename in ['update-lifestrategy.yml','update-non-bond-expansion.yml','update-qualified-exposures.yml']:
             workflow = (ROOT/'.github/workflows'/filename).read_text()
@@ -148,45 +129,6 @@ class WorkflowContracts(unittest.TestCase):
             caller=(ROOT/'.github/workflows'/name).read_text()
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',caller)
             self.assertIn('producer: '+name,caller)
-
-    def test_owner_writer_is_authenticated_and_not_a_scheduled_collector(self):
-        workflow = (ROOT/'.github/workflows/ai-owner-requests.yml').read_text()
-        self.assertIn('  issues:', workflow)
-        self.assertNotIn('  schedule:', workflow)
-        self.assertIn('github.event.issue.user.id == github.event.repository.owner.id', workflow)
-        self.assertIn('github.event.sender.id == github.event.repository.owner.id', workflow)
-        self.assertIn('AI_OWNER_DATA_PATHS: data/ai-portfolios public/data/ai-portfolios', workflow)
-        self.assertIn('run: node scripts/process-ai-owner-issue.mjs', workflow)
-        self.assertIn("if: needs.record.outputs.commit_sha != ''", workflow)
-        worker = (ROOT/'scripts/process-ai-owner-issue.mjs').read_text()
-        self.assertIn("'HEAD:'+branch", worker)
-        self.assertIn("envelope.testBranch?'rehearsal_commit':'commit_sha'", worker)
-        self.assertIn("command('node',['scripts/ai-portfolios.mjs','import',file])", worker)
-
-    def test_ai_book_writers_share_a_queue_independent_of_bulk_market_collectors(self):
-        # A weekly decision must not wait behind legacy ETF/monthly catalogue jobs.
-        # The two workflows that can mutate this book must still serialize together.
-        writers = []
-        for path in (ROOT/'.github/workflows').glob('*.yml'):
-            text = path.read_text()
-            if 'data/ai-portfolios' in text:
-                writers.append(path.name)
-                self.assertIn('group: ai-portfolio-book-', text, path.name)
-                self.assertNotIn('group: active-market-data-', text, path.name)
-                self.assertIn('cancel-in-progress: false', text, path.name)
-                self.assertIn('queue: max', text, path.name)
-        self.assertEqual(set(writers), {'ai-owner-requests.yml', 'update-ai-portfolios.yml'})
-        owner = (ROOT/'.github/workflows/ai-owner-requests.yml').read_text()
-        collector = (ROOT/'.github/workflows/update-ai-portfolios.yml').read_text()
-        self.assertIn('group: ai-portfolio-book-production', owner)
-        self.assertIn("|| 'production' }}", collector)
-        self.assertIn('bash scripts/commit-validated-data.sh', collector)
-        # Legacy writers keep their own queue and their original fail-closed CAS.
-        legacy = (ROOT/'.github/workflows/update-market-monthly.yml').read_text()
-        self.assertIn('group: active-market-data-', legacy)
-        helper = (ROOT/'scripts/commit-validated-data.sh').read_text()
-        self.assertIn('Remote inputs changed after collection.', helper)
-        self.assertIn('no unvalidated rebase will be published.', helper)
 
     def test_all_producers_require_every_primary_output(self):
         registry=json.loads((ROOT/'scripts/validated-data-producers.json').read_text())

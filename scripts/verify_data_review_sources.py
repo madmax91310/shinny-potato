@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','ai','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication','publication-msci','holdings-ishares','issuer-share'])
+    parser.add_argument('--scope', required=True, choices=['fx','holdings','metadata','practical','copper','conflict','actors','brokers','insurance','pending','discovery','financial','holdings-retry','holdings-hsbc','brokers-macos','dws','publication','publication-msci','holdings-ishares','issuer-share'])
     parser.add_argument('--output', type=pathlib.Path, required=True)
     args = parser.parse_args()
     out = args.output.resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -34,7 +34,6 @@ def main():
         'metadata': ['collect_instrument_metadata.py','--only','IE00B0M62S72','IE0003R87OG3','IE00B579F325','IE00BD6FTQ80','--apply'],
         'practical': ['collect_practical_sheets.py','--apply'],
         'copper': ['collect_official_share_history.py','--only','etfGB00B15KXQ89','--capture-dir',str(out/'raw')],
-        'ai': ['collect_ai_portfolios.py','--assets','IE00B4L5Y983-ETFP'],
     }
     started = dt.datetime.now(dt.timezone.utc).isoformat()
     if args.scope == 'issuer-share':
@@ -115,7 +114,6 @@ def main():
         'holdings':['src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/dca-security-classifications.json'],
         'metadata':['src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json'],
         'practical':['src/data/automated-practical-sheets.json'],
-        'ai':['data/ai-portfolios'],
     }
     for relative in paths.get('holdings' if args.scope in ['holdings-retry','holdings-hsbc','holdings-ishares'] else args.scope.removesuffix('-macos'),[]):
         source=ROOT/relative; target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)

@@ -97,6 +97,18 @@ def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,rev
     assert len([k for k in cases if k.startswith('financial:')])==len(financial['rows'])
     if repairs and not validated and 'action:P2-04' in cases:
         cases['action:P2-04'].update(statut_donnees='réouverte : régression de stockage démontrée, correction en validation',reliquat_actif=True)
+    removed=json.loads((ROOT/'src/data/retired-automations.json').read_text())['workflows']
+    removed_names={r['toolName']for r in removed.values()if r.get('toolName')}
+    removed_paths=[p for tool in json.loads((ROOT/'scripts/removed-tool-scopes.json').read_text())['tools']for p in tool['paths']]
+    for c in cases.values():
+        labels=c['outils'] or (re.split(r'\s*[;|]\s*',c['details'].get('outils',''))if isinstance(c['details'].get('outils'),str)else [])
+        exclusive=bool(labels) and set(labels) <= removed_names
+        component=c['id_suivi'].removeprefix('module:')
+        removed_component=any(component==p or component.startswith(p+'/')for p in removed_paths)
+        retired_workflow=next((wf for wf in removed if wf in c['id_suivi']),None)
+        if exclusive or retired_workflow or removed_component:
+            c.update(statut_donnees='périmètre supprimé',statut_supervision='périmètre supprimé ; aucune donnée réparée',reliquat_actif=False,verification_en_attente=False)
+        else:c['outils']=[t for t in c['outils']if t not in removed_names]
     for c in cases.values():
         c.setdefault('verification_en_attente', c['statut_donnees']=='non revérifié dans cette reprise' or c['id_suivi'].startswith('module:') and c['details'].get('reliquat_initial_81')=='True')
     return sorted(cases.values(),key=lambda c:c['id_suivi'])
