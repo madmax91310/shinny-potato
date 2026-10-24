@@ -315,7 +315,8 @@ def read_report(path, workflow):
         raise ValueError('Le rapport doit être un objet JSON')
     report['_collector'] = path.stem
     spec = next((r for r in REPORT_CONTRACTS.get(workflow, {}).get('reports', []) if r['name'] == path.name), None)
-    if report.get('schemaVersion') not in (spec.get('versions', [None, 1]) if spec else [None, 1]):
+    version = report.get('schemaVersion')
+    if not any(type(version) is type(v) and version == v for v in (spec.get('versions', [None, 1]) if spec else [None, 1])):
         raise ValueError('Version de rapport non qualifiée : ' + str(report.get('schemaVersion')))
     shape = report_shape(report)
     if spec and spec.get('schemas') and shape not in spec['schemas']:
@@ -333,6 +334,9 @@ def read_report(path, workflow):
             record = records.get(success['id'].split(':', 1)[-1], {})
             if record.get('checkedAt'):
                 success['checkedAt'] = record['checkedAt']
+    for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
+        if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
+            raise ValueError('Date de contrôle du rapport invalide ou future')
     result['_reportEvidence'] = {'scopeExplicit': 'attemptedIds' in report, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                                  'reportedAt': report.get('checkedAt'), 'schema': shape}
     if 'attemptedIds' not in report:

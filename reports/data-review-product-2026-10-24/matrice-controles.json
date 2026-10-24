@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T15:24:54.598066+00:00",
+  "generatedAt": "2026-10-24T15:25:28.968813+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -220,6 +220,30 @@
       "producer": "",
       "class": "",
       "case": "test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success) (payload={'schemaVersion': 99, 'successes': [], 'errors': []})",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_bad_readers_are_isolated_and_never_report_success"
+    },
+    {
+      "test": "test_bad_readers_are_isolated_and_never_report_success",
+      "producer": "",
+      "class": "",
+      "case": "test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success) (payload={'schemaVersion': True, 'successes': []})",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_bad_readers_are_isolated_and_never_report_success"
+    },
+    {
+      "test": "test_bad_readers_are_isolated_and_never_report_success",
+      "producer": "",
+      "class": "",
+      "case": "test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success) (payload={'checkedAt': 'wrong', 'successes': []})",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_bad_readers_are_isolated_and_never_report_success"
+    },
+    {
+      "test": "test_bad_readers_are_isolated_and_never_report_success",
+      "producer": "",
+      "class": "",
+      "case": "test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success) (payload={'checkedAt': '2099-01-01', 'successes': []})",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_bad_readers_are_isolated_and_never_report_success"
     },

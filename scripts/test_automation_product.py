@@ -75,7 +75,9 @@ class ProductContracts(unittest.TestCase):
     def test_bad_readers_are_isolated_and_never_report_success(self):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/'report.json'
-            for payload in [{},[],None,{'whatever':1},{'schemaVersion':99,'successes':[],'errors':[]},{'series':[None]}, {'series':[{'status':'validated'}]},
+            for payload in [{},[],None,{'whatever':1},{'schemaVersion':99,'successes':[],'errors':[]},
+                            {'schemaVersion':True,'successes':[]}, {'checkedAt':'wrong','successes':[]},
+                            {'checkedAt':'2099-01-01','successes':[]},{'series':[None]}, {'series':[{'status':'validated'}]},
                             {'observations':[{}]}, {'shares':[None]}, {'successes':None,'errors':[]}]:
                 with self.subTest(payload=payload):
                     path.write_text(json.dumps(payload));bad=read_report_safely(path,'update-scpi.yml')
