@@ -106,8 +106,15 @@ try{
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
  }
  const details=await(await page.request.get(base+'/data/ai-portfolios/details/94.json')).json()
- assert.equal(details['IE00B4L5Y983-ETFP'].status.ok,true)
- assert.equal(details['IE00B4L5Y983-ETFP'].status.asOf,latest)
+ const status=details['IE00B4L5Y983-ETFP'].status
+ if(status.ok)assert.equal(status.asOf,latest)
+ else{
+  // A failed catch-up must not invalidate or redate the retained certified history.
+  assert.equal(status.lastValidAsOf,latest)
+  assert.equal(status.lastSuccess,series.retrievedAt)
+  assert(status.error,'The current failed attempt remains explicit')
+  assert(Date.parse(status.attemptedAt)>Date.parse(status.lastSuccess))
+ }
  const published=await(await page.request.get(base+'/data/ai-portfolios/series/94.json')).json()
  assert.deepEqual(published['IE00B4L5Y983-ETFP'].points,series.points)
  await page.setViewportSize({width:1280,height:900})
