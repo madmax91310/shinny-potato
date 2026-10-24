@@ -71,5 +71,19 @@
   ],
   "ci": "À vérifier séparément sur la PR ; ces résultats ne sont pas des résultats GitHub Actions.",
   "notifications": "API simulée uniquement ; publieur non exécuté.",
-  "deployment": "Aucun déploiement réalisé."
+  "deployment": "Aucun déploiement réalisé.",
+  "finalVerification": {
+    "baseCommit": "36f13f6a92ef6aab3defca1fad706f635879cee2",
+    "changedFilesSha256": {
+      "src/lib/radar-editorial.js": "e4a3ad14edb5521ecff5004792751af874ff21e88ddfe1835944de12b6c1a436",
+      "scripts/test-radar-publications.mjs": "d338099079587a06d56fb49bd9142de5b6b9e5b02e60bed17d2c6797885cac5f"
+    },
+    "checks": {
+      "test:radar": 0,
+      "build": 0,
+      "test:radar:browser": 0,
+      "lint": 0
+    },
+    "note": "Complément : publication statistique inchangée testée dans toute la chaîne, cotation annoncée distincte du lancement et première cotation uniquement si explicite."
+  }
 }

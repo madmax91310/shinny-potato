@@ -30,7 +30,7 @@ assert.ok(wisdom.products.filter(p=>p.isin).every(p=>p.fees==='0,65%'))
 // Multi-product row boundaries, including distinct fees; no PEA or broker inferred.
 const grouped=parseEtfDocument('<p>Amundi lance trois nouveaux ETF UCITS.</p><table><tr><th>Nom</th><th>ISIN</th><th>TER</th></tr><tr><td>Amundi Alpha UCITS ETF</td><td>IE0002XZSHO1</td><td>0.15%</td></tr><tr><td>Amundi Beta UCITS ETF</td><td>FR001400U5Q4</td><td>0.35%</td></tr><tr><td>Amundi Gamma UCITS ETF</td><td>IE000BI8OT95</td><td>0.55%</td></tr></table>','Amundi enrichit son offre ETF')
 assert.deepEqual(grouped.products.map(p=>p.fees),['0.15%','0.35%','0.55%']);assert.ok(grouped.products.every(p=>p.pea===null&&p.availability===null))
-assert.equal(etfAnnouncement('Amundi cote 21 nouveaux ETF sur Euronext Paris').type,'listing')
+assert.equal(etfAnnouncement('Amundi cote 21 nouveaux ETF sur Euronext Paris').type,'trading')
 // Read live values from shared data. Never freeze the living dataset's numbers or dates.
 const collected=await collectObservations(), liveSalary=collected.observations.find(o=>o.entity==='salary-median')
 assert.equal(liveSalary.unit,'€ nets par mois');assert.equal(liveSalary.label,'Salaire médian du privé')
@@ -141,3 +141,9 @@ assert.equal(studyEvent,undefined)
 
 const repeatStudy=advanceRadar(advanceRadar(null,[insee],{now}).state,[{...insee,publishedAt:'2026-10-23',period:'2026-10-23'}],{now})
 assert.equal(repeatStudy.newEvents.length,1,'A new official statistical publication is detected even with an unchanged numerical summary')
+
+assert.equal(etfAnnouncement('UCITS ETF now trading on Xetra').type,'trading','Trading alone does not prove the first listing worldwide')
+assert.equal(etfAnnouncement('UCITS ETF additional listing on Euronext Paris').type,'listing')
+assert.equal(etfAnnouncement('UCITS ETF first trading date announced').type,'first-trading')
+
+assert.equal(etfAnnouncement('UCITS ETF will begin trading tomorrow').type,'trading','A future trading date is not a launch claim')
