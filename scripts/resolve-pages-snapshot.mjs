@@ -14,17 +14,24 @@ export function chooseSnapshot({requested, master, ancestor, changed, allowed, f
   return classify(paths,allowed).dataOnly || (fullGate&&!gatesChanged) ? master : requested
 }
 
-export function alreadyPublished(candidate, info, ancestor) {
-  const valid = value => typeof value === 'string' && /^[0-9a-f]{40}$/.test(value)
-  return valid(info?.sha) && valid(info?.dataSha ?? info?.sha)
-    && ancestor(candidate, info.sha) && ancestor(candidate, info.dataSha ?? info.sha)
+export function alreadyPublished(candidate, info, ancestor, {changed,allowed}={}) {
+ const valid = value => typeof value === 'string' && /^[0-9a-f]{40}$/.test(value)
+ if(!valid(candidate)||!valid(info?.sha)||!valid(info?.dataSha??info?.sha)
+    ||!ancestor(candidate,info.dataSha??info.sha))return false
+ if(ancestor(candidate,info.sha))return true
+ // A validated data publisher can serve newer observations over unchanged code.
+ // Require that exact data prefix AND prove every intervening path is permitted
+ // automation data; a script, workflow or consumer change still needs the gate.
+ if(!ancestor(info.sha,candidate)||typeof changed!=='function'||!Array.isArray(allowed))return false
+ try{return classify(changed(info.sha,candidate),allowed).dataOnly}
+ catch{return false} // Missing history must never certify a publication.
 }
 
 export function planSnapshot(options){
  const {requested,info,ancestor}=options
- if(alreadyPublished(requested,info,ancestor))return {candidate:requested,current:false}
+ if(alreadyPublished(requested,info,ancestor,options))return {candidate:requested,current:false}
  const candidate=chooseSnapshot(options)
- return {candidate,current:!alreadyPublished(candidate,info,ancestor)}
+ return {candidate,current:!alreadyPublished(candidate,info,ancestor,options)}
 }
 
 async function main() {
