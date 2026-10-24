@@ -13,6 +13,8 @@ on:
     paths:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
+      - 'scripts/instrument-metadata-fields.json'
+      - 'scripts/automation_contracts.py'
       - 'scripts/download-exchange-document.mjs'
       - 'scripts/download-quantalys-document.mjs'
       - 'scripts/instrument-metadata-supplemental-sources.json'

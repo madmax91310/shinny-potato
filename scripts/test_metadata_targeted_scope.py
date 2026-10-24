@@ -35,7 +35,7 @@ class MetadataOwnership(unittest.TestCase):
     def test_unknown_non_field_incidents_are_not_hidden(self):
         from automation_contracts import owns_failure
         cfg={'dataFailureFieldContract':'instrument-metadata-fields.json'}
-        self.assertTrue(owns_failure(cfg,'transport-failure'));self.assertTrue(owns_failure(cfg,'IE00B0M62S72:pea:qualification'));self.assertFalse(owns_failure(cfg,'IE00B0M62S72:countries'))
+        self.assertTrue(owns_failure(cfg,'transport-failure'));self.assertTrue(owns_failure(cfg,'IE00B0M62S72:transport-failure')); self.assertTrue(owns_failure(cfg,'IE00B0M62S72:pea:qualification'));self.assertFalse(owns_failure(cfg,'IE00B0M62S72:countries'))
 
 if __name__ == "__main__":
     unittest.main()

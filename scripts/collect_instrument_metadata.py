@@ -14,7 +14,7 @@ from issuer_routes import vaneck_factsheet_candidates
 from metadata_transport import TRANSPORT
 from metadata_incidents import qualification_failures, report_incidents
 ROOT=Path(__file__).resolve().parents[1]
-FIELDS=tuple(json.loads((ROOT/'scripts/instrument-metadata-fields.json').read_text()))
+FIELDS=tuple(json.loads((ROOT/'scripts/instrument-metadata-fields.json').read_text())['owned'])
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
 # shared with the field freshness report (report-asset-fields.mjs).
 POLICY=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']

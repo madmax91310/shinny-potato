@@ -3,7 +3,7 @@ import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {mergeCollectionReport} from './lib/data-incidents.mjs'
 const report=buildAssetFieldReport()
 const requested=process.argv.indexOf('--only')
-const fields=new Set(JSON.parse(readFileSync(new URL('./instrument-metadata-fields.json',import.meta.url))))
+const fields=new Set(JSON.parse(readFileSync(new URL('./instrument-metadata-fields.json',import.meta.url))).owned)
 const known=new Set(JSON.parse(readFileSync(new URL('./instrument-metadata-sources.json',import.meta.url))).instruments.map(r=>r.isin))
 let rows=report.rows.filter(r=>known.has(r.id)&&fields.has(r.field))
 if(requested!==-1){
