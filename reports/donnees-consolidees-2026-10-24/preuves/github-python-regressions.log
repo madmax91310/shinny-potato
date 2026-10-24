@@ -1,0 +1,64 @@
+2026-10-24T07:24:54.6402633Z ##[group]Run python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+2026-10-24T07:24:54.6403226Z [36;1mpython -m unittest discover -s scripts -p 'test_audit_workflows.py'[0m
+2026-10-24T07:24:54.6462063Z shell: /usr/bin/bash -e {0}
+2026-10-24T07:24:54.6462314Z env:
+2026-10-24T07:24:54.6462590Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.6463069Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T07:24:54.6463515Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.6463902Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.6464296Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.6464683Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T07:24:54.6465007Z ##[endgroup]
+2026-10-24T07:24:54.7737972Z ..............
+2026-10-24T07:24:54.7739315Z ----------------------------------------------------------------------
+2026-10-24T07:24:54.7739956Z Ran 14 tests in 0.023s
+2026-10-24T07:24:54.7740210Z 
+2026-10-24T07:24:54.7740336Z OK
+2026-10-24T07:24:54.7898444Z ##[group]Run python -m unittest discover -s scripts -p 'test_ai_series_persistence.py'
+2026-10-24T07:24:54.7899412Z [36;1mpython -m unittest discover -s scripts -p 'test_ai_series_persistence.py'[0m
+2026-10-24T07:24:54.7958204Z shell: /usr/bin/bash -e {0}
+2026-10-24T07:24:54.7958466Z env:
+2026-10-24T07:24:54.7958967Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.7959434Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T07:24:54.7959873Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.7960253Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.7960737Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.7961133Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T07:24:54.7961454Z ##[endgroup]
+2026-10-24T07:24:54.8963471Z ......
+2026-10-24T07:24:54.8964313Z ----------------------------------------------------------------------
+2026-10-24T07:24:54.8964953Z Ran 6 tests in 0.004s
+2026-10-24T07:24:54.8965189Z 
+2026-10-24T07:24:54.8965319Z OK
+2026-10-24T07:24:54.9162330Z ##[group]Run python -m unittest discover -s scripts -p 'test_ai_incident_context.py'
+2026-10-24T07:24:54.9162956Z [36;1mpython -m unittest discover -s scripts -p 'test_ai_incident_context.py'[0m
+2026-10-24T07:24:54.9222079Z shell: /usr/bin/bash -e {0}
+2026-10-24T07:24:54.9222333Z env:
+2026-10-24T07:24:54.9222602Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.9223063Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T07:24:54.9223506Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.9223896Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.9224294Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:54.9224693Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T07:24:54.9225022Z ##[endgroup]
+2026-10-24T07:24:55.3910747Z ......
+2026-10-24T07:24:55.3911364Z ----------------------------------------------------------------------
+2026-10-24T07:24:55.3911872Z Ran 6 tests in 0.001s
+2026-10-24T07:24:55.3912065Z 
+2026-10-24T07:24:55.3912176Z OK
+2026-10-24T07:24:55.4570145Z ##[group]Run python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'
+2026-10-24T07:24:55.4570808Z [36;1mpython -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'[0m
+2026-10-24T07:24:55.4629727Z shell: /usr/bin/bash -e {0}
+2026-10-24T07:24:55.4629986Z env:
+2026-10-24T07:24:55.4630255Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:55.4630718Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-24T07:24:55.4631169Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:55.4631566Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:55.4631961Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-24T07:24:55.4632367Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-24T07:24:55.4632691Z ##[endgroup]
+2026-10-24T07:24:55.5354961Z .......
+2026-10-24T07:24:55.5355797Z ----------------------------------------------------------------------
+2026-10-24T07:24:55.5356312Z Ran 7 tests in 0.001s
+2026-10-24T07:24:55.5356492Z 
+2026-10-24T07:24:55.5356590Z OK

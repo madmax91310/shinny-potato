@@ -8,6 +8,7 @@ import {CATALOG,buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
 import {buildManualPortfolio} from '../src/pages/portfolio-generator/engine.js'
 import {isQualifiedAnnualPortfolioFund} from '../src/data/annual-portfolio-funds.js'
 import {latestCommonYears} from '../src/data/annual-window.js'
+import {convertCalendarReturn} from '../src/data/calendar-fx.js'
 import {projectLightRegistries} from './project-light-registries.mjs'
 import {buildAssetFieldReport,completeHoldingsEvidence,fieldState} from './report-asset-fields.mjs'
 import {matchesListing} from './build-equity-history-links.mjs'
@@ -36,7 +37,23 @@ for(const asset of PORTFOLIO.filter(a=>a.id.startsWith('equity-')||a.id.startsWi
  if(asset.id.startsWith('manual-')) {
   if(asset.annualManual) {
    assert(isQualifiedAnnualPortfolioFund(asset),`${asset.id}: exact official annual NAV contract`)
-   assert.equal(MONTHLY[asset.isin],undefined,`${asset.id}: no market-price projection inferred from NAV`)
+   assert.notEqual(asset.automatedManual,true,`${asset.id}: annual consumer is not admitted through market prices`)
+   assert(isQualifiedAnnualPortfolioFund(duelAsset),`${asset.id}: Duel retains the exact same qualified annual NAV`)
+   assert.equal(duelAsset.currency,asset.returnCurrency,`${asset.id}: annual NAV currency remains explicit`)
+   for(const year of duel.years){
+    const expected=convertCalendarReturn(asset.calendarReturns[year],year,asset.returnCurrency,'EUR')
+    assert(Math.abs(manual.perf[year]-expected)<1e-9,`${asset.id}/${year}: annual NAV, not the separate quote, feeds the calculation`)
+   }
+   // An independently collected quote may coexist for other consumers. Its
+   // presence must neither replace the annual NAV contract nor be labelled NAV.
+   const quote=MONTHLY[asset.isin]
+   if(quote){
+    assert.equal(quote.isin,asset.isin)
+    assert.equal(quote.basis,'market-price',`${asset.id}: separate quote convention`)
+    assert(quote.listingEvidenceId&&/^[a-f0-9]{64}$/.test(quote.responseSha256??''),`${asset.id}: exact quote proof`)
+    assert.notEqual(quote.source,asset.source,`${asset.id}: quote is not inferred from the annual NAV source`)
+    assert.equal(isQualifiedAnnualPortfolioFund({...duelAsset,basis:quote.basis,source:quote.source,calendarReturns:quote.calendarReturns}),false,`${asset.id}: a quote cannot masquerade as the annual NAV`)
+   }
   } else assert(MONTHLY[asset.isin]?.source,`${asset.id}: market-price monthly source`)
  }
  count++

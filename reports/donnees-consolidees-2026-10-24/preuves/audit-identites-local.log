@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "auditedAt": "2026-10-24T06:38:39.795Z",
+  "asOf": "2026-10-23",
+  "sourceGeneratedAt": "2026-10-24T00:04:56.936185+00:00",
+  "method": "Contrôle exhaustif des séries réelles et certificats conservés, sans collecte intégrale.",
+  "legacyEvidenceWithoutId": 0,
+  "listingCount": 21185,
+  "instrumentCount": 20400,
+  "technicalUsable": 21185,
+  "readyAtPublishedCutoff": 0,
+  "exceptions": [],
+  "catchupRequired": [
+    {
+      "id": "AN8068571086-XNYS",
+      "instrumentId": "AN8068571086",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : SLB 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/SLB?period1=1783900800&period2=1792645596&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "de7acdf94babd919c05821a1d4e848e0963aca06a1ce6dc9209cfd832ee36eba"
+    },
+    {
+      "id": "AT000000STR1-XETR-XD4-EUR",
+      "instrumentId": "AT000000STR1",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : XD4 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/XD4.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "037877c72d40b126249f880984c5dd67b403216e4f512f1a2ca9f10cc03f20b6"
+    },
+    {
+      "id": "AT0000606306-XETR-RAW-EUR",
+      "instrumentId": "AT0000606306",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : RAW 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/RAW.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "c4e207d2a66f5abe191e07b81dd7a6ec0bf120713cd662bdc50e084b1e96a028"
+    },
+    {
+      "id": "AT0000609607-XETR-ABS2-EUR",
+      "instrumentId": "AT0000609607",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : ABS2 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/ABS2.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "a54a641f5686bd0417190749df12543dd957fa02ec6ebfc4eb7085bc0aa82b83"
+    },
+    {
+      "id": "AT0000652011-XETR-EBO-EUR",
+      "instrumentId": "AT0000652011",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : EBO 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/EBO.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "6f8ff196965e257614f11aed94e76890420a08bf7966770fa6a16409213ddbba"
+    },
+    {
+      "id": "AT0000730007-XETR-AZ2-EUR",
+      "instrumentId": "AT0000730007",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : AZ2 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/AZ2.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "aae9beaf107930e2d51ced2633ffc2f329dc105e5c408fa4a9a3b66970fd8293"
+    },
+    {
+      "id": "AT0000743059-XETR-OMV-EUR",
+      "instrumentId": "AT0000743059",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : OMV 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/OMV.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "e33924c1647bc5b922f633adf476701dfbe49a57a97d151c31347cafed95ee5c"
+    },
+    {
+      "id": "AT0000746409-XETR-OEWA-EUR",
+      "instrumentId": "AT0000746409",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : OEWA 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/OEWA.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "4fd1bf177c73f10cee51f12d6fa51583225c67310644a26e55a7da4cfe68ef80"
+    },
+    {
+      "id": "AT0000785407-XETR-FAA-EUR",
+      "instrumentId": "AT0000785407",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : FAA 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/FAA.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "a8c1582a9b0a94bf1cbdb7235ca194f38bf0a6c946bed2b503eee6b29757ab49"
+    },
+    {
+      "id": "AT0000821103-XETR-UN9-EUR",
+      "instrumentId": "AT0000821103",
+      "family": "Actions",
+      "certifiedThrough": "2026-10-21",
+      "technicalUsable": true,
+      "operationReadyAtCutoff": false,
+      "reason": "Clôture attendue manquante : UN9 2026-10-23.",
+      "source": "https://query2.finance.yahoo.com/v8/finance/chart/UN9.DE?period1=1783900800&period2=1792661674&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+      "sha256": "64d0cdaea20b4cc3f9fe1265fcf3470619e37986b7fa6ae5050fa57f70fc861a"
+    }
+  ],
+  "byFamily": {
+    "Actions": {
+      "listings": 20486,
+      "technicalUsable": 20486,
+      "ready": 0
+    },
+    "ETP crypto": {
+      "listings": 7,
+      "technicalUsable": 7,
+      "ready": 0
+    },
+    "Crypto au comptant": {
+      "listings": 2,
+      "technicalUsable": 2,
+      "ready": 0
+    },
+    "ETF actions": {
+      "listings": 356,
+      "technicalUsable": 356,
+      "ready": 0
+    },
+    "ETF sectoriels / thématiques": {
+      "listings": 122,
+      "technicalUsable": 122,
+      "ready": 0
+    },
+    "ETF immobiliers": {
+      "listings": 13,
+      "technicalUsable": 13,
+      "ready": 0
+    },
+    "ETC / matières premières": {
+      "listings": 26,
+      "technicalUsable": 26,
+      "ready": 0
+    },
+    "ETF factoriels / dividendes / small caps": {
+      "listings": 102,
+      "technicalUsable": 102,
+      "ready": 0
+    },
+    "ETF obligataires": {
+      "listings": 57,
+      "technicalUsable": 57,
+      "ready": 0
+    },
+    "Autres instruments cotés": {
+      "listings": 2,
+      "technicalUsable": 2,
+      "ready": 0
+    },
+    "ETF / produits matières premières": {
+      "listings": 6,
+      "technicalUsable": 6,
+      "ready": 0
+    },
+    "ETF multi-actifs": {
+      "listings": 4,
+      "technicalUsable": 4,
+      "ready": 0
+    },
+    "ETF monétaires": {
+      "listings": 2,
+      "technicalUsable": 2,
+      "ready": 0
+    }
+  }
+}

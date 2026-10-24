@@ -1,0 +1,61 @@
+FF....
+======================================================================
+FAIL: test_checkpoint_repairs_the_divergent_shard_without_a_new_collection (test_ai_series_persistence.SeriesPersistence.test_checkpoint_repairs_the_divergent_shard_without_a_new_collection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/reliquat-79/scripts/test_ai_series_persistence.py", line 34, in test_checkpoint_repairs_the_divergent_shard_without_a_new_collection
+    self.assertEqual(cold['series']['a'], self.qualified)
+AssertionError: {'qua[31 chars]Id': None, 'responseSha256': 'old', 'retrieved[87 chars]00}}} != {'qua[31 chars]Id': 'exact-source', 'responseSha256': 'verifi[102 chars]00}}}
+- {'listingEvidenceId': None,
+?                       ^ ^
+
++ {'listingEvidenceId': 'exact-source',
+?                       ^^^^^^^^ ^^^ +
+
+   'points': {'2026-10-21': {'close': 42, 'synthetic': 100}},
+   'qualified': True,
+-  'responseSha256': 'old',
+?                     ^^
+
++  'responseSha256': 'verified',
+?                     ^^^^^^^
+
+-  'retrievedAt': '2026-10-22T05:07:25+00:00'}
+?                              - ^^^^^
+
++  'retrievedAt': '2026-10-22T19:50:31+00:00'}
+?                             ++++  ^^
+
+
+======================================================================
+FAIL: test_hydration_preserves_the_qualified_resident_snapshot (test_ai_series_persistence.SeriesPersistence.test_hydration_preserves_the_qualified_resident_snapshot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/reliquat-79/scripts/test_ai_series_persistence.py", line 28, in test_hydration_preserves_the_qualified_resident_snapshot
+    self.assertEqual(self.market['series']['a'], self.qualified)
+AssertionError: {'qua[31 chars]Id': None, 'responseSha256': 'old', 'retrieved[87 chars]00}}} != {'qua[31 chars]Id': 'exact-source', 'responseSha256': 'verifi[102 chars]00}}}
+- {'listingEvidenceId': None,
+?                       ^ ^
+
++ {'listingEvidenceId': 'exact-source',
+?                       ^^^^^^^^ ^^^ +
+
+   'points': {'2026-10-21': {'close': 42, 'synthetic': 100}},
+   'qualified': True,
+-  'responseSha256': 'old',
+?                     ^^
+
++  'responseSha256': 'verified',
+?                     ^^^^^^^
+
+-  'retrievedAt': '2026-10-22T05:07:25+00:00'}
+?                              - ^^^^^
+
++  'retrievedAt': '2026-10-22T19:50:31+00:00'}
+?                             ++++  ^^
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+FAILED (failures=2)

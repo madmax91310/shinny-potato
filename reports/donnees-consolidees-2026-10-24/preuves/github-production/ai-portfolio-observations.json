@@ -1,0 +1,37 @@
+{
+  "successes": [
+    {
+      "id": "ECB"
+    }
+  ],
+  "errors": [
+    {
+      "id": "IE00B4L5Y983-ETFP",
+      "field": "Clôture quotidienne / change",
+      "error": "Clôtures attendues manquantes : 2026-10-23",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits"
+      ],
+      "lastSuccessAt": "2026-10-23T13:13:32.084502+00:00",
+      "asOf": "2026-10-22",
+      "attemptedAt": "2026-10-24T08:49:04.279382+00:00",
+      "missingPeriods": [
+        "2026-10-23"
+      ]
+    },
+    {
+      "id": "IE00B5BMR087-XLON-CSPX-USD",
+      "field": "Clôture quotidienne / change",
+      "error": "Clôtures attendues manquantes : 2026-10-23",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits"
+      ],
+      "lastSuccessAt": "2026-10-23T10:39:50.275215+00:00",
+      "asOf": "2026-10-22",
+      "attemptedAt": "2026-10-24T08:49:04.279382+00:00",
+      "missingPeriods": [
+        "2026-10-23"
+      ]
+    }
+  ]
+}

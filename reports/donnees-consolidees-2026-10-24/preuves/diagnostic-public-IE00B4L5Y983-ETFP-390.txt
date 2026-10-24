@@ -1,0 +1,18 @@
+Diagnostic Épargnant Libre · Collecte échouée
+Incident : collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP
+Actif / collecte : iShares Core MSCI World UCITS ETF (Acc)
+Identifiant : IE00B4L5Y983-ETFP
+Champ : Clôture quotidienne / change
+Cause : Clôtures attendues manquantes : 2026-10-23
+Outils : Portefeuilles IA
+Détecté depuis : 2026-10-23T04:38:25.372196+00:00
+Dernier contrôle du suivi : 2026-10-24T08:56:18.938413+00:00
+Dernier contrôle de collecte réussi : 2026-10-23T13:13:32.084502+00:00
+Dernière tentative de collecte : 2026-10-24T08:49:04.279382+00:00
+Période de la donnée conservée : 2026-10-22
+Devise : Non documenté
+Méthode : Non documenté
+Sources : https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791417600&period2=1792831744&interval=1d&events=div%2Csplits
+Exécution : https://github.com/madmax91310/shinny-potato/actions/runs/40079425823
+Action : Vérifier l’accès à la source et la lecture du document, puis relancer la collecte concernée.
+Conserver les dernières valeurs validées et leurs dates. Vérifier ensuite le résultat dans les outils concernés.
