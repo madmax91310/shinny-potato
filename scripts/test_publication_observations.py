@@ -170,7 +170,7 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):completed([(dt.date(2026,9,20),100)],NOW)
         current={'bitcoin':{'value':100,'asOf':'2026-10-07'}}
         def fail(config,now):raise ValueError('Network unavailable')
-        updated,report=refresh_levels(current,NOW,fail)
+        updated,report=refresh_levels(current,NOW,fail,selected=configurations())
         self.assertEqual(updated['bitcoin'],current['bitcoin'])
         self.assertEqual(len(report['errors']),len(configurations()))
         self.assertEqual(len(configurations()),len({c['id']for c in configurations()}))
