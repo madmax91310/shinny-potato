@@ -24,6 +24,7 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 | Un flux radar sans erreur suffisait à perdre un ancien conflit | Registre durable, empreinte archivée et stabilité DWS vérifiés | mauvaise empreinte, stabilité < 4 h, preuve conforme |
 | Livraison déduite de la seule ascendance Git | Empreintes réelles de l'artefact public et identité du code livré requises | manifeste nul/invalide, divergence, égalité exacte |
 | Déploiement vert sans contrôle public explicite | Publication non certifiée et incident de preuve | vérification absente ou échouée |
+| Plusieurs événements manqués ne restituaient que la dernière exécution | Toutes les exécutions ordinaires non observées sont réduites dans l’ordre | échec intermédiaire puis succès, aucune répétition des événements observés |
 | Échec du contexte ou de l'API de surveillance | Incident propre et dernières alertes conservées | contexte absent, panne réseau, producteur indépendant |
 | Revue hebdomadaire hors registre | Contrôle explicite, sans inventer une collecte source | échec de ses contrôles |
 | Moniteur absent/périmé/invalide pouvait laisser un écran rassurant | Alerte principale, bilan source dégradé ; vérification GitHub indépendante | absence, schéma invalide, ancienneté, réseau, dernier run échoué |

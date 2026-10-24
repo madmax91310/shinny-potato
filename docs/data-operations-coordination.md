@@ -20,3 +20,5 @@ Actualisation finale : master `3ecbbee9` (#926 et #928) intégré ; PR #929 (pre
 Complément de livraison : PR #931, branche `fix/data-review-inflight-20261024`. Fichiers pris en charge : le lecteur et le réducteur de supervision, contrats/recette, `review-inbox.js` et diagnostics. Le raccordement du format `listings` au périmètre ciblé est corrigé côté supervision ; aucun producteur modifié.
 
 File de recette : `.github/workflows/deploy-pages.yml` annule uniquement les révisions remplacées de la même PR. Le groupe par PR reste distinct de master, les validations et publications de production ne sont jamais annulées par cette règle. Les suites de contrôles et les seuils restent intacts.
+
+Rattrapage de supervision : `unseen_completed_runs` dans `github_automation_transport.py` restitue toutes les exécutions ordinaires non observées dans l’ordre, au lieu de la seule dernière. Les reprises HTTP et les producteurs restent inchangés ; un succès global ultérieur ne peut ainsi masquer un échec intermédiaire omis. Régression multi-exécutions ajoutée.
