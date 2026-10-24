@@ -3,7 +3,7 @@
 Périmètre : supervision, contrats de remontée et interface. Collecteurs, raccordements,
 calendriers financiers et reprises source restent sous la responsabilité du chantier
 « Automatisation des données ». Coordination : `docs/data-operations-coordination.md`.
-Base actualisée sur master `16a895e5`, incluant #920/#921/#922, #903 et #924 et le retrait de
+Base actualisée sur master `3ecbbee9`, incluant #920/#921/#922, #903, #924, #926 et #928 et le retrait de
 Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée financière modifiée.
 
 ## Corrections et preuves
@@ -17,8 +17,11 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 | Cache et succès global confondus avec contrôle source | Dates par champ, artefact et publication distinctes | cache, absence de changement, résultat partiel |
 | Nouvelle tentative pouvait réparer une preuve historique différente | Identité run/tentative immuable ; relecture exacte et bornée | nouveau run, rerun, archive datée hors tentative, réparation exacte |
 | Disparition d'une alerte pouvait être interprétée comme résolution | Preuve ciblée obligatoire ; incident conservé sans preuve | anciennes périodes, champs, étapes et conflits |
+| Collecte terminée dans un workflow encore en attente | Résultats et erreurs source observés avant la fin globale ; attente distincte | panne source, cache, API indisponible, retour terminal |
+| Ancien workflow or sans contrat d’artefact | Qualification historique, sans faux artefact promis absent | contrat de version par étapes réelles |
+| Réussite composite ne prouvant pas la branche initialement en échec | Qualification maintenue avec erreur et preuve antérieures | succès d’un rapport composite insuffisant pour résoudre la branche |
 | Un flux radar sans erreur suffisait à perdre un ancien conflit | Registre durable, empreinte archivée et stabilité DWS vérifiés | mauvaise empreinte, stabilité < 4 h, preuve conforme |
-| Livraison déduite de la seule ascendance Git | Empreintes réelles de l'artefact public requises | manifeste nul/invalide, divergence, égalité exacte |
+| Livraison déduite de la seule ascendance Git | Empreintes réelles de l'artefact public et identité du code livré requises | manifeste nul/invalide, divergence, égalité exacte |
 | Déploiement vert sans contrôle public explicite | Publication non certifiée et incident de preuve | vérification absente ou échouée |
 | Échec du contexte ou de l'API de surveillance | Incident propre et dernières alertes conservées | contexte absent, panne réseau, producteur indépendant |
 | Revue hebdomadaire hors registre | Contrôle explicite, sans inventer une collecte source | échec de ses contrôles |
@@ -33,8 +36,8 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 ## Recette
 
 `matrice-controles.csv` / `.json` contient chaque sous-cas effectivement exécuté, son
-producteur, son résultat et le test correspondant. 533 cas isolés, 20 méthodes de recette
-produit ; les 103 tests Python de supervision passent. Les défaillances sont injectées
+producteur, son résultat et le test correspondant. 537 cas isolés, 24 méthodes de recette
+produit ; les 108 tests Python de supervision passent. Les défaillances sont injectées
 dans les lecteurs et réducteurs, jamais dans les sources de production. Cela démontre la
 remontée des causes reçues, pas la capacité de chaque collecteur à qualifier toute anomalie
 financière imaginable.
@@ -81,3 +84,5 @@ Le périmètre de supervision testé est opérationnel ; la complétude financi�
 complétude individuelle des producteurs historiques ne sont pas déclarées démontrées.
 
 Raccordement #924 : conservation de `requiredDataGaps`, des preuves `historyChecks`/`fieldChecks` et de ses nouvelles données. Les périmètres `scope.expectedIds/requestedIds` et résultats `unchanged-verified` sont reconnus sans confondre cache et contrôle réel. Un nouveau périmètre ciblé ne clôture pas la qualification historique d’un ancien rapport. Les diagnostics couvrent aussi les actifs externes des 23 outils ; les chaînes répétées sont référencées dans un dictionnaire, puis restituées sans changer une seule valeur.
+
+Validation finale : les exécutions CI et les vérifications du site public sont consignées dans la PR #925. Un échec source individuel du contrôle ETF demeure un échec déclaré, même lorsque la validation du code est réussie.
