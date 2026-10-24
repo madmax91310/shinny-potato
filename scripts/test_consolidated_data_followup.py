@@ -33,4 +33,13 @@ class ConsolidatedFollowup(unittest.TestCase):
         daily=old('incident après intégration','quote:2026-10-23','quote','Clôture quotidienne ajustée')
         rows=self.run_case([daily],monitor={'monitoring':{'active':{'collection:update-ai-portfolios.yml:quote':{'cause':'Missing close'}}}})
         self.assertEqual(len(rows),1);self.assertEqual(len(rows[0]['origines']),1);self.assertTrue(rows[0]['reliquat_actif'])
+    def test_retired_attribution_is_not_a_recovery_even_on_a_later_cycle(self):
+        key='collection:update-instrument-metadata.yml:'+ISIN+':aum'
+        state={'monitoring':{'active':{},'retired':[]},'workflows':{'update-instrument-metadata.yml':{'retiredDataFailures':{ISIN+':aum':{'retirementReason':'Autre collecteur','completedAt':'2026-10-23'}}}}}
+        result=self.run_case([old('incident actif initial',key)],monitor=state)[0]
+        self.assertIn('retrait documenté',result['statut_supervision'])
+        self.assertNotIn('résolution documentée',result['statut_supervision'])
+        self.assertFalse(result['verification_en_attente'])
+        self.assertEqual(result['details']['cycle_actuel']['completedAt'],'2026-10-23')
+
 if __name__=='__main__':unittest.main()

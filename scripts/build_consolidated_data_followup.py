@@ -61,12 +61,16 @@ def consolidate(legacy,inventory,financial,forensics,actions,modules,monitor,rev
         r=reviews.get(k.split(':',1)[1])
         if r:c.update(statut_donnees=r['category'],axe='fiabilité',type_defaut='revue ou contrôle, pas panne automatique',reliquat_actif=r['category']in ['stale','expired','reserve','undated','future-date'],niveau_preuve='calendrier actuel, source et revue séparées',probleme=r.get('reason',''),outils=r.get('tools',[]),details=r,preuves=['preuves/revue-courante.json'])
     active=monitor['monitoring']['active'];resolved={r['id']:r for r in monitor['monitoring'].get('resolved',[])};retired={r['id']:r for r in monitor['monitoring'].get('retired',[])}
+    for workflow,row in monitor.get('workflows',{}).items():
+        for identifier,proof in row.get('retiredDataFailures',{}).items():
+            key='collection:'+workflow+':'+identifier
+            retired.setdefault(key,{'id':key,**proof})
     for k,c in list(cases.items()):
         if k.startswith('incident:')and k[9:]not in active:
             old=resolved.get(k[9:])or retired.get(k[9:]);c.update(axe='supervision',statut_supervision='résolution/retour historique prouvé'if old else'non actif dans la capture ; clôture financière non déduite',reliquat_actif=False)
             historical_resolution=any(o['etat_source'] in ('resolved','résolu dans le moniteur de production') for o in c['origines'])
             if old or historical_resolution:
-                c.update(statut_donnees='non applicable (cycle de supervision)',statut_supervision='résolution documentée dans le cycle courant' if old else 'résolution documentée dans l’instantané hérité ; absent de la capture actuelle',verification_en_attente=False,niveau_preuve='preuve du cycle de supervision, pas nouvelle certification financière')
+                c.update(statut_donnees='non applicable (cycle de supervision)',statut_supervision=('retrait documenté d’une attribution ; aucune réparation financière déduite' if k[9:] in retired else 'résolution documentée dans le cycle courant') if old else 'résolution documentée dans l’instantané hérité ; absent de la capture actuelle',verification_en_attente=False,niveau_preuve='preuve du cycle de supervision, pas nouvelle certification financière')
             else:c['verification_en_attente']=True
             if old:c['details']['cycle_actuel']=old
     for key,r in active.items():
@@ -93,7 +97,7 @@ def write_reports(cases,legacy,output,metadata):
     active=[c for c in cases if c['reliquat_actif']]
     summary={'schemaVersion':1,**metadata,'lignes_heritees':len(legacy),'origines_reconciliees':sum(len(c['origines'])for c in cases),'cas_uniques':len(cases),'actifs_ou_usages_non_additionnables_aux_cas':True,'suivi_par_axe':dict(collections.Counter(c['axe']for c in active)),'reliquat_actif_cas':len(active),'verification_en_attente':sum(c.get('verification_en_attente',False)for c in cases),'financier':{'comparaisons':sum(c['id_suivi'].startswith('financial:')for c in cases),'encore_ouverts':sum(c['id_suivi'].startswith('financial:')for c in active)},'non_reverifies':sum(c['statut_donnees']=='non revérifié dans cette reprise'for c in cases),'limite':'Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause.'}
     summary['actions_19']={'total':sum(c['id_suivi'].startswith('action:') for c in cases),'statuts':dict(collections.Counter(c['statut_donnees'] for c in cases if c['id_suivi'].startswith('action:')))}
-    summary['supervision']={'signaux_actifs_moniteur':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision']=='actif dans le moniteur observé' for c in cases),'cycles_resolus_documentes':sum(c['id_suivi'].startswith('incident:') and c['statut_donnees']=='non applicable (cycle de supervision)' for c in cases)}
+    summary['supervision']={'signaux_actifs_moniteur':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision']=='actif dans le moniteur observé' for c in cases),'cycles_resolus_documentes':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision'].startswith('résolution documentée') for c in cases),'attributions_retirees_documentees':sum(c['id_suivi'].startswith('incident:') and c['statut_supervision'].startswith('retrait documenté') for c in cases)}
     summary['definitions']={'cas_uniques':'Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.','verification_en_attente':'Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.','productionValidated':'Concerne exclusivement les trois corrections de ce lot, pas la certification de tous les éléments inventoriés.'}
     (output/'bilan.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
     return summary
