@@ -21,6 +21,7 @@ from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp, restore_history
 from github_automation_transport import request_json, unseen_completed_runs
 from automation_status_storage import pack_report_scopes,encode_status
+from automation_monitor_self import observe_monitor_history
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
@@ -1211,6 +1212,10 @@ def main():
                 recovery_registry.pop(workflow,None)
                 state.setdefault('observerErrors',{})['recovery:'+workflow]={'cause':'État des reprises non observable ; aucun déclenchement aveugle : '+str(error)[:200]}
     state['recovery'], recovery_plans = plan_recovery(state, recovery_registry, now, current_runs)
+    state=pack_report_scopes(state)
+    def monitor_job_log(job_id):
+        return subprocess.run(['gh','api',f'repos/{repo}/actions/jobs/{job_id}/logs'],check=True,capture_output=True,text=True,timeout=45).stdout
+    state=observe_monitor_history(state,api,repo,dt.datetime.now(dt.timezone.utc).isoformat(),monitor_job_log)
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
     state=pack_report_scopes(state)
     print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',{})))+' périmètres de preuve uniques ; aucun incident retiré.')

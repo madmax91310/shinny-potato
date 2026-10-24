@@ -10,7 +10,7 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 
 | Avant, requalifié sur le code | Après | Contrôle exécuté |
 | --- | --- | --- |
-| Enregistrement GitHub refusé : requête de 96 201 516 octets | Périmètres de rapports partagés par empreinte dans le même statut ; aucune ligne retirée | restitution intégrale, 700 champs, état actif/historique conservé, référence absente/altérée refusée ; producteur ordinaire à vérifier |
+| Enregistrement GitHub refusé : requête de 96 201 516 octets | Périmètres de rapports partagés par empreinte dans le même statut ; aucune ligne retirée | restitution intégrale, 700 champs, état actif/historique conservé, référence absente/altérée refusée ; producteur ordinaire 40127021202 réussi ; 9 534 070 octets avant encodage |
 | Artefact absent sans résultat source explicite | Incident de preuve lié au producteur, run et tentative | absence, expiration, récupération de l'artefact exact |
 | JSON inconnu assimilable à un rapport vide réussi | Contrats nom/producteur/famille et identité des résultats | 40 fichiers réels de 19 producteurs, aucun rejet de leur schéma actuel |
 | TypeError/KeyError pouvait arrêter un cycle | Isolation par rapport et par producteur ; incident d'observation | payloads invalides et maintien du résultat indépendant |
@@ -39,8 +39,8 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 ## Recette
 
 `matrice-controles.csv` / `.json` contient chaque sous-cas effectivement exécuté, son
-producteur, son résultat et le test correspondant. 538 cas isolés, 25 méthodes de recette
-produit ; les 109 tests Python de supervision passent. Les défaillances sont injectées
+producteur, son résultat et le test correspondant. 539 cas isolés, 26 méthodes de recette
+produit ; les 110 tests Python de supervision passent. Les défaillances sont injectées
 dans les lecteurs et réducteurs, jamais dans les sources de production. Cela démontre la
 remontée des causes reçues, pas la capacité de chaque collecteur à qualifier toute anomalie
 financière imaginable.
@@ -90,4 +90,6 @@ Raccordement #924 : conservation de `requiredDataGaps`, des preuves `historyChec
 
 Validation finale : les exécutions CI et les vérifications du site public sont consignées dans les PR #925 et #931. Un échec source individuel du contrôle ETF demeure un échec déclaré, même lorsque la validation du code est réussie.
 
-Incident réel de persistance : le run `40125533871` confirme le refus GitHub « file too large », requête de 96 201 516 octets. Le transport expose désormais le motif borné sans jeton ni contenu du statut. La correction de stockage partage les périmètres identiques : `reportScopes` contient leurs valeurs intégrales, `scopeRef` les référence depuis chaque preuve ; `expand_report_scopes` restitue le contrat complet. Les données, erreurs, dates et épisodes ne sont ni filtrés ni tronqués. Le succès de l’enregistrement ordinaire reste à établir avant clôture.
+Incident réel de persistance : le run `40125533871` confirme le refus GitHub « file too large », requête de 96 201 516 octets. Le transport expose désormais le motif borné sans jeton ni contenu du statut. La correction de stockage partage les périmètres identiques : `reportScopes` contient leurs valeurs intégrales, `scopeRef` les référence depuis chaque preuve ; `expand_report_scopes` restitue le contrat complet. Les données, erreurs, dates et épisodes ne sont ni filtrés ni tronqués. Le run ordinaire `40127021202` a réussi l’enregistrement : 24 automatisations, 6 périmètres uniques, 9 534 070 octets avant encodage. Les 981 épisodes résolus précédents sont conservés dans le statut relu après publication ; toutes les références se restituent.
+
+L’historique propre du moniteur est conservé par tentative et par étape ; une réussite d’une autre étape ne le clôture pas. La reprise initiale observe les 100 derniers runs disponibles, qualifie au plus 6 nouvelles exécutions et 2 journaux par cycle, avec budget de 75 secondes ; les éléments différés restent explicitement à qualifier. L’archive est durable après observation, sa couverture antérieure à la fenêtre initiale reste déclarée non démontrée. L’export JSON transporte aussi le registre des périmètres référencés.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T19:42:57.656888+00:00",
+  "generatedAt": "2026-10-24T20:22:01.934026+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -26,9 +26,10 @@
     "onboard-assets.yml",
     "rehearse-refresh.yml",
     "review-freshness.yml",
-    "deploy-pages.yml"
+    "deploy-pages.yml",
+    "automation-status.yml"
   ],
-  "testsRun": 25,
+  "testsRun": 26,
   "successful": true,
   "rows": [
     {
@@ -2374,6 +2375,14 @@
       "case": "test_missing_context_retains_incidents_and_history_is_durable (test_automation_product.ProductContracts.test_missing_context_retains_incidents_and_history_is_durable)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_missing_context_retains_incidents_and_history_is_durable"
+    },
+    {
+      "test": "test_monitor_self_history_requires_matching_steps_and_survives_outage",
+      "producer": "automation-status.yml",
+      "class": "cross-cutting",
+      "case": "test_monitor_self_history_requires_matching_steps_and_survives_outage (test_automation_product.ProductContracts.test_monitor_self_history_requires_matching_steps_and_survives_outage)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_monitor_self_history_requires_matching_steps_and_survives_outage"
     },
     {
       "test": "test_monitors_disabled_unobserved_and_observer_failures",
