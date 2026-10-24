@@ -31360,14 +31360,15 @@
           "at": "2026-10-24T16:30:12.420960+00:00",
           "reason": "recording-failed",
           "sourceRunId": 40108623483,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-24T16:12:36Z",
       "observedRunId": 40108623483,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-24T17:30:12.420960+00:00"
     },
     "update-exposure-expansion.yml": {
