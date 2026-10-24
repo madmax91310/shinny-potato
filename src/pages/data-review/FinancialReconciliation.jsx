@@ -8,13 +8,14 @@ export default function FinancialReconciliation(){
  const rows=report.rows.filter(r=>(r.open||r.residualOpen)&&`${r.isin} ${r.name} ${r.year} ${r.original.marketSymbol}`.toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr')))
  return <section className="dr-reminders" aria-label="Écarts financiers à expliquer">
   <h2>{report.summary.open} écarts financiers encore inexpliqués</h2>
-  <p>{report.summary.total} comparaisons initiales conservées : {report.summary.corrected} erreurs corrigées sur preuve, {report.summary.correctedWithResidual} erreur corrigée avec un résidu marché/NAV encore à attribuer et {report.summary.nonComparable} comparaison non pertinente. Une nouvelle collecte ne clôture pas une différence entre une cotation et une valeur liquidative.</p>
+  <p>{report.summary.total} comparaisons initiales conservées : {report.summary.corrected} erreurs corrigées sur preuve, {report.summary.correctedWithResidual} erreur{report.summary.correctedWithResidual>1?'s':''} corrigée{report.summary.correctedWithResidual>1?'s':''} avec un résidu marché/NAV encore à attribuer et {report.summary.nonComparable} comparaison non pertinente. Une nouvelle collecte ne clôture pas une différence entre une cotation et une valeur liquidative.</p>
   <details><summary>Consulter les cas et les pièces manquantes</summary>
    <label>Rechercher un écart financier<input value={query} onChange={e=>setQuery(e.target.value)} placeholder="ISIN, cotation, année…"/></label>
    <p>{rows.length} cas correspondants</p>
    {rows.map(r=><article className="dr-item" key={r.id}>
     <h3>{r.isin} · {r.year} · {r.original.marketSymbol}</h3><p>{r.status} : {r.reason}</p>
     {r.currentConsumer&&<p>Usage actuel : {r.currentConsumer.secured}. Ce raccordement conserve l’enquête sur la divergence historique.</p>}
+    {r.currentCashRepair&&<p>Distributions corrigées : {r.currentCashRepair.events.map(e=>`${e.amount.toLocaleString('fr-FR')} ${e.currency} le ${e.exDate}`).join(' ; ')}. Série ajustée après correction : {r.currentCashRepair.correctedMarketReturn?.toLocaleString('fr-FR',{maximumFractionDigits:4})} % en {r.currentCashRepair.currency}. Le résidu reste ouvert et la fenêtre de cotation reste indisponible.</p>}
     {r.missingPiece&&<p>Pièces manquantes : {r.missingPiece}</p>}
     {r.latestCheck&&<p>Dernière tentative : {r.latestCheck.attemptedAt}. Calendrier officiel : {r.latestCheck.officialStatus==='validated'?'validé':'non qualifié'}. Historique de cotation : {r.latestCheck.marketStatus==='provider-validated'?'contrôlé auprès du fournisseur':'non qualifié'}. {r.open?'La cause initiale reste à expliquer.':'La correction documentée conserve le suivi du résidu.'}</p>}
     {r.resolutionEvidence&&<p><a href={r.resolutionEvidence} target="_blank" rel="noreferrer">Preuve de correction et reliquat ↗</a></p>}

@@ -1,0 +1,70 @@
+name: Verify historical Amundi cash reconciliation
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/amundi-historical-distributions-20261023]
+    paths:
+      - 'scripts/qualified_distributions.py'
+      - 'scripts/test_amundi_distribution_reconciliation.py'
+      - 'scripts/monthly-automation.json'
+      - '.github/workflows/verify-amundi-distributions.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: python -m pip install beautifulsoup4
+      - run: python -m unittest discover -s scripts -p 'test_*distribution*.py'
+      - name: Verify the official historical cash route from this runner
+        run: |
+          python - <<'PY'
+          import sys,json,os,gzip,hashlib,datetime
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from collect_amundi_etf import fetch_api,API
+          from qualified_distributions import official_events,amundi_events
+          c=next(s for s in json.load(open('scripts/monthly-automation.json'))['series']if s['id']=='etfFR0007054358')
+          p=json.load(open('reports/amundi-distributions-2026-10-23/official-request.json'));p['productIds']=[c['isin']]
+          body=fetch_api(p);raw=json.dumps(body,separators=(',',':')).encode();out=Path(os.environ['RUNNER_TEMP'])
+          source={'sourceUrl':API,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'amundi-live.json.gz').write_bytes(gzip.compress(raw))
+          known,_=official_events(c);live,proof=amundi_events(c,body,c['distributionEvidence'],source)
+          assert live==known and len(live)==12
+          (out/'amundi-live-proof.json').write_text(json.dumps({'source':source,'events':live,'dateChecks':proof['officialCashDateChecks']},indent=2))
+          print('12historical amounts/currencies/effective dates verified against a real official response')
+          PY
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+      - name: Fetch and qualify the actual shared market history
+        run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --only etfFR0007054358 --output "$RUNNER_TEMP/amundi-status.json" --apply
+      - name: Preserve the consumed result and matching fresh observation
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP']);s=json.load(open(out/'amundi-status.json'))
+          r=json.load(open('src/data/automated-etf-monthly.json'))['etfFR0007054358'];e=json.load(open('scripts/source-snapshots/monthly-automated.json'))['etfFR0007054358']
+          assert len(s['series'])==1 and s['series'][0]['status']=='validated'
+          assert r['responseSha256']==s['series'][0]['responseSha256']==e['responseSha256']
+          (out/'amundi-result.json').write_text(json.dumps({'record':r,'evidence':e,'observation':s['series'][0],'successfulCheckAt':s['checkedAt'],'retainedRecordCheckedAt':r['checkedAt']},ensure_ascii=False))
+          print('Actual producer result, historical evidence date and raw-price convention retained')
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: qualified-amundi-distributions
+          path: |
+            ${{ runner.temp }}/amundi-live.json.gz
+            ${{ runner.temp }}/amundi-live-proof.json
+            ${{ runner.temp }}/amundi-result.json
+            ${{ runner.temp }}/amundi-status.json
+          retention-days: 35

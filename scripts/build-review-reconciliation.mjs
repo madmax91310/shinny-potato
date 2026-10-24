@@ -14,15 +14,26 @@ const diagnostics=new Map((observed?.cases??[]).map(r=>[key(r),r]))
 const shares=new Map((observed?.observations??[]).map(r=>[r.isin,r]))
 const integrated=JSON.parse(readFileSync(new URL('../reports/data-review-2026-10-23/preuves/reconciliation-79-master-integre.json',import.meta.url)))
 const currentCases=new Map(integrated.rows.map(r=>[key(r),r]))
+const repairs=JSON.parse(readFileSync(new URL('../src/data/financial-source-repairs.json',import.meta.url)))
+const repairEvidence=new Map(Object.entries(repairs).map(([isin,repair])=>[isin,{...repair,...JSON.parse(readFileSync(new URL('../'+repair.evidencePath,import.meta.url)))}]))
 const rows=original.cases.map(r=>{
  const check=diagnostics.get(key(r)),share=shares.get(r.isin)
  const current=currentCases.get(key(r))
- const status=current?.status||r.status
+ const repair=repairEvidence.get(r.isin),record=repair?.record
+ const events=record?.isin===r.isin&&record.symbol===r.marketSymbol&&record.currency===r.currency
+  ?record.distributionAdjustmentProof?.filter(p=>p.exDate.startsWith(`${r.year}-`)&&['missing-adjustment','already-adjusted'].includes(p.status)):[]
+ const hasRepair=Boolean(events?.length&&record.distributionEvidence)
+ const previousStatus=current?.status||r.status
+ const status=hasRepair&&previousStatus==='anomalie encore inexpliquée'?'erreur corrigée ; résidu financier non attribué':previousStatus
+ const points=new Map(record?.points??[]),p0=points.get(`${r.year-1}-12`),p1=points.get(`${r.year}-12`)
  return {id:key(r),isin:r.isin,name:r.name,year:r.year,initialStatus:r.status,status,open:status==='anomalie encore inexpliquée',residualOpen:status.startsWith('erreur corrigée ;'),
   original:{marketReturn:r.recollectedMarketReturn,officialReturn:r.recollectedNavReturn,convertedOfficialReturn:r.recollectedNavConverted,differencePp:r.recollectedDifferencePp,
    marketCurrency:r.currency,navCurrency:r.navCurrency,marketStartDate:r.marketStartDate,marketEndDate:r.marketEndDate,marketSymbol:r.marketSymbol,marketMic:r.marketMic},
   reason:current?.demonstratedCause||r.demonstratedCause,missingPiece:current?.missingPiece||r.missingPiece||null,
-  resolutionEvidence:status!==r.status?'https://github.com/madmax91310/shinny-potato/blob/master/'+integrated.source:null,
+  resolutionEvidence:hasRepair?'https://github.com/madmax91310/shinny-potato/blob/master/'+repair.reportPath:status!==r.status?'https://github.com/madmax91310/shinny-potato/blob/master/'+integrated.source:null,
+  currentCashRepair:hasRepair?{events:events.map(p=>({exDate:p.exDate,amount:p.amount,currency:p.currency})),sourceCheckedAt:events[0].evidenceCheckedAt,
+   recordCheckedAt:record.checkedAt,sourceSha256:record.responseSha256,evidencePath:repair.evidencePath,currency:record.currency,
+   correctedMarketReturn:p0&&p1?(p1/p0-1)*100:null,residualAttributed:false,priceWindowReleased:false}:null,
   currentConsumer:current?{route:current.voie_active_apres,secured:current.usage_securise,dailyEvidence:current.preuve_quotidienne_apres,officialCloseCheck:current.clotures_officielles_recoupees,proof:integrated.source}:null,
   sourceUrls:[...new Set([r.navSource,...(()=>{try{return JSON.parse(r.marketSource)}catch{return []}})()].filter(Boolean))],
   latestCheck:share?{runUrl:financialRun,attemptedAt:share.attemptedAt,officialStatus:share.official.status,officialError:share.official.error??null,marketStatus:share.market.status,
