@@ -1,6 +1,6 @@
 # Finalisation des données communes — bilan consolidé
 
-État de la capture : 2026-10-24T20:08:44.663611+00:00. Ce document prolonge #887/#889/#920/#921/#922 et le retrait #923. Le suivi financier reste unique. **L’objectif d’automatisation complète n’est pas atteint ni certifié.** Des réparations ont été livrées et exercées ; des sources et des qualifications restent ouvertes.
+État de la capture : 2026-10-24T20:41:03.560499+00:00. Ce document prolonge #887/#889/#920/#921/#922 et le retrait #923. Le suivi financier reste unique. **L’objectif d’automatisation complète n’est pas atteint ni certifié.** Des réparations ont été livrées et exercées ; des sources et des qualifications restent ouvertes.
 
 ## Résultats concrets
 
@@ -15,7 +15,7 @@
 | Publication | #932 reconnaît un préfixe de données déjà servi sur du code inchangé, sans certifier les scripts, workflows ou consommateurs non publiés. Reproduction réelle code2b/dataf900 puis data59a et tests avec véritables dépôts Git isolés. | Les demandes de nouveau code gardent tous leurs contrôles. La première occurrence naturelle du chemin corrigé après publication reste à observer si elle n’est pas documentée dans les preuves finales. |
 | Radar INSEE | 40122424700 : ancienne erreur Indice des prix publié absente ; lecteur commun sans erreur sur les registres consolidés. | Run global partiel : date officielle HANetf absente, HTTP403 et HTTP500 restent distincts. #930 répare HTTP304 et heures inconnues ; ne réutilise pas une date de publication comme contrôle source. |
 
-Les PR #924, #927, #928, #925 et #932 sont fusionnées. #930 est préservée ; #931 complète l’ingestion avant fin de publication, sous la responsabilité du chantier supervision. Sa fusion ne prouve pas à elle seule sa présence dans le code servi : la capture de publication ci-dessous fait référence.
+Les PR #924, #927, #928, #925 et #932 sont fusionnées. #930 est préservée ; #931 complète l’ingestion avant fin de publication, sous la responsabilité du chantier supervision. La version publique d73c560 inclut #931 et #934 ; les parcours finaux et le déploiement réussi 40124897241 sont vérifiés.
 
 ## Ce qui a changé dans les producteurs
 
@@ -29,7 +29,7 @@ Un test calendaire dépendant de données vivantes a été remplacé par une fix
 
 La [matrice](matrice-donnees-usages.csv) rapproche **31712 contrats logiques champ/série × outil**, **23 outils consommateurs**, **3544 identifiants de profils** et **671 ISIN distincts**. Les profils contiennent alias et variantes : ne pas les lire comme autant d’instruments économiques. Deux autres entrées applicatives sont la supervision et Dilemme, dont les hypothèses éditoriales ne constituent pas des données vivantes à collecter.
 
-Le contrôle automatique des preuves classe **0 A, 27987 B et 3725 non applicables** dans cette capture. **Ce n’est pas un taux réel d’automatisation.** Il exige une correspondance fine entre valeur présente, propriétaire du fichier dans la version exécutée, contrôle source ciblé, fraîcheur et reçu publié. Les journaux hérités ne permettent pas tous cette jointure. Dans cette capture, aucun contrat ne franchit automatiquement toutes ces exigences fines ; ce résultat signale une limite de qualification et de rapprochement, pas l’absence de toutes les collectes. Le statut déclaré du consommateur reste dans une colonne distincte. Les chaînes exercées du tableau précédent sont des preuves séparées ; leur succès global ne certifie pas tous les champs du fichier.
+Le contrôle automatique des preuves classe **0 A, 27987 B et 3725 non applicables** dans cette capture. **Ce n’est pas un taux réel d’automatisation.** Il exige une correspondance fine entre valeur présente, propriétaire du fichier dans la version exécutée, contrôle source ciblé, fraîcheur et reçu publié. Les journaux hérités ne permettent pas tous cette jointure. Les chaînes exercées du tableau précédent sont des preuves séparées ; leur succès global ne certifie pas tous les champs du fichier.
 
 La règle refuse notamment qu’un reçu global de publication de l’or certifie 3M, ou qu’un succès annuaires du même workflow certifie des prix non tentés. Une qualification locale, un simple label, des poids inconnus ou un champ annoncé sans valeur ne valent pas preuve financière. Les dates non redémontrées sont explicitement déclarées comme dates du registre ; une tentative globale n’est pas attribuée à chaque champ.
 
@@ -77,7 +77,11 @@ Parcours publics : neuf indices, 18 téléchargements PNG correspondant à l’a
 
 Une commande de nettoyage de 40117402200 a continué après un assert d’égalité trop strict : le site avait déjà avancé de dataf900 à data59a. L’écart de procédure est consigné. Vérification immédiate : f900 ancêtre de 59a, trois blobs inchangés, identité conforme au manifeste public ; seules les validations restantes ont été annulées après réussite collecte/enregistrement/publication. Ce run global n’est jamais compté comme réussite. Le nouveau sélecteur utilise le préfixe et la frontière de code ; aucun gate du nouveau code n’est supprimé.
 
-**Publication de la capture : code `e641e2c342530d4a44908240fe5761690beacc61`, données `e641e2c342530d4a44908240fe5761690beacc61`**, build `2026-10-24T19:14:44Z`. Le script du rapport extrait les registres depuis ce commit publié, en lecture seule ; les projections ne se certifient pas elles-mêmes. Les corrections fusionnées après cette version restent « à vérifier en production » jusqu’à leur capture effective.
+**Publication de la capture : code `d73c56031078c11994644eaf53b8728159750698`, données `d73c56031078c11994644eaf53b8728159750698`**, build `2026-10-24T19:47:32Z`. Le script du rapport extrait les registres depuis ce commit publié, en lecture seule ; les projections ne se certifient pas elles-mêmes. Les corrections fusionnées après cette version restent « à vérifier en production » jusqu’à leur capture effective.
+
+## Coordination finale
+
+Les PR concurrentes #936 (Radar) et #937 (supervision) ont été rapprochées avant cette livraison. Le présent lot final ne modifie que le suivi et les preuves ; aucun fichier de leurs mécanismes en cours n’est réécrit. Leurs évolutions non publiées ne sont pas comptées dans la capture d73c560.
 
 ## Téléchargements séparés
 
