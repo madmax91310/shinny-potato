@@ -19,7 +19,7 @@ try {
   const obs=resolveAnniversaryLevel('bitcoin','')
   if(obs){assert.equal(Number(await page.locator('#niveau-actuel').inputValue()),obs.value);assert.ok((await page.locator('pre').innerText()).includes(obs.label))}
   await page.locator('#niveau-actuel').fill('100000')
-  assert.ok((await page.locator('pre').innerText()).includes('Niveau saisi manuellement'))
+  assert.ok((await page.locator('pre').innerText()).includes('Aujourd’hui'))
   await page.locator('#niveau-actuel').fill('-1')
   assert.ok(await page.getByRole('button',{name:/pour copier/}).isDisabled())
   await page.locator('#niveau-actuel').fill('100000')
