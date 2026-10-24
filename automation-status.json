@@ -36,7 +36,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T17:36:04Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39993735401",
       "failures": [],
       "dataFailures": {},
@@ -75,141 +75,44 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-market-monthly.yml": {
       "monitorVersion": 2,
       "name": "Historiques mensuels des marchés",
-      "runId": 40048488254,
+      "runId": 40056377824,
       "attempt": 1,
-      "headSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "createdAt": "2026-10-24T01:09:27Z",
-      "completedAt": "2026-10-24T02:09:24Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-18T15:09:29Z",
-      "collectionStatus": "failure",
+      "headSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "createdAt": "2026-10-24T02:58:19Z",
+      "completedAt": "2026-10-24T03:31:08Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-24T03:31:08Z",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-18T16:00:42Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:07:29.344Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "history:aerospace-paris-eur": {
-          "name": "history:aerospace-paris-eur",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:gold-invesco-usd": {
-          "name": "history:gold-invesco-usd",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-amazon": {
-          "name": "history:long-amazon",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-apple": {
-          "name": "history:long-apple",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-euroCorporateBond": {
-          "name": "history:long-euroCorporateBond",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-euroGov13": {
-          "name": "history:long-euroGov13",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-euroHighYieldBond": {
-          "name": "history:long-euroHighYieldBond",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-globalBondEur": {
-          "name": "history:long-globalBondEur",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-google": {
-          "name": "history:long-google",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-meta": {
-          "name": "history:long-meta",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-microsoft": {
-          "name": "history:long-microsoft",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-nvidia": {
-          "name": "history:long-nvidia",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        },
-        "history:long-sp500": {
-          "name": "history:long-sp500",
-          "completedAt": "2026-10-24T02:09:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-          "cause": "HTTP Error 429: Too Many Requests",
-          "field": "Historique mensuel"
-        }
-      },
+      "lastCollectionSuccessAt": "2026-10-24T03:31:08Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40056377824",
+      "failures": [],
+      "dataFailures": {},
       "publicationReceipt": {
-        "commit": "eb4fd51f91babcac47a8b70617eb88af40cafcab",
+        "commit": "0fe78794f93d8e52a8d8c127faa9f29538a38f97",
         "files": {
           "src/data/anniversary-levels.json": "8ba82d0d9d9a143de995d299435f174bc825aab5",
           "src/data/auto-history-identities.json": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
           "src/data/automated-etf-monthly.json": "0734dc1e62fd9b9473d0ad022e3f3245171158e3",
-          "src/data/automated-indices.json": "d7d689266af5eee97ef07dcedd1829e4d70eb3cc",
+          "src/data/automated-indices.json": "d33f0b1be0b4504a7103648c21f9c9c1ca98b7a3",
           "src/data/automated-monthly.json": "63d272de643a1aa86e173a536982e597b0277bf7",
           "src/data/monthly-fx.json": "cb32f2c155e833e351d9b8accdeba1c7c534a85c",
           "src/data/qualified-listing-records.json": "f99e27def4de71d98613daf09775e5233fdcb1d5",
-          "src/data/ranking-histories.json": "263d6d6c64c3631a9597bd1cdf9ecbbc4c2d11fd"
+          "src/data/ranking-histories.json": "b87fcef449397462b594afb351de907c43b64067"
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "eb4fd51f91babcac47a8b70617eb88af40cafcab"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
@@ -226,7 +129,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T11:36:53Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488415",
       "failures": [
         {
@@ -253,8 +156,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-economic-data.yml": {
       "monitorVersion": 2,
@@ -311,7 +214,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T12:46:34Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39955158223",
       "failures": [],
       "dataFailures": {},
@@ -322,8 +225,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -1322,7 +1225,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-24T00:43:27Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40045364366",
       "failures": [],
       "dataFailures": {},
@@ -1333,8 +1236,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -1351,7 +1254,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-24T00:39:30Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40045211519",
       "failures": [],
       "dataFailures": {},
@@ -1362,8 +1265,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1431,7 +1334,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T11:06:04Z",
-      "lastPublicationSuccessAt": "2026-10-24T02:11:38.435Z",
+      "lastPublicationSuccessAt": "2026-10-24T03:29:24.878Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39939094443",
       "failures": [],
       "dataFailures": {},
@@ -1442,8 +1345,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "3fde88969344539e34288f77795a9af7985c02b3",
-      "publishedDataSha": "6c75fc3eb4f5d9a45075a87ad6408d9458a953ee"
+      "publishedCodeSha": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
+      "publishedDataSha": "0fe78794f93d8e52a8d8c127faa9f29538a38f97"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -4454,11 +4357,11 @@
       }
     }
   },
-  "updatedAt": "2026-10-24T02:59:32Z",
+  "updatedAt": "2026-10-24T03:31:08Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-24T03:23:00.032183+00:00",
-    "revision": 290,
+    "checkedAt": "2026-10-24T03:31:47.254504+00:00",
+    "revision": 291,
     "active": {
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -4476,7 +4379,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-24T01:39:52.085915+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -4505,309 +4408,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:aerospace-paris-eur": {
-        "name": "iShares Global Aerospace & Defence UCITS ETF · Paris EUR",
-        "tools": [
-          "Calculateur",
-          "Performance depuis"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/bibliotheque-donnees?id=history%3Aaerospace-paris-eur",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1mo&events=div%2Csplits"
-        ],
-        "kind": "collection",
-        "dataId": "history:aerospace-paris-eur",
-        "id": "collection:update-market-monthly.yml:history:aerospace-paris-eur",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:gold-invesco-usd": {
-        "name": "Invesco Physical Gold ETC · Londres USD",
-        "tools": [
-          "Calculateur",
-          "Performance depuis"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/bibliotheque-donnees?id=history%3Agold-invesco-usd",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [
-          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1d&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1mo&events=div%2Csplits",
-          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1251158400&period2=1251763200&interval=1d&events=div%2Csplits"
-        ],
-        "kind": "collection",
-        "dataId": "history:gold-invesco-usd",
-        "id": "collection:update-market-monthly.yml:history:gold-invesco-usd",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-amazon": {
-        "name": "history:long-amazon",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-amazon",
-        "id": "collection:update-market-monthly.yml:history:long-amazon",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-apple": {
-        "name": "history:long-apple",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-apple",
-        "id": "collection:update-market-monthly.yml:history:long-apple",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-euroCorporateBond": {
-        "name": "history:long-euroCorporateBond",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-euroCorporateBond",
-        "id": "collection:update-market-monthly.yml:history:long-euroCorporateBond",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-euroGov13": {
-        "name": "history:long-euroGov13",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-euroGov13",
-        "id": "collection:update-market-monthly.yml:history:long-euroGov13",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-euroHighYieldBond": {
-        "name": "history:long-euroHighYieldBond",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-euroHighYieldBond",
-        "id": "collection:update-market-monthly.yml:history:long-euroHighYieldBond",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-globalBondEur": {
-        "name": "history:long-globalBondEur",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-globalBondEur",
-        "id": "collection:update-market-monthly.yml:history:long-globalBondEur",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-google": {
-        "name": "history:long-google",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-google",
-        "id": "collection:update-market-monthly.yml:history:long-google",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-meta": {
-        "name": "history:long-meta",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-meta",
-        "id": "collection:update-market-monthly.yml:history:long-meta",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-microsoft": {
-        "name": "history:long-microsoft",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-microsoft",
-        "id": "collection:update-market-monthly.yml:history:long-microsoft",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-nvidia": {
-        "name": "history:long-nvidia",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-nvidia",
-        "id": "collection:update-market-monthly.yml:history:long-nvidia",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
-      },
-      "collection:update-market-monthly.yml:history:long-sp500": {
-        "name": "history:long-sp500",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-24T02:09:24Z",
-        "cause": "HTTP Error 429: Too Many Requests",
-        "field": "Historique mensuel",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "history:long-sp500",
-        "id": "collection:update-market-monthly.yml:history:long-sp500",
-        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -4835,7 +4436,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -4863,7 +4464,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -4890,7 +4491,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -4917,7 +4518,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -4944,7 +4545,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -4972,7 +4573,7 @@
         "dataId": "IE00BDVPNG13:aum",
         "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5000,7 +4601,7 @@
         "dataId": "IE00BDVPNG13:countries",
         "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5028,7 +4629,7 @@
         "dataId": "IE00BDVPNG13:sectors",
         "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5056,7 +4657,7 @@
         "dataId": "IE00BDVPNG13:holdings",
         "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum": {
         "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
@@ -5084,7 +4685,7 @@
         "dataId": "IE00BKLF1R75:aum",
         "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries": {
         "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
@@ -5112,7 +4713,7 @@
         "dataId": "IE00BKLF1R75:countries",
         "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors": {
         "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
@@ -5140,7 +4741,7 @@
         "dataId": "IE00BKLF1R75:sectors",
         "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings": {
         "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
@@ -5168,7 +4769,7 @@
         "dataId": "IE00BKLF1R75:holdings",
         "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYZK4776:listings": {
         "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
@@ -5198,7 +4799,7 @@
         "dataId": "IE00BYZK4776:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BYZK4776:listings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum": {
         "name": "WisdomTree Copper",
@@ -5227,7 +4828,7 @@
         "dataId": "GB00B15KXQ89:aum",
         "id": "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:GB00BJYDH287:aum": {
         "name": "WisdomTree Physical Bitcoin",
@@ -5256,7 +4857,7 @@
         "dataId": "GB00BJYDH287:aum",
         "id": "collection:update-instrument-metadata.yml:GB00BJYDH287:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum": {
         "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
@@ -5285,7 +4886,7 @@
         "dataId": "IE0002XZSHO1:aum",
         "id": "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum": {
         "name": "iShares S&P 500 Swap PEA UCITS ETF",
@@ -5315,7 +4916,7 @@
         "dataId": "IE000DQLYVB9:aum",
         "id": "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-instrument-metadata.yml:JE00B1VS3770:aum": {
         "name": "WisdomTree Physical Gold",
@@ -5344,7 +4945,7 @@
         "dataId": "JE00B1VS3770:aum",
         "id": "collection:update-instrument-metadata.yml:JE00B1VS3770:aum",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -5373,7 +4974,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5402,7 +5003,7 @@
         "dataId": "IE00B5BMR087-XLON-CSPX-USD",
         "id": "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD",
         "firstSeenAt": "2026-10-24T01:01:25.269676+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -5431,7 +5032,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BDVPNG13:aum": {
         "id": "field:instrument:IE00BDVPNG13:aum",
@@ -5460,7 +5061,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BDVPNG13:countries": {
         "id": "field:instrument:IE00BDVPNG13:countries",
@@ -5489,7 +5090,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BDVPNG13:sectors": {
         "id": "field:instrument:IE00BDVPNG13:sectors",
@@ -5518,7 +5119,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BDVPNG13:holdings": {
         "id": "field:instrument:IE00BDVPNG13:holdings",
@@ -5547,7 +5148,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BKLF1R75:aum": {
         "id": "field:instrument:IE00BKLF1R75:aum",
@@ -5576,7 +5177,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BKLF1R75:countries": {
         "id": "field:instrument:IE00BKLF1R75:countries",
@@ -5605,7 +5206,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BKLF1R75:sectors": {
         "id": "field:instrument:IE00BKLF1R75:sectors",
@@ -5634,7 +5235,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BKLF1R75:holdings": {
         "id": "field:instrument:IE00BKLF1R75:holdings",
@@ -5663,7 +5264,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -5692,7 +5293,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE00BYZK4776:listings": {
         "id": "field:instrument:IE00BYZK4776:listings",
@@ -5721,7 +5322,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:GB00B15KXQ89:aum": {
         "id": "field:instrument:GB00B15KXQ89:aum",
@@ -5749,7 +5350,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:GB00BJYDH287:aum": {
         "id": "field:instrument:GB00BJYDH287:aum",
@@ -5777,7 +5378,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE0002XZSHO1:aum": {
         "id": "field:instrument:IE0002XZSHO1:aum",
@@ -5805,7 +5406,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -5832,7 +5433,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE000DQLYVB9:aum": {
         "id": "field:instrument:IE000DQLYVB9:aum",
@@ -5860,7 +5461,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -5887,7 +5488,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "field:instrument:JE00B1VS3770:aum": {
         "id": "field:instrument:JE00B1VS3770:aum",
@@ -5915,7 +5516,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -5937,7 +5538,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       },
       "radar:8f8823b8a9df171cbf6f0481": {
         "name": "iShares Listed Private Equity UCITS ETF",
@@ -5960,37 +5561,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du secteur Cash and/or Derivatives. Dernière observation conservée ; propositions archivées (etf:IE00B1TXHL60:sectors:Cash and/or Derivatives:54cb8c3041a4bc9820c74c90:2026-10-22).",
         "id": "radar:8f8823b8a9df171cbf6f0481",
         "firstSeenAt": "2026-10-24T00:34:02.772718+00:00",
-        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00"
+        "lastSeenAt": "2026-10-24T03:31:47.254504+00:00"
       }
     },
     "events": [
-      {
-        "revision": 261,
-        "at": "2026-10-23T10:21:01.188329+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Présentations de SCPI",
-            "tools": [
-              "Présentations SCPI"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-scpi.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39917620412",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-23T07:27:51Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-scpi.yml",
-            "firstSeenAt": "2026-10-23T07:28:28.322874+00:00",
-            "lastSeenAt": "2026-10-23T10:19:25.430624+00:00",
-            "resolvedAt": "2026-10-23T10:21:01.188329+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 262,
         "at": "2026-10-23T10:24:30.402744+00:00",
@@ -9323,9 +8897,648 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 291,
+        "at": "2026-10-24T03:31:47.254504+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "iShares Global Aerospace & Defence UCITS ETF · Paris EUR",
+            "tools": [
+              "Calculateur",
+              "Performance depuis"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/bibliotheque-donnees?id=history%3Aaerospace-paris-eur",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1mo&events=div%2Csplits"
+            ],
+            "kind": "collection",
+            "dataId": "history:aerospace-paris-eur",
+            "id": "collection:update-market-monthly.yml:history:aerospace-paris-eur",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "Invesco Physical Gold ETC · Londres USD",
+            "tools": [
+              "Calculateur",
+              "Performance depuis"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/bibliotheque-donnees?id=history%3Agold-invesco-usd",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [
+              "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1d&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1mo&events=div%2Csplits",
+              "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1251158400&period2=1251763200&interval=1d&events=div%2Csplits"
+            ],
+            "kind": "collection",
+            "dataId": "history:gold-invesco-usd",
+            "id": "collection:update-market-monthly.yml:history:gold-invesco-usd",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-amazon",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-amazon",
+            "id": "collection:update-market-monthly.yml:history:long-amazon",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-apple",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-apple",
+            "id": "collection:update-market-monthly.yml:history:long-apple",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-euroCorporateBond",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-euroCorporateBond",
+            "id": "collection:update-market-monthly.yml:history:long-euroCorporateBond",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-euroGov13",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-euroGov13",
+            "id": "collection:update-market-monthly.yml:history:long-euroGov13",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-euroHighYieldBond",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-euroHighYieldBond",
+            "id": "collection:update-market-monthly.yml:history:long-euroHighYieldBond",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-globalBondEur",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-globalBondEur",
+            "id": "collection:update-market-monthly.yml:history:long-globalBondEur",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-google",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-google",
+            "id": "collection:update-market-monthly.yml:history:long-google",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-meta",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-meta",
+            "id": "collection:update-market-monthly.yml:history:long-meta",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-microsoft",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-microsoft",
+            "id": "collection:update-market-monthly.yml:history:long-microsoft",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-nvidia",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-nvidia",
+            "id": "collection:update-market-monthly.yml:history:long-nvidia",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          },
+          {
+            "name": "history:long-sp500",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T16:00:42Z",
+            "completedAt": "2026-10-24T02:09:24Z",
+            "cause": "HTTP Error 429: Too Many Requests",
+            "field": "Historique mensuel",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "history:long-sp500",
+            "id": "collection:update-market-monthly.yml:history:long-sp500",
+            "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+            "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+            "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "iShares Global Aerospace & Defence UCITS ETF · Paris EUR",
+        "tools": [
+          "Calculateur",
+          "Performance depuis"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/bibliotheque-donnees?id=history%3Aaerospace-paris-eur",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1mo&events=div%2Csplits"
+        ],
+        "kind": "collection",
+        "dataId": "history:aerospace-paris-eur",
+        "id": "collection:update-market-monthly.yml:history:aerospace-paris-eur",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "Invesco Physical Gold ETC · Londres USD",
+        "tools": [
+          "Calculateur",
+          "Performance depuis"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/bibliotheque-donnees?id=history%3Agold-invesco-usd",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1246406400&period2=1790812800&interval=1mo&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/SGLD.L?period1=1251158400&period2=1251763200&interval=1d&events=div%2Csplits"
+        ],
+        "kind": "collection",
+        "dataId": "history:gold-invesco-usd",
+        "id": "collection:update-market-monthly.yml:history:gold-invesco-usd",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-amazon",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-amazon",
+        "id": "collection:update-market-monthly.yml:history:long-amazon",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-apple",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-apple",
+        "id": "collection:update-market-monthly.yml:history:long-apple",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-euroCorporateBond",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-euroCorporateBond",
+        "id": "collection:update-market-monthly.yml:history:long-euroCorporateBond",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-euroGov13",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-euroGov13",
+        "id": "collection:update-market-monthly.yml:history:long-euroGov13",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-euroHighYieldBond",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-euroHighYieldBond",
+        "id": "collection:update-market-monthly.yml:history:long-euroHighYieldBond",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-globalBondEur",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-globalBondEur",
+        "id": "collection:update-market-monthly.yml:history:long-globalBondEur",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-google",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-google",
+        "id": "collection:update-market-monthly.yml:history:long-google",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-meta",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-meta",
+        "id": "collection:update-market-monthly.yml:history:long-meta",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-microsoft",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-microsoft",
+        "id": "collection:update-market-monthly.yml:history:long-microsoft",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-nvidia",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-nvidia",
+        "id": "collection:update-market-monthly.yml:history:long-nvidia",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
+      {
+        "name": "history:long-sp500",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40048488254",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T16:00:42Z",
+        "completedAt": "2026-10-24T02:09:24Z",
+        "cause": "HTTP Error 429: Too Many Requests",
+        "field": "Historique mensuel",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "history:long-sp500",
+        "id": "collection:update-market-monthly.yml:history:long-sp500",
+        "firstSeenAt": "2026-10-24T02:09:58.790564+00:00",
+        "lastSeenAt": "2026-10-24T03:23:00.032183+00:00",
+        "resolvedAt": "2026-10-24T03:31:47.254504+00:00"
+      },
       {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
         "tools": [
@@ -11375,317 +11588,6 @@
         "field": "Poids du pays Norway",
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Norway:9e8222db7f15caa14c54cb45:2026-10-22).",
         "id": "radar:cdb6deb4ff1bd945952e0fc6",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Taiwan",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Taiwan:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:1375aaf5ef3cf5a763166232",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays China",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:China:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:1def60a64aaf7b5bdf342b44",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Brazil",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Brazil:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:5e2ef48efa480794a6fb7a0c",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays South Africa",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:South Africa:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:ae3fca7fa10e6f9c0f4618d2",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Mexico",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Mexico:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:1ec224b1ac52bc616360ed35",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Greece",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Greece:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:45bdb18cf5f3dd1f44ae938b",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Switzerland:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:2fd41fe921e3dba6dbaf4e44",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Hong Kong",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Hong Kong:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:84e7ceffa70fbc3a3f847445",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:United States:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:a6f88c355ce2373b5a7a3b66",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Romania",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Romania:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:cea3655e77f5db2a0606f821",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Netherlands",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Netherlands:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:34e4d16149954787fa399fbd",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BTJRMP35",
-        "kind": "conflict",
-        "field": "Poids du pays Ireland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Ireland:9a89e0e64273d8294b2dae58:2026-10-22).",
-        "id": "radar:879356d25802e2ed3862e905",
-        "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
-        "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HV82/pdpMetaTagsTealium"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HV82",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-22).",
-        "id": "radar:89860c3c497d054ff50210d8",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
         "lastSeenAt": "2026-10-23T19:15:07.162802+00:00",
         "resolvedAt": "2026-10-23T19:26:48.693251+00:00"
@@ -15340,11 +15242,11 @@
           "error": null
         }
       ],
-      "reason": "transient-source",
-      "lastSuccessAt": "2026-10-18T16:00:42Z",
-      "observedRunId": 40048488254,
-      "nextAttemptAt": "2026-10-24T06:07:34.090193+00:00",
-      "status": "budget-exhausted"
+      "reason": null,
+      "lastSuccessAt": "2026-10-24T03:31:08Z",
+      "observedRunId": 40056377824,
+      "nextAttemptAt": null,
+      "status": "idle"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
