@@ -40,3 +40,14 @@ assert.equal(merged.length,1);assert.equal(merged[0].signals.length,2);assert.eq
 
 const pending=buildInbox({...args,status:{...status,inFlightRuns:{'101:1':{workflow:'update-scpi.yml',run:{id:101,status:'in_progress',html_url:'https://github.com/test/repo/actions/runs/101'},sourceProofCaptured:true,checkedAt:'2026-10-24T12:00:00Z'}}}}).issues.find(r=>r.id==='running:101:1')
 assert.equal(pending.kind,'waiting');assert.equal(pending.asOf,undefined);assert.match(pending.cause,/terminée/)
+
+const selfRecord={runUrl:'https://github.com/test/repo/actions/runs/1',completedAt:'2026-10-24T10:00:00Z',failedChecks:{write:{step:'Initialise current statuses',failedAt:'2026-10-24T10:00:00Z'}}}
+const selfModel=record=>buildInbox({...args,status:{...status,monitorSelf:{schemaVersion:1,failures:{'1:1':record}}}}).issues.find(r=>r.id==='self-history:1:1')
+assert.equal(selfModel(selfRecord).kind,'monitoring')
+assert.equal(selfModel({...selfRecord,resolvedAt:'2026-10-24T11:00:00Z',resolutionEvidence:{kind:'matching-ordinary-monitor-steps',checks:[{runId:2,kind:'ordinary-monitor-step',step:'Initialise current statuses',checkedAt:'2026-10-24T11:00:00Z',runUrl:'https://github.com/test/repo/actions/runs/2'}]}}).kind,'history')
+
+assert.equal(selfModel({...selfRecord,resolvedAt:'2026-10-24T11:00:00Z',resolutionEvidence:{kind:'matching-ordinary-monitor-steps',checks:[]}}).kind,'monitoring')
+
+assert(buildInbox({...args,status:{...status,monitorSelf:{schemaVersion:1,failures:{bad:{failedChecks:{x:null}}}}}}).issues.some(r=>r.id==='health:self-history:bad'))
+
+assert.equal(selfModel({...selfRecord,qualificationPending:true}).kind,'qualification')

@@ -30,7 +30,7 @@ class Evidence(unittest.TextTestResult):
 
     def addSuccess(self, test):
         super().addSuccess(test)
-        self.rows.append({'test': test._testMethodName, 'producer': '', 'class': 'cross-cutting',
+        self.rows.append({'test': test._testMethodName, 'producer': 'automation-status.yml' if test._testMethodName.startswith('test_monitor_self_') else '', 'class': 'cross-cutting',
                           'case': str(test), 'result': 'passed',
                           'evidence': 'scripts/test_automation_product.py::' + test._testMethodName})
 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     (output / 'matrix-test-log.txt').write_text(log.getvalue())
     document = {'generatedAt': dt.datetime.now(dt.timezone.utc).isoformat(), 'productionFaultsInjected': False,
                 'scope': 'Real supervision reducers/readers with isolated faults; not source transport certification',
-                'producers': list(REGISTRY), 'testsRun': result.testsRun, 'successful': result.wasSuccessful(), 'rows': result.rows}
+                'producers': [*REGISTRY,'automation-status.yml'], 'testsRun': result.testsRun, 'successful': result.wasSuccessful(), 'rows': result.rows}
     (output / 'matrice-controles.json').write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n')
     with (output / 'matrice-controles.csv').open('w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=['producer', 'class', 'result', 'test', 'case', 'evidence'], lineterminator='\n')

@@ -12,6 +12,7 @@ from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_repo
     read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence, observe_running_workflows, include_configured_workflows)
 from automation_monitoring import evaluate_monitoring, restore_history
 from automation_status_storage import pack_report_scopes,expand_report_scopes,encode_status
+from automation_monitor_self import observe_monitor_history
 
 NOW='2026-10-24T12:00:00Z'
 CTX={'schemaVersion':1,'alerts':[],'entities':[],'historyAlerts':[],'fieldAlerts':[]}
@@ -44,6 +45,39 @@ class ProductContracts(unittest.TestCase):
         with self.assertRaises(ValueError):expand_report_scopes(broken)
         mutated=copy.deepcopy(packed);next(iter(mutated['reportScopes'].values()))['kind']='forged'
         with self.assertRaises(ValueError):pack_report_scopes(mutated)
+
+    def test_monitor_self_history_requires_matching_steps_and_survives_outage(self):
+        def run(i,event,conclusion,h):return {'id':i,'run_attempt':1,'head_branch':'master','status':'completed','event':event,'conclusion':conclusion,'updated_at':f'2026-10-24T{h}:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{i}'}
+        failed=run(1,'push','failure','10');different=run(2,'schedule','success','11');repaired=run(3,'push','success','12');rows=[different,failed]
+        def api(path):
+            if '/jobs?'not in path:return {'workflow_runs':rows}
+            i=int(path.split('/runs/')[1].split('/')[0]);r={1:failed,2:different,3:repaired}[i]
+            name='Initialise current statuses'if i!=2 else'Check silent collectors and data deadlines'
+            return {'jobs':[{'id':i,'name':'publish','conclusion':r['conclusion'],'completed_at':r['updated_at'],'steps':[{'name':name,'conclusion':r['conclusion'],'completed_at':r['updated_at']}]}]}
+        initial=observe_monitor_history({'workflows':{'untouched':{'asOf':'2026-09'}}},api,'test/repo','2026-10-24T13:00:00Z',lambda job:'secret-token-not-copied\nGitHub PUT, charge de 96201516 octets : {\"message\":\"file too large\"}\n')
+        self.assertNotIn('resolvedAt',initial['monitorSelf']['failures']['1:1'])
+        self.assertIn('file too large',initial['monitorSelf']['failures']['1:1']['diagnostic']);self.assertNotIn('secret-token',initial['monitorSelf']['failures']['1:1']['diagnostic'])
+        rows=[repaired,different,failed]
+        done=observe_monitor_history(initial,api,'test/repo','2026-10-24T13:10:00Z')
+        self.assertEqual(done['monitorSelf']['failures']['1:1']['resolvedAt'],repaired['updated_at'])
+        self.assertEqual(done['monitorSelf']['failures']['1:1']['resolutionEvidence']['checks'][0]['runId'],3)
+        rows=[repaired]
+        again=observe_monitor_history(done,api,'test/repo','2026-10-24T14:00:00Z')
+        self.assertEqual(again['monitorSelf']['failures'],done['monitorSelf']['failures'])
+        def outage(path):raise OSError('API unavailable')
+        unavailable=observe_monitor_history(again,outage,'test/repo','2026-10-24T15:00:00Z')
+        self.assertIn('self-history',unavailable['observerErrors']);self.assertEqual(unavailable['workflows'],initial['workflows'])
+        self.assertEqual(unavailable['monitorSelf']['failures'],done['monitorSelf']['failures'])
+        many=[run(i,'push','failure','10')for i in range(10,30)];reads=[]
+        def partial_api(path):
+            reads.append(path)
+            if '/jobs?'in path:return {'jobs':[]}
+            return {'workflow_runs':many}
+        limited=observe_monitor_history({},partial_api,'test/repo','2026-10-24T15:00:00Z')
+        self.assertEqual(len(limited['monitorSelf']['failures']),20);self.assertLessEqual(len(reads),7)
+        self.assertGreater(limited['monitorSelf']['coverage']['pendingRuns'],0)
+        self.assertTrue(all(f['qualificationPending']and not f.get('resolvedAt')for f in limited['monitorSelf']['failures'].values()))
+
 
     def test_every_registered_producer_and_fault_class(self):
         # This matrix invokes the actual reducer for EVERY producer, not a copy of its implementation.

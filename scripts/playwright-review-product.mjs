@@ -10,7 +10,8 @@ const base=external??'http://127.0.0.1:4398/shinny-potato'
 const fresh=()=>new Date().toISOString()
 const workflows=Object.fromEntries(Object.entries(registry).map(([id,c])=>[id,{name:c.name,completedAt:fresh(),status:'success',collectionStatus:'success',validationStatus:'success',dataFailures:{}}]))
 const incidents=Object.fromEntries(Array.from({length:181},(_,i)=>{const id='fixture:'+i;return[id,{id,name:'Source-'+String(i).padStart(3,'0'),kind:'collection',dataId:'test-'+i,field:'Champ de recette',cause:'Échec de recette isolée',tools:['Outil de recette'],asOf:'2026-09',lastSuccessAt:'2026-10-22T10:00:00Z',attemptedAt:'2026-10-24T08:00:00Z',runUrl:'https://github.com/test/repo/actions/runs/1',sourceUrls:['https://example.com/source'],observations:[{cause:'Panne précédente',asOf:'2026-09'}]}]}))
-let snapshot={schemaVersion:1,workflows,monitoring:{schemaVersion:1,checkedAt:fresh(),active:incidents,resolved:[]}},unavailable=false,badCoverage=false,badProjection=false
+const proofScope='a'.repeat(64);incidents['fixture:180'].evidence={file:'fixture.json',sha256:'b'.repeat(64),scopeRef:proofScope,scopeSummary:{expectedIdsCount:1}}
+let snapshot={schemaVersion:1,reportScopeSchemaVersion:1,reportScopes:{[proofScope]:{kind:'targeted',expectedIds:['test-180'],requestedIds:['test-180']}},workflows,monitoring:{schemaVersion:1,checkedAt:fresh(),active:incidents,resolved:[]}},unavailable=false,badCoverage=false,badProjection=false
 let browser
 try{
  for(let n=0;n<100;n++){try{if((await fetch(base+'/',{signal:AbortSignal.timeout(1000)})).ok)break}catch{}if(n===99)throw Error('Preview unavailable');await new Promise(r=>setTimeout(r,200))}
@@ -34,7 +35,7 @@ try{
   await inbox.getByText('Filtrer par classe, outil ou étape',{exact:true}).click();await choose(inbox.getByRole('group',{name:'Outil concerné',exact:true}),'Outil de recette')
   await search.fill('');await inbox.getByRole('navigation',{name:'Pages des problèmes de données'}).getByRole('button',{name:'Dernière page'}).click()
   await inbox.getByRole('heading',{name:'Source-180 · Champ de recette'}).waitFor();assert(await inbox.getByRole('navigation',{name:'Pages des problèmes de données'}).getByRole('button',{name:'Dernière page'}).isDisabled())
-  const download=page.waitForEvent('download');await inbox.getByRole('button',{name:/Exporter les 181 diagnostics/}).click();const file=await download;await file.saveAs(folder+'/all-'+width+'.json');const payload=JSON.parse(fs.readFileSync(folder+'/all-'+width+'.json'));assert.equal(payload.rows.length,181)
+  const download=page.waitForEvent('download');await inbox.getByRole('button',{name:/Exporter les 181 diagnostics/}).click();const file=await download;await file.saveAs(folder+'/all-'+width+'.json');const payload=JSON.parse(fs.readFileSync(folder+'/all-'+width+'.json'));assert.equal(payload.rows.length,181);assert.deepEqual(payload.reportScopes,snapshot.reportScopes);assert.equal(payload.rows.at(-1).signals[0].evidence.scopeRef,proofScope)
   await inbox.getByRole('checkbox',{name:'Regrouper les causes en conservant chaque champ et chaque preuve'}).check();const group=inbox.locator('details').filter({has:page.locator('summary').filter({hasText:'181 points'})}).first();await group.locator('summary').first().click();assert((await group.innerText()).includes('Champ de recette'))
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
   await page.screenshot({path:folder+'/queue-'+width+'.png',fullPage:false})
@@ -48,6 +49,6 @@ try{
  badProjection=true;await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'});await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Projection des incidents différente');await page.getByRole('region',{name:'Tous les problèmes de données'}).locator('article').first().waitFor()
  badProjection=false;await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'});await page.getByRole('region',{name:'Tous les problèmes de données'}).getByRole('searchbox',{name:'Recherche globale des problèmes'}).fill('Projection des incidents différente');assert.equal(await page.getByRole('region',{name:'Tous les problèmes de données'}).locator('article').count(),0)
  assert.deepEqual(errors,[])
- fs.writeFileSync(folder+'/results.json',JSON.stringify({desktop:true,mobile:true,all181Accessible:true,diagnosticFallback:true,allFilteredExported:true,monitorFaults:['absent','invalid','stale','network'],invalidCoverage:true,staleConsumerProjection:true,recovery:true,pageErrors:errors},null,2)+'\n')
+ fs.writeFileSync(folder+'/results.json',JSON.stringify({desktop:true,mobile:true,all181Accessible:true,diagnosticFallback:true,allFilteredExported:true,sharedProofScopesExported:true,monitorFaults:['absent','invalid','stale','network'],invalidCoverage:true,staleConsumerProjection:true,recovery:true,pageErrors:errors},null,2)+'\n')
  console.log('Review product: desktop/mobile, exhaustive pagination/search/export/copy, monitor faults, isolated report failure and recovery verified.')
 }finally{await browser?.close();server?.kill()}
