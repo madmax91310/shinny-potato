@@ -46,6 +46,34 @@ const interrupted = advanceRadar(waiting.state, rows, { now: new Date('2026-10-1
   compositionVerificationFailures: proofs.map(p => p.entity) })
 assert.equal(active(advance(interrupted.state, rows, later, new Date('2026-10-14T15:00:00Z'))).length, 34,
   'A failed or differing live check restarts the stability window')
+
+// The raw archives differ when a known ISIN's display name changes. Independent
+// Python parsing keeps all other fields in this versioned document signature.
+const scope = 'complete-document-except-display-name-of-checksummed-isin-v1'
+const signatureProofs = proofs.map(p=>({...p,stabilitySourceHash:'1'.repeat(64),stabilityScope:scope}))
+const seeded = advance(recent,rows,signatureProofs)
+const at = (date,hash='e'.repeat(64),signature='1'.repeat(64)) => ({
+  date:new Date(date),rows:rows.map(r=>({...r,sourceHash:hash,checkedAt:date})),
+  proofs:signatureProofs.map(p=>({...p,sourceHash:hash,checkedAt:date,stabilitySourceHash:signature}))})
+const before = at('2026-10-14T13:58:00Z'),after = at('2026-10-14T14:01:00Z')
+const renamed = advance(seeded.state,before.rows,before.proofs,before.date)
+assert.equal(active(renamed).length,34,'A name-only revision cannot shorten four hours')
+assert.equal(active(advance(renamed.state,after.rows,after.proofs,after.date)).length,0,
+  'A name-only revision does not restart four hours of unchanged financial data and identities')
+const financial = at('2026-10-14T13:58:00Z','e'.repeat(64),'2'.repeat(64))
+const reset = advance(seeded.state,financial.rows,financial.proofs,financial.date)
+const tooSoon = at('2026-10-14T14:01:00Z','e'.repeat(64),'2'.repeat(64))
+assert.equal(active(advance(reset.state,tooSoon.rows,tooSoon.proofs,tooSoon.date)).length,34,
+  'A financial change restarts stability even when country/sector totals happen to match')
+const failedSignature = advanceRadar(seeded.state,rows,{now:new Date('2026-10-14T12:00:00Z'),compositionVerificationFailures:proofs.map(p=>p.entity)})
+assert.equal(active(advance(failedSignature.state,after.rows,after.proofs,after.date)).length,34,
+  'A failed check interrupts the new signature clock too')
+const legacyChanged = advance(waiting.state,before.rows,before.proofs,before.date)
+assert.equal(active(advance(legacyChanged.state,after.rows,after.proofs,after.date)).length,34,
+  'Migration never backdates a signature that was not previously certified')
+for(const invalid of [{stabilitySourceHash:'x',stabilityScope:scope},{stabilitySourceHash:'1'.repeat(64),stabilityScope:'unknown'}]){
+ assert.equal(active(advance(recent,rows,proofs.map(p=>({...p,...invalid})))).length,34)
+}
 const changed = structuredClone(rows)
 changed[0].value += .25
 changed[0].sourceHash = 'e'.repeat(64)

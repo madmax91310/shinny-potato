@@ -1,5 +1,7 @@
 """Independently re-fetch complete official DWS portfolios for radar reconciliation."""
 import datetime as dt
+import copy
+import hashlib
 import json
 import pathlib
 import re
@@ -7,6 +9,27 @@ from concurrent.futures import ThreadPoolExecutor
 
 from collect_dws_etf import parse_holdings
 from data_automation import UTC, get_json
+
+STABILITY_SCOPE = 'complete-document-except-display-name-of-checksummed-isin-v1'
+
+
+def stability_hash(body):
+    """Keep every source field except a display name tied to an explicit valid ISIN.
+
+    Called only after parse_holdings has validated the exact table and columns.
+    No identity is inferred from a name; unidentified rows keep their full labels.
+    """
+    canonical = copy.deepcopy(body)
+    for row in canonical['tables'][0]['values']:
+        isin = row['header']['value']
+        if not isinstance(isin, str) or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d', isin):
+            continue
+        digits = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in isin)
+        checksum = sum((int(n) * 2 // 10 + int(n) * 2 % 10) if i % 2 else int(n)
+                       for i, n in enumerate(digits[::-1]))
+        if checksum % 10 == 0:
+            row['column_0']['value'] = '[display label; identity retained by ISIN]'
+    return hashlib.sha256(json.dumps(canonical, sort_keys=True, allow_nan=False).encode()).hexdigest()
 
 
 def verify(isin, record, now, fetch=get_json):
@@ -43,6 +66,7 @@ def verify(isin, record, now, fetch=get_json):
     return {'entity': isin, 'period': parsed['countries']['asOf'],
             'sourceUrl': url, 'sourceHash': parsed['countries']['sha256'],
             'activeSourceHash': active_hash,
+            'stabilitySourceHash': stability_hash(body), 'stabilityScope': STABILITY_SCOPE,
             'evidenceRelation': 'identical-document' if active_hash == parsed['countries']['sha256'] else 'same-qualified-allocations',
             'method': parsed['countries']['method'], 'checkedAt': now.isoformat(),
             'allocations': {field: parsed[field]['rows'] for field in ('countries', 'sectors')},

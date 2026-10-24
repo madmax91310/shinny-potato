@@ -5,6 +5,11 @@ on:
     # Recover transient failures daily without downloading healthy histories.
     - cron: '45 6 * * *'
   workflow_dispatch:
+    inputs:
+      retry_failed:
+        description: 'Reprendre uniquement les sources échouées ou manquantes ; conserver les données déjà qualifiées'
+        type: boolean
+        default: false
   push:
     branches: [master]
     paths:
@@ -112,7 +117,7 @@ jobs:
         id: collect
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
@@ -122,7 +127,8 @@ jobs:
         if: github.event_name != 'pull_request'
         continue-on-error: true
         env:
-          RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+          RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
+          CROSS_FX_EVIDENCE_DIR: ${{ runner.temp }}/cross-fx-evidence
         run: |
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
@@ -164,7 +170,7 @@ jobs:
             ${{ runner.temp }}/listing-observation.json
             ${{ runner.temp }}/ranking-collection-status.json
             src/data/monthly-fx.json
-            ${{ runner.temp }}/ranking-collection-status.json
+            ${{ runner.temp }}/cross-fx-evidence/
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations

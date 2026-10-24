@@ -162,6 +162,30 @@
       "paths": [
         "index-company-compositions.json"
       ]
+    },
+    {
+      "role": "configuration",
+      "reviewedAt": "2026-10-24",
+      "reason": "Liaisons explicites entre réparations financières documentées, pièces sources et capacités annuelles déjà qualifiées ; ne certifie aucun cours et ne clôture aucun résidu.",
+      "paths": [
+        "financial-source-repairs.json"
+      ]
+    },
+    {
+      "role": "editorial",
+      "reviewedAt": "2026-10-24",
+      "reason": "Corpus de récits historiques avec sources et dates propres à chaque récit ; cette qualification du rôle ne renouvelle aucune revue éditoriale et ne constitue pas une collecte de données de marché.",
+      "paths": [
+        "src/pages/tweet-bank/market-stories.json"
+      ]
+    },
+    {
+      "role": "simulation",
+      "reviewedAt": "2026-10-24",
+      "reason": "Montants et situations hypothétiques du format Dilemme, explicitement sans prévision ni recommandation ; matrice statique identique aux 97 scénarios précédents, aucune observation financière.",
+      "paths": [
+        "src/pages/tweet-midi/data/dilemmes-data.json"
+      ]
     }
   ]
 }
