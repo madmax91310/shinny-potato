@@ -10,7 +10,7 @@
     "incident historique retired": 160,
     "échec individuel initial": 8,
     "incident actif au contrôle final": 140,
-    "incident révélé par la CI": 7,
+    "incident révélé par la CI": 8,
     "validation CI": 3,
     "contrôle de séance ultérieure": 1,
     "rôle de module actuel": 16,
@@ -375,7 +375,7 @@
   },
   "postIntegration": {
     "snapshotMonitorAt": "2026-10-24T00:37:09.142060+00:00",
-    "ledgerRows": 8586,
+    "ledgerRows": 8587,
     "previousRowsPreserved": 8573,
     "coverageRows": 4274,
     "coverageDate": "2026-10-24",
@@ -599,6 +599,14 @@
       "errors": 0,
       "publication": "not-requested"
     },
-    "projectedInventoryEvidence": "post-integration/projected-inventory.json.gz"
+    "projectedInventoryEvidence": "post-integration/projected-inventory.json.gz",
+    "latestCiFailure": {
+      "runId": 40050143526,
+      "jobId": 120741499302,
+      "cause": "Test current NAV against older archived proof date; correct future-date rejection",
+      "localFixValidated": true,
+      "productionGuardChanged": false,
+      "githubRetryRequired": true
+    }
   }
 }
