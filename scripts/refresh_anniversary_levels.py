@@ -184,7 +184,7 @@ def refresh(current, now, collect=collect_one, selected=None):
             error.update(attemptedAt=now.isoformat(),lastSuccessAt=prior.get('checkedAt'),asOf=prior.get('asOf'))
         pending=[{'id':r['id'],'status':'waiting','attemptedAt':r.get('lastAttemptAt'),'asOf':r.get('retainedAsOf'),'reason':r.get('reason'),'sourceAttempted':True}for r in waiting]
         failed=[{**r,'status':'failed','sourceAttempted':r['id']!='anniversary-or'}for r in errors]
-        return {'checkedAt':now.isoformat(),'scope':{'requestedIds':['anniversary-'+c['id']for c in requested],'expectedIds':['anniversary-'+c['id']for c in requested],'derivedIds':['anniversary-or']if selected is None else[]},'successes':successes,'errors':errors,'waiting':waiting,'derived':derived,'outcomes':outcomes+pending+failed}
+        return {'checkedAt':now.isoformat(),'scope':{'requestedIds':['anniversary-'+c['id']for c in requested]+(['anniversary-or']if selected is None else[]),'expectedIds':['anniversary-'+c['id']for c in requested]+(['anniversary-or']if selected is None else[]),'networkRequestedIds':['anniversary-'+c['id']for c in requested],'derivedIds':['anniversary-or']if selected is None else[]},'successes':successes,'errors':errors,'waiting':waiting,'derived':derived,'outcomes':outcomes+pending+failed}
     def one(config):
         try:return config['id'],collect(config,now),None
         except PublicationPending as e:return config['id'],None,e
