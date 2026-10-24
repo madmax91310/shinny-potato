@@ -93,3 +93,13 @@ assert.equal(groupSignals(unrelated.observations.map(asEvent),+now).length,2)
 const oldCorrection={...asEvent(energy),id:'d'.repeat(24),publishedAt:'2026-01-01',status:'Correction / démenti',correctionOf:url,correctionPublishedAt:'2026-10-24'}
 assert.equal(planNotifications([oldCorrection],{acknowledged:[],acknowledgedPublications:[publicationKey(asEvent(energy))]},now,'major').events.length,1,'A dated material correction can alert after the original publication was acknowledged')
 console.log('Explicit original linkage, distinct publication dates and dated correction of an old event verified.')
+// A real later correction of an initially silent archive must not remain
+// permanently muted; the durable item flag also stays cleared on a later fetch.
+const correctedHtml=html.replace(energy.label,'Correction : horaires des heures creuses').replace('</head>','<meta property="article:modified_time" content="2026-10-24" /></head>')
+const laterRequest=async requested=>new Response(requested===source.url?rss:correctedHtml,{headers:{'content-type':'text/html; charset=utf-8'}})
+const afterCorrection=await collectPublications(new Date(+now+5*3600000),laterRequest,recovered.state,[source],1)
+assert.equal(afterCorrection.observations[0].backfill,false,'Later dated correction leaves the initial silent archive')
+assert.equal(afterCorrection.observations[0].scope,recovered.observations[0].scope,'Article wording cannot change the observation identity')
+const correctionAgain=await collectPublications(new Date(+now+7*3600000),laterRequest,afterCorrection.state,[source],1)
+assert.equal(correctionAgain.observations[0].backfill,false,'Cleared backfill marker persists across normal producer passes')
+console.log('Post-backfill correction and stable observation scope verified.')

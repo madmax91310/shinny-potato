@@ -226,7 +226,12 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       if (!result.unchanged) {
         const observation = parsePublication(result.content, source, url, now, item)
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
-        else { observation.backfill = item.observation && observation.publishedAt > item.observation.publishedAt ? false : item.backfill ?? false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
+        else {
+          const prior=item.observation
+          const newPublication=prior && observation.publishedAt>prior.publishedAt
+          const newDatedCorrection=prior && observation.status==='Correction / démenti' && observation.correctionPublishedAt>=item.discoveredAt.slice(0,10) && JSON.stringify(observation.value)!==JSON.stringify(prior.value)
+          if(newPublication || newDatedCorrection)item.backfill=false
+          observation.backfill=item.backfill??false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
         item.etag = result.etag; item.lastModified = result.lastModified
         // Search explicitly linked originals in our qualified source domains.
         // Discovery remains separate from confirmation; fetching occurs through
