@@ -28,7 +28,9 @@ function stressFixture(){
  const row=result.state.current[b.competitions[0].id].rows[0],capital=10000/(1+.8*.001),price=m.series['qa-eur'].points['2026-07-13'].synthetic,last=m.series['qa-eur'].points[m.asOf].synthetic,expected=10000-capital*.8*(1+.001)+capital*.8/price*last;assert(Math.abs(row.value-expected)<1e-6,'Independent twenty-line valuation')
  return {...full,market:m,...result}
 }
-const fixtures={blank:boot,three:thin(full),four:thin(fourth),scope:thin(scope),ref:thin(refMissing),catchup:thin(full),stress:thin(stressFixture())};let active='three'
+// Production may now contain the owner’s real draft. The empty-ledger recipe must stay empty and isolated.
+const blank={...boot,book:{version:1,revision:0,competitions:[],audit:[]},state:{...boot.state,current:{},daily:{},weekly:{},competitions:[]}}
+const fixtures={blank,three:thin(full),four:thin(fourth),scope:thin(scope),ref:thin(refMissing),catchup:thin(full),stress:thin(stressFixture())};let active='three'
 const server=http.createServer((req,res)=>{const name=(req.url??'').slice(1);if(!fixtures[name]){res.writeHead(404);res.end();return}res.setHeader('Content-Type','application/json');res.setHeader('Access-Control-Allow-Origin','*');res.end(JSON.stringify(fixtures[name]))})
 await new Promise(r=>server.listen(4338,'127.0.0.1',r))
 const preview=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4337','--strictPort'],{stdio:'ignore'}),base='http://127.0.0.1:4337/shinny-potato/';let browser
