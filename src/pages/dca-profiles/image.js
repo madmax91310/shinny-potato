@@ -93,7 +93,7 @@ function fullPortfolio(ctx,p,a){
   text(ctx,exposurePercentage(row.weight,percentages[i]),574,y,90,size+2)
  })
  for(const [field,y] of [['countries',125],['sectors',545]]){
-  const {rows,scope}=donutData(a,field,p.exposureLimit)
+  const {rows}=donutData(a,field,p.exposureLimit)
   text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
   ring(ctx,rows,899,y+235,140,94)
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
@@ -106,7 +106,6 @@ function fullPortfolio(ctx,p,a){
    text(ctx,row.name,1095,top,322,legendSize,C.ivory,400)
    text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,legendSize)
   })
-  text(ctx,scope,755,y+86,780,17,C.muted,400)
  }
 }
 async function overlapPortfolio(ctx,p){
