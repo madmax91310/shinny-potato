@@ -202,6 +202,11 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         return 'scope-removed' if row.get('workflow') in RETIRED_WORKFLOWS or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution'
     def resolution_proof(key, row):
         workflow = state.get('workflows', {}).get(row.get('workflow'), {})
+        if key == 'monitor:review-projection':
+            proof = state.get('observerChecks', {}).get('review-projection')
+            checked = timestamp(proof.get('checkedAt')) if proof else None
+            failed_at = timestamp(row.get('attemptedAt') or row.get('firstSeenAt'))
+            return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
         if row.get('proofId'):
             return workflow.get('proofChecks', {}).get(row['proofId'])
         if row.get('dataId'):

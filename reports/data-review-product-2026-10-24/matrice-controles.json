@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T15:35:15.228124+00:00",
+  "generatedAt": "2026-10-24T15:48:50.261088+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -28,7 +28,7 @@
     "review-freshness.yml",
     "deploy-pages.yml"
   ],
-  "testsRun": 18,
+  "testsRun": 19,
   "successful": true,
   "rows": [
     {
@@ -390,6 +390,14 @@
       "case": "test_commit_and_publication_failures_are_distinct (test_automation_product.ProductContracts.test_commit_and_publication_failures_are_distinct)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_commit_and_publication_failures_are_distinct"
+    },
+    {
+      "test": "test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes (test_automation_product.ProductContracts.test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes"
     },
     {
       "test": "test_dws_resolution_requires_the_actual_archived_hash_and_four_hours",

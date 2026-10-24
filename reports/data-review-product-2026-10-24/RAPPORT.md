@@ -33,8 +33,8 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 ## Recette
 
 `matrice-controles.csv` / `.json` contient chaque sous-cas effectivement exécuté, son
-producteur, son résultat et le test correspondant. 529 cas isolés, 18 méthodes de recette
-produit ; les 101 tests Python de supervision passent. Les défaillances sont injectées
+producteur, son résultat et le test correspondant. 530 cas isolés, 19 méthodes de recette
+produit ; les 102 tests Python de supervision passent. Les défaillances sont injectées
 dans les lecteurs et réducteurs, jamais dans les sources de production. Cela démontre la
 remontée des causes reçues, pas la capacité de chaque collecteur à qualifier toute anomalie
 financière imaginable.
@@ -44,7 +44,7 @@ empreintes des 39 rapports et résultats de leur passage dans le lecteur de prod
 18 producteurs, zéro erreur de lecture/contrat, 16 échecs source conservés. Les 38 rapports
 sans manifeste de périmètre tenté restent explicitement à qualifier ; aucun succès fictif.
 
-Build et contrôles des projections passent. Recette Chromium mobile 390 px et ordinateur
+Build et contrôles des projections passent. La boîte principale utilise une projection de 1,54 Mo au lieu de charger les 32,5 Mo de l’inventaire technique ; un test compare intégralement les modèles avant/après projection (identités, causes, dates, outils, sources et signalements). L’inventaire technique reste chargé à la demande. Recette Chromium mobile 390 px et ordinateur
 1 440 px : recherche globale, filtres, regroupement, pagination imbriquée, diagnostic,
 export complet, indisponibilités du moniteur et récupération. La recette des consommateurs
 existants vérifie aussi 15 PNG réels (or, courtiers, DCA, secteurs ETF et archive Tudigo),

@@ -9,7 +9,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from publish_automation_status import (REGISTRY, REPORT_CONTRACTS, artifact_reports, normalize_report,
-    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt)
+    read_report_safely, update_status, reconcile_publication, attempt_artifacts, merge_proof_retry, radar_resolution_evidence, qualified_receipt, review_projection_evidence)
 from automation_monitoring import evaluate_monitoring, restore_history
 
 NOW='2026-10-24T12:00:00Z'
@@ -184,6 +184,24 @@ class ProductContracts(unittest.TestCase):
         self.assertFalse(qualified_receipt({'schemaVersion':1,'commit':'a'*40,'files':{'src/data/x.json':None}}))
         from publish_automation_status import publication_summary
         self.assertEqual(publication_summary(event('update-scpi.yml'),[{'name':'deploy','conclusion':'success','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'}]}]),('unverified',None))
+
+    def test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes(self):
+        manifest={'files':{'public/data/data-automation-inventory.json':'a'*40}}
+        projection={'schemaVersion':1,'contract':'data-review-inbox-v1','backlog':[],'assets':[],'consumerUsage':{'tools':[]},'inventoryBlobSha':'b'*40}
+        with self.assertRaises(ValueError):review_projection_evidence(projection,manifest,{'sha':'c'*40})
+        state={'observerErrors':{'review-projection':{'cause':'Consumer projection stale'}}}
+        monitor=evaluate_monitoring(state,CTX,{},NOW,{'errors':[]})
+        self.assertIn('monitor:review-projection',monitor['active'])
+        state={'monitoring':monitor}
+        self.assertIn('monitor:review-projection',evaluate_monitoring(state,CTX,{},NOW,{'errors':[]})['active'])
+        state['observerChecks']={'review-projection':{'checkedAt':'2026-10-23T12:00:00Z'}}
+        self.assertIn('monitor:review-projection',evaluate_monitoring(state,CTX,{},NOW,{'errors':[]})['active'])
+        projection['inventoryBlobSha']='a'*40
+        proof=review_projection_evidence(projection,manifest,{'sha':'c'*40})
+        state['observerChecks']={'review-projection':proof}
+        repaired=evaluate_monitoring(state,CTX,{},dt.datetime.now(dt.timezone.utc).isoformat(),{'errors':[]})
+        self.assertNotIn('monitor:review-projection',repaired['active'])
+        self.assertEqual(repaired['resolved'][0]['resolutionEvidence'],proof)
 
     def test_dws_resolution_requires_the_actual_archived_hash_and_four_hours(self):
         body=b'{"official":"portfolio"}'

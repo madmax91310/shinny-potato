@@ -22,7 +22,7 @@ try{
   await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
   const section=page.locator('section').filter({has:page.getByRole('heading',{name:'Inventaire de toutes les données',exact:true})})
   await section.getByText(`${report.summary.catalogRecords} fiches · ${report.summary.catalogFields} champs de catalogue · ${report.summary.registries} modules examinés.`,{exact:true}).waitFor()
-  assert(requests.some(url=>url.endsWith('/data-automation-inventory.json')),'the primary inbox must include the complete backlog even while the secondary inventory is collapsed')
+  assert(!requests.some(url=>url.endsWith('/data-automation-inventory.json')),'the full technical audit remains lazy; the primary inbox uses its exhaustive compact projection')
   await section.locator('summary').click()
   const search=section.getByRole('textbox',{name:'Rechercher dans l’inventaire'})
   await search.waitFor();await search.fill('IE0006WW1TQ4')

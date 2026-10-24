@@ -750,6 +750,19 @@ def qualified_receipt(receipt):
                     and bool(re.fullmatch(r'[a-f0-9]{40}', str(v))) for k, v in receipt['files'].items()))
 
 
+def review_projection_evidence(projection, manifest, build):
+    expected = manifest.get('files', {}).get('public/data/data-automation-inventory.json')
+    if (not isinstance(projection, dict) or projection.get('schemaVersion') != 1
+            or projection.get('contract') != 'data-review-inbox-v1'
+            or not isinstance(projection.get('backlog'), list) or not isinstance(projection.get('assets'), list)
+            or not isinstance(projection.get('consumerUsage', {}).get('tools'), list)
+            or not re.fullmatch(r'[a-f0-9]{40}', str(expected))
+            or projection.get('inventoryBlobSha') != expected):
+        raise ValueError('Projection Données à revoir absente, invalide ou différente de l’inventaire publié')
+    return {'kind': 'matching-public-inventory-projection', 'inventoryBlobSha': expected,
+            'codeSha': build['sha'], 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
+
+
 def decode_json_file(api, file):
     """Read the exact observed blob when the contents API omits a large body."""
     content = file.get('content') if file.get('encoding') == 'base64' else None
@@ -956,12 +969,19 @@ def main():
             if key not in comparisons:
                 comparisons[key] = api(f'/compare/{base}...{head}')['status']
             return comparisons[key]
-        state = reconcile_publication(state, published('build-info.json'),
-                                      published('data/publication-manifest.json'), compare)
+        public_build, public_manifest = published('build-info.json'), published('data/publication-manifest.json')
+        state = reconcile_publication(state, public_build, public_manifest, compare)
     except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError, TypeError, TimeoutError) as error:
         state.setdefault('observerErrors', {})['publication'] = {'cause': 'Publication non vérifiable : ' + str(error)[:300]}
     else:
         state.setdefault('observerErrors', {}).pop('publication', None)
+        try:
+            proof = review_projection_evidence(published('data/data-review-inbox.json'), public_manifest, public_build)
+            state.setdefault('observerChecks', {})['review-projection'] = proof
+            state.setdefault('observerErrors', {}).pop('review-projection', None)
+        except (urllib.error.URLError, ValueError, KeyError, TypeError, AttributeError, TimeoutError) as error:
+            state.setdefault('observerErrors', {})['review-projection'] = {'cause': str(error)[:300],
+                'sourceUrls': [public + 'data/data-review-inbox.json'], 'attemptedAt': dt.datetime.now(dt.timezone.utc).isoformat()}
     try:
         context = json.loads(subprocess.run(['node', 'scripts/build-monitoring-context.mjs'], check=True, capture_output=True, text=True, timeout=120).stdout)
         state.setdefault('observerErrors', {}).pop('context', None)

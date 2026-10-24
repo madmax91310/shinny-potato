@@ -1,6 +1,10 @@
 import registry from '../../data/automation-workflows.json' with {type:'json'}
 import retired from '../../data/retired-automations.json' with {type:'json'}
 export const ISSUE_KINDS={failure:'Panne ou anomalie',connection:'Donnée nécessaire non raccordée',qualification:'Qualification manquante',waiting:'Publication normalement attendue','not-applicable':'Non applicable ou archive',editorial:'Revue éditoriale',monitoring:'Surveillance non démontrée',history:'Historique et résolutions enregistrées'}
+export function projectionHealth(inventory,manifest){
+ if(!inventory||!manifest)return null
+ return /^[a-f0-9]{40}$/.test(inventory.inventoryBlobSha??'')&&inventory.inventoryBlobSha===manifest.files?.['public/data/data-automation-inventory.json']?null:'Projection des incidents différente de l’inventaire publié : régénérer et republier la projection. Les diagnostics conservés ne certifient pas les données actuellement enregistrées.'
+}
 const normal=new Set(['current','connected','reference','not-required','excluded'])
 export function monitorHealth(status,now=Date.now()){
  const m=status?.monitoring
@@ -18,7 +22,7 @@ export function issueKind(state){
 }
 const phase=kind=>({connection:'Raccordement',qualification:'Qualification',waiting:'Calendrier',editorial:'Revue éditoriale',monitoring:'Surveillance'}[kind]??'Donnée / collecte')
 export function buildInbox({status,inventory,coverage,financial,review,failures={},now=Date.now()}){
- const consumerTools=new Map()
+ const consumerTools=new Map(Object.entries(inventory?.fieldConsumers??{}))
  for(const t of inventory?.consumerUsage?.tools??[])for(const r of t.rows??[])if(r.required){const key=r.id+':'+r.key;consumerTools.set(key,[...new Set([...(consumerTools.get(key)??[]),t.name??t.path])])}
  const rows=[],add=r=>{const item={...r,to:Object.values(retired.workflows).some(v=>r.to?.startsWith(v.tool))?undefined:r.to,stage:r.stage??phase(r.kind),tools:Array.isArray(r.tools)?r.tools:[],sourceUrls:Array.isArray(r.sourceUrls)?r.sourceUrls.filter(u=>typeof u==='string'):[]};for(const k of ['name','field','cause','asOf','checkedAt','attemptedAt','lastSuccessAt','asset'])if(item[k]!=null&&typeof item[k]!=='string'){item[k]='Format invalide : '+JSON.stringify(item[k]);item.kind='monitoring'};rows.push(item)}
  const health=monitorHealth(status,now)

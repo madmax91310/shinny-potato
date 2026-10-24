@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-import {buildInbox,monitorHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
+import {reviewInboxProjection} from './build-data-review-inbox.mjs'
+import {buildInbox,monitorHealth,projectionHealth,monitorExecutionHealth,inboxDiagnostic}from '../src/pages/data-review/review-inbox.js'
 const read=p=>JSON.parse(fs.readFileSync(p))
 const inventory=read('public/data/data-automation-inventory.json'),coverage=read('public/data/asset-field-coverage.json'),financial=read('public/data/financial-reconciliation.json')
 const status={schemaVersion:1,workflows:{},monitoring:{schemaVersion:1,checkedAt:'2026-10-24T12:00:00Z',active:{},resolved:[]}}
@@ -22,3 +23,11 @@ assert.match(monitorExecutionHealth({}),/invalide/)
 const r=result.issues.find(r=>r.signals.some(s=>s.asOf));assert(inboxDiagnostic(r).includes('Dernière donnée valide'))
 assert.equal(result.examinedFields,coverage.rows.length)
 console.log(JSON.stringify({issues:result.issues.length,signals:signals.length,coverageFields:coverage.rows.length,financialCases:financial.rows.filter(r=>r.open||r.residualOpen).length,consumerTools:inventory.consumerUsage.tools.length}))
+
+const compact=reviewInboxProjection(inventory),projected=buildInbox({...args,inventory:compact})
+assert.deepEqual(projected,result,'The compact consumer document preserves every issue, signal, date, cause, tool and source')
+assert(Buffer.byteLength(JSON.stringify(compact))<2_000_000,'Primary review payload stays below 2 MB without truncating records')
+console.log('Compact review projection: exhaustive model parity and payload budget verified.')
+
+assert.equal(projectionHealth({inventoryBlobSha:'a'.repeat(40)},{files:{'public/data/data-automation-inventory.json':'a'.repeat(40)}}),null)
+assert.match(projectionHealth({inventoryBlobSha:'b'.repeat(40)},{files:{'public/data/data-automation-inventory.json':'a'.repeat(40)}}),/différente/)
