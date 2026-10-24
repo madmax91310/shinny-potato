@@ -1,0 +1,22 @@
+test_artifact_absence_expiry_and_step_not_attempted (test_automation_product.ProductContracts.test_artifact_absence_expiry_and_step_not_attempted) ... ok
+test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success) ... ok
+test_cache_does_not_renew_source_success (test_automation_product.ProductContracts.test_cache_does_not_renew_source_success) ... ok
+test_commit_and_publication_failures_are_distinct (test_automation_product.ProductContracts.test_commit_and_publication_failures_are_distinct) ... ok
+test_dws_resolution_requires_the_actual_archived_hash_and_four_hours (test_automation_product.ProductContracts.test_dws_resolution_requires_the_actual_archived_hash_and_four_hours) ... ok
+test_every_registered_producer_and_fault_class (test_automation_product.ProductContracts.test_every_registered_producer_and_fault_class) ... ok
+test_historical_union_is_idempotent_and_does_not_reopen (test_automation_product.ProductContracts.test_historical_union_is_idempotent_and_does_not_reopen) ... ok
+test_missing_context_retains_incidents_and_history_is_durable (test_automation_product.ProductContracts.test_missing_context_retains_incidents_and_history_is_durable) ... ok
+test_monitors_disabled_unobserved_and_observer_failures (test_automation_product.ProductContracts.test_monitors_disabled_unobserved_and_observer_failures) ... ok
+test_original_proof_is_not_repaired_by_a_new_run (test_automation_product.ProductContracts.test_original_proof_is_not_repaired_by_a_new_run) ... ok
+test_pipeline_classes_for_every_applicable_producer (test_automation_product.ProductContracts.test_pipeline_classes_for_every_applicable_producer) ... ok
+test_publication_rejects_null_hash_and_missing_public_check (test_automation_product.ProductContracts.test_publication_rejects_null_hash_and_missing_public_check) ... ok
+test_real_producer_schemas_and_normalization_parity (test_automation_product.ProductContracts.test_real_producer_schemas_and_normalization_parity) ... ok
+test_rerun_archive_is_not_old_attempt_proof (test_automation_product.ProductContracts.test_rerun_archive_is_not_old_attempt_proof) ... ok
+test_targeted_results_contract (test_automation_product.ProductContracts.test_targeted_results_contract) ... ok
+test_waiting_is_a_withdrawal_not_a_repair (test_automation_product.ProductContracts.test_waiting_is_a_withdrawal_not_a_repair) ... ok
+test_weekly_review_failure_is_supervised (test_automation_product.ProductContracts.test_weekly_review_failure_is_supervised) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.322s
+
+OK
