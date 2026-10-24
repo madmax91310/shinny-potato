@@ -1,0 +1,39 @@
+{
+  "conclusion": "",
+  "createdAt": "2026-10-24T17:43:16Z",
+  "databaseId": 40117395020,
+  "event": "workflow_dispatch",
+  "headSha": "2f3be061f9e121e0e7d775a8fc132a8222b9aadf",
+  "jobs": [
+    {
+      "completedAt": "2026-10-24T17:44:14Z",
+      "conclusion": "success",
+      "databaseId": 120941407100,
+      "name": "collect",
+      "startedAt": "2026-10-24T17:43:20Z",
+      "status": "completed",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020/job/120941407100"
+    },
+    {
+      "completedAt": "2026-10-24T17:45:36Z",
+      "conclusion": "success",
+      "databaseId": 120941664842,
+      "name": "deploy / publish",
+      "startedAt": "2026-10-24T17:44:47Z",
+      "status": "completed",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020/job/120941664842"
+    },
+    {
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "databaseId": 120941998234,
+      "name": "deploy / publish-code / current-snapshot",
+      "startedAt": "2026-10-24T17:45:36Z",
+      "status": "pending",
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020/job/120941998234"
+    }
+  ],
+  "status": "pending",
+  "updatedAt": "2026-10-24T17:45:36Z",
+  "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020"
+}

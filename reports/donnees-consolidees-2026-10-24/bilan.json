@@ -1,83 +1,47 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-24T10:51:11.223507+00:00",
-  "sourceCommit": "2bc3a6d199de2ec1ab260bb73985237e97aec06c",
-  "inventoryGeneratedAt": "2026-10-24T10:27:50.236Z",
-  "monitorCheckedAt": "2026-10-24T10:37:22.253058+00:00",
+  "generatedAt": "2026-10-24T20:41:08.612957+00:00",
+  "sourceCommit": "c0c83923ff76deb1cc25649c218f32867a1ac617",
+  "inventoryGeneratedAt": "2026-10-24T19:46:55.699Z",
+  "monitorCheckedAt": "2026-10-24T20:35:18.332555+00:00",
   "productionValidated": true,
   "lignes_heritees": 8600,
   "origines_reconciliees": 8600,
-  "cas_uniques": 8343,
+  "cas_uniques": 38033,
   "actifs_ou_usages_non_additionnables_aux_cas": true,
   "suivi_par_axe": {
     "fiabilité": 114,
-    "collecte et actualisation": 55,
-    "raccordement": 770,
-    "supervision": 30
+    "raccordement": 28043,
+    "collecte et actualisation": 54,
+    "enregistrement et publication": 1,
+    "supervision": 543
   },
-  "reliquat_actif_cas": 969,
-  "verification_en_attente": 117,
+  "reliquat_actif_cas": 28755,
+  "verification_en_attente": 109,
   "financier": {
     "comparaisons": 90,
     "encore_ouverts": 79
   },
-  "non_reverifies": 36,
+  "non_reverifies": 34,
   "limite": "Suivi consolidé de contrats et de preuves existants, pas nouvel audit ni certification des fournisseurs. Les usages et contrôles ne sont pas tous des pannes et peuvent partager une même cause.",
   "actions_19": {
     "total": 19,
     "statuts": {
-      "partiellement corrigée": 6,
-      "corrigée": 11,
+      "partiellement corrigée": 5,
+      "corrigée": 10,
+      "périmètre supprimé": 2,
       "bloquée": 1,
       "déjà résolue": 1
     }
   },
   "supervision": {
-    "signaux_actifs_moniteur": 30,
-    "cycles_resolus_documentes": 221,
-    "attributions_retirees_documentees": 173
+    "signaux_actifs_moniteur": 543,
+    "cycles_resolus_documentes": 220,
+    "attributions_retirees_documentees": 13
   },
   "definitions": {
     "cas_uniques": "Enregistrements dédoublonnés du suivi ; les actions parentes, capacités et usages peuvent partager une cause. Ne pas lire ce nombre comme des pannes ou actifs uniques.",
     "verification_en_attente": "Inclut les 81 modules hérités sans nouvelle validation fournisseur ; ne signifie pas panne active.",
-    "productionValidated": "Concerne exclusivement les corrections documentées avec leurs limites ; pas une certification de toutes les données ni des 79 causes financières."
-  },
-  "production": {
-    "build": {
-      "sha": "6124113127807037b1ab765a177ce87788268471",
-      "dataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c",
-      "lane": "validated-data",
-      "builtAt": "2026-10-24T10:28:10.770Z"
-    },
-    "collectorCode": "2f37f75e19c91813d8df37de63da0b6574cc7801",
-    "fullApplicationGate": 40084758449,
-    "producer": 40085504061,
-    "sourceCollectionPartial": true
-  },
-  "avant_cette_reprise": {
-    "cas_uniques": 8341,
-    "reliquat_actif_cas": 983,
-    "verification_en_attente": 118,
-    "actions_19": {
-      "total": 19,
-      "statuts": {
-        "partiellement corrigée": 6,
-        "corrigée": 11,
-        "bloquée": 1,
-        "déjà résolue": 1
-      }
-    },
-    "supervision": {
-      "signaux_actifs_moniteur": 44,
-      "cycles_resolus_documentes": 380
-    }
-  },
-  "recherche_marche_officiel": {
-    "cas": 13,
-    "parts": 9,
-    "bornes_cours_recoupees": 9,
-    "differences_de_cours_a_investiguer": 4,
-    "causes_financieres_cloturees": 0,
-    "collectes_planifiees_ajoutees": 0
+    "productionValidated": "Concerne les corrections dotées de preuves de production dans ce suivi ; ne certifie pas toutes les données ni les modules."
   }
 }

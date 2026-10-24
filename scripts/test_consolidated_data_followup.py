@@ -77,4 +77,17 @@ class ConsolidatedFollowup(unittest.TestCase):
             with(pathlib.Path(tmp)/'statut-19-actions.csv').open(encoding='utf-8-sig')as f:written=list(csv.DictReader(f,delimiter=';'))
             self.assertEqual(written[0]['statut'],'périmètre supprimé');self.assertIn('aucune donnée financière déclarée réparée',written[0]['limitation'])
 
+    def test_published_receipt_survives_csv_replay_above_default_field_limit(self):
+        import csv,json,pathlib,tempfile
+        from build_consolidated_data_followup import read_csv
+        receipt={'files':{'src/data/proof-'+str(i)+'.json':'a'*40 for i in range(2500)}}
+        value=json.dumps(receipt);self.assertGreater(len(value),131072)
+        before=csv.field_size_limit()
+        with tempfile.TemporaryDirectory()as tmp:
+            path=pathlib.Path(tmp)/'suivi.csv'
+            with path.open('w',encoding='utf-8-sig',newline='')as f:
+                w=csv.DictWriter(f,['id_suivi','details'],delimiter=';');w.writeheader();w.writerow({'id_suivi':'incident:recording:fixture','details':value})
+            rows=read_csv(path)
+        self.assertEqual(json.loads(rows[0]['details']),receipt);self.assertEqual(csv.field_size_limit(),before)
+
 if __name__=='__main__':unittest.main()

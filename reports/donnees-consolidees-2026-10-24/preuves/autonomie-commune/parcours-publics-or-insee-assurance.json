@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-24T17:52:53.697Z",
+  "publicationCapture": "preuve séparée build-info.json",
+  "responseInterception": false,
+  "results": [
+    {
+      "width": 390,
+      "tool": "Il y a X ans",
+      "value": 4319,
+      "text": "● Il y a 1 an, l'or valait 4 058 $. Depuis, son prix a progressé de +6,4 % 👇\n\n📅 Octobre 2025 : 4 058 $\n📅 Moyenne de septembre 2026 : 4 319 $\n\n📈 Évolution sur la période : +6,4 %\n\n💬 À l’époque, tu suivais déjà l'or ?\n\nSource : Banque mondiale, Pink Sheet · CC BY 4.0 · Calculs Épargnant Libre\nworldbank.org/commodities · creativecommons.org/licenses/by/4.0",
+      "png": "il-y-a-1-ans-or.png"
+    },
+    {
+      "width": 390,
+      "tool": "Pouvoir d’achat",
+      "text": "💶 Ton salaire passe de 1 000 € à 1 100 € depuis 2015. Tu gagnes 100 € de plus… mais peux-tu acheter davantage ?\n\nTestons cette évolution face aux prix 👇\n\n📈 Ton salaire : +10,0 %\n🛒 Les prix entre 2015 et septembre 2026 : +24,7 %\n\nPour conserver le pouvoir d’achat de tes 1 000 € de départ, il faudrait environ 1 247 € par mois.\n\nAvec 1 100 €, tu peux acheter moins : ton revenu a moins progressé que les prix.\n\n💬 Tes dernières augmentations t’ont permis de vivre mieux, ou surtout de suivre les dépenses ?",
+      "png": "pouvoir-achat-2015-2026-brut.png"
+    },
+    {
+      "width": 390,
+      "tool": "Assurance-vie",
+      "loaded": true
+    },
+    {
+      "width": 1280,
+      "tool": "Il y a X ans",
+      "value": 4319,
+      "text": "● Il y a 1 an, l'or valait 4 058 $. Depuis, son prix a progressé de +6,4 % 👇\n\n📅 Octobre 2025 : 4 058 $\n📅 Moyenne de septembre 2026 : 4 319 $\n\n📈 Évolution sur la période : +6,4 %\n\n💬 À l’époque, tu suivais déjà l'or ?\n\nSource : Banque mondiale, Pink Sheet · CC BY 4.0 · Calculs Épargnant Libre\nworldbank.org/commodities · creativecommons.org/licenses/by/4.0",
+      "png": "il-y-a-1-ans-or.png"
+    },
+    {
+      "width": 1280,
+      "tool": "Pouvoir d’achat",
+      "text": "💶 Ton salaire passe de 1 000 € à 1 100 € depuis 2015. Tu gagnes 100 € de plus… mais peux-tu acheter davantage ?\n\nTestons cette évolution face aux prix 👇\n\n📈 Ton salaire : +10,0 %\n🛒 Les prix entre 2015 et septembre 2026 : +24,7 %\n\nPour conserver le pouvoir d’achat de tes 1 000 € de départ, il faudrait environ 1 247 € par mois.\n\nAvec 1 100 €, tu peux acheter moins : ton revenu a moins progressé que les prix.\n\n💬 Tes dernières augmentations t’ont permis de vivre mieux, ou surtout de suivre les dépenses ?",
+      "png": "pouvoir-achat-2015-2026-brut.png"
+    },
+    {
+      "width": 1280,
+      "tool": "Assurance-vie",
+      "loaded": true
+    }
+  ],
+  "errors": [],
+  "removed": [],
+  "sourceComparison": {
+    "dataCommit": "6e50e73cfbb43b2a8aa6e16828c1ce7e5fed17db",
+    "asset": "or",
+    "record": {
+      "value": 4319,
+      "asOf": "2026-09",
+      "currency": "USD",
+      "method": "Moyenne mensuelle Banque mondiale, USD par once",
+      "sourceUrl": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
+      "sha256": "ea1c350827878ea3bbe30e3cda16a13fd3bd5b409b8458940dc94a36b5a33154",
+      "maxAgeDays": 75,
+      "checkedAt": "2026-10-24",
+      "derivedAt": "2026-10-24T17:17:02.405638+00:00"
+    },
+    "exactValueMatch": true
+  }
+}

@@ -1,0 +1,26 @@
+﻿workflow;nom;cron_UTC;role;registre_supervision;exclusivement_IA;etat_GitHub;workflow_id;observe_le
+automation-status.yml;Publish automation failures;8,23,38,53 * * * *;supervision et publication des incidents;False;False;active;377789250;2026-10-24T20:17:01.590833+00:00
+collect-etf-pilot.yml;Update active ETF issuer data;10 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;375656755;2026-10-24T20:17:01.605091+00:00
+onboard-assets.yml;Onboard new assets;35 5 3 * *;pilote d’intégration des actifs;True;False;active;388047183;2026-10-24T20:17:01.653403+00:00
+probe-bitcoin-monthly.yml;Free Bitcoin monthly data pilot;40 6 2 * *;sonde pilote;False;False;active;373841622;2026-10-24T20:17:01.655241+00:00
+refresh-automated-index-sheets.yml;Refresh fully automated index sheets;40 6 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;381821535;2026-10-24T20:17:01.666928+00:00
+rehearse-refresh.yml;Rehearse future data refreshes;17 4 20 * *;recette isolée sans publication financière;True;False;active;388232663;2026-10-24T20:17:01.669496+00:00
+review-freshness.yml;Revue hebdomadaire des données;0 8 * * 1;contrôle de fraîcheur;True;False;active;366204301;2026-10-24T20:17:01.671700+00:00
+update-bitcoin-monthly.yml;Update active Bitcoin Yahoo data;40 6 2,4,8 * *;chaîne suivie : collecte ou contrôle de données;True;False;active;375696789;2026-10-24T20:17:01.676381+00:00
+update-economic-data.yml;Update official economic data;20 8 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;377752753;2026-10-24T20:17:01.682245+00:00
+update-editorial-radar.yml;Update editorial radar;15 6-19 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;378900679;2026-10-24T20:17:01.688955+00:00
+update-exposure-expansion.yml;Refresh 35 portfolio exposure ETFs;45 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;386784505;2026-10-24T20:17:01.692984+00:00
+update-gold-monthly.yml;Update World Bank monthly gold data;15 7 3-10 * *;chaîne suivie : collecte ou contrôle de données;True;False;active;373871314;2026-10-24T20:17:01.696129+00:00
+update-inflation.yml;Update INSEE monthly inflation;15 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;375656758;2026-10-24T20:17:01.700789+00:00
+update-instrument-metadata.yml;Update exact instrument metadata;20 9 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;387555849;2026-10-24T20:17:01.712675+00:00
+update-insurance.yml;Update insurance presentations;25 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;378467101;2026-10-24T20:17:01.717103+00:00
+update-investor-13f.yml;Update investor 13F portfolios;25 12 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;371811922;2026-10-24T20:17:01.721025+00:00
+update-lifestrategy.yml;Update Vanguard LifeStrategy data;35 5 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;383032844;2026-10-24T20:17:01.726118+00:00
+update-market-monthly.yml;Update active monthly market histories;15 6 2,4,8,16 * * | 45 6 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;376153093;2026-10-24T20:17:01.737426+00:00
+update-non-bond-expansion.yml;Update non-bond expansion;15 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;383232823;2026-10-24T20:17:01.741842+00:00
+update-practical-sheets.yml;Update practical sheet references;15 9 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;380806609;2026-10-24T20:17:01.745856+00:00
+update-presentation-actors.yml;Update actor presentations;30 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;379548066;2026-10-24T20:17:01.749617+00:00
+update-publication-observations.yml;Update publication observations;40 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;378771534;2026-10-24T20:17:01.755591+00:00
+update-qualified-exposures.yml;Update qualified exposure ETF data;50 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;382082080;2026-10-24T20:17:01.764345+00:00
+update-regulatory-data.yml;Update official regulatory data;45 8 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;377798591;2026-10-24T20:17:01.770083+00:00
+update-scpi.yml;Update SCPI presentations;20 7 * * *;chaîne suivie : collecte ou contrôle de données;True;False;active;378377426;2026-10-24T20:17:01.774959+00:00

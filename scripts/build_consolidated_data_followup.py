@@ -4,7 +4,12 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 REPORT=ROOT/'reports/donnees-consolidees-2026-10-24'
 
 def read_csv(path):
-    with path.open(encoding='utf-8-sig',newline='')as f:return list(csv.DictReader(f,delimiter=';'))
+    # Published receipts contain hundreds of file hashes; retain their evidence
+    # when the next consolidation rereads its own CSV. Keep a bounded parser.
+    previous_limit=csv.field_size_limit(16*1024*1024)
+    try:
+        with path.open(encoding='utf-8-sig',newline='')as f:return list(csv.DictReader(f,delimiter=';'))
+    finally:csv.field_size_limit(previous_limit)
 def digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 def identity(row):
     d,k=row['dimension'],row['cle']

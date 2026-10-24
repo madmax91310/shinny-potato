@@ -1,0 +1,228 @@
+{
+  "checkedAt": "2026-10-24T18:31:57.094038+00:00",
+  "run": {
+    "conclusion": "cancelled",
+    "event": "workflow_dispatch",
+    "headSha": "2f3be061f9e121e0e7d775a8fc132a8222b9aadf",
+    "jobs": [
+      {
+        "completedAt": "2026-10-24T18:04:41Z",
+        "conclusion": "success",
+        "databaseId": 120941434939,
+        "name": "refresh",
+        "startedAt": "2026-10-24T17:44:16Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120941434939"
+      },
+      {
+        "completedAt": "2026-10-24T18:05:35Z",
+        "conclusion": "success",
+        "databaseId": 120946349212,
+        "name": "deploy / publish",
+        "startedAt": "2026-10-24T18:04:46Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120946349212"
+      },
+      {
+        "completedAt": "2026-10-24T18:19:51Z",
+        "conclusion": "success",
+        "databaseId": 120946569004,
+        "name": "deploy / publish-code / current-snapshot",
+        "startedAt": "2026-10-24T18:19:01Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120946569004"
+      },
+      {
+        "completedAt": "2026-10-24T18:21:11Z",
+        "conclusion": "success",
+        "databaseId": 120949875463,
+        "name": "deploy / publish-code / python-checks",
+        "startedAt": "2026-10-24T18:19:54Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120949875463"
+      },
+      {
+        "completedAt": "2026-10-24T18:20:49Z",
+        "conclusion": "success",
+        "databaseId": 120949875469,
+        "name": "deploy / publish-code / exposure-browser-check",
+        "startedAt": "2026-10-24T18:19:54Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120949875469"
+      },
+      {
+        "completedAt": "2026-10-24T18:26:01Z",
+        "conclusion": "success",
+        "databaseId": 120949875470,
+        "name": "deploy / publish-code / build",
+        "startedAt": "2026-10-24T18:19:54Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120949875470"
+      },
+      {
+        "completedAt": "2026-10-24T18:20:50Z",
+        "conclusion": "success",
+        "databaseId": 120949875543,
+        "name": "deploy / publish-code / scope",
+        "startedAt": "2026-10-24T18:19:54Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120949875543"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:07Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306006,
+        "name": "deploy / publish-code / tweet-midi-checks (1)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306006"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:09Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306025,
+        "name": "deploy / publish-code / browser-checks (1)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306025"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:18Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306044,
+        "name": "deploy / publish-code / tweet-midi-checks (0)",
+        "startedAt": "2026-10-24T18:26:03Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306044"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:09Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306056,
+        "name": "deploy / publish-code / browser-checks (0)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306056"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:07Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306061,
+        "name": "deploy / publish-code / tweet-midi-checks (2)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306061"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:07Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306106,
+        "name": "deploy / publish-code / tweet-midi-checks (3)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306106"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:20Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306108,
+        "name": "deploy / publish-code / browser-checks (3)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306108"
+      },
+      {
+        "completedAt": "2026-10-24T18:27:11Z",
+        "conclusion": "success",
+        "databaseId": 120951306114,
+        "name": "deploy / publish-code / smoke",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306114"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:21Z",
+        "conclusion": "cancelled",
+        "databaseId": 120951306130,
+        "name": "deploy / publish-code / browser-checks (2)",
+        "startedAt": "2026-10-24T18:26:04Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120951306130"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:22Z",
+        "conclusion": "cancelled",
+        "databaseId": 120952550285,
+        "name": "deploy / publish-code / deploy",
+        "startedAt": "2026-10-24T18:31:22Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120952550285"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:22Z",
+        "conclusion": "cancelled",
+        "databaseId": 120952550572,
+        "name": "deploy / publish-code / fallback-build",
+        "startedAt": "2026-10-24T18:31:22Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120952550572"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:22Z",
+        "conclusion": "cancelled",
+        "databaseId": 120952550742,
+        "name": "deploy / publish-code / advisory-checks",
+        "startedAt": "2026-10-24T18:31:22Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120952550742"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:22Z",
+        "conclusion": "cancelled",
+        "databaseId": 120952550776,
+        "name": "deploy / publish-code / deploy-fallback",
+        "startedAt": "2026-10-24T18:31:22Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120952550776"
+      },
+      {
+        "completedAt": "2026-10-24T18:31:22Z",
+        "conclusion": "cancelled",
+        "databaseId": 120952551310,
+        "name": "report-failures",
+        "startedAt": "2026-10-24T18:31:22Z",
+        "status": "completed",
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200/job/120952551310"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200"
+  },
+  "public": {
+    "sha": "2b363f926645943841c11f2fef3450737c563409",
+    "dataSha": "59a961413c9d919012c16a60add4825be59f1227",
+    "lane": "validated-data",
+    "builtAt": "2026-10-24T18:18:33.699Z"
+  },
+  "requestedData": "f90048024eb691fcdfda952ecd904877524b76b7",
+  "includedByAncestry": true,
+  "unchangedCanonicalFiles": {
+    "docs/asset-tool-routing.json": {
+      "requested": "7f55a8420618f646c961a7645196761f4d81ff90",
+      "publishedDataTree": "7f55a8420618f646c961a7645196761f4d81ff90"
+    },
+    "scripts/source-snapshots/ranking-collection-status.json": {
+      "requested": "1efee06f3c2450a87083b1f527f91a527acc8397",
+      "publishedDataTree": "1efee06f3c2450a87083b1f527f91a527acc8397"
+    },
+    "src/data/shared-listing-identities.json": {
+      "requested": "a91fd84d6692503a5de90ec25dad4f64ee5aa00a",
+      "publishedDataTree": "a91fd84d6692503a5de90ec25dad4f64ee5aa00a"
+    }
+  },
+  "publishedIdentityBlob": "a91fd84d6692503a5de90ec25dad4f64ee5aa00a",
+  "decision": "Collecte, validation, enregistrement et publication réussis ; seule la validation de code restante du parent est annulée. Le code consolidé #925 garde son gate complet.",
+  "procedureDeviation": "La commande shell a continué après un assert trop strict sur l’égalité dataSha=f900. Le site avait déjà avancé à 59a. Vérification immédiate du préfixe et de tous les blobs inchangés ; aucune collecte ni écriture annulée. Ne pas compter le run global comme réussite.",
+  "proof": "publication-prefixe-reproduction.json",
+  "countRootAsSuccess": false
+}

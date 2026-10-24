@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-10-24T15:48:06.062251+00:00",
+  "mergeCommit": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+  "pr": 924,
+  "runs": [
+    {
+      "databaseId": 40108623483,
+      "event": "workflow_dispatch",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "queued",
+      "workflowName": "Refresh fully automated index sheets"
+    },
+    {
+      "databaseId": 40108621544,
+      "event": "workflow_dispatch",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "queued",
+      "workflowName": "Update World Bank monthly gold data"
+    },
+    {
+      "databaseId": 40108578878,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Update SCPI presentations"
+    },
+    {
+      "databaseId": 40108578876,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Update active monthly market histories"
+    },
+    {
+      "databaseId": 40108578861,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Update publication observations"
+    },
+    {
+      "databaseId": 40108578843,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Update insurance presentations"
+    },
+    {
+      "databaseId": 40108578801,
+      "event": "pull_request_target",
+      "headSha": "c3e6f301589af2969fc8013b9b67007716adb2fa",
+      "status": "completed",
+      "workflowName": "Retire closed PR validation"
+    },
+    {
+      "databaseId": 40108578743,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Publish automation failures"
+    },
+    {
+      "databaseId": 40108578738,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "databaseId": 40108578708,
+      "event": "push",
+      "headSha": "5606834bfc6bd4032bc66d96afd275453c71e67c",
+      "status": "in_progress",
+      "workflowName": "Update editorial radar"
+    },
+    {
+      "databaseId": 40108472263,
+      "event": "workflow_run",
+      "headSha": "216dd2bf1aa21d6e4c560cc7322eb2c183528da5",
+      "status": "completed",
+      "workflowName": "Publish automation failures"
+    },
+    {
+      "databaseId": 40107928584,
+      "event": "workflow_run",
+      "headSha": "216dd2bf1aa21d6e4c560cc7322eb2c183528da5",
+      "status": "completed",
+      "workflowName": "Publish automation failures"
+    }
+  ]
+}

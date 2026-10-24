@@ -1,13 +1,9 @@
-# Livraison consolidée — 24 octobre 2026
+# Livraison consolidée des données communes
 
-Les PR [#920](https://github.com/madmax91310/shinny-potato/pull/920) et [#921](https://github.com/madmax91310/shinny-potato/pull/921) sont fusionnées. Le producteur corrigé collecte, valide, enregistre et publie depuis GitHub : [exécution 40085504061](https://github.com/madmax91310/shinny-potato/actions/runs/40085504061). Son échec de collecte restant est explicite ; validation, enregistrement et publication réussissent.
+Correctifs fusionnés : #924, #927, #928, #925, #932 ; travaux Radar #930 et supervision #931 rapprochés et préservés. Sources, horloges, enregistrement concurrent et publication corrigés ; 21 identités contrôlées, neuf requalifications d’indices rétablies et 18 exports publics vérifiés. Aucun outil IA restauré.
 
-Le site réellement vérifié sert le code applicatif `6124113127807037b1ab765a177ce87788268471` et les données `2bc3a6d199de2ec1ab260bb73985237e97aec06c`. Le code du producteur exécuté est `2f37f75e19c91813d8df37de63da0b6574cc7801`. Les changements de scripts GitHub ne sont pas présentés comme un nouveau JavaScript de l’application.
+La capture du rapport sert le code `d73c56031078c11994644eaf53b8728159750698` et les données `d73c56031078c11994644eaf53b8728159750698`. Les captures finales et reçus précisent ce qui est effectivement en production ; une fusion seule ne prouve pas un déploiement.
 
-- Métadonnées : vrai contrat de champs, ciblage valide obligatoire, absence de faux succès de cache, départ de master actuel sous verrou.
-- Supervision : **44 → 30 signaux** ; 13 retraits d’attribution et un ancien contrôle technique rejoué. Les deux incidents source propres aux métadonnées restent visibles.
-- Suivi : **983 → 969 enregistrements actifs**, **118 → 117 vérifications en attente** ; 8 600 provenances conservées. Les épisodes trouvés après l’audit initial restent dans les captures suivantes.
-- Finance : **79 → 79 cas ouverts**. Recherche primaire Euronext sur 13 cas : neuf bornes de cours recoupées, quatre différences à investiguer. Aucun nouveau calcul admis sur cette seule recherche.
-- Validation : 1 002 tests Python du lot, 10 tests du suivi, contrôle complet 40084758449 réussi, reprise réelle GitHub, 50 historiques servis vérifiés pour les 79 cas, quatre PNG publics identiques avant/après et diagnostics publics vérifiés sur mobile/ordinateur.
+**L’automatisation complète reste non démontrée.** 79 divergences encore ouvertes, 52 fenêtres contestées refusées et 27 voies NAV indépendantes conservées. Les blocages externes et la qualification fine des anciens journaux restent ouverts. La matrice refuse les faux succès de cache et les reçus globaux non ciblés ; ses B ne sont pas autant de valeurs fausses.
 
-Le [rapport](RAPPORT.md), le [bilan](bilan.json), le [suivi unique](suivi-consolide.csv), les [19 actions](statut-19-actions.csv), les [79 écarts](reconciliation-79-ecarts.csv) et le [reliquat](restant-a-verifier.csv) sont disponibles séparément. Les pièces manquantes restent détaillées ; tout n’est pas déclaré réparé.
+[Rapport](RAPPORT.md), [matrice](matrice-donnees-usages.csv), [chaînes](chaines-donnees.csv), [producteurs](producteurs-commandes.csv), [19 actions](statut-19-actions.csv), [79 cas](reconciliation-79-ecarts.csv) et [reliquat](restant-a-verifier.csv) sont séparés. Tests et limitations sont liés dans le rapport.

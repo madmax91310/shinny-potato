@@ -1,0 +1,186 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 120908715505,
+      "run_id": 40106346351,
+      "workflow_name": "Update World Bank monthly gold data",
+      "head_branch": "fix/shared-data-autonomy-20261024",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/40106346351",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAcJriV8Q",
+      "head_sha": "c3e6f301589af2969fc8013b9b67007716adb2fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/120908715505",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40106346351/job/120908715505",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T15:18:09Z",
+      "started_at": "2026-10-24T15:18:11Z",
+      "completed_at": "2026-10-24T15:19:25Z",
+      "name": "update",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-24T15:18:12Z",
+          "completed_at": "2026-10-24T15:18:13Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-24T15:18:13Z",
+          "completed_at": "2026-10-24T15:18:52Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-24T15:18:52Z",
+          "completed_at": "2026-10-24T15:18:52Z"
+        },
+        {
+          "name": "Run pip install -r scripts/requirements-gold.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-24T15:18:52Z",
+          "completed_at": "2026-10-24T15:18:55Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_gold_monthly.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-24T15:18:55Z",
+          "completed_at": "2026-10-24T15:18:56Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-24T15:18:56Z",
+          "completed_at": "2026-10-24T15:19:00Z"
+        },
+        {
+          "name": "Collect official monthly workbook",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-24T15:19:00Z",
+          "completed_at": "2026-10-24T15:19:01Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-24T15:19:01Z",
+          "completed_at": "2026-10-24T15:19:02Z"
+        },
+        {
+          "name": "Validate gold observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-24T15:19:02Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Collection summary",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-24T15:19:23Z",
+          "completed_at": "2026-10-24T15:19:23Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/120908715505",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000024710,
+      "runner_name": "GitHub Actions 1000024710",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 120908995369,
+      "run_id": 40106346351,
+      "workflow_name": "Update World Bank monthly gold data",
+      "head_branch": "fix/shared-data-autonomy-20261024",
+      "run_url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/runs/40106346351",
+      "run_attempt": 1,
+      "node_id": "CR_kwDODBcmZM8AAAAcJrzbKQ",
+      "head_sha": "c3e6f301589af2969fc8013b9b67007716adb2fa",
+      "url": "https://api.github.com/repos/madmax91310/shinny-potato/actions/jobs/120908995369",
+      "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40106346351/job/120908995369",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-24T15:19:25Z",
+      "started_at": "2026-10-24T15:19:25Z",
+      "completed_at": "2026-10-24T15:19:25Z",
+      "name": "deploy",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/madmax91310/shinny-potato/check-runs/120908995369",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}
