@@ -1,0 +1,46 @@
+# Corrections et raccordements — bilan du reliquat de 79 cas
+
+Les PR [#892](https://github.com/madmax91310/shinny-potato/pull/892), [#895](https://github.com/madmax91310/shinny-potato/pull/895), [#899](https://github.com/madmax91310/shinny-potato/pull/899), [#900](https://github.com/madmax91310/shinny-potato/pull/900), [#905](https://github.com/madmax91310/shinny-potato/pull/905), [#906](https://github.com/madmax91310/shinny-potato/pull/906) et [#907](https://github.com/madmax91310/shinny-potato/pull/907) sont fusionnées et publiées. Code servi `3fde88969344539e34288f77795a9af7985c02b3`, données servies `22742a152d23be5cf8a17efeac3012d050551c85`. PUBLICATION.md donne les vérifications réelles, les exécutions et leurs limites. Les protections et reprises publiées indépendamment dans #898 sont conservées, sans être attribuées à cette mission.
+
+## Bilan financier réconcilié
+
+Le périmètre compte **79 couples part × année, sur 50 parts**. Les 90 comparaisons initiales, leurs valeurs et les 175 périodes non comparables sont conservées. Les preuves quotidiennes officielles passent de **68 à 72** ; **sept** restent manquantes. Les 72 cas documentés ont une décomposition quantitative vérifiée ; les sept autres restent explicitement non calculables, avec leurs recherches et la pièce manquante. Les 25 groupes de causes potentielles n’impliquent aucune attribution générique.
+
+- **Deux défauts de distributions sont démontrés et réparés** : WFNS 2023 et Amundi FR0007054358 en 2020. Leurs résidus marché/NAV restent ouverts. Aucun des 79 écarts anciens n’est déclaré entièrement expliqué :77 causes anciennes et deux résidus de corrections sont encore à attribuer.
+- **27 cas utilisent une NAV mensuelle distincte qualifiée**, sur 17 parts. Cette mission a ajouté23 de ces usages par15 nouvelles voies sur des instruments déjà présents. Une voie NAV ne prouve pas la cause de l’ancienne cotation.
+- **52 fenêtres de cotation contestées restent refusées**, y compris les deux séries dont le cash a été réparé. C’est la protection apportée par #898, préservée ici. Les périodes indépendamment qualifiées restent disponibles. Ne pas confondre présence de points dans le stockage, présence au sélecteur et autorisation d’une fenêtre.
+- Parmi ces 52 cas de cotation encore chargés, **50 restent sans réparation de série**, sur 31 parts. Ils ne sont plus présentés comme52 résultats autorisés en production. Les usages annuels NAV sont décrits séparément des calculs mensuels et des cours bruts d’anniversaire.
+
+Les dénominateurs sont dans bilan.json et bilan-avant-apres.csv. La matrice consommateurs conserve1 106 lignes :79 cas × sept consommateurs techniques × deux phases ; elle ne représente pas1 106 actifs. Les reprises annuelles et les années effectivement disponibles sont consignées dans les détails des consommateurs.
+
+## Corrections et raccordements livrés
+
+**NAV exactes :** neuf parts iShares et deux SSGA, puis ESPO, NUCL, JEDI et GDX. Les voies DWS, Aerospace et Mining antérieures sont préservées. Les cinq collectes VanEck utilisent les bonnes pages UCITS et leur API officielle, sans redirection vers un fonds américain. GDX commence toujours en mai 2017 et dispose de huit années complètes 2018–2025 ; le diagnostic 2017 non qualifié reste visible hors fenêtre. Les anciens identifiants manuels/Duels, notamment Mining, Space et GDX, sont préservés. NUCL garde seulement deux années complètes et n’entre pas dans les usages exigeant trois années. Aucun rôle automatique massif n’est ajouté.
+
+**WFNS 2023 :** le dividende officiel de0,1077 USD du15 juin manquait dans les cours ajustés ; le versement de décembre était déjà pris en compte. Correction limitée aux niveaux ajustés concernés, sans double comptage lors d’une réparation fournisseur ultérieure. Rendement stocké14,6048 % →17,29795252 %, quotidien officiel17,41181226 %, résidu−0,11385975 point non attribué. La fenêtre de cotation reste refusée ; le calendrier NAV annuel demeure une voie indépendante.
+
+**Amundi FR0007054358 :** douze distributions officielles EUR 2015–2020 sont rapprochées avec les NAV et leurs facteurs ajustés. Leur date d’effet est démontrée, pas déduite du seul nom d’un champ. Les deux cash 2020 omis font passer le rendement mensuel stocké de −5,10959452 % à −2,88504749 %. La différence résiduelle face à la NAV ajustée aux dates de marché reste −0,47411816 point sur les niveaux non arrondis (−0,47411974 point à partir des points stockés). La cotation 2020 reste refusée ; 2018 et les périodes récentes qualifiées sont conservées. Le calendrier NAV EUR rétablit le manuel et les Duels sous le même identifiant manual-FR0007054358, sur 2020–2025. Performance depuis et les classements annuels disposaient déjà de cette voie distincte via #898. Cours bruts et 2021–2025 inchangés ; aucun prolongement avant janvier 2015. L’événement d’unité200 de LQQ n’est pas traité comme un dividende EUR.
+
+**Publication concurrente #905 :** reprise après refus de push réparée dans le checkout privé, avec rebase puis nouvelle validation. Le producteur normal avait collecté665/665 séries avant de rencontrer ce défaut d’écriture. Les conflits et échecs de revalidation restent des refus ; les scénarios Git isolés ne sont pas présentés comme des tests fournisseur.
+
+**Revue éditoriale #906 :** une collecte récente ne renouvelle plus la revue d’un ancien texte. La date effective reste le minimum des deux dates. Le navigateur vérifie le refus de copie et de marquage après expiration de la revue, avec texte identique et sans publication enregistrée. Les chiffres non typés ne deviennent pas automatiquement qualifiés.
+
+## Automatisations et limites
+
+Les vraies réponses officielles et les producteurs communs sont contrôlés depuis GitHub ; automatisations-github.csv distingue sondes de qualification, workflows ordinaires, étapes réussies et états globaux. Un succès sans changement ne renouvelle pas la date de preuve d’une ancienne valeur. Le manifeste public et les projections générées sont rapprochés des artefacts réellement publiés. Le livre IA est comparé au commit de données, sans transaction fictive ajoutée par cette mission.
+
+Les reprises de #898 sont réconciliées séparément : change TWD FedH.10/BCE, HSBC, voie sectorielle CSPX issue des 504 positions à même date, IBKR France et données IA. Une reprise de secours ne répare pas une table primaire encore invalide. Les derniers journaux et données servis priment sur les constats intermédiaires conservés.
+
+Blocages restants : Copper et quatre compositions complètes WisdomTree sans voie officielle autorisée démontrée dans GitHub ; deux PEA conflit/inconnu ; avis juridique FR0007054358 de continuité 2001–2018 ; sept preuves quotidiennes ; causes/résidus financiers ; chiffres vivants non typés et branches de modules non vérifiées. Une publication SCPI sans échéance annoncée n’est pas une panne. DWS #889 est expliqué : encours du fonds enGBP, part et performances enUSD ; une archive inaccessible reste une limite documentaire.
+
+## Contrôles et livrables
+
+**973 tests Python locaux**, contrôles Node ciblés, build propre et CI du commit final, puis **87 téléchargements PNG sur le site public**, pour les sélecteurs, périodes, devises, calculs, textes, images et exports concernés. Les couleurs et formats annuels sont préservés ; les fenêtres refusées sont testées aussi. La recette éditoriale isolée s’ajoute aux PNG financiers sans entrer dans ce décompte. Aucune certification générale du catalogue n’est revendiquée.
+
+Les **19 actions** restent : **12 corrigées, une déjà résolue, cinq partielles, une bloquée**. Certaines corrections proviennent des lots antérieurs : leurs preuves sont conservées sans nouvelle certification fournisseur implicite. Les 201 lignes initiales de reliquat sont conservées, plus le diagnostic GDX hors fenêtre, soit202. Les 115 modules initiaux, les 81 initialement à vérifier et les composants explicitement ajoutés restent suivis individuellement ; les scénarios locaux ne deviennent pas des preuves réseau.
+
+Rapports séparés : reconciliation-79-ecarts.csv ; recomposition-79-ecarts.csv ; pont-cours-nav-ajustements-79.csv ; series-cotation-production.csv ; series-suspectes-chargees.csv ; series-suspectes-production.csv ; consommateurs-79-cas.csv ; raccordements-retablis.csv ; automatisations-github.csv ; statut-19-actions.csv ; restant-a-verifier.csv ; modules-verification.csv ; bilan.json. INDEX-PREUVES.json donne les empreintes ; INDEX-ORIGINES-PREUVES.json réconcilie les 314 pièces originales retrouvées.
+
+En complément des exports, les 50 fichiers JSON d’historique réellement servis, couvrant les 79 cas, sont contrôlés octet par octet : preuves/historiques-servis-79-cas.json. Leurs points corrigés restent distincts de l’admission des fenêtres.
+
+Le fichier dates-creation-53-parts.csv conserve les 53 parts des 90 comparaisons initiales ; le reliquat courant reste de 79 cas sur 50 parts. series-suspectes-production.csv comporte seulement son en-tête : aucune des fenêtres contestées des 79 cas n’est admise sur une ancienne cotation. Les 50 cas de cotations non réparées encore stockées restent intégralement dans series-suspectes-chargees.csv, et les 52 fenêtres refusées dans fenetres-cotation-refusees.csv. Cela ne certifie pas les autres périodes du catalogue.

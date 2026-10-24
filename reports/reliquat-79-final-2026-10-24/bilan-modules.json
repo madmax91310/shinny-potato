@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-23T22:35:23.030415+00:00",
+  "total": 119,
+  "inventaire_initial": 115,
+  "complements_explicitement_ajoutes": 4,
+  "sous_ensemble_initial_81": 81,
+  "statuts_tous": {
+    "auxiliaire exercé par les tests ; branches non couvertes conservées": 17,
+    "exécution réelle sur les branches citées": 41,
+    "scénarios locaux exécutés ; réseau non recertifié": 47,
+    "scénarios Node exécutés ; réseau non recertifié": 4,
+    "scénario local réellement exécuté ; pas une collecte fournisseur": 3,
+    "non vérifié individuellement dans cette correction": 3,
+    "scénarios ciblés exécutés ; utilisé dans une collecte fournisseur réelle GitHub": 1,
+    "branches citées exécutées dans GitHub et régressions ciblées réussies": 2,
+    "défaut reproduit avec vrais dépôts Git isolés puis régressions réussies ; CI et publication consignées séparément": 1
+  },
+  "statuts_des_81_initiaux": {
+    "auxiliaire exercé par les tests ; branches non couvertes conservées": 16,
+    "exécution réelle sur les branches citées": 22,
+    "scénarios locaux exécutés ; réseau non recertifié": 34,
+    "scénarios Node exécutés ; réseau non recertifié": 4,
+    "scénario local réellement exécuté ; pas une collecte fournisseur": 3,
+    "non vérifié individuellement dans cette correction": 2
+  },
+  "roles_tous": {
+    "auxiliaire": 24,
+    "collecteur réseau": 72,
+    "orchestrateur": 19,
+    "auxiliaire de qualification financière ; aucun transport réseau propre": 1,
+    "collecteur/adaptateur réseau NAV mutualisé, déjà présent avant cette mission": 1,
+    "auxiliaire réseau et qualification NAV mutualisés, déjà présent avant cette mission": 1,
+    "auxiliaire de publication Git ; aucun fournisseur financier": 1
+  },
+  "limite": "Les scénarios locaux et Node ne recertifient pas les fournisseurs. Les41exécutions réelles héritées comprennent les branches déjà sondées, pas41nouvelles collectes. Les composants ajoutés au graphe ont leur propre portée ; tous les modules initiaux restent présents."
+}
