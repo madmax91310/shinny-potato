@@ -4,7 +4,7 @@ Capture du 24 octobre 2026, avant fin du producteur mensuel 40041331581 et du co
 
 #898 a été fusionnée normalement dans b96074bf le 23/10 à 23:44 UTC. La validation de production [40041331416](https://github.com/madmax91310/shinny-potato/actions/runs/40041331416) est entièrement réussie : build, Python, exposition, smoke, quatre partitions navigateur, quatre partitions de publications, déploiement et vérification de l’artefact public. `post-integration/live-build-info.json` identifie le code servi fab8f801 et les données e44f669b, descendants de la fusion. Les corrections concurrentes #905/#906 sont conservées. Le livre réel IA conserve le blob `d96ba15bb2607b7306a401b1b7b2ed744c8dfe37`.
 
-Le suivi actualisé contient **8 587 lignes** ; ses **8 573 lignes précédentes**, y compris leurs états avant intervention, sont conservées. Les quatorze ajouts comprennent les nouveaux incidents et les vérifications après publication. Les 4 274 lignes de couverture ont été rapprochées des fichiers réellement servis. `bilan.json` reprend le résumé de cet inventaire publié, sans assimiler 110 raccordements à traiter à 110 pannes identiques. Les pièces comprimées conservent les instantanés utilisés.
+Le suivi actualisé contient **8 600 lignes** ; ses **8 573 lignes précédentes**, y compris leurs états avant intervention, sont conservées. Les vingt-sept ajouts comprennent les nouveaux incidents et les vérifications après publication. Les 4 274 lignes de couverture ont été rapprochées des fichiers réellement servis. `bilan.json` reprend le résumé de cet inventaire publié, sans assimiler 110 raccordements à traiter à 110 pannes identiques. Les pièces comprimées conservent les instantanés utilisés.
 
 ## Fonctionnement vérifié sur le site public
 
@@ -70,3 +70,12 @@ Le [rejeu DWS 40048479915](https://github.com/madmax91310/shinny-potato/actions/
 ## Horloge de la recette des NAV courantes
 
 Le build GitHub 40050143526 échoue avant compilation : la recette interroge les niveaux courants à la date de leur ancienne preuve archivée. Pour IE00BSPLC413, le registre possède désormais la NAV du 23/10, la preuve de référence date du 22/10 ; le consommateur la refuse correctement à cette ancienne date. Le test utilise désormais le registre courant des deux sources exactement comme le consommateur, contrôle sa non-régression et sa date non future, puis vérifie identité, devise et valeur à la date courante. Il vérifie aussi le refus avant observation et après le délai d’expiration existant. Aucun seuil ni garde-fou produit n’est modifié, aucune donnée n’est reculée. Les quatre scripts de consommateurs NAV/financiers passent localement après ce correctif ; rejeu GitHub encore requis. Le journal original est archivé.
+
+
+## Production ordinaire et clôtures constatées à 02:16
+
+Le producteur ordinaire **40048488254** valide TWD/BCE et les 333 mois via Fed H.10 ; FRED reste en timeout. Enregistrement eb4fd51f et publication vérifiée le 24/10 à 02:09 UTC, avec 571 fichiers publics contrôlés. Le reçu et le rapport individuel sont joints. Le moniteur confirme la clôture TWD ; ce résultat n’est pas déduit d’un workflow global vert : celui-ci est **en échec**, car treize séries de classement reçoivent HTTP429. Leurs données qualifiées de septembre 2026, contrôlées le 23/10, sont conservées sans nouvelle date de contrôle. Treize lignes distinctes sont ajoutées au suivi.
+
+Le mode de reprise `--retry-failed`, déjà utilisé par le cron, devient sélectionnable au déclenchement manuel du même producteur. Il ne redemande pas les historiques sains, ne supprime aucun contrôle de qualification/publication et ne recertifie pas une source ignorée. Une exécution ordinaire de cette reprise est encore requise.
+
+Le moniteur du **24/10 à 02:16:51 UTC** contient 56 signaux et **zéro alerte DWS active**. Les 36 épisodes restants sont retrouvés dans ses résolutions après le vrai délai de stabilité de quatre heures. Les états avant correction et les documents restent archivés. Cette clôture ordinaire est distinguée du correctif de compteur qui évitera les réinitialisations futures dues aux seuls libellés ; aucune empreinte normalisée n’est appliquée rétroactivement à la production antérieure à son intégration.

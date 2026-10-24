@@ -21,7 +21,8 @@
     "incident après intégration": 5,
     "validation après intégration": 4,
     "incident révélé par build": 1,
-    "rôle de module après intégration": 3
+    "rôle de module après intégration": 3,
+    "incident après collecte ordinaire": 13
   },
   "before": {
     "fieldKinds": {
@@ -358,7 +359,7 @@
     "checked": 90
   },
   "monitorActiveInitial": 13,
-  "monitorActiveFinal": 67,
+  "monitorActiveFinal": 56,
   "productionMonitorManuallyChanged": false,
   "missingInitialCoverageRows": 0,
   "newCoverageRows": 0,
@@ -375,7 +376,7 @@
   },
   "postIntegration": {
     "snapshotMonitorAt": "2026-10-24T00:37:09.142060+00:00",
-    "ledgerRows": 8587,
+    "ledgerRows": 8600,
     "previousRowsPreserved": 8573,
     "coverageRows": 4274,
     "coverageDate": "2026-10-24",
@@ -415,7 +416,7 @@
       "proof": "post-integration/dws-financial-stability/comparison.json",
       "stabilityHours": 4,
       "backdated": false,
-      "productionClosureConfirmed": false
+      "productionClosureConfirmed": true
     },
     "afterMaster907Financial": {
       "master": "22742a15",
@@ -607,6 +608,20 @@
       "localFixValidated": true,
       "productionGuardChanged": false,
       "githubRetryRequired": true
+    },
+    "latestMonitorAt": "2026-10-24T02:16:51.661720+00:00",
+    "dwsProductionResolved": 36,
+    "ordinaryMonthly907": {
+      "runId": 40048488254,
+      "globalConclusion": "failure",
+      "monthlyValidated": 665,
+      "rankingFailed": 13,
+      "twdValidated": true,
+      "ecbValidated": true,
+      "recording": "success",
+      "publication": "success",
+      "publicFilesVerified": 571,
+      "latestRequiredMonthRetained": "2026-09"
     }
   }
 }
