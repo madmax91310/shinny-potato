@@ -52,7 +52,8 @@ try{
     boxes=[];labels=[];activeField=field
     const p={imageOnly:true,name:'',scope:'Portefeuille investi',exposureLimit:limit,lines:lines.map(([asset,weight])=>({asset,weight,label:references[asset]?.name||asset,isin:references[asset]?.isin||''}))}
     await renderDcaImage(p,field)
-    if(!labels.some(t=>/Poche actions|Aucune poche actions/.test(t)))throw Error('Missing scope')
+    const hasScope=labels.some(t=>/Poche actions|Aucune poche actions/.test(t))
+    if(field==='all'?hasScope:!hasScope)throw Error(field==='all'?'Unwanted scope in complete image':'Missing scope')
     if(labels.some(t=>/couverture|ventilés|Synthèse indicative|Pourcentages arrondis|\d{4}-\d{2}-\d{2}/i.test(t)))throw Error('Technical annotation restored in image')
     out.push({limit,field})
    }
