@@ -31191,14 +31191,15 @@
           "at": "2026-10-24T17:49:18.885718+00:00",
           "reason": "transient-source",
           "sourceRunId": 40116229402,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-24T17:25:28Z",
       "observedRunId": 40116229402,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-24T18:49:18.885718+00:00"
     },
     "update-publication-observations.yml": {
