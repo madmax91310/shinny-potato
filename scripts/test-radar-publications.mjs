@@ -147,3 +147,19 @@ assert.equal(etfAnnouncement('UCITS ETF additional listing on Euronext Paris').t
 assert.equal(etfAnnouncement('UCITS ETF first trading date announced').type,'first-trading')
 
 assert.equal(etfAnnouncement('UCITS ETF will begin trading tomorrow').type,'trading','A future trading date is not a launch claim')
+
+// A conditional response after an outage restores health without inventing a
+// new extraction, publication or availability date. No event is re-emitted.
+const recovered304=await collectPublications(new Date(+now+9*86400000),async()=>new Response(null,{status:304}),outage.state,[source('insee-publications')],1)
+const cachedDocument=Object.values(unchanged.state.documents)[0],recoveredDocument=Object.values(recovered304.state.documents)[0]
+assert.equal(recoveredDocument.status,'done')
+assert.equal(recoveredDocument.error,undefined)
+assert.deepEqual(recoveredDocument.observation,cachedDocument.observation)
+assert.equal(recoveredDocument.availableAt,cachedDocument.availableAt)
+assert.equal(recovered304.sources[0].status,'ok')
+assert.equal(recovered304.sources[0].queue.error,0)
+assert.deepEqual(recovered304.errors,[])
+const replay304=advanceRadar(advanceRadar(null,unchanged.observations,{now}).state,recovered304.observations,{now:new Date(+now+9*86400000)})
+assert.equal(replay304.newEvents.length,0)
+const noCache304=await collectPublications(now,async url=>new Response(url.includes('/flux/')?rss:null,{status:url.includes('/flux/')?200:304}),{},[source('insee-publications')],1)
+assert.match(noCache304.errors[0].reason,/304 sans extraction/)

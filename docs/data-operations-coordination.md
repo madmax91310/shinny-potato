@@ -14,3 +14,11 @@ Branche concurrente examinée à la livraison : `fix/shared-data-autonomy-202610
 La supervision produit aussi `public/data/data-review-inbox.json` via `scripts/build-data-review-inbox.mjs`, après le générateur complet existant. Projection compacte uniquement, sans modification du générateur d’inventaire possédé par le chantier collecte ; équivalence exhaustive vérifiée par test.
 
 Intégration réalisée après fusion #924 : master `16a895e5`, deux conflits résolus en conservant `requiredDataGaps`, `historyChecks` et `fieldChecks`, ainsi que le rapport or. Contrat du rapport or qualifié sur l’artefact ordinaire `12565138160` (run `40108621544`) : collecte et enregistrement réussis, publication encore en attente lors de la capture. Deux producteurs restent au seul contrat de job. Les anciens rapports sans manifeste restent à qualifier ; une reprise ciblée ne les répare pas.
+
+Actualisation finale : master `3ecbbee9` (#926 et #928) intégré ; PR #929 (preuves communes) et #930 (reprise conditionnelle radar) examinées sans modification de leurs fichiers. La supervision intermédiaire lit les jobs ordinaires en cours ; elle ne relance ni ne modifie leurs collecteurs. Les preuves de réparation restent par champ, branche et tentative.
+
+Complément de livraison : PR #931, branche `fix/data-review-inflight-20261024`. Fichiers pris en charge : le lecteur et le réducteur de supervision, contrats/recette, `review-inbox.js` et diagnostics. Le raccordement du format `listings` au périmètre ciblé est corrigé côté supervision ; aucun producteur modifié.
+
+File de recette : `.github/workflows/deploy-pages.yml` annule uniquement les révisions remplacées de la même PR. Le groupe par PR reste distinct de master, les validations et publications de production ne sont jamais annulées par cette règle. Les suites de contrôles et les seuils restent intacts.
+
+Rattrapage de supervision : `unseen_completed_runs` dans `github_automation_transport.py` restitue toutes les exécutions ordinaires non observées dans l’ordre, au lieu de la seule dernière. Les reprises HTTP et les producteurs restent inchangés ; un succès global ultérieur ne peut ainsi masquer un échec intermédiaire omis. Régression multi-exécutions ajoutée.

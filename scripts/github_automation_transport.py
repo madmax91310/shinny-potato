@@ -19,6 +19,13 @@ def request_json(url, token, method='GET', data=None, opener=urllib.request.urlo
                 return json.load(response) if response.status!=204 else None
         except urllib.error.HTTPError as error:
             if error.code not in (408,429,500,502,503,504) or attempt==attempts-1:
+                # Keep the exact rejection without logging credentials or the status body.
+                try:
+                    response=json.loads(error.read(16000))
+                    reason=json.dumps({k:response[k]for k in ('message','errors')if k in response},ensure_ascii=False)[:1600]
+                except (OSError,ValueError,TypeError,AttributeError):
+                    reason='Réponse de rejet GitHub non lisible'
+                error.add_note(f'GitHub {method}, charge de {len(request.data or b"")} octets : {reason}')
                 raise
             delay=retry_delay(error,attempt)
         except (urllib.error.URLError,TimeoutError,http.client.IncompleteRead,ConnectionError):
@@ -29,11 +36,11 @@ def request_json(url, token, method='GET', data=None, opener=urllib.request.urlo
 
 
 def unseen_completed_runs(candidates, previous):
-    """Catch up after a missed workflow_run event, without replaying old reports."""
+    """Catch up every missed workflow_run event, without replaying observed reports."""
     old=(previous.get('runId',0),previous.get('attempt',1))
     eligible=[r for r in candidates if r.get('head_branch')=='master'
               and r.get('status')=='completed'
               and r.get('event') in ('push','schedule','workflow_dispatch','workflow_run')
               and r.get('conclusion') not in ('cancelled','skipped','neutral')
               and (r['id'],r.get('run_attempt',1))>old]
-    return [max(eligible,key=lambda r:(r['id'],r.get('run_attempt',1)))] if eligible else []
+    return sorted(eligible,key=lambda r:(r['id'],r.get('run_attempt',1)))

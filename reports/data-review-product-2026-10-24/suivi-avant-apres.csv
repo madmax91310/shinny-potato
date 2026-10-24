@@ -1,6 +1,6 @@
 avant,apres,preuve,statut
 Artefact absent sans résultat source explicite,"Incident de preuve lié au producteur, run et tentative","absence, expiration, récupération de l'artefact exact",recette isolée validée ; preuves CI et public dans la PR #925
-JSON inconnu assimilable à un rapport vide réussi,Contrats nom/producteur/famille et identité des résultats,"39 fichiers réels de 18 producteurs, aucun rejet de leur schéma actuel",recette isolée validée ; preuves CI et public dans la PR #925
+JSON inconnu assimilable à un rapport vide réussi,Contrats nom/producteur/famille et identité des résultats,"40 fichiers réels de 19 producteurs, aucun rejet de leur schéma actuel",recette isolée validée ; preuves CI et public dans la PR #925
 TypeError/KeyError pouvait arrêter un cycle,Isolation par rapport et par producteur ; incident d'observation,payloads invalides et maintien du résultat indépendant,recette isolée validée ; preuves CI et public dans la PR #925
 Couverture d'une reprise ciblée ambiguë,`attemptedIds` vérifié lorsqu'émis ; qualification visible sinon,"périmètre vide, résultat tenté absent, résultat hors périmètre",recette isolée validée ; preuves CI et public dans la PR #925
 Cache et succès global confondus avec contrôle source,"Dates par champ, artefact et publication distinctes","cache, absence de changement, résultat partiel",recette isolée validée ; preuves CI et public dans la PR #925
@@ -18,3 +18,6 @@ Historique borné aux 100 résolutions et 30 événements,Historique durable ; r
 Retrait de périmètre confondu avec réparation,"Retraits, attentes et résolutions séparés","attente/succession, retrait IA, preuve de résolution",recette isolée validée ; preuves CI et public dans la PR #925
 Outils attribués au périmètre global d'un collecteur,Contrats par champ utilisés lorsqu'ils existent ; périmètre du collecteur conservé au diagnostic,tous les usages requis non raccordés conservés,recette isolée validée ; preuves CI et public dans la PR #925
 Divergences financières réparties entre rapports,Tous les cas ouverts/résiduels dans la boîte commune et le registre financier,79 cas conservés ; téléchargement des 90 comparaisons,recette isolée validée ; preuves CI et public dans la PR #925
+Collecte terminée dans un workflow encore en attente,Résultats individuels observés avant la fin globale ; attente distincte,source en échec ; cache ; panne API ; retour terminal,recette isolée validée ; complément à #925
+Ancien workflow or sans contrat d’artefact,Qualification historique sans faux artefact manquant,version du contrat déduite des étapes réelles,recette isolée validée ; complément à #925
+Succès composite sans preuve de la branche initialement en échec,Qualification maintenue avec erreur et preuve antérieures,rapport composite insuffisant pour réparer la branche,recette isolée validée ; complément à #925

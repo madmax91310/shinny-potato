@@ -51,7 +51,15 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
  for(const[id,c]of Object.entries(registry)){
   if(c.reportCoverage==='job-only')add({id:'coverage:'+id,name:c.name,field:'Contrat de remontée individuelle',kind:'qualification',cause:'Ce producteur ne fournit pas de rapport individuel contractuel ; la couverture de chaque champ reste à démontrer.',tools:c.tools,workflow:id})
   const w=status?.workflows?.[id]
+  for(const [n,cause]of (w?.legacyReportCoverage??[]).entries())add({id:'legacy-coverage:'+id+':'+n,name:c.name,field:'Contrat de l’ancienne exécution',kind:'qualification',cause,tools:c.tools,workflow:id,runUrl:w.runUrl})
   if(status&&(!w||!Number.isFinite(Date.parse(w.completedAt))))add({id:'unobserved:'+id,name:c.name,field:'Exécution',kind:'monitoring',cause:'Aucune exécution terminée démontrée par ce bilan.',tools:c.tools,workflow:id})
+ }
+ for(const [key,p]of Object.entries(status?.inFlightRuns??{})){
+  const c=registry[p?.workflow],run=p?.run
+  if(!c||!run||typeof run.id!=='number'){add({id:'health:running:'+key,name:'Exécution en cours',field:'Surveillance',kind:'monitoring',cause:'Observation intermédiaire invalide ; les autres producteurs restent consultables.'});continue}
+  add({id:'running:'+key,name:c.name,field:'Exécution et publication en cours',kind:'waiting',stage:'Exécution',workflow:p.workflow,tools:c.tools,runUrl:run.html_url,attemptedAt:run.run_started_at??run.created_at,
+   cause:`État GitHub : ${run.status}. ${p.sourceProofCaptured?'Étape du producteur terminée ; le résultat global et la livraison restent distincts.':'Les résultats individuels ne sont pas encore disponibles.'}`,
+   action:'Suivre l’exécution liée. Aucun succès global ni nouvelle publication n’est déduit de cette attente.',evidence:{checkedAt:p.checkedAt,reports:(p.reports??[]).map(r=>r._reportEvidence).filter(Boolean)}})
  }
  for(const r of Object.values(status?.monitoring?.active??{})){
   if(!r||typeof r.id!=='string'||Object.hasOwn(retired.workflows,r.workflow??''))continue
@@ -59,7 +67,7 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
   const match=r.id.match(/^field:(?:gap:)?([^:]+):([^:]+):([^:]+)$/)
   const metadata=String(r.dataId??'').match(/^([A-Z]{2}[A-Z0-9]{10}):([^:]+)$/),holdings=String(r.dataId??'').match(/^dca-holdings:([A-Z]{2}[A-Z0-9]{10})$/)
   const usageKey=match?`${match[2]}:coverage:${match[3]}`:metadata?`${metadata[1]}:coverage:${metadata[2]}`:holdings?`${holdings[1]}:coverage:completeHoldings`:null
-  add({...r,tools:consumerTools.get(usageKey)??r.tools,collectorTools:r.tools,kind,stage:r.kind==='publication'?'Publication':/Commit validated|Enregistrement/i.test(r.cause??'')?'Enregistrement':r.kind==='checks'?(/build|projection|génér/i.test(r.cause??'')?'Génération':'Validation'):phase(kind),key:match?`${match[1]}:${match[2]}:${match[3]}`:r.id.startsWith('field:gap:usage:')?r.id.slice('field:gap:'.length):metadata?`instrument:${metadata[1]}:${metadata[2]}`:holdings?`instrument:${holdings[1]}:completeHoldings`:r.id,attemptedAt:r.attemptedAt,recovery:status?.recovery?.[r.workflow]})
+  add({...r,members:r.members??r.attemptedDataIds,impactQualified:consumerTools.has(usageKey),impact:consumerTools.has(usageKey)?r.impact:'Le lien de ce champ aux usages reste à qualifier. La liste donne le périmètre de l’actif ou du collecteur ; elle ne prouve pas que chacun de ses calculs est affecté.',tools:consumerTools.get(usageKey)??r.tools,collectorTools:r.tools,kind,stage:r.kind==='publication'?'Publication':/Commit validated|Enregistrement/i.test(r.cause??'')?'Enregistrement':r.kind==='checks'?(/build|projection|génér/i.test(r.cause??'')?'Génération':'Validation'):phase(kind),key:match?`${match[1]}:${match[2]}:${match[3]}`:r.id.startsWith('field:gap:usage:')?r.id.slice('field:gap:'.length):metadata?`instrument:${metadata[1]}:${metadata[2]}`:holdings?`instrument:${holdings[1]}:completeHoldings`:r.id,attemptedAt:r.attemptedAt,recovery:status?.recovery?.[r.workflow]})
  }
  for(const r of status?.monitoring?.resolved??[])if(r&&typeof r.id==='string')add({...r,id:'history:'+r.id+':'+r.resolvedAt,kind:'history',field:r.field??'Champ historique',stage:'Historique',cause:(r.resolutionEvidence?'Résolution documentée':'Retour enregistré ; preuve historique à qualifier')+' · '+r.resolvedAt+' · '+r.cause})
  for(const r of status?.monitoring?.retired??[])if(r&&typeof r.id==='string')add({...r,id:'retired:'+r.id+':'+r.retiredAt,kind:'not-applicable',stage:'Retrait de périmètre',field:r.field??'Champ retiré',cause:r.retirementReason??'Retrait enregistré ; aucune réparation déduite'})

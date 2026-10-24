@@ -15,3 +15,15 @@ export function signalPriority(event) {
   if (/composition|poids du/i.test(event.title)) return 2
   return 3
 }
+
+const radarDay = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeZone: 'Europe/Paris' })
+const radarInstant = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' })
+export function formatRadarDate(value) {
+  if (!value || !Number.isFinite(Date.parse(value))) return 'Non documenté'
+  const instant = new Date(value)
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    if (instant.toISOString().slice(0,10) !== value) return 'Non documenté'
+    return `${radarDay.format(instant)} (heure non documentée)`
+  }
+  return radarInstant.format(instant)
+}
