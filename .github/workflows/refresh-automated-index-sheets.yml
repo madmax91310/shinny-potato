@@ -59,9 +59,6 @@ jobs:
       - name: Refresh additional exact-index company compositions
         continue-on-error: true
         run: python scripts/refresh_index_companies.py --apply --output "${{ runner.temp }}/index-company-observations.json"
-      - run: node scripts/build-index-company-compositions.mjs --apply --report "${{ runner.temp }}/index-company-qualification-observations.json"
-      - run: node scripts/test-index-proxy-identity.mjs
-      - run: npm run test:index-concentration
       - name: Collect selected indices directly and require every displayed field
         id: selected
         continue-on-error: true
@@ -72,6 +69,9 @@ jobs:
           msci-world-sector-neutral-quality msci-world-enhanced-value
           msci-world-materials msci-world-utilities
           msci-world-health-care msci-world-financials msci-world-energy
+      - run: node scripts/build-index-company-compositions.mjs --apply --report "${{ runner.temp }}/index-company-qualification-observations.json"
+      - run: node scripts/test-index-proxy-identity.mjs
+      - run: npm run test:index-concentration
       - name: "Validate observations: node scripts test-automated-index-sheets.mjs"
         run: node scripts/test-automated-index-sheets.mjs
       - name: "Validate observations: node scripts test-automated-indices.mjs"
@@ -93,6 +93,8 @@ jobs:
       - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request'
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-producer-publication.sh indices
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

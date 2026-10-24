@@ -17,4 +17,21 @@ class ProjectionRecording(unittest.TestCase):
    r=self.publish(prepare,check='true',declared=paths);self.assertNotEqual(r.returncode,0);self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
  def test_prepare_failure_cannot_be_published(self):
   r=self.publish('exit 47');self.assertEqual(r.returncode,47);self.assertFalse((self.f.root/'output').exists())
+ def worldbank_projection(self,unit):
+  self.f.git(self.f.local,'pull','--ff-only')
+  path=self.f.other/'src/data/worldbank-gold-monthly.json';path.parent.mkdir(parents=True,exist_ok=True)
+  source={'unit':unit,'checkedAt':'2026-10-24','points':[['2026-09',4319.0]]};path.write_text(json.dumps(source))
+  self.f.git(self.f.other,'add','.');self.f.git(self.f.other,'commit','-m','independent gold producer');self.f.git(self.f.other,'push','origin','master')
+  guard=pathlib.Path(__file__).with_name('observation_rebase_guard.py')
+  code="import json,pathlib;g=json.loads(pathlib.Path('src/data/worldbank-gold-monthly.json').read_text());assert g['unit']=='USD per troy ounce';pathlib.Path('validated.json').write_text(json.dumps({'period':g['points'][-1][0],'value':g['points'][-1][1],'sourceCheckedAt':g['checkedAt']}))"
+  prepare=f'{shlex.quote(sys.executable)} {shlex.quote(str(guard))} --kind market --base "$VALIDATED_DATA_ORIGINAL_BASE" && '+shlex.quote(sys.executable)+' -c '+shlex.quote(code)
+  check=shlex.quote(sys.executable)+' -c '+shlex.quote("import json;g=json.load(open('validated.json'));assert g=={'period':'2026-09','value':4319.0,'sourceCheckedAt':'2026-10-24'}")
+  return self.publish(prepare,check),source
+ def test_changed_gold_projection_is_rebuilt_qualified_and_recorded_with_true_source_date(self):
+  result,source=self.worldbank_projection('USD per troy ounce');self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+  self.assertEqual(json.loads(self.f.git(self.f.remote,'show','master:validated.json')),{'period':'2026-09','value':4319.0,'sourceCheckedAt':'2026-10-24'})
+  self.assertEqual(json.loads(self.f.git(self.f.remote,'show','master:src/data/worldbank-gold-monthly.json')),source)
+ def test_projection_of_gold_with_changed_unit_is_never_recorded(self):
+  result,source=self.worldbank_projection('EUR per ounce');self.assertNotEqual(result.returncode,0)
+  self.assertEqual(self.f.git(self.f.remote,'show','master:validated.json'),'original')
 if __name__=='__main__':unittest.main()

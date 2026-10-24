@@ -1,0 +1,62 @@
+[
+  {
+    "family": "economie",
+    "entity": "salary-top10",
+    "label": "Seuil des 10 % des salariés du privé les mieux payés",
+    "unit": "€ nets par mois",
+    "publishedAt": "2026-10-22",
+    "publicationId": "https://www.insee.fr/fr/statistiques/9087193",
+    "population": "salariés",
+    "populationScope": "France, secteur privé, apprentis, stagiaires et contrats aidés inclus ; agriculture et salariés des particuliers employeurs exclus. Salaires en équivalent temps plein.",
+    "referencePeriod": "2025",
+    "evidence": {
+      "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de",
+      "excerpt": "Figure 4 – Distribution par sexe des salaires mensuels nets en équivalent temps plein\n                                 (EQTP) en 2025 - Lecture : En 2025, 10 % des salariés en EQTP (1er décile) perçoivent un salaire\n                                 mensuel net inférieur à 1 519 euros.",
+      "method": "Seuil du neuvième décile. Net de cotisations sociales, avant impôt sur le revenu. Salaire en équivalent temps plein, pas la somme effectivement versée à un temps partiel."
+    },
+    "topic": "salaires",
+    "angle": "Comparer le salaire médian et le seuil des 10 % : deux repères en équivalent temps plein, nets de cotisations et avant impôt sur le revenu.",
+    "reason": "Un repère pour situer son salaire, sans confondre médiane et moyenne ni EQTP et temps partiel.",
+    "scope": "salariés · salary-top10",
+    "tool": "/france-100-menages",
+    "maxAgeDays": 400,
+    "field": "value",
+    "fieldLabel": "Repère publié",
+    "value": 4441,
+    "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de",
+    "sourceUrl": "https://www.insee.fr/fr/statistiques/9087193",
+    "period": "2025",
+    "checkedAt": "2026-10-22",
+    "rule": "publication"
+  },
+  {
+    "family": "economie",
+    "entity": "salary-median",
+    "label": "Salaire médian du privé",
+    "unit": "€ nets par mois",
+    "publishedAt": "2026-10-22",
+    "publicationId": "https://www.insee.fr/fr/statistiques/9087193",
+    "population": "salariés",
+    "populationScope": "France, secteur privé, apprentis, stagiaires et contrats aidés inclus ; agriculture et salariés des particuliers employeurs exclus. Salaires en équivalent temps plein.",
+    "referencePeriod": "2025",
+    "evidence": {
+      "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de",
+      "excerpt": "Figure 4 – Distribution par sexe des salaires mensuels nets en équivalent temps plein\n                                 (EQTP) en 2025 - Lecture : En 2025, 10 % des salariés en EQTP (1er décile) perçoivent un salaire\n                                 mensuel net inférieur à 1 519 euros.",
+      "method": "Médiane des salaires nets mensuels en équivalent temps plein. Avant impôt sur le revenu. Ne pas confondre avec la moyenne, ni avec les montants versés aux temps partiels."
+    },
+    "topic": "salaires",
+    "angle": "Comparer le salaire médian et le seuil des 10 % : deux repères en équivalent temps plein, nets de cotisations et avant impôt sur le revenu.",
+    "reason": "Un repère pour situer son salaire, sans confondre médiane et moyenne ni EQTP et temps partiel.",
+    "scope": "salariés · salary-median",
+    "tool": "/france-100-menages",
+    "maxAgeDays": 400,
+    "field": "value",
+    "fieldLabel": "Repère publié",
+    "value": 2238,
+    "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de",
+    "sourceUrl": "https://www.insee.fr/fr/statistiques/9087193",
+    "period": "2025",
+    "checkedAt": "2026-10-22",
+    "rule": "publication"
+  }
+]

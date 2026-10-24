@@ -1,0 +1,64 @@
+{
+  "case": "financial:IE00B4K6B022/2024",
+  "evidenceLevel": "Documents officiels réellement téléchargés localement ; calcul sur la réponse originale préservée. Pas nouvelle collecte GitHub ni série de remplacement.",
+  "documents": [
+    {
+      "reportingYear": 2023,
+      "isin": "IE00B4K6B022",
+      "currency": "EUR",
+      "distributionDate": "01/02/2024",
+      "amount": 0.2214,
+      "evidence": "preuves/autonomie-commune/hsbc-distributions-2023.bin.gz",
+      "uncompressedSha256": "44fd206a0ece6a040c15b627c9d21e75c13712dcb128ea3745113ca50fe9b3ea"
+    },
+    {
+      "reportingYear": 2024,
+      "isin": "IE00B4K6B022",
+      "currency": "EUR",
+      "distributionDate": "08/08/2024",
+      "amount": 1.2623,
+      "evidence": "preuves/autonomie-commune/hsbc-distributions-2024.bin.gz",
+      "uncompressedSha256": "b107897cd85573d435e7bfffa42f56f690266bd2530b084907b844545b8d6014"
+    }
+  ],
+  "originalMarketEvidence": "reports/reliquat-79-2026-10-23/preuves/marches-originaux/etfIE00B4K6B022.json.gz",
+  "providerEvents2024": [
+    {
+      "date": "2024-02-01",
+      "amount": 0.2214
+    },
+    {
+      "date": "2024-08-01",
+      "amount": 1.2623
+    },
+    {
+      "date": "2024-08-08",
+      "amount": 1.2623
+    }
+  ],
+  "officialDistributionTotalEUR": 1.4837,
+  "providerDistributionTotalEUR": 2.746,
+  "beforeExtraAdjustment": {
+    "close": 52.34000015258789,
+    "adjusted": 47.367515563964844,
+    "factor": 0.9049964735550887
+  },
+  "afterExtraAdjustment": {
+    "close": 51.150001525878906,
+    "adjusted": 47.4345588684082,
+    "factor": 0.9273618270452855
+  },
+  "observedExtraAdjustmentFactor": 1.0247131940772534,
+  "factorPredictedByUnlisted12623Dividend": 1.024713328834874,
+  "factorDifference": -1.3475762061787577e-07,
+  "oldReturnPct": 14.482925816540426,
+  "counterfactualWithoutExtraAdjustmentPct": 11.721920317061452,
+  "extraAdjustmentEffectPp": 2.7610054994789746,
+  "officialCalendarNavPct": 11.6,
+  "remainingResidualPp": 0.12192031706145201,
+  "causeClosed": false,
+  "seriesRepaired": false,
+  "runtimeQualificationChanged": false,
+  "finding": "Le saut du facteur ajusté au 01/08 correspond quantitativement à un second montant 1,2623 EUR ; le calendrier officiel de la part publie ce montant au 08/08. Cette composante de la divergence est documentée. Le rendement corrigé contrefactuel ne constitue pas une série qualifiée.",
+  "missing": "Qualifier les clôtures de valorisation et dernières transactions (51,04 EUR Euronext contre 51,41 EUR Yahoo au 31/12), les bornes NAV quotidiennes et la convention de réinvestissement ; le résidu ne démontre pas une erreur NAV."
+}

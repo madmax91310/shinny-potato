@@ -26,7 +26,7 @@ class PublicationTests(unittest.TestCase):
         old={'value':100,'asOf':'2026-10-07','currency':'EUR','parser':'yahoo','symbol':'EXAMPLE.PA'}
         enriched={**old,'isin':'FR0011550193','ticker':'EXAMPLE','mic':'XPAR'}
         current,report=refresh_levels({'example':old},NOW,lambda *_:enriched,selected=[{'id':'example'}])
-        self.assertEqual(current['example'],enriched)
+        self.assertEqual(current['example'],{**enriched,'checkedAt':NOW.isoformat()})
         self.assertFalse(report['errors'])
         for bad in [{**enriched,'isin':'FR0013412012'},{k:v for k,v in enriched.items() if k!='isin'},
                     {**enriched,'symbol':'OTHER.PA'},{**enriched,'currency':'USD'},
@@ -138,7 +138,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual((previous['asOf'],previous['value']),('2026-10-07',36000.25))
         old={'value':35900.1,'asOf':'2026-10-06','parser':'fred','symbol':'XNDX','seriesId':'NASDAQXNDX','currency':'USD','variant':'TOTAL','indexCode':None}
         merged,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:record,selected=[config])
-        self.assertFalse(report['errors']);self.assertEqual(merged['nasdaq100'],record)
+        self.assertFalse(report['errors']);self.assertEqual(merged['nasdaq100'],{**record,'checkedAt':NOW.isoformat()})
         for bad in [{**record,'variant':'PRICE'},{**record,'symbol':'^NDX'},{**record,'sourceHashes':{}},{**record,'isin':'US0000000000'},{**record,'asOf':'2026-10-05'}]:
             retained,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:bad,selected=[config])
             self.assertTrue(report['errors']);self.assertEqual(retained['nasdaq100'],old)
@@ -170,7 +170,7 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):completed([(dt.date(2026,9,20),100)],NOW)
         current={'bitcoin':{'value':100,'asOf':'2026-10-07'}}
         def fail(config,now):raise ValueError('Network unavailable')
-        updated,report=refresh_levels(current,NOW,fail)
+        updated,report=refresh_levels(current,NOW,fail,selected=configurations())
         self.assertEqual(updated['bitcoin'],current['bitcoin'])
         self.assertEqual(len(report['errors']),len(configurations()))
         self.assertEqual(len(configurations()),len({c['id']for c in configurations()}))
