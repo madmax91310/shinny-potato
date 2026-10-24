@@ -75,12 +75,13 @@ export function editorialState(event) {
 }
 
 export function factType(event) {
+  if (event.field === 'announcement' && ['listing','first-trading','characteristic-change'].includes(event.announcementEvidence?.type)) return event.announcementEvidence.type
   if (event.factType) return event.factType
   if (event.kind === 'new' && event.field !== 'announcement' && event.family !== 'pouvoir-achat') return 'coverage'
   if (event.family === 'pouvoir-achat') return 'regulatory-measure'
-  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading'].includes(type) ? type : 'product-announcement' }
+  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading','characteristic-change'].includes(type) ? type : 'product-announcement' }
   if (event.beforePeriod === event.period && (event.kind === 'publication' || event.family === 'economie')) return 'source-revision'
-  if (event.family === 'economie') return 'statistical-publication'
+  if (event.family === 'economie' && event.publishedAt && event.evidence?.sourceHash) return 'statistical-publication'
   return 'characteristic-change'
 }
 export const FACT_LABELS = { 'statistical-publication': 'Publication statistique', 'regulatory-measure': 'Mesure réglementaire', 'product-announcement': 'Annonce de produit', listing: 'Nouvelle place de cotation', 'first-trading': 'Première négociation', 'characteristic-change': 'Changement de caractéristique', 'source-revision': 'Révision de source', coverage: 'Nouvelle donnée raccordée' }

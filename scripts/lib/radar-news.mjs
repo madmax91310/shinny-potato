@@ -44,7 +44,7 @@ export function parseVanguardNews(html, now = new Date()) {
     const stamp = new Date(`${period}T00:00:00Z`)
     if (!Number.isFinite(stamp.getTime()) || stamp.toISOString().slice(0, 10) !== period || stamp > now) throw new Error('Date de communiqué invalide.')
     const entity = `vanguard-news-${createHash('sha256').update(sourceUrl.href).digest('hex').slice(0, 20)}`
-    records.set(entity, { family: 'etf', entity, label: title, field: 'announcement', fieldLabel: 'Communiqué officiel', value: title, sourceUrl: sourceUrl.href, period, checkedAt: now.toISOString(), scope: 'Communiqué Vanguard Europe · titre et date publiés', tool: '/fiches-etf', discovery: true, rule: 'announcement', priority: 'high', angle: 'Lire le communiqué pour préciser les produits concernés, leur disponibilité en France et la date d’effet.', reason: 'Nouveau communiqué officiel relatif aux ETF. Aucun frais, ISIN ou lancement n’est déduit du titre seul.' })
+    records.set(entity, { family: 'etf', entity, label: title, field: 'announcement', fieldLabel: 'Communiqué officiel', value: title, sourceUrl: sourceUrl.href, publishedAt: period, publicationId: sourceUrl.href, period, checkedAt: now.toISOString(), scope: 'Communiqué Vanguard Europe · titre et date publiés', tool: '/fiches-etf', discovery: true, rule: 'announcement', priority: 'high', angle: 'Lire le communiqué pour préciser les produits concernés, leur disponibilité en France et la date d’effet.', reason: 'Nouveau communiqué officiel relatif aux ETF. Aucun frais, ISIN ou lancement n’est déduit du titre seul.' })
   }
   if (!records.size) throw new Error('Aucun communiqué ETF trouvé : historique conservé.')
   return [...records.values()]
@@ -68,7 +68,7 @@ export function parseGlobalXNews(html, now = new Date()) {
     const href = anchor.match(/href="([^"]+)"/i)?.[1]
     const documentUrl = href ? new URL(clean(href), GLOBALX_NEWS_URL) : null
     const officialDocument = documentUrl && officialNewsDocument(documentUrl.href)
-    records.set(entity, { family: 'etf', entity, label: title, field: 'announcement', fieldLabel: 'Communiqué officiel', value: title, sourceUrl: GLOBALX_NEWS_URL, ...(officialDocument ? { documentUrl: documentUrl.href } : {}), period, checkedAt: now.toISOString(), scope: 'Communiqué Global X Europe · titre et date publiés', tool: '/fiches-etf', discovery: true, rule: 'announcement', priority: 'high', angle: 'Qualifier le document, la part exacte, sa disponibilité en France et la date d’effet avant intégration.', reason: 'Annonce publiée sur le site officiel européen. Aucun ISIN, rendement ou lancement n’est déduit du titre seul.' })
+    records.set(entity, { family: 'etf', entity, label: title, field: 'announcement', fieldLabel: 'Communiqué officiel', value: title, sourceUrl: GLOBALX_NEWS_URL, ...(officialDocument ? { documentUrl: documentUrl.href } : {}), publishedAt: period, publicationId: officialDocument ? documentUrl.href : entity, period, checkedAt: now.toISOString(), scope: 'Communiqué Global X Europe · titre et date publiés', tool: '/fiches-etf', discovery: true, rule: 'announcement', priority: 'high', angle: 'Qualifier le document, la part exacte, sa disponibilité en France et la date d’effet avant intégration.', reason: 'Annonce publiée sur le site officiel européen. Aucun ISIN, rendement ou lancement n’est déduit du titre seul.' })
   }
   if (!records.size) throw new Error('Aucun communiqué ETF Global X Europe trouvé : historique conservé.')
   return [...records.values()]
@@ -158,12 +158,14 @@ export function parseEtfDocument(htmlOrText, title) {
   const initial = etfAnnouncement(title)
   // Require a statement in the body for indirect headlines. Keep its exact extract.
   const excerpt = paragraphs.find(p => /(?:trois|deux|[1-9]) nouvelles solutions|nouveaux ETF|launch(?:es|ed)? .*ETF|lance .*ETF|lancement .*ETF|seront cotes|nouvelle cotation/i.test(p))
-  const announcementEvidence = initial?.stage === 'candidate' ? excerpt ? { type: 'announcement', stage: 'announced', label: 'Nouvelle offre annoncée par l’émetteur', evidence: excerpt } : initial : initial
+  let announcementEvidence = initial?.stage === 'candidate' ? excerpt ? { type: 'announcement', stage: 'announced', label: 'Nouvelle offre annoncée par l’émetteur', evidence: excerpt } : initial : initial
+  const feeChange = paragraphs.find(p => /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(p))
+  if (!initial && feeChange && /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(title)) announcementEvidence = { type: 'characteristic-change', stage: 'changed', label: 'Modification de frais annoncée', evidence: feeChange }
   const products = extractProducts(body)
   // Single-ISIN legacy extraction is still deliberately conservative.
   const launchDetails = parseLaunchDetails(html ? body.replace(/<\/(?:p|tr|div)>/gi, '\n').replace(/<[^>]*>/g, ' ') : text)
   const calendarEvidence = paragraphs.flatMap(p => p.split(/(?<=[.!?])\s+/)).find(p => /seront cot[ée]s|date de premi[eè]re cotation|first trading date/i.test(p)) ?? null
-  return { launchDetails, products, announcementEvidence, calendarEvidence, evidence: { excerpt: excerpt ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
+  return { launchDetails, products, announcementEvidence, calendarEvidence, evidence: { excerpt: excerpt ?? feeChange ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
 }
 export async function documentText(response) {
   const bytes = Buffer.from(await response.arrayBuffer())

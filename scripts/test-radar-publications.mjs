@@ -32,7 +32,9 @@ const grouped=parseEtfDocument('<p>Amundi lance trois nouveaux ETF UCITS.</p><ta
 assert.deepEqual(grouped.products.map(p=>p.fees),['0.15%','0.35%','0.55%']);assert.ok(grouped.products.every(p=>p.pea===null&&p.availability===null))
 assert.equal(etfAnnouncement('Amundi cote 21 nouveaux ETF sur Euronext Paris').type,'listing')
 // Read live values from shared data. Never freeze the living dataset's numbers or dates.
-const collected=await collectObservations(), salary=collected.observations.find(o=>o.entity==='salary-median')
+const collected=await collectObservations(), liveSalary=collected.observations.find(o=>o.entity==='salary-median')
+assert.equal(liveSalary.unit,'€ nets par mois');assert.equal(liveSalary.label,'Salaire médian du privé')
+const salary=JSON.parse(await readFile(new URL('./fixtures/radar-publications/salary-observations.json',import.meta.url),'utf8')).find(o=>o.entity==='salary-median')
 assert.equal(salary.unit,'€ nets par mois');assert.equal(salary.label,'Salaire médian du privé');assert.match(salary.populationScope,/équivalent temps plein/)
 const before={...salary,period:String(Number(salary.period)-1),publishedAt:'2025-10-23',publicationId:'https://www.insee.fr/fr/statistiques/8657156',value:salary.value-48}
 const initial=advanceRadar(null,[before],{now})
@@ -128,3 +130,11 @@ const recovery=await send({schemaVersion:1,acknowledged:[]})
 assert.equal(recovery.sent,0);assert.equal(recovery.recovered,2);assert.equal(comments.length,1,'Crash before ledger commit recovers durable bot receipts')
 assert.equal(planNotifications([{...samePublication,id:'f'.repeat(24)}],delivery.ledger,new Date(+now+86400000),'digest').events.length,0,'Another channel/fact of the same publication does not notify twice')
 console.log('Notification simulation: same ranked groups, major/day noise cap, single daily recap, failure after tracker creation, retry and durable receipts verified. No real notification sent.')
+
+const {parsePurchasingFeed,PURCHASING_SOURCES}=await import('./lib/purchasing-power-news.mjs')
+const study=parsePurchasingFeed('<rss><channel><item><title>Étude : les niveaux de vie des ménages</title><description>En 2025, le niveau de vie médian atteint 25 000 euros par an selon cette étude.</description><link>https://www.vie-publique.fr/en-bref/etude</link><pubDate>2026-10-22</pubDate></item></channel></rss>',PURCHASING_SOURCES.find(s=>s.id==='vie-publique-actualites'),now).observations[0]
+assert.equal(study.factType,'statistical-publication')
+const studyEvent=advanceRadar(advanceRadar(null,[],{now}).state,[study],{now}).newEvents[0]
+// A silent family bootstrap remains intentional; the publication itself qualifies without a legal status.
+assert.equal(editorialState({...study,after:study.value}),'ready')
+assert.equal(studyEvent,undefined)

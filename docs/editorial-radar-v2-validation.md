@@ -56,3 +56,5 @@ La simulation couvre un échec **après création de l’issue mais avant commen
 ## Statut de livraison
 
 Implémenté et testé localement ; contrôle réel des sources effectué ; PR sur `master`. La CI sera à lire sur le commit de la PR, séparément des résultats locaux. Ni fusion ni déploiement autorisés ou effectués par ce travail. Aucun envoi réel de notification et aucune publication X pendant les tests. La réception sur téléphone reste non vérifiée.
+
+Preuves visuelles de la recette locale : [INSEE sur ordinateur](../reports/radar-publications-2026-10-24/preuves/insee-desktop.png), [Amundi sur mobile](../reports/radar-publications-2026-10-24/preuves/amundi-mobile.png). Les valeurs du scénario historique restent isolées des registres vivants ; la comparaison salaire rejouée est 2 190 → 2 238 euros pour la médiane et 4 334 → 4 441 euros pour le D9.

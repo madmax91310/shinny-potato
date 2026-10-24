@@ -18,7 +18,7 @@ export const PUBLICATION_SOURCES = [
 ]
 const hash = text => createHash('sha256').update(text).digest('hex')
 const normal = value => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
-export const statisticalTopic = text => /salaires?|remunerations?|patrimoine|niveau.x? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
+export const statisticalTopic = text => /salaires?|remunerations?|patrimoine|niveaux? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
 const tag = (text, name) => cleanText(text.match(new RegExp(`<${name}\\b[^>]*>([\\s\\S]*?)<\\/${name}>`, 'i'))?.[1] ?? '')
 export function canonicalUrl(value) {
   const url = new URL(value)

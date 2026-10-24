@@ -2,7 +2,6 @@ import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { parsePublication, PUBLICATION_SOURCES } from './lib/radar-publications.mjs'
-import { householdMetadata } from './lib/radar-households.mjs'
 import { mkdir, readFile } from 'node:fs/promises'
 import { advanceRadar } from './lib/editorial-radar.mjs'
 import { parsePurchasingFeed, PURCHASING_SOURCES } from './lib/purchasing-power-news.mjs'
@@ -110,12 +109,13 @@ try{
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('heading',{name:'Le radar est en veille',exact:true}).waitFor()
  // Real official publication excerpts, grouped facts and no unrelated tool routing.
- const economic=JSON.parse(await readFile('src/data/automated-economic.json','utf8')).households
- const salaries=['salary-median','salary-top10'].map(entity=>{const r=economic[entity];return {family:'economie',entity,field:'value',fieldLabel:'Repère publié',...householdMetadata(entity,r),value:r.value,period:String(r.year),checkedAt:r.checkedAt,sourceUrl:r.sourceUrl,scope:`${r.population} · ${entity}`,rule:'publication',maxAgeDays:400,tool:'/france-100-menages'}})
- const salaryStart=advanceRadar(null,salaries.map(row=>({...row,value:row.value-40,period:String(Number(row.period)-1)})),{now})
+ const scenarioNow=new Date('2026-10-24T15:00:00Z')
+ const salaries=JSON.parse(await readFile('scripts/fixtures/radar-publications/salary-observations.json','utf8'))
+ const salaryStart=advanceRadar(null,salaries.map(row=>({...row,value:row.entity==='salary-median'?2190:4334,period:'2024',publishedAt:'2025-10-23',publicationId:'https://www.insee.fr/fr/statistiques/8657156',sourceUrl:'https://www.insee.fr/fr/statistiques/8657156'})),{now:scenarioNow})
  const amundiSource=PUBLICATION_SOURCES.find(s=>s.id==='amundi')
- const amundi=parsePublication(await readFile('scripts/fixtures/radar-publications/amundi.html','utf8'),amundiSource,'https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia',now)
- feed=advanceRadar(salaryStart.state,[...salaries,amundi],{now}).feed
+ const amundi=parsePublication(await readFile('scripts/fixtures/radar-publications/amundi.html','utf8'),amundiSource,'https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia',scenarioNow)
+ feed=advanceRadar(salaryStart.state,[...salaries,amundi],{now:scenarioNow}).feed
+ feed.checkedAt=stamp;feed.events=feed.events.map(event=>({...event,detectedAt:stamp}))
  feed.sources=[{...amundiSource,status:'ok',lastSuccessAt:stamp,queue:{pending:2,error:0,rejected:0}},{id:'dares',name:'DARES',url:'https://dares.travail-emploi.gouv.fr/',status:'error',error:'Vérification de sécurité',queue:{pending:0,error:0,rejected:0}}]
  await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
