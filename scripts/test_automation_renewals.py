@@ -29,7 +29,7 @@ class Renewals(unittest.TestCase):
             self.assertEqual(bad['errors'][0]['id'],'report-read:monthly-observation')
             path.write_text(json.dumps({'series':[{'id':'ok','status':'validated'}]}))
             good=read_report_safely(path,'update-market-monthly.yml')
-            self.assertIn({'id':'report-read:monthly-observation'},good['successes'])
+            self.assertTrue(any(r['id']=='report-read:monthly-observation' and len(r['evidence']['sha256'])==64 for r in good['successes']))
             self.assertIn({'id':'history:ok'},good['successes'])
             self.assertEqual(good['errors'],[])
 

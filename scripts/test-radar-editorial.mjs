@@ -60,7 +60,7 @@ assert.equal(failed.observations.length, 1, 'The known official announcement sur
 assert.equal(editorialState({ ...launch, ...failed.observations[0] }), 'watch')
 let requested = false
 await enrichEtfLaunches(parseVanguardNews(html.replace('19 October', '1 October'), now), now, async () => { requested = true })
-assert.equal(requested, false, 'Archives are not refetched as launch news')
+assert.equal(requested, true, 'Archives enter the durable queue with their original publication date')
 const global = parseGlobalXNews('<div>Recent News</div><a href="https://gxeustrapi.blob.core.windows.net/webpublic/uploads/new.pdf"><li><p>19 Oct 2026</p><h3>Global X launches a UCITS ETF</h3></li></a>', now)
 assert.match(global[0].documentUrl, /webpublic\/uploads/)
 console.log('Editorial radar: relevance, factual titles, grouping, launch evidence, future announcements, ambiguous multi-fund documents, failure preservation and no duplicate launch verified.')

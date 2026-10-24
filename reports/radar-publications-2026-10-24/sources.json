@@ -1,0 +1,1040 @@
+{
+  "checkedAt": "2026-10-24T15:42:48.669Z",
+  "notifications": "disabled: publisher not imported",
+  "sources": [
+    {
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 6,
+        "done": 6,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 6,
+        "done": 6,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "amundi",
+      "name": "Amundi · actualités et avis",
+      "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
+      "method": "sitemap",
+      "depth": "Toutes les URL françaises des actualités du sitemap",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 83,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "queue": {
+        "pending": 77,
+        "done": 6,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 22,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 19,
+        "done": 3,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 12,
+      "etag": "\"1792855120-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:18:40 GMT",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 9,
+        "done": 3,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-savings",
+      "name": "Banque de France · Épargne des ménages",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 12,
+      "etag": "\"1792854616-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:10:16 GMT",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 9,
+        "done": 3,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "bdf-debt",
+      "name": "Banque de France · Endettement des ménages et des SNF",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 12,
+      "etag": "\"1792856044-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 15:34:04 GMT",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 9,
+        "done": 0,
+        "error": 3,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 5,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 2,
+        "done": 3,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "drees",
+      "name": "DREES",
+      "url": "https://drees.solidarites-sante.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "discovered": 3,
+      "etag": null,
+      "lastModified": "Sat, 24 Oct 2026 15:38:06 GMT",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "lastSuccessAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T16:42:48.669Z",
+      "queue": {
+        "pending": 0,
+        "done": 3,
+        "error": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "dares",
+      "name": "DARES",
+      "url": "https://dares.travail-emploi.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "status": "error",
+      "error": "Accès refusé ou page anti-robot, même si HTTP 200",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      }
+    }
+  ],
+  "accessGaps": [
+    {
+      "id": "bnp",
+      "name": "BNP Paribas AM",
+      "url": "https://www.bnpparibas-am.com/fr-fr/",
+      "reason": "Portail public accessible ; découverte datée des annonces ETF à qualifier.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.bnpparibas-am.com/fr-fr/",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "spdr",
+      "name": "State Street / SPDR",
+      "url": "https://www.ssga.com/fr/fr/about-us",
+      "reason": "Portail institutionnel accessible ; liste de communiqués ETF européens non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ssga.com/fr/fr/about-us",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "ubs",
+      "name": "UBS",
+      "url": "https://www.ubs.com/global/en/media.html",
+      "reason": "Portail média accessible ; archive ETF européenne datée non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ubs.com/global/en/media.html",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "jpmorgan",
+      "name": "JPMorgan AM",
+      "url": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "reason": "Portail conseiller accessible ; découverte datée des annonces UCITS non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "ishares",
+      "name": "iShares / BlackRock",
+      "url": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "reason": "Liste corporate accessible ; couverture des lancements UCITS européens et profondeur non qualifiées.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "vaneck",
+      "name": "VanEck",
+      "url": "https://www.vaneck.com/fr/fr/",
+      "reason": "Accès public refusé lors de la vérification initiale ; aucun flux supposé.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.vaneck.com/fr/fr/",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "reason": "Media hub accessible ; communiqués PDF et archive ETF à qualifier.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-24T15:42:48.669Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-25T15:42:48.669Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "checkedAt": "2026-10-24T15:42:48.669Z"
+    }
+  ],
+  "purchasingSources": [
+    {
+      "id": "service-public",
+      "name": "Service Public",
+      "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 3
+    },
+    {
+      "id": "bercy",
+      "name": "Ministère de l’Économie",
+      "url": "https://www.economie.gouv.fr/rss/toutesactualites",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 4
+    },
+    {
+      "id": "vie-publique-actualites",
+      "name": "Vie publique · actualités",
+      "url": "https://www.vie-publique.fr/actualites-feeds.xml",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 0
+    },
+    {
+      "id": "vie-publique-lois",
+      "name": "Vie publique · lois",
+      "url": "https://www.vie-publique.fr/lois-feeds.xml",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 100,
+      "relevant": 0
+    },
+    {
+      "id": "banque-france-credit",
+      "name": "Banque de France · crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 12,
+      "relevant": 1
+    },
+    {
+      "id": "cre-prix",
+      "name": "CRE · prix de l’énergie",
+      "url": "https://www.cre.fr/documents/communiques-de-presse.html",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "status": "ok",
+      "articles": 7,
+      "relevant": 1
+    }
+  ],
+  "legacyEtfNews": {
+    "observations": 6,
+    "errors": []
+  },
+  "references": [
+    {
+      "url": "https://www.insee.fr/fr/statistiques/9087193",
+      "discovered": true,
+      "extracted": true,
+      "status": "done"
+    },
+    {
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+      "discovered": true,
+      "extracted": true,
+      "status": "done"
+    }
+  ],
+  "extractions": [
+    {
+      "title": "Crédits aux particuliers - 2026-08",
+      "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+      "publishedAt": "2026-10-06",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "75d9993443dfc2d700919e6494310f60103ceeec8a07ca62777b90462b7f77c6"
+    },
+    {
+      "title": "Crédits aux particuliers - 2026-07",
+      "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
+      "publishedAt": "2026-09-07",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "114dcc63de61f94beaa954debe59682bced4e73e465f65ef6e8889686a0aeef0"
+    },
+    {
+      "title": "Crédits aux particuliers - 2026-06",
+      "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-06",
+      "publishedAt": "2026-08-05",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "77920f856d9baf464d72238d1fb7b7297dfc0fbfb62f5e66ee8f524d4c9c2fd8"
+    },
+    {
+      "title": "Epargne des ménages - 2026-Q1",
+      "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
+      "publishedAt": "2026-08-17",
+      "referencePeriod": "2026-Q1",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "a1f764336c269a2fa5f88eae25553d2f135f1ad07f5fd7cb2a2f2cb3e1dd79ef"
+    },
+    {
+      "title": "Epargne des ménages - 2025-Q4",
+      "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2025-q4",
+      "publishedAt": "2026-05-21",
+      "referencePeriod": "2025-Q4",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "72d305845e27fc5852f67bcc856d41e23dfd58f70a754ade05fc0c09f96c6d41"
+    },
+    {
+      "title": "Epargne des ménages - 2025-Q3",
+      "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2025-q3",
+      "publishedAt": "2026-02-13",
+      "referencePeriod": "2025-Q3",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "b1769af0721ea844738222cdaadb506de2e7294606fea03630b32ddab335a6b6"
+    },
+    {
+      "title": "Les retraités et les retraites – Édition 2026",
+      "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
+      "publishedAt": "2026-10-14",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "bb0d84b678bef8716aa5b66a1f1e5af290730d59028c25d3104ff4de6c8f2ecb"
+    },
+    {
+      "title": "Prestation de compensation du handicap : plus de la moitié des bénéficiaires ont au moins 50 ans",
+      "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-beneficiaires-50-ans",
+      "publishedAt": "2026-10-08",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "cd9ea657ce9600729fb5312a8c39f8c296f110f374de86a4e125c66156c23ba5"
+    },
+    {
+      "title": "Prestation de compensation du handicap : un bénéficiaire sur deux perçoit au moins 4 270 euros en 2022",
+      "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-montant-beneficiaire-2022",
+      "publishedAt": "2026-10-08",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "33f8ebc85ab35cf82c8f9cecf19439a5b9594faa6dfbb3b080d7ee90ade1aa34"
+    },
+    {
+      "title": "DWS strengthens Xtrackers presence in the Middle East with senior sales appointment",
+      "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
+      "publishedAt": "2026-07-07",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "fec3863ae886ba604adbc180f1f94833f619a66e886885d4347dce32fcbd76b2"
+    },
+    {
+      "title": "Q4 2023: DWS Returned to Net Inflows in 2023 Supported by all Three Pillars – Passive including Xtrackers, Active and Alternatives",
+      "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/q4-2023",
+      "publishedAt": "2024-02-01",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "0a8d3b4da4ab4626c801ec30063260cfc1c9a24e9e2ded3c1a251af3ebb10ef4"
+    },
+    {
+      "title": "New Xtrackers ETFs from DWS reduce investment risks caused by the loss of biodiversity",
+      "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/new-xtrackers-etfs-from-dws-reduce-investment-risks-caused-by-the-loss-of-biodiversity",
+      "publishedAt": "2023-11-06",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "Xtrackers World Biodiversity Focus SRI UCITS ETF",
+          "isin": "IE000E0V65D8",
+          "fees": null
+        },
+        {
+          "name": "Xtrackers Europe Biodiversity Focus SRI UCITS ETF",
+          "isin": "IE000VMAR5O6",
+          "fees": null
+        },
+        {
+          "name": "Xtrackers USA Biodiversity Focus SRI UCITS ETF",
+          "isin": "IE000LOSV2D0",
+          "fees": null
+        }
+      ],
+      "sourceHash": "9ff6118efd6f89e3e2bf3c5d2ad33782410255765ea2a85ba8ba8d0c79c31507"
+    },
+    {
+      "title": "Albemarle Street Partners to become WisdomTree Portfolio Solutions",
+      "url": "https://www.wisdomtree.com/fr/press-room/albemarle-street-partners-to-become-wisdomtree-portfolio-solutions",
+      "publishedAt": "2026-10-20",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "dd0e85ddc37f8434caa0fc74530f71a8f9f1361f30659f00389e51c24d28f3b7"
+    },
+    {
+      "title": "WisdomTree lance des ETF à rendement défini gérés activement",
+      "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-launches-actively-managed-defined-return-etfs",
+      "publishedAt": "2026-09-30",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "WisdomTree Defined Return Autocallable EUR Active UCITS ETF",
+          "isin": "IE0005VCFMG0",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Defined Return Autocallable EUR Active UCITS ETF",
+          "isin": "IE000RAY1B92",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Defensive Defined Return Autocallable EUR Active UCITS ETF",
+          "isin": "IE000F4W1QI5",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Defensive Defined Return Autocallable EUR Active UCITS ETF",
+          "isin": "IE000C9LBYZ8",
+          "fees": "0,65%"
+        }
+      ],
+      "sourceHash": "f0e3814dbcb56d6242678e4d5e78f39785210ca0fce7ea880c331ee39b505e0b"
+    },
+    {
+      "title": "WisdomTree Declares Third Quarter Dividend Distributions",
+      "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-declares-third-quarter-dividend-distributions-2026",
+      "publishedAt": "2026-09-24",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "WisdomTree Emerging Markets High Dividend UCITS ETF",
+          "isin": "IE00BQQ3Q067",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Emerging Markets Small Cap Dividend UCITS ETF",
+          "isin": "IE00BQZJBM26",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree US High Dividend UCITS ETF",
+          "isin": "IE00BQZJBQ63",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Europe High Dividend UCITS ETF",
+          "isin": "IE00BQZJBX31",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Europe Small Cap Dividend UCITS ETF",
+          "isin": "IE00BQZJC527",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree US Quality Dividend Growth UCITS ETF",
+          "isin": "IE00BZ56RD98",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree US Quality Dividend Growth UCITS ETF",
+          "isin": "IE000IGMB3E1",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "isin": "IE00BZ56RN96",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "isin": "IE000LRRPK60",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+          "isin": "IE00030Y2P41",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree Global High Dividend UCITS ETF",
+          "isin": "IE000Q0CAPZ0",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree AT1 CoCo Bond UCITS ETF",
+          "isin": "IE00BZ0XVF52",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree AT1 CoCo Bond UCITS ETF",
+          "isin": "IE00BFNNN012",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree AT1 CoCo Bond UCITS ETF",
+          "isin": "IE00BFNNN236",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree AT1 CoCo Bond UCITS ETF",
+          "isin": "IE00BFNNN459",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree USD Floating Rate Treasury Bond UCITS ETF",
+          "isin": "IE00BJFN5P63",
+          "fees": null
+        },
+        {
+          "name": "WisdomTree UK Quality Dividend Growth UCITS ETF",
+          "isin": "IE0003UH9270",
+          "fees": null
+        }
+      ],
+      "sourceHash": "bf72d53d257462de2aad7eaf9db041716140b60080dbf5f67b26644476011eb6"
+    },
+    {
+      "title": "En septembre 2026, les prix à la consommation augmentent de 3,1 % sur un an",
+      "url": "https://www.insee.fr/fr/statistiques/9080209",
+      "publishedAt": "2026-10-15",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "06ed19203d650955e124c7f24f30df7a7c25cf46ffbd9a45d09100299f533839"
+    },
+    {
+      "title": "En septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an",
+      "url": "https://www.insee.fr/fr/statistiques/9056956",
+      "publishedAt": "2026-09-30",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "0b6e09d6556c913d4f4f771066c25323b815714ce5f7065fa2c34c859fb43c41"
+    },
+    {
+      "title": "Au deuxième trimestre 2026, les prix des logements reculent de 1,0 %",
+      "url": "https://www.insee.fr/fr/statistiques/9050027",
+      "publishedAt": "2026-09-18",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "60ae0d28cd88e937cc85545acf474f59aa215e3f04fcc5d8d576b71134e46905"
+    },
+    {
+      "title": "En août 2026, les prix à la consommation augmentent de 2,4 % sur un an",
+      "url": "https://www.insee.fr/fr/statistiques/9051406",
+      "publishedAt": "2026-09-15",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "2561ecd570e1a92b7f8f4e07b40e086aff85cf82ad71066927e40acaed5d92f5"
+    },
+    {
+      "title": "Au deuxième trimestre 2026, les salaires horaires augmentent de 2,4 % sur un an, le coût horaire du travail de 2,5 %",
+      "url": "https://www.insee.fr/fr/statistiques/9050412",
+      "publishedAt": "2026-09-15",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "a4f9e65bac1fd87c0682bd19fa0ec9e9462a8a2ce6416e20cb0220eee72693d0"
+    },
+    {
+      "title": "Au deuxième trimestre 2026, les prix des logements anciens reculent de 1,0 %",
+      "url": "https://www.insee.fr/fr/statistiques/9040119",
+      "publishedAt": "2026-09-08",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "5a23b7df1f540056204c3a98b0725541ec46b27496d59cdefd0cc877a42e4cb5"
+    },
+    {
+      "title": "Amundi renforce son offre d’ETF thématiques avec trois nouvelles solutions pour capter les thèmes de l’Intelligence Artificielle (IA) et des technologies du futur",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+      "publishedAt": "2026-10-14",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "Amundi Global Space Technologies UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Critical Metals & Rare Earths UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Electrification Infrastructure UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "67a108956b81a97a56a62e2f7557f133197bc5491516af42ec207a5b44c109a8"
+    },
+    {
+      "title": "Amundi élargit sa gamme d’ETF thématiques avec de nouvelles expositions à deux thèmes à fort potentiel : les puces mémoire et les centres de données",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-enrichit-sa-gamme-d-etf-thematiques",
+      "publishedAt": "2026-07-23",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "Amundi Global Memory Chips UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Data Center UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "9ab90c71e98224efe803440b09c0d0b5515b9229a23e1dba4ed50c45e1d28b75"
+    },
+    {
+      "title": "Information à l’attention des investisseurs : retraits de la cotation d’ETF",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/retraits-de-la-cotation-d-etf-information-investisseurs",
+      "publishedAt": "2026-08-03",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "65c5c728fc5b81863f2a590d60b57d17256ffb19f67704f204cad1663f814cc7"
+    },
+    {
+      "title": "Avis aux actionnaires concernant la mise en conformité aux dispositions de la directive AIFMD II à la gestion du risque de liquidité",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/avis-aux-actionnaires-aux-dispositions-de-la-directive-aifmd-ii",
+      "publishedAt": "2026-08-17",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "7285a17abdd8503c1d1d70d2fd4a27c69d3196e149e3e49eb0faea72019d152a"
+    },
+    {
+      "title": "Amundi élargit sa gamme d'ETF actifs obligataires",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-enrichit-sa-gamme-d-etf-obligataires-actifs",
+      "publishedAt": "2026-06-29",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [
+        {
+          "name": "Amundi EUR Ultra Short-Term Bond Active UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Amundi Global Corporate Bond Active UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "1603ce431204d0c4e491abdda9e128e3be42086a5fb7cf6765bebf5fb9dfbc62"
+    },
+    {
+      "title": "Amundi lance les premiers ETF UCITS pondérés par le PIB",
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-devoile-les-premiers-etf-ucits-ponderes-par-le-pib",
+      "publishedAt": "2026-05-28",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "cc47471282bf84194eced63d828dd6c8453c28648a7632bf6757375ee44244d8"
+    },
+    {
+      "title": "Les salaires dans le secteur privé en 2025",
+      "url": "https://www.insee.fr/fr/statistiques/9087193",
+      "publishedAt": "2026-10-22",
+      "referencePeriod": "2025",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de"
+    },
+    {
+      "title": "En quinze ans, des épisodes de pauvreté monétaire plus durables",
+      "url": "https://www.insee.fr/fr/statistiques/9058410",
+      "publishedAt": "2026-10-01",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "6bb7f820b576e9df4b93ac7857ed62b8b2d5ed5be9b4534ed949820f463c65e8"
+    },
+    {
+      "title": "Parc de logements au 1 er janvier 2026",
+      "url": "https://www.insee.fr/fr/statistiques/9055697",
+      "publishedAt": "2026-09-30",
+      "referencePeriod": "2026",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "0bf44f30cab57e7440124afbd7faac551c7459b978b8096eecb220679a6302f2"
+    },
+    {
+      "title": "Le logement pèse moins sur le budget des ménages en 2024 qu’il y a dix ans, sauf pour les plus modestes",
+      "url": "https://www.insee.fr/fr/statistiques/9053584",
+      "publishedAt": "2026-09-23",
+      "referencePeriod": "2024",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "9a71a5b9d0f93fe85b80df3528ae9721c9e0528e8a7ca93ff9181034b8ee3aa2"
+    },
+    {
+      "title": "Prestations de la Caf en 2024 en France hexagonale",
+      "url": "https://www.insee.fr/fr/statistiques/9039040",
+      "publishedAt": "2026-09-09",
+      "referencePeriod": "2024",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "b64bcefa36830050b5e123d8e8cb0d8bb3536ffb78dfa35b35f866799b6483e8"
+    },
+    {
+      "title": "Prestations de la Caf en 2024 dans les DROM",
+      "url": "https://www.insee.fr/fr/statistiques/9039072",
+      "publishedAt": "2026-09-09",
+      "referencePeriod": "2024",
+      "checkedAt": "2026-10-24T15:42:48.669Z",
+      "products": [],
+      "sourceHash": "77602c8bcc01238dcd7002f2b1a61ee5f2bbd90252f971daff1f5e1c61656950"
+    }
+  ],
+  "failures": [
+    {
+      "family": "economie",
+      "entity": "DARES",
+      "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q2",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q4",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q3",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    }
+  ],
+  "metrics": {
+    "sampleDocuments": 173,
+    "successfulExtractions": 33,
+    "rejected": [],
+    "delays": [
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+        "publicationToDetectionHours": 447.7135191666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
+        "publicationToDetectionHours": 1143.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-06",
+        "publicationToDetectionHours": 1935.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
+        "publicationToDetectionHours": 1647.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2025-q4",
+        "publicationToDetectionHours": 3759.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2025-q3",
+        "publicationToDetectionHours": 6087.713519166667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
+        "publicationToDetectionHours": 255.71351916666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-beneficiaires-50-ans",
+        "publicationToDetectionHours": 399.7135191666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/261008-prestation-compensation-handicap-montant-beneficiaire-2022",
+        "publicationToDetectionHours": 399.7135191666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
+        "publicationToDetectionHours": 2631.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/q4-2023",
+        "publicationToDetectionHours": 23919.713519166668,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/new-xtrackers-etfs-from-dws-reduce-investment-risks-caused-by-the-loss-of-biodiversity",
+        "publicationToDetectionHours": 26007.713519166668,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.wisdomtree.com/fr/press-room/albemarle-street-partners-to-become-wisdomtree-portfolio-solutions",
+        "publicationToDetectionHours": 111.71351916666667,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-launches-actively-managed-defined-return-etfs",
+        "publicationToDetectionHours": 591.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-declares-third-quarter-dividend-distributions-2026",
+        "publicationToDetectionHours": 735.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9080209",
+        "publicationToDetectionHours": 231.71351916666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9056956",
+        "publicationToDetectionHours": 591.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9050027",
+        "publicationToDetectionHours": 879.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9051406",
+        "publicationToDetectionHours": 951.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9050412",
+        "publicationToDetectionHours": 951.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9040119",
+        "publicationToDetectionHours": 1119.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+        "publicationToDetectionHours": 255.71351916666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-enrichit-sa-gamme-d-etf-thematiques",
+        "publicationToDetectionHours": 2247.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/retraits-de-la-cotation-d-etf-information-investisseurs",
+        "publicationToDetectionHours": 1983.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/avis-aux-actionnaires-aux-dispositions-de-la-directive-aifmd-ii",
+        "publicationToDetectionHours": 1647.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-enrichit-sa-gamme-d-etf-obligataires-actifs",
+        "publicationToDetectionHours": 2823.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-devoile-les-premiers-etf-ucits-ponderes-par-le-pib",
+        "publicationToDetectionHours": 3591.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9087193",
+        "publicationToDetectionHours": 63.713519166666664,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9058410",
+        "publicationToDetectionHours": 567.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9055697",
+        "publicationToDetectionHours": 591.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9053584",
+        "publicationToDetectionHours": 759.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9039040",
+        "publicationToDetectionHours": 1095.7135191666666,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9039072",
+        "publicationToDetectionHours": 1095.7135191666666,
+        "detectionToAvailabilityHours": 0
+      }
+    ]
+  },
+  "limits": "Échantillon borné, sans prétendre mesurer un rappel exhaustif ni les faux positifs de tout le Web. Accès non qualifié ≠ source raccordée."
+}

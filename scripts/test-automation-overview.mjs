@@ -4,7 +4,7 @@ import registry from '../src/data/automation-workflows.json' with { type: 'json'
 const now = new Date('2026-10-13T20:00:00Z')
 assert.throws(() => automationOverview(null))
 assert.throws(() => automationOverview({ schemaVersion: 1, workflows: [] }))
-assert.throws(() => automationOverview({ schemaVersion: 1, workflows: { bad: null } }))
+assert.equal(automationOverview({schemaVersion:1,workflows:{bad:null}},now).find(r=>r.id==='bad').state,'unknown', 'Un statut malformé ne masque pas les autres producteurs')
 const status = { schemaVersion: 1, workflows: {
   'update-investor-13f.yml': { name: 'Investisseurs', status: 'success', collectionStatus: 'success', completedAt: '2026-10-13T10:00:00Z' },
   'update-lifestrategy.yml': { name: 'LifeStrategy', status: 'success', collectionStatus: 'success', completedAt: '2026-10-10T10:00:00Z' },
@@ -44,7 +44,7 @@ assert(automationFailures(status).some(row => row.id === 'partial:one'), 'Un éc
   for (const [id, entry] of Object.entries(registry)) {
     assert(Array.isArray(entry.paths) && entry.paths.length, `Routes absentes : ${id}`)
     for (const path of entry.paths) assert(routes.has(path), `Route inconnue pour ${id} : ${path}`)
-    assert(Array.isArray(entry.collectionSteps) && entry.collectionSteps.length, `Étapes de collecte absentes : ${id}`)
+    assert(Array.isArray(entry.collectionSteps) && (entry.collectionSteps.length || entry.validationOnly || entry.controlOnly), `Étapes de collecte absentes : ${id}`)
     assert(entry.tools.every(tool => typeof tool === 'string' && tool.length), `Libellés d’outils invalides : ${id}`)
   }
   const withPaths = automationOverview(status, now).find(r => r.id === 'update-investor-13f.yml')
@@ -66,3 +66,5 @@ assert.equal(recoveryRow.state, 'failure', 'Une relance ne vaut pas une récupé
 assert.equal(recoveryRow.recovery.status, 'waiting')
 assert.equal(recoveryRow.recovery.nextAttemptAt, '2026-10-13T21:00:00Z')
 assert.equal(automationOverview(status, now).find(r => r.id === 'partial').recovery, null)
+
+assert.equal(automationOverview({schemaVersion:1,workflows:{'update-bitcoin-monthly.yml':{name:'Bitcoin',status:'success',collectionStatus:'success',completedAt:now.toISOString()}}},now).find(r=>r.id==='update-bitcoin-monthly.yml').state,'qualification','A green job without individual evidence remains unqualified')

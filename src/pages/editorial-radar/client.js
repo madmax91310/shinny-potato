@@ -20,11 +20,11 @@ export function cacheSignalGroups(groups) {
   try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(groups)); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* Storage is optional. */ }
 }
 export function validateFeed(feed) {
-  if (feed?.schemaVersion !== 1 || !Number.isFinite(Date.parse(feed.checkedAt)) || !Array.isArray(feed.events) || feed.events.length > 500 || !feed.coverage || !Array.isArray(feed.errors)) throw new Error('Le radar a renvoyé un format non reconnu.')
+  if (feed?.schemaVersion !== 1 || !Number.isFinite(Date.parse(feed.checkedAt)) || !Array.isArray(feed.events) || !feed.coverage || !Array.isArray(feed.errors)) throw new Error('Le radar a renvoyé un format non reconnu.')
   const ids = new Set()
   for (const event of feed.events) {
     if (!event.id || ids.has(event.id) || !FAMILIES[event.family] || !Number.isFinite(Date.parse(event.detectedAt)) || typeof event.title !== 'string' || typeof event.draft !== 'string' || !event.scope || !event.period) throw new Error('Un signal du radar est incomplet.')
-    if (new URL(event.sourceUrl).protocol !== 'https:' || !event.tool?.startsWith('/') || event.tool.startsWith('//')) throw new Error('Un lien du radar est invalide.')
+    if (new URL(event.sourceUrl).protocol !== 'https:' || event.tool && (!event.tool.startsWith('/') || event.tool.startsWith('//'))) throw new Error('Un lien du radar est invalide.')
     if (event.documentUrl && new URL(event.documentUrl).protocol !== 'https:') throw new Error('Un communiqué du radar est invalide.')
     ids.add(event.id)
   }
