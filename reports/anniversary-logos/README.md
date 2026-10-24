@@ -63,6 +63,7 @@ compteur.
 | `test-anniversary-logos.mjs` | Réussi : 234 aperçus et 468 téléchargements via les deux boutons sur ordinateur et mobile ; logos et commandes de texte identiques |
 | Chargement retardé, changement d’actif, réponse obsolète, fichiers absents/corrompus et reprise | Réussis |
 | Historiques partagés, textes éditoriaux et indices | Réussis |
+| Préservation des autres outils | Les 719 identités de chacun des registres Performance, Néon et Investissement sont identiques à celles d’avant la PR ; masques indépendants du registre anniversaire |
 
 Les contrôles en interface utilisent Chromium 1440 × 1000 et l’émulation iPhone 13,
 pas un iPhone physique ni Safari. Ils vérifient les pixels des vrais PNG téléchargés

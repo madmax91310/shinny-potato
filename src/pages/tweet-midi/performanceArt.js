@@ -1,6 +1,7 @@
 import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { loadArtImage } from '../../lib/art-resources.js'
+import { MARKET_ART_MARKS } from '../../lib/market-art-marks.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
@@ -21,7 +22,7 @@ const BASE_PERFORMANCE_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(groups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: `etf-night/${scene}.webp` }]))),
   // Keep the existing performance/duel artwork independent of anniversary
   // logos: its text-only fallbacks do not provide an illustration to export.
-  ...Object.fromEntries(Object.entries({ bitcoin: 'bitcoin.svg', ethereum: 'ethereum.svg', apple: 'apple.svg', microsoft: 'microsoft.svg', broadcom: 'broadcom.svg', tesla: 'tesla.svg', berkshire: 'holding.svg', asml: 'asml.svg' }).map(([id, mark]) => [id, { mark }])),
+  ...Object.fromEntries(Object.entries(MARKET_ART_MARKS).map(([id, mark]) => [id, { mark }])),
   or: { scene: 'approved/performance-gold-glass.webp' },
 })
 export const PERFORMANCE_ART = Object.freeze(withHistoryVisuals(BASE_PERFORMANCE_ART))
