@@ -35,8 +35,8 @@ def parse(source,body,checked):
  return rows
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path);args=p.parse_args()
- sources=json.loads((ROOT/'scripts/qualified-listing-sources.json').read_text())['sources'];path=ROOT/'src/data/qualified-listing-records.json'
+ p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path);p.add_argument('--common-identities-only',action='store_true');args=p.parse_args()
+ sources=[] if args.common_identities_only else json.loads((ROOT/'scripts/qualified-listing-sources.json').read_text())['sources'];path=ROOT/'src/data/qualified-listing-records.json'
  records=json.loads(path.read_text()) if path.exists() else {};checked=dt.datetime.now(UTC).date().isoformat()
  def one(s):
   try:
@@ -51,8 +51,14 @@ def main():
  for isin,rows,error in results:
   if rows:records[isin]=rows
  if args.apply:write_json_atomic(path,records)
+ from exchange_listing_refresh import refresh
+ shared_path=ROOT/'src/data/shared-listing-identities.json'
+ shared,identity_report=refresh(json.loads(shared_path.read_text()),dt.datetime.now(UTC))
+ if args.apply:write_json_atomic(shared_path,shared)
  report={'checkedAt':checked,'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}
+ report['validated'] += [r['id']for r in identity_report['successes']]
+ report['failed'] += [{'isin':r['id'],'reason':r['error'],'sourceUrl':r['sourceUrl'],'lastSuccessAt':r['lastSuccessAt']}for r in identity_report['errors']]
  if args.output:write_json_atomic(args.output,report)
  print(json.dumps(report))
- if any(error for _,_,error in results):raise SystemExit(1)
+ if report['failed']:raise SystemExit(1)
 if __name__=='__main__':main()

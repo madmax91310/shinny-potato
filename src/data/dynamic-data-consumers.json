@@ -18,23 +18,6 @@
       "producer": "scripts/build-dca-exposures.mjs"
     },
     {
-      "pattern": "public/data/ai-portfolios/*.json",
-      "consumers": [
-        "src/pages/ai-portfolios/App.jsx",
-        "src/pages/ai-portfolios/series.js"
-      ],
-      "mechanism": "fetch public et fragments sélectionnés",
-      "producer": "scripts/ai-portfolios.mjs"
-    },
-    {
-      "pattern": "data/ai-portfolios/*",
-      "consumers": [
-        "src/pages/ai-portfolios/App.jsx"
-      ],
-      "mechanism": "projection publique versionnée ; les sources de comptabilité ne sont pas des imports Vite",
-      "producer": "scripts/ai-portfolios.mjs"
-    },
-    {
       "pattern": "src/data/dca-equity-exposures.json",
       "consumers": [
         "scripts/build-dca-exposures.mjs"
@@ -58,8 +41,7 @@
       "pattern": "src/data/dca-security-classifications.json",
       "consumers": [
         "scripts/build-dca-exposures.mjs",
-        "scripts/build-equity-history-links.mjs",
-        "scripts/ai-portfolio-universe.mjs"
+        "scripts/build-equity-history-links.mjs"
       ],
       "stage": "build",
       "mechanism": "security identity projection and catalogue admission",
@@ -156,6 +138,16 @@
       "stage": "build",
       "mechanism": "immutable GitHub-validated cash-repair evidence; no live return substitution",
       "producer": null
+    },
+    {
+      "pattern": "src/data/shared-listing-identities.json",
+      "consumers": [
+        "scripts/export-equity-candidates.mjs",
+        "scripts/report-ai-tool-reuse.mjs"
+      ],
+      "stage": "build",
+      "mechanism": "Preuves de cotation partagées transférées sans modifier identités, dates ou sources ; aucun historique IA utilisé",
+      "producer": "scripts/refresh_qualified_listings.py"
     }
   ]
 }

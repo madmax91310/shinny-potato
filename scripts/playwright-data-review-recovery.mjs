@@ -8,8 +8,6 @@ import {choose}from './card-selection.mjs'
 const out='test-artifacts/data-review-recovery';fs.mkdirSync(out,{recursive:true})
 const report=JSON.parse(fs.readFileSync('dist/data/financial-reconciliation.json'))
 const source=JSON.parse(fs.readFileSync('src/data/automated-practical-sheets.json'))
-const series=JSON.parse(fs.readFileSync('data/ai-portfolios/series/94.json'))['IE00B4L5Y983-ETFP']
-const latest=Object.keys(series.points).sort().at(-1)
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4397','--strictPort'],{stdio:'ignore'})
 const base='http://127.0.0.1:4397/shinny-potato';let browser
 try{
@@ -105,18 +103,6 @@ try{
   await(await pending).saveAs(`${out}/sp500-sectors-${width}.png`);pngCount++
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
  }
- const details=await(await page.request.get(base+'/data/ai-portfolios/details/94.json')).json()
- const status=details['IE00B4L5Y983-ETFP'].status
- if(status.ok)assert.equal(status.asOf,latest)
- else{
-  // A failed catch-up must not invalidate or redate the retained certified history.
-  assert.equal(status.lastValidAsOf,latest)
-  assert.equal(status.lastSuccess,series.retrievedAt)
-  assert(status.error,'The current failed attempt remains explicit')
-  assert(Date.parse(status.attemptedAt)>Date.parse(status.lastSuccess))
- }
- const published=await(await page.request.get(base+'/data/ai-portfolios/series/94.json')).json()
- assert.deepEqual(published['IE00B4L5Y983-ETFP'].points,series.points)
  await page.setViewportSize({width:1280,height:900})
  await page.goto(base+'/calculateur-investissement?asset=etfGB00B15KXQ89',{waitUntil:'networkidle'})
  const editor=page.getByRole('button',{name:'Éditeur',exact:true});if(await editor.isVisible())await editor.click()
@@ -152,8 +138,13 @@ try{
  await page.route('**/automation-status/automation-status.json',r=>r.fulfill({json:monitor}))
  await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
  const monitoring=page.getByRole('region',{name:'Surveillance des données',exact:true})
- const signalCount=Object.keys(monitor.monitoring.active).length
+ // This historic fixture retains one signal from the now-removed IA collector.
+ const removedSignal='collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP'
+ assert(monitor.monitoring.active[removedSignal],'Keep the historical fixture intact')
+ const signalCount=Object.keys(monitor.monitoring.active).length-1
  await monitoring.getByText(`${signalCount-4} point(s) à examiner · ${signalCount} signalement(s) conservé(s)`,{exact:false}).waitFor()
+ await monitoring.getByText(/Retirés du périmètre/).click()
+ assert((await monitoring.innerText()).includes('Ces incidents ne sont pas comptés comme des données réparées.'))
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('IE00BJGWQN72')
  assert.equal(await monitoring.locator('article').count(),1)
  await monitoring.getByRole('searchbox',{name:'Rechercher un incident'}).fill('field:instrument:IE00BJGWQN72:completeHoldings')
@@ -163,5 +154,5 @@ try{
  assert((await monitoring.innerText()).includes('field:instrument:IE00BJGWQN72:completeHoldings'))
  assert((await monitoring.innerText()).includes('collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72'))
  assert.deepEqual(errors,[])
- console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; SWDA ${latest} is reachable through its actual public consumer.`)
+ console.log(`Recovery UI: original financial cases downloadable, two reviewed gold sheets, ${pngCount} actual PNGs (gold, IBKR, DCA, ETF sectors, Tudigo cessation) on mobile/desktop; current common data are reachable through their actual consumers.`)
 }finally{await browser?.close();server.kill()}

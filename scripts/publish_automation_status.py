@@ -53,7 +53,9 @@ def normalize_report(report):
                             'error': r.get('reason', 'Collecte échouée')} for r in rows if r.get('status') == 'failed']}
     if isinstance(report.get('validated'), list) and isinstance(report.get('failed'), list):
         return {'successes': [{'id': 'listing:' + isin} for isin in report['validated']],
-                'errors': [{'id': 'listing:' + r['isin'], 'field': 'Cotation', 'error': r.get('reason', 'Collecte échouée')}
+                'errors': [{'id': 'listing:' + r['isin'], 'field': 'Cotation', 'error': r.get('reason', 'Collecte échouée'),
+                            **({'lastSuccessAt':r['lastSuccessAt']}if 'lastSuccessAt'in r else{}),
+                            **({'sourceUrls':[r['sourceUrl']]}if r.get('sourceUrl')else{})}
                            for r in report['failed']]}
     if isinstance(report.get('companies'), dict):
         result = {'successes': [], 'errors': []}

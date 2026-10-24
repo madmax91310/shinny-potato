@@ -5,6 +5,20 @@
       "tool": "/analyse-entreprise",
       "retiredAt": "2026-10-21",
       "reason": "Analyse d’entreprise retirée à la demande de l’utilisateur. Ses comptes, ratios et prévisions ne sont plus requis ; les données de marché utilisées ailleurs restent suivies."
+    },
+    "update-ai-portfolios.yml": {
+      "tool": "/portefeuilles-ia",
+      "retiredAt": "2026-10-24",
+      "status": "scope-removed",
+      "reason": "Périmètre supprimé : Portefeuilles IA retiré à la demande de l’utilisateur. Compétitions, cours quotidiens dédiés et écritures IA ne sont plus requis. Les données et collectes communes restent actives ; aucune donnée financière n’est déclarée réparée.",
+      "toolName": "Portefeuilles IA"
+    },
+    "ai-owner-requests.yml": {
+      "tool": "/portefeuilles-ia",
+      "retiredAt": "2026-10-24",
+      "status": "scope-removed",
+      "reason": "Périmètre supprimé : Portefeuilles IA retiré à la demande de l’utilisateur. Compétitions, cours quotidiens dédiés et écritures IA ne sont plus requis. Les données et collectes communes restent actives ; aucune donnée financière n’est déclarée réparée.",
+      "toolName": "Portefeuilles IA"
     }
   }
 }

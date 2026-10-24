@@ -31,6 +31,7 @@ on:
       - 'src/data/qualified-listing-records.json'
       - 'scripts/qualified-listing-sources.json'
       - 'scripts/refresh_qualified_listings.py'
+      - 'scripts/exchange_listing_refresh.py'
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
       - 'scripts/collect_ranking_sources.py'
@@ -185,7 +186,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/shared-listing-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

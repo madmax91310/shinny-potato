@@ -88,7 +88,8 @@
     "src/data/ranking-histories.json",
     "src/data/ranking-annual.json",
     "src/data/ranking-index-annual.json",
-    "src/data/ranking-ftse.json"
+    "src/data/ranking-ftse.json",
+    "src/data/shared-listing-identities.json"
   ],
   "update-publication-observations.yml": [
     "src/data/purchasing-power-observations.json",
@@ -103,11 +104,5 @@
     "src/data/automated-etf-monthly.json",
     "src/data/auto-history-identities.json",
     "src/data/qualified-listing-records.json"
-  ],
-  "update-ai-portfolios.yml": [
-    "public/data/ai-portfolios"
-  ],
-  "ai-owner-requests.yml": [
-    "public/data/ai-portfolios"
   ]
 }

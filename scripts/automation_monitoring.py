@@ -8,6 +8,9 @@ from pathlib import Path
 
 RETIRED_WORKFLOWS = json.loads((Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
 
+REMOVED_TOOL_NAMES = {r['toolName'] for r in RETIRED_WORKFLOWS.values() if r.get('toolName')}
+REMOVED_SCOPE_REASON = 'Périmètre supprimé : l’outil consommateur a été retiré. Aucune réparation de donnée déduite.'
+
 MARKER = '<!-- data-reliability-monitor:v1 -->'
 QUIET_HOURS = 6  # minimum spacing between comments that only report checks or recoveries
 
@@ -44,6 +47,9 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     old = previous.get('active', {})
     active = {}
     def add(key, row):
+        if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:
+            return
+        row = {**row, 'tools': [t for t in row.get('tools', []) if t not in REMOVED_TOOL_NAMES]}
         active[key] = {**row, 'id': key, 'firstSeenAt': old.get(key, {}).get('firstSeenAt', now), 'lastSeenAt': now}
     for workflow, config in registry.items():
         row = state.get('workflows', {}).get(workflow, {})
@@ -130,10 +136,12 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
             add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
     def retired_reason(row):
+        if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
         if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
         if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
         return None
-    retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row)}
+    retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row),
+                'retirementStatus': ('scope-removed' if RETIRED_WORKFLOWS.get(row.get('workflow'),{}).get('status')=='scope-removed' or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution')}
                for key, row in old.items() if key not in active and retired_reason(row)]
     resolved = [{**row, 'resolvedAt': now} for key, row in old.items()
                 if key not in active and not retired_reason(row)]
