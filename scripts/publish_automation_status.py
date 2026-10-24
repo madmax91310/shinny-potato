@@ -20,6 +20,7 @@ import urllib.request
 from automation_contracts import owns_failure, RETIREMENT_REASON
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp, restore_history
 from github_automation_transport import request_json, unseen_completed_runs
+from automation_status_storage import pack_report_scopes,encode_status
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
@@ -1211,7 +1212,9 @@ def main():
                 state.setdefault('observerErrors',{})['recovery:'+workflow]={'cause':'État des reprises non observable ; aucun déclenchement aveugle : '+str(error)[:200]}
     state['recovery'], recovery_plans = plan_recovery(state, recovery_registry, now, current_runs)
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
-    encoded = base64.b64encode((json.dumps(state,ensure_ascii=False,indent=2)+'\n').encode()).decode()
+    state=pack_report_scopes(state)
+    print('Stockage du moniteur : '+str(len(json.dumps(state,ensure_ascii=False).encode()))+' octets, '+str(len(state.get('reportScopes',{})))+' périmètres de preuve uniques ; aucun incident retiré.')
+    encoded = encode_status(state)
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T18:48:03.036452+00:00",
+  "generatedAt": "2026-10-24T19:42:57.656888+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -28,7 +28,7 @@
     "review-freshness.yml",
     "deploy-pages.yml"
   ],
-  "testsRun": 24,
+  "testsRun": 25,
   "successful": true,
   "rows": [
     {
@@ -4294,6 +4294,14 @@
       "case": "test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache (test_automation_product.ProductContracts.test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache"
+    },
+    {
+      "test": "test_shared_report_scopes_are_lossless_small_and_keep_every_field",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_shared_report_scopes_are_lossless_small_and_keep_every_field (test_automation_product.ProductContracts.test_shared_report_scopes_are_lossless_small_and_keep_every_field)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_shared_report_scopes_are_lossless_small_and_keep_every_field"
     },
     {
       "test": "test_shared_scope_matches_attempted_results_and_preserves_source_clock",

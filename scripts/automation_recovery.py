@@ -1,4 +1,5 @@
 """Bounded fresh-master dispatches; never replay an obsolete workflow snapshot."""
+from automation_status_storage import encode_status
 import copy
 import datetime as dt
 import base64
@@ -112,5 +113,5 @@ def persist_and_dispatch(api, path, payload, state, plans):
     if plans:
         dispatch_recovery(api, state['recovery'], plans)
         payload = {**payload, 'sha': saved['content']['sha'],
-                   'content': base64.b64encode((json.dumps(state, ensure_ascii=False, indent=2)+'\n').encode()).decode()}
+                   'content': encode_status(state)}
         api(f'/contents/{path}', 'PUT', payload)
