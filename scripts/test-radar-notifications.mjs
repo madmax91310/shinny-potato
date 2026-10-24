@@ -101,7 +101,7 @@ for (const fake of [{ ...legacyIssue, user: { login: 'somebody' } }, { ...legacy
 const noAssignment = mock({ assigned: false })
 await assert.rejects(send([event], ledger, noAssignment), /sans attribution/)
 const repair = mock({ issues: noAssignment.created })
-assert.equal((await send([event], ledger, repair)).recovered, 1)
+assert.equal((await send([event], ledger, repair)).sent, 1, 'A tracker description is not a delivery receipt; failed assignment retries the comment')
 assert.ok(repair.calls.some(call => call.path === 'issues/1/assignees'))
 assert.equal(repair.created.length, 0)
 await assert.rejects(send([event], ledger, mock({ hasIssues: false })), /activées/)

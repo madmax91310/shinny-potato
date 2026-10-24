@@ -1,233 +1,120 @@
-# Radar éditorial — 8 octobre 2026
+# Radar éditorial — fonctionnement proposé le 24 octobre 2026
 
-Objectif : alimenter les publications d’Épargnant Libre à partir de changements sourcés, sans recherche ou saisie quotidienne. Le bilan des posts publics de juillet à septembre 2026 suggère de privilégier les nouveautés concrètes, les situations auxquelles les lecteurs peuvent se comparer et les ressources de référence. L’échantillon indexé est incomplet : il ne constitue pas un classement exhaustif ni une preuve de causalité. Les formats personnels restent à préparer par l’auteur.
+Cette version est une évolution du Radar d’Épargnant Libre, à relire en PR avant fusion. Elle ne publie rien sur X. Le fonctionnement courant est déterministe : découverte, extraction, validation, classement et notification n’exigent aucun modèle génératif. Les ruptures de format nécessitent toujours une maintenance, signalée dans la supervision.
 
-## Fonctionnement
+## Faits et intérêt éditorial
 
-Route `/radar-editorial`, visible en premier sur l’accueil. Les observations validées des collecteurs existants alimentent huit familles : ETF, indices, courtiers, épargne et paramètres réglementaires, SCPI, assurance-vie, investisseurs et repères économiques. Les communiqués ETF de la page officielle Vanguard Europe sont également recherchés automatiquement, même pour un produit absent du catalogue. Ce connecteur ne constitue pas une veille exhaustive de tous les lancements ETF.
+Les types sont distincts : publication statistique, mesure réglementaire, annonce de produit, première négociation, nouvelle place de cotation, changement de caractéristique, révision de source et nouvelle donnée raccordée. Un premier relevé de catalogue reste une extension de couverture. Une étude statistique ne passe jamais par les critères de promulgation d’une loi.
 
-Le workflow `update-editorial-radar.yml` s’exécute quotidiennement à 14 h 15 UTC et après la fin des sept collecteurs raccordés. Le collecteur ETF passe à une collecte quotidienne. Les autres collectes conservent leur propre calendrier de publication ; le radar ne crée pas de nouvelle donnée lorsqu’une source ne publie rien.
+Les observations financières partagées gardent leurs validations et seuils. Le Radar lit les registres existants ; il ne les édite pas. Encours : seuil cumulé de 20 %, sans en déduire une collecte. Compositions : détection à 2 points inchangée ; une évolution d’au moins 5 points sur deux périodes distinctes peut devenir éditorialement exploitable, hors « autres » ou non ventilé. Un mouvement de poids n’est pas une transaction. Réplication équivalente et révision d’une même photographie restent secondaires, avec leurs preuves historiques.
 
-Seul le code de master est exécuté pour un événement workflow_run. Les événements de pull request et d’un autre dépôt ne peuvent publier. Les tests de PR sont en lecture seule. Les publications sont sérialisées, sans annulation d’un contrôle en cours.
+La qualification d’un fait précède son score. Les sources externes ont des domaines autorisés et des parseurs explicites. L’évaluation partagée `editorialAssessment` vérifie source HTTPS, dates, périmètre, valeur et absence de conflit. Les nouvelles statistiques exigent date de publication et preuve d’extraction. Les annonces indirectes doivent être confirmées par le corps du communiqué. Un haut score ne lève aucun blocage de fiabilité.
 
-Le flux et son état sont enregistrés atomiquement dans un même commit de la branche `radar-data` : `feed.json` et `state.json`. Chaque relevé contient la révision exacte des données analysées. L’interface charge le flux sans cache et le recontrôle toutes les cinq minutes ; aucun nouveau build n’est nécessaire pour afficher un signal. Le premier relevé crée une référence silencieuse. L’historique complet demeure dans l’état ; les 500 signaux les plus récents sont servis à l’interface.
+Les poids configurables et testés sont dans `src/lib/radar-editorial.js` (`SCORE_RULES`) :
 
-## Détection
+| Critère | Maximum | Règle |
+| --- | ---: | --- |
+| Public concerné | 30 | Ménages/statistiques : 30 ; épargne/courtiers/contrats : 21 ; composition majeure : 20 ; produit spécialisé : 11. Il s’agit d’une pertinence pour le lectorat, jamais d’un comptage de personnes. |
+| Impact concret | 25 | Budget/revenus/patrimoine ou conditions d’épargne : 25 ; frais/PEA/composition majeure : 20 ; autre produit : 8. Aucun gain individuel n’est calculé sans preuve. |
+| Nouveauté | 20 | Publication ou changement documenté : 20 ; couverture, révision ou variation technique : 0. |
+| Comparaison/pédagogie | 15 | Repère ménages ou avant/après : 15 ; produits documentés : 11 ; comparaison absente : inconnue, 0. |
+| Fraîcheur | 10 | Publication ≤2 jours : 10 ; ≤7 jours : 7 ; ≤14 jours : 3 ; plus ancienne : 0 ; publication inconnue : inconnue, 0. La détection ne remplace jamais la publication. |
 
-- Frais annuels des ETF : toute variation validée, part exacte.
-- Encours : au moins 20 % de variation cumulée, avec même devise et périmètre part/fonds. Aucun flux net n’en est déduit.
-- Compositions ETF/indices : variation cumulée de 2 points d’un pays, secteur ou des dix premières lignes publiées. Les paniers de substitution sont exclus du poids des principales lignes.
-- Nombre de titres : au moins 5 % et dix titres.
-- Courtiers : barèmes numériques et disponibilité confirmée des services ; périmètre et marché exacts. Un changement de texte seul ne suffit pas.
-- Livrets, paramètres réglementaires, prix de parts, frais de contrats/SCPI : modifications des valeurs publiées.
-- Rendements annuels et repères économiques : nouveau millésime ou révision du chiffre, avec les périodes originales.
-- Investisseurs : nouvelle période 13F ou correction des positions et mouvements publiés. Les prix en direct, poids et performances ne sont pas des transactions. Les options sont exclues.
-- Communiqués ETF Vanguard : titre, date et lien PDF officiels. Le titre seul ne produit ni ISIN, ni frais, ni affirmation de lancement. Les archives anciennes ajoutées après l’initialisation ne sont pas annoncées comme des nouveautés.
+Les critères et leurs raisons sont affichés. « Prioritaires » : fait fiable, exploitable et score ≥65. Les autres sujets exploitables restent accessibles sans limite de cinq cartes. La sélection courte de cinq groupes au maximum retient au plus deux publications d’une source et une exposition exacte connue. Une exposition inconnue n’est pas devinée. L’ordre, la fiabilité et les raisons sont partagés avec les notifications. Le score ne prédit aucune audience X ; les vues rapportées par l’utilisateur motivent le périmètre, pas une estimation de viralité.
 
-La référence d’un chiffre n’avance qu’après un signal : les petites variations quotidiennes s’accumulent donc jusqu’au seuil. Chaque signal garde les valeurs avant/après, leurs périodes et leurs sources. Un produit nouvellement raccordé est intitulé « nouvelle donnée suivie », pas « nouvel ETF lancé ». L’ajout d’un champ à un produit déjà suivi est silencieux.
+## Publications et preuves
 
-## Échecs et notifications
+Pour les repères ménages, l’adaptateur réutilise les définitions qualifiées de `household-statistics.js` et les valeurs automatisées, sans seconde base de chiffres. Médiane et hauts salaires gardent l’unité « € nets par mois », le champ EQTP, le périmètre, le millésime, la date de publication et la date de collecte. Les preuves gardent la table et son empreinte. Les révisions d’une période restent distinctes d’une nouvelle période ou d’une publication distincte, même à valeur identique.
 
-Une donnée absente, périmée, non finie, sans source/date ou plus ancienne ne remplace pas la dernière observation validée. Un changement de périmètre crée une nouvelle référence silencieuse. Une disparition ne devient jamais une fermeture, sortie ou vente supposée. Une source locale entière illisible empêche la publication du nouvel état. Une panne du connecteur Vanguard conserve ses observations et est mentionnée dans les réserves.
+Les nouvelles publications INSEE, Banque de France et DREES sont extraites sans rédaction générative : titre, date officielle et résumé officiel chiffré. Les années d’une édition DREES ne sont pas présentées comme les années des données. Quand une période ne peut être extraite sans ambiguïté, elle reste inconnue et le résumé conserve ses références explicites. Les statistiques nouvellement découvertes ne sont pas automatiquement ajoutées aux outils financiers : ce raccordement a ses propres exigences.
 
-Un historique existant illisible n’est jamais réinitialisé. La création initiale de la branche et les deux fichiers sont publiés ensemble. Une mise à jour concurrente empêche le remplacement du pointeur : aucun push forcé. Les échecs du workflow sont raccordés à « Données à revoir ». Les données conservées ne deviennent pas artificiellement fraîches.
+Les annonces ETF acceptent HTML et PDF. La formulation « renforce son offre », « enrichit sa gamme » ou « nouvelles solutions » ouvre une qualification ; elle ne prouve pas seule un lancement. Le corps et les noms des produits rendent une annonce groupée exploitable sans exiger une fiche ETF complète. Une cotation ne devient ni un lancement ni une disponibilité chez un courtier.
 
-Dans l’appli : compteur des signaux non lus du dernier flux consulté dans la navigation (sans requête réseau depuis les autres outils), filtres, recherche, statut lu mémorisé sur l’appareil, brouillon modifiable et copie. Le radar affiche sa date de contrôle ; après 36 h il ne prétend plus confirmer l’absence de nouveautés. Une erreur de chargement laisse les signaux précédemment chargés affichés.
+L’association des caractéristiques se limite à un bloc à nom et ISIN uniques, ou à une ligne rectangulaire dont les en-têtes sont explicites. Pas de propagation d’un TER global vers tous les produits ; cellules fusionnées ambiguës exclues. Plusieurs parts restent séparées par ISIN. Les inconnues (frais, PEA, indice, revenus, gestion, dates, disponibilité commerciale) restent inconnues. Les preuves par produit sont consultables. Les informations du communiqué ne sont pas versées automatiquement dans les registres partagés.
 
-### Notifications GitHub automatiques
+## Découverte réellement vérifiée
 
-Après publication du flux, le même workflow regroupe les signaux validés non encore notifiés dans une issue attribuée à `madmax91310` et le mentionne explicitement. Chaque signal conserve ses valeurs avant/après, ses périodes de référence, la date de détection et de vérification, les sources ancienne/actuelle, le périmètre, le seuil appliqué, l’outil concerné et un angle éditorial. Les valeurs structurées sont également fournies intégralement. Une exécution sans changement significatif ne crée ni issue, ni commentaire, ni mention. Un lot exceptionnel dépassant la limite du corps d’une issue est découpé en plusieurs issues.
+La preuve datée et les limites se trouvent dans [le relevé réel](../reports/radar-publications-2026-10-24/sources.json), produit par `scripts/check-radar-sources.mjs`, sans importer le publieur ni envoyer de notification. Ce relevé est un échantillon borné, pas une preuve de couverture universelle.
 
-`notifications.json`, sur `radar-data`, garde les identifiants acquittés indépendamment du flux public limité à 500 événements. Au premier déploiement du mécanisme, tous les événements déjà présents dans l’historique sont acquittés silencieusement (notamment l’ancien signal Russell 1000). L’initialisation des observations, les nouvelles références de périmètre et les nouveaux champs sur un produit déjà suivi restent silencieux. Les nouvelles données réellement détectées par les règles existantes après cette référence sont notifiables ; elles ne sont pas présentées comme des lancements.
+| Source | Accès et découverte | Profondeur, cadence et extraction | État au contrôle |
+| --- | --- | --- | --- |
+| INSEE publications nationales | RSS officiel `/fr/flux/2`, identifié dans la liste officielle des abonnements | Fenêtre fournie par le RSS ; horaire ; titre, `date-diffusion`, chapeau | Opérationnel, dont les salaires 2025 |
+| INSEE conjoncture/inflation | RSS officiel `/fr/flux/3` | Fenêtre RSS ; horaire ; chapeau ou premiers paragraphes officiels | Opérationnel, dont IPC et logement |
+| Amundi actualités et avis | Sitemap annoncé dans `robots.txt`, `/sitemap/sitemap.xml` | Toutes les URL françaises des actualités du sitemap, contrôlé quotidiennement ; date du bandeau, corps HTML, tableaux | Opérationnel, dont les trois ETF thématiques |
+| Banque de France crédits | Liste HTML thématique officielle existante réutilisée | Première page datée ; horaire ; contenu Webstat officiel | Opérationnel ; l’ancien canal de veille est conservé |
+| Banque de France épargne | Liste HTML thématique, identifiants de filtres lus dans le formulaire officiel | Première page datée ; horaire ; blocs textuels Webstat | Opérationnel sur l’épargne des ménages |
+| Banque de France endettement | Liste thématique datée | Découverte opérationnelle ; données principalement graphiques | Extraction chiffrée bloquée : absence de résumé/table datée exploitable par cet adaptateur ; documents en file d’erreur, aucun chiffre inventé |
+| DREES | Liens de publications sur l’accueil officiel | Accueil courant, pas d’exhaustivité d’archive ; horaire ; date « Paru le », résumé | Opérationnel sur retraites et prestations échantillonnées ; accès susceptible de rejet anti-robot |
+| DARES | Accueil officiel | Contrôle horaire ; extraction sur liens publics lorsqu’ils sont accessibles | Bloqué dans cet environnement par une vérification de sécurité en HTTP 200 |
+| Vanguard | Modèle serveur de la page officielle des communiqués | Archive rendue ; horaire ; documents PDF, file persistante | Découverte opérationnelle ; échantillon courant de baisses de frais, pas un inventaire de tous les lancements |
+| Global X Europe | Liste officielle Recent News | Archive rendue ; horaire ; HTML/PDF officiels autorisés | Découverte opérationnelle ; échantillon courant de dividendes classé secondaire |
+| WisdomTree Europe | Liste HTML française actuelle, domaine officiel `.com` | Archive rendue ; horaire ; date près du titre, paragraphes et tableaux | Opérationnel, dont une annonce à plusieurs parts et TER par ligne |
+| DWS / Xtrackers | Modèle JSON `vue-media-releases-page` du site DWS | Résultats rendus par le modèle, archive partielle ; horaire ; date officielle de la liste et document | Opérationnel sur l’échantillon ; plusieurs annonces anciennes, sans prétendre couvrir toute l’actualité Xtrackers |
+| Service Public | RSS particuliers officiel | Fenêtre du flux ; horaire ; titre/résumé/date/statut | Opérationnel |
+| Bercy | RSS officiel toutes actualités | Fenêtre du flux ; horaire ; filtrage particuliers, titre/résumé/date/statut | Opérationnel |
+| Vie publique actualités et lois | Deux RSS officiels existants | Fenêtre de chaque flux ; horaire ; mêmes exclusions législatives et parlementaires qu’avant | Opérationnels ; zéro article pertinent peut être un résultat sain |
+| CRE | Communiqués officiels HTML existants | Liste rendue ; horaire ; cartes datées sur les prix/tarifs ménages | Opérationnel |
+| iShares / BlackRock | Page officielle corporate de communiqués testée HTTP 200 | Accès revérifié quotidiennement ; couverture des archives UCITS européennes non qualifiée | **Pas raccordé** à la découverte des lancements |
+| BNP Paribas AM | API publique de la salle de presse | Deux pages, extraction réelle d’une annonce de quatre ETF | **Raccordé**, champs absents inconnus |
+| State Street / SPDR | Portail officiel accessible | Contrôle quotidien ; archive européenne ETF non qualifiée | **Pas raccordé** |
+| Invesco | Media hub officiel accessible, dont des PDF | Contrôle quotidien ; archive ETF et extraction automatique non qualifiées | **Pas raccordé** |
+| VanEck | Accès variable : premier contrôle refusé, contrôle Node ultérieur HTTP 200 | Contrôle quotidien ; archive datée et adaptateur non qualifiés | **Pas raccordé** ; ne pas assimiler accès HTTP et couverture |
+| UBS | Portail média officiel accessible | Contrôle quotidien ; archive ETF européenne non qualifiée | **Pas raccordé** |
+| JPMorgan AM | Portail conseiller officiel accessible | Contrôle quotidien ; découverte UCITS datée non qualifiée | **Pas raccordé** |
 
-Le registre initial est publié avec les observations avant l’envoi. Une panne d’Issues n’empêche donc pas la publication quotidienne du radar : le workflow signale l’échec et reprend les événements non acquittés au prochain passage, même si ce passage ne détecte aucune nouvelle variation. Avant chaque envoi, il recherche les marqueurs individuels dans toutes les issues créées par `github-actions[bot]`, ouvertes **et fermées**, avec pagination. Cela évite une deuxième issue après un arrêt entre création de l’issue et enregistrement du registre. Une attribution manquante est réparée sur l’issue existante. Aucune réouverture automatique ni relance sur un événement acquitté. La concurrence de production reste sérialisée, sans annulation et sans push forcé.
+Pour tous les connecteurs de publications : URL canonique sans paramètres de suivi, domaine officiel vérifié après redirection, date de publication distincte des horodatages techniques, hash et extrait de preuve. Le `Doc ID` Amundi, lorsqu’il existe, identifie les reprises du même document. Aucun rapprochement par seul thème. Les articles hors périmètre sont rejetés avec motif ; un format vide anormal est une erreur, pas « aucune nouveauté ».
 
-Prérequis techniques : les issues du dépôt doivent être activées, `madmax91310` doit être un destinataire attribuable et le job de production dispose de `contents: write` et `issues: write` via `GITHUB_TOKEN`. Les droits sont limités au job exécutant le code de `master` ; la validation de PR reste en lecture seule et ne crée aucune notification. Le script contrôle l’accès aux issues et l’éligibilité de l’attribution lorsqu’il existe un signal à envoyer. Aucun PAT ni service de notification externe n’est nécessaire.
+Le détail des accès non qualifiés est versionné dans `radar-source-access.mjs` et visible dans l’écran. Les URL de ces portails ne sont pas comptées comme des raccordements terminés. Les refus de source et insuffisances de parseur restent détectés ; il n’y a ni service payant ni nouvel identifiant requis.
 
-Pour recevoir les alertes :
+## File durable, cache, historique
 
-1. Dans [les paramètres GitHub de notification](https://github.com/settings/notifications), activer **On GitHub** pour les conversations auxquelles le compte participe ; activer **Email** si souhaité et vérifier l’adresse de réception. L’attribution et la mention rendent le compte participant. Il n’est pas nécessaire de suivre toutes les activités du dépôt.
-2. Ne pas ignorer le dépôt ni se désabonner des issues radar dont on souhaite les mises à jour.
-3. Dans GitHub Mobile (Android : Profil → Paramètres → Configure Notifications), activer les push **Assignments** et **Direct mentions**, autoriser les notifications de l’application dans Android et vérifier les horaires de réception.
+`state.json`, `feed.json`, `notifications.json` restent publiés atomiquement sur `radar-data`, sans déployer l’application. La file de publications est stockée dans `state.publications.documents` ; la file d’enrichissement historique Vanguard/Global X dans `state.documentQueue`. Elles conservent découverte, tentatives, prochain essai, statut, erreur et dernière extraction valide.
 
-Références officielles : [configuration des notifications et de GitHub Mobile](https://docs.github.com/en/subscriptions-and-notifications/get-started/configuring-notifications), [raisons d’abonnement](https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications), [attribution via l’API](https://docs.github.com/en/rest/issues/assignees). Les préférences personnelles et la réception effective sur le téléphone ne sont pas vérifiables par le token du dépôt ; la réussite du workflow prouve la création/attribution de l’issue, pas la livraison du push. Le contrôle conditionnel ChatGPT précédemment créé est indépendant : ce changement ne modifie pas ses paramètres.
+Un passage traite au maximum 12 documents de publications (90 secondes de traitement, hors découverte) et 8 documents d’enrichissement (45 secondes). Les documents sont répartis entre sources ; la fin de file n’est jamais abandonnée. Une erreur retente après 2, 4, 8, 16 puis 24 heures au maximum. Les documents réussis sont recontrôlés après sept jours, les enrichissements après un jour. RSS/listes sont interrogés une fois par heure ; sitemap et contrôles d’accès une fois par jour. ETag et Last-Modified sont utilisés sur publications, enrichissements et veille pouvoir d’achat lorsque fournis. Un HTTP 304 réutilise la preuve conservée. Le timeout ou une panne ne rajeunit jamais la date de publication ou celle de l’extraction valide.
 
-## Vérifications
+La reprise initiale parcourt les archives raccordées avec ces bornes de coût. Les nouvelles annonces de moins de 60 jours peuvent entrer dans le flux avec leur véritable publication ; les plus anciennes restent dans la file et l’état de collecte. Elles ne sont jamais présentées comme publiées aujourd’hui. Le récapitulatif ne retient que les sujets publiés depuis moins de 14 jours ; les alertes majeures exigent moins de deux jours. Les vieux signaux reclassés pendant la migration ne déclenchent pas de rafale.
 
-`npm run test:radar` : initialisation silencieuse, déduplication, seuils cumulés, scopes, dates, non-régression, conservation après disparition/invalidité, nouvelles années, nouvelles entités et sécurité des liens. Extraction des observations réelles de chaque famille ; parseur de communiqués, anciennes archives, lien étranger, format changé et panne réseau.
+Les identifiants et dates de détection des événements existants ne sont pas recalculés. La migration des libellés/unités enrichit l’historique sans réémettre de signal. Le registre des notifications acquitte les événements déjà présents lors de la migration de politique ; les lectures restent liées aux anciens IDs. Les nouveaux identifiants de publication incluent son identité, pour distinguer deux documents même à valeur et période inchangées.
 
-La même commande exécute aussi `scripts/test-radar-notifications.mjs` : migration silencieuse, regroupement, attribution/mention, preuves et valeurs complètes, doublons internes et entre exécutions, issues fermées, pagination, reprise après échec ou création sans acquittement, réparation de l’attribution, accès refusé, absence d’issues, sécurité du contenu et découpage des lots volumineux. Aucune notification de test n’est envoyée à GitHub.
+L’état conserve l’historique complet. Le flux conserve **tous** les sujets exploitables/à suivre, avec les 500 variations secondaires les plus récentes. L’ancienne limite globale de 500 ne permet plus au bruit technique d’évincer un sujet utile. L’historique intégral des secondaires est dans `state.json` sur `radar-data`.
 
-`npm run test:radar:browser` : chargement de signaux, filtres, mémorisation de lecture, édition/copie, échec conservant le contenu, contrôle périmé, absence de débordement mobile et état initial vide. Les réponses de flux simulées sont isolées au test navigateur et ne sont jamais enregistrées en production.
+## Planification, notifications et reprise
 
-Les deux suites sont raccordées à la validation GitHub Pages. Le radar reste automatique en fonctionnement normal ; une panne durable ou un changement de format du fournisseur peut nécessiter une réparation, comme pour les autres collecteurs.
+GitHub Actions ne garantit pas une exécution à la minute précise. Le cron UTC est `15 6-19 * * *` ; une garde `Europe/Paris` ne laisse passer les exécutions programmées que de 08 h à 20 h, heure locale. Ainsi, en été 06–18 UTC et en hiver 07–19 UTC. Le changement d’heure est couvert par les tests. Les retards du planificateur restent visibles via les dates de contrôle.
 
+Les passages programmés utilisent les dernières observations financières déjà validées, sans relancer la vérification DWS. Les `workflow_run` des collecteurs financiers conservent la voie lourde. Un échec de cette vérification conserve les faits précédents et signale une réserve, sans empêcher les nouvelles publications légères de paraître. Les collecteurs partagés, leurs calendriers et leurs validations financières ne sont pas modifiés.
 
-## Instantanés ETF contradictoires — correction du 10 octobre 2026
+Le canal existant reste l’issue GitHub suivie, attribuée au propriétaire, avec mention dans les commentaires :
 
-Pour les pays, secteurs, top dix et encours ETF, une date de référence décrit
-un instantané. Deux valeurs différentes à cette même date ne sont pas deux
-évolutions temporelles. Le radar conserve `current` et `anchors`, archive la
-proposition avec sa source et son empreinte dans `state.conflicts`, et affiche
-une réserve sans événement ni notification. Les répétitions d'une même
-proposition sont dédupliquées, même si la date de contrôle change. Un retour à
-la valeur acceptée ne blanchit pas automatiquement le conflit. Une observation
-sur une période ultérieure rétablit une ancre saine sans signal si l'ancre
-précédente est contradictoire, même sous le seuil éditorial. Les variations
-suivantes s'accumulent normalement entre observations non disputées.
-Le conflit précédent est alors marqué résolu, sans perdre ses propositions.
-Une correction officielle à date identique reste une donnée à vérifier ; elle
-n'est pas assimilée à une évolution de marché. Il n'y a pas d'acceptation
-automatique après plusieurs collectes. Les frais et les publications des autres
-familles conservent leurs règles de révision existantes.
+- Événement majeur : fiable, exploitable, score ≥85, publication depuis ≤2 jours ; au plus deux groupes par passage et trois par jour de Paris.
+- Récap quotidien : premier passage à partir de 19 h de Paris, jusqu’à cinq meilleurs nouveaux groupes exploitables depuis ≤14 jours, avec diversité de source/exposition ; un récap par date locale. Les alertes majeures restent possibles ensuite.
+- Les faits d’une même publication sont regroupés dans le même lot. Une publication déjà notifiée n’est pas renvoyée pour une reprise sur un autre canal ou un nouveau fait secondaire.
+- Les accusés sont enregistrés après un commentaire envoyé avec succès. Une description d’issue n’est pas un accusé. Après crash entre POST et commit, les marqueurs des commentaires du bot permettent la reprise sans doublon. Les erreurs restent en attente, sont persistées et exposées dans le flux.
 
-Les événements ETF historiques avant/après à période identique sont conservés
-dans `state.events` avec `status: source-conflict`, exclus du flux public et des
-notifications en attente. Les issues déjà envoyées restent des traces historiques
-et ne sont pas effacées ; leurs identifiants acquittés demeurent inchangés.
+Les tests simulent toute l’API ; ils n’envoient aucun message réel. La réception mobile **n’est pas vérifiée**. Elle dépend de l’accès aux issues, de l’attribution/mention, de l’abonnement GitHub et de l’autorisation de notifications de GitHub Mobile dans l’application et le système. L’installation ou les réglages de téléphone ne sont pas automatisés ici. Aucune publication sur X n’est possible dans cette chaîne.
 
-### Diagnostic Xtrackers IE00BLNMYC90
+## Supervision et recette
 
-Les issues #401 et #406 reprennent les deux versions du même instantané du
-7 octobre. Les commits suivants contiennent les observations collectées :
+L’écran distingue source saine sans nouveauté, source en erreur, accès non qualifié, documents en attente, erreurs d’extraction, rejets, secondaires et notifications en attente/échec. Les erreurs sont isolées par source. Les contrôles de transport conservent les preuves précédentes. Les métriques enregistrent publication → découverte, découverte → disponibilité, couverture constatée, états de file, motifs de classement et délivrance des notifications.
 
-| Commit | États-Unis | Empreinte JSON DWS (préfixe) |
-|---|---:|---|
-| db126df (9 octobre 14:21 UTC) | 98,558208 % | ca77018da14d |
-| 9679e06 (9 octobre 17:14 UTC) | 95,791703 % | c77da8932d93 |
-| a9b4ca0 (9 octobre 18:07 UTC) | 98,558208 % | ca77018da14d |
+La base de cas comprend des extraits officiels INSEE, Amundi, inflation, DREES, WisdomTree et des scénarios synthétiques de tableaux groupés, panne/reprise, migration, révision, extension de couverture et composition majeure. `npm run test:radar` les rejoue après chaque changement ; le workflow de PR les exécute sans notification. Les tests ne figent ni les valeurs vivantes des registres ni les compteurs de production.
 
-Le parseur DWS n'a pas changé entre ces collectes. Les pays de la version
-intermédiaire incluent Suisse, Royaume-Uni, Bermudes, Canada et Singapour ;
-les secteurs changent légèrement et plusieurs noms de titres sont reformulés.
-Les dix ISIN et leurs poids sont strictement identiques. Les empreintes sont
-calculées sur le JSON officiel, avant agrégation : la variation provient donc
-de réponses différentes du fournisseur, pas de l'identifiant de notification.
-La lecture directe du point d'accès officiel le 10 octobre reproduit la date,
-les poids et l'empreinte ca77018da14d. Ce faisceau d'indices indique une variation
-de classification/enrichissement des titres dans la réponse DWS. Il ne prouve
-pas quel mécanisme interne du fournisseur (cache, référentiel, etc.) l'a causée,
-ni quelle nomenclature géographique est la bonne. Les réponses JSON historiques
-complètes ne figurent pas dans le registre Git : les comparaisons historiques
-portent sur les agrégats, le top dix et les empreintes conservés.
+Commandes :
 
-La PR #429 cible des anomalies de collecte plus importantes : le déplacement
-ici est inférieur à son seuil de 25 points et ne suffit pas à le déclencher.
-Le garde-fou de la PR #435 détectait le retour après un événement mais laissait
-passer la première variation à date identique. Cette correction bloque aussi
-cette première variation, y compris sous le seuil éditorial.
+```sh
+npm run test:radar
+npm run build
+npm run test:radar:browser
+python3 -m unittest discover -s scripts -p test_dws_reconciliation.py
+node scripts/test-economic-consumers.mjs
+node scripts/audit-household-statistics.mjs
+npm run lint
+# Lecture réseau uniquement, sans publication ni notification :
+node scripts/check-radar-sources.mjs --passes 3 --output /tmp/radar-sources.json
+```
 
-La fixture `scripts/fixtures/radar-xtrackers-2026-10-07.json` conserve les trois
-observations issues de Git avec leurs SHA complets. `npm run test:radar`
-reproduit l'aller-retour, les tentatives répétées, la conservation de l'ancre,
-les lots mixtes, la migration de l'historique, la déduplication des envois et
-les évolutions légitimes sur une autre date.
+Dans un environnement avec proxy et Node 24, utiliser `NODE_USE_ENV_PROXY=1` pour les contrôles réseau. Le workflow GitHub n’exige pas ce réglage. Pour continuer une vérification de file locale : `--state /tmp/radar-state.json`. La commande ne charge jamais `publish-editorial-radar.mjs`.
 
-## Veille pouvoir d’achat
+Le résultat de livraison, les avant/après et les limites de mesure sont dans [le compte rendu de validation](editorial-radar-v2-validation.md).
 
-Le radar collecte automatiquement toutes les quatre heures les flux publics
-Service Public (particuliers), Bercy (actualités), Vie publique (actualités et
-panorama des lois). Les sujets sont classés en logement, épargne/fiscalité,
-dépenses courantes, revenus/aides. La collecte ne requiert aucune clé API ni
-liste d’articles entretenue à la main. Les coûts, publics et conditions ne sont
-pas déduits : le titre, le résumé et la date du flux officiel constituent la
-preuve récupérée, avec un lien visible vers son éditeur.
-
-Le statut est extrait d’une formulation explicite du titre ou du résumé :
-proposition/discussion, annonce, vote (étape à vérifier), promulgation,
-application indiquée ou application annoncée. Sinon il reste « À préciser ».
-Un vote en chambre n’est jamais assimilé à une entrée en vigueur. Le collecteur
-ne prétend pas suivre chaque amendement parlementaire, ni découvrir toutes les
-mesures françaises : il surveille les quatre flux raccordés. Les articles
-professionnels sans portée pour les particuliers et les sujets sans mécanisme
-budgétaire identifiable sont écartés.
-
-Les articles jusqu’à 45 jours sont intégrés. Lors de l’ajout de cette famille,
-le premier relevé est silencieux, mais consultable dans « Pouvoir d’achat ».
-Les articles nouveaux publiés au cours des sept derniers jours et les
-changements de titre/résumé/statut d’une URL déjà suivie créent des signaux.
-Une modification de la seule date de contrôle ne produit aucun signal. Les
-URL sont dédupliquées après retrait des paramètres de suivi. Deux éditeurs
-traitant le même sujet restent deux preuves distinctes ; leurs annonces ne sont
-pas fusionnées sur la seule base d’un mot-clé.
-
-`feed.purchasingPower.items` contient les 120 articles suivis les plus récents,
-y compris ceux du premier relevé. `feed.purchasingPower.sources` indique le
-résultat, la date de contrôle et le nombre de sujets retenus pour chaque source.
-Les erreurs d’un flux ou d’un article n’arrêtent pas les autres sources et ne
-suppriment pas les informations acceptées dans `state.current`. Un flux valide
-sans sujet pertinent n’est pas une erreur. Les requêtes ont un délai maximum,
-une limite de taille et une reprise ; les liens hors domaine officiel, dates
-futures et flux inattendus sont refusés.
-
-Les notifications réutilisent les issues GitHub groupées et leurs reçus
-persistants. La veille propose un brouillon et un angle adapté au thème, sans
-publier automatiquement sur X. Le workflow de PR teste les quatre flux en
-direct ; les tests déterministes couvrent bootstrap, filtres, statuts, dates,
-déduplication, mise à jour, panne et reprise. Commandes : `npm run test:radar`,
-`node scripts/test-purchasing-power-news.mjs --live`, `npm run test:radar:browser`.
-
-### Sources supplémentaires et lois adoptées
-
-La collecte conserve la Banque de France pour les crédits aux particuliers et
-la CRE pour les prix de l’énergie. Les publications de l’Assemblée nationale,
-les textes du Sénat et le suivi de leurs dossiers ont été retirés.
-
-Les annonces législatives issues des autres flux officiels, dont Vie publique,
-ne sont publiées que si le titre ou le résumé confirme explicitement une
-adoption définitive ou une promulgation. Un vote en commission ou dans une
-seule chambre ne suffit pas. Les anciens textes en discussion sont retirés
-des observations et des alertes, y compris lors d’une panne d’une source.
-Les autres actualités pratiques pour les particuliers restent suivies.
-
-## Révisions révélées après une alerte entre deux dates — 13 octobre 2026
-
-Les conflits conservés invalident désormais aussi les événements dont la date
-initiale ou finale est disputée, pour la même entité, le même champ et le même
-périmètre. Ils restent dans l'historique avec `status: source-conflict`, même
-après résolution du conflit ; ils sortent du flux public, des nouveautés et des
-notifications en attente. Les issues déjà envoyées et leurs acquittements ne
-sont pas supprimés. Une période ultérieure établit une nouvelle base saine.
-
-Le test reproduit les observations Git de l'issue #545, la migration d'un état
-contenant déjà le conflit, le filtrage des notifications, l'isolation des
-périmètres et la reprise des mouvements légitimes. Voir le diagnostic
-[Materials](radar-materials-2026-10-13.md) pour les preuves et leurs limites.
-
-## Sélection éditoriale — 20 octobre 2026
-
-La collecte et les preuves historiques restent intactes. La page ouvre sur cinq
-sujets au maximum, détectés au cours des quatorze derniers jours : frais,
-conditions, PEA documenté par ISIN, publications investisseurs et informations
-pratiques suffisamment concrètes. Les titres donnent la valeur avant/après.
-Les compositions, encours, métriques et statistiques restent consultables dans
-« Variations secondaires » ; ils ne déclenchent plus les notifications GitHub.
-« À suivre » conserve les annonces à compléter. « Historique complet » donne
-accès aux événements du flux public (500 maximum), sans limite de récence.
-La limite de cinq cartes est appliquée après recherche, filtre et regroupement.
-Les changements d'une même entité, période et maturité sont regroupés, chaque
-source, périmètre, brouillon et reçu de lecture étant conservé. Aucun regroupement
-sémantique de réformes différentes n'est déduit d'un simple thème commun.
-
-Les communiqués Vanguard Europe et Global X Europe sont distingués des nouveaux
-raccordements de catalogue. Une formulation explicite de lancement constitue
-une annonce ; un futur lancement ne devient jamais une disponibilité actuelle.
-Un lancement déclaré et documenté (ISIN unique et frais ou indice explicites),
-ou un début de négociation explicite, rejoint « À exploiter ». Les autres
-lancements restent dans « À suivre ». Le radar ne promet pas une couverture
-exhaustive des émetteurs, ni la disponibilité en France ou chez un courtier.
-
-Les PDF récents des deux sources officielles sont lus via `pdftotext` dans le
-workflow. Seuls les champs explicitement libellés d'un document à ISIN unique
-sont repris : frais, indice, PEA, distribution et date de première négociation.
-Une ambiguïté, plusieurs ISIN ou un champ absent restent sans valeur affichée.
-La source, sa date de contrôle et l'empreinte du document sont conservées.
-Un échec d'extraction garde l'annonce connue et produit une réserve technique ;
-il ne rend pas le lancement prêt à publier. Les anciens communiqués, dividendes,
-rapports et simples ajouts de produits ne deviennent pas des lancements.
-L'enrichissement d'une annonce existante ne crée pas une deuxième alerte.
-
-Vérifications ajoutées : `scripts/test-radar-editorial.mjs` (intégré à
-`npm run test:radar` et au workflow), et scénario navigateur avec un flux mixte,
-cinq cartes, regroupement, lecture groupée, annonces futures, variations
-secondaires, historique et absence de débordement mobile.
+La qualification complémentaire ETF et immobilier, ses preuves et limites actualisées figurent dans [la matrice des extensions](editorial-radar-extensions.md).
