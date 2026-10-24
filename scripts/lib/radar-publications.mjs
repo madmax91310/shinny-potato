@@ -197,7 +197,10 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     const source = sources.find(source => source.id === item.source)
     item.attemptedAt = now.toISOString(); item.attempts++
     try {
-      const result = await requestContent(url, item)
+      // Xtrackers serves HTTP 500 without its canonical trailing slash.
+      // Keep stable deduplication keys, but request the official route.
+      const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
+      const result = await requestContent(fetchUrl, item)
       if (!result.unchanged) {
         const observation = parsePublication(result.content, source, url, now, item)
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected }

@@ -77,3 +77,14 @@ const outside=parseEtfDocument('<table><tr><th>ETF Name</th><th>ISIN</th><th>TER
 assert.equal(outside.products[0].name,'Unknown Issuer Broad Europe UCITS ETF')
 assert.equal(outside.products[0].fees,'0.12%')
 assert.equal(outside.products[0].availability,null)
+
+// Exercise discovery -> fetch, including DWS's significant terminal slash.
+const xt=source('xtrackers'), xtDoc=xt.url+'a-new-etf/'
+const xtBody=await fixture('xtrackers')
+const xtResult=await collectPublications(now,async url=>{
+ if(url===xt.url)return new Response(`<table><tr><td>04/08/2026</td><td><a href="${xtDoc}">Xtrackers new ETFs</a></td></tr></table>`)
+ assert.equal(url,xtDoc,'Request the official trailing slash, independently of canonical deduplication')
+ return new Response(xtBody)
+},{},[xt],1)
+assert.equal(xtResult.observations.length,1)
+assert.equal(xtResult.errors.length,0)
