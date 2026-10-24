@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-24T17:54:19.636787+00:00",
+  "sourceHead": "23347e76e2eb3bc1b4153b770b824d99155173ba",
+  "supervisionHead": "71d5d71ed7b7e9a783601604e7625a9a1f03b712",
+  "tests": {
+    "suitePythonSource": {
+      "count": 1000,
+      "status": "passed",
+      "TESSDATA_PREFIX": "/tmp/audit-tessdata"
+    },
+    "suiteAutomationSupervision": {
+      "count": 104,
+      "status": "passed"
+    },
+    "sourceReportAgainstNewMonitor": {
+      "count": 2,
+      "status": "passed",
+      "module": "test_index_report_ownership",
+      "actualMonitorModule": "/workspace/supervision-integration-20261024/scripts/publish_automation_status.py"
+    },
+    "reviewInbox": "passed",
+    "calendar": "passed",
+    "buildSupervision": {
+      "status": "passed",
+      "certificates": 4274
+    }
+  },
+  "limits": "Tests isolés et build ; ne certifie pas une nouvelle collecte fournisseur ni le premier cron."
+}

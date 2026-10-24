@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-24T16:41:04.941515+00:00",
+  "currentHead": "f2991f069879e0ccb7f281f8ff316dc002e69f56",
+  "cancelled": [
+    {
+      "databaseId": 40110725949,
+      "event": "pull_request",
+      "headSha": "515ec0d3fda6b884d55b96218e965f9503e77ed1",
+      "status": "pending",
+      "workflowName": "Update active monthly market histories"
+    },
+    {
+      "databaseId": 40110725818,
+      "event": "pull_request",
+      "headSha": "515ec0d3fda6b884d55b96218e965f9503e77ed1",
+      "status": "in_progress",
+      "workflowName": "Deploy to GitHub Pages"
+    },
+    {
+      "databaseId": 40110606132,
+      "event": "pull_request",
+      "headSha": "e3eceb54c83fc240d677686cdec0d1f237ae66c3",
+      "status": "pending",
+      "workflowName": "Update active monthly market histories"
+    },
+    {
+      "databaseId": 40110169519,
+      "event": "pull_request",
+      "headSha": "168019ba34abf4bd0de0668081d97b792ab0e395",
+      "status": "in_progress",
+      "workflowName": "Update active monthly market histories"
+    }
+  ],
+  "reason": "Anciennes révisions de cette seule PR ; libérer la validation finale. Aucune collecte de production ni PR concurrente annulée."
+}

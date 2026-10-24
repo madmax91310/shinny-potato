@@ -1,0 +1,21 @@
+{
+  "asOf": "2026-10-24",
+  "newResearchOnly": true,
+  "sources": [
+    {
+      "sourceUrl": "https://developers.bitwiseinvestments.com/",
+      "finding": "Documentation officielle API avec authentification et exemples d’indices US ; aucune preuve de NAV historique du BTCE européen exact. Ne qualifie pas les trois fenêtres BTCE.",
+      "status": "blocked-qualification"
+    },
+    {
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/reportable%20income%202023",
+      "finding": "Nouvelle famille de document officiel fonctionnelle ; ligne ISIN exacte, devise EUR et distributions extraites. Voir calcul individuel conservant le résidu.",
+      "status": "real-local-collection"
+    },
+    {
+      "sourceUrl": "https://www.wisdomtree.com/api/fund-holdings/3104137",
+      "finding": "Voie existante, déjà bloquée sur GitHub ; aucun nouvel essai identique réalisé faute de nouvelle piste qualifiable. Aucune composition complète ou NAV Copper fabriquée.",
+      "status": "external-block-preserved"
+    }
+  ]
+}

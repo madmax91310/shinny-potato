@@ -62,5 +62,93 @@
       "preuves/suite-metadonnees/publication-verified.json",
       "https://github.com/madmax91310/shinny-potato/actions/runs/40085504061"
     ]
+  },
+  {
+    "id": "correction:annuaires-identites-communes",
+    "axe": "collecte et actualisation",
+    "type": "correction de chaîne commune",
+    "donnees": "21 identités contrôlées, dont continuité SOFI sur normalisation des seuls espaces ; identité exacte et source brutes préservées.",
+    "probleme": "Blocage du renouvellement SOFI sur espaces consécutifs ; preuves partagées sans passage du collecteur ordinaire démontré.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40111462777",
+      "preuves/autonomie-commune/sofi-preuve-officielle.json"
+    ]
+  },
+  {
+    "id": "correction:horloges-or-insee",
+    "axe": "collecte et actualisation",
+    "type": "correction de chaîne commune",
+    "donnees": "Contrôle source distinct de période financière ; contrôle inchangé renouvelé, panne et lecture de cache sans fausse réussite.",
+    "probleme": "Dates de contrôle non persistées pour certaines observations inchangées et dérivations locales.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40110829062",
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40108621544",
+      "scripts/test_publication_provenance.py",
+      "scripts/test_gold_monthly.py"
+    ]
+  },
+  {
+    "id": "correction:assurance-enregistrement",
+    "axe": "enregistrement et publication",
+    "type": "correction de chaîne commune",
+    "donnees": "Producteur assurance avec garde de dépendances et enregistrement validé ; données adoptées par la publication publique ultérieure.",
+    "probleme": "Conflit d’enregistrement des données communes sans garde de dépendances adaptée.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40108578843",
+      "preuves/autonomie-commune/manifest-public-final.json"
+    ]
+  },
+  {
+    "id": "correction:qualification-indices",
+    "axe": "fiabilité et raccordement",
+    "type": "correction de chaîne commune",
+    "donnees": "34 modèles conservés ; neuf requalifications réparées sans assimilation panier synthétique/exposition économique. Neuf parcours publics texte/image/PNG vérifiés sur deux largeurs.",
+    "probleme": "Confusion structure physique et méthode optimisée ; conservation des anciens modèles masquant les échecs de requalification.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020",
+      "preuves/autonomie-commune/parcours-publics-9-indices.json",
+      "scripts/test_index_composition_gate.py"
+    ]
+  },
+  {
+    "id": "correction:mensuel-projections-concurrentes",
+    "axe": "enregistrement et publication",
+    "type": "correction de chaîne commune",
+    "donnees": "Reconstruction des seules projections appartenant au producteur puis revalidation financière ; aucune résolution aveugle de conflit.",
+    "probleme": "Conflits entre projections générées indépendamment ; qualification de la chaîne mensuelle complète en cours.",
+    "productionValidated": false,
+    "preuves": [
+      "scripts/test_projection_recording.py",
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200"
+    ]
+  },
+  {
+    "id": "correction:reprise-runs-terminaux",
+    "axe": "collecte et actualisation",
+    "type": "correction de chaîne commune",
+    "donnees": "Un run terminal annulé ou ignoré ne gèle plus la reprise ; temporisation et budgets conservés.",
+    "probleme": "Le pilote considérait certains états terminaux comme une tentative active.",
+    "productionValidated": false,
+    "preuves": [
+      "scripts/test_automation_recovery.py",
+      "https://github.com/madmax91310/shinny-potato/pull/927"
+    ]
+  },
+  {
+    "id": "correction:qualification-rapport-isole",
+    "axe": "contrat producteur et supervision",
+    "type": "correction de chaîne commune",
+    "donnees": "Qualification locale séparée du contrôle fournisseur ; identifiants propres, erreurs de dérivation incluses dans le périmètre attendu.",
+    "probleme": "Un succès de qualification de cache pouvait effacer une panne réseau portant le même identifiant.",
+    "productionValidated": false,
+    "preuves": [
+      "scripts/test_index_report_ownership.py",
+      "scripts/test_publication_provenance.py",
+      "https://github.com/madmax91310/shinny-potato/pull/928"
+    ]
   }
 ]
