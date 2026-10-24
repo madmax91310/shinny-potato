@@ -1,0 +1,31 @@
+[
+  {
+    "id": "hsbc-dividend-202402",
+    "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5044235.html",
+    "attemptedAt": "2026-10-24T15:19:25.257165+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "hsbc-dividend-202408",
+    "sourceUrl": "https://data.fca.org.uk/artefacts/NSM/RNS/5281783.html",
+    "attemptedAt": "2026-10-24T15:19:25.257630+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "hsbc-distributions-2024",
+    "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie000qmihy81/gb/en/reportable%20income%202024",
+    "attemptedAt": "2026-10-24T15:19:25.257979+00:00",
+    "contentType": "application/pdf",
+    "sha256": "b107897cd85573d435e7bfffa42f56f690266bd2530b084907b844545b8d6014",
+    "bytes": 196983,
+    "evidence": "hsbc-distributions-2024.bin.gz"
+  },
+  {
+    "id": "hsbc-distributions-2023",
+    "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/reportable%20income%202023",
+    "checkedAt": "2026-10-24T15:19:40.449880+00:00",
+    "sha256": "44fd206a0ece6a040c15b627c9d21e75c13712dcb128ea3745113ca50fe9b3ea",
+    "bytes": 257046,
+    "evidence": "hsbc-distributions-2023.bin.gz"
+  }
+]
