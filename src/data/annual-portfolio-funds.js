@@ -12,7 +12,7 @@ export const ANNUAL_PORTFOLIO_FUNDS = Object.values(QUALIFIED_FUND_CALENDARS).fl
   if (latestCommonYears([record.years], { minimum: 3 }).length < 3) return []
   const cat = ['ETC', 'ETN', 'ETP'].includes(record.instrumentType) ? 'matieres_premieres' : 'actions_larges'
   const recovery = ANNUAL_RECOVERIES[record.isin]?.annualCurrency === record.currency ? ANNUAL_RECOVERIES[record.isin] : null
-  return [{ id: recovery?.annualManualId ?? EXISTING_MANUAL_IDS[record.isin] ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio') + (recovery ? ' · VL' : ''), cat, emoji: '📊', manualOnly: true,
+  return [{ id: recovery?.annualManualId ?? EXISTING_MANUAL_IDS[record.isin] ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio'), cat, emoji: '📊', manualOnly: true,
     ...(recovery ? { preferQualifiedAnnual: true } : {}),
     annualManual: true, distinctCandidate: true, basis: record.basis, source: record.sourceUrls[0], checkedAt: record.checkedAt,
     returnCurrency: record.currency, calendarReturns: record.years, r: HISTORICAL_YEARS.map(year => record.years[year] ?? null),

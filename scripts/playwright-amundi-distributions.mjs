@@ -23,7 +23,7 @@ try {
  async function preview(){const b=page.locator('.workspace-view-switch').getByRole('button',{name:'Aperçu',exact:true});if(await b.isVisible())await b.click()}
  await page.goto(base+'/calculateur-investissement?asset='+id,{waitUntil:'networkidle'})
  assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),id)
- await preview();assert((await page.locator('body').innerText()).includes(ASSETS[id].label));await png('amundi-lump',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
+ await choose(page.getByRole('group',{name:'Année de départ',exact:true}),'2022');await preview();assert((await page.locator('body').innerText()).includes(ASSETS[id].label));await png('amundi-lump',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
  const editor=page.locator('.workspace-view-switch').getByRole('button',{name:'Éditeur',exact:true});if(await editor.isVisible())await editor.click()
  await page.getByRole('button',{name:'Mensuel (DCA)',exact:true}).click();await preview();await png('amundi-dca',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
  await page.goto(base+'/performance-depuis?asset=annual-FR0007054358',{waitUntil:'networkidle'});assert.equal(await page.locator('#subject-select').getAttribute('data-value'),'annual-FR0007054358')
