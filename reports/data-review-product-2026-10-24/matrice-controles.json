@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T15:25:28.968813+00:00",
+  "generatedAt": "2026-10-24T15:35:15.228124+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -28,7 +28,7 @@
     "review-freshness.yml",
     "deploy-pages.yml"
   ],
-  "testsRun": 17,
+  "testsRun": 18,
   "successful": true,
   "rows": [
     {
@@ -294,6 +294,86 @@
       "case": "test_bad_readers_are_isolated_and_never_report_success (test_automation_product.ProductContracts.test_bad_readers_are_isolated_and_never_report_success)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_bad_readers_are_isolated_and_never_report_success"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='shares', status='cached')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='shares', status='unchanged')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='shares', status='not-attempted')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='indices', status='cached')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='indices', status='unchanged')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='indices', status='not-attempted')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='managers', status='cached')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='managers', status='unchanged')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families) (family='managers', status='not-attempted')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
+    },
+    {
+      "test": "test_cache_and_unknown_status_in_legacy_families",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_cache_and_unknown_status_in_legacy_families (test_automation_product.ProductContracts.test_cache_and_unknown_status_in_legacy_families)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_cache_and_unknown_status_in_legacy_families"
     },
     {
       "test": "test_cache_does_not_renew_source_success",

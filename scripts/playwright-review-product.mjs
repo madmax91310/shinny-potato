@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
+import {choose} from './card-selection.mjs'
 import registry from '../src/data/automation-workflows.json' with {type:'json'}
 const folder='test-artifacts/review-product';fs.mkdirSync(folder,{recursive:true})
 const external=process.env.REVIEW_BASE_URL,server=external?null:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4398','--strictPort'],{stdio:'ignore'})
@@ -29,7 +30,7 @@ try{
   await inbox.getByRole('button',{name:'Copier le diagnostic complet',exact:true}).click()
   const fallback=inbox.getByRole('textbox',{name:'Diagnostic complet à copier'});await fallback.waitFor()
   assert((await fallback.inputValue()).includes('2026-10-22T10:00:00Z'));assert((await fallback.inputValue()).includes('Panne précédente'))
-  await inbox.getByRole('combobox',{name:'Outil concerné',exact:true}).selectOption('Outil de recette')
+  await inbox.getByText('Filtrer par classe, outil ou étape',{exact:true}).click();await choose(inbox.getByRole('group',{name:'Outil concerné',exact:true}),'Outil de recette')
   await search.fill('');await inbox.getByRole('navigation',{name:'Pages des problèmes de données'}).getByRole('button',{name:'Dernière page'}).click()
   await inbox.getByRole('heading',{name:'Source-180 · Champ de recette'}).waitFor();assert(await inbox.getByRole('navigation',{name:'Pages des problèmes de données'}).getByRole('button',{name:'Dernière page'}).isDisabled())
   const download=page.waitForEvent('download');await inbox.getByRole('button',{name:/Exporter les 181 diagnostics/}).click();const file=await download;await file.saveAs(folder+'/all-'+width+'.json');const payload=JSON.parse(fs.readFileSync(folder+'/all-'+width+'.json'));assert.equal(payload.rows.length,181)

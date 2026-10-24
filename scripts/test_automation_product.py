@@ -119,6 +119,14 @@ class ProductContracts(unittest.TestCase):
         old['workflows'][workflow]['lastCollectionSuccessAt']='2026-10-20'
         now=update_status(old,event(workflow,101),jobs(workflow),[{'companies':{'x':{'quote':'cached-with-original-observation-date'}}}])
         self.assertEqual(now['workflows'][workflow]['lastCollectionSuccessAt'],'2026-10-20')
+    def test_cache_and_unknown_status_in_legacy_families(self):
+        for family, identity in [('shares',{'isin':'IE0000000000'}),('indices',{'id':'world','facts':True}),('managers',{'slug':'manager'})]:
+            for status in ('cached','unchanged','not-attempted'):
+                with self.subTest(family=family,status=status):
+                    result=normalize_report({family:[{**identity,'status':status}]})
+                    self.assertFalse(result['successes']);self.assertFalse(result['errors'])
+            with self.assertRaises(ValueError):normalize_report({family:[{**identity,'status':'unknown-new-format'}]})
+        with self.assertRaises(ValueError):normalize_report({'observations':[{'id':'x','status':'unknown-new-format'}]})
     def test_commit_and_publication_failures_are_distinct(self):
         workflow='update-scpi.yml';s=update_status({},event(workflow,conclusion='failure'),jobs(workflow,'Commit validated observations'),[{'successes':[{'id':'x'}],'errors':[]}])
         self.assertEqual(s['workflows'][workflow]['recordingStatus'],'failure')

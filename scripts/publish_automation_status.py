@@ -83,9 +83,10 @@ def _normalize_report(report):
                             'error': 'Classification absente de la source ; dernière observation conservée'}
                            for asset in report.get('missing', [])]}
     if isinstance(report.get('managers'), list):
-        return {'successes': [{'id': 'investor:' + row['slug']} for row in report['managers'] if row.get('status') == 'validated'],
+        rows = [row for row in report['managers'] if row.get('status') not in ('cached', 'unchanged', 'waiting', 'not-attempted')]
+        return {'successes': [{'id': 'investor:' + row['slug']} for row in rows if row.get('status') == 'validated'],
                 'errors': [{'id': 'investor:' + row['slug'], 'field': 'Portefeuille 13F', 'error': row.get('reason', 'Collecte échouée')}
-                           for row in report['managers'] if row.get('status') != 'validated']}
+                           for row in rows if row.get('status') != 'validated']}
     if any(key in report for key in ('funds', 'qualified', 'monthly', 'levels')):
         # Each sub-collector has its own key: a price recovery cannot clear a fund failure.
         combined = {'successes': [], 'errors': []}
@@ -94,6 +95,7 @@ def _normalize_report(report):
             parts.append(('funds', normalize_report(report['funds'])))
         for key, rows in [('qualified', report.get('qualified', [])),
                           ('monthly', report.get('monthly', {}).get('series', []))]:
+            rows = [row for row in rows if row.get('status') not in ('cached', 'unchanged', 'waiting', 'not-attempted')]
             parts.append((key, {
                 'successes': [{'id': row['id']} for row in rows if row.get('status') == 'validated'],
                 'errors': [{'id': row['id'], 'error': row.get('reason', 'Collecte échouée')}
@@ -165,6 +167,7 @@ def _normalize_report(report):
     if 'indices' in report:
         successes, errors = [], []
         for item in report['indices']:
+            if item.get('status') in ('cached', 'unchanged', 'waiting', 'not-attempted'):continue
             for field in ['composition', 'returns']:
                 id_ = 'index-' + item['id'] + '-' + field
                 failed = [e for e in item.get('errors', []) if e['field'] == field]
@@ -175,6 +178,7 @@ def _normalize_report(report):
     if 'shares' in report:
         successes, errors = [], []
         for item in report['shares']:
+            if item.get('status') in ('cached', 'unchanged', 'waiting', 'not-attempted'):continue
             id_ = 'etf-' + report.get('_collector', 'issuer') + '-' + item['isin']
             causes = ([item.get('reason', 'Collecte échouée')] if item.get('status') == 'failed' else [])
             causes += [e.get('reason', 'Champ non validé') for e in item.get('collectionErrors', [])]
@@ -192,6 +196,10 @@ def _normalize_report(report):
 def normalize_report(report):
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    for key, allowed in [('shares', {None, 'validated', 'failed'}), ('indices', {None, 'validated', 'failed'}),
+                         ('managers', {'validated', 'failed'}), ('observations', {'success', 'failure', 'waiting', 'superseded'})]:
+        if isinstance(report.get(key), list) and any(not isinstance(r, dict) or r.get('status') not in allowed | {'cached', 'unchanged', 'waiting', 'not-attempted'} for r in report[key]):
+            raise ValueError('Statut de résultat inconnu : ' + key)
     result = _normalize_report(report)
     for kind in ('successes', 'errors', 'inactive'):
         rows = result.get(kind, [])

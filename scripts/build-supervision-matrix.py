@@ -47,7 +47,7 @@ if __name__ == '__main__':
                 'producers': list(REGISTRY), 'testsRun': result.testsRun, 'successful': result.wasSuccessful(), 'rows': result.rows}
     (output / 'matrice-controles.json').write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n')
     with (output / 'matrice-controles.csv').open('w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=['producer', 'class', 'result', 'test', 'case', 'evidence'])
+        writer = csv.DictWriter(file, fieldnames=['producer', 'class', 'result', 'test', 'case', 'evidence'], lineterminator='\n')
         writer.writeheader()
         writer.writerows(result.rows)
     print(json.dumps({'tests': result.testsRun, 'cases': len(result.rows), 'successful': result.wasSuccessful()}))

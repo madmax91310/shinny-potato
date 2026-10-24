@@ -33,8 +33,8 @@ Portefeuilles IA. Aucun composant exclusif IA réintroduit, aucune donnée finan
 ## Recette
 
 `matrice-controles.csv` / `.json` contient chaque sous-cas effectivement exécuté, son
-producteur, son résultat et le test correspondant. 519 cas isolés, 17 méthodes de recette
-produit ; les 100 tests Python de supervision passent. Les défaillances sont injectées
+producteur, son résultat et le test correspondant. 529 cas isolés, 18 méthodes de recette
+produit ; les 101 tests Python de supervision passent. Les défaillances sont injectées
 dans les lecteurs et réducteurs, jamais dans les sources de production. Cela démontre la
 remontée des causes reçues, pas la capacité de chaque collecteur à qualifier toute anomalie
 financière imaginable.
