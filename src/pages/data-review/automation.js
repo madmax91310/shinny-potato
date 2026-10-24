@@ -15,7 +15,7 @@ export function automationOverview(status, now = new Date()) {
     const validCompleted = Number.isFinite(completed) && completed <= now.getTime()
     const overdue = validCompleted && maxAge && now.getTime() - completed > maxAge * 3600000
     const state = value.status === 'failure' || failures ? 'failure'
-      : overdue ? 'overdue' : (Object.keys(value.reportQualifications??{}).length||Object.keys(value.proofFailures??{}).length||value.publicationStatus==='unverified')?'qualification': validCompleted && (value.collectionStatus === 'success'||(registry[id]?.validationOnly||registry[id]?.controlOnly)&&value.validationStatus==='success') ? 'success' : 'unknown'
+      : overdue ? 'overdue' : (validCompleted&&registry[id]?.reportCoverage==='job-only'||Object.keys(value.reportQualifications??{}).length||Object.keys(value.proofFailures??{}).length||value.publicationStatus==='unverified')?'qualification': validCompleted && (value.collectionStatus === 'success'||(registry[id]?.validationOnly||registry[id]?.controlOnly)&&value.validationStatus==='success') ? 'success' : 'unknown'
     const cause = [...(value.failures ?? []).map(failure => `${failure.job} : ${failure.step}`), ...Object.values(value.dataFailures ?? {}).map(data => data.cause).filter(Boolean)]
     return { ...value, recovery: status.recovery?.[id] ?? null, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
