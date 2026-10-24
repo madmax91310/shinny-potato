@@ -1,11 +1,6 @@
 {
-  "checkedAt": "2026-10-24T01:21:31.729163+00:00",
+  "checkedAt": "2026-10-24T02:59:36.457488+00:00",
   "attemptedIds": [
-    "long-msciWorld",
-    "long-msciEmerging",
-    "long-msciWorldSmallCap",
-    "long-msciAcwi",
-    "long-msciWorldExUsa",
     "long-sp500",
     "long-apple",
     "long-microsoft",
@@ -18,15 +13,7 @@
     "long-euroHighYieldBond",
     "long-globalBondEur",
     "gold-invesco-usd",
-    "long-msciEurope",
-    "long-msciUsa",
-    "world-net",
-    "emerging-net",
-    "japan-net",
-    "acwi-gross",
-    "aerospace-paris-eur",
-    "fx:TWD",
-    "fx:ECB"
+    "aerospace-paris-eur"
   ],
   "fxFailed": false,
   "crossFxFailed": false,
@@ -65,9 +52,8 @@
     },
     {
       "id": "aerospace-paris-eur",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "emerging-net",
@@ -76,9 +62,8 @@
     },
     {
       "id": "gold-invesco-usd",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "japan-net",
@@ -87,57 +72,48 @@
     },
     {
       "id": "long-amazon",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-apple",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-euroCorporateBond",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-euroGov13",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-euroHighYieldBond",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-globalBondEur",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-google",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-meta",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-microsoft",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-msciAcwi",
@@ -176,15 +152,13 @@
     },
     {
       "id": "long-nvidia",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "long-sp500",
-      "status": "failed",
-      "checkedAt": "2026-10-24T01:21:31.729163+00:00",
-      "reason": "HTTP Error 429: Too Many Requests"
+      "status": "validated",
+      "checkedAt": "2026-10-24T02:59:36.457488+00:00"
     },
     {
       "id": "world-net",
