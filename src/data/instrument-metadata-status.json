@@ -15076,7 +15076,7 @@
         "status": "retained",
         "category": "source-unavailable",
         "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-21",
+        "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
@@ -15099,7 +15099,13 @@
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
             "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
           }
-        ]
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+          "sha256": "d9f3a644123637a44984c321fdda201b168abc81180b32a15525ef49132d01f8"
+        }
       },
       "domicile": {
         "status": "observed",
@@ -15217,7 +15223,7 @@
         "status": "retained",
         "category": "source-unavailable",
         "lastAttemptAt": "2026-10-23T15:40:30.233316+00:00",
-        "lastSuccessAt": "2026-10-21",
+        "lastSuccessAt": "2026-10-23",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15240,7 +15246,13 @@
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
             "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
           }
-        ]
+        ],
+        "retainedQualifiedSource": {
+          "value": "Accumulating",
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+          "sha256": "d12cc98e3037483a48a8363f7dab3915f76a73e546630f620ee49f89473a5e25"
+        }
       },
       "domicile": {
         "status": "observed",

@@ -1,0 +1,16 @@
+{
+  "firstRun": 39974411218,
+  "firstHead": "0776178b",
+  "firstPythonFailure": "No module named exchange_calendars in the common test job; producer already had the dependency",
+  "fix": "The common CI job now installs exchange_calendars==4.13.2; the three BlackRock recovery cases join test_dca*py.",
+  "firstExposureRun": 39974411732,
+  "firstExposureFailures": [
+    "four known WisdomTree HTTP403",
+    "IE00BYX2JD69: missing holdings component"
+  ],
+  "recoveryRun": 39975550161,
+  "recovery": "IE00BYX2JD69 validated, 355 positions, 2026-10-22, consumer and two PNG exports checked.",
+  "publicationRequested": false,
+  "projectionMismatchRun": 39977064243,
+  "projectionFix": "Transfer the exact generated DCA JSON files from the build into browser jobs through validated-dca-projections; keep date and row assertions unchanged."
+}

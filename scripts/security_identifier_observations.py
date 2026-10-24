@@ -94,7 +94,7 @@ def retained_identity_pairs(record,now):
 def refresh(now,max_requests=12):
     if type(max_requests) is not int or not 1 <= max_requests <= 24:
         raise ValueError('Invalid bounded identifier request budget')
-    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares
+    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares,product_page
     from issuer_documents import public_page
     from data_automation import write_json_atomic
     cache=json.loads(PATH.read_text())if PATH.exists()else {'schemaVersion':1,'observations':{}}
@@ -117,7 +117,7 @@ def refresh(now,max_requests=12):
     pending=[]
     for share in shares:
         if share.get('documentType')!='wisdomtree-ucits':continue
-        try:pending.extend(rankings(public_page(share['sourceUrl'],max_bytes=12_000_000))['ranking'])
+        try:pending.extend(rankings(product_page(share['sourceUrl'])[0])['ranking'])
         except Exception as e:print('Identity discovery pending:',share['isin'],str(e)[:200])
     pending.sort(key=lambda row: row['descriptorB'] not in seeds)
     attempts=0;seen=set()

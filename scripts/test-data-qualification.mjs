@@ -28,3 +28,13 @@ console.log('Field lifecycles, explicit module roles, unknown defaults, immutabl
 const partialFund=qualifyCoverage({...retained,scope:'fund',unidentifiedSecurityCount:1,unidentifiedWeightPct:.1})
 assert.equal(partialFund.actionState,'unqualified','Missing identities matter for fund holdings as well as index holdings')
 assert(partialFund.requiresAction)
+
+const failedPartial=qualifyCoverage({...retained,unidentifiedSecurityCount:1,unidentifiedWeightPct:1.49},{holdingStatus:{status:'failed',checkedAt:'2026-10-23',lastSuccessAt:'2026-10-20',error:'HTTP 403'}})
+assert.equal(failedPartial.actionState,'collection-error','Retained unknown identities must not mask a failed refresh')
+assert.match(failedPartial.reason,/HTTP 403/)
+assert.match(failedPartial.reason,/identités restent inconnues/)
+assert.equal(failedPartial.checkedAt,retained.checkedAt)
+assert.equal(failedPartial.unidentifiedWeightPct,1.49)
+
+assert.equal(registryQualification({path:'src/data/evidence-freshness.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-23')
+assert.equal(registryQualification({path:'src/data/annual-window.js',mode:'manual-or-editorial'}).reviewedAt,'2026-10-20','Classifying a new module must not redate already reviewed modules')

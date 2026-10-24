@@ -1,0 +1,26 @@
+{
+  "runId": 39984274482,
+  "executionAt": "2026-10-23T16:09:51.751764+00:00",
+  "collection": {
+    "required": [
+      "IE00B4L5Y983-ETFP",
+      "IE00B5BMR087-XLON-CSPX-USD"
+    ],
+    "requested": [],
+    "reused": [
+      "IE00B4L5Y983-ETFP",
+      "IE00B5BMR087-XLON-CSPX-USD"
+    ]
+  },
+  "targetStatus": {
+    "ok": true,
+    "attemptedAt": "2026-10-23T13:13:32.084502+00:00",
+    "asOf": "2026-10-22",
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SWDA.MI?period1=1791331200&period2=1792761212&interval=1d&events=div%2Csplits"
+  },
+  "accountingAsOf": "2026-10-22",
+  "cutoff": "Previous UTC day, plus two-hour completed-session guard",
+  "newPriceObservationCollected": false,
+  "newSuccessfulPriceCheck": false,
+  "nextRequiredSession": "2026-10-23 at the next accounting cutoff"
+}

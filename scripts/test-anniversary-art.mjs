@@ -60,7 +60,9 @@ try {
       bounds.push(box);labels.push(String(value));return original.call(this,value,x,y,...rest)
     }
     for(const asset of ANNIVERSAIRE_ELIGIBLE_ASSETS){
-      const yearsBack=Math.min(7,...[Math.max(...getValidYearsBackOptions(asset.id,TODAY))])
+      const options=getValidYearsBackOptions(asset.id,TODAY)
+      const yearsBack=options.filter(year=>year<=7).at(-1)??options[0]
+      if(!options.includes(yearsBack))throw new Error(`No qualified anniversary window: ${asset.id}`)
       const past=getHistoricalPrice(asset.id,ymForYearsBack(yearsBack,TODAY))
       const current=past*1.5
       labels=[];bounds=[]
@@ -79,7 +81,8 @@ try {
       records.push({name:asset.id})
     }
     for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
-      const yearsBack=Math.min(3,Math.max(...getValidYearsBackOptions(a,TODAY)),Math.max(...getValidYearsBackOptions(b,TODAY))), pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
+      const common=getValidYearsBackOptions(a,TODAY).filter(year=>getValidYearsBackOptions(b,TODAY).includes(year))
+      const yearsBack=common.filter(year=>year<=3).at(-1)??common[0], pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
       if(!labels.includes('+50,0 %')||!labels.includes('−25,0 %'))throw new Error('Comparative inputs mixed up')

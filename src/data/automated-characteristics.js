@@ -6,6 +6,7 @@ const policies = new Map([
  ['Capitalization',['accumulating','Capitalisant']],['Capitalisation and/or Distribution',['capitalisation-and-or-distribution','Capitalisation et/ou distribution']],
  ['Capitalizing',['accumulating','Capitalisant']],
 ].map(([label,value])=>[label.toLowerCase(),value]));
+export const isSupportedDistribution = value => typeof value==='string' && policies.has(value.trim().toLowerCase());
 export function applyAutomatedCharacteristics(previous,record) {
  const count=record?.metrics?.numHoldings;
  if(Number.isInteger(count?.value) && count.value>0 && /^\d{4}-\d{2}-\d{2}$/.test(count.asOf??'') && count.sourceUrl && (!previous.positionsAsOf || count.asOf>=previous.positionsAsOf)) {

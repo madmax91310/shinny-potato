@@ -69,7 +69,19 @@ def wisdomtree(text, share, now):
     def table(title):
         return only([t['rows'] for t in page.tables if t['rows'] and t['rows'][0][0] == title], title)
     overview = table('Product Overview'); fields = dict(overview[1:])
-    if fields.get('ISIN') != share['isin'] or fields.get('Base Currency') != share['currency']:
+    native=fields.get('Base Currency')
+    if native is None and 'Base / Trading Currency' in fields:
+        currencies=fields['Base / Trading Currency'].split(' / ')
+        if len(currencies)!=2 or any(not re.fullmatch(r'[A-Z]{3}',v)for v in currencies):
+            reject('Invalid WisdomTree base/trading currency pair')
+        # A regional page may select an EUR listing of the same USD share.
+        # Confirm that exact trading currency in the issuer's own listing table.
+        listings=[t['rows'] for t in page.tables if t['rows'] and 'Trading Currency'in t['rows'][0] and 'ISIN'in t['rows'][0]]
+        listing=only(listings,'exact-share listing currencies');header=listing[0]
+        if not any(len(r)==len(header)and r[header.index('ISIN')]==share['isin']and r[header.index('Trading Currency')]==currencies[1]for r in listing[1:]):
+            reject('WisdomTree selected trading currency not confirmed')
+        native=currencies[0]
+    if fields.get('ISIN') != share['isin'] or native != share['currency']:
         reject('Wrong WisdomTree exact share/currency')
     stamp = document_date(only(re.findall(r'As of (\d{2}/\d{2}/\d{4})', ' '.join(overview[0])), 'overview date'), now)
     fees = table('Fees'); fees_stamp = document_date(fees[0][1].removeprefix('As of '), now)

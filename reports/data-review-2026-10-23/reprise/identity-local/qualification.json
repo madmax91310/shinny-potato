@@ -1,0 +1,59 @@
+{
+  "scope": "Local source inspection only, not imported into active identifiers. Official full workbook also omits the four ISINs. OpenFIGI ID_CUSIP 82934H101 returns no identifier. Malformed and empty CUSIPs are not repaired or mapped by names.",
+  "observations": [
+    {
+      "isin": "IE00BDFBTQ78",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233154&ticker=UCTGDIG&reactlang=en&reactctr=uk",
+      "retrievedAt": "2026-10-23T23:20:48.421453+00:00",
+      "asOf": "22 Oct 2026",
+      "sha256": "e4acad7ab66e8e19876d3ac8683cda02b22765d82623556f3c554d70fdfb70e5",
+      "missing": [
+        {
+          "name": "Americas Gold & Silver Corp",
+          "ticker": "USA CN",
+          "publishedCusip": " ",
+          "isin": null,
+          "figi": " "
+        },
+        {
+          "name": "Metals X Ltd",
+          "ticker": "MLX AU",
+          "publishedCusip": " ",
+          "isin": null,
+          "figi": " "
+        },
+        {
+          "name": "Solaris Resources Inc",
+          "ticker": "SLS CN",
+          "publishedCusip": "82934H101",
+          "isin": null,
+          "figi": " "
+        },
+        {
+          "name": "Arafura Resources Ltd",
+          "ticker": "ARU AU",
+          "publishedCusip": "SLMH05SY",
+          "isin": null,
+          "figi": " "
+        }
+      ]
+    },
+    {
+      "isin": "IE000YYE6WK5",
+      "sourceUrl": "https://www.vaneck.com/Main/HoldingsBlock/GetContent/?blockid=194761&pageid=233172&ticker=UCTDFNS&reactlang=en&reactctr=uk",
+      "retrievedAt": "2026-10-23T23:20:48.405784+00:00",
+      "asOf": "22 Oct 2026",
+      "sha256": "8b7f476805b1af0e04ce97eee0e4eb5feb5931c936016411bf5609c165e55f75",
+      "missing": [
+        {
+          "name": "Vectrus Inc",
+          "ticker": "VVX US",
+          "publishedCusip": "42068106.00",
+          "isin": null,
+          "figi": " "
+        }
+      ]
+    }
+  ],
+  "admittedIdentities": 0
+}

@@ -6,6 +6,7 @@ import datetime as dt
 import hashlib
 import json
 import pathlib
+import os
 import re
 from bs4 import BeautifulSoup
 from collect_scpi import fetch, pdf_text, number, required
@@ -223,9 +224,36 @@ def parse(id_, documents, today):
    if effective:f['effectiveAt']=effective
  return {'id':id_,'checkedAt':today.isoformat(),'verification':'public-terms','sources':[{'url':u,'sha256':hashlib.sha256(doc.encode()).hexdigest()} for u,doc in zip(urls,documents)],'offers':offers}
 
+def platform_activity(id_, documents, today):
+ if id_!='tudigo':return None
+ texts=[plain(doc) for doc in documents]
+ signals=['a cessé son activité' in t.lower() or 'liquidation judiciaire' in t.lower() for t in texts]
+ if not any(signals):return None
+ if len(texts)!=len(SOURCES[id_]) or not all(signals) or len(set(texts))!=1:
+  raise ValueError('Inconsistent official platform cessation notices')
+ t=texts[0]
+ required(r'Tudigo a cessé son activité',t)
+ required(r'La plateforme a mis fin à ses activités',t)
+ stamp=required(r'liquidation judiciaire par jugement du tribunal de commerce de Bordeaux du (\d{1,2}) (\w+) (20\d{2})',t)
+ months=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
+ judgment=dt.date(int(stamp[3]),months.index(stamp[2].lower())+1,int(stamp[1]))
+ if judgment>today:raise ValueError('Future platform judgment date')
+ required(r'gestion extinctive opérée par Capsens',t)
+ required(r'Vos accès ne sont pas encore ouverts',t)
+ return {'status':'ceased','judgmentAt':judgment.isoformat(),'checkedAt':today.isoformat(),
+  'sourceUrl':SOURCES[id_][0], 'sha256':hashlib.sha256(documents[0].encode()).hexdigest(),
+  'sources':[{'url':u,'sha256':hashlib.sha256(d.encode()).hexdigest()}for u,d in zip(SOURCES[id_],documents)],
+  'notice':'La plateforme annonce sa cessation d’activité et une liquidation judiciaire par jugement du tribunal de commerce de Bordeaux. Un transfert des investissements, documents et porte-monnaie vers Run Off, solution de gestion extinctive opérée par Capsens, est annoncé ; les accès ne sont pas encore ouverts. La date de transfert et les résultats des investissements ne sont pas établis par cet avis.'}
+
 def collect(id_,today):
  raw=[fetch(u) for u in SOURCES[id_]]
  documents=[pdf_text(data) if u.endswith('.pdf') else data.decode() for u,data in zip(SOURCES[id_],raw)]
+ proof_dir=os.environ.get('ACTOR_SOURCE_PROOF_DIR')
+ if proof_dir:
+  dest=pathlib.Path(proof_dir);dest.mkdir(parents=True,exist_ok=True)
+  for data in raw:(dest/(hashlib.sha256(data).hexdigest()+'.bin')).write_bytes(data)
+ activity=platform_activity(id_,documents,today)
+ if activity:return {'id':id_,'activity':activity}
  record=parse(id_,documents,today)
  for source,data in zip(record['sources'],raw):source['sha256']=hashlib.sha256(data).hexdigest()
  return record
@@ -235,6 +263,15 @@ def refresh(previous,adapters,today):
  for id_,adapter in adapters.items():
   try:
    record=adapter(today)
+   if record.get('activity'):
+    activity=record['activity'];old=previous.get(id_)
+    if record['id']!=id_ or not old or activity.get('status')!='ceased' or activity.get('checkedAt')!=today.isoformat():raise ValueError('Invalid platform activity evidence')
+    if activity['judgmentAt']>today.isoformat() or activity['checkedAt']<old.get('activity',{}).get('checkedAt',''):raise ValueError('Regressing or future activity evidence')
+    if len(activity.get('sources',[]))!=len(SOURCES[id_]) or [s['url']for s in activity['sources']]!=SOURCES[id_] or any(not re.fullmatch('[a-f0-9]{64}',s.get('sha256',''))for s in activity['sources']):raise ValueError('Incomplete cessation source identity')
+    result[id_]=copy.deepcopy(old);result[id_]['activity']=copy.deepcopy(activity)
+    observations.append({'id':id_,'name':id_,'status':'success','scope':'platform-activity','historicalTermsRetained':True})
+    continue
+   if previous.get(id_,{}).get('activity',{}).get('status')=='ceased':raise ValueError('Explicit reopening qualification required; cessation retained')
    if record['id']!=id_ or record['checkedAt']!=today.isoformat() or not record['offers']:raise ValueError('Wrong actor or collection date')
    if len(record['offers'])!=len({o['id'] for o in record['offers']}):raise ValueError('Duplicate offer identities')
    old=previous.get(id_,{})
@@ -258,7 +295,9 @@ def main():
   futures={id_:pool.submit(collect,id_,today) for id_ in SOURCES}
   data,report=refresh(previous,{id_:lambda day,f=f:f.result() for id_,f in futures.items()},today)
  args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
- if args.apply:PATH.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+ if args.apply:
+  from data_automation import write_json_atomic
+  write_json_atomic(PATH,data)
  print(json.dumps(report,ensure_ascii=False))
  return int(any(o['status']=='failure' for o in report['observations']))
 if __name__=='__main__':raise SystemExit(main())

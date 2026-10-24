@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import MaintenanceLinks from '../../design-system/MaintenanceLinks'
+import FinancialReconciliation from './FinancialReconciliation.jsx'
 import AutomationFailures from './AutomationFailures.jsx'
 import DataAutomationInventory from './DataAutomationInventory.jsx'
 import { buildReview, parisToday, REVIEW_CADENCES, reviewCalendar, summarizeCadences } from './lib.js'
@@ -57,6 +58,7 @@ export default function DataReview() {
     <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Une vérification de la source commune vaut pour tous les outils concernés.</p>
     <AutomationFailures />
     <DataAutomationInventory />
+    <FinancialReconciliation />
     <div className="dr-counts" aria-label="Résumé des revues">
       <div><strong>{count(['reserve'])}</strong><span>réserves ouvertes</span></div>
       <div><strong>{count(['expired'])}</strong><span>offres expirées</span></div>

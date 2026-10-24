@@ -176,6 +176,8 @@ class MetadataTests(unittest.TestCase):
         url='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
         self.assertEqual(vaneck_factsheet_candidates(url),[url]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/smh-fact-sheet.pdf' for r in ROUTES['vaneck']['factsheetRegions']])
         self.assertEqual(len(vaneck_factsheet_candidates('https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf')),2)
+        gdig='https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf'
+        self.assertEqual(vaneck_factsheet_candidates(gdig),[gdig]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/gdig-fact-sheet.pdf' for r in ('dk','nl','uk')])
     def test_mirror_documents_never_produce_listings(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
         body=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()

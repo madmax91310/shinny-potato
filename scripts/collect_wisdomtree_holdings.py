@@ -4,6 +4,7 @@ import hashlib
 import json
 import math
 import re
+import urllib.error
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -105,13 +106,29 @@ def collect(share,now):
         raise ValueError(f'Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
     result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}',
         'status':'unavailable','error':str(primary_error)[:800]},
-        {'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}]
+        *result.get('accessAttempts',[{'sourceUrl':result.get('sourceUrl',share['sourceUrl']),'status':'validated-public-portfolio'}])]
     return result
+
+
+def product_page(url):
+    """Bounded public transport only; callers still qualify the exact product."""
+    from issuer_routes import wisdomtree_product_candidates
+    attempts=[]
+    for route in wisdomtree_product_candidates(url):
+        try:
+            page=public_page(route,max_bytes=12_000_000)
+            return page,route,attempts
+        except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
+            if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
+            attempts.append({'sourceUrl':route,'status':'unavailable','error':str(error)[:500]})
+    raise ConnectionError('Public issuer routes unavailable: '+json.dumps(attempts))
 
 
 def collect_rankings(share,now):
     from collect_physical_holdings import observation
-    page=public_page(share['sourceUrl'],max_bytes=12_000_000);mapping={};dates=[];proofs={}
+    page,route,attempts=product_page(share['sourceUrl'])
+    share={**share,'sourceUrl':route}
+    mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)
         if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
@@ -134,4 +151,5 @@ def collect_rankings(share,now):
     proofs.update(identifier_proofs)
     rows,stamp=parse(page,share,now,mapping,dates)
     return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,identityAsOfDates=dates,
+      accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}],
       sourceUrls=[share['sourceUrl'],*proofs],identityMethod='Exact SEDOL to ISIN; identity-source weights never imported')

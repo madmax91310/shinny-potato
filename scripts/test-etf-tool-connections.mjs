@@ -49,7 +49,11 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   }
   const years = getAnnualReturnStartYears(id)
   if (years.length) {
-  assert.equal(years[0], asset.isin==='IE00BYTRR863'?2017:Number(start.slice(0, 4)) + 1)
+  const expectedYears=[]
+  for(let year=Number(start.slice(0,4))+1;`${year}-12`<=asset.points.at(-1).date;year++){
+    if(qualifyHistoryWindow(asset,`${year-1}-12`,`${year}-12`).qualified)expectedYears.push(year)
+  }
+  assert.deepEqual(years,expectedYears)
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })

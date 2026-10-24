@@ -1524,6 +1524,8 @@ export const ASSETS = [
 ];
 
 const editorialIsins = new Set(ASSETS.map(asset=>asset.isin).filter(Boolean));
+ASSETS.push(...ANNUAL_PORTFOLIO_FUNDS.filter(asset=>asset.preferQualifiedAnnual&&!editorialIsins.has(asset.isin)));
+for(const asset of ASSETS)if(asset.isin)editorialIsins.add(asset.isin);
 ASSETS.push(...AUTOMATED_PORTFOLIO_FUNDS.filter(asset=>!editorialIsins.has(asset.isin)));
 
 const existingIsins = new Set(ASSETS.map(asset => asset.isin));

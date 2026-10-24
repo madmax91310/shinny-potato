@@ -62,7 +62,7 @@ export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "FR001400S9V0": Object.freeze({name: "Amundi PEA Luxe Monde UCITS ETF"}),
   "FR001400U5Q4": Object.freeze({pea: true, name: "Amundi PEA Monde (MSCI World) UCITS ETF", labels: {"index": "Amundi PEA Monde (MSCI World) UCITS ETF (Acc)"}}),
   "FR0014017NX3": Object.freeze({name: "Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)"}),
-  "GB00B15KXQ89": Object.freeze({name: "WisdomTree Copper"}),
+  "GB00B15KXQ89": Object.freeze({name: "WisdomTree Copper",instrumentType:'ETC'}),
   "GB00BJYDH287": Object.freeze({name: "WisdomTree Physical Bitcoin"}),
   "GB00BLD4ZL17": Object.freeze({pea: false, name: "CoinShares Physical Bitcoin ETP"}),
   "GB00BLD4ZM24": Object.freeze({name: "CoinShares Ethereum Staking ETP"}),

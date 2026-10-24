@@ -82,6 +82,33 @@ class PublicationTests(unittest.TestCase):
         unchanged,report=refresh(newer,NOW,xml)
         self.assertEqual(unchanged['prices'],newer['prices'])
         self.assertEqual(len(report['errors']),3)
+    def test_xndx_forming_only_publication_retains_exact_previous_session(self):
+        from refresh_anniversary_levels import XNDX_URLS
+        config=next(c for c in configurations()if c['id']=='nasdaq100')
+        now=dt.datetime(2026,10,23,15,tzinfo=UTC)
+        raw=json.loads((ROOT/'scripts/fixtures/publication/xndx-intraday-20261023.json').read_text())
+        def fetch(url):
+            body=copy.deepcopy(raw)
+            body['chart']['result'][0]['meta']['range']='5d' if 'range=5d' in url else '1d'
+            return body
+        old={'value':35396.16015625,'asOf':'2026-10-22','parser':'yahoo','symbol':'^XNDX','currency':'USD','variant':'TOTAL','quoteMethod':'supported-xndx-ranges','sourceHashes':{url:'a'*64 for url in XNDX_URLS}}
+        current={'nasdaq100':old}
+        updated,report=refresh_levels(current,now,lambda c,n:collect_level(c,n,json_fetch=fetch),selected=[config])
+        self.assertEqual(updated,current)
+        self.assertEqual(report['errors'],[])
+        self.assertEqual(report['successes'],[],'An unfinished candle never renews the last successful control')
+        self.assertEqual(report['waiting'][0]['retainedAsOf'],'2026-10-22')
+        self.assertEqual(len(report['waiting'][0]['evidence']['sourceHashes']),2)
+        for defect in [{'asOf':'2026-10-21'},{'value':35395},{'variant':'PRICE'},{'sourceHashes':{}}]:
+            previous={'nasdaq100':{**old,**defect}}
+            retained,failed=refresh_levels(previous,now,lambda c,n:collect_level(c,n,json_fetch=fetch),selected=[config])
+            self.assertEqual(retained,previous)
+            self.assertTrue(failed['errors'])
+            self.assertEqual(failed['waiting'],[])
+        # Once a close is due, a provider still returning a forming candle is a failure.
+        late=dt.datetime(2026,10,23,21,tzinfo=UTC)
+        with self.assertRaises(ValueError):collect_level(config,late,json_fetch=fetch)
+
     def test_xndx_supported_ranges_and_completed_session(self):
         from refresh_anniversary_levels import XNDX_URLS
         config=next(c for c in configurations()if c['id']=='nasdaq100')
@@ -93,6 +120,17 @@ class PublicationTests(unittest.TestCase):
         record=collect_level(config,NOW,json_fetch=fetch)
         self.assertEqual((record['value'],record['asOf']),(36000.25,'2026-10-07'))
         self.assertEqual(calls,XNDX_URLS);self.assertEqual(set(record['sourceHashes']),set(XNDX_URLS))
+        def intraday(url):
+            data=body(url);payload=data['chart']['result'][0]
+            today=int(dt.datetime(2026,10,8,14,tzinfo=UTC).timestamp())
+            payload['timestamp'].append(today)
+            payload['indicators']['quote'][0]['close'].append(36100.0)
+            return data
+        # Both supported five-day windows retain the last complete session.
+        # Today's forming candle must never replace it.
+        midday=dt.datetime(2026,10,8,15,tzinfo=UTC)
+        previous=collect_level(config,midday,json_fetch=intraday)
+        self.assertEqual((previous['asOf'],previous['value']),('2026-10-07',36000.25))
         old={'value':35900.1,'asOf':'2026-10-06','parser':'fred','symbol':'XNDX','seriesId':'NASDAQXNDX','currency':'USD','variant':'TOTAL','indexCode':None}
         merged,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:record,selected=[config])
         self.assertFalse(report['errors']);self.assertEqual(merged['nasdaq100'],record)

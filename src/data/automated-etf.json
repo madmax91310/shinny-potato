@@ -403,72 +403,77 @@
       "modifiedAt": "2026-10-23"
     },
     "sectors": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
+      "basis": "fund",
+      "sourceComponent": "holdings.all",
+      "method": "GICS sectors from the complete physical portfolio, including signed cash/derivatives; no renormalisation",
+      "portfolioWeightPct": 99.99996,
+      "sha256": "ea2f13ab365fd3ce9666207a0135c5cd2f77fc67362fc535f52ecb1de14afd46",
       "rows": [
         {
-          "name": "Information Technology",
-          "weightPct": 38.22,
-          "label": "Information Technology"
+          "name": "Energy",
+          "weightPct": 3.72984,
+          "label": "Energy"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 1.6981,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.03538,
+          "label": "Utilities"
         },
         {
           "name": "Financials",
-          "weightPct": 11.78,
+          "weightPct": 12.06728,
           "label": "Financials"
         },
         {
           "name": "Health Care",
-          "weightPct": 9.68,
+          "weightPct": 9.93024,
           "label": "Health Care"
         },
         {
-          "name": "Communication",
-          "weightPct": 9.39,
-          "label": "Communication"
-        },
-        {
-          "name": "Consumer Discretionary",
-          "weightPct": 9.0,
-          "label": "Consumer Discretionary"
-        },
-        {
           "name": "Industrials",
-          "weightPct": 8.0,
+          "weightPct": 8.02037,
           "label": "Industrials"
         },
         {
-          "name": "Consumer Staples",
-          "weightPct": 4.74,
-          "label": "Consumer Staples"
-        },
-        {
-          "name": "Energy",
-          "weightPct": 3.71,
-          "label": "Energy"
-        },
-        {
-          "name": "Utilities",
-          "weightPct": 1.97,
-          "label": "Utilities"
-        },
-        {
           "name": "Real Estate",
-          "weightPct": 1.71,
+          "weightPct": 1.74781,
           "label": "Immobilier"
         },
         {
-          "name": "Materials",
-          "weightPct": 1.67,
-          "label": "Materials"
+          "name": "Communication",
+          "weightPct": 9.21684,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 4.94514,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.95565,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 37.52611,
+          "label": "Information Technology"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.13,
+          "weightPct": 0.1272,
           "label": "Cash and/or Derivatives"
         }
       ],
-      "sourceComponent": "exposureBreakdowns.sector",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-23",
-      "modifiedAt": "2026-10-22"
+      "modifiedAt": "2026-10-23"
     },
     "performance": {
       "currency": "USD",
@@ -495,29 +500,34 @@
       "domicile": "Ireland",
       "replicationMethod": "Physical Replication",
       "inceptionDate": "20100519",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Physical Replication"
+      },
+      "productStructure": "Physical",
       "checkedAt": "2026-10-23",
-      "modifiedAt": "2026-10-16"
+      "modifiedAt": "2026-10-23"
     },
     "provider": "iShares",
     "countries": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99682
+          "weightPct": 99.99669
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.002
+          "weightPct": 0.00202
         },
         {
           "name": "Mexico",
-          "weightPct": 0.00101
+          "weightPct": 0.00102
         },
         {
           "name": "European Union",
-          "weightPct": 0.00022
+          "weightPct": 0.00023
         },
         {
           "name": "Other",
@@ -529,58 +539,58 @@
       "modifiedAt": "2026-10-23"
     },
     "holdings": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "basis": "fund",
       "rows": [
         {
           "name": "NVIDIA",
-          "weightPct": 8.03124,
+          "weightPct": 7.77189,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE",
-          "weightPct": 7.50583,
+          "weightPct": 7.69093,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT",
-          "weightPct": 5.91681,
+          "weightPct": 5.85569,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 3.85036,
+          "weightPct": 3.71929,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 2.93695,
+          "weightPct": 2.87922,
           "isin": "US02079K3059"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 2.40281,
+          "weightPct": 2.32732,
           "isin": "US11135F1012"
         },
         {
           "name": "ALPHABET CLASS C",
-          "weightPct": 2.35192,
+          "weightPct": 2.30735,
           "isin": "US02079K1079"
         },
         {
           "name": "META PLATFORMS CLASS A",
-          "weightPct": 2.29966,
+          "weightPct": 2.16533,
           "isin": "US30303M1027"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.62843,
+          "weightPct": 1.59761,
           "isin": "US88160R1014"
         },
         {
-          "name": "MICRON TECHNOLOGY",
-          "weightPct": 1.54279,
-          "isin": "US5951121038"
+          "name": "ELI LILLY",
+          "weightPct": 1.58231,
+          "isin": "US5324571083"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -588,24 +598,24 @@
       "modifiedAt": "2026-10-23"
     },
     "countriesRisk": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99682
+          "weightPct": 99.99669
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.002
+          "weightPct": 0.00202
         },
         {
           "name": "Mexico",
-          "weightPct": 0.00101
+          "weightPct": 0.00102
         },
         {
           "name": "European Union",
-          "weightPct": 0.00022
+          "weightPct": 0.00023
         },
         {
           "name": "Other",
@@ -647,6 +657,16 @@
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "asOf": null
+      },
+      "replicationMethodRaw": {
+        "checkedAt": "2026-10-23",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "productStructure": {
+        "checkedAt": "2026-10-23",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
       }
     },
     "metrics": {
@@ -654,7 +674,7 @@
         "value": 504.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-21",
+        "asOf": "2026-10-22",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "scope": "Fund portfolio",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
@@ -19681,10 +19701,10 @@
     "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 9285370237.62,
+      "amount": 9252988959.21,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -19942,6 +19962,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "cac1ac2f934f087c916354de7cf5bffcd792633af7158efa55eae8a91fc0cd94",
       "rows": [
         {
           "name": "Apple Inc.",
@@ -20053,10 +20074,10 @@
     "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-russell-2000-us-small-cap-ucits-etf-acc-zprr-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 4675326514.45,
+      "amount": 4661724281.96,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -20167,6 +20188,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "e7a467a7832a41409db7b65044fdc773070a2dc3869c3cb68259fd5da37a6063",
       "rows": [
         {
           "name": "JFrog Ltd.",
@@ -20278,10 +20300,10 @@
     "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 669434595.92,
+      "amount": 671727093.85,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -20527,6 +20549,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "1ecec1ae4d381aa4673350b25e721a4ea2420335ef2f475959ec5c1f5f8a1e34",
       "rows": [
         {
           "name": "GOLDMAN SACHS GROUP INC 3.5 01/23/2033",
@@ -20612,10 +20635,10 @@
     "sourceUrl": "https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 20263445775.64,
+      "amount": 20201858042.11,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -20877,6 +20900,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "f553aa2d2815bfd20233934af2f3c17602d59d22eea96eda3b960dc3fa392458",
       "rows": [
         {
           "name": "Apple Inc.",
@@ -20988,10 +21012,10 @@
     "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 2121170197.56,
+      "amount": 2124420298.7,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -21173,6 +21197,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "6c751f668048bd2317c97787530b832d922e4f0606bc4e4bb13e86367cb8eb4b",
       "rows": [
         {
           "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
@@ -21284,10 +21309,10 @@
     "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 1825506054.56,
+      "amount": 1826436500.59,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -21396,6 +21421,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "f0055fe9f9e02c71f27d24a709d7cea472d8aaead57a4438e7021ac35bcc7b77",
       "rows": [
         {
           "name": "Teleperformance SE",
@@ -21507,10 +21533,10 @@
     "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 3962223014.39,
+      "amount": 3958016237.72,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -21596,6 +21622,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "b604d9db0f132451e887a4e117316269b85e5233f4083a5d6df35572547ea303",
       "rows": [
         {
           "name": "Accenture Plc Class A",
@@ -21707,10 +21734,10 @@
     "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 1773202022.25,
+      "amount": 1769530798.45,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -21864,6 +21891,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "de5f62ecafe4062b46325c8f47922c1156477d39b970c546a3edbfa1d65cb78b",
       "rows": [
         {
           "name": "Highwoods Properties Inc.",
@@ -21975,10 +22003,10 @@
     "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
     "provider": "State Street",
     "aum": {
-      "amount": 658901636.42,
+      "amount": 676599667.83,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -22059,6 +22087,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "ce2e0851127056ab81a7474ee076adaa6cae8752d78596746bb46243d532e345",
       "rows": [
         {
           "name": "Exxonmobil Holdings Corporation",
@@ -22213,7 +22242,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-      "sha256": "2e8f16f4b053b6e7fb7891af72f30b4abd1765fe1d31eebf694015f28e1dffaf",
+      "sha256": "f01eda607c73ecd710125f85a3975b97c3ccd7cd487304436bf30e3c26ba4e5a",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "11.87 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -22440,7 +22469,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "d13e20f4f4515d78dc3addefb586f4a547e702c16b75509c48b81715160ddbc3",
+      "sha256": "ece15873702652a977699ffc96320662c6c5921773913a9d18bd8b8a928de78c",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "6.14 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -22806,7 +22835,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-      "sha256": "b815ceccea5233b6280d323fc7d1aed93acbc03ae0caf91e79def8484aa6fa1a",
+      "sha256": "c6028522d8e790b654592b52724c997724d1c4ef547ba1ec96f686a916e4641d",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "20.73 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -22868,7 +22897,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-      "sha256": "9e9e1910e00dbee845892d8e48955ec61630040e5eafc0f1dac88312bab5aeb3",
+      "sha256": "3ecd3ca7db41243314bb437c6cdb611470bbe9f1035c94d77230c5281daa9a8c",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "153.33 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -23313,7 +23342,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
-      "sha256": "edaf5ff4d70352425aeb1b3a6ab509fb1ed4def76025ed196869a05bbdf5f5ae",
+      "sha256": "dae065b961014cccaf380d88e77e31720454da9e1893c9a346532e1e593ab9bb",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "6.78 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -23562,7 +23591,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-      "sha256": "28187c5698802997bf99e7119b16da40586c28418df4cb02c2d3a787060d5d01",
+      "sha256": "1708a86476ea255d6fc03e9d8e4d430396cd96cc5c8c09b1cdb61c44313e343e",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "3.29 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -23862,7 +23891,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-      "sha256": "87187dce679ee1e59ec0f866b96bea930b32d6e97cb1bbf026fe8538a6353675",
+      "sha256": "224e1fe610f864ed58cee44a09a3a26633ef1cf14cf59b6a037861f57154c3fa",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "580.79 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -24132,7 +24161,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-      "sha256": "ff34a22caaefeb72c8f44060e037b24cb426aecd1c30703672dc557b6566d912",
+      "sha256": "d697f2e0eda52d025b0de2f2b5de1f6211676207f540d6ab786ac15bfc95b6f7",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "10.48 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -24502,7 +24531,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
-      "sha256": "8916148e023940e136ad6fc915fbeca07897d6a84d8e6a253458e80945b48752",
+      "sha256": "39c7322fbb2dd5ef83aa08f0e4eae4666f971bffc17e7303959680bf541e0df8",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "2.25 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -24721,7 +24750,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-      "sha256": "ebf89652bbbfb387062562df45b971d4052359944438e418b5a5d71d9bf54bbc",
+      "sha256": "9e3d2e7f00a46f2cab0898f42a10691a5e4293ae160084d57344953ad6a0b87b",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "2.25 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -26617,7 +26646,7 @@
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "Ten largest individual corporate bond securities by percent of fund NAV; cash and futures excluded, no renormalisation; published SEDOL, coupon and maturity retained",
-      "sha256": "6bd86f19d8f9485b6a62061cd1062589004a1dd7c42d7d0c0268b335ade43b64",
+      "sha256": "1496318f5db2dd5955e74c635ec3e27fdcb68352751efb1202b5d8339ed376f2",
       "rows": [
         {
           "name": "Anheuser-Busch InBev SA/NV · 2% · 2028-03-17 · BZ6D7P1",
@@ -27101,7 +27130,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-      "sha256": "225045b495a5afb200f371302e1559ec5ce532782c13790f1fe8d461ea683709",
+      "sha256": "e70e3610f8716fdba0cb25fe6052e400e02108c6acf81746290ae566bab51345",
       "months": {
         "2026-09": 0.55
       },
@@ -27109,7 +27138,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-          "sha256": "225045b495a5afb200f371302e1559ec5ce532782c13790f1fe8d461ea683709",
+          "sha256": "e70e3610f8716fdba0cb25fe6052e400e02108c6acf81746290ae566bab51345",
           "checkedAt": "2026-10-23",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -27632,7 +27661,7 @@
   "IE00BDFBTQ78": {
     "currency": "USD",
     "productId": "IE00BDFBTQ78",
-    "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
       "amount": 2349400000,
@@ -27644,7 +27673,7 @@
     "countries": {
       "asOf": "2026-09-30",
       "basis": "fund",
-      "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
       "rows": [
         {
           "name": "Australia",
@@ -27689,7 +27718,7 @@
     "holdings": {
       "asOf": "2026-09-30",
       "basis": "fund",
-      "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
       "rows": [
         {
           "name": "BHP GROUP LTD",
@@ -27785,17 +27814,17 @@
     "characteristicChecks": {
       "terPct": {
         "checkedAt": "2026-10-23",
-        "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "asOf": null
       },
       "index": {
         "checkedAt": "2026-10-23",
-        "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "asOf": null
       },
       "distribution": {
         "checkedAt": "2026-10-23",
-        "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
         "asOf": null
       }
     }
@@ -31155,10 +31184,10 @@
     "sourceUrl": "https://www.ssga.com/fr/en_gb/intermediary/etfs/state-street-spdr-sp-500-ucits-etf-acc-spyl-gy",
     "provider": "State Street",
     "aum": {
-      "amount": 19464296244.51,
+      "amount": 19399516495.2,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-22",
+      "asOf": "2026-10-23",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -31240,6 +31269,7 @@
     "holdings": {
       "asOf": "2026-10-22",
       "basis": "fund",
+      "sha256": "ce570ef35ec10ae619a49834e406624ee4eb33499d6fa87e68268d0c0b4abb92",
       "rows": [
         {
           "name": "NVIDIA Corporation",
@@ -34240,7 +34270,7 @@
       },
       "asOf": "2026-10-23",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "cd5aeb4fca8c8695c2f9641f648058b8225e0d816bfdf5a4c6d196fd1e475dce",
+      "sha256": "81dee77164e2d42423a8b9319bf82f31e0cddca44926001fe7592328f50575ef",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -35630,14 +35660,14 @@
       "scope": "share-class",
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f46ce11b84a8252457d80fac622d4187a559ac61adc68bacf56a4c770462a0d9",
+      "sha256": "d621a22fe4ebf5d09d6d99a0b50661b8dd1101a4750c2055d8089ca82a4878cc",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f46ce11b84a8252457d80fac622d4187a559ac61adc68bacf56a4c770462a0d9",
+      "sha256": "d621a22fe4ebf5d09d6d99a0b50661b8dd1101a4750c2055d8089ca82a4878cc",
       "terPct": 2.0,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -35654,7 +35684,7 @@
       },
       "asOf": "2026-10-23",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "f46ce11b84a8252457d80fac622d4187a559ac61adc68bacf56a4c770462a0d9",
+      "sha256": "d621a22fe4ebf5d09d6d99a0b50661b8dd1101a4750c2055d8089ca82a4878cc",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -36366,14 +36396,14 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+      "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+      "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
       "terPct": 0.45,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -36384,7 +36414,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+        "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
         "evidence": [
           "Performance History",
           "USD Accumulating",
@@ -36413,14 +36443,7 @@
           "15.75%",
           "-0.46%",
           "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-          "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
-          "Top 10 Reference Index Constituents",
-          "As of 21 Oct 2026",
-          "Weight (%)",
-          "Ticker",
-          "Name",
-          "8.30",
-          "NVDA"
+          "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
         ]
       },
       "countries": {
@@ -36428,7 +36451,7 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+        "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
         "evidence": []
       },
       "holdings": {
@@ -36436,7 +36459,7 @@
         "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOGL, META, MSFT, NVDA, TSLA.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+        "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 21 Oct 2026",
@@ -36510,7 +36533,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "5b27b83d1341b3a18193fe33fefb3115bfe3ba7030e692622231601f8641ae5b",
+        "sha256": "7280ff967eb1be21bd49e6dc468fb1a8b631d9fc077e259473025a34fc833cab",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 30 Sep 2026",
@@ -36583,7 +36606,7 @@
       },
       "asOf": "2026-10-23",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "201e32b97846b9ff097806504c184f3c20ffe2ed3846edfa1d4e97b12f59aac9",
+      "sha256": "8cdcaf0a5dd0893f3a6b6fd387b6d07a605dbfd8e0add06daaba0489ac854d0f",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -36629,7 +36652,7 @@
       },
       "asOf": "2026-10-23",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "a4b27689ddb7b158586a0c3c95c6e55c35ff145cb8c1c215b3f623793454d979",
+      "sha256": "2badb80bfd95405d68e78e76c7c30958676b4a9fe3bab50118cb2205c5a60ce1",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -38875,7 +38898,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "625767e37ed8cee0ed8e0120af34780ee944b00a31562488ad019b07fe38cb06",
+      "sha256": "9709ab7b9ce5fe6140ae87fe432b74ba2402902329fad8cb079266e269773cbb",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -38895,7 +38918,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "625767e37ed8cee0ed8e0120af34780ee944b00a31562488ad019b07fe38cb06",
+      "sha256": "9709ab7b9ce5fe6140ae87fe432b74ba2402902329fad8cb079266e269773cbb",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -38953,7 +38976,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "625767e37ed8cee0ed8e0120af34780ee944b00a31562488ad019b07fe38cb06",
+      "sha256": "9709ab7b9ce5fe6140ae87fe432b74ba2402902329fad8cb079266e269773cbb",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -39003,14 +39026,14 @@
       "asOf": "2026-10-22",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "625767e37ed8cee0ed8e0120af34780ee944b00a31562488ad019b07fe38cb06",
+      "sha256": "9709ab7b9ce5fe6140ae87fe432b74ba2402902329fad8cb079266e269773cbb",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "625767e37ed8cee0ed8e0120af34780ee944b00a31562488ad019b07fe38cb06",
+      "sha256": "9709ab7b9ce5fe6140ae87fe432b74ba2402902329fad8cb079266e269773cbb",
       "terPct": 0.55,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -39308,7 +39331,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
-      "sha256": "90dec25949322b1097a4056b4f5b78548b87d716cc71e84ae5f738d07a99cb24",
+      "sha256": "9afa6d3eac5fad29a6c7a1b2adc42aab4addce71cef48698bc1bfcecb013c42b",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "1.00 B GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -39575,7 +39598,7 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-      "sha256": "1718bb53ed77ed5cb517d59e667164346472cc272ab7104892c7bbf5818ce00d",
+      "sha256": "88fa9c00a0b2c46aafd15f8a0620dff747d339c5515bf56b3e3b57617df066f5",
       "sourceLabel": "Total AUM of fund",
       "sourceReportedAmount": "705.12 M GBP",
       "issuerCurrencyConversion": "Conversion in GBP with 4 PM Reuters Fixing",
@@ -40042,14 +40065,14 @@
       "scope": "fund",
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+      "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
     "characteristics": {
       "asOf": "2026-10-22",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+      "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
       "terPct": 0.65,
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
@@ -40060,7 +40083,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+      "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -40096,7 +40119,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-          "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+          "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
           "checkedAt": "2026-10-23",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -40142,7 +40165,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+      "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -40192,7 +40215,7 @@
       "asOf": "2026-10-22",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+      "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
       "checkedAt": "2026-10-23",
       "modifiedAt": "2026-10-23"
     },
@@ -40201,7 +40224,7 @@
         "status": "not-published",
         "checkedAt": "2026-10-23",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "2fb0e2b21eccb81c5a53b00cbbfc80be9854bff9c024d31e36fccca642e998a5",
+        "sha256": "0aab9e87f411acb497dbfe0231a5781c97a1b3e470f33bbbe047be13adb24bdc",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,

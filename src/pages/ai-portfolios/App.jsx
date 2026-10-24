@@ -67,7 +67,7 @@ export default function App() {
   const row=report?.rows.find(r=>r.id===participant)
   const financialReady=view==='portfolio'?individualReportReady(comp,participant,report):report?.complete
   function guard(fn) {try{setError('');fn()}catch(e){setError(e.message)}}
-  function prepare(operation) {setRequest({...(rehearsalBranch?{testBranch:rehearsalBranch}:{}),version:1,expectedRevision:bundle.book.revision,requestId:crypto.randomUUID(),competitionId:comp?.id??null,operation});setReceipt(null);setNotice('Aperçu préparé. Confirmez sur GitHub avec le compte propriétaire ; le moteur effectuera les contrôles avant l’enregistrement.');}
+  function prepare(operation) {setConfirmUrl('');setRequest({...(rehearsalBranch?{testBranch:rehearsalBranch}:{}),version:1,expectedRevision:bundle.book.revision,requestId:crypto.randomUUID(),competitionId:comp?.id??null,operation});setReceipt(null);setNotice('Aperçu préparé. Confirmez sur GitHub avec le compte propriétaire ; le moteur effectuera les contrôles avant l’enregistrement.');}
   async function decisionRequest() {if(!comp){setError('Enregistrer d’abord la compétition.');return}const loaded=await ensureAssets(executionAssets(comp,{...decision,participant},asOf));guard(()=>{
     const d={...decision,participant}
     // A stale publication is allowed to request catch-up, never to authorize an

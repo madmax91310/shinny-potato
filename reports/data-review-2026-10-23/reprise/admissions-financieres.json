@@ -1,0 +1,1750 @@
+{
+  "observedAt": "2026-10-23T20:41:29.202Z",
+  "code": "4237af0c + reprise",
+  "rows": [
+    {
+      "id": "IE00BLNMYC90/2021",
+      "isin": "IE00BLNMYC90",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfEqualWeight",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 28.9
+    },
+    {
+      "id": "IE00B4556L06/2025",
+      "isin": "IE00B4556L06",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etcPalladium",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 72.04
+    },
+    {
+      "id": "IE00BJ5JP436/2024",
+      "isin": "IE00BJ5JP436",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etf_world_communication",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCMS.AS : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 30.35
+    },
+    {
+      "id": "IE00B1XNHC34/2020",
+      "isin": "IE00B1XNHC34",
+      "year": 2020,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etf_clean_energy",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1230163200&period2=1230768000&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IQQH.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 140.24
+    },
+    {
+      "id": "IE00BJ5JP097/2023",
+      "isin": "IE00BJ5JP097",
+      "year": 2023,
+      "originalStatus": "erreur corrigée ; résidu marché/NAV non attribué",
+      "causeExplained": false,
+      "currentHistoryId": "etf_financials",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WFNS.AS : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 17.41
+    },
+    {
+      "id": "IE00BQQP9F84/2018",
+      "isin": "IE00BQQP9F84",
+      "year": 2018,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etf_gold_miners",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": -9
+    },
+    {
+      "id": "IE00BQQP9F84/2019",
+      "isin": "IE00BQQP9F84",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etf_gold_miners",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 40.2
+    },
+    {
+      "id": "IE00BQQP9F84/2025",
+      "isin": "IE00BQQP9F84",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etf_gold_miners",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 155.7
+    },
+    {
+      "id": "IE00BJGWQN72/2020",
+      "isin": "IE00BJGWQN72",
+      "year": 2020,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfCloudWisdomtree",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 109.11
+    },
+    {
+      "id": "IE00BJGWQN72/2023",
+      "isin": "IE00BJGWQN72",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfCloudWisdomtree",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 39.5
+    },
+    {
+      "id": "IE00BK5BCD43/2023",
+      "isin": "IE00BK5BCD43",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfLgArtificialIntelligence",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 56.51
+    },
+    {
+      "id": "IE00BSPLC413/2023",
+      "isin": "IE00BSPLC413",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfUsaSmallValue",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 21.18
+    },
+    {
+      "id": "IE00BSPLC413/2024",
+      "isin": "IE00BSPLC413",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfUsaSmallValue",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2023-12",
+        "end": "2024-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 9.67
+    },
+    {
+      "id": "IE00BSPLC413/2025",
+      "isin": "IE00BSPLC413",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfUsaSmallValue",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 13.89
+    },
+    {
+      "id": "FR0013411998/2025",
+      "isin": "FR0013411998",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0013411998",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 25.86
+    },
+    {
+      "id": "IE00B42NKQ00/2019",
+      "isin": "IE00B42NKQ00",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B42NKQ00",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 11.19
+    },
+    {
+      "id": "CH0454664001/2024",
+      "isin": "CH0454664001",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfCH0454664001",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 114.17
+    },
+    {
+      "id": "CH0454664001/2025",
+      "isin": "CH0454664001",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfCH0454664001",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -4.71
+    },
+    {
+      "id": "IE00B4JNQZ49/2021",
+      "isin": "IE00B4JNQZ49",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B4JNQZ49",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 34.46
+    },
+    {
+      "id": "FR0013412004/2025",
+      "isin": "FR0013412004",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0013412004",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 35.75
+    },
+    {
+      "id": "IE00BK5BCH80/2025",
+      "isin": "IE00BK5BCH80",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BK5BCH80",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 52.01
+    },
+    {
+      "id": "LU1737652823/2024",
+      "isin": "LU1737652823",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfLU1737652823",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 7.62
+    },
+    {
+      "id": "IE000M7V94E1/2025",
+      "isin": "IE000M7V94E1",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE000M7V94E1",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 68.9
+    },
+    {
+      "id": "FR0010342592/2021",
+      "isin": "FR0010342592",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0010342592",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 67.05
+    },
+    {
+      "id": "FR0010342592/2023",
+      "isin": "FR0010342592",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0010342592",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 110.24
+    },
+    {
+      "id": "FR0010342592/2024",
+      "isin": "FR0010342592",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0010342592",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 52.51
+    },
+    {
+      "id": "IE000RDRMSD1/2023",
+      "isin": "IE000RDRMSD1",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE000RDRMSD1",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 197.37
+    },
+    {
+      "id": "IE000RDRMSD1/2025",
+      "isin": "IE000RDRMSD1",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE000RDRMSD1",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 27.43
+    },
+    {
+      "id": "IE00B43HR379/2018",
+      "isin": "IE00B43HR379",
+      "year": 2018,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B43HR379",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 6.05
+    },
+    {
+      "id": "IE00B43HR379/2019",
+      "isin": "IE00B43HR379",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B43HR379",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 20.35
+    },
+    {
+      "id": "IE00BYWQWR46/2020",
+      "isin": "IE00BYWQWR46",
+      "year": 2020,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BYWQWR46",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2019-12",
+        "end": "2020-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 83.7
+    },
+    {
+      "id": "IE00B5W4TY14/2016",
+      "isin": "IE00B5W4TY14",
+      "year": 2016,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B5W4TY14",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 8.01
+    },
+    {
+      "id": "IE00B5W4TY14/2017",
+      "isin": "IE00B5W4TY14",
+      "year": 2017,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B5W4TY14",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 46.36
+    },
+    {
+      "id": "IE00BYXG2H39/2018",
+      "isin": "IE00BYXG2H39",
+      "year": 2018,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BYXG2H39",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": -9.2
+    },
+    {
+      "id": "IE00BYXG2H39/2023",
+      "isin": "IE00BYXG2H39",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BYXG2H39",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 4.22
+    },
+    {
+      "id": "IE00BDFBTQ78/2019",
+      "isin": "IE00BDFBTQ78",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BDFBTQ78",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 27.4
+    },
+    {
+      "id": "IE00BDFBTQ78/2021",
+      "isin": "IE00BDFBTQ78",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BDFBTQ78",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 9.9
+    },
+    {
+      "id": "IE00BDFBTQ78/2025",
+      "isin": "IE00BDFBTQ78",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BDFBTQ78",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 90.5
+    },
+    {
+      "id": "IE000YU9K6K2/2025",
+      "isin": "IE000YU9K6K2",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE000YU9K6K2",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 96
+    },
+    {
+      "id": "FR0010755611/2021",
+      "isin": "FR0010755611",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0010755611",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 81.38
+    },
+    {
+      "id": "FR0010755611/2024",
+      "isin": "FR0010755611",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0010755611",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 65.62
+    },
+    {
+      "id": "FR0011871110/2021",
+      "isin": "FR0011871110",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0011871110",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PUST.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 36.59
+    },
+    {
+      "id": "FR0011871128/2021",
+      "isin": "FR0011871128",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0011871128",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PSP5.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 38.23
+    },
+    {
+      "id": "DE000A27Z304/2021",
+      "isin": "DE000A27Z304",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfDE000A27Z304",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 55.46
+    },
+    {
+      "id": "DE000A27Z304/2023",
+      "isin": "DE000A27Z304",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfDE000A27Z304",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 150.42
+    },
+    {
+      "id": "DE000A27Z304/2024",
+      "isin": "DE000A27Z304",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfDE000A27Z304",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 120.73
+    },
+    {
+      "id": "FR0013416716/2025",
+      "isin": "FR0013416716",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0013416716",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/GLDA.DE?period1=1564617600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/GLDA.DE?period1=1564617600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "GLDA.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 64.8
+    },
+    {
+      "id": "IE00B2QWCY14/2023",
+      "isin": "IE00B2QWCY14",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B2QWCY14",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 15.43
+    },
+    {
+      "id": "IE00B2QWCY14/2024",
+      "isin": "IE00B2QWCY14",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B2QWCY14",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 8.04
+    },
+    {
+      "id": "IE00B2QWCY14/2025",
+      "isin": "IE00B2QWCY14",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B2QWCY14",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 5.55
+    },
+    {
+      "id": "IE00BD1F4L37/2017",
+      "isin": "IE00BD1F4L37",
+      "year": 2017,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BD1F4L37",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 21.82
+    },
+    {
+      "id": "IE00BQN1K562/2016",
+      "isin": "IE00BQN1K562",
+      "year": 2016,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BQN1K562",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": -1.3
+    },
+    {
+      "id": "IE00BQT3WG13/2017",
+      "isin": "IE00BQT3WG13",
+      "year": 2017,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BQT3WG13",
+      "currentCurrency": "USD",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 27.82
+    },
+    {
+      "id": "FR0007054358/2020",
+      "isin": "FR0007054358",
+      "year": 2020,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0007054358",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -2.84
+    },
+    {
+      "id": "GB00B15KXQ89/2018",
+      "isin": "GB00B15KXQ89",
+      "year": 2018,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfGB00B15KXQ89",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -22.17
+    },
+    {
+      "id": "GB00B15KXQ89/2019",
+      "isin": "GB00B15KXQ89",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfGB00B15KXQ89",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 6.16
+    },
+    {
+      "id": "IE00BDVPNG13/2019",
+      "isin": "IE00BDVPNG13",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BDVPNG13",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 47.74
+    },
+    {
+      "id": "IE00BDVPNG13/2023",
+      "isin": "IE00BDVPNG13",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00BDVPNG13",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 55.14
+    },
+    {
+      "id": "LU2089238385/2025",
+      "isin": "LU2089238385",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfLU2089238385",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PRAJ.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": null
+    },
+    {
+      "id": "LU1875395870/2019",
+      "isin": "LU1875395870",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfLU1875395870",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 19.46
+    },
+    {
+      "id": "LU2196470426/2025",
+      "isin": "LU2196470426",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfLU2196470426",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": null
+    },
+    {
+      "id": "FR0011550185/2021",
+      "isin": "FR0011550185",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfFR0011550185",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 38.2
+    },
+    {
+      "id": "IE00B4K6B022/2024",
+      "isin": "IE00B4K6B022",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfIE00B4K6B022",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 11.6
+    },
+    {
+      "id": "IE00BSPLC298/2019",
+      "isin": "IE00BSPLC298",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfSmallValueEurope",
+      "currentCurrency": "EUR",
+      "currentConvention": "fund-nav-total-return",
+      "currentSourceUrls": [
+        "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprx-gy.xlsx"
+      ],
+      "currentWindow": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "capability": "NAV indépendante qualifiée ; ancienne cotation non expliquée",
+      "annualNavAlternative": 26.95
+    },
+    {
+      "id": "JE00B78CGV99/2021",
+      "isin": "JE00B78CGV99",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_brent_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 63.87
+    },
+    {
+      "id": "JE00B78CGV99/2022",
+      "isin": "JE00B78CGV99",
+      "year": 2022,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_brent_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 39.5
+    },
+    {
+      "id": "JE00B78CGV99/2023",
+      "isin": "JE00B78CGV99",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_brent_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -2.59
+    },
+    {
+      "id": "GB00B15KXV33/2021",
+      "isin": "GB00B15KXV33",
+      "year": 2021,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_wti_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 65.13
+    },
+    {
+      "id": "GB00B15KXV33/2022",
+      "isin": "GB00B15KXV33",
+      "year": 2022,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_wti_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 29.33
+    },
+    {
+      "id": "GB00B15KXV33/2023",
+      "isin": "GB00B15KXV33",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_wti_crude_oil",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -2.65
+    },
+    {
+      "id": "JE00BN7KB334/2022",
+      "isin": "JE00BN7KB334",
+      "year": 2022,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_natural_gas",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 17.51
+    },
+    {
+      "id": "JE00BN7KB557/2022",
+      "isin": "JE00BN7KB557",
+      "year": 2022,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_coffee",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -23.12
+    },
+    {
+      "id": "JE00BN7KB557/2024",
+      "isin": "JE00BN7KB557",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_coffee",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 85.28
+    },
+    {
+      "id": "JE00BN7KB557/2025",
+      "isin": "JE00BN7KB557",
+      "year": 2025,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_coffee",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 26.83
+    },
+    {
+      "id": "JE00B2QXZK10/2023",
+      "isin": "JE00B2QXZK10",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_cocoa",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 66.48
+    },
+    {
+      "id": "JE00B2QXZK10/2024",
+      "isin": "JE00B2QXZK10",
+      "year": 2024,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_cocoa",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 336.14
+    },
+    {
+      "id": "JE00BN7KB664/2022",
+      "isin": "JE00BN7KB664",
+      "year": 2022,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_wheat",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -4.24
+    },
+    {
+      "id": "JE00BN7KB664/2023",
+      "isin": "JE00BN7KB664",
+      "year": 2023,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etc_wheat",
+      "currentCurrency": "USD",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": -27.69
+    },
+    {
+      "id": "DE000A0H08P6/2019",
+      "isin": "DE000A0H08P6",
+      "year": 2019,
+      "originalStatus": "anomalie encore inexpliquée",
+      "causeExplained": false,
+      "currentHistoryId": "etfEuropeRetail",
+      "currentCurrency": "EUR",
+      "currentConvention": "adjusted",
+      "currentSourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "currentWindow": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "capability": "Calculs exigeant la période contestée refusés",
+      "annualNavAlternative": 37.81
+    }
+  ]
+}

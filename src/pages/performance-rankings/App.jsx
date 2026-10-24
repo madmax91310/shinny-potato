@@ -13,6 +13,7 @@ import ComparisonPicker from './ComparisonPicker.jsx'
 import Favorites from './Favorites.jsx'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from './series.js'
+import {selectionDates as defaultDates,qualifiedYearWindow} from './selection-windows.js'
 import PortfolioEditor from './PortfolioEditor.jsx'
 import { DEFAULT_PORTFOLIOS } from './portfolio-defaults.js'
 import { annualColumns, basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, monthIndex, rollingRegularity } from './engine.js'
@@ -26,13 +27,10 @@ const SOURCES = { ...RANKING_ASSETS, ...ANNUAL_ASSETS }
 const ELIGIBLE = Object.values(RANKING_ASSETS).filter(a => !['monthly-average', 'price-index', 'futures-price'].includes(a.basis))
 // A category usable for a short custom period is not necessarily usable for annual images.
 const ANNUAL_CATEGORY_IDS = new Set(ALL_CATEGORIES.filter(c => {
-  try { return commonCoverage(c.ids.map(id => convertAsset(SOURCES[id], c.currency ?? 'original', FX))).years.length >= 2 }
+  try { return qualifiedYearWindow(commonCoverage(c.ids.map(id => convertAsset(SOURCES[id], c.currency ?? 'original', FX))).years,2).length >= 2 }
   catch { return false }
 }).map(c => c.id))
-function defaultDates(assets) {
-  const c = commonCoverage(assets)
-  return { start: c.start, end: c.end, startYear: c.years.at(-6) ?? c.years[0], endYear: c.years.at(-1) }
-}
+
 
 export default function App() {
   const [categoryId, setCategoryId] = useState(CATEGORY.id)
@@ -58,14 +56,15 @@ export default function App() {
   const prepared = useMemo(() => {
     try {
       const assets = comparison === 'portfolios'
-        ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX))
+        ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX,
+          mode==='period'?{start:dates.start,end:dates.end}:Number.isInteger(dates.startYear)?{start:`${dates.startYear-1}-12`,end:`${mode==='year'?dates.startYear:dates.endYear}-12`}:{}))
         : ids.map(id => {
           try { return convertAsset(SOURCES[id], currency, FX) }
           catch (e) { throw new Error(`${SOURCES[id]?.shortLabel ?? id} : ${e.message}`) }
         })
       return { assets: markBenchmark(assets, benchmarkId).map(a => ({ ...a, rankingColor: colors[a.id] })) }
     } catch (e) { return { assets: [], error: e.message } }
-  }, [ids, currency, comparison, portfolios, benchmarkId, colors])
+  }, [ids, currency, comparison, portfolios, benchmarkId, colors,mode,dates])
   const assets = prepared.assets
   const selectedAssets = ids.map(id => assets.find(a => a.id === id) ?? { ...SOURCES[id], rankingColor: colors[id] })
   const categories = presentation === 'annual' ? ALL_CATEGORIES.filter(c => ANNUAL_CATEGORY_IDS.has(c.id) || c.id === categoryId) : ALL_CATEGORIES
@@ -250,13 +249,12 @@ export default function App() {
         {presentation === 'annual' && coverage && coverage.years.length < 2 && <p className="rk-note" role="status">Historique insuffisant : au moins 2 années civiles complètes communes sont nécessaires. {coverage.years.length ? `Seule l’année ${coverage.years[0]} est disponible.` : 'Aucune année complète commune n’est disponible.'} Retire ou remplace un actif pour étendre la période.</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
         {imageError && <p className="rk-error" role="alert">{imageError}</p>}
-        {(error || imageError) && coverage?.years.length >= (presentation === 'annual' ? 2 : 1) && <div className="rk-note">
+        {(error || imageError) && qualifiedYearWindow(coverage?.years??[],presentation === 'annual'?2:1,7).length >= (presentation === 'annual' ? 2 : 1) && <div className="rk-note">
           <p>Années civiles complètes communes disponibles : {coverage.years.join(', ')}. Aucun actif ni aucune année n’a été retiré.</p>
           <button type="button" className="rk-text-button" onClick={() => {
-            const years = coverage.years
-            let first = years.length - 1
-            while (first > 0 && years[first - 1] === years[first] - 1 && years.length - first < 7) first--
-            setDates(d => ({ ...d, startYear: years[first], endYear: years.at(-1) })); setMode('years')
+            const years = qualifiedYearWindow(coverage.years,presentation === 'annual'?2:1,7)
+            if(!years.length)return
+            setDates(d => ({ ...d, startYear: years[0], endYear: years.at(-1) })); setMode('years')
           }}>Utiliser la dernière période commune (7 années maximum)</button>
         </div>}
         {(error || imageError) && assets.length > 0 && <ul className="rk-note">{assets.map(a => <li key={a.id}>{a.shortLabel ?? a.label} · {a.currency} · {basisLabel(a.basis)} · {a.frequency === 'annual' ? `années ${Object.keys(a.years).join(', ')}` : `${a.points[0]?.date ?? 'borne absente'} → ${a.points.at(-1)?.date ?? 'borne absente'}`}</li>)}</ul>}

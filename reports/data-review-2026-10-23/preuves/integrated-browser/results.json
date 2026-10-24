@@ -1,0 +1,26 @@
+[
+  {
+    "command": "node scripts/playwright-data-review-recovery.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/playwright-live-data-connections.mjs --physical",
+    "exitCode": 1
+  },
+  {
+    "command": "node scripts/playwright-live-data-connections.mjs --wisdomtree",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/playwright-currency-consistency.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/playwright-data-automation-inventory.mjs",
+    "exitCode": 0
+  },
+  {
+    "command": "node scripts/playwright-remainder-nav.mjs",
+    "exitCode": 0
+  }
+]

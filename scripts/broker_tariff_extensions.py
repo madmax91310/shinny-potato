@@ -8,7 +8,7 @@ SOURCES = {
  'xtb':'https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf',
  'saxo':'https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf',
  'caidf':'https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf',
- 'ibkr':'https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php',
+ 'ibkr':'https://www.interactivebrokers.ie/en/pricing/commissions-stocks.php',
  'tr':'https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution',
  'bd':'https://www.boursedirect.fr/pdf/tarifs_bd.pdf',
 }
@@ -30,16 +30,33 @@ def item(values,full,meta,scope):
 def parse(name,s,today,previous=None):
  url=SOURCES[name]; fields={}
  if name=='ibkr':
-  soup=BeautifulSoup(s,'html.parser');h=soup.find('h4',string='France')
-  if not h:raise ValueError('Table France absente')
-  section=h.find_parent('section');table=section.find('table');text=table.get_text(' ',strip=True).replace('\xa0',' ')
-  require(text,'Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct','Minimum par ordre (actions)')
+  soup=BeautifulSoup(s,'html.parser')
+  headings=soup.find_all(['h3','h4'],string='France')
+  if len(headings)!=1:raise ValueError('Table France absente ou ambiguë')
+  h=headings[0];english=h.name=='h3'
+  section=h.parent if english else h.find_parent('section')
+  labels=['Tiered','Fixed - IB SmartRouting','Fixed - Direct Routing'] if english else ['Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct']
+  minimum_label='Minimum per order (shares)' if english else 'Minimum par ordre (actions)'
+  tables=[t for t in section.find_all('table') if all(label in t.get_text(' ',strip=True) for label in [*labels,minimum_label])] if section else []
+  if len(tables)!=1:raise ValueError('Table France absente ou ambiguë')
+  table=tables[0];text=table.get_text(' ',strip=True).replace('\xa0',' ')
+  require(text,*labels,minimum_label)
   rows=table.find_all('tr');header=rows[0].get_text(' ',strip=True)
-  positions=[header.find(label) for label in ['Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct']]
+  positions=[header.find(label) for label in labels]
   if positions!=sorted(positions) or min(positions)<0:raise ValueError('Ordre des colonnes IBKR modifié')
-  first=rows[1].find_all('td');rates=[get(r'([\d,]+)\s*%',x.get_text(' ',strip=True)) for x in first[1:4]]
-  mins=next(r for r in rows if r.find(['td','th']).get_text(' ',strip=True)=='Minimum par ordre (actions)').find_all('td')
-  minimums=[get(r'([\d,]+)\s*EUR',x.get_text(' ',strip=True)) for x in mins[1:4]]
+  first=rows[1].find_all('td')
+  if len(first)!=4:raise ValueError('Colonnes du premier palier IBKR modifiées')
+  if english:
+   require(header,'Monthly Trade Value (EUR)')
+   if first[0].get_text(' ',strip=True).replace(',','').replace(' ','')!='≤50000000':raise ValueError('Premier palier France non qualifié')
+  rate_pattern=r'([\d]+(?:\.[\d]+)?)\s*%' if english else r'([\d,]+)\s*%'
+  rates=[get(rate_pattern,x.get_text(' ',strip=True)) for x in first[1:4]]
+  minimum_rows=[r for r in rows if r.find(['td','th']).get_text(' ',strip=True)==minimum_label]
+  if len(minimum_rows)!=1:raise ValueError('Minimum actions France absent ou ambigu')
+  mins=minimum_rows[0].find_all('td')
+  if len(mins)!=4:raise ValueError('Colonnes des minima IBKR modifiées')
+  minimum_pattern=r'EUR\s+([\d]+(?:\.[\d]+)?)' if english else r'([\d,]+)\s*EUR'
+  minimums=[get(minimum_pattern,x.get_text(' ',strip=True)) for x in mins[1:4]]
   v=dict(rate=rates[0],fixedRate=rates[1],directRate=rates[2],minimum=minimums[0],fixedMinimum=minimums[1],directMinimum=minimums[2])
   full=f"Actions France : {fmt(v['rate'])} %, minimum {fmt(v['minimum'])} € en dégressif, plus frais de Bourse possibles. En fixe SmartRouting : {fmt(v['fixedRate'])} %, minimum {fmt(v['fixedMinimum'])} € ; routage direct {fmt(v['directRate'])} %, minimum {fmt(v['directMinimum'])} €. Autres places : barèmes distincts, sous le plafond légal PEA."
   scope='IBKR direct ; actions entières France ; premier palier dégressif, fixe SmartRouting et routage direct'
