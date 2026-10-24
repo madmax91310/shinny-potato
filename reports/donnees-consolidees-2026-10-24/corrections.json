@@ -27,11 +27,13 @@
     "id": "correction:ia-validation-visible",
     "axe": "supervision",
     "type": "défaut du tableau de supervision",
-    "supervision": "Échec technique visible indépendamment des erreurs fournisseur ; audit exhaustif conservé même après échec du premier contrôle",
+    "supervision": "Échec technique visible indépendamment des erreurs fournisseur ; audit exhaustif conservé même après échec du premier contrôle ; recette vérifiant aussi la conservation après échec du rattrapage, sans exiger une réussite fictive",
     "probleme": "Le premier échec de test empêchait le diagnostic indépendant ; une erreur fournisseur pouvait masquer la validation défaillante.",
     "preuves": [
       "scripts/test_audit_workflows.py",
-      "scripts/test_ai_incident_context.py"
+      "scripts/test_ai_incident_context.py",
+      "preuves/recette-reprise-15png.log",
+      "https://github.com/madmax91310/shinny-potato/pull/917"
     ]
   }
 ]

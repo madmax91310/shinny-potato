@@ -1,0 +1,53 @@
+{
+  "scope": "Same UI-created isolated book; deterministic prices and simulated GitHub confirmation. No actual web login claimed.",
+  "participants": 4,
+  "pngs": [
+    "assembled-4-individual-0.png",
+    "assembled-4-comparison-0.png",
+    "assembled-4-moves-0.png",
+    "assembled-4-moves-1.png",
+    "assembled-4-all-moves-0.png",
+    "assembled-4-all-moves-1.png",
+    "assembled-4-all-moves-2.png",
+    "assembled-4-curve-0.png",
+    "assembled-4-curves-0.png"
+  ],
+  "oracle": [
+    {
+      "participant": "chatgpt",
+      "cash": 3999.9774376896025,
+      "value": 9999.943594224007,
+      "fees": 11.002224727341334
+    },
+    {
+      "participant": "claude",
+      "cash": 999.1008092716565,
+      "value": 9995.286765043644,
+      "fees": 8.991907283444899
+    },
+    {
+      "participant": "gemini",
+      "cash": 8999,
+      "value": 9999,
+      "fees": 1
+    },
+    {
+      "participant": "fourth",
+      "cash": 10000,
+      "value": 10000,
+      "fees": 0
+    },
+    {
+      "participant": "world",
+      "cash": 0,
+      "value": 9980.189922477743,
+      "fees": 9.990009990009991
+    }
+  ],
+  "dailyExecution": true,
+  "weeklyPrompts": 4,
+  "weeklyResponses": 4,
+  "activeOpeningWithoutCatalogueOrHistories": true,
+  "archivedExecutionsUnchanged": true,
+  "root": "/tmp/ai-owner-ui-xed8Iy"
+}

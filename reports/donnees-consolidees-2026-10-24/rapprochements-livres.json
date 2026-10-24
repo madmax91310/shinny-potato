@@ -921,5 +921,55 @@
       "publication": "d9e55c1b12a72b5397bee49e67bbe2afdf4d40a2",
       "note": "Ne constitue pas une nouvelle correction ni collecte. Les limites propres aux sources restent suivies séparément."
     }
+  },
+  {
+    "id_suivi": "action:P2-04",
+    "axe": "collecte et actualisation",
+    "type_defaut": "source quotidienne requise encore indisponible",
+    "statut_donnees": "partiellement corrigée",
+    "reliquat_actif": true,
+    "verification_en_attente": false,
+    "niveau_preuve": "collecte réelle dans GitHub ; dernier point valide et tentative échouée distingués",
+    "probleme": "Le socle IA et les 21 fragments sont réparés ; la clôture du 23/10 de la référence CSPX reste absente. World ciblé conserve également le 22.",
+    "piece_manquante": "Clôture quotidienne ajustée du 23/10 qualifiée pour la cotation exacte et consommée par la valorisation ; ne pas substituer silencieusement une NAV.",
+    "preuves": [
+      "preuves/github-production/ai-portfolio-observations.json",
+      "preuves/tracking-livre-reel.json",
+      "preuves/livre-reel-portee.json"
+    ],
+    "rapprochement": {
+      "ancien_statut": "corrigée",
+      "socle": "qualification, admission, preuves legacy, comptabilité, absence de double cotation et collecte à la demande conservés",
+      "collecte": {
+        "run": 40075676773,
+        "pointValide": "2026-10-22",
+        "pointRequisAbsent": "2026-10-23"
+      },
+      "limite": "Aucun portefeuille réel lancé ; les scénarios de valorisation et exports sont vérifiés dans les fixtures isolées."
+    }
+  },
+  {
+    "id_suivi": "incident:workflow:update-instrument-metadata.yml",
+    "axe": "supervision",
+    "type_defaut": "ancien contrôle du producteur non rejoué",
+    "statut_donnees": "contrôle corrigé et exécuté localement ; producteur à revalider",
+    "reliquat_actif": true,
+    "verification_en_attente": true,
+    "niveau_preuve": "journal GitHub ancien ; contrôle corrigé exécuté sur les données et les consommateurs réels, sans nouvelle collecte",
+    "probleme": "Le contrôle confondait absence de série de prix et absence de consommation de cette série par les deux outils NAV. Les contrats NAV du Générateur/Duels sont vérifiés ; la cotation indépendante est conservée et sa convention/provenance restent contrôlées.",
+    "piece_manquante": "Exécution normale du collecteur de métadonnées sur le code courant, avec validation du lot candidat et sans renouveler les preuves de champs bloqués. Les erreurs individuelles restent suivies séparément.",
+    "preuves": [
+      "preuves/ancien-echec-metadonnees.txt",
+      "preuves/controle-raccordement-actuel.txt",
+      "preuves/moniteur-final.json"
+    ],
+    "rapprochement": {
+      "run": 40041331514,
+      "ancienCode": "b96074bf49fc043ecb7498769c79cb1a5f086f23",
+      "correctifUlterieur": "48510a1",
+      "note": "Signal ancien nouvellement visible, pas nouvelle donnée financière incorrecte en production. Ne pas refaire le correctif NAV déjà livré.",
+      "baseApplicative": "6124113127807037b1ab765a177ce87788268471",
+      "controleCorrigeSha256": "4534843530f44d214468f204db707b238ad70b7d2ef9f44b48df0ed6a376ea20"
+    }
   }
 ]

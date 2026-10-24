@@ -1,0 +1,23 @@
+{
+  "successes": [
+    {
+      "id": "ECB"
+    }
+  ],
+  "errors": [
+    {
+      "id": "IE00B5BMR087-XLON-CSPX-USD",
+      "field": "Clôture quotidienne / change",
+      "error": "Clôtures attendues manquantes : 2026-10-23",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792826608&interval=1d&events=div%2Csplits"
+      ],
+      "lastSuccessAt": "2026-10-23T10:39:50.275215+00:00",
+      "asOf": "2026-10-22",
+      "attemptedAt": "2026-10-24T07:23:28.651906+00:00",
+      "missingPeriods": [
+        "2026-10-23"
+      ]
+    }
+  ]
+}
