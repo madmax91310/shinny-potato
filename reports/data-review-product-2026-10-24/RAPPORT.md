@@ -44,7 +44,7 @@ financière imaginable.
 
 `ordinary-artifact-replay.json` contient les runs/tentatives, identités d'artefacts,
 empreintes des 40 rapports et résultats de leur passage dans le lecteur de production.
-19 producteurs, zéro erreur de lecture/contrat, 16 échecs source conservés. Le producteur or du run `40108621544` a achevé collecte et enregistrement ; sa publication reste en attente à la capture. Les 38 rapports
+19 producteurs, zéro erreur de lecture/contrat, 16 échecs source conservés. Le producteur or du run `40108621544` a achevé collecte et enregistrement, mais son workflow s’est terminé en échec de publication. La collecte réussie ne vaut pas livraison réussie. Les 38 rapports
 sans manifeste de périmètre tenté restent explicitement à qualifier ; aucun succès fictif.
 
 Build et contrôles des projections passent. La boîte principale utilise une projection de 1,95 Mo au lieu de charger les 35,3 Mo de l’inventaire technique ; un test compare intégralement les modèles avant/après projection (identités, causes, dates, outils, sources et signalements). L’inventaire technique reste chargé à la demande. Recette Chromium mobile 390 px et ordinateur
@@ -85,4 +85,4 @@ complétude individuelle des producteurs historiques ne sont pas déclarées dé
 
 Raccordement #924 : conservation de `requiredDataGaps`, des preuves `historyChecks`/`fieldChecks` et de ses nouvelles données. Les périmètres `scope.expectedIds/requestedIds` et résultats `unchanged-verified` sont reconnus sans confondre cache et contrôle réel. Un nouveau périmètre ciblé ne clôture pas la qualification historique d’un ancien rapport. Les diagnostics couvrent aussi les actifs externes des 23 outils ; les chaînes répétées sont référencées dans un dictionnaire, puis restituées sans changer une seule valeur.
 
-Validation finale : les exécutions CI et les vérifications du site public sont consignées dans la PR #925. Un échec source individuel du contrôle ETF demeure un échec déclaré, même lorsque la validation du code est réussie.
+Validation finale : les exécutions CI et les vérifications du site public sont consignées dans les PR #925 et #931. Un échec source individuel du contrôle ETF demeure un échec déclaré, même lorsque la validation du code est réussie.
