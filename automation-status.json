@@ -36,7 +36,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T17:36:04Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39993735401",
       "failures": [],
       "dataFailures": {},
@@ -76,7 +76,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-market-monthly.yml": {
       "monitorVersion": 2,
@@ -129,7 +129,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T11:36:53Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40068757315",
       "failures": [
         {
@@ -157,7 +157,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-economic-data.yml": {
       "monitorVersion": 2,
@@ -214,7 +214,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T12:46:34Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39955158223",
       "failures": [],
       "dataFailures": {},
@@ -226,7 +226,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -1225,7 +1225,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-24T00:43:27Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40045364366",
       "failures": [],
       "dataFailures": {},
@@ -1237,7 +1237,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -1254,7 +1254,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-24T00:39:30Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40045211519",
       "failures": [],
       "dataFailures": {},
@@ -1266,7 +1266,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1291,33 +1291,103 @@
     "refresh-automated-index-sheets.yml": {
       "monitorVersion": 2,
       "name": "Fiches d’indices automatisées",
-      "runId": 39950381274,
+      "runId": 40090419702,
       "attempt": 1,
-      "headSha": "31f371818b078ae5ddbe0915e7e891344dcfde70",
-      "createdAt": "2026-10-23T12:02:35Z",
-      "completedAt": "2026-10-23T12:18:14Z",
-      "status": "success",
+      "headSha": "be7bffe00b2c061c38684c516fe3e2e9d18d1585",
+      "createdAt": "2026-10-24T11:34:04Z",
+      "completedAt": "2026-10-24T11:39:10Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-23T12:18:14Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-23T12:18:14Z",
-      "lastPublicationSuccessAt": "2026-10-23T13:19:33Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39950381274",
-      "failures": [],
-      "dataFailures": {},
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte partielle des fiches d’indices : les dernières valeurs validées sont conservées. Voir complete-index-sheet-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "msci-india": {
+          "name": "msci-india",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "ftse-epra-nareit-developed-dividend-plus": {
+          "name": "ftse-epra-nareit-developed-dividend-plus",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "msci-world-minimum-volatility-usd": {
+          "name": "msci-world-minimum-volatility-usd",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "world": {
+          "name": "world",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "eurostoxx50": {
+          "name": "eurostoxx50",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "mscieurope": {
+          "name": "mscieurope",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "nasdaq-pea": {
+          "name": "nasdaq-pea",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "msci-japan-imi": {
+          "name": "msci-japan-imi",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        },
+        "msci-world-high-dividend-yield-advanced-select": {
+          "name": "msci-world-high-dividend-yield-advanced-select",
+          "completedAt": "2026-10-24T11:39:10Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+          "field": "company-composition"
+        }
+      },
+      "retiredDataFailures": {},
       "publicationReceipt": {
-        "commit": "1892bdeec74b4ecc655f0e3a181bc02d4dcb4e6e",
+        "commit": "a09e08a04b21b3c9566ea704363eb81678806628",
         "files": {
-          "src/data/automated-indices.json": "49e75f10865316b341786a098ccda1fb76b7902c",
-          "src/data/index-company-observations.json": "16d49013b0189c072bb226fe15cc30cea1c22e6c",
-          "src/data/index-company-qualified.json": "61213dbcf59b3fe7cd2e28c8ac04dca2f3aaa6f0"
+          "src/data/automated-indices.json": "9f6d2687334bacec7dcacde2952974092558aeba",
+          "src/data/index-company-observations.json": "6b815c04cc21653256a535c1b6207128cabc30f1",
+          "src/data/index-company-qualified.json": "b0666635e28f9729d05057186aabe975b4aed44c"
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "5feee6221927c38055d69f8faffcf1ecbd6c335d",
-      "publishedDataSha": "5feee6221927c38055d69f8faffcf1ecbd6c335d"
+      "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-lifestrategy.yml": {
       "monitorVersion": 2,
@@ -1334,7 +1404,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-24T09:50:07Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40083163695",
       "failures": [],
       "dataFailures": {},
@@ -1346,7 +1416,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -4141,7 +4211,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40085504061",
       "failures": [
         {
@@ -4297,7 +4367,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     },
     "onboard-assets.yml": {
       "monitorVersion": 2,
@@ -4369,7 +4439,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-22T10:27:18Z",
-      "lastPublicationSuccessAt": "2026-10-24T10:28:10.770Z",
+      "lastPublicationSuccessAt": "2026-10-24T11:37:26.819Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40082660929",
       "failures": [
         {
@@ -4949,14 +5019,14 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "6124113127807037b1ab765a177ce87788268471",
-      "publishedDataSha": "2bc3a6d199de2ec1ab260bb73985237e97aec06c"
+      "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     }
   },
-  "updatedAt": "2026-10-24T10:30:05Z",
+  "updatedAt": "2026-10-24T11:39:10Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-24T11:35:54.690393+00:00",
-    "revision": 295,
+    "checkedAt": "2026-10-24T11:39:56.530088+00:00",
+    "revision": 296,
     "active": {
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -4974,7 +5044,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-24T01:39:52.085915+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5003,7 +5073,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -5031,7 +5101,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5059,7 +5129,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -5086,7 +5156,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -5113,7 +5183,224 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:msci-india": {
+        "name": "Inde seule",
+        "tools": [
+          "Coulisses des indices"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=msci-india",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
+          "https://www.msci.com/indexes/index/935600/msci-india-index"
+        ],
+        "kind": "collection",
+        "dataId": "msci-india",
+        "id": "collection:refresh-automated-index-sheets.yml:msci-india",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:ftse-epra-nareit-developed-dividend-plus": {
+        "name": "FTSE EPRA Nareit Developed Dividend+",
+        "tools": [
+          "Coulisses des indices"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=ftse-epra-nareit-developed-dividend-plus",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-dividend-plus-index-ground-rules.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "ftse-epra-nareit-developed-dividend-plus",
+        "id": "collection:refresh-automated-index-sheets.yml:ftse-epra-nareit-developed-dividend-plus",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:msci-world-minimum-volatility-usd": {
+        "name": "MSCI World Minimum Volatility (USD)",
+        "tools": [
+          "Coulisses des indices"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=msci-world-minimum-volatility-usd",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=NETR&start_date=20200101&end_date=20251231&data_frequency=END_OF_MONTH&index_codes=129896",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/mvol-ishares-edge-msci-world-minimum-volatility-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "msci-world-minimum-volatility-usd",
+        "id": "collection:refresh-automated-index-sheets.yml:msci-world-minimum-volatility-usd",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:world": {
+        "name": "MSCI World",
+        "tools": [
+          "Banque de tweets",
+          "Coulisses des indices",
+          "Fiches pratiques"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=world",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf",
+          "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+          "https://www.msci.com/indexes/index/990100/msci-world-index"
+        ],
+        "kind": "collection",
+        "dataId": "world",
+        "id": "collection:refresh-automated-index-sheets.yml:world",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:eurostoxx50": {
+        "name": "EURO STOXX 50",
+        "tools": [
+          "Coulisses des indices",
+          "Fiches pratiques"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=eurostoxx50",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://stoxx.com/index/sx5e/?factsheet=true",
+          "https://stoxx.com/index/sx5t/",
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF"
+        ],
+        "kind": "collection",
+        "dataId": "eurostoxx50",
+        "id": "collection:refresh-automated-index-sheets.yml:eurostoxx50",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:mscieurope": {
+        "name": "MSCI Europe",
+        "tools": [
+          "Banque de tweets",
+          "Coulisses des indices",
+          "Fiches pratiques"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=mscieurope",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
+          "https://www.msci.com/indexes/index/990500/msci-europe-index"
+        ],
+        "kind": "collection",
+        "dataId": "mscieurope",
+        "id": "collection:refresh-automated-index-sheets.yml:mscieurope",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:nasdaq-pea": {
+        "name": "NASDAQ-100 Notional Net Total Return",
+        "tools": [
+          "Coulisses des indices",
+          "Fiches pratiques"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=nasdaq-pea",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+          "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831"
+        ],
+        "kind": "collection",
+        "dataId": "nasdaq-pea",
+        "id": "collection:refresh-automated-index-sheets.yml:nasdaq-pea",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:msci-japan-imi": {
+        "name": "MSCI Japan IMI",
+        "tools": [
+          "Coulisses des indices"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=msci-japan-imi",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf",
+          "https://www.msci.com/indexes/index/664171/msci-japan-imi-index"
+        ],
+        "kind": "collection",
+        "dataId": "msci-japan-imi",
+        "id": "collection:refresh-automated-index-sheets.yml:msci-japan-imi",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+      },
+      "collection:refresh-automated-index-sheets.yml:msci-world-high-dividend-yield-advanced-select": {
+        "name": "MSCI World High Dividend Yield Advanced Select",
+        "tools": [
+          "Coulisses des indices"
+        ],
+        "impactScope": "asset",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+        "to": "/bibliotheque-donnees?id=msci-world-high-dividend-yield-advanced-select",
+        "lastSuccessAt": "2026-10-23T12:18:14Z",
+        "completedAt": "2026-10-24T11:39:10Z",
+        "cause": "Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir",
+        "field": "company-composition",
+        "sourceUrls": [
+          "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
+          "https://www.msci.com/indexes/index/748469/msci-world-high-dividend-yield-advanced-select-index"
+        ],
+        "kind": "collection",
+        "dataId": "msci-world-high-dividend-yield-advanced-select",
+        "id": "collection:refresh-automated-index-sheets.yml:msci-world-high-dividend-yield-advanced-select",
+        "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -5140,7 +5427,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYZK4776:listings": {
         "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
@@ -5166,7 +5453,7 @@
         "dataId": "IE00BYZK4776:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BYZK4776:listings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -5193,7 +5480,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5220,7 +5507,7 @@
         "dataId": "IE00B5BMR087-XLON-CSPX-USD",
         "id": "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD",
         "firstSeenAt": "2026-10-24T01:01:25.269676+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -5249,7 +5536,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BDVPNG13:aum": {
         "id": "field:instrument:IE00BDVPNG13:aum",
@@ -5278,7 +5565,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BDVPNG13:countries": {
         "id": "field:instrument:IE00BDVPNG13:countries",
@@ -5307,7 +5594,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BDVPNG13:sectors": {
         "id": "field:instrument:IE00BDVPNG13:sectors",
@@ -5336,7 +5623,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BDVPNG13:holdings": {
         "id": "field:instrument:IE00BDVPNG13:holdings",
@@ -5365,7 +5652,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BKLF1R75:aum": {
         "id": "field:instrument:IE00BKLF1R75:aum",
@@ -5394,7 +5681,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BKLF1R75:countries": {
         "id": "field:instrument:IE00BKLF1R75:countries",
@@ -5423,7 +5710,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BKLF1R75:sectors": {
         "id": "field:instrument:IE00BKLF1R75:sectors",
@@ -5452,7 +5739,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BKLF1R75:holdings": {
         "id": "field:instrument:IE00BKLF1R75:holdings",
@@ -5481,7 +5768,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -5510,7 +5797,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE00BYZK4776:listings": {
         "id": "field:instrument:IE00BYZK4776:listings",
@@ -5539,7 +5826,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:GB00B15KXQ89:aum": {
         "id": "field:instrument:GB00B15KXQ89:aum",
@@ -5567,7 +5854,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:GB00BJYDH287:aum": {
         "id": "field:instrument:GB00BJYDH287:aum",
@@ -5595,7 +5882,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE0002XZSHO1:aum": {
         "id": "field:instrument:IE0002XZSHO1:aum",
@@ -5623,7 +5910,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -5650,7 +5937,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE000DQLYVB9:aum": {
         "id": "field:instrument:IE000DQLYVB9:aum",
@@ -5678,7 +5965,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -5705,7 +5992,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "field:instrument:JE00B1VS3770:aum": {
         "id": "field:instrument:JE00B1VS3770:aum",
@@ -5733,7 +6020,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -5755,7 +6042,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       },
       "radar:8f8823b8a9df171cbf6f0481": {
         "name": "iShares Listed Private Equity UCITS ETF",
@@ -5778,47 +6065,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du secteur Cash and/or Derivatives. Dernière observation conservée ; propositions archivées (etf:IE00B1TXHL60:sectors:Cash and/or Derivatives:54cb8c3041a4bc9820c74c90:2026-10-22).",
         "id": "radar:8f8823b8a9df171cbf6f0481",
         "firstSeenAt": "2026-10-24T00:34:02.772718+00:00",
-        "lastSeenAt": "2026-10-24T11:35:54.690393+00:00"
+        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
       }
     },
     "events": [
-      {
-        "revision": 266,
-        "at": "2026-10-23T12:18:49.788246+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Indice STOXX Europe 600",
-            "tools": [
-              "Calculateur",
-              "Coulisses des indices",
-              "Fiches pratiques",
-              "Performance depuis"
-            ],
-            "impactScope": "asset",
-            "workflow": "refresh-automated-index-sheets.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39777588758",
-            "to": "/bibliotheque-donnees?id=history%3Astoxx600",
-            "lastSuccessAt": "2026-10-20T12:29:47Z",
-            "completedAt": "2026-10-22T12:25:53Z",
-            "cause": "Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies",
-            "field": "company-composition",
-            "sourceUrls": [
-              "https://stoxx.com/index/sxxp/?factsheet=true",
-              "https://stoxx.com/index/sxxr/",
-              "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF"
-            ],
-            "kind": "collection",
-            "dataId": "stoxx600",
-            "id": "collection:refresh-automated-index-sheets.yml:stoxx600",
-            "firstSeenAt": "2026-10-22T12:26:18.416092+00:00",
-            "lastSeenAt": "2026-10-23T12:06:28.717137+00:00",
-            "resolvedAt": "2026-10-23T12:18:49.788246+00:00"
-          }
-        ],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 267,
         "at": "2026-10-23T12:44:45.755769+00:00",
@@ -9854,6 +10104,24 @@
             "resolvedAt": "2026-10-24T10:30:51.926271+00:00"
           }
         ],
+        "retired": [],
+        "escalated": []
+      },
+      {
+        "revision": 296,
+        "at": "2026-10-24T11:39:56.530088+00:00",
+        "opened": [
+          "collection:refresh-automated-index-sheets.yml:msci-india",
+          "collection:refresh-automated-index-sheets.yml:ftse-epra-nareit-developed-dividend-plus",
+          "collection:refresh-automated-index-sheets.yml:msci-world-minimum-volatility-usd",
+          "collection:refresh-automated-index-sheets.yml:world",
+          "collection:refresh-automated-index-sheets.yml:eurostoxx50",
+          "collection:refresh-automated-index-sheets.yml:mscieurope",
+          "collection:refresh-automated-index-sheets.yml:nasdaq-pea",
+          "collection:refresh-automated-index-sheets.yml:msci-japan-imi",
+          "collection:refresh-automated-index-sheets.yml:msci-world-high-dividend-yield-advanced-select"
+        ],
+        "resolved": [],
         "retired": [],
         "escalated": []
       }
@@ -16347,7 +16615,7 @@
       "attempts": [],
       "reason": null,
       "lastSuccessAt": "2026-10-23T12:18:14Z",
-      "observedRunId": 39950381274,
+      "observedRunId": 40090419702,
       "status": "idle",
       "nextAttemptAt": null
     },
