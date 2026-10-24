@@ -18,3 +18,15 @@ assert.equal(chooseSnapshot({...base,fullGate:true,ancestor:()=>false,changed:()
 
 
 assert.deepEqual(planSnapshot({...base,master:next,info:{sha:newer,dataSha:newer},changed:()=>['src/data/active.json']}),{candidate:old,current:false},'An already fulfilled request must not chase unrelated later data')
+
+// Data already served over unchanged code must not start another full gate.
+const composed={requested:newer,master:next,info:{sha:old,dataSha:newer},ancestor,allowed:base.allowed}
+assert.deepEqual(planSnapshot({...composed,changed:()=>['src/data/active.json']}),{candidate:newer,current:false})
+for(const path of ['src/pages/App.jsx','scripts/collector.py','.github/workflows/deploy-pages.yml','src/data/semantics.js']){
+ assert.ok(!alreadyPublished(newer,composed.info,ancestor,{changed:()=>[path],allowed:base.allowed}),path+' still requires its code gate')
+}
+assert.ok(!alreadyPublished(newer,{sha:old,dataSha:old},ancestor,{changed:()=>['src/data/active.json'],allowed:base.allowed}),'unpublished observations cannot be skipped')
+assert.ok(!alreadyPublished(newer,composed.info,()=>false,{changed:()=>['src/data/active.json'],allowed:base.allowed}),'unrelated code is not a proof')
+assert.ok(!alreadyPublished(newer,composed.info,ancestor,{changed:()=>{throw new Error('missing object')},allowed:base.allowed}))
+assert.ok(!alreadyPublished('invalid',composed.info,ancestor,{changed:()=>[],allowed:base.allowed}))
+console.log('Composed code/data publications recognized only with an included data prefix and proven unchanged code.')
