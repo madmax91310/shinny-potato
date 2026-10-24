@@ -80,7 +80,7 @@ def plan_recovery(state, registry, now, active_runs):
         entry['nextAttemptAt'] = eligible.isoformat()
         runs = active_runs.get(workflow, [])
         observed=(row.get('runId',0),row.get('attempt',1))
-        if any(r.get('status') != 'completed' or (r.get('id',0),r.get('run_attempt',1)) > observed for r in runs):
+        if any(r.get('status') != 'completed' or ((r.get('id',0),r.get('run_attempt',1)) > observed and r.get('conclusion')not in ('cancelled','skipped','neutral')) for r in runs):
             entry['status'] = 'awaiting-current-run'
             continue
         if now < eligible or len(plans) >= MAX_DISPATCHES:
