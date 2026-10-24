@@ -43,5 +43,23 @@
     "checkedAt": "2026-10-24",
     "originalSha256": "c38d5fa842dee27d0cb4fb6ac6b271e5c2b89832d352342757e850f6b60deb03",
     "method": "Découverte du point d’entrée réel puis collecte du document ; fixture limitée au titre, à la date et à un extrait de 700 caractères maximum."
+  },
+  {
+    "case": "securite",
+    "source": "amf-alerts",
+    "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+    "publishedAt": "2026-10-22",
+    "checkedAt": "2026-10-24T20:18:35.327Z",
+    "originalSha256": "6154e4529b73ff4f7e50f212a44b785ba64f30580d87ef3c917c0e0c3cd7da2a",
+    "method": "Extrait borné issu de la collecte réelle depuis le RSS ; preuve de découverte/extraction conservée dans sources.json. Aucun article complet reproduit."
+  },
+  {
+    "case": "gazole",
+    "source": "moneyvox",
+    "url": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+    "publishedAt": "2026-10-24",
+    "checkedAt": "2026-10-24T20:18:35.327Z",
+    "originalSha256": "104ee8b4b7b947a1ed3cb309506882c4b4be4dd9da9e227fc05f17c0080534ae",
+    "method": "Extrait borné issu de la collecte réelle depuis le RSS ; preuve de découverte/extraction conservée dans sources.json. Aucun article complet reproduit."
   }
 ]

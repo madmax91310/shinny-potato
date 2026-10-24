@@ -15,7 +15,7 @@ export function editorialTopic(title, summary = '') {
   const t = normalizeEditorial(title), s = normalizeEditorial(summary)
   if (/\b(?:entreprises?|professionnels?)\b/.test(t) && !/salarie|particulier|menage|foyer|consommateur|epargne salariale/.test(t)) return null
   const rules = [
-    ['securite', /arnaqu|escroqu|fraude bancaire|mettent? en garde|mise en garde|alerte.*epargn|remboursement.*fraude|protection.*depos|usurpation/],
+    ['securite', /arnaqu|escroqu|fraude bancaire|met(?:tent)? en garde|mise en garde|alerte.*epargn|remboursement.*fraude|protection.*depos|usurpation/],
     ['carburants', /carburants?|gazole|gasoil|sans.plomb|cout a la pompe/],
     ['energie', /electricite|\bgaz\b|heures creuses|heures pleines|tarifs? reglementes?|factures? d energie/],
     ['etf', /\betfs?\b|\bucits\b/],
