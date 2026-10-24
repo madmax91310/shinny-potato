@@ -77,6 +77,18 @@ class ProductContracts(unittest.TestCase):
         self.assertEqual(len(limited['monitorSelf']['failures']),20);self.assertLessEqual(len(reads),7)
         self.assertGreater(limited['monitorSelf']['coverage']['pendingRuns'],0)
         self.assertTrue(all(f['qualificationPending']and not f.get('resolvedAt')for f in limited['monitorSelf']['failures'].values()))
+        # The old attempt disappeared from the listing after a rerun. Its exact
+        # retained identity must still be queried, not lost or declared repaired.
+        limited['monitorSelf']['successes']=done['monitorSelf']['successes']
+        def exact_attempt_api(path):
+            if '/jobs?'not in path:return {'workflow_runs':[]}
+            return {'jobs':[{'name':'publish','conclusion':'failure','completed_at':failed['updated_at'],'steps':[{'name':'Initialise current statuses','conclusion':'failure','completed_at':failed['updated_at']}]}]}
+        restored=observe_monitor_history(limited,exact_attempt_api,'test/repo','2026-10-24T16:00:00Z')
+        qualified=[f for f in restored['monitorSelf']['failures'].values()if not f['qualificationPending']]
+        self.assertEqual(len(qualified),6);self.assertTrue(all(f.get('resolvedAt')for f in qualified))
+        self.assertTrue(all(f['firstObservedAt']=='2026-10-24T15:00:00Z'for f in qualified))
+        self.assertEqual(restored['monitorSelf']['coverage']['pendingRuns'],14)
+
 
 
     def test_every_registered_producer_and_fault_class(self):
