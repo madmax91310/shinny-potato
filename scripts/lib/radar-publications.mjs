@@ -135,7 +135,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
   const year = source.id === 'drees' ? null : title.match(/\b(20\d{2}(?:-Q[1-4])?)\b/)?.[1]
   const dataPeriods = years
-  return { ...base, field: 'publication', factType: 'statistical-publication', referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: 'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
+  return { ...base, field: 'publication', rule: 'publication', factType: 'statistical-publication', referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: 'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
 }
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.

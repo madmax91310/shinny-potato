@@ -138,3 +138,6 @@ const studyEvent=advanceRadar(advanceRadar(null,[],{now}).state,[study],{now}).n
 // A silent family bootstrap remains intentional; the publication itself qualifies without a legal status.
 assert.equal(editorialState({...study,after:study.value}),'ready')
 assert.equal(studyEvent,undefined)
+
+const repeatStudy=advanceRadar(advanceRadar(null,[insee],{now}).state,[{...insee,publishedAt:'2026-10-23',period:'2026-10-23'}],{now})
+assert.equal(repeatStudy.newEvents.length,1,'A new official statistical publication is detected even with an unchanged numerical summary')

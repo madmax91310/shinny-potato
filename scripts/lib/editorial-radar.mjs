@@ -162,7 +162,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       // silent: a newly qualified parser is not a market announcement.
       // Old articles added to a newsroom archive are not breaking news.
       const familyBootstrap = after.family === 'pouvoir-achat' && !Object.values(previous?.current ?? {}).some(o => o.family === after.family)
-      const recentAnnouncement = after.rule !== 'announcement' || Date.parse(after.period) >= Date.parse(stamp) - 60 * 86400000
+      const recentAnnouncement = after.rule !== 'announcement' && after.factType !== 'statistical-publication' || Date.parse(after.publishedAt ?? after.period) >= Date.parse(stamp) - 60 * 86400000
       if (previous && !familyBootstrap && !entities.has(`${after.family}:${after.entity}`) && after.discovery && recentAnnouncement) {
         const event = makeEvent(null, after, stamp, 'new')
         event.title = factualTitle(event)
