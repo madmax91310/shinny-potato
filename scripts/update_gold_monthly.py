@@ -150,7 +150,8 @@ def prepare(previous, body, url, today):
               'workbookUpdatedAt': published, 'workbookSha256': hashlib.sha256(body).hexdigest(),
               'points': points}
     # A previous manual PDF cross-check must never certify a newer workbook.
-    result.pop('crossCheck', None)
+    if result['workbookSha256'] != previous.get('workbookSha256'):
+        result.pop('crossCheck', None)
     changed = (points != previous['points'] or result['workbookSha256'] != previous['workbookSha256']
                or url != previous['url'])
     return result, changed

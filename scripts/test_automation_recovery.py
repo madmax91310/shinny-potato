@@ -48,6 +48,12 @@ class RecoveryTests(unittest.TestCase):
             self.assertEqual(self.plan(self.state(), runs=runs)[1], [])
         self.assertEqual(self.plan(self.state(completedAt=(NOW-dt.timedelta(minutes=5)).isoformat()))[1], [])
 
+    def test_completed_cancelled_run_is_not_an_unobserved_source_success(self):
+        for conclusion in ['cancelled','skipped','neutral']:
+            ledger,plans=self.plan(self.state(),runs=[{'id':8,'status':'completed','conclusion':conclusion}])
+            self.assertEqual(plans,['update-test.yml']);self.assertEqual(ledger['update-test.yml']['lastSuccessAt'],'2026-10-17T00:00:00Z')
+        self.assertEqual(self.plan(self.state(),runs=[{'id':8,'status':'in_progress','conclusion':'cancelled'}])[1],[])
+
     def test_future_reservation_survives_clock_skew_without_duplicate_dispatch(self):
         state=self.state()
         reserved={'at':(NOW+dt.timedelta(minutes=2)).isoformat(),'status':'reserved','ref':'master'}
