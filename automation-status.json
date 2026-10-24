@@ -1271,22 +1271,23 @@
     "update-inflation.yml": {
       "monitorVersion": 2,
       "name": "Inflation INSEE",
-      "runId": 39954851177,
+      "runId": 40092195484,
       "attempt": 1,
-      "headSha": "0d045d448a6f5d53f39033d7ea5002fda84604c3",
-      "createdAt": "2026-10-23T12:38:31Z",
-      "completedAt": "2026-10-23T12:39:10Z",
+      "headSha": "753720de65f41d48faf3f371d5b01381108c0fd4",
+      "createdAt": "2026-10-24T12:01:01Z",
+      "completedAt": "2026-10-24T12:01:54Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-23T12:39:10Z",
+      "lastSuccessAt": "2026-10-24T12:01:54Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-23T12:39:10Z",
+      "lastCollectionSuccessAt": "2026-10-24T12:01:54Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39954851177",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40092195484",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "retiredDataFailures": {}
     },
     "refresh-automated-index-sheets.yml": {
       "monitorVersion": 2,
@@ -5022,10 +5023,10 @@
       "publishedDataSha": "a09e08a04b21b3c9566ea704363eb81678806628"
     }
   },
-  "updatedAt": "2026-10-24T11:39:10Z",
+  "updatedAt": "2026-10-24T12:01:54Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-24T11:39:56.530088+00:00",
+    "checkedAt": "2026-10-24T12:02:42.724885+00:00",
     "revision": 296,
     "active": {
       "publication:update-publication-observations.yml": {
@@ -5044,7 +5045,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-24T01:39:52.085915+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5073,7 +5074,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -5101,7 +5102,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5129,7 +5130,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -5156,7 +5157,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -5183,7 +5184,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:msci-india": {
         "name": "Inde seule",
@@ -5206,7 +5207,7 @@
         "dataId": "msci-india",
         "id": "collection:refresh-automated-index-sheets.yml:msci-india",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:ftse-epra-nareit-developed-dividend-plus": {
         "name": "FTSE EPRA Nareit Developed Dividend+",
@@ -5229,7 +5230,7 @@
         "dataId": "ftse-epra-nareit-developed-dividend-plus",
         "id": "collection:refresh-automated-index-sheets.yml:ftse-epra-nareit-developed-dividend-plus",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:msci-world-minimum-volatility-usd": {
         "name": "MSCI World Minimum Volatility (USD)",
@@ -5253,7 +5254,7 @@
         "dataId": "msci-world-minimum-volatility-usd",
         "id": "collection:refresh-automated-index-sheets.yml:msci-world-minimum-volatility-usd",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:world": {
         "name": "MSCI World",
@@ -5279,7 +5280,7 @@
         "dataId": "world",
         "id": "collection:refresh-automated-index-sheets.yml:world",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:eurostoxx50": {
         "name": "EURO STOXX 50",
@@ -5304,7 +5305,7 @@
         "dataId": "eurostoxx50",
         "id": "collection:refresh-automated-index-sheets.yml:eurostoxx50",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:mscieurope": {
         "name": "MSCI Europe",
@@ -5329,7 +5330,7 @@
         "dataId": "mscieurope",
         "id": "collection:refresh-automated-index-sheets.yml:mscieurope",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:nasdaq-pea": {
         "name": "NASDAQ-100 Notional Net Total Return",
@@ -5354,7 +5355,7 @@
         "dataId": "nasdaq-pea",
         "id": "collection:refresh-automated-index-sheets.yml:nasdaq-pea",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:msci-japan-imi": {
         "name": "MSCI Japan IMI",
@@ -5377,7 +5378,7 @@
         "dataId": "msci-japan-imi",
         "id": "collection:refresh-automated-index-sheets.yml:msci-japan-imi",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:refresh-automated-index-sheets.yml:msci-world-high-dividend-yield-advanced-select": {
         "name": "MSCI World High Dividend Yield Advanced Select",
@@ -5400,7 +5401,7 @@
         "dataId": "msci-world-high-dividend-yield-advanced-select",
         "id": "collection:refresh-automated-index-sheets.yml:msci-world-high-dividend-yield-advanced-select",
         "firstSeenAt": "2026-10-24T11:39:56.530088+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -5427,7 +5428,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYZK4776:listings": {
         "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
@@ -5453,7 +5454,7 @@
         "dataId": "IE00BYZK4776:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BYZK4776:listings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -5480,7 +5481,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5507,7 +5508,7 @@
         "dataId": "IE00B5BMR087-XLON-CSPX-USD",
         "id": "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD",
         "firstSeenAt": "2026-10-24T01:01:25.269676+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -5536,7 +5537,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BDVPNG13:aum": {
         "id": "field:instrument:IE00BDVPNG13:aum",
@@ -5565,7 +5566,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BDVPNG13:countries": {
         "id": "field:instrument:IE00BDVPNG13:countries",
@@ -5594,7 +5595,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BDVPNG13:sectors": {
         "id": "field:instrument:IE00BDVPNG13:sectors",
@@ -5623,7 +5624,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BDVPNG13:holdings": {
         "id": "field:instrument:IE00BDVPNG13:holdings",
@@ -5652,7 +5653,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BKLF1R75:aum": {
         "id": "field:instrument:IE00BKLF1R75:aum",
@@ -5681,7 +5682,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BKLF1R75:countries": {
         "id": "field:instrument:IE00BKLF1R75:countries",
@@ -5710,7 +5711,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BKLF1R75:sectors": {
         "id": "field:instrument:IE00BKLF1R75:sectors",
@@ -5739,7 +5740,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BKLF1R75:holdings": {
         "id": "field:instrument:IE00BKLF1R75:holdings",
@@ -5768,7 +5769,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -5797,7 +5798,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE00BYZK4776:listings": {
         "id": "field:instrument:IE00BYZK4776:listings",
@@ -5826,7 +5827,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:GB00B15KXQ89:aum": {
         "id": "field:instrument:GB00B15KXQ89:aum",
@@ -5854,7 +5855,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:GB00BJYDH287:aum": {
         "id": "field:instrument:GB00BJYDH287:aum",
@@ -5882,7 +5883,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE0002XZSHO1:aum": {
         "id": "field:instrument:IE0002XZSHO1:aum",
@@ -5910,7 +5911,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -5937,7 +5938,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE000DQLYVB9:aum": {
         "id": "field:instrument:IE000DQLYVB9:aum",
@@ -5965,7 +5966,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -5992,7 +5993,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "field:instrument:JE00B1VS3770:aum": {
         "id": "field:instrument:JE00B1VS3770:aum",
@@ -6020,7 +6021,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -6042,7 +6043,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       },
       "radar:8f8823b8a9df171cbf6f0481": {
         "name": "iShares Listed Private Equity UCITS ETF",
@@ -6065,7 +6066,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du secteur Cash and/or Derivatives. Dernière observation conservée ; propositions archivées (etf:IE00B1TXHL60:sectors:Cash and/or Derivatives:54cb8c3041a4bc9820c74c90:2026-10-22).",
         "id": "radar:8f8823b8a9df171cbf6f0481",
         "firstSeenAt": "2026-10-24T00:34:02.772718+00:00",
-        "lastSeenAt": "2026-10-24T11:39:56.530088+00:00"
+        "lastSeenAt": "2026-10-24T12:02:42.724885+00:00"
       }
     },
     "events": [
@@ -16524,8 +16525,8 @@
     "update-inflation.yml": {
       "attempts": [],
       "reason": null,
-      "lastSuccessAt": "2026-10-23T12:39:10Z",
-      "observedRunId": 39954851177,
+      "lastSuccessAt": "2026-10-24T12:01:54Z",
+      "observedRunId": 40092195484,
       "status": "idle",
       "nextAttemptAt": null
     },
