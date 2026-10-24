@@ -1352,11 +1352,11 @@
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
       "name": "Expositions ETF qualifiées",
-      "runId": 39967658103,
+      "runId": 40041331543,
       "attempt": 1,
-      "headSha": "c242501f418e8079e722f839d2cba1c237393093",
-      "createdAt": "2026-10-23T14:12:30Z",
-      "completedAt": "2026-10-23T16:28:22Z",
+      "headSha": "b96074bf49fc043ecb7498769c79cb1a5f086f23",
+      "createdAt": "2026-10-23T23:44:20Z",
+      "completedAt": "2026-10-24T00:59:42Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-20T20:23:09Z",
       "collectionStatus": "failure",
@@ -1364,8 +1364,8 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T20:23:09Z",
-      "lastPublicationSuccessAt": "2026-10-23T16:28:12Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
+      "lastPublicationSuccessAt": "2026-10-24T00:59:33Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
       "failures": [
         {
           "job": "report-failures",
@@ -1375,38 +1375,38 @@
       "dataFailures": {
         "dca-holdings:IE00BJGWQN72": {
           "name": "dca-holdings:IE00BJGWQN72",
-          "completedAt": "2026-10-23T16:28:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
-          "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: HTTP Error 403: Forbidden",
+          "completedAt": "2026-10-24T00:59:42Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unava",
           "field": "Composition complète"
         },
         "dca-holdings:IE00BDVPNG13": {
           "name": "dca-holdings:IE00BDVPNG13",
-          "completedAt": "2026-10-23T16:28:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
-          "cause": "HTTP Error 403: Forbidden",
+          "completedAt": "2026-10-24T00:59:42Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-artificial-intelligence",
           "field": "Composition complète"
         },
         "dca-holdings:IE0002Y8CX98": {
           "name": "dca-holdings:IE0002Y8CX98",
-          "completedAt": "2026-10-23T16:28:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
-          "cause": "HTTP Error 403: Forbidden",
+          "completedAt": "2026-10-24T00:59:42Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"sta",
           "field": "Composition complète"
         },
         "dca-holdings:IE000W8WMSL2": {
           "name": "dca-holdings:IE000W8WMSL2",
-          "completedAt": "2026-10-23T16:28:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
-          "cause": "HTTP Error 403: Forbidden",
+          "completedAt": "2026-10-24T00:59:42Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-a",
           "field": "Composition complète"
         }
       },
       "publicationReceipt": {
-        "commit": "aa8bcff061a1af1774a81f9e4bfaef331455ac2f",
+        "commit": "9c9706b6dae6576c1a79ffa72500603a9b79aeb7",
         "files": {
           "public/data/ai-portfolios/book.json": "acb25842ab75162420fdf1e9a33ebf36d541bb4a",
-          "public/data/ai-portfolios/catalogue.json": "79e2effff038797a7a6996503c346c1bd75f6e9f",
+          "public/data/ai-portfolios/catalogue.json": "994df2d4193c5082ee8a5dc267222a436a8f5931",
           "public/data/ai-portfolios/details/00.json": "74d313c428c713a57331d9bc21df2aa6369e5bcb",
           "public/data/ai-portfolios/details/01.json": "7937dcce279677dd2701e00e9fa7a5bc64188fa4",
           "public/data/ai-portfolios/details/02.json": "754e50a168206ae8c1bfb81f51657ed2c57aaa7f",
@@ -1457,7 +1457,7 @@
           "public/data/ai-portfolios/details/2f.json": "b9462a49f1c63960644ea6b67d266c41fbb0b7bb",
           "public/data/ai-portfolios/details/30.json": "9468861ce6e045c9434bf969256dc2c09e9aebc8",
           "public/data/ai-portfolios/details/31.json": "69b48b9ef9bafae3962e6e930c2ae1019adcfac6",
-          "public/data/ai-portfolios/details/32.json": "f6ebd7bdbc8183530653607f058eb1d5c9261eda",
+          "public/data/ai-portfolios/details/32.json": "d39fc3a0cff703ca89a1d9ff7e4665c9b1015888",
           "public/data/ai-portfolios/details/33.json": "6d47760bfc02389c9fbc0c09f479120b4982ba76",
           "public/data/ai-portfolios/details/34.json": "7cfc84ac67e4a7effc34f0736376730393716604",
           "public/data/ai-portfolios/details/35.json": "78f06d5a2b0c7e0208b123267fa276b472252fe8",
@@ -1471,7 +1471,7 @@
           "public/data/ai-portfolios/details/3d.json": "d2f325362ff6f7b0c9fdaf4e4587b9b1e6ce3275",
           "public/data/ai-portfolios/details/3e.json": "ef719174527df48b9c806b18a35b8a5f8d5e3987",
           "public/data/ai-portfolios/details/3f.json": "d03b2136e98caaa9a700be61e18e6fbb8170303f",
-          "public/data/ai-portfolios/details/40.json": "bf96d4391e984c6a8ffe68163af3977be30c65e3",
+          "public/data/ai-portfolios/details/40.json": "f52b54a585c37ab5a99abf0fee8b163d124a53b8",
           "public/data/ai-portfolios/details/41.json": "1418a3ca6262e26b78fea5da7cdfbe92127f6e5e",
           "public/data/ai-portfolios/details/42.json": "cd6f37d6592d2e3e3bc4c777815f22b1b0ad82c6",
           "public/data/ai-portfolios/details/43.json": "e1e41bc746f2dcdf4ea253f8893cff3b7797eb65",
@@ -1555,7 +1555,7 @@
           "public/data/ai-portfolios/details/91.json": "5857cd4a6a24b0c9ad7c6cbd52394650c29c4209",
           "public/data/ai-portfolios/details/92.json": "90d00f869f17d4284cceb5e673e2d35b907cefb9",
           "public/data/ai-portfolios/details/93.json": "5a4923e6678a4f72d33894d95f096cc6af4acb56",
-          "public/data/ai-portfolios/details/94.json": "2ba4f7ee8e8784402b48130436d9249ee989c023",
+          "public/data/ai-portfolios/details/94.json": "3ac07c3ad7fd2492ac60fe374b78701238767798",
           "public/data/ai-portfolios/details/95.json": "93da09e4c95e9b1cf693f8a6cf6a23bb3b8943c7",
           "public/data/ai-portfolios/details/96.json": "19598ef7b0a6a496a95b1ce7b66b8b6d8e222c55",
           "public/data/ai-portfolios/details/97.json": "3dd943cab4ab6e6c0f4881e13d4d7906aa96cadb",
@@ -1664,20 +1664,20 @@
           "public/data/ai-portfolios/details/fe.json": "6d2e514c062932c081c698df74a1cad0de2c40eb",
           "public/data/ai-portfolios/details/ff.json": "1d6e1df3ad40bc1388062adca1b3111042428e8b",
           "public/data/ai-portfolios/equity-catalogue.csv": "2e97e38a725ef5888a15212f44651c7ce1f5d135",
-          "public/data/ai-portfolios/equity-catalogue.json": "187b055c3b1ed3aae540908710dac7b242f01e11",
-          "public/data/ai-portfolios/equity-coverage.json": "6c4401028ca39c7fd7ad77a0cd482cb5aee5d757",
-          "public/data/ai-portfolios/equity-coverage.md": "c710ed7ae371e4c0b2d732cea85def5c92c75d33",
+          "public/data/ai-portfolios/equity-catalogue.json": "ad3348a1217872f6a708d1633d01fb4b5a0a4151",
+          "public/data/ai-portfolios/equity-coverage.json": "e5e4368934ca442e42d641205f2a1c9ae8b773ee",
+          "public/data/ai-portfolios/equity-coverage.md": "893eaf74796c416079a9f270a2aa4bcb9b460d55",
           "public/data/ai-portfolios/final-network-validation.json": "904b4f3114d73be8c23ad85682006cf4b23f3e28",
           "public/data/ai-portfolios/launch-reference-verification.json": "f0fc3f273220b2cf6f36debe2ca51ee4a10ad0e3",
-          "public/data/ai-portfolios/overview.json": "19cecaf72ac034a7782aefa92cdcc18da5ab6d5c",
-          "public/data/ai-portfolios/qualification.csv": "b24f4f7cf481630d15ae71205332b867b7139495",
-          "public/data/ai-portfolios/qualification.json": "ac190e36350e065fa22f781586b2a156d61323a7",
-          "public/data/ai-portfolios/qualification.md": "68bf20c179c7b1cadf32e5c8053b51ff3188516f",
-          "public/data/ai-portfolios/runtime-audit.json": "c3f9d78cfad29b03b4aa36c1fc748f5f1f967683",
-          "public/data/ai-portfolios/selectable-assets.csv": "3ec6490c98065956515a190e71c63a1f4d9a0405",
-          "public/data/ai-portfolios/selectable-assets.json": "17459d300a16d2714065c4ab12f2971df456140e",
+          "public/data/ai-portfolios/overview.json": "af94f51fdf7c359da1c2497be1dadd53ba9dbafe",
+          "public/data/ai-portfolios/qualification.csv": "40dab4015388844a391b9dcfdd94486951ad5fac",
+          "public/data/ai-portfolios/qualification.json": "77a7b291d1a904521537d6e7ff5716dce16dfd28",
+          "public/data/ai-portfolios/qualification.md": "01cd29f02571206d50b6725f1c30c4770c71e460",
+          "public/data/ai-portfolios/runtime-audit.json": "2c9ea2d74ddd21a5ac1980d402cb9bdc00939c9d",
+          "public/data/ai-portfolios/selectable-assets.csv": "3ccc68c5b404cec9283c1a7d69d980b06d8a25ed",
+          "public/data/ai-portfolios/selectable-assets.json": "9928f576ba1e3b353330148d2de9e8fb8bd561df",
           "public/data/ai-portfolios/selectable-equities.csv": "38ff08a65b236800cc8f884ec79e14e98f16711f",
-          "public/data/ai-portfolios/selectable-equities.json": "eb43011ea9a04f792188464cc68a0c8f79f57235",
+          "public/data/ai-portfolios/selectable-equities.json": "8d59af0c4dc6ec033f3e67878ae8916ab306d5a0",
           "public/data/ai-portfolios/series/00.json": "e7b3e49d93399442199da2aaf6f65115c1d46e67",
           "public/data/ai-portfolios/series/01.json": "f6648cb423e38f6077dc295963d47f69ce6610f1",
           "public/data/ai-portfolios/series/02.json": "f23a14a2a0491c000fa18f2673512096a07a39a0",
@@ -1826,7 +1826,7 @@
           "public/data/ai-portfolios/series/91.json": "10b329ce35cdc79f38abc17df2b4bd54545c8533",
           "public/data/ai-portfolios/series/92.json": "ed0a23cec4479bf874aa92d60a6299de35652456",
           "public/data/ai-portfolios/series/93.json": "17ab9660195bca4d36b612e70347e8d2cf3ac38b",
-          "public/data/ai-portfolios/series/94.json": "9cd3c97f8cdb3f61b44b5f1b13a131abd53582fa",
+          "public/data/ai-portfolios/series/94.json": "b5b68e5e8a5119b9ca239262ec6b2013706bd175",
           "public/data/ai-portfolios/series/95.json": "df7e15daf2040b9073ade6827c612b343492f28b",
           "public/data/ai-portfolios/series/96.json": "cda425951766c3fd0467a0cb8c58bbc3ef35d92b",
           "public/data/ai-portfolios/series/97.json": "41a6f95d2791061c695cf71a3a533fff9213dd6f",
@@ -1934,16 +1934,17 @@
           "public/data/ai-portfolios/series/fd.json": "d490b34c3025eda4693c6f7f3d0801a80d4c84fe",
           "public/data/ai-portfolios/series/fe.json": "0191ae7b7ecc9fffafb9576bf88e7bfa3b67d713",
           "public/data/ai-portfolios/series/ff.json": "10576e90c704d429553cf3312a34c2bd13bf0875",
-          "public/data/ai-portfolios/snapshot.json": "ca8a28c0e2039adff5bd71ef252c4b1c0aedd701",
+          "public/data/ai-portfolios/snapshot.json": "4f5295f31d71921a26f5ca8cc6979d2f948e0b80",
           "public/data/ai-portfolios/source-revisions.json": "437c4edf5b7c0d29efbc846891736955edef1c34",
           "public/data/asset-automation.csv": "8df3bd7ddb070b4688dd5bb2f3cd9ca691c5ee8c",
-          "public/data/asset-field-coverage.json": "e4b05d21a457a6c8d5c3906ba98f0930cdcff24d",
+          "public/data/asset-field-coverage.json": "26970010be7a478b0c1c2ef412d7e3bbb1f7afcb",
           "public/data/data-automation-inventory.json": "6e621d37aa87f0cb2191d2a3ba60c1d78db3fe13",
           "public/data/data-automation-inventory.md": "4b18a05473cd845b98d644c60a22473532c57f04",
           "public/data/data-automation-summary.json": "24fe9cd22c11e0ebeccd56ef52c2c5092dbe61f3",
           "public/data/data-connections-backlog.csv": "34f7321602ae9dbea1ef3e182a76fa6b9a0199cd",
-          "public/data/holdings-discovery.json": "f9e1eaf1c608a6cb3192049068a6e5560a26b84b",
-          "public/data/investors/ackman.json": "68a4e8861315a2653ad9c817d0124f9b5035c18e",
+          "public/data/financial-reconciliation.json": "1be685db0aa5533842db4ed84a0f59c922bef32e",
+          "public/data/holdings-discovery.json": "6f400139e751d550b93cdaba2f71d2e9dfa5f815",
+          "public/data/investors/ackman.json": "1e0b040c6fa264b65c88e342e289e1826a0d33c5",
           "public/data/investors/aschenbrenner.json": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
           "public/data/investors/baker-bros.json": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
           "public/data/investors/berkshire.json": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
@@ -1966,14 +1967,14 @@
           "public/data/investors/morfit.json": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
           "public/data/investors/pabrai.json": "92fde4822555660dead1e3026b61b9885e10d30e",
           "public/data/investors/renaissance.json": "11327fe1778e1154023a628cbebadd9b179ee878",
-          "public/data/investors/review-metadata.json": "3ceade006b0003dac1d73e7834e3e85d12951637",
+          "public/data/investors/review-metadata.json": "bdac515b3638f9361cdecb7210cc461313dbc557",
           "public/data/investors/tepper.json": "c866c552fc8e1299caa17fce85999995396f9a95",
           "public/data/investors/terry-smith.json": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
           "public/data/investors/thiel.json": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
           "public/data/investors/vinall.json": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
           "public/data/investors/watsa.json": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
           "public/data/pea-automation.csv": "ae31f0c428046d5300056b859352c429000f3eb9",
-          "public/data/pending-source-checks.json": "bc5dcb7fb69de80ab68055e6cf21bf8b2d8a1719",
+          "public/data/pending-source-checks.json": "7abffc4c03e2bd6ad2f9546935e0eac382bba20b",
           "public/data/shared-market-coverage.json": "9a6cbfd14100bcf6f72972759c999e8a2c53bc86",
           "scripts/source-snapshots/anniversary-indices.json": "41351158e419e791e48fd4444db1c5572399a794",
           "scripts/source-snapshots/automation-recovery-2026-10-10.json": "aa7cbfb38cf221de839d4e5d09cdd5485e7a373c",
@@ -2024,8 +2025,8 @@
           "scripts/source-snapshots/investors-2026-10-03.json": "9362666dfe9bd1085531be64e062c6d49f7cad65",
           "scripts/source-snapshots/live-data-connections-2026-10-20.json": "5120bb7bbc987a578075d0eacb602e5f7962cf62",
           "scripts/source-snapshots/monthly-automated-round4.json": "fd91fb369758f0e77a98d86e855722d9f7cce65e",
-          "scripts/source-snapshots/monthly-automated.json": "1f02860e9c3400e3278422a1271794de28dd8a81",
-          "scripts/source-snapshots/monthly-collection-status.json": "3451c95be3fefdbbd4fe2e980e212d515346ceca",
+          "scripts/source-snapshots/monthly-automated.json": "dd49f7c007741d9c3654dea2f94b3ce5d3770c91",
+          "scripts/source-snapshots/monthly-collection-status.json": "b440808dcec26833e39b75eaaab32deefba47beb",
           "scripts/source-snapshots/monthly-history-additions-2026-10-03.json": "f909f75635d69b5f41446fb8fffecf52ac6b07b4",
           "scripts/source-snapshots/monthly-lifestrategy.json": "2503909b7ea6a6ba2a42c3299eb4debaec54b4ee",
           "scripts/source-snapshots/monthly-qualification-status.json": "86f01bf53677d4d5845a9a0e4f257836d618f620",
@@ -2033,8 +2034,8 @@
           "scripts/source-snapshots/non-bond-monthly-active.json": "7238c7ed34d5676bb0e41e0240561977006a4a71",
           "scripts/source-snapshots/non-bond-monthly-validation.json": "a0e9d08e6f1c77aea2670b7fb13d837cf3e257ca",
           "scripts/source-snapshots/property-infrastructure-2026-10-05.json": "b8a5b11681ee3343dd90a021c0be82f6109db78d",
-          "scripts/source-snapshots/ranking-collection-status.json": "5cf3113365558e140defbba83e07be2865fb47af",
-          "scripts/source-snapshots/ranking-histories.json": "27e8a2c9c37865cac007b93e82e6d7570c2ab083",
+          "scripts/source-snapshots/ranking-collection-status.json": "ddcca62fea3ed3152e32794e24078b92d3a9ca5b",
+          "scripts/source-snapshots/ranking-histories.json": "e1961b2d17d25666825bb2283167b5989b2b88b5",
           "scripts/source-snapshots/remaining-sources-2026-10-10.json": "4b4f48712ef36e9bd504d56cbdeb3961dfb60f68",
           "scripts/source-snapshots/roadmap-monthly-validation.json": "9d76641fcb1f03bf90f9897c446898d79f36567b",
           "scripts/source-snapshots/silver-returns-2026-10-03.json": "dedc82f95d21f9ce883e8c41985040b992592fe8",
@@ -2043,31 +2044,31 @@
           "src/data/allocation-cases.js": "10bc4aabad395d355fa8a356b4c795aba48894e8",
           "src/data/anniversary-index-history.json": "a5e535fdfccff92c4ce787367aa224768640092c",
           "src/data/anniversary-levels.js": "40145419c38c97685d3d3ac6355fb0b46a1e5dba",
-          "src/data/anniversary-levels.json": "919c0c459d32fdc672c4f5cc1b7cb636de22632f",
-          "src/data/annual-fx.json": "670ea95a94915569898e73f854b8a5f5c3b498d8",
+          "src/data/anniversary-levels.json": "e949e1bef65d33b151d289be0eada7f72821fe9a",
+          "src/data/annual-fx.json": "7d26be5dbc395c3fa7c9feaa82eb5b8b4c3bc3aa",
           "src/data/annual-performance-currency.js": "8c02f44c19592de42ce84f37162c3090b30559af",
-          "src/data/annual-portfolio-funds.js": "944a398fb45457f6c7960359819fd2c1f133d0ea",
+          "src/data/annual-portfolio-funds.js": "72744b51b97edd5d9fb3bdd4b7179add4f4e035a",
           "src/data/annual-window.js": "31cb88aa5578e949c2524f8915fcb842ebb55e61",
           "src/data/archive-source-review.js": "6fc78bf11fcde87f35a37e5564b2c2b931369d3c",
           "src/data/asset-labels.js": "c49cbc67f5178763efe11c21a21992265d21cb68",
           "src/data/asset-selection.js": "53d20c3c8c3546123051d10900ed628cc6c89680",
           "src/data/auto-history-identities.json": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
-          "src/data/automated-broker-tariffs.json": "fd3545221575548828a446d44bc3abff517555c9",
-          "src/data/automated-characteristics.js": "2a8e63bdc2e81db66d57da8926afbbd04afe5aac",
+          "src/data/automated-broker-tariffs.json": "435a8c70e3c7ebeaacc085dc2499cf619eee094c",
+          "src/data/automated-characteristics.js": "3543808a2ba8a997b5a811aced8939868dfaa6d1",
           "src/data/automated-economic.json": "d5e352a1c518fd3cc981d1fdbc376bcbfb86ac05",
           "src/data/automated-equity-history.js": "5b3184f1ea17ce538bbe734d5fdd3bcd15ec7434",
-          "src/data/automated-etf-monthly.json": "c3e32b18754e68fd40d443a8b87c25afcaf51e18",
+          "src/data/automated-etf-monthly.json": "3ec99b4b6803dd56d34c5c2cc1d6e680647791ef",
           "src/data/automated-etf.js": "856e11a79b7b660a2ce51c2cfaf6b042ab955383",
-          "src/data/automated-etf.json": "e9948778e4ab668d0e5c32ee35b37f6c63536de6",
+          "src/data/automated-etf.json": "e6007559d1da875602536196b32a54cf2919b0a1",
           "src/data/automated-index-sheets.js": "5aaad6698199f57969f5f05a9ad538125c16d563",
           "src/data/automated-indices.js": "758cce8fa90c7e0de363c3b4732eb7d3f3ab62a6",
-          "src/data/automated-indices.json": "f71114753d46ca654c620936b170886dfc531860",
-          "src/data/automated-instrument-metadata.json": "24a8eb0051ea69f034241ec407a7f85031b0b4fc",
-          "src/data/automated-insurance.json": "43b82055c9be3eb5376a6d65dafb3d262f98b8b0",
-          "src/data/automated-monthly.json": "567be06c2f27ad240f3b9ad1f3fa059e7ce65a2c",
+          "src/data/automated-indices.json": "5e0a8bb8a6adce4d02ebe827b1aab80e147c5d2d",
+          "src/data/automated-instrument-metadata.json": "566c553952c8a1407ac3b1d2842c522ffe71174a",
+          "src/data/automated-insurance.json": "3f57772e18e63dcfce2531eb8ca69d51c62cb54c",
+          "src/data/automated-monthly.json": "d585234cfe7c3a6efe337b6eb5dbb156428f0e31",
           "src/data/automated-portfolio-funds.js": "767cb6b2c546ed3bbbcd5bb6474fedc99cacdde3",
-          "src/data/automated-practical-sheets.json": "64a65ed4c993ed66f3516e0136913eff9841d3b4",
-          "src/data/automated-presentation-actors.json": "336b5e428ff3090a97cda8835b4a76066d6e816f",
+          "src/data/automated-practical-sheets.json": "6da6adb049ef78208a4115e4127811b3777bde8e",
+          "src/data/automated-presentation-actors.json": "5f33b637b695912a7d5b0aba2077a815c514d991",
           "src/data/automated-regulatory.json": "7390d9e1e78da6a1cdcd9edb15e793b3b1ac9e0a",
           "src/data/automated-scpi.json": "24f6fe29fe93c5f06182183f99a6cfb0f30a2520",
           "src/data/automation-workflows.json": "22bd701b7d56d3fc615a11920c5667ffaf7f0851",
@@ -2080,7 +2081,7 @@
           "src/data/calendar-fx.js": "4ddf34a239d15964270827b3d11d04f3963f9dc2",
           "src/data/catalog-browser.js": "11bb58af01915cff66cabe170c42d289c917ccf6",
           "src/data/catalog-search.js": "1ab0c3fa4594f23f69dee8917aa9aa778c9b6794",
-          "src/data/catalog.js": "d7c72e0dd103e756ba995e6a0fc8750e34d90a10",
+          "src/data/catalog.js": "dacbad30883d948beda7cb7fb58a2d615cf220ea",
           "src/data/certified-monthly-indices.js": "2f94009797c5bd2a76a7123b8512bc7ab181a648",
           "src/data/commodity-allocation.js": "ecc9c8b547c3470c67235b890efa1bec9662ff26",
           "src/data/commodity-publication-data.js": "db9a47760ef56278057b030246dc9fb1bdcbdf03",
@@ -2088,11 +2089,11 @@
           "src/data/company-history.js": "3091b22a552d800cd4a808f5b9f295a61620c7e1",
           "src/data/comparator-return-evidence.js": "5346806e540a67b6f1f10589b0ed011b22f4876d",
           "src/data/comparison-etf-details.js": "8cbeed70958ca9d76f54a562b539ba7efb975640",
-          "src/data/data-source-conditions.json": "1ab2867ce1a186008c99e871da3204d894d267ed",
-          "src/data/dca-complete-holdings.json": "843fc1c2d6de315b878d65fc8c6c9c4fb7aeb325",
+          "src/data/data-source-conditions.json": "c64c90c7617384003dac935107225367c6677028",
+          "src/data/dca-complete-holdings.json": "94bd11d756d6e2cecf448b24517393038efe0746",
           "src/data/dca-equity-exposures.json": "bed85d7ad1e505421a4f0813ae986473694fd1c8",
-          "src/data/dca-holdings-status.json": "fbd0968790f290da221089ad3ea5567e9baf4c0f",
-          "src/data/dca-security-classifications.json": "300eaf96366031f785251ce1fdf92b11ed146e1c",
+          "src/data/dca-holdings-status.json": "6ee33bbc7cfca8d67646ece0a71753934f39039c",
+          "src/data/dca-security-classifications.json": "a8a9e234ab58ff710c0ae080ba9403d06b009958",
           "src/data/distinct-asset-selections.js": "31d609e2be111b0e3ab92f655d7f310e25f8c8e9",
           "src/data/distinct-portfolio-assets.js": "fbbb21ec125e9116d65c84b9c0a5f3f9cb5e524b",
           "src/data/diversification-history.js": "2615695d110896568477885a886a42032ca996e5",
@@ -2103,9 +2104,9 @@
           "src/data/editorial-cases.js": "8dfa5c93b74cab352cdb3f1623aa64c2a44fe348",
           "src/data/envelope-fees.js": "249436ff54d73d9e5956be97ea205fa6ee0bc247",
           "src/data/equity-candidates.json": "9c1339f7bd834985ab6c1a2ea2042d5a3f1696e1",
-          "src/data/equity-duel-returns.json": "1c339d2085cb66bec7d9c0a83d82df7ba7242f43",
+          "src/data/equity-duel-returns.json": "742d93b303fadd98e6e446f188d196e8e05c41b9",
           "src/data/equity-history-identities.js": "4aac8ca90da498a0861bc70328ed589e663b6711",
-          "src/data/equity-history-links.json": "066a7b468f7f6c405f18a2f3371eaa738f470ae2",
+          "src/data/equity-history-links.json": "c70e5f3313a18e06d8adb245918acd09de601f31",
           "src/data/etf-cards.js": "b066350a429587b83fcebf0eed2b8f7129f7f6c2",
           "src/data/etf-development.js": "75272ab9644442310f34968a71a26adac44f72ea",
           "src/data/etf-history-identities.js": "2f8585b0062a94f623cb1adb43b241a3f8268482",
@@ -2120,22 +2121,23 @@
           "src/data/evidence-freshness.js": "82ef98dff124ff59f40cbbe28d5d04b5aed706b8",
           "src/data/evidence.js": "aa30e2d7b85943a349135dfaf7a117038c2df8aa",
           "src/data/exposure-additions.js": "b41d6536b90338fdfaf0f0a01e9d2577dacb98e6",
-          "src/data/exposure-etf-expansion-records.json": "f9f903ee575a6c3d5d501306ddc83dd301068676",
+          "src/data/exposure-etf-expansion-records.json": "7db8ef8c76f4645f763489ac18e32c75e210c513",
           "src/data/exposure-etf-expansion.js": "85a3671835c729e94daf4c8052707334c668842f",
           "src/data/exposure-observations.js": "0cdce4c0352116568b56a8023e2b11a553c050d7",
-          "src/data/exposure-sleeves.json": "f0ab87b8c5cad2f7d154af3d6ce9aec6c0eeba0a",
+          "src/data/exposure-sleeves.json": "2cb619ecf0d0866d784607b583a86b6e222b5331",
           "src/data/fee-comparison-assets.js": "83a3c304465ce7f6cb425c8243ef32d37ff267e7",
+          "src/data/financial-history-restrictions.json": "522daccfbe0e2549eca5b2c866a6fc4e15ce73ce",
           "src/data/financial-lexicon.js": "6b4307c26cccdbadc42084ea36a73c996b185fe0",
           "src/data/french-characteristics.js": "eb57909680c31a53073d66325b1d9f233df422c2",
           "src/data/freshness-policy.json": "adeb6fcba067542838dd1310c682e8ca60bb41ff",
           "src/data/global-equities.json": "ce5c7191941103077adfafa862e4ca5f0953f88f",
           "src/data/history-browser.js": "6828f578c8a8ce48f9a75baab2e1b36c51486ce9",
-          "src/data/history-currency.js": "b2340a68b7313cf6d1765b5f6d86682fd83a0980",
+          "src/data/history-currency.js": "0e41a10f54a8ba3d596afb2c3ffc50366131667b",
           "src/data/history-parameters.js": "c95784f457f04e3ac1175987f0a26bb7ded56bd0",
           "src/data/history-selection.js": "5bdbebda036fd74586a6a8bf08e9f3868d6e0842",
           "src/data/history-statistics.js": "e62472f5015d5249bc14ff2c8f70ff3c0b0b131d",
           "src/data/history-visual-identities.js": "8a1196eea34b62f47ccfea4843b91b05407663cd",
-          "src/data/history-window-quality.js": "707e9994876ff63efe3abb297952dda301be1261",
+          "src/data/history-window-quality.js": "d717260e6841a2059595c9bfa72aba2f73c2a2e4",
           "src/data/history-window-restrictions.json": "f837293556809bfecf1e01f5eac910dc8da9c6dc",
           "src/data/household-editorial.js": "f941acc7a0d56ec90e8c040af77398820b9861f7",
           "src/data/household-statistics.js": "e52fa1e7a25d50710f58ffd9e1bebad5610581d3",
@@ -2166,13 +2168,13 @@
           "src/data/instrument-comparator-returns.js": "55ee563072fbebe53d3e7b8bffcef7275d3ee9ee",
           "src/data/instrument-facts.js": "119f5e2d7b15af349ed1b8021b73d6575b70237e",
           "src/data/instrument-listings.js": "e8b7946b0448fac1893f20556755b7eaa7a919de",
-          "src/data/instrument-metadata-status.json": "0e4015545f4e9d0b9f1ae149c019d9b1bcca73c4",
-          "src/data/instrument-metadata.js": "0ff262c49a84992ce1ce67a2bc1a24908fa89664",
+          "src/data/instrument-metadata-status.json": "602d6ecb26ce802763008fa65d03b5dc752de82a",
+          "src/data/instrument-metadata.js": "0a68de8f5cd456e0431ba5b91e37580b3c638b7a",
           "src/data/instrument-pea.js": "f05758a1ee37bedb85a3fcd49008954cea64cd1c",
           "src/data/instrument-performance-review.js": "ffe50e8790e996f65eed0b5b086160b139f4c6e0",
           "src/data/instrument-reference-evidence.js": "7b05a6f7e01fb64f28abb9dccd673b38d1c84b0b",
           "src/data/instrument-returns.js": "05d8bd7cbd49c83cfe64c0b22a8f484b0c70d8aa",
-          "src/data/instruments.js": "008cd5e4127c1fc54593da342a668dc56601f07b",
+          "src/data/instruments.js": "09680165a3407e361dd5632b883bf960970284aa",
           "src/data/insurance.js": "5c861424006d432fbd743bb51dfce0dc63fa47c2",
           "src/data/investment-presets.js": "4877a1fabf9f7e12ff9d40a8b853068f7f6addd2",
           "src/data/investor-profiles.js": "c29c6014da0eb402b1490e63e5dcbf4bbcb6a532",
@@ -2185,8 +2187,8 @@
           "src/data/market-history.js": "8cc21c18abb6299bd79338493c10448c3f6ce7de",
           "src/data/market-story-selection.js": "7c0949187a46181ff7d86ffb7f15b96bdaeea635",
           "src/data/monthly-automation.js": "f030364ea6b36d3974564adf8d3bf3fc636e18a8",
-          "src/data/monthly-duel-returns.json": "fac24078a16cb569047a9d981b8af6cab0a12e0a",
-          "src/data/monthly-fx.json": "333307b0a0625dcdb01c56087f45c78eb6aa092b",
+          "src/data/monthly-duel-returns.json": "1965197bb7f2ccac5a7f572f00e99494e1f5f9bb",
+          "src/data/monthly-fx.json": "f262f162738037f990afcc92c73d9fcb1f6e921d",
           "src/data/monthly-history-additions.js": "8cdc34d6a7365168d3adb23da423882087ced435",
           "src/data/msci-history.js": "bb3b567d7977bb337749e859875cf6388bfb35b4",
           "src/data/new-index-returns.js": "7aa5ad0ff2a7aeaf5767ec7ec1c607abc0c7b4eb",
@@ -2201,7 +2203,7 @@
           "src/data/pea-sector-completion.js": "bc265d72655afde0fef464a1ba77742e4b351e4b",
           "src/data/pel-rates.js": "12c4b9c0b0580f77f69e948bf10e3a6a6ca08c4c",
           "src/data/performance-links.js": "43dc9395b108b25beaea4ccb2f66bd1bfd02812a",
-          "src/data/performance-links.json": "1d8fe8a8582a58e2e6e6514d6810a43e69e07668",
+          "src/data/performance-links.json": "0496bbaadab9593c503b69c95ea9a3b1be333a2a",
           "src/data/portfolio-admissions.js": "e49b7350a2b229ce428fc09ebcda337b1c600fe2",
           "src/data/portfolio-asset-loader.js": "52adaf7cf266ea57de1e538051518dc9a38c2609",
           "src/data/portfolio-assets.js": "f944434e49392b4b723b92e7bd2c14eb512fa8c1",
@@ -2212,23 +2214,23 @@
           "src/data/practical-sheet-topics.js": "99dfd492d4a2976ecd7b256de5be25be0e8c5d8e",
           "src/data/practical-source-data.js": "21a81277c22404c8a905f4b5e8fbd5affcf0030b",
           "src/data/preferred-instrument-tickers.js": "31ab1f35b86248464d2c95e8d9efcb3baa7a8dd3",
-          "src/data/presentation-actors.js": "0220a6c1ccdcc8727aa398b15287e7df9cee73a8",
+          "src/data/presentation-actors.js": "3cea780f36294174b75c7e281aa84eacb0afed91",
           "src/data/presentation-etf-additions.js": "432b782cd8bcfa78aee7dda15f91587e792d3cd9",
           "src/data/presentation-etf-expansion.js": "626566034b621be9b28fba0d24ac3149213a4637",
           "src/data/property-infrastructure-additions.js": "1466a686abe6df58796f49d50652e99e2f323353",
-          "src/data/purchasing-power-observations.json": "cc12c51cad97457ecf982abec918234401808e4c",
+          "src/data/purchasing-power-observations.json": "d18a74cb1951fadb0ca7f17ad47101a34078bce8",
           "src/data/purchasing-power.js": "a1227cc5ba6b7678b20da6829638896e2a44675a",
-          "src/data/qualified-annual-calendars.js": "d00cb05cf4d859af7f776beda233c368e43f1fcf",
+          "src/data/qualified-annual-calendars.js": "97be9f7d97517cdb39bb2692642627c303d30ba8",
           "src/data/qualified-etf-comparisons.js": "4dbcb2b83c5876fa9782a94bdb84b374c18c7012",
-          "src/data/qualified-exposure-etfs.json": "ad4cfaae43cdae6195bebe6a989d86f436d253da",
+          "src/data/qualified-exposure-etfs.json": "d194ca0143928c20ee336524450817e0e1fb4c9e",
           "src/data/qualified-exposure-metrics.js": "0d5b5a5fc6f867368448f9725117a2706e4b6fcc",
           "src/data/qualified-exposure-sheets.js": "dc6221f18603cbca2c81c8cf2e89d4cfd6336610",
-          "src/data/qualified-listing-records.json": "39c3b8791d2af1399b9a5e5955b639576457e3c0",
+          "src/data/qualified-listing-records.json": "e017ce1a023ae68979c08fb0e4fb5e771b88f656",
           "src/data/qualified-listings.js": "4a41d8b254005b3e38e7d2d18a17c89f1211a345",
           "src/data/ranking-annual.json": "ddb7d58affe9c024f40f06c5bc85f115f7502bb4",
           "src/data/ranking-ftse.json": "701312f59f9372db718a9645adaf47f8bf2ef7b8",
-          "src/data/ranking-histories.json": "3fb8cbd0ad63b3da8c7736a6563e0549674ed273",
-          "src/data/ranking-index-annual.json": "5fceb00fac82d0ff72fc45ebf932af229b7a7e24",
+          "src/data/ranking-histories.json": "854ca488b5491e77fad4b397f89d3059d8fe660b",
+          "src/data/ranking-index-annual.json": "62d19114e777c31437ad4da7fd22d9d593e4820f",
           "src/data/regulatory-data.js": "334e20ed46db54c190d24b9302afd4cecdc84434",
           "src/data/resource-selections.js": "0f5df8adca3ef691f06be46128bba32a0165be73",
           "src/data/retired-automations.json": "c23d1187c500ccdb949081ebca3d45fa8a3f0151",
@@ -2245,26 +2247,26 @@
           "src/data/shared-index-history.js": "a002f454c774af9474302e2e064615b84c203367",
           "src/data/shared-qualified-histories.js": "d045335f8e9e3b74e28eb56c63351b09339ab042",
           "src/data/simulation-links.js": "d62d38e367c9390041be93c8269106a7b5104669",
-          "src/data/simulation-links.json": "6efa805ea7fddc17ca44b1c0da1c9339de0473e7",
+          "src/data/simulation-links.json": "61d5f4d6576fe0e2a886b76666e2040125336687",
           "src/data/simulation-proxies.js": "3f26f3ca36ffd41120bf5d170f8cd564cb6ae57b",
           "src/data/supporting-evidence.js": "49e7a34d4319de1a12653d41f22ef504157cd984",
           "src/data/tool-links.js": "346ef895fa18c6bc1725d60b18214b02ae97f375",
           "src/data/tool-links.json": "229cf2b503ba164dd3180aaee34927d72fe9dfda",
-          "src/data/vanguard-equity-underliers.json": "e4eaa8f2bd87d49a170d486b4e226e5dcc24cb97",
+          "src/data/vanguard-equity-underliers.json": "aa91dd89d9a439d0f37ba5ae42ca03a408b9328f",
           "src/data/verified-returns.js": "c7c27ab3a0b263a531889568c147f7f95b0d2af5",
           "src/data/world-factor-additions.js": "2f8aeef16c9d47e81d70f7a91de4beab007e425b",
           "src/data/worldbank-gold-monthly.json": "9130eced22c23ec98efd5832148eca21f4e2f446",
-          "src/pages/dca-profiles/catalog.json": "c939d7caab03e8e347e0342971de3d9d586b1773",
-          "src/pages/dca-profiles/exposures-extra-0.json": "f021a4790da1aa6406f4285fe65ef2f4dc46a85f",
-          "src/pages/dca-profiles/exposures-extra-1.json": "5a7987ce05281316485edcea68c82388ad1acce4",
-          "src/pages/dca-profiles/exposures-extra-2.json": "93c3111cde344470d553647a287f873698d9502b",
+          "src/pages/dca-profiles/catalog.json": "dfce67c6bd00629f9fcbfc2e1c4064e2d576d2c8",
+          "src/pages/dca-profiles/exposures-extra-0.json": "5ffadb9a56a1f226001ba01dc9a0dc1ffa9ef5b4",
+          "src/pages/dca-profiles/exposures-extra-1.json": "75f9093ee9d2e8fdb6d073978300786ab7029516",
+          "src/pages/dca-profiles/exposures-extra-2.json": "0a2ae9508787d40fff75118af19274c75d0b368b",
           "src/pages/dca-profiles/exposures.json": "bec55086e31474b27803ef836c3282565dc92f5b",
           "src/pages/dca-profiles/holdings-0.json": "07631bd20f252273a2db33eeca66c315931299b1",
           "src/pages/dca-profiles/holdings-1.json": "180c9bd6800d8003ff74d7939562167e2f27a880",
           "src/pages/dca-profiles/holdings-10.json": "58a6d115325d3c90fca1b982f7b7bab3516dcdad",
-          "src/pages/dca-profiles/holdings-11.json": "0cc7a610bcb4bdb36bf5a29b573c7b9c41198365",
+          "src/pages/dca-profiles/holdings-11.json": "2cff0fa762e1c2c99da944f69f866419dd45501a",
           "src/pages/dca-profiles/holdings-12.json": "e72b432e29a77866a3bbf9ad237946291942b214",
-          "src/pages/dca-profiles/holdings-13.json": "4d34c7ecccdd7c54fea4356abcf0ef2d9d933040",
+          "src/pages/dca-profiles/holdings-13.json": "8b3fbafd148e3dd6c373350763b3e3f88c066d3c",
           "src/pages/dca-profiles/holdings-14.json": "83f0bc004e8256baa5e0e632e1af73c5c23d32ea",
           "src/pages/dca-profiles/holdings-15.json": "9ff8d64b4531a44889e40c55c2de0c3af7fc1cfa",
           "src/pages/dca-profiles/holdings-16.json": "1e0070dc107ea95a7f6e0142761f87b534d6b90d",
@@ -2273,26 +2275,26 @@
           "src/pages/dca-profiles/holdings-19.json": "6ac86c695bbe2549f81327fa82e87684f588e943",
           "src/pages/dca-profiles/holdings-2.json": "52d6de0fbcb939302460ac29131484b297375fbc",
           "src/pages/dca-profiles/holdings-20.json": "cf7f91e66946eb2ad7210f2ceebf4dc813e72d12",
-          "src/pages/dca-profiles/holdings-21.json": "858735ad3a93fc7ecdc2a06e3b586f26cadc2719",
+          "src/pages/dca-profiles/holdings-21.json": "0bac9c9336822a8dea9e2665c4d980b44244eeaf",
           "src/pages/dca-profiles/holdings-22.json": "3751543a0ebada47b87b750f4d95149126d0d077",
           "src/pages/dca-profiles/holdings-23.json": "a843259e0c0684a76634108e23d2cb63bc586a2f",
           "src/pages/dca-profiles/holdings-24.json": "1de763e94d31bbf97371ed837040d04e4cd1c435",
-          "src/pages/dca-profiles/holdings-25.json": "27e2f35e2f8f782658a7968b1673ba3cdeec63d4",
+          "src/pages/dca-profiles/holdings-25.json": "f1057ad576769f50922520f2b0ba3870f0086b0b",
           "src/pages/dca-profiles/holdings-26.json": "efd835b2e2852a7920396db76505b57ce60b2a47",
           "src/pages/dca-profiles/holdings-27.json": "5ec4988b6f866263ce16793fd7ba381288f7584e",
           "src/pages/dca-profiles/holdings-28.json": "94878faf7654ccc0798704bcd0ceebbccae508bc",
-          "src/pages/dca-profiles/holdings-29.json": "a011c2a2a4b3a6be7a15c015ba4a92046be24b16",
+          "src/pages/dca-profiles/holdings-29.json": "6f9b7be4cfc85ae78e6e7b1aed212ba36dd151eb",
           "src/pages/dca-profiles/holdings-3.json": "6b06e6ba81bd04df4aeae8dcc707111d2675cada",
           "src/pages/dca-profiles/holdings-30.json": "0116627744f67ca123a009e292af6f051cdb8c47",
           "src/pages/dca-profiles/holdings-31.json": "55dc87ba2fd2c28688880281f3f15c738da35354",
           "src/pages/dca-profiles/holdings-4.json": "ed69f2fa3923a092cea4eb264a90910b295f804f",
-          "src/pages/dca-profiles/holdings-5.json": "f82439f19aaf12ed1eb8a113db5a5c8aa47753a1",
+          "src/pages/dca-profiles/holdings-5.json": "16301706c256127eff918d38d0f8aee39912fce8",
           "src/pages/dca-profiles/holdings-6.json": "46acabbbff5447f7479ec40e7078e164517031a5",
           "src/pages/dca-profiles/holdings-7.json": "10e0c67ed933b371df1859cdcc3c49ace7083f08",
-          "src/pages/dca-profiles/holdings-8.json": "6c3a1d1ec2fe6f7c91dc456894dd913313fd8ac1",
+          "src/pages/dca-profiles/holdings-8.json": "a9e479eff60e75db2e3d6c2e9df3cb990b909de3",
           "src/pages/dca-profiles/holdings-9.json": "b734676a06161139577accecdf3f22e378ec7a1c",
           "src/pages/dca-profiles/holdings-manifest.json": "ebb8975fd1d4f2096ed03f89bbfa0fe15df80b45",
-          "src/pages/dca-profiles/holdings.json": "338810abdebe45a9f8a28cd93a8be72dc9cd2699"
+          "src/pages/dca-profiles/holdings.json": "06a99e3eeb4fc2a7d46a16e3e803fc8715970329"
         },
         "schemaVersion": 1
       }
@@ -3877,10 +3879,10 @@
       "publishedDataSha": "19344ba472f15cc9eb6cf40a575b081b7354f34c"
     }
   },
-  "updatedAt": "2026-10-24T00:43:27Z",
+  "updatedAt": "2026-10-24T00:59:42Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-24T00:48:24.930645+00:00",
+    "checkedAt": "2026-10-24T01:00:36.670048+00:00",
     "revision": 285,
     "active": {
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
@@ -3910,7 +3912,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -3933,7 +3935,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -3946,11 +3948,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-qualified-exposures.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
         "to": "/bibliotheque-donnees?id=IE00BJGWQN72",
         "lastSuccessAt": "2026-10-20T20:23:09Z",
-        "completedAt": "2026-10-23T16:28:22Z",
-        "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: HTTP Error 403: Forbidden",
+        "completedAt": "2026-10-24T00:59:42Z",
+        "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc\", \"status\": \"unava",
         "field": "Composition complète",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
@@ -3961,7 +3963,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -3974,11 +3976,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-qualified-exposures.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
         "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
         "lastSuccessAt": "2026-10-20T20:23:09Z",
-        "completedAt": "2026-10-23T16:28:22Z",
-        "cause": "HTTP Error 403: Forbidden",
+        "completedAt": "2026-10-24T00:59:42Z",
+        "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-artificial-intelligence",
         "field": "Composition complète",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
@@ -3989,7 +3991,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -4000,11 +4002,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-qualified-exposures.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
         "to": "/bibliotheque-donnees?id=IE0002Y8CX98",
         "lastSuccessAt": "2026-10-20T20:23:09Z",
-        "completedAt": "2026-10-23T16:28:22Z",
-        "cause": "HTTP Error 403: Forbidden",
+        "completedAt": "2026-10-24T00:59:42Z",
+        "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc\", \"sta",
         "field": "Composition complète",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
@@ -4016,7 +4018,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -4027,11 +4029,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-qualified-exposures.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39967658103",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
         "to": "/bibliotheque-donnees?id=IE000W8WMSL2",
         "lastSuccessAt": "2026-10-20T20:23:09Z",
-        "completedAt": "2026-10-23T16:28:22Z",
-        "cause": "HTTP Error 403: Forbidden",
+        "completedAt": "2026-10-24T00:59:42Z",
+        "cause": "Public issuer routes unavailable: [{\"sourceUrl\": \"https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/ie/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc\", \"status\": \"unavailable\", \"error\": \"HTTP Error 403: Forbidden\"}, {\"sourceUrl\": \"https://www.wisdomtree.com/nl/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-a",
         "field": "Composition complète",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
@@ -4043,7 +4045,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -4070,7 +4072,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -4099,7 +4101,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -4128,7 +4130,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BDVPNG13:aum": {
         "id": "field:instrument:IE00BDVPNG13:aum",
@@ -4157,7 +4159,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BDVPNG13:countries": {
         "id": "field:instrument:IE00BDVPNG13:countries",
@@ -4186,7 +4188,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BDVPNG13:sectors": {
         "id": "field:instrument:IE00BDVPNG13:sectors",
@@ -4215,7 +4217,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BDVPNG13:holdings": {
         "id": "field:instrument:IE00BDVPNG13:holdings",
@@ -4244,7 +4246,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BKLF1R75:aum": {
         "id": "field:instrument:IE00BKLF1R75:aum",
@@ -4273,7 +4275,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BKLF1R75:countries": {
         "id": "field:instrument:IE00BKLF1R75:countries",
@@ -4302,7 +4304,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BKLF1R75:sectors": {
         "id": "field:instrument:IE00BKLF1R75:sectors",
@@ -4331,7 +4333,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BKLF1R75:holdings": {
         "id": "field:instrument:IE00BKLF1R75:holdings",
@@ -4360,7 +4362,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -4389,7 +4391,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE00BYZK4776:listings": {
         "id": "field:instrument:IE00BYZK4776:listings",
@@ -4418,7 +4420,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:GB00B15KXQ89:aum": {
         "id": "field:instrument:GB00B15KXQ89:aum",
@@ -4446,7 +4448,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:GB00BJYDH287:aum": {
         "id": "field:instrument:GB00BJYDH287:aum",
@@ -4474,7 +4476,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE0002XZSHO1:aum": {
         "id": "field:instrument:IE0002XZSHO1:aum",
@@ -4502,7 +4504,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -4529,7 +4531,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE000DQLYVB9:aum": {
         "id": "field:instrument:IE000DQLYVB9:aum",
@@ -4557,7 +4559,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -4584,7 +4586,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "field:instrument:JE00B1VS3770:aum": {
         "id": "field:instrument:JE00B1VS3770:aum",
@@ -4612,7 +4614,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -4634,7 +4636,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:4c3362f0091de10f80251dae": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4654,7 +4656,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4c3362f0091de10f80251dae",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:53ed9235fe9fe9fe6e5b95e6": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4674,7 +4676,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Taiwan. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Taiwan:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:53ed9235fe9fe9fe6e5b95e6",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:6435e61844c83c784d6ea423": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4694,7 +4696,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6435e61844c83c784d6ea423",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:80525dea7d9f868ce9221e4e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4714,7 +4716,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:80525dea7d9f868ce9221e4e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:557209b962c2546382a62468": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4734,7 +4736,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:557209b962c2546382a62468",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:33c64bcb281658a32243d552": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4754,7 +4756,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c64bcb281658a32243d552",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:ef96176220f03d7291465c54": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4774,7 +4776,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ef96176220f03d7291465c54",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:652abd029e4edf33dc8bbd5b": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4794,7 +4796,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:652abd029e4edf33dc8bbd5b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:009bccefe6b8d09d7cab24b3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4814,7 +4816,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:009bccefe6b8d09d7cab24b3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:d5684ba01c7cce49ff929b2f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4834,7 +4836,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:d5684ba01c7cce49ff929b2f",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:6571393d1ff1c36bc6761e5c": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4854,7 +4856,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6571393d1ff1c36bc6761e5c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:fc4ff751fdd461132df1d976": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4874,7 +4876,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:fc4ff751fdd461132df1d976",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:693a3c90008da97d02ab1636": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4894,7 +4896,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:693a3c90008da97d02ab1636",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:483a1eb3ca1c9ba0a9ac1275": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4914,7 +4916,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Italy. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Italy:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:483a1eb3ca1c9ba0a9ac1275",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:ed26659e68f08e7c32a25f3e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4934,7 +4936,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Sweden:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ed26659e68f08e7c32a25f3e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:736fff1d926c9fa76c21f534": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4954,7 +4956,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:736fff1d926c9fa76c21f534",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:79b0b52a606a84e1228fb76e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4974,7 +4976,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:79b0b52a606a84e1228fb76e",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:cd7988476c2bb5544e2c8ac8": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -4994,7 +4996,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays South Africa. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:South Africa:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:cd7988476c2bb5544e2c8ac8",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:6b88bbe560baad8407db6696": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5014,7 +5016,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Mexico. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Mexico:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:6b88bbe560baad8407db6696",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:f9c61b9d07f565352bb61490": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5034,7 +5036,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Belgium:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:f9c61b9d07f565352bb61490",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:1f12be33fec21d85d9592c45": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5054,7 +5056,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:1f12be33fec21d85d9592c45",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:683ec14d2988365b406744be": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5074,7 +5076,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Norway. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Norway:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:683ec14d2988365b406744be",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:32cd7c7293a29e54c84b8115": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5094,7 +5096,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:32cd7c7293a29e54c84b8115",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:61504f15a5a7cd4ebee87628": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5114,7 +5116,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:61504f15a5a7cd4ebee87628",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:51096030b6e58dc48b6a5da9": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5134,7 +5136,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Cayman Islands:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:51096030b6e58dc48b6a5da9",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:33c7232da829f19492e4b368": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5154,7 +5156,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:33c7232da829f19492e4b368",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:ac763c6cbdcf20d5dc112748": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5174,7 +5176,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:ac763c6cbdcf20d5dc112748",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:24774469f7e74ea6711fff3a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5194,7 +5196,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:24774469f7e74ea6711fff3a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:4b65c84e71f8acf5261c24f7": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5214,7 +5216,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Jersey:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:4b65c84e71f8acf5261c24f7",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:b3576866a9279c03559453e3": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5234,7 +5236,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:b3576866a9279c03559453e3",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:96242cd5106e391dcbb0c041": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5257,7 +5259,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:96242cd5106e391dcbb0c041",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:a196e10e49cd81cb863e6d65": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5280,7 +5282,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:a196e10e49cd81cb863e6d65",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:48efb4a62fc1bb48d3fdcf95": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -5300,7 +5302,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-22).",
         "id": "radar:48efb4a62fc1bb48d3fdcf95",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:235ba88fa77ea52e6b88d99b": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5323,7 +5325,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:235ba88fa77ea52e6b88d99b",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:94c601ea28a32dc05f7fdf0c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5346,7 +5348,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:94c601ea28a32dc05f7fdf0c",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:b7ae9c00f47ae63803663c7a": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -5369,7 +5371,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Hong Kong:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-22).",
         "id": "radar:b7ae9c00f47ae63803663c7a",
         "firstSeenAt": "2026-10-23T14:49:16.431032+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:dd54b3879b5afbb5767b440c": {
         "name": "Bitwise Physical Bitcoin ETP",
@@ -5393,7 +5395,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-23) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-23).",
         "id": "radar:dd54b3879b5afbb5767b440c",
         "firstSeenAt": "2026-10-23T22:12:06.931752+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       },
       "radar:8f8823b8a9df171cbf6f0481": {
         "name": "iShares Listed Private Equity UCITS ETF",
@@ -5416,7 +5418,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du secteur Cash and/or Derivatives. Dernière observation conservée ; propositions archivées (etf:IE00B1TXHL60:sectors:Cash and/or Derivatives:54cb8c3041a4bc9820c74c90:2026-10-22).",
         "id": "radar:8f8823b8a9df171cbf6f0481",
         "firstSeenAt": "2026-10-24T00:34:02.772718+00:00",
-        "lastSeenAt": "2026-10-24T00:48:24.930645+00:00"
+        "lastSeenAt": "2026-10-24T01:00:36.670048+00:00"
       }
     },
     "events": [
@@ -14239,7 +14241,7 @@
       ],
       "reason": null,
       "lastSuccessAt": "2026-10-20T20:23:09Z",
-      "observedRunId": 39967658103,
+      "observedRunId": 40041331543,
       "status": "idle",
       "nextAttemptAt": null
     },
