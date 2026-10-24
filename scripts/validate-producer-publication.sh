@@ -6,14 +6,25 @@ if [[ -n "${VALIDATED_DATA_ORIGINAL_BASE:-}" && "$(git rev-parse HEAD^)" == "$VA
   exit 0
 fi
 case "${1:-}" in
-  regulatory|holdings|non-bond|scpi|publication|insurance) ;;
+  regulatory|holdings|non-bond|scpi|publication|insurance|indices) ;;
   *) echo 'Unknown producer revalidation contract' >&2; exit 2 ;;
 esac
-if [[ "$1" == scpi || "$1" == publication || "$1" == insurance ]]; then
+if [[ "$1" == scpi || "$1" == publication || "$1" == insurance || "$1" == indices ]]; then
   python3 scripts/observation_rebase_guard.py --kind "$1" --base "${VALIDATED_DATA_ORIGINAL_BASE:?Missing collection base}"
 fi
 npm ci --ignore-scripts
 case "$1" in
+  indices)
+    for pattern in test_complete_index_sheets.py test_world_sector_indices.py test_index_composition_gate.py test_index_companies.py test_korea_companies.py; do
+      python3 -m unittest discover -s scripts -p "$pattern"
+    done
+    node scripts/build-index-company-compositions.mjs
+    node scripts/test-index-proxy-identity.mjs
+    node scripts/test-index-concentration.mjs
+    node scripts/test-automated-index-sheets.mjs
+    node scripts/test-automated-indices.mjs
+    npm run audit:index-facts
+    ;;
   insurance)
     python3 -m unittest discover -s scripts -p 'test_insurance.py'
     python3 -m unittest discover -s scripts -p 'test_publication_periods.py'
@@ -59,6 +70,7 @@ npm run audit:data-catalog
 npm run audit:data-provenance
 if [[ "$1" == holdings ]]; then node scripts/test-dca-profiles.mjs; fi
 case "$1" in
+  indices) git diff --exit-code HEAD -- src/data/automated-indices.json src/data/index-company-observations.json src/data/index-company-qualified.json ;;
   insurance) git diff --exit-code HEAD -- src/data/automated-insurance.json ;;
   scpi) git diff --exit-code HEAD -- src/data/automated-scpi.json ;;
   publication) git diff --exit-code HEAD -- src/data/purchasing-power-observations.json src/data/anniversary-levels.json src/data/anniversary-index-history.json scripts/source-snapshots/anniversary-indices.json ;;

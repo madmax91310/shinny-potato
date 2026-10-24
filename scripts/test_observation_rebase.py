@@ -36,6 +36,14 @@ class ObservationRebaseTests(unittest.TestCase):
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
         self.assertEqual(self.f.git(self.f.remote, 'show', 'master:src/data/automated-insurance.json'), 'concurrent update')
 
+    def test_index_collection_can_revalidate_after_independent_scpi(self):
+        self.f.advance_remote('src/data/automated-scpi.json')
+        result=self.publish('indices');self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(self.f.git(self.f.remote,'show','master:src/data/automated-scpi.json'),'concurrent update')
+
+    def test_index_collection_cannot_reuse_changed_collection_inputs(self):
+        self.assert_refused('src/data/automated-etf-monthly.json','indices')
+
     def test_publication_can_revalidate_after_scpi(self):
         self.f.advance_remote('src/data/automated-scpi.json')
         result = self.publish('publication')
