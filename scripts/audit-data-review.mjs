@@ -129,7 +129,12 @@ assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/
 assert.equal(new Set(current.schedule.map(x => x.id)).size, current.schedule.length)
 assert(current.schedule.every(x => x.nextReviewAt || x.category === 'undated'))
 assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, INVESTORS.length)
-assert(current.schedule.filter(x => x.id.startsWith('investor:')).every(x => x.nextReviewAt === '2026-11-14'))
+for(const row of current.schedule.filter(x=>x.id.startsWith('investor:'))){
+  const year=Number(row.metadata.asOf.slice(0,4)),quarter=row.metadata.asOf.slice(5)
+  const deadlines={'03-31':`${year}-08-14`,'06-30':`${year}-11-14`,'09-30':`${year+1}-02-14`,'12-31':`${year+1}-05-15`}
+  assert(Object.hasOwn(deadlines,quarter),'Le trimestre source doit être explicite')
+  assert.equal(row.nextReviewAt,deadlines[quarter],row.id+' : échéance du trimestre réellement enregistré')
+}
 
 const calendar = reviewCalendar(buildReview('2026-10-03'))
 assert.equal(new Set(calendar.map(item => item.id)).size, calendar.length)
@@ -137,11 +142,17 @@ assert(calendar.every(item => item.cadence), 'Chaque contrôle possède la tempo
 const groups = summarizeCadences(calendar, '2026-10-03')
 assert.equal(groups.reduce((sum, group) => sum + group.total, 0), calendar.length)
 assert(groups.every(group => group.due === 0), 'Les contrôles de cette semaine sont pris en compte')
-assert.equal(groups.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
+// Ordinary producers renew their control dates. A historical test day must not
+// assume the live catalogue still contains a control predating that day.
+const fixedCadences=summarizeCadences([
+  scheduledReview({checkedAt:'2026-10-02'},monthly,'2026-10-03'),
+  scheduledReview({checkedAt:'2026-10-02'},{registry:'src/data/instrument-returns.js'},'2026-10-03'),
+],'2026-10-03')
+assert.equal(fixedCadences.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
 assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuilles trimestriels'))
 assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, INVESTORS.length)
 assert.equal(groups.find(group => group.id === 'event').total, offerKeys(datedOffers).length)
-assert.equal(groups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
+assert.equal(fixedCadences.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
 const groupFixture = summarizeCadences([
   { cadence: 'monthly', nextReviewAt: '2026-09-01', category: 'stale', dataType: 'Cours mensuels' },
   { cadence: 'monthly', nextReviewAt: '2026-10-03', category: 'stale', dataType: 'Cours mensuels' },
