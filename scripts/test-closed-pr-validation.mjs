@@ -13,3 +13,5 @@ console.log('Closed PR cleanup cannot cancel master, publications, forks, other 
 const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
 assert.match(deploy,/group: pages-validation-v3-.*github\.ref/)
 assert.match(deploy,/cancel-in-progress: \$\{\{ github\.event_name == 'pull_request' \}\}/,'Only superseded PR validations may be cancelled; production validations remain serialized')
+
+assert.match(deploy,/queue: \$\{\{ github\.event_name == 'pull_request' && 'single' \|\| 'max' \}\}/,'PR replacement requires the single pending queue; production retains the max queue')

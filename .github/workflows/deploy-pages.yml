@@ -30,7 +30,7 @@ concurrency:
   group: pages-validation-v3-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
   # Superseded PR revisions cannot publish; keep every production validation.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-  queue: max
+  queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
 
 jobs:
   current-snapshot:
