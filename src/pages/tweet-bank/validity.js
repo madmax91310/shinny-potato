@@ -29,6 +29,8 @@ export function reviewPolicy(tweet) {
   if (tweet.id === 'simulation:world-pea-cto-30-ans') return { kind: 'reviewed', checkedAt: '2026-10-18', maxAge: 30 }
   // Récit validé par l’auteur, sans données chiffrées ou caractéristiques de produits à actualiser.
   if (tweet.id === 'story:parler-investissement-proches') return { kind: 'general', maxAge: null }
+  // 13 références sectorielles PEA, frais, distributions et seuil d'encours : preuves dans l’entrée.
+  if (tweet.id === 'guide:sectoriels-thematiques-pea') return reviewed(tweet, tweet.reviewedAt)
   // Guide ETF actifs : ISIN, frais et stratégies vérifiés le 13/10/2026 ; sources dans l’entrée.
   if (tweet.id === 'guide:active-etfs') return reviewed(tweet, '2026-10-13')
   // ISIN, frais, PEA et levier quotidien revus auprès des émetteurs le 13/10/2026.
