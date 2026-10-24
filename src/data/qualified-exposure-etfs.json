@@ -18,6 +18,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20141003"
     },
     "terPct": 0.3,
@@ -335,7 +340,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "bb3520192391203cda728fae778964c19473db375dac43e492f76a6a1bba5e62",
     "automatedRecord": {
       "currency": "USD",
@@ -575,8 +580,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20141003",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -624,6 +634,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -696,6 +716,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20070316"
     },
     "terPct": 0.65,
@@ -978,7 +1003,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "4380e06d8ee71276b2a79bd32b108eb8e6639e968868cfd7886a1f5b34f4d5be",
     "automatedRecord": {
       "currency": "USD",
@@ -1158,8 +1183,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20070316",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -1207,6 +1237,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -1290,6 +1330,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20110916"
     },
     "terPct": 0.55,
@@ -1551,7 +1596,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "f29b617338070c789aadea0dcbf23f59e43b884b6ae579b99eb91bdc748d0675",
     "automatedRecord": {
       "currency": "USD",
@@ -1728,8 +1773,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20110916",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -1777,6 +1827,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -1849,6 +1909,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20071012"
     },
     "terPct": 0.65,
@@ -2105,7 +2170,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "5c7686ae4f33232ac3404100975593c709643248832ae6fbd97ab1682c39b827",
     "automatedRecord": {
       "currency": "USD",
@@ -2277,8 +2342,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20071012",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -2326,6 +2396,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -2408,6 +2488,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20070316"
     },
     "terPct": 0.75,
@@ -2472,16 +2557,8 @@
       "asOf": "2026-10-22",
       "rows": [
         {
-          "name": "Financials",
-          "weightPct": 99.11
-        },
-        {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.53
-        },
-        {
-          "name": "Other",
-          "weightPct": 0.37
+          "weightPct": 100.0
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -2670,8 +2747,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "67deffdc677ac0f29de24b0924b6ae613d12f03ec47ba4df55be1113a65ae34c",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "f241bc0981e10d863e9b88dfcf996f593549c8d4dc70df39f0018b3b6ac6950a",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251918,
@@ -2689,19 +2766,9 @@
         "asOf": "2026-10-22",
         "rows": [
           {
-            "name": "Financials",
-            "weightPct": 99.11,
-            "label": "Financials"
-          },
-          {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.53,
+            "weightPct": 100.0,
             "label": "Cash and/or Derivatives"
-          },
-          {
-            "name": "Other",
-            "weightPct": 0.37,
-            "label": "Autres"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
@@ -2825,8 +2892,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20070316",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -2874,6 +2946,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -2956,6 +3038,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20220407"
     },
     "terPct": 0.18,
@@ -3189,7 +3276,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "c1e2f161b9d88e4a30a333c5c070c2221717c1d91ab29838846bf6429b85f218",
     "automatedRecord": {
       "currency": "USD",
@@ -3343,8 +3430,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20220407",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -3385,6 +3477,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -3468,6 +3570,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20191017"
     },
     "terPct": 0.18,
@@ -3696,7 +3803,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "8050f90d9525d4df275f13ed2c41a2902bc63bf34b630df0e328ccf8d956c529",
     "automatedRecord": {
       "currency": "USD",
@@ -3842,8 +3949,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20191017",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -3887,6 +3999,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -3970,6 +4092,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20191016"
     },
     "terPct": 0.18,
@@ -4198,7 +4325,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "aa3ee117d96c8d143817e5eacaefec36d5173498a39827a23b919d3350110a86",
     "automatedRecord": {
       "currency": "USD",
@@ -4344,8 +4471,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20191016",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -4389,6 +4521,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -4472,6 +4614,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20191017"
     },
     "terPct": 0.18,
@@ -4700,7 +4847,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "799a02064588d88a00268bb69c34235e90c7356809be96abbee5aa7a5a8a526f",
     "automatedRecord": {
       "currency": "USD",
@@ -4846,8 +4993,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20191017",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -4891,6 +5043,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -4973,6 +5135,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20220407"
     },
     "terPct": 0.18,
@@ -5194,7 +5361,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "3919cb15a57605b0b17eec3afd550b21826bff4f8f87698fd4f31678f179838c",
     "automatedRecord": {
       "currency": "USD",
@@ -5336,8 +5503,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20220407",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -5378,6 +5550,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -5461,6 +5643,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20070706"
     },
     "terPct": 0.65,
@@ -5736,7 +5923,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "0ac2053eaeacf962effe7fd6bd9686ec5be849c0ec5001e702036d11f2be7321",
     "automatedRecord": {
       "currency": "USD",
@@ -5918,8 +6105,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20070706",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -5966,6 +6158,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -6049,6 +6251,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20210518"
     },
     "terPct": 0.18,
@@ -6295,7 +6502,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "95248b93d2927a8f25adfeb83b691a2bf2f220728d675afb56a26e363baf4f3b",
     "automatedRecord": {
       "currency": "USD",
@@ -6461,8 +6668,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20210518",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -6503,6 +6715,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -6587,6 +6809,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20191017"
     },
     "terPct": 0.18,
@@ -6826,7 +7053,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "51fbe8fa1a102965a93c5aa49bc03c20e8133cda0ec36198b453f0c656dd4c1d",
     "automatedRecord": {
       "currency": "USD",
@@ -6972,8 +7199,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20191017",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -7016,6 +7248,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -7099,6 +7341,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20061020"
     },
     "terPct": 0.65,
@@ -7404,7 +7651,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "e8a27c4ec98874545ed04e13e7c555fcc3b517b5ab499d4bdca4271c945f43a8",
     "automatedRecord": {
       "currency": "USD",
@@ -7597,8 +7844,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20061020",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -7645,6 +7897,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -7728,6 +7990,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20141003"
     },
     "terPct": 0.25,
@@ -8024,7 +8291,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "1b53ae60cf3e0f360e759a9bf0e1ab655a6e2874379b6a45ced09d1822d6c969",
     "automatedRecord": {
       "currency": "USD",
@@ -8232,8 +8499,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20141003",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -8280,6 +8552,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -8352,6 +8634,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20141003"
     },
     "terPct": 0.25,
@@ -8644,7 +8931,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "c1e84ae9fe1dfbdb40b36060c14e94585b5b9fcefd39599fad6b87ccb48a8698",
     "automatedRecord": {
       "currency": "USD",
@@ -8848,8 +9135,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20141003",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -8896,6 +9188,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -8968,6 +9270,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20160908"
     },
     "terPct": 0.4,
@@ -9246,7 +9553,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "b0a93cce22a1c184247a2db39750d19c3dbd6ee8683f98e7085dbcbad022358e",
     "automatedRecord": {
       "currency": "USD",
@@ -9420,8 +9727,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20160908",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -9467,6 +9779,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -9539,6 +9861,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20180327"
     },
     "terPct": 0.35,
@@ -9810,7 +10137,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "543d688f2d79a65345da3352c2aedef91119a6279a950e0e906d855631024e53",
     "automatedRecord": {
       "currency": "USD",
@@ -9975,8 +10302,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20180327",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "provider": "iShares",
       "holdings": {
@@ -10067,6 +10399,16 @@
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
         }
       },
       "metrics": {
@@ -10136,6 +10478,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20141003"
     },
     "terPct": 0.25,
@@ -10428,7 +10775,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "e3c20714dddfe5c13f46724fd615b4e8c9e22bd6afd24a6f9ff996053a1c41b5",
     "automatedRecord": {
       "currency": "USD",
@@ -10632,8 +10979,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20141003",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -10680,6 +11032,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -10751,6 +11113,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20220407"
     },
     "terPct": 0.18,
@@ -10999,7 +11366,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "24d372b67ce5e8a100f87b633be0ec44dd2acfce629005a7a49fc0488c758af8",
     "automatedRecord": {
       "currency": "USD",
@@ -11157,8 +11524,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20220407",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -11199,6 +11571,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -11281,6 +11663,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20160908"
     },
     "terPct": 0.4,
@@ -11519,7 +11906,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "b2eb6f74ac2bdce1f841adf26bc7de0158f976eeeca3663b90c84ace52e086c2",
     "automatedRecord": {
       "currency": "USD",
@@ -11696,8 +12083,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20160908",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -11743,6 +12135,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -11815,6 +12217,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20150904"
     },
     "terPct": 0.3,
@@ -12111,7 +12518,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "ede1cf054080cd038d2a3c1c91347c4a4b89d1b0ead88e48753b86135d31b8d1",
     "automatedRecord": {
       "currency": "USD",
@@ -12319,8 +12726,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20150904",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -12368,6 +12780,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=277246&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=277246&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=277246&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -12439,6 +12861,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Sampled)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Sampled"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20230905"
     },
     "terPct": 0.12,
@@ -12793,8 +13220,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "b17fe2b88babd68eb94da6324eb6f52c803ba0ba2dc7471bc49855afb38ce496",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "73625d58992f7c3778e0ea41729e363da3b166a4721954a9a5031fb97ba47adc",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 332876,
@@ -13066,8 +13493,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Sampled)",
         "inceptionDate": "20230905",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Sampled"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-12"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -13107,6 +13539,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=332876&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=332876&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=332876&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -13187,6 +13629,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20090306"
     },
     "terPct": 0.74,
@@ -13498,7 +13945,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "7d9ee0c75d5a3639ad8e39412d63d7c8ff4521cbc539ae070551381dce60d264",
     "automatedRecord": {
       "currency": "USD",
@@ -13723,8 +14170,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20090306",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -13772,6 +14224,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251859&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -13858,15 +14320,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20020708"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Construction & Materials (Capped) TR",
     "aum": {
-      "amount": 755610904.82,
+      "amount": 761114177.55,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -14099,18 +14566,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "184d91f2b9dc212f8cb6dc88d42fe126d4bcb123c21e50f6e4924ec710128fe6",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "4beaa8a4a6878a4cb8934866a2f21490d755ccfa1975560f9e3e26b042365d46",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251940,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 755610904.82,
+        "amount": 761114177.55,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -14268,8 +14735,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -14317,6 +14789,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251940&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -14401,6 +14883,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Sampled)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Sampled"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20090417"
     },
     "terPct": 0.15,
@@ -14638,7 +15125,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "bb0a3befe4e31470e52a76c08bf65c8b7b65800692b4f54063bfea0a4bc00130",
     "automatedRecord": {
       "currency": "EUR",
@@ -14768,8 +15255,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Sampled)",
         "inceptionDate": "20090417",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Sampled"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -14817,6 +15309,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -14912,6 +15414,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20051104"
     },
     "terPct": 0.4,
@@ -15154,8 +15661,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "83c35fdb47a96af78e949c8aef31b4ff51e42d93c737f2b71d0957391b936435",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "54bb18c2dd33e52ef5380f668eff0d54527ea9cd7935f659b86625012ed08df1",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251808,
@@ -15325,8 +15832,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20051104",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -15374,6 +15886,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -15445,6 +15967,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Sampled)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Sampled"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20240828"
     },
     "terPct": 0.12,
@@ -15766,8 +16293,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "40deae50019bac45221f1b72c02e4aaf340e4660bdb347e66b8beae6ecebe9e6",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "3ee665c8501888e2ed04be773a11008815dee49437ad87cd0577b2bb7b582b8d",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 338575,
@@ -16039,8 +16566,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Sampled)",
         "inceptionDate": "20240828",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Sampled"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -16079,6 +16611,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=338575&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -16155,15 +16697,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20020708"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Utilities (Capped) TR",
     "aum": {
-      "amount": 847660065.52,
+      "amount": 847565102.02,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -16384,18 +16931,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "40a6b937f6919901697b3b17f87aecdc2cdd21000b204e60571a87ffe2483c1a",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "d3a3dd7b60068f9f76ded2acf43f01dfdce50709c550553c9ba25b58466606b2",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251967,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 847660065.52,
+        "amount": 847565102.02,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -16539,8 +17086,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -16588,6 +17140,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251967&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -16677,6 +17239,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20100930"
     },
     "terPct": 0.55,
@@ -17032,7 +17599,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "e95639c18eeebe0b4f9fa0e6392b9bc6e7744bb165f7bb53c0241dd6882bbb38",
     "automatedRecord": {
       "currency": "EUR",
@@ -17288,8 +17855,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20100930",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -17337,6 +17909,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251891&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -17413,15 +17995,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20010425"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Telecommunications (Capped) TR",
     "aum": {
-      "amount": 253006171.26,
+      "amount": 248839442.9,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -17646,18 +18233,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "8dc7f645be29e7c7ad21fdc19c9c83f55a70c4f1c33cb5d7cb7d01e5520bdce0",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "4338090de623cadf62ca4c3847e5da8c4fae9c5533f6875b84fc0ecc98093e53",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251963,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 253006171.26,
+        "amount": 248839442.9,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -17806,8 +18393,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20010425",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-14"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -17855,6 +18447,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251963&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -17942,15 +18544,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20020708"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Media (Capped) TR",
     "aum": {
-      "amount": 16233161.48,
+      "amount": 16127104.51,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -18137,18 +18744,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "902ff1da4b48476b6cd62bffec6e6719fd62bd9f3f9ca9af0043556c91ece731",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "c49f8c5460e059e36a53c38df0a01c31ffd477d87051dbaaad6fa20307c1d396",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251952,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 16233161.48,
+        "amount": 16127104.51,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -18258,8 +18865,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-15"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -18307,6 +18919,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251952&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -18394,15 +19016,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20020708"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Food and Beverage (Capped) TR - Net",
     "aum": {
-      "amount": 353051217.95,
+      "amount": 351217196.8,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -18615,18 +19242,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "cfc9f8a36d496d51f9cb75da67ae0a1fa4ec2a201706d8f6af0fc19c5135f290",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "2d092d1cbfb63b78d3268c616156bdf2093e0780edc71f44043a0fd795f3fe99",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251944,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 353051217.95,
+        "amount": 351217196.8,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -18761,8 +19388,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-15"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -18810,6 +19442,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251944&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -18897,15 +19539,20 @@
       "distribution": "Distributing",
       "domicile": "Germany",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20020708"
     },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Retail (Capped) TR - Net",
     "aum": {
-      "amount": 10946953.24,
+      "amount": 10991743.77,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-22"
+      "asOf": "2026-10-23"
     },
     "countries": {
       "asOf": "2026-10-22",
@@ -19122,18 +19769,18 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "54755b8e076530e35418a206a6d26805bb6d659ff0b73c0d4c019c61d501a341",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "fa150234f516e9d75c3a394a65b36fd16f0659c93984ec39d32c09693d4d8a77",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251959,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 10946953.24,
+        "amount": 10991743.77,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-22",
+        "asOf": "2026-10-23",
         "checkedAt": "2026-10-23",
         "modifiedAt": "2026-10-23"
       },
@@ -19275,8 +19922,13 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-15"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -19324,6 +19976,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251959&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -19408,6 +20070,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Sampled)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Sampled"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20131016"
     },
     "terPct": 0.09,
@@ -19792,7 +20459,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "e0915de178d9ba7ad551a004623d075e375c36f962bd8d3c1ce04fefc5590c1b",
     "automatedRecord": {
       "currency": "EUR",
@@ -20080,8 +20747,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Sampled)",
         "inceptionDate": "20131016",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Sampled"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-15"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "EUR",
@@ -20129,6 +20801,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -20223,6 +20905,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20181206"
     },
     "terPct": 0.4,
@@ -20646,7 +21333,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "d71ff38f5963b08f8844501727691202bb40106472314ae2cce57825c0aa7467",
     "automatedRecord": {
       "currency": "USD",
@@ -21046,8 +21733,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20181206",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-15"
+        "modifiedAt": "2026-10-23"
       },
       "performance": {
         "currency": "USD",
@@ -21092,6 +21784,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -21164,6 +21866,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20100112"
     },
     "terPct": 0.12,
@@ -21463,7 +22170,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "a9d2cc17ff21e5c8b31b4385706ad200d7a780b18f0b82591aa21202ffc448c4",
     "automatedRecord": {
       "currency": "EUR",
@@ -21663,8 +22370,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20100112",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -21693,6 +22405,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253729&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253729&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253729&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -21785,6 +22507,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20090701"
     },
     "terPct": 0.58,
@@ -22066,7 +22793,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "6272e20339b0ee8cdfe80e83ba2537a05960f7673fb933352e88df2846babb50",
     "automatedRecord": {
       "currency": "EUR",
@@ -22270,8 +22997,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20090701",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -22300,6 +23032,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253496&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253496&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=253496&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -22392,6 +23134,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20051028"
     },
     "terPct": 0.4,
@@ -22663,8 +23410,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
-    "pageSha256": "a2b7f927b803fceddc7b60d40d7fee7a8be0f8aaeae371bd110cab0ceba2d915",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
+    "pageSha256": "9e6041b3caca11f9df507583c8a5e00421ccae4b08e79a14b0766b94054c0ed8",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251787,
@@ -22844,8 +23591,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20051028",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -22874,6 +23626,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -22977,6 +23739,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20150116"
     },
     "terPct": 0.25,
@@ -23269,7 +24036,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "f4b57866a6abec99da3ad44b5d981eef305fcdcbb0a3d3467c10ec371f9406a9",
     "automatedRecord": {
       "currency": "EUR",
@@ -23473,8 +24240,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20150116",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -23503,6 +24275,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272058&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272058&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272058&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -23595,6 +24377,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20150116"
     },
     "terPct": 0.25,
@@ -23873,7 +24660,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "7cd8266feaecc8ba111dc66ea83943fa04be3683b5110498ebd2f0c40e529512",
     "automatedRecord": {
       "currency": "EUR",
@@ -24085,8 +24872,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20150116",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -24115,6 +24907,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272019&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -24207,6 +25009,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20150116"
     },
     "terPct": 0.25,
@@ -24488,7 +25295,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "7e510df30dd557fd62ddeb8875ec2b35641a2042d9abff3fc09543202ae0b3d3",
     "automatedRecord": {
       "currency": "EUR",
@@ -24692,8 +25499,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20150116",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -24722,6 +25534,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -24814,6 +25636,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20161013"
     },
     "terPct": 0.2,
@@ -25066,7 +25893,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "6edd357773e3d9e9cd4ad0ee8355b5dc36a75436fc5dbd8d3d80d41ed64672d3",
     "automatedRecord": {
       "currency": "USD",
@@ -25242,8 +26069,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20161013",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -25272,6 +26104,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -25363,6 +26205,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20161013"
     },
     "terPct": 0.2,
@@ -25615,7 +26462,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "c2ce552839262d32993e26baf3c3439b82efa251b734432b7fa6b1357fd3a6e2",
     "automatedRecord": {
       "currency": "USD",
@@ -25791,8 +26638,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20161013",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -25821,6 +26673,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285207&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285207&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285207&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -25912,6 +26774,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20161013"
     },
     "terPct": 0.2,
@@ -26164,7 +27031,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "1ff595d76bab919bf2c2b9e13758499a85b4b5c80d10808cee8ff38a96af6de9",
     "automatedRecord": {
       "currency": "USD",
@@ -26340,8 +27207,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20161013",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -26370,6 +27242,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285208&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285208&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=285208&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -26461,6 +27343,11 @@
       "distribution": "Distributing",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20080509"
     },
     "terPct": 0.3,
@@ -26724,7 +27611,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "165013f127309ae715e9f86d6429b0a57d0dc76753a30a7c951b7faf8fc0188b",
     "automatedRecord": {
       "currency": "USD",
@@ -26900,8 +27787,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20080509",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -26930,6 +27822,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -27033,6 +27935,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20171012"
     },
     "terPct": 0.2,
@@ -27322,7 +28229,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "7bdc3b079ad7f75e2506f5a2673edf6a9b1f9a0b42e9c737fdf98cd5eef592f0",
     "automatedRecord": {
       "currency": "EUR",
@@ -27513,8 +28420,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20171012",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -27543,6 +28455,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=290846&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=290846&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=290846&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -27633,6 +28555,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20190220"
     },
     "terPct": 0.4,
@@ -27892,7 +28819,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "8b9d80be4eb6352e06c0205a804c6e9304e60d0d3270e6d1add26a8e90f6ee60",
     "automatedRecord": {
       "currency": "USD",
@@ -28049,8 +28976,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20190220",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -28079,6 +29011,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=307130&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=307130&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=307130&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -28167,6 +29109,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Replicated)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Replicated"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20240201"
     },
     "terPct": 0.35,
@@ -28396,7 +29343,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "3ec6bb528538dd14bc8b6bde4f1de9fa7446beec22b2aeb6b004ca9760d28b43",
     "automatedRecord": {
       "currency": "USD",
@@ -28546,8 +29493,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20240201",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Replicated"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -28576,6 +29528,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
@@ -28648,6 +29610,11 @@
       "distribution": "Accumulating",
       "domicile": "Ireland",
       "replicationMethod": "Physical (Optimised)",
+      "replicationMethodRaw": {
+        "productStructure": "Physical",
+        "fundMethodologyTypeCode": "Optimised"
+      },
+      "productStructure": "Physical",
       "inceptionDate": "20160908"
     },
     "terPct": 0.4,
@@ -28974,7 +29941,7 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-23T15:34:20.219744+00:00",
+    "checkedAt": "2026-10-23T23:59:03.159471+00:00",
     "pageSha256": "36b832dc676d8842ed15cdd3d5e704d4f09b3dae4b35fba40bf502b995316641",
     "automatedRecord": {
       "currency": "USD",
@@ -29200,8 +30167,13 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Optimised)",
         "inceptionDate": "20160908",
+        "replicationMethodRaw": {
+          "productStructure": "Physical",
+          "fundMethodologyTypeCode": "Optimised"
+        },
+        "productStructure": "Physical",
         "checkedAt": "2026-10-23",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-23"
       },
       "characteristicChecks": {
         "terPct": {
@@ -29230,6 +30202,16 @@
           "asOf": null
         },
         "inceptionDate": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethodRaw": {
+          "checkedAt": "2026-10-23",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "productStructure": {
           "checkedAt": "2026-10-23",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "asOf": null
