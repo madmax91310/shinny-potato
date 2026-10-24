@@ -6,7 +6,7 @@ const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 export function resolveAnniversaryLevel(assetId, override, now = new Date(), levels = LEVELS) {
   if (override !== '' && override !== null && override !== undefined) {
     const value = Number(override)
-    return Number.isFinite(value) && value > 0 ? { value, label: 'Niveau saisi manuellement', manual: true } : null
+    return Number.isFinite(value) && value > 0 ? { value, label: 'Aujourd’hui', manual: true } : null
   }
   const record = levels[assetId]
   if (!record || !Number.isFinite(record.value) || record.value <= 0) return null
