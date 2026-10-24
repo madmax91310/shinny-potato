@@ -276,10 +276,10 @@
   },
   "IE000UL6CLP7": {
     "sectors": {
-      "asOf": "2026-10-21",
+      "asOf": "2026-10-22",
       "checkedAt": "2026-10-24",
       "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
-      "sha256": "0804edf68f8a05139e75f2f3ac997768c4340a33fbbe514bebd92da50673be3b",
+      "sha256": "ce6a9b90c15fc2f677d402071e4640bd1e438f1bf7dc638da7df7680abc95767",
       "basis": "fund",
       "compatibility": "morningstar-equity-sectors",
       "classificationLabel": "Secteurs actions Morningstar",
@@ -287,7 +287,7 @@
       "rows": [
         {
           "name": "Basic Materials",
-          "weightPct": 99.9
+          "weightPct": 99.89
         },
         {
           "name": "Consumer Cyclical",
@@ -319,7 +319,7 @@
         },
         {
           "name": "Consumer Defensive",
-          "weightPct": 0.1
+          "weightPct": 0.11
         },
         {
           "name": "Healthcare",
@@ -335,7 +335,7 @@
   "IE0003R87OG3": {
     "countries": {
       "asOf": "2026-10-22",
-      "holdingsAsOf": "2026-10-22",
+      "holdingsAsOf": "2026-10-23",
       "checkedAt": "2026-10-24",
       "sourceUrl": "https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/",
       "sourceUrls": [
@@ -354,117 +354,121 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.57258308920079
+          "weightPct": 68.76888978440509
         },
         {
           "name": "Japan",
-          "weightPct": 9.869683806445156
+          "weightPct": 9.852911545436244
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.6468330134357045
+          "weightPct": 3.606689502317148
         },
         {
           "name": "Canada",
-          "weightPct": 3.3235680371754763
+          "weightPct": 3.324602055208546
         },
         {
           "name": "Australia",
-          "weightPct": 2.7780583897363402
+          "weightPct": 2.6798307475317387
         },
         {
           "name": "Sweden",
-          "weightPct": 1.4445903626628955
-        },
-        {
-          "name": "Switzerland",
-          "weightPct": 1.2425497525002527
+          "weightPct": 1.430586338907916
         },
         {
           "name": "Israel",
-          "weightPct": 1.222345691483988
+          "weightPct": 1.2290953052589149
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 1.208946201894015
         },
         {
           "name": "Germany",
-          "weightPct": 1.0506111728457421
+          "weightPct": 1.037678823292363
         },
         {
           "name": "France",
-          "weightPct": 0.9596928982725533
+          "weightPct": 0.9369333064678619
         },
         {
           "name": "Bermuda",
-          "weightPct": 0.9192847762400244
+          "weightPct": 0.926858754785412
         },
         {
           "name": "Italy",
-          "weightPct": 0.7374482270936465
+          "weightPct": 0.7455168245013092
         },
         {
           "name": "Norway",
-          "weightPct": 0.6465299525204569
+          "weightPct": 0.6548458593592582
         },
         {
           "name": "Singapore",
-          "weightPct": 0.5758157389635319
+          "weightPct": 0.5742494458996572
         },
         {
           "name": "Denmark",
-          "weightPct": 0.5758157389635319
-        },
-        {
-          "name": "Belgium",
-          "weightPct": 0.4141832508334175
+          "weightPct": 0.5641748942172072
         },
         {
           "name": "Spain",
-          "weightPct": 0.39397918981715324
+          "weightPct": 0.4029820672980053
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.40298206729800523
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.38387715930902105
+          "weightPct": 0.38283296393310506
         },
         {
           "name": "Austria",
-          "weightPct": 0.3535710677846247
+          "weightPct": 0.3526093088857546
         },
         {
           "name": "Netherlands",
-          "weightPct": 0.31316294575209613
+          "weightPct": 0.3123111021559541
         },
         {
           "name": "Finland",
-          "weightPct": 0.2828568542276998
+          "weightPct": 0.27201289542615353
         },
         {
           "name": "Monaco",
-          "weightPct": 0.09091827457318921
+          "weightPct": 0.09067096514205118
         },
         {
           "name": "Ireland",
-          "weightPct": 0.07071421355692495
+          "weightPct": 0.08059641345960104
         },
         {
           "name": "Portugal",
-          "weightPct": 0.0606121830487928
+          "weightPct": 0.060447310094700786
         },
         {
           "name": "New Zealand",
-          "weightPct": 0.02020406101626427
+          "weightPct": 0.02014910336490026
         }
       ],
       "unclassified": [
         {
+          "isin": "CH1593449767",
+          "weightPct": 0.030223655047350393
+        },
+        {
           "isin": "SG1R43925234",
-          "weightPct": 0.02020406101626427
+          "weightPct": 0.02014910336490026
         },
         {
           "isin": "JP3105350007",
-          "weightPct": 0.02020406101626427
+          "weightPct": 0.02014910336490026
         },
         {
           "isin": "JP3122010006",
-          "weightPct": 0.010102030508132135
+          "weightPct": 0.01007455168245013
         },
         {
           "isin": "SE0007439443",
@@ -499,11 +503,11 @@
           "weightPct": 0.0
         },
         {
-          "isin": "GB00BTWSXB68",
+          "isin": "BMG0534V1256",
           "weightPct": 0.0
         },
         {
-          "isin": "BMG0534V1256",
+          "isin": "GB00BTWSXB68",
           "weightPct": 0.0
         },
         {
@@ -537,7 +541,7 @@
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
       "checkedAt": "2026-10-24",
-      "sha256": "30360a21a45765d949f82032e133afa449c9cdef0ae7ae64781fac2ced498327",
+      "sha256": "d9d17e7d3e92f18b6da69fbdbeb19aa4d25e5783735a0432a9e058aede3a0ae7",
       "underlier": "Nasdaq-100"
     }
   },
