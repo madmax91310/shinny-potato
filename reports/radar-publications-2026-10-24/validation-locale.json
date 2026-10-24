@@ -1,0 +1,75 @@
+{
+  "codeRevision": "246471bf53e114f644112f5c09a1eceea2b44725",
+  "environment": "Local cloud environment, Node 24, Chromium Playwright",
+  "checks": [
+    {
+      "command": "npm run test:radar",
+      "exitCode": 0,
+      "lastLines": [
+        "Lois adoptées : votes intermédiaires exclus, adoption définitive et promulgation acceptées, anciens textes retirés.",
+        "Radar publications: reference INSEE/Amundi cases, units, publication/data/collection dates, source proofs, group products, unknowns, scoring, diversity, durable retries, outage, migration, retention and DST verified.",
+        "Notification simulation: same ranked groups, major/day noise cap, single daily recap, failure after tracker creation, retry and durable receipts verified. No real notification sent."
+      ]
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "lastLines": [
+        "Route total: src/pages/tweet-midi/formats/pouvoir/App.jsx: 774.8 kB (233.8 kB gzip), 21 files; code 780.0/788 kB, data 492.4 kB",
+        "Route total: src/pages/wealth-simulator/App.jsx: 357.7 kB (114.0 kB gzip), 15 files; code 723.5/1897 kB, data 32.4 kB",
+        "Published coverage: 4274 field certificates agree with the inventory and generated collection targets."
+      ]
+    },
+    {
+      "command": "npm run test:radar:browser",
+      "exitCode": 0,
+      "lastLines": [
+        "> node scripts/playwright-radar.mjs",
+        "",
+        "Radar navigateur : signaux, filtres, lecture persistante, copie, conservation après échec, fraîcheur et mobile validés."
+      ]
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "lastLines": [
+        "scripts/test-official-nav-consumers.mjs:7:26: warning eslint(no-unused-vars): Identifier 'performanceBasis' is imported but never used. help: Consider removing this import.",
+        "scripts/test-regulatory-consumers.mjs:70:34: warning eslint(no-unused-vars): Variable 'PEL_GENERATIONS' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.",
+        "scripts/test-ai-tool-reuse.mjs:14:8: warning eslint(no-unused-vars): Identifier 'GLOBAL' is imported but never used. help: Consider removing this import."
+      ]
+    },
+    {
+      "command": "python3 -m unittest discover -s scripts -p test_dws_reconciliation.py",
+      "exitCode": 0,
+      "lastLines": [
+        "Ran 8 tests in 0.077s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "command": "node scripts/test-required-data-gaps.mjs",
+      "exitCode": 0,
+      "lastLines": [
+        "Required gaps: incomplete and unproved live data visible; archive, waiting and unknown-success dates preserved."
+      ]
+    },
+    {
+      "command": "node scripts/test-economic-consumers.mjs",
+      "exitCode": 0,
+      "lastLines": [
+        "Economic consumers: future periods, annual returns, legal rates and failure-only alerts OK"
+      ]
+    },
+    {
+      "command": "node scripts/audit-household-statistics.mjs",
+      "exitCode": 0,
+      "lastLines": [
+        "29 sujets financiers : sources Insee, populations, unités, dates, arrondis, tweets et catalogue OK."
+      ]
+    }
+  ],
+  "ci": "À vérifier séparément sur la PR ; ces résultats ne sont pas des résultats GitHub Actions.",
+  "notifications": "API simulée uniquement ; publieur non exécuté.",
+  "deployment": "Aucun déploiement réalisé."
+}
