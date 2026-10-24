@@ -32,3 +32,11 @@ Le suivi consolidé associera chaque entrée héritée à sa provenance, son axe
 ## Complément de coordination — #913
 
 PR #913 apparue pendant la validation : reprise du catalogue IA côté interface. Ses fichiers App/lib/runtime/request-transport, projections et scénarios navigateur restent réservés à cette PR. Le seul fichier commun est `update-ai-portfolios.yml` : #913 ajoute deux appels de tests, ce lot sépare les contrôles ultérieurs et les déclare dans la supervision. Les hunks sont distincts ; conserver les deux séries de changements à l’intégration. La demande utilisateur enregistrée sur master `3f729f9b` est reprise intacte ; les recettes utilisent des livres isolés.
+
+## Complément métadonnées — 24 octobre
+
+Départ de master 23fd227 puis rapprochement des mises à jour automatiques 392b56a/92e0b0d. Les PR ouvertes #903 et #919 concernent des fichiers distincts et restent préservées. #920 est fusionnée en b594f3d ; #921 corrige le départ de la reprise sur master en 2f37f75. Les données publiées sont 2bc3a6d. Aucun raccordement financier antérieur n’est supprimé.
+
+Le suivi conserve aussi les incidents découverts après l’instantané initial. Une ancienne entrée technique métadonnées ne pouvait plus être reconstruite depuis les seules 8 600 origines quand elle quittait la liste courante : la capture précédente est désormais conservée, sans dupliquer ses origines ni déduire une réparation de sa disparition.
+
+La preuve de reprise GitHub et les diagnostics publics distinguent 13 mauvaises attributions retirées des deux incidents source conservés. Les recherches Euronext concernent uniquement les 13 cas XPAR existants ; elles n’ajoutent aucun actif, abonnement de collecte ou admission automatique.

@@ -35,5 +35,32 @@
       "preuves/recette-reprise-15png.log",
       "https://github.com/madmax91310/shinny-potato/pull/917"
     ]
+  },
+  {
+    "id": "correction:metadata-attributions-et-preuves",
+    "axe": "supervision",
+    "type": "défaut du tableau de supervision et de son producteur",
+    "supervision": "13 attributions hors contrat retirées avec leur cause et date initiale ; aucun succès source fabriqué par lecture du cache ; retraits distincts des réparations, y compris aux cycles suivants",
+    "probleme": "Le contrôle des métadonnées balayait des champs appartenant à d’autres collecteurs et émettait des succès sans consultation de source.",
+    "preuves": [
+      "scripts/test-metadata-freshness-scope.mjs",
+      "scripts/test_metadata_targeted_scope.py",
+      "scripts/test_consolidated_data_followup.py",
+      "preuves/suite-metadonnees/supervision-publique-metadonnees.json"
+    ]
+  },
+  {
+    "id": "correction:metadata-reprise-production",
+    "axe": "collecte et actualisation",
+    "type": "défaut de ciblage et de reprise du producteur",
+    "donnees": "Reprise ciblée réelle de six champs FR0007054358 et des champs observables Healthcare ; Paris renouvelé, ancienne preuve Londres conservée au 16/10 ; aucune réparation des 79 causes anciennes",
+    "probleme": "Un ciblage inconnu pouvait donner un succès zéro ligne. La première version du checkout de reprise sur master a ensuite révélé un conflit entre deux instantanés sérialisés ; #921 rétablit la base master actuelle sous verrou, sans résolution automatique de données contradictoires.",
+    "preuves": [
+      "scripts/test_metadata_targeted_scope.py",
+      "preuves/suite-metadonnees/metadata-github-branche.json",
+      "preuves/suite-metadonnees/metadata-github-production.json",
+      "preuves/suite-metadonnees/publication-verified.json",
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40085504061"
+    ]
   }
 ]
