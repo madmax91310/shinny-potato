@@ -404,6 +404,15 @@
       "months": 333,
       "publication": "not-requested",
       "primaryResponseSha256": "16f582fc5a1e502aad4cf69a7a132a9ada3094d9af5f13d66c8ce6ed464d47ad"
+    },
+    "dwsStabilityCause": {
+      "funds": 2,
+      "activeAlerts": 36,
+      "rawDifferences": "one display-name value per document; all other fields identical",
+      "proof": "post-integration/dws-financial-stability/comparison.json",
+      "stabilityHours": 4,
+      "backdated": false,
+      "productionClosureConfirmed": false
     }
   }
 }
