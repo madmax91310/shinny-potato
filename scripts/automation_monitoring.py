@@ -21,6 +21,27 @@ def timestamp(value):
         return None
 
 
+def restore_history(state, seed):
+    """Import witnessed episodes once; never turn an archived episode into an active one."""
+    if seed.get('schemaVersion') != 1 or not seed.get('tip') or any(not isinstance(seed.get(k), list) for k in ('events','resolved','retired')):
+        raise ValueError('Archive historique invalide')
+    if state.get('historyBackfillTip') == seed['tip']:
+        return state
+    result = json.loads(json.dumps(state))
+    previous = result.setdefault('monitoring', {})
+    for kind in ('events','resolved','retired'):
+        rows = [*previous.get(kind, []), *seed[kind]]
+        def key(row):
+            return (row.get('revision'), row.get('at')) if kind == 'events' else (row.get('id'), row.get('resolvedAt' if kind == 'resolved' else 'retiredAt'))
+        merged = {}
+        for row in rows:
+            merged.setdefault(key(row), row)
+        previous[kind] = sorted(merged.values(), key=lambda r: r.get('at', r.get('resolvedAt', r.get('retiredAt', ''))), reverse=kind != 'events')
+    previous['revision'] = max([previous.get('revision', 0), *(r.get('revision', 0) for r in seed['events'])])
+    result['historyBackfillTip'] = seed['tip']
+    return result
+
+
 def incident_context(identifier, context, fallback):
     # Exact alias boundaries avoid mixing World with World Quality, or managers.
     isin = re.search(r'[A-Z]{2}[A-Z0-9]{10}', identifier)
@@ -50,11 +71,36 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:
             return
         row = {**row, 'tools': [t for t in row.get('tools', []) if t not in REMOVED_TOOL_NAMES]}
-        active[key] = {**row, 'id': key, 'firstSeenAt': old.get(key, {}).get('firstSeenAt', now), 'lastSeenAt': now}
+        prior = old.get(key, {})
+        observations = prior.get('observations', []).copy()
+        def evidence(value):
+            return {k: value.get(k) for k in ('cause', 'runUrl', 'attemptedAt', 'completedAt', 'asOf', 'lastSuccessAt', 'sourceUrls') if value.get(k) is not None}
+        if prior and not observations:
+            observations.append(evidence(prior))
+        current_evidence = evidence(row)
+        if not observations or observations[-1] != current_evidence:
+            observations.append(current_evidence)
+        active[key] = {**row, 'id': key, 'firstSeenAt': prior.get('firstSeenAt', now), 'lastSeenAt': now, 'observations': observations}
+    for observer, failure in state.get('observerErrors', {}).items():
+        add('monitor:' + observer, {**failure, 'kind': 'monitoring', 'name': 'Surveillance · ' + observer,
+            'field': 'Observabilité', 'tools': ['Données à revoir'], 'cause': failure['cause'], 'to': '/donnees-a-revoir'})
+    if context.get('incomplete'):
+        for key, row in old.items():
+            if key.startswith(('calendar:', 'history:', 'field:')):
+                add(key, row)
     for workflow, config in registry.items():
         row = state.get('workflows', {}).get(workflow, {})
         tools = config.get('tools', [])
         base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir', 'lastSuccessAt': row.get('lastCollectionSuccessAt')}
+        availability = state.get('workflowAvailability', {}).get(workflow, {})
+        if availability.get('state') and availability['state'] != 'active':
+            add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
+        if config.get('reportCoverage') == 'job-only':
+            add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': 'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
+        for identifier, failure in row.get('proofFailures', {}).items():
+            add('collection:'+workflow+':'+identifier, {**base, **failure, 'proofId':identifier, 'kind':'monitoring', 'field':'Preuve de collecte / tentative', 'lastSuccessAt':None})
+        for filename, warning in row.get('reportQualifications', {}).items():
+            add('scope:' + workflow + ':' + filename, {**base, **warning, 'kind': 'qualification', 'field': 'Complétude du périmètre tenté', 'cause': warning['cause'] + ' Rapport : ' + filename})
         completed = timestamp(row.get('completedAt'))
         if not completed or completed > current:
             add('unobserved:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Exécution', 'cause': 'Aucune exécution terminée avec une date exploitable.'})
@@ -76,14 +122,19 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             # the previous value is kept and a person must compare old and new text.
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
             add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
+                'lastSuccessAt': failure.get('lastSuccessAt') if 'lastSuccessAt' in failure else row.get('sourceChecks', {}).get(identifier, {}).get('checkedAt'),
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
+        if row.get('publicationStatus') == 'unverified':
+            add('evidence:' + workflow, {**base, 'kind':'monitoring', 'field':'Preuve de publication', 'cause':'Déploiement achevé sans contrôle explicite de l’artefact public ; livraison non certifiée.'})
+        if row.get('publicationEvidenceError'):
+            add('evidence:' + workflow, {**base, 'kind': 'monitoring', 'field': 'Preuve de publication', 'cause': row['publicationEvidenceError']})
         validation_steps = set(config.get('validationSteps', []))
         validation_failures = [f for f in row.get('failures', []) if f['step'] in validation_steps or f['job'] == 'report-validation-failures']
         validation_failed = row.get('validationStatus') == 'failure' or bool(validation_failures)
         if validation_failed:
             add(f'checks:{workflow}', {**base, 'kind': 'checks', 'field': 'Validation des données',
-                'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
+                'failedSteps': validation_failures, 'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in validation_failures) or 'Validation en échec ; consulter le journal.'})
         other_failures = [f for f in row.get('failures', []) if f['step'] not in validation_steps
                           and f['step'] not in config.get('collectionSteps', [])
                           and f['job'] not in ('report-failures', 'report-validation-failures')
@@ -97,7 +148,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             kind = 'publication' if publishing else 'checks' if checks_only else 'collection'
             add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
-                'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+                'failedSteps': row.get('failures', []), 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
     for row in context['alerts']:
         add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else row.get('reason', 'Repli sur une valeur manuelle.') if row['category'] == 'manual-fallback' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
     if 'historyAlerts' in context:
@@ -131,19 +182,76 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         for error in radar.get('errors', []):
             if 'Valeur contradictoire pour la même période' not in error.get('reason', ''):
                 continue
-            key = 'radar:' + hashlib.sha256(json.dumps(error, sort_keys=True).encode()).hexdigest()[:24]
+            suffix = re.search(r'\(([^()]+)\)\.?$', error['reason'])
+            identifier = suffix.group(1) if suffix and suffix.group(1).startswith(('etf:', 'index:')) else json.dumps([error.get('family'),error.get('entity'),error['reason']],sort_keys=True)
+            key = next((k for k,r in old.items() if k.startswith('radar:') and (r.get('conflictId') == identifier or '('+identifier+')' in r.get('cause',''))), None)
+            key = key or 'radar:' + hashlib.sha256(identifier.encode()).hexdigest()[:24]
             details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
             field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
-            add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
+            add(key, {**details, 'conflictId':identifier, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
     def retired_reason(row):
         if row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES:return REMOVED_SCOPE_REASON
         if row.get('workflow') in RETIRED_WORKFLOWS:return RETIRED_WORKFLOWS[row['workflow']]['reason']
+        withdrawal = state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'))
+        if withdrawal:return withdrawal.get('retirementReason', 'Périmètre retiré ; aucune réparation déduite')
         if row.get('dataId') and not owns_failure(registry.get(row.get('workflow'),{}),row['dataId']):return RETIREMENT_REASON
         return None
+    def retirement_status(row):
+        withdrawal = state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {})
+        if withdrawal.get('retirementStatus'):return withdrawal['retirementStatus']
+        return 'scope-removed' if row.get('workflow') in RETIRED_WORKFLOWS or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution'
+    def resolution_proof(key, row):
+        workflow = state.get('workflows', {}).get(row.get('workflow'), {})
+        if row.get('proofId'):
+            return workflow.get('proofChecks', {}).get(row['proofId'])
+        if row.get('dataId'):
+            proof = workflow.get('sourceChecks', {}).get(row['dataId'])
+            checked = timestamp(proof.get('checkedAt') or proof.get('recordedAt')) if proof else None
+            failed_at = timestamp(row.get('attemptedAt') or row.get('completedAt') or row.get('firstSeenAt'))
+            return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
+        if key.startswith('scope:'):
+            filename = row.get('evidence', {}).get('file')
+            return next((r for r in reversed(workflow.get('reportEvidenceHistory', [])) if r.get('file') == filename and r.get('scopeExplicit')), None)
+        if key.startswith('history:'):
+            identifier = key.removeprefix('history:').rsplit(':', 1)[0]
+            proof = context.get('historyChecks', {}).get(identifier)
+            if not proof or any(row.get(f) and row.get(f) != proof.get(f) for f in ('currency','method')):return None
+            needed = set(row.get('missingPeriods', []) + row.get('invalidPeriods', []))
+            if key.endswith(':gaps') and (not needed or not needed <= set(proof.get('periods', []))):return None
+            if key.endswith(':delay') and (not proof.get('asOf') or proof['asOf'] <= (row.get('asOf') or '')):return None
+            return {**{k:v for k,v in proof.items() if k != 'periods'}, 'restoredPeriods': sorted(needed)}
+        if key.startswith(('field:', 'calendar:')):
+            if key.startswith('field:'):
+                proof = context.get('fieldChecks', {}).get(key.removeprefix('field:'))
+            else:
+                proof = next((r for r in context.get('entities', []) if r.get('id') == key.removeprefix('calendar:')), None)
+            checked = timestamp(proof.get('checkedAt')) if proof else None
+            prior = timestamp(row.get('lastSuccessAt') or row.get('checkedAt'))
+            if prior and prior > current:prior = timestamp(row.get('firstSeenAt'))
+            if not checked or checked > current or prior and checked <= prior:return None
+            return proof
+        if key.startswith('radar:'):
+            return (radar or {}).get('resolvedConflicts', {}).get(row.get('conflictId'))
+        if key.startswith('publication:'):
+            return workflow.get('publicationEvidence') if workflow.get('publicationStatus') == 'success' else None
+        if key.startswith(('workflow:', 'checks:')):
+            failed_steps = row.get('failedSteps', [])
+            if not failed_steps or any(workflow.get('stepResults', {}).get(f['job'] + '\n' + f['step']) != 'success' for f in failed_steps):return None
+            return {'runUrl': workflow.get('runUrl'), 'completedAt': workflow.get('completedAt'), 'checks': failed_steps}
+        return {'checkedAt': now, 'scope': key, 'kind': 'observer-or-heartbeat-recovered'}
+    proofs = {}
+    for key, row in old.items():
+        if key in active or retired_reason(row):continue
+        proof = resolution_proof(key, row)
+        if proof:
+            proofs[key] = proof
+        else:
+            add(key, {**row, 'proofStatus': 'resolution-unproven', 'action': 'Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.'})
     retired = [{**row, 'retiredAt': now, 'retirementReason': retired_reason(row),
-                'retirementStatus': ('scope-removed' if RETIRED_WORKFLOWS.get(row.get('workflow'),{}).get('status')=='scope-removed' or row.get('tools') and set(row['tools']) <= REMOVED_TOOL_NAMES else 'retired-attribution')}
+                'retirementStatus': retirement_status(row),
+                'retirementEvidence': state.get('workflows', {}).get(row.get('workflow'), {}).get('retiredDataFailures', {}).get(row.get('dataId'), {}).get('retirementEvidence')}
                for key, row in old.items() if key not in active and retired_reason(row)]
-    resolved = [{**row, 'resolvedAt': now} for key, row in old.items()
+    resolved = [{**row, 'resolvedAt': now, 'resolutionEvidence': proofs.get(key)} for key, row in old.items()
                 if key not in active and not retired_reason(row)]
     opened = [row for key, row in active.items() if key not in old]
     # A date/run change alone is not a new incident. Notify only an increased
@@ -156,10 +264,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     revision = previous.get('revision', 0) + int(changed)
     events = previous.get('events', [])
     if changed:
-        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved, 'retired': retired, 'escalated': [r['id'] for r in escalated]}][-30:]
+        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved, 'retired': retired, 'escalated': [r['id'] for r in escalated]}]
     return {'schemaVersion': 1, 'checkedAt': now, 'revision': revision, 'active': active, 'events': events,
-            'resolved': [*resolved, *previous.get('resolved', [])][:100],
-            'retired': [*retired, *previous.get('retired', [])][:500]}
+            'resolved': [*resolved, *previous.get('resolved', [])],
+            'retired': [*retired, *previous.get('retired', [])]}
 
 
 def safe(value):

@@ -143,9 +143,9 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(result['collectionStatus'],'success')
   self.assertEqual(result['publicationStatus'],'failure')
   self.assertIsNone(result['lastSuccessAt'])
-  self.assertEqual(result['lastCollectionSuccessAt'],'2026-10-01T10:00:00Z')
+  self.assertIsNone(result['lastCollectionSuccessAt'], 'Un job vert sans preuve source ne date pas un contrôle source')
  def test_publication_date_survives_collection_failure(self):
-  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'}]}]
+  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'},{'name':'Verify actual public data','conclusion':'success'}]}]
   first=update_status({},run(1,'success'),jobs)
   row=first['workflows']['update-economic-data.yml']
   self.assertEqual(row['lastPublicationSuccessAt'],'2026-10-01T09:59:00Z')
@@ -155,7 +155,7 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(failed['publicationStatus'],'not-run')
 
  def test_successful_job_with_skipped_pages_is_not_publication(self):
-  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'}]}]
+  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'},{'name':'Verify actual public data','conclusion':'success'}]}]
   previous=update_status({},run(1,'success'),published)
   skipped=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-02T09:59:00Z','steps':[{'name':'Skip superseded production snapshots','conclusion':'success'},{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'skipped'}]}]
   result=update_status(previous,run(2,'success'),skipped)['workflows']['update-economic-data.yml']
@@ -173,7 +173,7 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(publication_summary(run(),[job]),('success','2026-10-01T10:01:00Z'))
 
  def test_backfill_repairs_false_publication_without_replaying_data(self):
-  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success','completed_at':'2026-10-01T09:58:00Z'}]}]
+  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success','completed_at':'2026-10-01T09:58:00Z'},{'name':'Verify actual public data','conclusion':'success','completed_at':'2026-10-01T09:58:00Z'}]}]
   skipped=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-02T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'skipped'}]}]
   state=update_status({},run(2,'success'),skipped)
   row=state['workflows']['update-economic-data.yml'];row['publicationStatus']='success';row['lastPublicationSuccessAt']='2026-10-02T09:59:00Z';row['dataFailures']={'retained':{'cause':'Still unresolved'}}
@@ -190,8 +190,10 @@ class StatusTests(unittest.TestCase):
   path=Mock();path.name='additional-observation.json';path.stem='additional-observation'
   path.stat.return_value.st_size=12_000_000
   path.read_text.return_value='{"shares":[{"isin":"test","status":"validated","rawComponents":{"holdings":"unused raw publication"}}]}'
+  path.read_bytes.side_effect=lambda: path.read_text().encode()
   report=read_report(path,'collect-etf-pilot.yml')
-  self.assertEqual(report,{'successes':[{'id':'etf-additional-observation-test'}],'errors':[]})
+  self.assertEqual({k:report[k]for k in ('successes','errors')},{'successes':[{'id':'etf-additional-observation-test'}],'errors':[]})
+  self.assertEqual(len(report['_reportEvidence']['sha256']),64)
   with self.assertRaises(ValueError):read_report(path,'update-scpi.yml')
   path.stat.return_value.st_size=128_000_001
   with self.assertRaises(ValueError):read_report(path,'collect-etf-pilot.yml')
@@ -229,7 +231,7 @@ class NewCollectorStatusTests(unittest.TestCase):
   for workflow,job in [('update-investor-13f.yml','update'),('update-gold-monthly.yml','update'),('refresh-automated-index-sheets.yml','collect')]:
    row=update_status({},run(1,'success',workflow),[{'name':job,'conclusion':'success'}])['workflows'][workflow]
    self.assertEqual(row['collectionStatus'],'success')
-   self.assertIsNotNone(row['lastCollectionSuccessAt'])
+   self.assertIsNone(row['lastCollectionSuccessAt'], 'Le succès du job seul ne renouvelle pas la source')
    self.assertEqual(row['publicationStatus'],'not-run')
    row=update_status({},run(1,'success',workflow),[{'name':'deploy / deploy','conclusion':'success'}])['workflows'][workflow]
    self.assertEqual(row['collectionStatus'],'unknown')
@@ -269,6 +271,7 @@ class NewCollectorStatusTests(unittest.TestCase):
  def test_selected_indices_and_nonstandard_report_filename(self):
   path=Mock();path.name='selected-index-observations.json';path.stem='selected-index-observations';path.stat.return_value.st_size=200
   path.read_text.return_value='{"indices":[{"id":"world","facts":{},"returns":{"values":[1]},"errors":[{"field":"composition","reason":"Missing weights"}]}]}'
+  path.read_bytes.side_effect=lambda: path.read_text().encode()
   self.assertEqual(read_report(path,'refresh-automated-index-sheets.yml')['errors'][0]['id'],'index-world-composition')
 
  def test_radar_feed_above_one_megabyte_is_read_from_its_blob(self):
@@ -329,15 +332,15 @@ class AuditRegressionTests(unittest.TestCase):
   self.assertEqual([x['id'] for x in report['errors']],['universe:TER:forecast'])
  def test_publication_requires_built_files_or_complete_snapshot_ancestry(self):
   from publish_automation_status import reconcile_publication
-  state={'workflows':{'monthly':{'publicationStatus':'failure','dataFailures':{'fx':'timeout'},'publicationReceipt':{'commit':'new','files':{'src/data/monthly.json':'blob'}}}}}
-  build={'sha':'code','dataSha':'new','builtAt':'2026-10-18T21:00:00Z'}
+  state={'workflows':{'monthly':{'publicationStatus':'failure','dataFailures':{'fx':'timeout'},'publicationReceipt':{'schemaVersion':1,'commit':'a'*40,'files':{'src/data/monthly.json':'d'*40}}}}}
+  build={'sha':'b'*40,'dataSha':'a'*40,'builtAt':'2026-10-18T21:00:00Z'}
   missing={'schemaVersion':1,'files':{}}
   self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead'),state,'Fallback may exclude files')
-  exact={'schemaVersion':1,'files':{'src/data/monthly.json':'blob'}}
+  exact={'schemaVersion':1,'files':{'src/data/monthly.json':'d'*40}}
   row=reconcile_publication(state,build,exact,lambda *_:'behind')['workflows']['monthly']
   self.assertEqual(row['publicationStatus'],'success');self.assertEqual(row['dataFailures'],{'fx':'timeout'})
   del build['dataSha']
-  self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead')['workflows']['monthly']['publicationStatus'],'success')
+  self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead')['workflows']['monthly']['publicationStatus'],'failure')
 
 class LegacyPublicationProof(unittest.TestCase):
  def test_uses_recorded_build_checkout_and_rejects_missing_or_ambiguous_proof(self):

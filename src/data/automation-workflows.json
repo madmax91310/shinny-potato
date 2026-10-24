@@ -286,7 +286,8 @@
       "/duels-portefeuilles",
       "/classements-performances",
       "/faits-marquants-marches"
-    ]
+    ],
+    "reportCoverage": "job-only"
   },
   "update-gold-monthly.yml": {
     "name": "Historique de l’or",
@@ -313,7 +314,8 @@
       "/duels-portefeuilles",
       "/classements-performances",
       "/faits-marquants-marches"
-    ]
+    ],
+    "reportCoverage": "job-only"
   },
   "update-inflation.yml": {
     "name": "Inflation INSEE",
@@ -598,7 +600,8 @@
       "/generateur-portefeuilles",
       "/le-dca-de",
       "/fiches-etf"
-    ]
+    ],
+    "reportCoverage": "job-only"
   },
   "rehearse-refresh.yml": {
     "name": "Répétition des futures collectes",
@@ -618,5 +621,43 @@
       "/donnees-a-revoir"
     ],
     "publishes": false
+  },
+  "review-freshness.yml": {
+    "name": "Revue hebdomadaire des données",
+    "workflowName": "Revue hebdomadaire des données",
+    "collectionJob": "report",
+    "maxAgeHours": 192,
+    "tools": [
+      "Données à revoir"
+    ],
+    "paths": [
+      "/donnees-a-revoir"
+    ],
+    "publishes": false,
+    "validationOnly": true,
+    "collectionSteps": [],
+    "validationSteps": [
+      "Préparer le rapport de revue",
+      "Vérifier les sources et les séries du code",
+      "Repérer les encours ETF à rapprocher"
+    ]
+  },
+  "deploy-pages.yml": {
+    "name": "Construction et publication de l’application",
+    "workflowName": "Deploy to GitHub Pages",
+    "collectionJob": "build",
+    "controlOnly": true,
+    "maxAgeHours": 840,
+    "tools": [
+      "Tous les outils"
+    ],
+    "paths": [
+      "/donnees-a-revoir"
+    ],
+    "collectionSteps": [],
+    "validationSteps": [
+      "Run npm run build"
+    ],
+    "publishes": true
   }
 }

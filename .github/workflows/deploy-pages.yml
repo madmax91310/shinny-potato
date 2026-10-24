@@ -215,6 +215,7 @@ jobs:
       - run: npm run stress-test:portfolios
       - run: node scripts/test-observation-freshness.mjs
       - run: node scripts/test-automation-overview.mjs
+      - run: node scripts/test-review-inbox.mjs
       - run: node scripts/test-monitoring-context.mjs
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-history-pool-initialization.mjs
@@ -435,6 +436,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-review-product.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-data-review-recovery.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-removed-ai.mjs

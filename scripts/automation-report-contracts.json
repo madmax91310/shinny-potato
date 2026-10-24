@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 1,
+  "workflows": {
+    "update-practical-sheets.yml": {
+      "artifact": "practical-observations",
+      "reports": [
+        {
+          "name": "practical-observation.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "practical"
+          ]
+        }
+      ]
+    },
+    "update-editorial-radar.yml": {
+      "artifact": "editorial-radar-observations",
+      "reports": [
+        {
+          "name": "feed.json",
+          "steps": [
+            "Publish comparable observations and new signals"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "radar"
+          ]
+        }
+      ]
+    },
+    "update-publication-observations.yml": {
+      "artifact": "publication-observations",
+      "reports": [
+        {
+          "name": "purchasing-observation.json",
+          "steps": [
+            "Collect INSEE price levels, IRL and SMIC"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "anniversary-indices-observation.json",
+          "steps": [
+            "Collect completed official anniversary index months"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "anniversary-observation.json",
+          "steps": [
+            "Collect completed anniversary levels"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    },
+    "update-insurance.yml": {
+      "artifact": "insurance-observations",
+      "reports": [
+        {
+          "name": "insurance-observation.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "observations"
+          ]
+        }
+      ]
+    },
+    "update-scpi.yml": {
+      "artifact": "scpi-observations",
+      "reports": [
+        {
+          "name": "scpi-observation.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "observations"
+          ]
+        }
+      ]
+    },
+    "update-presentation-actors.yml": {
+      "artifact": "actor-observations",
+      "reports": [
+        {
+          "name": "actor-observation.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "observations"
+          ]
+        }
+      ]
+    },
+    "update-regulatory-data.yml": {
+      "artifact": "regulatory-observations",
+      "reports": [
+        {
+          "name": "fiscal-observation.json",
+          "steps": [
+            "Collect observations: fiscal"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "references"
+          ]
+        },
+        {
+          "name": "broker-observation.json",
+          "steps": [
+            "Collect observations: brokers"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "references"
+          ]
+        },
+        {
+          "name": "broker-tweet-observation.json",
+          "steps": [
+            "Audit the data used by the 28 broker tweets"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    },
+    "collect-etf-pilot.yml": {
+      "artifact": "active-etf-observation",
+      "reports": [
+        {
+          "name": "observation.json",
+          "steps": [
+            "Collect observations: ishares"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        },
+        {
+          "name": "amundi-observation.json",
+          "steps": [
+            "Collect observations: amundi"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        },
+        {
+          "name": "ssga-observation.json",
+          "steps": [
+            "Collect observations: ssga"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        },
+        {
+          "name": "additional-observation.json",
+          "steps": [
+            "Collect observations: additional"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        },
+        {
+          "name": "presentation-performance.json",
+          "steps": [
+            "Collect observations: presentation_performance"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        },
+        {
+          "name": "index-observation.json",
+          "steps": [
+            "Collect observations: indices"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "indices"
+          ]
+        }
+      ]
+    },
+    "update-market-monthly.yml": {
+      "artifact": "monthly-market-observation",
+      "reports": [
+        {
+          "name": "monthly-observation.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "series"
+          ]
+        },
+        {
+          "name": "derived-index-observation.json",
+          "steps": [
+            "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "indices"
+          ]
+        },
+        {
+          "name": "listing-observation.json",
+          "steps": [
+            "Refresh exact issuer listing tables"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "listings"
+          ]
+        },
+        {
+          "name": "ranking-collection-status.json",
+          "steps": [
+            "Refresh exact ranking histories and ECB conversion"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "series"
+          ]
+        }
+      ]
+    },
+    "update-inflation.yml": {
+      "artifact": "insee-inflation-observation",
+      "reports": [
+        {
+          "name": "inflation-observation.json",
+          "steps": [
+            "Collect observations: python scripts update_inflation.py --baseline RUNNER_TEMP inflation-baseline.json --output RUNNER_TEMP inflation-observation.json --apply",
+            "Collect observations: python scripts update_inflation.py --baseline  RUNNER_TEMP inflation-baseline.json  --output  RUNNER_TEMP inflation-observation.json  --apply"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "inflation"
+          ]
+        }
+      ]
+    },
+    "update-investor-13f.yml": {
+      "artifact": "investor-observations",
+      "reports": [
+        {
+          "name": "investor-observations.json",
+          "steps": [
+            "Collect observations: python -u scripts update-investor-13f.py --output RUNNER_TEMP investor-observations.json",
+            "Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "investors"
+          ]
+        }
+      ]
+    },
+    "update-economic-data.yml": {
+      "artifact": "economic-observations",
+      "reports": [
+        {
+          "name": "savings-observation.json",
+          "steps": [
+            "Collect legal Livret A rate"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "households-observation.json",
+          "steps": [
+            "Collect INSEE household indicators"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "scpi-observation.json",
+          "steps": [
+            "Collect ASPIM annual real estate return"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "funds-observation.json",
+          "steps": [
+            "Collect ACPR annual euro fund average"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    },
+    "update-lifestrategy.yml": {
+      "artifact": "lifestrategy-issuer-observation",
+      "reports": [
+        {
+          "name": "lifestrategy.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "holdings"
+          ]
+        }
+      ]
+    },
+    "update-non-bond-expansion.yml": {
+      "artifact": "non-bond-source-observation",
+      "reports": [
+        {
+          "name": "non-bond.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "combined"
+          ]
+        }
+      ]
+    },
+    "update-qualified-exposures.yml": {
+      "artifact": "qualified-exposures-observation",
+      "reports": [
+        {
+          "name": "qualified-exposures.json",
+          "steps": [
+            "Collect observations: collect"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "holdings"
+          ]
+        },
+        {
+          "name": "dca-equities.json",
+          "steps": [
+            "Collect observations: equities"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "dca-equities"
+          ]
+        },
+        {
+          "name": "dca-complete-holdings.json",
+          "steps": [
+            "Collect observations: holdings"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "exposure-sleeves.json",
+          "steps": [
+            "Collect observations: sleeves"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        },
+        {
+          "name": "vanguard-sleeves.json",
+          "steps": [
+            "Collect observations: underliers"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    },
+    "refresh-automated-index-sheets.yml": {
+      "artifact": "complete-index-sheet-observations",
+      "reports": [
+        {
+          "name": "selected-index-observations.json",
+          "steps": [
+            "Collect selected indices directly and require every displayed field"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "indices"
+          ]
+        },
+        {
+          "name": "index-company-observations.json",
+          "steps": [
+            "Refresh additional exact-index company compositions"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "indices"
+          ]
+        },
+        {
+          "name": "index-company-qualification-observations.json",
+          "steps": [
+            "node scripts/build-index-company-compositions.mjs --apply --report \"${{ runner.temp }}/index-company-qualification-observations.json\""
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    },
+    "update-exposure-expansion.yml": {
+      "artifact": "exposure-expansion-observations",
+      "reports": [
+        {
+          "name": "exposure-expansion.json",
+          "steps": [
+            "Collect exact-share observations"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "shares"
+          ]
+        }
+      ]
+    },
+    "update-instrument-metadata.yml": {
+      "artifact": "instrument-metadata-observations",
+      "reports": [
+        {
+          "name": "instrument-metadata.json",
+          "steps": [
+            "Collect exact metadata observations",
+            "Check active field freshness"
+          ],
+          "contract": "explicit-observation-v1",
+          "schemas": [
+            "statuses"
+          ]
+        }
+      ]
+    }
+  }
+}

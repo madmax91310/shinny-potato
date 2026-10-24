@@ -1,3 +1,6 @@
+import ReviewBoundary from './ReviewBoundary.jsx'
+import {MONITOR_RUNS_URL,monitorExecutionHealth,monitorHealth} from './review-inbox.js'
+import ReviewInbox from './ReviewInbox.jsx'
 import AssetFieldCoverage from './AssetFieldCoverage.jsx'
 import { useEffect, useState } from 'react'
 import MonitoringIncidents from './MonitoringIncidents.jsx'
@@ -7,9 +10,11 @@ import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from '.
 const toolTitle = path => TOOLS.find(tool => tool.to === path)?.navLabel ?? path
 
 const recoveryLabel = value => ({ reserved: 'Relance réservée', dispatched: 'Relance demandée', waiting: 'Nouvelle tentative programmée', 'awaiting-current-run': 'Une exécution est déjà en cours ou attend son bilan', 'budget-exhausted': 'Limite de relances atteinte pour 24 heures', 'dispatch-failed': 'Demande de relance échouée ; nouvelle tentative différée' }[value] ?? null)
-const publicationLabel = value => ({ success: 'Réussie', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
+const publicationLabel = value => ({ success: 'Réussie', unverified:'Non démontrée', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', {dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris'}).format(new Date(value)) : 'Non documenté'
-export default function AutomationFailures() {
+export default function AutomationFailures({review}) {
+  const [monitorExecutionError,setMonitorExecutionError]=useState('Vérification indépendante du moniteur en cours.')
+  const [fullStatus,setFullStatus]=useState(null)
   const [monitor, setMonitor] = useState(null)
   const [alerts, setAlerts] = useState([])
   const [overview, setOverview] = useState(null)
@@ -27,23 +32,26 @@ export default function AutomationFailures() {
         const status = await response.json()
         const rows = automationOverview(status)
         const next = automationFailures(status)
-        if (active) { setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
+        if (active) { setFullStatus(status); setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
       } catch { if (active) setUnavailable(true) }
       finally { clearTimeout(timeout) }
     }
+    async function checkMonitor(){try{const r=await fetch(MONITOR_RUNS_URL,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('HTTP '+r.status);const error=monitorExecutionHealth(await r.json());if(active)setMonitorExecutionError(error)}catch{if(active)setMonitorExecutionError('Contrôle indépendant du moniteur indisponible ; son bon fonctionnement reste à démontrer.')}}
+    checkMonitor()
     refresh()
-    const timer = setInterval(refresh, 300000)
+    const timer = setInterval(()=>{refresh();checkMonitor()}, 300000)
     return () => { active = false; clearInterval(timer); controller?.abort() }
   }, [])
-  const rows = overview?.filter(row => filter === 'all' || row.state === filter) ?? []
-  return <><MonitoringIncidents monitor={monitor} /><section className="dr-automation" aria-label="Bilan des collectes automatiques">
-    <h2>Bilan des collectes automatiques</h2>
+  const observed = overview?.map(row=>(unavailable||monitorExecutionError||!monitorHealth(fullStatus).ok)&&row.state==='success'?{...row,state:'unknown'}:row)??[]
+  const rows=observed.filter(row=>filter==='all'||row.state===filter)
+  return <><ReviewInbox status={fullStatus} transportError={unavailable?'Lecture du moniteur échouée':monitorExecutionError} review={review}/><ReviewBoundary name="Historique des incidents"><MonitoringIncidents monitor={monitor} /></ReviewBoundary><section className="dr-automation" aria-label="Bilan des collectes automatiques">
+    <h2>Producteurs et contrôles automatiques</h2>
     <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne change pas la date de la donnée. La publication de l’application est suivie séparément. Les champs indisponibles figurent dans les réserves de cette page.</p>
     {!overview && !unavailable && <p role="status" className="dr-note">Chargement du bilan des collectes…</p>}
     {overview && <>
-      <div className="dr-automation-filters" aria-label="Filtrer les collectes">{[['all', 'Toutes'], ['success', 'Réussies'], ['failure', 'En échec'], ['overdue', 'En retard'], ['unknown', 'État non documenté']].map(([value, label]) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label} · {overview.filter(row => value === 'all' || row.state === value).length}</button>)}</div>
+      <div className="dr-automation-filters" aria-label="Filtrer les collectes">{[['all', 'Toutes'], ['success', 'Réussies'], ['failure', 'En échec'], ['overdue', 'En retard'], ['unknown', 'État non documenté'], ['qualification','Périmètre à qualifier']].map(([value, label]) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label} · {observed.filter(row => value === 'all' || row.state === value).length}</button>)}</div>
       <div className="dr-list">{rows.map(row => <article className="dr-item" key={row.id}>
-        <span className={`dr-badge ${row.state === 'success' ? 'dr-current' : row.state === 'failure' ? 'dr-expired' : 'dr-undated'}`}>{row.state === 'success' ? 'Collecte réussie' : row.state === 'failure' ? row.validationStatus === 'failure' ? 'Validation en échec' : row.recordingStatus === 'failure' ? 'Enregistrement en échec' : row.collectionStatus === 'success' && row.publicationStatus === 'failure' ? 'Publication en échec' : row.collectionStatus === 'failure' ? 'Collecte en échec' : 'Exécution en échec' : row.state === 'overdue' ? 'Contrôle en retard' : 'État non documenté'}</span>
+        <span className={`dr-badge ${row.state === 'success' ? 'dr-current' : row.state === 'failure' ? 'dr-expired' : 'dr-undated'}`}>{row.state === 'success' ? 'Collecte réussie' : row.state === 'failure' ? row.validationStatus === 'failure' ? 'Validation en échec' : row.recordingStatus === 'failure' ? 'Enregistrement en échec' : row.collectionStatus === 'success' && row.publicationStatus === 'failure' ? 'Publication en échec' : row.collectionStatus === 'failure' ? 'Collecte en échec' : 'Exécution en échec' : row.state === 'qualification'?'Exécution passée · périmètre à qualifier':row.state === 'overdue' ? 'Contrôle en retard' : 'État non documenté'}</span>
         <h3>{row.name}</h3>
         {row.state === 'overdue' && <p>Aucune exécution terminée depuis plus de {row.maxAgeHours} heures. Le dernier succès ne prouve pas que la collecte fonctionne encore.</p>}
         {row.validationStatus === 'failure' && <p>Les contrôles de validation des observations ont échoué. Leur enregistrement est bloqué.</p>}
@@ -68,6 +76,6 @@ export default function AutomationFailures() {
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>
       </article>)}</div></section>}
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
-  </section><AssetFieldCoverage /></>
+  </section><ReviewBoundary name="Couverture par champ"><AssetFieldCoverage /></ReviewBoundary></>
 }
 

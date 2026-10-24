@@ -1,3 +1,4 @@
+import ReviewBoundary from './ReviewBoundary.jsx'
 import { groupReviews, reviewAction } from './groups.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useMemo, useState } from 'react'
@@ -54,11 +55,11 @@ export default function DataReview() {
   const groups = groupReviews(items)
   const count = categories => report.items.filter(item => categories.includes(item.category)).length
   return <div className="data-review">
-    <PageHeader title="Données à revoir" subtitle="Les réserves, échéances et contrôles de sources réunis pour préparer les prochaines mises à jour." />
+    <PageHeader title="Données à revoir" subtitle="Incidents, données manquantes, qualifications et échéances : leurs impacts et leurs preuves au même endroit." />
     <p className="dr-note">État au {dateLabel(today)} · Les échéances sont calculées par type de données. Une vérification de la source commune vaut pour tous les outils concernés.</p>
-    <AutomationFailures />
-    <DataAutomationInventory />
-    <FinancialReconciliation />
+    <ReviewBoundary name="Supervision"><AutomationFailures review={report} /></ReviewBoundary>
+    <ReviewBoundary name="Inventaire"><DataAutomationInventory /></ReviewBoundary>
+    <ReviewBoundary name="Rapprochements financiers"><FinancialReconciliation /></ReviewBoundary>
     <div className="dr-counts" aria-label="Résumé des revues">
       <div><strong>{count(['reserve'])}</strong><span>réserves ouvertes</span></div>
       <div><strong>{count(['expired'])}</strong><span>offres expirées</span></div>

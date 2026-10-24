@@ -39,8 +39,12 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(again['revision'], 1)
         self.assertEqual(next(iter(again['active'].values()))['firstSeenAt'], NOW)
         state['workflows']['x.yml']['dataFailures'] = {}
+        self.assertTrue(evaluate(state)['active'], 'Une disparition sans preuve ne clôture pas le champ')
+        state['workflows']['x.yml']['sourceChecks']={'index-world-composition':{'checkedAt':NOW,'runUrl':'https://github.com/test/repo/actions/runs/2'}}
         state['monitoring'] = again
-        resolved = evaluate(state)
+        self.assertTrue(evaluate(state, now='2026-10-14T10:00:00Z')['active'], 'Une preuve antérieure à la panne ne démontre pas sa résolution')
+        state['workflows']['x.yml']['sourceChecks']['index-world-composition']['checkedAt']='2026-10-14T09:30:00Z'
+        resolved = evaluate(state, now='2026-10-14T10:00:00Z')
         self.assertEqual(resolved['active'], {})
         self.assertEqual(len(resolved['resolved']), 1)
         state['monitoring'] = resolved
@@ -96,7 +100,7 @@ class MonitoringTests(unittest.TestCase):
         missing=evaluate(state,CONTEXT)
         self.assertIn('field:ETF:holdings',missing['active'])
         self.assertEqual(missing['resolved'],[])
-        good=evaluate(state,{**CONTEXT,'fieldAlerts':[]})
+        good=evaluate(state,{**CONTEXT,'fieldAlerts':[],'fieldChecks':{'ETF:holdings':{'checkedAt':NOW,'asOf':'2026-09-30'}}})
         self.assertNotIn('field:ETF:holdings',good['active'])
         self.assertEqual(len(good['resolved']),1)
         self.assertEqual(first['active']['field:ETF:holdings']['checkedAt'],'2026-09-01')
@@ -109,8 +113,9 @@ class MonitoringTests(unittest.TestCase):
         self.assertTrue(set(first['active']) < set(unreadable['active']))
         self.assertEqual(unreadable['resolved'], [])
         recovered = evaluate({**STATE, 'monitoring': unreadable})
-        self.assertEqual(recovered['active'], {})
-        self.assertEqual(len(recovered['resolved']), 2)
+        self.assertEqual(len(recovered['active']), 1)
+        self.assertEqual(len(recovered['resolved']), 1)
+        self.assertTrue(next(iter(recovered['active'].values()))['proofStatus']=='resolution-unproven')
 
     def test_investor_report_does_not_clear_another_manager(self):
         def run(n): return {'id': n, 'path': 'update-investor-13f.yml', 'head_branch': 'master', 'event': 'schedule', 'status': 'completed', 'conclusion': 'failure', 'updated_at': f'2026-10-{n:02d}T08:00:00Z', 'html_url': 'https://github.com/test/repo/actions/runs/1'}
@@ -243,7 +248,7 @@ class AlertCenterTests(unittest.TestCase):
         # Recovery is not inferred from the collector run: the gap must disappear.
         unreadable = evaluate({**STATE, 'monitoring': worse}, CONTEXT)
         self.assertIn('history:fund:gaps', unreadable['active'])
-        recovered = evaluate({**STATE, 'monitoring': worse}, {**CONTEXT, 'historyAlerts': []})
+        recovered = evaluate({**STATE, 'monitoring': worse}, {**CONTEXT, 'historyAlerts': [],'historyChecks':{'fund':{'periods':['2026-07','2026-08']}}})
         self.assertFalse(recovered['active'])
         self.assertEqual(len(recovered['resolved']), 1)
 
@@ -252,6 +257,9 @@ class AlertCenterTests(unittest.TestCase):
         state['workflows']['x.yml'].update(lastCollectionSuccessAt='2026-10-10T08:00:00Z', dataFailures={'index-world-composition': {'cause': 'Suspicious ETF change'}})
         row = evaluate(state)['active']['collection:x.yml:index-world-composition']
         self.assertEqual(row['kind'], 'anomaly')
+        self.assertIsNone(row['lastSuccessAt'], 'Le succès global ne date pas ce champ individuel')
+        state['workflows']['x.yml']['dataFailures']['index-world-composition']['lastSuccessAt']='2026-10-10T08:00:00Z'
+        row=evaluate(state)['active']['collection:x.yml:index-world-composition']
         self.assertEqual(row['lastSuccessAt'], '2026-10-10T08:00:00Z')
 
     def test_partial_data_recovery_and_escalation_notify_once(self):
@@ -270,6 +278,7 @@ class AlertCenterTests(unittest.TestCase):
         sync_monitoring_issue(worse, api, 'test/repo')
         self.assertEqual(len(api.writes), count)
         context['historyAlerts'] = context['historyAlerts'][1:]
+        context['historyChecks']={'a':{'periods':['2026-07','2026-08']}}
         partial = evaluate({**STATE, 'monitoring': worse}, context)
         sync_monitoring_issue(partial, api, 'test/repo')
         self.assertEqual(len(api.comments), 2)

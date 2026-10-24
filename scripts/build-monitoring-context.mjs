@@ -35,8 +35,11 @@ export function fieldAlerts(report,entities=[]) {
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const context = monitoringContext(buildReview(parisToday()))
-  context.historyAlerts = historyAlerts(context.today, context.entities)
-  context.fieldAlerts = fieldAlerts(buildAssetFieldReport(context.today),context.entities)
+  context.historyChecks = {}
+  context.historyAlerts = historyAlerts(context.today, context.entities, context.historyChecks)
+  const fields = buildAssetFieldReport(context.today)
+  context.fieldAlerts = fieldAlerts(fields,context.entities)
+  context.fieldChecks = Object.fromEntries(fields.rows.filter(r=>r.present&&r.state==='current'&&r.diagnostic?.code!=='retained-source-failure').map(r=>[`${r.type}:${r.id}:${r.field}`,{checkedAt:r.checkedAt,asOf:r.asOf,sourceUrl:r.sourceUrl}]))
   const output = JSON.stringify(context, null, 2) + '\n'
   if (process.argv[2]) writeFileSync(process.argv[2], output)
   else process.stdout.write(output)

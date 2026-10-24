@@ -33,7 +33,7 @@ export function inspectHistory({ periods, cadence, today, policy, firstCompleteY
   return { missingPeriods, invalidPeriods, delayed, asOf }
 }
 
-export function historyAlerts(today, entities = []) {
+export function historyAlerts(today, entities = [], checks = {}) {
   const alerts = []
   function inspect(id, dataId, name, record, periods, cadence, policyKey, sources = []) {
     const check = inspectHistory({ periods, cadence, today, policy: POLICY.fields[policyKey], periodStart: record.periodStart, periodEnd: record.periodEnd, ...calendarEligibility(dataId, today) })
@@ -44,6 +44,7 @@ export function historyAlerts(today, entities = []) {
       impactScope: tools.length ? 'asset' : 'catalog', tools, sourceUrls, to: `/bibliotheque-donnees?q=${encodeURIComponent(dataId)}`,
       checkedAt: record.checkedAt ?? record.source?.checkedAt ?? null, asOf: check.asOf,
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
+    checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
     if (check.missingPeriods.length || check.invalidPeriods.length) alerts.push({ ...base, id: `${id}:gaps`, kind: 'history',
       missingPeriods: check.missingPeriods, invalidPeriods: check.invalidPeriods,
       cause: [check.missingPeriods.length && `Périodes absentes dans la plage documentée de l’historique : ${check.missingPeriods.join(', ')}.`, check.invalidPeriods.length && `Valeurs non exploitables : ${check.invalidPeriods.join(', ')}.`].filter(Boolean).join(' ') })

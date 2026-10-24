@@ -24,6 +24,7 @@ on:
       - Refresh fully automated index sheets
       - Onboard new assets
       - Rehearse future data refreshes
+      - Revue hebdomadaire des données
       - Deploy to GitHub Pages
     types: [completed]
   workflow_dispatch:
@@ -33,6 +34,9 @@ on:
     paths:
       - ".github/workflows/automation-status.yml"
       - "scripts/publish_automation_status.py"
+      - "scripts/automation-report-contracts.json"
+      - "scripts/test_automation_product.py"
+      - "scripts/fixtures/automation-reports/**"
       - "scripts/test_automation_status.py"
       - "scripts/automation_monitoring.py"
       - "scripts/test_automation_monitoring.py"
@@ -48,6 +52,8 @@ on:
     paths:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
+      - 'scripts/automation-report-contracts.json'
+      - 'scripts/fixtures/automation-reports/**'
       - 'scripts/automation_monitoring.py'
       - 'scripts/automation_recovery.py'
       - 'scripts/github_automation_transport.py'
