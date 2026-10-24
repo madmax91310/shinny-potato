@@ -114,11 +114,39 @@ class ProductContracts(unittest.TestCase):
         self.assertEqual(normalize_report({'series':[{'id':'not-tried','status':'failed'}],'attemptedIds':[]})['errors'],[])
         with self.assertRaises(ValueError):normalize_report({'series':[],'attemptedIds':['absent']})
         with self.assertRaises(ValueError):normalize_report({'series':[{'id':'x','status':'strange'}]})
+    def test_shared_scope_matches_attempted_results_and_preserves_source_clock(self):
+        payload={'scope':{'expectedIds':['x'],'requestedIds':['x']},'successes':[{'id':'x'}],'errors':[],
+                 'outcomes':[{'id':'x','status':'unchanged-verified','checkedAt':'2026-10-24'}]}
+        self.assertEqual(normalize_report(payload)['successes'],[{'id':'x'}])
+        with self.assertRaises(ValueError):normalize_report({**payload,'successes':[]})
+        with self.assertRaises(ValueError):normalize_report({**payload,'outcomes':[{'id':'x','status':'failed'}]})
+        with self.assertRaises(ValueError):normalize_report({**payload,'scope':{'expectedIds':['x','missing'],'requestedIds':['x']}})
+        skipped={**payload,'outcomes':[{'id':'x','status':'not-attempted'}]}
+        self.assertFalse(normalize_report(skipped)['successes'])
+        w='update-gold-monthly.yml'
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'gold-observation.json';path.write_text(json.dumps({'schemaVersion':1,**payload}))
+            report=read_report_safely(path,w)
+        old=update_status({},event(w),jobs(w),[{'errors':[{'id':'x','error':'Network'}]}])
+        old['monitoring']=evaluate_monitoring(old,CTX,{w:REGISTRY[w]},NOW,{'errors':[]})
+        run={**event(w,101),'updated_at':'2026-10-24T13:00:00Z'}
+        new=update_status(old,run,jobs(w),[report])
+        row=new['workflows'][w]
+        self.assertEqual(row['lastCollectionSuccessAt'],'2026-10-24')
+        self.assertFalse(row['dataFailures']);self.assertFalse(row['reportQualifications'])
+        old['workflows'][w]['reportQualifications']={'gold-observation.json':{'cause':'Ancien périmètre non démontré','evidence':{'sha256':'older-report'}}}
+        self.assertIn('gold-observation.json',update_status(old,run,jobs(w),[report])['workflows'][w]['reportQualifications'])
+        monitor=evaluate_monitoring(new,CTX,{w:REGISTRY[w]},'2026-10-24T14:00:00Z',{'errors':[]})
+        self.assertNotIn('collection:'+w+':x',monitor['active'])
     def test_cache_does_not_renew_source_success(self):
         workflow='update-scpi.yml';old=update_status({},event(workflow),jobs(workflow),[{'successes':[{'id':'x'}],'errors':[]}])
         old['workflows'][workflow]['lastCollectionSuccessAt']='2026-10-20'
         now=update_status(old,event(workflow,101),jobs(workflow),[{'companies':{'x':{'quote':'cached-with-original-observation-date'}}}])
         self.assertEqual(now['workflows'][workflow]['lastCollectionSuccessAt'],'2026-10-20')
+        legacy={'workflows':{workflow:{'monitorVersion':2,'lastCollectionSuccessAt':'2026-10-24T11:00:00Z'}}}
+        upgraded=update_status(legacy,event(workflow),jobs(workflow),[{'successes':[],'errors':[]}])['workflows'][workflow]
+        self.assertIsNone(upgraded['lastCollectionSuccessAt'])
+        self.assertEqual(upgraded['legacyLastCollectionSuccessAt'],'2026-10-24T11:00:00Z')
     def test_cache_and_unknown_status_in_legacy_families(self):
         for family, identity in [('shares',{'isin':'IE0000000000'}),('indices',{'id':'world','facts':True}),('managers',{'slug':'manager'})]:
             for status in ('cached','unchanged','not-attempted'):

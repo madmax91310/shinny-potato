@@ -2,7 +2,7 @@ import {useEffect,useMemo,useState} from 'react'
 import {Link} from 'react-router-dom'
 import PagedList from './PagedList.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
-import {buildInbox,inboxDiagnostic,ISSUE_KINDS,projectionHealth} from './review-inbox.js'
+import {buildInbox,inboxDiagnostic,ISSUE_KINDS,projectionHealth,decodeReviewProjection} from './review-inbox.js'
 const normalize=s=>String(s??'').normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase()
 const sources={inventory:'data-review-inbox.json',coverage:'asset-field-coverage.json',financial:'financial-reconciliation.json',publication:'publication-manifest.json'}
 const safeUrl=s=>typeof s==='string'&&/^https?:\/\//.test(s)
@@ -13,6 +13,10 @@ function valid(key,r){
   return r
  }
  if(key==='inventory'){
+  r=decodeReviewProjection(r)
+  if(!Array.isArray(r.toolNames)||r.toolNames.some(t=>typeof t!=='string')||!r.fieldConsumers||Object.values(r.fieldConsumers).some(names=>!Array.isArray(names)||names.some(i=>!Number.isInteger(i)||i<0||i>=r.toolNames.length)))throw Error('Contrat des outils consommateurs invalide')
+  if(!Array.isArray(r.assets)||r.assets.some(a=>!a||typeof a.id!=='string'||!Array.isArray(a.fields)||a.fields.some(f=>!f||typeof f.key!=='string')))throw Error('Contrat des champs consommateurs invalide')
+  if(r.summary?.actionableConnections!==r.backlog?.length||r.consumerUsage?.summary?.required-r.consumerUsage?.summary?.connected!==r.consumerUsage?.tools?.reduce((n,t)=>n+t.rows.length,0))throw Error('Périmètre de la projection incomplet')
   if(!Array.isArray(r.backlog)||r.backlog.some(v=>!v||typeof v.id!=='string'||typeof v.field!=='string')||!Array.isArray(r.assets)||r.contract!=='data-review-inbox-v1'||!(/^[a-f0-9]{40}$/.test(r.inventoryBlobSha??''))||!Number.isInteger(r.summary?.catalogFields)||!r.fieldConsumers||!Array.isArray(r.consumerUsage?.tools)||r.consumerUsage.tools.some(t=>!Array.isArray(t.rows)||t.rows.some(v=>!v||typeof v.id!=='string'||typeof v.key!=='string')))throw Error('Inventaire incomplet ou compteurs incohérents')
  }else if(!Array.isArray(r.rows)||r.rows.some(v=>!v||typeof v.id!=='string'))throw Error('Liste de champs invalide')
  if(key==='financial'&&(!r.summary||r.summary.total!==r.rows.length||r.summary.open!==r.rows.filter(v=>v.open).length||r.summary.correctedWithResidual!==r.rows.filter(v=>v.residualOpen).length))throw Error('Dénominateurs financiers incohérents')

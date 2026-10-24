@@ -67,4 +67,4 @@ assert.equal(recoveryRow.recovery.status, 'waiting')
 assert.equal(recoveryRow.recovery.nextAttemptAt, '2026-10-13T21:00:00Z')
 assert.equal(automationOverview(status, now).find(r => r.id === 'partial').recovery, null)
 
-assert.equal(automationOverview({schemaVersion:1,workflows:{'update-gold-monthly.yml':{name:'Gold',status:'success',collectionStatus:'success',completedAt:now.toISOString()}}},now).find(r=>r.id==='update-gold-monthly.yml').state,'qualification','A green job without individual evidence remains unqualified')
+assert.equal(automationOverview({schemaVersion:1,workflows:{'update-bitcoin-monthly.yml':{name:'Bitcoin',status:'success',collectionStatus:'success',completedAt:now.toISOString()}}},now).find(r=>r.id==='update-bitcoin-monthly.yml').state,'qualification','A green job without individual evidence remains unqualified')

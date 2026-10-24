@@ -600,6 +600,24 @@
           ]
         }
       ]
+    },
+    "update-gold-monthly.yml": {
+      "artifact": "gold-observations",
+      "reports": [
+        {
+          "name": "gold-observation.json",
+          "steps": [
+            "Collect official monthly workbook"
+          ],
+          "contract": "scope-results-v1",
+          "schemas": [
+            "statuses"
+          ],
+          "versions": [
+            1
+          ]
+        }
+      ]
     }
   }
 }

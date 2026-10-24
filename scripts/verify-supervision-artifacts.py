@@ -10,7 +10,8 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
-from publish_automation_status import artifact_reports, attempt_artifacts, download_status_artifact, update_status
+from publish_automation_status import artifact_reports, attempt_artifacts, download_status_artifact, update_status, technical_proof, REGISTRY
+from automation_monitoring import timestamp
 
 
 if __name__ == '__main__':
@@ -20,7 +21,9 @@ if __name__ == '__main__':
         directory = Path(entry['directory'])
         run = json.loads((directory / 'run.json').read_text())
         jobs = json.loads((directory / 'jobs.json').read_text())['jobs']
-        artifacts = attempt_artifacts(json.loads((directory / 'artifacts.json').read_text())['artifacts'], run)
+        available = json.loads((directory / 'artifacts.json').read_text())['artifacts']
+        artifacts = attempt_artifacts(available, run) if run['status']=='completed' else [a for a in available
+            if timestamp(run['run_started_at']) <= timestamp(a['created_at']) <= dt.datetime.now(dt.timezone.utc)]
         selected = next(a for a in artifacts if a['id'] == entry['artifact'])
         def download(repo, artifacts, name, target):
             def local_bytes(*args, **kwargs):
@@ -29,9 +32,23 @@ if __name__ == '__main__':
         with tempfile.TemporaryDirectory() as target:
             reports = artifact_reports('madmax91310/shinny-potato', entry['workflow'], jobs, [selected], target, download)
         state = update_status({}, run, jobs, reports)
-        observed = state['workflows'][entry['workflow']]
+        observed = state.get('workflows',{}).get(entry['workflow'])
+        if observed is None:
+            # A completed source phase is not an invented completed workflow.
+            config=REGISTRY[entry['workflow']]
+            steps=[s for j in jobs if j['name']==config['collectionJob'] for s in j.get('steps',[])]
+            def phase(names):
+                conclusions=[s.get('conclusion')for s in steps if s['name']in names]
+                return 'failure'if any(v in ('failure','timed_out')for v in conclusions)else'success'if conclusions and all(v=='success'for v in conclusions)else'pending'
+            errors=[e for r in reports for e in r.get('errors',[])]
+            observed={'collectionStatus':phase(config['collectionSteps']),'validationStatus':phase(config['validationSteps']),
+                'recordingStatus':phase(['Commit validated observations']),'publicationStatus':'pending',
+                'dataFailures':{e['id']:e for e in errors if not technical_proof(e['id'])},
+                'proofFailures':{e['id']:e for e in errors if technical_proof(e['id'])},
+                'reportQualifications':{r['_reportEvidence']['file']:r['_scopeWarning']for r in reports if r.get('_scopeWarning')},
+                'reportEvidenceHistory':[r['_reportEvidence']for r in reports if r.get('_reportEvidence')]}
         rows.append({'workflow': entry['workflow'], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
-                     'runUrl': run['html_url'], 'runConclusion': run['conclusion'], 'completedAt': run['updated_at'],
+                     'runUrl': run['html_url'], 'runStatus':run['status'], 'runConclusion': run['conclusion'], 'completedAt': run['updated_at']if run['status']=='completed'else None,
                      'artifactId': selected['id'], 'artifactCreatedAt': selected['created_at'],
                      'collectionStatus': observed['collectionStatus'], 'validationStatus': observed['validationStatus'],
                      'recordingStatus': observed['recordingStatus'], 'publicationStatus': observed['publicationStatus'],

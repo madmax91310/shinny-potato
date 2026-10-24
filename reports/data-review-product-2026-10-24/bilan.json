@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-24T15:35:16.993Z",
-  "monitorCheckedAt": "2026-10-24T14:51:59.644818+00:00",
+  "checkedAt": "2026-10-24T16:18:52.962Z",
+  "monitorCheckedAt": "2026-10-24T16:08:11.098455+00:00",
   "monitorHealthy": true,
   "counts": {
-    "issues": 2457,
-    "signals": 4137,
+    "issues": 4429,
+    "signals": 9519,
     "byKind": {
-      "failure": 40,
-      "connection": 381,
-      "qualification": 861,
+      "failure": 36,
+      "connection": 167,
+      "qualification": 3051,
       "waiting": 14,
       "not-applicable": 280,
       "editorial": 779,
@@ -16,8 +16,8 @@
       "history": 100
     },
     "fields": 4274,
-    "consumerTools": 20,
-    "requiredUsages": 18369,
+    "consumerTools": 23,
+    "requiredUsages": 27987,
     "financialOpenOrResidual": 79
   },
   "workflowScope": [
@@ -308,12 +308,12 @@
     {
       "path": "test-artifacts/review-product/all-1440.json",
       "bytes": 296646,
-      "sha256": "669be4293e2a7894431ddcf883106d74852066220b70101de3f0e4d2ac51a033"
+      "sha256": "ae87878597d3bacb62f44b7c0b71afc6342016f137d3cc8758f852897def5ab6"
     },
     {
       "path": "test-artifacts/review-product/all-390.json",
       "bytes": 296646,
-      "sha256": "023c89219f5d9c8286cdb1d4450e75604a352a68c398d0555900de6348830077"
+      "sha256": "0e26bdfa39087d7bfc3223c46cb2774452759067ff0ac4f2d598677983d96b48"
     },
     {
       "path": "test-artifacts/review-product/monitor-absent.png",
@@ -342,8 +342,8 @@
     },
     {
       "path": "test-artifacts/review-product/results.json",
-      "bytes": 278,
-      "sha256": "b67320437923b05fbd621dcabcbc9903350c3f3cf114a7fffd86779466bdfa7f"
+      "bytes": 313,
+      "sha256": "b11c3034a7f68b63a8cc9f27784fb1bca467720d9cea87204f489d94eaa591d2"
     },
     {
       "path": "test-artifacts/data-review-recovery/copper-annual-nav-2018.png",

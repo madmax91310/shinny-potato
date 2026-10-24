@@ -211,7 +211,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             return workflow.get('proofChecks', {}).get(row['proofId'])
         if row.get('dataId'):
             proof = workflow.get('sourceChecks', {}).get(row['dataId'])
-            checked = timestamp(proof.get('checkedAt') or proof.get('recordedAt')) if proof else None
+            checked = timestamp(proof.get('recordedAt') if proof.get('verifiedInAttempt') else proof.get('checkedAt') or proof.get('recordedAt')) if proof else None
             failed_at = timestamp(row.get('attemptedAt') or row.get('completedAt') or row.get('firstSeenAt'))
             return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
         if key.startswith('scope:'):

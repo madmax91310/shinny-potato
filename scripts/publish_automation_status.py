@@ -196,6 +196,40 @@ def _normalize_report(report):
 def normalize_report(report):
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    scope = report.get('scope')
+    if isinstance(scope, dict) and ('expectedIds' in scope or 'requestedIds' in scope):
+        expected = scope.get('expectedIds')
+        requested = scope.get('requestedIds')
+        for ids in (expected, requested):
+            if not isinstance(ids, list) or any(not isinstance(v, str) or not v for v in ids) or len(set(ids)) != len(ids):
+                raise ValueError('Identifiants de périmètre attendus/demandés invalides')
+        report = {**report}
+        shape = report_shape(report)
+        if shape == 'series':
+            observed = {r['id'] for r in report['series'] + list(report.get('fxSources', {}).values())}
+            report['attemptedIds'] = expected
+        elif shape == 'listing':
+            observed = set(report['validated']) | {r['isin'] for r in report['failed']}
+            report['validated'] = [v for v in report['validated'] if v in expected]
+            report['failed'] = [r for r in report['failed'] if r['isin'] in expected]
+        elif shape == 'statuses':
+            outcomes = report.get('outcomes', [])
+            if not isinstance(outcomes, list) or any(not isinstance(r, dict) or not isinstance(r.get('id'), str)
+                    or r.get('status') not in ('succeeded','unchanged-verified','failed','not-attempted','cached','unchanged','waiting') for r in outcomes):
+                raise ValueError('Résultats individuels du périmètre invalides')
+            observed = {r['id'] for k in ('successes','errors','inactive') for r in report.get(k, [])} | {r['id'] for r in outcomes}
+            skipped = {r['id'] for r in outcomes if r['status'] in ('not-attempted','cached','unchanged','waiting')}
+            successful = {r['id'] for r in report.get('successes', [])}
+            failed = {r['id'] for r in report.get('errors', [])}
+            for row in outcomes:
+                if row['id'] not in expected:continue
+                if (row['status'] in ('succeeded','unchanged-verified') and (row['id'] not in successful or row['id'] in failed)
+                        or row['status'] == 'failed' and (row['id'] not in failed or row['id'] in successful)):
+                    raise ValueError('Résultat individuel contradictoire : ' + row['id'])
+            report['attemptedIds'] = [v for v in expected if v not in skipped]
+        else:
+            raise ValueError('Périmètre explicite non qualifié pour ce format : ' + shape)
+        if set(expected) - observed:raise ValueError('Résultats attendus absents : ' + ', '.join(sorted(set(expected)-observed)))
     for key, allowed in [('shares', {None, 'validated', 'failed'}), ('indices', {None, 'validated', 'failed'}),
                          ('managers', {'validated', 'failed'}), ('observations', {'success', 'failure', 'waiting', 'superseded'})]:
         if isinstance(report.get(key), list) and any(not isinstance(r, dict) or r.get('status') not in allowed | {'cached', 'unchanged', 'waiting', 'not-attempted'} for r in report[key]):
@@ -214,11 +248,11 @@ def normalize_report(report):
         attempted = report['attemptedIds']
         if not isinstance(attempted, list) or any(not isinstance(v, str) or not v for v in attempted) or len(set(attempted)) != len(attempted):
             raise ValueError('Périmètre tenté invalide')
-        observed = {r['id'] for kind in ('successes','errors') for r in result.get(kind, [])}
+        observed = {r['id'] for kind in ('successes','errors','inactive') for r in result.get(kind, [])}
         missing = set(attempted) - observed
         if missing:
             raise ValueError('Résultats tentés absents : ' + ', '.join(sorted(missing)))
-        result = {**result, **{kind:[r for r in result.get(kind, []) if r['id'] in attempted] for kind in ('successes','errors')}}
+        result = {**result, **{kind:[r for r in result.get(kind, []) if r['id'] in attempted] for kind in ('successes','errors','inactive')}}
     if isinstance(report.get('series'), list):
         attempted = report.get('attemptedIds')
         rows = report['series'] + list(report.get('fxSources', {}).values())
@@ -229,7 +263,7 @@ def normalize_report(report):
         relevant = [r for r in rows if attempted is None or r['id'] in attempted]
         if any(r.get('status') not in ('validated', 'failed', 'cached', 'unchanged', 'waiting', 'not-attempted') for r in relevant):
             raise ValueError('Statut de résultat inconnu')
-    return result
+    return {k:v for k,v in result.items() if k not in ('scope','attemptedIds','outcomes')}
 
 
 def report_shape(report):
@@ -342,12 +376,23 @@ def read_report(path, workflow):
             record = records.get(success['id'].split(':', 1)[-1], {})
             if record.get('checkedAt'):
                 success['checkedAt'] = record['checkedAt']
+    outcomes = {r['id']:r for r in report.get('outcomes', [])}
+    for kind in ('successes', 'errors'):
+        for row in result.get(kind, []):
+            identifier = row['id']
+            record = outcomes.get(identifier, outcomes.get(identifier.removeprefix('listing:').removeprefix('history:'), {}))
+            for key in ('checkedAt','asOf','attemptedAt','lastSuccessAt','responseSha256'):
+                if key in record:row[key] = record[key]
+            if record.get('sourceUrl'):row['sourceUrls'] = [record['sourceUrl']]
+            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt'):
+                row['verifiedInAttempt'] = True
     for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
         if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
             raise ValueError('Date de contrôle du rapport invalide ou future')
-    result['_reportEvidence'] = {'scopeExplicit': 'attemptedIds' in report, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+    scope_explicit = 'attemptedIds' in report or isinstance(report.get('scope'),dict) and 'expectedIds' in report['scope']
+    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scope':report.get('scope'), 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                                  'reportedAt': report.get('checkedAt'), 'schema': shape}
-    if 'attemptedIds' not in report:
+    if not scope_explicit:
         result['_scopeWarning'] = 'Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.'
     return result
 
@@ -557,7 +602,10 @@ def update_status(state, run, jobs, reports=None):
             key = evidence['file']
             if report.get('_scopeWarning'):
                 qualifications[key] = {'cause': report['_scopeWarning'], 'runUrl': run['html_url'], 'attemptedAt': evidence.get('reportedAt'), 'evidence': evidence}
-            else:
+            elif qualifications.get(key, {}).get('evidence', {}).get('sha256') == evidence.get('sha256'):
+                # A new targeted/empty scope cannot qualify an older unscoped
+                # report. Only re-reading that exact proof with a now-supported
+                # explicit contract can clear its historical qualification gap.
                 qualifications.pop(key, None)
             receipt = {**evidence, 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
                        'recordedAt': run['updated_at'], 'runUrl': run['html_url'],
@@ -581,13 +629,14 @@ def update_status(state, run, jobs, reports=None):
                 continue
             checked = timestamp(success.get('checkedAt') or (evidence or {}).get('reportedAt'))
             failed_at = timestamp(data_failures.get(success['id'], {}).get('completedAt'))
-            if checked and failed_at and checked <= failed_at:
+            if checked and failed_at and checked <= failed_at and not success.get('verifiedInAttempt'):
                 continue  # An older retained record is not a successful source retry.
             data_failures.pop(success['id'], None)
             retired_failures.pop(success['id'], None)
             if not success['id'].startswith(('report-read:', 'artifact-read:')):
                 source_checks[success['id']] = {'checkedAt': success.get('checkedAt') or (evidence or {}).get('reportedAt'),
-                    'recordedAt': run['updated_at'], 'runUrl': run['html_url'], 'evidence': evidence}
+                    'recordedAt': run['updated_at'], 'runUrl': run['html_url'], 'evidence': evidence,
+                    **{k:success[k] for k in ('verifiedInAttempt','responseSha256','asOf') if k in success}}
         for error in report.get('errors', []):
             id_ = error['id']
             if technical_proof(id_):
@@ -661,8 +710,9 @@ def update_status(state, run, jobs, reports=None):
                         if not item['id'].startswith(('report-read:', 'artifact-read:'))]
     source_dates = [item.get('checkedAt') or report.get('_reportEvidence', {}).get('reportedAt')
                     for report, item in source_successes]
-    source_dates = [d for d in [*source_dates, previous.get('lastCollectionSuccessAt')] if timestamp(d)]
-    last_source_success = (max(source_dates, key=timestamp) if source_dates else previous.get('lastCollectionSuccessAt'))
+    prior_source_success = previous.get('lastCollectionSuccessAt') if previous.get('monitorVersion',1) >= 3 else None
+    source_dates = [d for d in [*source_dates, prior_source_success] if timestamp(d)]
+    last_source_success = (max(source_dates, key=timestamp) if source_dates else prior_source_success)
     if not any(r.get('_reportEvidence') for r in reports) and source_successes:
         last_source_success = run['updated_at']  # Legacy explicit per-source success, not a retained record.
     entries[workflow] = {'monitorVersion': 3, 'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
@@ -670,7 +720,8 @@ def update_status(state, run, jobs, reports=None):
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
         'collectionStatus': collection_status, 'validationStatus': validation_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
-        'lastCollectionSuccessAt': last_source_success if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
+        'lastCollectionSuccessAt': last_source_success if collection_status == 'success' else prior_source_success,
+        'legacyLastCollectionSuccessAt': previous.get('legacyLastCollectionSuccessAt') or (previous.get('lastCollectionSuccessAt') if previous.get('monitorVersion',1)<3 else None),
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures,'retiredDataFailures':retired_failures,
         'stepResults': {j['name']+'\n'+step['name']:step.get('conclusion') for j in jobs for step in (j.get('steps')or[])},

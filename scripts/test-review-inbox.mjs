@@ -31,3 +31,9 @@ console.log('Compact review projection: exhaustive model parity and payload budg
 
 assert.equal(projectionHealth({inventoryBlobSha:'a'.repeat(40)},{files:{'public/data/data-automation-inventory.json':'a'.repeat(40)}}),null)
 assert.match(projectionHealth({inventoryBlobSha:'b'.repeat(40)},{files:{'public/data/data-automation-inventory.json':'a'.repeat(40)}}),/différente/)
+
+const merged=buildInbox({...args,status:{...status,monitoring:{...status.monitoring,active:{
+ a:{id:'field:gap:instrument:IE0000000000:completeHoldings',name:'Fund',kind:'review',tools:['Tool'],field:'Composition',cause:'Qualification générale'},
+ b:{id:'collection:update-qualified-exposures.yml:dca-holdings:IE0000000000',dataId:'dca-holdings:IE0000000000',name:'Fund',kind:'collection',tools:['Tool'],field:'Composition',cause:'Exact HTTP 403'}
+}}}}).issues.filter(r=>r.id==='instrument:IE0000000000:completeHoldings')
+assert.equal(merged.length,1);assert.equal(merged[0].signals.length,2);assert.equal(merged[0].cause,'Exact HTTP 403')

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T15:48:50.261088+00:00",
+  "generatedAt": "2026-10-24T16:18:49.243980+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -28,7 +28,7 @@
     "review-freshness.yml",
     "deploy-pages.yml"
   ],
-  "testsRun": 19,
+  "testsRun": 20,
   "successful": true,
   "rows": [
     {
@@ -172,6 +172,14 @@
       "producer": "update-instrument-metadata.yml",
       "class": "",
       "case": "test_artifact_absence_expiry_and_step_not_attempted (test_automation_product.ProductContracts.test_artifact_absence_expiry_and_step_not_attempted) (workflow='update-instrument-metadata.yml')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_artifact_absence_expiry_and_step_not_attempted"
+    },
+    {
+      "test": "test_artifact_absence_expiry_and_step_not_attempted",
+      "producer": "update-gold-monthly.yml",
+      "class": "",
+      "case": "test_artifact_absence_expiry_and_step_not_attempted (test_automation_product.ProductContracts.test_artifact_absence_expiry_and_step_not_attempted) (workflow='update-gold-monthly.yml')",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_artifact_absence_expiry_and_step_not_attempted"
     },
@@ -4233,6 +4241,14 @@
     },
     {
       "test": "test_real_producer_schemas_and_normalization_parity",
+      "producer": "update-gold-monthly.yml",
+      "class": "",
+      "case": "test_real_producer_schemas_and_normalization_parity (test_automation_product.ProductContracts.test_real_producer_schemas_and_normalization_parity) (workflow='update-gold-monthly.yml', file='gold-observation.json')",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_real_producer_schemas_and_normalization_parity"
+    },
+    {
+      "test": "test_real_producer_schemas_and_normalization_parity",
       "producer": "",
       "class": "cross-cutting",
       "case": "test_real_producer_schemas_and_normalization_parity (test_automation_product.ProductContracts.test_real_producer_schemas_and_normalization_parity)",
@@ -4246,6 +4262,14 @@
       "case": "test_rerun_archive_is_not_old_attempt_proof (test_automation_product.ProductContracts.test_rerun_archive_is_not_old_attempt_proof)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_rerun_archive_is_not_old_attempt_proof"
+    },
+    {
+      "test": "test_shared_scope_matches_attempted_results_and_preserves_source_clock",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_shared_scope_matches_attempted_results_and_preserves_source_clock (test_automation_product.ProductContracts.test_shared_scope_matches_attempted_results_and_preserves_source_clock)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_shared_scope_matches_attempted_results_and_preserves_source_clock"
     },
     {
       "test": "test_targeted_results_contract",
