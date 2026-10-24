@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-24T21:43:07.785184+00:00",
+  "expectedMerge": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+  "build": {
+    "sha": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+    "builtAt": "2026-10-24T21:22:50Z"
+  },
+  "documents": {
+    "data-automation-inventory.json": {
+      "bytes": 35295626,
+      "sha256": "e950f84ebee8a15997c0cea061415adfe319ef60fdf31e9ad7cb6494973c68aa",
+      "blobSha": "84fe36f0eac85e195f44ea8c9fc3b9f46a20cb68",
+      "manifestBound": true
+    },
+    "data-review-inbox.json": {
+      "bytes": 1947134,
+      "sha256": "8a32c17b0cb294a1f03b2c2ca6e9fe9b0b286c894a413a1eff22967a9d4ca46b",
+      "blobSha": "7ca5adba9450fa63f64c353d2e4cf16236c47701",
+      "manifestBound": false
+    },
+    "asset-field-coverage.json": {
+      "bytes": 2953659,
+      "sha256": "ac3fa987e1a29fcf96ce7e3872fc140e3deb6b4e8f3f17a69138229598b4843d",
+      "blobSha": "3ba5ada10e2ccd354ef449a1086c88a69aeaacec",
+      "manifestBound": true
+    },
+    "financial-reconciliation.json": {
+      "bytes": 398458,
+      "sha256": "47ce062ba8f2995136907532d94aed9bd469ea981a35077b68b2000252a70c83",
+      "blobSha": "99aacaa6ebc0f188815df9d228676faee4535d38",
+      "manifestBound": true
+    }
+  },
+  "financialComparisons": 90,
+  "financialOpenOrResidual": 79,
+  "coverageFields": 4274,
+  "consumerTools": 23,
+  "responseInterception": false
+}

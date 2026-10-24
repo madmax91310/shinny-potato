@@ -1,19 +1,19 @@
 {
-  "checkedAt": "2026-10-24T18:19:05.551Z",
-  "monitorCheckedAt": "2026-10-24T18:09:00.211625+00:00",
+  "checkedAt": "2026-10-24T21:43:36.436Z",
+  "monitorCheckedAt": "2026-10-24T21:18:12.820860+00:00",
   "monitorHealthy": true,
   "counts": {
-    "issues": 4422,
-    "signals": 9504,
+    "issues": 5350,
+    "signals": 10434,
     "byKind": {
       "failure": 28,
-      "connection": 167,
-      "qualification": 3052,
-      "waiting": 14,
+      "connection": 175,
+      "qualification": 3080,
+      "waiting": 16,
       "not-applicable": 280,
       "editorial": 779,
       "monitoring": 2,
-      "history": 100
+      "history": 990
     },
     "fields": 4274,
     "consumerTools": 23,
@@ -304,138 +304,168 @@
       "note": "Does not publish active data. Successful probe is not a production qualification; individual resulting gaps remain in source/financial contracts."
     }
   ],
-  "evidence": [
-    {
-      "path": "test-artifacts/review-product/all-1440.json",
-      "bytes": 378820,
-      "sha256": "4910de3f9159df212f784fb2008412e464aa1fb7c1d07641efb18b07f95fa9b0"
-    },
-    {
-      "path": "test-artifacts/review-product/all-390.json",
-      "bytes": 378820,
-      "sha256": "6aaea74bcaf05252d5cfdbb55b2c6177488e1f1c3a3647af70797655c5624f74"
-    },
-    {
-      "path": "test-artifacts/review-product/monitor-absent.png",
-      "bytes": 69826,
-      "sha256": "cbc6e7feb4079c09703ca1862c1e0dc9aaa7840ad27681be74fcadd4766f51d2"
-    },
-    {
-      "path": "test-artifacts/review-product/monitor-invalid.png",
-      "bytes": 69825,
-      "sha256": "f1f48da1a446994ae0a90c54b3b2b38b9f6e5482aceaf91ab0644d1fa9ef95d4"
-    },
-    {
-      "path": "test-artifacts/review-product/monitor-stale.png",
-      "bytes": 72064,
-      "sha256": "842925cf9ef98d4db1695f4c7442a57f9609886505cc5d4725ff655959ddb752"
-    },
-    {
-      "path": "test-artifacts/review-product/queue-1440.png",
-      "bytes": 136446,
-      "sha256": "bbf0d1668c20b125756a59189131b2a9179ce2788955e382d2f78c51c61496e7"
-    },
-    {
-      "path": "test-artifacts/review-product/queue-390.png",
-      "bytes": 64043,
-      "sha256": "3e0c21151320a9dec827b5c0a8bc35726386739df8b274e820067040100d3129"
-    },
-    {
-      "path": "test-artifacts/review-product/results.json",
-      "bytes": 313,
-      "sha256": "b11c3034a7f68b63a8cc9f27784fb1bca467720d9cea87204f489d94eaa591d2"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/copper-annual-nav-2018.png",
-      "bytes": 2864013,
-      "sha256": "76b783da5590500fbd2328efae90dafed9533199507f773e352fc4557573cc96"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/copper-compatible-2026.png",
-      "bytes": 2738253,
-      "sha256": "53c59a02330355f074698a991ffdb04294663cbd61eb6dfa93cc04c5e94ea83a"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/dca-1280.png",
-      "bytes": 581317,
-      "sha256": "0945ddf337316da957a1a8a66a72b30b2bc3a6c3bed0c6245695a33c2428e00a"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/dca-390.png",
-      "bytes": 581317,
-      "sha256": "0945ddf337316da957a1a8a66a72b30b2bc3a6c3bed0c6245695a33c2428e00a"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/financial-reconciliation.json",
-      "bytes": 398458,
-      "sha256": "47ce062ba8f2995136907532d94aed9bd469ea981a35077b68b2000252a70c83"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/gold-av-cto-1280.png",
-      "bytes": 1859729,
-      "sha256": "46c6fc55fae89064884de49198737666caaff4167524a031be9e67c7dc87c289"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/gold-av-cto-390.png",
-      "bytes": 1859729,
-      "sha256": "46c6fc55fae89064884de49198737666caaff4167524a031be9e67c7dc87c289"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/gold-physical-1280.png",
-      "bytes": 1842483,
-      "sha256": "2a667eaba72696f30bf2fe3c0cc0ab33b820c5047c3b93ada6f5b676f9efa0b9"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/gold-physical-390.png",
-      "bytes": 1842483,
-      "sha256": "2a667eaba72696f30bf2fe3c0cc0ab33b820c5047c3b93ada6f5b676f9efa0b9"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/ibkr-1280.png",
-      "bytes": 1547650,
-      "sha256": "ed6368e32936820b2a9c7c49e7db067aa117e33f040789333cb8c05998a6429f"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/ibkr-390.png",
-      "bytes": 1547650,
-      "sha256": "ed6368e32936820b2a9c7c49e7db067aa117e33f040789333cb8c05998a6429f"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/nasdaq-completed-session.png",
-      "bytes": 2805049,
-      "sha256": "6b7d7dcff7bce333607a94a032b63178334afbb26039727ac68226cad0c60707"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/review-desktop.png",
-      "bytes": 5392027,
-      "sha256": "74d1a503e3fc58c298265e155ef19d413ac757af8107b7e4285fabb199263e55"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/sp500-sectors-1280.png",
-      "bytes": 1242721,
-      "sha256": "ebd60cd056ac2f5988b0cf12e2e85d9f6973685c06526c054c1676c079503d49"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/sp500-sectors-390.png",
-      "bytes": 1242721,
-      "sha256": "ebd60cd056ac2f5988b0cf12e2e85d9f6973685c06526c054c1676c079503d49"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/tudigo-cessation-1280.png",
-      "bytes": 1922633,
-      "sha256": "bf1dedd425881ad6e30fd95abf6961b6d79d0ead5eb364671be89da8a50ec59b"
-    },
-    {
-      "path": "test-artifacts/data-review-recovery/tudigo-cessation-390.png",
-      "bytes": 1922633,
-      "sha256": "bf1dedd425881ad6e30fd95abf6961b6d79d0ead5eb364671be89da8a50ec59b"
-    }
-  ],
+  "evidence": [],
   "limits": [
     "Source transport and financial qualification belong to producers; supervisor tests do not certify their success.",
     "Legacy reports without attemptedIds remain explicitly unqualified for attempted scope completeness.",
     "Job-only producers cannot certify per-field coverage.",
     "Historical archived resolutions without explicit evidence remain labelled unqualified.",
     "Manual isolated qualification workflows and the observation-only Bitcoin pilot do not publish active data and are outside continuous producer supervision."
-  ]
+  ],
+  "sourceSnapshot": "final master 2de5d09e; monitoring actual branch 2026-10-24T21:18:12.820860+00:00",
+  "initialPerimeter": {
+    "rows": 4429,
+    "sameIdentifiers": 4415,
+    "historicallyRetained": 14,
+    "unaccounted": 0,
+    "reconciliation": "reconciliation-perimetre-initial.csv"
+  },
+  "ordinaryMonitorProduction": {
+    "run": 40124897255,
+    "attempt": 2,
+    "codeSha": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+    "tests": 110,
+    "monitorFailures": 8,
+    "provenRecoveries": 8,
+    "pendingQualifications": 0,
+    "observerErrors": 0
+  },
+  "publicVerification": {
+    "checkedAt": "2026-10-24T21:43:30.528Z",
+    "base": "https://madmax91310.github.io/shinny-potato",
+    "isolated": false,
+    "results": [
+      {
+        "width": 1440,
+        "actualDocuments": [
+          "financial-reconciliation.json",
+          "data-review-inbox.json",
+          "asset-field-coverage.json",
+          "automation-status.json"
+        ],
+        "actionRows": 3243,
+        "financialCases": 79,
+        "monitorCheckedAt": "2026-10-24T21:18:12.820860+00:00",
+        "monitorVersion": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "sharedScopeReferences": 0,
+        "sharedScopeDefinitions": 6,
+        "missingScopeDefinitions": 0,
+        "historyLastPage": true,
+        "deepSearch": true,
+        "copy": true,
+        "removedRequests": [],
+        "pageErrors": []
+      },
+      {
+        "width": 390,
+        "actualDocuments": [
+          "data-review-inbox.json",
+          "asset-field-coverage.json",
+          "financial-reconciliation.json",
+          "automation-status.json"
+        ],
+        "actionRows": 3243,
+        "financialCases": 79,
+        "monitorCheckedAt": "2026-10-24T21:18:12.820860+00:00",
+        "monitorVersion": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "sharedScopeReferences": 0,
+        "sharedScopeDefinitions": 6,
+        "missingScopeDefinitions": 0,
+        "historyLastPage": true,
+        "deepSearch": true,
+        "copy": true,
+        "removedRequests": [],
+        "pageErrors": []
+      }
+    ]
+  },
+  "publicationVerification": {
+    "checkedAt": "2026-10-24T21:43:07.785184+00:00",
+    "expectedMerge": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+    "build": {
+      "sha": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+      "builtAt": "2026-10-24T21:22:50Z"
+    },
+    "documents": {
+      "data-automation-inventory.json": {
+        "bytes": 35295626,
+        "sha256": "e950f84ebee8a15997c0cea061415adfe319ef60fdf31e9ad7cb6494973c68aa",
+        "blobSha": "84fe36f0eac85e195f44ea8c9fc3b9f46a20cb68",
+        "manifestBound": true
+      },
+      "data-review-inbox.json": {
+        "bytes": 1947134,
+        "sha256": "8a32c17b0cb294a1f03b2c2ca6e9fe9b0b286c894a413a1eff22967a9d4ca46b",
+        "blobSha": "7ca5adba9450fa63f64c353d2e4cf16236c47701",
+        "manifestBound": false
+      },
+      "asset-field-coverage.json": {
+        "bytes": 2953659,
+        "sha256": "ac3fa987e1a29fcf96ce7e3872fc140e3deb6b4e8f3f17a69138229598b4843d",
+        "blobSha": "3ba5ada10e2ccd354ef449a1086c88a69aeaacec",
+        "manifestBound": true
+      },
+      "financial-reconciliation.json": {
+        "bytes": 398458,
+        "sha256": "47ce062ba8f2995136907532d94aed9bd469ea981a35077b68b2000252a70c83",
+        "blobSha": "99aacaa6ebc0f188815df9d228676faee4535d38",
+        "manifestBound": true
+      }
+    },
+    "financialComparisons": 90,
+    "financialOpenOrResidual": 79,
+    "coverageFields": 4274,
+    "consumerTools": 23,
+    "responseInterception": false
+  }
 }

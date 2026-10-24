@@ -1,0 +1,395 @@
+{
+  "checkedAt": "2026-10-24T21:17:20Z",
+  "statusSha256": "255a77124fff507fbe729653da9d2c021f64c27e67ca5b6e9898d45fc0e60444",
+  "codeMerge": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
+  "ordinaryMonitorRun": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255/attempts/2",
+  "producerCount": 24,
+  "observerErrors": {},
+  "sharedScopes": 6,
+  "historyBefore": 981,
+  "historyAfter": 982,
+  "allPriorHistoryRetained": true,
+  "monitorSelf": {
+    "schemaVersion": 1,
+    "failures": {
+      "40126199374:1": {
+        "runId": 40126199374,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40126199374",
+        "completedAt": "2026-10-24T19:39:04Z",
+        "firstObservedAt": "2026-10-24T20:58:06.423131+00:00",
+        "failedChecks": {
+          "publish:Record completed automation": {
+            "step": "Record completed automation",
+            "failedAt": "2026-10-24T19:39:01Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:48:25Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40131381106,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+              "step": "Record completed automation",
+              "checkedAt": "2026-10-24T20:48:25Z"
+            }
+          ]
+        }
+      },
+      "40126137043:1": {
+        "runId": 40126137043,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40126137043",
+        "completedAt": "2026-10-24T19:38:16Z",
+        "firstObservedAt": "2026-10-24T20:58:06.423131+00:00",
+        "failedChecks": {
+          "publish:Record completed automation": {
+            "step": "Record completed automation",
+            "failedAt": "2026-10-24T19:38:13Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:48:25Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40131381106,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+              "step": "Record completed automation",
+              "checkedAt": "2026-10-24T20:48:25Z"
+            }
+          ]
+        }
+      },
+      "40126066292:1": {
+        "runId": 40126066292,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40126066292",
+        "completedAt": "2026-10-24T19:37:18Z",
+        "firstObservedAt": "2026-10-24T20:58:06.423131+00:00",
+        "failedChecks": {
+          "publish:Record completed automation": {
+            "step": "Record completed automation",
+            "failedAt": "2026-10-24T19:37:16Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:48:25Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40131381106,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+              "step": "Record completed automation",
+              "checkedAt": "2026-10-24T20:48:25Z"
+            }
+          ]
+        }
+      },
+      "40125533871:1": {
+        "runId": 40125533871,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40125533871",
+        "completedAt": "2026-10-24T19:32:05Z",
+        "firstObservedAt": "2026-10-24T20:58:06.423131+00:00",
+        "failedChecks": {
+          "publish:Initialise current statuses": {
+            "step": "Initialise current statuses",
+            "failedAt": "2026-10-24T19:32:01Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T21:02:16Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40125533871,
+              "attempt": 2,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40125533871",
+              "step": "Initialise current statuses",
+              "checkedAt": "2026-10-24T21:02:16Z"
+            }
+          ]
+        }
+      },
+      "40124897255:1": {
+        "runId": 40124897255,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "completedAt": "2026-10-24T19:23:25Z",
+        "firstObservedAt": "2026-10-24T21:02:06.684085+00:00",
+        "failedChecks": {
+          "publish:Initialise current statuses": {
+            "step": "Initialise current statuses",
+            "failedAt": "2026-10-24T19:23:23Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:58:14Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40132014657,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40132014657",
+              "step": "Initialise current statuses",
+              "checkedAt": "2026-10-24T20:58:14Z"
+            }
+          ]
+        }
+      },
+      "40120204291:1": {
+        "runId": 40120204291,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40120204291",
+        "completedAt": "2026-10-24T18:24:09Z",
+        "firstObservedAt": "2026-10-24T21:02:06.684085+00:00",
+        "failedChecks": {
+          "publish:Record completed automation": {
+            "step": "Record completed automation",
+            "failedAt": "2026-10-24T18:24:06Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:48:25Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40131381106,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+              "step": "Record completed automation",
+              "checkedAt": "2026-10-24T20:48:25Z"
+            }
+          ]
+        }
+      },
+      "40120036570:1": {
+        "runId": 40120036570,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40120036570",
+        "completedAt": "2026-10-24T18:20:22Z",
+        "firstObservedAt": "2026-10-24T21:02:06.684085+00:00",
+        "failedChecks": {
+          "publish:Record completed automation": {
+            "step": "Record completed automation",
+            "failedAt": "2026-10-24T18:20:20Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:48:25Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40131381106,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+              "step": "Record completed automation",
+              "checkedAt": "2026-10-24T20:48:25Z"
+            }
+          ]
+        }
+      },
+      "40120024711:1": {
+        "runId": 40120024711,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40120024711",
+        "completedAt": "2026-10-24T18:19:40Z",
+        "firstObservedAt": "2026-10-24T21:02:06.684085+00:00",
+        "failedChecks": {
+          "publish:Initialise current statuses": {
+            "step": "Initialise current statuses",
+            "failedAt": "2026-10-24T18:19:38Z"
+          }
+        },
+        "qualificationPending": false,
+        "resolvedAt": "2026-10-24T20:58:14Z",
+        "resolutionEvidence": {
+          "kind": "matching-ordinary-monitor-steps",
+          "checks": [
+            {
+              "kind": "ordinary-monitor-step",
+              "runId": 40132014657,
+              "attempt": 1,
+              "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40132014657",
+              "step": "Initialise current statuses",
+              "checkedAt": "2026-10-24T20:58:14Z"
+            }
+          ]
+        }
+      }
+    },
+    "successes": {
+      "publish:Set up job": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Set up job",
+        "checkedAt": "2026-10-24T21:12:17Z"
+      },
+      "publish:Run actions/checkout@v7.0.1": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run actions/checkout@v7.0.1",
+        "checkedAt": "2026-10-24T21:12:30Z"
+      },
+      "publish:Run actions/setup-python@v7.0.0": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run actions/setup-python@v7.0.0",
+        "checkedAt": "2026-10-24T21:12:30Z"
+      },
+      "publish:Run pip install beautifulsoup4==4.15.0": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run pip install beautifulsoup4==4.15.0",
+        "checkedAt": "2026-10-24T21:12:32Z"
+      },
+      "publish:Run actions/setup-node@v7.0.0": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run actions/setup-node@v7.0.0",
+        "checkedAt": "2026-10-24T21:12:32Z"
+      },
+      "publish:Run node scripts/test-monitoring-context.mjs": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run node scripts/test-monitoring-context.mjs",
+        "checkedAt": "2026-10-24T21:12:34Z"
+      },
+      "publish:Run python -m unittest discover -s scripts -p 'test_automation*.py'": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+        "checkedAt": "2026-10-24T21:12:35Z"
+      },
+      "publish:Run python -m unittest discover -s scripts -p 'test_source_revision.py'": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Run python -m unittest discover -s scripts -p 'test_source_revision.py'",
+        "checkedAt": "2026-10-24T21:12:35Z"
+      },
+      "publish:Record completed automation": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40131381106,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40131381106",
+        "step": "Record completed automation",
+        "checkedAt": "2026-10-24T20:48:25Z"
+      },
+      "publish:Propose validation of changed official wording": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Propose validation of changed official wording",
+        "checkedAt": "2026-10-24T21:13:46Z"
+      },
+      "publish:Post Run actions/setup-node@v7.0.0": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Post Run actions/setup-node@v7.0.0",
+        "checkedAt": "2026-10-24T21:13:46Z"
+      },
+      "publish:Post Run actions/setup-python@v7.0.0": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Post Run actions/setup-python@v7.0.0",
+        "checkedAt": "2026-10-24T21:13:46Z"
+      },
+      "publish:Post Run actions/checkout@v7.0.1": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Post Run actions/checkout@v7.0.1",
+        "checkedAt": "2026-10-24T21:13:46Z"
+      },
+      "publish:Complete job": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Complete job",
+        "checkedAt": "2026-10-24T21:13:46Z"
+      },
+      "workflow:start": {
+        "kind": "ordinary-monitor-step",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "runId": 40124897255,
+        "attempt": 2,
+        "step": "Initialisation du workflow",
+        "checkedAt": "2026-10-24T21:13:48Z"
+      },
+      "publish:Check silent collectors and data deadlines": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40127236757,
+        "attempt": 1,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40127236757",
+        "step": "Check silent collectors and data deadlines",
+        "checkedAt": "2026-10-24T19:53:28Z"
+      },
+      "publish:Initialise current statuses": {
+        "kind": "ordinary-monitor-step",
+        "runId": 40124897255,
+        "attempt": 2,
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40124897255",
+        "step": "Initialise current statuses",
+        "checkedAt": "2026-10-24T21:13:44Z"
+      }
+    },
+    "successRuns": {
+      "workflow_run": "40131381106:1",
+      "schedule": "40127236757:1",
+      "push": "40124897255:2"
+    },
+    "coverage": {
+      "apiWindow": 100,
+      "returnedRuns": 100,
+      "ordinaryRuns": 49,
+      "oldestWitnessedAt": "2026-10-24T17:38:16Z",
+      "beforeWindow": "not-demonstrated",
+      "pendingRuns": 0
+    },
+    "checkedAt": "2026-10-24T21:18:09.845676+00:00"
+  },
+  "reportQualifications": 34,
+  "dataFailures": 9
+}
