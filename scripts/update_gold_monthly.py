@@ -156,21 +156,32 @@ def prepare(previous, body, url, today):
     return result, changed
 
 
-def main():
+def main(now=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=pathlib.Path, default=TARGET)
+    parser.add_argument('--report', type=pathlib.Path, help='Structured source result, distinct from the financial registry')
     parser.add_argument('--workbook', type=pathlib.Path, help='Replay a downloaded XLSX offline')
     parser.add_argument('--url', help='Official workbook URL for offline replay')
     args = parser.parse_args()
-    today = dt.datetime.now(dt.timezone.utc).date()
+    today = (now or dt.datetime.now(dt.timezone.utc)).date()
     previous = json.loads(args.output.read_text())
-    url = args.url if args.workbook else discover_workbook(download(PAGE).decode('utf-8'))
-    if not url:
-        parser.error('--workbook requires --url')
-    body = args.workbook.read_bytes() if args.workbook else download(url, True)
-    result, changed = prepare(previous, body, url, today)
-    if changed:
-        write_json_atomic(args.output, result)
+    report={'schemaVersion':1,'scope':{'requestedIds':['gold:monthly'],'expectedIds':['gold:monthly']},'successes':[],'errors':[],'outcomes':[]}
+    try:
+        url = args.url if args.workbook else discover_workbook(download(PAGE).decode('utf-8'))
+        if not url:raise ValueError('--workbook requires --url')
+        body = args.workbook.read_bytes() if args.workbook else download(url, True)
+        result, changed = prepare(previous, body, url, today)
+        if args.workbook:result['checkedAt']=previous.get('checkedAt')
+        if result!=previous:write_json_atomic(args.output,result)
+        state='not-attempted'if args.workbook else'succeeded'if result['points']!=previous['points']else'unchanged-verified'
+        report['outcomes']=[{'id':'gold:monthly','status':state,'checkedAt':result.get('checkedAt'),'asOf':result['points'][-1][0],'publicationDate':result['workbookUpdatedAt'],'sourceUrl':url,'responseSha256':result['workbookSha256'],'unit':result.get('unit','USD/troy oz')}]
+        if not args.workbook:report['successes']=[{'id':'gold:monthly'}]
+    except Exception as error:
+        report['errors']=[{'id':'gold:monthly','field':'Historique mensuel','error':str(error),'lastSuccessAt':previous.get('checkedAt')}]
+        report['outcomes']=[{'id':'gold:monthly','status':'failed','lastSuccessAt':previous.get('checkedAt'),'asOf':previous['points'][-1][0]}]
+        if args.report:write_json_atomic(args.report,report)
+        raise
+    if args.report:write_json_atomic(args.report,report)
     status = 'updated' if changed else 'unchanged'
     print(f'Gold {status}: {len(result["points"])} months, through {result["points"][-1][0]}')
     if result['points'][-1][0] != (today.replace(day=1) - dt.timedelta(days=1)).strftime('%Y-%m'):

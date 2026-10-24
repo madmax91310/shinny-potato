@@ -77,6 +77,11 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(report['errors'][0]['id'],'purchasing-energie')
         _,report=refresh(current,NOW,xml)
         self.assertEqual(len(report['successes']),5)
+        self.assertEqual(set(report['scope']['expectedIds']),{'purchasing-'+k for k in SOURCES})
+        self.assertEqual({r['status']for r in report['outcomes']},{'unchanged-verified'})
+        checked,_=refresh(current,NOW,xml)
+        self.assertEqual(checked['prices']['asOf'],current['prices']['asOf'])
+        self.assertEqual(checked['prices']['checkedAt'],NOW.isoformat())
         self.assertEqual(report['errors'],[])
         newer=copy.deepcopy(current);newer['prices']['asOf']='2026-10'
         unchanged,report=refresh(newer,NOW,xml)

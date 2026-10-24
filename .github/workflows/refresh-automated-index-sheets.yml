@@ -60,8 +60,11 @@ jobs:
         continue-on-error: true
         run: python scripts/refresh_index_companies.py --apply --output "${{ runner.temp }}/index-company-observations.json"
       - run: node scripts/build-index-company-compositions.mjs --apply --report "${{ runner.temp }}/index-company-qualification-observations.json"
+      - run: node scripts/test-index-proxy-identity.mjs
       - run: npm run test:index-concentration
       - name: Collect selected indices directly and require every displayed field
+        id: selected
+        continue-on-error: true
         run: >-
           python scripts/refresh_index_sources.py --require-complete --apply
           --output "${{ runner.temp }}/selected-index-observations.json"

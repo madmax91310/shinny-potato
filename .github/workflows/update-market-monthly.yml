@@ -6,6 +6,10 @@ on:
     - cron: '45 6 * * *'
   workflow_dispatch:
     inputs:
+      listings_only:
+        description: 'Vérifier uniquement les 21 identités communes, sans recollecter les historiques'
+        type: boolean
+        default: false
       retry_failed:
         description: 'Reprendre uniquement les sources échouées ou manquantes ; conserver les données déjà qualifiées'
         type: boolean
@@ -100,21 +104,32 @@ jobs:
         id: listings
         if: github.event_name != 'pull_request'
         continue-on-error: true
-        run: python scripts/refresh_qualified_listings.py --apply --output "$RUNNER_TEMP/listing-observation.json"
+        env:
+          LISTINGS_ONLY: ${{ inputs.listings_only == true }}
+        run: |
+          args=()
+          if [ "$LISTINGS_ONLY" = 'true' ]; then args+=(--common-identities-only); fi
+          python scripts/refresh_qualified_listings.py --apply --output "$RUNNER_TEMP/listing-observation.json" "${args[@]}"
+      - name: Validate shared identity consumers
+        run: node scripts/test-shared-listing-identities.mjs && node scripts/test-ai-tool-reuse.mjs
+
       - run: node scripts/build-equity-history-links.mjs
+        if: inputs.listings_only != true
       - name: Qualify missing equity histories
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
           node scripts/build-equity-history-links.mjs
       - name: Qualify missing exact-share monthly histories
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
           python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+        if: inputs.listings_only != true
       - name: "Collect observations: collect"
+        if: inputs.listings_only != true
         id: collect
         continue-on-error: true
         env:
@@ -125,7 +140,7 @@ jobs:
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
       - name: Refresh exact ranking histories and ECB conversion
         id: rankings
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && inputs.listings_only != true
         continue-on-error: true
         env:
           RETRY_FAILED: ${{ inputs.retry_failed == true || (github.event_name == 'schedule' && github.event.schedule == '45 6 * * *') }}
@@ -135,29 +150,41 @@ jobs:
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/collect_ranking_sources.py --apply --output "$RUNNER_TEMP/ranking-collection-status.json" "${args[@]}"
       - run: node scripts/build-equity-history-links.mjs
+        if: inputs.listings_only != true
       - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
+        if: inputs.listings_only != true
       - run: node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs
+        if: inputs.listings_only != true
       - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+        if: inputs.listings_only != true
         run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
       - name: "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py"
+        if: inputs.listings_only != true
         run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - name: "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py"
+        if: inputs.listings_only != true
         run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - name: "Validate observations: npm run audit:index-facts"
+        if: inputs.listings_only != true
         run: npm run audit:index-facts
       - name: "Validate observations: node scripts test-automated-indices.mjs"
+        if: inputs.listings_only != true
         run: node scripts/test-automated-indices.mjs
       - name: "Validate observations: npm run audit:calculator-series"
+        if: inputs.listings_only != true
         run: npm run audit:calculator-series
       - name: "Validate observations: node scripts test-monthly-consumers.mjs"
+        if: inputs.listings_only != true
         run: node scripts/test-monthly-consumers.mjs
       - name: "Validate observations: node scripts test-etf-tool-connections.mjs"
+        if: inputs.listings_only != true
         run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/test-asset-routing-blockers.mjs && node scripts/test-distinct-asset-routing.mjs
       - name: "Validate observations: npm run audit:data-catalog"
         run: npm run audit:data-catalog
       - name: "Validate observations: npm run audit:data-provenance"
         run: npm run audit:data-provenance
       - name: "Validate observations: npm run verify:tweet-midi"
+        if: inputs.listings_only != true
         run: npm run verify:tweet-midi
       - name: "Validate observations: npm run build"
         run: npm run build
@@ -177,16 +204,23 @@ jobs:
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Verify histories reach all publication tools
+        if: inputs.listings_only != true
         run: node scripts/build-dca-exposures.mjs && node scripts/audit-portfolio-routing.mjs
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         env:
-          VALIDATED_DATA_CHECK: bash scripts/validate-market-publication.sh
+          VALIDATED_DATA_CHECK: ${{ inputs.listings_only == true && 'node scripts/test-shared-listing-identities.mjs && node scripts/test-ai-tool-reuse.mjs' || 'bash scripts/validate-market-publication.sh' }}
+          VALIDATED_DATA_PREPARE: ${{ inputs.listings_only != true && 'bash scripts/prepare-market-projections.sh' || '' }}
+          VALIDATED_DATA_DERIVED_PATHS: '["src/data/equity-history-links.json","docs/equity-identity-gaps.json","src/data/monthly-duel-returns.json","src/data/equity-duel-returns.json","src/data/ranking-annual.json","src/data/ranking-index-annual.json","src/data/ranking-ftse.json","src/data/performance-links.json","src/data/simulation-links.json"]'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [[ '${{ inputs.listings_only }}' == 'true' ]]; then
+            bash scripts/commit-validated-data.sh 'Refresh verified common listing identities' src/data/shared-listing-identities.json
+          else
           bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/shared-listing-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          fi
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

@@ -1,6 +1,6 @@
 # Inventaire de l’automatisation des données
 
-Généré le 2026-10-24T12:09:14.037Z.
+Généré le 2026-10-24T15:16:04.072Z.
 
 Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.
 
@@ -314,7 +314,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
 ## Qualification et raccordements
 
-110 raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.
+109 raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.
 
 | Nature des champs | Nombre |
 |---|---:|
@@ -328,7 +328,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 
 | État de raccordement | Nombre |
 |---|---:|
-| current | 4020 |
+| current | 4021 |
 | not-applicable | 102 |
 | tracked-index-needed | 30 |
 | outside-equity-scope | 43 |
@@ -337,7 +337,7 @@ PEA : 256/258 statuts avec preuve ; 2 non qualifiés.
 | check-overdue | 14 |
 | connector-needed | 26 |
 | not-published | 18 |
-| unqualified | 15 |
+| unqualified | 14 |
 | source-conflict | 2 |
 | manual | 1 |
 | waiting-publication | 1 |

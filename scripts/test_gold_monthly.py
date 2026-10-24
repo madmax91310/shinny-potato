@@ -72,11 +72,25 @@ class GoldRefreshTests(unittest.TestCase):
         result, _ = prepare(BASE, fixture(revised), URL, TODAY)
         self.assertEqual(result['points'][0], revised[0])
 
-    def test_no_change_does_not_refresh_check_date(self):
+    def test_same_financial_data_can_renew_a_real_control(self):
         body = fixture(BASE['points'])
         previous, _ = prepare(BASE, body, URL, TODAY)
-        _, changed = prepare(previous, body, URL, TODAY + dt.timedelta(days=1))
+        current, changed = prepare(previous, body, URL, TODAY + dt.timedelta(days=1))
+        self.assertEqual(current['checkedAt'],(TODAY+dt.timedelta(days=1)).isoformat())
+        self.assertEqual(current['points'],previous['points'])
+        self.assertEqual(current['workbookUpdatedAt'],previous['workbookUpdatedAt'])
         self.assertFalse(changed)
+
+    def test_main_persists_verified_unchanged_control_and_failure_report(self):
+        body=fixture();previous,_=prepare(BASE,body,URL,TODAY)
+        with tempfile.TemporaryDirectory()as directory:
+            output=pathlib.Path(directory)/'gold.json';report=pathlib.Path(directory)/'report.json';output.write_text(json.dumps(previous))
+            args=['update','--output',str(output),'--report',str(report)]
+            with patch('sys.argv',args),patch('update_gold_monthly.download',side_effect=[f'<a href="{URL}">Monthly prices</a>'.encode(),body]):main(dt.datetime(2026,11,5,tzinfo=dt.timezone.utc))
+            current=json.loads(output.read_text());self.assertEqual(current['checkedAt'],'2026-11-05');self.assertEqual(current['points'],previous['points']);self.assertEqual(json.loads(report.read_text())['outcomes'][0]['status'],'unchanged-verified')
+            saved=output.read_bytes()
+            with patch('sys.argv',args),patch('update_gold_monthly.download',side_effect=TimeoutError('offline')),self.assertRaises(TimeoutError):main(dt.datetime(2026,11,6,tzinfo=dt.timezone.utc))
+            self.assertEqual(output.read_bytes(),saved);self.assertEqual(json.loads(report.read_text())['errors'][0]['lastSuccessAt'],'2026-11-05')
 
     def test_official_link_discovery_and_rejection(self):
         self.assertEqual(discover_workbook(f'<a href="{URL}">Monthly prices</a>'), URL)

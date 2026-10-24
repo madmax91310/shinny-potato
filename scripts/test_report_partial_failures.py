@@ -25,11 +25,17 @@ class PartialFailureTests(unittest.TestCase):
             errors = partial_failures([indices, feed])
             self.assertEqual(errors, ['index-world-returns : HTTP 403', 'radar:investisseurs : Déclarations 13F indisponibles.'])
 
-    def test_contradictions_and_missing_reports_are_not_partial_failures(self):
+    def test_contradictions_are_not_failures_but_missing_reports_are_visible(self):
         with tempfile.TemporaryDirectory() as directory:
             feed = self.write(directory, 'feed.json', {'schemaVersion': 1, 'coverage': {'indices': 2}, 'events': [],
                                                        'errors': [{'family': 'indices', 'reason': 'Valeur contradictoire pour la même période (2026-09) : Secteurs.'}]})
-            self.assertEqual(partial_failures([feed, str(pathlib.Path(directory) / 'absent.json')]), [])
+            self.assertEqual(partial_failures([feed]), [])
+            self.assertIn('attendu absent',partial_failures([str(pathlib.Path(directory) / 'absent.json')])[0])
+
+    def test_malformed_or_unknown_report_cannot_be_silently_ignored(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for data in [[], {'unknown':1}]:
+                self.assertIn('invalide',partial_failures([self.write(directory,'bad.json',data)])[0])
 
     def test_output_and_summary_follow_github_conventions(self):
         with tempfile.TemporaryDirectory() as directory:

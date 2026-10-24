@@ -69,6 +69,7 @@ class Monthly(unittest.TestCase):
         status['series']['bad']['status']='validated'
         self.assertEqual(select_series(config,status,retry_failed=True)['series'],[])
         self.assertEqual(select_series(config,{},retry_failed=True),config)
+        self.assertEqual(select_series(config,{},only=['bad'],retry_failed=True)['series'],[config['series'][1]])
         self.assertEqual([s['id'] for s in select_series(config,status,['bad'])['series']],['bad'])
         for only in [[],['typo']]:
             with self.assertRaises(ValueError):select_series(config,status,only)

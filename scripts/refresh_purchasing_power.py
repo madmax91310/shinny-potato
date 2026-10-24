@@ -63,6 +63,7 @@ def parse_series(body, key, now):
 
 def refresh(current, now, fetch=None):
     fetch = fetch or (lambda key: get_text(source_url(key), ('application/xml', 'text/xml', 'application/vnd.sdmx.structurespecificdata+xml')))
+    previous_state = copy.deepcopy(current)
     state = copy.deepcopy(current)
     collected, errors, successes = {}, [], []
     def one(key):
@@ -71,7 +72,7 @@ def refresh(current, now, fetch=None):
     with ThreadPoolExecutor(max_workers=5) as pool:
         for key, result, error in pool.map(one, SOURCES):
             if error: errors.append({'id': 'purchasing-' + key, 'error': error})
-            else: collected[key] = result
+            else: collected[key] = {**result,'checkedAt':now.isoformat()}
     # General/food/energy are published at one common month, and share the same base.
     groups = [('prices', ['general', 'alimentation', 'energie']), ('irl', ['irl']), ('smic', ['smic'])]
     for family, keys in groups:
@@ -93,12 +94,24 @@ def refresh(current, now, fetch=None):
             else:
                 k = keys[0]
                 new = {'asOf': latest, 'values': collected[k]['values'], 'source': collected[k]}
+            new['checkedAt']=now.isoformat()
             if new != old: state[family] = new
             successes.extend({'id': 'purchasing-' + k} for k in keys)
         except Exception as error:
             errors.extend({'id': 'purchasing-' + k, 'error': str(error)} for k in keys)
     state['schemaVersion'] = 1
-    return state, {'checkedAt': now.isoformat(), 'successes': successes, 'errors': errors}
+    outcomes=[]
+    succeeded={r['id']for r in successes}
+    for key in SOURCES:
+        family='prices'if key in ['general','alimentation','energie']else key
+        previous=previous_state.get(family,{})
+        prior=previous.get('sources',{}).get(key)or previous.get('source',{})
+        current=state.get(family,{})
+        observed=current.get('sources',{}).get(key)or current.get('source',{})
+        ok='purchasing-'+key in succeeded
+        status=('unchanged-verified'if prior.get('values')==observed.get('values')else'succeeded')if ok else'failed'
+        outcomes.append({'id':'purchasing-'+key,'status':status,'attemptedAt':now.isoformat(),'checkedAt':observed.get('checkedAt')if ok else None,'lastSuccessAt':observed.get('checkedAt')if ok else prior.get('checkedAt'),'asOf':current.get('asOf'),'sourceUrl':observed.get('sourceUrl')or prior.get('sourceUrl'),'responseSha256':observed.get('sha256')if ok else None,'frequency':observed.get('frequency'),'unit':'EUR/month'if key=='smic'else'index-points'})
+    return state, {'checkedAt': now.isoformat(), 'scope':{'requestedIds':['purchasing-'+k for k in SOURCES],'expectedIds':['purchasing-'+k for k in SOURCES]},'successes': successes, 'errors': errors,'outcomes':outcomes}
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
