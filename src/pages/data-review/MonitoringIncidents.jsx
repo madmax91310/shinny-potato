@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { prioritizeIncidents, groupIncidents, incidentPresentations } from './incident-priority.js'
-import { INCIDENT_LABELS as labels, incidentAction, incidentDiagnostic } from './incident-diagnostic.js'
+import { INCIDENT_LABELS as labels, incidentAction, incidentDiagnostic, incidentSuccessAt } from './incident-diagnostic.js'
 import retired from '../../data/retired-automations.json' with {type:'json'}
 
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(new Date(value)) : 'Non documenté'
@@ -28,11 +28,11 @@ export default function MonitoringIncidents({ monitor }) {
   const renderIncident=row=><article className="dr-item" key={row.id}>
       <span className={`dr-badge ${['overdue', 'unobserved', 'freshness', 'review', 'checks'].includes(row.kind) ? 'dr-undated' : 'dr-expired'}`}>{labels[row.kind] ?? 'À vérifier'}</span><h3>{row.name}</h3>
       <p>{row.field} — {row.cause}</p><p>{row.impactScope === 'collector' ? 'Périmètre du collecteur' : row.impactScope === 'catalog' ? 'Bibliothèque de données' : 'Outils utilisant cet actif'} : {(row.tools ?? []).join(', ') || 'Raccordement non documenté'}.</p>
-      <dl><dt>Détecté depuis</dt><dd>{date(row.firstSeenAt)}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(row.lastSuccessAt ?? row.checkedAt)}</dd><dt>Période conservée</dt><dd>{row.asOf ?? 'Non documentée'}</dd>{row.dataId && <><dt>Identifiant</dt><dd>{row.dataId}</dd></>}{row.dueAt && <><dt>Échéance</dt><dd>{row.dueAt}</dd></>}</dl>
+      <dl><dt>Détecté depuis</dt><dd>{date(row.firstSeenAt)}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(incidentSuccessAt(row))}</dd>{row.attemptedAt && <><dt>Dernière tentative de collecte</dt><dd>{date(row.attemptedAt)}</dd></>}<dt>Période conservée</dt><dd>{row.asOf ?? 'Non documentée'}</dd>{row.dataId && <><dt>Identifiant</dt><dd>{row.dataId}</dd></>}{row.dueAt && <><dt>Échéance</dt><dd>{row.dueAt}</dd></>}</dl>
       {row.signals.length>1&&<details><summary>{row.signals.length} signalements conservés pour cette donnée</summary>{row.signals.map(signal=><p key={signal.id}>{signal.id} · {signal.cause} · dernier signalement : {date(signal.lastSeenAt)}{safeLink(signal.runUrl)&&<> · <a href={signal.runUrl} target="_blank" rel="noreferrer">Exécution ↗</a></>}</p>)}</details>}
       <p><strong>Action à mener :</strong> {incidentAction(row.kind)}</p>
       <div className="dr-links"><button type="button" onClick={() => copy(row)}>Copier le diagnostic</button>
-      {typeof row.to === 'string' && /^\/(bibliotheque-donnees\?|portefeuilles-investisseurs|fiches-pratiques)/.test(row.to) && <a href={`/shinny-potato${row.to}`}>Voir la donnée et ses sources ↗</a>}
+      {typeof row.to === 'string' && /^\/(bibliotheque-donnees\?|portefeuilles-investisseurs|portefeuilles-ia(?:$|[/?])|fiches-pratiques)/.test(row.to) && <a href={`/shinny-potato${row.to}`}>Voir la donnée et ses sources ↗</a>}
       {safeLink(row.runUrl) && <a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a>}</div>
       {copied === row.id && <p role="status">Diagnostic copié.</p>}
       {manual?.id === row.id && <label className="dr-copy-fallback">La copie automatique est indisponible. Sélectionne ce diagnostic pour le copier.<textarea aria-label="Diagnostic à copier" readOnly value={manual.text} onFocus={event => event.target.select()} /></label>}
