@@ -10,7 +10,7 @@ import observations from '../src/data/index-company-observations.json' with { ty
 import qualified from '../src/data/index-company-qualified.json' with { type: 'json' }
 import config from './index-company-sources.json' with { type: 'json' }
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
-import { calculateConcentration, retainQualifiedComposition } from '../src/data/index-concentration-core.js'
+import { calculateConcentration, retainQualifiedComposition, qualifyPhysicalProxyIdentity } from '../src/data/index-concentration-core.js'
 
 const output = {}
 const labelRows = rows => rows.map(row => [row.label ?? row.name, row.weightPct])
@@ -52,9 +52,9 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
   if (!proxy) continue
   const full = holdings[proxy.isin], fund = AUTOMATED_ETF[proxy.isin]
   const observed = fund?.characteristics
-  const facts = INSTRUMENT_FACTS_BY_ISIN[proxy.isin] ?? { benchmark: observed?.index, replicationMethod: observed?.replicationMethod, characteristicsSource: { url: observed?.sourceUrl, checkedAt: observed?.checkedAt } }
+  const facts = INSTRUMENT_FACTS_BY_ISIN[proxy.isin] ?? { benchmark: observed?.index, replicationMethod: observed?.productStructure ?? observed?.replicationMethod, characteristicsSource: { url: fund?.sourceUrl, checkedAt: observed?.checkedAt } }
   try {
-    if (observed?.index !== proxy.observedBenchmark || !/^(Physical|Physique|Physisch|Direct Replication \(physically\))/.test(observed?.replicationMethod ?? '')) throw new Error('Le benchmark ou la réplication actuellement collectés ont changé : qualification à revoir')
+    const replication = qualifyPhysicalProxyIdentity(observed, proxy)
     if (facts?.benchmark !== proxy.benchmark || !/^(Physical|Physique|Physisch|Direct Replication \(physically\))/.test(facts.replicationMethod ?? '')) throw new Error('Benchmark exact ou réplication physique non confirmé')
     if (full?.basis !== 'fund' || full.complete !== true) throw new Error('Composition physique complète absente')
     if (full.rows.some(row => INSTRUMENT_FACTS_BY_ISIN[row.isin]?.replicationMethod)) throw new Error('Fonds sous-jacent présent : transparisation de même date exigée')
@@ -67,7 +67,8 @@ for (const definition of [...SHEETS, ...config.additionalIndices.map(c => ({ ...
     output[id] = { ...result, sourceRowCount: full.rows.length, asOf: full.asOf, checkedAt: record.checkedAt,
       sourceUrl: full.sourceUrl, sourceLabel: INSTRUMENTS_BY_ISIN[proxy.isin]?.name ?? proxy.isin, sourceIsin: proxy.isin,
       identitySourceUrl: facts.characteristicsSource.url, identityCheckedAt: facts.characteristicsSource.checkedAt,
-      observedIdentitySourceUrl: observed.sourceUrl, observedIdentityCheckedAt: observed.checkedAt,
+      observedIdentitySourceUrl: fund.sourceUrl, observedIdentityCheckedAt: observed.checkedAt,
+      productStructure: replication.structure, replicationMethodology: replication.methodology,
       approximation: true, method: `Positions d’un ETF physique suivant exactement ${proxy.benchmark}. Poids publiés rapportés à l’actif total, sans renormalisation. Liquidités et écarts de réplication inclus dans le reste.${allocations === full.compositionFacts ? ' Pays de risque et secteurs agrégés avec les poids du même portefeuille daté ; les montants hors actions ne sont pas renormalisés.' : ''}`,
       refresh: holdingsStatus[proxy.isin],
       visualFacts: { asOf: full.asOf, countries: labelRows(allocations.countries.rows), sectors: labelRows(allocations.sectors.rows),

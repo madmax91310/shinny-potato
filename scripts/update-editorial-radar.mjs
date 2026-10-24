@@ -1,3 +1,4 @@
+import {readFileSync,readdirSync}from 'node:fs'
 import { mergeDatedRecords } from './lib/dated-records.mjs'
 import { readFile, readdir, mkdir, writeFile, rename } from 'node:fs/promises'
 import { resolve } from 'node:path'
@@ -7,22 +8,22 @@ import { advanceRadar } from './lib/editorial-radar.mjs'
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const BROKERS = { bourso: 'BoursoBank', bourseDirect: 'Bourse Direct', 'bourse-direct': 'Bourse Direct', saxo: 'Saxo', tradeRepublic: 'Trade Republic', 'trade-republic': 'Trade Republic', tr: 'Trade Republic', xtb: 'XTB', fortuneo: 'Fortuneo', degiro: 'DEGIRO', ibkr: 'Interactive Brokers', interactiveBrokers: 'Interactive Brokers' }
-export async function collectObservations(root = ROOT) {
+export function collectObservationsSync(root = ROOT) {
   const observations = [], errors = []
-  const load = async path => {
-    try { return JSON.parse(await readFile(resolve(root, path), 'utf8')) }
+  const load = path => {
+    try { return JSON.parse(readFileSync(resolve(root,path),'utf8')) }
     catch (error) { errors.push({ family: 'radar', entity: path, reason: `Source locale indisponible : ${error.message}` }); return null }
   }
   const add = (base, field, fieldLabel, value, evidence = {}, extra = {}) => {
     if (value === null || value === undefined) return
     observations.push({ ...base, field, fieldLabel, value, ...(evidence.sha256 ? { sourceHash: evidence.sha256 } : {}), sourceUrl: evidence.sourceUrl ?? evidence.source?.url ?? base.sourceUrl, period: evidence.asOf ?? evidence.effectiveAt ?? evidence.referencePeriod ?? evidence.year?.toString() ?? base.period ?? evidence.checkedAt ?? base.checkedAt, checkedAt: evidence.checkedAt ?? evidence.source?.checkedAt ?? base.checkedAt, scope: evidence.scope ?? base.scope, ...extra })
   }
-  const baseEtfs = await load('src/data/automated-etf.json')
-  const additions = await load('src/data/non-bond-etf-records.json')
-  const qualified = await load('src/data/qualified-exposure-etfs.json')
-  const expanded = await load('src/data/non-bond-qualified-records.json')
-  const lifeStrategy = await load('src/data/lifestrategy.json')
-  const metadata = await load('src/data/automated-instrument-metadata.json')
+  const baseEtfs = load('src/data/automated-etf.json')
+  const additions = load('src/data/non-bond-etf-records.json')
+  const qualified = load('src/data/qualified-exposure-etfs.json')
+  const expanded = load('src/data/non-bond-qualified-records.json')
+  const lifeStrategy = load('src/data/lifestrategy.json')
+  const metadata = load('src/data/automated-instrument-metadata.json')
   const etfs = mergeDatedRecords(lifeStrategy, baseEtfs, additions, Object.fromEntries(Object.values({...qualified,...expanded}).map(r=>[r.isin,r.automatedRecord])))
   for (const [isin, r] of Object.entries(etfs ?? {})) {
     const c = r.characteristics ?? {}, label = INSTRUMENTS_BY_ISIN[isin]?.name ?? `${r.provider ?? 'ETF'} ${isin}`
@@ -47,7 +48,7 @@ export async function collectObservations(root = ROOT) {
       add({ ...base, checkedAt: block.checkedAt ?? c.checkedAt }, 'top10', 'Poids des dix premières lignes', block.rows.reduce((sum, row) => sum + row.weightPct, 0), block, { scope: `${isin} · ${block.basis ?? 'fund'} · dix lignes publiées`, threshold: 2, unit: '%', reason: 'Variation cumulée d’au moins 2 points des dix premières lignes publiées ; catégories d’actions non regroupées.' })
     }
   }
-  const indices = await load('src/data/automated-indices.json')
+  const indices = load('src/data/automated-indices.json')
   for (const [id, record] of Object.entries(indices ?? {})) {
     const f = record.facts
     if (!f?.asOf || !f.source?.url) continue
@@ -56,17 +57,17 @@ export async function collectObservations(root = ROOT) {
     for (const field of ['countries', 'sectors']) for (const [label, weight] of f[field] ?? []) add(base, `${field}:${label}`, `${field === 'countries' ? 'Poids du pays' : 'Poids du secteur'} ${label}`, weight, f, { threshold: 2, unit: '%', angle: 'Que contient vraiment cet indice, et quelle différence avec son concurrent ?' })
     if (f.holdings?.length === 10) add(base, 'top10', 'Poids des dix premières lignes', f.holdings.reduce((sum, row) => sum + row[1], 0), f, { threshold: 2, unit: '%' })
   }
-  const economic = await load('src/data/automated-economic.json')
+  const economic = load('src/data/automated-economic.json')
   const savings = Object.values(economic?.savings ?? {}).sort((a, b) => a.effectiveAt.localeCompare(b.effectiveAt)).at(-1)
   if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/simulateur-patrimoine' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
   for (const [id, r] of Object.entries(economic?.households ?? {})) add({ family: 'economie', entity: id, label: r.table?.split(' - Lecture')[0].slice(0, 180) ?? id, scope: `${r.population} · ${id}`, tool: '/france-100-menages', maxAgeDays: 400 }, 'value', 'Repère publié', r.value, r, { period: `${r.year}`, rule: 'publication' })
   for (const [id, r] of Object.entries(economic?.benchmarks ?? {})) add({ family: 'epargne', entity: id.split(':')[0], label: id.startsWith('scpi') ? 'SCPI · moyenne du marché' : 'Fonds euros · moyenne du marché', scope: r.method, tool: '/pouvoir-achat', maxAgeDays: 400 }, 'annual', 'Rendement annuel publié', r.value, r, { unit: '%', period: `${r.year}`, rule: 'publication' })
-  const regulatory = await load('src/data/automated-regulatory.json')
+  const regulatory = load('src/data/automated-regulatory.json')
   for (const [id, r] of Object.entries(regulatory?.sources ?? {})) for (const [field, value] of Object.entries(r.values ?? {})) {
     if (typeof value !== 'number') continue
     add({ family: 'epargne', entity: id, label: r.title ?? id, scope: r.scope ?? 'Régime général', tool: '/fiche-lexique', period: r.publishedAt ?? r.checkedAt }, field, field, value, r, { priority: 'high' })
   }
-  const brokers = await load('src/data/automated-broker-tariffs.json')
+  const brokers = load('src/data/automated-broker-tariffs.json')
   for (const [id, r] of Object.entries(brokers?.brokers ?? {})) {
     const base = { family: 'courtiers', entity: id, label: BROKERS[id] ?? id, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: r.scope ?? `${id} · barème documenté`, tool: '/comparatif-courtiers', priority: 'high' }
     if (r.values && Object.keys(r.values).length) add(base, 'tariff', 'Frais de courtage', r.values, r, { discovery: true, angle: 'Combien coûte le même ordre chez deux courtiers, sur le même marché ?' })
@@ -78,7 +79,7 @@ export async function collectObservations(root = ROOT) {
       add(base, `profile:${field}`, `Disponibilité du service ${field}`, f.available, f)
     }
   }
-  const scpi = await load('src/data/automated-scpi.json')
+  const scpi = load('src/data/automated-scpi.json')
   for (const r of scpi?.records ?? []) {
     const base = { family: 'scpi', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `SCPI ${r.name}`, tool: '/presentations?famille=scpi' }
     if (r.price) add(base, 'price', 'Prix de souscription', r.price.value, r.price, { unit: '€', priority: 'high', discovery: true, angle: 'Que change ce prix pour les associés et les nouveaux souscripteurs ?' })
@@ -86,7 +87,7 @@ export async function collectObservations(root = ROOT) {
     for (const year of (r.annual?.years ?? []).slice().sort((a, b) => a.year - b.year).slice(-1)) add(base, 'distribution', 'Taux de distribution annuel', year.distribution, r.annual, { unit: '%', period: `${year.year}`, rule: 'publication', scope: `${r.name} · taux de distribution annuel` })
     for (const field of ['subscriptionFee', 'managementFee', 'minimum']) add(base, field, field === 'minimum' ? 'Minimum de souscription' : field === 'subscriptionFee' ? 'Frais de souscription' : 'Frais de gestion', r.conditions?.[field], r.conditions ?? {}, { unit: field === 'minimum' ? '€' : '%', scope: `${r.name} · ${field === 'managementFee' ? r.conditions?.managementBasis ?? 'base non précisée' : field}` })
   }
-  const insurance = await load('src/data/automated-insurance.json')
+  const insurance = load('src/data/automated-insurance.json')
   for (const r of insurance?.records ?? []) {
     const base = { family: 'assurance', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `${r.name} · gestion libre`, tool: '/presentations?famille=insurance' }
     for (const [field, label] of Object.entries({ subscription: 'Frais de versement', arbitrage: 'Frais d’arbitrage', units: 'Frais de gestion des unités de compte', etfTrade: 'Frais d’opération ETF' })) add(base, `fees:${field}`, label, r.fees?.[field], r.fees ?? {}, { unit: '%', priority: 'high', discovery: field === 'units' })
@@ -95,15 +96,15 @@ export async function collectObservations(root = ROOT) {
       if (year) add(base, `euro:${fund.name}`, `Rendement de ${fund.name}`, year.return, fund, { unit: '%', period: `${year.year}`, rule: 'publication', scope: `${r.name} · ${fund.name} · rendement publié, conditions de la source` })
     }
   }
-  const purchasing = await load('src/data/purchasing-power-observations.json')
+  const purchasing = load('src/data/purchasing-power-observations.json')
   for (const [id, value] of Object.entries(purchasing?.prices?.latestLevels ?? {})) {
     const r = purchasing.prices.sources[id]
-    add({ family: 'economie', entity: `prices-${id}`, label: r.title, sourceUrl: r.sourceUrl, checkedAt: purchasing.checkedAt ?? r.checkedAt ?? r.sourceUpdatedAt, scope: `${r.seriesId} · base ${purchasing.prices.baseYear} · ${r.scope}`, tool: '/pouvoir-achat' }, 'index', 'Indice des prix publié', value, {}, { period: purchasing.prices.asOf, rule: 'publication' })
+    add({ family: 'economie', entity: `prices-${id}`, label: r.title, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt ?? purchasing.prices.checkedAt, scope: `${r.seriesId} · base ${purchasing.prices.baseYear} · ${r.scope}`, tool: '/pouvoir-achat' }, 'index', 'Indice des prix publié', value, {}, { period: purchasing.prices.asOf, rule: 'publication' })
   }
   let paths = []
-  try { paths = (await readdir(resolve(root, 'public/data/investors'))).filter(path => path.endsWith('.json')) } catch { errors.push({ family: 'investisseurs', entity: '', reason: 'Déclarations 13F indisponibles.' }) }
+  try { paths = (readdirSync(resolve(root, 'public/data/investors'))).filter(path => path.endsWith('.json')) } catch { errors.push({ family: 'investisseurs', entity: '', reason: 'Déclarations 13F indisponibles.' }) }
   for (const path of paths) {
-    const payload = await load(`public/data/investors/${path}`), d = payload?.data, s = d?.snapshot, identity = d?.identity
+    const payload = load(`public/data/investors/${path}`), d = payload?.data, s = d?.snapshot, identity = d?.identity
     if (!s?.periodEnd || identity?.archetype !== 'hedge_fund') continue
     // Ignore live prices, derived performance, daily as_of and weight changes.
     const positions = (s.holdings ?? []).filter(r => !r.putCall && r.ticker).map(r => ({ ticker: r.ticker, changePct: Number.isFinite(r.sharesChangePct) ? Math.round(r.sharesChangePct * 100) / 100 : null, isNew: r.isNew === true })).sort((a, b) => a.ticker.localeCompare(b.ticker))
@@ -113,6 +114,7 @@ export async function collectObservations(root = ROOT) {
   }
   return { observations, errors }
 }
+export async function collectObservations(root=ROOT){return collectObservationsSync(root)}
 export async function run({ statePath, outputDir, now = new Date(), sourceRevision = '' }) {
   let previous = null
   if (statePath) { try { previous = JSON.parse(await readFile(statePath, 'utf8')) } catch (error) { if (error.code !== 'ENOENT') throw error } }

@@ -9,6 +9,7 @@ fi
 message=$1
 shift
 publication_helper="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/data_publication.py"
+projection_helper="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/stage_validated_projections.py"
 root=$(git rev-parse --show-toplevel)
 cd "$root"
 if [[ -f .refresh-rehearsal.json ]]; then
@@ -46,6 +47,11 @@ else
       exit 1
     fi
     git -C "$task_dir/checkout" rebase FETCH_HEAD
+    if [[ "$remote_head" != "$base" && -n "${VALIDATED_DATA_PREPARE:-}" ]]; then
+      [[ -n "${VALIDATED_DATA_CHECK:-}" && -n "${VALIDATED_DATA_DERIVED_PATHS:-}" ]] || { echo 'Projection regeneration requires explicit ownership and financial revalidation.' >&2; exit 1; }
+      (cd "$task_dir/checkout" && VALIDATED_DATA_ORIGINAL_BASE="$base" bash -e -c "$VALIDATED_DATA_PREPARE")
+      (cd "$task_dir/checkout" && python3 "$projection_helper" "$@")
+    fi
     if [[ -n "${VALIDATED_DATA_CHECK:-}" ]]; then
       (cd "$task_dir/checkout" && VALIDATED_DATA_ORIGINAL_BASE="$base" bash -e -c "$VALIDATED_DATA_CHECK")
     fi

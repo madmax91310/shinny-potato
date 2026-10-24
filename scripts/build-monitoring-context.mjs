@@ -1,5 +1,7 @@
 import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import { historyAlerts } from './history-alerts.mjs'
+import {buildDataAutomationInventory}from './data-automation-inventory.mjs'
+import {requiredDataGaps}from './required-data-gaps.mjs'
 import { writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import { buildReview, parisToday } from '../src/pages/data-review/lib.js'
@@ -36,7 +38,7 @@ export function fieldAlerts(report,entities=[]) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const context = monitoringContext(buildReview(parisToday()))
   context.historyAlerts = historyAlerts(context.today, context.entities)
-  context.fieldAlerts = fieldAlerts(buildAssetFieldReport(context.today),context.entities)
+  context.fieldAlerts = [...fieldAlerts(buildAssetFieldReport(context.today),context.entities),...requiredDataGaps(buildDataAutomationInventory())]
   const output = JSON.stringify(context, null, 2) + '\n'
   if (process.argv[2]) writeFileSync(process.argv[2], output)
   else process.stdout.write(output)

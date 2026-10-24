@@ -43,7 +43,13 @@ jobs:
         with:
           node-version: 20
       - name: Collect official monthly workbook
-        run: python scripts/update_gold_monthly.py
+        run: python scripts/update_gold_monthly.py --report "$RUNNER_TEMP/gold-observation.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: gold-observations
+          path: ${{ runner.temp }}/gold-observation.json
+          retention-days: 35
       - name: Validate gold observations
         run: |
           node scripts/audit-calculator-series.mjs

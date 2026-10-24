@@ -51,7 +51,9 @@ def refresh(document,now,fetch=download):
             points,asof,sha=cache[url];matches=[r for r in points if r['ticker']==row['ticker']and r['currency']==row['currency']]
             if len(matches)!=1:raise ValueError('Exact directory listing missing or ambiguous')
             current=matches[0]
-            if current['shareType']!='ordinary'or current['name']!=row['name']:raise ValueError('Security class or exact issuer label changed; old proof retained')
+            # Directory spacing is formatting, never a share-class or issuer alias.
+            normalized=lambda value:re.sub(r'\s+',' ',value).strip()
+            if current['shareType']!='ordinary'or normalized(current['name'])!=normalized(row['name']):raise ValueError('Security class or exact issuer label changed; old proof retained')
             if row.get('isin')and current.get('isin')and row['isin']!=current['isin']:raise ValueError('Exact share ISIN changed')
             updates={}
             if row['sourceId']=='nordic-main':
@@ -62,7 +64,8 @@ def refresh(document,now,fetch=download):
                 updates.update(identityDetailSourceUrl=detail_url,identityDetailSha256=hashlib.sha256(raw).hexdigest())
             if current['mic']!=row['mic']:raise ValueError('Exact venue changed')
             if asof<max(row.get('sourceAsOf',''),row.get('listingObservation',{}).get('asOf','')):raise ValueError('Older directory observation refused')
-            row['listingObservation']={**updates,'sourceUrl':url,'asOf':asof,'checkedAt':now.isoformat(),'sha256':sha}
-            successes.append({'id':identifier,'sourceUrl':url,'asOf':asof})
+            unchanged=row.get('listingObservation',{}).get('sha256')==sha
+            row['listingObservation']={**updates,'sourceName':current['name'],'sourceUrl':url,'asOf':asof,'checkedAt':now.isoformat(),'sha256':sha}
+            successes.append({'id':identifier,'sourceUrl':url,'asOf':asof,'checkedAt':now.isoformat(),'status':'unchanged-verified'if unchanged else'succeeded','field':'listing-identity'})
         except Exception as e:errors.append({'id':identifier,'sourceUrl':url,'error':str(e),'lastSuccessAt':row.get('listingObservation',{}).get('checkedAt',row.get('checkedAt')),'attemptedAt':now.isoformat()})
     return result,{'successes':successes,'errors':errors}
