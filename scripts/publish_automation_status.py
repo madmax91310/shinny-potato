@@ -315,6 +315,8 @@ def read_report(path, workflow):
         raise ValueError('Le rapport doit être un objet JSON')
     report['_collector'] = path.stem
     spec = next((r for r in REPORT_CONTRACTS.get(workflow, {}).get('reports', []) if r['name'] == path.name), None)
+    if report.get('schemaVersion') not in (spec.get('versions', [None, 1]) if spec else [None, 1]):
+        raise ValueError('Version de rapport non qualifiée : ' + str(report.get('schemaVersion')))
     shape = report_shape(report)
     if spec and spec.get('schemas') and shape not in spec['schemas']:
         raise ValueError('Format incompatible avec le producteur : ' + shape)
