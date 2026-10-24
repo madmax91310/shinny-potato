@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-24T16:18:51.165431+00:00",
+  "checkedAt": "2026-10-24T18:18:19.287129+00:00",
   "productionWrites": false,
   "rows": [
     {
@@ -30,7 +30,9 @@
             "sha256": "2f950d7d3ce538506a96f493f8eda717623e3a3dbe346262ba7e8bd629faab8c",
             "reportedAt": null,
             "schema": "practical",
-            "artifactId": 12561119214
+            "artifactId": 12561119214,
+            "sourcePhaseStartedAt": "2026-10-24T13:16:51Z",
+            "sourcePhaseCompletedAt": "2026-10-24T13:17:55Z"
           }
         }
       },
@@ -43,43 +45,56 @@
           "reportedAt": null,
           "schema": "practical",
           "artifactId": 12561119214,
+          "sourcePhaseStartedAt": "2026-10-24T13:16:51Z",
+          "sourcePhaseCompletedAt": "2026-10-24T13:17:55Z",
           "runId": 40097451124,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:52:30Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40097451124",
           "successes": [
             {
-              "id": "practical:etf"
+              "id": "practical:etf",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:transfer"
+              "id": "practical:transfer",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:ifu"
+              "id": "practical:ifu",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:av-contract"
+              "id": "practical:av-contract",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:gold"
+              "id": "practical:gold",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:gold-supports"
+              "id": "practical:gold-supports",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:ibonds"
+              "id": "practical:ibonds",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:covered-call"
+              "id": "practical:covered-call",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:gold-contract"
+              "id": "practical:gold-contract",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:13f"
+              "id": "practical:13f",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "practical:bonds"
+              "id": "practical:bonds",
+              "checkedAt": "2026-10-24"
             },
             {
               "id": "report-read:practical-observation:run:40097451124:attempt:1",
@@ -90,7 +105,9 @@
                 "sha256": "2f950d7d3ce538506a96f493f8eda717623e3a3dbe346262ba7e8bd629faab8c",
                 "reportedAt": null,
                 "schema": "practical",
-                "artifactId": 12561119214
+                "artifactId": 12561119214,
+                "sourcePhaseStartedAt": "2026-10-24T13:16:51Z",
+                "sourcePhaseCompletedAt": "2026-10-24T13:17:55Z"
               }
             }
           ],
@@ -126,7 +143,9 @@
             "sha256": "798ef8253e839823c3bc927ebed2d01415b4dbee7992bf68109415ec3abbcce3",
             "reportedAt": "2026-10-24T13:52:48.250Z",
             "schema": "radar",
-            "artifactId": 12562382847
+            "artifactId": 12562382847,
+            "sourcePhaseStartedAt": "2026-10-24T13:51:47Z",
+            "sourcePhaseCompletedAt": "2026-10-24T13:53:05Z"
           }
         }
       },
@@ -139,6 +158,8 @@
           "reportedAt": "2026-10-24T13:52:48.250Z",
           "schema": "radar",
           "artifactId": 12562382847,
+          "sourcePhaseStartedAt": "2026-10-24T13:51:47Z",
+          "sourcePhaseCompletedAt": "2026-10-24T13:53:05Z",
           "runId": 40099961961,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:53:06Z",
@@ -180,7 +201,9 @@
                 "sha256": "798ef8253e839823c3bc927ebed2d01415b4dbee7992bf68109415ec3abbcce3",
                 "reportedAt": "2026-10-24T13:52:48.250Z",
                 "schema": "radar",
-                "artifactId": 12562382847
+                "artifactId": 12562382847,
+                "sourcePhaseStartedAt": "2026-10-24T13:51:47Z",
+                "sourcePhaseCompletedAt": "2026-10-24T13:53:05Z"
               }
             }
           ],
@@ -216,7 +239,9 @@
             "sha256": "71d79eeb552a7743cf9c7aedb2710a411e30c0362cce032ed4788f779e21d8a2",
             "reportedAt": "2026-10-24T12:13:44.343797+00:00",
             "schema": "statuses",
-            "artifactId": 12559618021
+            "artifactId": 12559618021,
+            "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
           }
         },
         "anniversary-observation.json": {
@@ -230,7 +255,9 @@
             "sha256": "02405a8f8f0ce6fb9536af5be7e3e0c31b6e5ef569bc6af99fb2ae1c4fec3b13",
             "reportedAt": "2026-10-24T12:13:44.418906+00:00",
             "schema": "statuses",
-            "artifactId": 12559618021
+            "artifactId": 12559618021,
+            "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
           }
         },
         "purchasing-observation.json": {
@@ -244,7 +271,9 @@
             "sha256": "f7933299f88547e09b0352d4d58e5853e97343800fa7c1bad8ca6f0d0ce73be7",
             "reportedAt": "2026-10-24T12:13:43.573162+00:00",
             "schema": "statuses",
-            "artifactId": 12559618021
+            "artifactId": 12559618021,
+            "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
           }
         }
       },
@@ -257,6 +286,8 @@
           "reportedAt": "2026-10-24T12:13:44.343797+00:00",
           "schema": "statuses",
           "artifactId": 12559618021,
+          "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z",
           "runId": 40092955985,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:15:38Z",
@@ -298,7 +329,9 @@
                 "sha256": "71d79eeb552a7743cf9c7aedb2710a411e30c0362cce032ed4788f779e21d8a2",
                 "reportedAt": "2026-10-24T12:13:44.343797+00:00",
                 "schema": "statuses",
-                "artifactId": 12559618021
+                "artifactId": 12559618021,
+                "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
               }
             }
           ],
@@ -312,6 +345,8 @@
           "reportedAt": "2026-10-24T12:13:44.418906+00:00",
           "schema": "statuses",
           "artifactId": 12559618021,
+          "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z",
           "runId": 40092955985,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:15:38Z",
@@ -2321,7 +2356,9 @@
                 "sha256": "02405a8f8f0ce6fb9536af5be7e3e0c31b6e5ef569bc6af99fb2ae1c4fec3b13",
                 "reportedAt": "2026-10-24T12:13:44.418906+00:00",
                 "schema": "statuses",
-                "artifactId": 12559618021
+                "artifactId": 12559618021,
+                "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
               }
             }
           ],
@@ -2335,6 +2372,8 @@
           "reportedAt": "2026-10-24T12:13:43.573162+00:00",
           "schema": "statuses",
           "artifactId": 12559618021,
+          "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z",
           "runId": 40092955985,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:15:38Z",
@@ -2364,7 +2403,9 @@
                 "sha256": "f7933299f88547e09b0352d4d58e5853e97343800fa7c1bad8ca6f0d0ce73be7",
                 "reportedAt": "2026-10-24T12:13:43.573162+00:00",
                 "schema": "statuses",
-                "artifactId": 12559618021
+                "artifactId": 12559618021,
+                "sourcePhaseStartedAt": "2026-10-24T12:12:14Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:15:37Z"
               }
             }
           ],
@@ -2400,7 +2441,9 @@
             "sha256": "b89b90398e252666597d69690232b6f70b8036c10faea951ef368358a4de88b3",
             "reportedAt": null,
             "schema": "observations",
-            "artifactId": 12558814050
+            "artifactId": 12558814050,
+            "sourcePhaseStartedAt": "2026-10-24T12:05:32Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:07:28Z"
           }
         }
       },
@@ -2413,6 +2456,8 @@
           "reportedAt": null,
           "schema": "observations",
           "artifactId": 12558814050,
+          "sourcePhaseStartedAt": "2026-10-24T12:05:32Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:07:28Z",
           "runId": 40092500593,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:07:29Z",
@@ -2445,7 +2490,9 @@
                 "sha256": "b89b90398e252666597d69690232b6f70b8036c10faea951ef368358a4de88b3",
                 "reportedAt": null,
                 "schema": "observations",
-                "artifactId": 12558814050
+                "artifactId": 12558814050,
+                "sourcePhaseStartedAt": "2026-10-24T12:05:32Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:07:28Z"
               }
             }
           ],
@@ -2481,7 +2528,9 @@
             "sha256": "e9aea1eb24a59f742944d2538cbda86e6f41b7b1fe57065e390a52e894a6852e",
             "reportedAt": null,
             "schema": "observations",
-            "artifactId": 12558469729
+            "artifactId": 12558469729,
+            "sourcePhaseStartedAt": "2026-10-24T12:03:55Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:06:17Z"
           }
         }
       },
@@ -2494,6 +2543,8 @@
           "reportedAt": null,
           "schema": "observations",
           "artifactId": 12558469729,
+          "sourcePhaseStartedAt": "2026-10-24T12:03:55Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:06:17Z",
           "runId": 40092389719,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:45:57Z",
@@ -2535,7 +2586,9 @@
                 "sha256": "e9aea1eb24a59f742944d2538cbda86e6f41b7b1fe57065e390a52e894a6852e",
                 "reportedAt": null,
                 "schema": "observations",
-                "artifactId": 12558469729
+                "artifactId": 12558469729,
+                "sourcePhaseStartedAt": "2026-10-24T12:03:55Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:06:17Z"
               }
             }
           ],
@@ -2571,7 +2624,9 @@
             "sha256": "cf3ed6cb8700ca76ebd0b2703f0148d2d693af73c67ac23a41b3ef0af5929d75",
             "reportedAt": null,
             "schema": "observations",
-            "artifactId": 12559178371
+            "artifactId": 12559178371,
+            "sourcePhaseStartedAt": "2026-10-24T12:10:59Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:12:43Z"
           }
         }
       },
@@ -2584,6 +2639,8 @@
           "reportedAt": null,
           "schema": "observations",
           "artifactId": 12559178371,
+          "sourcePhaseStartedAt": "2026-10-24T12:10:59Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:12:43Z",
           "runId": 40092872365,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:46:46Z",
@@ -2631,7 +2688,9 @@
                 "sha256": "cf3ed6cb8700ca76ebd0b2703f0148d2d693af73c67ac23a41b3ef0af5929d75",
                 "reportedAt": null,
                 "schema": "observations",
-                "artifactId": 12559178371
+                "artifactId": 12559178371,
+                "sourcePhaseStartedAt": "2026-10-24T12:10:59Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:12:43Z"
               }
             }
           ],
@@ -2667,7 +2726,9 @@
             "sha256": "29cec257e903272ba56d78f5df4a497d81ffd51b4362106e89832949b4485daf",
             "reportedAt": null,
             "schema": "references",
-            "artifactId": 12560613652
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
           }
         },
         "broker-tweet-observation.json": {
@@ -2681,7 +2742,9 @@
             "sha256": "c844a168ebc76bda166b627166c9e234e056a12474d1238f9e807195e8543ebd",
             "reportedAt": "2026-10-24",
             "schema": "statuses",
-            "artifactId": 12560613652
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
           }
         },
         "fiscal-observation.json": {
@@ -2695,7 +2758,9 @@
             "sha256": "901e6adb7c2ef1003049473aa74ebebefd5579e78d71183e2c3617719ad3fe6d",
             "reportedAt": null,
             "schema": "references",
-            "artifactId": 12560613652
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
           }
         }
       },
@@ -2708,180 +2773,142 @@
           "reportedAt": null,
           "schema": "references",
           "artifactId": 12560613652,
+          "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z",
           "runId": 40095966251,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:51:43Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
           "successes": [
             {
-              "id": "broker-observation:fortuneo_transfer"
-            },
-            {
-              "id": "broker-observation:caidf:profile:jeune"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:change"
-            },
-            {
-              "id": "broker-observation:tr:profile:ifu"
-            },
-            {
-              "id": "broker-observation:bourso_minimum_order"
-            },
-            {
-              "id": "broker-observation:bourso:profile:jeune"
-            },
-            {
-              "id": "broker-observation:bd:profile:jeune"
-            },
-            {
-              "id": "broker-observation:saxo:profile:pme"
-            },
-            {
-              "id": "broker-observation:xtb:profile:ifu"
-            },
-            {
-              "id": "broker-observation:bourso",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "broker-observation:caidf:profile:cash"
-            },
-            {
-              "id": "broker-observation:caidf_pea_transfer"
-            },
-            {
-              "id": "broker-observation:fortuneo:profile:jeune"
-            },
-            {
-              "id": "broker-observation:fortuneo:profile:pea"
-            },
-            {
-              "id": "broker-observation:xtb:profile:jeune"
-            },
-            {
-              "id": "broker-observation:tr_transfer_cto"
-            },
-            {
-              "id": "broker-observation:fortuneo:profile:ifu"
+              "id": "broker-observation:bourso:profile:garde"
             },
             {
               "id": "broker-observation:bourso:profile:pme"
             },
             {
-              "id": "broker-observation:xtb",
+              "id": "broker-observation:ibkr:profile:jeune"
+            },
+            {
+              "id": "broker-observation:bd:profile:cash"
+            },
+            {
+              "id": "broker-observation:tr:profile:pme"
+            },
+            {
+              "id": "broker-observation:bourso:profile:pea"
+            },
+            {
+              "id": "broker-observation:fortuneo",
               "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "broker-observation:bourso:profile:boursomarkets"
-            },
-            {
-              "id": "broker-observation:ibkr",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:entrant"
-            },
-            {
-              "id": "broker-observation:saxo:profile:pea"
-            },
-            {
-              "id": "broker-observation:saxo:profile:ifu"
-            },
-            {
-              "id": "broker-observation:bd:profile:ifu"
-            },
-            {
-              "id": "broker-observation:caidf:profile:ifu"
-            },
-            {
-              "id": "broker-observation:fortuneo:profile:dca"
             },
             {
               "id": "broker-observation:saxo",
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "broker-observation:bd:profile:pea"
+              "id": "broker-observation:bd:profile:pme"
             },
             {
-              "id": "broker-observation:caidf:profile:dca"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:cash"
-            },
-            {
-              "id": "broker-observation:fortuneo_amundi"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:dca"
-            },
-            {
-              "id": "broker-observation:ibkr_pea_transfer"
-            },
-            {
-              "id": "broker-observation:tr:profile:garde"
-            },
-            {
-              "id": "broker-observation:saxo:profile:cash"
-            },
-            {
-              "id": "broker-observation:ibkr_fx"
-            },
-            {
-              "id": "broker-observation:xtb:profile:dca"
-            },
-            {
-              "id": "broker-observation:tr:profile:dca"
-            },
-            {
-              "id": "broker-observation:saxo:profile:jeune"
-            },
-            {
-              "id": "broker-observation:ibkr_pea_garde"
-            },
-            {
-              "id": "broker-observation:caidf",
+              "id": "broker-observation:bd",
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "broker-observation:xtb:profile:pea"
+              "id": "broker-observation:ibkr:profile:ifu"
             },
             {
-              "id": "broker-observation:bourso:profile:ifu"
+              "id": "broker-observation:fortuneo:profile:ifu"
+            },
+            {
+              "id": "broker-observation:caidf:profile:jeune"
             },
             {
               "id": "broker-observation:bd:profile:entrant"
             },
             {
-              "id": "broker-observation:xtb:profile:pme"
+              "id": "broker-observation:ibkr",
+              "checkedAt": "2026-10-24"
             },
             {
               "id": "broker-observation:xtb:profile:cash"
             },
             {
-              "id": "broker-observation:bourso:profile:garde"
+              "id": "broker-observation:tr",
+              "checkedAt": "2026-10-24"
             },
             {
-              "id": "broker-observation:tr:profile:change"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:jeune"
+              "id": "broker-observation:caidf:profile:cash"
             },
             {
               "id": "broker-observation:ibkr:profile:pea"
             },
             {
-              "id": "broker-observation:bourso_transfer"
+              "id": "broker-observation:saxo:profile:dca"
+            },
+            {
+              "id": "broker-observation:caidf:profile:ifu"
+            },
+            {
+              "id": "broker-observation:fortuneo_amundi"
+            },
+            {
+              "id": "broker-observation:tr:profile:garde"
+            },
+            {
+              "id": "broker-observation:fortuneo:profile:pme"
+            },
+            {
+              "id": "broker-observation:bourso",
+              "checkedAt": "2026-10-24"
+            },
+            {
+              "id": "broker-observation:xtb",
+              "checkedAt": "2026-10-24"
             },
             {
               "id": "broker-observation:caidf:profile:pea"
             },
             {
-              "id": "broker-observation:bd:profile:cash"
+              "id": "broker-observation:tr:profile:cash"
             },
             {
-              "id": "broker-observation:bourso:profile:dca"
+              "id": "broker-observation:tr_pea_transfer"
+            },
+            {
+              "id": "broker-observation:bourso:profile:boursomarkets"
+            },
+            {
+              "id": "broker-observation:fortuneo:extras"
+            },
+            {
+              "id": "broker-observation:xtb:profile:dca"
+            },
+            {
+              "id": "broker-observation:fortuneo:profile:pea"
+            },
+            {
+              "id": "broker-observation:ibkr_pea_garde"
+            },
+            {
+              "id": "broker-observation:fortuneo:profile:dca"
+            },
+            {
+              "id": "broker-observation:xtb:profile:jeune"
+            },
+            {
+              "id": "broker-observation:bourso_transfer"
+            },
+            {
+              "id": "broker-observation:bourso:extras"
+            },
+            {
+              "id": "broker-observation:tr:profile:pea"
+            },
+            {
+              "id": "broker-observation:saxo_amundi"
+            },
+            {
+              "id": "broker-observation:bd:profile:pea"
             },
             {
               "id": "broker-observation:caidf:profile:pme"
@@ -2890,85 +2917,125 @@
               "id": "broker-observation:saxo_transfer"
             },
             {
+              "id": "broker-observation:saxo:profile:pme"
+            },
+            {
               "id": "broker-observation:tr_garde_cto"
-            },
-            {
-              "id": "broker-observation:xtb_pea_transfer"
-            },
-            {
-              "id": "broker-observation:caidf:profile:change"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:pme"
-            },
-            {
-              "id": "broker-observation:tr_direct"
-            },
-            {
-              "id": "broker-observation:tr",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "broker-observation:bd:profile:pme"
-            },
-            {
-              "id": "broker-observation:tr:profile:pea"
-            },
-            {
-              "id": "broker-observation:ibkr:profile:ifu"
-            },
-            {
-              "id": "broker-observation:tr_pea_transfer_out"
-            },
-            {
-              "id": "broker-observation:tr:profile:pme"
-            },
-            {
-              "id": "broker-observation:fortuneo:extras"
-            },
-            {
-              "id": "broker-observation:saxo:profile:dca"
-            },
-            {
-              "id": "broker-observation:bourso:extras"
-            },
-            {
-              "id": "broker-observation:saxo_amundi"
-            },
-            {
-              "id": "broker-observation:tr:profile:jeune"
-            },
-            {
-              "id": "broker-observation:saxo_offer"
-            },
-            {
-              "id": "broker-observation:tr_pea_transfer"
-            },
-            {
-              "id": "broker-observation:bourso:profile:pea"
-            },
-            {
-              "id": "broker-observation:bd",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "broker-observation:fortuneo:profile:cash"
-            },
-            {
-              "id": "broker-observation:tr:profile:cash"
             },
             {
               "id": "broker-observation:bd:profile:dca"
             },
             {
-              "id": "broker-observation:fortuneo",
-              "checkedAt": "2026-10-24"
+              "id": "broker-observation:ibkr:profile:cash"
             },
             {
-              "id": "broker-observation:fortuneo:profile:pme"
+              "id": "broker-observation:tr:profile:dca"
+            },
+            {
+              "id": "broker-observation:xtb:profile:ifu"
+            },
+            {
+              "id": "broker-observation:saxo:profile:pea"
+            },
+            {
+              "id": "broker-observation:caidf:profile:change"
+            },
+            {
+              "id": "broker-observation:bd:profile:jeune"
+            },
+            {
+              "id": "broker-observation:tr:profile:jeune"
+            },
+            {
+              "id": "broker-observation:fortuneo_transfer"
+            },
+            {
+              "id": "broker-observation:saxo:profile:jeune"
+            },
+            {
+              "id": "broker-observation:ibkr:profile:pme"
+            },
+            {
+              "id": "broker-observation:tr:profile:ifu"
+            },
+            {
+              "id": "broker-observation:xtb_pea_transfer"
+            },
+            {
+              "id": "broker-observation:tr:profile:change"
+            },
+            {
+              "id": "broker-observation:saxo_offer"
+            },
+            {
+              "id": "broker-observation:bourso:profile:dca"
+            },
+            {
+              "id": "broker-observation:tr_transfer_cto"
+            },
+            {
+              "id": "broker-observation:caidf:profile:dca"
+            },
+            {
+              "id": "broker-observation:bourso_minimum_order"
+            },
+            {
+              "id": "broker-observation:tr_pea_transfer_out"
+            },
+            {
+              "id": "broker-observation:bd:profile:ifu"
             },
             {
               "id": "broker-observation:bourso:profile:cash"
+            },
+            {
+              "id": "broker-observation:xtb:profile:pme"
+            },
+            {
+              "id": "broker-observation:ibkr:profile:change"
+            },
+            {
+              "id": "broker-observation:ibkr:profile:entrant"
+            },
+            {
+              "id": "broker-observation:ibkr:profile:dca"
+            },
+            {
+              "id": "broker-observation:saxo:profile:cash"
+            },
+            {
+              "id": "broker-observation:ibkr_pea_transfer"
+            },
+            {
+              "id": "broker-observation:saxo:profile:ifu"
+            },
+            {
+              "id": "broker-observation:bourso:profile:jeune"
+            },
+            {
+              "id": "broker-observation:bourso:profile:ifu"
+            },
+            {
+              "id": "broker-observation:caidf",
+              "checkedAt": "2026-10-24"
+            },
+            {
+              "id": "broker-observation:fortuneo:profile:jeune"
+            },
+            {
+              "id": "broker-observation:ibkr_fx"
+            },
+            {
+              "id": "broker-observation:tr_direct"
+            },
+            {
+              "id": "broker-observation:xtb:profile:pea"
+            },
+            {
+              "id": "broker-observation:fortuneo:profile:cash"
+            },
+            {
+              "id": "broker-observation:caidf_pea_transfer"
             },
             {
               "id": "report-read:broker-observation:run:40095966251:attempt:1",
@@ -2979,7 +3046,9 @@
                 "sha256": "29cec257e903272ba56d78f5df4a497d81ffd51b4362106e89832949b4485daf",
                 "reportedAt": null,
                 "schema": "references",
-                "artifactId": 12560613652
+                "artifactId": 12560613652,
+                "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
               }
             }
           ],
@@ -2993,6 +3062,8 @@
           "reportedAt": "2026-10-24",
           "schema": "statuses",
           "artifactId": 12560613652,
+          "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z",
           "runId": 40095966251,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:51:43Z",
@@ -3007,7 +3078,9 @@
                 "sha256": "c844a168ebc76bda166b627166c9e234e056a12474d1238f9e807195e8543ebd",
                 "reportedAt": "2026-10-24",
                 "schema": "statuses",
-                "artifactId": 12560613652
+                "artifactId": 12560613652,
+                "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
               }
             }
           ],
@@ -3021,17 +3094,15 @@
           "reportedAt": null,
           "schema": "references",
           "artifactId": 12560613652,
+          "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z",
           "runId": 40095966251,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:51:43Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
           "successes": [
             {
-              "id": "fiscal-observation:social",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "fiscal-observation:peaTax",
+              "id": "fiscal-observation:av",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3039,7 +3110,7 @@
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "fiscal-observation:pea",
+              "id": "fiscal-observation:pel",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3047,7 +3118,7 @@
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "fiscal-observation:pel",
+              "id": "fiscal-observation:social",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3055,11 +3126,7 @@
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "fiscal-observation:rent",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "fiscal-observation:av",
+              "id": "fiscal-observation:cto",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3067,7 +3134,19 @@
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "fiscal-observation:cto",
+              "id": "fiscal-observation:pee",
+              "checkedAt": "2026-10-24"
+            },
+            {
+              "id": "fiscal-observation:rent",
+              "checkedAt": "2026-10-24"
+            },
+            {
+              "id": "fiscal-observation:pea",
+              "checkedAt": "2026-10-24"
+            },
+            {
+              "id": "fiscal-observation:livret",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3075,11 +3154,7 @@
               "checkedAt": "2026-10-24"
             },
             {
-              "id": "fiscal-observation:pee",
-              "checkedAt": "2026-10-24"
-            },
-            {
-              "id": "fiscal-observation:livret",
+              "id": "fiscal-observation:peaTax",
               "checkedAt": "2026-10-24"
             },
             {
@@ -3091,7 +3166,9 @@
                 "sha256": "901e6adb7c2ef1003049473aa74ebebefd5579e78d71183e2c3617719ad3fe6d",
                 "reportedAt": null,
                 "schema": "references",
-                "artifactId": 12560613652
+                "artifactId": 12560613652,
+                "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
               }
             }
           ],
@@ -3127,7 +3204,9 @@
             "sha256": "7da9cd98bfc8ea4cb2648ea65bf902bb68cf2fbafe09662c82a1b521ec9ff1de",
             "reportedAt": "2026-10-24T06:05:58.655698+00:00",
             "schema": "shares",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         },
         "amundi-observation.json": {
@@ -3141,7 +3220,9 @@
             "sha256": "44162d9393a933b4c37b08b005e7570a5fa8e133ed11718483c5fea175df854d",
             "reportedAt": "2026-10-24T06:05:52.387241+00:00",
             "schema": "shares",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         },
         "index-observation.json": {
@@ -3155,7 +3236,9 @@
             "sha256": "cfde7efbbfc8271234eeb1f632c8c4526dfdfea4e5f1f3951744b4d461626d5a",
             "reportedAt": "2026-10-24T06:07:30.650339+00:00",
             "schema": "indices",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         },
         "observation.json": {
@@ -3169,7 +3252,9 @@
             "sha256": "d73396f0e51ad948f8bfc0a84ccbb8b09a6efb8dcb8ae90bf74a4429e2185883",
             "reportedAt": "2026-10-24T06:05:24.866318+00:00",
             "schema": "shares",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         },
         "presentation-performance.json": {
@@ -3183,7 +3268,9 @@
             "sha256": "5fa6f7426ad82d47a4023c400805d0245646304d26b3413c167e19da05cd72e4",
             "reportedAt": "2026-10-24T06:07:21.275184+00:00",
             "schema": "shares",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         },
         "ssga-observation.json": {
@@ -3197,7 +3284,9 @@
             "sha256": "61580eae57de6863e87ba5be1155cac7f5a5638a3d05acf6fb5698ff27495d80",
             "reportedAt": "2026-10-24T06:05:55.384337+00:00",
             "schema": "shares",
-            "artifactId": 12550591254
+            "artifactId": 12550591254,
+            "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+            "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
           }
         }
       },
@@ -3210,6 +3299,8 @@
           "reportedAt": "2026-10-24T06:05:58.655698+00:00",
           "schema": "shares",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -3539,7 +3630,9 @@
                 "sha256": "7da9cd98bfc8ea4cb2648ea65bf902bb68cf2fbafe09662c82a1b521ec9ff1de",
                 "reportedAt": "2026-10-24T06:05:58.655698+00:00",
                 "schema": "shares",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -3553,6 +3646,8 @@
           "reportedAt": "2026-10-24T06:05:52.387241+00:00",
           "schema": "shares",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -3678,7 +3773,9 @@
                 "sha256": "44162d9393a933b4c37b08b005e7570a5fa8e133ed11718483c5fea175df854d",
                 "reportedAt": "2026-10-24T06:05:52.387241+00:00",
                 "schema": "shares",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -3692,6 +3789,8 @@
           "reportedAt": "2026-10-24T06:07:30.650339+00:00",
           "schema": "indices",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -4030,7 +4129,9 @@
                 "sha256": "cfde7efbbfc8271234eeb1f632c8c4526dfdfea4e5f1f3951744b4d461626d5a",
                 "reportedAt": "2026-10-24T06:07:30.650339+00:00",
                 "schema": "indices",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -4044,6 +4145,8 @@
           "reportedAt": "2026-10-24T06:05:24.866318+00:00",
           "schema": "shares",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -4181,7 +4284,9 @@
                 "sha256": "d73396f0e51ad948f8bfc0a84ccbb8b09a6efb8dcb8ae90bf74a4429e2185883",
                 "reportedAt": "2026-10-24T06:05:24.866318+00:00",
                 "schema": "shares",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -4202,6 +4307,8 @@
           "reportedAt": "2026-10-24T06:07:21.275184+00:00",
           "schema": "shares",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -4228,7 +4335,9 @@
                 "sha256": "5fa6f7426ad82d47a4023c400805d0245646304d26b3413c167e19da05cd72e4",
                 "reportedAt": "2026-10-24T06:07:21.275184+00:00",
                 "schema": "shares",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -4242,6 +4351,8 @@
           "reportedAt": "2026-10-24T06:05:55.384337+00:00",
           "schema": "shares",
           "artifactId": 12550591254,
+          "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+          "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z",
           "runId": 40068757315,
           "attempt": 1,
           "recordedAt": "2026-10-24T06:11:42Z",
@@ -4283,7 +4394,9 @@
                 "sha256": "61580eae57de6863e87ba5be1155cac7f5a5638a3d05acf6fb5698ff27495d80",
                 "reportedAt": "2026-10-24T06:05:55.384337+00:00",
                 "schema": "shares",
-                "artifactId": 12550591254
+                "artifactId": 12550591254,
+                "sourcePhaseStartedAt": "2026-10-24T06:04:38Z",
+                "sourcePhaseCompletedAt": "2026-10-24T06:08:29Z"
               }
             }
           ],
@@ -4319,7 +4432,9 @@
             "sha256": "c873b66c055bbbcd26cc3f91d1857f28a7c199e123ebf263c8c17ccf47ef0147",
             "reportedAt": "2026-10-24T11:38:58.330758+00:00",
             "schema": "indices",
-            "artifactId": 12558469827
+            "artifactId": 12558469827,
+            "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
           }
         },
         "listing-observation.json": {
@@ -4333,7 +4448,9 @@
             "sha256": "0967edf223c9fed57cbf21258de487e922efe1e23bc82a4fe6bbec2473e0caa5",
             "reportedAt": "2026-10-24",
             "schema": "listings",
-            "artifactId": 12558469827
+            "artifactId": 12558469827,
+            "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
           }
         },
         "monthly-observation.json": {
@@ -4347,7 +4464,9 @@
             "sha256": "cc1b3e2e5535587b2ec2da6f5d25c83e5baec0de55b2a7c51a83f11d4f8be5c3",
             "reportedAt": "2026-10-24T11:38:53.016177+00:00",
             "schema": "series",
-            "artifactId": 12558469827
+            "artifactId": 12558469827,
+            "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
           }
         }
       },
@@ -4360,6 +4479,8 @@
           "reportedAt": "2026-10-24T11:38:58.330758+00:00",
           "schema": "indices",
           "artifactId": 12558469827,
+          "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z",
           "runId": 40090641233,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:36:18Z",
@@ -4383,7 +4504,9 @@
                 "sha256": "c873b66c055bbbcd26cc3f91d1857f28a7c199e123ebf263c8c17ccf47ef0147",
                 "reportedAt": "2026-10-24T11:38:58.330758+00:00",
                 "schema": "indices",
-                "artifactId": 12558469827
+                "artifactId": 12558469827,
+                "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
               }
             }
           ],
@@ -4397,6 +4520,8 @@
           "reportedAt": "2026-10-24",
           "schema": "listings",
           "artifactId": 12558469827,
+          "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z",
           "runId": 40090641233,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:36:18Z",
@@ -4426,7 +4551,9 @@
                 "sha256": "0967edf223c9fed57cbf21258de487e922efe1e23bc82a4fe6bbec2473e0caa5",
                 "reportedAt": "2026-10-24",
                 "schema": "listings",
-                "artifactId": 12558469827
+                "artifactId": 12558469827,
+                "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
               }
             }
           ],
@@ -4440,6 +4567,8 @@
           "reportedAt": "2026-10-24T11:38:53.016177+00:00",
           "schema": "series",
           "artifactId": 12558469827,
+          "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z",
           "runId": 40090641233,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:36:18Z",
@@ -4454,7 +4583,9 @@
                 "sha256": "cc1b3e2e5535587b2ec2da6f5d25c83e5baec0de55b2a7c51a83f11d4f8be5c3",
                 "reportedAt": "2026-10-24T11:38:53.016177+00:00",
                 "schema": "series",
-                "artifactId": 12558469827
+                "artifactId": 12558469827,
+                "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
               }
             }
           ],
@@ -4468,6 +4599,8 @@
           "reportedAt": "2026-10-24T11:38:54.046660+00:00",
           "schema": "series",
           "artifactId": 12558469827,
+          "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z",
           "runId": 40090641233,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:36:18Z",
@@ -4482,7 +4615,9 @@
                 "sha256": "855f59d4add3e692961c982ead0e21fa721ab6216c68e9b31a97e88f56fba470",
                 "reportedAt": "2026-10-24T11:38:54.046660+00:00",
                 "schema": "series",
-                "artifactId": 12558469827
+                "artifactId": 12558469827,
+                "sourcePhaseStartedAt": "2026-10-24T11:37:25Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:36:17Z"
               }
             }
           ],
@@ -4518,7 +4653,9 @@
             "sha256": "96f410df4b9b034b3ce17ea36fc5ba9b01481f35137b78887acc0c8e227bd8fa",
             "reportedAt": "2026-10-24T12:01:45.982392+00:00",
             "schema": "inflation",
-            "artifactId": 12559641339
+            "artifactId": 12559641339,
+            "sourcePhaseStartedAt": "2026-10-24T12:01:04Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:01:53Z"
           }
         }
       },
@@ -4531,6 +4668,8 @@
           "reportedAt": "2026-10-24T12:01:45.982392+00:00",
           "schema": "inflation",
           "artifactId": 12559641339,
+          "sourcePhaseStartedAt": "2026-10-24T12:01:04Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:01:53Z",
           "runId": 40092195484,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:01:54Z",
@@ -4548,7 +4687,9 @@
                 "sha256": "96f410df4b9b034b3ce17ea36fc5ba9b01481f35137b78887acc0c8e227bd8fa",
                 "reportedAt": "2026-10-24T12:01:45.982392+00:00",
                 "schema": "inflation",
-                "artifactId": 12559641339
+                "artifactId": 12559641339,
+                "sourcePhaseStartedAt": "2026-10-24T12:01:04Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:01:53Z"
               }
             }
           ],
@@ -4584,7 +4725,9 @@
             "sha256": "c5a064da3dbadd865786c30d28bd3e03326690d4607d8a3c363c597c5d7dcd45",
             "reportedAt": "2026-10-23T17:24:22.899399+00:00",
             "schema": "investors",
-            "artifactId": 12518918131
+            "artifactId": 12518918131,
+            "sourcePhaseStartedAt": "2026-10-23T17:16:38Z",
+            "sourcePhaseCompletedAt": "2026-10-23T17:24:33Z"
           }
         }
       },
@@ -4597,6 +4740,8 @@
           "reportedAt": "2026-10-23T17:24:22.899399+00:00",
           "schema": "investors",
           "artifactId": 12518918131,
+          "sourcePhaseStartedAt": "2026-10-23T17:16:38Z",
+          "sourcePhaseCompletedAt": "2026-10-23T17:24:33Z",
           "runId": 39993735401,
           "attempt": 1,
           "recordedAt": "2026-10-23T17:36:04Z",
@@ -4695,7 +4840,9 @@
                 "sha256": "c5a064da3dbadd865786c30d28bd3e03326690d4607d8a3c363c597c5d7dcd45",
                 "reportedAt": "2026-10-23T17:24:22.899399+00:00",
                 "schema": "investors",
-                "artifactId": 12518918131
+                "artifactId": 12518918131,
+                "sourcePhaseStartedAt": "2026-10-23T17:16:38Z",
+                "sourcePhaseCompletedAt": "2026-10-23T17:24:33Z"
               }
             }
           ],
@@ -4731,7 +4878,9 @@
             "sha256": "cf1e69af3862cc872d083256dc6cf3f1345464cb1f9ec0aebd6995091ca7674a",
             "reportedAt": "2026-10-22",
             "schema": "statuses",
-            "artifactId": 12464997354
+            "artifactId": 12464997354,
+            "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+            "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
           }
         },
         "households-observation.json": {
@@ -4745,7 +4894,9 @@
             "sha256": "d589cd56c90217dcb2fec1badf3b9c6f72e342a4645f1069e685142de9ffff33",
             "reportedAt": "2026-10-22",
             "schema": "statuses",
-            "artifactId": 12464997354
+            "artifactId": 12464997354,
+            "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+            "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
           }
         },
         "savings-observation.json": {
@@ -4759,7 +4910,9 @@
             "sha256": "55b4bccfa875f5294fe6c7338c9f7bd2597d92c90c259a77213e87468d3add46",
             "reportedAt": "2026-10-22",
             "schema": "statuses",
-            "artifactId": 12464997354
+            "artifactId": 12464997354,
+            "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+            "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
           }
         },
         "scpi-observation.json": {
@@ -4773,7 +4926,9 @@
             "sha256": "5f189ce9886e43bedaa45576144af3ff2dbaf0d404c99236d284fc8d9e155ace",
             "reportedAt": "2026-10-22",
             "schema": "statuses",
-            "artifactId": 12464997354
+            "artifactId": 12464997354,
+            "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+            "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
           }
         }
       },
@@ -4786,6 +4941,8 @@
           "reportedAt": "2026-10-22",
           "schema": "statuses",
           "artifactId": 12464997354,
+          "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+          "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z",
           "runId": 39867978866,
           "attempt": 1,
           "recordedAt": "2026-10-22T23:46:02Z",
@@ -4804,7 +4961,9 @@
                 "sha256": "cf1e69af3862cc872d083256dc6cf3f1345464cb1f9ec0aebd6995091ca7674a",
                 "reportedAt": "2026-10-22",
                 "schema": "statuses",
-                "artifactId": 12464997354
+                "artifactId": 12464997354,
+                "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+                "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
               }
             }
           ],
@@ -4818,6 +4977,8 @@
           "reportedAt": "2026-10-22",
           "schema": "statuses",
           "artifactId": 12464997354,
+          "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+          "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z",
           "runId": 39867978866,
           "attempt": 1,
           "recordedAt": "2026-10-22T23:46:02Z",
@@ -4860,7 +5021,9 @@
                 "sha256": "d589cd56c90217dcb2fec1badf3b9c6f72e342a4645f1069e685142de9ffff33",
                 "reportedAt": "2026-10-22",
                 "schema": "statuses",
-                "artifactId": 12464997354
+                "artifactId": 12464997354,
+                "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+                "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
               }
             }
           ],
@@ -4874,6 +5037,8 @@
           "reportedAt": "2026-10-22",
           "schema": "statuses",
           "artifactId": 12464997354,
+          "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+          "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z",
           "runId": 39867978866,
           "attempt": 1,
           "recordedAt": "2026-10-22T23:46:02Z",
@@ -4892,7 +5057,9 @@
                 "sha256": "55b4bccfa875f5294fe6c7338c9f7bd2597d92c90c259a77213e87468d3add46",
                 "reportedAt": "2026-10-22",
                 "schema": "statuses",
-                "artifactId": 12464997354
+                "artifactId": 12464997354,
+                "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+                "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
               }
             }
           ],
@@ -4906,6 +5073,8 @@
           "reportedAt": "2026-10-22",
           "schema": "statuses",
           "artifactId": 12464997354,
+          "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+          "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z",
           "runId": 39867978866,
           "attempt": 1,
           "recordedAt": "2026-10-22T23:46:02Z",
@@ -4924,7 +5093,9 @@
                 "sha256": "5f189ce9886e43bedaa45576144af3ff2dbaf0d404c99236d284fc8d9e155ace",
                 "reportedAt": "2026-10-22",
                 "schema": "statuses",
-                "artifactId": 12464997354
+                "artifactId": 12464997354,
+                "sourcePhaseStartedAt": "2026-10-22T22:52:53Z",
+                "sourcePhaseCompletedAt": "2026-10-22T22:54:55Z"
               }
             }
           ],
@@ -4960,7 +5131,9 @@
             "sha256": "621d557fe1c1336325eee9f38201e8c25f93cbaa7eecea96c9feb80e1397da1a",
             "reportedAt": "2026-10-24T09:45:42.477755+00:00",
             "schema": "holdings",
-            "artifactId": 12555644274
+            "artifactId": 12555644274,
+            "sourcePhaseStartedAt": "2026-10-24T09:44:47Z",
+            "sourcePhaseCompletedAt": "2026-10-24T09:46:29Z"
           }
         }
       },
@@ -4973,6 +5146,8 @@
           "reportedAt": "2026-10-24T09:45:42.477755+00:00",
           "schema": "holdings",
           "artifactId": 12555644274,
+          "sourcePhaseStartedAt": "2026-10-24T09:44:47Z",
+          "sourcePhaseCompletedAt": "2026-10-24T09:46:29Z",
           "runId": 40083163695,
           "attempt": 1,
           "recordedAt": "2026-10-24T09:50:07Z",
@@ -4999,7 +5174,9 @@
                 "sha256": "621d557fe1c1336325eee9f38201e8c25f93cbaa7eecea96c9feb80e1397da1a",
                 "reportedAt": "2026-10-24T09:45:42.477755+00:00",
                 "schema": "holdings",
-                "artifactId": 12555644274
+                "artifactId": 12555644274,
+                "sourcePhaseStartedAt": "2026-10-24T09:44:47Z",
+                "sourcePhaseCompletedAt": "2026-10-24T09:46:29Z"
               }
             }
           ],
@@ -5035,7 +5212,9 @@
             "sha256": "cc5b5c82146752b545cf5fbf434b06af34ce5d4679b667e4127342ce87f71cab",
             "reportedAt": "2026-10-24T11:58:56.544685+00:00",
             "schema": "combined",
-            "artifactId": 12558979594
+            "artifactId": 12558979594,
+            "sourcePhaseStartedAt": "2026-10-24T11:57:49Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:00:04Z"
           }
         }
       },
@@ -5048,6 +5227,8 @@
           "reportedAt": "2026-10-24T11:58:56.544685+00:00",
           "schema": "combined",
           "artifactId": 12558979594,
+          "sourcePhaseStartedAt": "2026-10-24T11:57:49Z",
+          "sourcePhaseCompletedAt": "2026-10-24T12:00:04Z",
           "runId": 40091974240,
           "attempt": 1,
           "recordedAt": "2026-10-24T12:45:05Z",
@@ -5320,7 +5501,9 @@
                 "sha256": "cc5b5c82146752b545cf5fbf434b06af34ce5d4679b667e4127342ce87f71cab",
                 "reportedAt": "2026-10-24T11:58:56.544685+00:00",
                 "schema": "combined",
-                "artifactId": 12558979594
+                "artifactId": 12558979594,
+                "sourcePhaseStartedAt": "2026-10-24T11:57:49Z",
+                "sourcePhaseCompletedAt": "2026-10-24T12:00:04Z"
               }
             }
           ],
@@ -5356,7 +5539,9 @@
             "sha256": "4d7864b1a2c182daeaf621cbd8203ed6cc37051cb661f083534deb7abc128450",
             "reportedAt": null,
             "schema": "statuses",
-            "artifactId": 12540251207
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
           }
         },
         "dca-equities.json": {
@@ -5370,7 +5555,9 @@
             "sha256": "bb5eeac87810d942e97166c5413e4761d8e9c4202b06670d811406f051fbf8a6",
             "reportedAt": "2026-10-23T23:59:21.368272+00:00",
             "schema": "dca-equities",
-            "artifactId": 12540251207
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
           }
         },
         "exposure-sleeves.json": {
@@ -5384,7 +5571,9 @@
             "sha256": "74c7050c0febc3d94d2f74ad6993cca737154dac1c7bb28c08b8c99f79f118fc",
             "reportedAt": "2026-10-24T00:00:10.636964+00:00",
             "schema": "statuses",
-            "artifactId": 12540251207
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
           }
         },
         "qualified-exposures.json": {
@@ -5398,7 +5587,9 @@
             "sha256": "9d47a75e2fe061ff2543cd2cf149f181eeed11f792bcdc7f15ada05b0bc17fa1",
             "reportedAt": "2026-10-23T23:59:03.159471+00:00",
             "schema": "holdings",
-            "artifactId": 12540251207
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
           }
         },
         "vanguard-sleeves.json": {
@@ -5412,7 +5603,9 @@
             "sha256": "48c15d2d7546cb40d874047adc42f7763a408ebc3f5ffbffbc8484e1a2b0699b",
             "reportedAt": null,
             "schema": "statuses",
-            "artifactId": 12540251207
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
           }
         }
       },
@@ -5425,6 +5618,8 @@
           "reportedAt": null,
           "schema": "statuses",
           "artifactId": 12540251207,
+          "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+          "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z",
           "runId": 40041331543,
           "attempt": 1,
           "recordedAt": "2026-10-24T00:59:42Z",
@@ -5970,7 +6165,9 @@
                 "sha256": "4d7864b1a2c182daeaf621cbd8203ed6cc37051cb661f083534deb7abc128450",
                 "reportedAt": null,
                 "schema": "statuses",
-                "artifactId": 12540251207
+                "artifactId": 12540251207,
+                "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+                "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
               }
             }
           ],
@@ -6005,6 +6202,8 @@
           "reportedAt": "2026-10-23T23:59:21.368272+00:00",
           "schema": "dca-equities",
           "artifactId": 12540251207,
+          "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+          "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z",
           "runId": 40041331543,
           "attempt": 1,
           "recordedAt": "2026-10-24T00:59:42Z",
@@ -6130,7 +6329,9 @@
                 "sha256": "bb5eeac87810d942e97166c5413e4761d8e9c4202b06670d811406f051fbf8a6",
                 "reportedAt": "2026-10-23T23:59:21.368272+00:00",
                 "schema": "dca-equities",
-                "artifactId": 12540251207
+                "artifactId": 12540251207,
+                "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+                "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
               }
             }
           ],
@@ -6144,6 +6345,8 @@
           "reportedAt": "2026-10-24T00:00:10.636964+00:00",
           "schema": "statuses",
           "artifactId": 12540251207,
+          "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+          "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z",
           "runId": 40041331543,
           "attempt": 1,
           "recordedAt": "2026-10-24T00:59:42Z",
@@ -6206,7 +6409,9 @@
                 "sha256": "74c7050c0febc3d94d2f74ad6993cca737154dac1c7bb28c08b8c99f79f118fc",
                 "reportedAt": "2026-10-24T00:00:10.636964+00:00",
                 "schema": "statuses",
-                "artifactId": 12540251207
+                "artifactId": 12540251207,
+                "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+                "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
               }
             }
           ],
@@ -6220,6 +6425,8 @@
           "reportedAt": "2026-10-23T23:59:03.159471+00:00",
           "schema": "holdings",
           "artifactId": 12540251207,
+          "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+          "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z",
           "runId": 40041331543,
           "attempt": 1,
           "recordedAt": "2026-10-24T00:59:42Z",
@@ -6384,7 +6591,9 @@
                 "sha256": "9d47a75e2fe061ff2543cd2cf149f181eeed11f792bcdc7f15ada05b0bc17fa1",
                 "reportedAt": "2026-10-23T23:59:03.159471+00:00",
                 "schema": "holdings",
-                "artifactId": 12540251207
+                "artifactId": 12540251207,
+                "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+                "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
               }
             }
           ],
@@ -6398,6 +6607,8 @@
           "reportedAt": null,
           "schema": "statuses",
           "artifactId": 12540251207,
+          "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+          "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z",
           "runId": 40041331543,
           "attempt": 1,
           "recordedAt": "2026-10-24T00:59:42Z",
@@ -6421,7 +6632,9 @@
                 "sha256": "48c15d2d7546cb40d874047adc42f7763a408ebc3f5ffbffbc8484e1a2b0699b",
                 "reportedAt": null,
                 "schema": "statuses",
-                "artifactId": 12540251207
+                "artifactId": 12540251207,
+                "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+                "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
               }
             }
           ],
@@ -6457,7 +6670,9 @@
             "sha256": "268f96e91dddf46232f580ae06e4460ea1019e3a2e2bad0e87151ab19f42fb7c",
             "reportedAt": "2026-10-24T11:35:02.241883+00:00",
             "schema": "indices",
-            "artifactId": 12559136157
+            "artifactId": 12559136157,
+            "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+            "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
           }
         },
         "index-company-qualification-observations.json": {
@@ -6471,7 +6686,9 @@
             "sha256": "fb798e25ec031065606db80742d3240174e80e7af61cb0b66ae60d818d79cbbb",
             "reportedAt": null,
             "schema": "statuses",
-            "artifactId": 12559136157
+            "artifactId": 12559136157,
+            "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+            "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
           }
         },
         "selected-index-observations.json": {
@@ -6485,7 +6702,9 @@
             "sha256": "e5ba483914a02050807536b95389396bb8837f8699f6e4900f00d28dd01241b9",
             "reportedAt": "2026-10-24T11:35:13.712573+00:00",
             "schema": "indices",
-            "artifactId": 12559136157
+            "artifactId": 12559136157,
+            "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+            "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
           }
         }
       },
@@ -6498,6 +6717,8 @@
           "reportedAt": "2026-10-24T11:35:02.241883+00:00",
           "schema": "indices",
           "artifactId": 12559136157,
+          "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+          "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z",
           "runId": 40090419702,
           "attempt": 1,
           "recordedAt": "2026-10-24T11:39:10Z",
@@ -6524,7 +6745,9 @@
                 "sha256": "268f96e91dddf46232f580ae06e4460ea1019e3a2e2bad0e87151ab19f42fb7c",
                 "reportedAt": "2026-10-24T11:35:02.241883+00:00",
                 "schema": "indices",
-                "artifactId": 12559136157
+                "artifactId": 12559136157,
+                "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+                "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
               }
             }
           ],
@@ -6538,6 +6761,8 @@
           "reportedAt": null,
           "schema": "statuses",
           "artifactId": 12559136157,
+          "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+          "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z",
           "runId": 40090419702,
           "attempt": 1,
           "recordedAt": "2026-10-24T11:39:10Z",
@@ -6654,7 +6879,9 @@
                 "sha256": "fb798e25ec031065606db80742d3240174e80e7af61cb0b66ae60d818d79cbbb",
                 "reportedAt": null,
                 "schema": "statuses",
-                "artifactId": 12559136157
+                "artifactId": 12559136157,
+                "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+                "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
               }
             }
           ],
@@ -6714,6 +6941,8 @@
           "reportedAt": "2026-10-24T11:35:13.712573+00:00",
           "schema": "indices",
           "artifactId": 12559136157,
+          "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+          "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z",
           "runId": 40090419702,
           "attempt": 1,
           "recordedAt": "2026-10-24T11:39:10Z",
@@ -6788,7 +7017,9 @@
                 "sha256": "e5ba483914a02050807536b95389396bb8837f8699f6e4900f00d28dd01241b9",
                 "reportedAt": "2026-10-24T11:35:13.712573+00:00",
                 "schema": "indices",
-                "artifactId": 12559136157
+                "artifactId": 12559136157,
+                "sourcePhaseStartedAt": "2026-10-24T11:34:07Z",
+                "sourcePhaseCompletedAt": "2026-10-24T11:35:26Z"
               }
             }
           ],
@@ -6824,7 +7055,9 @@
             "sha256": "4806e566f6080afb6d1234b8c8be70b676d95212afe7ce37025afe2e302c2db6",
             "reportedAt": "2026-10-23T19:25:31.277977+00:00",
             "schema": "shares",
-            "artifactId": 12527110906
+            "artifactId": 12527110906,
+            "sourcePhaseStartedAt": "2026-10-23T19:24:50Z",
+            "sourcePhaseCompletedAt": "2026-10-23T19:26:34Z"
           }
         }
       },
@@ -6837,6 +7070,8 @@
           "reportedAt": "2026-10-23T19:25:31.277977+00:00",
           "schema": "shares",
           "artifactId": 12527110906,
+          "sourcePhaseStartedAt": "2026-10-23T19:24:50Z",
+          "sourcePhaseCompletedAt": "2026-10-23T19:26:34Z",
           "runId": 40011202848,
           "attempt": 1,
           "recordedAt": "2026-10-23T20:43:46Z",
@@ -6956,7 +7191,9 @@
                 "sha256": "4806e566f6080afb6d1234b8c8be70b676d95212afe7ce37025afe2e302c2db6",
                 "reportedAt": "2026-10-23T19:25:31.277977+00:00",
                 "schema": "shares",
-                "artifactId": 12527110906
+                "artifactId": 12527110906,
+                "sourcePhaseStartedAt": "2026-10-23T19:24:50Z",
+                "sourcePhaseCompletedAt": "2026-10-23T19:26:34Z"
               }
             }
           ],
@@ -6992,7 +7229,9 @@
             "sha256": "4e1a10cdcc45d40d90fedce14ffff74c711f44ba94bc879bdcbfe858b5fc7efa",
             "reportedAt": "2026-10-24T13:27:36.271280+00:00",
             "schema": "statuses",
-            "artifactId": 12561907551
+            "artifactId": 12561907551,
+            "sourcePhaseStartedAt": "2026-10-24T13:26:54Z",
+            "sourcePhaseCompletedAt": "2026-10-24T13:35:59Z"
           }
         }
       },
@@ -7005,6 +7244,8 @@
           "reportedAt": "2026-10-24T13:27:36.271280+00:00",
           "schema": "statuses",
           "artifactId": 12561907551,
+          "sourcePhaseStartedAt": "2026-10-24T13:26:54Z",
+          "sourcePhaseCompletedAt": "2026-10-24T13:35:59Z",
           "runId": 40097956898,
           "attempt": 1,
           "recordedAt": "2026-10-24T13:38:30Z",
@@ -16286,7 +16527,9 @@
                 "sha256": "4e1a10cdcc45d40d90fedce14ffff74c711f44ba94bc879bdcbfe858b5fc7efa",
                 "reportedAt": "2026-10-24T13:27:36.271280+00:00",
                 "schema": "statuses",
-                "artifactId": 12561907551
+                "artifactId": 12561907551,
+                "sourcePhaseStartedAt": "2026-10-24T13:26:54Z",
+                "sourcePhaseCompletedAt": "2026-10-24T13:35:59Z"
               }
             }
           ],
@@ -16421,15 +16664,15 @@
       "runId": 40108621544,
       "attempt": 1,
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40108621544",
-      "runStatus": "pending",
-      "runConclusion": null,
-      "completedAt": null,
+      "runStatus": "completed",
+      "runConclusion": "failure",
+      "completedAt": "2026-10-24T16:22:34Z",
       "artifactId": 12565138160,
       "artifactCreatedAt": "2026-10-24T15:49:01Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "pending",
+      "publicationStatus": "failure",
       "sourceFailures": 0,
       "proofFailures": {},
       "qualifications": {},
@@ -16448,7 +16691,47 @@
           "sha256": "9cc74f57a133c77054a5fb98fd2a78573c999ef208c3d257f95f12686231caf7",
           "reportedAt": null,
           "schema": "statuses",
-          "artifactId": 12565138160
+          "artifactId": 12565138160,
+          "sourcePhaseStartedAt": "2026-10-24T15:48:07Z",
+          "sourcePhaseCompletedAt": "2026-10-24T15:49:35Z",
+          "runId": 40108621544,
+          "attempt": 1,
+          "recordedAt": "2026-10-24T16:22:34Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40108621544",
+          "successes": [
+            {
+              "id": "gold:monthly",
+              "checkedAt": "2026-10-24",
+              "asOf": "2026-09",
+              "responseSha256": "ea1c350827878ea3bbe30e3cda16a13fd3bd5b409b8458940dc94a36b5a33154",
+              "sourceUrls": [
+                "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx"
+              ],
+              "verifiedInAttempt": true
+            },
+            {
+              "id": "report-read:gold-observation:run:40108621544:attempt:1",
+              "evidence": {
+                "scopeExplicit": true,
+                "scope": {
+                  "requestedIds": [
+                    "gold:monthly"
+                  ],
+                  "expectedIds": [
+                    "gold:monthly"
+                  ]
+                },
+                "file": "gold-observation.json",
+                "sha256": "9cc74f57a133c77054a5fb98fd2a78573c999ef208c3d257f95f12686231caf7",
+                "reportedAt": null,
+                "schema": "statuses",
+                "artifactId": 12565138160,
+                "sourcePhaseStartedAt": "2026-10-24T15:48:07Z",
+                "sourcePhaseCompletedAt": "2026-10-24T15:49:35Z"
+              }
+            }
+          ],
+          "errors": []
         }
       ]
     }

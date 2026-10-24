@@ -37,3 +37,6 @@ const merged=buildInbox({...args,status:{...status,monitoring:{...status.monitor
  b:{id:'collection:update-qualified-exposures.yml:dca-holdings:IE0000000000',dataId:'dca-holdings:IE0000000000',name:'Fund',kind:'collection',tools:['Tool'],field:'Composition',cause:'Exact HTTP 403'}
 }}}}).issues.filter(r=>r.id==='instrument:IE0000000000:completeHoldings')
 assert.equal(merged.length,1);assert.equal(merged[0].signals.length,2);assert.equal(merged[0].cause,'Exact HTTP 403')
+
+const pending=buildInbox({...args,status:{...status,inFlightRuns:{'101:1':{workflow:'update-scpi.yml',run:{id:101,status:'in_progress',html_url:'https://github.com/test/repo/actions/runs/101'},sourceProofCaptured:true,checkedAt:'2026-10-24T12:00:00Z'}}}}).issues.find(r=>r.id==='running:101:1')
+assert.equal(pending.kind,'waiting');assert.equal(pending.asOf,undefined);assert.match(pending.cause,/terminée/)

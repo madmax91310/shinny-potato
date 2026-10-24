@@ -49,9 +49,10 @@ class GitHubRecovery(unittest.TestCase):
         def run(id,**extra):
             return {'id':id,'head_branch':'master','status':'completed','event':'schedule','conclusion':'failure',**extra}
         previous={'runId':10,'attempt':1}
-        rows=[run(9),run(10),run(11),run(12,event='pull_request'),run(13,head_branch='feature'),run(14,status='in_progress'),run(15,conclusion='cancelled')]
-        self.assertEqual([r['id'] for r in unseen_completed_runs(rows,previous)],[11])
-        self.assertEqual(unseen_completed_runs(rows,{'runId':11,'attempt':1}),[])
+        rows=[run(9),run(10),run(11),run(12,event='pull_request'),run(13,head_branch='feature'),run(14,status='in_progress'),run(15,conclusion='cancelled'),run(16,conclusion='success')]
+        self.assertEqual([r['id'] for r in unseen_completed_runs(rows,previous)],[11,16])
+        self.assertEqual([r['id']for r in unseen_completed_runs(rows,{'runId':11,'attempt':1})],[16])
+        self.assertEqual(unseen_completed_runs(rows,{'runId':16,'attempt':1}),[])
         self.assertEqual(unseen_completed_runs([run(10,run_attempt=2)],previous)[0]['run_attempt'],2)
 
 

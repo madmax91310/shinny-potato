@@ -28,8 +28,9 @@ concurrency:
   # coalesces queued requests; the publisher adopts the latest safe data prefix.
   # One group per data SHA otherwise starts 8 browser jobs for every collector.
   group: pages-validation-v3-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
-  cancel-in-progress: false
-  queue: max
+  # Superseded PR revisions cannot publish; keep every production validation.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
 
 jobs:
   current-snapshot:

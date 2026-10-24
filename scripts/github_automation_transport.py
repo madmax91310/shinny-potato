@@ -29,11 +29,11 @@ def request_json(url, token, method='GET', data=None, opener=urllib.request.urlo
 
 
 def unseen_completed_runs(candidates, previous):
-    """Catch up after a missed workflow_run event, without replaying old reports."""
+    """Catch up every missed workflow_run event, without replaying observed reports."""
     old=(previous.get('runId',0),previous.get('attempt',1))
     eligible=[r for r in candidates if r.get('head_branch')=='master'
               and r.get('status')=='completed'
               and r.get('event') in ('push','schedule','workflow_dispatch','workflow_run')
               and r.get('conclusion') not in ('cancelled','skipped','neutral')
               and (r['id'],r.get('run_attempt',1))>old]
-    return [max(eligible,key=lambda r:(r['id'],r.get('run_attempt',1)))] if eligible else []
+    return sorted(eligible,key=lambda r:(r['id'],r.get('run_attempt',1)))

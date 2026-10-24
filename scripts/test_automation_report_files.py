@@ -28,9 +28,12 @@ class ReportFilesTests(unittest.TestCase):
             (data / 'automated-instrument-metadata.json').write_text('{}')
             (data / 'instrument-metadata-status.json').write_text('{}')
             self.assertEqual([p.name for p in report_files(d)], ['instrument-metadata.json'])
+            undated = [read_report(p, WORKFLOW) for p in report_files(d)]
+            (root / '_temp/instrument-metadata.json').write_text(json.dumps({'checkedAt':'2026-10-02T09:00:00Z','successes':[{'id':'IE0002Y8CX98:distribution'}],'errors':[]}))
             reports = [read_report(p, WORKFLOW) for p in report_files(d)]
         stale = {'workflows': {WORKFLOW: {'completedAt': '2026-10-01T10:00:00Z', 'runId': 1, 'dataFailures': {
             'IE0002Y8CX98:distribution': {'cause': 'Previously automated metadata was not observed'}}}}}
+        self.assertIn('IE0002Y8CX98:distribution',update_status(stale,run(2,'success'),[],undated)['workflows'][WORKFLOW]['dataFailures'],'A readable but undated report does not prove source recovery')
         recovered = update_status(stale, run(2, 'success'), [], reports)
         self.assertEqual(recovered['workflows'][WORKFLOW]['dataFailures'], {})
 

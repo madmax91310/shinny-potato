@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-24T16:18:52.962Z",
-  "monitorCheckedAt": "2026-10-24T16:08:11.098455+00:00",
+  "checkedAt": "2026-10-24T18:19:05.551Z",
+  "monitorCheckedAt": "2026-10-24T18:09:00.211625+00:00",
   "monitorHealthy": true,
   "counts": {
-    "issues": 4429,
-    "signals": 9519,
+    "issues": 4422,
+    "signals": 9504,
     "byKind": {
-      "failure": 36,
+      "failure": 28,
       "connection": 167,
-      "qualification": 3051,
+      "qualification": 3052,
       "waiting": 14,
       "not-applicable": 280,
       "editorial": 779,
@@ -307,38 +307,38 @@
   "evidence": [
     {
       "path": "test-artifacts/review-product/all-1440.json",
-      "bytes": 296646,
-      "sha256": "ae87878597d3bacb62f44b7c0b71afc6342016f137d3cc8758f852897def5ab6"
+      "bytes": 378820,
+      "sha256": "4910de3f9159df212f784fb2008412e464aa1fb7c1d07641efb18b07f95fa9b0"
     },
     {
       "path": "test-artifacts/review-product/all-390.json",
-      "bytes": 296646,
-      "sha256": "0e26bdfa39087d7bfc3223c46cb2774452759067ff0ac4f2d598677983d96b48"
+      "bytes": 378820,
+      "sha256": "6aaea74bcaf05252d5cfdbb55b2c6177488e1f1c3a3647af70797655c5624f74"
     },
     {
       "path": "test-artifacts/review-product/monitor-absent.png",
-      "bytes": 69193,
-      "sha256": "c8771c41476abe76fbfe45eadd115008bd8f4f672a84801776488a3c7f3d3ecf"
+      "bytes": 69826,
+      "sha256": "cbc6e7feb4079c09703ca1862c1e0dc9aaa7840ad27681be74fcadd4766f51d2"
     },
     {
       "path": "test-artifacts/review-product/monitor-invalid.png",
-      "bytes": 69193,
-      "sha256": "c8771c41476abe76fbfe45eadd115008bd8f4f672a84801776488a3c7f3d3ecf"
+      "bytes": 69825,
+      "sha256": "f1f48da1a446994ae0a90c54b3b2b38b9f6e5482aceaf91ab0644d1fa9ef95d4"
     },
     {
       "path": "test-artifacts/review-product/monitor-stale.png",
-      "bytes": 71910,
-      "sha256": "bb6a3b6ede9228c134cc6724af749fe780e41eca468cab5b56a515dcaebd8e95"
+      "bytes": 72064,
+      "sha256": "842925cf9ef98d4db1695f4c7442a57f9609886505cc5d4725ff655959ddb752"
     },
     {
       "path": "test-artifacts/review-product/queue-1440.png",
-      "bytes": 134566,
-      "sha256": "f7c8964ebeedc9e0ea34257a99314ef5cb61b09ea4bec987874d93eb2df545f4"
+      "bytes": 136446,
+      "sha256": "bbf0d1668c20b125756a59189131b2a9179ce2788955e382d2f78c51c61496e7"
     },
     {
       "path": "test-artifacts/review-product/queue-390.png",
-      "bytes": 62976,
-      "sha256": "672fc581e657616e722840f02474a77276671c36233c9bda2d9c76d8cab3559c"
+      "bytes": 64043,
+      "sha256": "3e0c21151320a9dec827b5c0a8bc35726386739df8b274e820067040100d3129"
     },
     {
       "path": "test-artifacts/review-product/results.json",
@@ -402,13 +402,13 @@
     },
     {
       "path": "test-artifacts/data-review-recovery/nasdaq-completed-session.png",
-      "bytes": 2804239,
-      "sha256": "dc3e2c90f1f4cb2f6de9af0c2acf9ee487c81ed79b3846e349b5c1e4cb0d5d7d"
+      "bytes": 2805049,
+      "sha256": "6b7d7dcff7bce333607a94a032b63178334afbb26039727ac68226cad0c60707"
     },
     {
       "path": "test-artifacts/data-review-recovery/review-desktop.png",
-      "bytes": 5230570,
-      "sha256": "be137306d30ccfa13f104454ba283bc40f0a2ba7cf52088805a1c36fbf80476d"
+      "bytes": 5392027,
+      "sha256": "74d1a503e3fc58c298265e155ef19d413ac757af8107b7e4285fabb199263e55"
     },
     {
       "path": "test-artifacts/data-review-recovery/sp500-sectors-1280.png",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T16:18:49.243980+00:00",
+  "generatedAt": "2026-10-24T18:48:03.036452+00:00",
   "productionFaultsInjected": false,
   "scope": "Real supervision reducers/readers with isolated faults; not source transport certification",
   "producers": [
@@ -28,7 +28,7 @@
     "review-freshness.yml",
     "deploy-pages.yml"
   ],
-  "testsRun": 20,
+  "testsRun": 24,
   "successful": true,
   "rows": [
     {
@@ -392,12 +392,28 @@
       "evidence": "scripts/test_automation_product.py::test_cache_does_not_renew_source_success"
     },
     {
+      "test": "test_code_publication_requires_code_identity_even_if_data_bytes_match",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_code_publication_requires_code_identity_even_if_data_bytes_match (test_automation_product.ProductContracts.test_code_publication_requires_code_identity_even_if_data_bytes_match)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_code_publication_requires_code_identity_even_if_data_bytes_match"
+    },
+    {
       "test": "test_commit_and_publication_failures_are_distinct",
       "producer": "",
       "class": "cross-cutting",
       "case": "test_commit_and_publication_failures_are_distinct (test_automation_product.ProductContracts.test_commit_and_publication_failures_are_distinct)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_commit_and_publication_failures_are_distinct"
+    },
+    {
+      "test": "test_composite_issuer_success_does_not_repair_an_unproved_branch",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_composite_issuer_success_does_not_repair_an_unproved_branch (test_automation_product.ProductContracts.test_composite_issuer_success_does_not_repair_an_unproved_branch)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_composite_issuer_success_does_not_repair_an_unproved_branch"
     },
     {
       "test": "test_consumer_projection_opens_and_recovers_only_on_matching_public_bytes",
@@ -2368,6 +2384,14 @@
       "evidence": "scripts/test_automation_product.py::test_monitors_disabled_unobserved_and_observer_failures"
     },
     {
+      "test": "test_old_gold_workflow_did_not_promise_a_new_report",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_old_gold_workflow_did_not_promise_a_new_report (test_automation_product.ProductContracts.test_old_gold_workflow_did_not_promise_a_new_report)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_old_gold_workflow_did_not_promise_a_new_report"
+    },
+    {
       "test": "test_original_proof_is_not_repaired_by_a_new_run",
       "producer": "",
       "class": "cross-cutting",
@@ -4262,6 +4286,14 @@
       "case": "test_rerun_archive_is_not_old_attempt_proof (test_automation_product.ProductContracts.test_rerun_archive_is_not_old_attempt_proof)",
       "result": "passed",
       "evidence": "scripts/test_automation_product.py::test_rerun_archive_is_not_old_attempt_proof"
+    },
+    {
+      "test": "test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache",
+      "producer": "",
+      "class": "cross-cutting",
+      "case": "test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache (test_automation_product.ProductContracts.test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache)",
+      "result": "passed",
+      "evidence": "scripts/test_automation_product.py::test_running_source_failure_is_visible_before_parent_completion_and_not_renewed_by_cache"
     },
     {
       "test": "test_shared_scope_matches_attempted_results_and_preserves_source_clock",
