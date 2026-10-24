@@ -194,7 +194,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.sha || 'master' }}
+          # Branch rehearsals stay pinned; production starts from current master
+          # after acquiring the shared collection lock, including queued retries.
+          ref: ${{ github.ref != 'refs/heads/master' && github.sha || 'master' }}
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
