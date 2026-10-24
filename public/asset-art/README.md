@@ -1,60 +1,55 @@
-# Titanium anniversary export artwork
+# Anniversary export artwork
 
-Reviewed on 2026-10-03. Only the 12 existing eligible anniversary assets are enabled.
-The historical database, exclusions and manual current inputs are unchanged.
+The anniversary tool now uses the first-party files listed in
+[`official-logos/sources.json`](official-logos/sources.json). Each entry records the
+company page, exact download URL, retrieval date, SHA-256 hashes and any SVG wrapper adjustment.
+116 distinct eligible assets now have a verified official logo; the registry check
+requires at least 100 distinct files and detects an unrecorded asset change.
+The official ASML vector already in this repository is reused. Legacy Simple Icons
+silhouettes and generated Apple artwork are no longer used by this tool.
 
-## Identity review
+`src/pages/tweet-midi/anniversaryArt.js` explicitly maps verified logos before
+applying the existing same-share visual aliases. An issuer logo must never stand
+in for an index or fund. A missing verified logo, network/file error or invalid SVG
+uses the asset's plain name. The complete current coverage is in
+[`../../reports/anniversary-logos/coverage.csv`](../../reports/anniversary-logos/coverage.csv).
+The absence of a verified file here does not mean that the company has no logo.
 
-| Asset | Visual | Reference checked |
-| --- | --- | --- |
-| Apple | Bitten apple with detached leaf, vector silhouette | https://www.apple.com/ |
-| Microsoft | Four equally sized squares, corporate mark rather than a Windows perspective logo | https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks |
-| Tesla | T-shaped symbol, not a lightning bolt | https://www.tesla.com/tesla-gallery |
-| Broadcom | Round pulse symbol | https://docs.broadcom.com/docs/1232742686 |
-| ASML | Full official ASML vector wordmark downloaded from the corporate site | https://www.asml.com/images/icons/asml-logo.svg |
-| Bitcoin | Tilted double-stroked B in a circle | https://github.com/bitpay/bitcoin-brand |
-| Ethereum | Diamond split into upper and lower parts | https://ethereum.org/assets/ |
-| Nasdaq-100 | Custom technology illustration, **not** an official Nasdaq logo | https://www.nasdaq.com/ (Nasdaq-100 description) |
-| SOXX | Generic semiconductor, **not** an iShares logo or an individual company logo | https://www.ishares.com/us/products/239705/ishares-phlx-semiconductor-etf |
-| Berkshire Hathaway B | Custom holding illustration, **not** a logo of Berkshire Hathaway HomeServices | https://www.berkshirehathaway.com/ |
-| Gold | Gold bullion with elemental symbol Au; no mint, weight or fineness claims | Existing gold series in `src/data/market-history.js`: ounce, monthly average |
-| Silver | Silver bullion with elemental symbol Ag; not a gold bar | Existing silver series: COMEX futures, ounce (not direct ownership of the depicted metal) |
+The renderer preserves source colours, transparency and proportions. It centres
+logos in a 1160 × 620 maximum area around (800, 605), with raster caps where needed.
+No metallic surface, extrusion, shadow, reflection, arbitrary recolouring, source
+crop or added rectangular background is applied to a logo. The native white LVMH
+SVG was rejected for lack of contrast; the official dark transparent PNG is used.
+Inline corporate vectors are copied from the official page with their original
+paths, fills and gradients in standalone SVG wrappers. Excess empty SVG canvas
+is fitted around the complete geometry with padding; no path is cut or redrawn. Marks remain the property of their respective owners.
 
-Apple, Tesla, Broadcom, Bitcoin and Ethereum silhouette SVGs are from Simple Icons
-(`https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/<name>.svg`,
-downloaded 2026-10-03) and cross-checked against the references above.
-Simple Icons vector source: https://github.com/simple-icons/simple-icons (CC0).
-Microsoft geometry is four flat squares. ASML's symbol wrapper was removed without
-changing its paths. The metallic renderer leaves all source silhouette contours intact;
-only fill, extrusion and reflections are added. Custom illustrations are deliberately
-classified separately in `anniversaryArt.js`.
+Both the preview and downloaded PNG use `renderAnniversaryImage`. It waits for all
+local images and the font before drawing. Failed logo cache entries are cleared so
+a later export can retry; background/font failures still use the existing error UI.
+No remote brand service is contacted at runtime. The full provenance manifest is
+kept separate from the compact runtime registry to preserve the route bundle budget.
+After adding a verified asset, run `node scripts/sync-anniversary-logo-registry.mjs`;
+CI checks its hashes and the generated registry with `--check`. `import.meta.env.BASE_URL` retains
+the `/shinny-potato/` GitHub Pages prefix. Financial data, currency, units, source
+credits, dates and calculations are unchanged.
 
-## Production assets
+`node scripts/test-anniversary-art.mjs` checks every eligible asset and mixed
+comparisons, ratios, labels, units, local requests, fallback and recovery.
+After building, `node scripts/test-anniversary-logos.mjs` checks the production
+Pages bundle in Chromium desktop and iPhone 13 emulation: actual downloads from
+both buttons, pixel equality with the preview, every integrated logo's aspect
+ratio/margins/centring, selection changes, a late obsolete render, delayed loading,
+missing/corrupt SVGs and recovery. Results and PNGs go to `test-artifacts/`.
 
-`titanium.webp`, `gold.webp`, `silver.webp` are generated production artwork with
-no baked-in prices, dates, performance figures or signature. The original prompts:
+## Production backgrounds
 
-* Titanium: portrait 4:5, warm pearl brushed titanium studio, upper wall and reflective
-  plinth; quiet light lower half for black text, no subject or lettering.
-* Gold: same studio; realistic gold ingot in upper half, engraved Au only, no weights
-  or fineness; lower half empty for live text.
-* Silver: same studio; silver ingot engraved Ag only, no other marks; lower half empty.
-
-They were generated with the built-in image-generation tool and converted to WebP
-at 1200×1500. All files are local, no third-party image server or API is used at export.
-The font is Bodoni Moda (Latin subset, static weight 500 / optical size 24 for legible hairlines); see `OFL.txt` for its SIL Open Font License.
+`titanium.webp`, `gold.webp`, `silver.webp` remain the existing production
+backgrounds at 1200 × 1500. Titanium is a blank studio, with no brand or numbers;
+gold/silver illustrate the respective commodities. The tool no longer uses
+`approved/anniversary-apple.webp`, whose mark was baked into generated artwork.
+The font is Bodoni Moda; see `OFL.txt` for its SIL Open Font License.
 Source: https://github.com/google/fonts/tree/main/ofl/bodonimoda.
-
-`renderAnniversaryImage` waits for images and fonts before drawing. Failed loads
-reject instead of silently substituting a wrong visual; rejected cache entries are
-cleared so retry can succeed. The app's existing loading/error button handles this.
-Each input level, date and performance is drawn once per asset. Nasdaq levels use
-points; gold/silver use dollars per ounce. Gold's mandatory source/license attribution
-is retained. The comparative layout keeps one common signature and period.
-
-The CI renders and checks every eligible asset and four mixed comparisons, invalid
-and long inputs, signatures, units, ratios, local requests, and missing-logo retry.
-Its PNGs are saved under the existing `tool-visual-checks` workflow artifact.
 
 ## Présentations SCPI et assurance-vie
 

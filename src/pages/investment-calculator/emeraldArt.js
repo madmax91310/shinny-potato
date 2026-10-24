@@ -1,11 +1,12 @@
-import { ANNIVERSARY_ART, loadArtImage } from '../tweet-midi/anniversaryArt.js'
+import { loadArtImage } from '../../lib/art-resources.js'
+import { MARKET_ART_MARKS } from '../../lib/market-art-marks.js'
 import { NEON_ASSET_ART } from '../tweet-midi/stylizedArt.js'
 
 // Verified silhouettes are reused unchanged; illustrations never become issuer logos.
 export const INVESTMENT_ART = Object.freeze(Object.fromEntries(Object.entries(NEON_ASSET_ART).map(([id, art]) => [id,
   id === 'apple' ? { kind: 'logo', background: 'emerald/apple.webp' }
     : art.mark ? { kind: 'logo', mark: art.mark }
-      : id === 'berkshire' ? { kind: 'illustration', mark: ANNIVERSARY_ART.berkshire.mark }
+      : id === 'berkshire' ? { kind: 'illustration', mark: MARKET_ART_MARKS.berkshire }
         : { kind: 'illustration', scene: art.sceneFile ?? `neon/${art.scene}.webp` },
 ])))
 export async function loadInvestmentArt(id) {
