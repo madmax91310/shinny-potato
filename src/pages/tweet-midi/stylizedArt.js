@@ -1,6 +1,7 @@
 import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
-import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
+import { loadArtImage } from '../../lib/art-resources.js'
+import { MARKET_ART_MARKS } from '../../lib/market-art-marks.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 
 const paperGroups = {
@@ -37,7 +38,7 @@ const historicalEtfSceneFiles = Object.fromEntries(
 const BASE_NEON_ASSET_ART = Object.freeze({
   'japan-net': { scene:'japan', sceneFile:'paper/japan.webp', mark:null },
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:asset.scene, sceneFile:`etf-night/${asset.scene}.webp`, mark:null}])),
-  ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
+  ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: id === 'berkshire' ? null : MARKET_ART_MARKS[id] ?? null }]))),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
     scene: id === 'etfCmod' ? 'industry' : asset.scene,
     ...(historicalEtfSceneFiles[asset.scene] ? { sceneFile: historicalEtfSceneFiles[asset.scene] } : {}), mark: null,

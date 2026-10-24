@@ -4,7 +4,7 @@ import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/history-parameters.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm, anniversaryRecords } from './data/anniversaryHistory.js'
 import { getMarketAsset, MODES, TODAY } from './engines/anniversaire.js'
-import { ANNIVERSARY_ART, loadArtImage, loadEditorialFont, drawTitaniumMark } from './anniversaryArt.js'
+import { ANNIVERSARY_ART, loadArtImage, loadEditorialFont, drawContainedMark } from './anniversaryArt.js'
 
 const W = 1600, H = 2000
 const INK = '#191916', MUTED = '#47473f'
@@ -43,17 +43,11 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   ctx.save(); ctx.translate(x,0); ctx.scale(scale,scale)
   const { art, past, current, dateLabel } = snap
   ctx.drawImage(images.scene,0,0,W,H)
-  if (images.mark && !art.embeddedMark) {
-    // Ground the mark just above the studio horizon; fit wide wordmarks separately.
-    const wide = images.mark.width / images.mark.height > 2
-    drawTitaniumMark(ctx, images.mark, wide ? 220 : 435, wide ? 365 : 240, wide ? 1160 : 730, wide ? 480 : 730)
-  }
-  if (art.indexTitle) {
-    // Une identité typographique d’indice, sans lui attribuer le logo d’un émetteur.
-    const mark = document.createElement('canvas'); mark.width = 1400; mark.height = 380;
-    const m = mark.getContext('2d');
-    text(m, art.indexTitle, 700, 75, 180, { width: 1360, serif: false, weight: 900 });
-    drawTitaniumMark(ctx, mark, 100, 350, 1400, 480);
+  if (images.mark) {
+    drawContainedMark(ctx, images.mark, { width: art.markMaxWidth, height: art.markMaxHeight })
+  } else if (art.indexTitle || art.kind === 'logo') {
+    // A clean text fallback also covers a missing/unreadable local logo.
+    text(ctx, art.indexTitle || art.title, W / 2, 500, 180, { width: 1360, serif: false, weight: 900 })
   }
   // Keep bright, even contrast behind figures without flattening the metal surface.
   const wash = ctx.createLinearGradient(0,1010,0,H)
@@ -79,7 +73,7 @@ export async function renderAnniversaryImage(item, currentRaw, currentRawB = '')
   if (comparative) snapshots.push(snapshot(item,currentRawB,item.assetIdB))
   const images = await Promise.all(snapshots.map(async snap => ({
     scene: await loadArtImage(snap.art.scene || 'titanium.webp'),
-    mark: snap.art.mark ? await loadArtImage(snap.art.mark) : null,
+    mark: snap.art.mark ? await loadArtImage(snap.art.mark).catch(() => null) : null,
   })))
   await loadEditorialFont()
   const canvas = document.createElement('canvas')

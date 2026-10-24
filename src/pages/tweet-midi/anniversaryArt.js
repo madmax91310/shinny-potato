@@ -1,3 +1,4 @@
+import { OFFICIAL_ANNIVERSARY_LOGOS } from './officialAnniversaryLogos.js'
 import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
@@ -48,41 +49,20 @@ const BASE_ANNIVERSARY_ART = Object.freeze({
   asml: { title: 'ASML', subtitle: 'Amsterdam · EUR', mark: 'asml.svg', kind: 'logo' },
 })
 
-export const ANNIVERSARY_ART = Object.freeze(withHistoryVisuals(BASE_ANNIVERSARY_ART))
+// Only verified first-party files can replace an asset name. Do not use an
+// issuer logo for an index/fund, nor a generated scene containing a brand mark.
+const verifiedArt = Object.fromEntries(Object.entries(BASE_ANNIVERSARY_ART).map(([id, art]) => {
+  const logo = OFFICIAL_ANNIVERSARY_LOGOS[id]
+  if (logo) return [id, { ...art, mark: logo.file, kind: 'logo', scene: undefined, embeddedMark: false, indexTitle: undefined, markMaxWidth: logo.maxWidth, markMaxHeight: logo.maxHeight }]
+  if (art.kind === 'logo' || art.mark) return [id, { ...art, mark: undefined, scene: undefined, embeddedMark: false, indexTitle: art.title }]
+  return [id, art]
+}))
+export const ANNIVERSARY_ART = Object.freeze(withHistoryVisuals(verifiedArt))
 export { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 
-// The downloaded SVG silhouette remains unchanged. Only the surface is shaded;
-// reflections and extrusion are drawn from that same alpha mask.
-export function drawTitaniumMark(ctx, image, x, y, width, height) {
-  const w = Math.round(width), h = Math.round(height)
-  const mask = document.createElement('canvas'); mask.width = w; mask.height = h
-  const m = mask.getContext('2d')
-  const ratio = Math.min(w / image.width, h / image.height)
-  const iw = image.width * ratio, ih = image.height * ratio
-  m.drawImage(image, (w - iw) / 2, (h - ih) / 2, iw, ih)
-  const shade = (stops, offset = 0) => {
-    const layer = document.createElement('canvas'); layer.width = w; layer.height = h
-    const c = layer.getContext('2d'); c.drawImage(mask, 0, 0); c.globalCompositeOperation = 'source-in'
-    const gradient = c.createLinearGradient(0, offset, w, h + offset)
-    stops.forEach(([at, color]) => gradient.addColorStop(at, color))
-    c.fillStyle = gradient; c.fillRect(0, 0, w, h); return layer
-  }
-  const edge = shade([[0,'#ede8dc'],[.25,'#77756f'],[.5,'#d8d5cc'],[.8,'#444643'],[1,'#a8a49b']])
-  ctx.save()
-  ctx.shadowColor = 'rgba(30,25,20,.3)'; ctx.shadowBlur = 26; ctx.shadowOffsetX = 17; ctx.shadowOffsetY = 22
-  ctx.drawImage(edge, x + 13, y + 13); ctx.shadowColor = 'transparent'
-  for (let depth = 12; depth >= 1; depth--) ctx.drawImage(edge, x + depth, y + depth)
-  const highlight = shade([[0,'#fffff5'],[.32,'#f6f3e9'],[.6,'#9f9d95'],[1,'#ece8dc']])
-  ctx.drawImage(highlight, x - 2, y - 2)
-  const face = shade([[0,'#e7e4da'],[.23,'#b5b3ab'],[.4,'#f1ede1'],[.53,'#b7b4aa'],[.68,'#dfdbcf'],[.83,'#a5a39b'],[1,'#efeee8']])
-  ctx.drawImage(face, x, y)
-  // Fine, deterministic brushing clipped by the exact vector mask.
-  const grain = document.createElement('canvas'); grain.width = w; grain.height = h
-  const g = grain.getContext('2d'); g.drawImage(mask,0,0); g.globalCompositeOperation = 'source-in'
-  g.fillStyle = '#fff'; g.fillRect(0,0,w,h); g.globalCompositeOperation = 'source-atop'
-  for (let row = 0; row < h; row += 3) { g.fillStyle = row % 9 === 0 ? '#666' : '#ddd'; g.fillRect(0,row,w,1) }
-  ctx.globalAlpha = .085; ctx.drawImage(grain,x,y); ctx.restore()
-  ctx.save(); ctx.globalAlpha = .09
-  ctx.translate(x, y + h + 24); ctx.scale(1,-.14)
-  ctx.drawImage(face,0,0); ctx.restore()
+// Contain, centre and preserve the source colours/alpha; never shade a logo.
+export function drawContainedMark(ctx, image, { width = 1160, height = 620 } = {}) {
+  const ratio = Math.min(width / image.naturalWidth, height / image.naturalHeight)
+  const w = image.naturalWidth * ratio, h = image.naturalHeight * ratio
+  ctx.drawImage(image, (1600 - w) / 2, 605 - h / 2, w, h)
 }
