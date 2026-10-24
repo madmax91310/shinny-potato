@@ -102,8 +102,8 @@ console.log('Radar publications: reference INSEE/Amundi cases, units, publicatio
 const justPublished={...event,publishedAt:now.toISOString().slice(0,10),migratedEditorial:undefined}
 const manyMajor=Array.from({length:6},(_,i)=>({...justPublished,id:(i+20).toString(16).padStart(24,'0'),publicationId:inseeUrl+`/major-${i}`}))
 assert.equal(planNotifications(manyMajor,{acknowledged:[]},now,'major').events.length,2)
-assert.equal(planNotifications(manyMajor,{acknowledged:[],majorDay:'2026-10-24',majorGroups:2},now,'major').events.length,1)
-assert.equal(planNotifications(manyMajor,{acknowledged:[],majorDay:'2026-10-24',majorGroups:3},now,'major').events.length,0)
+assert.equal(planNotifications(manyMajor,{acknowledged:[],majorDay:'2026-10-24',majorGroups:2},now,'major').events.length,2)
+assert.equal(planNotifications(manyMajor,{acknowledged:[],majorDay:'2026-10-24',majorGroups:3},now,'major').events.length,2)
 assert.equal(planNotifications(manyMajor,{acknowledged:[],lastDigest:'2026-10-24'},now,'digest').events.length,0)
 assert.equal(planNotifications([event,samePublication],{acknowledged:[]},now,'digest').events.length,2,'Two facts are one publication group')
 const {notifyRadar}=await import('./lib/radar-notifications.mjs')
@@ -129,7 +129,7 @@ assert.equal(delivery.sent,2);assert.equal(comments.length,1,'One grouped commen
 const recovery=await send({schemaVersion:1,acknowledged:[]})
 assert.equal(recovery.sent,0);assert.equal(recovery.recovered,2);assert.equal(comments.length,1,'Crash before ledger commit recovers durable bot receipts')
 assert.equal(planNotifications([{...samePublication,id:'f'.repeat(24)}],delivery.ledger,new Date(+now+86400000),'digest').events.length,0,'Another channel/fact of the same publication does not notify twice')
-console.log('Notification simulation: same ranked groups, major/day noise cap, single daily recap, failure after tracker creation, retry and durable receipts verified. No real notification sent.')
+console.log('Notification simulation: same ranked groups, per-run noise cap, no daily discard, single daily recap, failure after tracker creation, retry and durable receipts verified. No real notification sent.')
 
 const {parsePurchasingFeed,PURCHASING_SOURCES}=await import('./lib/purchasing-power-news.mjs')
 const study=parsePurchasingFeed('<rss><channel><item><title>Étude : les niveaux de vie des ménages</title><description>En 2025, le niveau de vie médian atteint 25 000 euros par an selon cette étude.</description><link>https://www.vie-publique.fr/en-bref/etude</link><pubDate>2026-10-22</pubDate></item></channel></rss>',PURCHASING_SOURCES.find(s=>s.id==='vie-publique-actualites'),now).observations[0]

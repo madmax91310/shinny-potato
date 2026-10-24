@@ -41,7 +41,7 @@
     "report:automation": "node scripts/report-automation-coverage.mjs",
     "test:wealth": "node scripts/test-wealth-simulator.mjs",
     "test:wealth:browser": "node scripts/playwright-wealth.mjs",
-    "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs && node scripts/test-radar-publications.mjs && node scripts/test-radar-extensions.mjs",
+    "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-editorial.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs && node scripts/test-radar-publications.mjs && node scripts/test-radar-extensions.mjs && node scripts/test-radar-consumer.mjs",
     "test:radar:browser": "node scripts/playwright-radar.mjs",
     "inventory": "node scripts/build-app-inventory.mjs",
     "test:dca": "node scripts/test-dca-profiles.mjs && node scripts/test-dca-engine.mjs && node scripts/test-dca-upgrade.mjs && node scripts/test-exposure-checker.mjs && node scripts/test-exposure-complete.mjs && node scripts/test-dca-analytics.mjs && node scripts/test-published-exposure.mjs && node scripts/test-exposure-scope.mjs",

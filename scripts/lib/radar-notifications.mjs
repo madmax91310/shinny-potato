@@ -1,3 +1,4 @@
+import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { replicationWordingEvent } from '../../src/lib/replication-method.js'
 import { createHash } from 'node:crypto'
 import { datedEtfSnapshot } from './editorial-radar.mjs'
@@ -33,6 +34,7 @@ export function notificationState(previous, ledger, now = new Date()) {
 export function notifiableEvents(events) {
   const seen = new Set()
   return events.filter(event => {
+    if (editorialExclusion(event) || event.editorialExcluded || event.supersededBy) return false
     if (!EVENT_ID.test(event.id)) throw new Error('Identifiant de signal invalide.')
     if (replicationWordingEvent(event) || event.status === 'wording-only') return false
     if (event.status === 'source-conflict' || datedEtfSnapshot(event) && event.kind === 'change' && event.beforePeriod === event.period) return false
@@ -52,15 +54,16 @@ export function planNotifications(events, ledger, now = new Date(), mode = 'dige
   const pending = pendingNotifications(events, ledger).filter(event => !(ledger.acknowledgedPublications ?? []).includes(publicationKey(event)))
   const groups = groupSignals(pending, +now).filter(group => {
     const assessment = editorialAssessment(group.event, +now)
-    const date = group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt)
+    const date = group.event.correctionOf && group.event.correctionPublishedAt ? group.event.correctionPublishedAt : group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt)
     const age = (+now-Date.parse(date))/86400000
     return assessment.reliability.usable && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && !group.event.backfill && (mode !== 'major' || assessment.major)
   })
-  const majorBudget = ledger.majorDay === parisClock(now).date ? Math.max(0, 3-(ledger.majorGroups ?? 0)) : 3
-  if (mode === 'major' && !majorBudget) return { events: [], pending: groups.length }
-  if (mode === 'digest' && ledger.lastDigest === parisClock(now).date) return { events: [], pending: groups.length }
-  const { selected } = selectEditorial(groups, mode === 'major' ? Math.min(2, majorBudget) : 5)
-  return { events: selected.flatMap(group => group.events), pending: groups.length, deferred: groups.length-selected.length }
+  // Two groups per run, no daily loss of a fourth major announcement.
+  // Unsent IDs stay in state; the next run retries them, then the daily digest.
+  if (mode === 'digest' && ledger.lastDigest === parisClock(now).date) return { events: [], pending: groups.length, deferred: groups.length, reason: 'Récapitulatif déjà envoyé ; attente du prochain passage admissible' }
+  const { selected } = selectEditorial(groups, mode === 'major' ? 2 : 5)
+  return { events: selected.flatMap(group => group.events), pending: groups.length, deferred: groups.length-selected.length, reason: groups.length>selected.length ? 'Regroupement et limite par passage ; surplus conservé pour reprise' : null }
+
 }
 
 export function pendingNotifications(events, ledger) {
@@ -74,24 +77,26 @@ export function recentSignals(events, now = new Date()) {
   return notifiableEvents(events).filter(event => event.detectedAt >= floor).sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
 }
 
-function eventBody(event, repo, revision, compact = false) {
+function eventBody(event, repo, revision, compact = false, now = new Date()) {
   const original = event
   if (compact) event = Object.fromEntries(Object.entries(event).map(([key, value]) => [key, typeof value === 'string' && !['sourceUrl', 'previousSourceUrl', 'tool', 'id'].includes(key) && value.length > 600 ? value.slice(0, 600) + '…' : value]))
+  const radarUrl = `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/radar-editorial?subject=${event.id}`
   const archive = `https://github.com/${repo}/blob/${revision}/state.json`
   const archiveNote = `\nValeurs complètes conservées dans [l’historique du radar](${link(archive)}) ; identifiant : ${original.id}.\n`
   const tool = typeof event.tool === 'string' && event.tool.startsWith('/') && !event.tool.startsWith('//') ? event.tool : null
   const toolUrl = tool ? `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}${tool}` : null
   const details = compact ? archiveNote : typeof event.before === 'object' && event.before !== null || typeof event.after === 'object'
     ? `\n<details><summary>Valeurs complètes publiées</summary>\n\n<pre>${JSON.stringify({ before: event.before, after: event.after }, null, 2).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/@/g, '&#64;')}</pre>\n\n</details>\n` : ''
-  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Publication : ${text(event.publishedAt ?? 'date non documentée')} ; type : ${text(event.factType ?? 'changement')}.\n- Priorité : ${editorialAssessment(original).score}/100. ${editorialAssessment(original).criteria.map(row => `${text(row.reason)} (${row.points}/${row.maximum})`).join(' ; ')}.\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
+  if (event.factType === 'consumer-announcement') return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n${text(event.summary)}\n\n- Public : ${text(event.populationScope ?? event.scope)}.\n- Publication : ${text(event.publishedAt)}${event.correctionPublishedAt ? ` · Correction : ${text(event.correctionPublishedAt)}` : ''} · ${text(event.status)}${event.effectiveAt ? ` · Application annoncée : ${text(event.effectiveAt)}` : ''}.\n- Preuve : ${text(event.evidenceLevel)} ; ${text(event.reason)}.\n- Priorité : ${editorialAssessment(original,+now).score}/100 ; ${editorialAssessment(original,+now).criteria.map(row => text(row.reason)).join(' ; ')}.\n- Angle : ${text(event.angle)}\n- [Source directe](${link(event.sourceUrl)}) · [Ouvrir ce sujet dans le Radar](${link(radarUrl)}).\n`
+  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Publication : ${text(event.publishedAt ?? 'date non documentée')} ; type : ${text(event.factType ?? 'changement')}.\n- Priorité : ${editorialAssessment(original,+now).score}/100. ${editorialAssessment(original,+now).criteria.map(row => `${text(row.reason)} (${row.points}/${row.maximum})`).join(' ; ')}.\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- [Ouvrir ce sujet dans le Radar](${link(radarUrl)}).\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
 }
 
 // Sections for a list of events, split into bodies that respect GitHub's limit.
-function batches(events, repo, revision, header) {
+function batches(events, repo, revision, header, now) {
   const result = []; let batch = [], body = header
   for (const event of events) {
-    let section = eventBody(event, repo, revision)
-    if (Buffer.byteLength(header + section) > BODY_LIMIT) section = eventBody(event, repo, revision, true)
+    let section = eventBody(event, repo, revision, false, now)
+    if (Buffer.byteLength(header + section) > BODY_LIMIT) section = eventBody(event, repo, revision, true, now)
     if (Buffer.byteLength(header + section) > BODY_LIMIT) throw new Error('Signal trop volumineux pour une issue GitHub ; historique conservé.')
     if (Buffer.byteLength(body + section) > BODY_LIMIT) { result.push({ events: batch, body }); batch = []; body = header }
     batch.push(event); body += section
@@ -108,7 +113,7 @@ export function trackerBody({ recent, receipts, repo, revision, now }) {
   const listed = recent.slice(0, MAX_LISTED)
   let body = header
   for (const event of listed) {
-    let section = eventBody(event, repo, revision, true).replaceAll('editorial-radar-event:', 'editorial-radar-listed:')
+    let section = eventBody(event, repo, revision, true, now).replaceAll('editorial-radar-event:', 'editorial-radar-listed:')
     if (Buffer.byteLength(body + section) > BODY_LIMIT - MAX_RECEIPTS * 50) break
     body += section
   }
@@ -178,7 +183,7 @@ export async function notifyRadar({ events, archiveEvents = events, ledger, api,
   const recent = recentSignals(mode === 'all' ? events : allEvents.filter(event => { const a = editorialAssessment(event,+now); return a.reliability.usable && a.state === 'ready' }), now)
   // Render every body before any side effect to reject invalid content early.
   const header = `@${assignee}, ${mode === 'major' ? 'événement majeur' : mode === 'digest' ? 'récap quotidien des meilleurs nouveaux sujets' : 'de nouveaux signaux sourcés ont été validés par le radar éditorial'}.\n`
-  const comments = batches(unsent, repo, evidenceRevision, header)
+  const comments = batches(unsent, repo, evidenceRevision, header, now)
   const acknowledged = [...new Set([...ledger.acknowledged, ...pending.map(event => event.id)])]
   const body = trackerBody({ recent, receipts: new Set([...receipts, ...ledger.acknowledged]), repo, revision: evidenceRevision, now })
   const state = recent.length ? 'open' : 'closed'

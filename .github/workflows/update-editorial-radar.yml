@@ -1,7 +1,7 @@
 name: Update editorial radar
 on:
   schedule:
-    - cron: '15 6-19 * * *'
+    - cron: '7,37 6-19 * * *'
   workflow_dispatch:
   push:
     branches: [master]
@@ -19,6 +19,11 @@ on:
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
       - 'scripts/lib/radar-extra-sources.mjs'
+      - 'src/lib/radar-policy.js'
+      - 'scripts/lib/radar-consumer.mjs'
+      - 'scripts/test-radar-consumer.mjs'
+      - 'scripts/fixtures/radar-consumer/**'
+      - 'src/data/allowed-media.js'
       - 'src/lib/radar-housing.js'
       - 'scripts/test-radar-extensions.mjs'
       - 'scripts/check-radar-sources.mjs'
@@ -53,6 +58,11 @@ on:
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
       - 'scripts/lib/radar-extra-sources.mjs'
+      - 'src/lib/radar-policy.js'
+      - 'scripts/lib/radar-consumer.mjs'
+      - 'scripts/test-radar-consumer.mjs'
+      - 'scripts/fixtures/radar-consumer/**'
+      - 'src/data/allowed-media.js'
       - 'src/lib/radar-housing.js'
       - 'scripts/test-radar-extensions.mjs'
       - 'scripts/check-radar-sources.mjs'
@@ -105,6 +115,7 @@ jobs:
       - run: node scripts/test-radar-editorial.mjs
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs
+      - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - name: Check official purchasing-power feeds
@@ -146,6 +157,7 @@ jobs:
       - run: node scripts/test-radar-editorial.mjs
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs
+      - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.

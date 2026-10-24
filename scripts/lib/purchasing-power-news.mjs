@@ -1,3 +1,4 @@
+import { editorialExclusion, editorialTopic, RADAR_TOPICS } from '../../src/lib/radar-policy.js'
 import { createHash } from 'node:crypto'
 import { parseOfficialListing } from './purchasing-power-sources.mjs'
 
@@ -10,16 +11,11 @@ export const PURCHASING_SOURCES = [
   { id: 'banque-france-credit', name: 'Banque de France · crédits aux particuliers', url: 'https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166', hosts: ['www.banque-france.fr'], format: 'html' },
   { id: 'cre-prix', name: 'CRE · prix de l’énergie', url: 'https://www.cre.fr/documents/communiques-de-presse.html', hosts: ['www.cre.fr'], format: 'html' },
 ]
-export const TOPICS = {
-  logement: { label: 'Logement', pattern: /\bptz\b|pret a taux zero|pompe a chaleur|credit immobilier|loyers?|logements?|maprimerenov|renovation energetique|aides? (?:a l achat|au logement)|\bapl\b/, question: 'Qui peut en bénéficier, à partir de quand et sous quelles conditions ?' },
-  fiscalite: { label: 'Épargne et fiscalité', pattern: /patrimoine.*menages|impots?|fiscal|livrets?|epargne|assurance.vie|\bpea\b|prelevement a la source|taxe fonciere|taxe d habitation|bareme|loi de finances|\bplf(?:ss)?\b|budget 20\d\d|projet de budget|actionnariat salarie|interessement|participation salariale/, question: 'Qui est concerné et qu’est-ce que cela change pour l’épargne ou les impôts ?' },
-  depenses: { label: 'Dépenses courantes', pattern: /electricite|\bgaz\b|energie|carburants?|essence|assurances?|frais bancaires|alimentation|inflation|prix a la consommation|pouvoir d achat|cout de la vie|titres.restaurant|pompe a chaleur|mutuelles?|medicaments?|franchises medicales|participations forfaitaires|transports?|abonnements?|telephonie/, question: 'Qui paiera davantage ou moins, et à quelle date ?' },
-  revenus: { label: 'Revenus et aides', pattern: /niveaux? de vie|inegalites?|pauvrete|\bsmic\b|salaires?|remuneration|retraites?|\bpensions?\b|prime d activite|\brsa\b|allocations?|prestations?|aides? sociales?|cheque energie|prime carburant|bourses? (?:etudiant|scolaire)|allocation.*chomage|indemnites? journalieres|conge parental/, question: 'Pour quels foyers, avec quelles conditions et quel montant ?' },
-}
 const normalize = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[’']/g, ' ')
 export function cleanText(value = '') {
   return value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
     .replace(/&#(x[\da-f]+|\d+);/gi, (_, code) => { const n = code[0].toLowerCase() === 'x' ? parseInt(code.slice(1), 16) : Number(code); return n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '' })
+    .replace(/&(eacute|egrave|ecirc|agrave|acirc|icirc|ocirc|ucirc|ugrave|ccedil|rsquo|lsquo|rdquo|ldquo|ndash|mdash|hellip|euro);/g, (_,name) => ({eacute:'é',egrave:'è',ecirc:'ê',agrave:'à',acirc:'â',icirc:'î',ocirc:'ô',ucirc:'û',ugrave:'ù',ccedil:'ç',rsquo:'’',lsquo:'‘',rdquo:'”',ldquo:'“',ndash:'–',mdash:'—',hellip:'…',euro:'€'})[name])
     .replace(/&(?:amp|lt|gt|quot|apos|nbsp);/g, m => ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&apos;': "'", '&nbsp;': ' ' })[m])
     .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
 }
@@ -35,15 +31,7 @@ export function officialUrl(value, source) {
   url.searchParams.sort()
   return url.href
 }
-export function classifyTopic(title, summary) {
-  const t = normalize(title), s = normalize(summary)
-  // Avoid corporate-tax and professional-only articles in a household radar.
-  if (/\bprofessionnels?\b|\bentreprises?\b/.test(t) && !/particuliers|salarie|menages|foyers|consommateur/.test(t)) return null
-  const direct = Object.keys(TOPICS).find(id => TOPICS[id].pattern.test(t))
-  if (direct) return direct
-  if (!/montant|euros|€|aide|revalor|plafond|taux|prix|versement|revenu|prime|impot|frais|facture|tarif/.test(s)) return null
-  return Object.keys(TOPICS).find(id => TOPICS[id].pattern.test(s)) ?? null
-}
+export function classifyTopic(title, summary) { return editorialTopic(title, summary) }
 // Legislative status is tied to an explicit short extract, never to the host
 // or to an old law mentioned in the full article. A chamber vote ≠ enactment.
 export function classifyStatus(title, summary) {
@@ -78,6 +66,8 @@ export function adoptedLaw(title = '', summary = '') {
   return null
 }
 export function publishablePurchasingNews(item) {
+  if (editorialExclusion(item)) return false
+  if (item.factType === 'consumer-announcement') return true
   if (item.family !== 'pouvoir-achat') return true
   const publisher = item.publisher ?? ''
   const host = (() => { try { return new URL(item.sourceUrl).hostname } catch { return '' } })()
@@ -122,7 +112,7 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
       if (!publishablePurchasingNews({ family: 'pouvoir-achat', label: title, summary, publisher: source.name, sourceUrl })) continue
       const statistical = /etude|enquete|statistiques|salaire median|niveaux? de vie|patrimoine des menages/.test(normalize(title)) && /\d/.test(summary) && !/loi|decret|proposition|arrete/.test(normalize(title))
       const entity = `purchasing-news-${createHash('sha256').update(sourceUrl).digest('hex').slice(0, 20)}`
-      observations.push({ family: 'pouvoir-achat', ...(statistical ? { factType: 'statistical-publication' } : {}), entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, evidence: { sourceHash: createHash('sha256').update(item).digest('hex'), excerpt: summary }, scope: 'Actualité officielle · particuliers', publishedAt: period, publicationId: sourceUrl, tool: null, rule: statistical ? 'publication' : 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: TOPICS[topic].label, publisher: source.name, status, statusEvidence: evidence, summary, angle: statistical ? 'Présenter le repère chiffré et son périmètre, puis distinguer la situation médiane et les écarts entre ménages.' : TOPICS[topic].question, reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
+      observations.push({ family: 'pouvoir-achat', ...(statistical ? { factType: 'statistical-publication' } : {}), entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, evidence: { sourceHash: createHash('sha256').update(item).digest('hex'), excerpt: summary }, scope: 'Actualité officielle · particuliers', publishedAt: period, publicationId: sourceUrl, tool: null, rule: statistical ? 'publication' : 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: RADAR_TOPICS[topic], publisher: source.name, status, statusEvidence: evidence, summary, angle: statistical ? 'Présenter le repère chiffré et son périmètre, puis distinguer la situation médiane et les écarts entre ménages.' : 'Préciser le public, la date et les conditions citées avant de comparer.', reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
     } catch (error) { errors.push({ family: 'pouvoir-achat', entity: source.name, reason: error.message }) }
   }
   // A duplicate URL is one article even with tracking parameters/aliases.
