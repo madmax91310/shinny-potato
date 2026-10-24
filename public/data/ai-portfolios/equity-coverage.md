@@ -1,6 +1,6 @@
 # Actions internationales — Portefeuilles IA
 
-Généré : 2026-10-23T20:20:02.746827+00:00
+Généré : 2026-10-24T00:05:13.665284+00:00
 Actions qualifiées : 18221 ; référence avant chantier : 281 ; nouveaux instruments qualifiés : 17950.
 
 
@@ -63,7 +63,7 @@ Le dénominateur est chaque fichier officiel daté réellement obtenu. Les pages
 
 Les ETF UCITS restent disponibles. Les cryptos au comptant et les ETC/ETN/ETP qualifiés sont admis séparément dans les nouvelles compétitions ; un ETC n’est pas présenté comme un ETF UCITS. Les matières premières sont suivies par leur produit coté exact, sans inventer une détention physique. Les règles des compétitions déjà lancées restent archivées.
 
-- ETF : 227 instruments, 657 cotations.
+- ETF : 227 instruments, 656 cotations.
 - ETC : 13 instruments, 20 cotations.
 - ETN : 3 instruments, 5 cotations.
 - ETP : 2 instruments, 2 cotations.
@@ -127,13 +127,13 @@ Les ETF UCITS restent disponibles. Les cryptos au comptant et les ETC/ETN/ETP qu
 ## Réexamen du registre initial
 
 - qualified : 288 avant ; après : {"qualified": 288}.
-- temporary-failure : 1071 avant ; après : {"qualified": 779, "temporary-failure": 292}.
+- temporary-failure : 1071 avant ; après : {"qualified": 778, "temporary-failure": 293}.
 - excluded : 102 avant ; après : {"excluded": 102}.
 - blocked : 17 avant ; après : {"blocked": 17}.
 
 ## Références World et Nasdaq-100
 
-- IE00B4L5Y983-ETFP : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.038441+00:00).
+- IE00B4L5Y983-ETFP : qualified — Clôtures quotidiennes actualisées et contrôlées. (couverture 2026-10-22, tentative 2026-10-23T13:13:32.084502+00:00).
 - IE00B4L5Y983-XAMS : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.040360+00:00).
 - IE00B4L5Y983-XETR : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.055529+00:00).
 - IE00B4L5Y983-XLON-IWDA-USD : qualified — Identité, place, type, devise, séances et cours quotidiens contrôlés. (couverture 2026-10-21, tentative 2026-10-22T11:17:19.059275+00:00).

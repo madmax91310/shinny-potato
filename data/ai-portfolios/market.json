@@ -45884,7 +45884,7 @@
       "currency": "CAD",
       "exchange": "Toronto Stock Exchange",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-23T15:34:53.226281+00:00",
+      "checkedAt": "2026-10-23T23:59:33.920005+00:00",
       "evidenceId": "CA13321L1085-XTSE-CCO-CAD",
       "symbolCandidates": [
         "CCO.TO"
@@ -263521,9 +263521,9 @@
       "convention": "synthetic-total-return-100-at-anchor",
       "source": "Yahoo daily adjusted closes",
       "symbolOrigin": "issuer-listing",
-      "status": "qualified",
-      "reason": "Clôtures quotidiennes actualisées et contrôlées.",
-      "lastAttempt": "2026-10-23T10:39:50.275215+00:00",
+      "status": "temporary-failure",
+      "reason": "Clôtures attendues manquantes : 2026-10-23",
+      "lastAttempt": "2026-10-24T00:04:56.936185+00:00",
       "lastSuccess": "2026-10-23T10:39:50.275215+00:00",
       "coverageFrom": "2026-07-13",
       "coverageThrough": "2026-10-22",
@@ -263535,17 +263535,16 @@
       "responseSha256": "fb234911e637c6a6ebacea24871c36adcf4defc9f8f5f1c6fc08ce192c49242e",
       "attempts": [
         {
-          "url": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits",
-          "result": "qualified",
-          "at": "2026-10-23T10:39:50.275215+00:00",
-          "retrievedAt": "2026-10-23T10:39:50.275215+00:00"
+          "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792800296&interval=1d&events=div%2Csplits",
+          "result": "Clôtures attendues manquantes : 2026-10-23",
+          "at": "2026-10-24T00:04:56.936185+00:00"
         }
       ],
       "qualifiedSymbol": "CSPX.L",
       "observedSourceCurrency": "USD",
       "seriesFile": "series/32.json",
       "providerFirstTradeDate": "2010-09-15",
-      "errorCategory": "qualified"
+      "errorCategory": "expected-provider-session-missing"
     },
     {
       "id": "IE00B5BMR087-XMEX",
@@ -1898455,9 +1898454,9 @@
       "errorCategory": "stale-identity-evidence"
     }
   ],
-  "generatedAt": "2026-10-23T20:19:49.325325+00:00",
+  "generatedAt": "2026-10-24T00:04:56.936185+00:00",
   "calendarFrom": "2026-07-13",
-  "calendarThrough": "2027-01-01",
+  "calendarThrough": "2027-01-02",
   "calendars": {
     "XAMS": {
       "2026-07-13": "2026-07-13T15:30:00+00:00",
@@ -2012084,7 +2012083,7 @@
     "ECB": {
       "ok": true,
       "asOf": "2026-10-23",
-      "attemptedAt": "2026-10-23T20:19:49.325325+00:00"
+      "attemptedAt": "2026-10-24T00:04:56.936185+00:00"
     },
     "US0378331005-XNAS": {
       "ok": true,
@@ -2015006,10 +2015005,12 @@
       "asOf": "2026-10-21"
     },
     "IE00B5BMR087-XLON-CSPX-USD": {
-      "ok": true,
-      "attemptedAt": "2026-10-23T10:39:50.275215+00:00",
-      "asOf": "2026-10-22",
-      "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits"
+      "ok": false,
+      "attemptedAt": "2026-10-24T00:04:56.936185+00:00",
+      "error": "Clôtures attendues manquantes : 2026-10-23",
+      "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792800296&interval=1d&events=div%2Csplits",
+      "lastValidAsOf": "2026-10-22",
+      "lastSuccess": "2026-10-23T10:39:50.275215+00:00"
     },
     "IE00B5BMR087-XMEX": {
       "ok": true,
@@ -2154015,7 +2154016,7 @@
       }
     },
     "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
-    "retrievedAt": "2026-10-23T20:19:49.325325+00:00",
+    "retrievedAt": "2026-10-24T00:04:56.936185+00:00",
     "observations": [
       {
         "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -2154049,10 +2154050,19 @@
         "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
         "from": "2026-07-06",
         "through": "2026-10-23"
+      },
+      {
+        "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+        "retrievedAt": "2026-10-24T00:04:56.936185+00:00",
+        "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+        "from": "2026-07-06",
+        "through": "2026-10-23"
       }
     ],
     "supplementalGaps": {
-      "TWD": []
+      "TWD": [
+        "2026-10-23"
+      ]
     },
     "supplemental": {
       "TWD": {
@@ -2154623,7 +2154633,7 @@
     },
     "supplementalMethod": "TWD per EUR = CBC TWD per USD × ECB USD per EUR; each last published official fixing dated separately. Taiwan missing expected sessions are refused; closed-session carry is explicit."
   },
-  "asOf": "2026-10-22",
+  "asOf": "2026-10-23",
   "calendarValidity": {
     "XNYS": {
       "from": "2026-07-13",
@@ -2154667,7 +2154677,7 @@
     },
     "XLON": {
       "from": "2026-07-13",
-      "through": "2027-01-01"
+      "through": "2027-01-02"
     },
     "XCSE": {
       "from": "2026-07-13",
@@ -2154742,9 +2154752,9 @@
     "required": [
       "IE00B5BMR087-XLON-CSPX-USD"
     ],
-    "requested": [],
-    "reused": [
+    "requested": [
       "IE00B5BMR087-XLON-CSPX-USD"
-    ]
+    ],
+    "reused": []
   }
 }

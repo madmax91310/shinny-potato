@@ -32,9 +32,9 @@
         "region": null,
         "exposure": null,
         "discoveryBlock": null,
-        "status": "qualified",
-        "reason": "Clôtures quotidiennes actualisées et contrôlées.",
-        "lastAttempt": "2026-10-23T10:39:50.275215+00:00",
+        "status": "temporary-failure",
+        "reason": "Clôtures attendues manquantes : 2026-10-23",
+        "lastAttempt": "2026-10-24T00:04:56.936185+00:00",
         "lastSuccess": "2026-10-23T10:39:50.275215+00:00",
         "coverageFrom": "2026-07-13",
         "coverageThrough": "2026-10-22",
@@ -47,9 +47,9 @@
         "seriesFile": "series/32.json"
       }
     ],
-    "generatedAt": "2026-10-23T20:19:49.325325+00:00",
+    "generatedAt": "2026-10-24T00:04:56.936185+00:00",
     "calendarFrom": "2026-07-13",
-    "calendarThrough": "2027-01-01",
+    "calendarThrough": "2027-01-02",
     "calendars": {
       "XAMS": {
         "2026-07-13": "2026-07-13T15:30:00+00:00",
@@ -3537,13 +3537,15 @@
       "ECB": {
         "ok": true,
         "asOf": "2026-10-23",
-        "attemptedAt": "2026-10-23T20:19:49.325325+00:00"
+        "attemptedAt": "2026-10-24T00:04:56.936185+00:00"
       },
       "IE00B5BMR087-XLON-CSPX-USD": {
-        "ok": true,
-        "attemptedAt": "2026-10-23T10:39:50.275215+00:00",
-        "asOf": "2026-10-22",
-        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791331200&period2=1792751990&interval=1d&events=div%2Csplits"
+        "ok": false,
+        "attemptedAt": "2026-10-24T00:04:56.936185+00:00",
+        "error": "Clôtures attendues manquantes : 2026-10-23",
+        "requestedUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSPX.L?period1=1791417600&period2=1792800296&interval=1d&events=div%2Csplits",
+        "lastValidAsOf": "2026-10-22",
+        "lastSuccess": "2026-10-23T10:39:50.275215+00:00"
       },
       "CBC": {
         "ok": true,
@@ -6194,7 +6196,7 @@
         }
       },
       "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
-      "retrievedAt": "2026-10-23T20:19:49.325325+00:00",
+      "retrievedAt": "2026-10-24T00:04:56.936185+00:00",
       "observations": [
         {
           "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
@@ -6228,10 +6230,19 @@
           "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
           "from": "2026-07-06",
           "through": "2026-10-23"
+        },
+        {
+          "sourceUrl": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+          "retrievedAt": "2026-10-24T00:04:56.936185+00:00",
+          "responseSha256": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502",
+          "from": "2026-07-06",
+          "through": "2026-10-23"
         }
       ],
       "supplementalGaps": {
-        "TWD": []
+        "TWD": [
+          "2026-10-23"
+        ]
       },
       "supplemental": {
         "TWD": {
@@ -6802,7 +6813,7 @@
       },
       "supplementalMethod": "TWD per EUR = CBC TWD per USD × ECB USD per EUR; each last published official fixing dated separately. Taiwan missing expected sessions are refused; closed-session carry is explicit."
     },
-    "asOf": "2026-10-22",
+    "asOf": "2026-10-23",
     "calendarValidity": {
       "XNYS": {
         "from": "2026-07-13",
@@ -6846,7 +6857,7 @@
       },
       "XLON": {
         "from": "2026-07-13",
-        "through": "2027-01-01"
+        "through": "2027-01-02"
       },
       "XCSE": {
         "from": "2026-07-13",
@@ -6921,10 +6932,10 @@
       "required": [
         "IE00B5BMR087-XLON-CSPX-USD"
       ],
-      "requested": [],
-      "reused": [
+      "requested": [
         "IE00B5BMR087-XLON-CSPX-USD"
-      ]
+      ],
+      "reused": []
     },
     "inventoryCounts": {
       "instruments": 62014,
@@ -6935,8 +6946,8 @@
   "state": {
     "version": 1,
     "revision": 0,
-    "generatedAt": "2026-10-23T20:19:49.325325+00:00",
-    "asOf": "2026-10-22",
+    "generatedAt": "2026-10-24T00:04:56.936185+00:00",
+    "asOf": "2026-10-23",
     "daily": {},
     "weekly": {},
     "current": {},
@@ -6946,7 +6957,7 @@
     "name": "Portefeuilles IA",
     "initialCapital": 10000,
     "currency": "EUR",
-    "launchDate": "2026-10-23",
+    "launchDate": "2026-10-24",
     "minLines": 3,
     "maxLines": 6,
     "maxWeight": 35,
@@ -7004,7 +7015,7 @@
   "catalogue": {
     "url": "catalogue.json",
     "count": 24975,
-    "revision": "2026-10-23T20:19:49.325325+00:00"
+    "revision": "2026-10-24T00:04:56.936185+00:00"
   },
   "sourceRevisionCount": 1881
 }
