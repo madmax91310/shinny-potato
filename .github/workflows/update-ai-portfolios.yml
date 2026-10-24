@@ -123,9 +123,10 @@ jobs:
         if: github.event_name == 'pull_request' && steps.tracking.outcome == 'failure'
         run: exit 1
       - name: Validate every selectable equity against the accounting engine
-        run: |
-          node scripts/test-ai-equity-coverage.mjs
-          node scripts/audit-ai-runtime.mjs
+        run: node scripts/test-ai-equity-coverage.mjs
+      - name: Audit retained source identities
+        if: always()
+        run: node scripts/audit-ai-runtime.mjs
       - name: Validate observations build
         run: npm run build
       - if: github.event_name == 'pull_request'

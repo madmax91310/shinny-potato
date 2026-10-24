@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import json
 import pathlib
+import re
 import subprocess
 import xml.etree.ElementTree as ET
 from urllib.parse import quote, urlencode
@@ -333,6 +334,19 @@ def active_assets(book):
     return required
 
 
+def observation_report(status):
+    errors=[]
+    for key,value in status.items():
+        if value['ok']:continue
+        message=value['error']
+        errors.append({'id':key,'field':'Clôture quotidienne / change','error':message,
+                       'sourceUrls':[value['requestedUrl']] if value.get('requestedUrl') else [],
+                       'lastSuccessAt':value.get('lastSuccess'),'asOf':value.get('lastValidAsOf'),
+                       'attemptedAt':value.get('attemptedAt'),
+                       'missingPeriods':re.findall(r'\d{4}-\d{2}-\d{2}',message) if message.startswith('Clôtures attendues manquantes') else []})
+    return {'successes':[{'id':key} for key,value in status.items() if value['ok']],'errors':errors}
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root',type=pathlib.Path,default=ROOT)
@@ -406,8 +420,7 @@ def main():
     relevant={k:v for k,v in result['status'].items() if k in required or k=='ECB'}
     print(json.dumps(relevant,ensure_ascii=False,indent=2))
     if args.report:
-        write_json_atomic(args.report,{'successes':[{'id':k} for k,v in relevant.items() if v['ok']],
-                                      'errors':[{'id':k,'field':'Clôture quotidienne / change','error':v['error']} for k,v in relevant.items() if not v['ok']]})
+        write_json_atomic(args.report,observation_report(relevant))
     # Preserve healthy sources and emit a failing outcome for monitoring/retry.
     return 0 if all(s['ok'] for s in relevant.values()) else 1
 

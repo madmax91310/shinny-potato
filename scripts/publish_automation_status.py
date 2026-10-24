@@ -340,7 +340,8 @@ def update_status(state, run, jobs, reports=None):
         for error in report.get('errors', []):
             id_ = error['id']
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': run['updated_at'],
-                'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {})}
+                'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {}),
+                **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods') if key in error}}
     failures = []
     for job in jobs:
         if job.get('conclusion') not in ('failure', 'timed_out'):
