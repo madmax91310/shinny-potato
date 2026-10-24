@@ -1,5 +1,6 @@
 // Compact derived data. Full portfolios stay in the canonical holdings register.
 import { writeFileSync } from 'node:fs'
+import {indexQualificationReport}from './index-qualification-report.mjs'
 import { SHEETS } from '../src/data/index-factsheets.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../src/data/instrument-facts.js'
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
@@ -91,6 +92,6 @@ for (const [id, candidate] of Object.entries(output)) {
 }
 if (process.argv.includes('--apply')) writeFileSync(new URL('../src/data/index-company-qualified.json', import.meta.url), JSON.stringify(qualified, null, 2) + '\n')
 const reportAt = process.argv.indexOf('--report')
-if (reportAt >= 0) writeFileSync(process.argv[reportAt + 1], JSON.stringify({ errors: failures, successes: Object.keys(output).filter(id => output[id].available).map(id => ({ id })) }) + '\n')
+if (reportAt >= 0) writeFileSync(process.argv[reportAt + 1], JSON.stringify(indexQualificationReport(output,failures,new Date().toISOString())) + '\n')
 writeFileSync(new URL('../src/data/index-company-compositions.json', import.meta.url), JSON.stringify(output) + '\n')
 console.log(`Concentration: ${Object.values(output).filter(row => row.available).length}/${Object.keys(output).length} indices qualifiés`)
