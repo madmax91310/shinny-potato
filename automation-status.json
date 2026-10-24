@@ -4129,24 +4129,24 @@
     "update-instrument-metadata.yml": {
       "monitorVersion": 2,
       "name": "Caractéristiques et statut PEA par ISIN",
-      "runId": 40041331514,
+      "runId": 40084861648,
       "attempt": 1,
-      "headSha": "b96074bf49fc043ecb7498769c79cb1a5f086f23",
-      "createdAt": "2026-10-23T23:44:20Z",
-      "completedAt": "2026-10-24T01:19:06Z",
+      "headSha": "b594f3d61764743c49de6de9d32247ce4b0a859d",
+      "createdAt": "2026-10-24T10:10:33Z",
+      "completedAt": "2026-10-24T10:18:01Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
       "collectionStatus": "failure",
-      "validationStatus": "not-run",
-      "recordingStatus": "not-run",
+      "validationStatus": "success",
+      "recordingStatus": "failure",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
       "lastPublicationSuccessAt": "2026-10-23T21:59:30.581Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
       "failures": [
         {
           "job": "refresh",
-          "step": "Run npm run build && node scripts/test-full-auto-routing.mjs"
+          "step": "Commit validated observations"
         },
         {
           "job": "report-failures",
@@ -4161,103 +4161,135 @@
           "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
           "field": "pea"
         },
+        "IE00BYZK4776:listings": {
+          "name": "IE00BYZK4776:listings",
+          "completedAt": "2026-10-24T10:18:01Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
+          "cause": "check-overdue; checked=2026-10-16, published=unknown",
+          "field": "Cotations",
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ],
+          "lastSuccessAt": "2026-10-16"
+        }
+      },
+      "retiredDataFailures": {
         "IE00BDVPNG13:aum": {
           "name": "IE00BDVPNG13:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BDVPNG13:countries": {
           "name": "IE00BDVPNG13:countries",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Pays"
+          "field": "Pays",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BDVPNG13:sectors": {
           "name": "IE00BDVPNG13:sectors",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Secteurs"
+          "field": "Secteurs",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BDVPNG13:holdings": {
           "name": "IE00BDVPNG13:holdings",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Principales positions"
+          "field": "Principales positions",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BKLF1R75:aum": {
           "name": "IE00BKLF1R75:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BKLF1R75:countries": {
           "name": "IE00BKLF1R75:countries",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Pays"
+          "field": "Pays",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BKLF1R75:sectors": {
           "name": "IE00BKLF1R75:sectors",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Secteurs"
+          "field": "Secteurs",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE00BKLF1R75:holdings": {
           "name": "IE00BKLF1R75:holdings",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Principales positions"
-        },
-        "IE00BYZK4776:listings": {
-          "name": "IE00BYZK4776:listings",
-          "completedAt": "2026-10-24T01:19:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-          "cause": "check-overdue; checked=2026-10-16, published=unknown",
-          "field": "Cotations"
+          "field": "Principales positions",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "GB00B15KXQ89:aum": {
           "name": "GB00B15KXQ89:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "GB00BJYDH287:aum": {
           "name": "GB00BJYDH287:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE0002XZSHO1:aum": {
           "name": "IE0002XZSHO1:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "IE000DQLYVB9:aum": {
           "name": "IE000DQLYVB9:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         },
         "JE00B1VS3770:aum": {
           "name": "JE00B1VS3770:aum",
           "completedAt": "2026-10-24T01:19:06Z",
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
           "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-          "field": "Encours"
+          "field": "Encours",
+          "retiredAt": "2026-10-24T10:18:01Z",
+          "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
         }
       }
     },
@@ -4914,11 +4946,11 @@
       "publishedDataSha": "92e0b0d44a782834738dabc2483ef918557ef205"
     }
   },
-  "updatedAt": "2026-10-24T09:51:36Z",
+  "updatedAt": "2026-10-24T10:18:01Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-24T09:52:26.796416+00:00",
-    "revision": 293,
+    "checkedAt": "2026-10-24T10:18:50.487378+00:00",
+    "revision": 294,
     "active": {
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -4936,7 +4968,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-24T01:39:52.085915+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -4965,7 +4997,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-23T20:27:23.475118+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -4993,7 +5025,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -5021,7 +5053,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -5048,7 +5080,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -5075,7 +5107,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -5102,231 +5134,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum": {
-        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BDVPNG13:aum",
-        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries": {
-        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Pays",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BDVPNG13:countries",
-        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors": {
-        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Secteurs",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BDVPNG13:sectors",
-        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings": {
-        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Principales positions",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BDVPNG13:holdings",
-        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum": {
-        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BKLF1R75:aum",
-        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries": {
-        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Pays",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BKLF1R75:countries",
-        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors": {
-        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Secteurs",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BKLF1R75:sectors",
-        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings": {
-        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Principales positions",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BKLF1R75:holdings",
-        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYZK4776:listings": {
         "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
@@ -5339,170 +5147,20 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
         "to": "/bibliotheque-donnees?id=IE00BYZK4776",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
+        "lastSuccessAt": "2026-10-16",
+        "completedAt": "2026-10-24T10:18:01Z",
         "cause": "check-overdue; checked=2026-10-16, published=unknown",
         "field": "Cotations",
         "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf"
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
         ],
         "kind": "collection",
         "dataId": "IE00BYZK4776:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BYZK4776:listings",
         "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum": {
-        "name": "WisdomTree Copper",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=GB00B15KXQ89",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wt-copper-COPAP-GB00B15KXQ89-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/",
-          "https://www.justetf.com/en/etf-profile.html?isin=GB00B15KXQ89",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper"
-        ],
-        "kind": "collection",
-        "dataId": "GB00B15KXQ89:aum",
-        "id": "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:GB00BJYDH287:aum": {
-        "name": "WisdomTree Physical Bitcoin",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=GB00BJYDH287",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-bitcoin-WBTC-GB00BJYDH287-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287/",
-          "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287",
-          "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin"
-        ],
-        "kind": "collection",
-        "dataId": "GB00BJYDH287:aum",
-        "id": "collection:update-instrument-metadata.yml:GB00BJYDH287:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum": {
-        "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
-        "tools": [
-          "Comparatif ETF",
-          "Fiches pratiques",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE0002XZSHO1",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
-          "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
-          "https://www.ishares.com/ch/professionals/en/products/335178/",
-          "https://www.ishares.com/ch/professionals/en/products/335178/?switchLocale=Y",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0002XZSHO1"
-        ],
-        "kind": "collection",
-        "dataId": "IE0002XZSHO1:aum",
-        "id": "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum": {
-        "name": "iShares S&P 500 Swap PEA UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Fiches pratiques",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=IE000DQLYVB9",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://live.euronext.com/en/product/etfs/IE000DQLYVB9-XPAR",
-          "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
-          "https://www.ishares.com/ch/professionals/en/products/342916/",
-          "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000DQLYVB9"
-        ],
-        "kind": "collection",
-        "dataId": "IE000DQLYVB9:aum",
-        "id": "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00B1VS3770:aum": {
-        "name": "WisdomTree Physical Gold",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
-        "to": "/bibliotheque-donnees?id=JE00B1VS3770",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-24T01:19:06Z",
-        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wt-physical-gold-PHAU-JE00B1VS3770-46",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
-          "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold"
-        ],
-        "kind": "collection",
-        "dataId": "JE00B1VS3770:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00B1VS3770:aum",
-        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -5514,15 +5172,15 @@
         ],
         "impactScope": "collector",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40084861648",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
         "kind": "collection",
         "field": "Exécution du collecteur",
-        "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs ; report-failures : Run exit 1",
+        "cause": "refresh : Commit validated observations ; report-failures : Run exit 1",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-24T07:51:23.936166+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -5549,7 +5207,7 @@
         "dataId": "IE00B4L5Y983-ETFP",
         "id": "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
         "firstSeenAt": "2026-10-23T04:38:25.372196+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -5576,7 +5234,7 @@
         "dataId": "IE00B5BMR087-XLON-CSPX-USD",
         "id": "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD",
         "firstSeenAt": "2026-10-24T01:01:25.269676+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -5605,7 +5263,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BDVPNG13:aum": {
         "id": "field:instrument:IE00BDVPNG13:aum",
@@ -5634,7 +5292,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BDVPNG13:countries": {
         "id": "field:instrument:IE00BDVPNG13:countries",
@@ -5663,7 +5321,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BDVPNG13:sectors": {
         "id": "field:instrument:IE00BDVPNG13:sectors",
@@ -5692,7 +5350,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BDVPNG13:holdings": {
         "id": "field:instrument:IE00BDVPNG13:holdings",
@@ -5721,7 +5379,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BKLF1R75:aum": {
         "id": "field:instrument:IE00BKLF1R75:aum",
@@ -5750,7 +5408,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BKLF1R75:countries": {
         "id": "field:instrument:IE00BKLF1R75:countries",
@@ -5779,7 +5437,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BKLF1R75:sectors": {
         "id": "field:instrument:IE00BKLF1R75:sectors",
@@ -5808,7 +5466,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BKLF1R75:holdings": {
         "id": "field:instrument:IE00BKLF1R75:holdings",
@@ -5837,7 +5495,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -5866,7 +5524,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE00BYZK4776:listings": {
         "id": "field:instrument:IE00BYZK4776:listings",
@@ -5895,7 +5553,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:GB00B15KXQ89:aum": {
         "id": "field:instrument:GB00B15KXQ89:aum",
@@ -5923,7 +5581,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:GB00BJYDH287:aum": {
         "id": "field:instrument:GB00BJYDH287:aum",
@@ -5951,7 +5609,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE0002XZSHO1:aum": {
         "id": "field:instrument:IE0002XZSHO1:aum",
@@ -5979,7 +5637,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -6006,7 +5664,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE000DQLYVB9:aum": {
         "id": "field:instrument:IE000DQLYVB9:aum",
@@ -6034,7 +5692,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -6061,7 +5719,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T10:54:09.497005+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "field:instrument:JE00B1VS3770:aum": {
         "id": "field:instrument:JE00B1VS3770:aum",
@@ -6089,7 +5747,7 @@
         "evaluatedAt": "2026-10-24",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-23T22:11:04.714640+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "radar:dac95f2cc39c7e1af5cbff2f": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -6111,7 +5769,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22).",
         "id": "radar:dac95f2cc39c7e1af5cbff2f",
         "firstSeenAt": "2026-10-23T10:24:30.402744+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       },
       "radar:8f8823b8a9df171cbf6f0481": {
         "name": "iShares Listed Private Equity UCITS ETF",
@@ -6134,23 +5792,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-22) : Poids du secteur Cash and/or Derivatives. Dernière observation conservée ; propositions archivées (etf:IE00B1TXHL60:sectors:Cash and/or Derivatives:54cb8c3041a4bc9820c74c90:2026-10-22).",
         "id": "radar:8f8823b8a9df171cbf6f0481",
         "firstSeenAt": "2026-10-24T00:34:02.772718+00:00",
-        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00"
+        "lastSeenAt": "2026-10-24T10:18:50.487378+00:00"
       }
     },
     "events": [
-      {
-        "revision": 264,
-        "at": "2026-10-23T10:54:09.497005+00:00",
-        "opened": [
-          "field:instrument:IE00BDVPNG13:completeHoldings",
-          "field:instrument:IE00BJGWQN72:completeHoldings",
-          "field:instrument:IE0002Y8CX98:completeHoldings",
-          "field:instrument:IE000W8WMSL2:completeHoldings"
-        ],
-        "resolved": [],
-        "retired": [],
-        "escalated": []
-      },
       {
         "revision": 265,
         "at": "2026-10-23T11:39:18.467616+00:00",
@@ -9800,6 +9445,411 @@
           "collection:update-ai-portfolios.yml:IE00B4L5Y983-ETFP",
           "collection:update-ai-portfolios.yml:IE00B5BMR087-XLON-CSPX-USD"
         ]
+      },
+      {
+        "revision": 294,
+        "at": "2026-10-24T10:18:50.487378+00:00",
+        "opened": [],
+        "resolved": [],
+        "retired": [
+          {
+            "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BDVPNG13:aum",
+            "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Pays",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BDVPNG13:countries",
+            "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Secteurs",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BDVPNG13:sectors",
+            "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Principales positions",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BDVPNG13:holdings",
+            "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BKLF1R75:aum",
+            "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Pays",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BKLF1R75:countries",
+            "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Secteurs",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BKLF1R75:sectors",
+            "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Principales positions",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+              "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+            ],
+            "kind": "collection",
+            "dataId": "IE00BKLF1R75:holdings",
+            "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Copper",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=GB00B15KXQ89",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wt-copper-COPAP-GB00B15KXQ89-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/",
+              "https://www.justetf.com/en/etf-profile.html?isin=GB00B15KXQ89",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper"
+            ],
+            "kind": "collection",
+            "dataId": "GB00B15KXQ89:aum",
+            "id": "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Physical Bitcoin",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=GB00BJYDH287",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-bitcoin-WBTC-GB00BJYDH287-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287/",
+              "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287",
+              "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin"
+            ],
+            "kind": "collection",
+            "dataId": "GB00BJYDH287:aum",
+            "id": "collection:update-instrument-metadata.yml:GB00BJYDH287:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+            "tools": [
+              "Comparatif ETF",
+              "Fiches pratiques",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE0002XZSHO1",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+              "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
+              "https://www.ishares.com/ch/professionals/en/products/335178/",
+              "https://www.ishares.com/ch/professionals/en/products/335178/?switchLocale=Y",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE0002XZSHO1"
+            ],
+            "kind": "collection",
+            "dataId": "IE0002XZSHO1:aum",
+            "id": "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "iShares S&P 500 Swap PEA UCITS ETF",
+            "tools": [
+              "Comparatif ETF",
+              "Fiches pratiques",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=IE000DQLYVB9",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://live.euronext.com/en/product/etfs/IE000DQLYVB9-XPAR",
+              "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+              "https://www.ishares.com/ch/professionals/en/products/342916/",
+              "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
+              "https://www.justetf.com/fr/etf-profile.html?isin=IE000DQLYVB9"
+            ],
+            "kind": "collection",
+            "dataId": "IE000DQLYVB9:aum",
+            "id": "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          },
+          {
+            "name": "WisdomTree Physical Gold",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+            "to": "/bibliotheque-donnees?id=JE00B1VS3770",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-24T01:19:06Z",
+            "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wt-physical-gold-PHAU-JE00B1VS3770-46",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
+              "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold"
+            ],
+            "kind": "collection",
+            "dataId": "JE00B1VS3770:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00B1VS3770:aum",
+            "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+            "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+            "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+            "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+          }
+        ],
+        "escalated": []
       }
     ],
     "resolved": [
@@ -12167,6 +12217,402 @@
       }
     ],
     "retired": [
+      {
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDVPNG13:aum",
+        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Pays",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDVPNG13:countries",
+        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:countries",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Secteurs",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDVPNG13:sectors",
+        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:sectors",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Principales positions",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDVPNG13:holdings",
+        "id": "collection:update-instrument-metadata.yml:IE00BDVPNG13:holdings",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BKLF1R75:aum",
+        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Pays",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BKLF1R75:countries",
+        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:countries",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Secteurs",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BKLF1R75:sectors",
+        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:sectors",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE00BKLF1R75",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Principales positions",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BKLF1R75:holdings",
+        "id": "collection:update-instrument-metadata.yml:IE00BKLF1R75:holdings",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Copper",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=GB00B15KXQ89",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-copper-COPAP-GB00B15KXQ89-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/",
+          "https://www.justetf.com/en/etf-profile.html?isin=GB00B15KXQ89",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper"
+        ],
+        "kind": "collection",
+        "dataId": "GB00B15KXQ89:aum",
+        "id": "collection:update-instrument-metadata.yml:GB00B15KXQ89:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Physical Bitcoin",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=GB00BJYDH287",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-bitcoin-WBTC-GB00BJYDH287-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287/",
+          "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287",
+          "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin"
+        ],
+        "kind": "collection",
+        "dataId": "GB00BJYDH287:aum",
+        "id": "collection:update-instrument-metadata.yml:GB00BJYDH287:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "iShares MSCI World Swap PEA UCITS ETF (Acc)",
+        "tools": [
+          "Comparatif ETF",
+          "Fiches pratiques",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE0002XZSHO1",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
+          "https://www.ishares.com/ch/professionals/en/products/335178/",
+          "https://www.ishares.com/ch/professionals/en/products/335178/?switchLocale=Y",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0002XZSHO1"
+        ],
+        "kind": "collection",
+        "dataId": "IE0002XZSHO1:aum",
+        "id": "collection:update-instrument-metadata.yml:IE0002XZSHO1:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "iShares S&P 500 Swap PEA UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Fiches pratiques",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=IE000DQLYVB9",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://live.euronext.com/en/product/etfs/IE000DQLYVB9-XPAR",
+          "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "https://www.ishares.com/ch/professionals/en/products/342916/",
+          "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE000DQLYVB9"
+        ],
+        "kind": "collection",
+        "dataId": "IE000DQLYVB9:aum",
+        "id": "collection:update-instrument-metadata.yml:IE000DQLYVB9:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
+      {
+        "name": "WisdomTree Physical Gold",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331514",
+        "to": "/bibliotheque-donnees?id=JE00B1VS3770",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-24T01:19:06Z",
+        "cause": "check-overdue; checked=2026-10-16, published=2026-10-15",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-physical-gold-PHAU-JE00B1VS3770-46",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
+          "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold"
+        ],
+        "kind": "collection",
+        "dataId": "JE00B1VS3770:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00B1VS3770:aum",
+        "firstSeenAt": "2026-10-24T01:19:49.233570+00:00",
+        "lastSeenAt": "2026-10-24T09:52:26.796416+00:00",
+        "retiredAt": "2026-10-24T10:18:50.487378+00:00",
+        "retirementReason": "Champ hors du contrat de ce collecteur ; suivi du champ conservé séparément. Ce retrait ne prouve aucune réparation de donnée."
+      },
       {
         "name": "alphabet",
         "tools": [
@@ -15709,14 +16155,6 @@
     "update-publication-observations.yml": {
       "attempts": [
         {
-          "at": "2026-10-23T10:17:43.851576+00:00",
-          "reason": "recording-failed",
-          "sourceRunId": 39937622779,
-          "status": "dispatched",
-          "ref": "master",
-          "error": null
-        },
-        {
           "at": "2026-10-23T19:46:45.281908+00:00",
           "reason": "recording-failed",
           "sourceRunId": 40011202808,
@@ -15920,11 +16358,11 @@
     },
     "update-instrument-metadata.yml": {
       "attempts": [],
-      "reason": null,
+      "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
-      "observedRunId": 40041331514,
-      "status": "idle",
-      "nextAttemptAt": null
+      "observedRunId": 40084861648,
+      "status": "awaiting-current-run",
+      "nextAttemptAt": "2026-10-24T10:33:01+00:00"
     },
     "update-ai-portfolios.yml": {
       "attempts": [],
