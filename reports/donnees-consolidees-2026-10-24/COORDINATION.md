@@ -10,3 +10,5 @@ Reprise du 24 octobre 2026, après #923. Le suivi de référence reste `suivi-co
 Les limites d’une source restent du travail non résolu. Un résultat de collecte, sa publication et son usage sont trois preuves distinctes. Un retrait de périmètre ne répare pas une donnée.
 
 Cette branche ajoute un contrat de lacunes nécessaires dans `scripts/required-data-gaps.mjs` et le branche à `fieldAlerts` dans le contexte serveur. Le calcul part des sources courantes ; aucune lecture d’un inventaire périmé n’est présentée comme contrôle source. Ces entrées sont des revues/qualifications, pas des pannes réseau. L’interface et le cycle de résolution des incidents restent propriété du chantier supervision.
+
+Supervision #925 : voir `docs/data-operations-coordination.md` et `reports/data-review-product-2026-10-24/RAPPORT.md`. Master #924 intégré ; les lacunes nécessaires de `requiredDataGaps` et les preuves par champ/période sont conservées ensemble. Nouveau document consommateur compact généré après l’inventaire, contrôlé par empreinte publique ; aucun collecteur modifié par ce chantier. Contrats de résultats partagés dans `scripts/automation-report-contracts.json`.
