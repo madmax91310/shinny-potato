@@ -89029,14 +89029,15 @@
           "at": "2026-10-24T18:56:27.587562+00:00",
           "reason": "transient-source",
           "sourceRunId": 40122447234,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": null,
       "observedRunId": 40122447234,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-24T22:56:27.587562+00:00"
     },
     "update-publication-observations.yml": {
