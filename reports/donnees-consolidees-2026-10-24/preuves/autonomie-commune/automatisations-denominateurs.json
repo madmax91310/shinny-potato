@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-24T20:17:01.818915+00:00",
+  "sourceTree": "cb98cf531e3fa43af2962075183be4a59d05199a",
+  "scheduledPresent": 25,
+  "registryTotal": 24,
+  "scheduledRegistered": 23,
+  "scheduledOutsideRegistry": [
+    "automation-status.yml",
+    "probe-bitcoin-monthly.yml"
+  ],
+  "registryWithoutCron": [
+    "deploy-pages.yml"
+  ],
+  "api": "GitHub Actions workflows, actual repository files required; deleted historical paths are not scheduled producers."
+}

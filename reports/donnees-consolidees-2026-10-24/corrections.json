@@ -86,7 +86,8 @@
       "https://github.com/madmax91310/shinny-potato/actions/runs/40110829062",
       "https://github.com/madmax91310/shinny-potato/actions/runs/40108621544",
       "scripts/test_publication_provenance.py",
-      "scripts/test_gold_monthly.py"
+      "scripts/test_gold_monthly.py",
+      "preuves/autonomie-commune/radar-insee-consommation.json"
     ]
   },
   {
@@ -109,6 +110,7 @@
     "probleme": "Confusion structure physique et méthode optimisée ; conservation des anciens modèles masquant les échecs de requalification.",
     "productionValidated": true,
     "preuves": [
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40111859799",
       "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020",
       "preuves/autonomie-commune/parcours-publics-9-indices.json",
       "scripts/test_index_composition_gate.py"
@@ -118,12 +120,13 @@
     "id": "correction:mensuel-projections-concurrentes",
     "axe": "enregistrement et publication",
     "type": "correction de chaîne commune",
-    "donnees": "Reconstruction des seules projections appartenant au producteur puis revalidation financière ; aucune résolution aveugle de conflit.",
+    "donnees": "Passage ciblé ordinaire, validation/enregistrement f900480 et données publiquement vérifiées. Aucun historique sain à retenter ; aucun nouveau prix revendiqué. Validation de code redondante annulée après adoption publique.",
     "probleme": "Conflits entre projections générées indépendamment ; qualification de la chaîne mensuelle complète en cours.",
-    "productionValidated": false,
+    "productionValidated": true,
     "preuves": [
       "scripts/test_projection_recording.py",
-      "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200"
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40117402200",
+      "preuves/autonomie-commune/mensuel-validation-deja-satisfaite.json"
     ]
   },
   {
@@ -144,11 +147,26 @@
     "type": "correction de chaîne commune",
     "donnees": "Qualification locale séparée du contrôle fournisseur ; identifiants propres, erreurs de dérivation incluses dans le périmètre attendu.",
     "probleme": "Un succès de qualification de cache pouvait effacer une panne réseau portant le même identifiant.",
-    "productionValidated": false,
+    "productionValidated": true,
     "preuves": [
       "scripts/test_index_report_ownership.py",
       "scripts/test_publication_provenance.py",
-      "https://github.com/madmax91310/shinny-potato/pull/928"
+      "https://github.com/madmax91310/shinny-potato/pull/928",
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40120104021"
+    ]
+  },
+  {
+    "id": "correction:prefixe-publie",
+    "axe": "enregistrement et publication",
+    "type": "sélecteur de publication",
+    "donnees": "#932 fusionnée et code servi e641 ; données déjà servies distinguées du code encore à valider.",
+    "probleme": "Un préfixe de données déjà adopté sur le code précédent relançait un gate complet.",
+    "productionValidated": false,
+    "limite": "Correction et reproduction réelle validées ; première occurrence naturelle de la branche nouvelle après publication non documentée. Aucun défaut volontaire créé en production.",
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/pull/932",
+      "preuves/autonomie-commune/publication-prefixe-reproduction.json",
+      "scripts/test-pages-snapshot.mjs"
     ]
   }
 ]

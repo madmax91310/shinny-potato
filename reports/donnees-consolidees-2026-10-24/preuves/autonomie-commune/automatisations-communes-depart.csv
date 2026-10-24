@@ -1,0 +1,26 @@
+﻿workflow;nom;cron_UTC;role;registre_supervision;publie;exclusivement_IA;etat_GitHub;workflow_id
+automation-status.yml;Publish automation failures;8,23,38,53 * * * *;supervision et publication des incidents;False;voir workflow;False;active;377789250
+collect-etf-pilot.yml;Update active ETF issuer data;10 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;375656755
+onboard-assets.yml;Onboard new assets;35 5 3 * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;388047183
+probe-bitcoin-monthly.yml;Free Bitcoin monthly data pilot;40 6 2 * *;sonde pilote;False;voir workflow;False;active;373841622
+refresh-automated-index-sheets.yml;Refresh fully automated index sheets;40 6 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;381821535
+rehearse-refresh.yml;Rehearse future data refreshes;17 4 20 * *;recette isolée, sans publication financière;True;False;False;active;388232663
+review-freshness.yml;Revue hebdomadaire des données;0 8 * * 1;contrôle de fraîcheur;False;voir workflow;False;active;366204301
+update-bitcoin-monthly.yml;Update active Bitcoin Yahoo data;40 6 2,4,8 * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;375696789
+update-economic-data.yml;Update official economic data;20 8 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;377752753
+update-editorial-radar.yml;Update editorial radar;15 2,6,10,14,18,22 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;378900679
+update-exposure-expansion.yml;Refresh 35 portfolio exposure ETFs;45 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;386784505
+update-gold-monthly.yml;Update World Bank monthly gold data;15 7 3-10 * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;373871314
+update-inflation.yml;Update INSEE monthly inflation;15 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;375656758
+update-instrument-metadata.yml;Update exact instrument metadata;20 9 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;387555849
+update-insurance.yml;Update insurance presentations;25 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;378467101
+update-investor-13f.yml;Update investor 13F portfolios;25 12 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;371811922
+update-lifestrategy.yml;Update Vanguard LifeStrategy data;35 5 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;383032844
+update-market-monthly.yml;Update active monthly market histories;15 6 2,4,8,16 * * | 45 6 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;376153093
+update-non-bond-expansion.yml;Update non-bond expansion;15 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;383232823
+update-practical-sheets.yml;Update practical sheet references;15 9 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;380806609
+update-presentation-actors.yml;Update actor presentations;30 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;379548066
+update-publication-observations.yml;Update publication observations;40 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;378771534
+update-qualified-exposures.yml;Update qualified exposure ETF data;50 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;382082080
+update-regulatory-data.yml;Update official regulatory data;45 8 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;377798591
+update-scpi.yml;Update SCPI presentations;20 7 * * *;chaîne suivie : pilote, collecte ou contrôle déclaré;True;voir workflow;False;active;378377426
