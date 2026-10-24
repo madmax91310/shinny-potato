@@ -1,3 +1,4 @@
+import { householdMetadata } from './lib/radar-households.mjs'
 import { mergeDatedRecords } from './lib/dated-records.mjs'
 import { readFile, readdir, mkdir, writeFile, rename } from 'node:fs/promises'
 import { resolve } from 'node:path'
@@ -26,7 +27,7 @@ export async function collectObservations(root = ROOT) {
   const etfs = mergeDatedRecords(lifeStrategy, baseEtfs, additions, Object.fromEntries(Object.values({...qualified,...expanded}).map(r=>[r.isin,r.automatedRecord])))
   for (const [isin, r] of Object.entries(etfs ?? {})) {
     const c = r.characteristics ?? {}, label = INSTRUMENTS_BY_ISIN[isin]?.name ?? `${r.provider ?? 'ETF'} ${isin}`
-    const base = { family: 'etf', entity: isin, label, sourceUrl: r.sourceUrl, checkedAt: c.checkedAt, scope: `Part ${isin}`, tool: '/fiches-etf', maxAgeDays: 60 }
+    const base = { family: 'etf', entity: isin, label, exposureKey: c.index ?? null, sourceUrl: r.sourceUrl, checkedAt: c.checkedAt, scope: `Part ${isin}`, tool: '/fiches-etf', maxAgeDays: 60 }
     add(base, 'ter', 'Frais annuels', c.terPct, c, { unit: '% / an', priority: 'high', discovery: true, angle: 'À exposition comparable, quelles différences avec les autres ETF disponibles ?', reason: 'Toute modification confirmée des frais annuels est signalée.' })
     const pea = metadata?.[isin]?.pea
     if (typeof pea?.value === 'boolean' && pea.sourceUrl && pea.sha256) add(base, 'pea', 'Éligibilité au PEA', pea.value, pea, { priority: 'high', reason: 'Changement de statut PEA documenté pour cet ISIN exact ; une première qualification est silencieuse.' })
@@ -59,7 +60,7 @@ export async function collectObservations(root = ROOT) {
   const economic = await load('src/data/automated-economic.json')
   const savings = Object.values(economic?.savings ?? {}).sort((a, b) => a.effectiveAt.localeCompare(b.effectiveAt)).at(-1)
   if (savings) add({ family: 'epargne', entity: 'livret-a', label: 'Livret A', sourceUrl: savings.sourceUrl, checkedAt: savings.checkedAt, scope: 'Taux réglementé · date d’effet indiquée', tool: '/simulateur-patrimoine' }, 'rate', 'Taux annuel', savings.rate, savings, { unit: '%', priority: 'high' })
-  for (const [id, r] of Object.entries(economic?.households ?? {})) add({ family: 'economie', entity: id, label: r.table?.split(' - Lecture')[0].slice(0, 180) ?? id, scope: `${r.population} · ${id}`, tool: '/france-100-menages', maxAgeDays: 400 }, 'value', 'Repère publié', r.value, r, { period: `${r.year}`, rule: 'publication' })
+  for (const [id, r] of Object.entries(economic?.households ?? {})) add({ family: 'economie', entity: id, ...householdMetadata(id, r), scope: `${r.population} · ${id}`, tool: '/france-100-menages', maxAgeDays: 400 }, 'value', 'Repère publié', r.value, r, { period: `${r.year}`, rule: 'publication' })
   for (const [id, r] of Object.entries(economic?.benchmarks ?? {})) add({ family: 'epargne', entity: id.split(':')[0], label: id.startsWith('scpi') ? 'SCPI · moyenne du marché' : 'Fonds euros · moyenne du marché', scope: r.method, tool: '/pouvoir-achat', maxAgeDays: 400 }, 'annual', 'Rendement annuel publié', r.value, r, { unit: '%', period: `${r.year}`, rule: 'publication' })
   const regulatory = await load('src/data/automated-regulatory.json')
   for (const [id, r] of Object.entries(regulatory?.sources ?? {})) for (const [field, value] of Object.entries(r.values ?? {})) {

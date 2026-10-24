@@ -121,7 +121,7 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
       const { status, evidence } = adoptedLaw(title, summary) ?? classified
       if (!publishablePurchasingNews({ family: 'pouvoir-achat', label: title, summary, publisher: source.name, sourceUrl })) continue
       const entity = `purchasing-news-${createHash('sha256').update(sourceUrl).digest('hex').slice(0, 20)}`
-      observations.push({ family: 'pouvoir-achat', entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, scope: 'Actualité officielle · particuliers', tool: '/pouvoir-achat', rule: 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: TOPICS[topic].label, publisher: source.name, status, statusEvidence: evidence, summary, angle: TOPICS[topic].question, reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
+      observations.push({ family: 'pouvoir-achat', entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, evidence: { sourceHash: createHash('sha256').update(item).digest('hex'), excerpt: summary }, scope: 'Actualité officielle · particuliers', publishedAt: period, publicationId: sourceUrl, tool: null, rule: 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: TOPICS[topic].label, publisher: source.name, status, statusEvidence: evidence, summary, angle: TOPICS[topic].question, reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
     } catch (error) { errors.push({ family: 'pouvoir-achat', entity: source.name, reason: error.message }) }
   }
   // A duplicate URL is one article even with tracking parameters/aliases.
@@ -131,16 +131,17 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
 }
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms))
 const TRANSIENT_HTTP = new Set([408, 429, 500, 502, 503, 504])
-export async function fetchFeed(source, request, wait = pause) {
+export async function fetchFeed(source, request, wait = pause, cache = null) {
   for (let attempt = 0; attempt < 3; attempt++) {
     let response
     try {
-      response = await request(source.url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'Mozilla/5.0 EpargnantLibre-Radar/1.0', Accept: source.format === 'html' ? 'text/html' : 'application/rss+xml, application/xml, text/xml' } })
+      response = await request(source.url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'Mozilla/5.0 EpargnantLibre-Radar/1.0', Accept: source.format === 'html' ? 'text/html' : 'application/rss+xml, application/xml, text/xml', ...(cache?.etag ? { 'If-None-Match': cache.etag } : {}), ...(cache?.lastModified ? { 'If-Modified-Since': cache.lastModified } : {}) } })
     } catch (error) {
       if (attempt === 2) throw error
       await wait(1000 * 2 ** attempt)
       continue
     }
+    if (response.status === 304) { if (!cache?.content) throw new Error('Flux 304 sans version conservée.'); return cache.content }
     if (!response.ok) {
       const error = new Error(`Flux officiel indisponible (HTTP ${response.status}).`)
       if (!TRANSIENT_HTTP.has(response.status) || attempt === 2) throw error
@@ -161,13 +162,16 @@ export async function fetchFeed(source, request, wait = pause) {
     const buffer = Buffer.from(bytes)
     const decoded = buffer[0] === 0x1f && buffer[1] === 0x8b ? (await import('node:zlib')).gunzipSync(buffer, { maxOutputLength: 2000000 }) : buffer
     const encoding = decoded.subarray(0, 150).toString('ascii').match(/encoding=['"]([^'"]+)/i)?.[1]
-    return new TextDecoder(/iso-8859/i.test(encoding ?? '') ? 'iso-8859-15' : 'utf-8').decode(decoded)
+    const content = new TextDecoder(/iso-8859/i.test(encoding ?? '') ? 'iso-8859-15' : 'utf-8').decode(decoded)
+    if (cache) Object.assign(cache, { content, etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') })
+    return content
   }
 }
 export async function collectPurchasingNews(now = new Date(), request = fetch, _previous = null) {
+  const cache = structuredClone(_previous?.purchasingCache ?? {})
   const results = await Promise.all(PURCHASING_SOURCES.map(async source => {
     try {
-      const content = await fetchFeed(source, request)
+      const content = await fetchFeed(source, request, pause, cache[source.id] ??= {})
       const parsed = parsePurchasingFeed(source.format === 'html' ? parseOfficialListing(content, source) : content, source, now)
       return { ...parsed, source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: parsed.errors.length ? 'partial' : 'ok', articles: parsed.itemCount, relevant: parsed.observations.length } }
     } catch (error) {
@@ -176,5 +180,5 @@ export async function collectPurchasingNews(now = new Date(), request = fetch, _
   }))
   const unique = new Map()
   for (const o of results.flatMap(r => r.observations)) if (!unique.has(o.entity) || o.period > unique.get(o.entity).period) unique.set(o.entity, o)
-  return { observations: [...unique.values()], errors: results.flatMap(r => r.errors), sources: results.map(r => r.source) }
+  return { cache, observations: [...unique.values()], errors: results.flatMap(r => r.errors), sources: results.map(r => r.source) }
 }

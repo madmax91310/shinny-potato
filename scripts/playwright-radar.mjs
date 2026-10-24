@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
-import { mkdir } from 'node:fs/promises'
+import { parsePublication, PUBLICATION_SOURCES } from './lib/radar-publications.mjs'
+import { householdMetadata } from './lib/radar-households.mjs'
+import { mkdir, readFile } from 'node:fs/promises'
 import { advanceRadar } from './lib/editorial-radar.mjs'
 import { parsePurchasingFeed, PURCHASING_SOURCES } from './lib/purchasing-power-news.mjs'
 import { RADAR_URL } from '../src/pages/editorial-radar/client.js'
@@ -69,8 +71,10 @@ try{
  ]}
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('heading',{name:'ETF test 0 : 2 changements regroupés',exact:true}).waitFor()
- assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),5)
+ assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),2)
  await mobile.getByRole('button',{name:'Marquer le sujet comme lu',exact:true}).click()
+ await mobile.getByRole('button',{name:'Autres sujets exploitables',exact:true}).click()
+ assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),5)
  await mobile.getByRole('button',{name:'À suivre',exact:true}).click()
  await mobile.getByRole('heading',{name:/Lancement annoncé : Vanguard/}).waitFor()
  assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),1)
@@ -78,13 +82,14 @@ try{
  await mobile.getByRole('heading',{name:/poids des États-Unis/i}).waitFor()
  await mobile.getByRole('button',{name:'Historique complet',exact:true}).click()
  assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),10)
- await mobile.getByRole('button',{name:'À exploiter',exact:true}).click()
+ await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
  await mobile.screenshot({path:'test-artifacts/radar/selection-mobile.png',fullPage:true})
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Grouped mobile feed has no overflow')
  // Exercise both legacy feed corrections and a real later reporting period.
  const filing={...base,id:'filing-revision',family:'investisseurs',entity:'investor-test',label:'Investisseur test',field:'filing',fieldLabel:'Positions et mouvements déclarés',kind:'publication',beforePeriod:'2026-06-30',period:'2026-06-30',before:{positions:[{ticker:'ABC',changePct:null,isNew:false}]},after:{positions:[{ticker:'ABC',changePct:null,isNew:false},{ticker:'XYZ',changePct:null,isNew:true}]},beforeText:'1 position suivie',afterText:'2 positions suivies',scope:'Déclaration 13F · hors options · publication différée',sourceUrl:'https://www.sec.gov/Archives/test',tool:'/portefeuilles-investisseurs',detectedAt:stamp}
  feed={...feed,events:[filing,{...filing,id:'filing-new-quarter',beforePeriod:'2026-06-30',period:'2026-09-30'}]}
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
+ await mobile.getByRole('button',{name:'Autres sujets exploitables',exact:true}).click()
  await mobile.getByRole('heading',{name:/Investisseur test : Positions et mouvements déclarés · 2026-09-30/}).waitFor()
  assert.equal(await mobile.locator('.radar-card').count(),1,'Only the later quarter is actionable')
  await mobile.getByRole('button',{name:'Variations secondaires',exact:true}).click()
@@ -94,15 +99,53 @@ try{
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Revision mobile has no overflow')
  await mobile.screenshot({path:'test-artifacts/radar/filing-revision-mobile.png',fullPage:true})
  await page.reload()
+ await page.getByRole('button',{name:'Autres sujets exploitables',exact:true}).click()
  await page.getByRole('heading',{name:/Investisseur test : Positions et mouvements déclarés · 2026-09-30/}).waitFor()
  await page.getByRole('button',{name:'Variations secondaires',exact:true}).click()
  await page.getByRole('heading',{name:/Investisseur test : relevé révisé pour la même période/}).waitFor()
  assert.equal(await page.locator('.radar-draft').count(),0)
  await page.screenshot({path:'test-artifacts/radar/filing-revision-desktop.png',fullPage:true})
- await mobile.getByRole('button',{name:'À exploiter',exact:true}).click()
+ await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
  feed=initial.feed
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('heading',{name:'Le radar est en veille',exact:true}).waitFor()
+ // Real official publication excerpts, grouped facts and no unrelated tool routing.
+ const economic=JSON.parse(await readFile('src/data/automated-economic.json','utf8')).households
+ const salaries=['salary-median','salary-top10'].map(entity=>{const r=economic[entity];return {family:'economie',entity,field:'value',fieldLabel:'Repère publié',...householdMetadata(entity,r),value:r.value,period:String(r.year),checkedAt:r.checkedAt,sourceUrl:r.sourceUrl,scope:`${r.population} · ${entity}`,rule:'publication',maxAgeDays:400,tool:'/france-100-menages'}})
+ const salaryStart=advanceRadar(null,salaries.map(row=>({...row,value:row.value-40,period:String(Number(row.period)-1)})),{now})
+ const amundiSource=PUBLICATION_SOURCES.find(s=>s.id==='amundi')
+ const amundi=parsePublication(await readFile('scripts/fixtures/radar-publications/amundi.html','utf8'),amundiSource,'https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia',now)
+ feed=advanceRadar(salaryStart.state,[...salaries,amundi],{now}).feed
+ feed.sources=[{...amundiSource,status:'ok',lastSuccessAt:stamp,queue:{pending:2,error:0,rejected:0}},{id:'dares',name:'DARES',url:'https://dares.travail-emploi.gouv.fr/',status:'error',error:'Vérification de sécurité',queue:{pending:0,error:0,rejected:0}}]
+ await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
+ await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
+ await mobile.getByRole('heading',{name:/Salaire médian du privé :/}).waitFor()
+ await mobile.locator('.radar-filter-panel > summary').click()
+ await mobile.getByRole('searchbox').fill('salaire médian')
+ assert.equal(await mobile.locator('.radar-page > .radar-list > .radar-card').count(),1)
+ await mobile.getByRole('searchbox').fill('sujet introuvable')
+ await mobile.getByRole('heading',{name:'Aucun signal pour cette sélection',exact:true}).waitFor()
+ await mobile.getByRole('searchbox').fill('')
+ await mobile.locator('.radar-filter-panel > summary').click()
+ await mobile.locator('.radar-related > summary').first().click()
+ await mobile.getByText(/Publication :/).first().waitFor()
+ assert.ok(await mobile.getByText(/équivalent temps plein/).count()>0)
+ await mobile.getByRole('button',{name:'Autres sujets exploitables',exact:true}).click()
+ await mobile.getByRole('heading',{name:/Nouvelle offre annoncée par l’émetteur/}).waitFor()
+ assert.equal(await mobile.locator('.radar-products > details').count(),3)
+ await mobile.locator('.radar-products > details > summary').first().click()
+ assert.ok(await mobile.getByText('Non documenté',{exact:true}).count()>0)
+ assert.equal(await mobile.getByRole('link',{name:'Ouvrir l’outil',exact:true}).count(),0)
+ await mobile.getByText('Sources de publications et file de traitement',{exact:true}).click()
+ await mobile.getByText(/Vérification de sécurité/).waitFor()
+ await mobile.screenshot({path:'test-artifacts/radar/amundi-mobile.png',fullPage:true})
+ assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+ await page.reload()
+ await page.getByRole('heading',{name:/Salaire médian du privé :/}).waitFor()
+ await page.screenshot({path:'test-artifacts/radar/insee-desktop.png',fullPage:true})
+ feed=initial.feed
+ await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
+ await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  // New category remains useful on the silent first run and after source errors.
  const official = parsePurchasingFeed(`<rss><channel><item><title>PTZ : nouveau plafond applicable</title><description>Le plafond applicable est de 100 000 euros pour certains foyers.</description><link>https://www.service-public.gouv.fr/particuliers/actualites/A12345</link><pubDate>${day}</pubDate></item></channel></rss>`,PURCHASING_SOURCES[0],now).observations
  feed=advanceRadar(initial.state,official,{now,purchasingSources:[{id:'service-public',name:'Service Public',url:PURCHASING_SOURCES[0].url,checkedAt:now.toISOString(),status:'ok',articles:1,relevant:1}]}).feed

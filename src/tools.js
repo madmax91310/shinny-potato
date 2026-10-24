@@ -12,7 +12,7 @@ export const TOOLS = [
     description: 'Analyse les expositions, les titres communs et la concentration de ton portefeuille. Prépare un DCA ou une image à publier.', status: 'disponible' },
   {to:'/fiches-pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', title: 'Radar éditorial',
-    publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',
+    publicationDay: 'Veille horaire en journée', icon: '📡', accent: '#65d5b0',
     description: 'Repère les changements sourcés et prépare des idées pour tes prochains posts.', status: 'disponible' },
   { to: '/simulateur-patrimoine', title: 'Simulateur de patrimoine',
     publicationDay: 'Publication ponctuelle', icon: '📊', accent: '#65d5b0',

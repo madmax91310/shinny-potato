@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
+import { cleanText } from './purchasing-power-news.mjs'
 import { etfAnnouncement } from '../../src/lib/radar-editorial.js'
 
 export const GLOBALX_NEWS_URL = 'https://globalxetfs.eu/news'
@@ -79,7 +80,8 @@ export function officialNewsDocument(value) {
     return url.protocol === 'https:' && !url.username && !url.password && !url.port && (
       url.hostname === 'www.vanguard.co.uk' && url.pathname.startsWith('/content/dam/intl/europe/documents/') ||
       url.hostname === 'gxeustrapi.blob.core.windows.net' && url.pathname.startsWith('/webpublic/uploads/') ||
-      url.hostname === 'globalxetfs.eu' && url.pathname !== '/news'
+      url.hostname === 'globalxetfs.eu' && url.pathname !== '/news' ||
+      url.hostname === 'www.amundietf.fr' && url.pathname.startsWith('/fr/professionnels/a-propos/news/')
     )
   } catch { return false }
 }
@@ -104,10 +106,72 @@ export function parseLaunchDetails(text) {
   return details
 }
 
-async function documentText(response) {
+export function extractProducts(text) {
+  const products = []
+  // A cell row or paragraph is a proof boundary. Global fees never fill products.
+  const blocks = /<\w/.test(text) ? [...text.matchAll(/<(tr|p)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(m => cleanText(m[2])) : text.split(/\n\s*\n/)
+  for (const block of blocks) {
+    const names = [...new Set(block.replace(/\s+/g, ' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan) [A-Z][A-Za-z0-9 &’'()–-]{2,140}?\bUCITS ETF\b/g) ?? [])]
+    const isins = [...new Set(block.replace(/\s+/g, ' ').match(/\b[A-Z]{2}[A-Z0-9]{9}\d\b/g) ?? [])]
+    if (names.length === 1) {
+      const local = isins.length === 1 ? parseLaunchDetails(block.replace(/\s+(TER|Benchmark|Indice|Frais|Distribution policy|Politique de distribution|First trading date|Date de premi[eè]re cotation)\s*:/gi, '\n$1:')) : {}
+      products.push({ name: names[0], isin: local.isin ?? null, fees: local.fees ?? null, index: local.index ?? null, management: /gestion active|actively managed/i.test(block) ? 'Active' : /gestion passive|passively managed/i.test(block) ? 'Passive' : null, distribution: local.distribution ?? null, pea: local.pea ?? null, tradingDate: local.tradingDate ?? null, availability: null, evidence: block })
+    } else for (const name of names) products.push({ name, isin: null, fees: null, index: null, management: null, distribution: null, pea: null, tradingDate: null, availability: null, evidence: block })
+  }
+  // Table headers establish column semantics; never guess by numeric proximity.
+  for (const [, table] of text.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)) {
+    const rows = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m => m[1])
+    const headers = [...(rows[0] ?? '').matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map(m => cleanText(m[1]))
+    if (!headers.some(h => /^ISIN$/i.test(h))) continue
+    for (const row of rows.slice(1)) {
+      if (/rowspan=|colspan=/i.test(row)) continue
+      const cells = [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(m => cleanText(m[1]))
+      if (cells.length !== headers.length) continue
+      const fields = Object.fromEntries(headers.map((h,i) => [h,cells[i]]))
+      const isin = fields.ISIN?.trim()
+      const names = cells.join(' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan) [A-Z][A-Za-z0-9 &’'()–-]{2,140}?\bUCITS ETF\b/g) ?? []
+      if (!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(isin ?? '') || names.length !== 1) continue
+      const product = products.find(p => p.isin === isin)
+      if (!product) continue
+      for (const [header,value] of Object.entries(fields)) {
+        if (/^(TER|Frais courants|Total expense ratio)$/i.test(header) && /^\d[\d.,]*\s*%$/.test(value)) product.fees = value
+        if (/^(Index|Benchmark|Indice)$/i.test(header)) product.index = value || null
+        if (/^(Distribution|Revenus)$/i.test(header) && /^(Accumulating|Capitalisation|Distributing|Distribution)$/i.test(value)) product.distribution = value
+      }
+      product.evidence = headers.map((h,i)=>`${h}: ${cells[i]}`).join(' · ')
+    }
+  }
+  const unique = new Map()
+  const namedShares = new Set(products.filter(p => p.isin).map(p => p.name))
+  for (const product of products.filter(p => p.isin || !namedShares.has(p.name))) {
+    const key = product.isin ?? product.name
+    const previous = unique.get(key)
+    if (!previous || previous.evidence.length > product.evidence.length) unique.set(key, product)
+  }
+  return [...unique.values()]
+}
+export function parseEtfDocument(htmlOrText, title) {
+  const html = /<\w/.test(htmlOrText)
+  const body = html ? htmlOrText.replace(/<(script|style|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '') : htmlOrText
+  const text = html ? cleanText(body) : body
+  const paragraphs = html ? [...body.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m => cleanText(m[1])) : text.split(/\n\s*\n/)
+  const initial = etfAnnouncement(title)
+  // Require a statement in the body for indirect headlines. Keep its exact extract.
+  const excerpt = paragraphs.find(p => /(?:trois|deux|[1-9]) nouvelles solutions|nouveaux ETF|launch(?:es|ed)? .*ETF|lance .*ETF|lancement .*ETF|seront cotes|nouvelle cotation/i.test(p))
+  const announcementEvidence = initial?.stage === 'candidate' ? excerpt ? { type: 'announcement', stage: 'announced', label: 'Nouvelle offre annoncée par l’émetteur', evidence: excerpt } : initial : initial
+  const products = extractProducts(body)
+  // Single-ISIN legacy extraction is still deliberately conservative.
+  const launchDetails = parseLaunchDetails(html ? body.replace(/<\/(?:p|tr|div)>/gi, '\n').replace(/<[^>]*>/g, ' ') : text)
+  const calendarEvidence = paragraphs.flatMap(p => p.split(/(?<=[.!?])\s+/)).find(p => /seront cot[ée]s|date de premi[eè]re cotation|first trading date/i.test(p)) ?? null
+  return { launchDetails, products, announcementEvidence, calendarEvidence, evidence: { excerpt: excerpt ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
+}
+export async function documentText(response) {
   const bytes = Buffer.from(await response.arrayBuffer())
   if (bytes.length > 5000000) throw new Error('Communiqué trop volumineux.')
-  if (bytes.subarray(0, 5).toString() !== '%PDF-') throw new Error('Le communiqué n’est pas un PDF reconnu.')
+  if (bytes.subarray(0, 5).toString() !== '%PDF-') {
+    if (!/html/i.test(response.headers.get('content-type') ?? '') || !/<(?:html|article|main)\b/i.test(bytes.toString())) throw new Error('Communiqué HTML ou PDF attendu.')
+    return bytes.toString('utf8')
+  }
   const directory = await mkdtemp(join(tmpdir(), 'radar-launch-'))
   try {
     const path = join(directory, 'issuer.pdf')
@@ -116,28 +180,39 @@ async function documentText(response) {
   } finally { await rm(directory, { recursive: true, force: true }) }
 }
 
-export async function enrichEtfLaunches(observations, now = new Date(), request = fetch, extract = documentText) {
-  const errors = []
-  const launches = observations.filter(row => etfAnnouncement(row.label) && now - Date.parse(row.period) <= 7 * 86400000)
-    .sort((a, b) => b.period.localeCompare(a.period)).slice(0, 8)
-  for (const row of launches) {
-    const announcement = etfAnnouncement(row.label)
-    row.fieldLabel = 'Lancement ETF'
-    row.angle = 'Quelle exposition propose cet ETF et qu’apporte-t-il face aux produits comparables ? Vérifier les frais, le PEA et la disponibilité en France dans la source.'
-    row.reason = `${announcement.label}. Cette formulation ne prouve ni une disponibilité en France ni une éligibilité au PEA.`
+export async function enrichEtfLaunches(observations, now = new Date(), request = fetch, extract = documentText, previousQueue = {}) {
+  const errors = [], queue = structuredClone(previousQueue)
+  for (const row of observations.filter(row => row.field === 'announcement')) {
     const url = row.documentUrl ?? row.sourceUrl
     if (!officialNewsDocument(url)) continue
-    try {
-      const response = await request(url, { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { Accept: 'application/pdf' } })
-      if (!response.ok || response.url && !officialNewsDocument(response.url)) throw new Error(`Document de lancement indisponible (${response.status}).`)
-      const text = await extract(response)
-      row.launchDetails = parseLaunchDetails(text)
-      row.documentUrl = url
-      row.documentCheckedAt = now.toISOString()
-      row.documentHash = createHash('sha256').update(text).digest('hex')
-    } catch (error) { errors.push({ family: 'etf', entity: row.entity, reason: error.message }) }
+    queue[url] ??= { row, discoveredAt: now.toISOString(), attempts: 0, status: 'pending' }
   }
-  return { observations, errors }
+  const due = Object.entries(queue).filter(([, item]) => !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now)
+    .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '')).slice(0, 8)
+  const processingStarted = Date.now()
+  for (const [url, item] of due) {
+    if (Date.now()-processingStarted > 45000) break // retry on the next pass, never drop the tail
+    item.attemptedAt = now.toISOString(); item.attempts++
+    try {
+      const response = await request(url, { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { Accept: 'text/html, application/pdf', ...(item.etag ? {'If-None-Match': item.etag} : {}), ...(item.lastModified ? {'If-Modified-Since': item.lastModified} : {}) } })
+      if (response.status !== 304) {
+        if (!response.ok || response.url && !officialNewsDocument(response.url)) throw new Error(`Communiqué indisponible (${response.status}).`)
+        const text = await extract(response)
+        if (text.trim().length < 80) throw new Error('Extraction de communiqué anormalement vide.')
+        item.result = { ...parseEtfDocument(text, item.row.label), documentUrl: url, documentCheckedAt: now.toISOString(), documentHash: createHash('sha256').update(text).digest('hex') }
+        item.etag = response.headers?.get('etag'); item.lastModified = response.headers?.get('last-modified')
+      }
+      if (!item.result) throw new Error('Réponse 304 sans extraction conservée.')
+      item.status = 'done'; delete item.error; item.nextAttemptAt = new Date(+now+86400000).toISOString()
+    } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts, 5))*3600000).toISOString(); errors.push({ family: 'etf', entity: item.row.entity, reason: error.message }) }
+  }
+  const enriched = new Map(observations.map(row => [row.entity, row]))
+  for (const item of Object.values(queue)) if (item.result) {
+    const row = enriched.get(item.row.entity) ?? { ...item.row }
+    Object.assign(row, item.result)
+    enriched.set(row.entity, row)
+  }
+  return { observations: [...enriched.values()], errors, queue }
 }
 export async function collectRadarNews(now = new Date(), request = fetch) {
   const results = await Promise.all([[VANGUARD_NEWS_URL, parseVanguardNews, 'Communiqués Vanguard'], [GLOBALX_NEWS_URL, parseGlobalXNews, 'Communiqués Global X Europe']].map(async ([url, parse, entity]) => {
@@ -146,8 +221,9 @@ export async function collectRadarNews(now = new Date(), request = fetch) {
       if (!response.ok || !response.headers.get('content-type')?.includes('text/html')) throw new Error(`Page officielle indisponible (${response.status}).`)
       const html = await response.text()
       if (html.length > 2000000) throw new Error('Page officielle trop volumineuse.')
-      return { observations: parse(html, now), errors: [] }
-    } catch (error) { return { observations: [], errors: [{ family: 'etf', entity, reason: error.message }] } }
+      const observations = parse(html, now)
+      return { observations, errors: [], source: { id: entity, name: entity, url, status: 'ok', checkedAt: now.toISOString(), lastSuccessAt: now.toISOString(), discovered: observations.length, method: 'Modèle ou liste HTML officielle', depth: 'Archive rendue par la page officielle' } }
+    } catch (error) { return { observations: [], errors: [{ family: 'etf', entity, reason: error.message }], source: { id: entity, name: entity, url, status: 'error', error: error.message, attemptedAt: now.toISOString() } } }
   }))
-  return { observations: results.flatMap(r => r.observations), errors: results.flatMap(r => r.errors) }
+  return { observations: results.flatMap(r => r.observations), errors: results.flatMap(r => r.errors), sources: results.map(r => r.source) }
 }

@@ -1,7 +1,7 @@
 name: Update editorial radar
 on:
   schedule:
-    - cron: '15 2,6,10,14,18,22 * * *'
+    - cron: '15 6-19 * * *'
   workflow_dispatch:
   push:
     branches: [master]
@@ -14,6 +14,13 @@ on:
       - 'scripts/test_dws_reconciliation.py'
       - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
+      - 'scripts/lib/radar-publications.mjs'
+      - 'scripts/lib/radar-households.mjs'
+      - 'scripts/lib/radar-schedule.mjs'
+      - 'scripts/lib/radar-source-access.mjs'
+      - 'scripts/check-radar-sources.mjs'
+      - 'scripts/test-radar-publications.mjs'
+      - 'scripts/fixtures/radar-publications/**'
       - 'src/lib/radar-editorial.js'
       - 'src/lib/replication-method.js'
       - 'scripts/test-radar-editorial.mjs'
@@ -38,6 +45,13 @@ on:
       - 'scripts/test_dws_reconciliation.py'
       - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
+      - 'scripts/lib/radar-publications.mjs'
+      - 'scripts/lib/radar-households.mjs'
+      - 'scripts/lib/radar-schedule.mjs'
+      - 'scripts/lib/radar-source-access.mjs'
+      - 'scripts/check-radar-sources.mjs'
+      - 'scripts/test-radar-publications.mjs'
+      - 'scripts/fixtures/radar-publications/**'
       - 'src/lib/radar-editorial.js'
       - 'src/lib/replication-method.js'
       - 'scripts/test-radar-editorial.mjs'
@@ -83,6 +97,7 @@ jobs:
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
       - run: node scripts/test-radar-editorial.mjs
+      - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - name: Check official purchasing-power feeds
@@ -122,9 +137,10 @@ jobs:
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
       - run: node scripts/test-radar-editorial.mjs
+      - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
-      # Official launch press releases are PDFs; missing details stay unknown.
+      # HTML and PDF official announcements; no retail availability inferred.
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - name: Publish comparable observations and new signals
         env:
