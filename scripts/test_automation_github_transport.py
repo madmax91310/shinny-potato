@@ -33,6 +33,14 @@ class GitHubRecovery(unittest.TestCase):
                 request_json('https://api.github.com','test-token',method,{},opener=fail,sleep=lambda _:self.fail('No retry'))
             self.assertEqual(len(calls),1)
         self.assertIsNone(request_json('https://api.github.com','test-token','POST',{},opener=lambda *a,**k:Reply(b'',204)))
+        rejected=urllib.error.HTTPError('https://api.github.com',422,'failure',{},io.BytesIO(b'{"message":"Validation failed","errors":[{"field":"sha","code":"missing"}]}'))
+        def reject(*args,**kwargs):raise rejected
+        with self.assertRaises(urllib.error.HTTPError)as caught:
+            request_json('https://api.github.com','secret-token','PUT',{'private':'not logged'},opener=reject,sleep=lambda _:self.fail('No write retry'))
+        notes=' '.join(caught.exception.__notes__)
+        self.assertIn('Validation failed',notes);self.assertIn('sha',notes)
+        self.assertNotIn('secret-token',notes);self.assertNotIn('not logged',notes)
+
 
     def test_exhaustion_is_visible_and_invalid_data_is_not_a_transport_retry(self):
         calls=[]

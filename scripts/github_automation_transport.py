@@ -19,6 +19,13 @@ def request_json(url, token, method='GET', data=None, opener=urllib.request.urlo
                 return json.load(response) if response.status!=204 else None
         except urllib.error.HTTPError as error:
             if error.code not in (408,429,500,502,503,504) or attempt==attempts-1:
+                # Keep the exact rejection without logging credentials or the status body.
+                try:
+                    response=json.loads(error.read(16000))
+                    reason=json.dumps({k:response[k]for k in ('message','errors')if k in response},ensure_ascii=False)[:1600]
+                except (OSError,ValueError,TypeError,AttributeError):
+                    reason='Réponse de rejet GitHub non lisible'
+                error.add_note(f'GitHub {method}, charge de {len(request.data or b"")} octets : {reason}')
                 raise
             delay=retry_delay(error,attempt)
         except (urllib.error.URLError,TimeoutError,http.client.IncompleteRead,ConnectionError):
