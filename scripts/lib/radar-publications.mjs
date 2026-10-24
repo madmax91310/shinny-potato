@@ -201,6 +201,11 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       // Keep stable deduplication keys, but request the official route.
       const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
       const result = await requestContent(fetchUrl, item)
+      if (result.unchanged) {
+        if (item.observation) item.status = 'done'
+        else if (item.reason) item.status = 'rejected'
+        else throw new Error('Réponse 304 sans extraction ou rejet conservé.')
+      }
       if (!result.unchanged) {
         const observation = parsePublication(result.content, source, url, now, item)
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected }
