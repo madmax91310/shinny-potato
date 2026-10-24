@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '20 9 * * *'
   workflow_dispatch:
+    inputs:
+      assets:
+        description: 'ISIN exacts à reprendre, séparés par des virgules ; vide = périmètre habituel'
+        type: string
+        default: ''
   push:
     branches: [master]
     paths:
@@ -137,6 +142,8 @@ jobs:
         with:
           name: metadata-qualified-records
           path: src/data
+      - run: python -m unittest discover -s scripts -p 'test_metadata_targeted_scope.py'
+      - run: node scripts/test-metadata-freshness-scope.mjs
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
@@ -185,7 +192,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: master
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.sha || 'master' }}
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -197,18 +204,36 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
+      - name: Validate requested metadata scope
+        env:
+          REQUESTED_ASSETS: ${{ inputs.assets }}
+        run: |
+          args=()
+          if [[ -n "$REQUESTED_ASSETS" ]]; then args+=(--only "$REQUESTED_ASSETS"); fi
+          python scripts/collect_instrument_metadata.py --validate-scope --output "$RUNNER_TEMP/instrument-metadata.json" "${args[@]}"
       - name: Collect exact metadata observations
         id: collect
         continue-on-error: true
-        run: python scripts/collect_instrument_metadata.py --apply --output "$RUNNER_TEMP/instrument-metadata.json"
+        env:
+          REQUESTED_ASSETS: ${{ inputs.assets }}
+        run: |
+          args=()
+          if [[ -n "$REQUESTED_ASSETS" ]]; then args+=(--only "$REQUESTED_ASSETS"); fi
+          python scripts/collect_instrument_metadata.py --apply --output "$RUNNER_TEMP/instrument-metadata.json" "${args[@]}"
       - name: Check active field freshness
         id: freshness
         continue-on-error: true
-        run: node scripts/check-active-data-freshness.mjs "$RUNNER_TEMP/instrument-metadata.json"
+        env:
+          REQUESTED_ASSETS: ${{ inputs.assets }}
+        run: |
+          args=()
+          if [[ -n "$REQUESTED_ASSETS" ]]; then args+=(--only "$REQUESTED_ASSETS"); fi
+          node scripts/check-active-data-freshness.mjs "$RUNNER_TEMP/instrument-metadata.json" "${args[@]}"
       - name: Validate metadata observations
         run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
-      - run: npm run build && node scripts/test-full-auto-routing.mjs
+      - name: Validate metadata build and routing
+        run: npm run build && node scripts/test-full-auto-routing.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -221,6 +246,7 @@ jobs:
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
+        if: github.ref == 'refs/heads/master'
         id: commit
         env:
           VALIDATED_DATA_CHECK: npm ci --ignore-scripts && python -m unittest discover -s scripts -p 'test_instrument_metadata.py' && python -m unittest discover -s scripts -p 'test_invesco_characteristics.py' && npm run build && node scripts/test-full-auto-routing.mjs
@@ -230,7 +256,7 @@ jobs:
           bash scripts/commit-validated-data.sh 'Refresh exact instrument metadata' src/data/automated-instrument-metadata.json src/data/instrument-metadata-status.json scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
-    if: always() && github.event_name != 'pull_request' && needs.refresh.result == 'success'
+    if: always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && needs.refresh.result == 'success'
     permissions:
       contents: read
       pages: write
