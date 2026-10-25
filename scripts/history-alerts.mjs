@@ -12,8 +12,8 @@ const monthLabel = value => `${Math.floor(value / 12)}-${String(value % 12 + 1).
 // A monthly series is not the ISIN-wide annual calendar, fee or listing.
 // Resolve its actual consumers before falling back to a legacy identity.
 export function historyConsumerTools({ id, dataId, record, cadence, entities, today, excludedMonths }) {
-  const series = record.id && entities.filter(row => row.aliases?.includes(`history:${record.id}`))
-  const exact = series?.length ? series : record.id && entities.filter(row => row.aliases?.some(alias => alias === record.id || alias === id))
+  const series = cadence === 'monthly' && record.id && entities.filter(row => row.aliases?.includes(`history:${record.id}`))
+  const exact = series?.length ? series : cadence === 'monthly' && record.id && entities.filter(row => row.aliases?.some(alias => alias === record.id || alias === id))
   const matches = exact?.length ? exact : entities.filter(row => row.aliases?.some(alias => alias === dataId || alias === id))
   const tools = new Set(matches.flatMap(row => row.tools ?? []))
   const ranking = cadence === 'monthly' && RANKING_ASSETS[record.id]
@@ -59,6 +59,7 @@ export function historyAlerts(today, entities = [], checks = {}) {
       impactScope: tools.length ? 'asset' : 'catalog', tools, sourceUrls, to: `/bibliotheque-donnees?q=${encodeURIComponent(dataId)}`,
       checkedAt: record.checkedAt ?? record.source?.checkedAt ?? null, asOf: check.asOf,
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
+    if (cadence === 'monthly' && record.id) base.to = entities.find(row => row.aliases?.includes(`history:${record.id}`))?.to ?? base.to
     checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
     const unqualified=record.historyExcludedMonths??[]
     if(unqualified.length){
