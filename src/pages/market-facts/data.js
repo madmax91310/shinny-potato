@@ -2,6 +2,7 @@ import { reusableContract } from '../../data/reusable-data-contracts.js';
 import { HISTORY_FACTS } from '../../data/history-statistics.js';
 import { EDITORIAL, NEWTON_STORY } from './editorial.js';
 import { selectMonthlyMarketStories } from '../../data/market-story-selection.js';
+import STORIES from './stories.json' with { type: 'json' };
 // Bibliothèque de faits marquants et statistiques historiques sur les grands indices boursiers,
 // racontés dans des publications au ton humain. Contrairement au reste de l'app (qui calcule
 // depuis des séries de prix brutes, cf. investment-calculator/portfolio-generator), CHAQUE fait ici
@@ -21,6 +22,12 @@ import { selectMonthlyMarketStories } from '../../data/market-story-selection.js
 // ne couvre que les dividendes. Pas d'ajout arbitraire pour "égaliser" avec les indices US.
 
 export const FAMILIES = [
+  { id: 'entreprises', label: '🏭 Entreprises et décisions', emoji: '🏭' },
+  { id: 'fraudes', label: '🔎 Fraudes et fausses promesses', emoji: '🔎' },
+  { id: 'banques', label: '🏦 Banques et confiance', emoji: '🏦' },
+  { id: 'bulles-crises', label: '🫧 Bulles et crises', emoji: '🫧' },
+  { id: 'devises-crises', label: '💱 Devises et dettes', emoji: '💱' },
+  { id: 'mecanismes', label: '⚙️ Retournements et mécanismes', emoji: '⚙️' },
   { id: 'histoires', label: '📚 Histoires de marché', emoji: '📚' },
   { id: 'obligations-historiques', label: '📊 Historiques obligataires', emoji: '📊' },
   { id: 'actions-historiques', label: '📉 Historiques des actions', emoji: '📉' },
@@ -166,10 +173,12 @@ export function getFact(id) {
   return FACTS.find((f) => f.id === id);
 }
 
-// Les deux récits validés restent faciles à retrouver dès l'ouverture de l'outil.
+// Les identifiants, textes et ordre relatif des contenus existants sont conservés.
+// Les nouveaux récits sont écrits et relus dans stories.json, jamais produits par les cours.
 export const FACTS = [
   publishedFacts.find(fact => fact.id === 'records-1987-pire-seance'),
   NEWTON_STORY,
+  ...STORIES,
   ...publishedFacts.filter(fact => fact.id !== 'records-1987-pire-seance'),
   ...selectMonthlyMarketStories(HISTORY_FACTS),
 ].map(fact=>({...fact,dataContract:reusableContract(fact,{derived:HISTORY_FACTS.some(row=>row.id===fact.id)})}));

@@ -6,7 +6,8 @@ import { selectMonthlyMarketStories } from '../src/data/market-story-selection.j
 
 assert.equal(FACTS[0].id, 'records-1987-pire-seance');
 assert.equal(FACTS[0].context, EDITORIAL[FACTS[0].id].context);
-assert.equal(FACTS[1], NEWTON_STORY);
+const { dataContract: _contract, ...newtonContent } = FACTS[1];
+assert.deepEqual(newtonContent, NEWTON_STORY);
 assert(!FACTS.some(fact => fact.id.startsWith('monthly-dca-')));
 assert(!FACTS.some(fact => fact.id === 'monthly-drawdown-cac40' || fact.id === 'crash-1987'));
 assert(FACTS.every(fact => FAMILIES.some(family => family.id === fact.family)));

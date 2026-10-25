@@ -15,23 +15,36 @@ const byId = Object.fromEntries(FACTS.map((f) => [f.id, f]))
 function FactCard({ fact }) {
   const family = FAMILIES.find((f) => f.id === fact.family)
   return (
-    <article className="mf-card">
+    <article className="mf-card" data-story-id={fact.id}>
       <p className="mf-card-kicker">
         {family?.emoji} {fact.category}
       </p>
       <p className="mf-fact-text">{buildTweetText(fact)}</p>
       <details className="mf-details">
-        <summary>Voir le fait complet et ses précisions</summary>
+        <summary>{fact.sources ? 'Sources et réserves du récit' : 'Voir le fait complet et ses précisions'}</summary>
+        {fact.sources ? <>
+          <p>{fact.indices.join(' · ')} · {fact.period} · Relu le {fact.reviewedAt}</p>
+          <ol className="mf-sources">
+            {fact.sources.map(source => <li key={source.url}>
+              <a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>
+              <p>{source.organization} · {source.publishedAt || 'Date de publication non précisée'} · Consulté le {source.checkedAt}</p>
+              <ul>{source.facts.map(proof => <li key={proof}>{proof}</li>)}</ul>
+            </li>)}
+          </ol>
+          <p><strong>Conventions et réserves</strong></p>
+          <ul>{fact.reserves.map(reserve => <li key={reserve}>{reserve}</li>)}</ul>
+        </> : <>
         <p>{fact.fact}</p>
         {fact.note && <p>{fact.note}</p>}
         <p>Indices : {fact.indices.join(' · ')} · Source : {fact.source}</p>
+        </>}
       </details>
     </article>
   )
 }
 
 export default function App() {
-  const [currentId, setCurrentId] = useState(FACTS[0].id)
+  const [currentId, setCurrentId] = useState(FACTS.find(fact => fact.text)?.id ?? FACTS[0].id)
   const [copied, setCopied] = useState(false)
   const seenThisSession = useRef([currentId])
 
@@ -71,8 +84,8 @@ export default function App() {
   return (
     <div className="mf-scope">
       <PageHeader
-        title="Faits marquants des marchés"
-        subtitle={`${FACTS.length} histoires sélectionnées, avec leurs sources et leurs précisions.`}
+        title="Histoires de marchés"
+        subtitle={`${FACTS.filter(fact => fact.text).length} nouveaux récits documentés, prêts à copier. Les contenus historiques restent disponibles.`}
       />
 
       <ToolWorkspace actions={<>
@@ -96,7 +109,7 @@ export default function App() {
           </ChoicePicker>
         </div>
         <Button type="button" variant="secondary" onClick={pickRandom}>
-          🔄 Fait aléatoire
+          🔄 Histoire aléatoire
         </Button>
 
       </div>

@@ -864,7 +864,7 @@ async function testMarketFacts(page) {
     const copied = await page.evaluate(() => window.__marketFactsCopied);
     const id = await select.locator('[data-option]').nth(i).getAttribute('data-value');
     const expected = buildMarketStory(MARKET_FACTS.find(fact => fact.id === id));
-    if (/undefined|NaN/.test(text) || !/Source :/.test(evidence)
+    if (/undefined|NaN/.test(text) || !/Source :|Conventions et réserves/.test(evidence)
       || /Source\s*:|https?:\/\//i.test(tweet) || copied !== tweet
       || tweet !== expected || /^💬/m.test(tweet)) badCount++;
   }
@@ -872,7 +872,7 @@ async function testMarketFacts(page) {
   const seen = new Set([await select.getAttribute('data-value')]);
   // La lecture exhaustive ci-dessus a épuisé la session : le premier tirage ouvre un nouveau cycle.
   for (let i = 0; i < count - 1; i++) {
-    await page.getByRole('button', { name: '🔄 Fait aléatoire' }).click();
+    await page.getByRole('button', { name: '🔄 Histoire aléatoire' }).click();
     const id = await select.getAttribute('data-value');
     if (seen.has(id) || !MARKET_FACTS.some(fact => fact.id === id)) badCount++;
     seen.add(id);

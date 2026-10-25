@@ -132,11 +132,11 @@ export const TOOLS = [
   },
   {
     to: '/faits-marquants-marches',
-    title: 'Faits marquants',
+    title: 'Histoires de marchés',
     publicationDay: 'Publication ponctuelle',
     icon: '📚',
     accent: '#34d399',
-    description: "Statistiques historiques sourcées sur les indices et calculs de baisse, récupération et versements sur huit actions sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
+    description: 'Des récits historiques documentés sur les entreprises, les crises, les fraudes et les surprises des marchés, prêts à publier sur X. Sources et réserves consultables séparément.',
     status: 'disponible',
   },
   {
@@ -179,7 +179,7 @@ const TOOL_SUMMARIES = {
   '/dilemme': 'Deux choix de placement pour ouvrir la discussion.',
   '/fiches-etf': 'Un ETF expliqué, avec son texte et ses visuels.',
   '/tweets-factsheets': 'Décrypte la composition et les caractéristiques des indices.',
-  '/faits-marquants-marches': 'Des faits historiques pour raconter les marchés.',
+  '/faits-marquants-marches': 'Des histoires de marchés documentées, prêtes à publier.',
   '/france-100-menages': 'Le patrimoine et les revenus en chiffres et en images.',
   '/banque-tweets': 'Retrouve tes publications et prépare leur réutilisation.',
   '/bibliotheque-donnees': 'Recherche un actif, ses chiffres et ses sources.',
