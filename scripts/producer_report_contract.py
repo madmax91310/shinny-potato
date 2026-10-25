@@ -22,7 +22,9 @@ def validate_contract(contract):
     plan=contract.get('inputPlan')
     if plan:
         digest=hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
-        if digest!=plan['sha256'] or [r['id']for r in plan['items']]!=scope['expectedIds']:
+        if (digest!=plan['sha256'] or [r['id']for r in plan['items']]!=scope['expectedIds']
+                or scope.get('items')!=plan['items']
+                or [r['id']for r in plan['items']if r.get('selected',True)]!=scope['requestedIds']):
             raise ValueError('Predeclared producer plan was modified')
     expected, requested = scope['expectedIds'], scope['requestedIds']
     for ids in (expected, requested):
@@ -39,6 +41,7 @@ def validate_contract(contract):
     if set(identifiers) != set(expected):
         raise ValueError('Missing or unexpected individual producer result')
     for row in rows:
+        if row['id'] not in requested and row['status'] not in SKIPPED:raise ValueError('Unselected item cannot be certified or attempted')
         if row['status'] not in SKIPPED | {'succeeded', 'unchanged-verified', 'failed'}:
             raise ValueError('Unknown producer result status')
         if row['status'] in SKIPPED and not row.get('reason'):
@@ -55,7 +58,8 @@ def finish(native, plan, *, completed=True):
     payload = {**native, '_collector': plan['reportStem']}
     try:
         normalized = ({'successes':[{'id':'history:bitcoin-yahoo'}],'errors':[]} if plan['producer']=='update_bitcoin_monthly' and native.get('symbol')=='BTC-USD' and native.get('points') and native.get('checkedAt') else (native['contractResults'] if 'contractResults' in native else _normalize_report(payload))) if completed else {'successes': [], 'errors': []}
-    except (ValueError, TypeError, KeyError, AttributeError) as error:
+        if not isinstance(normalized,dict):raise ValueError('Unknown native producer result shape')
+    except (ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
         normalized = {'successes': [], 'errors': []}
         completed = False
         interruption_reason = 'Rapport natif illisible : ' + str(error)

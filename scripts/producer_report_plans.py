@@ -45,6 +45,9 @@ def build_plan(producer, args, report_stem=None, module=None):
     def cfg(name,key='instruments'):return read('scripts/'+name+'.json')[key]
     def mod():return module or module_for(producer)
     only=option(args,'--only',many=True)
+    if producer=='collect_instrument_metadata' and only:
+        import re
+        only=[piece.upper()for value in only for piece in re.split(r'[,\s]+',value)if piece]
     if producer in {'collect_etf_pilot','collect_amundi_etf','collect_ssga_etf','refresh_additional_etf','collect_exposure_expansion'}:
         file={'collect_etf_pilot':'etf-pilot','collect_amundi_etf':'amundi-etf','collect_ssga_etf':'ssga-etf','refresh_additional_etf':'additional-etf-sources','collect_exposure_expansion':'exposure-etf-expansion'}[producer]
         for c in cfg(file):

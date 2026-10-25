@@ -20,7 +20,7 @@ jobs:
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
-      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      group: active-market-data-${{ github.ref != 'refs/heads/master' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest

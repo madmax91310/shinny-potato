@@ -9,8 +9,10 @@ ROOT=Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,10,23,tzinfo=dt.timezone.utc)
 class OfficialDistribution(unittest.TestCase):
     def setUp(self):
-        self.source=next(s for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s['id']=='etf_financials')
         full=json.loads((ROOT/'reports/wfns-dividend-2026-10-23/qualification-locale.json').read_text())
+        # The active share now uses the independently qualified NAV route (#943).
+        # Exercise the archived exact Yahoo source that this cash adjustment repairs.
+        self.source={k:copy.deepcopy(v)for k,v in full.items()if k not in ('points','anniversaryPoints','proofRows','rawResponse','distributionAdjustmentProof','checkedAt','periodEnd','responseSha256')}
         self.data={k:v for k,v in full.items()if k!='distributionAdjustmentProof'}
         for point,row in zip(self.data['points'],self.data['proofRows']):
             row['value']=row.pop('providerAdjustedValue');row.pop('officialDividendFactor');point[1]=round(row['value'],self.source['precision'])

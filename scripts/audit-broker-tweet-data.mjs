@@ -56,9 +56,9 @@ export function auditBrokerTweetData(observations = BROKER_TARIFFS, today = isoT
 
 if (process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
   const args=process.argv.slice(2), arg=name=>args.includes(name)?args[args.indexOf(name)+1]:undefined;
-  const file=arg('--observation'), collection=file?JSON.parse(readFileSync(file,'utf8')):null;
   const contract=producerContract('broker-tweet-validation','broker-tweet-observation',BROKERS.flatMap(b=>FIELDS.map(field=>({id:'broker-tweet:'+b.id+':'+field,instrument:b.id,fields:[field],selected:true}))))
   const output=arg('--output'); if(output)contract.start(output);
+  const file=arg('--observation'), collection=file?JSON.parse(readFileSync(file,'utf8')):null;
   let report=auditBrokerTweetData(collection?.observations?.brokers ?? BROKER_TARIFFS,arg('--today')??isoToday(),collection?.failures??{});
   const successes=[], errors=[];
   for(const cell of report.cells){

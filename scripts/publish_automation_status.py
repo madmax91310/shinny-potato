@@ -197,6 +197,9 @@ def _normalize_report(report):
 
 
 def normalize_report(report):
+    if isinstance(report,dict) and 'resultContract' in report:
+        from producer_report_contract import normalize_contract
+        return normalize_contract(report['resultContract'])
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
     scope = report.get('scope')
@@ -750,7 +753,7 @@ def update_status(state, run, jobs, reports=None):
         for success in report.get('successes', []):
             if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
                 validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'evidence':evidence}
-                if data_failures.get(success['id'],{}).get('phase') == success.get('phase'):
+                if data_failures.get(success['id'],{}).get('phase') == success.get('phase') or success['id'].startswith('qualification:') and success.get('phase')=='qualification':
                     data_failures.pop(success['id'],None)
                 continue
             if technical_proof(success['id']):
