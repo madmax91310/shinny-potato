@@ -123,3 +123,14 @@ assert.equal(upgraded.observations[0].evidenceLevel,'official');assert.equal(upg
 
 const unrelated=parsePublication(linkedBody.replace(doc.listing.url,'https://unknown.invalid/article'),mediaSource,'https://www.moneyvox.fr/banque/reconciliation-fixture',now,doc.listing)
 assert.ok(!unrelated.sources.some(s=>s.url.includes('unknown.invalid')),'An unregistered domain cannot become an original or confirmation')
+
+// Synthetic parser contract only, never discovered or published as a real story:
+// a broker's new ETF dealing service is not the creation of an ETF.
+const bankEtfTitle='Saxo Banque lance une nouvelle offre de courtage ETF'
+const bankEtf=parsePublication(`<main><h1>${bankEtfTitle}</h1><p>Les clients particuliers concernés accèdent à une nouvelle offre de courtage ETF selon les conditions décrites dans le communiqué. Cette offre de services concerne les investisseurs français.</p></main>`,COVERAGE_SOURCES.find(s=>s.id==='saxo-news'),'https://www.home.saxo/fr-fr/contract-fixture',now,{title:bankEtfTitle,publishedAt:'2026-10-24'})
+assert.equal(bankEtf.family,'pouvoir-achat');assert.equal(bankEtf.factType,'consumer-announcement');assert.equal(bankEtf.announcementEvidence,undefined)
+assert.equal(ca.family,'etf','The explicitly identified Amundi issuer relay keeps its proved group announcement')
+
+const bnpIssuerTitle='BNP Paribas Asset Management lance de nouveaux ETF UCITS'
+const issuerRelay=parsePublication(`<main><h1>${bnpIssuerTitle}</h1><p>BNP Paribas Asset Management lance de nouveaux ETF UCITS. BNP Paribas Easy World UCITS ETF.</p></main>`,local,'https://group.bnpparibas/communique-de-presse/contract-fixture',now,{title:bnpIssuerTitle,publishedAt:'2026-10-24'})
+assert.equal(issuerRelay.family,'etf','A clearly named asset-management issuer can be relayed by its group without turning brokerage offers into fund creations')

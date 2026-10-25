@@ -120,9 +120,11 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     const canonical=html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1]
     if(canonical && canonicalUrl(canonical)!==canonicalUrl(url))throw Error('Page canonique différente du document demandé')
   }
-  if(source.method.startsWith('consumer-') && !(source.method==='consumer-coverage' && /\bETF|UCITS/i.test(listing.title??tag(html,'h1')))) return parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
+  const headline=listing.title??tag(html,'h1')
+  const issuerRelay=/\bETF/i.test(headline) && (source.id==='credit-agricole-news' && /^Amundi\b/i.test(headline) || source.id==='bnp-bank' && /^BNP Paribas (?:Asset Management|AM)\b/i.test(headline))
+  if(source.method.startsWith('consumer-') && !issuerRelay) return parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
   if(source.requireUcits && !/\bUCITS\b/i.test(cleanText(html)))return {rejected:'Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France',title:listing.title}
-  if(source.method==='consumer-coverage')source={...source,family:'etf'}
+  if(issuerRelay)source={...source,family:'etf'}
   if(source.id==='dvf'){
     const dataset=JSON.parse(html),resource=dataset.resources?.[0]
     if(dataset.slug!=='demandes-de-valeurs-foncieres'||!resource)throw Error('Livraison DVF invalide')
@@ -311,7 +313,7 @@ export function consolidateOfficialAnnouncements(state) {
   const o=document.observation
   if(o?.family!=='etf'||!o.documentHash||!o.publishedAt||!o.announcementEvidence||o.correctionOf)continue
   const title=normal(o.label).replace(/[^a-z0-9]+/g,' ').trim()
-  if(title.split(' ').length<5||!/^(?:amundi|invesco|ishares|vanguard|xtrackers|wisdomtree|vaneck|ubs|jpmorgan|spdr|state street|global x)\b/.test(title))continue
+  if(title.split(' ').length<5||!/^(?:amundi|bnp paribas|dws|invesco|ishares|vanguard|xtrackers|wisdomtree|vaneck|ubs|jpmorgan|spdr|state street|global x)\b/.test(title))continue
   const key=JSON.stringify([title,o.publishedAt,o.announcementEvidence.type])
   const group=groups.get(key)??[];group.push(document);groups.set(key,group)
  }
