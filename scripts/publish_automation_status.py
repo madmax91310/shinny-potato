@@ -340,7 +340,7 @@ def download_status_artifact(repo, artifacts, name, directory, timeout=45, runne
     return True
 
 
-def report_files(directory):
+def report_files(directory, workflow=None):
     """Collector reports inside a downloaded artifact.
 
     upload-artifact roots a multi-path artifact at the paths' common ancestor: a report
@@ -348,7 +348,10 @@ def report_files(directory):
     root. Snapshots of src/data are evidence, never reports, and stay unread.
     """
     root = pathlib.Path(directory)
-    return sorted(root.glob('*.json')) + sorted(root.glob('_temp/**/*.json'))
+    paths = sorted(root.glob('*.json')) + sorted(root.glob('_temp/**/*.json'))
+    for folder in REPORT_CONTRACTS.get(workflow, {}).get('reportDirectories', []):
+        paths.extend(sorted(root.glob(folder+'/**/*.json')))
+    return paths
 
 
 def read_report(path, workflow, planned=None):
@@ -554,7 +557,7 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
         return [report_error(key, 'Artefact attendu absent ou expiré ; aucune résolution déduite')] if expected else []
     try:
         download(repo, artifacts, contract['artifact'], directory)
-        paths = report_files(directory)
+        paths = report_files(directory, workflow)
         names = {r['name'] for r in contract['reports']}
         reports = []
         sidecars={p.name.removesuffix('.contract-plan.json')+'.json':p for p in paths if p.name.endswith('.contract-plan.json')}
