@@ -61,6 +61,18 @@ assert.equal(csa.housing.rateType,null,'Do not invent nominal/TAEG without the l
 const ambiguous=parsePublication(csaHtml.replace('Les deux temporalités ont été présentées en même temps à l’occasion de la conférence du 15 octobre 2026.',''),csaSource,csa.sourceUrl,now)
 assert.equal(ambiguous.publishedAt,null);assert.equal(ambiguous.factType,'publication-watch')
 assert.equal(editorialState(advanceRadar(baseline.state,[ambiguous],{now}).newEvents[0],+now),'watch')
+// Parser migration bypasses an old weekly TTL once, within the same budget.
+const csaKey=csa.sourceUrl,versioned={...csaSource,parserVersion:2}
+const retained={sources:{[versioned.id]:{lastSuccessAt:now.toISOString(),nextCheckAt:new Date(+now+86400000).toISOString()}},documents:{[csaKey]:{url:csaKey,source:versioned.id,discoveredAt:'2026-10-01T10:00:00Z',attempts:1,status:'done',nextAttemptAt:new Date(+now+7*86400000).toISOString(),observation:ambiguous,backfill:false}}}
+const migrated=await collectPublications(now,async()=>new Response(csaHtml),retained,[versioned],1)
+assert.equal(migrated.observations[0].publishedAt,'2026-10-15');assert.equal(migrated.observations[0].parserMigration,true);assert.equal(migrated.observations[0].backfill,false,'Existing notification eligibility is not globally overwritten')
+const migratedFeed=advanceRadar(advanceRadar(null,[ambiguous],{now}).state,migrated.observations,{now}).feed
+assert.equal(planNotifications(migratedFeed.events,{acknowledged:[]},now,'digest').events.length,0,'Parser upgrade creates no retrospective alert')
+assert.equal(migrated.state.documents[csaKey].parserVersion,2)
+await collectPublications(new Date(+now+3600000),()=>assert.fail('Migration only once, then cache'),migrated.state,[versioned],1)
+const fresh={sources:{[versioned.id]:{lastSuccessAt:'2026-10-01T10:00:00Z'}},documents:{}}
+const discovered=await collectPublications(now,async url=>new Response(url===versioned.url?`<a href="${csaKey}">Analyse marché immobilier septembre 2026</a>`:csaHtml),fresh,[versioned],1)
+assert.equal(discovered.observations[0].backfill,false,'A genuinely new document on a known source is not silenced by the parser version')
 const json=JSON.parse(await fixture('insee-search.json'));json.numFounds=json.documents.length
 const studies=await inseeDiscovery(JSON.stringify(json),INSEE_SEARCH,()=>assert.fail('No unbounded page'))
 assert.ok(studies.some(r=>r.url.endsWith('/9087193')),'Salary study discovered from search, not from a saved article list')

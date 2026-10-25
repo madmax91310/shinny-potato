@@ -228,7 +228,9 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     } catch (error) { report.status = 'error'; report.error = error.message; errors.push({ family: source.family, entity: source.name, reason: error.message }) }
     state.sources[source.id] = report; reports.push(report)
   }))
-  const due = Object.entries(state.documents).filter(([, item]) => !item.listingRejected && (!item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
+  const owners=new Map(sources.map(source=>[source.id,source]))
+  const parserDue=item=>owners.get(item.source)?.parserVersion && item.parserVersion!==owners.get(item.source).parserVersion && item.parserVersionAttempted!==owners.get(item.source).parserVersion
+  const due = Object.entries(state.documents).filter(([, item]) => !item.listingRejected && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || (b[1].processingPriority??0)-(a[1].processingPriority??0) || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
   const start=(state.nextSourceIndex ?? 0)%sources.length
@@ -240,12 +242,15 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   for (const [url, item] of chosen) {
     if (Date.now()-processingStarted > 90000) break // remaining documents stay pending durably
     const source = sources.find(source => source.id === item.source)
+    const requalifying=Boolean(source.parserVersion && item.parserVersion!==source.parserVersion), migrating=requalifying&&Boolean(item.observation)
+    if(requalifying)item.parserVersionAttempted=source.parserVersion
     item.attemptedAt = now.toISOString(); item.attempts++
     try {
       // Xtrackers serves HTTP 500 without its canonical trailing slash.
       // Keep stable deduplication keys, but request the official route.
       const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
-      const result = await requestContent(fetchUrl, item, 5000000)
+      // A 304 cannot validate a new parser against text that was not retained.
+      const result = await requestContent(fetchUrl, requalifying?null:item, 5000000)
       if (result.unchanged) {
         if (item.observation || item.offerBaseline) item.status = 'done'
         else if (item.reason) item.status = 'rejected'
@@ -277,6 +282,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           if(owner && new URL(original).pathname.split('/').filter(Boolean).length>=3 && !/\.(?:pdf|png|jpg)$/i.test(new URL(original).pathname))state.documents[original]??={url:original,source:owner.id,backfill:item.backfill,discoveredAt:now.toISOString(),attempts:0,status:'pending',discoveredVia:url}
         }
       }
+      if(source.parserVersion)item.parserVersion=source.parserVersion
+      if(migrating&&item.observation)item.observation.parserMigration=true
       item.nextAttemptAt = new Date(+now+(source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
     } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
   }

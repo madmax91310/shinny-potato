@@ -118,7 +118,7 @@ export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES
   const broadEtf = event.field==='announcement' && event.documentHash && event.products?.some(p => p.pea && /Éligible/.test(p.pea) || /(?:MSCI World|All.World|S&P 500|Euro Stoxx 50)/i.test(p.index ?? p.name))
   const household = event.family === 'economie' || event.family === 'pouvoir-achat' && !(event.factType==='consumer-announcement' && ['banques','epargne','frais','etf'].includes(event.topic))
   const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family) || event.factType==='consumer-announcement' && ['banques','epargne','frais'].includes(event.topic)
-  const narrowOffer=event.changeEvidence && !event.changeEvidence.changes?.some(row=>/tenue de compte|liquidit|\bpea\b|livret|carte|courtage|frais de transfert|virement|retrait/i.test(normal(row.before+' '+row.after)))
+  const narrowOffer=qualifiedOfferChange(event,now) && !event.changeEvidence.changes.some(row=>/tenue de compte|liquidit|\bpea\b|livret|carte|courtage|frais de transfert|virement|retrait/i.test(normal(row.before+' '+row.after)))
   const composition = /^(top10|countries:|sectors:)/.test(event.field ?? '')
   const factors = {
     audience: [narrowOffer ? .35 : household ? 1 : broadEtf ? .7 : savings ? .7 : composition && state === 'ready' ? .65 : .35, narrowOffer ? 'Clause spécialisée ; portée grand public non établie' : broadEtf ? 'Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu' : household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
