@@ -40,3 +40,47 @@ const producers=JSON.parse(readFileSync('scripts/validated-data-producers.json')
 for(const producer of Object.keys(producers))assert(producerPaths(producer,'',producers).length>0)
 assert.throws(()=>producerPaths('only-derived.yml','',{'only-derived.yml':['src/data/equity-history-links.json']}))
 console.log('Only nine explicit reproducible projections are rebuilt; every other source stays mandatory, including future unknown JSON outputs.')
+
+// Exercise the ordinary entry point in an isolated repository. Its expected
+// source files must exist before any public result, including early exits.
+const {mkdtempSync,mkdirSync,writeFileSync,rmSync}=await import('node:fs')
+const {tmpdir}=await import('node:os')
+const {join}=await import('node:path')
+const {execFileSync}=await import('node:child_process')
+const {main:prepare}=await import('./prepare-validated-data.mjs')
+const root=mkdtempSync(join(tmpdir(),'publisher-expected-receipt-')),previousCwd=process.cwd(),previousFetch=globalThis.fetch
+const envKeys=['DATA_PRODUCER','REQUIRED_DATA_PATH','REQUIRED_DATA_RECEIPT','EXPECTED_DATA_RECEIPT','GITHUB_REPOSITORY','GITHUB_OUTPUT'],previousEnv=Object.fromEntries(envKeys.map(k=>[k,process.env[k]]))
+try{
+ process.chdir(root)
+ const git=(...args)=>execFileSync('git',args,{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
+ git('init','-q');git('config','user.name','isolated test');git('config','user.email','test@example.invalid')
+ mkdirSync('public/data/investors',{recursive:true});writeFileSync('public/data/investors/test.json','{"value":1}\n');writeFileSync('public/data/investors/review-metadata.json','[]\n')
+ git('add','.');git('commit','-qm','recorded source data');const base=git('rev-parse','HEAD')
+ mkdirSync('src/pages',{recursive:true});writeFileSync('src/pages/test.jsx','export default 1\n');git('add','.');git('commit','-qm','pending consumer code');const next=git('rev-parse','HEAD')
+ Object.assign(process.env,{DATA_PRODUCER:'update-investor-13f.yml',REQUIRED_DATA_PATH:'',REQUIRED_DATA_RECEIPT:join(root,'required.json'),EXPECTED_DATA_RECEIPT:join(root,'receipt.json'),GITHUB_REPOSITORY:'test/repo',GITHUB_OUTPUT:join(root,'outputs')})
+ for(const scenario of ['newer-public-data','pending-consumer','public-lookup-failure']){
+  git('checkout','-q','--detach',scenario==='newer-public-data'?base:next)
+  const source=git('rev-parse','HEAD');writeFileSync(process.env.GITHUB_OUTPUT,'')
+  for(const p of [process.env.REQUIRED_DATA_RECEIPT,process.env.EXPECTED_DATA_RECEIPT])rmSync(p,{force:true})
+  globalThis.fetch=async()=>{
+   const expected=JSON.parse(readFileSync(process.env.REQUIRED_DATA_RECEIPT)),receipt=JSON.parse(readFileSync(process.env.EXPECTED_DATA_RECEIPT))
+   assert.deepEqual(receipt,{schemaVersion:1,commit:source,files:expected});assert.equal(Object.keys(expected).length,2)
+   for(const [path,sha]of Object.entries(expected))assert.equal(sha,git('rev-parse',`${source}:${path}`))
+   if(scenario==='public-lookup-failure')throw Error('isolated unavailable public endpoint')
+   return{ok:true,json:async()=>({sha:base,dataSha:scenario==='newer-public-data'?next:base})}
+  }
+  if(scenario==='public-lookup-failure')await assert.rejects(prepare(),/isolated unavailable/)
+  else await prepare()
+  const outputs=readFileSync(process.env.GITHUB_OUTPUT,'utf8');assert(outputs.includes('receipt_ready=true'));assert(outputs.includes('data_sha='+source));assert(!outputs.includes('current=true'))
+  if(scenario==='pending-consumer')assert(outputs.includes('needs_code=true'))
+ }
+}finally{
+ globalThis.fetch=previousFetch;process.chdir(previousCwd)
+ for(const k of envKeys)if(previousEnv[k]===undefined)delete process.env[k];else process.env[k]=previousEnv[k]
+ rmSync(root,{recursive:true,force:true})
+}
+console.log('Expected producer receipts are frozen before public lookup and survive newer-data/code-gate exits and network failure; no publication is inferred.')
+const publicationWorkflow=readFileSync(new URL('../.github/workflows/publish-validated-data.yml',import.meta.url),'utf8')
+const receiptUpload=publicationWorkflow.split(/(?=      - uses: actions\/upload-artifact@)/).find(s=>s.includes('name: data-publication-receipt'))
+assert(receiptUpload?.includes('always()')&&receiptUpload.includes('steps.plan.outputs.receipt_ready'))
+assert(!receiptUpload.split('with:')[0].includes('steps.producer.outcome')&&!receiptUpload.split('with:')[0].includes('steps.plan.outputs.current'),'Expected receipt must remain observable when publication is skipped or fails')

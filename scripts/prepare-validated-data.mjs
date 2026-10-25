@@ -20,7 +20,7 @@ export function requiredFiles(paths,files,allowed){
  assert(classify(selected,allowed).dataOnly,'Required data must belong to collector commit paths')
  return selected
 }
-async function main(){
+export async function main(){
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
  const ancestor=(a,b)=>{try{git('merge-base','--is-ancestor',a,b);return true}catch{return false}}
  const source=git('rev-parse','HEAD');assert.match(source,/^[a-f0-9]{40}$/)
@@ -28,19 +28,25 @@ async function main(){
  const paths=producerPaths(process.env.DATA_PRODUCER,process.env.REQUIRED_DATA_PATH,registry)
  const files=requiredFiles(paths,git('ls-tree','-r','--name-only',source).split('\n'),automationPaths())
  const repo=process.env.GITHUB_REPOSITORY;assert.match(repo??'',/^[\w.-]+\/[\w.-]+$/)
+ // Freeze the intended producer files before consulting publication results.
+ // A no-op, a pending code gate or a failed public lookup still needs this
+ // receipt. It states what was recorded, never that it has been published.
+ const required=Object.fromEntries(files.map(path=>[path,git('rev-parse',`${source}:${path}`)]))
+ for(const blob of Object.values(required))assert.match(blob,/^[a-f0-9]{40}$/)
+ writeFileSync(process.env.REQUIRED_DATA_RECEIPT,JSON.stringify(required)+'\n')
+ const receiptReady=Boolean(process.env.EXPECTED_DATA_RECEIPT)
+ if(receiptReady)writeFileSync(process.env.EXPECTED_DATA_RECEIPT,JSON.stringify({schemaVersion:1,commit:source,files:required})+'\n')
+ const write=value=>appendFileSync(process.env.GITHUB_OUTPUT,value+'\n')
+ write(`data_sha=${source}\nreceipt_ready=${receiptReady}`)
  const url=`https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/build-info.json?data=${source}-${Date.now()}`
  const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(15000)});assert(response.ok,'Published code identity unavailable')
  const info=await response.json();assert.match(info.sha??'',/^[a-f0-9]{40}$/);assert.match(info.dataSha??info.sha,/^[a-f0-9]{40}$/)
  assert(ancestor(info.sha,source),'Published code is outside this data history')
- const write=value=>appendFileSync(process.env.GITHUB_OUTPUT,value+'\n')
  if(!ancestor(info.dataSha??info.sha,source)){write('current=false\nneeds_code=false');console.log('A newer data snapshot is already public.');return}
  write('code_epoch='+publicationCodeEpoch(info.sha,source,git,automationPaths()))
  const changed=git('diff','--name-only',info.sha,source,'--','src').split('\n').filter(Boolean)
  const blocked=consumerChanges(changed)
  if(blocked.length){write('current=false\nneeds_code=true');console.log('Data needs the full code gate for changed financial consumers: '+blocked.join(', '));return}
- const required=Object.fromEntries(files.map(path=>[path,git('rev-parse',`${source}:${path}`)]))
- for(const blob of Object.values(required))assert.match(blob,/^[a-f0-9]{40}$/)
- writeFileSync(process.env.REQUIRED_DATA_RECEIPT,JSON.stringify(required)+'\n')
  // Keep legacy outputs while callers migrate to the producer registry.
  write(`code_sha=${info.sha}\ndata_sha=${source}\nrequired_blob=${required[files[0]]}\ncurrent=true\nneeds_code=false`)
  console.log(`Validated producer: ${files.length} exact files from ${source}, published code ${info.sha}.`)
