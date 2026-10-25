@@ -96,7 +96,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         availability = state.get('workflowAvailability', {}).get(workflow, {})
         if availability.get('state') and availability['state'] != 'active':
             add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
-        observed_contracts={e.get('file')for e in row.get('reportEvidenceHistory',[]) if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit')}
+        observed_contracts={e.get('file')for e in row.get('reportEvidenceHistory',[]) if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit') and e.get('scopePlanVerified')}
         missing_contracts=set(config.get('reportFiles',[]))-observed_contracts
         if config.get('reportCoverage') == 'job-only' or config.get('reportContract') and missing_contracts:
             add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': ('Contrats individuels pas encore observés : '+', '.join(sorted(missing_contracts))+'. ' if missing_contracts else '')+'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})

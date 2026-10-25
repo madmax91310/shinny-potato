@@ -1,3 +1,4 @@
+import {missingProducerReports} from './automation.js'
 import registry from '../../data/automation-workflows.json' with {type:'json'}
 import retired from '../../data/retired-automations.json' with {type:'json'}
 export const ISSUE_KINDS={failure:'Panne ou anomalie',connection:'Donnée nécessaire non raccordée',qualification:'Qualification manquante',waiting:'Publication normalement attendue','not-applicable':'Non applicable ou archive',editorial:'Revue éditoriale',monitoring:'Surveillance non démontrée',history:'Historique et résolutions enregistrées'}
@@ -49,7 +50,7 @@ export function buildInbox({status,inventory,coverage,financial,review,failures=
  if(!health.ok||failures.monitor)add({id:'health:monitor',name:'Système de surveillance',field:'État du moniteur',kind:'monitoring',cause:failures.monitor??health.reason})
  for(const[key,cause]of Object.entries(failures))if(key!=='monitor')add({id:'health:'+key,name:'Lecture du bilan · '+key,field:'Preuve attendue',kind:'monitoring',cause})
  for(const[id,c]of Object.entries(registry)){
-  if(c.reportCoverage==='job-only')add({id:'coverage:'+id,name:c.name,field:'Contrat de remontée individuelle',kind:'qualification',cause:'Ce producteur ne fournit pas de rapport individuel contractuel ; la couverture de chaque champ reste à démontrer.',tools:c.tools,workflow:id})
+  if(missingProducerReports(c,status?.workflows?.[id]))add({id:'coverage:'+id,name:c.name,field:'Contrat de remontée individuelle',kind:'qualification',cause:'Ce producteur ne fournit pas de rapport individuel contractuel ; la couverture de chaque champ reste à démontrer.',tools:c.tools,workflow:id})
   const w=status?.workflows?.[id]
   for(const [n,cause]of (w?.legacyReportCoverage??[]).entries())add({id:'legacy-coverage:'+id+':'+n,name:c.name,field:'Contrat de l’ancienne exécution',kind:'qualification',cause,tools:c.tools,workflow:id,runUrl:w.runUrl})
   if(status&&(!w||!Number.isFinite(Date.parse(w.completedAt))))add({id:'unobserved:'+id,name:c.name,field:'Exécution',kind:'monitoring',cause:'Aucune exécution terminée démontrée par ce bilan.',tools:c.tools,workflow:id})

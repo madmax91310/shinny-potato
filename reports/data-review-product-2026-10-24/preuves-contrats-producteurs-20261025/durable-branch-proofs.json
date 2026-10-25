@@ -1,0 +1,85 @@
+[
+  {
+    "workflow": "update-bitcoin-monthly.yml",
+    "runId": "40199371195",
+    "artifactId": 12601671349,
+    "file": "observation.json",
+    "rawSha256": "97364cea3c8bee0708e25f3df693267b2dbea9dde8e9ac4ae474f43b0c49e3eb",
+    "planSha256": "43aa016c96b4f3e9bf07b77fc6b62a81ac6f5d046f5354dff33f8ffba5642ca1",
+    "scopePlanVerified": true,
+    "counts": {
+      "succeeded": 1
+    },
+    "sourceChecked": 1,
+    "errors": []
+  },
+  {
+    "workflow": "update-bitcoin-monthly.yml",
+    "runId": "40199371195",
+    "artifactId": 12601671349,
+    "file": "derived-index-observation.json",
+    "rawSha256": "dca4a3d1ba15214476c560628fe313571932ca6473ff3207508834f545f6722d",
+    "planSha256": "c3c2f7f63ec6e86073d8dc1e890f92b631e5ae9d75b2c82396b606d6fded97ff",
+    "scopePlanVerified": true,
+    "counts": {
+      "not-attempted": 53,
+      "succeeded": 3
+    },
+    "sourceChecked": 0,
+    "errors": []
+  },
+  {
+    "workflow": "onboard-assets.yml",
+    "runId": "40199373063",
+    "artifactId": 12600824850,
+    "file": "qualified-exposures.json",
+    "rawSha256": "a8d00735db671e95c86472f0472fc0caa066b2629d8cf506a2632ac0bbe19ea3",
+    "planSha256": "32a568cce9b145dab05004ff5f1fe3eb92befdeb91a852fd8dc25ada9268f0fb",
+    "scopePlanVerified": true,
+    "counts": {
+      "succeeded": 1,
+      "not-attempted": 50
+    },
+    "sourceChecked": 1,
+    "errors": []
+  },
+  {
+    "workflow": "onboard-assets.yml",
+    "runId": "40199373063",
+    "artifactId": 12600824850,
+    "file": "etf-qualification.json",
+    "rawSha256": "6738a6ce599ab8b7a06b51f762bff70a566ae37eaeca4a51509096cec5e1859e",
+    "planSha256": "11344b0785e96f296f151bf1e9099b9ac3f4312a89ac978d4c87a943e27d6257",
+    "scopePlanVerified": true,
+    "counts": {},
+    "sourceChecked": 0,
+    "errors": []
+  },
+  {
+    "workflow": "onboard-assets.yml",
+    "runId": "40199373063",
+    "artifactId": 12600824850,
+    "file": "equity-qualification.json",
+    "rawSha256": "6f1d6d55e6b7faffac7124a98110f6a53bbb8761951082945f009696febf147b",
+    "planSha256": "7ea2a549be830909607682b28f76170ba599e66b13cacd129cd0820525c11206",
+    "scopePlanVerified": true,
+    "counts": {},
+    "sourceChecked": 0,
+    "errors": []
+  },
+  {
+    "workflow": "onboard-assets.yml",
+    "runId": "40199373063",
+    "artifactId": 12600824850,
+    "file": "dca-complete-holdings.json",
+    "rawSha256": "76467af405830378bd12d37a8191142661b1f8b655e23e0fe32417279bacd6d9",
+    "planSha256": "d391e7cf3eb3dd60e093c7358cfb831d0340554a4596567317cd96e9ff1010aa",
+    "scopePlanVerified": true,
+    "counts": {
+      "succeeded": 4,
+      "not-attempted": 173
+    },
+    "sourceChecked": 4,
+    "errors": []
+  }
+]
