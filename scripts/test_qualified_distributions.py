@@ -1,6 +1,7 @@
 import copy
 import datetime as dt
 import json
+import gzip
 import unittest
 from pathlib import Path
 from qualified_distributions import reconcile_adjustments
@@ -12,7 +13,8 @@ class OfficialDistribution(unittest.TestCase):
         full=json.loads((ROOT/'reports/wfns-dividend-2026-10-23/qualification-locale.json').read_text())
         # The active share now uses the independently qualified NAV route (#943).
         # Exercise the archived exact Yahoo source that this cash adjustment repairs.
-        self.source={k:copy.deepcopy(v)for k,v in full.items()if k not in ('points','anniversaryPoints','proofRows','rawResponse','distributionAdjustmentProof','checkedAt','periodEnd','responseSha256')}
+        archive=ROOT/'reports/donnees-consolidees-2026-10-24/preuves/ishares-reprise-20261025/original-exchange-quote-records.json.gz'
+        self.source=json.loads(gzip.decompress(archive.read_bytes()))['etf_financials']['configuration']
         self.data={k:v for k,v in full.items()if k!='distributionAdjustmentProof'}
         for point,row in zip(self.data['points'],self.data['proofRows']):
             row['value']=row.pop('providerAdjustedValue');row.pop('officialDividendFactor');point[1]=round(row['value'],self.source['precision'])

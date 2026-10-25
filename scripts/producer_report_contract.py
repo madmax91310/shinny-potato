@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 import uuid
 
 VERSION = 'producer-results-v1'
@@ -158,6 +159,13 @@ def normalize_contract(contract):
     return result
 
 
+def current_code_sha():
+    try:
+        value=subprocess.check_output(['git','rev-parse','HEAD'],cwd=Path(__file__).resolve().parents[1],text=True,stderr=subprocess.DEVNULL).strip()
+        return value if len(value)==40 else None
+    except (OSError,subprocess.CalledProcessError):return None
+
+
 def run(producer, main):
     """Ordinary entry point: snapshot configuration before any network work/output."""
     if '--help' in sys.argv or '-h' in sys.argv or '--validate-scope' in sys.argv:
@@ -168,7 +176,7 @@ def run(producer, main):
         return main()  # non-reporting library/dry-run entry; never qualified by this helper
     plan = build_plan(producer, sys.argv[1:], report_stem=path.stem, module=sys.modules[main.__module__])
     now = dt.datetime.now(dt.timezone.utc).isoformat()
-    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4())}
+    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4()), 'codeSha':current_code_sha()}
     plan['sha256'] = hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
     from data_automation import write_json_atomic
     # A SIGKILL still leaves the expected scope in the ordinary artifact path.
@@ -192,7 +200,7 @@ def bridge():
     """Small JSON bridge for JS producers, sharing validation and omission semantics."""
     value=json.load(sys.stdin)
     if value['action']=='prepare':
-        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()))
+        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()),codeSha=current_code_sha())
         plan['sha256']=hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
         print(json.dumps({'plan':plan,'placeholder':{'producerStarted':VERSION,'resultContract':finish({},plan,completed=False)['resultContract']}}))
     elif value['action']=='finish':
