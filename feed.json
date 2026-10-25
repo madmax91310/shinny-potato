@@ -5,61 +5,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T18:26:57.835Z"
+        "attemptedAt": "2026-10-25T18:28:16.153Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3,
-        "attemptedAt": "2026-10-25T18:26:57.836Z"
+        "attemptedAt": "2026-10-25T18:28:16.154Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T18:26:57.837Z"
+        "attemptedAt": "2026-10-25T18:28:16.155Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T18:26:57.837Z"
+        "attemptedAt": "2026-10-25T18:28:16.155Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-25T18:26:57.838Z"
+        "attemptedAt": "2026-10-25T18:28:16.156Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T18:26:57.839Z"
+        "attemptedAt": "2026-10-25T18:28:16.157Z"
       }
     ],
     "items": [
@@ -71,20 +71,34 @@
         "label": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
         "value": {
           "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
-          "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+          "summary": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
           "status": "Information sans nouveauté établie"
         },
         "sourceUrl": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
         "publicationId": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
         "publisher": "MoneyVox · actualités",
+        "publishedInstant": "2026-10-25T05:00:09+01:00",
         "publishedAt": "2026-10-25",
         "period": "2026-10-25",
-        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
         "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
-        "populationScope": "110 millions de cartes bancaires circulent en France.",
+        "populationScope": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
         "topic": "banques",
         "topicLabel": "Banques et services",
-        "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "summary": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
         "status": "Information sans nouveauté établie",
         "evidenceLevel": "journalistic",
         "sources": [
@@ -92,33 +106,13 @@
             "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
             "role": "journalistic",
             "label": "MoneyVox · actualités"
-          },
-          {
-            "url": "https://www.moneyvox.fr/banque-en-ligne/la-net-agence",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.moneyvox.fr/banque-en-ligne/monabanq",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.moneyvox.fr/banque-en-ligne/hello-bank",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.moneyvox.fr/banque-en-ligne/fortuneo",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
           }
         ],
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "7fca00e6d6f069f1548b0def2ab1136a3e2d2f33a6d8c4793f75a7def12f26ba",
-          "excerpt": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+          "sourceHash": "2e02d2bb2a66a2f66dc6cb0099a3fbb97baf918858fa866bfcbc59ce8e5c75dc",
+          "excerpt": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
         "discovery": true,
@@ -127,7 +121,8 @@
         "tool": null,
         "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant — Quels services changent pour les clients français, et à quelle date ?",
-        "backfill": true
+        "backfill": true,
+        "parserMigration": true
       },
       {
         "family": "pouvoir-achat",
@@ -642,21 +637,35 @@
         "label": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
         "value": {
           "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
-          "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+          "summary": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
           "status": "Annonce publiée",
           "effectiveAt": "2026-11-01"
         },
         "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
         "publicationId": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
         "publisher": "Médiateur national de l’énergie",
+        "publishedInstant": "2026-10-23T11:48:39+00:00",
         "publishedAt": "2026-10-23",
         "period": "2026-10-23",
-        "checkedAt": "2026-10-25T15:07:26.384Z",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
-        "populationScope": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires.",
+        "populationScope": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
         "topic": "energie",
         "topicLabel": "Électricité et gaz",
-        "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+        "summary": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
         "status": "Annonce publiée",
         "effectiveAt": "2026-11-01",
         "evidenceLevel": "official",
@@ -670,8 +679,8 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "026a61cae6e121aacc3ff79d2c9cb86a1f4296e3699efd1969f8f25d8992ae2b",
-          "excerpt": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+          "sourceHash": "889f7531e4e45761ed98098c068482062041273cd3400cda8fd8b47119519ca7",
+          "excerpt": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
         "discovery": true,
@@ -2153,7 +2162,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -2398,7 +2407,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -2432,7 +2441,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -3004,7 +3013,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -3076,6 +3085,82 @@
         "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026 — Quels services changent pour les clients français, et à quelle date ?",
         "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-847c8b778c3fb6f7d531",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens",
+        "value": {
+          "status": "Annonce publiée",
+          "facts": {
+            "amounts": [],
+            "pea": false,
+            "eligible": null,
+            "access": null
+          }
+        },
+        "sourceUrl": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+        "publicationId": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+        "publisher": "BNP Paribas · groupe",
+        "publishedInstant": "2026-09-29T14:46:28+02:00",
+        "publishedAt": "2026-09-29",
+        "period": "2026-09-29",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
+        "scope": "Annonce BNP Paribas · groupe · https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+        "populationScope": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "conditions": {
+          "clients": "La BEI apportera jusqu’à 350 millions d’euros sous forme de contre-garanties, permettant ainsi à BNP Paribas, qui s’engagera à hauteur d’un montant équivalent, de constituer un portefeuille de garanties bancaires (pour le compte de ses clients) pouvant atteindre 700 millions d’euros et destiné à soutenir de nouveaux investissements dans les réseaux énergétiques dans l’Union européenne. Fort d’un solide modèle diversifié et intégré, le Groupe accompagne l’ensemble de ses clients (particuliers, entrepreneurs, PME, grandes entreprises et institutionnels) pour les aider à réaliser leurs projets en leur proposant des services de financement, d’investissement, d’épargne ou de protection.",
+          "pays": "Le Groupe est historiquement implanté sur quatre marchés dans la zone euro : la France, l'Italie, la Belgique et le Luxembourg.",
+          "formule": null,
+          "duree": null,
+          "plafond": "La BEI apportera jusqu’à 350 millions d’euros sous forme de contre-garanties, permettant ainsi à BNP Paribas, qui s’engagera à hauteur d’un montant équivalent, de constituer un portefeuille de garanties bancaires (pour le compte de ses clients) pouvant atteindre 700 millions d’euros et destiné à soutenir de nouveaux investissements dans les réseaux énergétiques dans l’Union européenne. L’effet de levier généré par cette contre-garantie devrait stimuler jusqu’à 2,8 milliards d’euros d’investissements dans l’économie réelle.",
+          "versement": null,
+          "tauxPromotionnel": null,
+          "tauxNormal": null,
+          "frais": null
+        },
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux. BNP Paribas s’engage pour un montant équivalent Cette opération de partage de risque vise à accroitre la capacité de BNP Paribas de s’engager en faveur des fabricants européens de composants pour les réseaux électriques, et à leur permettre de répondre à la forte demande générée par la transition énergétique.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+            "role": "official",
+            "label": "BNP Paribas · groupe"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "46c9eb1d1855194aeefb47d2c1dbee4d374553e1ba2378765f1f7bcc6d05d690",
+          "excerpt": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux. BNP Paribas s’engage pour un montant équivalent Cette opération de partage de risque vise à accroitre la capacité de BNP Paribas de s’engager en faveur des fabricants européens de composants pour les réseaux électriques, et à leur permettre de répondre à la forte demande générée par la transition énergétique.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true,
+        "parserMigration": true
       },
       {
         "family": "pouvoir-achat",
@@ -4402,6 +4487,87 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-bd0f11912fa9ef439d6b",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Société Générale et Crédit Mutuel Arkéa signent un protocole d’accord en vue de la cession de l’activité Tenue de Compte-Conservation Retail de Société Générale Securities Services",
+        "value": {
+          "status": "Annonce publiée",
+          "facts": {
+            "amounts": [],
+            "pea": true,
+            "eligible": null,
+            "access": null
+          }
+        },
+        "sourceUrl": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+        "publicationId": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+        "publisher": "Société Générale · groupe",
+        "publishedInstant": "2026-03-17T12:00:00+00:00",
+        "publishedAt": "2026-03-17",
+        "period": "2026-03-17",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
+        "scope": "Annonce Société Générale · groupe · https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+        "populationScope": "Société Générale et Crédit Mutuel Arkéa annoncent la signature d’un protocole d’accord (Memorandum of Understanding) en vue de la cession de l’activité de délégation de Tenue de Compte-Conservation (TCC) dédiée au segment Banque de détail en France (Retail), opérée par Société Générale Securities Services.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "conditions": {
+          "clients": "A l’instar de ses pairs, SGSS se recentre ainsi sur la clientèle Wholesale : les investissements continus du Groupe en matière de services titres seront dès lors concentrés sur ces clients, permettant de les accompagner toujours mieux dans leur développement et maintenir une haute qualité de service qui fait de SGSS un acteur de référence en la matière.",
+          "pays": "Société Générale et Crédit Mutuel Arkéa annoncent la signature d’un protocole d’accord (Memorandum of Understanding) en vue de la cession de l’activité de délégation de Tenue de Compte-Conservation (TCC) dédiée au segment Banque de détail en France (Retail), opérée par Société Générale Securities Services. Dans le cadre de ce protocole, ProCapital deviendrait ainsi le prestataire de service métier titres du Réseau SG en France, de BoursoBank et de Societe Generale Private Banking en France.",
+          "formule": null,
+          "duree": null,
+          "plafond": null,
+          "versement": null,
+          "tauxPromotionnel": null,
+          "tauxNormal": null,
+          "frais": null
+        },
+        "topic": "frais",
+        "topicLabel": "Frais bancaires",
+        "summary": "Société Générale et Crédit Mutuel Arkéa annoncent la signature d’un protocole d’accord (Memorandum of Understanding) en vue de la cession de l’activité de délégation de Tenue de Compte-Conservation (TCC) dédiée au segment Banque de détail en France (Retail), opérée par Société Générale Securities Services. Cette activité recouvre notamment la gestion des opérations sur titres, des paiements de coupons et de dividendes, ou encore la tenue des positions des Compte-Titres Ordinaires (CTO) et des PEA (Plan d’Épargne en Actions). Crédit Mutuel Arkéa réaliserait cette acquisition via ProCapital, sa filiale spécialisée dans la Tenue de Compte-Conservation (TCC) et plus largement dans les services d",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+            "role": "official",
+            "label": "Société Générale · groupe"
+          },
+          {
+            "url": "https://www.societegenerale.com/sites/default/files/documents/2026-03/societe-generale-credit-mutuel-arkea-protocole-accord.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "fd69f7cb4c11987bceb75c49772c1709d6a7e157fe096bc1ebeaa993fc5a165d",
+          "excerpt": "Société Générale et Crédit Mutuel Arkéa annoncent la signature d’un protocole d’accord (Memorandum of Understanding) en vue de la cession de l’activité de délégation de Tenue de Compte-Conservation (TCC) dédiée au segment Banque de détail en France (Retail), opérée par Société Générale Securities Services. Cette activité recouvre notamment la gestion des opérations sur titres, des paiements de coupons et de dividendes, ou encore la tenue des positions des Compte-Titres Ordinaires (CTO) et des PEA (Plan d’Épargne en Actions). Crédit Mutuel Arkéa réaliserait cette acquisition via ProCapital, sa filiale spécialisée dans la Tenue de Compte-Conservation (TCC) et plus largement dans les services d",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Frais bancaires : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Société Générale et Crédit Mutuel Arkéa signent un protocole d’accord en vue de la cession de l’activité Tenue de Compte-Conservation Retail de Société Générale Securities Services — Quels clients paient ces frais ? Comparer les anciennes conditions seulement si elles sont documentées.",
+        "backfill": true,
+        "parserMigration": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-2ca466a38f74a4226898",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -4460,11 +4626,25 @@
         "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/2025-une-nouvelle-annee-record-pour-boursobank",
         "publicationId": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/2025-une-nouvelle-annee-record-pour-boursobank",
         "publisher": "BoursoBank Groupe · communiqués",
+        "publishedInstant": null,
         "publishedAt": "2026-02-06",
         "period": "2026-02-06",
-        "checkedAt": "2026-10-25T17:09:58.010Z",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/2025-une-nouvelle-annee-record-pour-boursobank",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
         "topic": "banques",
         "topicLabel": "Banques et services",
         "summary": "UN RECORD DE CONQU&Ecirc;TE : +1,9 M NOUVEAUX CLIENTS RECRUT&Eacute;S EN UN AN ET 8,8 MILLIONS DE CLIENTS FIN 2025 UN &Eacute;QUIPEMENT RECORD : +13,2 MDS€ D’ENCOURS G&Eacute;R&Eacute;S EN 2025 &Agrave; 95,5 MDS€ UN R&Eacute;SULTAT NET POSITIF POUR LA 3&Egrave;ME ANN&Eacute;E CONS&Eacute;CUTIVE UNE OFFRE COMPL&Egrave;TE ET UNIQUE 100 % MOBILE : 58 PRODUITS ET 1 000 FONCTIONNALIT&Eacute;S POUR R&Eacute;PONDRE &Agrave; TOUS LES BESOINS DE TOUS LES CLIENTS DES CLIENTS PLEINEMENT ENGAG&Eacute;S : PR&Egrave;S DE 11 K€ EN MOYENNE D’ENCOURS G&Eacute;R&Eacute;S PAR CLIENT, 85 % DE CLIENTS SONT ACTIFS, 53 % UTILISENT BOURSOBANK COMME BANQUE PRINCIPALE L’APP BANCAIRE NUM&Eacute;RO 1 EN FRANCE 1 R&Eacu",
@@ -4480,7 +4660,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "e4aa8e5cd2358de204294a91148e65f095cab56f1568e8238e244c3cea13cd4f",
+          "sourceHash": "55098729406882ec92bfe135f67e48065c73d705d5c4a30718c94e0d29348e09",
           "excerpt": "UN RECORD DE CONQU&Ecirc;TE : +1,9 M NOUVEAUX CLIENTS RECRUT&Eacute;S EN UN AN ET 8,8 MILLIONS DE CLIENTS FIN 2025 UN &Eacute;QUIPEMENT RECORD : +13,2 MDS€ D’ENCOURS G&Eacute;R&Eacute;S EN 2025 &Agrave; 95,5 MDS€ UN R&Eacute;SULTAT NET POSITIF POUR LA 3&Egrave;ME ANN&Eacute;E CONS&Eacute;CUTIVE UNE OFFRE COMPL&Egrave;TE ET UNIQUE 100 % MOBILE : 58 PRODUITS ET 1 000 FONCTIONNALIT&Eacute;S POUR R&Eacute;PONDRE &Agrave; TOUS LES BESOINS DE TOUS LES CLIENTS DES CLIENTS PLEINEMENT ENGAG&Eacute;S : PR&Egrave;S DE 11 K€ EN MOYENNE D’ENCOURS G&Eacute;R&Eacute;S PAR CLIENT, 85 % DE CLIENTS SONT ACTIFS, 53 % UTILISENT BOURSOBANK COMME BANQUE PRINCIPALE L’APP BANCAIRE NUM&Eacute;RO 1 EN FRANCE 1 R&Eacu",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -4506,11 +4686,25 @@
         "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-renforce-lattractivite-de-son-offre-assurance-vie-et-de-son-plan-depargne-retraite-avec-des-rendements-2025-solides-20260128",
         "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-renforce-lattractivite-de-son-offre-assurance-vie-et-de-son-plan-depargne-retraite-avec-des-rendements-2025-solides-20260128",
         "publisher": "Bourse Direct",
+        "publishedInstant": "2026-01-28T09:30:00+00:00",
         "publishedAt": "2026-01-28",
         "period": "2026-01-28",
-        "checkedAt": "2026-10-25T17:09:58.010Z",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-renforce-lattractivite-de-son-offre-assurance-vie-et-de-son-plan-depargne-retraite-avec-des-rendements-2025-solides-20260128",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
         "topic": "epargne",
         "topicLabel": "Épargne et placements",
         "summary": "« Notre ambition est de rendre l’épargne financière accessible au plus grand nombre, sans compromis sur la transparence, les frais et la qualité de gestion. » explique Maxime Poque, Directeur Épargne de Bourse Direct. Bourse Direct annonce, pour 2025, un taux de participation aux bénéfices de 3% nets 1 sur le fonds en euros Netissima disponible au sein du contrat d’assurance vie Bourse Direct Horizon . Ce rendement se compare favorablement au taux moyen prévisionnel du marché estimé à 2,65%2.",
@@ -4521,11 +4715,6 @@
             "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-renforce-lattractivite-de-son-offre-assurance-vie-et-de-son-plan-depargne-retraite-avec-des-rendements-2025-solides-20260128",
             "role": "official",
             "label": "Bourse Direct"
-          },
-          {
-            "url": "https://groupe.boursedirect.fr/categorie/actualites",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
           },
           {
             "url": "https://www.boursedirect.fr/fr/placement/epargne",
@@ -6166,6 +6355,86 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-3fbdef40bdbb77513d73",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L'AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés",
+        "value": {
+          "title": "L'AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés",
+          "summary": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-3",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-3",
+        "publisher": "AMF · communiqués",
+        "publishedInstant": "2023-10-02T11:31:31+02:00",
+        "publishedAt": "2023-10-02",
+        "period": "2023-10-02",
+        "checkedAt": "2026-10-25T18:28:16.158Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-3",
+        "populationScope": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "household",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-3",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/71288/fr/L%27AMF_met_en_garde_le_public_contre_plusieurs_acteurs_qui_proposent_d%27investir_dans_des_biens_divers_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://geco.amf-france.org/Bio/BIO/BIO_PDFS/LISTE_PRODUITS_BIENS_DIVERS/produits_biens_divers.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://protectepargne.amf-france.org/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "33752625bf6e3b8e1ef2e2fa1fb5449da200356dbb2a43c95df39ce788955320",
+          "excerpt": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L'AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-8d51335fcb104e5d67e6",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -6372,9 +6641,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T18:27:18.331Z",
+  "checkedAt": "2026-10-25T18:29:12.360Z",
   "sourceRevision": "30b71f6bcec7182b9503a0594169fed7ed2e8d6f",
-  "observationCount": 7642,
+  "observationCount": 7645,
   "coverage": {
     "etf": 379,
     "indices": 52,
@@ -6384,9 +6653,9 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 135,
-    "pouvoir-achat": 92
+    "pouvoir-achat": 95
   },
-  "newSignalCount": 0,
+  "newSignalCount": 4,
   "errors": [
     {
       "family": "pouvoir-achat",
@@ -6490,6 +6759,420 @@
     }
   ],
   "events": [
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "Médiateur national de l’énergie",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "evidence": {
+        "sourceHash": "889f7531e4e45761ed98098c068482062041273cd3400cda8fd8b47119519ca7",
+        "excerpt": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "referencePeriod": null,
+      "populationScope": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+          "role": "official",
+          "label": "Médiateur national de l’énergie"
+        }
+      ],
+      "effectiveAt": "2026-11-01",
+      "backfill": true,
+      "id": "2fe00bc9e7d6e4862fdbdedc",
+      "family": "pouvoir-achat",
+      "entity": "publication-11d58f0ac98441c0a64e",
+      "label": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T18:29:12.360Z",
+      "before": {
+        "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+        "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+        "status": "Annonce publiée",
+        "effectiveAt": "2026-11-01"
+      },
+      "after": {
+        "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+        "summary": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+        "status": "Annonce publiée",
+        "effectiveAt": "2026-11-01"
+      },
+      "beforeText": "title : Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 · summary : À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité. · status : Annonce publiée · effectiveAt : 2026-11-01",
+      "afterText": "title : Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 · summary : Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC. · status : Annonce publiée · effectiveAt : 2026-11-01",
+      "beforePeriod": "2026-10-23",
+      "period": "2026-10-23",
+      "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "unit": "",
+      "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "previousSourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "checkedAt": "2026-10-25T18:28:16.158Z",
+      "tool": null,
+      "angle": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026\n\nHeures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.\n\nPublication : 2026-10-23 · Annonce publiée\nApplication annoncée : 2026-11-01\nHeures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.\n\nSource : https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC.",
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Heures pleines / heures creuses : découvrez le fonctionnement de cette option, ses avantages, les horaires et comment choisir entre Base et HP/HC."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "banques",
+      "topicLabel": "Banques et services",
+      "publisher": "MoneyVox · actualités",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
+      "publishedAt": "2026-10-25",
+      "publicationId": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "evidence": {
+        "sourceHash": "2e02d2bb2a66a2f66dc6cb0099a3fbb97baf918858fa866bfcbc59ce8e5c75dc",
+        "excerpt": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "referencePeriod": null,
+      "populationScope": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        }
+      ],
+      "backfill": true,
+      "migratedEditorial": true,
+      "id": "7e84868662757f1f9bc98361",
+      "family": "pouvoir-achat",
+      "entity": "publication-59c19c5596e8fff7b843",
+      "label": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T18:29:12.360Z",
+      "before": {
+        "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+        "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "status": "Information sans nouveauté établie"
+      },
+      "after": {
+        "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+        "summary": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "title : Les 16 chiffres de votre carte bancaire cachent un secret étonnant · summary : 110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. · status : Information sans nouveauté établie",
+      "afterText": "title : Les 16 chiffres de votre carte bancaire cachent un secret étonnant · summary : Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle . · status : Information sans nouveauté établie",
+      "beforePeriod": "2026-10-25",
+      "period": "2026-10-25",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "previousSourceUrl": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "checkedAt": "2026-10-25T18:28:16.158Z",
+      "tool": null,
+      "angle": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant — Quels services changent pour les clients français, et à quelle date ?",
+      "draft": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant\n\nSans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .\n\nPublication : 2026-10-25 · Information sans nouveauté établie\nSans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.\n\nSource : https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 91,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Avant/après conservé avec périmètre"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-25"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.",
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres."
+          ]
+        },
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "banques",
+      "topicLabel": "Banques et services",
+      "publisher": "BNP Paribas · groupe",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux. BNP Paribas s’engage pour un montant équivalent Cette opération de partage de risque vise à accroitre la capacité de BNP Paribas de s’engager en faveur des fabricants européens de composants pour les réseaux électriques, et à leur permettre de répondre à la forte demande générée par la transition énergétique.",
+      "publishedAt": "2026-09-29",
+      "publicationId": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+      "evidence": {
+        "sourceHash": "46c9eb1d1855194aeefb47d2c1dbee4d374553e1ba2378765f1f7bcc6d05d690",
+        "excerpt": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux. BNP Paribas s’engage pour un montant équivalent Cette opération de partage de risque vise à accroitre la capacité de BNP Paribas de s’engager en faveur des fabricants européens de composants pour les réseaux électriques, et à leur permettre de répondre à la forte demande générée par la transition énergétique.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "conditions": {
+        "clients": "La BEI apportera jusqu’à 350 millions d’euros sous forme de contre-garanties, permettant ainsi à BNP Paribas, qui s’engagera à hauteur d’un montant équivalent, de constituer un portefeuille de garanties bancaires (pour le compte de ses clients) pouvant atteindre 700 millions d’euros et destiné à soutenir de nouveaux investissements dans les réseaux énergétiques dans l’Union européenne. Fort d’un solide modèle diversifié et intégré, le Groupe accompagne l’ensemble de ses clients (particuliers, entrepreneurs, PME, grandes entreprises et institutionnels) pour les aider à réaliser leurs projets en leur proposant des services de financement, d’investissement, d’épargne ou de protection.",
+        "pays": "Le Groupe est historiquement implanté sur quatre marchés dans la zone euro : la France, l'Italie, la Belgique et le Luxembourg.",
+        "formule": null,
+        "duree": null,
+        "plafond": "La BEI apportera jusqu’à 350 millions d’euros sous forme de contre-garanties, permettant ainsi à BNP Paribas, qui s’engagera à hauteur d’un montant équivalent, de constituer un portefeuille de garanties bancaires (pour le compte de ses clients) pouvant atteindre 700 millions d’euros et destiné à soutenir de nouveaux investissements dans les réseaux énergétiques dans l’Union européenne. L’effet de levier généré par cette contre-garantie devrait stimuler jusqu’à 2,8 milliards d’euros d’investissements dans l’économie réelle.",
+        "versement": null,
+        "tauxPromotionnel": null,
+        "tauxNormal": null,
+        "frais": null
+      },
+      "referencePeriod": null,
+      "populationScope": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+          "role": "official",
+          "label": "BNP Paribas · groupe"
+        }
+      ],
+      "backfill": true,
+      "migratedEditorial": true,
+      "id": "bb93a1c86d73b5299430f898",
+      "family": "pouvoir-achat",
+      "entity": "publication-847c8b778c3fb6f7d531",
+      "label": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T18:29:12.360Z",
+      "before": null,
+      "after": {
+        "status": "Annonce publiée",
+        "facts": {
+          "amounts": [],
+          "pea": false,
+          "eligible": null,
+          "access": null
+        }
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "status : Annonce publiée · facts : amounts :  · pea : Non · eligible : null · access : null",
+      "beforePeriod": null,
+      "period": "2026-09-29",
+      "scope": "Annonce BNP Paribas · groupe · https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+      "unit": "",
+      "sourceUrl": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T18:28:16.158Z",
+      "tool": null,
+      "angle": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens — Quels services changent pour les clients français, et à quelle date ?",
+      "draft": "La BEI et BNP Paribas mobilisent 700 millions d’euros de garanties pour soutenir les réseaux énergétiques européens\n\nLa banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux. BNP Paribas s’engage pour un montant équivalent Cette opération de partage de risque vise à accroitre la capacité de BNP Paribas de s’engager en faveur des fabricants européens de composants pour les réseaux électriques, et à leur permettre de répondre à la forte demande générée par la transition énergétique.\n\nPublication : 2026-09-29 · Annonce publiée\nLa banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux.\n\nSource : https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+      "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 77,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-09-29"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux.",
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "La banque de l’Union européenne met à disposition 350 millions d’euros de garantie pour constituer un portefeuille de financements destinés aux fabricants de composants pour les réseaux."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "banques",
       "topicLabel": "Banques et services",
@@ -11684,26 +12367,70 @@
     },
     {
       "launchDetails": {},
-      "products": [],
+      "products": [
+        {
+          "name": "Amundi World Equity Enhanced Active UCITS ETF Acc",
+          "isin": "IE000SUZX5N6",
+          "instrumentType": "ETF UCITS",
+          "fees": "0.25%",
+          "feesBasis": "Frais de gestion et coûts administratifs cités ; ensemble des coûts à vérifier dans le DIC",
+          "index": null,
+          "management": null,
+          "distribution": null,
+          "pea": null,
+          "tradingDate": null,
+          "availability": null,
+          "evidence": "Nom de l’ETF                  Code ISIN               Tickers                Frais de gestion* ·     Amundi World Equity IE000SUZX5N6                      EQAW GY                0.25%     Enhanced Active     UCITS ETF Acc"
+        },
+        {
+          "name": "Amundi Europe Equity Enhanced Active UCITS ETF Acc",
+          "isin": "IE000L1NIQD8",
+          "instrumentType": "ETF UCITS",
+          "fees": "0.25%",
+          "feesBasis": "Frais de gestion et coûts administratifs cités ; ensemble des coûts à vérifier dans le DIC",
+          "index": null,
+          "management": null,
+          "distribution": null,
+          "pea": null,
+          "tradingDate": null,
+          "availability": null,
+          "evidence": "Nom de l’ETF                  Code ISIN               Tickers                Frais de gestion* ·     Amundi Europe Equity IE000L1NIQD8                     EQAE GY                0.25%     Enhanced Active     UCITS ETF Acc"
+        },
+        {
+          "name": "Amundi Eurozone Equity Enhanced Active UCITS ETF Acc",
+          "isin": "IE000I0VZEH9",
+          "instrumentType": "ETF UCITS",
+          "fees": "0.25%",
+          "feesBasis": "Frais de gestion et coûts administratifs cités ; ensemble des coûts à vérifier dans le DIC",
+          "index": null,
+          "management": null,
+          "distribution": null,
+          "pea": null,
+          "tradingDate": null,
+          "availability": null,
+          "evidence": "Nom de l’ETF                  Code ISIN               Tickers                Frais de gestion* ·     Amundi Eurozone Equity IE000I0VZEH9                   EQAZ GY                0.25%     Enhanced Active     UCITS ETF Acc"
+        }
+      ],
       "announcementEvidence": {
         "type": "announcement",
         "stage": "announced",
         "label": "Nouvelle offre annoncée par l’émetteur",
-        "evidence": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions"
+        "evidence": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
+        "bodyEvidence": "Amundi, premier gestionnaire d'actifs européen et leader européen des ETF [1] , annonce le lancement de ses trois premiers ETF actifs UCITS, conçus pour offrir aux investisseurs une exposition aux marchés actions Monde, Europe et Zone Euro dans un format ETF simple et transparent. Cotés sur Xetra, ces nouvelles solutions s'appuient sur l'expertise de longue date d'Amundi à la fois en matière de gestion active actions et d'ETF."
       },
       "calendarEvidence": null,
       "evidence": {
         "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
-        "sourceHash": "c89883f0f6eecdc64fb48ff9012299b29f16a01bf85a99153ba3ff1a22bb1b93"
+        "sourceHash": "3f4216b17fe67d1685a01c279e89ffe825556333259c89b67d91a9564b42fc8a"
       },
       "publicationId": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
       "publishedAt": "2026-10-23",
       "publisher": "Crédit Agricole · groupe et réseaux",
       "backfill": true,
       "documentUrl": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
-      "documentCheckedAt": "2026-10-25T17:38:16.005Z",
-      "documentHash": "c89883f0f6eecdc64fb48ff9012299b29f16a01bf85a99153ba3ff1a22bb1b93",
+      "documentCheckedAt": "2026-10-25T18:28:16.158Z",
+      "documentHash": "3f4216b17fe67d1685a01c279e89ffe825556333259c89b67d91a9564b42fc8a",
       "announcedProductCount": 3,
       "id": "38e95bb4164f02905c34c1b4",
       "family": "etf",
@@ -11730,7 +12457,7 @@
       "draft": "Une nouvelle donnée sourcée est disponible : Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions.\n\nAmundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions\nPérimètre : Publication officielle · Crédit Agricole · groupe et réseaux\nObservation actuelle : 2026-10-23\n\nComparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.",
       "reason": "Communiqué officiel daté, noms et caractéristiques limités aux associations prouvées.",
       "editorial": {
-        "score": 46,
+        "score": 57,
         "criteria": [
           {
             "key": "audience",
@@ -11755,10 +12482,10 @@
           },
           {
             "key": "comparison",
-            "points": 0,
+            "points": 11,
             "maximum": 15,
-            "unknown": true,
-            "reason": "Comparaison non documentée"
+            "unknown": false,
+            "reason": "Expositions nommées dans le communiqué"
           },
           {
             "key": "freshness",
@@ -11802,7 +12529,35 @@
           "sourceHash": "577f197aba297a76697c561b947f7f5ba94bbca08bb4cd2f1af368debf3991b0"
         }
       ],
-      "eventKey": "[\"etf\",\"https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions\",\"2026-10-23\"]"
+      "eventKey": "[\"etf\",\"https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions\",\"2026-10-23\"]",
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 3,
+        "parsedRows": 3,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      },
+      "dossierKey": "[\"etf\",\"https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions\",\"2026-10-23\"]",
+      "supportingCalendarEvidence": null,
+      "migratedEditorial": true,
+      "evidenceLevel": "official",
+      "relatedStages": [
+        {
+          "id": "52f82e309b328bce71209601",
+          "publicationId": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+          "publishedAt": "2026-10-21",
+          "type": "trading",
+          "sourceUrl": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+          "products": [
+            "Amundi World Equity Enhanced Active UCITS ETF Acc",
+            "Amundi Europe Equity Enhanced Active UCITS ETF Acc",
+            "Amundi Eurozone Equity Enhanced Active UCITS ETF Acc"
+          ],
+          "proof": "Gamme complète nommée, lancement explicite et cotation documentée ; étapes conservées"
+        }
+      ]
     },
     {
       "topic": "banques",
@@ -12882,20 +13637,22 @@
         "type": "launch",
         "stage": "launched",
         "label": "Lancement déclaré par l’émetteur",
-        "evidence": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform"
+        "evidence": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform",
+        "bodyEvidence": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, is delighted to announce the launch of HAN Nasdaq-100 Daily Covered Call UCITS ETF (ticker: QQQI) ."
       },
       "calendarEvidence": null,
       "evidence": {
+        "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, is delighted to announce the launch of HAN Nasdaq-100 Daily Covered Call UCITS ETF (ticker: QQQI) .",
-        "sourceHash": "732fed66a26fd9c30b93437416bb600e5bd9a46ec6443a8ac338dc6f1e3f05a5"
+        "sourceHash": "0d5422ebd79a0cb50951364a11f73dd16b92fd384bf7359a6888e0440a3bcfbb"
       },
       "publicationId": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
       "publishedAt": "2026-09-24",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
-      "documentCheckedAt": "2026-10-25T07:12:40.300Z",
-      "documentHash": "732fed66a26fd9c30b93437416bb600e5bd9a46ec6443a8ac338dc6f1e3f05a5",
+      "documentCheckedAt": "2026-10-25T18:28:16.158Z",
+      "documentHash": "0d5422ebd79a0cb50951364a11f73dd16b92fd384bf7359a6888e0440a3bcfbb",
       "id": "0a2660aa64c0b94119760af4",
       "family": "etf",
       "entity": "publication-e18e138c2559d0cb01da",
@@ -12986,7 +13743,18 @@
           "role": "official",
           "label": "HANetf · communiqués UCITS"
         }
-      ]
+      ],
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      },
+      "migratedEditorial": true,
+      "evidenceLevel": "official"
     },
     {
       "topic": "banques",
@@ -13758,17 +14526,17 @@
       "publisher": "MoneyVox · actualités",
       "status": "Information sans nouveauté établie",
       "statusEvidence": "",
-      "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+      "summary": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
       "publishedAt": "2026-10-25",
       "publicationId": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
       "evidence": {
-        "sourceHash": "7fca00e6d6f069f1548b0def2ab1136a3e2d2f33a6d8c4793f75a7def12f26ba",
-        "excerpt": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "sourceHash": "2e02d2bb2a66a2f66dc6cb0099a3fbb97baf918858fa866bfcbc59ce8e5c75dc",
+        "excerpt": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. Dans le détail, ces inscriptions suivent une formule mathématique connue sous le nom d' algorithme de Luhn . Un système de chiffrage sophistiqué, grâce auquel il est possible de vérifier les numéros de votre CB via une clé de contrôle .",
         "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
       },
       "factType": "consumer-announcement",
       "referencePeriod": null,
-      "populationScope": "110 millions de cartes bancaires circulent en France.",
+      "populationScope": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.",
       "evidenceLevel": "journalistic",
       "sources": [
         {
@@ -13870,12 +14638,12 @@
           "version": 1,
           "nature": "documented-announcement",
           "label": "Annonce documentée",
-          "population": "110 millions de cartes bancaires circulent en France.",
+          "population": "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres.",
           "audience": "unknown",
           "impact": "documented",
           "reasons": [
             "Annonce documentée",
-            "110 millions de cartes bancaires circulent en France."
+            "Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres."
           ]
         },
         "reliability": {
@@ -13888,6 +14656,31 @@
         "type": "consumer-announcement",
         "priority": false,
         "major": false
+      },
+      "migratedEditorial": true,
+      "enrichmentHistory": [
+        {
+          "publishedAt": "2026-10-25",
+          "factType": "consumer-announcement",
+          "evidence": {
+            "sourceHash": "7fca00e6d6f069f1548b0def2ab1136a3e2d2f33a6d8c4793f75a7def12f26ba",
+            "excerpt": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+            "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+          },
+          "enrichedAt": "2026-10-25T18:29:12.360Z"
+        }
+      ],
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
       }
     },
     {
@@ -20052,7 +20845,20 @@
         "reason": null
       },
       "migratedEditorial": true,
-      "evidenceLevel": "official"
+      "evidenceLevel": "official",
+      "productDossiers": [
+        {
+          "key": "[\"etf\",\"https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions\",\"2026-10-23\"]",
+          "publicationId": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
+          "names": [
+            "Amundi World Equity Enhanced Active UCITS ETF Acc",
+            "Amundi Europe Equity Enhanced Active UCITS ETF Acc",
+            "Amundi Eurozone Equity Enhanced Active UCITS ETF Acc"
+          ],
+          "sourceHash": "3f4216b17fe67d1685a01c279e89ffe825556333259c89b67d91a9564b42fc8a",
+          "proof": "Gamme complète nommée, lancement explicite et cotation documentée ; étapes conservées"
+        }
+      ]
     },
     {
       "housing": {
@@ -23523,6 +24329,112 @@
       }
     },
     {
+      "evidence": {
+        "sourceHash": "0b6e09d6556c913d4f4f771066c25323b815714ce5f7065fa2c34c859fb43c41",
+        "excerpt": "Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent.",
+        "method": "Paragraphes du chapeau officiel, sans réécriture générative"
+      },
+      "publicationId": "https://www.insee.fr/fr/statistiques/9056956",
+      "publishedAt": "2026-09-30",
+      "referencePeriod": "2026-09",
+      "summary": "Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent.",
+      "publisher": "INSEE · conjoncture et inflation",
+      "factType": "source-revision",
+      "backfill": true,
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9056956",
+          "role": "official",
+          "label": "INSEE · conjoncture et inflation"
+        }
+      ],
+      "id": "c1136a51179bb014531c159d",
+      "family": "economie",
+      "entity": "publication-0f6c882d9f2a7441bdd9",
+      "label": "En septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an",
+      "field": "publication",
+      "fieldLabel": "Publication officielle",
+      "title": "En septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an : publication officielle, Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 octobre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août. → Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent.",
+      "kind": "change",
+      "priority": "high",
+      "detectedAt": "2026-10-25T18:29:12.360Z",
+      "before": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 octobre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.",
+      "after": "Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent.",
+      "beforeText": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 octobre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.",
+      "afterText": "Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent.",
+      "beforePeriod": "2026-09-30",
+      "period": "2026-09-30",
+      "scope": "Publication officielle · INSEE · conjoncture et inflation",
+      "unit": "",
+      "sourceUrl": "https://www.insee.fr/fr/statistiques/9056956",
+      "previousSourceUrl": "https://www.insee.fr/fr/statistiques/9056956",
+      "checkedAt": "2026-10-25T18:28:16.158Z",
+      "angle": "Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "draft": "Publication officielle : Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 octobre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août. → Sur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\n\nSur un an, l’indice des prix à la consommation harmonisé augmenterait de 3,4 % en septembre 2026, après +2,6 % en août. Sur un mois, il baisserait de 0,4 %, après +0,7 % le mois précédent..\n\nEn septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an\nPérimètre : Publication officielle · INSEE · conjoncture et inflation\nAncienne observation : 2026-09-30 · Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 octobre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 3,0 % en septembre 2026, après +2,4 % en août. Les prix de l’énergie accéléreraient de nouveau, tirés par ceux des produits pétroliers et du gaz. L’inflation des services augmenterait légèrement, notamment parce que la baisse saisonnière des prix des services d’hébergement et de transport serait moins marquée qu’en septembre 2025. Les prix de l’alimentation accéléreraient également, notamment ceux des produits frais, tandis que la baisse de ceux des produits manufacturés s’atténuerait. Les prix du tabac augmenteraient sur un an au même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation se replieraient de 0,3 %, après +0,7 % en août. Cette baisse s’expliquerait par le recul saisonnier des prix des services après la période estivale, principalement dans les services de transport et les services d’hébergement. Mais elle serait en bonne partie compensée par une nouvelle augmentation des prix de l’énergie, principalement de ceux des produits pétroliers et du gaz. Les prix des produits manufacturés augmenteraient comme chaque année en septembre. Ceux de l’alimentation augmenteraient pour le troisième mois consécutif, une nouvelle fois tirés par ceux des produits frais. Les prix du tabac seraient stables par rapport à août.\nObservation actuelle : 2026-09-30\n\nPartir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "reason": "Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.",
+      "editorial": {
+        "score": 70,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 0,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Révision sans nouvelle période"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-09-30"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "secondary",
+        "type": "source-revision",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
       "exposureKey": "MSCI World Communication Services Advanced Select 20 35 Capped Index",
       "id": "1d2adc7466425fa0cba1db15",
       "family": "etf",
@@ -24954,15 +25866,15 @@
       "evidence": {
         "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "",
-        "sourceHash": "664429fe8bb5de846839b4b34c3ddc4f383f69dc7a8814ab1622272152424739"
+        "sourceHash": "4c7a1ba1937be446936a31e102445737e80c59e9d30167e9336f3a32717d2fc0"
       },
       "publicationId": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-september-2026",
       "publishedAt": "2026-10-08",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-september-2026",
-      "documentCheckedAt": "2026-10-25T12:34:00.738Z",
-      "documentHash": "664429fe8bb5de846839b4b34c3ddc4f383f69dc7a8814ab1622272152424739",
+      "documentCheckedAt": "2026-10-25T18:28:16.158Z",
+      "documentHash": "4c7a1ba1937be446936a31e102445737e80c59e9d30167e9336f3a32717d2fc0",
       "announcedProductCount": null,
       "evidenceLevel": "official",
       "sources": [
@@ -25055,7 +25967,17 @@
         "type": "product-announcement",
         "priority": false,
         "major": false
-      }
+      },
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      },
+      "migratedEditorial": true
     },
     {
       "launchDetails": {},
@@ -25065,15 +25987,15 @@
       "evidence": {
         "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "",
-        "sourceHash": "26e562f819d39366e3d53abbca490491d69fe7db3f1c5b057fb7f72821f33e4b"
+        "sourceHash": "4e53a1ea3552c257e75588fdd9ad95f26ca997fd508bfad9d195f51147c5e3c1"
       },
       "publicationId": "https://hanetf.com/press-releases/human-rights-screened-high-dividend-etf-surpasses-100-million-aum-in-first-four-months",
       "publishedAt": "2026-09-21",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/human-rights-screened-high-dividend-etf-surpasses-100-million-aum-in-first-four-months",
-      "documentCheckedAt": "2026-10-25T11:47:06.163Z",
-      "documentHash": "26e562f819d39366e3d53abbca490491d69fe7db3f1c5b057fb7f72821f33e4b",
+      "documentCheckedAt": "2026-10-25T18:28:16.158Z",
+      "documentHash": "4e53a1ea3552c257e75588fdd9ad95f26ca997fd508bfad9d195f51147c5e3c1",
       "announcedProductCount": null,
       "evidenceLevel": "official",
       "sources": [
@@ -25166,7 +26088,17 @@
         "type": "product-announcement",
         "priority": false,
         "major": false
-      }
+      },
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      },
+      "migratedEditorial": true
     },
     {
       "launchDetails": {},
@@ -25174,16 +26106,17 @@
       "announcementEvidence": null,
       "calendarEvidence": null,
       "evidence": {
+        "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "HANetf has a strong track record in crypto ETCs, having previously partnered on the launch of Bitwise Physical Bitcoin ETP (ticker: BTCE) in June 2020, the world’s first centrally cleared Bitcoin ETP. HANetf also launched Europe’s first leveraged and short cryptocurrency ETPs in Europe last year.",
-        "sourceHash": "9f018dc29506db978e42563357bd31f00c846ce970ee15e20adbdd0a60f7bdcb"
+        "sourceHash": "e0fb870afe5dac54f58fb671a070dad25a14ee7d6e842876a2a32abdec3a094b"
       },
       "publicationId": "https://hanetf.com/press-releases/hanetf-launches-worlds-first-currency-hedged-bitcoin-etcs-allowing-investors-to-gain-bitcoin-exposure-without-us-dollar-risk",
       "publishedAt": "2026-09-30",
       "publisher": "HANetf · communiqués UCITS",
       "backfill": true,
       "documentUrl": "https://hanetf.com/press-releases/hanetf-launches-worlds-first-currency-hedged-bitcoin-etcs-allowing-investors-to-gain-bitcoin-exposure-without-us-dollar-risk",
-      "documentCheckedAt": "2026-10-25T00:25:11.059Z",
-      "documentHash": "9f018dc29506db978e42563357bd31f00c846ce970ee15e20adbdd0a60f7bdcb",
+      "documentCheckedAt": "2026-10-25T18:28:16.158Z",
+      "documentHash": "e0fb870afe5dac54f58fb671a070dad25a14ee7d6e842876a2a32abdec3a094b",
       "id": "e1ee1e34fdd84869d6e7c8a6",
       "family": "etf",
       "entity": "publication-4472115ab15912eaf499",
@@ -25274,7 +26207,18 @@
           "role": "official",
           "label": "HANetf · communiqués UCITS"
         }
-      ]
+      ],
+      "extraction": {
+        "version": 3,
+        "status": "complete",
+        "relevantRows": 0,
+        "parsedRows": 0,
+        "unparsedRows": [],
+        "excludedRows": [],
+        "reason": null
+      },
+      "migratedEditorial": true,
+      "evidenceLevel": "official"
     },
     {
       "launchDetails": {},
@@ -86519,7 +87463,7 @@
       "status": "Entrée en vigueur annoncée",
       "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
       "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-25T15:07:26.384Z",
+      "checkedAt": "2026-10-25T18:28:16.158Z",
       "note": "Date annoncée ; ne prouve pas une nouvelle publication ni son application effective."
     },
     {
@@ -86567,7 +87511,7 @@
       "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T17:09:58.022Z",
+      "attemptedAt": "2026-10-25T18:28:41.659Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"e9424cfe8a8eb988f5bc87f2856d4c00\"",
@@ -86593,7 +87537,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T17:09:58.023Z",
+      "attemptedAt": "2026-10-25T18:28:41.922Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -86619,7 +87563,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T17:09:58.023Z",
+      "attemptedAt": "2026-10-25T18:28:41.922Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -86655,14 +87599,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T20:17:37.849Z",
       "queue": {
-        "pending": 6,
-        "done": 0,
+        "pending": 5,
+        "done": 1,
         "error": 0,
         "rejected": 0,
         "partial": 0
       },
-      "extractionStatus": "pending",
-      "silentBaselines": 0,
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
       "lastExtractionSuccessAt": null
     },
     {
@@ -86681,16 +87625,170 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T19:17:37.849Z",
       "queue": {
-        "pending": 33,
+        "pending": 32,
         "done": 18,
         "error": 0,
-        "rejected": 86,
+        "rejected": 87,
         "partial": 0
       },
       "extractionStatus": "validated",
       "silentBaselines": 0,
       "lastExtractionSuccessAt": "2026-10-25T18:17:37.849Z",
       "discoveryVersion": 3
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T18:26:57.854Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 5,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T18:26:57.856Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 0,
+        "done": 8,
+        "error": 0,
+        "rejected": 2,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "silentBaselines": 0
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T18:26:57.856Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 8,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T17:09:58.010Z",
+      "silentBaselines": 0
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T18:26:57.857Z",
+      "discovered": 196,
+      "etag": "\"1792948044-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 17:07:24 GMT",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 129,
+        "done": 29,
+        "error": 1,
+        "rejected": 41,
+        "partial": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T18:26:57.858Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 0,
+        "done": 29,
+        "error": 0,
+        "rejected": 44,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T18:26:57.859Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T18:56:57.840Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 7,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
     },
     {
       "id": "bnp-bank",
@@ -86709,13 +87807,13 @@
       "nextCheckAt": "2026-10-25T18:38:16.005Z",
       "queue": {
         "pending": 0,
-        "done": 2,
+        "done": 3,
         "error": 0,
-        "rejected": 20,
+        "rejected": 19,
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:38:16.005Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "silentBaselines": 0
     },
     {
@@ -86741,7 +87839,7 @@
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:38:16.005Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "silentBaselines": 0
     },
     {
@@ -86761,13 +87859,13 @@
       "nextCheckAt": "2026-10-25T18:38:16.005Z",
       "queue": {
         "pending": 0,
-        "done": 2,
+        "done": 3,
         "error": 0,
-        "rejected": 16,
+        "rejected": 15,
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T11:47:06.163Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "silentBaselines": 0
     },
     {
@@ -87000,7 +88098,7 @@
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T08:51:27.957Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -87026,7 +88124,7 @@
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:34:00.738Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -87175,14 +88273,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T18:38:16.005Z",
       "queue": {
-        "pending": 2,
-        "done": 20,
+        "pending": 0,
+        "done": 22,
         "error": 0,
         "rejected": 6,
         "partial": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:57:35.133Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -87208,7 +88306,7 @@
         "partial": 1
       },
       "extractionStatus": "partial",
-      "lastExtractionSuccessAt": "2026-10-25T18:26:57.840Z",
+      "lastExtractionSuccessAt": "2026-10-25T18:28:16.158Z",
       "silentBaselines": 0,
       "archiveWarning": null
     },
@@ -87218,7 +88316,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T18:26:57.838Z",
+      "attemptedAt": "2026-10-25T18:28:16.156Z",
       "discovered": 12,
       "etag": "\"1792946229-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 16:37:09 GMT",
@@ -87317,37 +88415,12 @@
       "silentBaselines": 0
     },
     {
-      "id": "afg",
-      "name": "AFG · épargne salariale",
-      "url": "https://www.afg.asso.fr/fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T18:26:57.856Z",
-      "discovered": 10,
-      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 0,
-        "done": 2,
-        "error": 0,
-        "rejected": 8,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:09:58.010Z",
-      "silentBaselines": 0
-    },
-    {
       "id": "revolut-news",
       "name": "Revolut · salle de presse France",
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T18:26:57.859Z",
+      "attemptedAt": "2026-10-25T18:28:16.175Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -87367,7 +88440,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T18:26:57.860Z",
+      "attemptedAt": "2026-10-25T18:28:16.177Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -87382,89 +88455,12 @@
       "silentBaselines": 0
     },
     {
-      "id": "moneyvox",
-      "name": "MoneyVox · actualités",
-      "url": "https://www.moneyvox.fr/actu/rss.php",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T18:26:57.858Z",
-      "discovered": 60,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 0,
-        "done": 29,
-        "error": 0,
-        "rejected": 44,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T18:17:37.849Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T18:26:57.856Z",
-      "discovered": 10,
-      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
-      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 2,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:57:35.133Z",
-      "silentBaselines": 0
-    },
-    {
-      "id": "amf-alerts",
-      "name": "AMF · communiqués",
-      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T18:26:57.857Z",
-      "discovered": 196,
-      "etag": "\"1792948044-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 17:07:24 GMT",
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 130,
-        "done": 28,
-        "error": 1,
-        "rejected": 41,
-        "partial": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T17:57:35.133Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T18:26:57.860Z",
+      "attemptedAt": "2026-10-25T18:28:16.178Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -87490,7 +88486,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T18:26:57.861Z",
+      "attemptedAt": "2026-10-25T18:28:16.179Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -87505,140 +88501,88 @@
       "silentBaselines": 0
     },
     {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T18:26:57.859Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 7,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:57:35.133Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T18:26:57.854Z",
-      "discovered": 10,
-      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
-      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
-      "checkedAt": "2026-10-25T18:26:57.840Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.840Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T18:56:57.840Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 5,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T17:57:35.133Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T18:26:57.829Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.829Z",
+      "checkedAt": "2026-10-25T18:28:16.148Z",
+      "lastSuccessAt": "2026-10-25T18:28:16.148Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T18:26:57.829Z"
+      "attemptedAt": "2026-10-25T18:28:16.148Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T18:26:57.829Z",
-      "lastSuccessAt": "2026-10-25T18:26:57.829Z",
+      "checkedAt": "2026-10-25T18:28:16.148Z",
+      "lastSuccessAt": "2026-10-25T18:28:16.148Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T18:26:57.832Z"
+      "attemptedAt": "2026-10-25T18:28:16.149Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T18:26:57.835Z"
+      "attemptedAt": "2026-10-25T18:28:16.153Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3,
-      "attemptedAt": "2026-10-25T18:26:57.836Z"
+      "attemptedAt": "2026-10-25T18:28:16.154Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T18:26:57.837Z"
+      "attemptedAt": "2026-10-25T18:28:16.155Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T18:26:57.837Z"
+      "attemptedAt": "2026-10-25T18:28:16.155Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-25T18:26:57.838Z"
+      "attemptedAt": "2026-10-25T18:28:16.156Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T18:26:57.833Z",
+      "checkedAt": "2026-10-25T18:28:16.150Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T18:26:57.839Z"
+      "attemptedAt": "2026-10-25T18:28:16.157Z"
     },
     {
       "id": "ishares",
@@ -87845,9 +88789,9 @@
   },
   "metrics": {
     "collection": {
-      "requests": 34,
-      "bytes": 7191831,
-      "notModified": 3,
+      "requests": 29,
+      "bytes": 11070267,
+      "notModified": 1,
       "attemptedDocuments": 24,
       "queue": {
         "admitted": 24,
@@ -87857,12 +88801,12 @@
         "recentEligible": 0,
         "recentFirstAttempted": 0,
         "recentDeferred": 0,
-        "pending": 201,
-        "oldestWaitHours": 24.98014722222222,
+        "pending": 196,
+        "oldestWaitHours": 25.00190222222222,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       },
-      "durationMs": 18385,
-      "checkedAt": "2026-10-25T18:26:57.840Z"
+      "durationMs": 54401,
+      "checkedAt": "2026-10-25T18:28:16.158Z"
     },
     "publicationDelays": [
       {
@@ -88632,21 +89576,21 @@
       },
       {
         "url": "https://hanetf.com/press-releases/hanetf-launches-worlds-first-currency-hedged-bitcoin-etcs-allowing-investors-to-gain-bitcoin-exposure-without-us-dollar-risk",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-09-30T14:17:07.000Z",
+        "publicationToDetectionHours": 579.183975,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 6.9504858333333335,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-09-24T10:01:33.000Z",
+        "publicationToDetectionHours": 727.4434194444444,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 13.741941666666667,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/sprott-and-hanetf-launch-first-pure-play-rare-earths-ex-china-ucits-etf",
@@ -88659,21 +89603,21 @@
       },
       {
         "url": "https://hanetf.com/press-releases/human-rights-screened-high-dividend-etf-surpasses-100-million-aum-in-first-four-months",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-09-21T08:02:32.000Z",
+        "publicationToDetectionHours": 801.4270305555556,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 18.3157925,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-september-2026",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-10-08T12:47:43.000Z",
+        "publicationToDetectionHours": 388.673975,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 19.09761888888889,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://hanetf.com/press-releases/infrastructure-capital-expands-european-etf-range-with-launch-of-sp-500-option-income-etf",
@@ -89192,7 +90136,7 @@
         "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/award/amundi-etf-classee-n-1-dans-la-categorie-fournisseurs-d-etf",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
-        "detectionToFirstAttemptHours": null,
+        "detectionToFirstAttemptHours": 24.465258055555555,
         "detectionToAvailabilityHours": 24.465258055555555,
         "recoveryHours": null,
         "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
@@ -89201,7 +90145,7 @@
         "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-lance-un-nouvel-etf-pab-en-obligations-d-entreprises",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
-        "detectionToFirstAttemptHours": null,
+        "detectionToFirstAttemptHours": 24.49050638888889,
         "detectionToAvailabilityHours": 24.49050638888889,
         "recoveryHours": null,
         "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
@@ -89723,7 +90667,7 @@
         "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
         "publicationInstant": "2026-10-25T04:00:09.000Z",
         "publicationToDetectionHours": 1.9145394444444443,
-        "detectionToFirstAttemptHours": null,
+        "detectionToFirstAttemptHours": 0,
         "detectionToAvailabilityHours": 0,
         "recoveryHours": null,
         "publicationPrecision": "instant prouvé"
@@ -90206,6 +91150,15 @@
         "publicationPrecision": "instant prouvé"
       },
       {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-3",
+        "publicationInstant": "2023-10-02T09:31:31.000Z",
+        "publicationToDetectionHours": 26852.391761666666,
+        "detectionToFirstAttemptHours": 12.554115555555555,
+        "detectionToAvailabilityHours": 12.554115555555555,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
@@ -90368,6 +91321,15 @@
         "publicationPrecision": "instant prouvé"
       },
       {
+        "url": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+        "publicationInstant": "2026-09-29T12:46:28.000Z",
+        "publicationToDetectionHours": 619.0819677777778,
+        "detectionToFirstAttemptHours": 10.614742777777778,
+        "detectionToAvailabilityHours": 10.614742777777778,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
         "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
@@ -90395,6 +91357,15 @@
         "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
       },
       {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+        "publicationInstant": "2026-03-17T12:00:00.000Z",
+        "publicationToDetectionHours": 5323.856412222222,
+        "detectionToFirstAttemptHours": 10.614742777777778,
+        "detectionToAvailabilityHours": 10.614742777777778,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
         "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
@@ -90414,12 +91385,12 @@
       },
       {
         "url": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
-        "publicationInstant": null,
-        "publicationToDetectionHours": null,
+        "publicationInstant": "2026-10-23T15:29:54.000Z",
+        "publicationToDetectionHours": 40.35807888888889,
         "detectionToFirstAttemptHours": null,
         "detectionToAvailabilityHours": 0,
         "recoveryHours": null,
-        "publicationPrecision": "jour ou date inconnue ; délai horaire non calculé"
+        "publicationPrecision": "instant prouvé"
       },
       {
         "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
@@ -90963,9 +91934,9 @@
       }
     ],
     "classification": {
-      "ready": 100,
-      "watch": 37,
-      "secondary": 360
+      "ready": 102,
+      "watch": 38,
+      "secondary": 361
     },
     "scheduler": {
       "scheduledRuns": [
@@ -90990,8 +91961,8 @@
       ],
       "lastProducer": {
         "eventName": "workflow_run",
-        "runId": "40221130995",
-        "observedAt": "2026-10-25T18:27:19.353Z"
+        "runId": "40221227769",
+        "observedAt": "2026-10-25T18:29:13.557Z"
       },
       "lastScheduledRun": {
         "runId": "40220749965",
@@ -91084,6 +92055,24 @@
         "pending": 201,
         "oldestWaitHours": 24.98014722222222,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+      },
+      {
+        "checkedAt": "2026-10-25T18:28:16.158Z",
+        "eventName": "workflow_run",
+        "runId": "40221227769",
+        "requests": 29,
+        "bytes": 11070267,
+        "durationMs": 54401,
+        "admitted": 24,
+        "attempted": 24,
+        "capacity": 24,
+        "p90DocumentMs": 1265,
+        "recentEligible": 0,
+        "recentFirstAttempted": 0,
+        "recentDeferred": 0,
+        "pending": 196,
+        "oldestWaitHours": 25.00190222222222,
+        "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       }
     ]
   },
@@ -91092,114 +92081,66 @@
   "contractResults": {
     "successes": [
       {
-        "id": "radar-source:afg",
-        "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.856Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:moneyvox",
-        "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.858Z",
-        "status": "succeeded",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:energie-info",
-        "sourceUrl": "https://www.energie-info.fr/feed/",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.856Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:amf-alerts",
-        "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.857Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:boursobank-news",
-        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.859Z",
-        "status": "succeeded",
-        "sourceAttempted": true
-      },
-      {
-        "id": "radar-source:bourse-direct-news",
-        "sourceUrl": "https://groupe.boursedirect.fr/feed",
-        "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.854Z",
-        "status": "succeeded",
-        "sourceAttempted": true
-      },
-      {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-25T18:26:57.829Z",
-        "attemptedAt": "2026-10-25T18:26:57.829Z",
+        "checkedAt": "2026-10-25T18:28:16.148Z",
+        "attemptedAt": "2026-10-25T18:28:16.148Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-25T18:26:57.829Z",
-        "attemptedAt": "2026-10-25T18:26:57.832Z",
+        "checkedAt": "2026-10-25T18:28:16.148Z",
+        "attemptedAt": "2026-10-25T18:28:16.149Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.835Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.153Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.836Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.154Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.837Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.155Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.837Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.155Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.838Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.156Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.839Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.157Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
@@ -91208,14 +92149,14 @@
       {
         "id": "radar-source:revolut-news",
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
-        "attemptedAt": "2026-10-25T18:26:57.859Z",
+        "attemptedAt": "2026-10-25T18:28:16.175Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:wisdomtree",
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-25T18:26:57.860Z",
+        "attemptedAt": "2026-10-25T18:28:16.177Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
@@ -91223,14 +92164,14 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T18:26:57.860Z",
+        "attemptedAt": "2026-10-25T18:28:16.178Z",
         "error": "fetch failed",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-25T18:26:57.861Z",
+        "attemptedAt": "2026-10-25T18:28:16.179Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       }
@@ -91249,6 +92190,7 @@
       "id": "radar-source:fortuneo-offers",
       "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
       "checkedAt": "2026-10-25T17:09:58.010Z",
+      "attemptedAt": "2026-10-25T18:28:41.659Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z"
@@ -91257,6 +92199,7 @@
       "id": "radar-source:boursobank-offers",
       "sourceUrl": "https://www.boursobank.com/",
       "checkedAt": "2026-10-25T17:09:58.010Z",
+      "attemptedAt": "2026-10-25T18:28:41.922Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z"
@@ -91265,6 +92208,7 @@
       "id": "radar-source:boursobank-tariffs",
       "sourceUrl": "https://www.boursobank.com/",
       "checkedAt": "2026-10-25T17:09:58.010Z",
+      "attemptedAt": "2026-10-25T18:28:41.922Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z"
@@ -91284,6 +92228,54 @@
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:17:37.849Z"
+    },
+    {
+      "id": "radar-source:bourse-direct-news",
+      "sourceUrl": "https://groupe.boursedirect.fr/feed",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
+    },
+    {
+      "id": "radar-source:energie-info",
+      "sourceUrl": "https://www.energie-info.fr/feed/",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
+    },
+    {
+      "id": "radar-source:afg",
+      "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
+    },
+    {
+      "id": "radar-source:amf-alerts",
+      "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
+    },
+    {
+      "id": "radar-source:moneyvox",
+      "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
+    },
+    {
+      "id": "radar-source:boursobank-news",
+      "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "checkedAt": "2026-10-25T18:26:57.840Z",
+      "status": "waiting",
+      "sourceAttempted": false,
+      "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z"
     },
     {
       "id": "radar-source:bnp-bank",
@@ -91449,7 +92441,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-25T17:38:16.005Z",
-      "attemptedAt": "2026-10-25T18:26:57.838Z",
+      "attemptedAt": "2026-10-25T18:28:16.156Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:38:16.005Z"
@@ -92157,13 +93149,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-25T18:26:54.923618+00:00",
-      "nonce": "427c04d5-8c0f-46ad-8c08-2016146ebb93",
+      "declaredAt": "2026-10-25T18:28:13.054684+00:00",
+      "nonce": "3101eee8-36b0-4e2f-a7cc-b2904140e811",
       "codeSha": "30b71f6bcec7182b9503a0594169fed7ed2e8d6f",
       "durablePlan": true,
-      "runId": "40221130995",
+      "runId": "40221227769",
       "attempt": "1",
-      "sha256": "cf8bade0305a47b99702a1dc81ecaa088d1a762281a450012449d57ed1f317f6"
+      "sha256": "1463f9781ca568ebf18a8014a0233f826bef2e71799502125651ad3261ca38b4"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -92857,15 +93849,9 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-25T18:26:54.923618+00:00",
-      "planSha256": "cf8bade0305a47b99702a1dc81ecaa088d1a762281a450012449d57ed1f317f6",
+      "declaredAt": "2026-10-25T18:28:13.054684+00:00",
+      "planSha256": "1463f9781ca568ebf18a8014a0233f826bef2e71799502125651ad3261ca38b4",
       "attemptedIds": [
-        "radar-source:bourse-direct-news",
-        "radar-source:energie-info",
-        "radar-source:afg",
-        "radar-source:amf-alerts",
-        "radar-source:moneyvox",
-        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
@@ -92881,12 +93867,6 @@
       ],
       "attemptUnknownIds": [],
       "networkRequestedIds": [
-        "radar-source:bourse-direct-news",
-        "radar-source:energie-info",
-        "radar-source:afg",
-        "radar-source:amf-alerts",
-        "radar-source:moneyvox",
-        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
@@ -92901,10 +93881,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40221130995",
+      "runId": "40221227769",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "427c04d5-8c0f-46ad-8c08-2016146ebb93"
+      "nonce": "3101eee8-36b0-4e2f-a7cc-b2904140e811"
     },
     "outcomes": [
       {
@@ -92930,6 +93910,7 @@
         "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
         "selected": true,
         "checkedAt": "2026-10-25T17:09:58.010Z",
+        "attemptedAt": "2026-10-25T18:28:41.659Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z",
@@ -92944,6 +93925,7 @@
         "sourceUrl": "https://www.boursobank.com/",
         "selected": true,
         "checkedAt": "2026-10-25T17:09:58.010Z",
+        "attemptedAt": "2026-10-25T18:28:41.922Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z",
@@ -92958,6 +93940,7 @@
         "sourceUrl": "https://www.boursobank.com/",
         "selected": true,
         "checkedAt": "2026-10-25T17:09:58.010Z",
+        "attemptedAt": "2026-10-25T18:28:41.922Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T19:09:58.010Z",
@@ -93000,10 +93983,10 @@
         "sourceUrl": "https://groupe.boursedirect.fr/feed",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.854Z",
-        "status": "succeeded",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:energie-info",
@@ -93014,10 +93997,10 @@
         "sourceUrl": "https://www.energie-info.fr/feed/",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.856Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:afg",
@@ -93028,10 +94011,10 @@
         "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.856Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:amf-alerts",
@@ -93042,10 +94025,10 @@
         "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.857Z",
-        "status": "unchanged-verified",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:moneyvox",
@@ -93056,10 +94039,10 @@
         "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.858Z",
-        "status": "succeeded",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:boursobank-news",
@@ -93070,10 +94053,10 @@
         "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
         "selected": true,
         "checkedAt": "2026-10-25T18:26:57.840Z",
-        "attemptedAt": "2026-10-25T18:26:57.859Z",
-        "status": "succeeded",
-        "sourceAttempted": true,
-        "operationAttempted": true
+        "status": "waiting",
+        "sourceAttempted": false,
+        "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:56:57.840Z",
+        "operationAttempted": false
       },
       {
         "id": "radar-source:revolut-news",
@@ -93083,7 +94066,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
         "selected": true,
-        "attemptedAt": "2026-10-25T18:26:57.859Z",
+        "attemptedAt": "2026-10-25T18:28:16.175Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -93377,7 +94360,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-25T18:26:57.860Z",
+        "attemptedAt": "2026-10-25T18:28:16.177Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -93392,7 +94375,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-25T17:38:16.005Z",
-        "attemptedAt": "2026-10-25T18:26:57.838Z",
+        "attemptedAt": "2026-10-25T18:28:16.156Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T18:38:16.005Z",
@@ -93449,7 +94432,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T18:26:57.860Z",
+        "attemptedAt": "2026-10-25T18:28:16.178Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -93463,7 +94446,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-25T18:26:57.861Z",
+        "attemptedAt": "2026-10-25T18:28:16.179Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -93477,8 +94460,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.835Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.153Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93491,8 +94474,8 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.836Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.154Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93505,8 +94488,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.837Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.155Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93519,8 +94502,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.837Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.155Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93533,8 +94516,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.838Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.156Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93547,8 +94530,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.833Z",
-        "attemptedAt": "2026-10-25T18:26:57.839Z",
+        "checkedAt": "2026-10-25T18:28:16.150Z",
+        "attemptedAt": "2026-10-25T18:28:16.157Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93754,8 +94737,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.829Z",
-        "attemptedAt": "2026-10-25T18:26:57.829Z",
+        "checkedAt": "2026-10-25T18:28:16.148Z",
+        "attemptedAt": "2026-10-25T18:28:16.148Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93768,8 +94751,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-25T18:26:57.829Z",
-        "attemptedAt": "2026-10-25T18:26:57.832Z",
+        "checkedAt": "2026-10-25T18:28:16.148Z",
+        "attemptedAt": "2026-10-25T18:28:16.149Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -93802,13 +94785,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-25T18:27:29.385Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
