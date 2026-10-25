@@ -4,7 +4,14 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { choose } from './card-selection.mjs'
 import { waitPreview } from './wait-preview.mjs'
+import { QUESTIONS, SUBJECTS, MECHANICS } from '../src/pages/hey-grok/data.js'
 import { STORAGE_KEY } from '../src/pages/hey-grok/lib.js'
+
+async function chooseAxis(picker, value) {
+  if (!await picker.isVisible()) await picker.locator('xpath=parent::details').locator('summary').click()
+  await choose(picker, value)
+  assert.equal(await picker.locator('xpath=parent::details').getAttribute('open'), null)
+}
 
 const output = 'test-artifacts/hey-grok'
 mkdirSync(output, { recursive: true })
@@ -17,6 +24,8 @@ try {
   const errors = [], writes = [], results = []
   for (const width of [1280, 390, 320]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
+    const legacy = { favorites: ['immobilier-01'], used: ['banques-19'], drafts: { 'banques-19': 'Hey @grok, mon brouillon historique reste intact.' } }
+    await context.addInitScript(({ key, legacy }) => { if (localStorage.getItem(key) === null) localStorage.setItem(key, JSON.stringify(legacy)) }, { key: STORAGE_KEY, legacy })
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
     page.on('request', request => { if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method())) writes.push(request.method() + ' ' + request.url()) })
@@ -26,23 +35,54 @@ try {
     const editor = page.getByRole('textbox', { name: 'Texte du tweet', exact: true })
     await editor.waitFor()
     const list = page.getByRole('list', { name: 'Questions disponibles' })
-    const category = page.getByRole('group', { name: 'Catégorie', exact: true })
+    const subject = page.getByRole('group', { name: 'Sujet', exact: true, includeHidden: true })
+    const mechanic = page.getByRole('group', { name: 'Mécanique', exact: true, includeHidden: true })
     const search = page.getByRole('searchbox', { name: 'Rechercher', exact: true })
     const random = page.getByRole('button', { name: 'Question au hasard', exact: true })
     const copy = page.getByRole('button', { name: 'Copier le tweet', exact: true })
     assert.equal(await page.locator('select').count(), 0)
-    assert.equal(await list.getByRole('button').count(), 160)
+    assert.equal(await list.getByRole('button').count(), QUESTIONS.length)
+    assert.deepEqual(await page.evaluate(key => JSON.parse(localStorage.getItem(key)), STORAGE_KEY), legacy)
+    // An old question was reworded/reclassified: its user's draft must take priority.
+    await search.fill('Garde des espèces')
+    await list.locator('[data-question-id="banques-19"] button').click()
+    assert.equal(await editor.inputValue(), legacy.drafts['banques-19'])
+    assert(await page.getByRole('button', { name: 'Annuler « Utilisé »', exact: true }).isVisible())
+    await search.fill('')
+    await chooseAxis(subject, 'immobilier'); await chooseAxis(mechanic, 'avocat')
     await page.getByLabel('Tout public', { exact: true }).check()
-    assert.equal(await list.getByRole('button').count(), 140)
-    await choose(category, 'bourse')
+    await page.getByLabel('Ça va débattre', { exact: true }).check()
+    await page.getByLabel('Favoris', { exact: true }).check()
+    await page.getByLabel('Non utilisés', { exact: true }).check()
+    await search.fill('louer')
+    assert.equal(await list.getByRole('button').count(), 1)
+    const combined = QUESTIONS.find(q => q.id === 'immobilier-01')
+    await random.click(); assert.equal(await editor.inputValue(), combined.text)
+    assert.match(await page.locator('.hg-editor .hg-meta').innerText(), /Immobilier.*Avocat du choix impopulaire/)
+    assert(await random.isDisabled())
+    await chooseAxis(subject, 'bourse') // Impossible public + favorite + subject, no silent reset.
+    assert.equal(await list.count(), 0)
+    assert.equal(await mechanic.getAttribute('data-value'), 'avocat')
+    assert.equal(await search.inputValue(), 'louer')
+    assert(await page.getByLabel('Ça va débattre', { exact: true }).isChecked())
+    await page.getByRole('button', { name: 'Réinitialiser les filtres', exact: true }).click()
+    assert.equal(await subject.getAttribute('data-value'), '')
+    assert.equal(await mechanic.getAttribute('data-value'), '')
+    assert.equal(await search.inputValue(), '')
+    for (const name of ['Tout public', 'Ça va débattre', 'Favoris', 'Non utilisés']) assert(!(await page.getByLabel(name, { exact: true }).isChecked()))
+    assert.equal(await list.getByRole('button').count(), QUESTIONS.length)
+    await page.getByLabel('Tout public', { exact: true }).check()
+    assert.equal(await list.getByRole('button').count(), QUESTIONS.filter(q => q.public).length)
+    await chooseAxis(subject, 'bourse')
     assert.equal(await list.count(), 0)
     assert(await random.isDisabled())
-    await choose(category, 'budget')
-    assert.equal(await list.getByRole('button').count(), 20)
+    await chooseAxis(subject, 'budget')
+    assert.equal(await list.getByRole('button').count(), QUESTIONS.filter(q => q.subject === 'budget' && q.public).length)
     await search.fill('cafe')
     assert.equal(await list.getByRole('button').count(), 1)
     await list.getByRole('button').click()
     const original = await editor.inputValue()
+    assert.equal(original, QUESTIONS.find(q => q.id === 'budget-14').text)
     await page.getByRole('button', { name: 'Ajouter aux favoris', exact: true }).click()
     await copy.click()
     assert.equal(await page.evaluate(() => navigator.clipboard.readText()), original)
@@ -79,9 +119,10 @@ try {
     assert(await page.getByRole('button', { name: 'Annuler « Utilisé »', exact: true }).isVisible())
     await page.getByRole('button', { name: 'Annuler « Utilisé »', exact: true }).click()
     await search.fill('')
-    await choose(category, 'technologie')
+    await chooseAxis(subject, 'technologie'); await chooseAxis(mechanic, 'irreversible')
+    const eligible = QUESTIONS.filter(q => q.subject === 'technologie' && q.mechanic === 'irreversible')
     const drawn = new Set()
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < eligible.length; i++) {
       await random.click()
       const text = await editor.inputValue()
       assert(!drawn.has(text)); drawn.add(text)
@@ -91,14 +132,18 @@ try {
     await page.getByRole('button', { name: 'Recommencer cette sélection', exact: true }).click()
     assert(await random.isEnabled()); await random.click()
     // Manual selection and changing filters preserve each question's edited draft.
-    await choose(category, 'budget'); await search.fill('cafe')
+    await chooseAxis(mechanic, ''); await chooseAxis(subject, 'budget'); await search.fill('cafe')
     await list.getByRole('button').click(); assert.equal(await editor.inputValue(), draft)
     await search.fill('inexistantxyz'); assert.equal(await list.count(), 0); assert(await random.isDisabled())
-    await search.fill(''); await choose(category, '')
+    await search.fill(''); await chooseAxis(subject, '')
+    const saved = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), STORAGE_KEY)
+    assert.equal(saved.drafts['banques-19'], legacy.drafts['banques-19'])
+    assert(saved.favorites.includes('immobilier-01') && saved.used.includes('banques-19'))
+    assert(SUBJECTS.length === 8 && MECHANICS.length === 20)
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
     await page.evaluate(() => window.scrollTo(0, 0))
     await page.screenshot({ path: `${output}/${width}.png`, fullPage: true })
-    results.push({ width, navigation: true, filters: true, noRepeatDraws: drawn.size, exhaustion: true, xWeighting: true, overflowBlocksCopy: true, clipboardExact: true, copyDoesNotMarkUsed: true, undoUsed: true, persistedDraftFavoriteUsed: true, horizontalOverflow: false })
+    results.push({ width, navigation: true, filters: true, combinedAxesAndFlags: true, explicitEmptyReset: true, legacyPreferencesIntact: true, metadataExcludedFromCopy: true, noRepeatDraws: drawn.size, exhaustion: true, xWeighting: true, overflowBlocksCopy: true, clipboardExact: true, copyDoesNotMarkUsed: true, undoUsed: true, persistedDraftFavoriteUsed: true, horizontalOverflow: false })
     await context.close()
   }
   // Corrupt records and denied storage: no silent reset, still usable.
@@ -129,5 +174,5 @@ try {
   }
   assert.deepEqual(errors, []); assert.deepEqual(writes, [])
   writeFileSync(output + '/results.json', JSON.stringify({ base, checkedAt: new Date().toISOString(), results, corruptStoragePreserved: true, deniedStorage: true, quotaFailure: true, clipboardFailure: true, errors, writes }, null, 2) + '\n')
-  console.log('Hey @Grok: real Chromium desktop/mobile, filters, 20 unique draws, exhaustion/reset, X limits, exact copy, persistence and failure paths passed.')
+  console.log('Hey @Grok: real Chromium desktop/mobile, filters, combined-axis unique draws, exhaustion/reset, X limits, exact copy, persistence and failure paths passed.')
 } finally { await browser?.close(); server?.kill() }

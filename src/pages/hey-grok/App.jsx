@@ -4,17 +4,19 @@ import Card from '../../design-system/Card'
 import ChoicePicker from '../../design-system/ChoicePicker'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions'
-import { CATEGORIES, QUESTIONS } from './data'
-import { drawQuestion, filterQuestions, readPreferences, savePreferences, STORAGE_KEY, emptyPreferences, toggleId, tweetStatus } from './lib'
+import { SUBJECTS, MECHANICS, QUESTIONS } from './data'
+import { drawQuestion, filterQuestions, readPreferences, savePreferences, STORAGE_KEY, emptyPreferences, emptyFilters, toggleId, tweetStatus } from './lib'
 import './App.css'
 
 export default function App() {
   const editorRef = useRef(null)
+  const subjectRef = useRef(null)
+  const mechanicRef = useRef(null)
   const [loaded] = useState(() => readPreferences())
   const [preferences, setPreferences] = useState(loaded.value)
   const [storageBlocked, setStorageBlocked] = useState(Boolean(loaded.error))
   const [storageError, setStorageError] = useState(loaded.error)
-  const [filters, setFilters] = useState({ category: '', search: '', publicOnly: false, unusedOnly: false, favoritesOnly: false })
+  const [filters, setFilters] = useState(emptyFilters)
   const [selectedId, setSelectedId] = useState(QUESTIONS[0].id)
   const [seen, setSeen] = useState([QUESTIONS[0].id])
   const [copyState, setCopyState] = useState('')
@@ -25,7 +27,8 @@ export default function App() {
   const remaining = list.filter(question => !seen.includes(question.id)).length
   const favorite = preferences.favorites.includes(selectedId)
   const used = preferences.used.includes(selectedId)
-  const categoryLabel = CATEGORIES.find(category => category.id === selected.category).label
+  const subjectLabel = SUBJECTS.find(subject => subject.id === selected.subject).label
+  const mechanicLabel = MECHANICS.find(mechanic => mechanic.id === selected.mechanic).label
 
   function update(next) {
     setPreferences(next)
@@ -62,12 +65,18 @@ export default function App() {
       <Card as="section" className="hg-library" aria-labelledby="hg-library-title">
         <h2 id="hg-library-title">Choisir une question</h2>
         <div className="hg-filters">
-          <div className="hg-category"><p>Catégorie</p><ChoicePicker aria-label="Catégorie" value={filters.category} onChange={event => changeFilter({ category: event.target.value })}>
-            <option value="">Toutes</option>{CATEGORIES.map(category => <option key={category.id} value={category.id}>{category.label}</option>)}
-          </ChoicePicker></div>
+          <div className="hg-axes">
+            <details className="hg-axis" ref={subjectRef}><summary><span>Sujet</span><strong>{SUBJECTS.find(subject => subject.id === filters.subject)?.label ?? 'Tous'}</strong></summary><ChoicePicker aria-label="Sujet" value={filters.subject} onChange={event => { changeFilter({ subject: event.target.value }); subjectRef.current.open = false }}>
+              <option value="">Tous</option>{SUBJECTS.map(subject => <option key={subject.id} value={subject.id}>{subject.label}</option>)}
+            </ChoicePicker></details>
+            <details className="hg-axis" ref={mechanicRef}><summary><span>Mécanique</span><strong>{MECHANICS.find(mechanic => mechanic.id === filters.mechanic)?.label ?? 'Tous'}</strong></summary><ChoicePicker aria-label="Mécanique" value={filters.mechanic} onChange={event => { changeFilter({ mechanic: event.target.value }); mechanicRef.current.open = false }}>
+              <option value="">Tous</option>{MECHANICS.map(mechanic => <option key={mechanic.id} value={mechanic.id}>{mechanic.label}</option>)}
+            </ChoicePicker></details>
+          </div>
           <label>Rechercher<input type="search" placeholder="Voiture, salaire, Apple…" value={filters.search} onChange={event => changeFilter({ search: event.target.value })} /></label>
           <div className="hg-checks">
             <label><input type="checkbox" checked={filters.publicOnly} onChange={event => changeFilter({ publicOnly: event.target.checked })} /> Tout public</label>
+            <label><input type="checkbox" checked={filters.debateOnly} onChange={event => changeFilter({ debateOnly: event.target.checked })} /> Ça va débattre</label>
             <label><input type="checkbox" checked={filters.unusedOnly} onChange={event => changeFilter({ unusedOnly: event.target.checked })} /> Non utilisés</label>
             <label><input type="checkbox" checked={filters.favoritesOnly} onChange={event => changeFilter({ favoritesOnly: event.target.checked })} /> Favoris</label>
           </div>
@@ -80,10 +89,10 @@ export default function App() {
           <p>Sélection épuisée : toutes ces questions ont été vues.</p>
           <Button variant="secondary" onClick={() => setSeen(previous => previous.filter(id => !list.some(question => question.id === id)))}>Recommencer cette sélection</Button>
         </div>}
-        {list.length === 0 ? <p role="status">Aucune question ne correspond aux filtres.</p> : <ul className="hg-list" aria-label="Questions disponibles">
-          {list.map(question => <li key={question.id}>
+        {list.length === 0 ? <div className="hg-empty"><p role="status">Aucune question ne correspond aux filtres.</p><Button variant="secondary" onClick={() => setFilters(emptyFilters())}>Réinitialiser les filtres</Button></div> : <ul className="hg-list" aria-label="Questions disponibles">
+          {list.map(question => <li key={question.id} data-question-id={question.id}>
             <button type="button" aria-pressed={selectedId === question.id} onClick={() => select(question)}>
-              <span className="hg-meta">{CATEGORIES.find(category => category.id === question.category).label}{preferences.favorites.includes(question.id) && ' · Favori'}{preferences.used.includes(question.id) && ' · Utilisé'}</span>
+              <span className="hg-meta">{SUBJECTS.find(subject => subject.id === question.subject).label} · {MECHANICS.find(mechanic => mechanic.id === question.mechanic).label}{question.debate && ' · Ça va débattre'}{preferences.favorites.includes(question.id) && ' · Favori'}{preferences.used.includes(question.id) && ' · Utilisé'}</span>
               <span>{question.text}</span>
             </button>
           </li>)}
@@ -91,7 +100,7 @@ export default function App() {
       </Card>
       <Card as="section" ref={editorRef} className="hg-editor" aria-labelledby="hg-editor-title">
         <h2 id="hg-editor-title">Préparer le tweet</h2>
-        <p className="hg-meta">{categoryLabel}{selected.public && ' · Tout public'} · {used ? 'Utilisé' : 'Non utilisé'}</p>
+        <p className="hg-meta">{subjectLabel} · {mechanicLabel}{selected.debate && ' · Ça va débattre'}{selected.public && ' · Tout public'} · {used ? 'Utilisé' : 'Non utilisé'}</p>
         {!list.some(question => question.id === selectedId) && <p className="hg-note">Le brouillon ouvert est hors des filtres actuels. Choisis une question dans la liste pour le remplacer.</p>}
         <label htmlFor="hg-text">Texte du tweet</label>
         <textarea id="hg-text" value={text} onChange={event => edit(event.target.value)} aria-describedby="hg-counter hg-invalid" aria-invalid={!status.canCopy} rows={8} />

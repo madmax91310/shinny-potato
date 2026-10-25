@@ -15,11 +15,11 @@ conservés et les liens de compatibilité sont distingués des outils accessible
 
 ## Hey @Grok
 
-`/hey-grok` prépare uniquement une question à copier sur X, sans appel à une IA ni publication automatique. La banque contient 160 questions (20 par catégorie), dont 140 « Tout public » (87,5 %). Catégorie, recherche, favoris et filtre « Non utilisés » s’appliquent aussi au tirage ; les questions vues ne reviennent qu’après redémarrage explicite de la sélection épuisée ou nouvelle session.
+`/hey-grok` prépare uniquement une question à copier sur X, sans appel à une IA ni publication automatique. La banque contient 280 questions, sur 8 sujets et 20 mécaniques indépendantes, dont 250 « Tout public » (89,3 %). La sélection manuelle « Ça va débattre » contient 47 questions. Sujet, mécanique, recherche, sélection éditoriale, favoris et filtre « Non utilisés » s’appliquent aussi au tirage ; les questions vues ne reviennent qu’après redémarrage explicite de la sélection épuisée ou nouvelle session. Une sélection vide propose de réinitialiser les filtres sans les modifier silencieusement.
 
-Le compteur utilise `twitter-text` (comptage pondéré X, liens et emojis compris) et bloque la copie au-delà de 280 caractères. Copier ne marque jamais « Utilisé ». Favoris, usages et brouillons restent dans le navigateur ; un stockage illisible est signalé et conservé tant qu’il n’est pas effacé explicitement. Le calendrier reste inchangé.
+Le compteur utilise `twitter-text` (comptage pondéré X, liens et emojis compris) et bloque la copie au-delà de 280 caractères. Les métadonnées de sujet et de mécanique ne sont pas copiées. Copier ne marque jamais « Utilisé ». Les 160 identifiants d’origine et la clé de stockage restent stables : favoris, usages et brouillons v1 restent disponibles. Un stockage illisible est signalé et conservé tant qu’il n’est pas effacé explicitement. Le calendrier reste inchangé.
 
-`npm run test:hey-grok` valide la banque et la logique (également exécuté avant chaque build). Après compilation, `npm run test:hey-grok:browser` exerce les parcours Chromium à 1280 et 390 px, la copie, les limites, la persistance et les échecs du stockage/presse-papiers. Ce parcours est inclus dans les contrôles navigateur de la CI.
+La [relecture éditoriale](docs/hey-grok-editorial-review.md) documente les choix, les reformulations et la conservation des données. `npm run test:hey-grok` valide toute la banque et les intersections des filtres (également exécuté avant chaque build). Après compilation, `npm run test:hey-grok:browser` exerce les parcours Chromium à 1280, 390 et 320 px, les deux axes combinés, la copie, les limites, l’épuisement, la persistance v1 et les échecs du stockage/presse-papiers. Ce parcours est inclus dans les contrôles navigateur de la CI.
 
 ## Démarrer
 

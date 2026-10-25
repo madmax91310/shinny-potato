@@ -6,7 +6,7 @@ import { INVESTORS } from './data/investor-roster.js'
 export const TOOLS = [
   { to: '/hey-grok', title: 'Hey @Grok',
     icon: '💬', accent: '#267863',
-    description: '160 questions pour interpeller @grok et lancer la discussion sur X. Texte modifiable, favoris et suivi local des usages.', status: 'disponible' },
+    description: '280 questions pour interpeller @grok sur X, par sujet et mécanique. Texte modifiable, favoris et suivi local des usages.', status: 'disponible' },
   { to: '/classements-performances', title: 'Qui a vraiment gagné ?',
     publicationDay: 'Publication ponctuelle', icon: '🏆', accent: '#76cdb7',
     description: 'Classe les actifs sur une année, année par année ou sur une période choisie. Quinze catégories, sélection manuelle, régularité historique, texte et image.', status: 'disponible' },
