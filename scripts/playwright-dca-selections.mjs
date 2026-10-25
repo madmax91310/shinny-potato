@@ -7,7 +7,7 @@ const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1',
 let browser
 try{
  for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
- browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']})
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
  const context=await browser.newContext({permissions:['clipboard-read','clipboard-write'],viewport:{width:1440,height:1100}})
  const page=await context.newPage(),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
