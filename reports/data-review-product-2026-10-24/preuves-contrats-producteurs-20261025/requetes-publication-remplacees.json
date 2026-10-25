@@ -1,0 +1,302 @@
+{
+  "checkedAt": "2026-10-25T17:31:50.103166+00:00",
+  "reason": "Demandes de validation de code seul remplacées par le passage master courant 40216565182 ; aucun collecteur ni job source annulé. Les contrôles complets du nouveau passage restent obligatoires.",
+  "replacementRunId": 40216565182,
+  "runs": [
+    {
+      "createdAt": "2026-10-25T17:16:42Z",
+      "databaseId": 40215683292,
+      "event": "push",
+      "headSha": "354a6762c528581aef20caa670fa6f739e054f7d",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "createdAt": "2026-10-25T16:50:38Z",
+      "databaseId": 40213617303,
+      "event": "push",
+      "headSha": "98b3f4ae068a7aecfd9e09a4c94d2c201df9d3b0",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "createdAt": "2026-10-25T16:42:52Z",
+      "databaseId": 40212995720,
+      "event": "push",
+      "headSha": "4e770516ace83618614ddeb88ff46e778eb3ab91",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "createdAt": "2026-10-25T16:37:36Z",
+      "databaseId": 40212577934,
+      "event": "push",
+      "headSha": "8667d583930ddb4cc1b5cae3b2e687a9c32ee64a",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "createdAt": "2026-10-25T15:36:36Z",
+      "databaseId": 40207753183,
+      "event": "push",
+      "headSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "createdAt": "2026-10-25T15:21:26Z",
+      "databaseId": 40206542223,
+      "event": "push",
+      "headSha": "20d6aea99655dc86a0f568350eee6610b66c4a44",
+      "status": "pending",
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    }
+  ],
+  "sourceProducerPublicationRequests": [
+    {
+      "runId": 40204788907,
+      "sourceJobId": 121203331039,
+      "sourceCompletedAt": "2026-10-25T15:04:22Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / browser-checks (2)",
+        "deploy / publish-code / browser-checks (0)",
+        "deploy / publish-code / browser-checks (3)"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "broker-observation.json",
+          "sha256": "cd7a4fa1164340fbad4fcc5cc25da184f718407077bdf9cf20849a3e8dd65b2d"
+        },
+        {
+          "file": "broker-tweet-observation.json",
+          "sha256": "c720fc8d9167d82a77aeeaad5c28d5e9f154d9c1b7e5192c6348f381c4395a6d"
+        },
+        {
+          "file": "fiscal-observation.json",
+          "sha256": "2a6a9626e6c99d6cc9dd4c2ec4caa480c02e6669748ada66c1beb4f5c734da9e"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": true
+    },
+    {
+      "runId": 40204788909,
+      "sourceJobId": 121203331840,
+      "sourceCompletedAt": "2026-10-25T15:08:32Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "dca-complete-holdings.json",
+          "sha256": "80478d667bf7e984685f74e7786ba83b57b974deb9aa67e8d67d3450e92a4259"
+        },
+        {
+          "file": "dca-equities.json",
+          "sha256": "c565ccb06288596bb0ff63086d6f17d20e76e47765f487d6000b05ab226bedcb"
+        },
+        {
+          "file": "exposure-sleeves.json",
+          "sha256": "3ebc8379421ba2ca6dd881a4079643b2540a09a3ebcca162dc308ab9325f0c66"
+        },
+        {
+          "file": "qualified-exposures.json",
+          "sha256": "779a1b9ef16dca9fb7106b5a418ebdf114b8937b3afb02b1a18d63a802f2745c"
+        },
+        {
+          "file": "vanguard-sleeves.json",
+          "sha256": "4f932b1d6355bfac1a32dab7e300981d8fb41ff359a62ab7a60b284ce63cf877"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "runId": 40204788945,
+      "sourceJobId": 121203332005,
+      "sourceCompletedAt": "2026-10-25T15:11:35Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "exposure-expansion.json",
+          "sha256": "30a07b3192e05ae50c70638ff731355805b3d27a2b6444b14cbf8863aee18554"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "runId": 40204788965,
+      "sourceJobId": 121203331843,
+      "sourceCompletedAt": "2026-10-25T15:09:43Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "lifestrategy.json",
+          "sha256": "b876d2c522f7d55e98b45208bb1709441ade2de7cc12bf3521cd262039f39a89"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "runId": 40204834985,
+      "sourceJobId": 121203471056,
+      "sourceCompletedAt": "2026-10-25T15:54:45Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "derived-index-observation.json",
+          "sha256": "e2a9a51102e38aa8e01e00664651571cdc13d3b7f8a893ff2cb9c743a7baee44"
+        },
+        {
+          "file": "observation.json",
+          "sha256": "dbe8cbdabab9849e0ed6270cd37a6a3eca30e8ee9d33cea3dde90ea747c20796"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "runId": 40204841756,
+      "sourceJobId": 121203490478,
+      "sourceCompletedAt": "2026-10-25T15:55:40Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "index-company-observations.json",
+          "sha256": "d413f9b26d2fb83c923a68ccb80f3d3e996012057a68bd83fd7a7a5cac695f07"
+        },
+        {
+          "file": "index-company-qualification-observations.json",
+          "sha256": "a1113c16ef71110111a95949807e04c2c769ebdf75d301d54809a862c774cd2d"
+        },
+        {
+          "file": "selected-index-observations.json",
+          "sha256": "b0a5935125a0630d027027a6eba1d9cc85ba965c641646d028686aa19e7ce07a"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "confirmedConclusion": "cancelled"
+    },
+    {
+      "runId": 40204788924,
+      "sourceJobId": 121204000352,
+      "sourceCompletedAt": "2026-10-25T16:04:23Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "reason": "Demande de publication remplacée par master courant : données source et artefacts déjà produits et conservés. Aucun collecteur actif annulé.",
+      "qualifiedMonitorReports": [
+        {
+          "file": "instrument-metadata.json",
+          "sha256": "ab105ed7c3fd510347cff0c6faa55f1285535a3db3bb3c3a3431084a74edb7a9"
+        }
+      ],
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": true
+    }
+  ],
+  "lastVerifiedAt": "2026-10-25T17:37:37.264452+00:00"
+}

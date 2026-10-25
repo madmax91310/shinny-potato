@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-25T17:30:51.035446+00:00",
+  "commit": "d3debae3f0e1ad44c9f5ddcc6b5a64d9ca0bb00f",
+  "pythonTests": 1131,
+  "browser": "isolated real reader/reducer, desktop/mobile; not a supplier run",
+  "checks": [
+    {
+      "command": "TESSDATA_PREFIX=/tmp/producer-tessdata PYTHONPATH=scripts python -m unittest discover -s scripts -p 'test_*.py'",
+      "exitCode": 0,
+      "proofFile": "producer-final-958-tests.log.gz",
+      "sha256": "56b813d0fb25238f128c0226acc1e5972636e9f14fae8126bb309d33e3333ce6"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "proofFile": "producer-final-958-build.log.gz",
+      "sha256": "e065cb7332322fd6e706fc5212397d22ccffaba0d69e5c00afd39c0cb3cf04c7"
+    },
+    {
+      "command": "node scripts/playwright-producer-omissions.mjs",
+      "exitCode": 0,
+      "proofFile": "producer-final-958-omissions-browser.log.gz",
+      "sha256": "fb0348c92ecc78429262b203f994b80970892f2cb75317a544b0c7b7288dafdb"
+    }
+  ]
+}

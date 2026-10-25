@@ -1,0 +1,1639 @@
+{
+  "checkedAt": "2026-10-25T17:38:52.761299+00:00",
+  "monitorCheckedAt": "2026-10-25T17:38:17.129401+00:00",
+  "cases": [
+    {
+      "id": "scope:update-investor-13f.yml:investor-observations.json",
+      "workflow": "update-investor-13f.yml",
+      "reports": [
+        "investor-observations.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "investor-observations.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40206678702",
+          "runId": 40206678702,
+          "attempt": 1,
+          "sha256": "018f43861cbd36aa47749bc022603f8180923597a2740025eb72adde5e6d79c4",
+          "planSha256": "132d29b32ea264ef5cf268e7f802e7aaf4a2aaeb288bc529b7e19653f49f2359",
+          "mode": "full",
+          "expected": 28,
+          "selected": 28,
+          "successes": 29,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "investor-observations.json",
+          "runId": 40204838763,
+          "event": "workflow_dispatch",
+          "artifactId": 12603677002,
+          "rawSha256": "622b4d74c58308821dd6feef5bd6e6582b929d34cd27655826d4c26cf64a1344",
+          "planSha256": "7dc8177c54d8507667faf36ed80e8a1465de7967ba3405b5bda97c1e148d26f5",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 28,
+          "selected": 28,
+          "emptyReason": null,
+          "proofFile": "40204838763-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-market-monthly.yml:derived-index-observation.json",
+      "workflow": "update-market-monthly.yml",
+      "reports": [
+        "derived-index-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [
+        "derived-index-observation.json"
+      ],
+      "receipts": [
+        {
+          "file": "derived-index-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40209188372",
+          "runId": 40209188372,
+          "attempt": 1,
+          "sha256": "071c8b186ad33522f5dc8cf1cf4ffe9a0e8d1f81e8fa1ee02a78e8bb2a241a29",
+          "planSha256": "a87f989cd0ceb1a861f9ba04593548d92b6fafa9cffc913830c7cf0a9350bb12",
+          "mode": "targeted",
+          "expected": 56,
+          "selected": 3,
+          "successes": 4,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "derived-index-observation.json",
+          "runId": 40204833001,
+          "event": "workflow_dispatch",
+          "artifactId": 12604083337,
+          "rawSha256": "ef5abc010bca47d067348ca28e1bfc95d19b1b295cabcb072e45ec362c70d0c3",
+          "planSha256": "cacf08fcb6e98eb095a4feb9b13a910b46792f566b548622f67182e868aaa48c",
+          "executedCodeSha": "f3529aa4ccfc4d591eb86c025b04eaf4b8ac2aa3",
+          "mode": "targeted",
+          "expected": 56,
+          "selected": 3,
+          "emptyReason": null,
+          "proofFile": "40204833001-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur ; ancienne qualification de complétude conservée : derived-index-observation.json"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:additional-observation.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "additional-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "additional-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "0bfe5b216033ce9ef9e6d87e65a8486dc0b1e4e29d0428cc9ea88aee1f1236a5",
+          "planSha256": "75654badc42f1c25acf8bacd0e80cc6d2f29d6ffebb341f6297c7cd2f9395e64",
+          "mode": "full",
+          "expected": 105,
+          "selected": 105,
+          "successes": 106,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "additional-observation.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "312399a26a9643f5ab86cf0f974224f38a9783950a30e7049d36fce4629a8bf0",
+          "planSha256": "919068e3b67b33684d12b80da390583bf3fc361b7363bc4e6a98a3f0d8b9bdd1",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 105,
+          "selected": 105,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:amundi-observation.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "amundi-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "amundi-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "afbdc71d056f5df312d60997c9accbeed49e8354ea492a09e8524c23018ab0d4",
+          "planSha256": "5e4eea5c8ede1345490d2788792b37dd47a69f895e430a5b153bf7efe2bdaf18",
+          "mode": "full",
+          "expected": 37,
+          "selected": 37,
+          "successes": 38,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "amundi-observation.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "1954455311381fd2a3a782062c90de906cfabca2951aff92c54f3aba9bc40d29",
+          "planSha256": "07eb6502ccfbd088339a85fe0768cb4ee0a58feb22b0f98f085848781e832600",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 37,
+          "selected": 37,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:index-observation.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "index-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "index-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "9fab65edafa2010063d3797b395bcebf62883a9e566163c2c44237fea6d09735",
+          "planSha256": "0f212e516742b960a7126dd1f15057bd9d64def2506a1ff717a7d9d6d4272d16",
+          "mode": "full",
+          "expected": 112,
+          "selected": 108,
+          "successes": 109,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "index-observation.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "c04088f0ec0735b9b5bea86a8980d9539ba65ecdc9d8393d661d2d0fd703f0a0",
+          "planSha256": "1b99ccc25f71d35b6a870b692b5aa6d0367666fd8e6730e7f8dcc72323cefc31",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 112,
+          "selected": 108,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:observation.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "8dffaf9b74554061de4846170acfb55423aa7dacf4091c3ad5dc2bb39fe89835",
+          "planSha256": "f4af04d6175c572bbb403964969b4a2955fa17d314951107aee643b636662264",
+          "mode": "full",
+          "expected": 42,
+          "selected": 42,
+          "successes": 43,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "observation.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "05c6c15944a9c37cfac70dae06e3994a9250bea91cf58e8ac0c9daa9ee1f5da6",
+          "planSha256": "a746ca0a55e68d5a08eec51e5ea934b1d3ce56a84c31d2a5caa182b80fd4a518",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 42,
+          "selected": 42,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:presentation-performance.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "presentation-performance.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "presentation-performance.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "76d8859eda8e1fa76fab79412d52c1285b6bed9121728ae267ef5c0107b75057",
+          "planSha256": "aeb4ac0eac593106c3c08480f313bf7c7849f275ac1ffd8ff84b1d566cb642f3",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "successes": 5,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "presentation-performance.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "6517e71d6aea26944817ac11ee4b0cedaec1ccd0cd060a9672fe71c3cbd9fcae",
+          "planSha256": "004799214e6e9ceeb8fa43a75becc0f7ffb9b66cb998b4d08ff09e57b2219abc",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:collect-etf-pilot.yml:ssga-observation.json",
+      "workflow": "collect-etf-pilot.yml",
+      "reports": [
+        "ssga-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "ssga-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212583120",
+          "runId": 40212583120,
+          "attempt": 1,
+          "sha256": "93b39bbaec1b407e669d7c029c619745a61d85758758361f824468233bc62a75",
+          "planSha256": "a2b74f83f7a11cca64230f1fe0d076d8ba48c336ee1c0bf0d82535c11767cde1",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "successes": 10,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "ssga-observation.json",
+          "runId": 40204788870,
+          "event": "push",
+          "artifactId": 12603162772,
+          "rawSha256": "f4e939e58e281173de32cf0f227536b3eb0b594123f4fd624074ceaf2e426e38",
+          "planSha256": "673fc3f3270a5e5e82abc43c00c1cb12b9ba7446a3d799c3caebe8c37d48b296",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "emptyReason": null,
+          "proofFile": "40204788870-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-economic-data.yml:funds-observation.json",
+      "workflow": "update-economic-data.yml",
+      "reports": [
+        "funds-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "funds-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
+          "runId": 40205350724,
+          "attempt": 1,
+          "sha256": "1d59e25388c5437b87e14408f445ad903dc5346a7198e36558d18eae167f23e2",
+          "planSha256": "0f6bb7541dd906553b0485d1b2d6aa13eb7a789c7db239d879d35fbc1b81cd31",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "successes": 2,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "funds-observation.json",
+          "runId": 40204788852,
+          "event": "push",
+          "artifactId": 12602873085,
+          "rawSha256": "40d47dca8279edd9dc4dc76537b34eb1fe6361b14751626c93e589c6c8411a22",
+          "planSha256": "1e9a7037dabb29862db0439e2fc9b9023fb2124d569b5dfe6bb76b8a334d0222",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204788852-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-economic-data.yml:households-observation.json",
+      "workflow": "update-economic-data.yml",
+      "reports": [
+        "households-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "households-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
+          "runId": 40205350724,
+          "attempt": 1,
+          "sha256": "9a79135f91dcfdb051636662913d6be2901d309eeb15da8e292797c83e6724ea",
+          "planSha256": "25395b4cb3fbe89498b575861ad5920c677aaaf7f6c2e799f06d9b109145d22d",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 7,
+          "successes": 8,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "households-observation.json",
+          "runId": 40204788852,
+          "event": "push",
+          "artifactId": 12602873085,
+          "rawSha256": "37956ab2bfa028c04b44f6ff00f6d71fbf5972a6f7e326251bd4a25b66ba0309",
+          "planSha256": "0f418126407780af56937bf401c8408bfd89c717dc19d446c6fa896726e13a0a",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 7,
+          "emptyReason": null,
+          "proofFile": "40204788852-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-economic-data.yml:savings-observation.json",
+      "workflow": "update-economic-data.yml",
+      "reports": [
+        "savings-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "savings-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
+          "runId": 40205350724,
+          "attempt": 1,
+          "sha256": "9d543c4d1f3208658e968f85eee2d20dc72432c5c5e221ee05f28d225ec65c9e",
+          "planSha256": "012d0017250214c8e8e0d91633cea9b66614d0f6c5c3c2d406969d515b967347",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "successes": 1,
+          "errors": 1
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "savings-observation.json",
+          "runId": 40204788852,
+          "event": "push",
+          "artifactId": 12602873085,
+          "rawSha256": "e721bb4ea716fbb9a421a8eed4986f42d7580e43b80a9e50f416184664486a31",
+          "planSha256": "b7e46775ed1f20a9cfa23e1487d2af32098bf35bab25f68104b58c3e18f78571",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204788852-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-economic-data.yml:scpi-observation.json",
+      "workflow": "update-economic-data.yml",
+      "reports": [
+        "scpi-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "scpi-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
+          "runId": 40205350724,
+          "attempt": 1,
+          "sha256": "b08b343e1c6c2c2b46ddbda673098217cfce06119cd57855946fa8a9f419c05f",
+          "planSha256": "17e62fd93e80c986bf53306a4e3398be022d3988c52de8ab4a196c11bad31869",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "successes": 2,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "scpi-observation.json",
+          "runId": 40204788852,
+          "event": "push",
+          "artifactId": 12602873085,
+          "rawSha256": "b61542262e3b43de4feec1ab896ebbb263843fd8742469808a27bd81b78a2d69",
+          "planSha256": "14ef07ea8bf3195453ebf6718af0e672b7dcd1f9ba1652e86794e51cc455064a",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 10,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204788852-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-regulatory-data.yml:broker-observation.json",
+      "workflow": "update-regulatory-data.yml",
+      "reports": [
+        "broker-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "broker-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788907",
+          "runId": 40204788907,
+          "attempt": 1,
+          "sha256": "cd7a4fa1164340fbad4fcc5cc25da184f718407077bdf9cf20849a3e8dd65b2d",
+          "planSha256": "48d88c959604185986532b554f2cd6b3eb53a1171f5a74bb78d4bc69010de4ba",
+          "mode": "full",
+          "expected": 83,
+          "selected": 83,
+          "successes": 84,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "broker-observation.json",
+          "runId": 40204788907,
+          "event": "push",
+          "artifactId": 12603217497,
+          "rawSha256": "cd7a4fa1164340fbad4fcc5cc25da184f718407077bdf9cf20849a3e8dd65b2d",
+          "planSha256": "48d88c959604185986532b554f2cd6b3eb53a1171f5a74bb78d4bc69010de4ba",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 83,
+          "selected": 83,
+          "emptyReason": null,
+          "proofFile": "40204788907-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-regulatory-data.yml:broker-tweet-observation.json",
+      "workflow": "update-regulatory-data.yml",
+      "reports": [
+        "broker-tweet-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "broker-tweet-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788907",
+          "runId": 40204788907,
+          "attempt": 1,
+          "sha256": "c720fc8d9167d82a77aeeaad5c28d5e9f154d9c1b7e5192c6348f381c4395a6d",
+          "planSha256": "7f1a1b7c809dd9f49cf8a4ce4cd5ca722f73235879faefc468c78a0080fe089f",
+          "mode": "full",
+          "expected": 88,
+          "selected": 88,
+          "successes": 89,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "broker-tweet-observation.json",
+          "runId": 40204788907,
+          "event": "push",
+          "artifactId": 12603217497,
+          "rawSha256": "c720fc8d9167d82a77aeeaad5c28d5e9f154d9c1b7e5192c6348f381c4395a6d",
+          "planSha256": "7f1a1b7c809dd9f49cf8a4ce4cd5ca722f73235879faefc468c78a0080fe089f",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 88,
+          "selected": 88,
+          "emptyReason": null,
+          "proofFile": "40204788907-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-regulatory-data.yml:fiscal-observation.json",
+      "workflow": "update-regulatory-data.yml",
+      "reports": [
+        "fiscal-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "fiscal-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788907",
+          "runId": 40204788907,
+          "attempt": 1,
+          "sha256": "2a6a9626e6c99d6cc9dd4c2ec4caa480c02e6669748ada66c1beb4f5c734da9e",
+          "planSha256": "930521e1953c1c810b28f60c55cd1b5a310397b425be43ae03f0c2444ba1849b",
+          "mode": "full",
+          "expected": 14,
+          "selected": 14,
+          "successes": 15,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "fiscal-observation.json",
+          "runId": 40204788907,
+          "event": "push",
+          "artifactId": 12603217497,
+          "rawSha256": "2a6a9626e6c99d6cc9dd4c2ec4caa480c02e6669748ada66c1beb4f5c734da9e",
+          "planSha256": "930521e1953c1c810b28f60c55cd1b5a310397b425be43ae03f0c2444ba1849b",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 14,
+          "selected": 14,
+          "emptyReason": null,
+          "proofFile": "40204788907-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-scpi.yml:scpi-observation.json",
+      "workflow": "update-scpi.yml",
+      "reports": [
+        "scpi-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "scpi-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40213617532",
+          "runId": 40213617532,
+          "attempt": 1,
+          "sha256": "8ac38105b9fe2e728b4e51733a4c4a90c2c97245d500bcf6bbc6fd351b0c9dfa",
+          "planSha256": "51798fa69f05e775d199ab0ac704732b395b05d27cb26c3c83fff549517d4c33",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "successes": 10,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "scpi-observation.json",
+          "runId": 40204788917,
+          "event": "push",
+          "artifactId": 12602843307,
+          "rawSha256": "b9df7d718ea35bc57f22bdf5ff97a6267fcf2e6d810fe464abeff0d24e82aab2",
+          "planSha256": "dd7f297bc2c85dc627e4848c1e2ac7b38f11957fa6b77cc396057f2a570e56b8",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "emptyReason": null,
+          "proofFile": "40204788917-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-insurance.yml:insurance-observation.json",
+      "workflow": "update-insurance.yml",
+      "reports": [
+        "insurance-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "insurance-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40210915187",
+          "runId": 40210915187,
+          "attempt": 1,
+          "sha256": "eb7297c8234c28aa3e6612b7f2857f380294744293b5ef2d210b1bdc7b5b26f9",
+          "planSha256": "7f6851442830101ec4cf0663a9e28d22f4063f4ce259285c861f7eb831c24483",
+          "mode": "full",
+          "expected": 7,
+          "selected": 7,
+          "successes": 7,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "insurance-observation.json",
+          "runId": 40204788915,
+          "event": "push",
+          "artifactId": 12603546463,
+          "rawSha256": "b9b3cec59ee09d91404d5ab9a17b5ab65ebc8ded955ff78dd532be21d8cad9f9",
+          "planSha256": "f5664868977b3545c4334d7965588fca9d88839923a7443096473e281d32a40d",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 7,
+          "selected": 7,
+          "emptyReason": null,
+          "proofFile": "40204788915-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-publication-observations.yml:anniversary-indices-observation.json",
+      "workflow": "update-publication-observations.yml",
+      "reports": [
+        "anniversary-indices-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "anniversary-indices-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40213617516",
+          "runId": 40213617516,
+          "attempt": 1,
+          "sha256": "f5d3b091ce5d3177f558a7432867179a38fb153ea745c6ef37645ebb8b50713d",
+          "planSha256": "a7e8d4438e3d8a10e08309cf5e3df2cfe0a911296e333ab89693bf4bf27de541",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "successes": 1,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "anniversary-indices-observation.json",
+          "runId": 40204788880,
+          "event": "push",
+          "artifactId": 12603905639,
+          "rawSha256": "a654792a83c24bcd830df2959eb5d71e02c232d1cc49e52cbbf46e1f89a8a4ae",
+          "planSha256": "713d471900cc7b3be7f7edda43443534415801b5d6e026c7b3f29ef22c9a5574",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 9,
+          "selected": 9,
+          "emptyReason": null,
+          "proofFile": "40204788880-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-publication-observations.yml:anniversary-observation.json",
+      "workflow": "update-publication-observations.yml",
+      "reports": [
+        "anniversary-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "anniversary-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40213617516",
+          "runId": 40213617516,
+          "attempt": 1,
+          "sha256": "4d07828d16223de71bef5ede9ff55d9a63efcd2b6abd700086928735c6aa3daf",
+          "planSha256": "d70436522f61d6dd1129f02ea2f868966bf4449a417f1922968aa4ea92ad6de1",
+          "mode": "full",
+          "expected": 665,
+          "selected": 665,
+          "successes": 665,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "anniversary-observation.json",
+          "runId": 40204788880,
+          "event": "push",
+          "artifactId": 12603905639,
+          "rawSha256": "16aeba883ca0397945f9acf48db771fd4c68f8201ee619af51d96cde9a105066",
+          "planSha256": "e45952e43253b3dc0aa73b16a4f79089a1568d87ff392f411eea23d6a2814cf7",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 665,
+          "selected": 665,
+          "emptyReason": null,
+          "proofFile": "40204788880-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-editorial-radar.yml:feed.json",
+      "workflow": "update-editorial-radar.yml",
+      "reports": [
+        "feed.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "feed.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40217109334",
+          "runId": 40217109334,
+          "attempt": 1,
+          "sha256": "19e15fcff37f9db4decb74e3e17af7d3c7cfb915df5a8d5c402510493488a7fe",
+          "planSha256": "165782f6c1964735e7bca9925a1f9818b361e7430952171270cfc81d2dcf8533",
+          "mode": "full",
+          "expected": 61,
+          "selected": 61,
+          "successes": 13,
+          "errors": 9
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "feed.json",
+          "runId": 40204955299,
+          "event": "schedule",
+          "artifactId": 12602908465,
+          "rawSha256": "6af8643d973ab2325f5bf427a563d15958d5bee263fb4b472143625e3f966f0d",
+          "planSha256": "77e83f4e042cdb22cae208b6e3163f159e7d1b13438b0ac22d16f01a903ed32e",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 61,
+          "selected": 61,
+          "emptyReason": null,
+          "proofFile": "40204955299-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-presentation-actors.yml:actor-observation.json",
+      "workflow": "update-presentation-actors.yml",
+      "reports": [
+        "actor-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "actor-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40206170528",
+          "runId": 40206170528,
+          "attempt": 1,
+          "sha256": "7e149a5e6a606630e9720d4f112e89328d670bf816f6bef115adb47cfed3b05d",
+          "planSha256": "2b6e659955b752378ab49ab5907d130149c32b7c5c9fa77b2f4362d7f075bf97",
+          "mode": "full",
+          "expected": 11,
+          "selected": 11,
+          "successes": 12,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "actor-observation.json",
+          "runId": 40204788923,
+          "event": "push",
+          "artifactId": 12602957900,
+          "rawSha256": "d1170a1491009ca1a25280d28498b93a8127135a6a9af06893786c0cd006f34a",
+          "planSha256": "de353512295157a30673acb6d18c62a8b94ebc1d70333f9d6b67173ff60d2ce5",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 11,
+          "selected": 11,
+          "emptyReason": null,
+          "proofFile": "40204788923-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-practical-sheets.yml:practical-observation.json",
+      "workflow": "update-practical-sheets.yml",
+      "reports": [
+        "practical-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "practical-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40211388717",
+          "runId": 40211388717,
+          "attempt": 1,
+          "sha256": "aa6cbc19b0658ab90a98d6d9b49088b83ddaaca8bd420f3c61b7693dd5ea7635",
+          "planSha256": "dc6a70585668dcc0b7ef3a63ccb92f94a2b0770c7ea25d6a2a198abe8dfd494a",
+          "mode": "full",
+          "expected": 11,
+          "selected": 11,
+          "successes": 12,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "practical-observation.json",
+          "runId": 40204788902,
+          "event": "push",
+          "artifactId": 12603326765,
+          "rawSha256": "10930f6361fdf7cda22dfa4f92d7d1ff6751913201235067184fddaca84ce56e",
+          "planSha256": "0a0a6263e879e01d1a54ae74383aca25a9a46ee14f09075f8151e4e600e750a6",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 11,
+          "selected": 11,
+          "emptyReason": null,
+          "proofFile": "40204788902-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-inflation.yml:inflation-observation.json",
+      "workflow": "update-inflation.yml",
+      "reports": [
+        "inflation-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "inflation-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788857",
+          "runId": 40204788857,
+          "attempt": 1,
+          "sha256": "01bb4f28537389e4f7905db921755bddefd19eee7a9401e84add50f59b3c370a",
+          "planSha256": "5d65c4ee4ebc3cf4f2765876a3d36027c300bda43388ab4f95bb41cddd962255",
+          "mode": "full",
+          "expected": 1,
+          "selected": 1,
+          "successes": 2,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "inflation-observation.json",
+          "runId": 40204788857,
+          "event": "push",
+          "artifactId": 12603306871,
+          "rawSha256": "01bb4f28537389e4f7905db921755bddefd19eee7a9401e84add50f59b3c370a",
+          "planSha256": "5d65c4ee4ebc3cf4f2765876a3d36027c300bda43388ab4f95bb41cddd962255",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 1,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204788857-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:refresh-automated-index-sheets.yml:index-company-observations.json",
+      "workflow": "refresh-automated-index-sheets.yml",
+      "reports": [
+        "index-company-observations.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "index-company-observations.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204841756",
+          "runId": 40204841756,
+          "attempt": 1,
+          "sha256": "d413f9b26d2fb83c923a68ccb80f3d3e996012057a68bd83fd7a7a5cac695f07",
+          "planSha256": "9829545209c5c072a073d5a056be8ec3ceed868b9901560148789fc12282f9d9",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "successes": 5,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "index-company-observations.json",
+          "runId": 40204841756,
+          "event": "workflow_dispatch",
+          "artifactId": 12604928627,
+          "rawSha256": "d413f9b26d2fb83c923a68ccb80f3d3e996012057a68bd83fd7a7a5cac695f07",
+          "planSha256": "9829545209c5c072a073d5a056be8ec3ceed868b9901560148789fc12282f9d9",
+          "executedCodeSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "emptyReason": null,
+          "proofFile": "40204841756-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:refresh-automated-index-sheets.yml:index-company-qualification-observations.json",
+      "workflow": "refresh-automated-index-sheets.yml",
+      "reports": [
+        "index-company-qualification-observations.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "index-company-qualification-observations.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204841756",
+          "runId": 40204841756,
+          "attempt": 1,
+          "sha256": "a1113c16ef71110111a95949807e04c2c769ebdf75d301d54809a862c774cd2d",
+          "planSha256": "b982619c16f27e9b9dce06e8573127e78d663c9585e3dd1ce5535587d80f4b39",
+          "mode": "full",
+          "expected": 55,
+          "selected": 55,
+          "successes": 35,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "index-company-qualification-observations.json",
+          "runId": 40204841756,
+          "event": "workflow_dispatch",
+          "artifactId": 12604928627,
+          "rawSha256": "a1113c16ef71110111a95949807e04c2c769ebdf75d301d54809a862c774cd2d",
+          "planSha256": "b982619c16f27e9b9dce06e8573127e78d663c9585e3dd1ce5535587d80f4b39",
+          "executedCodeSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+          "mode": "full",
+          "expected": 55,
+          "selected": 55,
+          "emptyReason": null,
+          "proofFile": "40204841756-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:refresh-automated-index-sheets.yml:selected-index-observations.json",
+      "workflow": "refresh-automated-index-sheets.yml",
+      "reports": [
+        "selected-index-observations.json"
+      ],
+      "missing": [],
+      "qualifications": [
+        "selected-index-observations.json"
+      ],
+      "receipts": [
+        {
+          "file": "selected-index-observations.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204841756",
+          "runId": 40204841756,
+          "attempt": 1,
+          "sha256": "b0a5935125a0630d027027a6eba1d9cc85ba965c641646d028686aa19e7ce07a",
+          "planSha256": "e63fd7d06089abb26cb4da499b541144f32ecba208db6325cada998e7358a2e1",
+          "mode": "targeted",
+          "expected": 112,
+          "selected": 20,
+          "successes": 21,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "selected-index-observations.json",
+          "runId": 40204841756,
+          "event": "workflow_dispatch",
+          "artifactId": 12604928627,
+          "rawSha256": "b0a5935125a0630d027027a6eba1d9cc85ba965c641646d028686aa19e7ce07a",
+          "planSha256": "e63fd7d06089abb26cb4da499b541144f32ecba208db6325cada998e7358a2e1",
+          "executedCodeSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+          "mode": "targeted",
+          "expected": 112,
+          "selected": 20,
+          "emptyReason": null,
+          "proofFile": "40204841756-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur ; ancienne qualification de complétude conservée : selected-index-observations.json"
+    },
+    {
+      "id": "scope:update-lifestrategy.yml:lifestrategy.json",
+      "workflow": "update-lifestrategy.yml",
+      "reports": [
+        "lifestrategy.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "lifestrategy.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788965",
+          "runId": 40204788965,
+          "attempt": 1,
+          "sha256": "b876d2c522f7d55e98b45208bb1709441ade2de7cc12bf3521cd262039f39a89",
+          "planSha256": "c6688c9450d95e01bb8704ac35125ba3f1ab16dbee19a9a58da817b2d63e2838",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "successes": 5,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "lifestrategy.json",
+          "runId": 40204788965,
+          "event": "push",
+          "artifactId": 12603333013,
+          "rawSha256": "b876d2c522f7d55e98b45208bb1709441ade2de7cc12bf3521cd262039f39a89",
+          "planSha256": "c6688c9450d95e01bb8704ac35125ba3f1ab16dbee19a9a58da817b2d63e2838",
+          "executedCodeSha": "9299d57afb4556b840dbbe69be6f12e4d0f6642e",
+          "mode": "full",
+          "expected": 4,
+          "selected": 4,
+          "emptyReason": null,
+          "proofFile": "40204788965-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-non-bond-expansion.yml:non-bond.json",
+      "workflow": "update-non-bond-expansion.yml",
+      "reports": [
+        "non-bond.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "non-bond.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40216903363",
+          "runId": 40216903363,
+          "attempt": 1,
+          "sha256": "28b02a86cbfbdccc7a61ac1ad59943ab51c43ff299a56e10727f2ae3a505af44",
+          "planSha256": "f34c873d658e128a8498575b369f47cca7998e941810280ba5e6b5fb20fd2993",
+          "mode": "full",
+          "expected": 86,
+          "selected": 86,
+          "successes": 87,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "non-bond.json",
+          "runId": 40204788904,
+          "event": "push",
+          "artifactId": 12603950250,
+          "rawSha256": "b5d5d2225f552b6363200901f828478584b3448745af7b0aabf48f3074ea566e",
+          "planSha256": "bd3fcbb9553f0880c4705813c006ba63bd79393dc00b232bfb24b8abdc8a1e7f",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "full",
+          "expected": 86,
+          "selected": 86,
+          "emptyReason": null,
+          "proofFile": "40204788904-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-qualified-exposures.yml:dca-complete-holdings.json",
+      "workflow": "update-qualified-exposures.yml",
+      "reports": [
+        "dca-complete-holdings.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "dca-complete-holdings.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788909",
+          "runId": 40204788909,
+          "attempt": 1,
+          "sha256": "80478d667bf7e984685f74e7786ba83b57b974deb9aa67e8d67d3450e92a4259",
+          "planSha256": "4aef69f659851fd80f9849387c85ac1bcd1f61e62d401111fb835b508d23f037",
+          "mode": "full",
+          "expected": 181,
+          "selected": 181,
+          "successes": 178,
+          "errors": 4
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "dca-complete-holdings.json",
+          "runId": 40204788909,
+          "event": "push",
+          "artifactId": 12603128256,
+          "rawSha256": "80478d667bf7e984685f74e7786ba83b57b974deb9aa67e8d67d3450e92a4259",
+          "planSha256": "4aef69f659851fd80f9849387c85ac1bcd1f61e62d401111fb835b508d23f037",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 181,
+          "selected": 181,
+          "emptyReason": null,
+          "proofFile": "40204788909-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-qualified-exposures.yml:dca-equities.json",
+      "workflow": "update-qualified-exposures.yml",
+      "reports": [
+        "dca-equities.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "dca-equities.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788909",
+          "runId": 40204788909,
+          "attempt": 1,
+          "sha256": "c565ccb06288596bb0ff63086d6f17d20e76e47765f487d6000b05ab226bedcb",
+          "planSha256": "165e3a3e64b5aa41b11113c67e1b8b3ccccdccfd77314f425decf9159cde52b3",
+          "mode": "full",
+          "expected": 37,
+          "selected": 37,
+          "successes": 38,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "dca-equities.json",
+          "runId": 40204788909,
+          "event": "push",
+          "artifactId": 12603128256,
+          "rawSha256": "c565ccb06288596bb0ff63086d6f17d20e76e47765f487d6000b05ab226bedcb",
+          "planSha256": "165e3a3e64b5aa41b11113c67e1b8b3ccccdccfd77314f425decf9159cde52b3",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 37,
+          "selected": 37,
+          "emptyReason": null,
+          "proofFile": "40204788909-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-qualified-exposures.yml:exposure-sleeves.json",
+      "workflow": "update-qualified-exposures.yml",
+      "reports": [
+        "exposure-sleeves.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "exposure-sleeves.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788909",
+          "runId": 40204788909,
+          "attempt": 1,
+          "sha256": "3ebc8379421ba2ca6dd881a4079643b2540a09a3ebcca162dc308ab9325f0c66",
+          "planSha256": "e8d09ad39421706c6faf4845831cc5544e1869a070d623f3f23067ad53e1b631",
+          "mode": "full",
+          "expected": 16,
+          "selected": 16,
+          "successes": 17,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "exposure-sleeves.json",
+          "runId": 40204788909,
+          "event": "push",
+          "artifactId": 12603128256,
+          "rawSha256": "3ebc8379421ba2ca6dd881a4079643b2540a09a3ebcca162dc308ab9325f0c66",
+          "planSha256": "e8d09ad39421706c6faf4845831cc5544e1869a070d623f3f23067ad53e1b631",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 16,
+          "selected": 16,
+          "emptyReason": null,
+          "proofFile": "40204788909-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-qualified-exposures.yml:qualified-exposures.json",
+      "workflow": "update-qualified-exposures.yml",
+      "reports": [
+        "qualified-exposures.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "qualified-exposures.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788909",
+          "runId": 40204788909,
+          "attempt": 1,
+          "sha256": "779a1b9ef16dca9fb7106b5a418ebdf114b8937b3afb02b1a18d63a802f2745c",
+          "planSha256": "70e9aee416bb1d5c5efa2a74242fc5516dae26f9d66beaffaf3eab9742ccce49",
+          "mode": "full",
+          "expected": 51,
+          "selected": 51,
+          "successes": 51,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "qualified-exposures.json",
+          "runId": 40204788909,
+          "event": "push",
+          "artifactId": 12603128256,
+          "rawSha256": "779a1b9ef16dca9fb7106b5a418ebdf114b8937b3afb02b1a18d63a802f2745c",
+          "planSha256": "70e9aee416bb1d5c5efa2a74242fc5516dae26f9d66beaffaf3eab9742ccce49",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 51,
+          "selected": 51,
+          "emptyReason": null,
+          "proofFile": "40204788909-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-qualified-exposures.yml:vanguard-sleeves.json",
+      "workflow": "update-qualified-exposures.yml",
+      "reports": [
+        "vanguard-sleeves.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "vanguard-sleeves.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788909",
+          "runId": 40204788909,
+          "attempt": 1,
+          "sha256": "4f932b1d6355bfac1a32dab7e300981d8fb41ff359a62ab7a60b284ce63cf877",
+          "planSha256": "5637392245c82604a7012a25b61e6acf210820ab335d7a584b0d9941363756a0",
+          "mode": "full",
+          "expected": 3,
+          "selected": 3,
+          "successes": 4,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "vanguard-sleeves.json",
+          "runId": 40204788909,
+          "event": "push",
+          "artifactId": 12603128256,
+          "rawSha256": "4f932b1d6355bfac1a32dab7e300981d8fb41ff359a62ab7a60b284ce63cf877",
+          "planSha256": "5637392245c82604a7012a25b61e6acf210820ab335d7a584b0d9941363756a0",
+          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
+          "mode": "full",
+          "expected": 3,
+          "selected": 3,
+          "emptyReason": null,
+          "proofFile": "40204788909-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-exposure-expansion.yml:exposure-expansion.json",
+      "workflow": "update-exposure-expansion.yml",
+      "reports": [
+        "exposure-expansion.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "exposure-expansion.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788945",
+          "runId": 40204788945,
+          "attempt": 1,
+          "sha256": "30a07b3192e05ae50c70638ff731355805b3d27a2b6444b14cbf8863aee18554",
+          "planSha256": "a2909e8d5c6e79864a1313654f443947ec09e5d3a70d14c6104ff7aa92bbfd75",
+          "mode": "full",
+          "expected": 35,
+          "selected": 35,
+          "successes": 36,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "exposure-expansion.json",
+          "runId": 40204788945,
+          "event": "push",
+          "artifactId": 12603003994,
+          "rawSha256": "30a07b3192e05ae50c70638ff731355805b3d27a2b6444b14cbf8863aee18554",
+          "planSha256": "a2909e8d5c6e79864a1313654f443947ec09e5d3a70d14c6104ff7aa92bbfd75",
+          "executedCodeSha": "e87b9f208eb37a285734442a389d3b4e4b399848",
+          "mode": "full",
+          "expected": 35,
+          "selected": 35,
+          "emptyReason": null,
+          "proofFile": "40204788945-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "scope:update-instrument-metadata.yml:instrument-metadata.json",
+      "workflow": "update-instrument-metadata.yml",
+      "reports": [
+        "instrument-metadata.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "instrument-metadata.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204788924",
+          "runId": 40204788924,
+          "attempt": 1,
+          "sha256": "ab105ed7c3fd510347cff0c6faa55f1285535a3db3bb3c3a3431084a74edb7a9",
+          "planSha256": "a4995d4ccf1a28c3edeb0dacd6b8dc9704ed021ee5eec44c834393ab44a912bd",
+          "mode": "full",
+          "expected": 3096,
+          "selected": 3096,
+          "successes": 2578,
+          "errors": 2
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "instrument-metadata.json",
+          "runId": 40204788924,
+          "event": "push",
+          "artifactId": 12605345220,
+          "rawSha256": "ab105ed7c3fd510347cff0c6faa55f1285535a3db3bb3c3a3431084a74edb7a9",
+          "planSha256": "a4995d4ccf1a28c3edeb0dacd6b8dc9704ed021ee5eec44c834393ab44a912bd",
+          "executedCodeSha": "54cdf6d2e7e34f365b6f1ebf7c15cf50e5c2a458",
+          "mode": "full",
+          "expected": 3096,
+          "selected": 3096,
+          "emptyReason": null,
+          "proofFile": "40204788924-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "coverage:onboard-assets.yml",
+      "workflow": "onboard-assets.yml",
+      "reports": [
+        "qualified-exposures.json",
+        "dca-complete-holdings.json",
+        "equity-qualification.json",
+        "etf-qualification.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "qualified-exposures.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204836800",
+          "runId": 40204836800,
+          "attempt": 1,
+          "sha256": "ef7216b4dcc67093ac6794b5a3b73a2721248c7e443528125a7ce80c142645d1",
+          "planSha256": "a7999abf8ae93a6f4ce4c9fa19ca1dea4770c97665488522c7020cf9cb6c9673",
+          "mode": "targeted",
+          "expected": 51,
+          "selected": 1,
+          "successes": 2,
+          "errors": 0
+        },
+        {
+          "file": "dca-complete-holdings.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204836800",
+          "runId": 40204836800,
+          "attempt": 1,
+          "sha256": "56f1f9f531deb8792a6eab5ef6005fa1bc48cc0eb4d1a16134554da16ef43109",
+          "planSha256": "ffe59632548fa944a2a281eecbbeddce84be8604a8586e14091a3ef375b69caa",
+          "mode": "targeted",
+          "expected": 181,
+          "selected": 4,
+          "successes": 5,
+          "errors": 0
+        },
+        {
+          "file": "equity-qualification.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204836800",
+          "runId": 40204836800,
+          "attempt": 1,
+          "sha256": "cdb12c25c577859eb120afe55a74779e379fc099fb5a78cd497ee77a90849c9c",
+          "planSha256": "99cf713e87e66d4f8e65b6094991139e0ecaf16eaf302203d694d0944c0ee79f",
+          "mode": "targeted",
+          "expected": 0,
+          "selected": 0,
+          "successes": 1,
+          "errors": 0
+        },
+        {
+          "file": "etf-qualification.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204836800",
+          "runId": 40204836800,
+          "attempt": 1,
+          "sha256": "030c1100405937ae067e5bbc997b987ccc3e61a8a2e72e456749301a78b48938",
+          "planSha256": "7809e751aca71f55895dd5031f288bdef05e6455f10d32cdd53d6dc24d688490",
+          "mode": "targeted",
+          "expected": 0,
+          "selected": 0,
+          "successes": 1,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "qualified-exposures.json",
+          "runId": 40204836800,
+          "event": "workflow_dispatch",
+          "artifactId": 12603466557,
+          "rawSha256": "ef7216b4dcc67093ac6794b5a3b73a2721248c7e443528125a7ce80c142645d1",
+          "planSha256": "a7999abf8ae93a6f4ce4c9fa19ca1dea4770c97665488522c7020cf9cb6c9673",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 51,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204836800-contracts.json.gz"
+        },
+        {
+          "file": "dca-complete-holdings.json",
+          "runId": 40204836800,
+          "event": "workflow_dispatch",
+          "artifactId": 12603466557,
+          "rawSha256": "56f1f9f531deb8792a6eab5ef6005fa1bc48cc0eb4d1a16134554da16ef43109",
+          "planSha256": "ffe59632548fa944a2a281eecbbeddce84be8604a8586e14091a3ef375b69caa",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 181,
+          "selected": 4,
+          "emptyReason": null,
+          "proofFile": "40204836800-contracts.json.gz"
+        },
+        {
+          "file": "equity-qualification.json",
+          "runId": 40204836800,
+          "event": "workflow_dispatch",
+          "artifactId": 12603466557,
+          "rawSha256": "cdb12c25c577859eb120afe55a74779e379fc099fb5a78cd497ee77a90849c9c",
+          "planSha256": "99cf713e87e66d4f8e65b6094991139e0ecaf16eaf302203d694d0944c0ee79f",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 0,
+          "selected": 0,
+          "emptyReason": "No configured applicable instruments",
+          "proofFile": "40204836800-contracts.json.gz"
+        },
+        {
+          "file": "etf-qualification.json",
+          "runId": 40204836800,
+          "event": "workflow_dispatch",
+          "artifactId": 12603466557,
+          "rawSha256": "030c1100405937ae067e5bbc997b987ccc3e61a8a2e72e456749301a78b48938",
+          "planSha256": "7809e751aca71f55895dd5031f288bdef05e6455f10d32cdd53d6dc24d688490",
+          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "mode": "targeted",
+          "expected": 0,
+          "selected": 0,
+          "emptyReason": "No configured applicable instruments",
+          "proofFile": "40204836800-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    },
+    {
+      "id": "coverage:update-bitcoin-monthly.yml",
+      "workflow": "update-bitcoin-monthly.yml",
+      "reports": [
+        "observation.json",
+        "derived-index-observation.json"
+      ],
+      "missing": [],
+      "qualifications": [],
+      "receipts": [
+        {
+          "file": "observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204834985",
+          "runId": 40204834985,
+          "attempt": 1,
+          "sha256": "dbe8cbdabab9849e0ed6270cd37a6a3eca30e8ee9d33cea3dde90ea747c20796",
+          "planSha256": "bc6b2e3effb669560d95762121709a30dde509f7f7657b221cb2bc8e8b1ab14e",
+          "mode": "full",
+          "expected": 1,
+          "selected": 1,
+          "successes": 2,
+          "errors": 0
+        },
+        {
+          "file": "derived-index-observation.json",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40204834985",
+          "runId": 40204834985,
+          "attempt": 1,
+          "sha256": "e2a9a51102e38aa8e01e00664651571cdc13d3b7f8a893ff2cb9c743a7baee44",
+          "planSha256": "fe1e4ceaba69d553c918686d8a657b18f876def512ff41e6fa0e7fed81b53fda",
+          "mode": "targeted",
+          "expected": 56,
+          "selected": 3,
+          "successes": 4,
+          "errors": 0
+        }
+      ],
+      "githubProducerReports": [
+        {
+          "file": "observation.json",
+          "runId": 40204834985,
+          "event": "workflow_dispatch",
+          "artifactId": 12604118556,
+          "rawSha256": "dbe8cbdabab9849e0ed6270cd37a6a3eca30e8ee9d33cea3dde90ea747c20796",
+          "planSha256": "bc6b2e3effb669560d95762121709a30dde509f7f7657b221cb2bc8e8b1ab14e",
+          "executedCodeSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+          "mode": "full",
+          "expected": 1,
+          "selected": 1,
+          "emptyReason": null,
+          "proofFile": "40204834985-contracts.json.gz"
+        },
+        {
+          "file": "derived-index-observation.json",
+          "runId": 40204834985,
+          "event": "workflow_dispatch",
+          "artifactId": 12604118556,
+          "rawSha256": "e2a9a51102e38aa8e01e00664651571cdc13d3b7f8a893ff2cb9c743a7baee44",
+          "planSha256": "fe1e4ceaba69d553c918686d8a657b18f876def512ff41e6fa0e7fed81b53fda",
+          "executedCodeSha": "099346389d4cd0d1b6f9a8341b75c0425277b543",
+          "mode": "targeted",
+          "expected": 56,
+          "selected": 3,
+          "emptyReason": null,
+          "proofFile": "40204834985-contracts.json.gz"
+        }
+      ],
+      "status": "contrat ordinaire master ingéré dans le moniteur"
+    }
+  ]
+}

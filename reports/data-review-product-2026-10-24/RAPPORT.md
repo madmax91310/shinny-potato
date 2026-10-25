@@ -109,3 +109,72 @@ Les deux producteurs job-only possèdent désormais des rapports déclarés, mai
 Recettes isolées : omissions avec workflow vert, résultat dupliqué/hors périmètre, vide normal/anormal, échec partiel, interruption et rapport tronqué, cache, vérification inchangée, reprise ciblée laissant les autres incidents ouverts. La recette navigateur utilise les vrais lecteur/réducteur avec un moniteur simulé, sur mobile et ordinateur, diagnostic complet compris ; elle n’est pas une collecte fournisseur. Les fixtures de schéma des deux nouveaux producteurs proviennent des artefacts GitHub ordinaires de branche, jamais de collectes fictives en production.
 
 À ce stade de préparation : exécutions de branche attestées ; passage des manifestes indépendants, ingestion du moniteur, déploiement et recettes publiques sur master encore à vérifier. Le bilan sera complété après ces contrôles. Aucun composant exclusivement Portefeuilles IA n’est rétabli ; les données d’Analyse d’entreprise restent hors périmètre.
+
+## Preuves ordinaires du 25/10 — suite du même suivi
+
+Le périmètre initial courant comporte **37 qualifications** : 35 qualifications de
+rapports et deux contrats limités au job, regroupées dans **20 workflows**. Ce compteur
+remplace le relevé historique de 34. Les producteurs fournissent maintenant **41 rapports
+avec `producer-results-v1`** ; quatre rapports historiques complémentaires restent
+conservés. La différence vient notamment des deux contrats de job, désormais détaillés
+en six rapports. Il ne s'agit ni de 41 collecteurs réseau distincts, ni d'une mesure de
+couverture des champs financiers du catalogue.
+
+Les 20 points d'entrée ordinaires GitHub ont réellement produit leurs artefacts après
+#950. Les manifestes indépendants et les rapports natifs passent dans le lecteur de
+production ; leurs empreintes, instruments, champs et sélections sont conservés dans
+`preuves-contrats-producteurs-20261025/contrats-executes.csv` et les 20 captures
+`<run>-contracts.json.gz`. Une reprise mensuelle `retry_failed` a remplacé un passage
+complet avant toute collecte pour éviter une recollecte inutile. Le raccordement d'actifs
+a été exercé avec quotas nuls et sélection qualifiée existante, sans extension de catalogue.
+Les lancements `push`, `workflow_dispatch` et `schedule` restent explicitement distingués.
+
+Ces rapports décrivent **5 361 unités de validation natives** : 3 625 résultats réussis,
+668 contrôles source inchangés, 732 non tentés, 260 différés, 49 attentes normales,
+neuf caches, huit non applicables et dix échecs individuels. Ces nombres ne sont ni des
+actifs uniques ni des contrôles réseau indépendants. Les dix échecs conservés concernent
+quatre positions WisdomTree, quatre sources Radar et deux champs de métadonnées
+(cotation IE00BYZK4776 et conflit PEA IE00B0M62S72). Les qualifications locales ne sont
+pas présentées comme des consultations fournisseurs.
+
+Aucune omission, duplication ou sortie hors périmètre n'a été observée dans cette série
+de rapports natifs. Leur détection est démontrée en isolation, avec les vrais lecteurs et
+réducteurs, y compris quand le workflow est vert. Les tests couvrent aussi vide justifié
+ou anormal, interruption/rapport tronqué, résultat partiel, cache sans contrôle source,
+contrôle inchangé, conservation des incidents hors reprise ciblée et indépendance des
+étapes collecte/validation/enregistrement/publication. Le périmètre est figé avant les
+résultats ; les tentatives non décrites par un ancien rapport restent inconnues.
+
+Correctifs issus de cette recette : lecture du sous-dossier Radar et du manifeste
+indépendant (#951), horloge déterministe du test Radar sans modification du seuil de
+production (#952), relecture versionnée des caches de rapports et conservation des
+qualifications historiques (#955), copies mémoire préservant les périmètres mutualisés
+(#956), puis lecture des `scopeRef` persistées (#958). Les rapports financiers natifs ne
+sont pas réécrits. Les incidents de collecte, d'enregistrement et de publication restent
+indépendants de la qualification de complétude.
+
+Sur le dernier correctif de code : **1 131 tests Python et build réussis**, ainsi que la
+recette navigateur d'omission sur mobile et ordinateur. Les contrôles de contrat sont
+exécutés par la CI et le producteur ordinaire du moniteur ; une sortie attendue sans
+statut fait échouer la validation du contrat. Les interruptions réelles de runners sont
+conservées dans `incident-runner-moniteur.json`, sans cause supposée. La duplication
+mémoire corrigée a été mesurée séparément sur les preuves réelles ; elle ne démontre
+pas à elle seule la cause de ces interruptions.
+
+Les reçus d'ingestion et la vérification publique finale sont détaillés dans
+`production-contract-receipts.json`, `moniteur-apres.json.gz` et `bilan.json` ; ils ne sont
+pas déduits de la couleur globale des workflows. Un rapport ciblé ne certifie pas les
+unités exclues. Les anciens rapports sans manifeste restent des limites historiques,
+jamais des tentatives reconstruites rétroactivement. Les défauts financiers et blocages
+externes préexistants restent hors de cette réparation des comptes rendus.
+
+État d'ingestion après le rattrapage ordinaire `40215683385` : **37/37 cas initiaux**
+ont une preuve versionnée avec manifeste rapproché dans le moniteur public (statut
+`520a6f07d1e3486353ce8978a299e2cc0bc0fbff`, contrôle du 25/10 à 17:38:17 UTC).
+Deux qualifications historiques restent ouvertes : `derived-index-observation.json`
+(mensuel) et `selected-index-observations.json` (indices). Les nouvelles reprises sont
+ciblées et ne certifient pas les anciens périmètres inconnus. Elles ne représentent pas
+deux nouveaux producteurs sans contrat. Le passage planifié Radar `40204955299` est
+attesté dans GitHub ; l'ingestion des mêmes octets précis n'est pas démontrée, contrairement
+aux rapports ordinaires actuels ingérés de ce producteur. Les 19 autres workflows ont été
+exercés par push ou lancement manuel : aucun futur cron n'est présenté comme observé.

@@ -1,0 +1,25 @@
+{
+  "runId": 40212995725,
+  "jobId": 121228054123,
+  "observedAt": "2026-10-25T16:53:57.402898+00:00",
+  "shutdownAt": "2026-10-25T16:46:36.7825336Z",
+  "message": "The runner has received a shutdown signal. The operation was canceled.",
+  "cause": "Non déterminée ; interruption constatée dans le journal GitHub, sans nouvelle publication observée.",
+  "lastValidMonitorCommit": "bf902463f00389b22e98ebb84388d4e53694f176",
+  "recovery": "Clore l’exécution interrompue puis relancer le producteur ordinaire du moniteur ; aucune collecte fournisseur.",
+  "additionalInterruptedRuns": [
+    {
+      "runId": 40213617352,
+      "shutdownAt": "2026-10-25T17:04:23Z",
+      "cause": "non déterminée"
+    },
+    {
+      "runId": 40213880702,
+      "jobId": 121233178018,
+      "shutdownAt": "2026-10-25T17:07:03.6480385Z",
+      "operationCanceledAt": "2026-10-25T17:07:04.9157683Z",
+      "cause": "non déterminée",
+      "recovery": "Retrait du run déjà interrompu, puis producteur ordinaire sur master corrigé."
+    }
+  ]
+}
