@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -287,6 +287,72 @@
         "tool": null,
         "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-aa5ba87c515ad4685531",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers",
+        "value": {
+          "title": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers",
+          "summary": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+        "publicationId": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-23",
+        "period": "2026-10-23",
+        "checkedAt": "2026-10-25T10:32:51.170Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+        "populationScope": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre.",
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/livret-distingo",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/mer/mer-horizon-plus",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/fortuneo",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/comparatif/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "75e5a4c6fc1e44a76af7a4bb1c44ebfa7f309d897564e4d82ce478f95cf96a4a",
+          "excerpt": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
         "backfill": true
       },
       {
@@ -688,7 +754,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -933,7 +999,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -967,7 +1033,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -1539,7 +1605,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T09:41:30.208Z",
+        "checkedAt": "2026-10-25T10:32:51.164Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -1679,7 +1745,7 @@
         "publisher": "Bourse Direct",
         "publishedAt": "2026-09-22",
         "period": "2026-09-22",
-        "checkedAt": "2026-10-25T07:43:30.738Z",
+        "checkedAt": "2026-10-25T10:32:51.170Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-sengage-a-une-selection-de-fonds-toujours-plus-exigeante-pour-ses-offres-dassurance-vie-et-de-per-20260922",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
         "topic": "epargne",
@@ -2014,7 +2080,7 @@
         "publisher": "BNP Paribas · groupe",
         "publishedAt": "2026-09-09",
         "period": "2026-09-09",
-        "checkedAt": "2026-10-25T08:51:27.957Z",
+        "checkedAt": "2026-10-25T10:32:51.170Z",
         "scope": "Annonce BNP Paribas · groupe · https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
         "populationScope": "BNP Paribas annonce une avancée majeure dans le déploiement de Wero en France.",
         "conditions": {
@@ -2038,12 +2104,17 @@
             "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
             "role": "official",
             "label": "BNP Paribas · groupe"
+          },
+          {
+            "url": "https://group.bnpparibas/decouvrez-le-groupe/nous-connaitre/questions-frequentes",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
           }
         ],
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "2e7c86ccaa0977fb65c873b4fdf00e50fb56839e5daa0300abe7933d44c55369",
+          "sourceHash": "81d6b9ad95f2aab4c2589f6a2c4272b374baa25f4fe902d0df07c57dbfa65c9b",
           "excerpt": "BNP Paribas annonce une avancée majeure dans le déploiement de Wero en France. Plusieurs grands commerçants sont désormais engagés avec BNP Paribas pour pouvoir proposer Wero comme mode de paiement en ligne, notamment Air France, Decathlon, Fnac Darty et Orange. - (source: group.bnpparibas)",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -2264,6 +2335,57 @@
         "tool": null,
         "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-119ae566034570ab9651",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Factures d’énergie : les rattrapages de facturation sont limités à 14 mois",
+        "value": {
+          "title": "Factures d’énergie : les rattrapages de facturation sont limités à 14 mois",
+          "summary": "Depuis le 17 août 2016 , les fournisseurs d’électricité et de gaz naturel ne peuvent plus demander le paiement de consommations datant de plus de 14 mois. Cette règle prévue par l’ article L.224-11 du code de la consommation protège les consommateurs contre les rattrapages de facturation, portant sur des périodes trop anciennes, qui peuvent entraîner des montants élevés et mettre en difficulté leur budget .",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.energie-info.fr/rattrapages-de-facturation-limites-a-14-mois",
+        "publicationId": "https://www.energie-info.fr/rattrapages-de-facturation-limites-a-14-mois",
+        "publisher": "Médiateur national de l’énergie",
+        "publishedAt": "2026-08-17",
+        "period": "2026-08-17",
+        "checkedAt": "2026-10-25T10:32:51.170Z",
+        "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/rattrapages-de-facturation-limites-a-14-mois",
+        "populationScope": "Depuis le 17 août 2016 , les fournisseurs d’électricité et de gaz naturel ne peuvent plus demander le paiement de consommations datant de plus de 14 mois.",
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "Depuis le 17 août 2016 , les fournisseurs d’électricité et de gaz naturel ne peuvent plus demander le paiement de consommations datant de plus de 14 mois. Cette règle prévue par l’ article L.224-11 du code de la consommation protège les consommateurs contre les rattrapages de facturation, portant sur des périodes trop anciennes, qui peuvent entraîner des montants élevés et mettre en difficulté leur budget .",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.energie-info.fr/rattrapages-de-facturation-limites-a-14-mois",
+            "role": "official",
+            "label": "Médiateur national de l’énergie"
+          },
+          {
+            "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032226713",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "bf81cbcfc89d5d2fc57b7ccc04e059544e76dfd90c641f1ccced657069fa6a84",
+          "excerpt": "Depuis le 17 août 2016 , les fournisseurs d’électricité et de gaz naturel ne peuvent plus demander le paiement de consommations datant de plus de 14 mois. Cette règle prévue par l’ article L.224-11 du code de la consommation protège les consommateurs contre les rattrapages de facturation, portant sur des périodes trop anciennes, qui peuvent entraîner des montants élevés et mettre en difficulté leur budget .",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Factures d’énergie : les rattrapages de facturation sont limités à 14 mois — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
         "backfill": true
       },
       {
@@ -2844,7 +2966,7 @@
         "publisher": "BoursoBank Groupe · communiqués",
         "publishedAt": "2026-03-18",
         "period": "2026-03-18",
-        "checkedAt": "2026-10-25T07:51:23.084Z",
+        "checkedAt": "2026-10-25T10:32:51.170Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-enrichit-son-offre-en-matiere-d-education-financiere",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
         "topic": "banques",
@@ -2862,7 +2984,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "e6132f08c49cacc788dd21734f2936c8ebc4e6c1bd2102576d106ec1beadcc33",
+          "sourceHash": "74b16b68f367ac353880d03ded6b543c73c9a2ed8d9d3cf9526826d73fff59b9",
           "excerpt": "A l’occasion de la Semaine de l’éducation financière, BoursoBank annonce de nouveaux dispositifs pédagogiques sur tous les canaux et sous tous les formats pour donner à chacun les moyens d’agir sur son argent : partenariats avec des finfluenceurs, podcasts, vidéos avec Le HuffPost, démultiplication des contenus du portail boursorama.com en formats courts et adaptés pour une diffusion sur les réseaux sociaux, et engagement renouvelé aux côtés du Baromètre ViveS « Les femmes et l’argent ». Autant d’initiatives complémentaires pour rendre la finance plus compréhensible et accessible à tous.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3281,19 +3403,19 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T09:41:48.738Z",
-  "sourceRevision": "cee7add210c57dcb8c28d7b199ab2e5a6f131802",
-  "observationCount": 7480,
+  "checkedAt": "2026-10-25T10:33:43.205Z",
+  "sourceRevision": "fc03cecdafb1b5e9b0a6ee117b2c5a8f4caa90d5",
+  "observationCount": 7484,
   "coverage": {
-    "etf": 287,
+    "etf": 288,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 114,
-    "pouvoir-achat": 45
+    "economie": 115,
+    "pouvoir-achat": 47
   },
   "newSignalCount": 1,
   "errors": [
@@ -3301,6 +3423,11 @@
       "family": "pouvoir-achat",
       "entity": "Revolut · salle de presse France",
       "reason": "HTTP 403"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "La Banque Postale · communiqués",
+      "reason": "Archive La Banque Postale page 2 : HTTP 403"
     },
     {
       "family": "etf",
@@ -3319,8 +3446,13 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q4",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q3",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-offres-en-0",
+      "reason": "The operation was aborted due to timeout"
     },
     {
       "family": "economie",
@@ -3359,7 +3491,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q3",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q4",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -3404,6 +3536,130 @@
     }
   ],
   "events": [
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+      "evidence": {
+        "sourceHash": "75e5a4c6fc1e44a76af7a4bb1c44ebfa7f309d897564e4d82ce478f95cf96a4a",
+        "excerpt": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/livret-distingo",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/mer/mer-horizon-plus",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/fortuneo",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/comparatif/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "df3353c94904e82ea32fbc3c",
+      "family": "pouvoir-achat",
+      "entity": "publication-aa5ba87c515ad4685531",
+      "label": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T10:33:43.205Z",
+      "before": null,
+      "after": {
+        "title": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers",
+        "summary": "Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers · summary : Près de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-23",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "tool": null,
+      "angle": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Facture d'électricité : nouvelles heures creuses à partir de novembre, ce qui change pour 9,3 millions de foyers\n\nPrès de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre. Pourquoi et qui est concerné ? &Eacute;léments de réponse. Plus de 9 millions de consommateurs vont devoir changer leurs habitudes pour faire baisser leurs factures d'électricité : la seconde phase de modification des plages d'heures creuses va prochainement être lancée.\n\nPublication : 2026-10-23 · Annonce publiée\nPrès de 9,3 millions de foyers verront leurs plages d'heures creuses et d'heures pleines être modifiées à compter de novembre.\n\nSource : https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+      "reason": "Électricité et gaz : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "credit",
       "topicLabel": "Crédit immobilier et PTZ",
@@ -4586,15 +4842,15 @@
       "evidence": {
         "method": "Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.",
         "excerpt": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
-        "sourceHash": "051b8353470175bee8b83a31bb4400cec50835a26012bd084a2675e27d5ece70"
+        "sourceHash": "f6ee39315bbd2e92e9d4525e69dec7d0ce24d11bdb8fe265e31f6b151f4570eb"
       },
       "publicationId": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
       "publishedAt": "2026-10-23",
       "publisher": "Crédit Agricole · groupe et réseaux",
       "backfill": true,
       "documentUrl": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
-      "documentCheckedAt": "2026-10-25T08:51:27.957Z",
-      "documentHash": "051b8353470175bee8b83a31bb4400cec50835a26012bd084a2675e27d5ece70",
+      "documentCheckedAt": "2026-10-25T10:32:51.170Z",
+      "documentHash": "f6ee39315bbd2e92e9d4525e69dec7d0ce24d11bdb8fe265e31f6b151f4570eb",
       "announcedProductCount": 3,
       "id": "38e95bb4164f02905c34c1b4",
       "family": "etf",
@@ -4829,6 +5085,11 @@
           "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
           "role": "official",
           "label": "BNP Paribas · groupe"
+        },
+        {
+          "url": "https://group.bnpparibas/decouvrez-le-groupe/nous-connaitre/questions-frequentes",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
         }
       ],
       "backfill": true,
@@ -72773,51 +73034,45 @@
   "scopeNote": "Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.",
   "sources": [
     {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 10,
-      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
-      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "id": "amundi",
+      "name": "Amundi · actualités et avis",
+      "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
+      "method": "sitemap",
+      "depth": "Toutes les URL françaises des actualités du sitemap",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 83,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T17:28:09.310Z",
+      "lastSuccessAt": "2026-10-24T17:28:09.310Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
+      "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 0,
-        "done": 5,
+        "pending": 64,
+        "done": 19,
         "error": 0,
-        "rejected": 5
+        "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
-      "archiveWarning": null
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z"
     },
     {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 10,
-      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
-      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "status": "error",
+      "error": "HTTP 403",
       "queue": {
-        "pending": 1,
-        "done": 7,
+        "pending": 0,
+        "done": 0,
         "error": 0,
-        "rejected": 2
+        "rejected": 0
       },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z"
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
     },
     {
       "id": "afg",
@@ -72825,14 +73080,14 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
       "queue": {
         "pending": 0,
         "done": 2,
@@ -72843,28 +73098,27 @@
       "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
-      "id": "amf-alerts",
-      "name": "AMF · communiqués",
-      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 196,
-      "etag": "\"1792915837-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 08:10:37 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
       "queue": {
-        "pending": 153,
-        "done": 6,
+        "pending": 0,
+        "done": 8,
         "error": 0,
-        "rejected": 39
+        "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
-      "archiveWarning": null
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z"
     },
     {
       "id": "moneyvox",
@@ -72872,46 +73126,22 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
       "queue": {
         "pending": 20,
-        "done": 5,
+        "done": 6,
         "error": 0,
         "rejected": 39
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 7
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z",
       "archiveWarning": null
     },
     {
@@ -72920,15 +73150,15 @@
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
       "method": "consumer-coverage",
       "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 21,
       "archiveWarning": null,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 2,
@@ -72936,31 +73166,7 @@
         "rejected": 20
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:21:30.583Z"
-    },
-    {
-      "id": "credit-agricole-news",
-      "name": "Crédit Agricole · groupe et réseaux",
-      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
-      "method": "consumer-coverage",
-      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 6,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 5
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T08:51:27.957Z"
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z"
     },
     {
       "id": "sg-bank",
@@ -72968,15 +73174,15 @@
       "url": "https://www.societegenerale.com/fr/communiques-de-presse",
       "method": "consumer-coverage",
       "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 18,
       "archiveWarning": null,
-      "etag": "\"1792749484-gzip\"",
-      "lastModified": "Fri, 23 Oct 2026 09:58:04 GMT",
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "etag": "\"1792922289-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 09:58:09 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 2,
@@ -72987,52 +73193,52 @@
       "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
-      "id": "bpce-bank",
-      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
-      "url": "https://newsroom.groupebpce.fr/",
-      "method": "consumer-coverage",
-      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 4,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 196,
+      "etag": "\"1792915837-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 08:10:37 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
       "queue": {
-        "pending": 0,
-        "done": 2,
-        "error": 0,
-        "rejected": 2
+        "pending": 152,
+        "done": 6,
+        "error": 1,
+        "rejected": 39
       },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:21:30.583Z"
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
+      "archiveWarning": null
     },
     {
-      "id": "cm-cic",
-      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
-      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
-      "method": "consumer-coverage",
-      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 12,
-      "archiveWarning": null,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
       "queue": {
         "pending": 0,
-        "done": 1,
+        "done": 5,
         "error": 0,
-        "rejected": 11
+        "rejected": 7
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T08:51:27.957Z"
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z",
+      "archiveWarning": null
     },
     {
       "id": "lbp-bank",
@@ -73040,15 +73246,15 @@
       "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
       "method": "consumer-coverage",
       "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 6,
       "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 03:40:38 GMT",
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "partial",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 1,
@@ -73064,15 +73270,15 @@
       "url": "https://www.home.saxo/fr-fr/about-us/media-center",
       "method": "consumer-coverage",
       "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T08:51:27.957Z",
-      "lastSuccessAt": "2026-10-25T08:51:27.957Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:27.957Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 3,
@@ -73083,28 +73289,52 @@
       "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z"
     },
     {
-      "id": "invesco",
-      "name": "Invesco · communiqués européens",
-      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
-      "method": "extra-coverage",
-      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 43,
+      "id": "bpce-bank",
+      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "url": "https://newsroom.groupebpce.fr/",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 4,
       "archiveWarning": null,
       "etag": null,
-      "lastModified": "Sat, 24 Oct 2026 23:02:07 GMT",
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:23.084Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
-        "pending": 38,
-        "done": 5,
+        "pending": 0,
+        "done": 2,
         "error": 0,
-        "rejected": 0
+        "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z"
+      "lastExtractionSuccessAt": "2026-10-25T09:21:30.583Z"
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:02:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z",
+      "archiveWarning": null
     },
     {
       "id": "spdr-news",
@@ -73112,15 +73342,15 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "method": "extra-coverage",
       "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 10,
       "archiveWarning": null,
-      "etag": "\"48119b9dc7eab1ab80bd2f22369d88da\"",
+      "etag": "\"4b76f2afdbd23c07324a0a51943dd83c\"",
       "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:23.084Z",
+      "nextCheckAt": "2026-10-25T12:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 0,
@@ -73131,52 +73361,76 @@
       "lastExtractionSuccessAt": null
     },
     {
-      "id": "xetra",
-      "name": "Deutsche Börse / Xetra · cotations ETF",
-      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
-      "method": "extra-links",
-      "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 10,
+      "id": "credit-agricole-news",
+      "name": "Crédit Agricole · groupe et réseaux",
+      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 6,
+      "archiveWarning": null,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
-        "done": 10,
+        "done": 1,
         "error": 0,
-        "rejected": 0
+        "rejected": 5
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T19:38:49.474Z",
-      "archiveWarning": null
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z"
     },
     {
-      "id": "bnp",
-      "name": "BNP Paribas AM · communiqués",
-      "url": "https://www.bnpparibas-am.com/en/media-centre/",
-      "method": "extra-bnp",
-      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 2,
+      "id": "invesco",
+      "name": "Invesco · communiqués européens",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "method": "extra-coverage",
+      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 43,
+      "archiveWarning": null,
       "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "lastModified": "Sat, 24 Oct 2026 23:32:15 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T12:32:51.170Z",
       "queue": {
-        "pending": 0,
-        "done": 2,
+        "pending": 38,
+        "done": 5,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T17:29:42.869Z",
-      "archiveWarning": null
+      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z"
+    },
+    {
+      "id": "cm-cic",
+      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
+      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
+      "method": "consumer-coverage",
+      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 11
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T08:51:27.957Z"
     },
     {
       "id": "xtrackers",
@@ -73184,14 +73438,14 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 10,
@@ -73203,67 +73457,19 @@
       "archiveWarning": null
     },
     {
-      "id": "hanetf",
-      "name": "HANetf · communiqués UCITS",
-      "url": "https://hanetf.com/press-releases/",
-      "method": "extra-links",
-      "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 9,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 7,
-        "error": 2,
-        "rejected": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T08:13:33.637Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "notaires-paris",
-      "name": "Notaires du Grand Paris · conjoncture",
-      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
-      "method": "extra-links",
-      "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 8,
-      "etag": "\"1792920093-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 09:21:33 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T18:57:18.721Z",
-      "archiveWarning": null
-    },
-    {
       "id": "credit-logement",
       "name": "Observatoire Crédit Logement / CSA",
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 6,
@@ -73275,27 +73481,45 @@
       "archiveWarning": null
     },
     {
-      "id": "oll",
-      "name": "Observatoires locaux des loyers / ANIL",
-      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "status": "error",
+      "error": "HTTP 403",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "xetra",
+      "name": "Deutsche Börse / Xetra · cotations ETF",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
-      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 12,
+      "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 10,
         "error": 0,
-        "rejected": 2
+        "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z",
+      "lastExtractionSuccessAt": "2026-10-24T19:38:49.474Z",
       "archiveWarning": null
     },
     {
@@ -73304,14 +73528,14 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
       "queue": {
         "pending": 0,
         "done": 1,
@@ -73323,214 +73547,12 @@
       "archiveWarning": null
     },
     {
-      "id": "insee-publications",
-      "name": "INSEE · publications nationales",
-      "url": "https://www.insee.fr/fr/flux/2",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 13,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 12,
-        "error": 1,
-        "rejected": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "insee-conjoncture",
-      "name": "INSEE · conjoncture et inflation",
-      "url": "https://www.insee.fr/fr/flux/3",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 21,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 3,
-        "done": 18,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "amundi",
-      "name": "Amundi · actualités et avis",
-      "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
-      "method": "sitemap",
-      "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 83,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-24T17:28:09.310Z",
-      "lastSuccessAt": "2026-10-24T17:28:09.310Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T17:28:09.310Z",
-      "queue": {
-        "pending": 65,
-        "done": 18,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T09:41:30.214Z"
-    },
-    {
-      "id": "bdf-credit",
-      "name": "Banque de France · Crédits aux particuliers",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 12,
-      "etag": "\"1792907704-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 12,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
-    },
-    {
-      "id": "bdf-savings",
-      "name": "Banque de France · Épargne des ménages",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 12,
-      "etag": "\"1792920094-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 09:21:34 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 12,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "bdf-debt",
-      "name": "Banque de France · Endettement des ménages et des SNF",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 12,
-      "etag": "\"1792920093-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 09:21:33 GMT",
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 12,
-        "rejected": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": null,
-      "archiveWarning": null
-    },
-    {
-      "id": "dws",
-      "name": "DWS / Xtrackers · communiqués",
-      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
-      "method": "dws-model",
-      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "discovered": 5,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T09:21:30.583Z",
-      "lastSuccessAt": "2026-10-25T09:21:30.583Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T10:21:30.583Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T18:20:35.936Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "revolut-news",
-      "name": "Revolut · salle de presse France",
-      "url": "https://www.revolut.com/fr-FR/news/",
-      "method": "consumer-links",
-      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "status": "error",
-      "error": "HTTP 403",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "no-in-scope-publication",
-      "lastExtractionSuccessAt": null
-    },
-    {
-      "id": "wisdomtree",
-      "name": "WisdomTree · communiqués européens",
-      "url": "https://www.wisdomtree.com/fr/press-room",
-      "method": "links",
-      "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
-      "status": "error",
-      "error": "HTTP 403",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "no-in-scope-publication",
-      "lastExtractionSuccessAt": null
-    },
-    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -73549,12 +73571,107 @@
       "lastExtractionSuccessAt": "2026-10-24T18:17:49.841Z"
     },
     {
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 13,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 1,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 21,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 2,
+        "done": 19,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "oll",
+      "name": "Observatoires locaux des loyers / ANIL",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "method": "extra-links",
+      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 10,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 12,
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
       "id": "dares",
       "name": "DARES",
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T09:41:30.214Z",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -73567,12 +73684,156 @@
       "lastExtractionSuccessAt": null
     },
     {
+      "id": "bnp",
+      "name": "BNP Paribas AM · communiqués",
+      "url": "https://www.bnpparibas-am.com/en/media-centre/",
+      "method": "extra-bnp",
+      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 2,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T17:29:42.869Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "hanetf",
+      "name": "HANetf · communiqués UCITS",
+      "url": "https://hanetf.com/press-releases/",
+      "method": "extra-links",
+      "depth": "Communiqués rendus par le site, indépendants du catalogue",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 9,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 7,
+        "error": 2,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T08:13:33.637Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "notaires-paris",
+      "name": "Notaires du Grand Paris · conjoncture",
+      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+      "method": "extra-links",
+      "depth": "Première page des communications immobilières officielles",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 8,
+      "etag": "\"1792924376-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 10:32:56 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 8,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:57:18.721Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 5,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:20:35.936Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "bdf-savings",
+      "name": "Banque de France · Épargne des ménages",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 12,
+      "etag": "\"1792924377-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 10:32:57 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "bdf-debt",
+      "name": "Banque de France · Endettement des ménages et des SNF",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T10:32:51.170Z",
+      "discovered": 12,
+      "etag": "\"1792924377-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 10:32:57 GMT",
+      "checkedAt": "2026-10-25T10:32:51.170Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:32:51.170Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 12,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": null,
+      "archiveWarning": null
+    },
+    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T09:41:30.206Z",
-      "lastSuccessAt": "2026-10-25T09:41:30.206Z",
+      "checkedAt": "2026-10-25T10:32:51.160Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.160Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -73582,8 +73843,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T09:41:30.206Z",
-      "lastSuccessAt": "2026-10-25T09:41:30.206Z",
+      "checkedAt": "2026-10-25T10:32:51.160Z",
+      "lastSuccessAt": "2026-10-25T10:32:51.160Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -73592,7 +73853,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -73601,7 +73862,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -73610,7 +73871,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -73619,7 +73880,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -73628,7 +73889,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -73637,7 +73898,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T09:41:30.208Z",
+      "checkedAt": "2026-10-25T10:32:51.164Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -73847,11 +74108,11 @@
   },
   "metrics": {
     "collection": {
-      "requests": 16,
-      "bytes": 1687326,
-      "notModified": 1,
-      "durationMs": 15933,
-      "checkedAt": "2026-10-25T09:41:30.214Z"
+      "requests": 47,
+      "bytes": 6614017,
+      "notModified": 7,
+      "durationMs": 47828,
+      "checkedAt": "2026-10-25T10:32:51.170Z"
     },
     "publicationDelays": [
       {
@@ -74108,6 +74369,11 @@
         "url": "https://www.insee.fr/fr/statistiques/9021808",
         "publicationToDetectionHours": 2561.469252777778,
         "detectionToAvailabilityHours": 16.222473333333333
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9015205",
+        "publicationToDetectionHours": 2801.469252777778,
+        "detectionToAvailabilityHours": 17.078294444444445
       },
       {
         "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
@@ -74465,6 +74731,11 @@
         "detectionToAvailabilityHours": 16.222473333333333
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/communication-sur-les-nouvelles-regles-de-denomination-icav",
+        "publicationToDetectionHours": 14177.469252777777,
+        "detectionToAvailabilityHours": 17.078294444444445
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -74555,6 +74826,11 @@
         "detectionToAvailabilityHours": 3.7746866666666667
       },
       {
+        "url": "https://www.moneyvox.fr/energie/actualites/110970/facture-electricite-nouvelles-heures-creuses-a-partir-de-novembre-ce-qui-change-pour-9-3-millions-de-foyers",
+        "publicationToDetectionHours": 53.91703944444444,
+        "detectionToAvailabilityHours": 4.630507777777778
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -74643,6 +74919,11 @@
         "url": "https://www.energie-info.fr/factures-changement-consommateurs",
         "publicationToDetectionHours": 1565.9170394444445,
         "detectionToAvailabilityHours": 3.7746866666666667
+      },
+      {
+        "url": "https://www.energie-info.fr/rattrapages-de-facturation-limites-a-14-mois",
+        "publicationToDetectionHours": 1661.9170394444445,
+        "detectionToAvailabilityHours": 4.630507777777778
       },
       {
         "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
@@ -74761,18 +75042,10 @@
       }
     ],
     "classification": {
-      "ready": 78,
+      "ready": 79,
       "watch": 30,
       "secondary": 342
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T09:42:00.343Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
