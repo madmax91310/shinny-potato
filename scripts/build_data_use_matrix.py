@@ -177,7 +177,7 @@ def matrix(inventory,monitor,manifest,today,root=ROOT,producer_contracts=None):
  return rows
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--inventory',type=pathlib.Path,default=ROOT/'public/data/data-automation-inventory.json');p.add_argument('--monitor',type=pathlib.Path,required=True);p.add_argument('--manifest',type=pathlib.Path,required=True);p.add_argument('--publication',type=pathlib.Path);p.add_argument('--output',type=pathlib.Path,default=REPORT);a=p.parse_args();load=lambda p:json.loads(p.read_text());manifest=load(a.manifest);manifest.update(load(a.publication)if a.publication else{});rows=matrix(load(a.inventory),load(a.monitor),manifest,dt.datetime.now(dt.timezone.utc).date());a.output.mkdir(parents=True,exist_ok=True)
+ p=argparse.ArgumentParser();p.add_argument('--inventory',type=pathlib.Path,default=ROOT/'public/data/data-automation-inventory.json');p.add_argument('--monitor',type=pathlib.Path,required=True);p.add_argument('--manifest',type=pathlib.Path,required=True);p.add_argument('--publication',type=pathlib.Path);p.add_argument('--source-root',type=pathlib.Path,default=ROOT);p.add_argument('--output',type=pathlib.Path,default=REPORT);a=p.parse_args();load=lambda p:json.loads(p.read_text());manifest=load(a.manifest);manifest.update(load(a.publication)if a.publication else{});rows=matrix(load(a.inventory),load(a.monitor),manifest,dt.datetime.now(dt.timezone.utc).date(),root=a.source_root);a.output.mkdir(parents=True,exist_ok=True)
  definitions={};compact=[]
  shared=['methode','perimetre','registre','registre_source_demontre','sources','collecteurs','declenchements','validation','conditions_acces_reutilisation','consommateur','tentatives_producteur_observees']
  for row in rows:

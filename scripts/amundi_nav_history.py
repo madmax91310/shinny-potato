@@ -71,6 +71,10 @@ def parse(body, source, now):
     if {c['year'] for c in checks} != expected:
         raise ValueError('Missing Amundi complete calendar-year bounds')
     return adjusted, years, {'shareInception': inception.isoformat(),
+                            'controlledFields': ['ISIN','CURRENCY','LAUNCH_DATE','DISTRIBUTION_POLICY','officialNav','countervalorisedAdjustedNAV','navCurrency','shareCalendarPerformance'],
+                            'controlledInstrument': source['isin'],
+                            'requestedStart': source['periodStart']+'-01',
+                            'controlledCalendarYears': sorted(years),
                             'incomeTreatment': 'Capitalisation',
                             'navIndicator': 'countervalorisedAdjustedNAV',
                             'historicalCurrencyIndicator': 'navCurrency',
