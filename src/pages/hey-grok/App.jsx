@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Card from '../../design-system/Card'
+import ChoicePicker from '../../design-system/ChoicePicker'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions'
 import { CATEGORIES, QUESTIONS } from './data'
@@ -61,9 +62,9 @@ export default function App() {
       <Card as="section" className="hg-library" aria-labelledby="hg-library-title">
         <h2 id="hg-library-title">Choisir une question</h2>
         <div className="hg-filters">
-          <label htmlFor="hg-category">Catégorie<select id="hg-category" aria-label="Catégorie" value={filters.category} onChange={event => changeFilter({ category: event.target.value })}>
+          <div className="hg-category"><p>Catégorie</p><ChoicePicker aria-label="Catégorie" value={filters.category} onChange={event => changeFilter({ category: event.target.value })}>
             <option value="">Toutes</option>{CATEGORIES.map(category => <option key={category.id} value={category.id}>{category.label}</option>)}
-          </select></label>
+          </ChoicePicker></div>
           <label>Rechercher<input type="search" placeholder="Voiture, salaire, Apple…" value={filters.search} onChange={event => changeFilter({ search: event.target.value })} /></label>
           <div className="hg-checks">
             <label><input type="checkbox" checked={filters.publicOnly} onChange={event => changeFilter({ publicOnly: event.target.checked })} /> Tout public</label>

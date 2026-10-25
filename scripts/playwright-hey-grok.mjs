@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
+import { choose } from './card-selection.mjs'
 import { waitPreview } from './wait-preview.mjs'
 import { STORAGE_KEY } from '../src/pages/hey-grok/lib.js'
 
@@ -14,7 +15,7 @@ try {
   if (server) await waitPreview(server, base)
   browser = await chromium.launch({ headless: true })
   const errors = [], writes = [], results = []
-  for (const width of [1280, 390]) {
+  for (const width of [1280, 390, 320]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, permissions: ['clipboard-read', 'clipboard-write'], reducedMotion: 'reduce' })
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
@@ -25,17 +26,18 @@ try {
     const editor = page.getByRole('textbox', { name: 'Texte du tweet', exact: true })
     await editor.waitFor()
     const list = page.getByRole('list', { name: 'Questions disponibles' })
-    const category = page.getByLabel('Catégorie', { exact: true })
-    const search = page.getByRole('searchbox', { name: 'Rechercher' })
+    const category = page.getByRole('group', { name: 'Catégorie', exact: true })
+    const search = page.getByRole('searchbox', { name: 'Rechercher', exact: true })
     const random = page.getByRole('button', { name: 'Question au hasard', exact: true })
     const copy = page.getByRole('button', { name: 'Copier le tweet', exact: true })
+    assert.equal(await page.locator('select').count(), 0)
     assert.equal(await list.getByRole('button').count(), 160)
     await page.getByLabel('Tout public', { exact: true }).check()
     assert.equal(await list.getByRole('button').count(), 140)
-    await category.selectOption('bourse')
+    await choose(category, 'bourse')
     assert.equal(await list.count(), 0)
     assert(await random.isDisabled())
-    await category.selectOption('budget')
+    await choose(category, 'budget')
     assert.equal(await list.getByRole('button').count(), 20)
     await search.fill('cafe')
     assert.equal(await list.getByRole('button').count(), 1)
@@ -77,7 +79,7 @@ try {
     assert(await page.getByRole('button', { name: 'Annuler « Utilisé »', exact: true }).isVisible())
     await page.getByRole('button', { name: 'Annuler « Utilisé »', exact: true }).click()
     await search.fill('')
-    await category.selectOption('technologie')
+    await choose(category, 'technologie')
     const drawn = new Set()
     for (let i = 0; i < 20; i++) {
       await random.click()
@@ -89,10 +91,10 @@ try {
     await page.getByRole('button', { name: 'Recommencer cette sélection', exact: true }).click()
     assert(await random.isEnabled()); await random.click()
     // Manual selection and changing filters preserve each question's edited draft.
-    await category.selectOption('budget'); await search.fill('cafe')
+    await choose(category, 'budget'); await search.fill('cafe')
     await list.getByRole('button').click(); assert.equal(await editor.inputValue(), draft)
     await search.fill('inexistantxyz'); assert.equal(await list.count(), 0); assert(await random.isDisabled())
-    await search.fill(''); await category.selectOption('')
+    await search.fill(''); await choose(category, '')
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
     await page.evaluate(() => window.scrollTo(0, 0))
     await page.screenshot({ path: `${output}/${width}.png`, fullPage: true })
