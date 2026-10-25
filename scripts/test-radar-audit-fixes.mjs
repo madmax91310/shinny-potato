@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { extraDiscovery,EXTRA_SOURCES } from './lib/radar-extra-sources.mjs'
 import { planPublicationQueue,documentDelays,queueClass } from './lib/radar-queue.mjs'
 import { recordRadarRun } from './lib/radar-run-metrics.mjs'
 import { editorialExclusion,editorialTopic } from '../src/lib/radar-policy.js'
@@ -20,6 +21,7 @@ const sources=[{id:'news'},{id:'archive-a'},{id:'archive-b'}]
 const archives=Array.from({length:100},(_,i)=>[`archive-${i}`,{source:i%2?'archive-a':'archive-b',title:'Rapport archivé',discoveredAt:'2026-10-24T10:00:00Z',attempts:0,status:'pending',backfill:true}])
 const recent=[['agios',{source:'news',title:'La Banque Postale : disparition des frais d’agios',publishedAt:'2026-10-24',discoveredAt:now.toISOString(),attempts:0,status:'pending'}],['salary',{source:'news',title:'Les salaires des Français en 2025',publishedAt:'2026-10-24',discoveredAt:now.toISOString(),attempts:0,status:'pending'}]]
 const plan=planPublicationQueue([...archives,...recent],sources,now,{},6)
+assert.equal(planPublicationQueue([...archives,...recent],sources,now,{},0).chosen.length,0,'A cache-only pass must respect an explicit zero budget')
 assert.ok(recent.every(([key])=>plan.chosen.some(([u])=>u===key)),'Recent first attempts pass the backlog on the next admitted pass')
 assert.ok(plan.chosen.some(([,d])=>d.source==='archive-a')&&plan.chosen.some(([,d])=>d.source==='archive-b'))
 const originalPending=new Set(archives.map(([u])=>u));let progress={}
@@ -56,6 +58,9 @@ assert.equal(editorialState({...base,label:'Le PTZ immobilier des primo-accédan
 const survey={...base,label:'Baromètre des difficultés des Français à épargner',summary:'Selon cette enquête, 28 % des personnes interrogées prévoient de réduire leur épargne ; 2 000 adultes en France métropolitaine.',topic:'statistiques'}
 assert.equal(qualifyRadarFact(survey).nature,'household-intentions');assert.equal(editorialState(survey,+now),'ready');assert.ok(!editorialAssessment(survey,+now).major)
 assert.equal(recentEditorial({...base,publishedAt:'2026-06-01'},+now),false,'Fresh collection never rejuvenates an archive')
+const venue=EXTRA_SOURCES.find(s=>s.id==='xetra')
+const datedCard=await extraDiscovery('<a href="'+venue.url+'/New-ETF-listings">Oct 21, 2026 08:00:00 AM CEST News | Deutsche Börse New ETF listings</a>',venue,()=>assert.fail('No request'))
+assert.equal(datedCard[0].publishedAt,'2026-10-21');assert.equal(datedCard[0].publishedInstant,'2026-10-21T08:00:00+02:00')
 for(const date of ['21','16']){
  const text=await fixture(`xetra-2026-10-${date}.html`),parsed=etfTableProducts(text),products=extractProducts(text)
  assert.equal(parsed.extraction.status,'complete');assert.equal(products.length,6);assert.ok(products.every(p=>p.isin&&p.fees!==null&&p.pea===null&&p.availability===null))
@@ -74,6 +79,14 @@ assert.equal(partial.metrics.queue.recentFirstAttempted,0,'A row without a prove
 const resumed=await collectPublications(new Date(+now+3*3600000),async()=>new Response(dated(await fixture('xetra-2026-10-21.html'))),partial.state,[partialSource],1)
 assert.equal(resumed.state.documents[partialUrl].status,'done');assert.equal(resumed.observations[0].products.length,6);assert.ok(resumed.state.documents[partialUrl].recoveredAt)
 const rawPdf=parseEtfDocument(await fixture('amundi-active-table.txt'),'Amundi élargit sa gamme ETF');assert.equal(rawPdf.products.length,3);assert.ok(rawPdf.products.every(p=>p.fees==='0.25%'&&p.feesBasis))
+const incompleteAgain=structuredClone(resumed.state)
+incompleteAgain.sources.xetra.nextCheckAt=new Date(+now+20*86400000).toISOString()
+incompleteAgain.documents[partialUrl].nextAttemptAt=now.toISOString()
+const retainedComplete=await collectPublications(new Date(+now+6*3600000),async()=>new Response(dated(malformed)),incompleteAgain,[partialSource],1)
+assert.equal(retainedComplete.state.documents[partialUrl].status,'partial')
+assert.equal(retainedComplete.state.documents[partialUrl].partialCandidate.products.length,5)
+assert.equal(retainedComplete.observations[0].products.length,6,'The complete prior extraction is retained separately from a partial new candidate')
+assert.equal(retainedComplete.observations[0].checkedAt,resumed.observations[0].checkedAt,'An incomplete new extraction never rejuvenates the last proof')
 const pdf=JSON.parse(await fixture('amundi-supporting.json'))
 assert.equal(pdf.products.length,3);assert.ok(pdf.products.every(p=>p.fees==='0.25%'&&p.pea===null&&p.availability===null))
 const unknown='<table><tr><td>Name</td><td>ISIN</td><td>Asset class</td><td>TER</td></tr><tr><td>Unregistered Issuer World UCITS ETF</td><td>IE0001Y8K1A5</td><td>Active Equity ETF</td><td>0.15%</td></tr><tr><td>Issuer Gold ETC</td><td>IE000W2FBY21</td><td>ETC</td><td>0.45%</td></tr></table>'

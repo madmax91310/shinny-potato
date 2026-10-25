@@ -311,6 +311,12 @@ export async function collectPublications(now = new Date(), request = fetch, pre
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
         else {
           const prior=item.observation
+          const complete=item.lastValidObservation??prior
+          if(observation.extraction?.status==='partial'&&complete&&complete.extraction?.status!=='partial'){
+            item.lastValidObservation=complete
+            item.partialCandidate=observation
+            observation={...complete,extraction:{...observation.extraction,lastValidAt:complete.checkedAt}}
+          }else if(observation.extraction?.status!=='partial') {delete item.partialCandidate;delete item.lastValidObservation}
           const newPublication=prior && observation.publishedAt>prior.publishedAt
           const newDatedCorrection=prior && observation.status==='Correction / démenti' && observation.correctionPublishedAt>=item.discoveredAt.slice(0,10) && JSON.stringify(observation.value)!==JSON.stringify(prior.value)
           if(newPublication || newDatedCorrection)item.backfill=false

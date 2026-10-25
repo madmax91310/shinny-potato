@@ -11,7 +11,7 @@ export function listingPublicationInstant(item) {
   return Number.isFinite(instant) ? new Date(instant).toISOString() : null
 }
 export function queueClass(item, now = new Date()) {
-  const title = item.title ?? '', date = Date.parse(item.publishedAt ?? item.hint ?? ''), age = (+now-date)/86400000
+  const title = item.title ?? '', date = Date.parse(item.publishedAt ?? (item.source?.startsWith('insee-')?item.hint:null) ?? ''), age = (+now-date)/86400000
   const topic = editorialTopic(title,item.description), wording = normalizeEditorial(title)
   const relevant = topic && !editorialExclusion({label:title}) && !/chiffre d affaires|nominations?|emplois.*entreprises|perspectives.*promoteurs/.test(wording)
   const first = !item.firstAttemptAt && !item.attemptedAt
@@ -23,10 +23,11 @@ export function planPublicationQueue(documents,sources,now,previous={},limit) {
   const p90 = sorted.length ? sorted[Math.min(sorted.length-1,Math.floor(sorted.length*.9))] : QUEUE_POLICY.initialDocumentMs
   const measuredLimit = Math.max(1,Math.min(QUEUE_POLICY.maxDocuments,Math.floor(QUEUE_POLICY.timeBudgetMs*.75/Math.max(1000,p90))))
   const count = limit ?? measuredLimit
+  if(!Number.isInteger(count)||count<0)throw Error('Budget documentaire invalide')
   const ordered = [...sources.slice((previous.nextSourceIndex??0)%sources.length),...sources.slice(0,(previous.nextSourceIndex??0)%sources.length)]
   const age = item => Date.parse(item.firstAttemptAt ?? item.discoveredAt)
   const fresh = documents.filter(([,d])=>queueClass(d,now)==='recent-first-extraction').sort((a,b)=>Date.parse(b[1].publishedAt??b[1].hint)-Date.parse(a[1].publishedAt??a[1].hint)||age(a[1])-age(b[1]))
-  const freshSlots=Math.min(fresh.length,count===1 ? ((previous.queuePass??0)%3===2?0:1) : Math.max(1,Math.floor(count*QUEUE_POLICY.reservedFraction))), chosen=fresh.slice(0,freshSlots)
+  const freshSlots=Math.min(fresh.length,count===0?0:count===1 ? ((previous.queuePass??0)%3===2?0:1) : Math.max(1,Math.floor(count*QUEUE_POLICY.reservedFraction))), chosen=fresh.slice(0,freshSlots)
   const used=new Set(chosen.map(([u])=>u))
   const background=documents.filter(([u])=>!used.has(u)).sort((a,b)=>age(a[1])-age(b[1]) || (a[1].attempts??0)-(b[1].attempts??0))
   // Aging protects a source's old documents even while its archive keeps growing.
