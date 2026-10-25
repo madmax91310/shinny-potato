@@ -5,61 +5,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:07:26.378Z"
+        "attemptedAt": "2026-10-25T15:08:52.695Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3,
-        "attemptedAt": "2026-10-25T15:07:26.379Z"
+        "attemptedAt": "2026-10-25T15:08:52.697Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:07:26.380Z"
+        "attemptedAt": "2026-10-25T15:08:52.697Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:07:26.381Z"
+        "attemptedAt": "2026-10-25T15:08:52.698Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-25T15:07:26.382Z"
+        "attemptedAt": "2026-10-25T15:08:52.699Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:07:26.383Z"
+        "attemptedAt": "2026-10-25T15:08:52.700Z"
       }
     ],
     "items": [
@@ -1248,6 +1248,89 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-c56673ed8fc94bf0a388",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent",
+        "value": {
+          "title": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent",
+          "summary": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+        "publicationId": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-22",
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+        "populationScope": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats.",
+        "housing": {
+          "duration": null,
+          "frequency": null,
+          "population": null,
+          "method": null,
+          "priceBasis": null,
+          "measure": null,
+          "propertyType": null,
+          "market": null,
+          "geography": null,
+          "rateType": null,
+          "rateScope": null,
+          "insurance": null,
+          "provisional": null,
+          "revision": false,
+          "sourceId": "moneyvox"
+        },
+        "topic": "credit",
+        "topicLabel": "Crédit immobilier et PTZ",
+        "summary": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/bourse-direct/bourse-en-ligne",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/bunq/bourse",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/easybourse/bourse-en-ligne",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/degiro/bourse",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "236a7ee2e0b2f47ab692849840a0537d9415e17670350cf5536ea08eeb722b17",
+          "excerpt": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-a6dbe0434c1a6d389e6e",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -1310,6 +1393,89 @@
         "tool": null,
         "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-7e2afb681e704f9f2b54",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002",
+        "value": {
+          "title": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002",
+          "summary": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+        "publicationId": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-22",
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+        "populationScope": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes.",
+        "housing": {
+          "duration": null,
+          "frequency": null,
+          "population": null,
+          "method": null,
+          "priceBasis": null,
+          "measure": null,
+          "propertyType": null,
+          "market": null,
+          "geography": "France",
+          "rateType": null,
+          "rateScope": null,
+          "insurance": null,
+          "provisional": null,
+          "revision": false,
+          "sourceId": "moneyvox"
+        },
+        "topic": "credit",
+        "topicLabel": "Crédit immobilier et PTZ",
+        "summary": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/ramify/assurance-vie",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/livret-monabanq-rentabilis",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/garance-mutuelle/garance-epargne",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/finance-selection/mes-placements-liberte",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "83e5d2b6c1887509ddf7034cde156a30b7d9570c6dc059423b9cd64b3d22f4f2",
+          "excerpt": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002 — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
         "backfill": true
       },
       {
@@ -1517,7 +1683,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -1762,7 +1928,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1796,7 +1962,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -2074,7 +2240,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-12",
         "period": "2026-10-12",
-        "checkedAt": "2026-10-25T13:33:40.124Z",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
         "populationScope": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
         "topic": "energie",
@@ -2102,7 +2268,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "6199d1395f4137a1c73a57c145d05fea5f763952738a80a7b671a3df36558a5b",
+          "sourceHash": "ee1790d0b087b899c8da9e06d6e09667f57782db9a15ac8d1f2b55c6ac96ffc8",
           "excerpt": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -2265,7 +2431,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-07",
         "period": "2026-10-07",
-        "checkedAt": "2026-10-25T13:33:40.124Z",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-pleines-creuses-experimentation-tarifaire",
         "populationScope": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité.",
         "topic": "energie",
@@ -2288,7 +2454,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "98114d3b17a96429ae343e3153fe142ca672d219e84362d5a995a723b5bd7811",
+          "sourceHash": "5c28107b14d3cc6e5a18df5d5e455db380b222e0121484432a4a66ea9ca4d1df",
           "excerpt": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité. Prévue par l’ arrêté du 28 mai 2026 relatif aux tarifs réglementés de vente de l’électricité , elle se poursuivra jusqu’au 1er octobre 2027 . L’expérimentation teste notamment deux nouvelles structures tarifaires : Base/Pointe Hiver et Base/Pointe Hiver/Heures Creuses Été.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -2368,7 +2534,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -5073,6 +5239,133 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-520a23066747c34c09fe",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés",
+        "value": {
+          "title": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés",
+          "summary": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-5",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-5",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2024-07-08",
+        "period": "2024-07-08",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-5",
+        "populationScope": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-5",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/73659/fr/L%27AMF_met_en_garde_le_public_contre_plusieurs_acteurs_qui_proposent_d%27investir_dans_des_biens_divers_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://protectepargne.amf-france.org/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "e45f82ea22c4910454ea617d16d60ae3d9163a1635acfe586816000f69b42afc",
+          "excerpt": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L’AMF met en garde le public contre plusieurs acteurs qui proposent d’investir dans des biens divers sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-294d63643d108edc5581",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire »",
+        "value": {
+          "title": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire »",
+          "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire » A l’occasion de sa mise à jour, l’AMF complète et réorganise la liste des sites internet proposant, illégalement en France, des services sur actifs numériques et des levées de fonds par émission de jetons (ICO) dans une liste noire dédiée. Cette liste noire « crypto-actifs » reprend l’ensemble des sites non autorisés par l’AMF ainsi que les nouveaux sites identifiés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2024-06-05",
+        "period": "2024-06-05",
+        "checkedAt": "2026-10-25T15:08:52.701Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de",
+        "populationScope": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire » A l’occasion de sa mise à jour, l’AMF complète et réorganise la liste des sites internet proposant, illégalement en France, des services sur actifs numériques et des levées de fonds par émission de jetons (ICO) dans une liste noire dédiée.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire » A l’occasion de sa mise à jour, l’AMF complète et réorganise la liste des sites internet proposant, illégalement en France, des services sur actifs numériques et des levées de fonds par émission de jetons (ICO) dans une liste noire dédiée. Cette liste noire « crypto-actifs » reprend l’ensemble des sites non autorisés par l’AMF ainsi que les nouveaux sites identifiés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/72860/fr/Crypto-actifs__l%27Autorite_des_marches_financiers_met_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_frauduleux_et_met_a_la_disposition_du_public_une_nouvelle_%3C%3C_liste_noire_%3E%3E.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-professionnels/fintech/mes-relations-avec-lamf/obtenir-un-enregistrement-un-agrement-psan#Liste_des_PSAN_enregistrs_auprs_de_lAMF",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "0811b33942a3448433ee68b96d7737c15d18a731996cb8604795faf9222b4562",
+          "excerpt": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire » A l’occasion de sa mise à jour, l’AMF complète et réorganise la liste des sites internet proposant, illégalement en France, des services sur actifs numériques et des levées de fonds par émission de jetons (ICO) dans une liste noire dédiée. Cette liste noire « crypto-actifs » reprend l’ensemble des sites non autorisés par l’AMF ainsi que les nouveaux sites identifiés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs frauduleux et met à la disposition du public une nouvelle « liste noire » — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-1dd82ae23ef7096224a0",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -5177,21 +5470,21 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T15:07:46.295Z",
+  "checkedAt": "2026-10-25T15:09:14.739Z",
   "sourceRevision": "da49b5fd94be9411c5ba92ff88f58ee3f0aa4840",
-  "observationCount": 7562,
+  "observationCount": 7571,
   "coverage": {
-    "etf": 323,
+    "etf": 326,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 129,
-    "pouvoir-achat": 74
+    "economie": 131,
+    "pouvoir-achat": 78
   },
-  "newSignalCount": 1,
+  "newSignalCount": 2,
   "errors": [
     {
       "family": "pouvoir-achat",
@@ -5212,11 +5505,6 @@
       "family": "economie",
       "entity": "DARES",
       "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
-    },
-    {
-      "family": "economie",
-      "entity": "https://www.insee.fr/fr/statistiques/8071406",
-      "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
       "family": "economie",
@@ -5289,12 +5577,301 @@
       "reason": "The operation was aborted due to timeout"
     },
     {
+      "family": "economie",
+      "entity": "https://www.insee.fr/fr/statistiques/8071406",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
       "family": "etf",
       "entity": "IE00B3T9LM79",
       "reason": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22)."
     }
   ],
   "events": [
+    {
+      "topic": "credit",
+      "topicLabel": "Crédit immobilier et PTZ",
+      "publisher": "MoneyVox · actualités",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+      "publishedAt": "2026-10-22",
+      "publicationId": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+      "evidence": {
+        "sourceHash": "83e5d2b6c1887509ddf7034cde156a30b7d9570c6dc059423b9cd64b3d22f4f2",
+        "excerpt": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": null,
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": "France",
+        "rateType": null,
+        "rateScope": null,
+        "insurance": null,
+        "provisional": null,
+        "revision": false,
+        "sourceId": "moneyvox"
+      },
+      "referencePeriod": null,
+      "populationScope": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/ramify/assurance-vie",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/livret-monabanq-rentabilis",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/garance-mutuelle/garance-epargne",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/finance-selection/mes-placements-liberte",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "22fa94ed2f1b88eaef2a3680",
+      "family": "pouvoir-achat",
+      "entity": "publication-7e2afb681e704f9f2b54",
+      "label": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T15:09:14.739Z",
+      "before": null,
+      "after": {
+        "title": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002",
+        "summary": "La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002 · summary : La France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture. · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T15:08:52.701Z",
+      "tool": null,
+      "angle": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002 — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
+      "draft": "Placement : l'OAT 10 ans, le taux d'emprunt de la France, au plus haut depuis 2002\n\nLa France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes. Le taux d'intérêt exigé par les marchés pour prêter à l'&Eacute;tat français à échéance dix ans a atteint à la fin de la séance 5,01%, contre 4,93% la veille en clôture.\n\nPublication : 2026-10-22 · Information sans nouveauté établie\nLa France a emprunté mercredi à un taux de plus de 5% sur dix ans, du jamais vu depuis 2002, les violences du week-end ayant renforcé les doutes des investisseurs sur la capacité du pays à redresser ses comptes.\n\nSource : https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+      "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-22"
+          }
+        ],
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "credit",
+      "topicLabel": "Crédit immobilier et PTZ",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+      "publishedAt": "2026-10-22",
+      "publicationId": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+      "evidence": {
+        "sourceHash": "236a7ee2e0b2f47ab692849840a0537d9415e17670350cf5536ea08eeb722b17",
+        "excerpt": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": null,
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": null,
+        "rateType": null,
+        "rateScope": null,
+        "insurance": null,
+        "provisional": null,
+        "revision": false,
+        "sourceId": "moneyvox"
+      },
+      "referencePeriod": null,
+      "populationScope": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/bourse-direct/bourse-en-ligne",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/bunq/bourse",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/easybourse/bourse-en-ligne",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/degiro/bourse",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "a8933cbab58b954cedcfb91d",
+      "family": "pouvoir-achat",
+      "entity": "publication-c56673ed8fc94bf0a388",
+      "label": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T15:09:14.739Z",
+      "before": null,
+      "after": {
+        "title": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent",
+        "summary": "La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent · summary : La Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T15:08:52.701Z",
+      "tool": null,
+      "angle": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
+      "draft": "Le CAC 40 en forte baisse ce jeudi 21 octobre, Hermès, LVMH et Kering plongent\n\nLa Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats. Vers 10H00 (heure de Paris), le CAC 40 perdait 1,16% à 7.827,92 points, un recul de 94,63 points. La veille, il avait pris 1,06%.\n\nPublication : 2026-10-22 · Annonce publiée\nLa Bourse de Paris est dans le rouge jeudi, plombée par une nouvelle hausse des prix du pétrole et du taux d'emprunt de la France au-delà des 5%, tandis que le secteur du luxe souffre de la chute d'Hermès après ses résultats.\n\nSource : https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+      "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-22"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "epargne",
       "topicLabel": "Épargne et placements",
@@ -78430,14 +79007,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:59:59.104Z",
       "queue": {
-        "pending": 36,
-        "done": 12,
+        "pending": 34,
+        "done": 14,
         "error": 0,
         "rejected": 33
       },
       "extractionStatus": "validated",
       "silentBaselines": 0,
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z"
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z"
     },
     {
       "id": "bourse-direct-news",
@@ -78485,7 +79062,7 @@
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "silentBaselines": 0
     },
     {
@@ -78527,13 +79104,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:29:59.104Z",
       "queue": {
-        "pending": 137,
-        "done": 21,
+        "pending": 135,
+        "done": 23,
         "error": 1,
         "rejected": 41
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78552,13 +79129,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:29:59.104Z",
       "queue": {
-        "pending": 8,
-        "done": 18,
+        "pending": 9,
+        "done": 20,
         "error": 0,
         "rejected": 44
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78778,13 +79355,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T16:59:59.104Z",
       "queue": {
-        "pending": 21,
-        "done": 22,
+        "pending": 20,
+        "done": 23,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "silentBaselines": 0
     },
     {
@@ -79027,13 +79604,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:59:59.104Z",
       "queue": {
-        "pending": 1,
-        "done": 11,
+        "pending": 0,
+        "done": 12,
         "error": 2,
         "rejected": 7
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T15:04:40.083Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -79077,13 +79654,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 48,
-        "done": 35,
+        "pending": 46,
+        "done": 37,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:08:52.701Z",
       "silentBaselines": 0
     },
     {
@@ -79092,7 +79669,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T15:07:26.382Z",
+      "attemptedAt": "2026-10-25T15:08:52.699Z",
       "discovered": 12,
       "etag": "\"1792940404-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 15:00:04 GMT",
@@ -79192,7 +79769,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T15:07:26.395Z",
+      "attemptedAt": "2026-10-25T15:08:52.712Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -79211,7 +79788,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T15:07:26.396Z",
+      "attemptedAt": "2026-10-25T15:08:52.713Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -79230,7 +79807,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T15:07:26.397Z",
+      "attemptedAt": "2026-10-25T15:08:52.714Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -79255,7 +79832,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T15:07:26.398Z",
+      "attemptedAt": "2026-10-25T15:08:52.715Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -79273,84 +79850,84 @@
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T15:07:26.373Z",
-      "lastSuccessAt": "2026-10-25T15:07:26.373Z",
+      "checkedAt": "2026-10-25T15:08:52.691Z",
+      "lastSuccessAt": "2026-10-25T15:08:52.691Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T15:07:26.374Z"
+      "attemptedAt": "2026-10-25T15:08:52.691Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T15:07:26.373Z",
-      "lastSuccessAt": "2026-10-25T15:07:26.373Z",
+      "checkedAt": "2026-10-25T15:08:52.691Z",
+      "lastSuccessAt": "2026-10-25T15:08:52.691Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T15:07:26.375Z"
+      "attemptedAt": "2026-10-25T15:08:52.693Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:07:26.378Z"
+      "attemptedAt": "2026-10-25T15:08:52.695Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3,
-      "attemptedAt": "2026-10-25T15:07:26.379Z"
+      "attemptedAt": "2026-10-25T15:08:52.697Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:07:26.380Z"
+      "attemptedAt": "2026-10-25T15:08:52.697Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:07:26.381Z"
+      "attemptedAt": "2026-10-25T15:08:52.698Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-25T15:07:26.382Z"
+      "attemptedAt": "2026-10-25T15:08:52.699Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T15:07:26.376Z",
+      "checkedAt": "2026-10-25T15:08:52.694Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:07:26.383Z"
+      "attemptedAt": "2026-10-25T15:08:52.700Z"
     },
     {
       "id": "ishares",
@@ -79558,10 +80135,10 @@
   "metrics": {
     "collection": {
       "requests": 16,
-      "bytes": 1531072,
+      "bytes": 1831696,
       "notModified": 0,
-      "durationMs": 17633,
-      "checkedAt": "2026-10-25T15:07:26.384Z"
+      "durationMs": 19830,
+      "checkedAt": "2026-10-25T15:08:52.701Z"
     },
     "publicationDelays": [
       {
@@ -80285,6 +80862,16 @@
         "detectionToAvailabilityHours": 21.654742777777777
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/event/webinar-amundi-etf-bond-briefing-news-amundi-etf",
+        "publicationToDetectionHours": 17897.469252777777,
+        "detectionToAvailabilityHours": 21.678719722222223
+      },
+      {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/lancement-d-un-nouvel-etf-euro-government-tilted",
+        "publicationToDetectionHours": 29465.469252777777,
+        "detectionToAvailabilityHours": 21.678719722222223
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -80435,6 +81022,16 @@
         "detectionToAvailabilityHours": 9.206956111111111
       },
       {
+        "url": "https://www.moneyvox.fr/placement/actualites/110936/oat-10-ans-le-taux-emprunt-de-la-france-au-plus-haut-depuis-2002",
+        "publicationToDetectionHours": 77.91703944444444,
+        "detectionToAvailabilityHours": 9.230933055555555
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110935/le-cac-40-en-forte-baisse-ce-jeudi-21-octobre-hermes-lvmh-et-kering-plongent",
+        "publicationToDetectionHours": 77.91703944444444,
+        "detectionToAvailabilityHours": 9.230933055555555
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -80538,6 +81135,16 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
         "publicationToDetectionHours": 20093.917039444445,
         "detectionToAvailabilityHours": 9.206956111111111
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-plusieurs-acteurs-qui-proposent-dinvestir-dans-des-biens-divers-5",
+        "publicationToDetectionHours": 20141.917039444445,
+        "detectionToAvailabilityHours": 9.230933055555555
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de",
+        "publicationToDetectionHours": 20933.917039444445,
+        "detectionToAvailabilityHours": 9.230933055555555
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -80780,6 +81387,11 @@
         "detectionToAvailabilityHours": 7.2675833333333335
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/European-etfs-23-jan-2025_uk.pdf",
+        "publicationToDetectionHours": 15367.856412222221,
+        "detectionToAvailabilityHours": 7.291560277777778
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -80870,14 +81482,24 @@
         "detectionToAvailabilityHours": 3.3389502777777778
       },
       {
+        "url": "https://www.insee.fr/fr/statistiques/8310045",
+        "publicationToDetectionHours": 16187.785045277778,
+        "detectionToAvailabilityHours": 3.3629272222222224
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8290502",
+        "publicationToDetectionHours": 16715.78504527778,
+        "detectionToAvailabilityHours": 3.3629272222222224
+      },
+      {
         "url": "https://www.moneyvox.fr/epargne/credit-agricole/forfaits-bancaires",
         "publicationToDetectionHours": 38076.78327583333,
         "detectionToAvailabilityHours": 0.7289561111111111
       }
     ],
     "classification": {
-      "ready": 91,
-      "watch": 35,
+      "ready": 92,
+      "watch": 36,
       "secondary": 360
     }
   },
@@ -80888,64 +81510,64 @@
       {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-25T15:07:26.373Z",
-        "attemptedAt": "2026-10-25T15:07:26.374Z",
+        "checkedAt": "2026-10-25T15:08:52.691Z",
+        "attemptedAt": "2026-10-25T15:08:52.691Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-25T15:07:26.373Z",
-        "attemptedAt": "2026-10-25T15:07:26.375Z",
+        "checkedAt": "2026-10-25T15:08:52.691Z",
+        "attemptedAt": "2026-10-25T15:08:52.693Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.378Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.695Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.379Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.697Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.380Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.697Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.381Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.698Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.382Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.699Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.383Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.700Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
@@ -80954,14 +81576,14 @@
       {
         "id": "radar-source:revolut-news",
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
-        "attemptedAt": "2026-10-25T15:07:26.395Z",
+        "attemptedAt": "2026-10-25T15:08:52.712Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:wisdomtree",
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-25T15:07:26.396Z",
+        "attemptedAt": "2026-10-25T15:08:52.713Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
@@ -80969,14 +81591,14 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T15:07:26.397Z",
+        "attemptedAt": "2026-10-25T15:08:52.714Z",
         "error": "fetch failed",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-25T15:07:26.398Z",
+        "attemptedAt": "2026-10-25T15:08:52.715Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       }
@@ -81235,7 +81857,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-25T14:59:59.104Z",
-      "attemptedAt": "2026-10-25T15:07:26.382Z",
+      "attemptedAt": "2026-10-25T15:08:52.699Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T15:59:59.104Z"
@@ -81934,13 +82556,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-25T15:07:22.956238+00:00",
-      "nonce": "90d27804-4abf-4e44-a2d6-a8b63f3638f2",
+      "declaredAt": "2026-10-25T15:08:49.669340+00:00",
+      "nonce": "47d98571-c4d9-49c6-91e7-3439c06f7583",
       "codeSha": "da49b5fd94be9411c5ba92ff88f58ee3f0aa4840",
       "durablePlan": true,
-      "runId": "40205140297",
+      "runId": "40205458822",
       "attempt": "1",
-      "sha256": "6efd381ec403fa1168b93f2e53bcb967c998f9f3071e84cca8244c53941af867"
+      "sha256": "2a6b26290a35f6b41fe760c8a56cb743220ae1b26fc22541838416db962d9e35"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -82623,8 +83245,8 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-25T15:07:22.956238+00:00",
-      "planSha256": "6efd381ec403fa1168b93f2e53bcb967c998f9f3071e84cca8244c53941af867",
+      "declaredAt": "2026-10-25T15:08:49.669340+00:00",
+      "planSha256": "2a6b26290a35f6b41fe760c8a56cb743220ae1b26fc22541838416db962d9e35",
       "attemptedIds": [
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
@@ -82655,10 +83277,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40205140297",
+      "runId": "40205458822",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "90d27804-4abf-4e44-a2d6-a8b63f3638f2"
+      "nonce": "47d98571-c4d9-49c6-91e7-3439c06f7583"
     },
     "outcomes": [
       {
@@ -82823,7 +83445,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:07:26.395Z",
+        "attemptedAt": "2026-10-25T15:08:52.712Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -83117,7 +83739,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:07:26.396Z",
+        "attemptedAt": "2026-10-25T15:08:52.713Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -83132,7 +83754,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-25T14:59:59.104Z",
-        "attemptedAt": "2026-10-25T15:07:26.382Z",
+        "attemptedAt": "2026-10-25T15:08:52.699Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T15:59:59.104Z",
@@ -83189,7 +83811,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T15:07:26.397Z",
+        "attemptedAt": "2026-10-25T15:08:52.714Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -83203,7 +83825,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:07:26.398Z",
+        "attemptedAt": "2026-10-25T15:08:52.715Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -83217,8 +83839,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.378Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.695Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83231,8 +83853,8 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.379Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.697Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83245,8 +83867,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.380Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.697Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83259,8 +83881,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.381Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.698Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83273,8 +83895,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.382Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.699Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83287,8 +83909,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.376Z",
-        "attemptedAt": "2026-10-25T15:07:26.383Z",
+        "checkedAt": "2026-10-25T15:08:52.694Z",
+        "attemptedAt": "2026-10-25T15:08:52.700Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83494,8 +84116,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.373Z",
-        "attemptedAt": "2026-10-25T15:07:26.374Z",
+        "checkedAt": "2026-10-25T15:08:52.691Z",
+        "attemptedAt": "2026-10-25T15:08:52.691Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83508,8 +84130,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-25T15:07:26.373Z",
-        "attemptedAt": "2026-10-25T15:07:26.375Z",
+        "checkedAt": "2026-10-25T15:08:52.691Z",
+        "attemptedAt": "2026-10-25T15:08:52.693Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83542,13 +84164,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-25T15:07:59.640Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
