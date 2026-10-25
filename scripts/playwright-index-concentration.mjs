@@ -59,14 +59,13 @@ try {
     await original.evaluate(i=>i.decode())
     const originalData=await original.getAttribute('src')
     if(!external){
-      const legacy=await page.evaluate(async id=>{
+      const expectedImage=await page.evaluate(async id=>{
         const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
-        const {renderFactsheetImage}=await import('/shinny-potato/scripts/fixtures/index-companies/original-canvasImage.js')
+        const {renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
         const sheet=SHEETS.find(s=>s.id===id)
-        const render=sheet.compositionOnly ? (await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')).renderFactsheetImage : renderFactsheetImage
-        return (await render(sheet)).toDataURL()
+        return (await renderFactsheetImage(sheet)).toDataURL()
       },id)
-      assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(legacy.split(',')[1],'base64')),'Primary preview is the original image, not the qualified replacement')
+      assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(expectedImage.split(',')[1],'base64')),'Primary preview renders the selected index in the approved magazine style')
     }
 
     const [main]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
@@ -111,19 +110,14 @@ try {
       const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
       const {getIndexConcentration,compositionImageSheet}=await import('/shinny-potato/src/data/index-company-compositions.js')
       const {renderCompositionImage,renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
-      const {renderFactsheetImage:renderOriginal}=await import('/shinny-potato/scripts/fixtures/index-companies/original-canvasImage.js')
-      let historical=0
-      for(const sheet of SHEETS.filter(s=>!s.compositionOnly)){
-        const expected=(await renderOriginal(sheet)).toDataURL()
-        const actual=(await renderFactsheetImage(sheet)).toDataURL()
-        if(expected!==actual)throw new Error(sheet.id+' original image was changed')
-        historical++
-      }
       let text=[],boxes=[]
       const original=CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
         const m=this.measureText(value),left=x-(this.textAlign==='center'?m.width/2:this.textAlign==='right'?m.width:0)
-        text.push(String(value));boxes.push({value,x:left,y,w:m.width,h:parseFloat(this.font.split('px')[0].split(' ').at(-1))||42,canvas:this.canvas})
+        const size=parseFloat(this.font.split('px')[0].split(' ').at(-1))||42
+        const matrix=this.getTransform(),points=[[left,y],[left+m.width,y],[left,y+size],[left+m.width,y+size]].map(([x,y])=>matrix.transformPoint({x,y}))
+        const bx=Math.min(...points.map(p=>p.x)),by=Math.min(...points.map(p=>p.y))
+        text.push(String(value));boxes.push({value,x:bx,y:by,w:Math.max(...points.map(p=>p.x))-bx,h:Math.max(...points.map(p=>p.y))-by,canvas:this.canvas})
         return original.call(this,value,x,y,...rest)
       }
       let count=0
@@ -146,11 +140,10 @@ try {
         const sheet=SHEETS.find(s=>s.id==='world'), c=getIndexConcentration('world')
         const fixture={...c,top:c.top.map((r,i)=>({...r,name:i===0?'Une entreprise au nom exceptionnellement long pour contrôler la lisibilité sur téléphone':r.name,weightPct:i===0?99.91:.001})),topWeight:99.919,otherWeight:.081}
         const canvas=await renderCompositionImage(sheet,fixture)
-        return {count,historical,fixture:canvas.toDataURL()}
+        return {count,fixture:canvas.toDataURL()}
       }finally{CanvasRenderingContext2D.prototype.fillText=original}
     })
     await writeFile(`${directory}/long-small-fixture.png`,Buffer.from(report.fixture.split(',')[1],'base64'))
-    console.log(`${report.historical} original PNGs are pixel-identical to the renderer before #858`)
     console.log(`${report.count} compositions: all canvas labels, geometry and metadata restrictions checked`)
   }
   assert.deepEqual(errors,[])
