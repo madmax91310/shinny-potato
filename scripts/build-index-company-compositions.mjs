@@ -1,3 +1,4 @@
+import {producerContract} from './producer-result-contract.mjs'
 // Compact derived data. Full portfolios stay in the canonical holdings register.
 import { writeFileSync } from 'node:fs'
 import {indexQualificationReport}from './index-qualification-report.mjs'
@@ -13,6 +14,10 @@ import config from './index-company-sources.json' with { type: 'json' }
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import { calculateConcentration, retainQualifiedComposition, qualifyPhysicalProxyIdentity } from '../src/data/index-concentration-core.js'
 
+const expectedIndexIds = [...new Set([...SHEETS.map(d=>d.id),...config.additionalIndices.map(d=>d.id),...Object.keys(config.physicalProxies)])]
+const contractReportAt=process.argv.indexOf('--report')
+const individualContract=contractReportAt>=0?producerContract('index-company-qualification','index-company-qualification-observations',expectedIndexIds.map(id=>({id:'qualification:'+id,instrument:id,fields:['company-composition'],selected:true}))):null
+if(individualContract)individualContract.start(process.argv[contractReportAt+1])
 const output = {}
 const labelRows = rows => rows.map(row => [row.label ?? row.name, row.weightPct])
 const missing = reason => ({ available: false, reason })
@@ -92,6 +97,6 @@ for (const [id, candidate] of Object.entries(output)) {
 }
 if (process.argv.includes('--apply')) writeFileSync(new URL('../src/data/index-company-qualified.json', import.meta.url), JSON.stringify(qualified, null, 2) + '\n')
 const reportAt = process.argv.indexOf('--report')
-if (reportAt >= 0) writeFileSync(process.argv[reportAt + 1], JSON.stringify(indexQualificationReport(output,failures,new Date().toISOString())) + '\n')
+if (reportAt >= 0) writeFileSync(process.argv[reportAt + 1], JSON.stringify(individualContract.finish(indexQualificationReport(output,failures,new Date().toISOString(),expectedIndexIds))) + '\n')
 writeFileSync(new URL('../src/data/index-company-compositions.json', import.meta.url), JSON.stringify(output) + '\n')
 console.log(`Concentration: ${Object.values(output).filter(row => row.available).length}/${Object.keys(output).length} indices qualifiés`)

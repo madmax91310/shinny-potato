@@ -300,4 +300,4 @@ def main():
   write_json_atomic(PATH,data)
  print(json.dumps(report,ensure_ascii=False))
  return int(any(o['status']=='failure' for o in report['observations']))
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('collect_presentation_actors', main))

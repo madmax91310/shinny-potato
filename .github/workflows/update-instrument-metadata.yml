@@ -246,6 +246,7 @@ jobs:
             ${{ runner.temp }}/instrument-metadata.json
             src/data/automated-instrument-metadata.json
             src/data/instrument-metadata-status.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

@@ -776,6 +776,6 @@ def main():
     write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
     print(f'Metadata: {len(updated)}/{len(sources)} instruments with observed fields; {len(errors)} distinct field incidents.')
     if errors:raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_instrument_metadata', main)
 
 

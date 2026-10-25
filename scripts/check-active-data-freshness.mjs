@@ -1,3 +1,4 @@
+import {refreshProducerContract} from './producer-result-contract.mjs'
 import {readFileSync,writeFileSync} from 'node:fs'
 import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {mergeCollectionReport} from './lib/data-incidents.mjs'
@@ -16,6 +17,6 @@ const errors=failures.map(r=>({id:`${r.id}:${r.field}`,field:r.label,category:r.
 const path=process.argv[2]
 // Reading a still-current cache is not a successful source consultation. Keep
 // only successes emitted by the actual collector; this guard may add failures.
-if(path){const previous=JSON.parse(readFileSync(path));writeFileSync(path,JSON.stringify(mergeCollectionReport(previous,errors,[]),null,2)+'\n')}
+if(path){const previous=JSON.parse(readFileSync(path));writeFileSync(path,JSON.stringify(refreshProducerContract(mergeCollectionReport(previous,errors,[])),null,2)+'\n')}
 console.log(JSON.stringify({checkedAt:report.checkedAt,overdue:errors},null,2))
 if(errors.length)process.exitCode=1

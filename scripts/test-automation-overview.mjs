@@ -68,3 +68,15 @@ assert.equal(recoveryRow.recovery.nextAttemptAt, '2026-10-13T21:00:00Z')
 assert.equal(automationOverview(status, now).find(r => r.id === 'partial').recovery, null)
 
 assert.equal(automationOverview({schemaVersion:1,workflows:{'update-bitcoin-monthly.yml':{name:'Bitcoin',status:'success',collectionStatus:'success',completedAt:now.toISOString()}}},now).find(r=>r.id==='update-bitcoin-monthly.yml').state,'qualification','A green job without individual evidence remains unqualified')
+
+{
+  const id='update-bitcoin-monthly.yml'
+  const row={name:'Bitcoin',status:'success',collectionStatus:'success',completedAt:now.toISOString()}
+  const state=()=>automationOverview({schemaVersion:1,workflows:{[id]:row}},now).find(r=>r.id===id).state
+  row.reportEvidenceHistory=registry[id].reportFiles.map(file=>({file,producerContract:registry[id].reportContract,scopeExplicit:true}))
+  assert.equal(state(),'qualification','A declared protocol without the independent upstream scope is insufficient')
+  row.reportEvidenceHistory.forEach(e=>e.scopePlanVerified=true)
+  assert.equal(state(),'success','Actual individual reports with verified upstream scopes qualify this producer')
+  row.reportEvidenceHistory.pop()
+  assert.equal(state(),'qualification','A missing companion report remains visible')
+}

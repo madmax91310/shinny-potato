@@ -20,7 +20,7 @@ jobs:
   refresh:
     concurrency:
       # Serialize writers of automated-indices.json; keep PR validations independent.
-      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      group: active-market-data-${{ github.ref != 'refs/heads/master' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
@@ -34,13 +34,16 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           # A queued production run must start from the latest published data.
-          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+          ref: ${{ github.ref == 'refs/heads/master' && 'master' || github.ref }}
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - run: pip install beautifulsoup4==4.15.0
+      - name: Producer result contract v1
+        run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"
@@ -73,6 +76,7 @@ jobs:
           path: |
             ${{ runner.temp }}/observation.json
             ${{ runner.temp }}/derived-index-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Detect partial failures

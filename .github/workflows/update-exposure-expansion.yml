@@ -64,7 +64,9 @@ jobs:
         if: always()
         with:
           name: exposure-expansion-observations
-          path: ${{ runner.temp }}/exposure-expansion.json
+          path: |
+            ${{ runner.temp }}/exposure-expansion.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Exact-share exposure checks passed'

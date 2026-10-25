@@ -197,6 +197,9 @@ def _normalize_report(report):
 
 
 def normalize_report(report):
+    if isinstance(report,dict) and 'resultContract' in report:
+        from producer_report_contract import normalize_contract
+        return normalize_contract(report['resultContract'])
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
     scope = report.get('scope')
@@ -286,6 +289,7 @@ def report_shape(report):
     if 'indices' in report: return 'indices'
     if 'shares' in report: return 'shares'
     if any(k in report for k in ('successes', 'errors', 'inactive')): return 'statuses'
+    if report.get('symbol')=='BTC-USD' and isinstance(report.get('points'),list): return 'bitcoin'
     return 'unknown'
 
 
@@ -347,7 +351,7 @@ def report_files(directory):
     return sorted(root.glob('*.json')) + sorted(root.glob('_temp/**/*.json'))
 
 
-def read_report(path, workflow):
+def read_report(path, workflow, planned=None):
     # Issuer observations retain raw official components and full holdings.
     # Give that existing artifact a bounded larger envelope, then immediately
     # discard the payload by projecting only failure/recovery observations.
@@ -358,15 +362,34 @@ def read_report(path, workflow):
     report = json.loads(path.read_text())
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    plan_verified=False
+    if planned is not None:
+        from producer_report_contract import validate_contract,finish
+        validate_contract(planned['resultContract'])
+        plan=planned['resultContract']['inputPlan']
+        if plan['reportStem']!=path.stem:raise ValueError('Plan belongs to another report')
+        if report.get('resultContract'):
+            validate_contract(report['resultContract'])
+            if report['resultContract']['scope']['planSha256']!=plan['sha256']:
+                raise ValueError('Result scope differs from the independently recorded input plan')
+        # Recover only from a real, same-artifact declaration made before this
+        # invocation. Legacy artifacts without one are never given a scope.
+        report=finish(report,plan,completed=report.get('producerStarted')!='producer-results-v1')
+        plan_verified=True
     report['_collector'] = path.stem
     spec = next((r for r in REPORT_CONTRACTS.get(workflow, {}).get('reports', []) if r['name'] == path.name), None)
     version = report.get('schemaVersion')
-    if not any(type(version) is type(v) and version == v for v in (spec.get('versions', [None, 1]) if spec else [None, 1])):
+    if not any(type(version) is type(v) and version == v for v in (spec.get('versions', [None, 1]) if spec else [None, 1])) and not (report.get('producerStarted')=='producer-results-v1' and report.get('resultContract',{}).get('protocol')=='producer-results-v1'):
         raise ValueError('Version de rapport non qualifiée : ' + str(report.get('schemaVersion')))
     shape = report_shape(report)
-    if spec and spec.get('schemas') and shape not in spec['schemas']:
+    individual = report.get('resultContract')
+    if individual is not None:
+        from producer_report_contract import normalize_contract, VERSION
+        if not isinstance(individual,dict) or individual.get('protocol')!=VERSION:
+            raise ValueError('Contrat individuel de producteur inconnu')
+    if spec and spec.get('schemas') and shape not in spec['schemas'] and not (individual and report.get('producerStarted')==VERSION):
         raise ValueError('Format incompatible avec le producteur : ' + shape)
-    result = normalize_report(report)
+    result = normalize_contract(individual) if individual else normalize_report(report)
     if shape == 'series':
         records_by_id = {r['id']:r for r in report['series'] + list(report.get('fxSources', {}).values())}
         for success in result.get('successes', []):
@@ -383,7 +406,7 @@ def read_report(path, workflow):
         for success in result.get('successes',[]):
             record=report['sources'].get(success['id'].removeprefix('practical:'),{})
             if record.get('lastSuccessfulCheckAt'):success['checkedAt']=record['lastSuccessfulCheckAt']
-    outcomes = {r['id']:r for r in report.get('outcomes', [])}
+    outcomes = {r['id']:r for r in (individual or report).get('outcomes', [])}
     for kind in ('successes', 'errors'):
         for row in result.get(kind, []):
             identifier = row['id']
@@ -391,20 +414,23 @@ def read_report(path, workflow):
             for key in ('checkedAt','asOf','attemptedAt','lastSuccessAt','responseSha256'):
                 if key in record:row[key] = record[key]
             if record.get('sourceUrl'):row['sourceUrls'] = [record['sourceUrl']]
-            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt'):
+            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation'):
                 row['verifiedInAttempt'] = True
     for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
         if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
             raise ValueError('Date de contrôle du rapport invalide ou future')
-    scope_explicit = 'attemptedIds' in report or isinstance(report.get('scope'),dict) and 'expectedIds' in report['scope']
-    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scope':report.get('scope'), 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+    scope_report = individual or report
+    scope_explicit = 'attemptedIds' in scope_report or isinstance(scope_report.get('scope'),dict) and 'expectedIds' in scope_report['scope']
+    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scopePlanVerified':plan_verified, 'scope':scope_report.get('scope'), 'producerContract':individual.get('protocol') if individual else None, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                                  'reportedAt': report.get('checkedAt'), 'schema': shape}
+    if individual and individual.get('inputPlan',{}).get('durablePlan') and not plan_verified:
+        result['_scopeWarning']='Le manifeste amont indépendant est absent ou non rapproché ; la complétude courante reste à qualifier.'
     if not scope_explicit:
         result['_scopeWarning'] = 'Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.'
     return result
 
 
-def read_report_safely(path, workflow):
+def read_report_safely(path, workflow, planned=None):
     """An unusable artifact is an incident, not a reason to lose every other result."""
     try:
         result = read_report(path, workflow)
@@ -422,8 +448,17 @@ def report_error(identifier, cause):
     return {'successes': [], 'errors': [{'id': identifier, 'field': 'Preuve de collecte', 'error': cause}]}
 
 
+def normalize_attempt_report(raw,run):
+    report=normalize_report(raw)
+    scope=((report.get('_reportEvidence')or{}).get('scope')or{})
+    if (scope.get('runId') is not None and str(scope['runId'])!=str(run['id'])
+            or scope.get('attempt') is not None and str(scope['attempt'])!=str(run.get('run_attempt',1))):
+        return report_error('report-contract:attempt','Le manifeste amont ne correspond pas à cette exécution/tentative ; aucun contrôle source individuel déduit.')
+    return report
+
+
 def technical_proof(identifier):
-    return identifier.startswith(('report-read:', 'artifact-read:'))
+    return identifier.startswith(('report-read:', 'artifact-read:', 'report-contract:', 'report-result:'))
 
 
 def bind_attempt(identifier, run):
@@ -447,7 +482,7 @@ def merge_proof_retry(state, run, reports):
     failures = row.setdefault('proofFailures', {})
     checks = row.setdefault('proofChecks', {})
     for raw in reports:
-        report = normalize_report(raw)
+        report = normalize_attempt_report(raw,run)
         evidence = report.get('_reportEvidence')
         for success in report.get('successes', []):
             identifier = bind_attempt(success['id'], run)
@@ -508,7 +543,7 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
     """The contract is conditional on executed steps, never on unattempted fields."""
     contract = REPORT_CONTRACTS[workflow]
     steps = [s for j in jobs for s in (j.get('steps') or [])]
-    if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and not any(a.get('name')==contract['artifact']for a in artifacts):
+    if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and (contract.get('requiresActivationMarker') or not any(a.get('name')==contract['artifact']for a in artifacts)):
         return [{'successes':[],'errors':[],'_legacyReportCoverage':'Cette ancienne version du producteur ne déclarait pas encore cet artefact ; aucun succès source individuel déduit.'}]
     attempted = {s['name'] for s in steps if s.get('conclusion') in ('success', 'failure', 'timed_out')}
     required = [r for r in contract['reports'] if attempted.intersection(r['steps'])]
@@ -522,16 +557,44 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
         paths = report_files(directory)
         names = {r['name'] for r in contract['reports']}
         reports = []
+        sidecars={p.name.removesuffix('.contract-plan.json')+'.json':p for p in paths if p.name.endswith('.contract-plan.json')}
+        def plan_report(spec):
+            sidecar=sidecars.get(spec['name'])
+            if not sidecar:return None
+            try:
+                raw_plan=json.loads(sidecar.read_text())
+                if raw_plan['resultContract']['inputPlan']['reportStem']!=pathlib.Path(spec['name']).stem:
+                    return report_error('report-read:'+pathlib.Path(spec['name']).stem+':plan','Le manifeste amont appartient à un autre rapport')
+            except (ValueError,KeyError,OSError,TypeError):
+                return report_error('report-read:'+pathlib.Path(spec['name']).stem+':plan','Manifeste amont illisible')
+            result=read_report_safely(sidecar,workflow)
+            if result.get('_reportEvidence'):
+                result['_reportEvidence'].update(file=spec['name'],planFile=sidecar.name,nativeReportMissing=True,scopePlanVerified=True)
+                result.pop('_scopeWarning',None)
+            return result
         for spec in required:
             if not any(p.name == spec['name'] for p in paths):
                 reports.append(report_error('report-read:' + pathlib.Path(spec['name']).stem, 'Rapport attendu absent : ' + spec['name']))
+                recovery=plan_report(spec)
+                if recovery:reports.append(recovery)
         for path in paths:
             if 'cross-fx-evidence' in path.parts:
                 continue  # Raw transport evidence, explicitly not a collector report.
+            if path.name.endswith('.contract-plan.json') and path.name.removesuffix('.contract-plan.json')+'.json' in names:
+                continue
+            if path.name in contract.get('supportFiles',[]):
+                continue  # Explicitly declared inputs/snapshots, never observation reports.
             if path.name not in names:
                 reports.append(report_error('report-read:' + path.stem, 'Rapport hors contrat : ' + path.name))
                 continue
-            reports.append(read_report_safely(path, workflow))
+            planned=None
+            if path.name in sidecars:
+                try:planned=json.loads(sidecars[path.name].read_text())
+                except (ValueError,OSError):pass  # Native reader still reports its own error; no scope fabricated.
+            reports.append(read_report_safely(path, workflow,planned))
+            if not reports[-1].get('_reportEvidence') and planned is not None:
+                recovery=plan_report({'name':path.name})
+                if recovery:reports.append(recovery)
             if reports[-1].get('_reportEvidence'):
                 reports[-1]['_reportEvidence']['artifactId'] = max(a.get('id', 0) for a in available)
                 source_jobs=[j for j in jobs if j['name']==REGISTRY[workflow]['collectionJob']or j['name'].startswith(REGISTRY[workflow]['collectionJob']+' (')]
@@ -682,7 +745,7 @@ def update_status(state, run, jobs, reports=None):
     normalized = []
     for raw in reports or []:
         try:
-            normalized.append(normalize_report(raw))
+            normalized.append(normalize_attempt_report(raw,run))
         except (ValueError, KeyError, TypeError, AttributeError) as error:
             normalized.append(report_error('report-read:unidentified', 'Contrat invalide : ' + str(error)))
     for report in normalized:
@@ -697,10 +760,13 @@ def update_status(state, run, jobs, reports=None):
     data_failures = previous.get('dataFailures', {}).copy()
     proof_failures = previous.get('proofFailures', {}).copy()
     proof_checks = previous.get('proofChecks', {}).copy()
+    result_history = previous.get('reportResultHistory', []).copy()
     for identifier in list(data_failures):
         if technical_proof(identifier):proof_failures[identifier] = data_failures.pop(identifier)
     retired_failures=previous.get('retiredDataFailures',{}).copy()
     qualifications = previous.get('reportQualifications', {}).copy()
+    qualification_history = previous.get('reportQualificationHistory', []).copy()
+    validation_checks = previous.get('validationChecks', {}).copy()
     source_checks = previous.get('sourceChecks', {}).copy()
     evidence_history = previous.get('reportEvidenceHistory', []).copy()
     for raw_report in reports or []:
@@ -710,6 +776,13 @@ def update_status(state, run, jobs, reports=None):
             key = evidence['file']
             if report.get('_scopeWarning'):
                 qualifications[key] = {'cause': report['_scopeWarning'], 'runUrl': run['html_url'], 'attemptedAt': evidence.get('reportedAt'), 'evidence': evidence}
+            elif (evidence.get('producerContract') == 'producer-results-v1'
+                  and evidence.get('scopePlanVerified')
+                  and (evidence.get('scope') or {}).get('mode') == 'full'
+                  and (evidence.get('scope') or {}).get('requestedIds')
+                  and key in qualifications):
+                qualification_history.append({**qualifications.pop(key), 'file':key,
+                    'historicalLimitationPreserved':True, 'currentScopeQualifiedBy':run['html_url']})
             elif qualifications.get(key, {}).get('evidence', {}).get('sha256') == evidence.get('sha256'):
                 # A new targeted/empty scope cannot qualify an older unscoped
                 # report. Only re-reading that exact proof with a now-supported
@@ -720,6 +793,17 @@ def update_status(state, run, jobs, reports=None):
                        'successes': report.get('successes', []), 'errors': report.get('errors', [])}
             if not any(r.get('runId') == receipt['runId'] and r.get('attempt') == receipt['attempt'] and r.get('file') == key for r in evidence_history):
                 evidence_history.append(receipt)
+        # An explicit status repairs reporting only. Cache/deferred/source failure
+        # cannot clear the corresponding financial failure. Unselected identities
+        # are absent from reportedResults, so targeted retries retain other gaps.
+        if evidence and evidence.get('scopePlanVerified'):
+            for identifier in report.get('reportedResults', []):
+                for key in list(proof_failures):
+                    if key == identifier or key.startswith(identifier+':run:'):
+                        result_history.append({**proof_failures.pop(key), 'proofId':key,
+                            'currentReportingRestoredBy':{'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence},
+                            'historicalOmissionPreserved':True})
+                proof_checks[bind_attempt(identifier,run)] = {'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
         # Explicit exclusion of a non-production candidate retires its legacy alert,
         # without claiming that the source recovered or clearing other failures.
         for inactive in report.get('inactive', []):
@@ -731,6 +815,11 @@ def update_status(state, run, jobs, reports=None):
                     'retirementEvidence': {'runUrl': run['html_url'], 'report': evidence}}
 
         for success in report.get('successes', []):
+            if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
+                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
+                if data_failures.get(success['id'],{}).get('phase') == success.get('phase') or success['id'].startswith('qualification:') and success.get('phase')=='qualification':
+                    data_failures.pop(success['id'],None)
+                continue
             if technical_proof(success['id']):
                 proof_failures.pop(success['id'], None)
                 proof_checks[success['id']] = {'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':success.get('evidence')or evidence}
@@ -763,13 +852,14 @@ def update_status(state, run, jobs, reports=None):
             id_ = error['id']
             if technical_proof(id_):
                 proof_failures[id_] = {'name':WORKFLOWS[workflow], 'cause':error['error'], 'field':error.get('field','Preuve de collecte'),
-                    'runId':run['id'], 'attempt':run.get('run_attempt',1), 'runUrl':run['html_url'], 'completedAt':run['updated_at']}
+                    'runId':run['id'], 'attempt':run.get('run_attempt',1), 'runUrl':run['html_url'], 'completedAt':run['updated_at'],
+                    'evidence':evidence, **{k:error[k]for k in ('expectedId','instrument','phase','kind','sourceAttempted')if k in error}}
                 continue
             retired_failures.pop(id_, None)
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
                 'sourcePhaseCompletedAt':(evidence or{}).get('sourcePhaseCompletedAt'),'evidence':evidence,
                 'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {}),
-                **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods') if key in error}}
+                **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods', 'phase', 'kind', 'sourceAttempted') if key in error}}
     for identifier in list(data_failures):
         if not owns_failure(REGISTRY[workflow],identifier):
             retired_failures[identifier]={**data_failures.pop(identifier),'retiredAt':run['updated_at'],'retirementReason':RETIREMENT_REASON}
@@ -855,8 +945,8 @@ def update_status(state, run, jobs, reports=None):
             and source_checks.get(r['id'],{}).get('runId')==run['id']and source_checks.get(r['id'],{}).get('attempt')==run.get('run_attempt',1)
             and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
         'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
-        'reportQualifications': qualifications, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
-    entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks)
+        'reportQualifications': qualifications, 'reportQualificationHistory':qualification_history, 'validationChecks':validation_checks, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
+    entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks, reportResultHistory=result_history)
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result

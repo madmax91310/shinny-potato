@@ -132,4 +132,4 @@ def main():
  # Unqualified launch candidates stay excluded; failure of an already active record is fatal.
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  if any(x['id']in active for x in report['excluded']):raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_qualified_exposures', main)

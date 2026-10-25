@@ -415,4 +415,4 @@ def main():
 
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(__import__('producer_report_contract').run('collect_scpi', main))

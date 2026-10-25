@@ -96,8 +96,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         availability = state.get('workflowAvailability', {}).get(workflow, {})
         if availability.get('state') and availability['state'] != 'active':
             add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
-        if config.get('reportCoverage') == 'job-only':
-            add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': 'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
+        observed_contracts={e.get('file')for e in row.get('reportEvidenceHistory',[]) if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit') and e.get('scopePlanVerified')}
+        missing_contracts=set(config.get('reportFiles',[]))-observed_contracts
+        if config.get('reportCoverage') == 'job-only' or config.get('reportContract') and missing_contracts:
+            add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': ('Contrats individuels pas encore observés : '+', '.join(sorted(missing_contracts))+'. ' if missing_contracts else '')+'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
         for identifier, failure in row.get('proofFailures', {}).items():
             add('collection:'+workflow+':'+identifier, {**base, **failure, 'proofId':identifier, 'kind':'monitoring', 'field':'Preuve de collecte / tentative', 'lastSuccessAt':None})
         for filename, warning in row.get('reportQualifications', {}).items():
@@ -122,7 +124,8 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             # An official document that changed wording or identity is not a broken collector:
             # the previous value is kept and a person must compare old and new text.
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
-            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
+            phase_kind={'reporting':'monitoring','validation':'checks','qualification':'qualification'}.get(failure.get('phase'))
+            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': phase_kind or ('review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection'),
                 'lastSuccessAt': failure.get('lastSuccessAt') if 'lastSuccessAt' in failure else row.get('sourceChecks', {}).get(identifier, {}).get('checkedAt'),
                 **({'kind':'qualification','originalKind':'collection','cause':failure.get('unverifiedReason','Reprise déclarée sans date de contrôle source qualifiée ; résolution non démontrée.')+' Erreur antérieure : '+failure.get('cause','')}if failure.get('unverifiedRecovery')else{}),
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
@@ -229,6 +232,11 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             return proof if checked and checked <= current and (not failed_at or checked > failed_at) else None
         if row.get('proofId'):
             return workflow.get('proofChecks', {}).get(row['proofId'])
+        if row.get('dataId') and row.get('phase') in ('qualification','validation'):
+            proof=workflow.get('validationChecks',{}).get(row['dataId'])
+            checked=timestamp(proof.get('recordedAt')) if proof else None
+            failed_at=timestamp(row.get('completedAt') or row.get('firstSeenAt'))
+            return proof if checked and checked<=current and (not failed_at or checked>failed_at) else None
         if row.get('dataId'):
             proof = workflow.get('sourceChecks', {}).get(row['dataId'])
             checked = timestamp(proof.get('recordedAt') if proof.get('verifiedInAttempt') else proof.get('checkedAt') or proof.get('recordedAt')) if proof else None

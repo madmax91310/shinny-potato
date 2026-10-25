@@ -104,7 +104,7 @@ def refresh(current, now=None, fetch=download):
     return merged, {'checkedAt': now.isoformat(), 'shares': results}
 
 
-if __name__ == '__main__':
+def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=pathlib.Path, required=True)
     p.add_argument('--apply', action='store_true')
@@ -115,3 +115,6 @@ if __name__ == '__main__':
     if args.apply: write_json_atomic(path, merged)
     for r in report['shares']: print(r['isin'], r['status'], r.get('reason', ''))
     if any(r['status'] == 'failed' for r in report['shares']): raise SystemExit(1)
+
+if __name__ == '__main__':
+    __import__('producer_report_contract').run('collect_presentation_performance', main)

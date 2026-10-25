@@ -110,7 +110,7 @@ def merge_record(config,record,old):
 
 def refresh(current,proof,now,collect=None):
     end=(dt.date(now.year,now.month,1)-dt.timedelta(days=1)).strftime('%Y-%m')
-    merged=current.copy();evidence=proof.copy();report={'checkedAt':now.isoformat(),'successes':[],'errors':[]}
+    merged=current.copy();evidence=proof.copy();report={'checkedAt':now.isoformat(),'successes':[],'errors':[],'contractSkipped':[]}
     def one(config):
         try:
             old=current.get(config['id'])
@@ -122,6 +122,9 @@ def refresh(current,proof,now,collect=None):
     with ThreadPoolExecutor(max_workers=3) as pool:
         for id_,record,error in pool.map(one,configurations()):
             if error:report['errors'].append({'id':'anniversary-index-'+id_,'error':error});continue
+            if record is None:
+                report['contractSkipped'].append({'id':'anniversary-index-'+id_,'status':'cached','reason':'Completed month and source configuration already present; no network control in this invocation'})
+                continue
             if record:
                 merged[id_]={key:value for key,value in record.items() if key not in ('rawResponse','proofRows')}
                 old_rows={r['date'][:7]:r for r in evidence.get(id_,{}).get('proofRows',[])}
@@ -140,4 +143,4 @@ def main():
         if evidence!=proof:write_json_atomic(PROOF,evidence)
     print(json.dumps(report,ensure_ascii=False));return bool(report['errors'])
 
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('refresh_anniversary_indices', main))

@@ -67,7 +67,9 @@ jobs:
         if: always()
         with:
           name: non-bond-source-observation
-          path: ${{ runner.temp }}/non-bond.json
+          path: |
+            ${{ runner.temp }}/non-bond.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

@@ -92,4 +92,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    __import__('producer_report_contract').run('update_bitcoin_monthly', main)

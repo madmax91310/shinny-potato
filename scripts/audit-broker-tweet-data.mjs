@@ -1,5 +1,6 @@
 // Audit the observations actually used by the tweet, including the manual
 // fallback and independently dated transfer/offer observations.
+import { producerContract } from './producer-result-contract.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { BROKER_TARIFFS, brokerProfile } from '../src/data/broker-tariffs.js';
@@ -55,9 +56,17 @@ export function auditBrokerTweetData(observations = BROKER_TARIFFS, today = isoT
 
 if (process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
   const args=process.argv.slice(2), arg=name=>args.includes(name)?args[args.indexOf(name)+1]:undefined;
+  const contract=producerContract('broker-tweet-validation','broker-tweet-observation',BROKERS.flatMap(b=>FIELDS.map(field=>({id:'broker-tweet:'+b.id+':'+field,instrument:b.id,fields:[field],selected:true}))))
+  const output=arg('--output'); if(output)contract.start(output);
   const file=arg('--observation'), collection=file?JSON.parse(readFileSync(file,'utf8')):null;
-  const report=auditBrokerTweetData(collection?.observations?.brokers ?? BROKER_TARIFFS,arg('--today')??isoToday(),collection?.failures??{});
-  const output=arg('--output');
+  let report=auditBrokerTweetData(collection?.observations?.brokers ?? BROKER_TARIFFS,arg('--today')??isoToday(),collection?.failures??{});
+  const successes=[], errors=[];
+  for(const cell of report.cells){
+    const id='broker-tweet:'+cell.broker+':'+cell.field, failures=report.errors.filter(e=>e.startsWith(cell.broker+':'+cell.field+':'));
+    if(failures.length)errors.push({id,error:failures.join(' ; '),phase:'validation',sourceAttempted:false});
+    else successes.push({id,phase:'validation',sourceAttempted:false,validatedAt:report.checkedAt});
+  }
+  report=contract.finish({...report,contractResults:{successes,errors}});
   if (output) writeFileSync(output,JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify({summary:report.summary,offers:report.offers,collectionFailures:report.collectionFailures,errors:report.errors},null,2));
   if (report.errors.length) process.exitCode=1;

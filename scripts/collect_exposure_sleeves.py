@@ -194,4 +194,4 @@ def main():
             'errors':[{'id':'exposure-sleeve:'+e.get('isin',e.get('source','unknown')),'field':'Pays/secteurs de la poche actions',**e} for e in errors]}
     write_json_atomic(args.output,report);print(json.dumps(report))
     if errors:raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_exposure_sleeves', main)

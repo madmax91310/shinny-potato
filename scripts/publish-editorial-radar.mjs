@@ -1,3 +1,7 @@
+import {producerContract,sourceResults} from './producer-result-contract.mjs'
+import {PUBLICATION_SOURCES} from './lib/radar-publications.mjs'
+import {PURCHASING_SOURCES} from './lib/purchasing-power-news.mjs'
+import {SOURCE_ACCESS_GAPS} from './lib/radar-source-access.mjs'
 import { checkSourceAccess } from './lib/radar-source-access.mjs'
 import { collectPublications } from './lib/radar-publications.mjs'
 import { scheduledRadar } from './lib/radar-schedule.mjs'
@@ -16,7 +20,18 @@ import { editorialState } from '../src/lib/radar-editorial.js'
 // Data publication is one atomic commit on a dedicated branch. It does not
 // rewrite master or depend on an application rebuild for each observation.
 const schedule = scheduledRadar()
-if (process.env.GITHUB_EVENT_NAME === 'schedule' && !schedule.enabled) { console.log('Hors de la plage 08–20 h Europe/Paris.'); process.exit(0) }
+const outsideHours=process.env.GITHUB_EVENT_NAME==='schedule'&&!schedule.enabled
+const contractOutput=resolve(process.env.RUNNER_TEMP??'/tmp','editorial-radar')
+await mkdir(contractOutput,{recursive:true})
+const expectedSources=[...PUBLICATION_SOURCES,...PURCHASING_SOURCES,...SOURCE_ACCESS_GAPS,
+ {id:'Communiqués Vanguard',url:'https://www.vanguard.co.uk/professional/contact-us/press-releases'},
+ {id:'Communiqués Global X Europe',url:'https://globalxetfs.eu/news'}]
+const contract=producerContract('editorial-radar-sources','feed',expectedSources.map(r=>({id:'radar-source:'+r.id,instrument:r.id,fields:[SOURCE_ACCESS_GAPS.some(a=>a.id===r.id)?'official HTTP access only':'official publication listing'],sourceUrl:r.url,selected:!outsideHours,...(outsideHours?{reason:'Normal wait outside Radar operating hours'}:{})})),{mode:outsideHours?'conditional':'full',retainNativeFailuresOnly:true})
+contract.start(resolve(contractOutput,'feed.json'))
+if(outsideHours){console.log('Hors de la plage 08–20 h Europe/Paris.');process.exit(0)}
+const sourceHttp=[]
+const sourceFetch=async (...args)=>{const attempt={url:String(args[0]),status:null,attemptedAt:new Date().toISOString()};sourceHttp.push(attempt);try{const response=await fetch(...args);attempt.status=response.status;return response}catch(error){attempt.status='network-error';throw error}}
+
 const light = process.env.GITHUB_EVENT_NAME === 'schedule' || process.argv.includes('--news-only')
 const repo = process.env.GITHUB_REPOSITORY, token = process.env.GH_TOKEN
 if (!/^[\w.-]+\/[\w.-]+$/.test(repo ?? '') || !token) throw new Error('Connexion GitHub du workflow manquante.')
@@ -58,7 +73,7 @@ let result, nextTree, nextCommit
 if (refresh) {
   const { observations, errors } = light && previous ? { observations: Object.values(previous.current), errors: [] } : await collectObservations()
   if (!observations.length && !previous) throw new Error('Aucune source locale initiale ; historique conservé.')
-  const [news, purchasing, publications, access] = await Promise.all([collectRadarNews(), collectPurchasingNews(new Date(), fetch, previous), collectPublications(new Date(), fetch, previous?.publications), checkSourceAccess(new Date(), fetch, previous?.sourceAccess)])
+  const [news, purchasing, publications, access] = await Promise.all([collectRadarNews(new Date(),sourceFetch), collectPurchasingNews(new Date(), sourceFetch, previous), collectPublications(new Date(), sourceFetch, previous?.publications), checkSourceAccess(new Date(), sourceFetch, previous?.sourceAccess)])
   const launches = await enrichEtfLaunches(news.observations, new Date(), fetch, undefined, previous?.documentQueue)
   errors.push(...launches.errors)
   // Replace re-observed keys, never duplicate a cached observation on a light pass.
@@ -90,6 +105,15 @@ if (refresh) {
   result.feed.documentQueue = Object.fromEntries(['pending','error','done'].map(status => [status, Object.values(launches.queue).filter(item => item.status === status).length]))
   result.feed.metrics = { collection: publications.metrics, publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, publicationToDetectionHours: item.detectionDelayHours, detectionToAvailabilityHours: item.availabilityDelayHours })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
   result.feed.compositionPublicationLags = verification.deferred ?? []
+  const previousSourceRows=new Map((previousFeed?.sources??[]).map(row=>[row.id,row]))
+  for(const row of result.feed.sources){
+    const attempt=sourceHttp.find(r=>r.url===row.url)
+    if(attempt)row.attemptedAt=attempt.attemptedAt
+    else if(previousSourceRows.get(row.id)?.attemptedAt)row.attemptedAt=previousSourceRows.get(row.id).attemptedAt
+    else delete row.attemptedAt
+  }
+  const individual=sourceResults(contract.plan,result.feed.sources,sourceHttp)
+  result.feed=contract.finish({...result.feed,contractDiagnosticsAttempted:true,contractResults:{successes:individual.successes,errors:individual.errors},contractSkipped:individual.skipped})
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
   const commit = await api(`git/commits/${parent}`)
@@ -113,7 +137,8 @@ if (refresh) {
   if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, `## Radar éditorial\n\n${result.feed.observationCount} observations analysées ; ${result.newEvents.length} nouveaux signaux ; ${result.feed.errors.length} observations non exploitables.\n\nLe premier relevé est silencieux. Les signaux suivants conservent leurs deux observations et leurs sources.\n`)
 
 } else {
-  result = { state: previous, feed: previousFeed, newEvents: [] }
+  const skipped=contract.plan.items.map(r=>({id:r.id,status:'cached',sourceAttempted:false,reason:'Recent identical Radar control; no new source request'}))
+  result = {state:previous,feed:contract.finish({...previousFeed,contractDiagnosticsAttempted:false,contractResults:{successes:[],errors:[]},contractSkipped:skipped}),newEvents:[]}
   nextCommit = { sha: ref.object.sha }
   nextTree = { sha: (await api(`git/commits/${ref.object.sha}`)).tree.sha }
   console.log('Contrôle identique récent : collecte évitée ; notifications en attente retentées.')

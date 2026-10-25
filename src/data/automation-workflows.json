@@ -287,7 +287,13 @@
       "/classements-performances",
       "/faits-marquants-marches"
     ],
-    "reportCoverage": "job-only"
+    "reportCoverage": "individual",
+    "artifact": "active-bitcoin-observation",
+    "reportContract": "producer-results-v1",
+    "reportFiles": [
+      "observation.json",
+      "derived-index-observation.json"
+    ]
   },
   "update-gold-monthly.yml": {
     "name": "Historique de l’or",
@@ -601,7 +607,15 @@
       "/le-dca-de",
       "/fiches-etf"
     ],
-    "reportCoverage": "job-only"
+    "reportCoverage": "individual",
+    "artifact": "onboarding-observation",
+    "reportContract": "producer-results-v1",
+    "reportFiles": [
+      "qualified-exposures.json",
+      "dca-complete-holdings.json",
+      "equity-qualification.json",
+      "etf-qualification.json"
+    ]
   },
   "rehearse-refresh.yml": {
     "name": "Répétition des futures collectes",

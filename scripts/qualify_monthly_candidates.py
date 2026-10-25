@@ -90,7 +90,7 @@ def apply_qualified(rows, extend=False):
     for path,data in [('src/data/automated-monthly.json',equities),('scripts/monthly-automation.json',config),('src/data/automated-etf-monthly.json',records),('scripts/source-snapshots/monthly-automated.json',evidence),('src/data/auto-history-identities.json',identities),('src/data/anniversary-levels.json',levels)]:write_json_atomic(ROOT/path,data)
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--candidates',type=Path,required=True);p.add_argument('--limit',type=int,default=12);p.add_argument('--apply',action='store_true');p.add_argument('--extend',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--candidates',type=Path,required=True);p.add_argument('--limit',type=int,default=12);p.add_argument('--apply',action='store_true');p.add_argument('--extend',action='store_true');p.add_argument('--output',type=Path);a=p.parse_args()
     path=ROOT/'scripts/source-snapshots/monthly-qualification-status.json';status=json.loads(path.read_text()) if path.exists() else {}
     ordered=sorted(json.loads(a.candidates.read_text()),key=lambda c:(status.get(c['isin'],{}).get('checkedAt',''),c['isin']))
     # A part may have several documented symbols. Limit exact instruments rather
@@ -115,6 +115,9 @@ def main():
     if a.apply:
         apply_qualified(valid,extend=a.extend);write_json_atomic(path,status)
     print(json.dumps({'attempted':len(results),'qualified':list(dict.fromkeys(s['isin'] for s,r in valid)),'pending':[{'isin':c['isin'],'reason':error} for c,result,error in results if error and c['isin'] not in successful],'rejectedAlternatives':[{'isin':c['isin'],'symbol':c['symbol'],'reason':error} for c,result,error in results if error and c['isin'] in successful]}))
+    if a.output:
+        write_json_atomic(a.output,{'checkedAt':now.isoformat(),'successes':[{'id':'candidate:'+c['isin']+':'+c['symbol'],'phase':'qualification','sourceAttempted':True,'checkedAt':now.isoformat()}for c,result,error in results if result],
+            'errors':[], 'contractSkipped':[{'id':'candidate:'+c['isin']+':'+c['symbol'],'status':'excluded','sourceAttempted':True,'phase':'qualification','reason':error}for c,result,error in results if error]})
     # Unqualified candidates never enter the active registry; retained in status and
     # retried in age order. A pending candidate is not a failed active collection.
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('qualify_monthly_candidates',main)

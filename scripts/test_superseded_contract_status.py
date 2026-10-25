@@ -19,7 +19,9 @@ class SupersededContractTests(unittest.TestCase):
              'reason': 'Contract explicitly superseded: Linxea Avenir 2+', 'successorName': 'Linxea Avenir 2+'},
             {'id': 'linxea-avenir-2-plus', 'name': 'Linxea Avenir 2+', 'status': 'success'}]}
         normalized = normalize_report(report)
-        self.assertEqual(normalized['inactive'], [{'id': 'linxea-avenir-2'}])
+        self.assertEqual([r['id']for r in normalized['inactive']], ['linxea-avenir-2'])
+        self.assertEqual(normalized['inactive'][0]['retirementStatus'], 'superseded')
+        self.assertTrue(normalized['inactive'][0]['reason'])
         self.assertNotIn({'id': 'linxea-avenir-2'}, normalized['successes'])
         stale = {'workflows': {WORKFLOW: {'completedAt': '2026-10-01T10:00:00Z', 'runId': 1, 'dataFailures': {
             'linxea-avenir-2': {'cause': 'Wrong contract identity'}, 'other': {'cause': 'HTTP 500'}}}}}

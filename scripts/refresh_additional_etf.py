@@ -117,4 +117,4 @@ def main():
         raise SystemExit(1)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('refresh_additional_etf', main)

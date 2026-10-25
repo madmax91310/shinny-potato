@@ -54,6 +54,8 @@ jobs:
         with:
           node-version: 20
       - run: pip install beautifulsoup4==4.15.0
+      - name: Producer result contract v1
+        run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - name: "Collect observations: qualified"
@@ -65,7 +67,7 @@ jobs:
           if [ -z "$QUALIFIED_ONLY" ]; then
             QUALIFIED_ONLY=$(node -e "const c=require('./scripts/qualified-exposure-sources.json').instruments,r=require('./src/data/qualified-exposure-etfs.json');console.log(c.filter(i=>!r[i.id]).map(i=>i.id).join(' '))")
           fi
-          if [ -z "$QUALIFIED_ONLY" ]; then echo 'Every configured qualified share already has a record'; exit 0; fi
+          if [ -z "$QUALIFIED_ONLY" ]; then python scripts/emit_empty_producer_report.py --producer collect_qualified_exposures --output "$RUNNER_TEMP/qualified-exposures.json" --reason 'Every configured qualified share already has a record; no source collection requested'; exit 0; fi
           echo "Collecting: $QUALIFIED_ONLY"
           # shellcheck disable=SC2086
           python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json" --only $QUALIFIED_ONLY
@@ -85,13 +87,13 @@ jobs:
         continue-on-error: true
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json" 2> "$RUNNER_TEMP/equity-skipped.json" || true
-          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit "$EQUITY_LIMIT" --apply
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit "$EQUITY_LIMIT" --apply --output "$RUNNER_TEMP/equity-qualification.json"
       - name: "Collect observations: etfs"
         id: etfs
         continue-on-error: true
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
-          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit "$ETF_LIMIT" --apply
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit "$ETF_LIMIT" --apply --output "$RUNNER_TEMP/etf-qualification.json"
       - name: Promote qualified curated equities
         run: node scripts/sync-global-equities.mjs
       - name: Rebuild derived registries
@@ -110,8 +112,11 @@ jobs:
             ${{ runner.temp }}/equity-candidates.json
             ${{ runner.temp }}/equity-skipped.json
             ${{ runner.temp }}/monthly-candidates.json
+            ${{ runner.temp }}/equity-qualification.json
+            ${{ runner.temp }}/etf-qualification.json
             scripts/source-snapshots/monthly-qualification-status.json
             scripts/global-equity-candidates.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations

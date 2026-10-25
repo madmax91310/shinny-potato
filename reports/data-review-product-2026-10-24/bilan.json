@@ -437,5 +437,843 @@
     "Job-only producers cannot certify per-field coverage.",
     "Historical archived resolutions without explicit evidence remain labelled unqualified.",
     "Manual isolated qualification workflows and the observation-only Bitcoin pilot do not publish active data and are outside continuous producer supervision."
-  ]
+  ],
+  "producerContracts": {
+    "checkedAt": "2026-10-25T13:33:45.942273+00:00",
+    "scope": "Complément des contrats individuels ; aucun nouvel audit financier",
+    "initialReportQualifications": 35,
+    "initialJobOnly": 2,
+    "workflows": 20,
+    "cohort": [
+      {
+        "id": "scope:update-investor-13f.yml:investor-observations.json",
+        "workflow": "update-investor-13f.yml",
+        "report": "investor-observations.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40109838312",
+          "attemptedAt": "2026-10-24T16:12:04.920439+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "investor-observations.json",
+            "sha256": "ab100ca89dd04fd1836d4b94a98a30866c191cd081cd165d21ca05b8a37e3a46",
+            "reportedAt": "2026-10-24T16:12:04.920439+00:00",
+            "schema": "investors",
+            "artifactId": 12566696037,
+            "sourcePhaseStartedAt": "2026-10-24T16:04:12Z",
+            "sourcePhaseCompletedAt": "2026-10-24T16:12:12Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-market-monthly.yml:derived-index-observation.json",
+        "workflow": "update-market-monthly.yml",
+        "report": "derived-index-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320",
+          "attemptedAt": "2026-10-25T09:45:12.603898+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "derived-index-observation.json",
+            "sha256": "55b4dad0db642e01dff4e620e01ca59ca4d0a181f39fcae05bfc300f637723bf",
+            "reportedAt": "2026-10-25T09:45:12.603898+00:00",
+            "schema": "indices",
+            "artifactId": 12596105474,
+            "sourcePhaseStartedAt": "2026-10-25T09:39:37Z",
+            "sourcePhaseCompletedAt": "2026-10-25T10:26:16Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:additional-observation.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "additional-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:40:14.237406+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "additional-observation.json",
+            "sha256": "fa1ed7410916fa34876120bdd42b45ed00b3f8c32ba1708dde0af7bfa338231b",
+            "reportedAt": "2026-10-25T07:40:14.237406+00:00",
+            "schema": "shares",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:amundi-observation.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "amundi-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:40:09.173632+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "amundi-observation.json",
+            "sha256": "ffb1031ec24a56a6cc2028fb3ad1f681cf05f52d7930587ba1c2807dd1fc9c42",
+            "reportedAt": "2026-10-25T07:40:09.173632+00:00",
+            "schema": "shares",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:index-observation.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "index-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:41:23.242487+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "index-observation.json",
+            "sha256": "8a545aa1c214120325fcd643b4c049821c7b8751173898a704d9c0539f007931",
+            "reportedAt": "2026-10-25T07:41:23.242487+00:00",
+            "schema": "indices",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:observation.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:39:48.446214+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "observation.json",
+            "sha256": "f7eab4840229a631155266f20e1a34bac749f4657145adb87e78be1064a01197",
+            "reportedAt": "2026-10-25T07:39:48.446214+00:00",
+            "schema": "shares",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:presentation-performance.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "presentation-performance.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:41:13.729727+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "presentation-performance.json",
+            "sha256": "1da2eacd0ef180f156fcb752567d6b71ecf78352721ada7201b018c043dbcca9",
+            "reportedAt": "2026-10-25T07:41:13.729727+00:00",
+            "schema": "shares",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:collect-etf-pilot.yml:ssga-observation.json",
+        "workflow": "collect-etf-pilot.yml",
+        "report": "ssga-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40172863299",
+          "attemptedAt": "2026-10-25T07:40:11.966049+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "ssga-observation.json",
+            "sha256": "8847c0798af234118a65ba8685c2bb2f30bbc15c83e2c2d5a6f04efd86deb1aa",
+            "reportedAt": "2026-10-25T07:40:11.966049+00:00",
+            "schema": "shares",
+            "artifactId": 12591491047,
+            "sourcePhaseStartedAt": "2026-10-25T07:39:07Z",
+            "sourcePhaseCompletedAt": "2026-10-25T07:42:40Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-economic-data.yml:funds-observation.json",
+        "workflow": "update-economic-data.yml",
+        "report": "funds-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40146571805",
+          "attemptedAt": "2026-10-25",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "funds-observation.json",
+            "sha256": "898ce242cb7c108338c813d3e3bd473992b09c338ad4bbd18e577ddca03d07d7",
+            "reportedAt": "2026-10-25",
+            "schema": "statuses",
+            "artifactId": 12581002422,
+            "sourcePhaseStartedAt": "2026-10-25T00:24:36Z",
+            "sourcePhaseCompletedAt": "2026-10-25T00:26:18Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-economic-data.yml:households-observation.json",
+        "workflow": "update-economic-data.yml",
+        "report": "households-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40146571805",
+          "attemptedAt": "2026-10-25",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "households-observation.json",
+            "sha256": "88c8faa5915bdfb38999c4dfb6e9f47fa89f203670bf910f58b3158c41139384",
+            "reportedAt": "2026-10-25",
+            "schema": "statuses",
+            "artifactId": 12581002422,
+            "sourcePhaseStartedAt": "2026-10-25T00:24:36Z",
+            "sourcePhaseCompletedAt": "2026-10-25T00:26:18Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-economic-data.yml:savings-observation.json",
+        "workflow": "update-economic-data.yml",
+        "report": "savings-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40146571805",
+          "attemptedAt": "2026-10-25",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "savings-observation.json",
+            "sha256": "c2b52a36b2e33c00cbf76da7a521748a730d6c48786c524b7596d983fca0bebc",
+            "reportedAt": "2026-10-25",
+            "schema": "statuses",
+            "artifactId": 12581002422,
+            "sourcePhaseStartedAt": "2026-10-25T00:24:36Z",
+            "sourcePhaseCompletedAt": "2026-10-25T00:26:18Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-economic-data.yml:scpi-observation.json",
+        "workflow": "update-economic-data.yml",
+        "report": "scpi-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40146571805",
+          "attemptedAt": "2026-10-25",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "scpi-observation.json",
+            "sha256": "cf5c967c51feeb064accd7c9578b407a119aee1b6fa0ef7bd499d4c0af74e7f3",
+            "reportedAt": "2026-10-25",
+            "schema": "statuses",
+            "artifactId": 12581002422,
+            "sourcePhaseStartedAt": "2026-10-25T00:24:36Z",
+            "sourcePhaseCompletedAt": "2026-10-25T00:26:18Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-regulatory-data.yml:broker-observation.json",
+        "workflow": "update-regulatory-data.yml",
+        "report": "broker-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "broker-observation.json",
+            "sha256": "29cec257e903272ba56d78f5df4a497d81ffd51b4362106e89832949b4485daf",
+            "reportedAt": null,
+            "schema": "references",
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-regulatory-data.yml:broker-tweet-observation.json",
+        "workflow": "update-regulatory-data.yml",
+        "report": "broker-tweet-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
+          "attemptedAt": "2026-10-24",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "broker-tweet-observation.json",
+            "sha256": "c844a168ebc76bda166b627166c9e234e056a12474d1238f9e807195e8543ebd",
+            "reportedAt": "2026-10-24",
+            "schema": "statuses",
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-regulatory-data.yml:fiscal-observation.json",
+        "workflow": "update-regulatory-data.yml",
+        "report": "fiscal-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "fiscal-observation.json",
+            "sha256": "901e6adb7c2ef1003049473aa74ebebefd5579e78d71183e2c3617719ad3fe6d",
+            "reportedAt": null,
+            "schema": "references",
+            "artifactId": 12560613652,
+            "sourcePhaseStartedAt": "2026-10-24T12:55:50Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:58:22Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-scpi.yml:scpi-observation.json",
+        "workflow": "update-scpi.yml",
+        "report": "scpi-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "scpi-observation.json",
+            "sha256": "e9aea1eb24a59f742944d2538cbda86e6f41b7b1fe57065e390a52e894a6852e",
+            "reportedAt": null,
+            "schema": "observations",
+            "artifactId": 12596088887,
+            "sourcePhaseStartedAt": "2026-10-25T10:51:22Z",
+            "sourcePhaseCompletedAt": "2026-10-25T10:53:20Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-insurance.yml:insurance-observation.json",
+        "workflow": "update-insurance.yml",
+        "report": "insurance-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40108578843",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "insurance-observation.json",
+            "sha256": "b89b90398e252666597d69690232b6f70b8036c10faea951ef368358a4de88b3",
+            "reportedAt": null,
+            "schema": "observations",
+            "artifactId": 12564978645,
+            "sourcePhaseStartedAt": "2026-10-24T15:47:32Z",
+            "sourcePhaseCompletedAt": "2026-10-24T15:48:58Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-publication-observations.yml:anniversary-indices-observation.json",
+        "workflow": "update-publication-observations.yml",
+        "report": "anniversary-indices-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319",
+          "attemptedAt": "2026-10-25T10:52:19.600931+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "anniversary-indices-observation.json",
+            "sha256": "76f15c5113cb72d84846c835702d34447b6294f18cdbbafaddd015b8dddd8091",
+            "reportedAt": "2026-10-25T10:52:19.600931+00:00",
+            "schema": "statuses",
+            "artifactId": 12595834304,
+            "sourcePhaseStartedAt": "2026-10-25T10:51:22Z",
+            "sourcePhaseCompletedAt": "2026-10-25T10:54:35Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-publication-observations.yml:anniversary-observation.json",
+        "workflow": "update-publication-observations.yml",
+        "report": "anniversary-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40110829062",
+          "attemptedAt": "2026-10-24T16:18:05.562860+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "anniversary-observation.json",
+            "sha256": "4fb50b4814829157d3802fe28435e087e5fbc812789757123d2cfcc7811c8ae6",
+            "reportedAt": "2026-10-24T16:18:05.562860+00:00",
+            "schema": "statuses",
+            "artifactId": 12566057941,
+            "sourcePhaseStartedAt": "2026-10-24T16:17:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T16:19:52Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-editorial-radar.yml:feed.json",
+        "workflow": "update-editorial-radar.yml",
+        "report": "feed.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40187819204",
+          "attemptedAt": "2026-10-25T11:12:13.457Z",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "feed.json",
+            "sha256": "d4bb4802307a7b1a51213d7629fe27919df8b2254fcf68dc7825837ec04188aa",
+            "reportedAt": "2026-10-25T11:12:13.457Z",
+            "schema": "radar",
+            "artifactId": 12597101336,
+            "sourcePhaseStartedAt": "2026-10-25T11:11:27Z",
+            "sourcePhaseCompletedAt": "2026-10-25T11:12:25Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-presentation-actors.yml:actor-observation.json",
+        "workflow": "update-presentation-actors.yml",
+        "report": "actor-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40092872365",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "actor-observation.json",
+            "sha256": "cf3ed6cb8700ca76ebd0b2703f0148d2d693af73c67ac23a41b3ef0af5929d75",
+            "reportedAt": null,
+            "schema": "observations",
+            "artifactId": 12559178371,
+            "sourcePhaseStartedAt": "2026-10-24T12:10:59Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:12:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-practical-sheets.yml:practical-observation.json",
+        "workflow": "update-practical-sheets.yml",
+        "report": "practical-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40097451124",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "practical-observation.json",
+            "sha256": "2f950d7d3ce538506a96f493f8eda717623e3a3dbe346262ba7e8bd629faab8c",
+            "reportedAt": null,
+            "schema": "practical",
+            "artifactId": 12561119214,
+            "sourcePhaseStartedAt": "2026-10-24T13:16:51Z",
+            "sourcePhaseCompletedAt": "2026-10-24T13:17:55Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-inflation.yml:inflation-observation.json",
+        "workflow": "update-inflation.yml",
+        "report": "inflation-observation.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40092195484",
+          "attemptedAt": "2026-10-24T12:01:45.982392+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": "France, all households, all items, not seasonally adjusted",
+            "file": "inflation-observation.json",
+            "sha256": "96f410df4b9b034b3ce17ea36fc5ba9b01481f35137b78887acc0c8e227bd8fa",
+            "reportedAt": "2026-10-24T12:01:45.982392+00:00",
+            "schema": "inflation",
+            "artifactId": 12559641339,
+            "sourcePhaseStartedAt": "2026-10-24T12:01:04Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:01:53Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:refresh-automated-index-sheets.yml:index-company-observations.json",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "report": "index-company-observations.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40120104021",
+          "attemptedAt": "2026-10-24T18:19:15.339731+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "index-company-observations.json",
+            "sha256": "0cfc8d8f32833a60eb3feb8873d54fc110366a8f9cc766a49fbf16518f2f8343",
+            "reportedAt": "2026-10-24T18:19:15.339731+00:00",
+            "schema": "indices",
+            "artifactId": 12571230787
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:refresh-automated-index-sheets.yml:index-company-qualification-observations.json",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "report": "index-company-qualification-observations.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40117395020",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "index-company-qualification-observations.json",
+            "sha256": "727fe4e19de4cd0c4675f33fa4bcfcd0729851ea7e967deb8fbb4c13dc253cf6",
+            "reportedAt": null,
+            "schema": "statuses",
+            "artifactId": 12569826212
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:refresh-automated-index-sheets.yml:selected-index-observations.json",
+        "workflow": "refresh-automated-index-sheets.yml",
+        "report": "selected-index-observations.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40120104021",
+          "attemptedAt": "2026-10-24T18:19:25.051396+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "selected-index-observations.json",
+            "sha256": "76823ac95044346df06291519b65529f76f35504432889fd65eeb3e6dbaa9e9d",
+            "reportedAt": "2026-10-24T18:19:25.051396+00:00",
+            "schema": "indices",
+            "artifactId": 12571230787
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-lifestrategy.yml:lifestrategy.json",
+        "workflow": "update-lifestrategy.yml",
+        "report": "lifestrategy.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40183225423",
+          "attemptedAt": "2026-10-25T10:26:54.803310+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "lifestrategy.json",
+            "sha256": "7cbc162a422c5661599f582c3095578196775a84cf09e2fea0b9711788c7b728",
+            "reportedAt": "2026-10-25T10:26:54.803310+00:00",
+            "schema": "holdings",
+            "artifactId": 12595975830,
+            "sourcePhaseStartedAt": "2026-10-25T10:26:19Z",
+            "sourcePhaseCompletedAt": "2026-10-25T10:27:36Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-non-bond-expansion.yml:non-bond.json",
+        "workflow": "update-non-bond-expansion.yml",
+        "report": "non-bond.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40091974240",
+          "attemptedAt": "2026-10-24T11:58:56.544685+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "non-bond.json",
+            "sha256": "cc5b5c82146752b545cf5fbf434b06af34ce5d4679b667e4127342ce87f71cab",
+            "reportedAt": "2026-10-24T11:58:56.544685+00:00",
+            "schema": "combined",
+            "artifactId": 12558979594,
+            "sourcePhaseStartedAt": "2026-10-24T11:57:49Z",
+            "sourcePhaseCompletedAt": "2026-10-24T12:00:04Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-qualified-exposures.yml:dca-complete-holdings.json",
+        "workflow": "update-qualified-exposures.yml",
+        "report": "dca-complete-holdings.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "dca-complete-holdings.json",
+            "sha256": "4d7864b1a2c182daeaf621cbd8203ed6cc37051cb661f083534deb7abc128450",
+            "reportedAt": null,
+            "schema": "statuses",
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-qualified-exposures.yml:dca-equities.json",
+        "workflow": "update-qualified-exposures.yml",
+        "report": "dca-equities.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "attemptedAt": "2026-10-23T23:59:21.368272+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "dca-equities.json",
+            "sha256": "bb5eeac87810d942e97166c5413e4761d8e9c4202b06670d811406f051fbf8a6",
+            "reportedAt": "2026-10-23T23:59:21.368272+00:00",
+            "schema": "dca-equities",
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-qualified-exposures.yml:exposure-sleeves.json",
+        "workflow": "update-qualified-exposures.yml",
+        "report": "exposure-sleeves.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "attemptedAt": "2026-10-24T00:00:10.636964+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "exposure-sleeves.json",
+            "sha256": "74c7050c0febc3d94d2f74ad6993cca737154dac1c7bb28c08b8c99f79f118fc",
+            "reportedAt": "2026-10-24T00:00:10.636964+00:00",
+            "schema": "statuses",
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-qualified-exposures.yml:qualified-exposures.json",
+        "workflow": "update-qualified-exposures.yml",
+        "report": "qualified-exposures.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "attemptedAt": "2026-10-23T23:59:03.159471+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "qualified-exposures.json",
+            "sha256": "9d47a75e2fe061ff2543cd2cf149f181eeed11f792bcdc7f15ada05b0bc17fa1",
+            "reportedAt": "2026-10-23T23:59:03.159471+00:00",
+            "schema": "holdings",
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-qualified-exposures.yml:vanguard-sleeves.json",
+        "workflow": "update-qualified-exposures.yml",
+        "report": "vanguard-sleeves.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40041331543",
+          "attemptedAt": null,
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "vanguard-sleeves.json",
+            "sha256": "48c15d2d7546cb40d874047adc42f7763a408ebc3f5ffbffbc8484e1a2b0699b",
+            "reportedAt": null,
+            "schema": "statuses",
+            "artifactId": 12540251207,
+            "sourcePhaseStartedAt": "2026-10-23T23:58:00Z",
+            "sourcePhaseCompletedAt": "2026-10-24T00:02:43Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-exposure-expansion.yml:exposure-expansion.json",
+        "workflow": "update-exposure-expansion.yml",
+        "report": "exposure-expansion.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40011202848",
+          "attemptedAt": "2026-10-23T19:25:31.277977+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "exposure-expansion.json",
+            "sha256": "4806e566f6080afb6d1234b8c8be70b676d95212afe7ce37025afe2e302c2db6",
+            "reportedAt": "2026-10-23T19:25:31.277977+00:00",
+            "schema": "shares",
+            "artifactId": 12527110906,
+            "sourcePhaseStartedAt": "2026-10-23T19:24:50Z",
+            "sourcePhaseCompletedAt": "2026-10-23T19:26:34Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "scope:update-instrument-metadata.yml:instrument-metadata.json",
+        "workflow": "update-instrument-metadata.yml",
+        "report": "instrument-metadata.json",
+        "before": "qualification de rapport courant",
+        "origin": {
+          "cause": "Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40167509543",
+          "attemptedAt": "2026-10-25T06:04:04.641644+00:00",
+          "evidence": {
+            "scopeExplicit": false,
+            "scope": null,
+            "file": "instrument-metadata.json",
+            "sha256": "b9b6449b1d544dac4cce90452532c65727140b2e7faf0a6112319ce64d895e09",
+            "reportedAt": "2026-10-25T06:04:04.641644+00:00",
+            "schema": "statuses",
+            "artifactId": 12588624800,
+            "sourcePhaseStartedAt": "2026-10-25T06:03:02Z",
+            "sourcePhaseCompletedAt": "2026-10-25T06:05:29Z"
+          }
+        },
+        "status": "code et recette isolée validés ; production à vérifier"
+      },
+      {
+        "id": "coverage:onboard-assets.yml",
+        "workflow": "onboard-assets.yml",
+        "report": "ensemble des rapports déclarés",
+        "before": "job-only",
+        "status": "rapports ordinaires vérifiés sur branche ; production à vérifier"
+      },
+      {
+        "id": "coverage:update-bitcoin-monthly.yml",
+        "workflow": "update-bitcoin-monthly.yml",
+        "report": "ensemble des rapports déclarés",
+        "before": "job-only",
+        "status": "rapports ordinaires vérifiés sur branche ; production à vérifier"
+      }
+    ],
+    "branchProofs": [
+      {
+        "workflow": "onboard-assets.yml",
+        "runId": 40191513213,
+        "artifactId": 12598426185,
+        "scope": "1 ETF sélectionné, 4 fonds de classification, 0 candidat nouveau ; aucune écriture production"
+      },
+      {
+        "workflow": "update-bitcoin-monthly.yml",
+        "runId": 40193616905,
+        "artifactId": 12599505679,
+        "scope": "1 historique direct et 3 calculs dérivés sans contrôle source nouveau ; aucune écriture production"
+      }
+    ],
+    "productionVerified": false,
+    "scheduledPostFixObserved": false
+  }
 }

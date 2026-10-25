@@ -170,4 +170,4 @@ def main():
         write_json_atomic(OUTPUT,current)
     if any(r['status']=='failed' for r in report):raise SystemExit(1)
 
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_exposure_expansion', main)

@@ -2,6 +2,11 @@ import registry from '../../data/automation-workflows.json' with { type: 'json' 
 import retired from '../../data/retired-automations.json' with {type:'json'}
 export const AUTOMATION_STATUS_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json'
 
+export function missingProducerReports(config, row) {
+  const observed = new Set((row?.reportEvidenceHistory ?? []).filter(e => e.producerContract === config?.reportContract && e.scopeExplicit && e.scopePlanVerified).map(e => e.file))
+  return config?.reportCoverage === 'job-only' || Boolean(config?.reportContract && config.reportFiles?.some(file => !observed.has(file)))
+}
+
 export function automationOverview(status, now = new Date()) {
   // Un état absent ou inconnu ne vaut jamais une collecte réussie.
   if (status?.schemaVersion !== 1 || !status.workflows || typeof status.workflows !== 'object' || Array.isArray(status.workflows)) throw new Error('Statut des automatisations indisponible')
@@ -15,7 +20,7 @@ export function automationOverview(status, now = new Date()) {
     const validCompleted = Number.isFinite(completed) && completed <= now.getTime()
     const overdue = validCompleted && maxAge && now.getTime() - completed > maxAge * 3600000
     const state = value.status === 'failure' || failures ? 'failure'
-      : overdue ? 'overdue' : (validCompleted&&registry[id]?.reportCoverage==='job-only'||value.legacyReportCoverage?.length||Object.keys(value.reportQualifications??{}).length||Object.keys(value.proofFailures??{}).length||value.publicationStatus==='unverified')?'qualification': validCompleted && (value.collectionStatus === 'success'||(registry[id]?.validationOnly||registry[id]?.controlOnly)&&value.validationStatus==='success') ? 'success' : 'unknown'
+      : overdue ? 'overdue' : (validCompleted&&missingProducerReports(registry[id],value)||value.legacyReportCoverage?.length||Object.keys(value.reportQualifications??{}).length||Object.keys(value.proofFailures??{}).length||value.publicationStatus==='unverified')?'qualification': validCompleted && (value.collectionStatus === 'success'||(registry[id]?.validationOnly||registry[id]?.controlOnly)&&value.validationStatus==='success') ? 'success' : 'unknown'
     const cause = [...(value.failures ?? []).map(failure => `${failure.job} : ${failure.step}`), ...Object.values(value.dataFailures ?? {}).map(data => data.cause).filter(Boolean)]
     return { ...value, recovery: status.recovery?.[id] ?? null, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
