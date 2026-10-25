@@ -15,6 +15,8 @@ import NON_BOND_LEVELS from '../src/data/non-bond-levels.json' with {type:'json'
 const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS}
 const sources=JSON.parse(fs.readFileSync('scripts/official-nav-remainder-sources.json'))
 const proofs=[...JSON.parse(fs.readFileSync('reports/reliquat-79-2026-10-23/preuves/github-nav11/nav.json')).series,...JSON.parse(fs.readFileSync('reports/vaneck-nav-remainder-2026-10-23/github-normal-four-api/nav.json')).series.map(r=>({...r,record:r.evidence})),...JSON.parse(fs.readFileSync('reports/gdx-window-2026-10-23/github/nav.json')).series]
+proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/amundi-reprise-20261025/nav.json')).series)
+proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/amundi-reprise-20261025/gold/nav.json')).series)
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))

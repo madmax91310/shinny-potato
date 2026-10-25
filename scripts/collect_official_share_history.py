@@ -145,7 +145,20 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         return value
     kind=source['navProvider'];isin=source['isin'];native=source['navCurrency']
     identity_from=source.get('identityFrom');calendar_precision=2;calendar_proof={}
-    if kind=='blackrock':
+    if kind=='amundi':
+        from collect_amundi_etf import fetch_api, API
+        from amundi_nav_history import request_payload, parse
+        payload=request_payload(source,now)
+        body=fetch_api(payload)
+        encoded=json.dumps(body,sort_keys=True,separators=(',',':')).encode()
+        urls.append(API);hashes[API]=hashlib.sha256(encoded).hexdigest()
+        if capture:
+            capture.mkdir(parents=True,exist_ok=True)
+            (capture/(hashes[API]+'.json.gz')).write_bytes(gzip.compress(encoded))
+            (capture/(hashes[API]+'.request.json')).write_text(json.dumps(payload,indent=2)+'\n')
+        nav,years,calendar_proof=parse(body,source,now)
+        credit='Amundi'
+    elif kind=='blackrock':
         query=urllib.parse.urlencode(dict(appSubType='ISHARES',appType='PRODUCT_PAGE',component='keyFundFacts,performance',locale='en_GB',portfolioId=source['productId'],targetSite='ishares-uk',userType='individual',excludeContent='true',includeConfig='true'))
         body=data(source['sourceUrl']+'?'+query);parsed=blackrock_nav(body,isin,native,now)
         if parsed['distribution']!='Accumulating':raise ValueError('Raw NAV does not qualify a distributing share')

@@ -1,24 +1,6 @@
-import { readableNews } from './readableNews.js'
 export const RADAR_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/feed.json'
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
-const READ_KEY = 'epargnantlibre-radar-read-v1'
-const SIGNALS_KEY = 'epargnantlibre-radar-signals-v1'
-const UPDATE_EVENT = 'editorial-radar-read'
-export function cachedSignalIds() {
-  try {
-    const value = JSON.parse(localStorage.getItem(SIGNALS_KEY) ?? '[]'), read = new Set(readIds())
-    return Array.isArray(value) ? value.map(group => Array.isArray(group) ? group.find(id => typeof id === 'string' && !read.has(id)) ?? group[0] : group).filter(id => typeof id === 'string') : []
-  } catch { return [] }
-}
-export function readIds() {
-  try { const value = JSON.parse(localStorage.getItem(READ_KEY) ?? '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string') : [] } catch { return [] }
-}
-export function markRead(ids) {
-  try { localStorage.setItem(READ_KEY, JSON.stringify([...new Set([...readIds(), ...ids])].slice(-2000))); window.dispatchEvent(new Event(UPDATE_EVENT)); return true } catch { return false }
-}
-export function cacheSignalGroups(groups) {
-  try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(groups)); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* Storage is optional. */ }
-}
+export { cachedSignalIds, readIds, markRead, cacheSignalGroups, READ_EVENT } from './read-state.js'
 export function validateFeed(feed) {
   if (feed?.schemaVersion !== 1 || !Number.isFinite(Date.parse(feed.checkedAt)) || !Array.isArray(feed.events) || !feed.coverage || !Array.isArray(feed.errors)) throw new Error('Le radar a renvoyé un format non reconnu.')
   const ids = new Set()
@@ -43,7 +25,7 @@ export async function fetchRadar(signal) {
   const response = await fetch(RADAR_URL, { cache: 'no-store', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
   const feed = validateFeed(await response.json())
+  const { readableNews } = await import('./readableNews.js')
   return { ...feed, events: feed.events.map(readableNews), ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews) } } : {}) }
 }
-export const READ_EVENT = UPDATE_EVENT
 export function staleFeed(feed, now = Date.now()) { return !feed || now - Date.parse(feed.checkedAt) > 36 * 3600000 }

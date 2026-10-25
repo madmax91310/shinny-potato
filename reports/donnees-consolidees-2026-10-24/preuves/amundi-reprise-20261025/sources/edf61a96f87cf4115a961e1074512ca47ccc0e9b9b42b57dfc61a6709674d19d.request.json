@@ -1,0 +1,62 @@
+{
+  "productIds": [
+    "FR0011871110"
+  ],
+  "context": {
+    "countryCode": "FRA",
+    "languageCode": "fr",
+    "userProfileName": "INSTIT"
+  },
+  "characteristics": [
+    "ISIN",
+    "CURRENCY",
+    "LAUNCH_DATE",
+    "DISTRIBUTION_POLICY"
+  ],
+  "breakDown": {
+    "aggregationFields": []
+  },
+  "metrics": [
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2020"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2021"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2022"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2023"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2024"
+    },
+    {
+      "indicator": "shareCalendarPerformance",
+      "period": "2025"
+    }
+  ],
+  "historics": [
+    {
+      "indicator": "officialNav",
+      "startDate": "2015-01-01",
+      "endDate": "2026-10-25"
+    },
+    {
+      "indicator": "countervalorisedAdjustedNAV",
+      "startDate": "2015-01-01",
+      "endDate": "2026-10-25"
+    },
+    {
+      "indicator": "navCurrency",
+      "startDate": "2015-01-01",
+      "endDate": "2026-10-25"
+    }
+  ]
+}

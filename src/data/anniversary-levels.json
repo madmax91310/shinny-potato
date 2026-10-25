@@ -4243,40 +4243,58 @@
     "checkedAt": "2026-10-24T18:56:37.131821+00:00"
   },
   "etfFR0011871110": {
-    "value": 104.33999633789062,
-    "asOf": "2026-10-23",
+    "value": 106.5815,
+    "asOf": "2026-10-21",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "PUST.PA",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1791504000&period2=1792800000&interval=1d&events=splits",
-    "sha256": "a1e8a084d66821be02541ac609053c4ab0ad0fe327a56f5a04c188eb4be5a27c",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "FR0011871110",
-    "ticker": "PUST",
-    "mic": "XPAR",
-    "listingEvidenceId": "FR0011871110-XPAR-PUST-EUR",
-    "checkedAt": "2026-10-24T18:56:37.131821+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 106.5815,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
+    "maxAgeDays": 7,
+    "sha256": "9b88a7e73385e1622016609d3f7a4a0b45763b761c61b29915a7e960d74384b0",
+    "scaleProof": {
+      "anchorDate": "2026-10-21",
+      "officialPerShareNav": 106.5815,
+      "sourceAdjustedLevel": 1065.8081535159108,
+      "factor": 0.1000006423749027,
+      "method": "Official adjusted performance series scaled to the same-date exact-share NAV; current share units, not a raw historical quote"
+    }
   },
   "etfFR0011871128": {
-    "value": 60.13999938964844,
-    "asOf": "2026-10-23",
+    "value": 60.7495,
+    "asOf": "2026-10-21",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "PSP5.PA",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1791504000&period2=1792800000&interval=1d&events=splits",
-    "sha256": "f9c41f97977e41339f194c226a5e41e83fb973a09295f495f81358889921de1c",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "FR0011871128",
-    "ticker": "PSP5",
-    "mic": "XPAR",
-    "listingEvidenceId": "FR0011871128-XPAR-PSP5-EUR",
-    "checkedAt": "2026-10-24T18:56:37.131821+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 60.7495,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
+    "maxAgeDays": 7,
+    "sha256": "76641ec78615c0c766d160ec014d5dd5c8135a1748e3715012bf2ef237dd1dbe",
+    "scaleProof": {
+      "anchorDate": "2026-10-21",
+      "officialPerShareNav": 60.7495,
+      "sourceAdjustedLevel": 607.5025261870112,
+      "factor": 0.09999876112663128,
+      "method": "Official adjusted performance series scaled to the same-date exact-share NAV; current share units, not a raw historical quote"
+    }
   },
   "etfIE00B1FZS350": {
     "value": 21.68000030517578,
@@ -4675,22 +4693,32 @@
     "checkedAt": "2026-10-24T18:56:37.131821+00:00"
   },
   "etfFR0013416716": {
-    "value": 141.33999633789062,
-    "asOf": "2026-10-23",
+    "value": 145.50899056435821,
+    "asOf": "2026-10-21",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "GLDA.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/GLDA.DE?period1=1791504000&period2=1792800000&interval=1d&events=splits",
-    "sha256": "5fcd86b37125f2661fa3153ebff354f46e2a0c4fd0a120ab2d97187ea538f3a0",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "FR0013416716",
-    "ticker": "GLDA",
-    "mic": "XETR",
-    "listingEvidenceId": "FR0013416716-XETR-GLDA-EUR",
-    "checkedAt": "2026-10-24T18:56:37.131821+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 163.4648,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-21",
+    "fxFactor": 0.8901548869503294,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
+    "maxAgeDays": 7,
+    "sha256": "2176914a3f4d0e17dc64b00e925fe76d9a9c0a904c082ea4444e58b349ab7133",
+    "scaleProof": {
+      "anchorDate": "2026-10-21",
+      "officialPerShareNav": 163.4648,
+      "sourceAdjustedLevel": 318.3624660388933,
+      "factor": 0.5134550000000001,
+      "method": "Official adjusted performance series scaled to the same-date exact-share NAV; current share units, not a raw historical quote"
+    }
   },
   "roche": {
     "value": 397.3999938964844,

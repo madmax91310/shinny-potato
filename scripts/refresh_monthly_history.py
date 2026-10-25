@@ -385,9 +385,16 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
                 if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom']):
                     reject('Existing exact series identity changed')
                 if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):
-                    # This collector really fetched and validated the response.
-                    # Renew its control proof, never the period or the prices.
-                    active={**previous,'checkedAt':active['checkedAt'],'responseSha256':active['responseSha256']}
+                    # Monthly prices can stay unchanged while the current daily NAV,
+                    # its date or the source proof changes. Keep the validated observation,
+                    # never replace it with the old snapshot merely because months agree.
+                    prior_level=previous.get('latestLevel')or{}
+                    next_level=active.get('latestLevel')or{}
+                    if next_level and prior_level and next_level['asOf']<prior_level['asOf']:
+                        reject('Latest NAV observation would regress')
+                    if active['checkedAt']<previous.get('checkedAt',''):
+                        reject('Source control date would regress')
+                    active={**previous,**active}
             unchanged=bool(previous and previous['points']==active['points'] and previous.get('anniversaryPoints',[])==active.get('anniversaryPoints',[]))
             return {'id':source['id'],'status':'validated','sourceState':'unchanged-verified'if unchanged else'succeeded','record':active,'evidence':result}
         except Exception as error:
@@ -404,7 +411,9 @@ def monitoring_report(report):
     return {'checkedAt': report['checkedAt'], **({'scope':report['scope']}if 'scope'in report else{}), 'series': [
         {key: row[key] for key in ('id', 'status', 'sourceState', 'reason') if key in row} |
         ({'periodEnd': row['record']['periodEnd'],
-          'responseSha256': row['evidence'].get('responseSha256')}
+          'responseSha256': row['evidence'].get('responseSha256'),
+          **({'controlScope':{key:row['evidence']['calendarProof'][key]for key in ['controlledInstrument','controlledFields','requestedStart','controlledCalendarYears']}}
+             if row['evidence'].get('calendarProof',{}).get('controlledFields')else{})}
          if row['status'] == 'validated' else {})
         for row in report['series']]}
 

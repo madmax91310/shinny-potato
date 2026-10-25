@@ -63,4 +63,31 @@ class DataUseMatrix(unittest.TestCase):
    self.monitor['workflows']['collect.yml']['sourceChecks']=proof
    row=self.row();self.assertEqual(row['etat'],'B');self.assertEqual(row['statut_consommateur_declare'],'connected')
 
+class DiagnosticSeparation(unittest.TestCase):
+ def test_proof_gap_does_not_become_source_failure(self):
+  from build_data_use_matrix import diagnostic_category
+  self.assertEqual(diagnostic_category(True,'live',{'state':'connected'},{},['No per-field proof'],[]),'preuve documentaire ou qualification incomplète')
+ def test_retained_listing_proof_age_is_separate_from_failed_live_price(self):
+  from build_data_use_matrix import diagnostic_category
+  proof=[{'cause':'check-overdue; checked=2026-10-16'}]
+  self.assertEqual(diagnostic_category(True,'live',{'key':'listings','state':'connected'},{},['Legacy row proof'],proof),'preuve documentaire ou qualification incomplète')
+  self.assertEqual(diagnostic_category(True,'history',{'key':'monthly','state':'connected'},{},['Missing current month'],proof),'défaut réel de donnée ou de collecte')
+ def test_connection_and_non_applicable_separate(self):
+  from build_data_use_matrix import diagnostic_category
+  self.assertEqual(diagnostic_category(True,'live',{}, {'requiresConnection':True},[],[]),'raccordement manquant')
+  self.assertEqual(diagnostic_category(True,'simulation',{}, {},[],[]),'non applicable')
+ def test_failed_other_field_does_not_affect_working_field(self):
+  from build_data_use_matrix import scoped_failures
+  state={'dataFailures':{'A:sectors':{'field':'sectors','cause':'network'}}}
+  self.assertFalse(scoped_failures(state,{'A'},'aum'))
+  self.assertEqual(len(scoped_failures(state,{'A'},'sectors')),1)
+ def test_full_portfolio_failure_does_not_mark_top_ten_as_failed(self):
+  from build_data_use_matrix import scoped_failures
+  state={'dataFailures':{'dca-holdings:A':{'field':'Composition complète','cause':'403'}}}
+  self.assertEqual(len(scoped_failures(state,{'A'},'completeHoldings')),1)
+  self.assertFalse(scoped_failures(state,{'A'},'holdings'))
+ def test_all_instrument_failure_without_field_is_not_copied_to_every_field(self):
+  from build_data_use_matrix import scoped_failures
+  self.assertFalse(scoped_failures({'dataFailures':{'etf-observation-A':{'cause':'partial'}}},{'A'},'aum'))
+
 if __name__=='__main__':unittest.main()
