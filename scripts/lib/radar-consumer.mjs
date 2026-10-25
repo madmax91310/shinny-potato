@@ -1,3 +1,5 @@
+import { articleBody } from './radar-article-body.mjs'
+import { qualifyRadarFact } from '../../src/lib/radar-qualification.js'
 import { housingConventions } from '../../src/lib/radar-housing.js'
 import { OFFICIAL_SOURCES } from '../../src/pages/broker-comparator/evidence.js'
 import { ALLOWED_MEDIA_HOSTS } from '../../src/data/allowed-media.js'
@@ -69,9 +71,11 @@ export function announcedDates(text) {
 export function parseConsumer(html,source,url,now,listing={}) {
   const title=tag(html,'h1')||listing.title
   if(!title||title.length>700)throw Error('Titre de publication absent')
-  const rejection=consumerRejection(title,listing.description)
+  const usefulBody=articleBody(html)
+  const bodySummary=cleanText(usefulBody).slice(0,2500)
+  const rejection=consumerRejection(title,listing.description||bodySummary)
   if(rejection)return {rejected:rejection,title}
-  const topic=editorialTopic(title,listing.description)
+  const topic=editorialTopic(title,listing.description||bodySummary)
   let date=html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})/)?.[1]??html.match(/(?:property|name)=["']article:published_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2})/)?.[1]
   if(!date&&source.id==='boursobank-news') {
     const header=html.slice(html.indexOf('<h1'))
@@ -83,14 +87,15 @@ export function parseConsumer(html,source,url,now,listing={}) {
   if(!date||!Number.isFinite(Date.parse(date))||new Date(date).toISOString().slice(0,10)!==date)throw Error('Date de publication non extractible ; lastmod et collecte non substitués')
   if(Date.parse(date)>+now)throw Error('Publication future, distincte d’une application future')
   const plain=!/<(?:html|main|article)\b/i.test(html)
-  const article=plain ? html : (source.id==='boursobank-news'?html.match(/class="news-detail__description html"[^>]*>([\s\S]*?)<\/div>/)?.[1]:null)??html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]??html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''
+  const article=plain ? html : usefulBody
   const paragraphs=plain ? article.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim()).filter(p=>p.length>90&&!/contacts? presse|a propos|à propos/i.test(p)) : [...article.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>cleanText(m[1])).filter(p=>p.length>90&&!/cookies|javascript|abonnez|newsletter|tous droits|politique de confidentialite/i.test(normalizeEditorial(p)))
   const summary=(paragraphs.slice(0,2).join(' ')||listing.description||'').slice(0,700)
   if(summary.length<70)throw Error('Résumé de l’article absent ; page accessible mais extraction non qualifiée')
   if(source.id==='revolut-news'&&!frenchRevolutScope(title,summary))return{rejected:'Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas',title}
   const wording=normalizeEditorial(title+' '+summary)
+  const qualified=qualifyRadarFact({label:title,summary:paragraphs.slice(0,5).join(' ')})
   const novelty=(Boolean(source.format)&&/deploie|mobilis|maintient.*gratuit|porte a|commercialis|supprim/.test(wording))||/nouve|annonce|desormais|lance|ouvre|s ouvre|etend|evolu|change|hausse|baisse|augment|diminu|premiere fois|depass|arnaqu|en garde|rec(?:eiv|u)|licen[cs]e|integre|corrig|dement|rectificatif/.test(wording)
-  const status=/dement|rectificatif|correction|corrige/.test(normalizeEditorial(title))?'Correction / démenti':/proposition de loi|projet de loi|en discussion|pourrait/.test(normalizeEditorial(title))?'Proposition / en discussion':novelty?'Annonce publiée':'Information sans nouveauté établie'
+  const status=/dement|rectificatif|correction|corrige/.test(normalizeEditorial(title))?'Correction / démenti':/proposition de loi|projet de loi|en discussion|pourrait/.test(normalizeEditorial(title))?'Proposition / en discussion':novelty || /household|forecast|survey/.test(qualified.nature)?'Annonce publiée':'Information sans nouveauté établie'
   const dates=announcedDates(title+' '+paragraphs.join(' '))
   const conditions=source.format ? extractOfferConditions(paragraphs.join(' ')) : undefined
   const modified=html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/)?.[1]??html.match(/(?:property|name)=["']article:modified_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2})/)?.[1]
@@ -99,14 +104,14 @@ export function parseConsumer(html,source,url,now,listing={}) {
   // Explicit original-document links are retained, not labelled confirmations
   // merely because they are hyperlinks. No fuzzy thematic event merging.
   const sources=[{url,role:source.evidenceLevel,label:source.name}]
-  const originalLinks=[...article.matchAll(/<a\b[^>]*href=["'](https:\/\/[^"']+)["']/gi)].map(m=>cleanText(m[1])).filter(value=>{try{return primaryBrokerHosts.has(new URL(value).hostname) || source.primaryHosts?.includes(new URL(value).hostname) || CONSUMER_SOURCES.some(source=>source.host===new URL(value).hostname) || /(?:^|\.)(?:gouv\.fr|banque-france\.fr|amf-france\.org|energie-info\.fr|revolut\.com|boursedirect\.fr)$/.test(new URL(value).hostname)}catch{return false}})
+  const originalLinks=[...article.matchAll(/<a\b[^>]*href=["'](https:\/\/[^"']+)["']/gi)].map(m=>cleanText(m[1])).filter(value=>{try{return new URL(value).hostname==='www.insee.fr' || primaryBrokerHosts.has(new URL(value).hostname) || source.primaryHosts?.includes(new URL(value).hostname) || CONSUMER_SOURCES.some(source=>source.host===new URL(value).hostname) || /(?:^|\.)(?:gouv\.fr|banque-france\.fr|amf-france\.org|energie-info\.fr|revolut\.com|boursedirect\.fr)$/.test(new URL(value).hostname)}catch{return false}})
   for(const original of [...new Set(originalLinks)].slice(0,4))sources.push({url:original,role:'original-link-unverified',label:'Document cité ; confirmation à contrôler'})
   const angles={banques:'Quels services changent pour les clients français, et à quelle date ?',frais:'Quels clients paient ces frais ? Comparer les anciennes conditions seulement si elles sont documentées.',credit:'Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.',immobilier:'De quels biens, de quelle zone et de quelle période parle cette publication ?',location:'Quels locataires et bailleurs sont concernés, et à quelle étape en est la règle ?',statistiques:'Que révèle ce repère sur la situation des ménages dans le périmètre étudié ?',epargne:'Quelles conditions changent pour les détenteurs de cette épargne ?',etf:'Quelle exposition ou condition nouvelle est annoncée, avec quels champs encore inconnus ?',energie:'Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.',carburants:'Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?',securite:'Comment reconnaître le risque signalé et quelles démarches recommande la source ?',travail:'Quels salariés ou dispositifs couvre cette publication ? Distinguer encours, versements et rendements.'}
   const reference=normalizeEditorial(summary).match(/\bau (\d{1,2}) ([a-z]+) (20\d{2})/), referenceMonth=reference ? FR.indexOf(reference[2])+1 : 0
   const referencePeriod=referenceMonth ? `${reference[3]}-${String(referenceMonth).padStart(2,'0')}-${reference[1].padStart(2,'0')}` : null
   const statistical=source.id==='afg' && /enquete|resultats/.test(normalizeEditorial(summary))
   const excerpt=summary
-  return {family:source.family,entity:`publication-${hash(url).slice(0,20)}`,field:'announcement',fieldLabel:'Actualité des particuliers',label:title,value:source.format?{status,...dates,facts:semanticOfferFacts(title+' '+paragraphs.join(' ')),...(status==='Correction / démenti'?{correction:hash(summary)}:{})}:{title,summary,status,...dates},sourceUrl:url,publicationId:url,publisher:source.name,publishedAt:date,period:date,checkedAt:now.toISOString(),scope:`Annonce ${source.name} · ${url}`,populationScope,...(conditions?{conditions}:{}),...(['credit','immobilier','location'].includes(topic)?{housing:housingConventions(title+' '+paragraphs.join(' '),source.id)}:{}),topic,topicLabel:RADAR_TOPICS[topic],summary,status,...dates,evidenceLevel:source.evidenceLevel,sources,factType:statistical?'statistical-publication':'consumer-announcement',referencePeriod,evidence:{sourceHash:hash(html),excerpt,method:(plain?'PDF officiel converti par pdftotext -layout ; titre et date de la carte officielle. ':'')+'Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse.'},discovery:true,rule:'announcement',maxAgeDays:400,tool:null,reason:`${RADAR_TOPICS[topic]} : annonce datée ; ${source.evidenceLevel==='journalistic'?'information journalistique attribuée, confirmation officielle non établie':'source identifiée'}. Public limité au périmètre cité.`,angle:`${title} — ${angles[topic]}`}
+  return {family:source.family,entity:`publication-${hash(url).slice(0,20)}`,field:'announcement',fieldLabel:'Actualité des particuliers',label:title,value:source.format?{status,...dates,facts:semanticOfferFacts(title+' '+paragraphs.join(' ')),...(status==='Correction / démenti'?{correction:hash(summary)}:{})}:{title,summary,status,...dates},sourceUrl:url,publicationId:url,publisher:source.name,publishedInstant:html.match(/(?:property|name)=["']article:published_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2}T[^"']+)/i)?.[1]??html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2}T[^"]+)/)?.[1]??null,publishedAt:date,period:date,checkedAt:now.toISOString(),scope:`Annonce ${source.name} · ${url}`,populationScope,analysisContribution:/notre (?:analyse|enquete|calcul)|nos (?:calculs|simulations)|nous avons (?:calcule|simule)/.test(normalizeEditorial(paragraphs.join(' '))),qualification:qualified,...(conditions?{conditions}:{}),...(['credit','immobilier','location'].includes(topic)?{housing:housingConventions(title+' '+paragraphs.join(' '),source.id)}:{}),topic,topicLabel:RADAR_TOPICS[topic],summary,status,...dates,evidenceLevel:source.evidenceLevel,sources,factType:statistical?'statistical-publication':'consumer-announcement',referencePeriod,evidence:{sourceHash:hash(html),excerpt,method:(plain?'PDF officiel converti par pdftotext -layout ; titre et date de la carte officielle. ':'')+'Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse.'},discovery:true,rule:'announcement',maxAgeDays:400,tool:null,reason:`${RADAR_TOPICS[topic]} : annonce datée ; ${source.evidenceLevel==='journalistic'?'information journalistique attribuée, confirmation officielle non établie':'source identifiée'}. Public limité au périmètre cité.`,angle:`${title} — ${angles[topic]}`}
 }
 
 // Clauses are quoted with their subject intact. No rate is assigned globally to

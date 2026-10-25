@@ -1,3 +1,5 @@
+import { documentDelays } from './lib/radar-queue.mjs'
+import { recordRadarRun } from './lib/radar-run-metrics.mjs'
 import {producerContract,sourceResults} from './producer-result-contract.mjs'
 import {PUBLICATION_SOURCES} from './lib/radar-publications.mjs'
 import {PURCHASING_SOURCES} from './lib/purchasing-power-news.mjs'
@@ -103,7 +105,13 @@ if (refresh) {
   result.state.sourceAccess = access
   result.feed.sources = [...publications.sources, ...news.sources, ...purchasing.sources, ...Object.values(access)]
   result.feed.documentQueue = Object.fromEntries(['pending','error','done'].map(status => [status, Object.values(launches.queue).filter(item => item.status === status).length]))
-  result.feed.metrics = { collection: publications.metrics, publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, publicationToDetectionHours: item.detectionDelayHours, detectionToAvailabilityHours: item.availabilityDelayHours })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
+  result.feed.metrics = { collection: publications.metrics, publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, ...documentDelays(item) })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
+  const runMetadata=process.env.GITHUB_RUN_ID ? await api(`actions/runs/${process.env.GITHUB_RUN_ID}`).catch(()=>null) : null
+  const runJobs=process.env.GITHUB_RUN_ID ? await api(`actions/runs/${process.env.GITHUB_RUN_ID}/jobs?per_page=100`).catch(()=>null) : null
+  const productionJob=runJobs?.jobs?.find(job=>job.name==='update')
+  result.state.runMetrics=recordRadarRun(previous?.runMetrics,{eventName:process.env.GITHUB_EVENT_NAME,runId:process.env.GITHUB_RUN_ID,createdAt:runMetadata?.created_at,startedAt:runMetadata?.run_started_at,jobStartedAt:productionJob?.started_at,sourceRevision:process.env.RADAR_SOURCE_SHA})
+  result.feed.metrics.scheduler=result.state.runMetrics
+  result.feed.metrics.queueHistory=result.state.publications.queueHistory
   result.feed.compositionPublicationLags = verification.deferred ?? []
   const previousSourceRows=new Map((previousFeed?.sources??[]).map(row=>[row.id,row]))
   for(const row of result.feed.sources){

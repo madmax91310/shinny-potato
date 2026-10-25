@@ -77,7 +77,7 @@ const fresh={sources:{[versioned.id]:{lastSuccessAt:'2026-10-01T10:00:00Z'}},doc
 const discovered=await collectPublications(now,async url=>new Response(url===versioned.url?`<a href="${csaKey}">Analyse marché immobilier septembre 2026</a>`:csaHtml),fresh,[versioned],1)
 assert.equal(discovered.observations[0].backfill,false,'A genuinely new document on a known source is not silenced by the parser version')
 const json=JSON.parse(await fixture('insee-search.json'));json.numFounds=json.documents.length
-const studies=await inseeDiscovery(JSON.stringify(json),INSEE_SEARCH,()=>assert.fail('No unbounded page'))
+const studies=await inseeDiscovery(JSON.stringify(json),INSEE_SEARCH,async (_url,options)=>{assert.deepEqual(JSON.parse(options.body).filters[0].values,[5]);return new Response(JSON.stringify({status:0,numFounds:0,documents:[]}))})
 assert.ok(studies.some(r=>r.url.endsWith('/9087193')),'Salary study discovered from search, not from a saved article list')
 assert.ok(studies.every(r=>!r.publishedAt),'Discovery hints do not replace the article’s publication date')
 const industryUrl='https://www.insee.fr/fr/statistiques/9095034'

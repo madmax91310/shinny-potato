@@ -1,3 +1,8 @@
+import { unexplainedOfferOmissions } from './radar-offer-watch.mjs'
+import { consumerRejection } from './radar-consumer.mjs'
+import { articleBody,htmlElement } from './radar-article-body.mjs'
+import { relatePublications } from './radar-relationships.mjs'
+import { planPublicationQueue, documentDelays, queueClass } from './radar-queue.mjs'
 import { COVERAGE_SOURCES, coverageDiscovery } from './radar-coverage.mjs'
 import { OFFER_SOURCES, offerDiscovery, offerSnapshot, compareOfferSnapshots } from './radar-offer-watch.mjs'
 import { INSEE_SEARCH, inseeQuery, inseeDiscovery } from './radar-insee-search.mjs'
@@ -30,7 +35,7 @@ export const PUBLICATION_SOURCES = [
 ]
 const hash = text => createHash('sha256').update(text).digest('hex')
 const normal = value => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
-export const statisticalTopic = text => housingTopic(text) || /salaires?|remunerations?|patrimoine|niveaux? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
+export const statisticalTopic = text => housingTopic(text) || /salaires?|remunerations?|patrimoine|niveaux? de vie|inegalites?|logements?|inflation|prix a la consommation|retraites?|prestations?|pouvoir d.achat|epargne|credit.*(?:immobilier|habitat)|credits? aux particuliers|endettement|revenus?|pauvrete/.test(normal(text))
 const tag = (text, name) => cleanText(text.match(new RegExp(`<${name}\\b[^>]*>([\\s\\S]*?)<\\/${name}>`, 'i'))?.[1] ?? '')
 export function canonicalUrl(value) {
   const url = new URL(value)
@@ -139,7 +144,8 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   const title = source.host === 'www.insee.fr' ? cleanText(html.match(/<span\b[^>]*class="titre-titre"[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '') : tag(html, 'h1') || listing.title
   if (!title || title.length > 700) throw new Error('Titre de publication absent ou anormal')
   if (editorialExclusion({label:title})) return {rejected:editorialExclusion({label:title}),title,publishedAt}
-  const base = { ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, evidenceLevel:'official', sources:[{url,role:'official',label:source.name}], entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
+  const publishedInstant=html.match(/(?:property|name)=["']article:published_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2}T[^"']+)/i)?.[1]??html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2}T[^"]+)/)?.[1]??null
+  const base = {publishedInstant, ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, evidenceLevel:'official', sources:[{url,role:'official',label:source.name}], entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
   if (source.family === 'etf') {
     const parsed = parseEtfDocument(html, title)
     if(source.id==='xetra' && /listing|listed|trad/i.test(title+' '+cleanText(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''))) parsed.announcementEvidence={type:'trading',stage:'trading',label:'Cotation annoncée par Deutsche Börse',evidence:title}
@@ -147,7 +153,12 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     return { ...base, ...(docId ? { publicationId: `${source.id}:document:${docId}` } : {}), value: title, ...parsed, documentUrl: url, documentHash: hash(html), documentCheckedAt: now.toISOString(), reason: 'Communiqué officiel daté, noms et caractéristiques limités aux associations prouvées.', angle: 'Comparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.' }
   }
   let paragraphs = [...html.matchAll(/<p\b[^>]*class="paragraphe-chapeau[^>]*>([\s\S]*?)<\/p>/gi)].map(match => cleanText(match[1]))
-  if (!paragraphs.length && source.host === 'www.insee.fr') paragraphs = [...html.matchAll(/<p\b[^>]*class="paragraphe\s[^>]*>([\s\S]*?)<\/p>/gi)].slice(0,3).map(match => cleanText(match[1]))
+  if (!paragraphs.length && source.host === 'www.insee.fr') {
+    const bodyParagraphs=[...html.matchAll(/<p\b[^>]*class="paragraphe\s[^>]*>([\s\S]*?)<\/p>/gi)].map(match=>cleanText(match[1])).filter(p=>!/^(?:Télécharge|Références|Consulte)/i.test(p))
+    const facts=bodyParagraphs.filter(p=>/\d[\d,.\s]*\s*(?:%|euros|€|millions?|milliards?)/i.test(p))
+    paragraphs=(facts.length?facts:bodyParagraphs).slice(0,3)
+  }
+  if(source.host==='www.insee.fr')paragraphs=paragraphs.filter(p=>!/^(?:Télécharge|Consulte|Version imprimable|Données \()/i.test(p))
   if (source.id === 'drees') paragraphs = [...html.matchAll(/<p\b[^>]*class="fr-text--lead[^>]*>([\s\S]*?)<\/p>/gi)].map(match => cleanText(match[1]))
   if (source.id.startsWith('bdf-')) {
     const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? ''
@@ -176,10 +187,13 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
 }
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.
-export async function collectPublications(now = new Date(), request = fetch, previous = {}, sources = PUBLICATION_SOURCES, budget = 12) {
-  const started = Date.now(), metrics = { requests: 0, bytes: 0, notModified: 0 }
+export async function collectPublications(now = new Date(), request = fetch, previous = {}, sources = PUBLICATION_SOURCES, budget) {
+  const started = Date.now(), metrics = { requests: 0, bytes: 0, notModified: 0, attemptedDocuments:0 }
   const state = structuredClone(previous), errors = [], reports = []
-  state.documents ??= {}; state.sources ??= {}
+  state.documents ??= {}; state.sources ??= {}; state.documentDurationsMs ??= []; state.offerReferences ??= {}
+  // Versioned requalification only for existing rejected/partial adapters. No global replay.
+  const parserVersion = source => source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.parserVersion
+  sources=sources.map(source=>({...source,parserVersion:Math.max(source.parserVersion??0,parserVersion(source)??0)}))
   const requestContent = async (url, cached, limit = 2500000, body = null) => {
     metrics.requests++
     const response = await request(url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
@@ -205,8 +219,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     const old = state.sources[source.id] ?? {}, report = { ...old, id: source.id, name: source.name, url: source.url, method: source.method, depth: source.depth, attemptedAt: now.toISOString() }
     try {
       // Sitemap is large: daily check; RSS and listing every hour.
-      if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now) {
-        const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000,source.method==='insee-search'?inseeQuery(0):null)
+      if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now || source.id==='insee-studies' && old.discoveryVersion!==3) {
+        const result = await requestContent(source.url, source.id==='insee-studies' && old.discoveryVersion!==3 ? null : old, source.method === 'sitemap' ? 25000000 : 2500000,source.method==='insee-search'?inseeQuery(0):null)
         if(result.unchanged && !old.lastSuccessAt)throw Error('Réponse 304 sans inventaire validé conservé')
         if (!result.unchanged) {
           const rows = offerDiscovery(result.content,source) ?? await inseeDiscovery(result.content,source,discoveryRequest) ?? await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
@@ -214,13 +228,14 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           report.archiveWarning=rows.archiveWarning??null
           for (const row of rows) {
             const existing=state.documents[row.url]
-            if(existing && (existing.title!==row.title || existing.description!==row.description || existing.publishedAt!==row.publishedAt || (existing.listingRejection??null)!==(row.listingRejection??null))) {
+            if(existing && existing.source===source.id && (existing.title!==row.title || (existing.description??'')!==(row.description??'') || (existing.publishedAt??null)!==(row.publishedAt??null) || (existing.listingRejection??null)!==(row.listingRejection??null))) {
               Object.assign(existing,row,{listingRejected:Boolean(row.listingRejection),nextAttemptAt:now.toISOString(),...(row.listingRejection ? {status:'rejected',reason:row.listingRejection}: {status:'pending'})})
             }
-            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
+            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt || source.id==='insee-studies' && old.discoveryVersion!==3, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
           }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
+        report.discoveryVersion=source.id==='insee-studies'?3:old.discoveryVersion
         report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = report.archiveWarning?'partial':'ok'; delete report.error
         if(report.archiveWarning)errors.push({family:source.family,entity:source.name,reason:report.archiveWarning})
         report.nextCheckAt = new Date(+now+(source.method === 'sitemap' ? 1440 : source.cadenceMinutes ?? 60)*60000).toISOString()
@@ -229,28 +244,38 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     state.sources[source.id] = report; reports.push(report)
   }))
   const owners=new Map(sources.map(source=>[source.id,source]))
-  const parserDue=item=>owners.get(item.source)?.parserVersion && item.parserVersion!==owners.get(item.source).parserVersion && item.parserVersionAttempted!==owners.get(item.source).parserVersion
-  const due = Object.entries(state.documents).filter(([, item]) => !item.listingRejected && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
+  const upgradeNeeded=item=>{
+    const source=owners.get(item.source)
+    return source?.id==='credit-logement' || source?.id==='revolut-news' || source?.method==='offer-watch' || source?.id==='xetra' || (source?.family==='etf'||item.observation?.family==='etf') && item.observation && !item.observation.products?.length || item.observation?.evidenceLevel==='journalistic' || item.status==='rejected' && (source?.format || source?.method.startsWith('consumer-')) && !consumerRejection(item.title??'',item.description??'')
+  }
+  const parserDue=item=>upgradeNeeded(item) && owners.get(item.source)?.parserVersion && item.parserVersion!==owners.get(item.source).parserVersion && item.parserVersionAttempted!==owners.get(item.source).parserVersion
+  const due = Object.entries(state.documents).filter(([, item]) => (!item.listingRejected || parserDue(item)) && (parserDue(item) || !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || (b[1].processingPriority??0)-(a[1].processingPriority??0) || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
-  const start=(state.nextSourceIndex ?? 0)%sources.length
-  const order=[...sources.slice(start),...sources.slice(0,start)]
-  const queues = order.map(source => due.filter(([, item]) => item.source === source.id)), chosen = []
-  while (chosen.length < budget && queues.some(q => q.length)) for (const q of queues) if (q.length && chosen.length < budget) chosen.push(q.shift())
+  const queuePlan=planPublicationQueue(due,sources,now,state,budget)
+  const chosen=queuePlan.chosen
+  state.queuePass=(state.queuePass??0)+1
   if(chosen.length) state.nextSourceIndex=(sources.findIndex(source=>source.id===chosen.at(-1)[1].source)+1)%sources.length
   const processingStarted = Date.now()
   for (const [url, item] of chosen) {
     if (Date.now()-processingStarted > 90000) break // remaining documents stay pending durably
     const source = sources.find(source => source.id === item.source)
-    const requalifying=Boolean(source.parserVersion && item.parserVersion!==source.parserVersion), migrating=requalifying&&Boolean(item.observation)
+    const existingParserRecord=item.status==='rejected'||item.status==='partial'||item.attempts>0
+    const requalifying=Boolean(upgradeNeeded(item) && source.parserVersion && item.parserVersion!==source.parserVersion), migrating=requalifying&&Boolean(item.observation)
     if(requalifying)item.parserVersionAttempted=source.parserVersion
-    item.attemptedAt = now.toISOString(); item.attempts++
+    // Former listing-level rejects must be reconsidered by the matching new parser.
+    if(requalifying && item.listingRejected){item.listingRejected=false;delete item.listingRejection}
+    const documentStarted=Date.now(), wasError=['error','partial'].includes(item.status)
+    const admittedClass=queueClass(item,now)
+    if(!Object.hasOwn(item,'firstAttemptAt'))item.firstAttemptAt=item.attempts===0?now.toISOString():item.attempts===1?item.attemptedAt??null:null
+    item.queueClass=admittedClass; item.lastQueueServiceAt=now.toISOString()
+    item.attemptedAt = now.toISOString(); item.attempts++; metrics.attemptedDocuments++
     try {
       // Xtrackers serves HTTP 500 without its canonical trailing slash.
       // Keep stable deduplication keys, but request the official route.
       const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
       // A 304 cannot validate a new parser against text that was not retained.
-      const result = await requestContent(fetchUrl, requalifying?null:item, 5000000)
+      const result = await requestContent(fetchUrl, requalifying||item.status==='partial'?null:item, 5000000)
       if (result.unchanged) {
         if (item.observation || item.offerBaseline) item.status = 'done'
         else if (item.reason) item.status = 'rejected'
@@ -258,12 +283,31 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       }
       if (!result.unchanged) {
         if(source.method==='offer-watch') {
-          const snapshot=offerSnapshot(result.content,source,now)
-          const change=compareOfferSnapshots(item.offerBaseline,snapshot,source,url)
-          if(change){item.observation=change;item.backfill=false;item.previousOfferVersion=item.offerBaseline}
-          item.offerBaseline=snapshot;item.firstObservedAt??=now.toISOString();item.status='done';item.availableAt??=now.toISOString()
+          const snapshot=offerSnapshot(result.content,source,now,item)
+          const previousReference=item.offerBaseline??state.offerReferences[snapshot.referenceKey]
+          const ordered=!previousReference?.dates.effectiveAt || !snapshot.dates.effectiveAt || snapshot.dates.effectiveAt>=previousReference.dates.effectiveAt
+          const omissions=unexplainedOfferOmissions(previousReference,snapshot)
+          const change=(!item.offerBaseline&&item.backfill)||!ordered||omissions.length ? null : compareOfferSnapshots(previousReference,snapshot,source,url)
+          if(item.offerBaseline&&item.offerBaseline.semanticVersion!==snapshot.semanticVersion)item.parserBaselineBeforeMigration??=item.offerBaseline
+          if(ordered&&!omissions.length)state.offerReferences[snapshot.referenceKey]=snapshot
+          if(change){item.observation=change;item.backfill=false;item.previousOfferVersion=previousReference}
+          if(omissions.length){item.offerCoverage={status:'partial',reason:'Clauses non retrouvées : aucune suppression établie',omissions};item.latestOfferCandidate=snapshot;item.status='partial';item.partialReason=item.offerCoverage.reason}
+          else {item.offerBaseline=snapshot;delete item.offerCoverage;delete item.latestOfferCandidate;item.status='done'}
+          item.firstObservedAt??=now.toISOString();item.availableAt??=now.toISOString()
         } else {
-        const observation = parsePublication(result.content, source, url, now, item)
+        let observation = parsePublication(result.content, source, url, now, item)
+        if(observation.family==='etf' && observation.announcedProductCount>0 && !observation.products?.length){
+          const main=result.content.match(/<main\b[^>]*>/i)
+          const body=main?htmlElement(result.content,main.index):articleBody(result.content)||result.content
+          const links=[...body.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi)].flatMap(m=>{try{const u=new URL(cleanText(m[1]),url);return u.hostname===source.host&&/\.pdf(?:$|&)|\.pdf$/i.test(u.href)?[u.href]:[]}catch{return[]}})
+          const uniqueLinks=[...new Set(links)]
+          observation.extraction={...(observation.extraction??{}),status:'partial',reason:'Gamme annoncée mais tous les produits ne sont pas encore extractibles ; complément officiel en attente.'}
+          if(uniqueLinks.length===1)try{
+            const supplement=await requestContent(uniqueLinks[0],null,5000000)
+            const details=parseEtfDocument(supplement.content,observation.label)
+            observation={...observation,products:details.products,supportingCalendarEvidence:details.calendarEvidence,supportingDocuments:[{url:uniqueLinks[0],sourceHash:hash(supplement.content)}],extraction:{...details.extraction,status:details.products.length>=observation.announcedProductCount?'complete':'partial',reason:details.products.length>=observation.announcedProductCount?null:'Produits annoncés non tous extractibles du PDF associé'}}
+          }catch(error){observation.extraction={status:'partial',reason:'PDF officiel associé : '+error.message}}
+        }
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
         else {
           const prior=item.observation
@@ -283,9 +327,13 @@ export async function collectPublications(now = new Date(), request = fetch, pre
         }
       }
       if(source.parserVersion)item.parserVersion=source.parserVersion
-      if(migrating&&item.observation)item.observation.parserMigration=true
-      item.nextAttemptAt = new Date(+now+(source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
-    } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
+      if(requalifying && item.observation && (migrating || existingParserRecord))item.observation.parserMigration=true
+      if(item.observation?.extraction?.status==='partial'){item.status='partial';item.partialReason=item.observation.extraction.reason;if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString()}
+      else if(item.status==='partial'){if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString()}
+      else if(wasError){item.recoveredAt=now.toISOString();item.failureHistory??=[];item.failureHistory.push({failedAt:item.firstFailureAt,recoveredAt:item.recoveredAt});item.failureHistory=item.failureHistory.slice(-20)}
+      item.nextAttemptAt = new Date(+now+(item.status==='partial' ? 2*3600000 : source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
+    } catch (error) { if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString();item.lastFailureAt=now.toISOString(); item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
+    finally { state.documentDurationsMs.push(Date.now()-documentStarted);state.documentDurationsMs=state.documentDurationsMs.slice(-120);if(item.observation?.publishedInstant)item.publishedInstant=item.observation.publishedInstant;Object.assign(item,documentDelays(item)) }
   }
   // Existing first-party publication proofs remain valid: hydrate missing attribution metadata
   // only for a previously extracted document on its registered official host.
@@ -299,30 +347,21 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       observation.sources??=[{url:observation.sourceUrl,role:'official',label:owner.name}]
     }
   }
-  for(const document of Object.values(state.documents)) {
-    const observation=document.observation
-    if(observation?.evidenceLevel!=='journalistic')continue
-    for(const reference of observation.sources.filter(row=>row.role==='original-link-unverified')) {
-      const primary=state.documents[canonicalUrl(reference.url)]?.observation
-      if(!primary || primary.evidenceLevel!=='official' || primary.publishedAt!==observation.publishedAt)continue
-      const words=text=>new Set(normal(text).match(/[a-z]{5,}/g)??[])
-      const primaryWords=words(primary.label), common=[...words(observation.label)].filter(word=>primaryWords.has(word))
-      if(common.length<3)continue
-      observation.eventKey=JSON.stringify([primary.family,primary.publicationId,primary.publishedAt])
-      reference.role='official-original-extracted'; reference.sourceHash=primary.evidence.sourceHash
-      break
-    }
-  }
   consolidateOfficialAnnouncements(state)
+  relatePublications(state)
   for (const report of reports) {
     const docs = Object.values(state.documents).filter(item => item.source === report.id)
-    report.queue = Object.fromEntries(['pending','done','error','rejected'].map(status => [status, docs.filter(item => item.status === status).length]))
-    report.extractionStatus=report.queue.error ? 'error' : report.queue.done ? 'validated' : report.queue.pending ? 'pending' : 'no-in-scope-publication'
+    report.queue = Object.fromEntries(['pending','done','error','rejected','partial'].map(status => [status, docs.filter(item => item.status === status).length]))
+    report.extractionStatus=report.queue.partial ? 'partial' : report.queue.error ? 'error' : report.queue.done ? 'validated' : report.queue.pending ? 'pending' : 'no-in-scope-publication'
     report.silentBaselines=docs.filter(item=>item.offerBaseline&&!item.observation).length
     report.lastExtractionSuccessAt=docs.filter(item=>item.observation).map(item=>item.observation.checkedAt).sort().at(-1)??null
   }
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })
-  state.metrics = { ...metrics, durationMs: Date.now()-started, checkedAt: now.toISOString() }
+  const waiting=Object.values(state.documents).filter(d=>['pending','error','partial'].includes(d.status))
+  state.metrics = { ...metrics, queue:{admitted:chosen.length,attempted:metrics.attemptedDocuments,capacity:queuePlan.limit,p90DocumentMs:queuePlan.p90DocumentMs,recentEligible:queuePlan.eligibleRecent,recentFirstAttempted:chosen.filter(([,d])=>d.queueClass==='recent-first-extraction' && d.firstAttemptAt===now.toISOString()).length,recentDeferred:Math.max(0,queuePlan.eligibleRecent-chosen.filter(([,d])=>d.queueClass==='recent-first-extraction'&&d.firstAttemptAt===now.toISOString()).length),pending:waiting.length,oldestWaitHours:waiting.length?Math.max(...waiting.map(d=>(+now-Date.parse(d.discoveredAt))/3600000)):0,objective:queuePlan.objective}, durationMs: Date.now()-started, checkedAt: now.toISOString() }
+  state.queueHistory??=[]
+  state.queueHistory.push({checkedAt:now.toISOString(),eventName:process.env.GITHUB_EVENT_NAME??'local-qualification',runId:process.env.GITHUB_RUN_ID??null,requests:metrics.requests,bytes:metrics.bytes,durationMs:state.metrics.durationMs,...state.metrics.queue})
+  state.queueHistory=state.queueHistory.slice(-512)
   return { state, metrics: state.metrics, sources: reports, errors, observations: Object.values(state.documents).flatMap(item => item.observation ? [item.observation] : []) }
 }
 

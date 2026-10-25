@@ -20,9 +20,19 @@ on:
       - 'scripts/lib/radar-source-access.mjs'
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
+      - 'src/lib/radar-qualification.js'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
       - 'scripts/lib/radar-offer-watch.mjs'
+      - 'scripts/lib/radar-queue.mjs'
+      - 'scripts/lib/radar-run-metrics.mjs'
+      - 'scripts/lib/radar-etf-table.mjs'
+      - 'scripts/lib/radar-article-body.mjs'
+      - 'scripts/lib/radar-relationships.mjs'
+      - 'scripts/test-radar-audit-fixes.mjs'
+      - 'scripts/replay-radar-audit.mjs'
+      - 'scripts/check-radar-audit-fixes.mjs'
+      - 'scripts/fixtures/radar-audit/**'
       - 'scripts/lib/radar-insee-search.mjs'
       - 'scripts/test-radar-depth.mjs'
       - 'scripts/check-radar-depth.mjs'
@@ -68,9 +78,19 @@ on:
       - 'scripts/lib/radar-source-access.mjs'
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
+      - 'src/lib/radar-qualification.js'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
       - 'scripts/lib/radar-offer-watch.mjs'
+      - 'scripts/lib/radar-queue.mjs'
+      - 'scripts/lib/radar-run-metrics.mjs'
+      - 'scripts/lib/radar-etf-table.mjs'
+      - 'scripts/lib/radar-article-body.mjs'
+      - 'scripts/lib/radar-relationships.mjs'
+      - 'scripts/test-radar-audit-fixes.mjs'
+      - 'scripts/replay-radar-audit.mjs'
+      - 'scripts/check-radar-audit-fixes.mjs'
+      - 'scripts/fixtures/radar-audit/**'
       - 'scripts/lib/radar-insee-search.mjs'
       - 'scripts/test-radar-depth.mjs'
       - 'scripts/check-radar-depth.mjs'
@@ -110,10 +130,6 @@ on:
     types: [completed]
 permissions:
   contents: read
-concurrency:
-  group: editorial-radar-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: false
-  queue: max
 jobs:
   validate:
     if: github.event_name == 'pull_request'
@@ -136,6 +152,7 @@ jobs:
       - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-depth.mjs
+      - run: node scripts/test-radar-audit-fixes.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
@@ -159,6 +176,20 @@ jobs:
             ${{ runner.temp }}/radar-depth/trade-republic-entry.html
           retention-days: 35
           if-no-files-found: ignore
+      - name: Replay the frozen Radar audit and qualify existing sources (read-only)
+        run: |
+          node scripts/replay-radar-audit.mjs "$RUNNER_TEMP/radar-audit-replay"
+          node scripts/check-radar-audit-fixes.mjs "$RUNNER_TEMP/radar-audit-sources"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-audit-fixes-validation
+          path: |
+            ${{ runner.temp }}/radar-audit-replay/report.json
+            ${{ runner.temp }}/radar-audit-replay/before-after.md
+            ${{ runner.temp }}/radar-audit-sources/report.json
+          retention-days: 35
+          if-no-files-found: ignore
       - name: Check official purchasing-power feeds
         run: node scripts/test-purchasing-power-news.mjs --live
       - name: Verify live DWS portfolios independently
@@ -173,11 +204,16 @@ jobs:
           if-no-files-found: ignore
       - run: node scripts/update-editorial-radar.mjs --output "$RUNNER_TEMP/editorial-radar"
   update:
+    concurrency:
+      group: editorial-radar-production
+      cancel-in-progress: false
+      queue: max
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: write
+      actions: read
       issues: write
     outputs:
       failed: ${{ steps.partial.outputs.failed }}
@@ -201,6 +237,7 @@ jobs:
       - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-depth.mjs
+      - run: node scripts/test-radar-audit-fixes.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.

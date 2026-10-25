@@ -1,3 +1,4 @@
+import { etfTableProducts,etfPdfTableProducts } from './radar-etf-table.mjs'
 import { createHash } from 'node:crypto'
 import { mkdtemp, writeFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -119,34 +120,16 @@ export function extractProducts(text) {
       products.push({ name: names[0], isin: local.isin ?? null, fees: local.fees ?? null, index: local.index ?? null, management: /gestion active|actively managed/i.test(block) ? 'Active' : /gestion passive|passively managed/i.test(block) ? 'Passive' : null, distribution: local.distribution ?? null, pea: local.pea ?? null, tradingDate: local.tradingDate ?? null, availability: null, evidence: block })
     } else for (const name of names) products.push({ name, isin: null, fees: null, index: null, management: null, distribution: null, pea: null, tradingDate: null, availability: null, evidence: block })
   }
-  // Table headers establish column semantics; never guess by numeric proximity.
-  for (const [, table] of text.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)) {
-    const rows = [...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m => m[1])
-    const headers = [...(rows[0] ?? '').matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map(m => cleanText(m[1]))
-    if (!headers.some(h => /^ISIN$/i.test(h))) continue
-    for (const row of rows.slice(1)) {
-      if (/rowspan=|colspan=/i.test(row)) continue
-      const cells = [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(m => cleanText(m[1]))
-      if (cells.length !== headers.length) continue
-      const fields = Object.fromEntries(headers.map((h,i) => [h,cells[i]]))
-      const isin = fields.ISIN?.trim()
-      let names = cells.join(' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan|JPM|BNP Paribas|HANetf|Trading Central|Sprott|YieldMax|Infrastructure Capital|Franklin|PIMCO|State Street) [A-Z][A-Za-z0-9 .&’'()–-]{2,140}?\bUCITS ETF\b/g) ?? []
-      const nameHeader=headers.find(h=>/^(ETF Name|Name|Nom|Product name)$/i.test(h))
-      if(nameHeader && /\bUCITS\s+ETF\b/.test(fields[nameHeader]) && !/ETC|ETN/.test(fields[nameHeader])) names=[fields[nameHeader]]
-      if (!/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(isin ?? '') || names.length !== 1) continue
-      let product = products.find(p => p.isin === isin)
-      if (!product) {product={name:names[0],isin,fees:null,index:null,management:null,distribution:null,pea:null,tradingDate:null,availability:null};products.push(product)}
-      for (const [header,value] of Object.entries(fields)) {
-        if (/^(TER|Frais courants|Total expense ratio)$/i.test(header) && /^\d[\d.,]*\s*%$/.test(value)) product.fees = value
-        if (/^(Index|Benchmark|Indice)$/i.test(header)) product.index = value || null
-        if (/^(Distribution|Revenus)$/i.test(header) && /^(Accumulating|Capitalisation|Distributing|Distribution)$/i.test(value)) product.distribution = value
-      }
-      product.evidence = headers.map((h,i)=>`${h}: ${cells[i]}`).join(' · ')
-    }
+  // Structured rows are proof boundaries; no issuer roster is required.
+  const tableProducts=(/<\w/.test(text)?etfTableProducts(text):etfPdfTableProducts(text)).products
+  for(const product of tableProducts){
+    const prior=products.findIndex(p=>p.isin===product.isin)
+    if(prior>=0)products[prior]=product;else products.push(product)
   }
   const unique = new Map()
-  const namedShares = new Set(products.filter(p => p.isin).map(p => p.name.replace(/[–-]/g,'-')))
-  for (const product of products.filter(p => p.isin || !namedShares.has(p.name.replace(/[–-]/g,'-')))) {
+  const baseName=name=>name.replace(/[®™]/g,'').replace(/[–-]/g,'-').replace(/(\bUCITS (?:Fund )?ETF\b).*$/i,'$1').trim()
+  const namedShares = new Set(products.filter(p => p.isin).map(p => baseName(p.name)))
+  for (const product of products.filter(p => p.isin || !namedShares.has(baseName(p.name)))) {
     product.name=product.name.trim()
     const key = product.isin ?? product.name.replace(/[–-]/g,'-')
     const previous = unique.get(key)
@@ -176,11 +159,12 @@ export function parseEtfDocument(htmlOrText, title) {
   const countWord=countStatement?.match(/\b(trois|deux|cinq|three|two|five|[2-9]) (?:premiers |nouveaux |nouvelles |new |active |actifs |regional )*ETF/i)?.[1]?.toLowerCase()
   const announcedProductCount=countWord ? ({trois:3,deux:2,cinq:5,three:3,two:2,five:5}[countWord]??Number(countWord)) : null
   if(!announcementEvidence && countStatement)announcementEvidence={type:'announcement',stage:'announced',label:'Nouvelle offre annoncée par l’émetteur',evidence:countStatement}
-  const products = extractProducts(body)
+  if(announcementEvidence)announcementEvidence={...announcementEvidence,bodyEvidence:countStatement??excerpt??feeChange??null}
+  const products = extractProducts(body), extraction = (html?etfTableProducts(body):etfPdfTableProducts(body)).extraction
   // Single-ISIN legacy extraction is still deliberately conservative.
   const launchDetails = parseLaunchDetails(html ? body.replace(/<\/(?:p|tr|div)>/gi, '\n').replace(/<[^>]*>/g, ' ') : text)
   const calendarEvidence = paragraphs.flatMap(p => p.split(/(?<=[.!?])\s+/)).find(p => /seront cot[ée]s|date de premi[eè]re cotation|first trading date/i.test(p)) ?? null
-  return { launchDetails, products, announcedProductCount, announcementEvidence, calendarEvidence, evidence: { method: html ? 'Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.' : 'Texte du document officiel ; PDF converti localement par pdftotext -layout dans le collecteur.', excerpt: excerpt ?? countStatement ?? feeChange ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
+  return { launchDetails, products, extraction, announcedProductCount, announcementEvidence, calendarEvidence, evidence: { method: html ? 'Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.' : 'Texte du document officiel ; PDF converti localement par pdftotext -layout dans le collecteur.', excerpt: excerpt ?? countStatement ?? feeChange ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
 }
 export async function documentText(response) {
   const bytes = Buffer.from(await response.arrayBuffer())

@@ -1,9 +1,10 @@
+import { qualifyRadarFact, publicationTime } from './radar-qualification.js'
 import { editorialExclusion, consumerQuality, qualifiedOfferChange } from './radar-policy.js'
 import { replicationWordingEvent } from './replication-method.js'
 // Shared by the UI and notifications: collecting a fact does not make it a post.
 export const EDITORIAL_DAYS = 14
 export const EDITORIAL_LIMIT = 5
-export const SCORE_RULES = Object.freeze({ audience: 30, impact: 25, novelty: 20, comparison: 15, freshness: 10, priority: 65, major: 85, sourceCap: 2, exposureCap: 1 })
+export const SCORE_RULES = Object.freeze({ audience: 30, impact: 25, novelty: 20, comparison: 15, freshness: 10, priority: 65, major: 85, sourceCap: 2, exposureCap: 1, prospectiveImpact: .2, reportedImpact: .5, professionalAudience: .2 })
 export const EDITORIAL_STATES = { excluded: 'Hors périmètre', ready: 'À exploiter', watch: 'À suivre', secondary: 'Variations secondaires' }
 const normal = value => String(value ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
 
@@ -55,6 +56,7 @@ export function etfAnnouncement(title = '') {
 
 export function editorialState(event, now = Date.now()) {
   if (editorialExclusion(event) || event.editorialExcluded) return 'excluded'
+  if (['professional-survey','forecast'].includes(qualifyRadarFact(event).nature)) return 'watch'
   if (event.supersededBy) return 'secondary'
   if (event.factType === 'consumer-announcement' && event.topic === 'carburants') {
     const cents=normal(event.label).match(/(?:hausse|baisse|augmentation|diminution) (?:de )?(\d+(?:[,.]\d+)?) centimes?/)
@@ -114,7 +116,7 @@ export function reliability(event, now = Date.now()) {
   return { usable: reasons.length === 0, reasons }
 }
 export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES) {
-  const state = editorialState(event,now), type = factType(event)
+  const state = editorialState(event,now), type = factType(event), qualification = qualifyRadarFact(event)
   const broadEtf = event.field==='announcement' && event.documentHash && event.products?.some(p => p.pea && /Éligible/.test(p.pea) || /(?:MSCI World|All.World|S&P 500|Euro Stoxx 50)/i.test(p.index ?? p.name))
   const household = event.family === 'economie' || event.family === 'pouvoir-achat' && !(event.factType==='consumer-announcement' && ['banques','epargne','frais','etf'].includes(event.topic))
   const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family) || event.factType==='consumer-announcement' && ['banques','epargne','frais'].includes(event.topic)
@@ -126,13 +128,19 @@ export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES
     novelty: [type === 'coverage' || type === 'source-revision' || state === 'secondary' ? 0 : 1, type === 'coverage' ? 'Extension de couverture' : type === 'source-revision' ? 'Révision sans nouvelle période' : state === 'secondary' ? 'Variation technique' : 'Publication ou changement documenté'],
     comparison: [household || event.before !== null && event.before !== undefined ? 1 : event.products?.length || event.factType==='consumer-announcement' && event.angle ? .7 : null, household ? 'Permet de situer une situation ou un budget' : event.before !== null && event.before !== undefined ? 'Avant/après conservé avec périmètre' : event.products?.length ? 'Expositions nommées dans le communiqué' : event.factType==='consumer-announcement' && event.angle ? 'Angle pédagogique sourcé ; comparaison avant/après inconnue' : 'Comparaison non documentée'],
   }
+  // A published forecast or intention is evidence of a statement, not of its financial effect.
+  if (qualification.impact === 'prospective') {
+    factors.impact = [rules.prospectiveImpact??SCORE_RULES.prospectiveImpact, 'Conséquence anticipée, sans changement effectif démontré']
+    factors.comparison = [null, 'Prévision ou intention ; comparaison observée non établie']
+  } else if (qualification.nature === 'household-survey') factors.impact = [rules.reportedImpact??SCORE_RULES.reportedImpact, 'Résultats déclarés dans une enquête, pas une modification des conditions financières']
+  if (qualification.audience === 'professional') factors.audience = [rules.professionalAudience??SCORE_RULES.professionalAudience, 'Professionnels interrogés ; portée directe sur les ménages non établie']
   // Publication time takes precedence. A discovery today never rejuvenates an old document.
   const publication = qualifiedOfferChange(event,now) ? event.changeEvidence.observedAt : event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.publishedAt ?? (event.field === 'announcement' ? event.period : null)
   const age = publication ? (now-Date.parse(publication))/86400000 : NaN
   factors.freshness = [Number.isFinite(age) && age >= 0 ? age <= 2 ? 1 : age <= 7 ? .7 : age <= 14 ? .3 : 0 : null, publication ? `${qualifiedOfferChange(event,now) ? 'Contrôle du changement (annonce non datée)' : 'Publication'} : ${publication}` : 'Date de publication inconnue ; détection non substituée']
   const criteria = Object.entries(factors).map(([key, [factor, reason]]) => ({ key, points: factor === null ? 0 : Math.round(rules[key]*factor), maximum: rules[key], unknown: factor === null, reason }))
   const score = criteria.reduce((total, row) => total+row.points, 0), quality = reliability(event,now)
-  return { score, criteria, reliability: quality, state, type, priority: quality.usable && state === 'ready' && score >= rules.priority, major: quality.usable && state === 'ready' && score >= rules.major && Number.isFinite(age) && age >= 0 && age <= 2 }
+  return { score, criteria, qualification, reliability: quality, state, type, priority: quality.usable && state === 'ready' && score >= rules.priority, major: quality.usable && state === 'ready' && score >= rules.major && Number.isFinite(age) && age >= 0 && age <= 2 }
 }
 export const editorialScore = (event, now) => editorialAssessment(event, now).score
 export function publicationKey(event) {
@@ -142,17 +150,24 @@ export function publicationKey(event) {
   return JSON.stringify([event.family, event.entity, event.period])
 }
 // Group exact publications, keeping all child facts and legacy read identifiers.
-export function groupSignals(events, now = Date.now()) {
-  const groups = new Map()
+export function groupSignals(events, now = Date.now(), {notification=false}={}) {
+  const groups = new Map(), studies=new Map(), dossierKeys=new Set(events.map(e=>e.dossierKey).filter(Boolean))
+  const studyId=e=>e.publicationId&&e.referencePeriod?JSON.stringify([e.publicationId.replace(/\/$/,''),e.referencePeriod]):null
+  for(const event of events)if(studyId(event)&&['statistical-publication','publication-watch'].includes(event.factType)&&!event.correctionOf){const prior=studies.get(studyId(event));if(!prior||!prior.publishedAt&&event.publishedAt)studies.set(studyId(event),event)}
   for (const event of events) {
-    const state = editorialState(event,now), key = JSON.stringify([publicationKey(event), state])
+    const state = editorialState(event,now)
+    const sameDatedStudy=event.publicationId && event.referencePeriod && ['statistical-publication','publication-watch'].includes(event.factType) && !event.correctionOf
+    const dossier=notification ? null : (event.dossierKey ?? (dossierKeys.has(publicationKey(event))?publicationKey(event):null) ?? (sameDatedStudy ? publicationKey(studies.get(studyId(event))??event) : null))
+    const key=JSON.stringify([dossier ?? publicationKey(event),dossier ? 'dossier' : state])
     if (!groups.has(key)) groups.set(key, { id: key, state, event, events: [] })
     groups.get(key).events.push(event)
   }
   return [...groups.values()].map(group => {
-    group.events.sort((a, b) => (a.entity === 'salary-median' ? -1 : b.entity === 'salary-median' ? 1 : editorialScore(b,now)-editorialScore(a,now)) || b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
-    const event = group.events[0]
-    return { ...group, event, assessment: editorialAssessment(event, now) }
+    const official=e=>e.evidenceLevel==='official'||e.sourceUrl?.startsWith('https://www.insee.fr/fr/statistiques/')
+    group.events.sort((a,b)=>(a.entity==='salary-median'?-1:b.entity==='salary-median'?1:0)||Number(editorialState(b,now)==='ready')-Number(editorialState(a,now)==='ready')||Number(official(b))-Number(official(a))||editorialScore(b,now)-editorialScore(a,now)||b.detectedAt.localeCompare(a.detectedAt)||a.id.localeCompare(b.id))
+    let event=group.events[0]
+    const relatedStages=event.relatedStages??[]
+    return { ...group, event, state:editorialState(event,now), assessment: editorialAssessment(event, now), relatedStages }
   }).sort((a,b) => b.assessment.score-a.assessment.score || b.event.detectedAt.localeCompare(a.event.detectedAt) || a.id.localeCompare(b.id))
 }
 const eventExposure = event => event.exposureKey ?? event.launchDetails?.index ?? (event.products?.length === 1 ? event.products[0].index : null)
@@ -169,11 +184,13 @@ export function selectEditorial(groups, limit = EDITORIAL_LIMIT) {
 }
 
 export function recentEditorial(event, now = Date.now()) {
-  const stamp = Date.parse(event.detectedAt)
-  return stamp <= now && stamp >= now - EDITORIAL_DAYS * 86400000
+  const stamp = Date.parse(event.detectedAt), published = Date.parse(publicationTime(event))
+  return stamp <= now && stamp >= now - EDITORIAL_DAYS * 86400000 && Number.isFinite(published) && published <= now && published >= now - EDITORIAL_DAYS * 86400000
 }
 
 export function editorialAudience(event) {
+  const qualification = qualifyRadarFact(event)
+  if (qualification.audience === 'professional' || /survey|intentions/.test(qualification.nature)) return qualification.population
   if (event.populationScope) return event.populationScope
   if (event.family === 'economie') return event.population ?? 'Ménages et salariés dans le périmètre de la publication.'
   return ({ etf: 'Épargnants qui détiennent ou comparent cet ETF.', courtiers: 'Clients de ce courtier, selon le marché et la formule concernés.', epargne: 'Épargnants concernés par le produit ou le régime indiqué.', assurance: 'Souscripteurs de ce contrat, selon ses conditions.', scpi: 'Associés et nouveaux souscripteurs de cette SCPI.', investisseurs: 'Lecteurs qui suivent les positions déclarées de cet investisseur.', 'pouvoir-achat': 'Particuliers concernés par les conditions décrites dans la source.' })[event.family] ?? 'Lecteurs intéressés par cette exposition.'

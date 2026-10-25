@@ -1,4 +1,4 @@
-import { editorialExclusion } from '../../src/lib/radar-policy.js'
+import { editorialExclusion,editorialTopic,RADAR_TOPICS } from '../../src/lib/radar-policy.js'
 import { migrateHouseholdEvents } from './radar-households.mjs'
 import { editorialState, editorialAssessment, factType } from '../../src/lib/radar-editorial.js'
 import { normalizedReplication, replicationField, replicationEquivalent, replicationWordingEvent } from '../../src/lib/replication-method.js'
@@ -54,8 +54,8 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const beforeText = before ? displayValue(before.value, after.unit) : 'Pas encore suivi'
   const afterText = displayValue(after.value, after.unit)
   const purchasing = after.family === 'pouvoir-achat'
-  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
-  for (const key of ['changeEvidence','housing','announcedProductCount','conditions','correctionPublishedAt','referencePeriod','populationScope','evidenceLevel','sources','effectiveAt','promotionEndsAt','eventKey','correctionOf','backfill']) if (after[key] !== undefined) metadata[key] = after[key]
+  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
+  for (const key of ['dossierKey','relationship','productDossiers','qualification','extraction','supportingDocuments','supportingCalendarEvidence','changeEvidence','housing','announcedProductCount','conditions','correctionPublishedAt','referencePeriod','populationScope','evidenceLevel','sources','effectiveAt','promotionEndsAt','eventKey','correctionOf','backfill']) if (after[key] !== undefined) metadata[key] = after[key]
   if (after.parserMigration) metadata.migratedEditorial=true
   if (after.family === 'economie' && isPublication && after.evidence?.sourceHash && !['publication-watch','dataset-release'].includes(after.factType)) metadata.factType = 'statistical-publication'
   if (before && after.factType === 'statistical-publication' && before.period === after.period && before.publicationId === after.publicationId) metadata.factType = 'source-revision'
@@ -210,14 +210,28 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // Enrich an existing announcement without inventing a second launch alert.
   for (const row of valid.filter(row => row.family === 'etf' && row.field === 'announcement' && row.launchDetails)) {
     for (const event of state.events.filter(event => event.entity === row.entity && event.period === row.period && event.label === row.label)) {
-      for (const key of ['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
+      for (const key of ['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'qualification', 'extraction', 'dossierKey', 'relationship', 'productDossiers', 'supportingCalendarEvidence', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
     }
   }
+  for(const row of valid.filter(row=>row.discovery && row.parserMigration))for(const event of state.events)if(event.entity===row.entity && event.publicationId===row.publicationId && !event.correctionOf){
+    event.migratedEditorial=true
+    if(event.evidence?.sourceHash!==row.evidence?.sourceHash || event.publishedAt!==row.publishedAt){event.enrichmentHistory??=[];event.enrichmentHistory.push({publishedAt:event.publishedAt,factType:event.factType,evidence:event.evidence,enrichedAt:stamp})}
+    for(const key of ['topic','topicLabel','conditions','evidenceLevel','factType','summary','referencePeriod','populationScope','publishedAt','sourceDeclaredPublicationDate','publicationDateNote','evidence','qualification'])if(row[key]!==undefined && !(key==='factType'&&event.factType==='source-revision'))event[key]=row[key]
+  }
   for(const row of valid.filter(row=>row.evidenceLevel))for(const event of state.events)if(event.entity===row.entity && event.publicationId===row.publicationId && event.label===row.label && JSON.stringify(event.after)===JSON.stringify(row.value)) {
-    for(const key of ['sources','eventKey'])if(row[key]!==undefined)event[key]=row[key]
+    for(const key of ['sources','eventKey','dossierKey','relationship','productDossiers','qualification','extraction'])if(row[key]!==undefined)event[key]=row[key]
   }
   for (const correction of newEvents.filter(event=>event.correctionOf)) for (const prior of state.events) if (prior.id !== correction.id && prior.publicationId === correction.correctionOf) prior.supersededBy = correction.id
-  for (const event of state.events) { event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }
+  const stagesByPublication=new Map()
+  for(const stage of state.events)for(const reference of stage.productDossiers??[]){
+    const list=stagesByPublication.get(reference.publicationId)??[]
+    list.push({id:stage.id,publicationId:stage.publicationId,publishedAt:stage.publishedAt,type:factType(stage),sourceUrl:stage.sourceUrl,products:reference.names,proof:reference.proof})
+    stagesByPublication.set(reference.publicationId,list)
+  }
+  for(const event of state.events)if(stagesByPublication.has(event.publicationId))event.relatedStages=stagesByPublication.get(event.publicationId)
+  for (const event of state.events) {
+    if(event.factType==='consumer-announcement'){const topic=editorialTopic(event.label,event.summary);if(topic){if(event.topic!==topic)event.previousEditorialTopic??=event.topic;event.topic=topic;event.topicLabel=RADAR_TOPICS[topic]}}
+    event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }
   for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
     const latest = state.current[observationKey(conflict.accepted)]
     if (latest?.period > conflict.period && !conflict.resolvedAt) {
