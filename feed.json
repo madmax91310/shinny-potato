@@ -5,25 +5,25 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 3
+        "relevant": 0
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 4
+        "relevant": 3
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,13 +50,79 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
       }
     ],
     "items": [
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-59c19c5596e8fff7b843",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+        "value": {
+          "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+          "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+        "publicationId": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-25",
+        "period": "2026-10-25",
+        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+        "populationScope": "110 millions de cartes bancaires circulent en France.",
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/la-net-agence",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/monabanq",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/hello-bank",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/fortuneo",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "7fca00e6d6f069f1548b0def2ab1136a3e2d2f33a6d8c4793f75a7def12f26ba",
+          "excerpt": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
+      },
       {
         "family": "pouvoir-achat",
         "entity": "purchasing-news-1bd25fb34271f39bc961",
@@ -90,6 +156,54 @@
         "summary": "Pour aider les salariés à faire face à la hausse des carburants, le Gouvernement avait annoncé au mois de septembre une hausse du plafond de la « prime carburant ». Deux décrets parus le 21 octobre 2026 confirment le relèvement temporaire de la limite d’exonération des indemnités de transport dont peuvent bénéficier les salariés. Service Public fait le point.",
         "angle": "Qui paiera davantage ou moins, et à quelle date ?",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-11d58f0ac98441c0a64e",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+        "value": {
+          "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+          "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+          "status": "Annonce publiée",
+          "effectiveAt": "2026-11-01"
+        },
+        "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+        "publicationId": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+        "publisher": "Médiateur national de l’énergie",
+        "publishedAt": "2026-10-23",
+        "period": "2026-10-23",
+        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+        "populationScope": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires.",
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+        "status": "Annonce publiée",
+        "effectiveAt": "2026-11-01",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+            "role": "official",
+            "label": "Médiateur national de l’énergie"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "702d674335ca3f219e912dda1dfaecf06dd1d6c7b9fd0c680dc62e81888d88b7",
+          "excerpt": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+        "backfill": true
       },
       {
         "family": "pouvoir-achat",
@@ -161,6 +275,72 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-22a07c345ee703917f10",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+        "value": {
+          "title": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+          "summary": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2026-10-22",
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+        "populationScope": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/80293/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_plusieurs_acteurs_proposant_en_France_des_investissements_sur_le_marche_des_devises_non_regule_%28Forex%29_et_sur_des_produits_derives_sur_crypto-actifs%2C_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches?page=0&conditions%5Bcategorie%5D=624",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "6154e4529b73ff4f7e50f212a44b785ba64f30580d87ef3c917c0e0c3cd7da2a",
+          "excerpt": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "purchasing-news-930646c9816103eee946",
         "label": "Tout savoir sur l'acompte sur salaire",
         "field": "announcement",
@@ -171,7 +351,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -184,13 +364,13 @@
         "rule": "announcement",
         "discovery": true,
         "priority": "normal",
-        "topic": "revenus",
-        "topicLabel": "Revenus et aides",
+        "topic": "travail",
+        "topicLabel": "Épargne salariale et salaires",
         "publisher": "Ministère de l’Économie",
         "status": "À préciser",
         "statusEvidence": "",
         "summary": "Vous faites face à une dépense imprévue ou rencontrez les difficultés financières ? L’acompte sur salaire peut vous permettre de recevoir une partie de votre rémunération avant la date habituelle de paiement. Qui peut en bénéficier ? Quel montant pouvez-vous demander ? Votre employeur peut-il refuser ? On vous explique.",
-        "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
+        "angle": "Préciser le public, la date et les conditions citées avant de comparer.",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
       },
       {
@@ -289,7 +469,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -302,13 +482,13 @@
         "rule": "announcement",
         "discovery": true,
         "priority": "normal",
-        "topic": "depenses",
-        "topicLabel": "Dépenses courantes",
+        "topic": "carburants",
+        "topicLabel": "Carburants",
         "publisher": "Ministère de l’Économie",
         "status": "À préciser",
         "statusEvidence": "",
         "summary": "Pour faire face à la hausse des prix des carburants, les aides ciblées évoluent pour accompagner les ménages et les entreprises les plus exposés. Présentation.",
-        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "angle": "Préciser le public, la date et les conditions citées avant de comparer.",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
       },
       {
@@ -323,7 +503,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -336,13 +516,13 @@
         "rule": "announcement",
         "discovery": true,
         "priority": "normal",
-        "topic": "depenses",
-        "topicLabel": "Dépenses courantes",
+        "topic": "carburants",
+        "topicLabel": "Carburants",
         "publisher": "Ministère de l’Économie",
         "status": "À préciser",
         "statusEvidence": "",
         "summary": "Face à la hausse des coûts de carburant résultant du conflit au Moyen-Orient, le Gouvernement met en place une aide pour les travailleurs « grands rouleurs », sous conditions. Les demandes pour obtenir cette aide peuvent être effectuées sur le site impôts.gouv.fr.",
-        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "angle": "Préciser le public, la date et les conditions citées avant de comparer.",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
       },
       {
@@ -409,6 +589,72 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-1970da2472e5f5e5af19",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+        "value": {
+          "title": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+          "summary": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+        "publicationId": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+        "publisher": "AFG · épargne salariale",
+        "publishedAt": "2026-10-15",
+        "period": "2026-10-15",
+        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "scope": "Annonce AFG · épargne salariale · https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+        "populationScope": "Épargne salariale et retraite collective couvertes par l’enquête AFG",
+        "topic": "travail",
+        "topicLabel": "Épargne salariale et salaires",
+        "summary": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "professional-association",
+        "sources": [
+          {
+            "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+            "role": "professional-association",
+            "label": "AFG · épargne salariale"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/actualites/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/app/uploads/2026/10/AFG_Epargne-salariale-au-30-juin-2026_Communique-de-presse.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/?post_type=publication&p=129411&preview=true",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "statistical-publication",
+        "referencePeriod": "2026-06-30",
+        "evidence": {
+          "sourceHash": "2ba1c04bc0dcd47198b018f9c132b84135becace9e10ded25e99e748386a3b16",
+          "excerpt": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne salariale et salaires : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros — Quels salariés ou dispositifs couvre cette publication ? Distinguer encours, versements et rendements.",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "purchasing-news-053153302f7f2651de28",
         "label": "Le nouvel indice de référence des loyers vient de paraître",
         "field": "announcement",
@@ -460,34 +706,6 @@
         "status": "À préciser",
         "statusEvidence": "",
         "summary": "En tant que salarié du secteur privé, vous bénéficiez durant votre retraite d'une pension complémentaire qui vient s’ajouter à votre retraite de base versée par la Sécurité sociale. Le 14 octobre 2026, les représentants des organisations patronales et syndicales qui composent le conseil d’administration de l’Agirc-Arrco ont décidé de revaloriser cette pension de retraite complémentaire dès le 1 er novembre 2026.",
-        "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "purchasing-news-a68ad854b656537feb85",
-        "label": "Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas",
-          "summary": "Si vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure.",
-          "status": "À préciser"
-        },
-        "period": "2026-10-14",
-        "checkedAt": "2026-10-19T07:43:16.602Z",
-        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "revenus",
-        "topicLabel": "Revenus et aides",
-        "publisher": "Service Public",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "Si vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure.",
         "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
       },
@@ -546,6 +764,57 @@
         "summary": "Depuis la disparition des tarifs réglementés du gaz au 1 er juillet 2023, la Commission de régulation de l'énergie (CRE) publie chaque mois un prix repère du gaz, qui sert d'indicateur aux consommateurs. Après une hausse de 6,3 % TTC en octobre, le prix repère de vente de gaz augmentera de nouveau au 1 er novembre 2026.",
         "angle": "Qui paiera davantage ou moins, et à quelle date ?",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-225cddaa892cab72a4dd",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+        "value": {
+          "title": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+          "summary": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+        "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+        "publisher": "Bourse Direct",
+        "publishedAt": "2026-10-12",
+        "period": "2026-10-12",
+        "checkedAt": "2026-10-25T05:55:01.342Z",
+        "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+        "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+            "role": "official",
+            "label": "Bourse Direct"
+          },
+          {
+            "url": "https://groupe.boursedirect.fr/categorie/actualites",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "3997f10ac591755bbeba4744428cb7a3386d4402d6d844b384a6a194acc9f8a8",
+          "excerpt": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Prêt de titres : Bourse Direct étend son service aux PEA ! — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
       },
       {
         "family": "pouvoir-achat",
@@ -633,34 +902,6 @@
       },
       {
         "family": "pouvoir-achat",
-        "entity": "purchasing-news-e77dfbe7d70dc751771e",
-        "label": "Taxe d'habitation sur les résidences secondaires : quand devez-vous la payer ?",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "Taxe d'habitation sur les résidences secondaires : quand devez-vous la payer ?",
-          "summary": "Si la taxe d'habitation sur la résidence principale est supprimée depuis le 1 er janvier 2023, elle est maintenue sur les résidences secondaires. Service Public vous rappelle les échéances pour 2026.",
-          "status": "À préciser"
-        },
-        "period": "2026-10-07",
-        "checkedAt": "2026-10-12T15:13:52.505Z",
-        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A16903",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "fiscalite",
-        "topicLabel": "Épargne et fiscalité",
-        "publisher": "Service Public",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "Si la taxe d'habitation sur la résidence principale est supprimée depuis le 1 er janvier 2023, elle est maintenue sur les résidences secondaires. Service Public vous rappelle les échéances pour 2026.",
-        "angle": "Qui est concerné et qu’est-ce que cela change pour l’épargne ou les impôts ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
         "entity": "purchasing-news-3e4efde2e681f6d014d9",
         "label": "Titres-restaurant : la liste dérogatoire des produits est maintenue jusqu’au 31 décembre 2026",
         "field": "announcement",
@@ -727,7 +968,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T00:25:11.053Z",
+        "checkedAt": "2026-10-25T05:55:01.334Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -740,69 +981,13 @@
         "rule": "announcement",
         "discovery": true,
         "priority": "normal",
-        "topic": "logement",
-        "topicLabel": "Logement",
+        "topic": "credit",
+        "topicLabel": "Crédit immobilier et PTZ",
         "publisher": "Banque de France · crédits aux particuliers",
         "status": "À préciser",
         "statusEvidence": "",
         "summary": "Nouvelle publication des crédits aux particuliers. Consulter la source pour les taux des crédits à l’habitat, hors frais et assurance, et la période statistique.",
-        "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "purchasing-news-3afc53ff2564cf72139c",
-        "label": "Impôt sur le revenu : quelles évolutions depuis 2017 ?",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "Impôt sur le revenu : quelles évolutions depuis 2017 ?",
-          "summary": "",
-          "status": "À préciser"
-        },
-        "period": "2026-10-06",
-        "checkedAt": "2026-10-12T13:04:32.871Z",
-        "sourceUrl": "https://www.vie-publique.fr/en-bref/304847-impot-sur-le-revenu-quelles-evolutions-depuis-2017",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "fiscalite",
-        "topicLabel": "Épargne et fiscalité",
-        "publisher": "Vie publique · actualités",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "",
-        "angle": "Qui est concerné et qu’est-ce que cela change pour l’épargne ou les impôts ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "purchasing-news-4479d81dfc5e29b6d467",
-        "label": "Impôt : vos échéances du mois",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "Impôt : vos échéances du mois",
-          "summary": "L’année est marquée par plusieurs dates clés pour les contribuables : prélèvements d'acomptes, versement de l’avance des réductions et crédits d’impôt, mise à disposition de vos avis d’impôt en ligne… Retrouvez chaque mois vos principales échéances fiscales.",
-          "status": "À préciser"
-        },
-        "period": "2026-10-02",
-        "checkedAt": "2026-10-13T13:50:56.513Z",
-        "sourceUrl": "https://www.economie.gouv.fr/particuliers/impots-et-fiscalite/gerer-mon-impot-sur-le-revenu/impot-vos-echeances-du-mois",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "fiscalite",
-        "topicLabel": "Épargne et fiscalité",
-        "publisher": "Ministère de l’Économie",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "L’année est marquée par plusieurs dates clés pour les contribuables : prélèvements d'acomptes, versement de l’avance des réductions et crédits d’impôt, mise à disposition de vos avis d’impôt en ligne… Retrouvez chaque mois vos principales échéances fiscales.",
-        "angle": "Qui est concerné et qu’est-ce que cela change pour l’épargne ou les impôts ?",
+        "angle": "Préciser le public, la date et les conditions citées avant de comparer.",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
       },
       {
@@ -871,22 +1056,27 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T00:25:38.448Z",
-  "sourceRevision": "2de5d09e0c19c9fa00f7cb2083ec62188951e38d",
-  "observationCount": 7434,
+  "checkedAt": "2026-10-25T05:55:21.551Z",
+  "sourceRevision": "6059ecea165d37545b929816831d10dfe1e79c91",
+  "observationCount": 7417,
   "coverage": {
-    "etf": 267,
+    "etf": 268,
     "indices": 52,
     "courtiers": 8,
-    "epargne": 17,
+    "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 102,
-    "pouvoir-achat": 8
+    "economie": 106,
+    "pouvoir-achat": 9
   },
-  "newSignalCount": 3,
+  "newSignalCount": 6,
   "errors": [
+    {
+      "family": "pouvoir-achat",
+      "entity": "Revolut · salle de presse France",
+      "reason": "HTTP 403"
+    },
     {
       "family": "etf",
       "entity": "WisdomTree · communiqués européens",
@@ -894,12 +1084,17 @@
     },
     {
       "family": "economie",
-      "entity": "DARES",
-      "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+      "entity": "DREES",
+      "reason": "fetch failed"
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t2",
+      "entity": "DARES",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t1",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -998,6 +1193,11 @@
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t2",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
       "family": "etf",
       "entity": "IE00B3T9LM79",
       "reason": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22)."
@@ -1009,6 +1209,681 @@
     }
   ],
   "events": [
+    {
+      "topic": "securite",
+      "topicLabel": "Sécurité de l’argent",
+      "publisher": "AMF · communiqués",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+      "publishedAt": "2026-10-22",
+      "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+      "evidence": {
+        "sourceHash": "6154e4529b73ff4f7e50f212a44b785ba64f30580d87ef3c917c0e0c3cd7da2a",
+        "excerpt": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+          "role": "official",
+          "label": "AMF · communiqués"
+        },
+        {
+          "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/80293/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_plusieurs_acteurs_proposant_en_France_des_investissements_sur_le_marche_des_devises_non_regule_%28Forex%29_et_sur_des_produits_derives_sur_crypto-actifs%2C_sans_y_etre_autorises.pdf",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches?page=0&conditions%5Bcategorie%5D=624",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.amf-france.org/fr",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "51cc950b246d50940fbd91b8",
+      "family": "pouvoir-achat",
+      "entity": "publication-22a07c345ee703917f10",
+      "label": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": {
+        "title": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+        "summary": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés · summary : L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+      "unit": "",
+      "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "tool": null,
+      "angle": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+      "draft": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés\n\nL'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.\n\nPublication : 2026-10-22 · Annonce publiée\nL'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.\n\nSource : https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+      "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-22"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "evidence": {
+        "sourceHash": "8242693f82d4f7c59d862265db64325d0e4fffa55948a1ee0bab9d90b2babf1e",
+        "excerpt": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 septembre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 2,4 % en août 2026, après +2,1 % en juillet. Cette hausse de l’inflation s’expliquerait essentiellement par l’accélération des prix de l’énergie, principalement ceux des produits pétroliers. Sur un an, la baisse des prix des produits manufacturés s’atténuerait de nouveau, et les prix de l’alimentation accéléreraient légèrement. À l’inverse, les prix des services ralentiraient légèrement sur un an, tandis que ceux du tabac augmenteraient sur un an à un même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation augmenteraient de 0,7 %, après +0,6 % en juillet. Cette nouvelle augmentation s’expliquerait par le rebond saisonnier des prix des produits manufacturés, notamment de ceux de l’habillement et des chaussures, après la baisse de juillet liée aux soldes d’été. Les prix de l’énergie augmenteraient de nouveau tirés par ceux des produits pétroliers. Les prix de l’alimentation, notamment des produits frais, seraient en hausse. Les prix des services seraient stables par rapport à juillet, comme ceux du tabac.",
+        "method": "Paragraphes du chapeau officiel, sans réécriture générative"
+      },
+      "publicationId": "https://www.insee.fr/fr/statistiques/9039020",
+      "publishedAt": "2026-08-28",
+      "referencePeriod": "2026-08",
+      "summary": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 septembre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 2,4 % en août 2026, après +2,1 % en juillet. Cette hausse de l’inflation s’expliquerait essentiellement par l’accélération des prix de l’énergie, principalement ceux des produits pétroliers. Sur un an, la baisse des prix des produits manufacturés s’atténuerait de nouveau, et les prix de l’alimentation accéléreraient légèrement. À l’inverse, les prix des services ralentiraient légèrement sur un an, tandis que ceux du tabac augmenteraient sur un an à un même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation augmenteraient de 0,7 %, après +0,6 % en juillet. Cette nouvelle augmentation s’expliquerait par le rebond saisonnier des prix des produits manufacturés, notamment de ceux de l’habillement et des chaussures, après la baisse de juillet liée aux soldes d’été. Les prix de l’énergie augmenteraient de nouveau tirés par ceux des produits pétroliers. Les prix de l’alimentation, notamment des produits frais, seraient en hausse. Les prix des services seraient stables par rapport à juillet, comme ceux du tabac.",
+      "publisher": "INSEE · conjoncture et inflation",
+      "factType": "statistical-publication",
+      "backfill": true,
+      "id": "5bcc48bdce5e22be0e162fb8",
+      "family": "economie",
+      "entity": "publication-77585a431a71cefb17b0",
+      "label": "En août 2026, les prix à la consommation augmenteraient de 2,4 % sur un an",
+      "field": "publication",
+      "fieldLabel": "Publication officielle",
+      "title": "En août 2026, les prix à la consommation augmenteraient de 2,4 % sur un an",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 septembre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 2,4 % en août 2026, après +2,1 % en juillet. Cette hausse de l’inflation s’expliquerait essentiellement par l’accélération des prix de l’énergie, principalement ceux des produits pétroliers. Sur un an, la baisse des prix des produits manufacturés s’atténuerait de nouveau, et les prix de l’alimentation accéléreraient légèrement. À l’inverse, les prix des services ralentiraient légèrement sur un an, tandis que ceux du tabac augmenteraient sur un an à un même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation augmenteraient de 0,7 %, après +0,6 % en juillet. Cette nouvelle augmentation s’expliquerait par le rebond saisonnier des prix des produits manufacturés, notamment de ceux de l’habillement et des chaussures, après la baisse de juillet liée aux soldes d’été. Les prix de l’énergie augmenteraient de nouveau tirés par ceux des produits pétroliers. Les prix de l’alimentation, notamment des produits frais, seraient en hausse. Les prix des services seraient stables par rapport à juillet, comme ceux du tabac.",
+      "beforeText": "Pas encore suivi",
+      "afterText": "Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 septembre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 2,4 % en août 2026, après +2,1 % en juillet. Cette hausse de l’inflation s’expliquerait essentiellement par l’accélération des prix de l’énergie, principalement ceux des produits pétroliers. Sur un an, la baisse des prix des produits manufacturés s’atténuerait de nouveau, et les prix de l’alimentation accéléreraient légèrement. À l’inverse, les prix des services ralentiraient légèrement sur un an, tandis que ceux du tabac augmenteraient sur un an à un même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation augmenteraient de 0,7 %, après +0,6 % en juillet. Cette nouvelle augmentation s’expliquerait par le rebond saisonnier des prix des produits manufacturés, notamment de ceux de l’habillement et des chaussures, après la baisse de juillet liée aux soldes d’été. Les prix de l’énergie augmenteraient de nouveau tirés par ceux des produits pétroliers. Les prix de l’alimentation, notamment des produits frais, seraient en hausse. Les prix des services seraient stables par rapport à juillet, comme ceux du tabac.",
+      "beforePeriod": null,
+      "period": "2026-08-28",
+      "scope": "Publication officielle · INSEE · conjoncture et inflation",
+      "unit": "",
+      "sourceUrl": "https://www.insee.fr/fr/statistiques/9039020",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "angle": "Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "draft": "Une nouvelle donnée sourcée est disponible : Cette publication s’appuie sur des données provisoires. Les indices qui y figurent sont calculés sur un champ restreint d’observations de prix et à partir d’estimations des évolutions de certains tarifs non encore disponibles. Les résultats définitifs seront publiés le 15 septembre 2026. En conséquence, les indices provisoires ne doivent pas être utilisés pour des revalorisations contractuelles.\n\nSur un an, selon l’estimation provisoire réalisée en fin de mois, les prix à la consommation augmenteraient de 2,4 % en août 2026, après +2,1 % en juillet. Cette hausse de l’inflation s’expliquerait essentiellement par l’accélération des prix de l’énergie, principalement ceux des produits pétroliers. Sur un an, la baisse des prix des produits manufacturés s’atténuerait de nouveau, et les prix de l’alimentation accéléreraient légèrement. À l’inverse, les prix des services ralentiraient légèrement sur un an, tandis que ceux du tabac augmenteraient sur un an à un même rythme qu’au mois précédent.\n\nSur un mois, les prix à la consommation augmenteraient de 0,7 %, après +0,6 % en juillet. Cette nouvelle augmentation s’expliquerait par le rebond saisonnier des prix des produits manufacturés, notamment de ceux de l’habillement et des chaussures, après la baisse de juillet liée aux soldes d’été. Les prix de l’énergie augmenteraient de nouveau tirés par ceux des produits pétroliers. Les prix de l’alimentation, notamment des produits frais, seraient en hausse. Les prix des services seraient stables par rapport à juillet, comme ceux du tabac..\n\nEn août 2026, les prix à la consommation augmenteraient de 2,4 % sur un an\nPérimètre : Publication officielle · INSEE · conjoncture et inflation\nObservation actuelle : 2026-08-28\n\nPartir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "reason": "Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.",
+      "editorial": {
+        "score": 90,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-08-28"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "statistical-publication",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "travail",
+      "topicLabel": "Épargne salariale et salaires",
+      "publisher": "AFG · épargne salariale",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+      "publishedAt": "2026-10-15",
+      "publicationId": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+      "evidence": {
+        "sourceHash": "2ba1c04bc0dcd47198b018f9c132b84135becace9e10ded25e99e748386a3b16",
+        "excerpt": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "statistical-publication",
+      "referencePeriod": "2026-06-30",
+      "populationScope": "Épargne salariale et retraite collective couvertes par l’enquête AFG",
+      "evidenceLevel": "professional-association",
+      "sources": [
+        {
+          "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+          "role": "professional-association",
+          "label": "AFG · épargne salariale"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/actualites/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/app/uploads/2026/10/AFG_Epargne-salariale-au-30-juin-2026_Communique-de-presse.pdf",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/?post_type=publication&p=129411&preview=true",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "5f9ec8d0a817438e4e586fe2",
+      "family": "pouvoir-achat",
+      "entity": "publication-1970da2472e5f5e5af19",
+      "label": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": {
+        "title": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+        "summary": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros · summary : L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-15",
+      "scope": "Annonce AFG · épargne salariale · https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+      "unit": "",
+      "sourceUrl": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "tool": null,
+      "angle": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros — Quels salariés ou dispositifs couvre cette publication ? Distinguer encours, versements et rendements.",
+      "draft": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros\n\nL'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.\n\nPublication statistique du 2026-10-15.\nSource : https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+      "reason": "Épargne salariale et salaires : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 93,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 3,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-15"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "statistical-publication",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "banques",
+      "topicLabel": "Banques et services",
+      "publisher": "MoneyVox · actualités",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+      "publishedAt": "2026-10-25",
+      "publicationId": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "evidence": {
+        "sourceHash": "7fca00e6d6f069f1548b0def2ab1136a3e2d2f33a6d8c4793f75a7def12f26ba",
+        "excerpt": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "110 millions de cartes bancaires circulent en France.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/la-net-agence",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/monabanq",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/hello-bank",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/fortuneo",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "626c2f1abfd649f184892383",
+      "family": "pouvoir-achat",
+      "entity": "publication-59c19c5596e8fff7b843",
+      "label": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": {
+        "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+        "summary": "110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Les 16 chiffres de votre carte bancaire cachent un secret étonnant · summary : 110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises. · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-10-25",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "tool": null,
+      "angle": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant — Quels services changent pour les clients français, et à quelle date ?",
+      "draft": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant\n\n110 millions de cartes bancaires circulent en France. Pourtant, les 16 numéros inscrits sur votre CB ne doivent rien au hasard. Explications. Sans doute les avez-vous déjà remarqués sur votre carte bancaire : 16 chiffres, séparés en 4 groupes de 4 chiffres. Mais saviez-vous que ces numéros ne sont pas là par accident ? Leur ordonnancement obéit en réalité à des règles précises.\n\nPublication : 2026-10-25 · Information sans nouveauté établie\n110 millions de cartes bancaires circulent en France.\n\nSource : https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 87,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-25"
+          }
+        ],
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "epargne",
+      "topicLabel": "Épargne et placements",
+      "publisher": "Bourse Direct",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+      "publishedAt": "2026-10-12",
+      "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+      "evidence": {
+        "sourceHash": "3997f10ac591755bbeba4744428cb7a3386d4402d6d844b384a6a194acc9f8a8",
+        "excerpt": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+          "role": "official",
+          "label": "Bourse Direct"
+        },
+        {
+          "url": "https://groupe.boursedirect.fr/categorie/actualites",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "9894b0d77dea6c396c847b06",
+      "family": "pouvoir-achat",
+      "entity": "publication-225cddaa892cab72a4dd",
+      "label": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": {
+        "title": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+        "summary": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Prêt de titres : Bourse Direct étend son service aux PEA ! · summary : Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-12",
+      "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+      "unit": "",
+      "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "tool": null,
+      "angle": "Prêt de titres : Bourse Direct étend son service aux PEA ! — Quelles conditions changent pour les détenteurs de cette épargne ?",
+      "draft": "Prêt de titres : Bourse Direct étend son service aux PEA !\n\nDéjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.\n\nPublication : 2026-10-12 · Annonce publiée\nClients Bourse Direct concernés par le produit cité ; conditions de l’annonce\n\nSource : https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+      "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 80,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 3,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-12"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "Médiateur national de l’énergie",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "evidence": {
+        "sourceHash": "702d674335ca3f219e912dda1dfaecf06dd1d6c7b9fd0c680dc62e81888d88b7",
+        "excerpt": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+          "role": "official",
+          "label": "Médiateur national de l’énergie"
+        }
+      ],
+      "effectiveAt": "2026-11-01",
+      "backfill": true,
+      "id": "bdd2709d791b13345414bb06",
+      "family": "pouvoir-achat",
+      "entity": "publication-11d58f0ac98441c0a64e",
+      "label": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T05:55:21.551Z",
+      "before": null,
+      "after": {
+        "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+        "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+        "status": "Annonce publiée",
+        "effectiveAt": "2026-11-01"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 · summary : À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité. · status : Annonce publiée · effectiveAt : 2026-11-01",
+      "beforePeriod": null,
+      "period": "2026-10-23",
+      "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "unit": "",
+      "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "tool": null,
+      "angle": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026 — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026\n\nÀ partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.\n\nPublication : 2026-10-23 · Annonce publiée\nApplication annoncée : 2026-11-01\nÀ partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires.\n\nSource : https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "housing": {
         "priceBasis": "transaction",
@@ -8366,92 +9241,6 @@
       "tool": "/pouvoir-achat",
       "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
       "draft": "🔖 Sauvegarde ce tweet\n\nPompes à chaleur : les critères pour bénéficier de la prime « coup de pouce chauffage » évoluent\n\nLa prime « coup de pouce chauffage » est une aide financière permettant aux propriétaires et aux locataires de remplacer leur système de chauffage par une installation qui consomme moins d'énergie. Les conditions pour en bénéficier pour l’installation d’une pompe à chaleur ou d’un système solaire combiné ont évolué le 1 er septembre. Service Public vous présente les nouvelles modalités.\n\n📌 À préciser\n\nQui peut en bénéficier, à partir de quand et sous quelles conditions ?\n\nSource : https://www.service-public.gouv.fr/particuliers/actualites/A19057",
-      "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.",
-      "factType": "regulatory-measure",
-      "editorial": {
-        "score": 93,
-        "criteria": [
-          {
-            "key": "audience",
-            "points": 30,
-            "maximum": 30,
-            "unknown": false,
-            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
-          },
-          {
-            "key": "impact",
-            "points": 25,
-            "maximum": 25,
-            "unknown": false,
-            "reason": "Revenus, budget ou patrimoine"
-          },
-          {
-            "key": "novelty",
-            "points": 20,
-            "maximum": 20,
-            "unknown": false,
-            "reason": "Publication ou changement documenté"
-          },
-          {
-            "key": "comparison",
-            "points": 15,
-            "maximum": 15,
-            "unknown": false,
-            "reason": "Permet de situer une situation ou un budget"
-          },
-          {
-            "key": "freshness",
-            "points": 3,
-            "maximum": 10,
-            "unknown": false,
-            "reason": "Publication : 2026-10-14"
-          }
-        ],
-        "reliability": {
-          "usable": true,
-          "reasons": []
-        },
-        "state": "watch",
-        "type": "regulatory-measure",
-        "priority": false,
-        "major": false
-      }
-    },
-    {
-      "topic": "revenus",
-      "topicLabel": "Revenus et aides",
-      "publisher": "Service Public",
-      "status": "À préciser",
-      "statusEvidence": "",
-      "summary": "Si vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure.",
-      "id": "b4a33db8b724fe0d02357abc",
-      "family": "pouvoir-achat",
-      "entity": "purchasing-news-a68ad854b656537feb85",
-      "label": "Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas",
-      "field": "announcement",
-      "fieldLabel": "Actualité officielle",
-      "title": "Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas",
-      "kind": "new",
-      "priority": "normal",
-      "detectedAt": "2026-10-14T10:54:46.505Z",
-      "before": null,
-      "after": {
-        "title": "Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas",
-        "summary": "Si vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure.",
-        "status": "À préciser"
-      },
-      "beforeText": "Pas encore suivi",
-      "afterText": "title : Allocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas · summary : Si vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure. · status : À préciser",
-      "beforePeriod": null,
-      "period": "2026-10-14",
-      "scope": "Actualité officielle · particuliers",
-      "unit": "",
-      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
-      "previousSourceUrl": null,
-      "checkedAt": "2026-10-14T10:54:39.792Z",
-      "tool": "/pouvoir-achat",
-      "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
-      "draft": "🔖 Sauvegarde ce tweet\n\nAllocation aux adultes handicapés : la façon de déclarer vos revenus évolue dans certains cas\n\nSi vous travaillez au sein d’un établissement et service d'accompagnement par le travail (Ésat), vous devez désormais effectuer une déclaration trimestrielle de ressources, pour le calcul du montant de votre allocation aux adultes handicapés. Service Public vous présente la nouvelle procédure.\n\n📌 À préciser\n\nPour quels foyers, avec quelles conditions et quel montant ?\n\nSource : https://www.service-public.gouv.fr/particuliers/actualites/A19094",
       "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.",
       "factType": "regulatory-measure",
       "editorial": {
@@ -66669,6 +67458,18 @@
     "aumRelativePct": 20,
     "occupancyPoints": 2
   },
+  "calendar": [
+    {
+      "id": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "date": "2026-11-01",
+      "status": "Entrée en vigueur annoncée",
+      "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "publishedAt": "2026-10-23",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "note": "Date annoncée ; ne prouve pas une nouvelle publication ni son application effective."
+    }
+  ],
   "scopeNote": "Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.",
   "sources": [
     {
@@ -66677,7 +67478,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -66686,40 +67487,21 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 72,
-        "done": 11,
+        "pending": 71,
+        "done": 12,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
-      "id": "credit-logement",
-      "name": "Observatoire Crédit Logement / CSA",
-      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
-      "method": "extra-links",
-      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 6,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
-      "queue": {
-        "pending": 0,
-        "done": 6,
-        "error": 0,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "wisdomtree",
-      "name": "WisdomTree · communiqués européens",
-      "url": "https://www.wisdomtree.com/fr/press-room",
-      "method": "links",
-      "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -66727,7 +67509,78 @@
         "done": 0,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 23,
+        "done": 1,
+        "error": 0,
+        "rejected": 36
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 196,
+      "etag": "\"1792904951-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:09:11 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 158,
+        "done": 1,
+        "error": 0,
+        "rejected": 38
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
       "id": "xtrackers",
@@ -66735,20 +67588,22 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
         "pending": 0,
         "done": 5,
         "error": 5,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
     },
     {
       "id": "xetra",
@@ -66756,20 +67611,45 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
         "pending": 0,
         "done": 10,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T19:38:49.474Z"
+    },
+    {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 5,
+        "done": 0,
+        "error": 0,
+        "rejected": 7
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
     },
     {
       "id": "dvf",
@@ -66777,83 +67657,86 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
         "pending": 0,
         "done": 1,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T17:28:09.310Z"
     },
     {
-      "id": "insee-publications",
-      "name": "INSEE · publications nationales",
-      "url": "https://www.insee.fr/fr/flux/2",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 13,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "status": "error",
+      "error": "HTTP 403",
       "queue": {
-        "pending": 2,
-        "done": 10,
-        "error": 1,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "insee-conjoncture",
-      "name": "INSEE · conjoncture et inflation",
-      "url": "https://www.insee.fr/fr/flux/3",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 21,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
-      "queue": {
-        "pending": 10,
-        "done": 11,
+        "pending": 0,
+        "done": 0,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
     },
     {
-      "id": "oll",
-      "name": "Observatoires locaux des loyers / ANIL",
-      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 7,
+        "done": 1,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
+      "id": "credit-logement",
+      "name": "Observatoire Crédit Logement / CSA",
+      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
-      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 12,
+      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 6,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
-        "pending": 1,
-        "done": 10,
+        "pending": 0,
+        "done": 6,
         "error": 0,
-        "rejected": 1
-      }
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:51:01.302Z"
     },
     {
       "id": "drees",
@@ -66861,120 +67744,46 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
       "checkedAt": "2026-10-25T00:25:11.059Z",
       "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
+      "status": "error",
       "nextCheckAt": "2026-10-25T01:25:11.059Z",
       "queue": {
         "pending": 0,
         "done": 3,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "error": "fetch failed",
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:17:49.841Z"
     },
     {
-      "id": "dares",
-      "name": "DARES",
-      "url": "https://dares.travail-emploi.gouv.fr/",
-      "method": "links",
-      "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "status": "error",
-      "error": "Accès refusé ou page anti-robot, même si HTTP 200",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "dws",
-      "name": "DWS / Xtrackers · communiqués",
-      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
-      "method": "dws-model",
-      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 5,
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 13,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "bnp",
-      "name": "BNP Paribas AM · communiqués",
-      "url": "https://www.bnpparibas-am.com/en/media-centre/",
-      "method": "extra-bnp",
-      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 2,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
-      "queue": {
-        "pending": 0,
-        "done": 2,
-        "error": 0,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "hanetf",
-      "name": "HANetf · communiqués UCITS",
-      "url": "https://hanetf.com/press-releases/",
-      "method": "extra-links",
-      "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 9,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 4,
-        "rejected": 0
-      }
-    },
-    {
-      "id": "bdf-credit",
-      "name": "Banque de France · Crédits aux particuliers",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
-      "discovered": 12,
-      "etag": "\"1792887913-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 00:25:13 GMT",
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
         "pending": 1,
         "done": 11,
-        "error": 0,
+        "error": 1,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
       "id": "notaires-paris",
@@ -66982,20 +67791,178 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 8,
-      "etag": "\"1792887913-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 00:25:13 GMT",
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "etag": "\"1792907703-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:03 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
         "pending": 0,
         "done": 8,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:57:18.721Z"
+    },
+    {
+      "id": "dares",
+      "name": "DARES",
+      "url": "https://dares.travail-emploi.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "status": "error",
+      "error": "fetch failed",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 21,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 9,
+        "done": 12,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
+      "id": "oll",
+      "name": "Observatoires locaux des loyers / ANIL",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "method": "extra-links",
+      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 0,
+        "done": 10,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+    },
+    {
+      "id": "bnp",
+      "name": "BNP Paribas AM · communiqués",
+      "url": "https://www.bnpparibas-am.com/en/media-centre/",
+      "method": "extra-bnp",
+      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 2,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T17:29:42.869Z"
+    },
+    {
+      "id": "hanetf",
+      "name": "HANetf · communiqués UCITS",
+      "url": "https://hanetf.com/press-releases/",
+      "method": "extra-links",
+      "depth": "Communiqués rendus par le site, indépendants du catalogue",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 9,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 4,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 12,
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
       "id": "bdf-debt",
@@ -67003,20 +67970,45 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 12,
-      "etag": "\"1792887915-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 00:25:15 GMT",
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
-        "pending": 2,
+        "pending": 1,
         "done": 0,
-        "error": 10,
+        "error": 11,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "discovered": 5,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:20:35.936Z"
     },
     {
       "id": "bdf-savings",
@@ -67024,28 +68016,30 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T00:25:11.059Z",
+      "attemptedAt": "2026-10-25T05:55:01.342Z",
       "discovered": 12,
-      "etag": "\"1792887915-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 00:25:15 GMT",
-      "checkedAt": "2026-10-25T00:25:11.059Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.059Z",
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T05:55:01.342Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T01:25:11.059Z",
+      "nextCheckAt": "2026-10-25T06:55:01.342Z",
       "queue": {
-        "pending": 2,
-        "done": 10,
+        "pending": 1,
+        "done": 11,
         "error": 0,
         "rejected": 0
-      }
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T00:25:11.051Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.051Z",
+      "checkedAt": "2026-10-25T05:55:01.331Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.331Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -67055,8 +68049,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T00:25:11.051Z",
-      "lastSuccessAt": "2026-10-25T00:25:11.051Z",
+      "checkedAt": "2026-10-25T05:55:01.331Z",
+      "lastSuccessAt": "2026-10-25T05:55:01.331Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -67065,25 +68059,25 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 10,
-      "relevant": 3
+      "relevant": 0
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 10,
-      "relevant": 4
+      "relevant": 3
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -67092,7 +68086,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -67101,7 +68095,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -67110,7 +68104,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T00:25:11.053Z",
+      "checkedAt": "2026-10-25T05:55:01.334Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -67212,6 +68206,91 @@
       "nextCheckAt": "2026-10-25T17:28:09.322Z",
       "error": "fetch failed",
       "lastSuccessAt": null
+    },
+    {
+      "id": "trade-republic-news",
+      "name": "Trade Republic · presse",
+      "url": "https://traderepublic.com/en-de/press",
+      "reason": "Portail accessible ; liste datée française non qualifiée. Les routes françaises presse testées renvoient 404 ; tarifs partagés conservés.",
+      "status": "error",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 404,
+      "finalUrl": "https://traderepublic.com/en-de/press",
+      "error": "HTTP 404",
+      "lastSuccessAt": null
+    },
+    {
+      "id": "insee-calendar",
+      "name": "INSEE · agenda de diffusion",
+      "url": "https://www.insee.fr/fr/information/1405540",
+      "reason": "Page accessible mais calendrier chargé par JavaScript ; requête JSON de l’agenda testée en erreur HTTP 500. Aucune publication déduite d’une date attendue.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.insee.fr/fr/information/1405540",
+      "checkedAt": "2026-10-25T05:55:01.367Z"
+    },
+    {
+      "id": "xtb-news",
+      "name": "XTB · actualités",
+      "url": "https://www.xtb.com/fr/analyses-marches/actualites",
+      "reason": "Actualités accessibles mais principalement commentaires de marché ; découverte des annonces de services français non qualifiée. Registres financiers inchangés.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.xtb.com/fr/analyses-marches/actualites",
+      "checkedAt": "2026-10-25T05:55:01.367Z"
+    },
+    {
+      "id": "fortuneo-news",
+      "name": "Fortuneo · presse",
+      "url": "https://www.fortuneo.fr/espace-presse",
+      "reason": "Page accessible (200) ; liste datée et documents non extraits dans le HTML contrôlé. Aucun lancement déduit de la présence d’un produit sur le site.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.fortuneo.fr/espace-presse",
+      "checkedAt": "2026-10-25T05:55:01.367Z"
+    },
+    {
+      "id": "fuel-dgec",
+      "name": "DGEC · prix des produits pétroliers",
+      "url": "https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers",
+      "reason": "Page et bulletin hebdomadaire PDF accessibles ; extraction des tableaux par carburant et comparaison compatible non raccordées. Pas de faux suivi quotidien ni de téléchargement intégral répété.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers",
+      "checkedAt": "2026-10-25T05:55:01.367Z"
+    },
+    {
+      "id": "credit-agricole-news",
+      "name": "Crédit Agricole · presse",
+      "url": "https://presse.credit-agricole.com/",
+      "reason": "Accueil accessible ; flux /feed/ refusé (403). Extraction des communiqués et périmètres des caisses non qualifiée ; aucune offre régionale généralisée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T05:55:01.367Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T05:55:01.367Z",
+      "httpStatus": 200,
+      "finalUrl": "https://presse.credit-agricole.com/fr/?lang=fra",
+      "checkedAt": "2026-10-25T05:55:01.367Z"
     }
   ],
   "documentQueue": {
@@ -67220,6 +68299,13 @@
     "done": 6
   },
   "metrics": {
+    "collection": {
+      "requests": 36,
+      "bytes": 6899109,
+      "notModified": 0,
+      "durationMs": 18176,
+      "checkedAt": "2026-10-25T05:55:01.342Z"
+    },
     "publicationDelays": [
       {
         "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
@@ -67372,6 +68458,11 @@
         "detectionToAvailabilityHours": 2.1778233333333334
       },
       {
+        "url": "https://www.insee.fr/fr/statistiques/9013403",
+        "publicationToDetectionHours": 2801.469252777778,
+        "detectionToAvailabilityHours": 12.447786666666667
+      },
+      {
         "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
         "publicationToDetectionHours": null,
         "detectionToAvailabilityHours": 0
@@ -67430,6 +68521,11 @@
         "url": "https://www.insee.fr/fr/statistiques/9040119",
         "publicationToDetectionHours": 1121.4692527777777,
         "detectionToAvailabilityHours": 6.9504858333333335
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9039020",
+        "publicationToDetectionHours": 1385.4692527777777,
+        "detectionToAvailabilityHours": 12.447786666666667
       },
       {
         "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
@@ -67540,6 +68636,11 @@
         "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-10",
         "publicationToDetectionHours": 7697.469252777778,
         "detectionToAvailabilityHours": 6.9504858333333335
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-09",
+        "publicationToDetectionHours": 8465.469252777777,
+        "detectionToAvailabilityHours": 12.447786666666667
       },
       {
         "url": "https://www.dws.com/en-gb/our-profile/media/media-releases/2026/dws-xtrackers-middle-east-sales-appointment",
@@ -67712,6 +68813,11 @@
         "detectionToAvailabilityHours": 6.9504858333333335
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-elargit-son-offre-d-etf-responsables-screened",
+        "publicationToDetectionHours": 8537.469252777777,
+        "detectionToAvailabilityHours": 12.447786666666667
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -67760,21 +68866,43 @@
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2023t4",
         "publicationToDetectionHours": 21425.469252777777,
         "detectionToAvailabilityHours": 6.9504858333333335
+      },
+      {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2023t3",
+        "publicationToDetectionHours": 23609.469252777777,
+        "detectionToAvailabilityHours": 12.447786666666667
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+        "publicationToDetectionHours": 245.91703944444444,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+        "publicationToDetectionHours": 5.917039444444445,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+        "publicationToDetectionHours": 77.91703944444444,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+        "publicationToDetectionHours": 53.91703944444444,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+        "publicationToDetectionHours": 317.91703944444447,
+        "detectionToAvailabilityHours": 0
       }
     ],
     "classification": {
-      "ready": 57,
+      "ready": 62,
       "watch": 24,
       "secondary": 342
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T00:25:56.190Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
