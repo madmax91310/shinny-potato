@@ -4,6 +4,9 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/hey-grok', title: 'Hey @Grok',
+    icon: '💬', accent: '#267863',
+    description: '160 questions pour interpeller @grok et lancer la discussion sur X. Texte modifiable, favoris et suivi local des usages.', status: 'disponible' },
   { to: '/classements-performances', title: 'Qui a vraiment gagné ?',
     publicationDay: 'Publication ponctuelle', icon: '🏆', accent: '#76cdb7',
     description: 'Classe les actifs sur une année, année par année ou sur une période choisie. Quinze catégories, sélection manuelle, régularité historique, texte et image.', status: 'disponible' },
@@ -155,6 +158,7 @@ export const TOOLS = [
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
+  '/hey-grok': 'Une question mordante pour lancer la discussion sur X.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
@@ -186,7 +190,7 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
 
@@ -202,7 +206,7 @@ export const WEEKLY_ORDER = [
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/pouvoir-achat',
   '/le-dca-de', '/comparatif-courtiers',
-  '/simulateur-patrimoine', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
+  '/simulateur-patrimoine', '/impact-frais', '/hey-grok', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))
   .sort((a, b) => WEEKLY_ORDER.indexOf(a.to) - WEEKLY_ORDER.indexOf(b.to))

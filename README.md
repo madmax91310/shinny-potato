@@ -13,6 +13,14 @@ Le comparateur d’indices reste un moteur interne sans route publique. Les mote
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
 
+## Hey @Grok
+
+`/hey-grok` prépare uniquement une question à copier sur X, sans appel à une IA ni publication automatique. La banque contient 160 questions (20 par catégorie), dont 140 « Tout public » (87,5 %). Catégorie, recherche, favoris et filtre « Non utilisés » s’appliquent aussi au tirage ; les questions vues ne reviennent qu’après redémarrage explicite de la sélection épuisée ou nouvelle session.
+
+Le compteur utilise `twitter-text` (comptage pondéré X, liens et emojis compris) et bloque la copie au-delà de 280 caractères. Copier ne marque jamais « Utilisé ». Favoris, usages et brouillons restent dans le navigateur ; un stockage illisible est signalé et conservé tant qu’il n’est pas effacé explicitement. Le calendrier reste inchangé.
+
+`npm run test:hey-grok` valide la banque et la logique (également exécuté avant chaque build). Après compilation, `npm run test:hey-grok:browser` exerce les parcours Chromium à 1280 et 390 px, la copie, les limites, la persistance et les échecs du stockage/presse-papiers. Ce parcours est inclus dans les contrôles navigateur de la CI.
+
 ## Démarrer
 
 ```bash

@@ -6,6 +6,7 @@ import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
 // Each tool and its data are fetched only when its route is opened.
+const HeyGrok = lazy(() => import('./pages/hey-grok/App'))
 const DcaProfiles = lazy(() => import('./pages/dca-profiles/App'))
 const PracticalSheets = lazy(() => import('./pages/practical-sheets/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
@@ -39,6 +40,7 @@ const FORMAT_COMPONENTS = {
 // Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/hey-grok': <HeyGrok />,
   '/classements-performances': <PerformanceRankings />,
   '/le-dca-de': <DcaProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
