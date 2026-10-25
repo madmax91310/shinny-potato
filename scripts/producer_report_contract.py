@@ -154,8 +154,10 @@ def finish(native, plan, *, completed=True):
 def normalize_contract(contract):
     """Minimal monitoring adapter, independent from a native collector's shape."""
     validate_contract(contract)
-    result = {'successes':[], 'errors':[], 'inactive':[]}
+    result = {'successes':[], 'errors':[], 'inactive':[], 'reportedResults':[]}
     for row in contract['outcomes']:
+        if row['id'] in contract['scope']['requestedIds'] and row.get('kind') != 'omission':
+            result['reportedResults'].append('report-result:'+contract['scope']['kind']+':'+row['id'])
         if row['status'] in ('succeeded', 'unchanged-verified'):
             result['successes'].append(row)
         elif row['status'] == 'failed':

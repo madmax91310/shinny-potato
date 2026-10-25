@@ -760,6 +760,7 @@ def update_status(state, run, jobs, reports=None):
     data_failures = previous.get('dataFailures', {}).copy()
     proof_failures = previous.get('proofFailures', {}).copy()
     proof_checks = previous.get('proofChecks', {}).copy()
+    result_history = previous.get('reportResultHistory', []).copy()
     for identifier in list(data_failures):
         if technical_proof(identifier):proof_failures[identifier] = data_failures.pop(identifier)
     retired_failures=previous.get('retiredDataFailures',{}).copy()
@@ -792,6 +793,17 @@ def update_status(state, run, jobs, reports=None):
                        'successes': report.get('successes', []), 'errors': report.get('errors', [])}
             if not any(r.get('runId') == receipt['runId'] and r.get('attempt') == receipt['attempt'] and r.get('file') == key for r in evidence_history):
                 evidence_history.append(receipt)
+        # An explicit status repairs reporting only. Cache/deferred/source failure
+        # cannot clear the corresponding financial failure. Unselected identities
+        # are absent from reportedResults, so targeted retries retain other gaps.
+        if evidence and evidence.get('scopePlanVerified'):
+            for identifier in report.get('reportedResults', []):
+                for key in list(proof_failures):
+                    if key == identifier or key.startswith(identifier+':run:'):
+                        result_history.append({**proof_failures.pop(key), 'proofId':key,
+                            'currentReportingRestoredBy':{'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence},
+                            'historicalOmissionPreserved':True})
+                proof_checks[bind_attempt(identifier,run)] = {'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
         # Explicit exclusion of a non-production candidate retires its legacy alert,
         # without claiming that the source recovered or clearing other failures.
         for inactive in report.get('inactive', []):
@@ -934,7 +946,7 @@ def update_status(state, run, jobs, reports=None):
             and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
         'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
         'reportQualifications': qualifications, 'reportQualificationHistory':qualification_history, 'validationChecks':validation_checks, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
-    entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks)
+    entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks, reportResultHistory=result_history)
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result

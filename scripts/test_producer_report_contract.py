@@ -191,6 +191,28 @@ class DurableScope(unittest.TestCase):
         self.assertEqual(state['dataFailures']['practical:B']['cause'],'Original supplier 403')
 
 
+    def test_explicit_cache_resolves_only_selected_reporting_omission(self):
+        from publish_automation_status import update_status
+        from test_automation_product import jobs,event
+        w='update-practical-sheets.yml';p=plan(('practical:A','practical:B'));p['reportStem']='practical-observation'
+        def report(native,declared):
+            with tempfile.TemporaryDirectory() as folder:
+                path=Path(folder)/'practical-observation.json'
+                plan_report=finished({},declared,completed=False)
+                path.write_text(json.dumps(finished(native,declared)))
+                return read_report(path,w,plan_report)
+        old=update_status({},event(w),jobs(w),[{'successes':[],'errors':[{'id':'practical:A','error':'Supplier 403'}]}])
+        old=update_status(old,event(w,101),jobs(w),[report({'sources':{},'failed':[],'changed':[]},p)])
+        self.assertEqual(len(old['workflows'][w]['proofFailures']),2)
+        p['items'][1]['selected']=False;p['mode']='targeted'
+        native={'sources':{},'failed':[],'changed':[], 'contractSkipped':[{'id':'practical:A','status':'cached','reason':'No source check'}]}
+        state=update_status(old,event(w,102),jobs(w),[report(native,p)])['workflows'][w]
+        self.assertEqual(state['dataFailures']['practical:A']['cause'],'Supplier 403')
+        self.assertEqual(len(state['proofFailures']),1)
+        self.assertIn('practical:B',next(iter(state['proofFailures'])))
+        self.assertTrue(state['reportResultHistory'][0]['historicalOmissionPreserved'])
+
+
 
 class InputScopeRegressions(unittest.TestCase):
     def test_empty_required_producer_configuration_is_not_normalized_to_success(self):
