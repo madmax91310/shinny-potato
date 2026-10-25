@@ -19,12 +19,16 @@ try {
     const { SHEETS } = await import('/shinny-potato/src/data/index-factsheets.js')
     const { renderFactsheetImage, imageCompanyLabel } = await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
     const { sortedRows } = await import('/shinny-potato/src/pages/factsheet-tweets/editorial.js')
+    const { factsheetCurrency, factsheetCurrencies, factsheetInCurrency } = await import('/shinny-potato/src/pages/factsheet-tweets/performanceCurrency.js')
     const fmt = (n, signed = false) => `${signed && n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
     let labels = [], boxes = []
     const original = CanvasRenderingContext2D.prototype.fillText
     CanvasRenderingContext2D.prototype.fillText = function (t, x, y, ...args) {
       if (![x, y].every(Number.isFinite)) throw new Error(`Invalid position ${t}: ${x}, ${y}`)
       const m = this.measureText(t), box = { t: String(t), l: x - m.actualBoundingBoxLeft, r: x + m.actualBoundingBoxRight, top: y - m.actualBoundingBoxAscent, bottom: y + m.actualBoundingBoxDescent }
+      const matrix = this.getTransform()
+      const points = [[box.l,box.top],[box.r,box.top],[box.l,box.bottom],[box.r,box.bottom]].map(([x,y])=>matrix.transformPoint({x,y}))
+      box.l=Math.min(...points.map(p=>p.x));box.r=Math.max(...points.map(p=>p.x));box.top=Math.min(...points.map(p=>p.y));box.bottom=Math.max(...points.map(p=>p.y))
       boxes.push(box); labels.push(String(t)); return original.call(this, t, x, y, ...args)
     }
     const normalize = text => text.replace(/\s+/g, '').toLowerCase()
@@ -41,21 +45,21 @@ try {
         if (Math.min(a.r, b.r) - Math.max(a.l, b.l) > 1 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 1) throw new Error(`Overlap ${id}: ${a.t} / ${b.t}`)
       }
       const annotation = labels.join(' '), normalized = normalize(annotation)
-      if (!/dividendes.*réinvestis/.test(annotation) || /hors dividendes|Price Return/.test(annotation)) throw new Error(`Wrong return convention ${id}`)
-      if (!annotation.includes(sheet.performance.date)) throw new Error(`Missing return date ${id}`)
-      if (sheet.indexFacts?.asOf && !annotation.includes(sheet.indexFacts.asOf.split('-').reverse().join('/'))) throw new Error(`Missing composition date ${id}`)
+      if (/Composition (?:au|:)|BCE|couverture de change|dividendes.*réinvestis/i.test(annotation)) throw new Error(`Removed metadata returned ${id}`)
+      const currency = factsheetCurrency(sheet)
+      if (sheet.returns.length && currency && !labels.includes(`PERFORMANCES ANNUELLES EN ${currency}`)) throw new Error(`Wrong displayed currency ${id}`)
       if (labels.filter(t => t === 'Épargnant Libre').length !== 1) throw new Error('Signature')
       if (/COULISSES|ISIN|…|Pas un conseil|Source\s*:/i.test(annotation)) throw new Error(`Unwanted copy ${id}`)
       if (!normalized.includes(normalize(sheet.index ?? sheet.title))) throw new Error(`Missing title ${id}`)
       if (sheet.constituents != null && (!labels.some(label => normalize(label) === normalize(sheet.constituents.toLocaleString('fr-FR'))) || !labels.includes('titres'))) throw new Error(`Wrong count ${id}`)
       for (const [year, value] of sheet.returns) if (!labels.includes(String(year)) || !labels.includes(fmt(value, true))) throw new Error(`Changed return ${id}: ${year} / ${fmt(value, true)}; ${labels.join(" | ")}`)
-      for (const heading of ['PAYS', 'SECTEURS', 'ENTREPRISES', 'PERFORMANCES ANNUELLES']) if (!labels.includes(heading)) throw new Error(`Missing block ${id}`)
+      for (const heading of ['PAYS', 'SECTEURS', 'ENTREPRISES', 'PERFORMANCES ANNUELLES']) if (!labels.some(label => label === heading || (heading === 'PERFORMANCES ANNUELLES' && label.startsWith(heading)))) throw new Error(`Missing block ${id}`)
       for (const rows of [sortedRows(sheet.countries).filter(([name]) => !/autres|others/i.test(name)).slice(0, 4), sortedRows(sheet.sectors).slice(0, 4), sortedRows(sheet.holdings).slice(0, 4)]) {
         for (const [, value] of rows) if (!labels.includes(fmt(value))) throw new Error(`Changed composition ${id}`)
       }
       for (const [name] of sortedRows(sheet.holdings).slice(0, 4)) if (!normalized.includes(normalize(imageCompanyLabel(name)))) throw new Error(`Missing company ${id}`)
       const background = canvas.getContext('2d').getImageData(0, 0, 1, 1).data
-      if (background[0] < 240 || background[1] < 235 || background[2] < 225) throw new Error('Missing ivory paper')
+      if (background[0] > 40 || background[1] > 100 || background[2] > 80) throw new Error('Missing emerald magazine background')
       if (canvas.width !== 1600 || canvas.height < 1600 || canvas.height / canvas.width > 1.6) throw new Error(`Wrong dimensions ${id}: ${canvas.height}`)
       await window.saveIndex({ id, png: canvas.toDataURL(), labels })
       count++
@@ -65,6 +69,7 @@ try {
       // Layout-only fixtures: the real sources are never edited. New years,
       // sparse composition and missing count/date must remain exportable.
       const sample = SHEETS.find(sheet => sheet.id === 'stoxx600')
+      for (const currency of factsheetCurrencies(sample)) await check(factsheetInCurrency(sample, currency), `layout-${currency}`)
       for (const years of [1, 3, 6, 7, 10]) await check({ ...sample, returns: Array.from({ length: years }, (_, i) => [2010 + i, [-10.64, 0, 24.91][i % 3]]) }, `layout-${years}-years`)
       await check({ ...sample, constituents: null, indexFacts: { ...sample.indexFacts, targetConstituents: null, asOf: null }, snapshot: 'archive non datée' }, 'layout-undated')
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
@@ -85,5 +90,5 @@ try {
     await page.screenshot({ path: `test-artifacts/index-ribbon/ui-${width}.png` })
   }
   assert.deepEqual(errors, [])
-  console.log(`${total} images d’indices : bandes ivoire en relief, sources inchangées, poids/comptages/dates et rendements conservés, aucun chevauchement ni rognage ; export desktop et mobile OK.`)
+  console.log(`${total} images d’indices : magazine émeraude, sources inchangées, poids/comptages et rendements conservés, mentions retirées, aucun chevauchement ni rognage ; export desktop et mobile OK.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }
