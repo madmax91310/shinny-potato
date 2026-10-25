@@ -1,0 +1,51 @@
+{
+  "capturedAt": "2026-10-25T08:13:56.311389+00:00",
+  "currentHeadRetained": "14b7af91ed6e58be547e664eaaecc6800fbcb50e",
+  "onlySupersededPullRequestRuns": [
+    {
+      "conclusion": "",
+      "databaseId": 40175484884,
+      "event": "pull_request",
+      "headSha": "d5048efffc4a34b4bae42dee33bb0083f64c4032",
+      "status": "pending",
+      "workflowName": "Update active monthly market histories",
+      "cancelResult": "\u2713 Request to cancel workflow 40175484884 submitted."
+    },
+    {
+      "conclusion": "",
+      "databaseId": 40175484918,
+      "event": "pull_request",
+      "headSha": "d5048efffc4a34b4bae42dee33bb0083f64c4032",
+      "status": "in_progress",
+      "workflowName": "Update active ETF issuer data",
+      "cancelResult": "\u2713 Request to cancel workflow 40175484918 submitted."
+    },
+    {
+      "conclusion": "",
+      "databaseId": 40175302332,
+      "event": "pull_request",
+      "headSha": "6f65582051fc11baa0ba5ea2571137c58333f0f1",
+      "status": "in_progress",
+      "workflowName": "Update active monthly market histories",
+      "cancelResult": "\u2713 Request to cancel workflow 40175302332 submitted."
+    }
+  ],
+  "productionRunsCanceled": false,
+  "additionalCancellations": [
+    {
+      "capturedAt": "2026-10-25T08:21:29.031337+00:00",
+      "currentHeadRetained": "80ca9f851022342d0dede4182a6a34867fe0ea8c",
+      "onlySupersededPullRequestRuns": [
+        {
+          "conclusion": "",
+          "databaseId": 40175678830,
+          "event": "pull_request",
+          "headSha": "14b7af91ed6e58be547e664eaaecc6800fbcb50e",
+          "status": "in_progress",
+          "workflowName": "Update active monthly market histories",
+          "cancelResult": "\u2713 Request to cancel workflow 40175678830 submitted."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "comparison": "Targeted read-only source check after a changed aggregate response hash; no production mutation",
+  "sourceResponseMatchesOrdinaryProductionCheck": true,
+  "monthlyPricesUnchanged": true,
+  "anniversaryPricesUnchanged": true,
+  "latestNavUnchanged": true,
+  "excludedMonths": [
+    "2014-12"
+  ],
+  "changedSourceLeaves": [
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/tonnes/formattedAsOfDate",
+      "old": "22/Oct/2026",
+      "new": "23/Oct/2026"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/tonnes/asOfDate",
+      "old": "20261022",
+      "new": "20261023"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/tonnes/formattedValue",
+      "old": "1.83",
+      "new": "1.86"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/tonnes/value",
+      "old": "1.833",
+      "new": "1.86"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/metalEntitlementPerSec/formattedAsOfDate",
+      "old": "22/Oct/2026",
+      "new": "23/Oct/2026"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/metalEntitlementPerSec/asOfDate",
+      "old": "20261022",
+      "new": "20261023"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/metalEntitlementPerSec/formattedValue",
+      "old": "0.028542148",
+      "new": "0.028541991"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/metalEntitlementPerSec/value",
+      "old": "0.028542148",
+      "new": "0.028541991"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/ounces/formattedAsOfDate",
+      "old": "22/Oct/2026",
+      "new": "23/Oct/2026"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/ounces/asOfDate",
+      "old": "20261022",
+      "new": "20261023"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/ounces/formattedValue",
+      "old": "58,926.46",
+      "new": "59,810.94"
+    },
+    {
+      "path": "/componentsByNameMap/keyFundFacts/containersByNameMap/default/dataPointsByNameMap/ounces/value",
+      "old": "58926.463",
+      "new": "59810.941"
+    }
+  ],
+  "previousResponseSha256": "57adc81071ed155dc2ab8d2c52e1e6f8818b8cf236b8e61683c7125e6dffde06",
+  "newResponseSha256": "121ac330bb7ac657fb7d549cbf9ff82abfa33dcd9d67718ca74de2e3acf068c1",
+  "checkedAt": "2026-10-25"
+}

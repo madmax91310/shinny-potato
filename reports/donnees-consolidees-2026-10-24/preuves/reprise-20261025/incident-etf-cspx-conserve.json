@@ -1,0 +1,16 @@
+{
+  "run": 40176223552,
+  "event": "pull_request",
+  "artifact": 12593050263,
+  "isin": "IE00B5BMR087",
+  "collectionErrors": [
+    {
+      "field": "sectors-primary",
+      "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "reason": "Published sector table is all zero; separately qualified complete-holdings aggregation used without scaling",
+      "sha256": "3f5a576aecb9a82f0a303ccad9976903235a7f53c85db6cb414fd7dd4d46981f",
+      "fallbackQualified": true
+    }
+  ],
+  "fallbackQualified": true
+}

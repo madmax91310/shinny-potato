@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-25T06:42:54.011473+00:00",
+  "publicSource": "https://live.euronext.com/en/ajax/getNoticePublicData/IE00B4K6B022-XPAR",
+  "files": [
+    {
+      "file": "hsbc-euronext-notices.html.gz",
+      "sha256": "61657169300d3ee35fa5f40b2ededd02b32c1b5949b3b758da27fd8211d2b2cb"
+    },
+    {
+      "file": "hsbc-notice-2004271-Abstract.html.gz",
+      "sha256": "df3a9bdcb6e80458e64272665654a7ccdf535004b03ba8c45e2a4521ef950196"
+    },
+    {
+      "file": "hsbc-notice-2004271-Detail.html.gz",
+      "sha256": "19c987f13fc159d707a867b040b33a0473ded421daeb2b1c07bca1002ee0d1a2"
+    },
+    {
+      "file": "hsbc-notice-2004913-Abstract.html.gz",
+      "sha256": "b828e284a175e6deeed2d90c97a55e19b80f9085570ef06fab70ed144e99a56b"
+    },
+    {
+      "file": "hsbc-notice-2004913-Detail.html.gz",
+      "sha256": "07a3b4b209445fecdf4c928d2f31dc2685b032458589e5b9f00339805328edfc"
+    },
+    {
+      "file": "hsbc-notice-2005376-Abstract.html.gz",
+      "sha256": "196eceec7c1af4b5722250b1d52aa8a295f28a2f1935cd278cdba1eea609f0f4"
+    },
+    {
+      "file": "hsbc-notice-2005376-Detail.html.gz",
+      "sha256": "cd210cedb542362f3e50b322a0b1a2112ca6f0ea3343e939fe4d2641ee4b50e6"
+    }
+  ],
+  "facts": [
+    "PAR_20240724_21286_EUR issued 24 July, effective 1 August 2024; exact ISIN present in public detail.",
+    "PAR_20240725_21440_EUR issued 25 July, effective 8 August 2024; exact ISIN present in public detail.",
+    "PAR_20240726_21559_EUR issued 26 July, effective 8 August 2024; exact ISIN present in public detail."
+  ],
+  "missing": "Public abstracts show both dates. Cancellation/replacement of the earlier notice and exact 2024 ex-date remain unproven. Full paid notice not obtained; no restriction bypass.",
+  "runtimeCorrectionApplied": false,
+  "warning": "Do not select the August 8 removal only because its return rounds to the annual NAV."
+}

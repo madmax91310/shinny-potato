@@ -1,0 +1,84 @@
+{
+  "observedAt": "2026-10-25T11:01:07.932635+00:00",
+  "workflows": [
+    {
+      "workflow": "update-market-monthly.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-24T11:37:22Z",
+          "databaseId": 40090641233,
+          "event": "schedule",
+          "headSha": "a09e08a04b21b3c9566ea704363eb81678806628",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40090641233",
+          "workflowName": "Update active monthly market histories"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-23T12:06:08Z",
+          "databaseId": 39950819281,
+          "event": "schedule",
+          "headSha": "1892bdeec74b4ecc655f0e3a181bc02d4dcb4e6e",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/39950819281",
+          "workflowName": "Update active monthly market histories"
+        }
+      ],
+      "error": null
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-24T12:12:10Z",
+          "databaseId": 40092955985,
+          "event": "schedule",
+          "headSha": "c3d0bbdeaccd3c969c1bdd957b2d97f9447efbf7",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092955985",
+          "workflowName": "Update publication observations"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-23T12:49:56Z",
+          "databaseId": 39956309436,
+          "event": "schedule",
+          "headSha": "df02156644c3d68881d5f504385918da0195d78b",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/39956309436",
+          "workflowName": "Update publication observations"
+        }
+      ],
+      "error": null
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "runs": [
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-24T13:23:52Z",
+          "databaseId": 40097956898,
+          "event": "schedule",
+          "headSha": "2179e96eae7c557f0dfd097a9384a812bf4be509",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40097956898",
+          "workflowName": "Update exact instrument metadata"
+        },
+        {
+          "conclusion": "failure",
+          "createdAt": "2026-10-23T14:18:01Z",
+          "databaseId": 39968438961,
+          "event": "schedule",
+          "headSha": "e3c7492de2b01ce71ad8d8dc7d80fad6f7c4a613",
+          "status": "completed",
+          "url": "https://github.com/madmax91310/shinny-potato/actions/runs/39968438961",
+          "workflowName": "Update exact instrument metadata"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "limite": "Événements schedule seulement ; push et workflow_dispatch sont conservés dans les preuves distinctes. Aucun prochain cron attendu pour poursuivre."
+}

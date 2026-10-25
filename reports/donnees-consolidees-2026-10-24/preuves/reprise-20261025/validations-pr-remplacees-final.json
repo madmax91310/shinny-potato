@@ -1,0 +1,22 @@
+{
+  "currentHead": "cc5c8d3fe0fbe87d7c98a232f6e7638cb3ca3ecf",
+  "scope": "Obsolete read-only pull_request validations only, no production run canceled",
+  "runs": [
+    {
+      "databaseId": 40169418041,
+      "event": "pull_request",
+      "headBranch": "fix/consolidated-recovery-20261025",
+      "headSha": "2f6742a98b04ee0a1d9df954f4d9b9fdfdecfc49",
+      "name": "Update active monthly market histories",
+      "status": "in_progress"
+    },
+    {
+      "databaseId": 40169418052,
+      "event": "pull_request",
+      "headBranch": "fix/consolidated-recovery-20261025",
+      "headSha": "2f6742a98b04ee0a1d9df954f4d9b9fdfdecfc49",
+      "name": "Deploy to GitHub Pages",
+      "status": "in_progress"
+    }
+  ]
+}

@@ -1,0 +1,1995 @@
+{
+  "capturedAt": "2026-10-25T09:03:02.937Z",
+  "publication": {
+    "sha": "eb85ecba7de72f1ce99b2695cb0adf0975ee69bb",
+    "builtAt": "2026-10-25T08:18:34Z"
+  },
+  "verification": "Shared guard and calculation engine executed on published registry bytes; browser proof is separate",
+  "total": 79,
+  "qualified": 30,
+  "refused": 49,
+  "qualifiedParts": 20,
+  "rows": [
+    {
+      "isin": "CH0454664001",
+      "id": "etfCH0454664001",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "CH0454664001",
+      "id": "etfCH0454664001",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ABTC.PA?period1=1625097600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "DE000A0H08P6",
+      "id": "etfEuropeRetail",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/EXH8.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "id": "etfDE000A27Z304",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-17",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "id": "etfDE000A27Z304",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-17",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "id": "etfDE000A27Z304",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-17",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BTCE.DE?period1=1593561600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0007054358",
+      "id": "etfFR0007054358",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "id": "etfFR0010342592",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "id": "etfFR0010342592",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "id": "etfFR0010342592",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0010755611",
+      "id": "etfFR0010755611",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0010755611",
+      "id": "etfFR0010755611",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CL2.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0011550185",
+      "id": "etfFR0011550185",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-20",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/ESE.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0011871110",
+      "id": "etfFR0011871110",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "periodReturnPct": 36.590106357321076,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-25",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ]
+    },
+    {
+      "isin": "FR0011871128",
+      "id": "etfFR0011871128",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "periodReturnPct": 38.23046439578304,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-25",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+      ]
+    },
+    {
+      "isin": "FR0013411998",
+      "id": "etfFR0013411998",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PTPXH.PA?period1=1556668800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0013412004",
+      "id": "etfFR0013412004",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PALAT.PA?period1=1556668800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "FR0013416716",
+      "id": "etfFR0013416716",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 45.7145472545309,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-25",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "id": "etfGB00B15KXQ89",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "id": "etfGB00B15KXQ89",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "id": "etc_wti_crude_oil",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "id": "etc_wti_crude_oil",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "id": "etc_wti_crude_oil",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/CRUD.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE000M7V94E1",
+      "id": "etfIE000M7V94E1",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 49.34816504862069,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397125&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=209629&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233161&ticker=UCTNUCL",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/nuclear-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "id": "etfIE000RDRMSD1",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "periodReturnPct": 197.37016069593363,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "id": "etfIE000RDRMSD1",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 27.429810074318752,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE000YU9K6K2",
+      "id": "etfIE000YU9K6K2",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 73.26819596938567,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/space-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397122&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=207700&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233159&ticker=UCTJEDI",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/space-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00B1XNHC34",
+      "id": "etf_clean_energy",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IQQH.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1230163200&period2=1230768000&interval=1d&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "id": "etfIE00B2QWCY14",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "id": "etfIE00B2QWCY14",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "id": "etfIE00B2QWCY14",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IUS3.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B42NKQ00",
+      "id": "etfIE00B42NKQ00",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "periodReturnPct": 11.186274964914533,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00B43HR379",
+      "id": "etfIE00B43HR379",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "periodReturnPct": 11.083035702639066,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00B43HR379",
+      "id": "etfIE00B43HR379",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "periodReturnPct": 22.66517850911798,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00B4556L06",
+      "id": "etcPalladium",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-12",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B4JNQZ49",
+      "id": "etfIE00B4JNQZ49",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "periodReturnPct": 45.68372944210455,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00B4K6B022",
+      "id": "etfIE00B4K6B022",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/50E.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "id": "etfIE00B5W4TY14",
+      "year": 2016,
+      "start": "2015-12",
+      "end": "2016-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      },
+      "periodReturnPct": 11.551775977338362,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "id": "etfIE00B5W4TY14",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "periodReturnPct": 28.643045708699066,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BD1F4L37",
+      "id": "etfIE00BD1F4L37",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "periodReturnPct": 21.815985840925634,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=285209&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "id": "etfIE00BDFBTQ78",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "periodReturnPct": 29.816033490126227,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "id": "etfIE00BDFBTQ78",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "periodReturnPct": 19.05454573220309,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "id": "etfIE00BDFBTQ78",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 68.44269491177263,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/DK/en/investments/mining-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397117&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195078&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=347851&pageid=233154&ticker=UCTGDIG",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/mining-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "id": "etfIE00BDVPNG13",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "id": "etfIE00BDVPNG13",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WTAI.L?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "id": "etf_financials",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WFNS.AS : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits",
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BJ5JP436",
+      "id": "etf_world_communication",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCMS.AS : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "id": "etfCloudWisdomtree",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-12",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "id": "etfCloudWisdomtree",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-12",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BK5BCD43",
+      "id": "etfLgArtificialIntelligence",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/AIAI.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BK5BCH80",
+      "id": "etfIE00BK5BCH80",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-16",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/RENW.MI?period1=1606780800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "IE00BLNMYC90",
+      "id": "etfEqualWeight",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2020-12",
+        "end": "2021-12"
+      },
+      "periodReturnPct": 39.658473243748205,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+        "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BQN1K562",
+      "id": "etfIE00BQN1K562",
+      "year": 2016,
+      "start": "2015-12",
+      "end": "2016-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2015-12",
+        "end": "2016-12"
+      },
+      "periodReturnPct": -1.2958882073392686,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=272024&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "id": "etf_gold_miners",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "periodReturnPct": -4.7050424385167045,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "id": "etf_gold_miners",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "periodReturnPct": 42.8462915591167,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "id": "etf_gold_miners",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 126.05101071233493,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/gold-miners-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397118&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195072&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=234355&pageid=233155&ticker=UCTGDX",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/gold-miners-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BQT3WG13",
+      "id": "etfIE00BQT3WG13",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2016-12",
+        "end": "2017-12"
+      },
+      "periodReturnPct": 27.822149616106785,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BSPLC298",
+      "id": "etfSmallValueEurope",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2018-12",
+        "end": "2019-12"
+      },
+      "periodReturnPct": 26.946580129805287,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-value-weighted-ucits-etf-zprx-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprx-gy.xlsx"
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "id": "etfUsaSmallValue",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "periodReturnPct": 16.968118541095144,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "id": "etfUsaSmallValue",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2023-12",
+        "end": "2024-12"
+      },
+      "periodReturnPct": 16.6497083175533,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "id": "etfUsaSmallValue",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2024-12",
+        "end": "2025-12"
+      },
+      "periodReturnPct": 0.6961326504896226,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+        "https://www.ssga.com/library-content/products/fund-data/etfs/emea/navhist-emea-en-zprv-gy.xlsx",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BYWQWR46",
+      "id": "etfIE00BYWQWR46",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2019-12",
+        "end": "2020-12"
+      },
+      "periodReturnPct": 68.14275802779528,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.vaneck.com/uk/en/investments/esports-etf/",
+        "https://www.vaneck.com/Main/HistoPricesBlock/GetContent/?blockid=193521&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/FundDetailsBlock/GetContent/?blockid=397116&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/TradingInformationBlock/GetContent/?blockid=195077&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/Main/PerformancePastYearsChartBlock/GetContent/?blockid=203399&pageid=233153&ticker=UCTESPO",
+        "https://www.vaneck.com/static/eu/js/dist/main.js",
+        "https://www.vaneck.com/ucits/investments/esports-etf/downloads/fundhistoprices/",
+        "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+      ]
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "id": "etfIE00BYXG2H39",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2017-12",
+        "end": "2018-12"
+      },
+      "periodReturnPct": -9.202262615868339,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "id": "etfIE00BYXG2H39",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": true,
+        "convention": "fund-nav-total-return",
+        "start": "2022-12",
+        "end": "2023-12"
+      },
+      "periodReturnPct": 4.219573990476255,
+      "engineRefused": false,
+      "basis": "fund-nav-total-return",
+      "currency": "USD",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-23",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ]
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "id": "etc_cocoa",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "id": "etc_cocoa",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COCO.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "id": "etc_brent_crude_oil",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "id": "etc_brent_crude_oil",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "id": "etc_brent_crude_oil",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/BRNT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB334",
+      "id": "etc_natural_gas",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/NGAS.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "id": "etc_coffee",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "id": "etc_coffee",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "id": "etc_coffee",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COFF.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "id": "etc_wheat",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "id": "etc_wheat",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "USD",
+      "sourceRegistry": "src/data/non-bond-monthly-records.json",
+      "sourceBlobSha": "b201c5a814f561f8046d5a898b21d3c4de84458e",
+      "checkedAt": "2026-10-13",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/WEAT.L?period1=1577836800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "LU1737652823",
+      "id": "etfLU1737652823",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/10AJ.DE?period1=1517443200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "LU1875395870",
+      "id": "etfLU1875395870",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-24",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/XDJE.DE?period1=1543622400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "LU2089238385",
+      "id": "etfLU2089238385",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "PRAJ.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    },
+    {
+      "isin": "LU2196470426",
+      "id": "etfLU2196470426",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "qualification": {
+        "qualified": false,
+        "code": "financial-window-unconfirmed",
+        "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+      },
+      "periodReturnPct": null,
+      "engineRefused": true,
+      "basis": "adjusted",
+      "currency": "EUR",
+      "sourceRegistry": "src/data/automated-etf-monthly.json",
+      "sourceBlobSha": "667eda2e8432f8b0641cbfd4501fbecb8b01c4ce",
+      "checkedAt": "2026-10-18",
+      "periodEnd": "2026-09",
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/XNKY.DE?period1=1606780800&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ]
+    }
+  ]
+}

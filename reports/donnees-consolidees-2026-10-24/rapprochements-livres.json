@@ -1605,5 +1605,26 @@
       "preuves/autonomie-commune/hsbc-ajustement-2024.json"
     ],
     "piece_manquante": "Qualifier les clôtures de valorisation et dernières transactions (51,04 EUR Euronext contre 51,41 EUR Yahoo au 31/12), les bornes NAV quotidiennes et la convention de réinvestissement ; le résidu ne démontre pas une erreur NAV."
+  },
+  {
+    "id_suivi": "incident:scope:update-publication-observations.yml:anniversary-observation.json",
+    "axe": "supervision",
+    "type_defaut": "rapprochement documentaire de périmètre",
+    "statut_donnees": "Le rapport ordinaire actuel déclare requestedIds et expectedIds ; huit NAV contrôlées et enregistrées. Aucun défaut de valeur démontré par ce signal.",
+    "statut_supervision": "ancien signal de périmètre encore actif ; ingestion/résolution à rapprocher",
+    "reliquat_actif": true,
+    "verification_en_attente": true,
+    "niveau_preuve": "Rapport réel GitHub et contrôle du moniteur courant, distincts de la complétude de tous les autres rapports",
+    "probleme": "Le signal conserve le run 40110829062 alors que le rapport du run 40178244236 comporte désormais le périmètre attendu.",
+    "piece_manquante": "Vérifier le retrait du marqueur de périmètre ancien à réception du nouveau rapport complet, dans le chantier supervision ; ne pas modifier les dates des valeurs.",
+    "preuves": [
+      "preuves/reprise-20261025/collecte-production-huit-nav.json",
+      "preuves/reprise-20261025/monitor.json"
+    ],
+    "rapprochement": {
+      "runAncien": "40110829062",
+      "runAvecScopeObserve": "40178244236",
+      "sourceRepareeParCeRapprochement": false
+    }
   }
 ]

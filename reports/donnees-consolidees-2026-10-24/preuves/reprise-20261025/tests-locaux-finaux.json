@@ -1,0 +1,18 @@
+{
+  "gitRegression": {
+    "command": "PYTHONPATH=scripts python -m unittest test_observation_rebase test_validated_data_commit test_projection_recording",
+    "tests": 30,
+    "passed": true,
+    "log": "..............................\n----------------------------------------------------------------------\nRan 30 tests in 5.063s\n\nOK\n"
+  },
+  "consolidation": {
+    "tests": 14,
+    "passed": true,
+    "log": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.010s\n\nOK\n"
+  },
+  "incomeConsumers": {
+    "passed": true,
+    "log": "Five exact iShares parts: issuer income-return oracle, explicit FX, no double cash, and separate unadjusted anniversary NAV verified.\nThe unresolved December 2014 palladium component remains an explicit monitoring incident after a successful source control.\nThe monthly qualification targets its actual series consumers; independent annual tools and unused anniversary months are preserved.\n"
+  },
+  "invocationNote": "Un premier appel unittest depuis la racine sans PYTHONPATH=scripts a échoué à importer deux modules ; relance avec le chemin de modules du dépôt réussie."
+}
