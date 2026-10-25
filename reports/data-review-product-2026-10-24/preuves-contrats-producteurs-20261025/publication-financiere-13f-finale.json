@@ -1,0 +1,22 @@
+{
+  "buildInfo": {
+    "sha": "e0811c030f43f520822808793314c14b7c42296a",
+    "dataSha": "2f06b068a8c827a736e11e2d64379a9540253291",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-25T19:40:34.768Z"
+  },
+  "dataCommitPaths": [
+    "src/data/automated-economic.json"
+  ],
+  "publicFile": "public/data/investors/review-metadata.json",
+  "expectedGitBlobSha": "a24d0e565f092c12800b7a59e91b8fb478913251",
+  "actualPublicGitBlobSha": "a24d0e565f092c12800b7a59e91b8fb478913251",
+  "match": true,
+  "sourceRunId": 40223458923,
+  "qualification": "The actual producer publisher requested e0811c0 (job 121261677855); the public financial metadata file matches that source snapshot exactly. Native filing data was unchanged; no new observation quarter claimed.",
+  "checkedAt": "2026-10-25T19:57:34.099953+00:00",
+  "producerRequestedDataRef": "e0811c030f43f520822808793314c14b7c42296a",
+  "producerExpectedFileBlob": "a24d0e565f092c12800b7a59e91b8fb478913251",
+  "producerExpectedPublicFileMatch": true,
+  "publishedCodeIncludes960": true
+}

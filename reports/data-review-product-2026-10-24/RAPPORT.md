@@ -299,3 +299,21 @@ Preuves séparées : `contrats-executes.csv`, `contrats-executes-bilan.json`,
 `publication-pages-verifiee.json` et le dossier `13f-apres-correction/`, tous dans
 `preuves-contrats-producteurs-20261025/`. Le suivi principal reste
 `suivi-perimetre.csv` / `bilan.json` ; aucune liste de corrections concurrente créée.
+
+### Vérification ultérieure de publication
+
+Au contrôle final, le parent 13F **40223458923** est terminé en succès. Le site sert
+maintenant le code **e0811c0** (incluant #960) et les données **2f06b06**, voie
+`validated-code-data`. Le fichier public `public/data/investors/review-metadata.json`
+correspond exactement au snapshot **e0811c0** demandé par son producteur (blob Git
+`a24d0e565f092c12800b7a59e91b8fb478913251`). Les relevés restent inchangés ; aucune
+nouvelle période financière n'est annoncée. Le parcours navigateur mobile/ordinateur
+passe aussi sur cette version, sans contrat individuel courant manquant ni erreur
+observée. La mention précédente de publication en attente était l'état du relevé initial.
+
+Le moniteur chargé dans ce dernier parcours conserve encore `publicationStatus=not-run`
+pour le parent coalescé et un diagnostic de publication ; cette qualification de preuve
+reste distincte de la présence publique du fichier vérifiée ici. Elle n'est pas déclarée
+réparée par la seule réussite du workflow. Les réserves de crons et les deux périmètres
+historiques inconnus restent inchangés. Les preuves supplémentaires se trouvent dans
+`publication-financiere-13f-finale.json` et `parcours-public-derniere-version.json`.
