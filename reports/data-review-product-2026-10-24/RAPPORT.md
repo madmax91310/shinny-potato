@@ -317,3 +317,19 @@ reste distincte de la présence publique du fichier vérifiée ici. Elle n'est p
 réparée par la seule réussite du workflow. Les réserves de crons et les deux périmètres
 historiques inconnus restent inchangés. Les preuves supplémentaires se trouvent dans
 `publication-financiere-13f-finale.json` et `parcours-public-derniere-version.json`.
+
+### Cause du raccord de publication restant
+
+Le publieur commun retournait avant d'écrire `required-data.json` sur les chemins
+« données déjà publiques » et « code consommateur en attente ». Son reçu n'était en
+outre exporté que lors d'un nouveau déploiement réussi. Le moniteur ne pouvait donc
+rapprocher l'ancien incident avec les données réellement servies.
+
+Le correctif prépare les hashes du snapshot source avant toute consultation publique
+et exporte le reçu existant dès qu'il est prêt, même sans nouveau déploiement. Ce reçu
+exprime le périmètre attendu, jamais une publication réussie. Le lecteur existant doit
+toujours vérifier les fingerprints publics pour qualifier la livraison. Les conditions
+de composition, build, ordre, smoke et déploiement restent intactes. Des scénarios
+isolés vérifient les deux sorties anticipées et une panne réseau, ainsi que la présence
+du reçu avant la première consultation et l'absence de succès de publication inventé.
+La preuve GitHub de ce complément est encore en cours, pas déduite de ce changement.
