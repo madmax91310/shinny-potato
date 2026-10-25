@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -221,6 +221,72 @@
         "tool": null,
         "reason": "Épargne salariale et salaires : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Salaire minimum : une hausse du Smic avant le 1er janvier en discussion, selon Roland Lescure — Quels salariés ou dispositifs couvre cette publication ? Distinguer encours, versements et rendements.",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-09acb7d4394204311836",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+        "value": {
+          "title": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+          "summary": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+        "publicationId": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-24",
+        "period": "2026-10-24",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+        "populationScope": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre.",
+        "topic": "carburants",
+        "topicLabel": "Carburants",
+        "summary": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/finance-selection/mes-placements-liberte",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/placement-direct/per-retraite-isr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/bourse-direct/e-PER",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/carac/per-individuel-carac",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "394767990ea53f02c7db5c42fd963aed403fdfc4779623e8af6bedc1b23f9240",
+          "excerpt": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
         "backfill": true
       },
       {
@@ -544,7 +610,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -621,6 +687,72 @@
         "summary": "",
         "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-d4a904c47e253f4d0f28",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations",
+        "value": {
+          "status": "Annonce publiée",
+          "facts": {
+            "amounts": [
+              "2,5 %",
+              "30 000 €",
+              "30 jours",
+              "5 ans"
+            ],
+            "pea": false,
+            "eligible": null,
+            "access": null
+          }
+        },
+        "sourceUrl": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+        "publicationId": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+        "publisher": "BPCE · Banque Populaire et Caisse d’Épargne",
+        "publishedAt": "2026-10-19",
+        "period": "2026-10-19",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce BPCE · Banque Populaire et Caisse d’Épargne · https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+        "populationScope": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités.",
+        "conditions": {
+          "clients": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Des démarches d’assurance simplifiées pour les clients professionnels assurés par BPCE Assurances ayant subi des dommages Prolongation du délai de déclaration de sinistre jusqu’à 30 jours calendaires ; Nos clients professionnels peuvent effectuer leur déclaration, par simple appel aux numéros suivants : Banque Populaire : 0980 986 986 Caisse d’Epargne : 0969 362 837 Accélération du processus d’indemnisation en étroite coordination avec les cabinets d’expertise afin d’organiser les visites d’expertise le plus rapidement possible ;",
+          "pays": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. En fonction des situations régionales, les conseillers de proximité pourront adapter ce socle de mesures afin d’apporter des réponses au plus près des besoins de chaque client. Nicolas Namias, président du directoire de BPCE, déclare : « Après les violences et les dégradations inacceptables survenues dans de nombreuses villes en France, je veux exprimer tout mon soutien, au nom du Groupe BPCE , à celles et ceux qui en subissent aujourd’hui les conséquences.",
+          "formule": "Remplacement en urgence des TPE (terminaux de paiement) détruits et suspension personnalisée des abonnements monétiques .",
+          "duree": null,
+          "plafond": null,
+          "versement": null,
+          "tauxPromotionnel": null,
+          "tauxNormal": null,
+          "frais": "Un dispositif individualisé pour les clients professionnels et commerçants ayant subi un dommage lors des événements Mise en place d’un prêt express « reprise d’activité » au taux de 2,5 % jusqu’à 30 000 € sur 3 à 5 ans sans frais de dossier ; Mise en place d’un crédit-bail express d’un montant allant jusqu’à 30 000 € bénéficiant d’un loyer privilégié sans marge pour le crédit bailleur et sans frais de dossier ;"
+        },
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+            "role": "official",
+            "label": "BPCE · Banque Populaire et Caisse d’Épargne"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "fa4e0ffabc0b669851c1eafdb406b4a3103bbad567691d379e755b9e0a1e3af8",
+          "excerpt": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
       },
       {
         "family": "pouvoir-achat",
@@ -723,7 +855,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -757,7 +889,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -1329,7 +1461,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T07:51:23.076Z",
+        "checkedAt": "2026-10-25T07:55:55.252Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -1400,6 +1532,57 @@
         "tool": null,
         "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026 — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-a8e1d7fe1efc2acb7b19",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Hausse des prix de l’énergie : comparez les offres disponibles",
+        "value": {
+          "title": "Hausse des prix de l’énergie : comparez les offres disponibles",
+          "summary": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+        "publicationId": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+        "publisher": "Médiateur national de l’énergie",
+        "publishedAt": "2026-09-24",
+        "period": "2026-09-24",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+        "populationScope": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC.",
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+            "role": "official",
+            "label": "Médiateur national de l’énergie"
+          },
+          {
+            "url": "https://comparateur-offres.energie-info.fr/compte/profil",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "54faab702d9588162d6001d641dea4e010accf68a8b4f03a052d4955fd5d3266",
+          "excerpt": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Hausse des prix de l’énergie : comparez les offres disponibles — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
         "backfill": true
       },
       {
@@ -1959,6 +2142,123 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-e23964e3531242621cba",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Bourse Direct lance ses Plans d’Investissement Programmés sans frais sur ETF, à partir de quelques euros, disponibles sur PEA et compte-titres.",
+        "value": {
+          "title": "Bourse Direct lance ses Plans d’Investissement Programmés sans frais sur ETF, à partir de quelques euros, disponibles sur PEA et compte-titres.",
+          "summary": "Bourse Direct, l’un des principaux acteurs du courtage en ligne en France, enrichit son offre avec les Plans d’Investissement Programmés : une nouvelle façon d’investir simplement, régulièrement et efficacement. Cette solution permet désormais aux clients de Bourse Direct, qu’ils soient débutants ou expérimentés, de mettre en place des investissements réguliers et automatisés sur leur compte-titres et/ou leur PEA, directement depuis le site internet ou l’application mobile. Conçue pour faciliter l’accès à la bourse et permettre une gestion financière plus sereine, cette solution répond à une demande croissante d’une gestion simple et régulière des placements.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
+        "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
+        "publisher": "Bourse Direct",
+        "publishedAt": "2026-05-12",
+        "period": "2026-05-12",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
+        "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+        "topic": "etf",
+        "topicLabel": "ETF",
+        "summary": "Bourse Direct, l’un des principaux acteurs du courtage en ligne en France, enrichit son offre avec les Plans d’Investissement Programmés : une nouvelle façon d’investir simplement, régulièrement et efficacement. Cette solution permet désormais aux clients de Bourse Direct, qu’ils soient débutants ou expérimentés, de mettre en place des investissements réguliers et automatisés sur leur compte-titres et/ou leur PEA, directement depuis le site internet ou l’application mobile. Conçue pour faciliter l’accès à la bourse et permettre une gestion financière plus sereine, cette solution répond à une demande croissante d’une gestion simple et régulière des placements.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
+            "role": "official",
+            "label": "Bourse Direct"
+          },
+          {
+            "url": "https://groupe.boursedirect.fr/categorie/actualites",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "d9551a63293c750340625b26489c8f8df9d09e7feed8d9cd75b6ed1a2352c1d4",
+          "excerpt": "Bourse Direct, l’un des principaux acteurs du courtage en ligne en France, enrichit son offre avec les Plans d’Investissement Programmés : une nouvelle façon d’investir simplement, régulièrement et efficacement. Cette solution permet désormais aux clients de Bourse Direct, qu’ils soient débutants ou expérimentés, de mettre en place des investissements réguliers et automatisés sur leur compte-titres et/ou leur PEA, directement depuis le site internet ou l’application mobile. Conçue pour faciliter l’accès à la bourse et permettre une gestion financière plus sereine, cette solution répond à une demande croissante d’une gestion simple et régulière des placements.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "ETF : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Bourse Direct lance ses Plans d’Investissement Programmés sans frais sur ETF, à partir de quelques euros, disponibles sur PEA et compte-titres. — Quelle exposition ou condition nouvelle est annoncée, avec quels champs encore inconnus ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-41f8267376747e25b866",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+        "value": {
+          "title": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+          "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-6",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-6",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2026-04-22",
+        "period": "2026-04-22",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-6",
+        "populationScope": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-6",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/78671/fr/Crypto-actifs__l%27Autorite_des_marches_financiers_met_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_non_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "f09d0e416fde44a2b156395f7ff322aefd8a287cf7bc2e3b2a984e8e277eea6d",
+          "excerpt": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-4ea0a28bd5db730bee55",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -2001,6 +2301,67 @@
         "tool": null,
         "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "BoursoFirst, l'offre de banque privée de BoursoBank, atteint 2Md€ d'encours et s'enrichit de nouveaux produits et services — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-9625b9b9301a92a2693a",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "BNP Paribas élargit son offre Bourse aux ETN crypto-actifs",
+        "value": {
+          "status": "Annonce publiée",
+          "facts": {
+            "amounts": [],
+            "pea": false,
+            "eligible": null,
+            "access": null
+          }
+        },
+        "sourceUrl": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+        "publicationId": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+        "publisher": "BNP Paribas · groupe",
+        "publishedAt": "2026-03-26",
+        "period": "2026-03-26",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce BNP Paribas · groupe · https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+        "populationScope": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs.",
+        "conditions": {
+          "clients": null,
+          "pays": null,
+          "formule": null,
+          "duree": null,
+          "plafond": null,
+          "versement": null,
+          "tauxPromotionnel": null,
+          "tauxNormal": null,
+          "frais": null
+        },
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs. Les clients particuliers en France pourront désormais investir dans 6 ETN crypto-actifs, indexés sur le Bitcoin ou l’Ether. - (source: group.bnpparibas)",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+            "role": "official",
+            "label": "BNP Paribas · groupe"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "baad1ac9b06719727576abd3a9e61027fc6ac7d9ff8a8a25a0d23744779ed7f5",
+          "excerpt": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs. Les clients particuliers en France pourront désormais investir dans 6 ETN crypto-actifs, indexés sur le Bitcoin ou l’Ether. - (source: group.bnpparibas)",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "BNP Paribas élargit son offre Bourse aux ETN crypto-actifs — Quels services changent pour les clients français, et à quelle date ?",
         "backfill": true
       },
       {
@@ -2048,36 +2409,149 @@
         "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "BoursoBank enrichit son offre en matière d'éducation financière — Quels services changent pour les clients français, et à quelle date ?",
         "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-2ca466a38f74a4226898",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "BoursoBank lance sa nouvelle offre pour les ados",
+        "value": {
+          "title": "BoursoBank lance sa nouvelle offre pour les ados",
+          "summary": "Les ados bénéficient désormais de la même application BoursoBank que leurs parents, qui peuvent ainsi très facilement les guider dans la gestion de leur argent. Une offre complète et 100 % mobile avec notamment : Un vrai compte à vue 1 : l’ado est le titulaire de son compte bancaire, il dispose d’un RIB personnel qui lui permet d’envoyer et de recevoir de l’argent de la part de sa famille et de ses amis.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-lance-sa-nouvelle-offre-pour-les-ados",
+        "publicationId": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-lance-sa-nouvelle-offre-pour-les-ados",
+        "publisher": "BoursoBank Groupe · communiqués",
+        "publishedAt": "2026-03-11",
+        "period": "2026-03-11",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-lance-sa-nouvelle-offre-pour-les-ados",
+        "populationScope": "Clients BoursoBank dans les conditions du communiqué",
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "Les ados bénéficient désormais de la même application BoursoBank que leurs parents, qui peuvent ainsi très facilement les guider dans la gestion de leur argent. Une offre complète et 100 % mobile avec notamment : Un vrai compte à vue 1 : l’ado est le titulaire de son compte bancaire, il dispose d’un RIB personnel qui lui permet d’envoyer et de recevoir de l’argent de la part de sa famille et de ses amis.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-lance-sa-nouvelle-offre-pour-les-ados",
+            "role": "official",
+            "label": "BoursoBank Groupe · communiqués"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "c75c2401037ff5461ec224605f9337a11bbe93118f251ec2414882c62c949255",
+          "excerpt": "Les ados bénéficient désormais de la même application BoursoBank que leurs parents, qui peuvent ainsi très facilement les guider dans la gestion de leur argent. Une offre complète et 100 % mobile avec notamment : Un vrai compte à vue 1 : l’ado est le titulaire de son compte bancaire, il dispose d’un RIB personnel qui lui permet d’envoyer et de recevoir de l’argent de la part de sa famille et de ses amis.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "BoursoBank lance sa nouvelle offre pour les ados — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-4b413ee660c698cc6f48",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Sogécap conserve son positionnement compétitif avec un taux moyen servi de 3,12% sur son fonds en euros en 2025",
+        "value": {
+          "status": "Annonce publiée",
+          "facts": {
+            "amounts": [
+              "13%",
+              "15%",
+              "2,63%",
+              "3,12%",
+              "3,25%",
+              "4,65%",
+              "5%",
+              "5,50%",
+              "50%",
+              "6,5%"
+            ],
+            "pea": false,
+            "eligible": null,
+            "access": "conditional"
+          }
+        },
+        "sourceUrl": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+        "publicationId": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+        "publisher": "Société Générale · groupe",
+        "publishedAt": "2026-01-14",
+        "period": "2026-01-14",
+        "checkedAt": "2026-10-25T07:55:55.260Z",
+        "scope": "Annonce Société Générale · groupe · https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+        "populationScope": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 .",
+        "conditions": {
+          "clients": "Ce niveau de rendement servi aux assurés résulte de la qualité de la gestion du fonds en euros, d’une politique de diversification efficace des investissements et d’une utilisation maîtrisée des réserves financières de la compagnie, qui restent après affectation à un niveau supérieur à 5% , parmi les plus élevées du marché. En assurance vie épargne, les clients ayant opté pour la diversification en unités de compte ont bénéficié d’un rendement majoré grâce à des bonus, sur versement et sur encours, cumulables . Pour la troisième année consécutive, Sogécap maintient le taux de base du plan d’épargne retraite (PER) Acacia à 3,25% , témoignant de sa volonté d’accompagner durablement ses clients dans la préparation de leur retraite.",
+          "pays": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 . [3] Source France Assureurs, septembre 2025.",
+          "formule": "En 2026, Sogécap reconduit un dispositif d’offres bonus afin de soutenir les nouveaux versements et promouvoir une allocation diversifiée .",
+          "duree": "Philippe Perret, Directeur général de Société Générale Assurances, commente : « Fidèle à notre volonté d’accompagner nos clients avec des solutions d’épargne performantes dans la durée, Société Générale Assurances s’appuie sur sa collecte nette record de 2025 pour maintenir des taux de rendement particulièrement compétitifs sur son fonds en euros.",
+          "plafond": null,
+          "versement": "En assurance vie épargne, les clients ayant opté pour la diversification en unités de compte ont bénéficié d’un rendement majoré grâce à des bonus, sur versement et sur encours, cumulables . En 2026, Sogécap reconduit un dispositif d’offres bonus afin de soutenir les nouveaux versements et promouvoir une allocation diversifiée . Les assurés recevront des rendements bonifiés pour 2026 et 2027 : +100 points de base dès 15% versés en unités de compte et jusqu’à +200 points de base pour les versements intégrant au moins 50% d’unités de compte.",
+          "tauxPromotionnel": "Les assurés recevront des rendements bonifiés pour 2026 et 2027 : +100 points de base dès 15% versés en unités de compte et jusqu’à +200 points de base pour les versements intégrant au moins 50% d’unités de compte.",
+          "tauxNormal": "Pour la troisième année consécutive, Sogécap maintient le taux de base du plan d’épargne retraite (PER) Acacia à 3,25% , témoignant de sa volonté d’accompagner durablement ses clients dans la préparation de leur retraite.",
+          "frais": "» [1] Taux de rendement nets de frais de gestion et bruts de prélèvement sociaux et fiscaux, incluant les bonus sur encours et sur versements."
+        },
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 . Ce taux, supérieur de 50 points de base à la moyenne du marché en 2024, devrait également rester significativement au-dessus du rendement moyen anticipé pour l’année 2025 2 . Ce niveau de rendement servi aux assurés résulte de la qualité de la gestion du fonds en euros, d’une politique de diversification efficace des investissements et d’une utilisation maîtrisée des réserves financières de la compagnie, qui restent après affectation à un niveau supérieur à 5% , ",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+            "role": "official",
+            "label": "Société Générale · groupe"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "cfc785d321d0d9b065d31d0ca8770e5ed3a8b1957eed770625a6c724002135b6",
+          "excerpt": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 . Ce taux, supérieur de 50 points de base à la moyenne du marché en 2024, devrait également rester significativement au-dessus du rendement moyen anticipé pour l’année 2025 2 . Ce niveau de rendement servi aux assurés résulte de la qualité de la gestion du fonds en euros, d’une politique de diversification efficace des investissements et d’une utilisation maîtrisée des réserves financières de la compagnie, qui restent après affectation à un niveau supérieur à 5% , ",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Sogécap conserve son positionnement compétitif avec un taux moyen servi de 3,12% sur son fonds en euros en 2025 — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
       }
     ]
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T07:51:40.020Z",
+  "checkedAt": "2026-10-25T07:56:10.108Z",
   "sourceRevision": "eb85ecba7de72f1ce99b2695cb0adf0975ee69bb",
-  "observationCount": 7445,
+  "observationCount": 7455,
   "coverage": {
-    "etf": 276,
+    "etf": 277,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 110,
-    "pouvoir-achat": 25
+    "economie": 111,
+    "pouvoir-achat": 33
   },
-  "newSignalCount": 7,
+  "newSignalCount": 3,
   "errors": [
     {
       "family": "pouvoir-achat",
       "entity": "Revolut · salle de presse France",
       "reason": "HTTP 403"
-    },
-    {
-      "family": "pouvoir-achat",
-      "entity": "La Banque Postale · communiqués",
-      "reason": "Archive La Banque Postale page 2 : HTTP 403"
     },
     {
       "family": "etf",
@@ -2095,6 +2569,16 @@
       "reason": "fetch failed"
     },
     {
+      "family": "etf",
+      "entity": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-september-2026",
+      "reason": "Date de publication officielle absente (hanetf)"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q3",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
       "family": "economie",
       "entity": "https://www.insee.fr/fr/statistiques/8733125",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
@@ -2102,11 +2586,6 @@
     {
       "family": "etf",
       "entity": "https://hanetf.com/press-releases/human-rights-screened-high-dividend-etf-surpasses-100-million-aum-in-first-four-months",
-      "reason": "Date de publication officielle absente (hanetf)"
-    },
-    {
-      "family": "etf",
-      "entity": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-september-2026",
       "reason": "Date de publication officielle absente (hanetf)"
     },
     {
@@ -2127,11 +2606,6 @@
     {
       "family": "economie",
       "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q4",
-      "reason": "Résumé statistique chiffré absent : extraction à adapter"
-    },
-    {
-      "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q3",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -2196,6 +2670,363 @@
     }
   ],
   "events": [
+    {
+      "topic": "epargne",
+      "topicLabel": "Épargne et placements",
+      "publisher": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.",
+      "publishedAt": "2026-10-19",
+      "publicationId": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+      "evidence": {
+        "sourceHash": "fa4e0ffabc0b669851c1eafdb406b4a3103bbad567691d379e755b9e0a1e3af8",
+        "excerpt": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "conditions": {
+        "clients": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Des démarches d’assurance simplifiées pour les clients professionnels assurés par BPCE Assurances ayant subi des dommages Prolongation du délai de déclaration de sinistre jusqu’à 30 jours calendaires ; Nos clients professionnels peuvent effectuer leur déclaration, par simple appel aux numéros suivants : Banque Populaire : 0980 986 986 Caisse d’Epargne : 0969 362 837 Accélération du processus d’indemnisation en étroite coordination avec les cabinets d’expertise afin d’organiser les visites d’expertise le plus rapidement possible ;",
+        "pays": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. En fonction des situations régionales, les conseillers de proximité pourront adapter ce socle de mesures afin d’apporter des réponses au plus près des besoins de chaque client. Nicolas Namias, président du directoire de BPCE, déclare : « Après les violences et les dégradations inacceptables survenues dans de nombreuses villes en France, je veux exprimer tout mon soutien, au nom du Groupe BPCE , à celles et ceux qui en subissent aujourd’hui les conséquences.",
+        "formule": "Remplacement en urgence des TPE (terminaux de paiement) détruits et suspension personnalisée des abonnements monétiques .",
+        "duree": null,
+        "plafond": null,
+        "versement": null,
+        "tauxPromotionnel": null,
+        "tauxNormal": null,
+        "frais": "Un dispositif individualisé pour les clients professionnels et commerçants ayant subi un dommage lors des événements Mise en place d’un prêt express « reprise d’activité » au taux de 2,5 % jusqu’à 30 000 € sur 3 à 5 ans sans frais de dossier ; Mise en place d’un crédit-bail express d’un montant allant jusqu’à 30 000 € bénéficiant d’un loyer privilégié sans marge pour le crédit bailleur et sans frais de dossier ;"
+      },
+      "referencePeriod": null,
+      "populationScope": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+          "role": "official",
+          "label": "BPCE · Banque Populaire et Caisse d’Épargne"
+        }
+      ],
+      "backfill": true,
+      "id": "534bd74d174a0953f553d130",
+      "family": "pouvoir-achat",
+      "entity": "publication-d4a904c47e253f4d0f28",
+      "label": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:56:10.108Z",
+      "before": null,
+      "after": {
+        "status": "Annonce publiée",
+        "facts": {
+          "amounts": [
+            "2,5 %",
+            "30 000 €",
+            "30 jours",
+            "5 ans"
+          ],
+          "pea": false,
+          "eligible": null,
+          "access": null
+        }
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "status : Annonce publiée · facts : amounts : 2,5 % · 30 000 € · 30 jours · 5 ans · pea : Non · eligible : null · access : null",
+      "beforePeriod": null,
+      "period": "2026-10-19",
+      "scope": "Annonce BPCE · Banque Populaire et Caisse d’Épargne · https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+      "unit": "",
+      "sourceUrl": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:55:55.260Z",
+      "tool": null,
+      "angle": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations — Quelles conditions changent pour les détenteurs de cette épargne ?",
+      "draft": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations\n\nFace aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.\n\nPublication : 2026-10-19 · Annonce publiée\nFace aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités.\n\nSource : https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+      "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 84,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-19"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "carburants",
+      "topicLabel": "Carburants",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+      "publishedAt": "2026-10-24",
+      "publicationId": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+      "evidence": {
+        "sourceHash": "394767990ea53f02c7db5c42fd963aed403fdfc4779623e8af6bedc1b23f9240",
+        "excerpt": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/finance-selection/mes-placements-liberte",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/placement-direct/per-retraite-isr",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/bourse-direct/e-PER",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/carac/per-individuel-carac",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "7000a76c3e305df74533e002",
+      "family": "pouvoir-achat",
+      "entity": "publication-09acb7d4394204311836",
+      "label": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:56:10.108Z",
+      "before": null,
+      "after": {
+        "title": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+        "summary": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre · summary : Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-24",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:55:55.260Z",
+      "tool": null,
+      "angle": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
+      "draft": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre\n\nUn décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres\n\nPublication : 2026-10-24 · Annonce publiée\nUn décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre.\n\nSource : https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+      "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 100,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-24"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": true
+      }
+    },
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "Médiateur national de l’énergie",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+      "publishedAt": "2026-09-24",
+      "publicationId": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+      "evidence": {
+        "sourceHash": "54faab702d9588162d6001d641dea4e010accf68a8b4f03a052d4955fd5d3266",
+        "excerpt": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+          "role": "official",
+          "label": "Médiateur national de l’énergie"
+        },
+        {
+          "url": "https://comparateur-offres.energie-info.fr/compte/profil",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "af9b0fcf3682c5b5bd460122",
+      "family": "pouvoir-achat",
+      "entity": "publication-a8e1d7fe1efc2acb7b19",
+      "label": "Hausse des prix de l’énergie : comparez les offres disponibles",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Hausse des prix de l’énergie : comparez les offres disponibles",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:56:10.108Z",
+      "before": null,
+      "after": {
+        "title": "Hausse des prix de l’énergie : comparez les offres disponibles",
+        "summary": "Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Hausse des prix de l’énergie : comparez les offres disponibles · summary : Après la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-09-24",
+      "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+      "unit": "",
+      "sourceUrl": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:55:55.260Z",
+      "tool": null,
+      "angle": "Hausse des prix de l’énergie : comparez les offres disponibles — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Hausse des prix de l’énergie : comparez les offres disponibles\n\nAprès la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC. Dans ce contexte, votre facture peut évoluer. Il est utile de faire le point sur son contrat d’électricité ou de gaz naturel et de comparer les offres disponibles. Le marché de l’électricité et du gaz naturel compte de nombreuses offres, avec des niveaux de prix et des conditions contractuelles différents.\n\nPublication : 2026-09-24 · Annonce publiée\nAprès la hausse des tarifs réglementés de vente de l’électricité au 1er août, le prix repère de vente du gaz naturel augmente à son tour en octobre, de 6,4% TTC.\n\nSource : https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+      "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 90,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-09-24"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "epargne",
       "topicLabel": "Épargne et placements",
@@ -70161,7 +70992,7 @@
       "url": "https://groupe.boursedirect.fr/feed",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 10,
       "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
       "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
@@ -70170,13 +71001,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:13:30.738Z",
       "queue": {
-        "pending": 2,
-        "done": 3,
+        "pending": 1,
+        "done": 4,
         "error": 0,
         "rejected": 5
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:43:30.738Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "energie-info",
@@ -70184,7 +71015,7 @@
       "url": "https://www.energie-info.fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 10,
       "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
       "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
@@ -70193,13 +71024,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:13:30.738Z",
       "queue": {
-        "pending": 5,
-        "done": 3,
+        "pending": 4,
+        "done": 4,
         "error": 0,
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:43:30.738Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "afg",
@@ -70207,7 +71038,7 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
@@ -70230,7 +71061,7 @@
       "url": "https://www.amf-france.org/fr/flux-rss/display/28",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 196,
       "etag": "\"1792904951-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 05:09:11 GMT",
@@ -70239,13 +71070,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:13:30.738Z",
       "queue": {
-        "pending": 157,
-        "done": 2,
+        "pending": 156,
+        "done": 3,
         "error": 0,
         "rejected": 39
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "moneyvox",
@@ -70253,7 +71084,7 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
@@ -70262,13 +71093,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:13:30.738Z",
       "queue": {
-        "pending": 22,
-        "done": 2,
+        "pending": 23,
+        "done": 3,
         "error": 0,
         "rejected": 37
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:43:30.738Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "boursobank-news",
@@ -70276,7 +71107,7 @@
       "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
       "method": "consumer-links",
       "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -70285,13 +71116,229 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:13:30.738Z",
       "queue": {
-        "pending": 2,
-        "done": 3,
+        "pending": 1,
+        "done": 4,
         "error": 0,
         "rejected": 7
       },
       "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
+    },
+    {
+      "id": "bnp-bank",
+      "name": "BNP Paribas · groupe",
+      "url": "https://group.bnpparibas/rss/news/communique-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 21,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 19
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
+    },
+    {
+      "id": "credit-agricole-news",
+      "name": "Crédit Agricole · groupe et réseaux",
+      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
       "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
+    },
+    {
+      "id": "sg-bank",
+      "name": "Société Générale · groupe",
+      "url": "https://www.societegenerale.com/fr/communiques-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Première page de cartes datées ; archive non exhaustive",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 18,
+      "archiveWarning": null,
+      "etag": "\"1792749484-gzip\"",
+      "lastModified": "Fri, 23 Oct 2026 09:58:04 GMT",
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 16
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
+    },
+    {
+      "id": "bpce-bank",
+      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "url": "https://newsroom.groupebpce.fr/",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
+    },
+    {
+      "id": "cm-cic",
+      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
+      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
+      "method": "consumer-coverage",
+      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 11
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
+    },
+    {
+      "id": "lbp-bank",
+      "name": "La Banque Postale · communiqués",
+      "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
+      "method": "consumer-coverage",
+      "depth": "Deux pages de six communiqués PDF datés",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 6,
+      "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
+      "etag": null,
+      "lastModified": "Sun, 25 Oct 2026 03:40:38 GMT",
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "partial",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
+    },
+    {
+      "id": "saxo-news",
+      "name": "Saxo Banque France",
+      "url": "https://www.home.saxo/fr-fr/about-us/media-center",
+      "method": "consumer-coverage",
+      "depth": "Articles français datés rendus dans le centre médias",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:51:23.084Z",
+      "queue": {
+        "pending": 2,
+        "done": 1,
+        "error": 0,
+        "rejected": 1
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco · communiqués européens",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "method": "extra-coverage",
+      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 43,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Sat, 24 Oct 2026 23:02:07 GMT",
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:51:23.084Z",
+      "queue": {
+        "pending": 42,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
+    },
+    {
+      "id": "spdr-news",
+      "name": "State Street · communiqués",
+      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "method": "extra-coverage",
+      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"48119b9dc7eab1ab80bd2f22369d88da\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:51:23.084Z",
+      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:51:23.084Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 10
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
     },
     {
       "id": "xetra",
@@ -70299,7 +71346,7 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -70322,7 +71369,7 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
@@ -70345,7 +71392,7 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -70368,7 +71415,7 @@
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
@@ -70391,7 +71438,7 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 8,
       "etag": "\"1792912363-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 07:12:43 GMT",
@@ -70414,7 +71461,7 @@
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
@@ -70437,7 +71484,7 @@
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -70460,7 +71507,7 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
@@ -70483,7 +71530,7 @@
       "url": "https://www.insee.fr/fr/flux/2",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 13,
       "etag": null,
       "lastModified": null,
@@ -70506,7 +71553,7 @@
       "url": "https://www.insee.fr/fr/flux/3",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 21,
       "etag": null,
       "lastModified": null,
@@ -70515,13 +71562,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
-        "pending": 7,
-        "done": 14,
+        "pending": 6,
+        "done": 15,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:43:30.738Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "amundi",
@@ -70529,7 +71576,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -70538,13 +71585,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 69,
-        "done": 14,
+        "pending": 68,
+        "done": 15,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:43:30.738Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:55:55.260Z"
     },
     {
       "id": "bdf-credit",
@@ -70552,7 +71599,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 12,
       "etag": "\"1792907704-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
@@ -70575,7 +71622,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 12,
       "etag": "\"1792911971-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 07:06:11 GMT",
@@ -70598,7 +71645,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 12,
       "etag": "\"1792911970-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 07:06:10 GMT",
@@ -70621,7 +71668,7 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
@@ -70644,7 +71691,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -70655,78 +71702,6 @@
       },
       "extractionStatus": "no-in-scope-publication",
       "lastExtractionSuccessAt": null
-    },
-    {
-      "id": "bnp-bank",
-      "name": "BNP Paribas · groupe",
-      "url": "https://group.bnpparibas/rss/news/communique-de-presse",
-      "method": "consumer-coverage",
-      "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 21,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 1,
-        "done": 1,
-        "error": 0,
-        "rejected": 19
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
-      "id": "sg-bank",
-      "name": "Société Générale · groupe",
-      "url": "https://www.societegenerale.com/fr/communiques-de-presse",
-      "method": "consumer-coverage",
-      "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 18,
-      "archiveWarning": null,
-      "etag": "\"1792749484-gzip\"",
-      "lastModified": "Fri, 23 Oct 2026 09:58:04 GMT",
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 1,
-        "done": 1,
-        "error": 0,
-        "rejected": 16
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
-      "id": "lbp-bank",
-      "name": "La Banque Postale · communiqués",
-      "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
-      "method": "consumer-coverage",
-      "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 6,
-      "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
-      "etag": null,
-      "lastModified": "Sun, 25 Oct 2026 03:40:38 GMT",
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "partial",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 5
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
     },
     {
       "id": "wisdomtree",
@@ -70734,7 +71709,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -70747,108 +71722,12 @@
       "lastExtractionSuccessAt": null
     },
     {
-      "id": "spdr-news",
-      "name": "State Street · communiqués",
-      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
-      "method": "extra-coverage",
-      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 10,
-      "archiveWarning": null,
-      "etag": "\"48119b9dc7eab1ab80bd2f22369d88da\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:23.084Z",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 10
-      },
-      "extractionStatus": "no-in-scope-publication",
-      "lastExtractionSuccessAt": null
-    },
-    {
-      "id": "credit-agricole-news",
-      "name": "Crédit Agricole · groupe et réseaux",
-      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
-      "method": "consumer-coverage",
-      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 6,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 5
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
-      "id": "bpce-bank",
-      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
-      "url": "https://newsroom.groupebpce.fr/",
-      "method": "consumer-coverage",
-      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 4,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 1,
-        "done": 1,
-        "error": 0,
-        "rejected": 2
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
-      "id": "invesco",
-      "name": "Invesco · communiqués européens",
-      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
-      "method": "extra-coverage",
-      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 43,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": "Sat, 24 Oct 2026 23:02:07 GMT",
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T09:51:23.084Z",
-      "queue": {
-        "pending": 42,
-        "done": 1,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -70872,7 +71751,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
+      "attemptedAt": "2026-10-25T07:55:55.260Z",
       "status": "error",
       "error": "fetch failed",
       "queue": {
@@ -70885,60 +71764,12 @@
       "lastExtractionSuccessAt": null
     },
     {
-      "id": "cm-cic",
-      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
-      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
-      "method": "consumer-coverage",
-      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 12,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 11
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
-      "id": "saxo-news",
-      "name": "Saxo Banque France",
-      "url": "https://www.home.saxo/fr-fr/about-us/media-center",
-      "method": "consumer-coverage",
-      "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T07:51:23.084Z",
-      "discovered": 4,
-      "archiveWarning": null,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T07:51:23.084Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.084Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T08:51:23.084Z",
-      "queue": {
-        "pending": 2,
-        "done": 1,
-        "error": 0,
-        "rejected": 1
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:51:23.084Z"
-    },
-    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T07:51:23.074Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.074Z",
+      "checkedAt": "2026-10-25T07:55:55.249Z",
+      "lastSuccessAt": "2026-10-25T07:55:55.249Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -70948,8 +71779,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T07:51:23.074Z",
-      "lastSuccessAt": "2026-10-25T07:51:23.074Z",
+      "checkedAt": "2026-10-25T07:55:55.249Z",
+      "lastSuccessAt": "2026-10-25T07:55:55.249Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -70958,7 +71789,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -70967,7 +71798,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -70976,7 +71807,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -70985,7 +71816,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -70994,7 +71825,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -71003,7 +71834,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T07:51:23.076Z",
+      "checkedAt": "2026-10-25T07:55:55.252Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -71213,11 +72044,11 @@
   },
   "metrics": {
     "collection": {
-      "requests": 26,
-      "bytes": 3374138,
+      "requests": 16,
+      "bytes": 1572404,
       "notModified": 0,
-      "durationMs": 13680,
-      "checkedAt": "2026-10-25T07:51:23.084Z"
+      "durationMs": 12533,
+      "checkedAt": "2026-10-25T07:55:55.260Z"
     },
     "publicationDelays": [
       {
@@ -71454,6 +72285,11 @@
         "url": "https://www.insee.fr/fr/statistiques/9034523",
         "publicationToDetectionHours": 1889.4692527777777,
         "detectionToAvailabilityHours": 14.255952222222222
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9032859",
+        "publicationToDetectionHours": 2057.469252777778,
+        "detectionToAvailabilityHours": 14.462763888888889
       },
       {
         "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
@@ -71776,6 +72612,11 @@
         "detectionToAvailabilityHours": 14.255952222222222
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-etf-lance-un-nouvel-etf-sp-500-equal-weight",
+        "publicationToDetectionHours": 13553.469252777777,
+        "detectionToAvailabilityHours": 14.462763888888889
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -71856,6 +72697,11 @@
         "detectionToAvailabilityHours": 1.8081655555555556
       },
       {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+        "publicationToDetectionHours": 29.917039444444445,
+        "detectionToAvailabilityHours": 2.0149772222222224
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -71864,6 +72710,11 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
         "publicationToDetectionHours": 1613.9170394444445,
         "detectionToAvailabilityHours": 1.294155
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-6",
+        "publicationToDetectionHours": 4469.9170394444445,
+        "detectionToAvailabilityHours": 2.0149772222222224
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -71881,6 +72732,11 @@
         "detectionToAvailabilityHours": 1.9393727777777778
       },
       {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-lance-sa-nouvelle-offre-pour-les-ados",
+        "publicationToDetectionHours": 5477.9170394444445,
+        "detectionToAvailabilityHours": 2.0149772222222224
+      },
+      {
         "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
         "publicationToDetectionHours": 53.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -71894,6 +72750,11 @@
         "url": "https://www.energie-info.fr/heures-pleines-creuses-experimentation-tarifaire",
         "publicationToDetectionHours": 437.91703944444447,
         "detectionToAvailabilityHours": 1.8081655555555556
+      },
+      {
+        "url": "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles",
+        "publicationToDetectionHours": 749.9170394444444,
+        "detectionToAvailabilityHours": 2.0149772222222224
       },
       {
         "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
@@ -71911,14 +72772,29 @@
         "detectionToAvailabilityHours": 1.8081655555555556
       },
       {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
+        "publicationToDetectionHours": 3989.9170394444445,
+        "detectionToAvailabilityHours": 2.0149772222222224
+      },
+      {
         "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
         "publicationToDetectionHours": 1111.8564122222222,
         "detectionToAvailabilityHours": 0
       },
       {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+        "publicationToDetectionHours": 5119.856412222222,
+        "detectionToAvailabilityHours": 0.07560444444444445
+      },
+      {
         "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/sg-lance-le-programme-matrimoine",
         "publicationToDetectionHours": 991.8564122222223,
         "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+        "publicationToDetectionHours": 6823.856412222222,
+        "detectionToAvailabilityHours": 0.07560444444444445
       },
       {
         "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
@@ -71934,6 +72810,11 @@
         "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
         "publicationToDetectionHours": 103.85641222222222,
         "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+        "publicationToDetectionHours": 151.85641222222222,
+        "detectionToAvailabilityHours": 0.07560444444444445
       },
       {
         "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-forges-new-highs-and-launches-new-etfs-with-support-from-uk-based-wealth-manager-1-oct-26.pdf",
@@ -71952,18 +72833,10 @@
       }
     ],
     "classification": {
-      "ready": 71,
+      "ready": 74,
       "watch": 29,
       "secondary": 342
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T07:51:54.297Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
