@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-25T17:38:52.761299+00:00",
-  "monitorCheckedAt": "2026-10-25T17:38:17.129401+00:00",
+  "checkedAt": "2026-10-25T19:19:16.647199+00:00",
+  "monitorCheckedAt": "2026-10-25T19:11:05.492974+00:00",
   "cases": [
     {
       "id": "scope:update-investor-13f.yml:investor-observations.json",
@@ -13,11 +13,11 @@
       "receipts": [
         {
           "file": "investor-observations.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40206678702",
-          "runId": 40206678702,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40223458923",
+          "runId": 40223458923,
           "attempt": 1,
-          "sha256": "018f43861cbd36aa47749bc022603f8180923597a2740025eb72adde5e6d79c4",
-          "planSha256": "132d29b32ea264ef5cf268e7f802e7aaf4a2aaeb288bc529b7e19653f49f2359",
+          "sha256": "0c1c7b4e0e078281eaa434206e9230baf3f84443c3491e0f99e5daa8bfc292b3",
+          "planSha256": "4601680f78499f4d6984723a4b80105901300dcabcd5f1becc6126e9f6e7134a",
           "mode": "full",
           "expected": 28,
           "selected": 28,
@@ -794,16 +794,16 @@
       "receipts": [
         {
           "file": "feed.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40217109334",
-          "runId": 40217109334,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40221227769",
+          "runId": 40221227769,
           "attempt": 1,
-          "sha256": "19e15fcff37f9db4decb74e3e17af7d3c7cfb915df5a8d5c402510493488a7fe",
-          "planSha256": "165782f6c1964735e7bca9925a1f9818b361e7430952171270cfc81d2dcf8533",
+          "sha256": "c322f021a4b0e5afeeff71c6ff924185b19fbdedea3d099e6ef011c5045735ee",
+          "planSha256": "1463f9781ca568ebf18a8014a0233f826bef2e71799502125651ad3261ca38b4",
           "mode": "full",
-          "expected": 61,
-          "selected": 61,
-          "successes": 13,
-          "errors": 9
+          "expected": 62,
+          "selected": 62,
+          "successes": 9,
+          "errors": 7
         }
       ],
       "githubProducerReports": [
@@ -835,11 +835,11 @@
       "receipts": [
         {
           "file": "actor-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40206170528",
-          "runId": 40206170528,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40218321915",
+          "runId": 40218321915,
           "attempt": 1,
-          "sha256": "7e149a5e6a606630e9720d4f112e89328d670bf816f6bef115adb47cfed3b05d",
-          "planSha256": "2b6e659955b752378ab49ab5907d130149c32b7c5c9fa77b2f4362d7f075bf97",
+          "sha256": "c968c28222db8e78ede6c01454f117894616b1b001b935c3891d0c2a2d01f0e4",
+          "planSha256": "ea41edb388365c57c2aa16bb4b9d66f71f191911054fb5a46ce7b7d4e26b72b5",
           "mode": "full",
           "expected": 11,
           "selected": 11,
@@ -876,11 +876,11 @@
       "receipts": [
         {
           "file": "practical-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40211388717",
-          "runId": 40211388717,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40218320365",
+          "runId": 40218320365,
           "attempt": 1,
-          "sha256": "aa6cbc19b0658ab90a98d6d9b49088b83ddaaca8bd420f3c61b7693dd5ea7635",
-          "planSha256": "dc6a70585668dcc0b7ef3a63ccb92f94a2b0770c7ea25d6a2a198abe8dfd494a",
+          "sha256": "b2b0e54595a8a2b9b8218cc9bf6f53ee7c668fc865b228ab762fae764a7f9504",
+          "planSha256": "e2d01cf218bc102826e4b8723a97dff5bf021eef356abfa1d73cb588cf3c6de2",
           "mode": "full",
           "expected": 11,
           "selected": 11,
