@@ -3,6 +3,7 @@ from automation_contracts import owns_failure, RETIREMENT_REASON
 import datetime as dt
 import hashlib
 import json
+import copy
 import re
 from pathlib import Path
 
@@ -27,7 +28,7 @@ def restore_history(state, seed):
         raise ValueError('Archive historique invalide')
     if state.get('historyBackfillTip') == seed['tip']:
         return state
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     previous = result.setdefault('monitoring', {})
     for kind in ('events','resolved','retired'):
         rows = [*previous.get(kind, []), *seed[kind]]
