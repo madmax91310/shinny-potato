@@ -84,3 +84,13 @@ const publicationWorkflow=readFileSync(new URL('../.github/workflows/publish-val
 const receiptUpload=publicationWorkflow.split(/(?=      - uses: actions\/upload-artifact@)/).find(s=>s.includes('name: data-publication-receipt'))
 assert(receiptUpload?.includes('always()')&&receiptUpload.includes('steps.plan.outputs.receipt_ready'))
 assert(!receiptUpload.split('with:')[0].includes('steps.producer.outcome')&&!receiptUpload.split('with:')[0].includes('steps.plan.outputs.current'),'Expected receipt must remain observable when publication is skipped or fails')
+
+// Artifact names are immutable per run. The outer producer already froze its
+// exact expectation before a nested code gate; never replace it with --all.
+const codeWorkflow=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
+assert.match(codeWorkflow,/producer_receipt_declared:[\s\S]*?type: boolean\s+default: false/)
+const codeReceiptUpload=codeWorkflow.split(/(?=      - uses: actions\/upload-artifact@)/).find(s=>s.includes('name: data-publication-receipt'))
+assert(codeReceiptUpload.includes('!inputs.producer_receipt_declared'),'Nested code validation must preserve the original producer artifact without a name collision')
+assert.match(codeWorkflow,/Record the data snapshot requested for publication[\s\S]*?data_publication.py receipt --all/,'The local full-snapshot validation receipt remains mandatory')
+assert.match(publicationWorkflow,/publish-code:[\s\S]*?producer_receipt_declared: true/,'Only the outer caller that uploaded its receipt declares ownership')
+console.log('Nested code validation preserves the immutable producer receipt; direct code publication keeps its default all-snapshot receipt.')

@@ -145,3 +145,4 @@ jobs:
     with:
       ref: ${{ inputs.ref }}
       validation_group: ${{ needs.publish.outputs.code_epoch }}
+      producer_receipt_declared: true
