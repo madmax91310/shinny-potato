@@ -3,7 +3,11 @@ export const housingTopic=text=>/immobili|logements?|loyers?|habitat|foncier|tra
 // Conservative conventions, from explicit language, not the provider's brand alone.
 export function housingConventions(text,sourceId=''){
  const t=norm(text)
- return { priceBasis:/prix d.annonce|asking price/.test(t)&&/prix de transaction|notaires.insee/.test(t)?null:/prix d.annonce|asking price/.test(t)?'annonce':/notaires.insee|prix des logements anciens|prix de transaction|ventes de logements|actes de vente/.test(t)?'transaction':null,
+ const loanDuration=/(?:sur|duree de|prets? de|credits? de) (\d{1,2}) ans\b/.test(t)
+ const monthly=/(?:publication|donnees|statistiques|bulletin|serie|resultats|observations|indice|enquete)[^.]{0,35}mensuel|monthly (?:data|statistics|publication)/.test(t)
+ const quarterly=/(?:publication|donnees|statistiques|bulletin|serie|resultats|observations|indice|enquete)[^.]{0,35}trimestr|quarterly (?:data|statistics|publication)/.test(t)
+ const durations=[...new Set([...t.matchAll(/\b(\d{1,2}) ans\b/g)].map(m=>m[1]+' ans'))]
+ return { duration:loanDuration&&durations.length===1?durations[0]:null, frequency:monthly&&quarterly?null:monthly?'monthly':quarterly?'quarterly':null, population:/menages residents/.test(t)?'ménages résidents':/emprunteurs/.test(t)?'emprunteurs décrits dans la source':null, method:/notaires.insee/.test(t)?'Notaires-INSEE':null, priceBasis:/prix d.annonce|asking price/.test(t)&&/prix de transaction|notaires.insee/.test(t)?null:/prix d.annonce|asking price/.test(t)?'annonce':/notaires.insee|prix des logements anciens|prix de transaction|ventes de logements|actes de vente/.test(t)?'transaction':null,
  measure:/indice.*prix|notaires.insee/.test(t)?'indice à qualité constante':/prix median|prix medians/.test(t)?'prix médian (composition des ventes variable)':/m²|m2|metre carre/.test(t)?'prix ou loyer par m², définition dans la source':null,
  propertyType:/appartements/.test(t)&&/maisons/.test(t)?'maisons et appartements, catégories distinctes':/appartements/.test(t)?'appartements':/maisons/.test(t)?'maisons':null,
  market:/logements anciens|immobilier ancien/.test(t)&&/logements neufs|immobilier neuf/.test(t)?null:/logements anciens|immobilier ancien/.test(t)?'ancien':/logements neufs|immobilier neuf/.test(t)?'neuf':null,

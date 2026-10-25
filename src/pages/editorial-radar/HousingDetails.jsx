@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { mortgageScenario } from '../../lib/radar-housing.js'
-const LABELS={priceBasis:'Prix observés',measure:'Mesure',propertyType:'Biens',market:'Marché',geography:'Zone',rateType:'Type de taux',rateScope:'Population de crédits',insurance:'Assurance',referencePeriod:'Période statistique'}
+const LABELS={priceBasis:'Prix observés',measure:'Mesure',propertyType:'Biens',market:'Marché',geography:'Zone',duration:'Durée',frequency:'Fréquence statistique',population:'Population',method:'Méthode',rateType:'Type de taux',rateScope:'Population de crédits',insurance:'Assurance',referencePeriod:'Période statistique'}
 export default function HousingDetails({housing}){
  const [rate,setRate]=useState(''),[monthly,setMonthly]=useState('1000'),[years,setYears]=useState('20'),[insurance,setInsurance]=useState('0'),[deposit,setDeposit]=useState('0'),[fees,setFees]=useState('0')
  let scenario=null

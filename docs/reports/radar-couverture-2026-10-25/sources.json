@@ -1,0 +1,2201 @@
+{
+  "checkedAt": "2026-10-25T07:06:04.721Z",
+  "notifications": "disabled: publisher not imported",
+  "sources": [
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 7,
+        "done": 1,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 196,
+      "archiveWarning": null,
+      "etag": "\"1792904951-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:09:11 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 158,
+        "done": 1,
+        "error": 0,
+        "rejected": 38
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 60,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 23,
+        "done": 1,
+        "error": 0,
+        "rejected": 36
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 7
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:36:04.721Z",
+      "queue": {
+        "pending": 9,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "bnp-bank",
+      "name": "BNP Paribas · groupe",
+      "url": "https://group.bnpparibas/rss/news/communique-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 21,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 19
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "credit-agricole-news",
+      "name": "Crédit Agricole · groupe et réseaux",
+      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "sg-bank",
+      "name": "Société Générale · groupe",
+      "url": "https://www.societegenerale.com/fr/communiques-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Première page de cartes datées ; archive non exhaustive",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 18,
+      "archiveWarning": null,
+      "etag": "\"1792749484-gzip\"",
+      "lastModified": "Fri, 23 Oct 2026 09:58:04 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 16
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "bpce-bank",
+      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "url": "https://newsroom.groupebpce.fr/",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "cm-cic",
+      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
+      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
+      "method": "consumer-coverage",
+      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 11
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "lbp-bank",
+      "name": "La Banque Postale · communiqués",
+      "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
+      "method": "consumer-coverage",
+      "depth": "Deux pages de six communiqués PDF datés",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Sun, 25 Oct 2026 03:40:38 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 3,
+        "done": 1,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "saxo-news",
+      "name": "Saxo Banque France",
+      "url": "https://www.home.saxo/fr-fr/about-us/media-center",
+      "method": "consumer-coverage",
+      "depth": "Articles français datés rendus dans le centre médias",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 2,
+        "done": 1,
+        "error": 0,
+        "rejected": 1
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco · communiqués européens",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "method": "extra-coverage",
+      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 43,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Sat, 24 Oct 2026 23:32:15 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:06:04.721Z",
+      "queue": {
+        "pending": 42,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "spdr-news",
+      "name": "State Street · communiqués",
+      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "method": "extra-coverage",
+      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"48119b9dc7eab1ab80bd2f22369d88da\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:06:04.721Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 10
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "xetra",
+      "name": "Deutsche Börse / Xetra · cotations ETF",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
+      "method": "extra-links",
+      "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 9,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "bnp",
+      "name": "BNP Paribas AM · communiqués",
+      "url": "https://www.bnpparibas-am.com/en/media-centre/",
+      "method": "extra-bnp",
+      "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 2,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 1,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "xtrackers",
+      "name": "Xtrackers · salle de presse",
+      "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
+      "method": "extra-links",
+      "depth": "Table datée de la salle de presse ETF, année courante rendue",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 9,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "hanetf",
+      "name": "HANetf · communiqués UCITS",
+      "url": "https://hanetf.com/press-releases/",
+      "method": "extra-links",
+      "depth": "Communiqués rendus par le site, indépendants du catalogue",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 9,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 8,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "notaires-paris",
+      "name": "Notaires du Grand Paris · conjoncture",
+      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+      "method": "extra-links",
+      "depth": "Première page des communications immobilières officielles",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 8,
+      "archiveWarning": null,
+      "etag": "\"1792911971-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:06:11 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 7,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "credit-logement",
+      "name": "Observatoire Crédit Logement / CSA",
+      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
+      "method": "extra-links",
+      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 5,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "oll",
+      "name": "Observatoires locaux des loyers / ANIL",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+      "method": "extra-links",
+      "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 11,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "dvf",
+      "name": "DVF · DGFiP / data.gouv.fr",
+      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+      "method": "extra-dvf",
+      "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 13,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 13,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 21,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 21,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "amundi",
+      "name": "Amundi · actualités et avis",
+      "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
+      "method": "sitemap",
+      "depth": "Toutes les URL françaises des actualités du sitemap",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 84,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "queue": {
+        "pending": 84,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 22,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 22,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 12,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "bdf-savings",
+      "name": "Banque de France · Épargne des ménages",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": "\"1792911971-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:06:11 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 12,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "bdf-debt",
+      "name": "Banque de France · Endettement des ménages et des SNF",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": "\"1792911970-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:06:10 GMT",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 12,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "dws",
+      "name": "DWS / Xtrackers · communiqués",
+      "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+      "method": "dws-model",
+      "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "discovered": 5,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.721Z",
+      "queue": {
+        "pending": 5,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "pending",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "dares",
+      "name": "DARES",
+      "url": "https://dares.travail-emploi.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "status": "error",
+      "error": "HTTP 503",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "drees",
+      "name": "DREES",
+      "url": "https://drees.solidarites-sante.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "status": "error",
+      "error": "HTTP 503",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
+    }
+  ],
+  "accessGaps": [
+    {
+      "id": "lcl-news",
+      "name": "LCL",
+      "url": "https://presse.credit-agricole.com/section/lcl?lang=fra",
+      "reason": "Section officielle identifiée ; le connecteur groupe couvre l’accueil, pas toute l’archive LCL. Extraction et profondeur spécifiques à qualifier.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://presse.credit-agricole.com/section/lcl/?lang=fra",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "degiro-news",
+      "name": "DEGIRO",
+      "url": "https://www.degiro.fr/a-propos-de-degiro/nouvelles-presse",
+      "reason": "Une seule étude 2025 visible ; aucun avis de produit ou tarif découvert et qualifié. Prochaine piste : salle de presse flatexDEGIRO et avis clients publics.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.degiro.fr/a-propos-de-degiro/nouvelles-presse",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "ibkr-news",
+      "name": "Interactive Brokers",
+      "url": "https://www.interactivebrokers.eu/",
+      "reason": "Anciennes routes mediaRelations/8-pressReleases.php et mediaRelations.php en 404. Prochaine piste : salle de presse du groupe et avis européens ; aucun flux supposé.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.interactivebrokers.eu/en/home.php",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "fortuneo-news",
+      "name": "Fortuneo · presse",
+      "url": "https://www.fortuneo.fr/espace-presse",
+      "reason": "Page accessible (200) ; le JSON Gatsby officiel contient zéro article. Archive Arkéa à 27 éléments vérifiée : annonces Fortuneo corporate, aucune nouveauté financière qualifiée. Prochaine piste : avis tarifaires officiels. Aucun lancement déduit de la présence d’un produit sur le site.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.fortuneo.fr/espace-presse",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "trade-republic-news",
+      "name": "Trade Republic · presse",
+      "url": "https://traderepublic.com/en-de/press",
+      "reason": "Routes /en-de/press, /fr-fr/about et /fr-fr/presse en HTTP 404 au contrôle. Le moteur de recherche conserve des annonces indexées, sans découverte publique reproductible ; tarifs partagés conservés.",
+      "status": "error",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 404,
+      "finalUrl": "https://traderepublic.com/en-de/press",
+      "error": "HTTP 404",
+      "lastSuccessAt": null
+    },
+    {
+      "id": "xtb-news",
+      "name": "XTB · actualités",
+      "url": "https://www.xtb.com/fr/analyses-marches/actualites",
+      "reason": "Actualités accessibles mais principalement commentaires de marché ; découverte des annonces de services français non qualifiée. Registres financiers inchangés.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.xtb.com/fr/analyses-marches/actualites",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "insee-calendar",
+      "name": "INSEE · agenda de diffusion",
+      "url": "https://www.insee.fr/fr/information/1405540",
+      "reason": "Page accessible mais calendrier chargé par JavaScript ; requête JSON de l’agenda testée en erreur HTTP 500. Aucune publication déduite d’une date attendue.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.insee.fr/fr/information/1405540",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "fuel-dgec",
+      "name": "DGEC · prix des produits pétroliers",
+      "url": "https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers",
+      "reason": "Page et bulletin hebdomadaire PDF accessibles ; extraction des tableaux par carburant et comparaison compatible non raccordées. Pas de faux suivi quotidien ni de téléchargement intégral répété.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "notaires-france",
+      "name": "Notaires de France · conjoncture",
+      "url": "https://www.notaires.fr/fr/actualites",
+      "reason": "Accès au portail national refusé HTTP 403 lors de la qualification ; les Notaires du Grand Paris et INSEE sont exploités séparément.",
+      "status": "error",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 403,
+      "finalUrl": "https://www.notaires.fr/fr/actualites",
+      "error": "HTTP 403",
+      "lastSuccessAt": null
+    },
+    {
+      "id": "ishares",
+      "name": "iShares / BlackRock",
+      "url": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "reason": "Liste corporate accessible ; couverture des lancements UCITS européens et profondeur non qualifiées.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "spdr",
+      "name": "State Street / SPDR",
+      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "reason": "Flux mondial raccordé et daté ; exemple du 14 octobre non UCITS rejeté. Aucun communiqué UCITS européen dans la fenêtre testée : couverture européenne partielle.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "vaneck",
+      "name": "VanEck",
+      "url": "https://www.vaneck.com/fr/fr/",
+      "reason": "Accueil France accessible au nouveau contrôle ; /sitemap.xml redirige vers un fonds américain, pas un sitemap. Avis PDF européens identifiés par recherche, sans liste datée automatique qualifiée. Prochaine piste : archive news-and-media officielle.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.vaneck.com/fr/fr/",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "ubs",
+      "name": "UBS",
+      "url": "https://www.ubs.com/global/en/media.html",
+      "reason": "Page Asset Management accessible ; API publique de recherche observée dans Chromium, zéro résultat ETF dans le périmètre rendu. Rejeu d’un document connu possible, découverte UCITS non prouvée. Prochaine piste : index média européen distinct.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ubs.com/global/en/media.html",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    },
+    {
+      "id": "jpmorgan",
+      "name": "JPMorgan AM",
+      "url": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "reason": "Portail conseiller accessible ; découverte datée des annonces UCITS non qualifiée.",
+      "status": "unqualified",
+      "attemptedAt": "2026-10-25T07:06:04.721Z",
+      "method": "Contrôle d’accès uniquement",
+      "depth": "Aucune couverture déclarée",
+      "nextCheckAt": "2026-10-26T07:06:04.721Z",
+      "httpStatus": 200,
+      "finalUrl": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+      "checkedAt": "2026-10-25T07:06:04.721Z"
+    }
+  ],
+  "purchasingSources": [
+    {
+      "id": "service-public",
+      "name": "Service Public",
+      "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 0
+    },
+    {
+      "id": "bercy",
+      "name": "Ministère de l’Économie",
+      "url": "https://www.economie.gouv.fr/rss/toutesactualites",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 3
+    },
+    {
+      "id": "vie-publique-actualites",
+      "name": "Vie publique · actualités",
+      "url": "https://www.vie-publique.fr/actualites-feeds.xml",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 10,
+      "relevant": 0
+    },
+    {
+      "id": "vie-publique-lois",
+      "name": "Vie publique · lois",
+      "url": "https://www.vie-publique.fr/lois-feeds.xml",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 100,
+      "relevant": 0
+    },
+    {
+      "id": "banque-france-credit",
+      "name": "Banque de France · crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 12,
+      "relevant": 1
+    },
+    {
+      "id": "cre-prix",
+      "name": "CRE · prix de l’énergie",
+      "url": "https://www.cre.fr/documents/communiques-de-presse.html",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "status": "ok",
+      "articles": 7,
+      "relevant": 0
+    }
+  ],
+  "legacyEtfNews": {
+    "observations": 6,
+    "errors": []
+  },
+  "references": [
+    {
+      "url": "https://www.insee.fr/fr/statistiques/9087193",
+      "discovered": true,
+      "extracted": false,
+      "status": "pending"
+    },
+    {
+      "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/amundi-renforce-sa-gamme-d-etf-thematiques-lies-a-l-ia",
+      "discovered": true,
+      "extracted": false,
+      "status": "pending"
+    }
+  ],
+  "extractions": [
+    {
+      "title": "Les 16 chiffres de votre carte bancaire cachent un secret étonnant",
+      "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+      "publishedAt": "2026-10-25",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "239d0604733a912f7d64644192da547983b002618640361e6e2976ff47f57348"
+    },
+    {
+      "title": "Invesco forges new highs and launches new ETFs with support from UK-based wealth manager",
+      "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-forges-new-highs-and-launches-new-etfs-with-support-from-uk-based-wealth-manager-1-oct-26.pdf",
+      "publishedAt": "2026-10-01",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [
+        {
+          "name": "Invesco MSCI North America Swap UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Invesco Global Government Bond UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "85095e821a6f31b7aeab0a7ebdd9eaf5a1c85944f82b9caf741d65592b89faf0"
+    },
+    {
+      "title": "Saxo Banque dévoile l'Académie du PEA : Un programme pédagogique gratuit pour démocratiser la compréhension du Plan d'Épargne en Actions",
+      "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-devoile-lacademie-du-pea-07072026",
+      "publishedAt": "2026-07-07",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "f5f455f638888e334c235b603701841049f0c838f36fcf022d45fa19ba81359e"
+    },
+    {
+      "title": "SG lance le programme Matrimoine",
+      "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/sg-lance-le-programme-matrimoine",
+      "publishedAt": "2026-09-14",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "a63a17b76ca6032cb7d226297a71cd793bee069fb37607b2150ab04551305a90"
+    },
+    {
+      "title": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
+      "url": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
+      "publishedAt": "2026-10-23",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "b221a42d778de0fe8529fb82c0ec82a569bb96eb814c795630ccfc9d93d666a7"
+    },
+    {
+      "title": "BNP Paribas accompagne l'accélération du déploiement de Wero auprès de ses clients commerçants et particuliers en Europe",
+      "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
+      "publishedAt": "2026-09-09",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "fcac390b478b7e5ab3d3798a829079734233fa492b89d29e2f161ddbd8fc828d"
+    },
+    {
+      "title": "Revolut receives French banking licence",
+      "url": "https://www.revolut.com/fr-FR/news/revolut_receives_french_banking_licence",
+      "publishedAt": "2026-08-10",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "f9252fc51d5ca3bf46930c4d33cd3aba218fc3c3c74e8aace9e6cfbf1aaed647"
+    },
+    {
+      "title": "DVF : Valeurs foncières 2026 - Premier semestre",
+      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+      "publishedAt": null,
+      "referencePeriod": "Valeurs foncières 2026 - Premier semestre",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "531049c0c5fde334a8ffcc38ffad156d7ac33335ead75456b2c0d62df8e8e8b7"
+    },
+    {
+      "title": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+      "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+      "publishedAt": "2026-10-15",
+      "referencePeriod": "2026-06-30",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "2ba1c04bc0dcd47198b018f9c132b84135becace9e10ded25e99e748386a3b16"
+    },
+    {
+      "title": "BoursoBank intègre Wero à ses solutions de paiement",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+      "publishedAt": "2026-06-10",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "7c273647c769dc9e64ce4b8037f20d61bed1f3f69abb14187060397e714c368d"
+    },
+    {
+      "title": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+      "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+      "publishedAt": "2026-10-22",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "6154e4529b73ff4f7e50f212a44b785ba64f30580d87ef3c917c0e0c3cd7da2a"
+    },
+    {
+      "title": "DWS expands Xtrackers Fixed Income ETF offering with first Global Credit ETFs",
+      "url": "https://etf.dws.com/en-gb/about-us/press-releases/dws-expands-xtrackers-fixed-income-etf-offering-with-first-global-credit-etfs",
+      "publishedAt": "2026-08-04",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [
+        {
+          "name": "Xtrackers Global Corporate Bond UCITS ETF",
+          "isin": "IE000LRDPD24",
+          "fees": "0.08%"
+        },
+        {
+          "name": "Xtrackers Global Corporate Bond UCITS ETF",
+          "isin": "IE000EUY91Y9",
+          "fees": "0.10%"
+        },
+        {
+          "name": "Xtrackers Global Corporate Bond UCITS ETF",
+          "isin": "IE000VZ7IV68",
+          "fees": "0.10%"
+        },
+        {
+          "name": "Xtrackers Global Corporate Bond UCITS ETF",
+          "isin": "IE0008Z87N38",
+          "fees": "0.10%"
+        },
+        {
+          "name": "Xtrackers Global High Yield Corporate Bond UCITS ETF",
+          "isin": "IE000DT6MI20",
+          "fees": "0.18%"
+        },
+        {
+          "name": "Xtrackers Global High Yield Corporate Bond UCITS ETF",
+          "isin": "IE000AGH5ZI1",
+          "fees": "0.20%"
+        },
+        {
+          "name": "Xtrackers Global High Yield Corporate Bond UCITS ETF",
+          "isin": "IE000YHV2XO4",
+          "fees": "0.20%"
+        },
+        {
+          "name": "Xtrackers Eurozone Government Bond 1-10 UCITS ETF",
+          "isin": "IE00064N5UY4",
+          "fees": "0.09%"
+        }
+      ],
+      "sourceHash": "f113f6df37579b6030a1e908b8d233e45e22d2206b54565c3dc906d3f2e9ebdc"
+    },
+    {
+      "title": "Résultats 2025 de l'observatoire des loyers de la Gironde",
+      "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/resultats-2025-de-lobservatoire-des-loyers-de-la-gironde",
+      "publishedAt": "2026-10-16",
+      "referencePeriod": "2025",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "780706af91a41abc9904248ba6a992e2448062643b2a8423239901da68edf28e"
+    },
+    {
+      "title": "New ETF and ETP Listings on October 21, 2026, on Deutsche Börse",
+      "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+      "publishedAt": "2026-10-21",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [
+        {
+          "name": "Amundi Eurozone Equity Enhanced Active UCITS ETF",
+          "isin": "IE000I0VZEH9",
+          "fees": null
+        },
+        {
+          "name": "Amundi Europe Equity Enhanced Active UCITS ETF",
+          "isin": "IE000L1NIQD8",
+          "fees": null
+        },
+        {
+          "name": "Amundi World Equity Enhanced Active UCITS ETF",
+          "isin": "IE000SUZX5N6",
+          "fees": null
+        }
+      ],
+      "sourceHash": "54eef5a7b3ebdc2d8c01d8da32e35d3330b0c20f43d39fc6907e52445f5fe7d2"
+    },
+    {
+      "title": "Les Rendez-vous de l'Épargne de BPCE L'Observatoire - Quels arbitrages en matière de placements financiers face aux chocs ? Quelle place des crypto-actifs dans l’épargne des Français ?",
+      "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
+      "publishedAt": "2026-10-21",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "0cd47f8f6e344319bb35a0e1fff2d12b403c7e511f0e1ad7d795f113cc83cfea"
+    },
+    {
+      "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+      "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+      "publishedAt": "2026-10-23",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "5149ab32771cbca91355f7e6121d9d9c6378b2214ceeeb1c4259047b14d1557f"
+    },
+    {
+      "title": "Analyse marché immobilier septembre 2026",
+      "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+      "publishedAt": null,
+      "referencePeriod": "2026-09",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "45eb64c1aed608407b333eb3964abda3a25394c96604979df866dca3eeebb3ca"
+    },
+    {
+      "title": "Violences urbaines : Crédit Mutuel Alliance Fédérale déploie un dispositif solidaire d’urgence",
+      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
+      "publishedAt": "2026-10-19",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "68cbff5e99741bbd352e1ec7d40e66dad1267f07f6be32091243eebef8a479f6"
+    },
+    {
+      "title": "La Banque Postale et Louvre Banque Privée commercialisent Euros Engagements Durables, une solution d’épargne de CNP Assurances conjuguant fonds en euros et investissement durable",
+      "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
+      "publishedAt": "2026-09-07",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "c9909f4eb115b3c12bba69a081da90d5afa63e8dde9587e13bd4b5e79b692b82"
+    },
+    {
+      "title": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+      "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+      "publishedAt": "2026-10-12",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "3997f10ac591755bbeba4744428cb7a3386d4402d6d844b384a6a194acc9f8a8"
+    },
+    {
+      "title": "BNP Paribas Asset Management enters the next generation of actively-managed ETFs",
+      "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-enters-the-next-generation-of-actively-managed-etfs",
+      "publishedAt": "2026-06-24",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [
+        {
+          "name": "BNP Paribas Easy Equity Premium Income",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy European Equity Buffer",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Global Equity Long Short",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "BNP Paribas Easy Managed Futures",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "5df40e9c4e6d990dd36d90f22e07619a5bce1e5b2153ef469cff412153e6e9ad"
+    },
+    {
+      "title": "Trading Central expand UCITS range with two more quantamental equally weighted UCITS ETFs",
+      "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
+      "publishedAt": "2026-10-13",
+      "referencePeriod": null,
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [
+        {
+          "name": "Trading Central Quant U.S. 50 Equity Index UCITS ETF",
+          "isin": null,
+          "fees": null
+        },
+        {
+          "name": "Trading Central Quant Global 50 Equity Index UCITS ETF",
+          "isin": null,
+          "fees": null
+        }
+      ],
+      "sourceHash": "936a740fe9fe6f73a935fc3cd82ab29c035af2629e7cc7621fda72f37b5454ea"
+    },
+    {
+      "title": "Conjoncture immobilière en Ile-de-France de mai à juillet 2026",
+      "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+      "publishedAt": "2026-10-01",
+      "referencePeriod": "2026-05 / 2026-07",
+      "checkedAt": "2026-10-25T07:06:04.721Z",
+      "products": [],
+      "sourceHash": "5ee34acb8d67d0c3d83bc20ac43eb99c72b1c465a65fedeec7f30751cfebda80"
+    }
+  ],
+  "failures": [
+    {
+      "family": "economie",
+      "entity": "DARES",
+      "reason": "HTTP 503"
+    },
+    {
+      "family": "economie",
+      "entity": "DREES",
+      "reason": "HTTP 503"
+    }
+  ],
+  "metrics": {
+    "sampleDocuments": 678,
+    "successfulExtractions": 23,
+    "rejected": [
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110979/crise-sociale-des-manifestations-sous-tres-haute-securite-et-sans-incident-majeur",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/placement/actualites/110976/agence-moodys-maintient-la-note-de-la-dette-francaise-a-aa3-avec-perspective-negative",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/110912/mon-locataire-se-plaint-une-fissure-a-interieur-du-logement-quelle-assurance-doit-payer",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110915/retraite-agirc-arrco-decouvert-bancaire-inferieur-a-200-euros-tout-ce-qui-change-en-novembre-pour-votre-budget",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110974/le-cac-40-dans-le-rouge-vif-oreal-ou-le-refuge-du-luxe-le-journal-de-la-bourse-du-vendredi-23-octobre",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110972/nouvelles-heures-creuses-pour-electricite-tempete-austen-les-3-infos-argent-du-vendredi-23-octobre",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110971/retraite-agirc-arrco-decalee-apl-boostees-les-dates-de-vos-virements-en-novembre",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/107660/tempete-austen-ce-quil-faut-savoir-pour-etre-indemnise-par-votre-assurance-habitation-en-cas-de-sinistre",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/placement/actualites/110968/dette-de-la-france-pourquoi-le-maintien-de-la-note-par-moodys-ce-vendredi-est-peu-probable",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/banque-pro/actualites/110967/eu-inc-un-nouveau-statut-pour-creer-une-entreprise-en-moins-de-48-heures-en-europe-a-frais-reduits",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110966/assemblee-rejette-a-la-quasi-unanimite-le-budget-de-la-securite-sociale-2027-en-premiere-lecture",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/actu/110964/le-spread-mesure-de-la-mefiance-des-marches-envers-la-dette-francaise",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/110962/mutuelle-sante-le-conseil-constitutionnel-a-rendu-sa-decision-le-gel-des-tarifs-est-contraire-a-la-constitution",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110961/tout-le-monde-s-en-fout-a-assemblee-le-grand-spleen-des-deputes-pour-le-budget-2027",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110960/bourse-de-paris-valeo-devisse-de-12-au-lendemain-de-ses-resultats",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/107661/assurance-auto-pouvez-vous-etre-indemnise-en-cas-de-degats-causes-par-la-tempete-austen",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110958/une-hausse-exceptionnelle-du-smic-avant-le-1er-janvier-risque-de-creer-la-pagaille-dans-les-entreprises-selon-le-medef",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110957/cac-40-kering-plonge-de-plus-de-11-a-ouverture-ce-vendredi-23-octobre-apres-ses-resultats",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110956/le-cac-40-plonge-dans-le-rouge-ce-23-octobre-la-degradation-de-la-note-de-la-dette-francaise-redoutee",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/bourse/actualites/110955/credit-agricole-societe-generale-et-bnp-paribas-font-chuter-le-cac-40-le-journal-de-la-bourse-du-22-octobre",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/110953/budget-2027-une-taxe-sur-les-produits-sucres-rejetee-par-les-deputes",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110951/salaire-net-moyen-agios-interdits-loa-ou-credit-auto-les-3-infos-argent-du-jeudi-22-octobre",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.moneyvox.fr/actu/110943/pierre-moscovici-quitte-la-cour-des-comptes-europeenne-pour-contribuer-au-debat-public-en-france",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/placement/actualites/110932/per-ramify-jusqua-2-000-euros-de-frais-de-gestion-offerts-pendant-deux-ans",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110939/panne-orange-et-sosh-pouvez-vous-demander-une-indemnite-a-votre-operateur",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/tarif-bancaire/actualites/110934/decouvert-bancaire-pres-un-francais-sur-deux-se-retrouve-dans-le-rouge-une-fois-par-an",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/credit/actualites/110892/loa-lld-ou-credit-le-comparatif-du-cout-reel-une-toyota-yaris-cross-en-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110931/hausse-des-taux-des-credits-immo-plafonnement-de-abattement-des-retraites-les-3-infos-argent-du-21-octobre",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.moneyvox.fr/assurance/actualites/110930/assurance-habitation-combien-coute-t-elle-dans-les-plus-grandes-villes",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110927/assurance-chomage-prevoit-un-deficit-de-600-millions-euros-en-2027-si-etat-maintient-son-prelevement",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110925/notation-de-la-france-une-retrogradation-par-moodys-attendue-vendredi",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/placement/actualites/110921/cryptomonnaies-pourquoi-la-france-propose-deja-de-revoir-le-reglement-europeen-mica",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/placement/actualites/110920/bitcoin-ethereum-qui-sont-les-francais-qui-investissent-dans-les-cryptomonnaies",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110922/hausse-des-taux-credit-immo-prets-conso-epargne-les-repercussions-sur-la-vie-des-francais-et-des-entreprises",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110919/budget-de-la-secu-le-gouvernement-sous-le-feu-des-critiques-des-ouverture-des-debats",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.moneyvox.fr/retraite/actualites/110902/le-plafonnement-de-abattement-de-10-sur-les-retraites-desavantage-les-couples-avec-une-seule-pension",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Recognized-By-Euromoney-Awards-/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Investment-Management-Builds-on-Nearly-30-Years-of-Sector-ETF-Leadership-with-New-Market-Sector-ETFs/default.aspx",
+        "reason": "Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Corporation-NYSE-STT-Reports-Third-Quarter-2026-Financial-Results/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Elects-Alexander-Vollert-to-Its-Board-of-Directors/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/Institutional-Adoption-of-Digital-Assets-Accelerates-as-Trust-and-Regulation-Emerge-as-Critical-Dependencies/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Appointed-as-Transfer-Agent-by-Wellington-Management-on-HKEX-Integrated-Fund-Platform-2026-LfnWmIkefU/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Corporation-to-Report-Third-Quarter-2026-Financial-Results-and-Host-Conference-Call-Webcast-on-October-14/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Investment-Management-Expands-MyIncome-Suite-as-Assets-Top-1-Billion/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/Yuanta-Funds-Selects-State-Street-for-First-Overseas-Securities-Lending-Program-2026-w9Zb88i_-W/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Announces-Leadership-for-Alpha-and-Enterprise-Operations-and-Technology/default.aspx",
+        "reason": "Communiqué sans annonce ETF"
+      },
+      {
+        "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-bank-brings-together-nine-world-class-athletes-to-explore-the-mindset-behind-successful-investing-19102026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/nomination-de-benoit-grisoni",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/feuille-de-route-strategique-societe-generale",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-nomination-de-morgane-aganian-gnakpa",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/nominations-au-sein-des-activites-de-banque-de-grande-clientele-et-solutions-investisseurs",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-2e-trimestre-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/accompagnement-des-victimes-des-incendies-en-france",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/ardian-et-societe-generale-annoncent-un-partenariat-financier-et-operationnel-dedie-aux-solutions",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-1er-trimestre-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/un-ete-en-france-2026-gautier-capucon-et-societe-generale-invitent-de-nouveaux-talents-et",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/cp-philharmonie-de-paris-et-fondation-societe-generale-renforcent-leur-partenariat",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-une-annee-2025-record",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-4eme-trimestre-et-de-lannee-2025",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/cinq-acteurs-majeurs-de-lassurance-et-de-la-maitrise-des-risques-lancent-geoya-une-solution-de-place",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/renforcement-de-lefficacite-par-la-simplification-de-lorganisation-et-du-developpement-des",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/premiere-obligation-numerique-sur-blockchain-aux-etats-unis",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://presse.credit-agricole.com/renovation-energetique-la-reputation-premier-critere-de-choix-selon-61-des-artisans-et-lacces-au-financement-un-levier-pour-passer-a-laction",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://presse.credit-agricole.com/le-credit-agricole-soutient-le-developpement-du-vaccin-ucpvax-contre-le-cancer",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://presse.credit-agricole.com/le-credit-agricole-sallie-a-des-acteurs-europeens-de-premier-plan-pour-accelerer-le-deploiement-industriel-de-lintelligence-artificielle",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://presse.credit-agricole.com/amundi-realise-le-1er-closing-de-son-fonds-de-dette-privee-de-cinquieme-generation-destine-aux-investisseurs-institutionnels",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://presse.credit-agricole.com/cawl-lance-son-offre-integrale-une-nouvelle-solution-dencaissement-tout-en-un-pour-simplifier-le-quotidien-des-professionnels",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-nominations-au-sein-d-arval",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-annonce-son-expansion-strategique-sur-le-marche-nordique-de-la-gestion-de-fortune",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-et-google-cloud-annoncent-un-nouveau-partenariat-autour-de-l-ia-agentique-et-du-cloud",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-s-appuie-sur-ses-franchises-de-premier-plan-pour-poursuivre-sa-trajectoire-de-croissance-au-coeur-des-grandes-transformations-europeennes",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-asset-management-met-en-place-sa-nouvelle-organisation-pour-accelerer-sa-croissance-et-le-deploiement-de-son-plan-strategique-2030",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/arval-a-finalise-l-acquisition-d-athlon",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/groupe-bnp-paribas-resultats-au-30-juin-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-banque-privee-agrifrance-dresse-son-etat-des-lieux-annuel-du-marche-foncier-rural-en-france-en-2025",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-presente-la-strategie-de-croissance-de-sa-banque-commerciale-en-belgique-bceb-et-releve-ses-objectifs-de-rentabilite-a-22-de-rone-en-2028-et-25-en-2030",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-et-mistral-ai-prolongent-leur-partenariat-pour-accompagner-la-prochaine-phase-de-deploiement-de-l-ia-generative-au-sein-du-groupe",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/roland-garros-et-bnp-paribas-annoncent-le-renouvellement-de-leur-partenariat-historique",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/groupe-bnp-paribas-resultats-au-31-mars-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accord-avec-holmarcom-finance-company-hfc-pour-la-cession-de-la-bmci-au-maroc",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/le-groupe-bnp-paribas-annonce-avoir-finalise-la-mise-en-place-de-son-partenariat-de-long-terme-avec-le-groupe-ageas",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/art-paris-2026-sara-ouhaddou-laureate-du-prix-bnp-paribas-banque-privee-un-regard-sur-la-scene-francaise",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-sandro-pierri-rejoint-le-comite-executif-du-groupe-bnp-paribas",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-sarah-roussel-nommee-directrice-des-ressources-humaines-du-groupe",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-renforce-son-accompagnement-en-faveur-des-pme-avec-l-ouverture-d-un-40eme-centre-d-affaires-a-lyon",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/reporting-emir-reponse-consultation-esma-article-7d",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/modification-des-exigences-de-liquidite-pour-les-opci-et-fcpr-evergreen-non-eltif",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/ratios-investissements-applicables-fcpe-loi-industrie-verte-eltif",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/afg-reponse-priorites-amont-des-trilogues-sfdr",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/regard-eco-allocation-de-l-epargne-en-suede-davantage-orientee-vers-le-long-terme",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/stats-opc-fiche-statistiques-sur-les-fonds-de-droit-francais-juillet-2026",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/parution-reglements-ue-durabilite-esrs-standards-volontaires",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/retail-investment-strategy-les-negociations-se-poursuivent-sur-les-textes-de-niveau-2",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/les-financiers-de-boursobank-sont-a-croquer-",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/bourso-business-l-offre-bancaire-complete-et-gratuite-qui-a-deja-seduit-plus-de-90-000-clients-professionnels-propose-desormais-gratuitement-une-solution-d-accompagnement-a-la-creation-d-entreprise-et-une-offre-de-facturation-electronique",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-depasse-9-millions-de-clients-et-affiche-un-resultat-net-record-de-176-m-au-premier-semestre-2026",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursolive-2026-ia-transformations-economiques-et-opportunites-d-investissement",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-innove-avec-la-1ere-titrisation-en-france-de-credits-a-la-consommation-avec-une-tranche-green-",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/avec-un-resultat-net-de-92m-au-premier-trimestre-boursobank-est-en-bonne-voie-pour-atteindre-son-objectif-de-plus-de-300m-de-resultat-net-en-2026",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/fort-de-son-succes-aupres-de-80-000-clients-professionnels-boursobank-enrichit-son-offre-bourso-business",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-la-vigilance-face-aux-bons-plans-boursiers-proposes-sur-les-messageries-privees",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-appelle-nouveau-les-epargnants-la-plus-grande-vigilance-legard-de",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-rappelle-au-public-que-la-plateforme-de-trading-de-crypto-actifs-bybit-est-inscrite-sur-liste",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-rappelle-au-public-que-la-plateforme-de-trading-de-crypto-actifs-bitget-est-inscrite-sur-liste",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-en-garde-les-professionnels-contre-une-vague-dutilisation",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-le-parquet-de-paris-appellent-les-epargnants-la-plus-grande-vigilance-legard-de-loffre",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-alerte-le-public-contre-des-appels-dusurpateurs-pretendant-aider-la-recuperation-de-fonds",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-la-vigilance-face-aux-sites-frauduleux-usurpant-son-nom",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-les-epargnants-la-plus-grande-vigilance-face-des-propositions-dinvestissement-dans-des-0",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/espace-epargnants/actualites-mises-en-garde/biens-divers-lamf-complete-sa-liste-noire-et-obtient-pour-la-premiere-fois-le-blocage-de-lacces-aux",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-les-epargnants-la-plus-grande-vigilance-face-des-propositions-dinvestissement-dans-des",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-les-epargnants-la-plus-grande-vigilance-face-certaines-activites-de-laurent-chenot",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-rend-publique-la-transmission-au-parquet-national-financier-de-deux-dossiers-denquete-revelant",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-attire-lattention-du-public-sur-des-structures-pyramidales-proposant-des-formations-au-trading",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-les-epargnants-la-plus-grande-vigilance-face-aux-propositions-dinvestissement-dans-les",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-appelle-les-epargnants-la-plus-grande-vigilance-face-aux",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-annonce-la-mise-disposition-sur-son-site-internet-dune-liste",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-met-une-nouvelle-fois-en-garde-le-public-contre-les-offres-de",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-invite-les-clients-de-la-plateforme-eubancdebinarycom-contacter-dans-les-meilleurs-delais-la",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-attire-lattention-du-public-sur-le-produit-viagefi-6-limited",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-invite-les-clients-des-plateformes-wwwytftradeltdcom-wwwinvesting-areacom-wwwbuzztradecom",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-attire-lattention-du-public-sur-le-produit-keystone-fund",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-invite-les-clients-des-plateformes-wwwinteractiveoptioncom",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-alerte-le-public-contre-la-societe-mtl-index",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-publie-la-liste-des-nouveaux-sites-internet-identifies-proposant-en-france-des-options-binaires",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-appelle-les-epargnants-la-vigilance-en-matiere-doffres",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-4",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-3",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-2",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-1",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-en-garde-le-public-contre-la-societe-get-easy",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-0",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-en-garde-le-public-contre-la-societe-algorates-limited",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-15",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-14",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-13",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-denonce-lutilisation-de-son-nom-dans-une-communication-emise-par-la",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-jour-la-liste-des-sites-internet-non-autorises-proposant-du-12",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://newsroom.groupebpce.fr/actualites/crise-du-pouvoir-d-achat-catastrophes-naturelles-tensions-geopolitiques-les-comportements-des-francais-face-aux-risques-6e563-7b707.html",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://newsroom.groupebpce.fr/actualites/trophees-de-l-assurance-2026-bpce-assurances-doublement-recompensee-pour-ses-innovations-technologiques-et-de-services-e3706-7b707.html",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.energie-info.fr/cheque-energie-2026-demande-avant-fin-annee",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.energie-info.fr/offre-type-tempo-calendrier-2026-2027",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/une-mobilisation-collective.html",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/rencontre-losc-stade-brestois.html",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/14eme-edition-festival-de-paques.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/ebra-et-institut-mutualiste.html",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/aide-sociale-enfance-construire-avenir-meilleur.html",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/cic-renouvellement-partenariat-tour-de-la-provence.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/ping-sante-credit-mutuel-federation-francaise-de-tennis-de-table.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/hebergement-d-urgence-pour-l-enfance-defavorisee.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/cic-prolonge-son-partenariat-france-pro-cycling-academy.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/dispositif-d-urgence-pour-soutenir-l-agriculture-francaise.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/fondation-engagement-federation-des-acteurs-de-la-solidarite.html",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-cnp-assurances-accord-prudential-financial.pdf",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Note-de-conjoncture-oct2026.pdf",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-lbpam-sri-human-rights-prix.pdf",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Caisse-des-Depots-autonomisation-jeunes-ASE.pdf",
+        "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-etude-regions-de-france-LBP-septembre2026.pdf",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-etude-regard-financier-departements-france.pdf",
+        "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Banque-des-Territoires-ACTEE-LBP.pdf",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-genai-juin2026.pdf",
+        "reason": "Sujet hors du périmètre des particuliers"
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/le-per-de-bourse-direct-distingue-parmi-les-meilleurs-per-2026-de-challenges-dans-la-categorie-meilleurs-per-en-ligne-assurantiels-20261008",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-celebre-30-ans-dengagementaupres-des-investisseurs-particuliers-20260917",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-cash-story-son-nouveau-podcast-dedie-a-leducation-financiere-20260617",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-reconduit-sa-participation-aux-finfluencers-awardsen-tant-que-membre-du-jury-20260518",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-horizon-distingue-aux-41e-oscars-de-lassurance-vie-pour-sa-performance-en-gestion-pilotee-20260402",
+        "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+      }
+    ],
+    "delays": [
+      {
+        "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
+        "publicationToDetectionHours": 7.101311388888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-forges-new-highs-and-launches-new-etfs-with-support-from-uk-based-wealth-manager-1-oct-26.pdf",
+        "publicationToDetectionHours": 583.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-devoile-lacademie-du-pea-07072026",
+        "publicationToDetectionHours": 2647.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/sg-lance-le-programme-matrimoine",
+        "publicationToDetectionHours": 991.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
+        "publicationToDetectionHours": 55.10131138888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
+        "publicationToDetectionHours": 1111.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.revolut.com/fr-FR/news/revolut_receives_french_banking_licence",
+        "publicationToDetectionHours": 1831.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+        "publicationToDetectionHours": null,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+        "publicationToDetectionHours": 247.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+        "publicationToDetectionHours": 3295.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+        "publicationToDetectionHours": 79.10131138888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://etf.dws.com/en-gb/about-us/press-releases/dws-expands-xtrackers-fixed-income-etf-offering-with-first-global-credit-etfs",
+        "publicationToDetectionHours": 1975.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/details/resultats-2025-de-lobservatoire-des-loyers-de-la-gironde",
+        "publicationToDetectionHours": 223.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases/New-ETF-and-ETP-Listings-on-October-21-2026-on-Deutsche-B-rse-5652560",
+        "publicationToDetectionHours": 103.10131138888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
+        "publicationToDetectionHours": 103.10131138888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+        "publicationToDetectionHours": 55.10131138888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+        "publicationToDetectionHours": null,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
+        "publicationToDetectionHours": 151.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
+        "publicationToDetectionHours": 1159.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+        "publicationToDetectionHours": 319.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.bnpparibas-am.com/en/press/mediaroom-en-bnp-paribas-asset-management-enters-the-next-generation-of-actively-managed-etfs",
+        "publicationToDetectionHours": 2959.101311388889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
+        "publicationToDetectionHours": 295.1013113888889,
+        "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+        "publicationToDetectionHours": 583.1013113888889,
+        "detectionToAvailabilityHours": 0
+      }
+    ]
+  },
+  "limits": "Échantillon borné, sans prétendre mesurer un rappel exhaustif ni les faux positifs de tout le Web. Accès non qualifié ≠ source raccordée."
+}

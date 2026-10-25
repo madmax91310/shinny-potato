@@ -38,6 +38,10 @@ export function etfAnnouncement(title = '') {
   if (/\b(?:report|research|study|webinar|survey|guide|rapport|etude|guide)\b/.test(t)) return null
   if (/\b(?:not|no|may|might|could|considering|rumour|rumor)\b|ne .*pas|pourrait|envisage/.test(t)) return null
   if (/\b(?:will|plans? to|expected to|scheduled to)\b|lancera|sera |va lancer/.test(t) && /launch|lanc/.test(t)) return { type: 'launch', stage: 'announced', label: 'Lancement annoncé', evidence: title }
+  if (/\b(?:merger|merge[sd]?|fusion)\b/.test(t)) return {type:'merger',stage:'announced',label:'Fusion annoncée',evidence:title}
+  if (/delist|radiation|retrait de (?:la )?cotation/.test(t)) return {type:'delisting',stage:'announced',label:'Retrait de cotation annoncé',evidence:title}
+  if (/\b(?:closure|clos(?:es|ing)|liquidation|fermeture|dissolution)\b/.test(t)) return {type:'closure',stage:'announced',label:'Fermeture annoncée',evidence:title}
+  if (/nouvel indice|changement d.indice|changes? (?:its )?(?:benchmark|index)|eligible.*pea|eligibilite.*pea/.test(t)) return {type:'characteristic-change',stage:'announced',label:'Changement de caractéristique annoncé',evidence:title}
   if (/registered for distribution in france|commercialisation.*france|available.*retail.*france/.test(t)) return {type:'france-distribution',stage:'announced',label:/registered/.test(t)?'Enregistrement pour distribution en France annoncé':'Commercialisation en France annoncée',evidence:title}
   if (/nouvelle place de cotation|additional listing|cross.list/.test(t)) return { type: 'listing', stage: 'trading', label: 'Nouvelle place de cotation annoncée', evidence: title }
   if (/premiere cotation|first trading date|first listing/.test(t)) return { type: 'first-trading', stage: /will|prevu|annonce|sera/.test(t) ? 'announced' : 'trading', label: 'Première cotation annoncée', evidence: title }
@@ -65,7 +69,7 @@ export function editorialState(event, now = Date.now()) {
   if (event.status === 'source-conflict') return 'secondary'
   if (event.family === 'etf' && field === 'announcement') {
     const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
-    if (event.documentHash && announcement?.stage !== 'candidate' && event.products?.length && event.evidence?.excerpt) return 'ready'
+    if (event.documentHash && announcement && announcement.stage !== 'candidate' && (event.products?.length || Number.isInteger(event.announcedProductCount) && event.announcedProductCount>1) && event.evidence?.excerpt) return 'ready'
     return announcement ? announcement.stage === 'trading' || announcement.stage === 'launched' && event.launchDetails?.isin && (event.launchDetails.fees || event.launchDetails.index) ? 'ready' : 'watch' : 'secondary'
   }
   if (event.factType === 'statistical-publication') return event.publishedAt && event.evidence?.excerpt && event.evidence?.sourceHash ? 'ready' : 'watch'
@@ -88,11 +92,11 @@ export function editorialState(event, now = Date.now()) {
 }
 
 export function factType(event) {
-  if (event.field === 'announcement' && ['listing','first-trading','trading','characteristic-change','share-class','france-distribution'].includes(event.announcementEvidence?.type)) return event.announcementEvidence.type
+  if (event.field === 'announcement' && ['listing','first-trading','trading','characteristic-change','share-class','france-distribution','merger','closure','delisting'].includes(event.announcementEvidence?.type)) return event.announcementEvidence.type
   if (event.factType) return event.factType
   if (event.kind === 'new' && event.field !== 'announcement' && event.family !== 'pouvoir-achat') return 'coverage'
   if (event.family === 'pouvoir-achat') return 'regulatory-measure'
-  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading','trading','characteristic-change','share-class','france-distribution'].includes(type) ? type : 'product-announcement' }
+  if (event.field === 'announcement') { const type = (event.announcementEvidence ?? etfAnnouncement(event.label))?.type; return ['listing','first-trading','trading','characteristic-change','share-class','france-distribution','merger','closure','delisting'].includes(type) ? type : 'product-announcement' }
   if (event.beforePeriod === event.period && (event.kind === 'publication' || event.family === 'economie')) return 'source-revision'
   if (event.family === 'economie' && event.publishedAt && event.evidence?.sourceHash) return 'statistical-publication'
   return 'characteristic-change'

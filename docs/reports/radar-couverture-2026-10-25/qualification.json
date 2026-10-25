@@ -1,0 +1,3235 @@
+{
+  "checkedAt": "2026-10-25T07:06:29.233Z",
+  "durationMs": 24476,
+  "method": "Two actual read-only collection passes with durable disk reload, then zero-request cache pass; local feed production and notification planning only. Not a scheduled-run or mobile-delivery proof.",
+  "sources": [
+    {
+      "id": "bnp-bank",
+      "name": "BNP Paribas · groupe",
+      "url": "https://group.bnpparibas/rss/news/communique-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
+      "attemptedAt": "2026-10-25T07:06:06.612Z",
+      "discovered": 21,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:04.758Z",
+      "lastSuccessAt": "2026-10-25T07:06:04.758Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:04.758Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 19
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:04.758Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:04.758Z",
+          "metrics": {
+            "requests": 3,
+            "bytes": 251073,
+            "notModified": 0,
+            "durationMs": 1843,
+            "checkedAt": "2026-10-25T07:06:04.758Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 19
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:06.606Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:06.606Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 19
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:06.612Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:06.612Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 19
+          },
+          "observations": 2,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "BNP Paribas accompagne l'accélération du déploiement de Wero auprès de ses clients commerçants et particuliers en Europe",
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
+          "publishedAt": "2026-09-09",
+          "checkedAt": "2026-10-25T07:06:04.758Z",
+          "topic": "banques",
+          "summary": "BNP Paribas annonce une avancée majeure dans le déploiement de Wero en France. Plusieurs grands commerçants sont désormais engagés avec BNP Paribas pour pouvoir proposer Wero comme mode de paiement en ligne, notamment Air France, Decathlon, Fnac Darty et Orange. - (source: group.bnpparibas)",
+          "evidenceLevel": "official",
+          "sourceHash": "fcac390b478b7e5ab3d3798a829079734233fa492b89d29e2f161ddbd8fc828d",
+          "conditions": {
+            "clients": null,
+            "pays": null,
+            "formule": null,
+            "duree": null,
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": null
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-09"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "BNP Paribas élargit son offre Bourse aux ETN crypto-actifs",
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+          "publishedAt": "2026-03-26",
+          "checkedAt": "2026-10-25T07:06:04.758Z",
+          "topic": "banques",
+          "summary": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs. Les clients particuliers en France pourront désormais investir dans 6 ETN crypto-actifs, indexés sur le Bitcoin ou l’Ether. - (source: group.bnpparibas)",
+          "evidenceLevel": "official",
+          "sourceHash": "c77301946af8e8bfdeedbb106406d02c859bf435d57988fa07434a3a2282bf00",
+          "conditions": {
+            "clients": null,
+            "pays": null,
+            "formule": null,
+            "duree": null,
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": null
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-03-26"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-nominations-au-sein-d-arval",
+          "publishedAt": "2026-10-05",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-annonce-son-expansion-strategique-sur-le-marche-nordique-de-la-gestion-de-fortune",
+          "publishedAt": "2026-10-01",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/la-bei-et-bnp-paribas-mobilisent-700-millions-d-euros-de-garanties-pour-soutenir-les-reseaux-energetiques-europeens",
+          "publishedAt": "2026-09-29",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-et-google-cloud-annoncent-un-nouveau-partenariat-autour-de-l-ia-agentique-et-du-cloud",
+          "publishedAt": "2026-09-24",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-s-appuie-sur-ses-franchises-de-premier-plan-pour-poursuivre-sa-trajectoire-de-croissance-au-coeur-des-grandes-transformations-europeennes",
+          "publishedAt": "2026-09-22",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-asset-management-met-en-place-sa-nouvelle-organisation-pour-accelerer-sa-croissance-et-le-deploiement-de-son-plan-strategique-2030",
+          "publishedAt": "2026-09-22",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accompagne-l-acceleration-du-deploiement-de-wero-aupres-de-ses-clients-commercants-et-particuliers-en-europe",
+          "publishedAt": "2026-09-09",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:04.758Z"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/arval-a-finalise-l-acquisition-d-athlon",
+          "publishedAt": "2026-07-31",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/groupe-bnp-paribas-resultats-au-30-juin-2026",
+          "publishedAt": "2026-07-23",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-banque-privee-agrifrance-dresse-son-etat-des-lieux-annuel-du-marche-foncier-rural-en-france-en-2025",
+          "publishedAt": "2026-06-17",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-presente-la-strategie-de-croissance-de-sa-banque-commerciale-en-belgique-bceb-et-releve-ses-objectifs-de-rentabilite-a-22-de-rone-en-2028-et-25-en-2030",
+          "publishedAt": "2026-06-01",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-et-mistral-ai-prolongent-leur-partenariat-pour-accompagner-la-prochaine-phase-de-deploiement-de-l-ia-generative-au-sein-du-groupe",
+          "publishedAt": "2026-05-26",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/roland-garros-et-bnp-paribas-annoncent-le-renouvellement-de-leur-partenariat-historique",
+          "publishedAt": "2026-05-24",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/groupe-bnp-paribas-resultats-au-31-mars-2026",
+          "publishedAt": "2026-04-30",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-accord-avec-holmarcom-finance-company-hfc-pour-la-cession-de-la-bmci-au-maroc",
+          "publishedAt": "2026-04-29",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/le-groupe-bnp-paribas-annonce-avoir-finalise-la-mise-en-place-de-son-partenariat-de-long-terme-avec-le-groupe-ageas",
+          "publishedAt": "2026-04-28",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/art-paris-2026-sara-ouhaddou-laureate-du-prix-bnp-paribas-banque-privee-un-regard-sur-la-scene-francaise",
+          "publishedAt": "2026-04-09",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
+          "publishedAt": "2026-03-26",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:04.758Z"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-sandro-pierri-rejoint-le-comite-executif-du-groupe-bnp-paribas",
+          "publishedAt": "2026-03-24",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-sarah-roussel-nommee-directrice-des-ressources-humaines-du-groupe",
+          "publishedAt": "2026-03-23",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://group.bnpparibas/communique-de-presse/bnp-paribas-renforce-son-accompagnement-en-faveur-des-pme-avec-l-ouverture-d-un-40eme-centre-d-affaires-a-lyon",
+          "publishedAt": "2026-03-19",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "credit-agricole-news",
+      "name": "Crédit Agricole · groupe et réseaux",
+      "url": "https://presse.credit-agricole.com/fr/?lang=fra",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
+      "attemptedAt": "2026-10-25T07:06:08.802Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:06.620Z",
+      "lastSuccessAt": "2026-10-25T07:06:06.620Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:06.620Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:06.620Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:06.620Z",
+          "metrics": {
+            "requests": 2,
+            "bytes": 329273,
+            "notModified": 0,
+            "durationMs": 2180,
+            "checkedAt": "2026-10-25T07:06:06.620Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 5
+          },
+          "observations": 1,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:08.800Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:08.800Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 5
+          },
+          "observations": 1,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:08.802Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:08.802Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 5
+          },
+          "observations": 1,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
+          "url": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
+          "publishedAt": "2026-10-23",
+          "checkedAt": "2026-10-25T07:06:06.620Z",
+          "summary": "Amundi élargit sa gamme d'ETF actifs avec trois nouveaux ETF actifs actions",
+          "evidenceLevel": "official",
+          "sourceHash": "a2400cb21417292e8fc1334b4be93a82dfe0c9d8fed8cc38d6a98e62544d41f7",
+          "products": [],
+          "announcedProductCount": 3,
+          "backfill": true,
+          "assessment": {
+            "score": 46,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 0,
+                "maximum": 15,
+                "unknown": true,
+                "reason": "Comparaison non documentée"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-23"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://presse.credit-agricole.com/amundi-elargit-sa-gamme-detf-actifs-avec-trois-nouveaux-etf-actifs-actions",
+          "publishedAt": "2026-10-23",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:06.620Z"
+        },
+        {
+          "url": "https://presse.credit-agricole.com/renovation-energetique-la-reputation-premier-critere-de-choix-selon-61-des-artisans-et-lacces-au-financement-un-levier-pour-passer-a-laction",
+          "publishedAt": "2026-10-22",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://presse.credit-agricole.com/le-credit-agricole-soutient-le-developpement-du-vaccin-ucpvax-contre-le-cancer",
+          "publishedAt": "2026-10-20",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://presse.credit-agricole.com/le-credit-agricole-sallie-a-des-acteurs-europeens-de-premier-plan-pour-accelerer-le-deploiement-industriel-de-lintelligence-artificielle",
+          "publishedAt": "2026-10-20",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://presse.credit-agricole.com/amundi-realise-le-1er-closing-de-son-fonds-de-dette-privee-de-cinquieme-generation-destine-aux-investisseurs-institutionnels",
+          "publishedAt": "2026-10-20",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://presse.credit-agricole.com/cawl-lance-son-offre-integrale-une-nouvelle-solution-dencaissement-tout-en-un-pour-simplifier-le-quotidien-des-professionnels",
+          "publishedAt": "2026-10-19",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "sg-bank",
+      "name": "Société Générale · groupe",
+      "url": "https://www.societegenerale.com/fr/communiques-de-presse",
+      "method": "consumer-coverage",
+      "depth": "Première page de cartes datées ; archive non exhaustive",
+      "attemptedAt": "2026-10-25T07:06:10.038Z",
+      "discovered": 18,
+      "archiveWarning": null,
+      "etag": "\"1792749484-gzip\"",
+      "lastModified": "Fri, 23 Oct 2026 09:58:04 GMT",
+      "checkedAt": "2026-10-25T07:06:08.805Z",
+      "lastSuccessAt": "2026-10-25T07:06:08.805Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:08.805Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 16
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:08.805Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:08.805Z",
+          "metrics": {
+            "requests": 3,
+            "bytes": 559124,
+            "notModified": 0,
+            "durationMs": 1231,
+            "checkedAt": "2026-10-25T07:06:08.805Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 16
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:10.037Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:10.037Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 16
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:10.038Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:10.038Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 16
+          },
+          "observations": 2,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "SG lance le programme Matrimoine",
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/sg-lance-le-programme-matrimoine",
+          "publishedAt": "2026-09-14",
+          "checkedAt": "2026-10-25T07:06:08.805Z",
+          "topic": "banques",
+          "summary": "Dans le prolongement de la campagne “Parlons Argent”, SG lance Matrimoine , un programme national destiné à aider les femmes à mieux comprendre les enjeux financiers et à prendre leurs décisions d’épargne en confiance. À partir du 14 septembre 2026, ce dispositif réunira une campagne de sensibilisation, des contenus pédagogiques, des masterclass et un accompagnement en agence. Avec le programme Matrimoine , SG souhaite renforcer les connaissances financières des femmes et leur donner les repères nécessaires pour comprendre, comparer et choisir en matière d’épargne, d’investissement et de transmission. Dans le prolongement de Parlons Argent , ce programme réaffirme la vision du métier de banq",
+          "evidenceLevel": "official",
+          "sourceHash": "b59dfaeb83770b147a899762a5c16c000e3a7ece439b121c5bced5bacdce1540",
+          "conditions": {
+            "clients": "Dans le prolongement de Parlons Argent , ce programme réaffirme la vision du métier de banquier portée par SG : mettre son expertise au service de ses clientes à chaque étape de leurs projets de vie. Le dispositif donne une nouvelle ampleur aux actions menées de longue date par Société Générale auprès des femmes entrepreneures et de l’ensemble de ses clientes — rencontres, masterclass, prises de parole d’expertes et contenus pédagogiques — en les réunissant au sein d’un dispositif national structuré.",
+            "pays": "» Lubomira Rochet , Directrice générale adjointe en charge des activités de Banque de détail en France, Banque Privée et Assurances, et du Chief Operating Office du Groupe. ces rendez-vous seront ensuite déclinés en régions ; Étude Ipsos-BVA réalisée en ligne via l’omnibus Ipsos.Digital du 13 au 16 février 2026 auprès de 1 000 Français âgés de 18 à 75 ans, échantillon représentatif de la population française.",
+            "formule": null,
+            "duree": "Le nom du programme remet à l’honneur le mot ancien matrimoine qui était utilisé et présent dans les dictionnaires jusqu’au XVIIe siècle comme le pendant féminin de patrimoine.",
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": null
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-14"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Sogécap conserve son positionnement compétitif avec un taux moyen servi de 3,12% sur son fonds en euros en 2025",
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+          "publishedAt": "2026-01-14",
+          "checkedAt": "2026-10-25T07:06:08.805Z",
+          "topic": "epargne",
+          "summary": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 . Ce taux, supérieur de 50 points de base à la moyenne du marché en 2024, devrait également rester significativement au-dessus du rendement moyen anticipé pour l’année 2025 2 . Ce niveau de rendement servi aux assurés résulte de la qualité de la gestion du fonds en euros, d’une politique de diversification efficace des investissements et d’une utilisation maîtrisée des réserves financières de la compagnie, qui restent après affectation à un niveau supérieur à 5% , ",
+          "evidenceLevel": "official",
+          "sourceHash": "d79d1365360e2a76b992295e461c43b3eb9b23b5fce1fd975da8879dbbad8f6f",
+          "conditions": {
+            "clients": "Ce niveau de rendement servi aux assurés résulte de la qualité de la gestion du fonds en euros, d’une politique de diversification efficace des investissements et d’une utilisation maîtrisée des réserves financières de la compagnie, qui restent après affectation à un niveau supérieur à 5% , parmi les plus élevées du marché. En assurance vie épargne, les clients ayant opté pour la diversification en unités de compte ont bénéficié d’un rendement majoré grâce à des bonus, sur versement et sur encours, cumulables . Pour la troisième année consécutive, Sogécap maintient le taux de base du plan d’épargne retraite (PER) Acacia à 3,25% , témoignant de sa volonté d’accompagner durablement ses clients dans la préparation de leur retraite.",
+            "pays": "Sogécap, compagnie d’assurance vie du groupe Société Générale et acteur de premier plan sur le marché de la bancassurance en France, maintient au titre de 2025 un taux moyen élevé sur ses contrats d’assurance vie épargne à 3,12% 1 . [3] Source France Assureurs, septembre 2025.",
+            "formule": "En 2026, Sogécap reconduit un dispositif d’offres bonus afin de soutenir les nouveaux versements et promouvoir une allocation diversifiée .",
+            "duree": "Philippe Perret, Directeur général de Société Générale Assurances, commente : « Fidèle à notre volonté d’accompagner nos clients avec des solutions d’épargne performantes dans la durée, Société Générale Assurances s’appuie sur sa collecte nette record de 2025 pour maintenir des taux de rendement particulièrement compétitifs sur son fonds en euros.",
+            "plafond": null,
+            "versement": "En assurance vie épargne, les clients ayant opté pour la diversification en unités de compte ont bénéficié d’un rendement majoré grâce à des bonus, sur versement et sur encours, cumulables . En 2026, Sogécap reconduit un dispositif d’offres bonus afin de soutenir les nouveaux versements et promouvoir une allocation diversifiée . Les assurés recevront des rendements bonifiés pour 2026 et 2027 : +100 points de base dès 15% versés en unités de compte et jusqu’à +200 points de base pour les versements intégrant au moins 50% d’unités de compte.",
+            "tauxPromotionnel": "Les assurés recevront des rendements bonifiés pour 2026 et 2027 : +100 points de base dès 15% versés en unités de compte et jusqu’à +200 points de base pour les versements intégrant au moins 50% d’unités de compte.",
+            "tauxNormal": "Pour la troisième année consécutive, Sogécap maintient le taux de base du plan d’épargne retraite (PER) Acacia à 3,25% , témoignant de sa volonté d’accompagner durablement ses clients dans la préparation de leur retraite.",
+            "frais": "» [1] Taux de rendement nets de frais de gestion et bruts de prélèvement sociaux et fiscaux, incluant les bonus sur encours et sur versements."
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-01-14"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/nomination-de-benoit-grisoni",
+          "publishedAt": "2026-09-21",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/feuille-de-route-strategique-societe-generale",
+          "publishedAt": "2026-09-21",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/sg-lance-le-programme-matrimoine",
+          "publishedAt": "2026-09-14",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:08.805Z"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-nomination-de-morgane-aganian-gnakpa",
+          "publishedAt": "2026-09-04",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/nominations-au-sein-des-activites-de-banque-de-grande-clientele-et-solutions-investisseurs",
+          "publishedAt": "2026-07-31",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-2e-trimestre-2026",
+          "publishedAt": "2026-07-30",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/accompagnement-des-victimes-des-incendies-en-france",
+          "publishedAt": "2026-07-28",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/ardian-et-societe-generale-annoncent-un-partenariat-financier-et-operationnel-dedie-aux-solutions",
+          "publishedAt": "2026-06-10",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-1er-trimestre-2026",
+          "publishedAt": "2026-04-30",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/un-ete-en-france-2026-gautier-capucon-et-societe-generale-invitent-de-nouveaux-talents-et",
+          "publishedAt": "2026-04-21",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/cp-philharmonie-de-paris-et-fondation-societe-generale-renforcent-leur-partenariat",
+          "publishedAt": "2026-04-03",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/societe-generale-et-credit-mutuel-arkea-signent-un-protocole-daccord-en-vue-de-la-cession-de",
+          "publishedAt": "2026-03-17",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-une-annee-2025-record",
+          "publishedAt": "2026-02-18",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/resultats-du-4eme-trimestre-et-de-lannee-2025",
+          "publishedAt": "2026-02-06",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/cinq-acteurs-majeurs-de-lassurance-et-de-la-maitrise-des-risques-lancent-geoya-une-solution-de-place",
+          "publishedAt": "2026-01-28",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/renforcement-de-lefficacite-par-la-simplification-de-lorganisation-et-du-developpement-des",
+          "publishedAt": "2026-01-22",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/communique-societe-generale-assurances-taux-servi-2025-fonds-en-euros-sogecap",
+          "publishedAt": "2026-01-14",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:08.805Z"
+        },
+        {
+          "url": "https://www.societegenerale.com/fr/actualites/communiques-de-presse/premiere-obligation-numerique-sur-blockchain-aux-etats-unis",
+          "publishedAt": "2025-11-18",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "bpce-bank",
+      "name": "BPCE · Banque Populaire et Caisse d’Épargne",
+      "url": "https://newsroom.groupebpce.fr/",
+      "method": "consumer-coverage",
+      "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
+      "attemptedAt": "2026-10-25T07:06:14.278Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:10.041Z",
+      "lastSuccessAt": "2026-10-25T07:06:10.041Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:10.041Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:10.041Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:10.041Z",
+          "metrics": {
+            "requests": 3,
+            "bytes": 293397,
+            "notModified": 0,
+            "durationMs": 4235,
+            "checkedAt": "2026-10-25T07:06:10.041Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 2
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:14.276Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:14.276Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 2
+          },
+          "observations": 2,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:14.278Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:14.278Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 2,
+            "error": 0,
+            "rejected": 2
+          },
+          "observations": 2,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Les Rendez-vous de l'Épargne de BPCE L'Observatoire - Quels arbitrages en matière de placements financiers face aux chocs ? Quelle place des crypto-actifs dans l’épargne des Français ?",
+          "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
+          "publishedAt": "2026-10-21",
+          "checkedAt": "2026-10-25T07:06:10.041Z",
+          "topic": "epargne",
+          "summary": "Par José Bardaji, directeur Études et Prospective du Groupe BPCE Eric Buffandeau, directeur adjoint Études et Prospective du Groupe BPCE et Marion Stephan, responsable des études socio-économiques du Groupe BPCE 1/ Les placements financiers face à un double choc en 2026 Les tendances observées sur l’épargne au cours des huit premiers mois de 2026, qui affirment la prégnance de la collecte d’assurance-vie, ne rencontrent-elles pas déjà des limites ? Au-delà, le choc sur le pouvoir d’achat et sur les taux longs français, outre la montée des incertitudes, ne risque-t-il pas de réduire les placements financiers sur la deuxième moitié de l’année ? 1.1 D’une prégnance de l’assurance vie… Les hypot",
+          "evidenceLevel": "official",
+          "sourceHash": "d55db7ed14ab14a2dfaeec133cc9a6be8b3661cd53fdffbe3955688a1d1199c3",
+          "conditions": {
+            "clients": null,
+            "pays": "Au-delà, le choc sur le pouvoir d’achat et sur les taux longs français, outre la montée des incertitudes, ne risque-t-il pas de réduire les placements financiers sur la deuxième moitié de l’année ? 1.1 D’une prégnance de l’assurance vie… Les hypothèses macroéconomiques présentées en avril dernier ont été chamboulées par un double choc : le déroulement du conflit au Moyen-Orient et l’envolée de la prime de risque sur la dette souveraine de la France . Rappelons que la crise actuelle touche l’économie française à travers trois canaux : la baisse du pouvoir d’achat, la hausse du coût des intrants des entreprises et le recul de la demande mondiale adressée à la France.",
+            "formule": null,
+            "duree": "Par José Bardaji, directeur Études et Prospective du Groupe BPCE Eric Buffandeau, directeur adjoint Études et Prospective du Groupe BPCE et Marion Stephan, responsable des études socio-économiques du Groupe BPCE 1/ Les placements financiers face à un double choc en 2026 Les tendances observées sur l’épargne au cours des huit premiers mois de 2026, qui affirment la prégnance de la collecte d’assurance-vie, ne rencontrent-elles pas déjà des limites ? Sur les huit premiers mois de 2026, la collecte nette [1] des placements financiers (hors titres) s’établit à 55,6 Md€, soit 10,1 Md€ de plus qu’en 2025 . À date, les PEL de 15 ans clôturés automatiquement à partir du mois de mars n’entraînent pas une décollecte aussi importante qu’anticipée.",
+            "plafond": "Elles renvoient une photographie différente, avec un taux minimum de 5,4 % pour BPCE L’Observatoire et maximum de 11,0 % pour l’Adan.",
+            "versement": "Elles renvoient une photographie différente, avec un taux minimum de 5,4 % pour BPCE L’Observatoire et maximum de 11,0 % pour l’Adan.",
+            "tauxPromotionnel": null,
+            "tauxNormal": "Les avis sont mitigés sur le principe de sa création puisque 40 % des Français s’exprimant sur le sujet, trouvent que c’est une bonne chose, avec une adhésion plus forte chez les détenteurs passés, actuels ou futurs (58 %, 66 % et 52 % respectivement).",
+            "frais": "La disponibilité de l’argent (47 %), le niveau de conformité de la plateforme (45 %), la confiance générale dans l’acteur (43 %) ainsi que le niveau des frais (42 %) constituent les 4 marqueurs forts du choix de la plateforme."
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 84,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-21"
+              }
+            ],
+            "reliability": {
+              "usable": false,
+              "reasons": [
+                "Nouveauté non établie"
+              ]
+            },
+            "state": "watch",
+            "type": "consumer-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Le Groupe BPCE déploie un dispositif d’urgence et de proximité pour les clients des Banques Populaires et des Caisses d’Epargne victimes de dégradations lors des récentes manifestations",
+          "url": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+          "publishedAt": "2026-10-19",
+          "checkedAt": "2026-10-25T07:06:10.041Z",
+          "topic": "epargne",
+          "summary": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Un ensemble de mesures est déployé en matière d’assurance, de financement et de solutions de paiement, avec un accompagnement adapté à chaque situation. Les conseillers Banque Populaire et Caisse d’Epargne, avec BPCE Assurances, sont pleinement mobilisés dans les territoires. Le dispositif prévoit des démarches d’assurance simplifiées ainsi que des solutions de financement et de paiement.",
+          "evidenceLevel": "official",
+          "sourceHash": "660c306affed332233d13390f6d0822ee682c6e03b6083b74394844a73619324",
+          "conditions": {
+            "clients": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. Des démarches d’assurance simplifiées pour les clients professionnels assurés par BPCE Assurances ayant subi des dommages Prolongation du délai de déclaration de sinistre jusqu’à 30 jours calendaires ; Nos clients professionnels peuvent effectuer leur déclaration, par simple appel aux numéros suivants : Banque Populaire : 0980 986 986 Caisse d’Epargne : 0969 362 837 Accélération du processus d’indemnisation en étroite coordination avec les cabinets d’expertise afin d’organiser les visites d’expertise le plus rapidement possible ;",
+            "pays": "Face aux nombreuses dégradations survenues en France lors des récentes manifestations, le Groupe BPCE se mobilise pour répondre à l’urgence et accompagner les clients sinistrés, notamment les commerçants, artisans, entrepreneurs et collectivités. En fonction des situations régionales, les conseillers de proximité pourront adapter ce socle de mesures afin d’apporter des réponses au plus près des besoins de chaque client. Nicolas Namias, président du directoire de BPCE, déclare : « Après les violences et les dégradations inacceptables survenues dans de nombreuses villes en France, je veux exprimer tout mon soutien, au nom du Groupe BPCE , à celles et ceux qui en subissent aujourd’hui les conséquences.",
+            "formule": "Remplacement en urgence des TPE (terminaux de paiement) détruits et suspension personnalisée des abonnements monétiques .",
+            "duree": null,
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Un dispositif individualisé pour les clients professionnels et commerçants ayant subi un dommage lors des événements Mise en place d’un prêt express « reprise d’activité » au taux de 2,5 % jusqu’à 30 000 € sur 3 à 5 ans sans frais de dossier ; Mise en place d’un crédit-bail express d’un montant allant jusqu’à 30 000 € bénéficiant d’un loyer privilégié sans marge pour le crédit bailleur et sans frais de dossier ;"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 84,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-19"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
+          "publishedAt": "2026-10-21",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:10.041Z"
+        },
+        {
+          "url": "https://newsroom.groupebpce.fr/actualites/le-groupe-bpce-deploie-un-dispositif-d-urgence-et-de-proximite-pour-les-clients-des-banques-populaires-et-des-caisses-d-epargne-victimes-de-degradations-lors-des-recentes-manifestations-4be93-7b707.html",
+          "publishedAt": "2026-10-19",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:10.041Z"
+        },
+        {
+          "url": "https://newsroom.groupebpce.fr/actualites/crise-du-pouvoir-d-achat-catastrophes-naturelles-tensions-geopolitiques-les-comportements-des-francais-face-aux-risques-6e563-7b707.html",
+          "publishedAt": "2026-10-15",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://newsroom.groupebpce.fr/actualites/trophees-de-l-assurance-2026-bpce-assurances-doublement-recompensee-pour-ses-innovations-technologiques-et-de-services-e3706-7b707.html",
+          "publishedAt": "2026-10-09",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "cm-cic",
+      "name": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
+      "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
+      "method": "consumer-coverage",
+      "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
+      "attemptedAt": "2026-10-25T07:06:17.326Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:14.280Z",
+      "lastSuccessAt": "2026-10-25T07:06:14.280Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:14.280Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 11
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:14.280Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:14.280Z",
+          "metrics": {
+            "requests": 2,
+            "bytes": 199640,
+            "notModified": 0,
+            "durationMs": 3043,
+            "checkedAt": "2026-10-25T07:06:14.280Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 11
+          },
+          "observations": 1,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:17.324Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:17.324Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 11
+          },
+          "observations": 1,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:17.326Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:17.326Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 11
+          },
+          "observations": 1,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Violences urbaines : Crédit Mutuel Alliance Fédérale déploie un dispositif solidaire d’urgence",
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
+          "publishedAt": "2026-10-19",
+          "checkedAt": "2026-10-25T07:06:14.280Z",
+          "topic": "banques",
+          "summary": "Face aux violences et aux dégradations qui ont touché de nombreux commerces, mais aussi des particuliers et des agences bancaires, Crédit Mutuel Alliance Fédérale déclenche un dispositif solidaire d’urgence pour accompagner ses clients et sociétaires victimes de ces événements. Le groupe mutualiste, à travers les Assurances du Crédit Mutuel et les réseaux bancaires Crédit Mutuel et CIC , met en place des mesures exceptionnelles destinées à accélérer les indemnisations, alléger les charges supportées par les victimes et répondre aux besoins les plus urgents.",
+          "evidenceLevel": "official",
+          "sourceHash": "c4e5b4aaa2044f8ea80584382cf21413ed8824a3f833cdabab28d7a3d853d246",
+          "conditions": {
+            "clients": "Face aux violences et aux dégradations qui ont touché de nombreux commerces, mais aussi des particuliers et des agences bancaires, Crédit Mutuel Alliance Fédérale déclenche un dispositif solidaire d’urgence pour accompagner ses clients et sociétaires victimes de ces événements. Les Assurances du Crédit Mutuel et CIC Assurances activent un dispositif exceptionnel de gestion des sinistres pour accompagner les clients touchés par les dégradations. Les conseillers de proximité, amenés à contacter eux-mêmes leurs clients pour faire le point sur leur situation, pourront leur proposer au cas par cas des mesures, notamment : Des solutions de financement pour faire face aux besoins de trésorerie ou à la réalisation de travaux nécessaires de sécurisation ou de réouverture.",
+            "pays": null,
+            "formule": null,
+            "duree": null,
+            "plafond": null,
+            "versement": "Pour tous les dommages aux biens couverts par leurs contrats, ce dispositif solidaire d’urgence prévoit : Le versement immédiat d’un acompte sur indemnisation pour faire face aux dépenses les plus urgentes, notamment la réparation des vitrines, la sécurisation des locaux, le remplacement d’une automobile ;",
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": null
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 84,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-19"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/une-mobilisation-collective.html",
+          "publishedAt": "2026-10-23",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
+          "publishedAt": "2026-10-19",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:14.280Z"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/rencontre-losc-stade-brestois.html",
+          "publishedAt": "2026-10-19",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/14eme-edition-festival-de-paques.html",
+          "publishedAt": "2026-10-08",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/ebra-et-institut-mutualiste.html",
+          "publishedAt": "2026-10-05",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/aide-sociale-enfance-construire-avenir-meilleur.html",
+          "publishedAt": "2026-10-05",
+          "status": "rejected",
+          "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/cic-renouvellement-partenariat-tour-de-la-provence.html",
+          "publishedAt": "2026-09-29",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/ping-sante-credit-mutuel-federation-francaise-de-tennis-de-table.html",
+          "publishedAt": "2026-09-25",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/hebergement-d-urgence-pour-l-enfance-defavorisee.html",
+          "publishedAt": "2026-09-24",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/cic-prolonge-son-partenariat-france-pro-cycling-academy.html",
+          "publishedAt": "2026-09-23",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/dispositif-d-urgence-pour-soutenir-l-agriculture-francaise.html",
+          "publishedAt": "2026-09-15",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/fondation-engagement-federation-des-acteurs-de-la-solidarite.html",
+          "publishedAt": "2026-09-03",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "lbp-bank",
+      "name": "La Banque Postale · communiqués",
+      "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
+      "method": "consumer-coverage",
+      "depth": "Deux pages de six communiqués PDF datés",
+      "attemptedAt": "2026-10-25T07:06:22.912Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Sun, 25 Oct 2026 03:40:38 GMT",
+      "checkedAt": "2026-10-25T07:06:17.329Z",
+      "lastSuccessAt": "2026-10-25T07:06:17.329Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:17.329Z",
+      "queue": {
+        "pending": 0,
+        "done": 4,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:17.329Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:17.329Z",
+          "metrics": {
+            "requests": 6,
+            "bytes": 942111,
+            "notModified": 0,
+            "durationMs": 5579,
+            "checkedAt": "2026-10-25T07:06:17.329Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 4,
+            "error": 0,
+            "rejected": 8
+          },
+          "observations": 4,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:22.909Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 1,
+            "checkedAt": "2026-10-25T07:06:22.909Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 4,
+            "error": 0,
+            "rejected": 8
+          },
+          "observations": 4,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:22.912Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:22.912Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 4,
+            "error": 0,
+            "rejected": 8
+          },
+          "observations": 4,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "La Banque Postale et Louvre Banque Privée commercialisent Euros Engagements Durables, une solution d’épargne de CNP Assurances conjuguant fonds en euros et investissement durable",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
+          "publishedAt": "2026-09-07",
+          "checkedAt": "2026-10-25T07:06:17.329Z",
+          "topic": "epargne",
+          "summary": "La Banque Postale et Louvre Banque Privée commercialisent Euros Engagements Durables, une solution d’épargne de CNP Assurances conjuguant fonds en euros et investissement durable Disponible au sein des contrats d’assurance vie distribués par La Banque Postale et sa filiale Louvre Banque Privée, le fonds Euros Engagements Durables offre une solution unique aux attentes des épargnants qui souhaitent associer les avantages d'un fonds en euros classique à la possibilité de contribuer directement à des projets utiles pour la société et la planète.",
+          "evidenceLevel": "official",
+          "sourceHash": "c9909f4eb115b3c12bba69a081da90d5afa63e8dde9587e13bd4b5e79b692b82",
+          "conditions": {
+            "clients": "Une première commercialisation auprès des clients de Louvre Banque Privée Il sera également proposé dans le réseau de La Banque Postale au sein des contrats d’assurance vie Cachemire 2 et Cachemire 2 Série 2 du 1er octobre au 30 novembre 2026.",
+            "pays": null,
+            "formule": "La Banque Postale et Louvre Banque Privée commercialisent Euros Engagements Durables, une solution d’épargne de CNP Assurances conjuguant fonds en euros et investissement durable Disponible au sein des contrats d’assurance vie distribués par La Banque Postale et sa filiale Louvre Banque Privée, le fonds Euros Engagements Durables offre une solution unique aux attentes des épargnants qui souhaitent associer les avantages d'un fonds en euros classique à la possibilité de contribuer directement à des projets utiles pour la société et la planète.",
+            "duree": null,
+            "plafond": null,
+            "versement": "Conforme à l'article 9 du règlement européen SFDR, le fonds Euros Engagements Durables est investi pour un minimum de 90% en obligations vertes et sociales ainsi qu'en fonds ayant un objectif d’investissement durable. Accessible à partir d’un montant minimum d’investissement de 25€, il bénéficiera de frais sur versement à 0% jusqu’au 11 octobre, à l’occasion de la Semaine de la finance responsable. - Support permanent à fenêtre de commercialisation temporaire - Dates de la seconde fenêtre de commercialisation : o Louvre Banque Privée : du 24 septembre au 30 novembre 2026 o La Banque Postale : du 1er octobre au 30 novembre 2026 - Minimum d’investissement durable au sens de SFDR : 90% - Minimum d’investissement aligné avec la taxonomie européenne : 10% - Classification SFDR : Article 9 - Disponible au sein de la gestion libre des contrats d’assurance vie : o Cachemire 2 et Cachemire 2 Série 2 distribués par La Banque Postale o BPE Emeraude et CNP One de Louvre Banque Privée - Ouvert uniquement aux nouveaux versements",
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Accessible à partir d’un montant minimum d’investissement de 25€, il bénéficiera de frais sur versement à 0% jusqu’au 11 octobre, à l’occasion de la Semaine de la finance responsable."
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-07"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "La Banque Postale se mobilise pour accompagner ses clients victimes des incendies",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-lbp-incendies.pdf",
+          "publishedAt": "2026-07-30",
+          "checkedAt": "2026-10-25T07:06:17.329Z",
+          "topic": "banques",
+          "summary": "Les incendies qui touchent actuellement plusieurs régions françaises entraînent des conséquences majeures pour les habitants et l’ensemble des acteurs économiques, publics et privés. Fidèle à son engagement de banque citoyenne, La Banque Postale et ses différentes filiales CNP Assurances, LBPCF et La Banque Postale Leasing & Factoring, sont mobilisées aux côtés des sinistrés. Ensemble, elles déploient un dispositif exceptionnel de mesures d’urgence destinées à accompagner leurs clients, particuliers, professionnels et entreprises, impactés par ces incendies. La Banque Postale est mobilisée avec sa filiale CNP Assurances pour accompagner les clients particuliers impactés par les incendies :",
+          "evidenceLevel": "official",
+          "sourceHash": "dd83f005cb77c86f0da15c1a41039f5ca9ed1894a3e48240aab5ddcd962fe773",
+          "conditions": {
+            "clients": "Ensemble, elles déploient un dispositif exceptionnel de mesures d’urgence destinées à accompagner leurs clients, particuliers, professionnels et entreprises, impactés par ces incendies. La Banque Postale est mobilisée avec sa filiale CNP Assurances pour accompagner les clients particuliers impactés par les incendies : • En cas d’évacuation de leur résidence principale ou secondaire, les assurés détenteurs d'un contrat Assurance Habitation bénéficient d’une assistance pour un hébergement temporaire d'une durée de 21 nuits à titre exceptionnel ainsi que d'un accompagnement psychologique. CNP Assurances contacte les clients identifiés comme sinistrés pour les accompagner dans cette situation difficile, le service d’assistance reste également joignable au 09 77 40 85 52.",
+            "pays": "Les incendies qui touchent actuellement plusieurs régions françaises entraînent des conséquences majeures pour les habitants et l’ensemble des acteurs économiques, publics et privés.",
+            "formule": "Elle met également à leur disposition une offre d’accompagnement spécifique avec un prêt personnel à 1%, jusqu’à 10 000 euros et 48 mois, sans frais de dossier.",
+            "duree": "La Banque Postale est mobilisée avec sa filiale CNP Assurances pour accompagner les clients particuliers impactés par les incendies : • En cas d’évacuation de leur résidence principale ou secondaire, les assurés détenteurs d'un contrat Assurance Habitation bénéficient d’une assistance pour un hébergement temporaire d'une durée de 21 nuits à titre exceptionnel ainsi que d'un accompagnement psychologique. • En cas de sinistre rendant la résidence principale inhabitable, les clients sinistrés peuvent bénéficier de la garantie « perte d'usage du logement assuré » pour une durée pouvant aller jusqu'à un an. Par ailleurs, en cas de logement inhabitable, les clients détenteurs d’un crédit immobilier et d’une assurance multirisque habitation à La Banque Postale ou auprès de ses filiales, pourront bénéficier jusqu’à 1 an de remboursement des mensualités de leur prêt immobilier pendant la remise en état de leur bien.",
+            "plafond": "Elle met également à leur disposition une offre d’accompagnement spécifique avec un prêt personnel à 1%, jusqu’à 10 000 euros et 48 mois, sans frais de dossier.",
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Elle met également à leur disposition une offre d’accompagnement spécifique avec un prêt personnel à 1%, jusqu’à 10 000 euros et 48 mois, sans frais de dossier."
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-30"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Frais bancaires sur les successions : La Banque Postale maintient la gratuité pour les mineurs et porte à 10 000 € son seuil d’exonération pour les petites successions",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/info-presse-lbp-frais-succession.pdf",
+          "publishedAt": "2026-07-24",
+          "checkedAt": "2026-10-25T07:06:17.329Z",
+          "topic": "frais",
+          "summary": "La Banque Postale maintient la gratuité pour les mineurs et porte à 10 000 € son seuil d’exonération pour les petites successions À la suite de la décision du Conseil constitutionnel le 20 juin dernier, La Banque Postale a décidé de :",
+          "evidenceLevel": "official",
+          "sourceHash": "9c343d0fc9f56edec2ea113d04dd2b0bfe9fcc4acb295720915acc1b3c0d00d1",
+          "conditions": {
+            "clients": "- relever le plafond d’exonération des frais bancaires de succession, pour les clients dont les avoirs sont inférieurs à 10 000 euros.",
+            "pays": null,
+            "formule": null,
+            "duree": null,
+            "plafond": "- relever le plafond d’exonération des frais bancaires de succession, pour les clients dont les avoirs sont inférieurs à 10 000 euros.",
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "La Banque Postale maintient la gratuité pour les mineurs et porte à 10 000 € son seuil d’exonération pour les petites successions À la suite de la décision du Conseil constitutionnel le 20 juin dernier, La Banque Postale a décidé de : - maintenir la gratuité des frais bancaires dans le cadre des successions sur les comptes de mineurs. Depuis cette date, La Banque Postale ne facture plus de frais liés aux opérations de succession sur les comptes de défunts mineurs. - relever le plafond d’exonération des frais bancaires de succession, pour les clients dont les avoirs sont inférieurs à 10 000 euros."
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-24"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Baromètre de l’épargne responsable La Banque Postale – Cashbee Résultats de la 6ème édition",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-barometre-epargne-responsable-cashbeexlbp.pdf",
+          "publishedAt": "2026-06-25",
+          "checkedAt": "2026-10-25T07:06:17.329Z",
+          "topic": "epargne",
+          "summary": "Baromètre de l’épargne responsable La Banque Postale – Cashbee Résultats de la 6ème édition L’érosion de l’intérêt des investisseurs pour les produits ISR se confirme • Après une longue période de stabilité, la détention de produits financiers à caractère durable recule en 2026 parmi les Français (- 4 points par rapport à 2025). Une tendance déjà amorcée l’année dernière chez les investisseurs patrimoniaux qui se confirme cette année. • Dans un contexte économique et géopolitique incertain, les épargnants privilégient plus que jamais la sécurité financière dans le choix de leurs placements devant la rentabilité, reléguant les critères d’investissement socialement responsable au second plan. ",
+          "evidenceLevel": "official",
+          "sourceHash": "997b95b94e900142b45d118c9703353a266906a959fa85bd72f890c5d1d767f8",
+          "conditions": {
+            "clients": "À travers celui- ci, La Banque Postale et Cashbee, la wealthtech française spécialiste de l’épargne et de l’investissement entendent approfondir leur compréhension de cette relation pour mieux accompagner leurs clients dans cette transition responsable. Pour continuer à accompagner leurs clients vers l’épargne responsable, les établissements bancaires doivent poursuivre leurs efforts de pédagogie et rassurer les épargnants sur la capacité de ces investissements à générer de l’impact de la performance dans la durée.",
+            "pays": "Baromètre de l’épargne responsable La Banque Postale – Cashbee Résultats de la 6ème édition L’érosion de l’intérêt des investisseurs pour les produits ISR se confirme • Après une longue période de stabilité, la détention de produits financiers à caractère durable recule en 2026 parmi les Français (- 4 points par rapport à 2025). • Paradoxalement, l’épargne responsable conserve une bonne image auprès des Français avec 42% d’évocations positives sans que cela ne se traduise dans les comportements d’investissement. Méthodologie - Le Baromètre de l’épargne responsable mené par OpinionWay pour La Banque Postale et auquel s’est associé Cashbee a été réalisé en mars-avril 2026 auprès d’un échantillon de 1000 personnes représentatives de la population française âgée de 18 ans et plus.",
+            "formule": null,
+            "duree": "Pour continuer à accompagner leurs clients vers l’épargne responsable, les établissements bancaires doivent poursuivre leurs efforts de pédagogie et rassurer les épargnants sur la capacité de ces investissements à générer de l’impact de la performance dans la durée.",
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": "La part des Français déclarant que l’instabilité internationale a réduit leur intérêt pour l’ISR a doublé depuis 2021, passant de 14 % à 28 %.",
+            "frais": null
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-06-25"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-cnp-assurances-accord-prudential-financial.pdf",
+          "publishedAt": "2026-10-20",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Note-de-conjoncture-oct2026.pdf",
+          "publishedAt": "2026-10-06",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-lbpam-sri-human-rights-prix.pdf",
+          "publishedAt": "2026-09-25",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Caisse-des-Depots-autonomisation-jeunes-ASE.pdf",
+          "publishedAt": "2026-09-23",
+          "status": "rejected",
+          "reason": "Hors périmètre : fiscalité, prestations sociales ou aides au logement."
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-etude-regions-de-france-LBP-septembre2026.pdf",
+          "publishedAt": "2026-09-21",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
+          "publishedAt": "2026-09-07",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:17.329Z"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-etude-regard-financier-departements-france.pdf",
+          "publishedAt": "2026-09-03",
+          "status": "rejected",
+          "reason": "Communication corporate, financement institutionnel ou offre étrangère sans conséquence pour les particuliers français"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-lbp-incendies.pdf",
+          "publishedAt": "2026-07-30",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:17.329Z"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/info-presse-lbp-frais-succession.pdf",
+          "publishedAt": "2026-07-24",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:17.329Z"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/CP-Banque-des-Territoires-ACTEE-LBP.pdf",
+          "publishedAt": "2026-06-26",
+          "status": "rejected",
+          "reason": "Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-barometre-epargne-responsable-cashbeexlbp.pdf",
+          "publishedAt": "2026-06-25",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:17.329Z"
+        },
+        {
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-genai-juin2026.pdf",
+          "publishedAt": "2026-06-18",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "saxo-news",
+      "name": "Saxo Banque France",
+      "url": "https://www.home.saxo/fr-fr/about-us/media-center",
+      "method": "consumer-coverage",
+      "depth": "Articles français datés rendus dans le centre médias",
+      "attemptedAt": "2026-10-25T07:06:24.592Z",
+      "discovered": 4,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:22.915Z",
+      "lastSuccessAt": "2026-10-25T07:06:22.915Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:06:22.915Z",
+      "queue": {
+        "pending": 0,
+        "done": 3,
+        "error": 0,
+        "rejected": 1
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:22.915Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:22.915Z",
+          "metrics": {
+            "requests": 4,
+            "bytes": 875390,
+            "notModified": 0,
+            "durationMs": 1675,
+            "checkedAt": "2026-10-25T07:06:22.915Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 3,
+            "error": 0,
+            "rejected": 1
+          },
+          "observations": 3,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:24.591Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:24.591Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 3,
+            "error": 0,
+            "rejected": 1
+          },
+          "observations": 3,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:24.592Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 1,
+            "checkedAt": "2026-10-25T07:06:24.592Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 3,
+            "error": 0,
+            "rejected": 1
+          },
+          "observations": 3,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Saxo Banque dévoile l'Académie du PEA : Un programme pédagogique gratuit pour démocratiser la compréhension du Plan d'Épargne en Actions",
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-devoile-lacademie-du-pea-07072026",
+          "publishedAt": "2026-07-07",
+          "checkedAt": "2026-10-25T07:06:22.915Z",
+          "topic": "epargne",
+          "summary": "780 000 Français ont investi en Bourse pour la première fois en 2025. Une génération entière découvre les marchés financiers mais le niveau de culture financière stagne. Saxo Banque lance l'Académie du PEA, un programme 100 % gratuit et sans compte à ouvrir, pour combler ce fossé entre accès et compréhension. Le nombre de primo-investisseurs en Bourse ne cesse de croître en France. Selon l'Autorité des marchés financiers (AMF, mars 2026), ils étaient 780 000 à franchir le pas en 2025, contre 516 000 en 2024 et 329 000 en 2023 : plus du double en deux ans.",
+          "evidenceLevel": "official",
+          "sourceHash": "686c229509a288cb4aca87a42cd7aaddce18b551bd3456d22cc815e67f0a3317",
+          "conditions": {
+            "clients": "Créée à Copenhague en 1992, Saxo a été l’un des premiers établissements financiers à développer une plateforme de trading en ligne et à fournir aux investisseurs particuliers les mêmes outils et le même accès aux marchés que les professionnels. Saxo Banque offre à ses clients (particuliers et sociétés) le choix entre 2 plateformes de trading adaptées à différents niveaux d’expérience en bourse (du débutant à l’expert) et la possibilité d’ouvrir 100% en ligne un compte-titres dérivés, SRD, PEA, PEA-PME, Plan d’Epargne Programmé et compte-société.",
+            "pays": "780 000 Français ont investi en Bourse pour la première fois en 2025. Le nombre de primo-investisseurs en Bourse ne cesse de croître en France. Selon un sondage Opinion Way pour Saxo, Les Français et la dynamisation de leur épargne, 92% des Français citent au moins un frein au fait d’investir en Bourse ;",
+            "formule": "Saxo Banque offre à ses clients (particuliers et sociétés) le choix entre 2 plateformes de trading adaptées à différents niveaux d’expérience en bourse (du débutant à l’expert) et la possibilité d’ouvrir 100% en ligne un compte-titres dérivés, SRD, PEA, PEA-PME, Plan d’Epargne Programmé et compte-société. Saxo Banque propose des tarifs transparents et parmi les plus bas du marché, à partir de 2 € l’ordre sur actions françaises et 1 $ sur actions américaines, ainsi qu’une large gamme de services et outils financiers (ordres simples et avancés, Introduction en bourse, temps réels sur toutes les places, analyses fondamentales et techniques, offres de courtage sur certains produits ;",
+            "duree": null,
+            "plafond": null,
+            "versement": "On dénombre aujourd'hui 7,3 millions de PEA ouverts en France mais près de 8 sur 10 affichent moins de 15 000 € de versements*, signe que cette enveloppe reste largement sous-utilisée par ceux qui la détiennent.",
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Le problème n'est plus l'accès aux marchés financiers : ouvrir un compte prend désormais une dizaine de minutes, et les frais de courtage n'ont jamais été aussi bas. Saxo Banque propose des tarifs transparents et parmi les plus bas du marché, à partir de 2 € l’ordre sur actions françaises et 1 $ sur actions américaines, ainsi qu’une large gamme de services et outils financiers (ordres simples et avancés, Introduction en bourse, temps réels sur toutes les places, analyses fondamentales et techniques, offres de courtage sur certains produits ;"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-07"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Épargne des Français : Entre réveil et nécessité de désépargner, les freins à l’investissement restent nombreux",
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/epargne-des-francais-entre-reveil-et-necessite-de-desepargner-06072026",
+          "publishedAt": "2026-07-06",
+          "checkedAt": "2026-10-25T07:06:22.915Z",
+          "topic": "epargne",
+          "summary": "Un an après sa première édition, l’étude OpinionWay × Saxo Banque révèle que la prise de conscience des Français sur leur épargne dormante progresse mais que le passage à l'acte reste bloqué. Si le sentiment d'avoir de l'argent qui dort recule de 11 points, 92 % des Français citent encore au moins un frein à investir en Bourse, et 68 % n'ont jamais entendu parler des ETF. En 2026, 31 % des Français ont le sentiment d'avoir de l'argent qui dort sur leurs comptes, contre 42 % un an plus tôt. Une baisse de 11 points qui témoigne d'une mise en mouvement réelle des comportements à la fois vers de l’investissement plus dynamique mais aussi par la nécessité à désépargner, notamment pour faire face ",
+          "evidenceLevel": "official",
+          "sourceHash": "1d4109746656f43f61704485fbba20f8df6dfc3e10b67950bc5eb4e8c02a5a3b",
+          "conditions": {
+            "clients": "29% : l’incertitude du contexte économique et politique (phénomène amplifié par la guerre en Iran et l’augmentation du prix du carburant) La bourse continue d’être perçue moins comme un outil de diversification de l’épargne que comme un univers incertain, potentiellement périlleux et réservé à ceux qui disposent à la fois des moyens financiers et des connaissances nécessaires pour s’y aventurer. Créée à Copenhague en 1992, Saxo a été l’un des premiers établissements financiers à développer une plateforme de trading en ligne et à fournir aux investisseurs particuliers les mêmes outils et le même accès aux marchés que les professionnels. Saxo Banque offre à ses clients (particuliers et sociétés) le choix entre 2 plateformes de trading adaptées à différents niveaux d’expérience en bourse (du débutant à l’expert) et la possibilité d’ouvrir 100% en ligne un compte-titres dérivés, SRD, PEA, PEA-PME, Plan d’Epargne Programmé et compte-société.",
+            "pays": "Un an après sa première édition, l’étude OpinionWay × Saxo Banque révèle que la prise de conscience des Français sur leur épargne dormante progresse mais que le passage à l'acte reste bloqué. Si le sentiment d'avoir de l'argent qui dort recule de 11 points, 92 % des Français citent encore au moins un frein à investir en Bourse, et 68 % n'ont jamais entendu parler des ETF. En 2026, 31 % des Français ont le sentiment d'avoir de l'argent qui dort sur leurs comptes, contre 42 % un an plus tôt.",
+            "formule": "Saxo Banque offre à ses clients (particuliers et sociétés) le choix entre 2 plateformes de trading adaptées à différents niveaux d’expérience en bourse (du débutant à l’expert) et la possibilité d’ouvrir 100% en ligne un compte-titres dérivés, SRD, PEA, PEA-PME, Plan d’Epargne Programmé et compte-société. Saxo Banque propose des tarifs transparents et parmi les plus bas du marché, à partir de 2 € l’ordre sur actions françaises et 1 $ sur actions américaines, ainsi qu’une large gamme de services et outils financiers (ordres simples et avancés, Introduction en bourse, temps réels sur toutes les places, analyses fondamentales et techniques, offres de courtage sur certains produits ;",
+            "duree": "Une baisse de 11 points qui témoigne d'une mise en mouvement réelle des comportements à la fois vers de l’investissement plus dynamique mais aussi par la nécessité à désépargner, notamment pour faire face au retour de l’inflation et l’explosion des prix du carburant consécutive à la guerre en Iran Mais ce recul masque une concentration du phénomène : le sentiment est particulièrement fort chez les CSP+ (39 %) et les foyers aisés (41 % pour les 3 500 €+ nets/mois), précisément ceux qui ont les moyens d'agir.",
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Saxo Banque propose des tarifs transparents et parmi les plus bas du marché, à partir de 2 € l’ordre sur actions françaises et 1 $ sur actions américaines, ainsi qu’une large gamme de services et outils financiers (ordres simples et avancés, Introduction en bourse, temps réels sur toutes les places, analyses fondamentales et techniques, offres de courtage sur certains produits ;"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-06"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Saxo Banque présente Saxo Elite, une offre de services dédiée à sa clientèle premium",
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-presente-saxo-elite-une-offre-de-services-dediee-a-sa-clientele-premium-23042026",
+          "publishedAt": "2026-04-23",
+          "checkedAt": "2026-10-25T07:06:22.915Z",
+          "topic": "banques",
+          "summary": "Saxo Banque, expert de l'investissement en ligne multi-actifs, annonce le lancement de Saxo Elite, une offre de services sur mesure conçue pour ses clients les plus exigeants. Saxo Elite s'adresse aux investisseurs et traders dont l'activité et les stratégies appellent un niveau d'accompagnement que les offres standard ne permettent pas d'atteindre. Face à des marchés plus complexes et à des besoins croissants en matière d'exécution et de conseil, cette nouvelle offre apporte une réponse concrète et structurée.",
+          "evidenceLevel": "official",
+          "sourceHash": "aaeb9c8cc4d4cf596820cfef45db67a560fc1ca4d4dae9787b5be75991dddbf0",
+          "conditions": {
+            "clients": "Saxo Banque, expert de l'investissement en ligne multi-actifs, annonce le lancement de Saxo Elite, une offre de services sur mesure conçue pour ses clients les plus exigeants. Saxo Elite est l'expression naturelle de cet engagement : reconnaître que les clients dont l'activité et les exigences atteignent un certain niveau méritent une relation bancaire à la hauteur. L'accès à Saxo Elite est ouvert aux clients répondant à des critères d'éligibilité fondés sur leur activité de trading et leur relation avec la banque.",
+            "pays": "Fabien Keryell, CEO de Saxo Banque en France . Saxo Elite est la réponse que nous leur devions, et c'est avec une grande fierté que mon équipe et moi-même allons déployer cette offre sur le marché français. Le service sera disponible à l’échelle mondiale, avec un premier déploiement débutant mi-avril 2026 au Royaume-Uni, en Europe centrale et en France, puis dans les pays nordiques, ainsi que dans le Moyen-Orient et l’Afrique du Nord (MENA).",
+            "formule": "Saxo Banque, expert de l'investissement en ligne multi-actifs, annonce le lancement de Saxo Elite, une offre de services sur mesure conçue pour ses clients les plus exigeants. Saxo Elite s'adresse aux investisseurs et traders dont l'activité et les stratégies appellent un niveau d'accompagnement que les offres standard ne permettent pas d'atteindre. Face à des marchés plus complexes et à des besoins croissants en matière d'exécution et de conseil, cette nouvelle offre apporte une réponse concrète et structurée.",
+            "duree": null,
+            "plafond": null,
+            "versement": null,
+            "tauxPromotionnel": null,
+            "tauxNormal": null,
+            "frais": "Les membres Saxo Elite bénéficient d'un gestionnaire de compte dédié, d'un accès direct au desk de trading et aux stratégistes internes de Saxo, ainsi que de conditions tarifaires adaptées à leur profil et à leur volume d'activité. Saxo Banque propose des tarifs transparents et parmi les plus bas du marché, à partir de 2 € l’ordre sur actions françaises et 1 $ sur actions américaines, ainsi qu’une large gamme de services et outils financiers (ordres simples et avancés, Introduction en bourse, temps réels sur toutes les places, analyses fondamentales et techniques, offres de courtage sur certains produits ;"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-04-23"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-bank-brings-together-nine-world-class-athletes-to-explore-the-mindset-behind-successful-investing-19102026",
+          "publishedAt": "2026-10-19",
+          "status": "rejected",
+          "reason": "Sujet hors du périmètre des particuliers"
+        },
+        {
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-devoile-lacademie-du-pea-07072026",
+          "publishedAt": "2026-07-07",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:22.915Z"
+        },
+        {
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/epargne-des-francais-entre-reveil-et-necessite-de-desepargner-06072026",
+          "publishedAt": "2026-07-06",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:22.915Z"
+        },
+        {
+          "url": "https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-presente-saxo-elite-une-offre-de-services-dediee-a-sa-clientele-premium-23042026",
+          "publishedAt": "2026-04-23",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:22.915Z"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "invesco",
+      "name": "Invesco · communiqués européens",
+      "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+      "method": "extra-coverage",
+      "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
+      "attemptedAt": "2026-10-25T07:06:28.626Z",
+      "discovered": 43,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": "Sat, 24 Oct 2026 23:02:07 GMT",
+      "checkedAt": "2026-10-25T07:06:24.594Z",
+      "lastSuccessAt": "2026-10-25T07:06:24.594Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:06:24.594Z",
+      "queue": {
+        "pending": 35,
+        "done": 8,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:06:27.038Z",
+      "qualification": "discovery-extraction-persistence-verified",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:24.594Z",
+          "metrics": {
+            "requests": 5,
+            "bytes": 1157829,
+            "notModified": 0,
+            "durationMs": 2443,
+            "checkedAt": "2026-10-25T07:06:24.594Z"
+          },
+          "queue": {
+            "pending": 39,
+            "done": 4,
+            "error": 0,
+            "rejected": 0
+          },
+          "observations": 4,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:27.038Z",
+          "metrics": {
+            "requests": 4,
+            "bytes": 560456,
+            "notModified": 0,
+            "durationMs": 1587,
+            "checkedAt": "2026-10-25T07:06:27.038Z"
+          },
+          "queue": {
+            "pending": 35,
+            "done": 8,
+            "error": 0,
+            "rejected": 0
+          },
+          "observations": 8,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:28.626Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:28.626Z"
+          },
+          "queue": {
+            "pending": 35,
+            "done": 8,
+            "error": 0,
+            "rejected": 0
+          },
+          "observations": 8,
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Invesco forges new highs and launches new ETFs with support from UK-based wealth manager",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-forges-new-highs-and-launches-new-etfs-with-support-from-uk-based-wealth-manager-1-oct-26.pdf",
+          "publishedAt": "2026-10-01",
+          "checkedAt": "2026-10-25T07:06:24.594Z",
+          "summary": "Invesco forges new highs and launches new ETFs with support from UK-based wealth manager",
+          "evidenceLevel": "official",
+          "sourceHash": "85095e821a6f31b7aeab0a7ebdd9eaf5a1c85944f82b9caf741d65592b89faf0",
+          "products": [
+            {
+              "name": "Invesco MSCI North America Swap UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "About the Invesco MSCI North America Swap UCITS ETF"
+            },
+            {
+              "name": "Invesco Global Government Bond UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "About the Invesco Global Government Bond UCITS ETF"
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-01"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco doubles its Enhanced Equity ETF range with launch of five new regional exposures",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-doubles-its-enhanced-equity-etf-range-with-launch-of-five-new-regional-exposures-30-sep-26.pdf",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-25T07:06:24.594Z",
+          "summary": "Invesco doubles its Enhanced Equity ETF range with launch of five new regional exposures",
+          "evidenceLevel": "official",
+          "sourceHash": "9a118c6f37647f4876f835d1ca7af8edcdee8e0ef738667a4cfb238cfd228991",
+          "products": [
+            {
+              "name": "Invesco UK Enhanced Equity UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "index. An investment in any of these funds is an acquisition of units in an actively managed fund rather than in the underlying assets owned by the fund. Costs may increase or decrease as result of currency and exchange rate fluctuations. Consult the legal documents for further information on costs. *The Invesco UK Enhanced Equity UCITS ETF will not be available for end investors in Italy and Switzerland but will be solely for professional clients. **The Invesco Japan Enhanced Equity UCITS ETF will not be available for end investors in Italy but will be solely for professional clients"
+            },
+            {
+              "name": "Invesco Japan Enhanced Equity UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "index. An investment in any of these funds is an acquisition of units in an actively managed fund rather than in the underlying assets owned by the fund. Costs may increase or decrease as result of currency and exchange rate fluctuations. Consult the legal documents for further information on costs. *The Invesco UK Enhanced Equity UCITS ETF will not be available for end investors in Italy and Switzerland but will be solely for professional clients. **The Invesco Japan Enhanced Equity UCITS ETF will not be available for end investors in Italy but will be solely for professional clients"
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-30"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco launches two active fixed income ETFs",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-launches-two-active-fixed-income-etfs-08-jun-26.pdf",
+          "publishedAt": "2026-06-08",
+          "checkedAt": "2026-10-25T07:06:24.594Z",
+          "summary": "Invesco launches two active fixed income ETFs",
+          "evidenceLevel": "official",
+          "sourceHash": "12f0b723bdc6a56044f85c874dfbef60177f8c13707af515d5969c6f0443b4b5",
+          "products": [
+            {
+              "name": "Invesco EUR IG Corporate Bond Active UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "London, 8 June 2026 – Invesco is expanding its active ETF range with the launch of two funds that will provide differentiated exposure to investment-grade corporate bond markets. The Invesco EUR IG Corporate Bond Active UCITS ETF and Invesco EUR IG Corporate Bond Short Duration Active UCITS ETF will be managed by Invesco Fixed Income’s UK-based team (“IFI Europe”) of highly experienced fundamental portfolio managers, supported by deep, global research resources. The two ETFs follow similar strategies with the latter targeting a shorter range of maturities."
+            },
+            {
+              "name": "Invesco EUR IG Corporate Bond Short Duration Active UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "London, 8 June 2026 – Invesco is expanding its active ETF range with the launch of two funds that will provide differentiated exposure to investment-grade corporate bond markets. The Invesco EUR IG Corporate Bond Active UCITS ETF and Invesco EUR IG Corporate Bond Short Duration Active UCITS ETF will be managed by Invesco Fixed Income’s UK-based team (“IFI Europe”) of highly experienced fundamental portfolio managers, supported by deep, global research resources. The two ETFs follow similar strategies with the latter targeting a shorter range of maturities."
+            },
+            {
+              "name": "Invesco EUR IG Corporate Invesco EUR IG Corporate Bond Active UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": "Active",
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "ETF name Invesco EUR IG Corporate Invesco EUR IG Corporate Bond Active UCITS ETF Bond Short Duration Active UCITS ETF Benchmark ** Bloomberg Euro Corporate Index Bloomberg Euro Corporate Bond (EUR Total Return) 1-5 Year Index (EUR Total Return) ETF ticker** EUTD ESTD Income treatment Distributing Distributing Base / trading currency EUR / EUR EUR / EUR Investment style Actively managed Actively managed Annual charge 0.20% per annum 0.20% per annum"
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-06-08"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco reduces fee on its MSCI World UCITS ETF to 0.05%, now the lowest-cost ETF for that exposure",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-reduces-fee-on-its-msci-world-ucits-etf.pdf",
+          "publishedAt": "2026-03-30",
+          "checkedAt": "2026-10-25T07:06:24.594Z",
+          "summary": "Invesco reduces fee on its MSCI World UCITS ETF to 0.05%, now the lowest-cost ETF for that exposure",
+          "evidenceLevel": "official",
+          "sourceHash": "0d6243989993678870a2343cf93bb9d78903bb9d5845db5ee0db0b43009631a3",
+          "products": [
+            {
+              "name": "Invesco MSCI World UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "London, 30 March 2026 - Invesco is reducing the annual management fee on its US$6.6 billion Invesco MSCI World UCITS ETF from 0.19% to 0.05%, effective 1 April 2026. With steadily increasing demand from both retail and professional investors, global equity exposures have led ETF inflows consistently in recent years, and Invesco expects this trend to continue. With this repricing, Invesco takes the lead in offering currently the lowest-cost exposure to this key industry benchmark, with competing MSCI World ETFs charging an average of 0.20% per annum.**"
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 72,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 20,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-03-30"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "characteristic-change",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco launches two corporate bond ETFs with a systematic approach for enhancing yield",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-launches-two-corporate-bon-etfs-2-mar-26.pdf",
+          "publishedAt": "2026-03-02",
+          "checkedAt": "2026-10-25T07:06:27.038Z",
+          "summary": "Invesco launches two corporate bond ETFs with a systematic approach for enhancing yield",
+          "evidenceLevel": "official",
+          "sourceHash": "bc7545a3e9b6abfd2848de5fd435f7db2b648106bedacbd0f436f1fde6a1e8b8",
+          "products": [
+            {
+              "name": "Invesco EUR IG Corporate Invesco USD IG Corporate Bond Yield Plus UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "ETF name Invesco EUR IG Corporate Invesco USD IG Corporate Bond Yield Plus UCITS ETF Bond Yield Plus UCITS ETF Benchmark iBoxx EUR Corporates iBoxx USD Corporates Investment Grade Spread Select Investment Grade Spread Select Top 50% TCA Index Top 50% TCA Index ETF ticker* EYLD UYLD Income treatment Quarterly distributions Quarterly distributions Base / trading currency EUR / EUR USD / USD Replication method Physical sampling Physical sampling Annual charge 0.15% per annum 0.15% per annum"
+            },
+            {
+              "name": "Invesco USD IG Corporate Bond Yield Plus UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "*Tickers shown are for the Distributing shares. Distributing shares are also available for the Invesco USD IG Corporate Bond Yield Plus UCITS ETF in EUR on Euronext Milan and in GBP on the LSE as well as GBP-Hedged Distributing shares on the LSE. Accumulating shares are also available for the Invesco EUR IG Corporate Bond Yield Plus UCITS ETF on Xetra and the SIX Swiss Exchange. An investment in this fund is an acquisition of units in a passively managed, index tracking fund rather than in the underlying assets owned by the fund."
+            },
+            {
+              "name": "Invesco EUR IG Corporate Bond Yield Plus UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "*Tickers shown are for the Distributing shares. Distributing shares are also available for the Invesco USD IG Corporate Bond Yield Plus UCITS ETF in EUR on Euronext Milan and in GBP on the LSE as well as GBP-Hedged Distributing shares on the LSE. Accumulating shares are also available for the Invesco EUR IG Corporate Bond Yield Plus UCITS ETF on Xetra and the SIX Swiss Exchange. An investment in this fund is an acquisition of units in a passively managed, index tracking fund rather than in the underlying assets owned by the fund."
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-03-02"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco launches Nasdaq-100 ETF with innovative option strategy aimed at delivering monthly income with long-term growth",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/Invesco-launches-nasdaq-10-etf-2-feb-26.pdf",
+          "publishedAt": "2026-02-02",
+          "checkedAt": "2026-10-25T07:06:27.038Z",
+          "summary": "Invesco launches Nasdaq-100 ETF with innovative option strategy aimed at delivering monthly income with long-term growth",
+          "evidenceLevel": "official",
+          "sourceHash": "f79b84510a29e5ca373311e2d8c5b4cd5cdeb3cfa207e93597e5edd921e9862c",
+          "products": [
+            {
+              "name": "Invesco Nasdaq-100 Income Advantage UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": "Active",
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "ETF name Invesco Nasdaq-100 Income Advantage UCITS ETF ETF ticker QQIA Income frequency Monthly distributions Base / trading currency* USD / USD Annual charge 0.29% per annum An investment in this fund is an acquisition of units in an actively managed fund rather than in the underlying assets owned by the fund."
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-02-02"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco expands innovative income range with launch of ETF targeting EUR-denominated AT1s",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/Invesco-expands-innovative-income-range-with-launch-of-ETF-targeting-EUR-denominated-AT1s-23%20Jan%2026.pdf",
+          "publishedAt": "2026-01-23",
+          "checkedAt": "2026-10-25T07:06:27.038Z",
+          "summary": "Invesco expands innovative income range with launch of ETF targeting EUR-denominated AT1s",
+          "evidenceLevel": "official",
+          "sourceHash": "5fe7f8262cb48f2385ac1e2af9063872de991cc3215dee4bb7bfc81f11a1b8b0",
+          "products": [
+            {
+              "name": "Invesco EUR AT1 CoCo Bond UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "ETF name Invesco EUR AT1 CoCo Bond UCITS ETF Benchmark iBoxx EUR Contingent Convertible Liquid Developed Market AT1 (8% Issuer Cap) Index ETF ticker* EATA EAT1 Income treatment Accumulating Distributing Base / trading currency EUR / EUR EUR / EUR Replication method Full physical Annual charge 0.39%"
+            },
+            {
+              "name": "Invesco EUR AT1 Coco Bond UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "Spain: Invesco EUR AT1 Coco Bond UCITS ETF is a product that is difficult to understand. The CNMV considers that, in general, it is not appropriate for retail investors."
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 50,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 11,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 8,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-01-23"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Invesco expands equal weight offering with launch of European blue chip ETF exposure",
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-expands-equal-weight-offering-with-launch-of-european-blue-chip-etf-exposure-2-dec-25.pdf",
+          "publishedAt": "2025-12-02",
+          "checkedAt": "2026-10-25T07:06:27.038Z",
+          "summary": "Invesco expands equal weight offering with launch of European blue-chip ETF exposure",
+          "evidenceLevel": "official",
+          "sourceHash": "87fe80195c1cef32e3cd50e51fbcecda2c357494469da3eb491cb23ced749c45",
+          "products": [
+            {
+              "name": "Invesco EURO STOXX 50 Equal Weight UCITS ETF",
+              "isin": null,
+              "fees": null,
+              "index": null,
+              "management": null,
+              "distribution": null,
+              "pea": null,
+              "tradingDate": null,
+              "availability": null,
+              "evidence": "ETF name Invesco EURO STOXX 50 Equal Weight UCITS ETF Benchmark EURO STOXX 50 Equal Weight Total Return (Net) Index ETF ticker* EWSX GY EWSD GY Income treatment Accumulating Distributing Base / trading currency EUR / EUR EUR / EUR Replication method Full physical Annual charge 0.20%"
+            }
+          ],
+          "announcedProductCount": null,
+          "backfill": true,
+          "assessment": {
+            "score": 72,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 20,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Caractéristiques du placement"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Expositions nommées dans le communiqué"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2025-12-02"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "product-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-forges-new-highs-and-launches-new-etfs-with-support-from-uk-based-wealth-manager-1-oct-26.pdf",
+          "publishedAt": "2026-10-01",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:24.594Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-doubles-its-enhanced-equity-etf-range-with-launch-of-five-new-regional-exposures-30-sep-26.pdf",
+          "publishedAt": "2026-09-30",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:24.594Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-launches-two-active-fixed-income-etfs-08-jun-26.pdf",
+          "publishedAt": "2026-06-08",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:24.594Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-reduces-fee-on-its-msci-world-ucits-etf.pdf",
+          "publishedAt": "2026-03-30",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:24.594Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/invesco-launches-two-corporate-bon-etfs-2-mar-26.pdf",
+          "publishedAt": "2026-03-02",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:27.038Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/Invesco-launches-nasdaq-10-etf-2-feb-26.pdf",
+          "publishedAt": "2026-02-02",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:27.038Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2026/Invesco-expands-innovative-income-range-with-launch-of-ETF-targeting-EUR-denominated-AT1s-23%20Jan%2026.pdf",
+          "publishedAt": "2026-01-23",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:27.038Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-expands-equal-weight-offering-with-launch-of-european-blue-chip-etf-exposure-2-dec-25.pdf",
+          "publishedAt": "2025-12-02",
+          "status": "done",
+          "availableAt": "2026-10-25T07:06:27.038Z"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-boosts-uk-etf-distribution-team-with-the-appointment-of-jame-grogan-11-nov-25.pdf",
+          "publishedAt": "2025-11-11",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-three-overnight-return-etfs-offering-rate-enhancements-via-swap-model-30-oct-25.pdf",
+          "publishedAt": "2025-10-30",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/invesco-expanding-enhanced-equity-etf-range-with-regional-and-single-country%20exposures-19-sep-2025.pdf",
+          "publishedAt": "2025-09-19",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/invescos-newest-etf-offers-timely-solution-26-jun-2025.pdf",
+          "publishedAt": "2025-06-26",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/european-etf-investors-show-resilience-27-may-2025.pdf",
+          "publishedAt": "2025-05-27",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-etf-with-systematic-active-approach-22-may-2025.pdf",
+          "publishedAt": "2025-05-22",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/European-etfs-post-record-28-apr-2025.pdf",
+          "publishedAt": "2025-04-28",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/March-sees-cautious-investor%20sentiment-8-apr-2025.pdf",
+          "publishedAt": "2025-04-08",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-introduces-range-of-corporate-bond-etfs-1-apr-2025.pdf",
+          "publishedAt": "2025-04-01",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Fixed-income-etfs-11-mar-2025_uk.pdf",
+          "publishedAt": "2025-03-11",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-the-first-ucits-etf-to-track-msci-europe-equal-weighted-index-7-mar-2025_uk.pdf",
+          "publishedAt": "2025-03-07",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-europes-first-clo-ucits-etf-13-feb-2025_uk.pdf",
+          "publishedAt": "2025-02-13",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Fixed-income-etf-10-feb-2025_uk.pdf",
+          "publishedAt": "2025-02-10",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-us-equity-etf-with-climate-transition-30-jan-2025_uk.pdf",
+          "publishedAt": "2025-01-30",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/European-etfs-23-jan-2025_uk.pdf",
+          "publishedAt": "2025-01-23",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-expands-equal-weight-range-20-jan-2025_uk.pdf",
+          "publishedAt": "2025-01-20",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Fixed-income-etf-14-jan-2025_uk.pdf",
+          "publishedAt": "2025-01-14",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-12-nov-2024_uk.pdf",
+          "publishedAt": "2024-11-12",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invesco-launches-three-thematic-etfs-1-nov-2024_uk.pdf",
+          "publishedAt": "2024-11-01",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/european-etfs-18-oct-2024_uk.pdf",
+          "publishedAt": "2024-10-18",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-8-oct-2024_uk.pdf",
+          "publishedAt": "2024-10-08",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invescos-emea-etf-platform-assets-1-oct-2024_uk.pdf",
+          "publishedAt": "2024-10-01",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-11-sep-2024_uk.pdf",
+          "publishedAt": "2024-09-11",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-12-aug-2024_uk.pdf",
+          "publishedAt": "2024-08-12",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/european-etfs-29-jul-2024_uk.pdf",
+          "publishedAt": "2024-07-29",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invesco-expands-its-range-of-fixed-maturity-ucits-etfs-24-jun-2024_uk.pdf",
+          "publishedAt": "2024-06-24",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invescos-newest-etf-targets-chinas-most-innovative-companies-21-jun-2024_uk.pdf",
+          "publishedAt": "2024-06-21",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invesco-launches-range-of-fixed-maturity-ucits-etfs-24-may-2024_uk.pdf",
+          "publishedAt": "2024-05-24",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-13-may-2024_uk.pdf",
+          "publishedAt": "2024-05-13",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/european-etfs-19-apr-2024_uk.pdf",
+          "publishedAt": "2024-04-19",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/Invesco-launches-global-corporate-bond-etf-12-apr-2024_uk.pdf",
+          "publishedAt": "2024-04-12",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-8-apr-2024_uk.pdf",
+          "publishedAt": "2024-04-08",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-etfs-11-mar-2024_uk.pdf",
+          "publishedAt": "2024-03-11",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/fixed-income-9-feb-2024_uk.pdf",
+          "publishedAt": "2024-02-09",
+          "status": "pending"
+        },
+        {
+          "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2024/european-demand-monitor-european-etfs-11-jan-2024_uk.pdf",
+          "publishedAt": "2024-01-11",
+          "status": "pending"
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "spdr-news",
+      "name": "State Street · communiqués",
+      "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+      "method": "extra-coverage",
+      "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
+      "attemptedAt": "2026-10-25T07:06:29.232Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": "\"48119b9dc7eab1ab80bd2f22369d88da\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:06:28.630Z",
+      "lastSuccessAt": "2026-10-25T07:06:28.630Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T09:06:28.630Z",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 10
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null,
+      "qualification": "partial-global-feed-no-qualified-ucits",
+      "passes": [
+        {
+          "checkedAt": "2026-10-25T07:06:28.630Z",
+          "metrics": {
+            "requests": 2,
+            "bytes": 86383,
+            "notModified": 0,
+            "durationMs": 601,
+            "checkedAt": "2026-10-25T07:06:28.630Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 0,
+            "error": 0,
+            "rejected": 10
+          },
+          "observations": 0,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:29.231Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 1,
+            "checkedAt": "2026-10-25T07:06:29.231Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 0,
+            "error": 0,
+            "rejected": 10
+          },
+          "observations": 0,
+          "errors": []
+        },
+        {
+          "checkedAt": "2026-10-25T07:06:29.232Z",
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T07:06:29.232Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 0,
+            "error": 0,
+            "rejected": 10
+          },
+          "observations": 0,
+          "errors": []
+        }
+      ],
+      "examples": [],
+      "documents": [
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Recognized-By-Euromoney-Awards-/default.aspx",
+          "publishedAt": "2026-10-16",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Investment-Management-Builds-on-Nearly-30-Years-of-Sector-ETF-Leadership-with-New-Market-Sector-ETFs/default.aspx",
+          "publishedAt": "2026-10-14",
+          "status": "rejected",
+          "reason": "Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Corporation-NYSE-STT-Reports-Third-Quarter-2026-Financial-Results/default.aspx",
+          "publishedAt": "2026-10-14",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Elects-Alexander-Vollert-to-Its-Board-of-Directors/default.aspx",
+          "publishedAt": "2026-10-13",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/Institutional-Adoption-of-Digital-Assets-Accelerates-as-Trust-and-Regulation-Emerge-as-Critical-Dependencies/default.aspx",
+          "publishedAt": "2026-10-06",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Appointed-as-Transfer-Agent-by-Wellington-Management-on-HKEX-Integrated-Fund-Platform-2026-LfnWmIkefU/default.aspx",
+          "publishedAt": "2026-09-29",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Corporation-to-Report-Third-Quarter-2026-Financial-Results-and-Host-Conference-Call-Webcast-on-October-14/default.aspx",
+          "publishedAt": "2026-09-23",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Investment-Management-Expands-MyIncome-Suite-as-Assets-Top-1-Billion/default.aspx",
+          "publishedAt": "2026-09-23",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/Yuanta-Funds-Selects-State-Street-for-First-Overseas-Securities-Lending-Program-2026-w9Zb88i_-W/default.aspx",
+          "publishedAt": "2026-09-15",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        },
+        {
+          "url": "https://newsroom.statestreet.com/press-releases/press-release-details/2026/State-Street-Announces-Leadership-for-Alpha-and-Enterprise-Operations-and-Technology/default.aspx",
+          "publishedAt": "2026-09-14",
+          "status": "rejected",
+          "reason": "Communiqué sans annonce ETF"
+        }
+      ],
+      "initialNotifications": 0
+    }
+  ]
+}
