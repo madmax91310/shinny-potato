@@ -22,7 +22,7 @@ try{
   assert.equal(await page.getByRole('group',{name:'Choisir un actif',exact:true}).getAttribute('data-value'),id)
   await preview();assert((await page.locator('body').innerText()).includes(ASSETS[id].label))
   await png(id+'-lump',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
-  const editor=page.locator('.workspace-view-switch').getByRole('button',{name:'Éditeur',exact:true});if(await editor.isVisible())await editor.click()
+  const editor=page.locator('.workspace-view-switch').getByRole('button',{name:'Réglages',exact:true});if(await editor.isVisible())await editor.click()
   await page.getByRole('button',{name:'Mensuel (DCA)',exact:true}).click();await preview()
   await png(id+'-dca',page.getByRole('button',{name:'📊 Télécharger une image',exact:true}))
   await page.goto(`${base}/performance-depuis?asset=${id}`,{waitUntil:'networkidle'})
