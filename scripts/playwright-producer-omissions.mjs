@@ -3,16 +3,17 @@ import assert from 'node:assert/strict'
 import {execFileSync,spawn} from 'node:child_process'
 import {mkdir,writeFile}from'node:fs/promises'
 import {chromium}from'playwright'
-const model=JSON.parse(execFileSync('python',['-c',`
+const model=JSON.parse(execFileSync('python',['-S','-c',`
 import sys,json,hashlib,datetime as dt,tempfile
 from pathlib import Path
+from types import SimpleNamespace
 sys.path.insert(0,'scripts')
 from producer_report_plans import build_plan
 from producer_report_contract import finish
 from publish_automation_status import read_report,update_status,REGISTRY
 from automation_monitoring import evaluate_monitoring
 w='update-practical-sheets.yml';now=dt.datetime.now(dt.timezone.utc).isoformat()
-p=build_plan('collect_practical_sheets',[],report_stem='practical-observation')
+p=build_plan('collect_practical_sheets',[],report_stem='practical-observation',module=SimpleNamespace(CONFIG=Path('scripts/practical-sheet-sources.json')))
 p.update(producer='collect_practical_sheets',reportStem='practical-observation',declaredAt=now,nonce='isolated-ui-test')
 p['sha256']=hashlib.sha256(json.dumps(p,sort_keys=True).encode()).hexdigest()
 missing=p['items'][-1]['id'];sources={r['id'].removeprefix('practical:'):{'status':'ok','lastSuccessfulCheckAt':now}for r in p['items']if r['id']!=missing}
