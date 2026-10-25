@@ -110,7 +110,8 @@ def finish(native, plan, *, completed=True):
         for field in fields:
             for suffix in ('',':qualification'):
                 key=instrument+':'+field+suffix
-                if key not in found:found[key]={'id':key,'status':'deferred','reason':'Champ explicitement en attente de publication/qualification dans ce rapport ; aucune valeur ni réussite renouvelée'}
+                if key not in found or plan['producer']=='collect_instrument_metadata' and found[key]['status'] in SKIPPED:
+                    found[key]={'id':key,'status':'deferred','operationAttempted':None,'sourceAttempted':None,'reason':'Champ explicitement signalé en attente ; le rapport natif ne détaille pas la tentative de ce champ. Aucune réussite source déduite.'}
     expected = {r['id']:r for r in plan['items']}
     for identifier in sorted(set(found)-set(expected)):
         issues.append('Résultat hors périmètre déclaré : ' + identifier)

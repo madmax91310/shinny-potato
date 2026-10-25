@@ -236,6 +236,14 @@ class DurableScope(unittest.TestCase):
         after=merge_proof_retry(state,event(w,90),[old])['workflows'][w]
         self.assertEqual(after['reportQualifications'],{});self.assertTrue(after['reportQualificationHistory'][-1]['historicalLimitationPreserved'])
         self.assertFalse(after['reportEvidenceHistory'][-1].get('scopeExplicit'))
+    def test_pending_field_does_not_invent_an_absent_or_successful_source_attempt(self):
+        p=plan(('A:pea','A:pea:qualification'));p['producer']='collect_instrument_metadata';p['items'][1]['phase']='qualification'
+        native={'successes':[],'errors':[],'inactive':[{'id':'A:pea'}],'pending':{'A':['pea']}}
+        result=finished(native,p)['resultContract']
+        for row in result['outcomes']:
+            self.assertEqual(row['status'],'deferred');self.assertIsNone(row['operationAttempted']);self.assertIn('ne détaille pas',row['reason'])
+        self.assertIsNone(result['outcomes'][0]['sourceAttempted']);self.assertFalse(result['outcomes'][1]['sourceAttempted'])
+        self.assertEqual(result['scope']['networkRequestedIds'],[])
     def test_missing_native_report_retains_individual_expected_scope(self):
         r=self.observe_artifact();omissions=[e for part in r for e in part.get('errors',[]) if e.get('kind')=='omission']
         self.assertEqual({e['expectedId']for e in omissions},{'practical:A','practical:B'})
