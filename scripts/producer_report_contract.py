@@ -144,7 +144,7 @@ def finish(native, plan, *, completed=True):
         'attemptUnknownIds':[r['id']for r in outcomes if r.get('operationAttempted')is None],
         'networkRequestedIds':[r['id']for r in outcomes if r.get('sourceAttempted')is True],
         'networkAttemptUnknownIds':[r['id']for r in outcomes if r.get('sourceAttempted')is None],
-        'runId':os.environ.get('GITHUB_RUN_ID'), 'attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),
+        'runId':plan.get('runId'), 'attempt':plan.get('attempt'),
         'selectionReason':plan.get('selectionReason'), 'nonce':plan['nonce']},
         'outcomes':outcomes, 'issues':issues, 'unscopedFailures':[r for key,r in found.items() if key not in expected and r['status']=='failed']+diagnostics}
     validate_contract(contract)
@@ -186,7 +186,7 @@ def run(producer, main):
         return main()  # non-reporting library/dry-run entry; never qualified by this helper
     plan = build_plan(producer, sys.argv[1:], report_stem=path.stem, module=sys.modules[main.__module__])
     now = dt.datetime.now(dt.timezone.utc).isoformat()
-    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4()), 'codeSha':current_code_sha(), 'durablePlan':True}
+    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4()), 'codeSha':current_code_sha(), 'durablePlan':True, 'runId':os.environ.get('GITHUB_RUN_ID'), 'attempt':os.environ.get('GITHUB_RUN_ATTEMPT')}
     plan['sha256'] = hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
     from data_automation import write_json_atomic
     # A SIGKILL still leaves the expected scope in the ordinary artifact path.
@@ -211,7 +211,7 @@ def bridge():
     """Small JSON bridge for JS producers, sharing validation and omission semantics."""
     value=json.load(sys.stdin)
     if value['action']=='prepare':
-        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()),codeSha=current_code_sha(),durablePlan=True)
+        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()),codeSha=current_code_sha(),durablePlan=True,runId=os.environ.get('GITHUB_RUN_ID'),attempt=os.environ.get('GITHUB_RUN_ATTEMPT'))
         plan['sha256']=hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
         print(json.dumps({'plan':plan,'placeholder':{'producerStarted':VERSION,'resultContract':finish({},plan,completed=False)['resultContract']}}))
     elif value['action']=='finish':
