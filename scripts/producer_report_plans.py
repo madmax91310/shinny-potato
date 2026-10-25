@@ -65,7 +65,7 @@ def build_plan(producer, args, report_stem=None, module=None):
             for f in fields:
                 applicable=not(f=='composition'and c.get('collectComposition')is False)
                 add('index-'+c['id']+'-'+f,c['id'],[f],selected and applicable,
-                    'Non applicable : composition explicitly disabled'if not applicable else 'Outside requested index partition'if not selected else None)
+                    'Non applicable : composition explicitly disabled'if not applicable else 'Outside requested index partition'if not selected else None, **({'phase':'validation','sourceAttempted':False}if c.get('parser')=='monthly-derived'else{}))
     elif producer=='collect_practical_sheets':
         for key in json.loads(mod().CONFIG.read_text()):add('practical:'+key,key,['official document body/hash','editorial review lock'])
     elif producer=='collect_insurance':
@@ -76,6 +76,7 @@ def build_plan(producer, args, report_stem=None, module=None):
         from collect_extended_scpi import PRODUCTS as EXTRA
         from collect_atland_scpi import PRODUCTS as ATLAND
         for key in ['iroko-zen','remake-live',*PRODUCTS,*EXTRA,*ATLAND]:add(key,key,['SCPI bulletin','subscription/withdrawal price','distribution','publication state'])
+        add('iroko-zen:snapshot','iroko-zen',['quarterly portfolio snapshot'],dependsOn='iroko-zen')
     elif producer=='collect_presentation_actors':
         for key in mod().SOURCES:add(key,key,['current actor conditions/activity','official source identity'])
     elif producer=='collect_regulatory_data':
@@ -124,7 +125,7 @@ def build_plan(producer, args, report_stem=None, module=None):
         for s in sources:
             for field in m.FIELDS:
                 for suffix in ['',':qualification']:
-                    add(s['isin']+':'+field+suffix,s['isin'],[field],s['isin']in selected,'Outside explicit metadata selection'if s['isin']not in selected else None)
+                    add(s['isin']+':'+field+suffix,s['isin'],[field],s['isin']in selected,'Outside explicit metadata selection'if s['isin']not in selected else None,**({'phase':'qualification','sourceAttempted':False}if suffix else{}))
     elif producer=='update-investor-13f':
         for entry in [{'slug':slug}for slug in mod().MANAGERS]:add('investor:'+entry['slug'],entry['slug'],['13F last successful check','positions date','report quarter','amendments'])
     elif producer=='refresh_non_bond_sources':

@@ -42,6 +42,7 @@ def validate_contract(contract):
     if set(identifiers) != set(expected):
         raise ValueError('Missing or unexpected individual producer result')
     for row in rows:
+        if plan and row.get('instrument')!=next(i['instrument']for i in plan['items']if i['id']==row['id']):raise ValueError('Producer instrument identity differs from input plan')
         if row['id'] not in requested and row['status'] not in SKIPPED:raise ValueError('Unselected item cannot be certified or attempted')
         if row['status'] not in SKIPPED | {'succeeded', 'unchanged-verified', 'failed'}:
             raise ValueError('Unknown producer result status')
@@ -116,18 +117,22 @@ def finish(native, plan, *, completed=True):
     outcomes = []
     for identifier, item in expected.items():
         if not item.get('selected', True):
-            value = {'status':'not-applicable'if item['reason'].startswith('Non applicable')else'not-attempted', 'reason':item['reason'], 'sourceAttempted':False}
+            value = {'operationAttempted':False, 'status':'not-applicable'if item['reason'].startswith('Non applicable')else'not-attempted', 'reason':item['reason'], 'sourceAttempted':False}
+        elif identifier not in found and item.get('dependsOn')in found and found[item['dependsOn']]['status']!='succeeded':
+            value={'status':'not-attempted','sourceAttempted':False,'reason':'Dependent observation could not be qualified: '+item['dependsOn']}
         elif identifier not in found:
-            value = {'status':'failed', 'sourceAttempted':False, 'kind':'omission', 'phase':'reporting',
+            value = {'status':'failed', 'sourceAttempted':None, 'operationAttempted':None, 'kind':'omission', 'phase':'reporting',
                      'field':'Compte rendu individuel : '+', '.join(item.get('fields',[])), 'error':interruption_reason or plan.get('interruptionReason') or ('Résultat attendu absent' if completed else 'Producteur interrompu avant son compte rendu individuel')}
         else:
             value = found[identifier]
             if value['status'] in SKIPPED:
-                value = {**value, 'sourceAttempted':value.get('sourceAttempted',False), 'reason':value.get('reason') or value.get('retirementStatus') or 'Exclusion/attente explicitement déclarée par le producteur'}
+                value = {**value, 'operationAttempted':value.get('operationAttempted',value.get('sourceAttempted')is True), 'sourceAttempted':value.get('sourceAttempted',False), 'reason':value.get('reason') or value.get('retirementStatus') or 'Exclusion/attente explicitement déclarée par le producteur'}
             else:
                 # This is an observation emitted by this invocation, not a read of its
                 # retained financial registry. No checkedAt/asOf is manufactured here.
-                value = {**value, 'sourceAttempted':value.get('sourceAttempted',True)}
+                value = {**value, 'operationAttempted':True, 'sourceAttempted':value.get('sourceAttempted',True if value['status']in ('succeeded','unchanged-verified')else None)}
+        if item.get('phase')in ('qualification','validation') and value.get('kind')!='omission':
+            value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':native.get('checkedAt')}
         outcomes.append({**item, **value, 'id':identifier})
     diagnostics = _normalize_report(payload).get('errors',[]) if plan.get('retainNativeFailuresOnly') and completed else []
     contract = {'schemaVersion':1, 'protocol':VERSION, 'inputPlan':plan, 'scope':{
@@ -135,11 +140,15 @@ def finish(native, plan, *, completed=True):
         'requestedIds':[r['id'] for r in plan['items'] if r.get('selected',True)],
         'items':plan['items'], 'emptyReason':plan.get('emptyReason'),
         'declaredAt':plan['declaredAt'], 'planSha256':plan['sha256'],
+        'attemptedIds':[r['id']for r in outcomes if r.get('operationAttempted')is True],
+        'attemptUnknownIds':[r['id']for r in outcomes if r.get('operationAttempted')is None],
+        'networkRequestedIds':[r['id']for r in outcomes if r.get('sourceAttempted')is True],
+        'networkAttemptUnknownIds':[r['id']for r in outcomes if r.get('sourceAttempted')is None],
         'runId':os.environ.get('GITHUB_RUN_ID'), 'attempt':os.environ.get('GITHUB_RUN_ATTEMPT'),
         'selectionReason':plan.get('selectionReason'), 'nonce':plan['nonce']},
         'outcomes':outcomes, 'issues':issues, 'unscopedFailures':[r for key,r in found.items() if key not in expected and r['status']=='failed']+diagnostics}
     validate_contract(contract)
-    return {**native, 'resultContract':contract}
+    return {**native, **({'producerStarted':VERSION}if not completed else{}), 'resultContract':contract}
 
 
 def normalize_contract(contract):

@@ -27,7 +27,7 @@ class Results(unittest.TestCase):
         self.assertEqual([r['id']for r in result['successes']],['A'])
         self.assertEqual(result['errors'][0]['id'],'B')
         self.assertEqual(result['errors'][0]['kind'],'omission')
-        self.assertFalse(result['errors'][0]['sourceAttempted'])
+        self.assertIsNone(result['errors'][0]['sourceAttempted'])
     def test_expected_plan_not_derived_from_result(self):
         p=plan();before=copy.deepcopy(p);finished({'successes':[{'id':'A'}]},p)
         self.assertEqual(p,before)

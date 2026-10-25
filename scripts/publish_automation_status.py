@@ -433,7 +433,7 @@ def report_error(identifier, cause):
 
 
 def technical_proof(identifier):
-    return identifier.startswith(('report-read:', 'artifact-read:'))
+    return identifier.startswith(('report-read:', 'artifact-read:', 'report-contract:'))
 
 
 def bind_attempt(identifier, run):
