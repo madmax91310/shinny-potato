@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -861,6 +861,89 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-8d49d9ab91601765bc8f",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux",
+        "value": {
+          "title": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux",
+          "summary": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+        "publicationId": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-22",
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-25T13:33:40.124Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+        "populationScope": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe.",
+        "housing": {
+          "duration": null,
+          "frequency": null,
+          "population": null,
+          "method": null,
+          "priceBasis": null,
+          "measure": null,
+          "propertyType": null,
+          "market": null,
+          "geography": "France",
+          "rateType": null,
+          "rateScope": null,
+          "insurance": null,
+          "provisional": null,
+          "revision": false,
+          "sourceId": "moneyvox"
+        },
+        "topic": "immobilier",
+        "topicLabel": "Marché immobilier",
+        "summary": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/cetelem/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/cofidis/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/banque-casino/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/comparatif/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "bf3e2e55744fc299097040aa2782b875abadf4df18200653d334f1a4dee966cb",
+          "excerpt": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Marché immobilier : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux — De quels biens, de quelle zone et de quelle période parle cette publication ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "purchasing-news-984740bc1e00de631245",
         "label": "De nouveaux modèles de bail et une notice d'information actualisée",
         "field": "announcement",
@@ -1098,7 +1181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -1343,7 +1426,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1377,7 +1460,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -1655,7 +1738,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-12",
         "period": "2026-10-12",
-        "checkedAt": "2026-10-25T10:59:43.654Z",
+        "checkedAt": "2026-10-25T13:33:40.124Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
         "populationScope": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
         "topic": "energie",
@@ -1683,7 +1766,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "bbb5f727b8a42bbfd3c24be3c05e86aa8ba8881dc11eca198b990b62da4907ce",
+          "sourceHash": "6199d1395f4137a1c73a57c145d05fea5f763952738a80a7b671a3df36558a5b",
           "excerpt": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1846,7 +1929,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-07",
         "period": "2026-10-07",
-        "checkedAt": "2026-10-25T11:12:00.338Z",
+        "checkedAt": "2026-10-25T13:33:40.124Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-pleines-creuses-experimentation-tarifaire",
         "populationScope": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité.",
         "topic": "energie",
@@ -1869,7 +1952,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "e5e7be2170d9b00f5a77dd11ad1f72ec3f99173588a1dc308a7ea23cda784728",
+          "sourceHash": "98114d3b17a96429ae343e3153fe142ca672d219e84362d5a995a723b5bd7811",
           "excerpt": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité. Prévue par l’ arrêté du 28 mai 2026 relatif aux tarifs réglementés de vente de l’électricité , elle se poursuivra jusqu’au 1er octobre 2027 . L’expérimentation teste notamment deux nouvelles structures tarifaires : Base/Pointe Hiver et Base/Pointe Hiver/Heures Creuses Été.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1949,7 +2032,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T13:32:13.731Z",
+        "checkedAt": "2026-10-25T13:33:40.117Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -2089,7 +2172,7 @@
         "publisher": "Bourse Direct",
         "publishedAt": "2026-09-22",
         "period": "2026-09-22",
-        "checkedAt": "2026-10-25T11:52:20.897Z",
+        "checkedAt": "2026-10-25T13:33:40.124Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-sengage-a-une-selection-de-fonds-toujours-plus-exigeante-pour-ses-offres-dassurance-vie-et-de-per-20260922",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
         "topic": "epargne",
@@ -4207,6 +4290,72 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-df9a739a18357ff14942",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+        "value": {
+          "title": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+          "summary": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-14",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-14",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2025-01-14",
+        "period": "2025-01-14",
+        "checkedAt": "2026-10-25T13:33:40.124Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-14",
+        "populationScope": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-14",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/75020/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_qui_proposent_en_France_des_investissements_sur_le_Forex_et_sur_des_produits_derives_sur_crypto-actifs_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches?page=0&conditions%5Bcategorie%5D=624",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "3cc1274a77e5a6219064313c889549bd07683d71486dc416379694bceb265c8b",
+          "excerpt": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-1dd82ae23ef7096224a0",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -4311,21 +4460,21 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T13:32:32.281Z",
+  "checkedAt": "2026-10-25T13:34:17.240Z",
   "sourceRevision": "e1159682f5535157e301dd6af1b509aa8b0e0256",
-  "observationCount": 7526,
+  "observationCount": 7532,
   "coverage": {
-    "etf": 308,
+    "etf": 310,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 121,
-    "pouvoir-achat": 61
+    "economie": 123,
+    "pouvoir-achat": 63
   },
-  "newSignalCount": 2,
+  "newSignalCount": 1,
   "errors": [
     {
       "family": "etf",
@@ -4349,7 +4498,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q2",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q1",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -4369,7 +4518,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q1",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q2",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -4429,6 +4578,147 @@
     }
   ],
   "events": [
+    {
+      "topic": "immobilier",
+      "topicLabel": "Marché immobilier",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+      "publishedAt": "2026-10-22",
+      "publicationId": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+      "evidence": {
+        "sourceHash": "bf3e2e55744fc299097040aa2782b875abadf4df18200653d334f1a4dee966cb",
+        "excerpt": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": null,
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": "France",
+        "rateType": null,
+        "rateScope": null,
+        "insurance": null,
+        "provisional": null,
+        "revision": false,
+        "sourceId": "moneyvox"
+      },
+      "referencePeriod": null,
+      "populationScope": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/cetelem/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/cofidis/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/banque-casino/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/comparatif/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "373a7599c9c7451b658dd8fe",
+      "family": "pouvoir-achat",
+      "entity": "publication-8d49d9ab91601765bc8f",
+      "label": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T13:34:17.240Z",
+      "before": null,
+      "after": {
+        "title": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux",
+        "summary": "Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : « Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux · summary : Le promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T13:33:40.124Z",
+      "tool": null,
+      "angle": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux — De quels biens, de quelle zone et de quelle période parle cette publication ?",
+      "draft": "« Le nombre de refus de prêt immobilier augmente » : les ventes de Nexity subissent la remontée des taux\n\nLe promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe. &laquo; La guerre en Iran a de gros effets : nos primo-accédants ont vu leur plein d'essence augmenter de 30%, l'inflation est de 3% sur un an et le taux d'intérêt &raquo; de la dette français à dix ans &laquo; s'envole et a dépassé les 5% &raquo;, énumère la PDG de Nexity, Véronique Bédague.\n\nPublication : 2026-10-22 · Annonce publiée\nLe promoteur immobilier Nexity a publié jeudi une baisse de 17% des réservations de logements enregistrées entre janvier et septembre, face à la hausse de l'inflation et des taux d'intérêt en France, et envisage un nouveau &laquo; redimensionnement &raquo; du groupe.\n\nSource : https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+      "reason": "Marché immobilier : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-22"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "securite",
       "topicLabel": "Sécurité de l’argent",
@@ -76693,7 +76983,7 @@
       "url": "https://www.fortuneo.fr/tarifs",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"896c28858a5f6ac8c863a91d252438dc\"",
@@ -76718,7 +77008,7 @@
       "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"e9424cfe8a8eb988f5bc87f2856d4c00\"",
@@ -76743,7 +77033,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -76768,7 +77058,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -76793,7 +77083,7 @@
       "url": "https://www.insee.fr/fr/solr/consultation",
       "method": "insee-search",
       "depth": "API publique de recherche : deux pages de 30 études grand public par diffusion + 30 résultats logements anciens ; RSS indépendants",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 90,
       "archiveWarning": null,
       "etag": null,
@@ -76803,14 +77093,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:29:08.980Z",
       "queue": {
-        "pending": 44,
-        "done": 4,
+        "pending": 42,
+        "done": 6,
         "error": 0,
         "rejected": 33
       },
       "extractionStatus": "validated",
       "silentBaselines": 0,
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z"
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z"
     },
     {
       "id": "bourse-direct-news",
@@ -76818,7 +77108,7 @@
       "url": "https://groupe.boursedirect.fr/feed",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
       "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
@@ -76833,7 +77123,7 @@
         "rejected": 5
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -76843,7 +77133,7 @@
       "url": "https://www.energie-info.fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
       "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
@@ -76858,7 +77148,7 @@
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "silentBaselines": 0
     },
     {
@@ -76867,7 +77157,7 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
@@ -76891,7 +77181,7 @@
       "url": "https://www.amf-france.org/fr/flux-rss/display/28",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 196,
       "etag": "\"1792926370-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:06:10 GMT",
@@ -76900,13 +77190,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T13:59:08.980Z",
       "queue": {
-        "pending": 144,
-        "done": 14,
+        "pending": 143,
+        "done": 15,
         "error": 1,
         "rejected": 40
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T13:30:44.035Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -76916,7 +77206,7 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
@@ -76926,12 +77216,12 @@
       "nextCheckAt": "2026-10-25T13:59:08.980Z",
       "queue": {
         "pending": 14,
-        "done": 12,
+        "done": 13,
         "error": 0,
         "rejected": 42
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -76941,7 +77231,7 @@
       "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
       "method": "consumer-links",
       "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -76966,7 +77256,7 @@
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
       "method": "consumer-coverage",
       "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 21,
       "archiveWarning": null,
       "etag": null,
@@ -76991,7 +77281,7 @@
       "url": "https://presse.credit-agricole.com/fr/?lang=fra",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 6,
       "archiveWarning": null,
       "etag": null,
@@ -77016,7 +77306,7 @@
       "url": "https://www.societegenerale.com/fr/communiques-de-presse",
       "method": "consumer-coverage",
       "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 18,
       "archiveWarning": null,
       "etag": "\"1792922289-gzip\"",
@@ -77041,7 +77331,7 @@
       "url": "https://newsroom.groupebpce.fr/",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -77066,7 +77356,7 @@
       "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
       "method": "consumer-coverage",
       "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "archiveWarning": null,
       "etag": null,
@@ -77091,7 +77381,7 @@
       "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
       "method": "consumer-coverage",
       "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 6,
       "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
       "etag": null,
@@ -77116,7 +77406,7 @@
       "url": "https://www.home.saxo/fr-fr/about-us/media-center",
       "method": "consumer-coverage",
       "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -77141,7 +77431,7 @@
       "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
       "method": "extra-coverage",
       "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 43,
       "archiveWarning": null,
       "etag": null,
@@ -77151,13 +77441,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:34:00.738Z",
       "queue": {
-        "pending": 29,
-        "done": 14,
+        "pending": 28,
+        "done": 15,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "silentBaselines": 0
     },
     {
@@ -77166,7 +77456,7 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "method": "extra-coverage",
       "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "archiveWarning": null,
       "etag": "\"4b76f2afdbd23c07324a0a51943dd83c\"",
@@ -77191,7 +77481,7 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -77216,7 +77506,7 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
@@ -77241,7 +77531,7 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -77266,7 +77556,7 @@
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
@@ -77291,7 +77581,7 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 8,
       "etag": "\"1792934956-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:16 GMT",
@@ -77316,7 +77606,7 @@
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
@@ -77341,7 +77631,7 @@
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -77366,7 +77656,7 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
@@ -77391,7 +77681,7 @@
       "url": "https://www.insee.fr/fr/flux/2",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 13,
       "etag": null,
       "lastModified": null,
@@ -77400,10 +77690,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:29:08.980Z",
       "queue": {
-        "pending": 5,
+        "pending": 4,
         "done": 9,
         "error": 2,
-        "rejected": 5
+        "rejected": 6
       },
       "extractionStatus": "error",
       "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
@@ -77416,7 +77706,7 @@
       "url": "https://www.insee.fr/fr/flux/3",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 21,
       "etag": null,
       "lastModified": null,
@@ -77425,10 +77715,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:29:08.980Z",
       "queue": {
-        "pending": 6,
+        "pending": 5,
         "done": 17,
         "error": 0,
-        "rejected": 5
+        "rejected": 6
       },
       "extractionStatus": "validated",
       "lastExtractionSuccessAt": "2026-10-25T11:52:20.897Z",
@@ -77441,7 +77731,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -77450,13 +77740,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 55,
-        "done": 28,
+        "pending": 54,
+        "done": 29,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
       "silentBaselines": 0
     },
     {
@@ -77465,7 +77755,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "etag": "\"1792928831-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:11 GMT",
@@ -77490,7 +77780,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "etag": "\"1792934958-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:18 GMT",
@@ -77515,7 +77805,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 12,
       "etag": "\"1792934957-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:17 GMT",
@@ -77540,7 +77830,7 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
@@ -77565,7 +77855,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -77584,7 +77874,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -77603,7 +77893,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -77628,7 +77918,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T13:32:13.739Z",
+      "attemptedAt": "2026-10-25T13:33:40.124Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -77646,8 +77936,8 @@
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T13:32:13.729Z",
-      "lastSuccessAt": "2026-10-25T13:32:13.729Z",
+      "checkedAt": "2026-10-25T13:33:40.114Z",
+      "lastSuccessAt": "2026-10-25T13:33:40.114Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -77657,8 +77947,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T13:32:13.729Z",
-      "lastSuccessAt": "2026-10-25T13:32:13.729Z",
+      "checkedAt": "2026-10-25T13:33:40.114Z",
+      "lastSuccessAt": "2026-10-25T13:33:40.114Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -77667,7 +77957,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -77676,7 +77966,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -77685,7 +77975,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -77694,7 +77984,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -77703,7 +77993,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -77712,7 +78002,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T13:32:13.731Z",
+      "checkedAt": "2026-10-25T13:33:40.117Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -77923,10 +78213,10 @@
   "metrics": {
     "collection": {
       "requests": 16,
-      "bytes": 1920450,
+      "bytes": 2330612,
       "notModified": 0,
-      "durationMs": 16721,
-      "checkedAt": "2026-10-25T13:32:13.739Z"
+      "durationMs": 35004,
+      "checkedAt": "2026-10-25T13:33:40.124Z"
     },
     "publicationDelays": [
       {
@@ -78615,6 +78905,11 @@
         "detectionToAvailabilityHours": 20.067896944444445
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/liquidation-termine-du-fcp-lyxor-pea-russie-ucits-news-amundi-etf",
+        "publicationToDetectionHours": 16217.469252777777,
+        "detectionToAvailabilityHours": 20.091892777777776
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -78735,6 +79030,11 @@
         "detectionToAvailabilityHours": 7.620110277777778
       },
       {
+        "url": "https://www.moneyvox.fr/credit/actualites/110954/le-nombre-de-refus-de-pret-immobilier-augmente-les-ventes-de-nexity-subissent-la-remontee-des-taux",
+        "publicationToDetectionHours": 77.91703944444444,
+        "detectionToAvailabilityHours": 7.644106111111111
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -78803,6 +79103,11 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-17",
         "publicationToDetectionHours": 13517.917039444445,
         "detectionToAvailabilityHours": 7.5951925
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-14",
+        "publicationToDetectionHours": 15581.917039444445,
+        "detectionToAvailabilityHours": 7.644106111111111
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -79005,6 +79310,11 @@
         "detectionToAvailabilityHours": 5.6807375
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/European-etfs-post-record-28-apr-2025.pdf",
+        "publicationToDetectionHours": 13087.856412222221,
+        "detectionToAvailabilityHours": 5.704733333333333
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -79055,24 +79365,26 @@
         "detectionToAvailabilityHours": 1.7521044444444445
       },
       {
+        "url": "https://www.insee.fr/fr/statistiques/8676615",
+        "publicationToDetectionHours": 7451.7850452777775,
+        "detectionToAvailabilityHours": 1.7761002777777777
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8669035",
+        "publicationToDetectionHours": 8147.7850452777775,
+        "detectionToAvailabilityHours": 1.7761002777777777
+      },
+      {
         "url": "https://www.moneyvox.fr/epargne/credit-agricole/forfaits-bancaires",
         "publicationToDetectionHours": 38076.78327583333,
         "detectionToAvailabilityHours": 0.7289561111111111
       }
     ],
     "classification": {
-      "ready": 85,
+      "ready": 86,
       "watch": 35,
       "secondary": 360
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T13:32:44.448Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
