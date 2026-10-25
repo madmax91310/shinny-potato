@@ -1,3 +1,4 @@
+import {CONSUMER_SOURCES,parseConsumer} from './lib/radar-consumer.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -180,12 +181,48 @@ try{
  await mobile.getByRole('heading',{name:'Les informations récupérées',exact:true}).waitFor()
  await mobile.getByRole('heading',{name:'PTZ : nouveau plafond applicable',exact:true}).waitFor()
  await mobile.getByText('Application indiquée',{exact:true}).waitFor()
- await mobile.getByRole('button',{name:'Dépenses courantes',exact:true}).click()
+ await mobile.getByRole('button',{name:'Électricité et gaz',exact:true}).click()
  await mobile.getByText('Aucune information pour ce thème et cette recherche.',{exact:true}).waitFor()
- await mobile.getByRole('button',{name:'Logement',exact:true}).click()
+ await mobile.getByRole('button',{name:'Crédit immobilier et PTZ',exact:true}).click()
  await mobile.getByRole('heading',{name:'PTZ : nouveau plafond applicable',exact:true}).waitFor()
  await mobile.screenshot({path:'test-artifacts/radar/purchasing-power-mobile.png',fullPage:true})
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Veille mobile sans débordement')
+ assert.deepEqual(errors,[])
+ // Actual bounded source excerpts for the new consumer scope. No live sending.
+ const consumerManifest=JSON.parse(await readFile('scripts/fixtures/radar-consumer/manifest.json','utf8'))
+ const consumerRows=[]
+ for(const example of consumerManifest){
+  const listing=JSON.parse(await readFile(`scripts/fixtures/radar-consumer/${example.case}-listing.json`,'utf8'))
+  const source=CONSUMER_SOURCES.find(row=>row.id===example.source)
+  const doc=await readFile(`scripts/fixtures/radar-consumer/${example.case}.html`,'utf8')
+  consumerRows.push(parseConsumer(doc,source,example.url,scenarioNow,listing.rows.find(row=>row.url===example.url)))
+ }
+ const consumerSeed=advanceRadar(null,official,{now:scenarioNow})
+ feed=advanceRadar(consumerSeed.state,consumerRows,{now:scenarioNow}).feed
+ feed.checkedAt=stamp;feed.events=feed.events.map(event=>({...event,detectedAt:stamp}))
+ const energyEvent=feed.events.find(event=>event.topic==='energie')
+ feed.events.push({...energyEvent,id:'excluded-history',label:'Fiscalité : changement de barème',title:'Fiscalité : changement de barème'})
+ await page.reload()
+ await page.getByRole('heading',{name:/Heures creuses : de nouveaux horaires/}).waitFor()
+ assert.equal(await page.getByRole('heading',{name:/Fiscalité :/}).count(),0,'Excluded legacy feed cannot leak through UI')
+ await page.getByText('Calendrier des dates annoncées',{exact:true}).click()
+ await page.getByText(/Entrée en vigueur annoncée/).waitFor()
+ await page.locator('.radar-score > summary').first().click()
+ await page.getByText(/Ce score ne prédit pas les vues/).first().waitFor()
+ await page.locator('.radar-filter-panel > summary').click()
+ await page.getByRole('button',{name:'Épargne et placements',exact:true}).click()
+ await page.getByRole('heading',{name:/Prêt de titres : Bourse Direct/}).waitFor()
+ await page.getByRole('button',{name:'Tous les thèmes',exact:true}).click()
+ await page.getByRole('searchbox').fill('heures creuses')
+ await page.getByRole('heading',{name:/Heures creuses :/}).waitFor()
+ assert.ok(await page.getByText('Source officielle',{exact:false}).count()>0)
+ await page.getByRole('searchbox').fill('')
+ await page.screenshot({path:'test-artifacts/radar/consumer-desktop.png',fullPage:true})
+ await mobile.goto(url+`radar-editorial?subject=${energyEvent.id}`)
+ await mobile.locator(`#subject-${energyEvent.id}`).waitFor()
+ await mobile.getByText('Application annoncée : 2026-11-01',{exact:true}).waitFor()
+ assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Consumer mobile has no overflow')
+ await mobile.screenshot({path:'test-artifacts/radar/consumer-mobile.png',fullPage:true})
  assert.deepEqual(errors,[])
  console.log('Radar navigateur : signaux, filtres, lecture persistante, copie, conservation après échec, fraîcheur et mobile validés.')
 }finally{await browser?.close();server.kill()}

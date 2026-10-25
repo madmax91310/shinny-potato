@@ -1,6 +1,12 @@
 // These are audited access points, explicitly NOT functioning discovery adapters.
 // Keep their gap visible until a dated official publication is extracted and tested.
 export const SOURCE_ACCESS_GAPS = [
+  {id:'fortuneo-news',name:'Fortuneo · presse',url:'https://www.fortuneo.fr/espace-presse',reason:'Page accessible (200) ; liste datée et documents non extraits dans le HTML contrôlé. Aucun lancement déduit de la présence d’un produit sur le site.'},
+  {id:'credit-agricole-news',name:'Crédit Agricole · presse',url:'https://presse.credit-agricole.com/',reason:'Accueil accessible ; flux /feed/ refusé (403). Extraction des communiqués et périmètres des caisses non qualifiée ; aucune offre régionale généralisée.'},
+  {id:'trade-republic-news',name:'Trade Republic · presse',url:'https://traderepublic.com/en-de/press',reason:'Portail accessible ; liste datée française non qualifiée. Les routes françaises presse testées renvoient 404 ; tarifs partagés conservés.'},
+  {id:'xtb-news',name:'XTB · actualités',url:'https://www.xtb.com/fr/analyses-marches/actualites',reason:'Actualités accessibles mais principalement commentaires de marché ; découverte des annonces de services français non qualifiée. Registres financiers inchangés.'},
+  {id:'insee-calendar',name:'INSEE · agenda de diffusion',url:'https://www.insee.fr/fr/information/1405540',reason:'Page accessible mais calendrier chargé par JavaScript ; requête JSON de l’agenda testée en erreur HTTP 500. Aucune publication déduite d’une date attendue.'},
+  {id:'fuel-dgec',name:'DGEC · prix des produits pétroliers',url:'https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers',reason:'Page et bulletin hebdomadaire PDF accessibles ; extraction des tableaux par carburant et comparaison compatible non raccordées. Pas de faux suivi quotidien ni de téléchargement intégral répété.'},
   {id:'notaires-france',name:'Notaires de France · conjoncture',url:'https://www.notaires.fr/fr/actualites',reason:'Accès au portail national refusé HTTP 403 lors de la qualification ; les Notaires du Grand Paris et INSEE sont exploités séparément.'},
   { id:'ishares', name:'iShares / BlackRock', url:'https://www.blackrock.com/corporate/newsroom/media/press-releases', reason:'Liste corporate accessible ; couverture des lancements UCITS européens et profondeur non qualifiées.' },
   { id:'spdr', name:'State Street / SPDR', url:'https://www.ssga.com/fr/fr/about-us', reason:'Portail institutionnel accessible ; liste de communiqués ETF européens non qualifiée.' },

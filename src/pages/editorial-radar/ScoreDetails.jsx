@@ -1,0 +1,1 @@
+export default function ScoreDetails({assessment}){return <><ul>{assessment.criteria.map(row => <li key={row.key}>{row.reason} : {row.points}/{row.maximum}{row.unknown ? ' · inconnu' : ''}</li>)}</ul><p>La fiabilité du fait est vérifiée séparément. Ce score ne prédit pas les vues.</p></>}

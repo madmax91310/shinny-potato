@@ -1,3 +1,4 @@
+import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { migrateHouseholdEvents } from './radar-households.mjs'
 import { editorialState, editorialAssessment, factType } from '../../src/lib/radar-editorial.js'
 import { normalizedReplication, replicationField, replicationEquivalent, replicationWordingEvent } from '../../src/lib/replication-method.js'
@@ -54,12 +55,14 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const afterText = displayValue(after.value, after.unit)
   const purchasing = after.family === 'pouvoir-achat'
   const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary', 'publishedAt', 'publicationId', 'evidence', 'factType'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
+  for (const key of ['correctionPublishedAt','referencePeriod','populationScope','evidenceLevel','sources','effectiveAt','promotionEndsAt','eventKey','correctionOf','backfill']) if (after[key] !== undefined) metadata[key] = after[key]
   if (after.family === 'economie' && isPublication && after.evidence?.sourceHash) metadata.factType = 'statistical-publication'
   if (before && after.factType === 'statistical-publication' && before.period === after.period && before.publicationId === after.publicationId) metadata.factType = 'source-revision'
+  if (before && after.factType === 'consumer-announcement' && after.status === 'Correction / démenti') metadata.correctionOf = before.publicationId
   const title = after.rule === 'announcement' ? `Nouveau communiqué officiel : ${after.label}` : kind === 'new' ? `${after.label} : nouvelle donnée suivie` : isPublication ? `${after.label} : nouvelle publication` : `${after.label} : ${after.fieldLabel.toLocaleLowerCase('fr-FR')} en mouvement`
   const movement = kind === 'new' ? `Une nouvelle donnée sourcée est disponible : ${afterText}.` : isPublication ? `La publication ${after.period} est disponible : ${afterText}.` : `${after.fieldLabel} : ${beforeText} → ${afterText}.`
   const angle = after.angle ?? `Comparer ${after.fieldLabel.toLocaleLowerCase('fr-FR')} sur les périodes ${before?.period ?? 'précédente'} et ${after.period}, à périmètre identique.`
-  const purchasingDraft = purchasing && after.factType === 'statistical-publication' ? `${after.label}\n\n${after.summary}\n\nPublication statistique du ${after.publishedAt}.\nSource : ${after.sourceUrl}` : purchasing ? `🔖 Sauvegarde ce tweet\n\n${after.label}\n\n${after.summary}\n\n📌 ${after.status}\n\n${angle}\n\nSource : ${after.sourceUrl}` : null
+  const purchasingDraft = after.factType === 'consumer-announcement' ? `${after.label}\n\n${after.summary}\n\nPublication : ${after.publishedAt} · ${after.status}${after.effectiveAt ? `\nApplication annoncée : ${after.effectiveAt}` : ''}\n${after.populationScope}\n\nSource : ${after.sourceUrl}` : purchasing && after.factType === 'statistical-publication' ? `${after.label}\n\n${after.summary}\n\nPublication statistique du ${after.publishedAt}.\nSource : ${after.sourceUrl}` : purchasing ? `🔖 Sauvegarde ce tweet\n\n${after.label}\n\n${after.summary}\n\n📌 ${after.status}\n\n${angle}\n\nSource : ${after.sourceUrl}` : null
   return { ...metadata, id, family: after.family, entity: after.entity, label: after.label, field: after.field, fieldLabel: after.fieldLabel, title: purchasing ? `${kind === 'new' ? 'Pouvoir d’achat' : 'Actualité mise à jour'} : ${after.label}` : title, kind: kind === 'new' ? 'new' : isPublication ? 'publication' : 'change', priority: after.priority ?? 'normal', detectedAt, before: before?.value ?? null, after: after.value, beforeText, afterText, beforePeriod: before?.period ?? null, period: after.period, scope: after.scope, unit: after.unit ?? '', sourceUrl: after.sourceUrl, previousSourceUrl: before?.sourceUrl ?? null, checkedAt: after.checkedAt, tool: after.tool, angle, draft: purchasingDraft ?? `${movement}\n\n${after.label}${after.entity.match(/^[A-Z]{2}[A-Z0-9]{10}$/) ? ` · ${after.entity}` : ''}\nPérimètre : ${after.scope}\n${before ? `Ancienne observation : ${before.period} · ${beforeText}\n` : ''}Observation actuelle : ${after.period}\n\n${angle}`, reason: after.reason ?? 'Changement d’une donnée publiée, à périmètre comparable.' }
 }
 
@@ -77,7 +80,8 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   // Retire the removed legislative category from existing items and alert retries.
   for (const collection of [state.current, state.anchors]) for (const [key, item] of Object.entries(collection)) if (!publishablePurchasingNews(item)) delete collection[key]
-  state.events = state.events.filter(publishablePurchasingNews)
+  // Keep IDs/read history even when the editorial scope changes.
+  for (const event of state.events) if (!publishablePurchasingNews(event) || editorialExclusion(event)) event.editorialExcluded = true
   for (const event of state.events) if (replicationWordingEvent(event)) {
     event.status = 'wording-only'
     event.normalization = { version: 1, before: normalizedReplication(event.before, event.previousSourceUrl), after: normalizedReplication(event.after, event.sourceUrl), reason: 'Equivalent replication wording; original evidence retained.' }
@@ -88,7 +92,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   // feed and from notification retries, including alerts predating this guard.
   for (const event of state.events) if (datedEtfSnapshot(event) && event.beforePeriod === event.period && event.kind === 'change') event.status = 'source-conflict'
   const entities = new Set(Object.values(state.current).map(o => `${o.family}:${o.entity}`))
-  const valid = observations.filter(publishablePurchasingNews).filter(o => {
+  const valid = observations.filter(o => !editorialExclusion(o)).filter(publishablePurchasingNews).filter(o => {
     if (validObservation(o, now)) return true
     issues.push({ family: o?.family ?? 'radar', entity: o?.entity ?? '', reason: `Observation non exploitable : ${o?.fieldLabel ?? o?.field ?? 'champ inconnu'}.` })
     return false
@@ -208,6 +212,10 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       for (const key of ['sourceDeclaredPublicationDate', 'publicationDateNote', 'housing', 'exposureKey', 'launchDetails', 'products', 'announcementEvidence', 'calendarEvidence', 'evidence', 'publicationId', 'publishedAt', 'referencePeriod', 'population', 'populationScope', 'topic', 'summary', 'publisher', 'factType', 'backfill', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
     }
   }
+  for(const row of valid.filter(row=>row.evidenceLevel))for(const event of state.events)if(event.entity===row.entity && event.publicationId===row.publicationId && event.label===row.label && JSON.stringify(event.after)===JSON.stringify(row.value)) {
+    for(const key of ['sources','eventKey'])if(row[key]!==undefined)event[key]=row[key]
+  }
+  for (const correction of newEvents.filter(event=>event.correctionOf)) for (const prior of state.events) if (prior.id !== correction.id && prior.publicationId === correction.correctionOf) prior.supersededBy = correction.id
   for (const event of state.events) { event.title = factualTitle(event); event.editorial = editorialAssessment(event, +now) }
   for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
     const latest = state.current[observationKey(conflict.accepted)]
@@ -225,6 +233,6 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
   const purchasingItems = Object.values(state.current).filter(o => o.family === 'pouvoir-achat').sort((a, b) => b.period.localeCompare(a.period) || a.label.localeCompare(b.label)).slice(0, 120)
-  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) !== 'secondary').concat(state.events.filter(event => !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) === 'secondary').slice(0, 500)), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) !== 'secondary').concat(state.events.filter(event => !event.editorialExcluded && !editorialExclusion(event) && !['source-conflict', 'wording-only'].includes(event.status) && editorialState(event) === 'secondary').slice(0, 500)), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, calendar: valid.filter(row => row.effectiveAt).map(row => ({ id: row.publicationId, title: row.label, date: row.effectiveAt, status: 'Entrée en vigueur annoncée', sourceUrl: row.sourceUrl, publishedAt: row.publishedAt, checkedAt: row.checkedAt, note: 'Date annoncée ; ne prouve pas une nouvelle publication ni son application effective.' })), scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
   return { state, feed, newEvents: publishableNewEvents }
 }
