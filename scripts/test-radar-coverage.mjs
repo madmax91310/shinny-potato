@@ -90,3 +90,14 @@ consolidateOfficialAnnouncements(differentParts);assert.equal(differentParts.doc
 
 assert.equal(housingConventions('Cette banque fête ses 20 ans et propose un versement mensuel.').duration,null)
 assert.equal(housingConventions('Une mensualité et un versement mensuel').frequency,null,'Payment cadence does not prove statistical publication frequency')
+// Historical simulation of a real document, on its next day: prove that backfill
+// alone silences an otherwise admissible alert in an already initialized family.
+const historicalNow=new Date('2026-09-10T12:00:00Z')
+const wero=parsePublication(body,local,doc.listing.url,historicalNow,doc.listing)
+const existing=advanceRadar(null,[{...wero,entity:'previous-bank-document',publicationId:'previous-bank-document'}],{now:historicalNow})
+const fresh=advanceRadar(existing.state,[{...wero,backfill:false}],{now:historicalNow})
+assert.equal(fresh.newEvents.length,1)
+assert.equal(planNotifications(fresh.newEvents,{acknowledged:[]},historicalNow,'major').events.length,1)
+const backfilled=advanceRadar(existing.state,[{...wero,backfill:true}],{now:historicalNow})
+assert.equal(backfilled.newEvents.length,1,'History records the subject even when alerting is silenced')
+for(const mode of ['major','digest'])assert.equal(planNotifications(backfilled.newEvents,{acknowledged:[]},historicalNow,mode).events.length,0)
