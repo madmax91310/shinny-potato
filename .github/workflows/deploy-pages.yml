@@ -16,6 +16,11 @@ on:
         required: false
         type: string
         default: ''
+      producer_receipt_declared:
+        description: Internal caller already uploaded the exact producer expectation receipt
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -77,8 +82,10 @@ jobs:
       - name: Record the data snapshot requested for publication
         if: github.event_name != 'pull_request'
         run: python3 scripts/data_publication.py receipt --all --commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/data-publication-receipt.json"
+      # A nested producer publication keeps its original, narrower expectation.
+      # The all-snapshot receipt is still generated locally for the code gate.
       - uses: actions/upload-artifact@v7.0.1
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && !inputs.producer_receipt_declared
         with:
           name: data-publication-receipt
           path: ${{ runner.temp }}/data-publication-receipt.json
