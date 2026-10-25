@@ -286,6 +286,7 @@ def report_shape(report):
     if 'indices' in report: return 'indices'
     if 'shares' in report: return 'shares'
     if any(k in report for k in ('successes', 'errors', 'inactive')): return 'statuses'
+    if report.get('symbol')=='BTC-USD' and isinstance(report.get('points'),list): return 'bitcoin'
     return 'unknown'
 
 
@@ -361,12 +362,17 @@ def read_report(path, workflow):
     report['_collector'] = path.stem
     spec = next((r for r in REPORT_CONTRACTS.get(workflow, {}).get('reports', []) if r['name'] == path.name), None)
     version = report.get('schemaVersion')
-    if not any(type(version) is type(v) and version == v for v in (spec.get('versions', [None, 1]) if spec else [None, 1])):
+    if not any(type(version) is type(v) and version == v for v in (spec.get('versions', [None, 1]) if spec else [None, 1])) and not (report.get('producerStarted')=='producer-results-v1' and report.get('resultContract',{}).get('protocol')=='producer-results-v1'):
         raise ValueError('Version de rapport non qualifiée : ' + str(report.get('schemaVersion')))
     shape = report_shape(report)
-    if spec and spec.get('schemas') and shape not in spec['schemas']:
+    individual = report.get('resultContract')
+    if individual is not None:
+        from producer_report_contract import normalize_contract, VERSION
+        if not isinstance(individual,dict) or individual.get('protocol')!=VERSION:
+            raise ValueError('Contrat individuel de producteur inconnu')
+    if spec and spec.get('schemas') and shape not in spec['schemas'] and not (individual and report.get('producerStarted')==VERSION):
         raise ValueError('Format incompatible avec le producteur : ' + shape)
-    result = normalize_report(report)
+    result = normalize_contract(individual) if individual else normalize_report(report)
     if shape == 'series':
         records_by_id = {r['id']:r for r in report['series'] + list(report.get('fxSources', {}).values())}
         for success in result.get('successes', []):
@@ -383,7 +389,7 @@ def read_report(path, workflow):
         for success in result.get('successes',[]):
             record=report['sources'].get(success['id'].removeprefix('practical:'),{})
             if record.get('lastSuccessfulCheckAt'):success['checkedAt']=record['lastSuccessfulCheckAt']
-    outcomes = {r['id']:r for r in report.get('outcomes', [])}
+    outcomes = {r['id']:r for r in (individual or report).get('outcomes', [])}
     for kind in ('successes', 'errors'):
         for row in result.get(kind, []):
             identifier = row['id']
@@ -391,13 +397,14 @@ def read_report(path, workflow):
             for key in ('checkedAt','asOf','attemptedAt','lastSuccessAt','responseSha256'):
                 if key in record:row[key] = record[key]
             if record.get('sourceUrl'):row['sourceUrls'] = [record['sourceUrl']]
-            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt'):
+            if kind == 'successes' and record.get('status') in ('succeeded','unchanged-verified') and record.get('checkedAt') and record.get('sourceAttempted') is not False and record.get('phase') not in ('qualification','validation'):
                 row['verifiedInAttempt'] = True
     for checked_at in [report.get('checkedAt'), *(r.get('checkedAt') for r in result.get('successes', []))]:
         if checked_at is not None and (not timestamp(checked_at) or timestamp(checked_at) > dt.datetime.now(dt.timezone.utc)):
             raise ValueError('Date de contrôle du rapport invalide ou future')
-    scope_explicit = 'attemptedIds' in report or isinstance(report.get('scope'),dict) and 'expectedIds' in report['scope']
-    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scope':report.get('scope'), 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+    scope_report = individual or report
+    scope_explicit = 'attemptedIds' in scope_report or isinstance(scope_report.get('scope'),dict) and 'expectedIds' in scope_report['scope']
+    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scope':scope_report.get('scope'), 'producerContract':individual.get('protocol') if individual else None, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                                  'reportedAt': report.get('checkedAt'), 'schema': shape}
     if not scope_explicit:
         result['_scopeWarning'] = 'Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.'
@@ -528,6 +535,8 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
         for path in paths:
             if 'cross-fx-evidence' in path.parts:
                 continue  # Raw transport evidence, explicitly not a collector report.
+            if path.name in contract.get('supportFiles',[]):
+                continue  # Explicitly declared inputs/snapshots, never observation reports.
             if path.name not in names:
                 reports.append(report_error('report-read:' + path.stem, 'Rapport hors contrat : ' + path.name))
                 continue
@@ -701,6 +710,8 @@ def update_status(state, run, jobs, reports=None):
         if technical_proof(identifier):proof_failures[identifier] = data_failures.pop(identifier)
     retired_failures=previous.get('retiredDataFailures',{}).copy()
     qualifications = previous.get('reportQualifications', {}).copy()
+    qualification_history = previous.get('reportQualificationHistory', []).copy()
+    validation_checks = previous.get('validationChecks', {}).copy()
     source_checks = previous.get('sourceChecks', {}).copy()
     evidence_history = previous.get('reportEvidenceHistory', []).copy()
     for raw_report in reports or []:
@@ -710,6 +721,12 @@ def update_status(state, run, jobs, reports=None):
             key = evidence['file']
             if report.get('_scopeWarning'):
                 qualifications[key] = {'cause': report['_scopeWarning'], 'runUrl': run['html_url'], 'attemptedAt': evidence.get('reportedAt'), 'evidence': evidence}
+            elif (evidence.get('producerContract') == 'producer-results-v1'
+                  and (evidence.get('scope') or {}).get('mode') == 'full'
+                  and (evidence.get('scope') or {}).get('requestedIds')
+                  and key in qualifications):
+                qualification_history.append({**qualifications.pop(key), 'file':key,
+                    'historicalLimitationPreserved':True, 'currentScopeQualifiedBy':run['html_url']})
             elif qualifications.get(key, {}).get('evidence', {}).get('sha256') == evidence.get('sha256'):
                 # A new targeted/empty scope cannot qualify an older unscoped
                 # report. Only re-reading that exact proof with a now-supported
@@ -731,6 +748,11 @@ def update_status(state, run, jobs, reports=None):
                     'retirementEvidence': {'runUrl': run['html_url'], 'report': evidence}}
 
         for success in report.get('successes', []):
+            if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
+                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'evidence':evidence}
+                if data_failures.get(success['id'],{}).get('phase') == success.get('phase'):
+                    data_failures.pop(success['id'],None)
+                continue
             if technical_proof(success['id']):
                 proof_failures.pop(success['id'], None)
                 proof_checks[success['id']] = {'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':success.get('evidence')or evidence}
@@ -769,7 +791,7 @@ def update_status(state, run, jobs, reports=None):
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
                 'sourcePhaseCompletedAt':(evidence or{}).get('sourcePhaseCompletedAt'),'evidence':evidence,
                 'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {}),
-                **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods') if key in error}}
+                **{key: error[key] for key in ('sourceUrls', 'lastSuccessAt', 'asOf', 'attemptedAt', 'missingPeriods', 'phase', 'kind', 'sourceAttempted') if key in error}}
     for identifier in list(data_failures):
         if not owns_failure(REGISTRY[workflow],identifier):
             retired_failures[identifier]={**data_failures.pop(identifier),'retiredAt':run['updated_at'],'retirementReason':RETIREMENT_REASON}
@@ -855,7 +877,7 @@ def update_status(state, run, jobs, reports=None):
             and source_checks.get(r['id'],{}).get('runId')==run['id']and source_checks.get(r['id'],{}).get('attempt')==run.get('run_attempt',1)
             and(timestamp(source_checks[r['id']].get('checkedAt'))or source_checks[r['id']].get('verifiedInAttempt'))})if validation_status=='success'and recording_status=='success'else[],
         'legacyReportCoverage':[r['_legacyReportCoverage']for r in reports if r.get('_legacyReportCoverage')],
-        'reportQualifications': qualifications, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
+        'reportQualifications': qualifications, 'reportQualificationHistory':qualification_history, 'validationChecks':validation_checks, 'sourceChecks': source_checks, 'reportEvidenceHistory': evidence_history}
     entries[workflow].update(proofFailures=proof_failures, proofChecks=proof_checks)
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']

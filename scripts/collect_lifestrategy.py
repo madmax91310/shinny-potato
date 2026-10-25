@@ -150,4 +150,4 @@ def main():
     print(json.dumps({'validated': [r['isin'] for r in report['records']], 'failed': report['failed']}))
     if report['failed']: raise SystemExit(1)
 
-if __name__ == '__main__': main()
+if __name__ == '__main__': __import__('producer_report_contract').run('collect_lifestrategy', main)

@@ -161,5 +161,5 @@ def main():
     write_json_atomic(args.output,{'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
     print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_dca_complete_holdings', main)
 

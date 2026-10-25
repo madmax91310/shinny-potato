@@ -60,4 +60,4 @@ def main():
     print(f'Index company compositions: {sum("facts" in o for o in observations)}/{len(configs)}; failures: {len(errors)}')
     if errors: raise SystemExit(1)
 
-if __name__ == '__main__': main()
+if __name__ == '__main__': __import__('producer_report_contract').run('refresh_index_companies', main)

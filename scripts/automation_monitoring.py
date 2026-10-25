@@ -96,8 +96,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         availability = state.get('workflowAvailability', {}).get(workflow, {})
         if availability.get('state') and availability['state'] != 'active':
             add('disabled:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Activation de l’automatisation', 'cause': 'Automatisation indisponible : ' + availability['state']})
-        if config.get('reportCoverage') == 'job-only':
-            add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': 'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
+        observed_contracts={e.get('file')for e in row.get('reportEvidenceHistory',[]) if e.get('producerContract')==config.get('reportContract') and e.get('scopeExplicit')}
+        missing_contracts=set(config.get('reportFiles',[]))-observed_contracts
+        if config.get('reportCoverage') == 'job-only' or config.get('reportContract') and missing_contracts:
+            add('coverage:' + workflow, {**base, 'kind': 'qualification', 'field': 'Contrat de remontée individuelle', 'cause': ('Contrats individuels pas encore observés : '+', '.join(sorted(missing_contracts))+'. ' if missing_contracts else '')+'Ce producteur ne fournit pas de rapport individuel contractuel. Le succès du job ne démontre pas la couverture de chaque champ.', 'to': '/donnees-a-revoir'})
         for identifier, failure in row.get('proofFailures', {}).items():
             add('collection:'+workflow+':'+identifier, {**base, **failure, 'proofId':identifier, 'kind':'monitoring', 'field':'Preuve de collecte / tentative', 'lastSuccessAt':None})
         for filename, warning in row.get('reportQualifications', {}).items():

@@ -44,4 +44,4 @@ def main():
     write_json_atomic(args.output,{'checkedAt':now.isoformat(),'updated':list(records),'missing':missing})
     print(f'DCA equities: {len(records)}/{len(ids)} exact securities refreshed.')
     if missing:raise SystemExit('Missing classifications retained with original dates: '+', '.join(missing))
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_dca_equities', main)

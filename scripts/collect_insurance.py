@@ -396,4 +396,4 @@ def main():
     if args.output:args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(report,ensure_ascii=False));return int(any(o['status']=='failure' for o in observations))
 
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('collect_insurance', main))

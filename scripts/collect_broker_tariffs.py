@@ -162,4 +162,4 @@ def main():
  if args.apply:
   tmp=DEST.with_suffix('.tmp');tmp.write_text(json.dumps(baseline,ensure_ascii=False,indent=2)+'\n');tmp.replace(DEST)
  print(json.dumps({'validated':len(validated),'brokers':validated,'retained':len(baseline['brokers'])-len(validated),'failures':failures},ensure_ascii=False));return bool(failures)
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('collect_broker_tariffs', main))

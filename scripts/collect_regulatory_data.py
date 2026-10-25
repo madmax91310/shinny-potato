@@ -186,4 +186,4 @@ def main():
  print(json.dumps({'validatedSources':len(SOURCES)-len(failures), 'retainedSources':sum(name in baseline['sources'] for name in failures), 'failures':failures}, ensure_ascii=False))
  return bool(failures)
 
-if __name__ == '__main__': raise SystemExit(main())
+if __name__ == '__main__': raise SystemExit(__import__('producer_report_contract').run('collect_regulatory_data', main))

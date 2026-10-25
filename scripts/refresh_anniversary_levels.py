@@ -257,4 +257,4 @@ def main():
     if args.apply and merged!=old:write_json_atomic(path,merged)
     print(json.dumps(report,ensure_ascii=False));return 1 if report['errors'] else 0
 
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('refresh_anniversary_levels', main))

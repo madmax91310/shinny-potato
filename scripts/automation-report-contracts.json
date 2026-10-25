@@ -621,6 +621,107 @@
       "activationSteps": [
         "Run actions/upload-artifact@v7.0.1"
       ]
+    },
+    "update-bitcoin-monthly.yml": {
+      "artifact": "active-bitcoin-observation",
+      "activationSteps": [
+        "Producer result contract v1"
+      ],
+      "reports": [
+        {
+          "name": "observation.json",
+          "steps": [
+            "Collect observations: python scripts update_bitcoin_monthly.py --output RUNNER_TEMP observation.json --apply"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "bitcoin"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "derived-index-observation.json",
+          "steps": [
+            "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "indices"
+          ],
+          "versions": [
+            null
+          ]
+        }
+      ]
+    },
+    "onboard-assets.yml": {
+      "artifact": "onboarding-observation",
+      "activationSteps": [
+        "Producer result contract v1"
+      ],
+      "reports": [
+        {
+          "name": "qualified-exposures.json",
+          "steps": [
+            "Collect observations: qualified"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "holdings"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "dca-complete-holdings.json",
+          "steps": [
+            "Collect observations: classify"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "statuses"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "equity-qualification.json",
+          "steps": [
+            "Collect observations: equities"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "statuses"
+          ],
+          "versions": [
+            null
+          ]
+        },
+        {
+          "name": "etf-qualification.json",
+          "steps": [
+            "Collect observations: etfs"
+          ],
+          "contract": "producer-results-v1",
+          "schemas": [
+            "statuses"
+          ],
+          "versions": [
+            null
+          ]
+        }
+      ],
+      "supportFiles": [
+        "equity-candidates.json",
+        "equity-skipped.json",
+        "monthly-candidates.json",
+        "monthly-qualification-status.json",
+        "global-equity-candidates.json"
+      ]
     }
   }
 }

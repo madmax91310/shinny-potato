@@ -224,4 +224,4 @@ def main():
     return 1 if failed or changed else 0
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(__import__('producer_report_contract').run('collect_practical_sheets', main))

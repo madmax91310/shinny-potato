@@ -54,4 +54,4 @@ def main():
   for path,data in writes.items():write_json_atomic(ROOT/path,data)
  print(json.dumps({'fields':args.fields,'errors':errors,'files':list(writes)}))
  return 1 if errors else 0
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':raise SystemExit(__import__('producer_report_contract').run('refresh_non_bond_sources', main))

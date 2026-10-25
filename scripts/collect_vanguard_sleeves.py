@@ -39,4 +39,4 @@ def main():
  report={'updated':updated,'successes':[{'id':'vanguard-underlier:'+isin} for isin in updated],'errors':[{'id':'vanguard-underlier:'+e['isin'],'field':'Pays/secteurs du fonds sous-jacent',**e} for e in errors]}
  write_json_atomic(args.output,report);print(json.dumps(report))
  if errors:raise SystemExit(1)
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('collect_vanguard_sleeves', main)

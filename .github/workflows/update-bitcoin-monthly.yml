@@ -41,6 +41,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - name: Producer result contract v1
+        run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"

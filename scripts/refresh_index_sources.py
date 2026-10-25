@@ -225,4 +225,4 @@ def main():
     if any(e['field'] in next(c for c in config['indices'] if c['id']==o['id']).get('requiredFields', []) for o in observations for e in o['errors']):raise SystemExit(1)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':__import__('producer_report_contract').run('refresh_index_sources', main)
