@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -287,6 +287,152 @@
         "tool": null,
         "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-d72d71ec1dea26bf16b9",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Achat immobilier : les subtilités du compromis et de la promesse de vente",
+        "value": {
+          "title": "Achat immobilier : les subtilités du compromis et de la promesse de vente",
+          "summary": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+        "publicationId": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-23",
+        "period": "2026-10-23",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+        "populationScope": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat.",
+        "housing": {
+          "duration": null,
+          "frequency": null,
+          "population": null,
+          "method": null,
+          "priceBasis": null,
+          "measure": null,
+          "propertyType": null,
+          "market": null,
+          "geography": null,
+          "rateType": null,
+          "rateScope": null,
+          "insurance": null,
+          "provisional": null,
+          "revision": false,
+          "sourceId": "moneyvox"
+        },
+        "topic": "immobilier",
+        "topicLabel": "Marché immobilier",
+        "summary": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "9d461f8104712f410284519b1e0700562c5282954027f68605d3f0db25392c6b",
+          "excerpt": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Marché immobilier : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Achat immobilier : les subtilités du compromis et de la promesse de vente — De quels biens, de quelle zone et de quelle période parle cette publication ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-a8fd6aa0186b4c60ad18",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026",
+        "value": {
+          "title": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026",
+          "summary": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+        "publicationId": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-23",
+        "period": "2026-10-23",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+        "populationScope": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française.",
+        "housing": {
+          "duration": null,
+          "frequency": null,
+          "population": "emprunteurs décrits dans la source",
+          "method": null,
+          "priceBasis": null,
+          "measure": null,
+          "propertyType": null,
+          "market": null,
+          "geography": null,
+          "rateType": "taux nominal",
+          "rateScope": null,
+          "insurance": "assurance exclue",
+          "provisional": null,
+          "revision": true,
+          "sourceId": "moneyvox"
+        },
+        "topic": "credit",
+        "topicLabel": "Crédit immobilier et PTZ",
+        "summary": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/cetelem/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/easybourse/bourse-en-ligne",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/cofidis/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/banque-casino/pret-personnel",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "2d6d2178534cfd2fc77eee1fba823bc070f5bec651670843c707b45f3db640db",
+          "excerpt": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026 — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
         "backfill": true
       },
       {
@@ -754,7 +900,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -999,7 +1145,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1033,7 +1179,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -1367,7 +1513,7 @@
         "publisher": "Bourse Direct",
         "publishedAt": "2026-10-12",
         "period": "2026-10-12",
-        "checkedAt": "2026-10-25T09:21:30.583Z",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
         "topic": "epargne",
@@ -1502,7 +1648,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-07",
         "period": "2026-10-07",
-        "checkedAt": "2026-10-25T07:43:30.738Z",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-pleines-creuses-experimentation-tarifaire",
         "populationScope": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité.",
         "topic": "energie",
@@ -1525,7 +1671,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "be07ac0020f28b1b4c676baed1055590c88d550f567dcf541c080da5d98f103f",
+          "sourceHash": "e5e7be2170d9b00f5a77dd11ad1f72ec3f99173588a1dc308a7ea23cda784728",
           "excerpt": "Depuis le 1er octobre 2026 , une expérimentation sur les contrats heures pleines / heures creuses est menée auprès de 6 600 consommateurs résidentiels afin de tester de nouvelles structures tarifaires de l’électricité. Prévue par l’ arrêté du 28 mai 2026 relatif aux tarifs réglementés de vente de l’électricité , elle se poursuivra jusqu’au 1er octobre 2027 . L’expérimentation teste notamment deux nouvelles structures tarifaires : Base/Pointe Hiver et Base/Pointe Hiver/Heures Creuses Été.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1605,7 +1751,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T10:59:43.649Z",
+        "checkedAt": "2026-10-25T11:12:00.329Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -2504,7 +2650,7 @@
         "publisher": "Saxo Banque France",
         "publishedAt": "2026-07-06",
         "period": "2026-07-06",
-        "checkedAt": "2026-10-25T09:41:30.214Z",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
         "scope": "Annonce Saxo Banque France · https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/epargne-des-francais-entre-reveil-et-necessite-de-desepargner-06072026",
         "populationScope": "Un an après sa première édition, l’étude OpinionWay × Saxo Banque révèle que la prise de conscience des Français sur leur épargne dormante progresse mais que le passage à l'acte reste bloqué.",
         "conditions": {
@@ -2533,7 +2679,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "231d5a1279b43aaa3b8f7b71e8f961577670a51c6a9c00bf8b19cf14f34cb8d2",
+          "sourceHash": "169a731cd83fd88a6d7aabe674bb22e5cb95733a952b9ffc543f57ce2f82db8b",
           "excerpt": "Un an après sa première édition, l’étude OpinionWay × Saxo Banque révèle que la prise de conscience des Français sur leur épargne dormante progresse mais que le passage à l'acte reste bloqué. Si le sentiment d'avoir de l'argent qui dort recule de 11 points, 92 % des Français citent encore au moins un frein à investir en Bourse, et 68 % n'ont jamais entendu parler des ETF. En 2026, 31 % des Français ont le sentiment d'avoir de l'argent qui dort sur leurs comptes, contre 42 % un an plus tôt. Une baisse de 11 points qui témoigne d'une mise en mouvement réelle des comportements à la fois vers de l’investissement plus dynamique mais aussi par la nécessité à désépargner, notamment pour faire face ",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3058,7 +3204,7 @@
         "publisher": "BoursoBank Groupe · communiqués",
         "publishedAt": "2026-02-06",
         "period": "2026-02-06",
-        "checkedAt": "2026-10-25T08:51:27.957Z",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/2025-une-nouvelle-annee-record-pour-boursobank",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
         "topic": "banques",
@@ -3076,7 +3222,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "950aaf99b888bbd5e84f5a36d4c45d57b93beb114f4739701b286e39aa057ae1",
+          "sourceHash": "d3b29cd5ff5f63c1270ce3a1c22d4a26196b1feb340870bb92ddac5492358e8a",
           "excerpt": "UN RECORD DE CONQU&Ecirc;TE : +1,9 M NOUVEAUX CLIENTS RECRUT&Eacute;S EN UN AN ET 8,8 MILLIONS DE CLIENTS FIN 2025 UN &Eacute;QUIPEMENT RECORD : +13,2 MDS€ D’ENCOURS G&Eacute;R&Eacute;S EN 2025 &Agrave; 95,5 MDS€ UN R&Eacute;SULTAT NET POSITIF POUR LA 3&Egrave;ME ANN&Eacute;E CONS&Eacute;CUTIVE UNE OFFRE COMPL&Egrave;TE ET UNIQUE 100 % MOBILE : 58 PRODUITS ET 1 000 FONCTIONNALIT&Eacute;S POUR R&Eacute;PONDRE &Agrave; TOUS LES BESOINS DE TOUS LES CLIENTS DES CLIENTS PLEINEMENT ENGAG&Eacute;S : PR&Egrave;S DE 11 K€ EN MOYENNE D’ENCOURS G&Eacute;R&Eacute;S PAR CLIENT, 85 % DE CLIENTS SONT ACTIFS, 53 % UTILISENT BOURSOBANK COMME BANQUE PRINCIPALE L’APP BANCAIRE NUM&Eacute;RO 1 EN FRANCE 1 R&Eacu",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3411,6 +3557,138 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-cdd64509f6732cdbd19a",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+        "value": {
+          "title": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+          "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-18",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-18",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2025-10-17",
+        "period": "2025-10-17",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-18",
+        "populationScope": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-18",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/76973/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_qui_proposent_en_France_des_investissements_sur_le_marche_des_devises_non_regule_%28Forex%29_et_sur_des_produits_derives_sur_crypto-actifs_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches?page=0&conditions%5Bcategorie%5D=624",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "3cbc328f4e284352bb9d57e4e2be0850e6c47ab8e82ade3c2f0426453ba972cb",
+          "excerpt": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-7b3f5b8ff8188fdb55fb",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+        "value": {
+          "title": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+          "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-4",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-4",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2025-10-10",
+        "period": "2025-10-10",
+        "checkedAt": "2026-10-25T11:12:00.338Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-4",
+        "populationScope": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-4",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/76913/fr/Crypto-actifs__l%27Autorite_des_marches_financiers_met_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_non_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-blanches",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "4853a9e28ea97f59ec37b0ed11c9b1f0968c27146cb0c635c843a655812a65b2",
+          "excerpt": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-98143d0b07378a20502d",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -3464,11 +3742,11 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T11:00:01.333Z",
+  "checkedAt": "2026-10-25T11:12:13.457Z",
   "sourceRevision": "1b3b0d92d1ed11910d910ef02796f9ac187696a4",
-  "observationCount": 7491,
+  "observationCount": 7591,
   "coverage": {
-    "etf": 292,
+    "etf": 299,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
@@ -3476,9 +3754,9 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 117,
-    "pouvoir-achat": 48
+    "pouvoir-achat": 71
   },
-  "newSignalCount": 0,
+  "newSignalCount": 2,
   "errors": [
     {
       "family": "etf",
@@ -3502,7 +3780,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q1",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t4",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -3557,7 +3835,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t4",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q1",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -3592,6 +3870,270 @@
     }
   ],
   "events": [
+    {
+      "topic": "immobilier",
+      "topicLabel": "Marché immobilier",
+      "publisher": "MoneyVox · actualités",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+      "evidence": {
+        "sourceHash": "9d461f8104712f410284519b1e0700562c5282954027f68605d3f0db25392c6b",
+        "excerpt": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": null,
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": null,
+        "rateType": null,
+        "rateScope": null,
+        "insurance": null,
+        "provisional": null,
+        "revision": false,
+        "sourceId": "moneyvox"
+      },
+      "referencePeriod": null,
+      "populationScope": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        }
+      ],
+      "backfill": true,
+      "id": "3e9a3adbaecbcaa361fd33dd",
+      "family": "pouvoir-achat",
+      "entity": "publication-d72d71ec1dea26bf16b9",
+      "label": "Achat immobilier : les subtilités du compromis et de la promesse de vente",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Achat immobilier : les subtilités du compromis et de la promesse de vente",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T11:12:13.457Z",
+      "before": null,
+      "after": {
+        "title": "Achat immobilier : les subtilités du compromis et de la promesse de vente",
+        "summary": "Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Achat immobilier : les subtilités du compromis et de la promesse de vente · summary : Avant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir. · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-10-23",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "tool": null,
+      "angle": "Achat immobilier : les subtilités du compromis et de la promesse de vente — De quels biens, de quelle zone et de quelle période parle cette publication ?",
+      "draft": "Achat immobilier : les subtilités du compromis et de la promesse de vente\n\nAvant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat. Mais lequel faut-il choisir ? Compromis, promesse de vente ou offre d'achat, pour vous, c'est du pareil au même ? Faites attention car ces trois procédures n'ont pas du tout les mêmes conséquences. Voici ce qu'il faut savoir avant de choisir.\n\nPublication : 2026-10-23 · Information sans nouveauté établie\nAvant la vente définitive d'un bien immobilier, le vendeur et l'acquéreur d'un logement vont signer, en principe, un avant-contrat.\n\nSource : https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+      "reason": "Marché immobilier : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "credit",
+      "topicLabel": "Crédit immobilier et PTZ",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+      "evidence": {
+        "sourceHash": "2d6d2178534cfd2fc77eee1fba823bc070f5bec651670843c707b45f3db640db",
+        "excerpt": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": "emprunteurs décrits dans la source",
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": null,
+        "rateType": "taux nominal",
+        "rateScope": null,
+        "insurance": "assurance exclue",
+        "provisional": null,
+        "revision": true,
+        "sourceId": "moneyvox"
+      },
+      "referencePeriod": null,
+      "populationScope": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/cetelem/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/easybourse/bourse-en-ligne",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/cofidis/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/banque-casino/pret-personnel",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "5312d33aed8ce9827f456aa3",
+      "family": "pouvoir-achat",
+      "entity": "publication-a8fd6aa0186b4c60ad18",
+      "label": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T11:12:13.457Z",
+      "before": null,
+      "after": {
+        "title": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026",
+        "summary": "Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026 · summary : Les taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-23",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "tool": null,
+      "angle": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026 — Comparer les taux de même nature, durée et période ; distinguer moyenne et offre individuelle.",
+      "draft": "Crédit immobilier : les nouveaux taux d'intérêt attendus sur 20 et 25 ans d'ici décembre 2026\n\nLes taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française. &Agrave; quoi faut-il s'attendre pour cette fin d'année 2026 et début 2027 ? C'est une première depuis 2002. Le taux d'emprunt de l'Etat français à 10 ans a franchi ce mercredi la barre des 5%. Une hausse non sans conséquence sur les taux des prêts immobiliers . Les Obligations assimilables du Trésor (OAT) sont l'une des références utilisées par les banques pour fixer leurs taux.\n\nPublication : 2026-10-23 · Annonce publiée\nLes taux des crédits immobiliers vont encore grimper en raison de la hausse des taux d'intérêt de la dette française.\n\nSource : https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+      "reason": "Crédit immobilier et PTZ : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 97,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "energie",
       "topicLabel": "Électricité et gaz",
@@ -73090,154 +73632,12 @@
   "scopeNote": "Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.",
   "sources": [
     {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 10,
-      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
-      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 5
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 10,
-      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
-      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 2
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z"
-    },
-    {
-      "id": "afg",
-      "name": "AFG · épargne salariale",
-      "url": "https://www.afg.asso.fr/fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 10,
-      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 0,
-        "done": 2,
-        "error": 0,
-        "rejected": 8
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
-    },
-    {
-      "id": "amf-alerts",
-      "name": "AMF · communiqués",
-      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 196,
-      "etag": "\"1792915837-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 08:10:37 GMT",
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 151,
-        "done": 7,
-        "error": 1,
-        "rejected": 39
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T10:56:45.982Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "moneyvox",
-      "name": "MoneyVox · actualités",
-      "url": "https://www.moneyvox.fr/actu/rss.php",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 60,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 19,
-        "done": 6,
-        "error": 0,
-        "rejected": 40
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:32:51.170Z",
-      "archiveWarning": null
-    },
-    {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T10:32:51.170Z",
-      "lastSuccessAt": "2026-10-25T10:32:51.170Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T11:02:51.170Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 7
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z",
-      "archiveWarning": null
-    },
-    {
       "id": "bnp-bank",
       "name": "BNP Paribas · groupe",
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
       "method": "consumer-coverage",
       "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 21,
       "archiveWarning": null,
       "etag": null,
@@ -73261,7 +73661,7 @@
       "url": "https://presse.credit-agricole.com/fr/?lang=fra",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 6,
       "archiveWarning": null,
       "etag": null,
@@ -73285,7 +73685,7 @@
       "url": "https://www.societegenerale.com/fr/communiques-de-presse",
       "method": "consumer-coverage",
       "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 18,
       "archiveWarning": null,
       "etag": "\"1792922289-gzip\"",
@@ -73309,7 +73709,7 @@
       "url": "https://newsroom.groupebpce.fr/",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -73333,7 +73733,7 @@
       "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
       "method": "consumer-coverage",
       "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 12,
       "archiveWarning": null,
       "etag": null,
@@ -73357,7 +73757,7 @@
       "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
       "method": "consumer-coverage",
       "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 6,
       "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
       "etag": null,
@@ -73381,7 +73781,7 @@
       "url": "https://www.home.saxo/fr-fr/about-us/media-center",
       "method": "consumer-coverage",
       "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -73397,7 +73797,7 @@
         "rejected": 1
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z"
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z"
     },
     {
       "id": "invesco",
@@ -73405,7 +73805,7 @@
       "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
       "method": "extra-coverage",
       "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 43,
       "archiveWarning": null,
       "etag": null,
@@ -73415,13 +73815,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T12:32:51.170Z",
       "queue": {
-        "pending": 36,
-        "done": 7,
+        "pending": 35,
+        "done": 8,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z"
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z"
     },
     {
       "id": "spdr-news",
@@ -73429,7 +73829,7 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "method": "extra-coverage",
       "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 10,
       "archiveWarning": null,
       "etag": "\"4b76f2afdbd23c07324a0a51943dd83c\"",
@@ -73453,7 +73853,7 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -73477,7 +73877,7 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
@@ -73501,7 +73901,7 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -73525,7 +73925,7 @@
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
@@ -73549,7 +73949,7 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 8,
       "etag": "\"1792924376-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 10:32:56 GMT",
@@ -73573,7 +73973,7 @@
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
@@ -73597,7 +73997,7 @@
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -73621,7 +74021,7 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
@@ -73645,7 +74045,7 @@
       "url": "https://www.insee.fr/fr/flux/2",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 13,
       "etag": null,
       "lastModified": null,
@@ -73669,7 +74069,7 @@
       "url": "https://www.insee.fr/fr/flux/3",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 21,
       "etag": null,
       "lastModified": null,
@@ -73693,7 +74093,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -73702,13 +74102,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 62,
-        "done": 21,
+        "pending": 61,
+        "done": 22,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T10:59:43.654Z"
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z"
     },
     {
       "id": "bdf-credit",
@@ -73716,7 +74116,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 12,
       "etag": "\"1792907704-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
@@ -73739,7 +74139,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 12,
       "etag": "\"1792924377-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 10:32:57 GMT",
@@ -73763,7 +74163,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 12,
       "etag": "\"1792924377-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 10:32:57 GMT",
@@ -73787,7 +74187,7 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
@@ -73811,7 +74211,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -73829,7 +74229,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -73842,12 +74242,106 @@
       "lastExtractionSuccessAt": null
     },
     {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 19,
+        "done": 8,
+        "error": 0,
+        "rejected": 40
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 0,
+        "done": 8,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z"
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 196,
+      "etag": "\"1792926370-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 11:06:10 GMT",
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 149,
+        "done": 9,
+        "error": 1,
+        "rejected": 39
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z",
+      "archiveWarning": null
+    },
+    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -73871,7 +74365,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T10:59:43.654Z",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -73884,12 +74378,60 @@
       "lastExtractionSuccessAt": null
     },
     {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 7
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z",
+      "archiveWarning": null
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T11:12:00.338Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T11:12:00.338Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.338Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:42:00.338Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T11:12:00.338Z",
+      "archiveWarning": null
+    },
+    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T10:59:43.647Z",
-      "lastSuccessAt": "2026-10-25T10:59:43.647Z",
+      "checkedAt": "2026-10-25T11:12:00.327Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.327Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -73899,8 +74441,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T10:59:43.647Z",
-      "lastSuccessAt": "2026-10-25T10:59:43.647Z",
+      "checkedAt": "2026-10-25T11:12:00.327Z",
+      "lastSuccessAt": "2026-10-25T11:12:00.327Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -73909,7 +74451,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -73918,7 +74460,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -73927,7 +74469,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -73936,7 +74478,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -73945,7 +74487,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -73954,7 +74496,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T10:59:43.649Z",
+      "checkedAt": "2026-10-25T11:12:00.329Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -74164,11 +74706,11 @@
   },
   "metrics": {
     "collection": {
-      "requests": 16,
-      "bytes": 1872759,
-      "notModified": 0,
-      "durationMs": 14880,
-      "checkedAt": "2026-10-25T10:59:43.654Z"
+      "requests": 22,
+      "bytes": 2255251,
+      "notModified": 2,
+      "durationMs": 13067,
+      "checkedAt": "2026-10-25T11:12:00.338Z"
     },
     "publicationDelays": [
       {
@@ -74812,6 +75354,11 @@
         "detectionToAvailabilityHours": 17.526206666666667
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-sp-500-ii-ucits-etf-depasse-le-cap-des-20-milliards",
+        "publicationToDetectionHours": 14681.469252777777,
+        "detectionToAvailabilityHours": 17.73084111111111
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -74907,6 +75454,16 @@
         "detectionToAvailabilityHours": 4.630507777777778
       },
       {
+        "url": "https://www.moneyvox.fr/immobilier/actualites/105498/achat-immobilier-les-subtilites-du-compromis-et-de-la-promesse-de-vente",
+        "publicationToDetectionHours": 53.91703944444444,
+        "detectionToAvailabilityHours": 5.283054444444445
+      },
+      {
+        "url": "https://www.moneyvox.fr/credit/actualites/110926/credit-immobilier-les-nouveaux-taux-interet-attendus-sur-20-et-25-ans-ici-decembre-2026",
+        "publicationToDetectionHours": 53.91703944444444,
+        "detectionToAvailabilityHours": 5.283054444444445
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -74940,6 +75497,16 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/actualites/lamf-met-en-garde-le-public-lencontre-de-communications-frauduleuses-proposant-des-services",
         "publicationToDetectionHours": 8717.917039444445,
         "detectionToAvailabilityHours": 5.029066666666667
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-18",
+        "publicationToDetectionHours": 8957.917039444445,
+        "detectionToAvailabilityHours": 5.283054444444445
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-4",
+        "publicationToDetectionHours": 9125.917039444445,
+        "detectionToAvailabilityHours": 5.283054444444445
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -75107,6 +75674,11 @@
         "detectionToAvailabilityHours": 3.139047222222222
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-expands-equal-weight-offering-with-launch-of-european-blue-chip-etf-exposure-2-dec-25.pdf",
+        "publicationToDetectionHours": 7855.856412222222,
+        "detectionToAvailabilityHours": 3.343681666666667
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -75133,18 +75705,10 @@
       }
     ],
     "classification": {
-      "ready": 79,
-      "watch": 30,
+      "ready": 80,
+      "watch": 31,
       "secondary": 342
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T11:00:14.418Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
