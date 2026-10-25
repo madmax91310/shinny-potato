@@ -30,8 +30,35 @@ uniqueIds('Faits', FACTS)
 uniqueIds('Thèmes ETF', DEFAULT_THEMES)
 uniqueIds('Fiches ETF', ETFS)
 uniqueIds('Cas concrets', CASES)
-// Les histoires peuvent se terminer sans question : elle n'est pas une condition de publication.
-for (const fact of FACTS) requireFields(`Fait ${fact.id}`, fact, ['hook', 'context', 'source'])
+// Les récits fixes ont leur propre dossier de preuves ; l'ancien format reste contrôlé.
+// Une question finale n'est une condition de publication dans aucun des deux formats.
+for (const fact of FACTS) {
+  const label = `Fait ${fact.id}`
+  if (!Object.hasOwn(fact, 'text')) {
+    requireFields(label, fact, ['hook', 'context', 'source'])
+    continue
+  }
+  requireFields(label, fact, ['text', 'category', 'period', 'reviewedAt'])
+  if (!fact.text?.endsWith('Pas un conseil financier.')) failures.push(`${label} : mention financière absente`)
+  if (!Array.isArray(fact.sources) || fact.sources.length < 2) failures.push(`${label} : dossier de sources incomplet`)
+  const sources = Array.isArray(fact.sources) ? fact.sources : []
+  if (new Set(sources.map(source => source.url)).size !== sources.length) failures.push(`${label} : source dupliquée`)
+  for (const source of sources) {
+    requireFields(`${label}, source`, source, ['url', 'title', 'organization', 'checkedAt'])
+    try {
+      if (new URL(source.url).protocol !== 'https:') throw new Error('protocole')
+    } catch { failures.push(`${label} : URL de source invalide ou non sécurisée`) }
+    if (!Array.isArray(source.facts) || !source.facts.length || source.facts.some(proof => typeof proof !== 'string' || !proof.trim())) {
+      failures.push(`${label} : faits vérifiables absents de la source`)
+    }
+    if (!Object.hasOwn(source, 'publishedAt') || (source.publishedAt !== null && (typeof source.publishedAt !== 'string' || !source.publishedAt.trim()))) {
+      failures.push(`${label} : date de source ni renseignée ni explicitement inconnue`)
+    }
+  }
+  if (!Array.isArray(fact.reserves) || !fact.reserves.length || fact.reserves.some(reserve => typeof reserve !== 'string' || !reserve.trim())) {
+    failures.push(`${label} : conventions et réserves absentes`)
+  }
+}
 for (const etf of ETFS) requireFields(`Fiche ETF ${etf.id}`, etf, ['isin', 'ter', 'hook', 'whatIs', 'whyInteresting', 'whatToKnow', 'verdict', 'question'])
 if (new Set(ETFS.map(etf => etf.hook)).size !== ETFS.length) {
   failures.push('Fiches ETF : chaque produit doit avoir une accroche propre à son exposition')
