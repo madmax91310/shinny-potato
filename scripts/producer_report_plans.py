@@ -142,6 +142,8 @@ def build_plan(producer, args, report_stem=None, module=None):
         limit=int(option(args,'--limit','12'));selected=set(list(dict.fromkeys(c['isin']for c in ordered))[:limit])
         for c in candidates:add('candidate:'+c['isin']+':'+c['symbol'],c['isin'],['exact listing identity',c['symbol'],'monthly/daily history qualification'],c['isin']in selected,'Deferred by exact-instrument quota'if c['isin']not in selected else None)
     else:raise ValueError('Producer has no input plan: '+producer)
+    if not items and producer!='qualify_monthly_candidates':
+        raise ValueError('Périmètre attendu anomalement vide : '+producer+' ; configuration requise absente, aucune collecte certifiée')
     identifiers=[r['id']for r in items]
     if len(set(identifiers))!=len(identifiers):raise ValueError('Duplicate predeclared producer identity: '+producer)
     if only:

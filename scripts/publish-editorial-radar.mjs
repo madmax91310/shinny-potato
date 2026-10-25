@@ -30,7 +30,7 @@ const contract=producerContract('editorial-radar-sources','feed',expectedSources
 contract.start(resolve(contractOutput,'feed.json'))
 if(outsideHours){console.log('Hors de la plage 08–20 h Europe/Paris.');process.exit(0)}
 const sourceHttp=[]
-const sourceFetch=async (...args)=>{const response=await fetch(...args);sourceHttp.push({url:String(args[0]),status:response.status});return response}
+const sourceFetch=async (...args)=>{const attempt={url:String(args[0]),status:null,attemptedAt:new Date().toISOString()};sourceHttp.push(attempt);try{const response=await fetch(...args);attempt.status=response.status;return response}catch(error){attempt.status='network-error';throw error}}
 
 const light = process.env.GITHUB_EVENT_NAME === 'schedule' || process.argv.includes('--news-only')
 const repo = process.env.GITHUB_REPOSITORY, token = process.env.GH_TOKEN
@@ -105,8 +105,15 @@ if (refresh) {
   result.feed.documentQueue = Object.fromEntries(['pending','error','done'].map(status => [status, Object.values(launches.queue).filter(item => item.status === status).length]))
   result.feed.metrics = { collection: publications.metrics, publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, publicationToDetectionHours: item.detectionDelayHours, detectionToAvailabilityHours: item.availabilityDelayHours })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
   result.feed.compositionPublicationLags = verification.deferred ?? []
+  const previousSourceRows=new Map((previousFeed?.sources??[]).map(row=>[row.id,row]))
+  for(const row of result.feed.sources){
+    const attempt=sourceHttp.find(r=>r.url===row.url)
+    if(attempt)row.attemptedAt=attempt.attemptedAt
+    else if(previousSourceRows.get(row.id)?.attemptedAt)row.attemptedAt=previousSourceRows.get(row.id).attemptedAt
+    else delete row.attemptedAt
+  }
   const individual=sourceResults(contract.plan,result.feed.sources,sourceHttp)
-  result.feed=contract.finish({...result.feed,contractResults:{successes:individual.successes,errors:individual.errors},contractSkipped:individual.skipped})
+  result.feed=contract.finish({...result.feed,contractDiagnosticsAttempted:true,contractResults:{successes:individual.successes,errors:individual.errors},contractSkipped:individual.skipped})
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
   const commit = await api(`git/commits/${parent}`)
@@ -131,7 +138,7 @@ if (refresh) {
 
 } else {
   const skipped=contract.plan.items.map(r=>({id:r.id,status:'cached',sourceAttempted:false,reason:'Recent identical Radar control; no new source request'}))
-  result = {state:previous,feed:contract.finish({...previousFeed,contractResults:{successes:[],errors:[]},contractSkipped:skipped}),newEvents:[]}
+  result = {state:previous,feed:contract.finish({...previousFeed,contractDiagnosticsAttempted:false,contractResults:{successes:[],errors:[]},contractSkipped:skipped}),newEvents:[]}
   nextCommit = { sha: ref.object.sha }
   nextTree = { sha: (await api(`git/commits/${ref.object.sha}`)).tree.sha }
   console.log('Contrôle identique récent : collecte évitée ; notifications en attente retentées.')

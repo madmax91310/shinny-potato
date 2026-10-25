@@ -199,6 +199,7 @@ jobs:
           path: |
             ${{ runner.temp }}/monthly-observation.json
             ${{ runner.temp }}/derived-index-observation.json
+            ${{ runner.temp }}/derived-index-observation.contract-plan.json
             ${{ runner.temp }}/listing-observation.json
             ${{ runner.temp }}/ranking-collection-status.json
             src/data/monthly-fx.json

@@ -55,7 +55,9 @@ jobs:
         if: always()
         with:
           name: insurance-observations
-          path: ${{ runner.temp }}/insurance-observation.json
+          path: |
+            ${{ runner.temp }}/insurance-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

@@ -57,7 +57,9 @@ jobs:
         if: always()
         with:
           name: scpi-observations
-          path: ${{ runner.temp }}/scpi-observation.json
+          path: |
+            ${{ runner.temp }}/scpi-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

@@ -51,7 +51,9 @@ jobs:
         if: always()
         with:
           name: actor-observations
-          path: ${{ runner.temp }}/actor-observation.json
+          path: |
+            ${{ runner.temp }}/actor-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

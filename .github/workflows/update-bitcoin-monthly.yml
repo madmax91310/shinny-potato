@@ -76,6 +76,7 @@ jobs:
           path: |
             ${{ runner.temp }}/observation.json
             ${{ runner.temp }}/derived-index-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Detect partial failures

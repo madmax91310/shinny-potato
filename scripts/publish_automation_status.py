@@ -351,7 +351,7 @@ def report_files(directory):
     return sorted(root.glob('*.json')) + sorted(root.glob('_temp/**/*.json'))
 
 
-def read_report(path, workflow):
+def read_report(path, workflow, planned=None):
     # Issuer observations retain raw official components and full holdings.
     # Give that existing artifact a bounded larger envelope, then immediately
     # discard the payload by projecting only failure/recovery observations.
@@ -362,6 +362,20 @@ def read_report(path, workflow):
     report = json.loads(path.read_text())
     if not isinstance(report, dict):
         raise ValueError('Le rapport doit être un objet JSON')
+    plan_verified=False
+    if planned is not None:
+        from producer_report_contract import validate_contract,finish
+        validate_contract(planned['resultContract'])
+        plan=planned['resultContract']['inputPlan']
+        if plan['reportStem']!=path.stem:raise ValueError('Plan belongs to another report')
+        if report.get('resultContract'):
+            validate_contract(report['resultContract'])
+            if report['resultContract']['scope']['planSha256']!=plan['sha256']:
+                raise ValueError('Result scope differs from the independently recorded input plan')
+        # Recover only from a real, same-artifact declaration made before this
+        # invocation. Legacy artifacts without one are never given a scope.
+        report=finish(report,plan,completed=report.get('producerStarted')!='producer-results-v1')
+        plan_verified=True
     report['_collector'] = path.stem
     spec = next((r for r in REPORT_CONTRACTS.get(workflow, {}).get('reports', []) if r['name'] == path.name), None)
     version = report.get('schemaVersion')
@@ -407,14 +421,16 @@ def read_report(path, workflow):
             raise ValueError('Date de contrôle du rapport invalide ou future')
     scope_report = individual or report
     scope_explicit = 'attemptedIds' in scope_report or isinstance(scope_report.get('scope'),dict) and 'expectedIds' in scope_report['scope']
-    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scope':scope_report.get('scope'), 'producerContract':individual.get('protocol') if individual else None, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+    result['_reportEvidence'] = {'scopeExplicit': scope_explicit, 'scopePlanVerified':plan_verified, 'scope':scope_report.get('scope'), 'producerContract':individual.get('protocol') if individual else None, 'file': path.name, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                                  'reportedAt': report.get('checkedAt'), 'schema': shape}
+    if individual and individual.get('inputPlan',{}).get('durablePlan') and not plan_verified:
+        result['_scopeWarning']='Le manifeste amont indépendant est absent ou non rapproché ; la complétude courante reste à qualifier.'
     if not scope_explicit:
         result['_scopeWarning'] = 'Le rapport ne déclare pas les identifiants attendus dans le périmètre tenté. Les résultats individuels présents sont conservés ; sa complétude ne peut pas être certifiée.'
     return result
 
 
-def read_report_safely(path, workflow):
+def read_report_safely(path, workflow, planned=None):
     """An unusable artifact is an incident, not a reason to lose every other result."""
     try:
         result = read_report(path, workflow)
@@ -432,8 +448,17 @@ def report_error(identifier, cause):
     return {'successes': [], 'errors': [{'id': identifier, 'field': 'Preuve de collecte', 'error': cause}]}
 
 
+def normalize_attempt_report(raw,run):
+    report=normalize_report(raw)
+    scope=((report.get('_reportEvidence')or{}).get('scope')or{})
+    if (scope.get('runId') is not None and str(scope['runId'])!=str(run['id'])
+            or scope.get('attempt') is not None and str(scope['attempt'])!=str(run.get('run_attempt',1))):
+        return report_error('report-contract:attempt','Le manifeste amont ne correspond pas à cette exécution/tentative ; aucun contrôle source individuel déduit.')
+    return report
+
+
 def technical_proof(identifier):
-    return identifier.startswith(('report-read:', 'artifact-read:', 'report-contract:'))
+    return identifier.startswith(('report-read:', 'artifact-read:', 'report-contract:', 'report-result:'))
 
 
 def bind_attempt(identifier, run):
@@ -457,7 +482,7 @@ def merge_proof_retry(state, run, reports):
     failures = row.setdefault('proofFailures', {})
     checks = row.setdefault('proofChecks', {})
     for raw in reports:
-        report = normalize_report(raw)
+        report = normalize_attempt_report(raw,run)
         evidence = report.get('_reportEvidence')
         for success in report.get('successes', []):
             identifier = bind_attempt(success['id'], run)
@@ -518,7 +543,7 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
     """The contract is conditional on executed steps, never on unattempted fields."""
     contract = REPORT_CONTRACTS[workflow]
     steps = [s for j in jobs for s in (j.get('steps') or [])]
-    if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and not any(a.get('name')==contract['artifact']for a in artifacts):
+    if contract.get('activationSteps') and any(j.get('name')==REGISTRY[workflow]['collectionJob']for j in jobs) and not any(s.get('name')in contract['activationSteps']for s in steps) and (contract.get('requiresActivationMarker') or not any(a.get('name')==contract['artifact']for a in artifacts)):
         return [{'successes':[],'errors':[],'_legacyReportCoverage':'Cette ancienne version du producteur ne déclarait pas encore cet artefact ; aucun succès source individuel déduit.'}]
     attempted = {s['name'] for s in steps if s.get('conclusion') in ('success', 'failure', 'timed_out')}
     required = [r for r in contract['reports'] if attempted.intersection(r['steps'])]
@@ -532,18 +557,44 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
         paths = report_files(directory)
         names = {r['name'] for r in contract['reports']}
         reports = []
+        sidecars={p.name.removesuffix('.contract-plan.json')+'.json':p for p in paths if p.name.endswith('.contract-plan.json')}
+        def plan_report(spec):
+            sidecar=sidecars.get(spec['name'])
+            if not sidecar:return None
+            try:
+                raw_plan=json.loads(sidecar.read_text())
+                if raw_plan['resultContract']['inputPlan']['reportStem']!=pathlib.Path(spec['name']).stem:
+                    return report_error('report-read:'+pathlib.Path(spec['name']).stem+':plan','Le manifeste amont appartient à un autre rapport')
+            except (ValueError,KeyError,OSError,TypeError):
+                return report_error('report-read:'+pathlib.Path(spec['name']).stem+':plan','Manifeste amont illisible')
+            result=read_report_safely(sidecar,workflow)
+            if result.get('_reportEvidence'):
+                result['_reportEvidence'].update(file=spec['name'],planFile=sidecar.name,nativeReportMissing=True,scopePlanVerified=True)
+                result.pop('_scopeWarning',None)
+            return result
         for spec in required:
             if not any(p.name == spec['name'] for p in paths):
                 reports.append(report_error('report-read:' + pathlib.Path(spec['name']).stem, 'Rapport attendu absent : ' + spec['name']))
+                recovery=plan_report(spec)
+                if recovery:reports.append(recovery)
         for path in paths:
             if 'cross-fx-evidence' in path.parts:
                 continue  # Raw transport evidence, explicitly not a collector report.
+            if path.name.endswith('.contract-plan.json') and path.name.removesuffix('.contract-plan.json')+'.json' in names:
+                continue
             if path.name in contract.get('supportFiles',[]):
                 continue  # Explicitly declared inputs/snapshots, never observation reports.
             if path.name not in names:
                 reports.append(report_error('report-read:' + path.stem, 'Rapport hors contrat : ' + path.name))
                 continue
-            reports.append(read_report_safely(path, workflow))
+            planned=None
+            if path.name in sidecars:
+                try:planned=json.loads(sidecars[path.name].read_text())
+                except (ValueError,OSError):pass  # Native reader still reports its own error; no scope fabricated.
+            reports.append(read_report_safely(path, workflow,planned))
+            if not reports[-1].get('_reportEvidence') and planned is not None:
+                recovery=plan_report({'name':path.name})
+                if recovery:reports.append(recovery)
             if reports[-1].get('_reportEvidence'):
                 reports[-1]['_reportEvidence']['artifactId'] = max(a.get('id', 0) for a in available)
                 source_jobs=[j for j in jobs if j['name']==REGISTRY[workflow]['collectionJob']or j['name'].startswith(REGISTRY[workflow]['collectionJob']+' (')]
@@ -694,7 +745,7 @@ def update_status(state, run, jobs, reports=None):
     normalized = []
     for raw in reports or []:
         try:
-            normalized.append(normalize_report(raw))
+            normalized.append(normalize_attempt_report(raw,run))
         except (ValueError, KeyError, TypeError, AttributeError) as error:
             normalized.append(report_error('report-read:unidentified', 'Contrat invalide : ' + str(error)))
     for report in normalized:
@@ -725,6 +776,7 @@ def update_status(state, run, jobs, reports=None):
             if report.get('_scopeWarning'):
                 qualifications[key] = {'cause': report['_scopeWarning'], 'runUrl': run['html_url'], 'attemptedAt': evidence.get('reportedAt'), 'evidence': evidence}
             elif (evidence.get('producerContract') == 'producer-results-v1'
+                  and evidence.get('scopePlanVerified')
                   and (evidence.get('scope') or {}).get('mode') == 'full'
                   and (evidence.get('scope') or {}).get('requestedIds')
                   and key in qualifications):
@@ -752,7 +804,7 @@ def update_status(state, run, jobs, reports=None):
 
         for success in report.get('successes', []):
             if success.get('sourceAttempted') is False and success.get('phase') in ('qualification','validation'):
-                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'evidence':evidence}
+                validation_checks[success['id']] = {**success, 'runUrl':run['html_url'], 'recordedAt':run['updated_at'], 'evidence':evidence}
                 if data_failures.get(success['id'],{}).get('phase') == success.get('phase') or success['id'].startswith('qualification:') and success.get('phase')=='qualification':
                     data_failures.pop(success['id'],None)
                 continue
@@ -788,7 +840,8 @@ def update_status(state, run, jobs, reports=None):
             id_ = error['id']
             if technical_proof(id_):
                 proof_failures[id_] = {'name':WORKFLOWS[workflow], 'cause':error['error'], 'field':error.get('field','Preuve de collecte'),
-                    'runId':run['id'], 'attempt':run.get('run_attempt',1), 'runUrl':run['html_url'], 'completedAt':run['updated_at']}
+                    'runId':run['id'], 'attempt':run.get('run_attempt',1), 'runUrl':run['html_url'], 'completedAt':run['updated_at'],
+                    'evidence':evidence, **{k:error[k]for k in ('expectedId','instrument','phase','kind','sourceAttempted')if k in error}}
                 continue
             retired_failures.pop(id_, None)
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': (evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],

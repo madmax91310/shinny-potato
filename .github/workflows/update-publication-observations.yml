@@ -103,7 +103,9 @@ jobs:
         if: always()
         with:
           name: publication-observations
-          path: ${{ runner.temp }}/*-observation.json
+          path: |
+            ${{ runner.temp }}/*-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
           overwrite: true
           if-no-files-found: error

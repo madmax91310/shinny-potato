@@ -40,7 +40,9 @@ jobs:
         if: always()
         with:
           name: investor-observations
-          path: ${{ runner.temp }}/investor-observations.json
+          path: |
+            ${{ runner.temp }}/investor-observations.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
   update:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -67,7 +69,9 @@ jobs:
         if: always()
         with:
           name: investor-observations
-          path: ${{ runner.temp }}/investor-observations.json
+          path: |
+            ${{ runner.temp }}/investor-observations.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

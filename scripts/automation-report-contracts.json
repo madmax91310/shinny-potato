@@ -654,7 +654,8 @@
             null
           ]
         }
-      ]
+      ],
+      "requiresActivationMarker": true
     },
     "onboard-assets.yml": {
       "artifact": "onboarding-observation",
@@ -721,7 +722,8 @@
         "monthly-candidates.json",
         "monthly-qualification-status.json",
         "global-equity-candidates.json"
-      ]
+      ],
+      "requiresActivationMarker": true
     }
   }
 }

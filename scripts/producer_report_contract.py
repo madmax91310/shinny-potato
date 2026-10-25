@@ -118,8 +118,8 @@ def finish(native, plan, *, completed=True):
     for identifier, item in expected.items():
         if not item.get('selected', True):
             value = {'operationAttempted':False, 'status':'not-applicable'if item['reason'].startswith('Non applicable')else'not-attempted', 'reason':item['reason'], 'sourceAttempted':False}
-        elif identifier not in found and item.get('dependsOn')in found and found[item['dependsOn']]['status']!='succeeded':
-            value={'status':'not-attempted','sourceAttempted':False,'reason':'Dependent observation could not be qualified: '+item['dependsOn']}
+        elif identifier not in found and item.get('dependsOn')in found and found[item['dependsOn']]['status']not in ('succeeded','unchanged-verified'):
+            value={'status':'not-attempted','operationAttempted':False,'sourceAttempted':False,'reason':'Dependent observation could not be qualified: '+item['dependsOn']}
         elif identifier not in found:
             value = {'status':'failed', 'sourceAttempted':None, 'operationAttempted':None, 'kind':'omission', 'phase':'reporting',
                      'field':'Compte rendu individuel : '+', '.join(item.get('fields',[])), 'error':interruption_reason or plan.get('interruptionReason') or ('Résultat attendu absent' if completed else 'Producteur interrompu avant son compte rendu individuel')}
@@ -134,7 +134,7 @@ def finish(native, plan, *, completed=True):
         if item.get('phase')in ('qualification','validation') and value.get('kind')!='omission':
             value={**value,'phase':item['phase'],'sourceAttempted':False,'validatedAt':native.get('checkedAt')}
         outcomes.append({**item, **value, 'id':identifier})
-    diagnostics = _normalize_report(payload).get('errors',[]) if plan.get('retainNativeFailuresOnly') and completed else []
+    diagnostics = [{**r,'phase':'validation','sourceAttempted':False}for r in _normalize_report(payload).get('errors',[])] if plan.get('retainNativeFailuresOnly') and native.get('contractDiagnosticsAttempted') is True and completed else []
     contract = {'schemaVersion':1, 'protocol':VERSION, 'inputPlan':plan, 'scope':{
         'kind':plan['producer'], 'mode':plan['mode'], 'expectedIds':list(expected),
         'requestedIds':[r['id'] for r in plan['items'] if r.get('selected',True)],
@@ -159,7 +159,8 @@ def normalize_contract(contract):
         if row['status'] in ('succeeded', 'unchanged-verified'):
             result['successes'].append(row)
         elif row['status'] == 'failed':
-            result['errors'].append({**row, 'error':row.get('error') or row.get('reason') or 'Échec individuel'})
+            result['errors'].append({**row, **({'id':'report-result:'+contract['scope']['kind']+':'+row['id'],'expectedId':row['id']}if row.get('kind')=='omission'else{}),
+                'error':(row.get('error') or row.get('reason') or 'Échec individuel')+(' : '+row['id'] if row.get('kind')=='omission'else'')})
         elif row.get('retirementStatus') in ('waiting','superseded'):
             result['inactive'].append(row)
     result['errors'].extend(contract.get('unscopedFailures',[]))
@@ -185,11 +186,12 @@ def run(producer, main):
         return main()  # non-reporting library/dry-run entry; never qualified by this helper
     plan = build_plan(producer, sys.argv[1:], report_stem=path.stem, module=sys.modules[main.__module__])
     now = dt.datetime.now(dt.timezone.utc).isoformat()
-    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4()), 'codeSha':current_code_sha()}
+    plan = {**plan, 'producer':producer, 'reportStem':path.stem, 'declaredAt':now, 'nonce':str(uuid.uuid4()), 'codeSha':current_code_sha(), 'durablePlan':True}
     plan['sha256'] = hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
     from data_automation import write_json_atomic
     # A SIGKILL still leaves the expected scope in the ordinary artifact path.
     placeholder = {'producerStarted':VERSION, 'resultContract':finish({},plan,completed=False)['resultContract']}
+    write_json_atomic(path.with_name(path.stem+'.contract-plan.json'), placeholder)
     write_json_atomic(path, placeholder)
     try:
         return main()
@@ -209,7 +211,7 @@ def bridge():
     """Small JSON bridge for JS producers, sharing validation and omission semantics."""
     value=json.load(sys.stdin)
     if value['action']=='prepare':
-        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()),codeSha=current_code_sha())
+        plan=value['plan'];plan.update(declaredAt=dt.datetime.now(dt.timezone.utc).isoformat(),nonce=str(uuid.uuid4()),codeSha=current_code_sha(),durablePlan=True)
         plan['sha256']=hashlib.sha256(json.dumps({k:v for k,v in plan.items()if k!='sha256'},sort_keys=True).encode()).hexdigest()
         print(json.dumps({'plan':plan,'placeholder':{'producerStarted':VERSION,'resultContract':finish({},plan,completed=False)['resultContract']}}))
     elif value['action']=='finish':

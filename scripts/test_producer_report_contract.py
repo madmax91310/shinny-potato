@@ -25,7 +25,7 @@ class Results(unittest.TestCase):
     def test_omitted_individual_becomes_failure_even_when_job_successful(self):
         result=c.normalize_contract(finished({'successes':[{'id':'A'}],'errors':[]},plan())['resultContract'])
         self.assertEqual([r['id']for r in result['successes']],['A'])
-        self.assertEqual(result['errors'][0]['id'],'B')
+        self.assertEqual(result['errors'][0]['expectedId'],'B')
         self.assertEqual(result['errors'][0]['kind'],'omission')
         self.assertIsNone(result['errors'][0]['sourceAttempted'])
     def test_expected_plan_not_derived_from_result(self):
@@ -78,7 +78,7 @@ class Results(unittest.TestCase):
 class WorkflowIntegration(unittest.TestCase):
     def observed(self,native,p,workflow='update-practical-sheets.yml',name='practical-observation.json'):
         with tempfile.TemporaryDirectory()as folder:
-            path=Path(folder)/name;path.write_text(json.dumps(finished(native,p)));return read_report(path,workflow)
+            path=Path(folder)/name;p=copy.deepcopy(p);p['reportStem']=path.stem;r=finished(native,p);path.write_text(json.dumps(r));planned={'producerStarted':c.VERSION,'resultContract':c.finish({},r['resultContract']['inputPlan'],completed=False)['resultContract']};return read_report(path,workflow,planned)
     def test_green_job_with_omission_is_visible_to_monitor(self):
         from test_automation_product import event,jobs,CTX,NOW
         from publish_automation_status import update_status,REGISTRY
@@ -86,8 +86,8 @@ class WorkflowIntegration(unittest.TestCase):
         w='update-practical-sheets.yml';p=plan(('practical:A','practical:B'))
         r=self.observed({'sources':{'A':{'status':'ok'}},'changed':[],'failed':[]},p)
         state=update_status({},event(w),jobs(w),[r]);out=evaluate_monitoring(state,CTX,{w:REGISTRY[w]},NOW,{'errors':[]})
-        self.assertTrue(any('Résultat attendu absent'in row['cause']for row in out['active'].values()))
-        self.assertIn('practical:B',state['workflows'][w]['dataFailures'])
+        self.assertTrue(any('Résultat attendu absent'in row['cause']and row['kind']=='monitoring' for row in out['active'].values()))
+        self.assertFalse(state['workflows'][w]['dataFailures']);self.assertTrue(any('practical:B'in key for key in state['workflows'][w]['proofFailures']))
     def test_partial_retry_leaves_other_incident_open(self):
         from test_automation_product import event,jobs
         from publish_automation_status import update_status
@@ -144,5 +144,66 @@ class ProducerEntryPoints(unittest.TestCase):
         sources=plans.read('scripts/instrument-metadata-sources.json')['instruments'];ids=[r['isin']for r in sources[:2]]
         p=plans.build_plan('collect_instrument_metadata',['--only',','.join(ids)])
         self.assertEqual({r['instrument']for r in p['items']if r['selected']},set(ids))
+
+
+
+class DurableScope(unittest.TestCase):
+    def payload(self):
+        p=plan(('practical:A','practical:B'));p['reportStem']='practical-observation'
+        r=finished({},p,completed=False)
+        return r
+    def observe_artifact(self,native=None):
+        from publish_automation_status import artifact_reports,REPORT_CONTRACTS
+        from test_automation_product import jobs
+        w='update-practical-sheets.yml';scope=self.payload()
+        def download(repo,artifacts,name,directory):
+            (Path(directory)/'practical-observation.contract-plan.json').write_text(json.dumps(scope))
+            if native is not None:(Path(directory)/'practical-observation.json').write_text(native)
+        with tempfile.TemporaryDirectory()as folder:
+            return artifact_reports('test/repo',w,jobs(w),[{'name':REPORT_CONTRACTS[w]['artifact'],'id':1}],folder,download)
+    def test_missing_native_report_retains_individual_expected_scope(self):
+        r=self.observe_artifact();omissions=[e for part in r for e in part.get('errors',[]) if e.get('kind')=='omission']
+        self.assertEqual({e['expectedId']for e in omissions},{'practical:A','practical:B'})
+    def test_truncated_native_report_cannot_erase_expected_scope(self):
+        r=self.observe_artifact('{"sources":');self.assertEqual(sum(e.get('kind')=='omission'for part in r for e in part.get('errors',[])),2)
+    def test_predeclared_scope_is_written_before_main_is_entered(self):
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'practical-observation.json'
+            def body():
+                sidecar=path.with_name('practical-observation.contract-plan.json');self.assertTrue(sidecar.exists())
+                native={'sources':{'A':{'status':'ok'}},'changed':[],'failed':[]};path.write_text(json.dumps(native))
+            with patch.object(c.sys,'argv',['test','--output',str(path)]),patch.object(plans,'build_plan',return_value=plan(('practical:A','practical:B'))):c.run('test',body)
+            source=json.loads(path.read_text());c.validate_contract(source['resultContract'])
+    def test_omission_does_not_replace_or_clear_existing_source_failure(self):
+        from publish_automation_status import update_status
+        from test_automation_product import jobs,event
+        w='update-practical-sheets.yml';old=update_status({},event(w),jobs(w),[{'successes':[],'errors':[{'id':'practical:B','error':'Original supplier 403'}]}])
+        native={'sources':{'A':{'status':'ok'}},'changed':[],'failed':[]};p=plan(('practical:A','practical:B'));p['reportStem']='practical-observation'
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'practical-observation.json';path.write_text(json.dumps(finished(native,p)));r=read_report(path,w)
+        state=update_status(old,event(w,101),jobs(w),[r])['workflows'][w]
+        self.assertEqual(state['dataFailures']['practical:B']['cause'],'Original supplier 403')
+        self.assertTrue(any('practical:B'in key for key in state['proofFailures']))
+        native['contractSkipped']=[{'id':'practical:B','status':'cached','reason':'No source check'}]
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'practical-observation.json';path.write_text(json.dumps(finished(native,p)));r=read_report(path,w)
+        state=update_status({'workflows':{w:state}},event(w,102),jobs(w),[r])['workflows'][w]
+        self.assertEqual(state['dataFailures']['practical:B']['cause'],'Original supplier 403')
+
+
+
+class InputScopeRegressions(unittest.TestCase):
+    def test_empty_required_producer_configuration_is_not_normalized_to_success(self):
+        with patch.object(plans,'read',return_value={'instruments':[]}):
+            self.assertRaisesRegex(ValueError,'anomalement vide',plans.build_plan,'collect_etf_pilot',[])
+    def test_real_zero_candidate_file_is_a_justified_empty_scope(self):
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'candidates.json';path.write_text('[]')
+            p=plans.build_plan('qualify_monthly_candidates',['--candidates',str(path),'--limit','0'])
+        self.assertEqual(p['items'],[]);self.assertTrue(p['emptyReason'])
+    def test_another_run_cannot_certify_this_attempt(self):
+        from publish_automation_status import normalize_attempt_report
+        report={'successes':[{'id':'A'}],'errors':[],'_reportEvidence':{'scope':{'runId':'1','attempt':'1'}}}
+        r=normalize_attempt_report(report,{'id':2,'run_attempt':1});self.assertFalse(r['successes']);self.assertTrue(r['errors'][0]['id'].startswith('report-contract:'))
 
 if __name__=='__main__':unittest.main()

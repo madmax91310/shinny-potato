@@ -286,6 +286,7 @@ jobs:
             ${{ runner.temp }}/additional-observation.json
             ${{ runner.temp }}/presentation-performance.json
             ${{ runner.temp }}/index-observation.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations

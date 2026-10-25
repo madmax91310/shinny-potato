@@ -5,7 +5,7 @@ import {writeFileSync} from 'node:fs'
 const bridge=value=>JSON.parse(execFileSync('python',['scripts/producer_report_contract.py'],{input:JSON.stringify(value),encoding:'utf8',maxBuffer:128*1024*1024}))
 export function producerContract(producer,reportStem,items,{mode='full',emptyReason=null,retainNativeFailuresOnly=false}={}){
  const {plan,placeholder}=bridge({action:'prepare',plan:{producer,reportStem,items:structuredClone(items),mode,emptyReason,retainNativeFailuresOnly}})
- return {plan,placeholder,start(path){writeFileSync(path,JSON.stringify(placeholder)+'\n')},finish(report){return bridge({action:'finish',plan,report})}}
+ return {plan,placeholder,start(path){writeFileSync(path.replace(/\.json$/,'.contract-plan.json'),JSON.stringify(placeholder)+'\n');writeFileSync(path,JSON.stringify(placeholder)+'\n')},finish(report){return bridge({action:'finish',plan,report})}}
 }
 
 // Checking a publication listing/access is distinct from certifying its financial
@@ -16,10 +16,10 @@ export function sourceResults(plan,rows,http=[]){
   const id='radar-source:'+row.id
   if(seen.has(id)){issues.push({id,error:'Résultat source dupliqué : '+id});continue}seen.add(id)
   const fresh=Date.parse(row.checkedAt??row.lastSuccessAt??'')>=Date.parse(plan.declaredAt)
-  const attempted=Date.parse(row.attemptedAt??'')>=Date.parse(plan.declaredAt)
-  const common={id,sourceUrl:row.url,checkedAt:row.checkedAt,attemptedAt:row.attemptedAt,asOf:row.asOf}
-  if((row.status==='error'||row.status==='partial')&&(fresh||attempted))errors.push({...common,error:row.error??row.archiveWarning??row.reason??'Source partielle',sourceAttempted:true})
-  else if(fresh)successes.push({...common,status:http.some(r=>r.url===row.url&&r.status===304)?'unchanged-verified':'succeeded',sourceAttempted:true})
+  const request=http.find(r=>r.url===row.url); const attempted=Boolean(request)
+  const common={id,sourceUrl:row.url,checkedAt:row.checkedAt,attemptedAt:request?.attemptedAt,asOf:row.asOf}
+  if((row.status==='error'||row.status==='partial')&&attempted)errors.push({...common,error:row.error??row.archiveWarning??row.reason??'Source partielle',sourceAttempted:true})
+  else if(fresh&&attempted)successes.push({...common,status:http.some(r=>r.url===row.url&&r.status===304)?'unchanged-verified':'succeeded',sourceAttempted:true})
   else skipped.push({...common,status:row.nextCheckAt?'waiting':'cached',sourceAttempted:false,reason:row.nextCheckAt?'Prochain contrôle différé jusqu’au '+row.nextCheckAt:'Aucun contrôle source frais dans cette exécution'})
  }
  return {successes,errors:[...errors,...issues],skipped}

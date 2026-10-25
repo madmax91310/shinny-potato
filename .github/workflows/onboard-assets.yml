@@ -116,6 +116,7 @@ jobs:
             ${{ runner.temp }}/etf-qualification.json
             scripts/source-snapshots/monthly-qualification-status.json
             scripts/global-equity-candidates.json
+            ${{ runner.temp }}/**/*.contract-plan.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Validate collected observations
