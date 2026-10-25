@@ -1,0 +1,32 @@
+.hg-scope { max-width: 1260px; margin: 0 auto; }
+.hg-intro { margin: 0 0 24px; color: var(--text-secondary, #66716d); }
+.hg-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.hg-layout .workspace-panel { padding: 24px; min-width: 0; }
+.hg-scope h2 { font-size: 1.15rem; margin: 0 0 18px; }
+.hg-category > p { margin: 0 0 7px; font-size: .9rem; font-weight: 600; }
+.hg-filters { display: grid; gap: 16px; }
+.hg-filters > label, .hg-editor > label { display: grid; gap: 7px; font-size: .9rem; font-weight: 600; }
+.hg-scope input[type="search"], .hg-editor textarea { width: 100%; box-sizing: border-box; border: 1px solid #c9d2cd; border-radius: 10px; background: #fff; color: #243b33; padding: 12px; font: inherit; }
+.hg-scope :focus-visible { outline: 3px solid #267863; outline-offset: 3px; }
+.hg-checks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.hg-checks label { display: flex; gap: 8px; align-items: center; min-height: 44px; cursor: pointer; }
+.hg-checks input { accent-color: #267863; width: 18px; height: 18px; }
+.hg-draw { margin-top: 16px; }
+.hg-draw p, .hg-meta, .hg-note { font-size: .82rem; color: #5b6b63; line-height: 1.6; }
+.hg-list { list-style: none; padding: 0; margin: 16px 0 0; max-height: 580px; overflow-y: auto; overscroll-behavior: contain; }
+.hg-list li + li { margin-top: 8px; }
+.hg-list button { display: grid; gap: 6px; width: 100%; text-align: left; padding: 16px; border: 1px solid #dce2dd; border-radius: 10px; background: #fff; color: #243b33; font: inherit; font-size: .92rem; line-height: 1.55; cursor: pointer; }
+.hg-list button[aria-pressed="true"] { border-color: #267863; background: #eef5ef; box-shadow: inset 3px 0 #267863; }
+.hg-editor textarea { margin-top: 8px; resize: vertical; min-height: 210px; line-height: 1.65; }
+.hg-counter { text-align: right; font-variant-numeric: tabular-nums; font-size: .9rem; }
+.hg-invalid { color: #ac283b; font-size: .9rem; }
+.hg-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.hg-copy-state { min-height: 1.5em; font-size: .85rem; }
+.hg-warning, .hg-exhausted { background: #fff5dc; padding: 14px; border-radius: 10px; margin-bottom: 18px; font-size: .9rem; }
+@media (min-width: 901px) { .hg-editor { position: sticky; top: 20px; } }
+@media (max-width: 900px) {
+  .hg-layout { display: flex; flex-direction: column-reverse; gap: 18px; }
+  .hg-layout .workspace-panel { width: 100%; padding: 18px; }
+  .hg-list { max-height: 440px; }
+  .hg-actions .workspace-button { flex: 1 1 100%; min-height: 44px; }
+}
