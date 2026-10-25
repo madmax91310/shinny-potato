@@ -29,7 +29,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Pouvoir d’achat | /pouvoir-achat |
 | Dilemme | /dilemme |
 | Impact des frais | /impact-frais |
-| Faits marquants | /faits-marquants-marches |
+| Histoires de marchés | /faits-marquants-marches |
 | Banque de tweets | /banque-tweets |
 | Coulisses des indices | /tweets-factsheets |
 
