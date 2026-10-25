@@ -6,6 +6,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
+| Hey @Grok | /hey-grok |
 | Qui a vraiment gagné ? | /classements-performances |
 | Portefeuille & DCA | /le-dca-de |
 | Fiches pratiques | /fiches-pratiques |
