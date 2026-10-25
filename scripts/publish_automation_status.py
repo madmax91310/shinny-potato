@@ -478,6 +478,10 @@ def attempt_artifacts(artifacts, run):
     return [a for a in artifacts if (created := timestamp(a.get('created_at'))) and start <= created <= end]
 
 
+def evidence_scope(state, evidence):
+    return evidence.get('scope') or state.get('reportScopes',{}).get(evidence.get('scopeRef'),{})
+
+
 def refresh_scope_proofs(state, run, reports):
     """Reinterpret real frozen manifests, without renewing any source or job date."""
     row=state['workflows'][run['path'].split('/')[-1]]
@@ -575,7 +579,7 @@ def merge_proof_retry(state, run, reports):
                     'readAt':dt.datetime.now(dt.timezone.utc).isoformat(),'successes':report.get('successes',[]),'errors':report.get('errors',[])})
             if report.get('_scopeWarning'):
                 warning={'cause':report['_scopeWarning'],'runUrl':run['html_url'],'evidence':evidence,'attemptedAt':evidence.get('reportedAt')}
-                newer_full=[r for r in history if r.get('file')==evidence['file'] and r.get('scopePlanVerified') and r.get('scope',{}).get('mode')=='full' and r.get('scope',{}).get('expectedIds') and r.get('runId',0)>run['id']]
+                newer_full=[r for r in history if r.get('file')==evidence['file'] and r.get('scopePlanVerified') and evidence_scope(state,r).get('mode')=='full' and evidence_scope(state,r).get('expectedIds') and r.get('runId',0)>run['id']]
                 if newer_full:
                     archive=row.setdefault('reportQualificationHistory',[])
                     if not any(r.get('evidence',{}).get('sha256')==evidence['sha256']for r in archive):

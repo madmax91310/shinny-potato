@@ -233,6 +233,8 @@ class DurableScope(unittest.TestCase):
         w='update-practical-sheets.yml';ev={'file':'practical-observation.json','sha256':'new','scopePlanVerified':True,'scope':{'mode':'full','expectedIds':['A']},'runId':101,'attempt':1}
         state={'workflows':{w:{'runId':101,'reportEvidenceHistory':[ev],'reportQualifications':{}}}}
         old={'successes':[],'errors':[],'_scopeWarning':'Original report never declared scope','_reportEvidence':{'file':ev['file'],'sha256':'old','scopeExplicit':False}}
+        from automation_status_storage import pack_report_scopes
+        state=pack_report_scopes(state)  # Actual wire form, without expansion.
         after=merge_proof_retry(state,event(w,90),[old])['workflows'][w]
         self.assertEqual(after['reportQualifications'],{});self.assertTrue(after['reportQualificationHistory'][-1]['historicalLimitationPreserved'])
         self.assertFalse(after['reportEvidenceHistory'][-1].get('scopeExplicit'))
