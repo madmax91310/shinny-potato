@@ -6,6 +6,11 @@ on:
   push:
     branches: [master]
     paths:
+      - 'scripts/validate-etf-publication.sh'
+      - 'scripts/test_etf_publication.py'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/commit-validated-data.sh'
+      - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
       - 'scripts/*comparison-automation.mjs'
       - '.github/workflows/collect-etf-pilot.yml'
@@ -73,6 +78,11 @@ on:
       - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
+      - 'scripts/validate-etf-publication.sh'
+      - 'scripts/test_etf_publication.py'
+      - 'scripts/observation_rebase_guard.py'
+      - 'scripts/commit-validated-data.sh'
+      - 'scripts/stage_validated_projections.py'
       - 'src/data/etf-themes.js'
       - 'scripts/*comparison-automation.mjs'
       - '.github/workflows/collect-etf-pilot.yml'
@@ -184,6 +194,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_etf_publication.py'
       - run: node scripts/test-comparison-automation.mjs
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
@@ -247,34 +258,8 @@ jobs:
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
       - run: node scripts/test-asset-field-coverage.mjs
       - run: node scripts/report-automation-coverage.mjs --write
-      - name: "Validate observations: node scripts test-automation-gap-inventory.mjs"
-        run: node scripts/test-automation-gap-inventory.mjs
-      - name: "Validate observations: node scripts test-priority-issuer-consumers.mjs"
-        run: node scripts/test-priority-issuer-consumers.mjs
-      - name: "Validate observations: npm run audit:data-review"
-        run: npm run audit:data-review
-      - name: "Validate observations: npm run audit:index-facts"
-        run: npm run audit:index-facts
-      - name: "Validate observations: npm run audit:index-completeness"
-        run: npm run audit:index-completeness
-      - name: "Validate observations: node scripts test-automated-indices.mjs"
-        run: node scripts/test-automated-indices.mjs
-      - name: "Validate observations: node scripts test-automated-index-sheets.mjs"
-        run: node scripts/test-automated-index-sheets.mjs
-      - name: "Validate observations: npm run audit:etf-annual-performance"
-        run: npm run audit:etf-annual-performance
-      - name: "Validate observations: npm run audit:etf-completeness"
-        run: npm run audit:etf-completeness
-      - name: "Validate observations: npm run audit:etf-consistency"
-        run: npm run audit:etf-consistency
-      - name: "Validate observations: node scripts test-four-issuer-consumers.mjs"
-        run: node scripts/test-four-issuer-consumers.mjs
-      - name: "Validate observations: npm run audit:calculator-series"
-        run: npm run audit:calculator-series
-      - name: "Validate observations: node scripts test-comparison-etf-details.mjs"
-        run: node scripts/test-comparison-etf-details.mjs
-      - name: "Validate observations: npm run build"
-        run: npm run build
+      - name: Validate ETF observations and consumers
+        run: bash scripts/validate-etf-publication.sh validate
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -293,6 +278,10 @@ jobs:
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
         id: commit
+        env:
+          VALIDATED_DATA_CHECK: bash scripts/validate-etf-publication.sh check
+          VALIDATED_DATA_PREPARE: bash scripts/validate-etf-publication.sh prepare
+          VALIDATED_DATA_DERIVED_PATHS: '["docs/automation-coverage.md","docs/automation-gaps.md","docs/automation-gaps.json","docs/asset-field-coverage.md","public/data/asset-field-coverage.json","docs/app-inventory.md"]'
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
@@ -319,3 +308,4 @@ jobs:
       - run: |
           echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
+
