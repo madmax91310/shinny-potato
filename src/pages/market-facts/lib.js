@@ -2,6 +2,7 @@
 // Les sources restent consultables dans les précisions de la fiche.
 
 export function buildTweetText(fact) {
+  if (typeof fact.text === 'string') return fact.text;
   const lines = [
     fact.hook,
     "",

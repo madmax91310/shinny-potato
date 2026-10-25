@@ -15,6 +15,8 @@
 }
 
 .mf-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+/* La colonne du récit, affichée en premier par le thème, garde une largeur de lecture. */
+.workspace .mf-scope .workspace-tool-columns { grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); }
 @media (max-width: 420px) { .mf-controls { flex-direction: column; } }
 .mf-controls button { width: auto; }
 @media (max-width: 420px) { .mf-controls button { justify-content: center; width: 100%; } }
@@ -46,6 +48,10 @@
 .mf-details { font-size: 13px; color: var(--mf-text-dim); line-height: 1.55; overflow-wrap: anywhere; }
 .mf-details summary { cursor: pointer; color: var(--mf-accent-bright); }
 .mf-details p { margin: 12px 0 0; }
+.mf-sources { padding-left: 20px; }
+.mf-sources > li { margin: 16px 0; }
+.mf-sources a { color: var(--mf-accent); text-decoration: underline; }
+.mf-sources ul { padding-left: 18px; margin-top: 8px; }
 
 .mf-meta { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
 .mf-meta li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--mf-text-dim); line-height: 1.5; }
