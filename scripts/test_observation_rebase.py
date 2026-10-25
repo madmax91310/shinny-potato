@@ -14,7 +14,10 @@ class ObservationRebaseTests(unittest.TestCase):
         self.f.setUp()
         self.addCleanup(self.f.doCleanups)
         for name in ['src/data/automated-insurance.json', 'src/data/automated-scpi.json',
-                     'src/data/automated-etf-monthly.json', 'src/data/worldbank-gold-monthly.json', 'scripts/collect_scpi.py']:
+                     'src/data/automated-etf-monthly.json', 'src/data/worldbank-gold-monthly.json', 'scripts/collect_scpi.py',
+                     'docs/editorial-radar-couverture-2026-10-25.md', 'scripts/lib/radar-consumer.mjs',
+                     'scripts/lib/radar-publications.mjs', 'scripts/test-radar-coverage.mjs',
+                     'scripts/refresh_monthly_history.py', 'scripts/monthly-automation.json']:
             p = self.f.local / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('original\n')
@@ -79,6 +82,40 @@ class ObservationRebaseTests(unittest.TestCase):
 
     def test_financial_revalidation_failure_prevents_push(self):
         self.assert_refused('src/data/automated-insurance.json', validation='false')
+
+    def test_market_radar_readers_rebase_only_with_latest_tree_revalidation(self):
+        paths = ['docs/editorial-radar-couverture-2026-10-25.md',
+                 'scripts/lib/radar-consumer.mjs', 'scripts/lib/radar-publications.mjs',
+                 'scripts/test-radar-coverage.mjs']
+        for path in paths:
+            self.f.advance_remote(path)
+        validation = ' && '.join(f'test "$(cat {shlex.quote(path)})" = "concurrent update"' for path in paths)
+        result = self.publish('market', validation)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'validated update')
+        for path in paths:
+            self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'concurrent update')
+
+    def test_market_reader_change_does_not_bypass_financial_revalidation(self):
+        self.f.advance_remote('scripts/lib/radar-consumer.mjs')
+        before = self.f.git(self.f.remote, 'rev-parse', 'master')
+        result = self.publish('market', 'false')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn('Collection inputs may have changed', result.stderr)
+        self.assertEqual(self.f.git(self.f.remote, 'rev-parse', 'master'), before)
+        self.assertEqual(self.f.git(self.f.remote, 'show', 'master:validated.json'), 'original')
+
+    def test_reader_independence_is_not_assumed_for_other_collectors(self):
+        self.assert_refused('scripts/lib/radar-consumer.mjs', 'publication')
+
+    def test_market_collector_change_still_requires_recollection(self):
+        self.assert_refused('scripts/refresh_monthly_history.py', 'market')
+
+    def test_market_configuration_change_still_requires_recollection(self):
+        self.assert_refused('scripts/monthly-automation.json', 'market')
+
+    def test_competing_primary_market_observation_still_requires_recollection(self):
+        self.assert_refused('src/data/automated-etf-monthly.json', 'market')
 
 
 if __name__ == '__main__':
