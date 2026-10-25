@@ -1,0 +1,1191 @@
+{
+  "checkedFrom": "2026-10-25T18:01:29.662875+00:00",
+  "checkedAt": "2026-10-25T18:01:32.036513+00:00",
+  "fixMergedAt": "2026-10-25T14:59:00Z",
+  "workflows": [
+    {
+      "workflow": "update-economic-data.yml",
+      "checkedAt": "2026-10-25T18:01:30.161283+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40196711743,
+          "head_sha": "28677530fe03912b25fd8959f62cae4b5ea6744a",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40196711743",
+          "created_at": "2026-10-25T13:14:34Z",
+          "updated_at": "2026-10-25T13:35:00Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40095313705,
+          "head_sha": "5d14f183d5aa14850a9ee4ce2fdff4c1a22e0a86",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40095313705",
+          "created_at": "2026-10-24T12:46:21Z",
+          "updated_at": "2026-10-24T12:50:15Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39962499551,
+          "head_sha": "b073f62b7652eaf516ad17f826facce73405dbc5",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39962499551",
+          "created_at": "2026-10-23T13:35:37Z",
+          "updated_at": "2026-10-23T14:53:46Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39791054111,
+          "head_sha": "8ddde62d121704fc51c3b5af6ce1f6b83c5108fc",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39791054111",
+          "created_at": "2026-10-22T13:54:28Z",
+          "updated_at": "2026-10-22T14:44:28Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39612353686,
+          "head_sha": "c60e6b0d2b985b299ca973091dec45956cc78871",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39612353686",
+          "created_at": "2026-10-21T13:56:07Z",
+          "updated_at": "2026-10-21T13:59:12Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "checkedAt": "2026-10-25T18:01:30.177681+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40193756541,
+          "head_sha": "d393a033e983b857e5dd40a01f9be999b0bacd8c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40193756541",
+          "created_at": "2026-10-25T12:35:09Z",
+          "updated_at": "2026-10-25T12:35:36Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40092195484,
+          "head_sha": "753720de65f41d48faf3f371d5b01381108c0fd4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092195484",
+          "created_at": "2026-10-24T12:01:01Z",
+          "updated_at": "2026-10-24T12:01:54Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39954851177,
+          "head_sha": "0d045d448a6f5d53f39033d7ea5002fda84604c3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39954851177",
+          "created_at": "2026-10-23T12:38:31Z",
+          "updated_at": "2026-10-23T12:39:10Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39782895892,
+          "head_sha": "ad47259c563b3956b93b31509303a0747c89314c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39782895892",
+          "created_at": "2026-10-22T12:59:08Z",
+          "updated_at": "2026-10-22T12:59:38Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39603753726,
+          "head_sha": "21492dd9dba44592c57ddceae9cc9b451173a076",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39603753726",
+          "created_at": "2026-10-21T12:57:03Z",
+          "updated_at": "2026-10-21T12:57:29Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "checkedAt": "2026-10-25T18:01:30.136585+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40193486979,
+          "head_sha": "6b1790860b257aefa396fec314496f2618da5538",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40193486979",
+          "created_at": "2026-10-25T12:31:29Z",
+          "updated_at": "2026-10-25T12:35:22Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40091972861,
+          "head_sha": "a3833397ab953ddc0ba0a9d08f0f32945d4125b7",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40091972861",
+          "created_at": "2026-10-24T11:57:44Z",
+          "updated_at": "2026-10-24T12:50:20Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39954333667,
+          "head_sha": "1892bdeec74b4ecc655f0e3a181bc02d4dcb4e6e",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39954333667",
+          "created_at": "2026-10-23T12:34:24Z",
+          "updated_at": "2026-10-23T14:53:38Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39782322994,
+          "head_sha": "fb9643395951ba9e2da68acb5f9538eee5bb5746",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39782322994",
+          "created_at": "2026-10-22T12:55:02Z",
+          "updated_at": "2026-10-22T13:43:54Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39603120423,
+          "head_sha": "ae44dab56fa8fec47d92b9ee6104851f754b1308",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39603120423",
+          "created_at": "2026-10-21T12:52:26Z",
+          "updated_at": "2026-10-21T15:08:29Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "checkedAt": "2026-10-25T18:01:30.233959+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40194412653,
+          "head_sha": "c2be16b0df0d362f82b13abf10e9b6e7e8627352",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40194412653",
+          "created_at": "2026-10-25T12:43:54Z",
+          "updated_at": "2026-10-25T12:46:19Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40092955985,
+          "head_sha": "c3d0bbdeaccd3c969c1bdd957b2d97f9447efbf7",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092955985",
+          "created_at": "2026-10-24T12:12:10Z",
+          "updated_at": "2026-10-24T12:15:38Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39956309436,
+          "head_sha": "df02156644c3d68881d5f504385918da0195d78b",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39956309436",
+          "created_at": "2026-10-23T12:49:56Z",
+          "updated_at": "2026-10-23T13:09:51Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39784477156,
+          "head_sha": "1d93e6e12757e34e67a801d4173a73e701f84805",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39784477156",
+          "created_at": "2026-10-22T13:10:05Z",
+          "updated_at": "2026-10-22T13:16:55Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39605630531,
+          "head_sha": "601fb26faf226224a35545013005315aa052c02e",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39605630531",
+          "created_at": "2026-10-21T13:10:14Z",
+          "updated_at": "2026-10-21T13:12:11Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-practical-sheets.yml",
+      "checkedAt": "2026-10-25T18:01:30.634048+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40198725257,
+          "head_sha": "e1159682f5535157e301dd6af1b509aa8b0e0256",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40198725257",
+          "created_at": "2026-10-25T13:40:59Z",
+          "updated_at": "2026-10-25T13:45:03Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40097451124,
+          "head_sha": "79a9f31dac57c739d3bf0929d213026830e5f6e8",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40097451124",
+          "created_at": "2026-10-24T13:16:48Z",
+          "updated_at": "2026-10-24T13:52:30Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39967592380,
+          "head_sha": "c242501f418e8079e722f839d2cba1c237393093",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39967592380",
+          "created_at": "2026-10-23T14:12:01Z",
+          "updated_at": "2026-10-23T14:54:07Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39796060492,
+          "head_sha": "c642b352b3ca9b3a9f9e4f02eb81c98010cb040c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39796060492",
+          "created_at": "2026-10-22T14:29:13Z",
+          "updated_at": "2026-10-22T14:47:01Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39616936020,
+          "head_sha": "e495204b030b6b1e2042d431b095561947c096a3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39616936020",
+          "created_at": "2026-10-21T14:27:19Z",
+          "updated_at": "2026-10-21T14:32:26Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "checkedAt": "2026-10-25T18:01:30.668088+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40193574421,
+          "head_sha": "6b1790860b257aefa396fec314496f2618da5538",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40193574421",
+          "created_at": "2026-10-25T12:32:39Z",
+          "updated_at": "2026-10-25T13:28:00Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40091974240,
+          "head_sha": "a3833397ab953ddc0ba0a9d08f0f32945d4125b7",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40091974240",
+          "created_at": "2026-10-24T11:57:46Z",
+          "updated_at": "2026-10-24T12:45:05Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39954482819,
+          "head_sha": "1892bdeec74b4ecc655f0e3a181bc02d4dcb4e6e",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39954482819",
+          "created_at": "2026-10-23T12:35:34Z",
+          "updated_at": "2026-10-23T12:41:20Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39782485527,
+          "head_sha": "fb9643395951ba9e2da68acb5f9538eee5bb5746",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39782485527",
+          "created_at": "2026-10-22T12:56:11Z",
+          "updated_at": "2026-10-22T13:02:10Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39603357101,
+          "head_sha": "ae44dab56fa8fec47d92b9ee6104851f754b1308",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39603357101",
+          "created_at": "2026-10-21T12:54:10Z",
+          "updated_at": "2026-10-21T12:59:10Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "checkedAt": "2026-10-25T18:01:30.625147+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40197259396,
+          "head_sha": "562409b8aba830a6c78c722df38428f15903abac",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40197259396",
+          "created_at": "2026-10-25T13:21:47Z",
+          "updated_at": "2026-10-25T13:36:03Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40095966251,
+          "head_sha": "d7ab63217cd7035f1ef24e589e877e4530e61069",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40095966251",
+          "created_at": "2026-10-24T12:55:47Z",
+          "updated_at": "2026-10-24T13:51:43Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39964412662,
+          "head_sha": "d73202be7be6739e62f3e94d1132dc26eb65a74b",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39964412662",
+          "created_at": "2026-10-23T13:49:32Z",
+          "updated_at": "2026-10-23T14:54:01Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39792825258,
+          "head_sha": "6555c27d324c038ace3510259c8822fad72695b3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39792825258",
+          "created_at": "2026-10-22T14:06:16Z",
+          "updated_at": "2026-10-22T14:40:29Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39614203452,
+          "head_sha": "65f61180ef0e166c020e592c17483ecd54d478f3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39614203452",
+          "created_at": "2026-10-21T14:08:23Z",
+          "updated_at": "2026-10-21T15:07:24Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "checkedAt": "2026-10-25T18:01:30.670321+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40194635913,
+          "head_sha": "60be76f20d4384824063afee6f07dd83542e2ce6",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40194635913",
+          "created_at": "2026-10-25T12:46:50Z",
+          "updated_at": "2026-10-25T13:32:59Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40093141147,
+          "head_sha": "e1b3eefd13ce3602cc587c7b5280297e1387aab6",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40093141147",
+          "created_at": "2026-10-24T12:14:53Z",
+          "updated_at": "2026-10-24T12:52:27Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39956645147,
+          "head_sha": "5feee6221927c38055d69f8faffcf1ecbd6c335d",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39956645147",
+          "created_at": "2026-10-23T12:52:32Z",
+          "updated_at": "2026-10-23T13:52:57Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39784957780,
+          "head_sha": "3b29b49495a01418cc4ea2f0c867f930073c08df",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39784957780",
+          "created_at": "2026-10-22T13:13:27Z",
+          "updated_at": "2026-10-22T14:52:24Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39606414067,
+          "head_sha": "1e32749a2309a2b514f26656076975af6755422d",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39606414067",
+          "created_at": "2026-10-21T13:15:31Z",
+          "updated_at": "2026-10-21T15:34:12Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "checkedAt": "2026-10-25T18:01:31.119258+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40194002363,
+          "head_sha": "d393a033e983b857e5dd40a01f9be999b0bacd8c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40194002363",
+          "created_at": "2026-10-25T12:38:29Z",
+          "updated_at": "2026-10-25T13:29:01Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40092500593,
+          "head_sha": "753720de65f41d48faf3f371d5b01381108c0fd4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092500593",
+          "created_at": "2026-10-24T12:05:29Z",
+          "updated_at": "2026-10-24T12:07:29Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39955250470,
+          "head_sha": "d72c78571ad8ef5c7af69b42165f7f60d6caf1f8",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39955250470",
+          "created_at": "2026-10-23T12:41:41Z",
+          "updated_at": "2026-10-23T13:36:39Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39783382648,
+          "head_sha": "ad47259c563b3956b93b31509303a0747c89314c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39783382648",
+          "created_at": "2026-10-22T13:02:27Z",
+          "updated_at": "2026-10-22T13:03:43Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39604279508,
+          "head_sha": "21492dd9dba44592c57ddceae9cc9b451173a076",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39604279508",
+          "created_at": "2026-10-21T13:00:48Z",
+          "updated_at": "2026-10-21T13:01:56Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "checkedAt": "2026-10-25T18:01:31.063926+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40193961365,
+          "head_sha": "d393a033e983b857e5dd40a01f9be999b0bacd8c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40193961365",
+          "created_at": "2026-10-25T12:37:55Z",
+          "updated_at": "2026-10-25T13:30:02Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40092389719,
+          "head_sha": "753720de65f41d48faf3f371d5b01381108c0fd4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092389719",
+          "created_at": "2026-10-24T12:03:52Z",
+          "updated_at": "2026-10-24T12:45:57Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39955158223,
+          "head_sha": "0d045d448a6f5d53f39033d7ea5002fda84604c3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39955158223",
+          "created_at": "2026-10-23T12:40:58Z",
+          "updated_at": "2026-10-23T12:46:34Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39783320199,
+          "head_sha": "ad47259c563b3956b93b31509303a0747c89314c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39783320199",
+          "created_at": "2026-10-22T13:02:01Z",
+          "updated_at": "2026-10-22T13:05:32Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39604150504,
+          "head_sha": "21492dd9dba44592c57ddceae9cc9b451173a076",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39604150504",
+          "created_at": "2026-10-21T12:59:58Z",
+          "updated_at": "2026-10-21T13:04:40Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "checkedAt": "2026-10-25T18:01:31.175957+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40194341417,
+          "head_sha": "c2be16b0df0d362f82b13abf10e9b6e7e8627352",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40194341417",
+          "created_at": "2026-10-25T12:42:56Z",
+          "updated_at": "2026-10-25T13:31:04Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40092872365,
+          "head_sha": "c3d0bbdeaccd3c969c1bdd957b2d97f9447efbf7",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40092872365",
+          "created_at": "2026-10-24T12:10:56Z",
+          "updated_at": "2026-10-24T12:46:46Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39956145404,
+          "head_sha": "df02156644c3d68881d5f504385918da0195d78b",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39956145404",
+          "created_at": "2026-10-23T12:48:38Z",
+          "updated_at": "2026-10-23T13:37:27Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39784256327,
+          "head_sha": "27ea08295350e605b7d4b0245e672440441b698a",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39784256327",
+          "created_at": "2026-10-22T13:08:30Z",
+          "updated_at": "2026-10-22T13:13:59Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39605350059,
+          "head_sha": "940bd7c8fb451e5c541dec064a2d23480528ddea",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39605350059",
+          "created_at": "2026-10-21T13:08:16Z",
+          "updated_at": "2026-10-21T13:11:16Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "checkedAt": "2026-10-25T18:01:31.232207+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40199108817,
+          "head_sha": "1bb129beb7b69b4c55a6498756b6c113344f0566",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40199108817",
+          "created_at": "2026-10-25T13:45:53Z",
+          "updated_at": "2026-10-25T14:01:25Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40097956898,
+          "head_sha": "2179e96eae7c557f0dfd097a9384a812bf4be509",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40097956898",
+          "created_at": "2026-10-24T13:23:52Z",
+          "updated_at": "2026-10-24T13:38:30Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39968438961,
+          "head_sha": "e3c7492de2b01ce71ad8d8dc7d80fad6f7c4a613",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39968438961",
+          "created_at": "2026-10-23T14:18:01Z",
+          "updated_at": "2026-10-23T16:00:51Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39796744327,
+          "head_sha": "104f81c699ccbf81ca12273c15ed9838227b9f89",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39796744327",
+          "created_at": "2026-10-22T14:33:52Z",
+          "updated_at": "2026-10-22T15:49:10Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39617689999,
+          "head_sha": "61cf307461a774337f5c2e25d2b564ac40bd03ed",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39617689999",
+          "created_at": "2026-10-21T14:32:29Z",
+          "updated_at": "2026-10-21T15:14:52Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "checkedAt": "2026-10-25T18:01:31.530744+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40194623290,
+          "head_sha": "60be76f20d4384824063afee6f07dd83542e2ce6",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40194623290",
+          "created_at": "2026-10-25T12:46:40Z",
+          "updated_at": "2026-10-25T13:32:06Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40093088678,
+          "head_sha": "e1b3eefd13ce3602cc587c7b5280297e1387aab6",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40093088678",
+          "created_at": "2026-10-24T12:14:07Z",
+          "updated_at": "2026-10-24T12:47:01Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39956642208,
+          "head_sha": "5feee6221927c38055d69f8faffcf1ecbd6c335d",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39956642208",
+          "created_at": "2026-10-23T12:52:31Z",
+          "updated_at": "2026-10-23T14:53:42Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39784901392,
+          "head_sha": "3b29b49495a01418cc4ea2f0c867f930073c08df",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39784901392",
+          "created_at": "2026-10-22T13:13:03Z",
+          "updated_at": "2026-10-22T14:36:26Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39606368831,
+          "head_sha": "1e32749a2309a2b514f26656076975af6755422d",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39606368831",
+          "created_at": "2026-10-21T13:15:13Z",
+          "updated_at": "2026-10-21T15:33:35Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "checkedAt": "2026-10-25T18:01:31.515123+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40183225423,
+          "head_sha": "cee7add210c57dcb8c28d7b199ab2e5a6f131802",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40183225423",
+          "created_at": "2026-10-25T10:03:57Z",
+          "updated_at": "2026-10-25T10:32:01Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40083163695,
+          "head_sha": "392b56ae1347ef708f770cdf1ca681b12d79553e",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40083163695",
+          "created_at": "2026-10-24T09:44:44Z",
+          "updated_at": "2026-10-24T09:50:07Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39939094443,
+          "head_sha": "5b88f28925ca038a33b4fc8552cc8a9145f5e1d3",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39939094443",
+          "created_at": "2026-10-23T10:26:16Z",
+          "updated_at": "2026-10-23T11:06:04Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39763727431,
+          "head_sha": "4284c9fd035ddb4b713d3d3b4f56cd9143ce422d",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39763727431",
+          "created_at": "2026-10-22T10:31:22Z",
+          "updated_at": "2026-10-22T10:34:42Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39585064956,
+          "head_sha": "b70cfef8670a40b5e89ff0f7c0d265c77a7fe5d2",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39585064956",
+          "created_at": "2026-10-21T10:30:18Z",
+          "updated_at": "2026-10-21T10:33:30Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "checkedAt": "2026-10-25T18:01:31.591928+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40191116492,
+          "head_sha": "53b14606e8677b297ab3ed01856012584b65eee0",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40191116492",
+          "created_at": "2026-10-25T11:58:49Z",
+          "updated_at": "2026-10-25T12:31:41Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40090641233,
+          "head_sha": "a09e08a04b21b3c9566ea704363eb81678806628",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40090641233",
+          "created_at": "2026-10-24T11:37:22Z",
+          "updated_at": "2026-10-24T12:36:18Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39950819281,
+          "head_sha": "1892bdeec74b4ecc655f0e3a181bc02d4dcb4e6e",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39950819281",
+          "created_at": "2026-10-23T12:06:08Z",
+          "updated_at": "2026-10-23T13:29:42Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39778088593,
+          "head_sha": "fb9643395951ba9e2da68acb5f9538eee5bb5746",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39778088593",
+          "created_at": "2026-10-22T12:24:32Z",
+          "updated_at": "2026-10-22T13:40:30Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39599330208,
+          "head_sha": "6004c9a28e7a20eba0ae28fd695dca2e138021a4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39599330208",
+          "created_at": "2026-10-21T12:24:23Z",
+          "updated_at": "2026-10-21T14:32:04Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "checkedAt": "2026-10-25T18:01:31.554813+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 37788601032,
+          "head_sha": "3976ea40d5c12e4fd7e27af63bdf064bbe3f88cd",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032",
+          "created_at": "2026-10-08T13:58:09Z",
+          "updated_at": "2026-10-08T14:09:35Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "checkedAt": "2026-10-25T18:01:31.774026+00:00",
+      "latestScheduledRuns": [],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "checkedAt": "2026-10-25T18:01:32.035961+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40212273808,
+          "head_sha": "16c5bde24ebd691f9f44b03d157e85474d88d1ae",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40212273808",
+          "created_at": "2026-10-25T16:33:46Z",
+          "updated_at": "2026-10-25T17:56:30Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40109838312,
+          "head_sha": "16a895e55cd1d8de7c7a17ccd06ed8cf520312d9",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40109838312",
+          "created_at": "2026-10-24T16:04:08Z",
+          "updated_at": "2026-10-24T16:24:58Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39993735401,
+          "head_sha": "b0754186d85542379c3185a45493611e872a84b9",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39993735401",
+          "created_at": "2026-10-23T17:16:35Z",
+          "updated_at": "2026-10-23T17:36:04Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39821557733,
+          "head_sha": "793b818e37250a6c1ae1844223dacdf73d15ff97",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39821557733",
+          "created_at": "2026-10-22T17:19:06Z",
+          "updated_at": "2026-10-22T17:42:29Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39643117324,
+          "head_sha": "ed940b64c140d08c1880b9b293e90f88d8044fcc",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39643117324",
+          "created_at": "2026-10-21T17:21:49Z",
+          "updated_at": "2026-10-21T17:34:24Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [
+        {
+          "id": 40212273808,
+          "head_sha": "16c5bde24ebd691f9f44b03d157e85474d88d1ae",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40212273808",
+          "created_at": "2026-10-25T16:33:46Z",
+          "updated_at": "2026-10-25T17:56:30Z",
+          "run_attempt": 1
+        }
+      ],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "checkedAt": "2026-10-25T18:01:31.943044+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40191027214,
+          "head_sha": "e1e0e9b68de8835fa20423adea9d6b69142fc86b",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40191027214",
+          "created_at": "2026-10-25T11:57:30Z",
+          "updated_at": "2026-10-25T12:29:06Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40090419702,
+          "head_sha": "be7bffe00b2c061c38684c516fe3e2e9d18d1585",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40090419702",
+          "created_at": "2026-10-24T11:34:04Z",
+          "updated_at": "2026-10-24T11:39:10Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39950381274,
+          "head_sha": "31f371818b078ae5ddbe0915e7e891344dcfde70",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39950381274",
+          "created_at": "2026-10-23T12:02:35Z",
+          "updated_at": "2026-10-23T12:18:14Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39777588758,
+          "head_sha": "a450385d3db2521e3c79e01df494d945c3581a2c",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39777588758",
+          "created_at": "2026-10-22T12:20:52Z",
+          "updated_at": "2026-10-22T12:25:53Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 39598671047,
+          "head_sha": "6004c9a28e7a20eba0ae28fd695dca2e138021a4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/39598671047",
+          "created_at": "2026-10-21T12:19:24Z",
+          "updated_at": "2026-10-21T14:07:34Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "checkedAt": "2026-10-25T18:01:32.017684+00:00",
+      "latestScheduledRuns": [
+        {
+          "id": 40204955299,
+          "head_sha": "e909dfc10a3c5b6811e647acea4610a367ce9161",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40204955299",
+          "created_at": "2026-10-25T15:01:19Z",
+          "updated_at": "2026-10-25T15:05:26Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40187819204,
+          "head_sha": "1b3b0d92d1ed11910d910ef02796f9ac187696a4",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40187819204",
+          "created_at": "2026-10-25T11:11:25Z",
+          "updated_at": "2026-10-25T11:12:33Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40131317914,
+          "head_sha": "f593ad93037a914d059237aa97bfa7030ff66249",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40131317914",
+          "created_at": "2026-10-24T20:46:50Z",
+          "updated_at": "2026-10-24T20:47:41Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40115983945,
+          "head_sha": "6e50e73cfbb43b2a8aa6e16828c1ce7e5fed17db",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40115983945",
+          "created_at": "2026-10-24T17:24:37Z",
+          "updated_at": "2026-10-24T17:25:28Z",
+          "run_attempt": 1
+        },
+        {
+          "id": 40100487036,
+          "head_sha": "1f7575b20125a76b071191f7e32fc3ca26d78e53",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40100487036",
+          "created_at": "2026-10-24T13:59:19Z",
+          "updated_at": "2026-10-24T14:00:23Z",
+          "run_attempt": 1
+        }
+      ],
+      "postFixRuns": [
+        {
+          "id": 40204955299,
+          "head_sha": "e909dfc10a3c5b6811e647acea4610a367ce9161",
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40204955299",
+          "created_at": "2026-10-25T15:01:19Z",
+          "updated_at": "2026-10-25T15:05:26Z",
+          "run_attempt": 1
+        }
+      ],
+      "qualification": "Lecture des événements GitHub ; une exécution en attente ou une simple date ne prouve pas le contenu du rapport."
+    }
+  ]
+}

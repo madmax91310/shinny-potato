@@ -66,6 +66,24 @@ class Results(unittest.TestCase):
         self.assertTrue(result['_reportEvidence']['scopeExplicit']);self.assertNotIn('_scopeWarning',result)
     def test_native_payload_untouched(self):
         native={'successes':[{'id':'A'}],'errors':[],'financial':{'value':1,'asOf':'2020-01-01'}};before=copy.deepcopy(native);r=finished(native,plan(('A',)));self.assertEqual(native,before);self.assertEqual(r['financial'],before['financial'])
+    def test_13f_validated_unchanged_filing_is_an_unchanged_source_check(self):
+        p=plan(('investor:manager',));p.update(producer='update-investor-13f',reportStem='investor-observations')
+        native={'checkedAt':'2026-10-25T17:56:22Z','managers':[{'slug':'manager','status':'validated','periodEnd':'2026-06-30','changed':False}]}
+        before=copy.deepcopy(native);r=finished(native,p)['resultContract']['outcomes'][0]
+        self.assertEqual(r['status'],'unchanged-verified');self.assertTrue(r['sourceAttempted'])
+        self.assertEqual(r['periodEnd'],'2026-06-30');self.assertNotIn('asOf',r);self.assertEqual(native,before)
+    def test_13f_missing_or_positive_change_flag_does_not_invent_unchanged(self):
+        p=plan(('investor:manager',));p.update(producer='update-investor-13f',reportStem='investor-observations')
+        for extra in ({},{'changed':True}):
+            with self.subTest(extra=extra):
+                r=finished({'managers':[{'slug':'manager','status':'validated',**extra}]},p)['resultContract']['outcomes'][0]
+                self.assertEqual(r['status'],'succeeded')
+    def test_13f_cache_or_failure_cannot_become_an_unchanged_source_check(self):
+        p=plan(('investor:manager',));p.update(producer='update-investor-13f',reportStem='investor-observations')
+        for status in ('cached','failed'):
+            with self.subTest(status=status):
+                r=finished({'managers':[{'slug':'manager','status':status,'reason':'Retained old filing','changed':False}]},p)['resultContract']['outcomes'][0]
+                self.assertNotIn(r['status'],('succeeded','unchanged-verified'))
     def test_start_report_survives_exception_before_native_output(self):
         with tempfile.TemporaryDirectory()as folder:
             path=Path(folder)/'report.json'

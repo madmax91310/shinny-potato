@@ -1,0 +1,300 @@
+{
+  "counts": {
+    "workflows": 20,
+    "v1Reports": 41,
+    "legacyReportsPreserved": 4,
+    "outcomes": 5361,
+    "statuses": {
+      "not-attempted": 732,
+      "succeeded": 3625,
+      "not-applicable": 8,
+      "cached": 9,
+      "unchanged-verified": 668,
+      "failed": 10,
+      "deferred": 260,
+      "waiting": 49
+    },
+    "technicalErrors": 0
+  },
+  "scope": "Unités de validation natives du producteur ; aucune certification indépendante de chaque scalaire financier. Exécutions ordinaires après #950, choisies pour exercer les contrats ; la publication financière et les exécutions courantes figurent séparément dans le bilan consolidé.",
+  "proofs": [
+    {
+      "workflow": "update-economic-data.yml",
+      "runId": 40204788852,
+      "trigger": "push",
+      "reportsV1": 4,
+      "legacyReportsPreserved": 0,
+      "outcomes": 40,
+      "statuses": {
+        "not-attempted": 30,
+        "succeeded": 10
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788852-contracts.json.gz"
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "runId": 40204788857,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 1,
+      "statuses": {
+        "succeeded": 1
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788857-contracts.json.gz"
+    },
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "runId": 40204788870,
+      "trigger": "push",
+      "reportsV1": 6,
+      "legacyReportsPreserved": 0,
+      "outcomes": 309,
+      "statuses": {
+        "succeeded": 305,
+        "not-applicable": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788870-contracts.json.gz"
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "runId": 40204788880,
+      "trigger": "push",
+      "reportsV1": 2,
+      "legacyReportsPreserved": 1,
+      "outcomes": 674,
+      "statuses": {
+        "cached": 9,
+        "unchanged-verified": 664,
+        "not-attempted": 1
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788880-contracts.json.gz"
+    },
+    {
+      "workflow": "update-practical-sheets.yml",
+      "runId": 40204788902,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 11,
+      "statuses": {
+        "succeeded": 11
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788902-contracts.json.gz"
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "runId": 40204788904,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 86,
+      "statuses": {
+        "succeeded": 86
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788904-contracts.json.gz"
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "runId": 40204788907,
+      "trigger": "push",
+      "reportsV1": 3,
+      "legacyReportsPreserved": 0,
+      "outcomes": 185,
+      "statuses": {
+        "succeeded": 185
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788907-contracts.json.gz"
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "runId": 40204788909,
+      "trigger": "push",
+      "reportsV1": 5,
+      "legacyReportsPreserved": 0,
+      "outcomes": 288,
+      "statuses": {
+        "succeeded": 283,
+        "failed": 4,
+        "not-attempted": 1
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788909-contracts.json.gz"
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "runId": 40204788915,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 7,
+      "statuses": {
+        "succeeded": 6,
+        "not-attempted": 1
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788915-contracts.json.gz"
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "runId": 40204788917,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 9,
+      "statuses": {
+        "succeeded": 9
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788917-contracts.json.gz"
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "runId": 40204788923,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 11,
+      "statuses": {
+        "succeeded": 11
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788923-contracts.json.gz"
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "runId": 40204788924,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 3096,
+      "statuses": {
+        "succeeded": 2577,
+        "not-attempted": 257,
+        "deferred": 260,
+        "failed": 2
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788924-contracts.json.gz"
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "runId": 40204788945,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 35,
+      "statuses": {
+        "succeeded": 35
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788945-contracts.json.gz"
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "runId": 40204788965,
+      "trigger": "push",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 4,
+      "statuses": {
+        "succeeded": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "40204788965-contracts.json.gz"
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "runId": 40204833001,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 3,
+      "outcomes": 56,
+      "statuses": {
+        "not-attempted": 53,
+        "succeeded": 3
+      },
+      "technicalErrors": [],
+      "proofFile": "40204833001-contracts.json.gz"
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "runId": 40204834985,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 2,
+      "legacyReportsPreserved": 0,
+      "outcomes": 57,
+      "statuses": {
+        "not-attempted": 53,
+        "succeeded": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "40204834985-contracts.json.gz"
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "runId": 40204836800,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 4,
+      "legacyReportsPreserved": 0,
+      "outcomes": 232,
+      "statuses": {
+        "succeeded": 5,
+        "not-attempted": 227
+      },
+      "technicalErrors": [],
+      "proofFile": "40204836800-contracts.json.gz"
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runId": 40204838763,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 28,
+      "statuses": {
+        "succeeded": 28
+      },
+      "technicalErrors": [],
+      "proofFile": "40204838763-contracts.json.gz"
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "runId": 40204841756,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 3,
+      "legacyReportsPreserved": 0,
+      "outcomes": 171,
+      "statuses": {
+        "succeeded": 58,
+        "not-attempted": 109,
+        "not-applicable": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "40204841756-contracts.json.gz"
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "runId": 40204955299,
+      "trigger": "schedule",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 61,
+      "statuses": {
+        "waiting": 49,
+        "failed": 4,
+        "succeeded": 4,
+        "unchanged-verified": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "40204955299-contracts.json.gz"
+    }
+  ]
+}

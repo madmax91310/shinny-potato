@@ -1,0 +1,142 @@
+{
+  "checkedAt": "2026-10-25T18:17:50.158472+00:00",
+  "kind": "Actual GitHub run/job subset, no simulated supplier data",
+  "run": {
+    "id": 40212273808,
+    "path": ".github/workflows/update-investor-13f.yml",
+    "head_branch": "master",
+    "event": "schedule",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1,
+    "updated_at": "2026-10-25T17:56:30Z",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40212273808",
+    "created_at": "2026-10-25T16:33:46Z",
+    "head_repository": {
+      "full_name": "madmax91310/shinny-potato"
+    }
+  },
+  "jobs": [
+    {
+      "id": 121243976728,
+      "name": "update",
+      "conclusion": "failure",
+      "started_at": "2026-10-25T17:48:53Z",
+      "completed_at": "2026-10-25T17:56:29Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T17:48:54Z",
+          "completed_at": "2026-10-25T17:48:55Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T17:48:55Z",
+          "completed_at": "2026-10-25T17:49:05Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T17:49:05Z",
+          "completed_at": "2026-10-25T17:49:05Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_investor_refresh.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T17:49:05Z",
+          "completed_at": "2026-10-25T17:49:06Z"
+        },
+        {
+          "name": "Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T17:49:06Z",
+          "completed_at": "2026-10-25T17:56:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T17:56:23Z",
+          "completed_at": "2026-10-25T17:56:24Z"
+        },
+        {
+          "name": "Validate collected observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T17:56:24Z",
+          "completed_at": "2026-10-25T17:56:24Z"
+        },
+        {
+          "name": "Commit validated observations",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 8,
+          "started_at": "2026-10-25T17:56:24Z",
+          "completed_at": "2026-10-25T17:56:26Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-25T17:56:26Z",
+          "completed_at": "2026-10-25T17:56:26Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-25T17:56:26Z",
+          "completed_at": "2026-10-25T17:56:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-25T17:56:27Z",
+          "completed_at": "2026-10-25T17:56:27Z"
+        }
+      ]
+    },
+    {
+      "id": 121243978051,
+      "name": "validate",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T17:48:40Z",
+      "completed_at": "2026-10-25T17:48:39Z",
+      "steps": []
+    },
+    {
+      "id": 121245854360,
+      "name": "deploy",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T17:56:29Z",
+      "completed_at": "2026-10-25T17:56:29Z",
+      "steps": []
+    },
+    {
+      "id": 121245854415,
+      "name": "report-failures",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T17:56:29Z",
+      "completed_at": "2026-10-25T17:56:29Z",
+      "steps": []
+    }
+  ]
+}
