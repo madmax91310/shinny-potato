@@ -1,13 +1,17 @@
 import { COVERAGE_SOURCES, coverageDiscovery } from './radar-coverage.mjs'
+import { OFFER_SOURCES, offerDiscovery, offerSnapshot, compareOfferSnapshots } from './radar-offer-watch.mjs'
+import { INSEE_SEARCH, inseeQuery, inseeDiscovery } from './radar-insee-search.mjs'
 import { CONSUMER_SOURCES, discoverConsumer, parseConsumer } from './radar-consumer.mjs'
 import { editorialExclusion } from '../../src/lib/radar-policy.js'
-import { EXTRA_SOURCES, extraDiscovery, extraDate, extraSummary, tagContent, statisticalPeriod } from './radar-extra-sources.mjs'
+import { EXTRA_SOURCES, extraDiscovery, extraDate, extraSummary, tagContent, statisticalPeriod, creditLogementDiffusion } from './radar-extra-sources.mjs'
 import { housingTopic, housingConventions, qualifyDvfSales } from '../../src/lib/radar-housing.js'
 import { createHash } from 'node:crypto'
 import { parseOfficialListing } from './purchasing-power-sources.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
 import { parseEtfDocument, documentText } from './radar-news.mjs'
 export const PUBLICATION_SOURCES = [
+  ...OFFER_SOURCES,
+  INSEE_SEARCH,
   ...CONSUMER_SOURCES,
   ...COVERAGE_SOURCES,
   ...EXTRA_SOURCES,
@@ -68,7 +72,7 @@ export function discoverPublications(content, source) {
     if (!/<rss\b|<feed\b/i.test(content)) throw new Error('Flux structuré absent')
     for (const [, item] of content.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)) {
       const title = tag(item, 'title')
-      if (statisticalTopic(title)) rows.push({ url: official(tag(item, 'link'), source), title, hint: tag(item, 'pubDate') })
+      if (statisticalTopic(title+' '+tag(item,'description'))) rows.push({ url: official(tag(item, 'link'), source), title, hint: tag(item, 'pubDate') })
     }
   } else if (source.method === 'sitemap') {
     if (!/<urlset\b/i.test(content)) throw new Error('Sitemap officiel absent')
@@ -142,7 +146,6 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     const docId = cleanText(html).match(/Doc ID:\s*(\d{5,12})/)?.[1]
     return { ...base, ...(docId ? { publicationId: `${source.id}:document:${docId}` } : {}), value: title, ...parsed, documentUrl: url, documentHash: hash(html), documentCheckedAt: now.toISOString(), reason: 'Communiqué officiel daté, noms et caractéristiques limités aux associations prouvées.', angle: 'Comparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.' }
   }
-  if (!statisticalTopic(title)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }
   let paragraphs = [...html.matchAll(/<p\b[^>]*class="paragraphe-chapeau[^>]*>([\s\S]*?)<\/p>/gi)].map(match => cleanText(match[1]))
   if (!paragraphs.length && source.host === 'www.insee.fr') paragraphs = [...html.matchAll(/<p\b[^>]*class="paragraphe\s[^>]*>([\s\S]*?)<\/p>/gi)].slice(0,3).map(match => cleanText(match[1]))
   if (source.id === 'drees') paragraphs = [...html.matchAll(/<p\b[^>]*class="fr-text--lead[^>]*>([\s\S]*?)<\/p>/gi)].map(match => cleanText(match[1]))
@@ -160,13 +163,16 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     if(source.id!=='oll')throw error
     summary = tagContent(html,'h1')
   }
-  const metadataOnly = source.id==='credit-logement' || source.id==='oll' && !/[%€]|euros/i.test(summary)
+  const diffusion=source.id==='credit-logement'?creditLogementDiffusion(html):null
+  if(diffusion&&Date.parse(diffusion)>+now)throw Error('Diffusion CSA future ; événement attendu distinct d’une publication parue')
+  const metadataOnly = source.id==='credit-logement' && !diffusion || source.id==='oll' && !/[%€]|euros/i.test(summary)
   if (!summary || !/\d/.test(summary)) throw new Error('Résumé statistique chiffré absent : extraction à adapter')
+  if (!statisticalTopic(title+' '+summary)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }
   // A publication's edition year is not necessarily its statistical reference year.
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
   const year = source.id === 'drees' ? null : statisticalPeriod(title)
   const dataPeriods = years
-  return { ...base, field: 'publication', rule: 'publication', factType: metadataOnly ? 'publication-watch' : 'statistical-publication', ...(source.id==='credit-logement'?{publishedAt:null,sourceDeclaredPublicationDate:publishedAt,publicationDateNote:'La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.'}:{}), referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: 'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
+  return { ...base, field: 'publication', rule: 'publication', factType: metadataOnly ? 'publication-watch' : 'statistical-publication', ...(source.id==='credit-logement'?{publishedAt:diffusion,period:diffusion??base.period,sourceDeclaredPublicationDate:publishedAt,publicationDateNote:diffusion?'Diffusion des résultats explicitement annoncée lors de la conférence ; métadonnée WordPress conservée séparément.':'La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.'}:{}), referencePeriod: year ?? null, dataPeriods, value: summary, summary, evidence: { sourceHash: hash(html), excerpt: summary, method: source.id==='credit-logement'?'Tableau officiel des taux fixes, colonnes et périodes conservées ; diffusion qualifiée seulement par une présentation explicitement datée.':'Paragraphes du chapeau officiel, sans réécriture générative' }, reason: 'Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.', angle: 'Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.' }
 }
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.
@@ -174,9 +180,9 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const started = Date.now(), metrics = { requests: 0, bytes: 0, notModified: 0 }
   const state = structuredClone(previous), errors = [], reports = []
   state.documents ??= {}; state.sources ??= {}
-  const requestContent = async (url, cached, limit = 2500000) => {
+  const requestContent = async (url, cached, limit = 2500000, body = null) => {
     metrics.requests++
-    const response = await request(url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: 'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
+    const response = await request(url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
     if (response.status === 304) { metrics.notModified++; return { unchanged: true } }
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     if (response.url && new URL(response.url).hostname !== new URL(url).hostname) throw new Error('Redirection hors du domaine officiel')
@@ -200,10 +206,10 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     try {
       // Sitemap is large: daily check; RSS and listing every hour.
       if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now) {
-        const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000)
+        const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000,source.method==='insee-search'?inseeQuery(0):null)
         if(result.unchanged && !old.lastSuccessAt)throw Error('Réponse 304 sans inventaire validé conservé')
         if (!result.unchanged) {
-          const rows = await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
+          const rows = offerDiscovery(result.content,source) ?? await inseeDiscovery(result.content,source,discoveryRequest) ?? await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
           report.archiveWarning=rows.archiveWarning??null
           for (const row of rows) {
@@ -223,7 +229,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     state.sources[source.id] = report; reports.push(report)
   }))
   const due = Object.entries(state.documents).filter(([, item]) => !item.listingRejected && (!item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
-    .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
+    .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || (b[1].processingPriority??0)-(a[1].processingPriority??0) || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
   const start=(state.nextSourceIndex ?? 0)%sources.length
   const order=[...sources.slice(start),...sources.slice(0,start)]
@@ -241,11 +247,17 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
       const result = await requestContent(fetchUrl, item, 5000000)
       if (result.unchanged) {
-        if (item.observation) item.status = 'done'
+        if (item.observation || item.offerBaseline) item.status = 'done'
         else if (item.reason) item.status = 'rejected'
         else throw new Error('Réponse 304 sans extraction ou rejet conservé.')
       }
       if (!result.unchanged) {
+        if(source.method==='offer-watch') {
+          const snapshot=offerSnapshot(result.content,source,now)
+          const change=compareOfferSnapshots(item.offerBaseline,snapshot,source,url)
+          if(change){item.observation=change;item.backfill=false;item.previousOfferVersion=item.offerBaseline}
+          item.offerBaseline=snapshot;item.firstObservedAt??=now.toISOString();item.status='done';item.availableAt??=now.toISOString()
+        } else {
         const observation = parsePublication(result.content, source, url, now, item)
         if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
         else {
@@ -254,6 +266,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           const newDatedCorrection=prior && observation.status==='Correction / démenti' && observation.correctionPublishedAt>=item.discoveredAt.slice(0,10) && JSON.stringify(observation.value)!==JSON.stringify(prior.value)
           if(newPublication || newDatedCorrection)item.backfill=false
           observation.backfill=item.backfill??false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (Date.parse(item.availableAt)-Date.parse(item.discoveredAt))/3600000 }
+        }
         item.etag = result.etag; item.lastModified = result.lastModified
         // Search explicitly linked originals in our qualified source domains.
         // Discovery remains separate from confirmation; fetching occurs through
@@ -264,7 +277,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           if(owner && new URL(original).pathname.split('/').filter(Boolean).length>=3 && !/\.(?:pdf|png|jpg)$/i.test(new URL(original).pathname))state.documents[original]??={url:original,source:owner.id,backfill:item.backfill,discoveredAt:now.toISOString(),attempts:0,status:'pending',discoveredVia:url}
         }
       }
-      item.nextAttemptAt = new Date(+now+(source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
+      item.nextAttemptAt = new Date(+now+(source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
     } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
   }
   // Existing first-party publication proofs remain valid: hydrate missing attribution metadata
@@ -298,6 +311,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     const docs = Object.values(state.documents).filter(item => item.source === report.id)
     report.queue = Object.fromEntries(['pending','done','error','rejected'].map(status => [status, docs.filter(item => item.status === status).length]))
     report.extractionStatus=report.queue.error ? 'error' : report.queue.done ? 'validated' : report.queue.pending ? 'pending' : 'no-in-scope-publication'
+    report.silentBaselines=docs.filter(item=>item.offerBaseline&&!item.observation).length
     report.lastExtractionSuccessAt=docs.filter(item=>item.observation).map(item=>item.observation.checkedAt).sort().at(-1)??null
   }
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })

@@ -1,4 +1,4 @@
-import { editorialExclusion, consumerQuality } from './radar-policy.js'
+import { editorialExclusion, consumerQuality, qualifiedOfferChange } from './radar-policy.js'
 import { replicationWordingEvent } from './replication-method.js'
 // Shared by the UI and notifications: collecting a fact does not make it a post.
 export const EDITORIAL_DAYS = 14
@@ -118,17 +118,18 @@ export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES
   const broadEtf = event.field==='announcement' && event.documentHash && event.products?.some(p => p.pea && /Éligible/.test(p.pea) || /(?:MSCI World|All.World|S&P 500|Euro Stoxx 50)/i.test(p.index ?? p.name))
   const household = event.family === 'economie' || event.family === 'pouvoir-achat' && !(event.factType==='consumer-announcement' && ['banques','epargne','frais','etf'].includes(event.topic))
   const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family) || event.factType==='consumer-announcement' && ['banques','epargne','frais'].includes(event.topic)
+  const narrowOffer=event.changeEvidence && !event.changeEvidence.changes?.some(row=>/tenue de compte|liquidit|\bpea\b|livret|carte|courtage|frais de transfert|virement|retrait/i.test(normal(row.before+' '+row.after)))
   const composition = /^(top10|countries:|sectors:)/.test(event.field ?? '')
   const factors = {
-    audience: [household ? 1 : broadEtf ? .7 : savings ? .7 : composition && state === 'ready' ? .65 : .35, broadEtf ? 'Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu' : household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
-    impact: [household || savings ? 1 : broadEtf ? .8 : /ter|pea|fees|price/.test(event.field ?? '') ? .8 : composition && state === 'ready' ? .8 : .3, household ? 'Revenus, budget ou patrimoine' : savings ? 'Conditions concrètes de l’épargne' : composition ? 'Évolution de l’exposition, sans achat ni vente déduit' : 'Caractéristiques du placement'],
+    audience: [narrowOffer ? .35 : household ? 1 : broadEtf ? .7 : savings ? .7 : composition && state === 'ready' ? .65 : .35, narrowOffer ? 'Clause spécialisée ; portée grand public non établie' : broadEtf ? 'Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu' : household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
+    impact: [narrowOffer ? .6 : household || savings ? 1 : broadEtf ? .8 : /ter|pea|fees|price/.test(event.field ?? '') ? .8 : composition && state === 'ready' ? .8 : .3, narrowOffer ? 'Montant modifié mais conséquence large non démontrée' : household ? 'Revenus, budget ou patrimoine' : savings ? 'Conditions concrètes de l’épargne' : composition ? 'Évolution de l’exposition, sans achat ni vente déduit' : 'Caractéristiques du placement'],
     novelty: [type === 'coverage' || type === 'source-revision' || state === 'secondary' ? 0 : 1, type === 'coverage' ? 'Extension de couverture' : type === 'source-revision' ? 'Révision sans nouvelle période' : state === 'secondary' ? 'Variation technique' : 'Publication ou changement documenté'],
     comparison: [household || event.before !== null && event.before !== undefined ? 1 : event.products?.length || event.factType==='consumer-announcement' && event.angle ? .7 : null, household ? 'Permet de situer une situation ou un budget' : event.before !== null && event.before !== undefined ? 'Avant/après conservé avec périmètre' : event.products?.length ? 'Expositions nommées dans le communiqué' : event.factType==='consumer-announcement' && event.angle ? 'Angle pédagogique sourcé ; comparaison avant/après inconnue' : 'Comparaison non documentée'],
   }
   // Publication time takes precedence. A discovery today never rejuvenates an old document.
-  const publication = event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.publishedAt ?? (event.field === 'announcement' ? event.period : null)
+  const publication = qualifiedOfferChange(event,now) ? event.changeEvidence.observedAt : event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.publishedAt ?? (event.field === 'announcement' ? event.period : null)
   const age = publication ? (now-Date.parse(publication))/86400000 : NaN
-  factors.freshness = [Number.isFinite(age) && age >= 0 ? age <= 2 ? 1 : age <= 7 ? .7 : age <= 14 ? .3 : 0 : null, publication ? `Publication : ${publication}` : 'Date de publication inconnue ; détection non substituée']
+  factors.freshness = [Number.isFinite(age) && age >= 0 ? age <= 2 ? 1 : age <= 7 ? .7 : age <= 14 ? .3 : 0 : null, publication ? `${qualifiedOfferChange(event,now) ? 'Contrôle du changement (annonce non datée)' : 'Publication'} : ${publication}` : 'Date de publication inconnue ; détection non substituée']
   const criteria = Object.entries(factors).map(([key, [factor, reason]]) => ({ key, points: factor === null ? 0 : Math.round(rules[key]*factor), maximum: rules[key], unknown: factor === null, reason }))
   const score = criteria.reduce((total, row) => total+row.points, 0), quality = reliability(event,now)
   return { score, criteria, reliability: quality, state, type, priority: quality.usable && state === 'ready' && score >= rules.priority, major: quality.usable && state === 'ready' && score >= rules.major && Number.isFinite(age) && age >= 0 && age <= 2 }
@@ -180,7 +181,7 @@ export function editorialAudience(event) {
 
 export function factualTitle(event) {
   if (event.family === 'economie' && event.unit && event.entity === 'salary-median') return `${event.label} : ${event.afterText} en ${event.period}`
-  if (['statistical-publication','consumer-announcement'].includes(event.factType)) return event.label
+  if (['statistical-publication','publication-watch','consumer-announcement'].includes(event.factType)) return event.label
   const filing = investorFilingType(event)
   if (filing === 'revision') return `${event.label} : relevé révisé pour la même période · ${event.period}`
   if (filing === 'unknown') return `${event.label} : période de déclaration à vérifier`

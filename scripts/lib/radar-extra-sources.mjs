@@ -83,6 +83,13 @@ export function extraDate(html,source,listing={}){
 export function extraSummary(html,source){
   let main=source.id==='credit-logement' ? html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? html : html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]??html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??html.slice(html.indexOf('<h1'))
   main=main.replace(/<(script|style|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi,'')
+  if(source.id==='credit-logement') {
+    const table=[...main.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)].map(m=>m[1]).find(t=>/taux moyen|TAUX FIXES/i.test(clean(t)))
+    if(table) {
+      const rows=[...table.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>[...m[1].matchAll(/<t[hd]\b[^>]*>([\s\S]*?)<\/t[hd]>/gi)].map(c=>clean(c[1])).join(' · '))
+      return `Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\n${rows.join('\n')}`
+    }
+  }
   let paragraphs=[...main.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m=>clean(m[1])).filter(text=>text.length>75&&/\d/.test(text)&&(/[%€]|euros|millions|milliards|m2|m²/i.test(text)||source.family==='etf')&&!/@|cookies|copyright|tous droits/i.test(text))
   if(!paragraphs.length) {
     const tables=[...main.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)].map(m=>m[1]);
@@ -90,6 +97,15 @@ export function extraSummary(html,source){
   }
   if(!paragraphs.length)throw Error(`Résumé chiffré officiel absent (${source.id})`)
   return paragraphs.slice(0,3).join('\n\n')
+}
+export function creditLogementDiffusion(html) {
+  // WordPress datePublished can name the statistical month. Only an explicit
+  // statement that the results were presented on a dated conference qualifies.
+  const text=clean(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??html).normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase()
+  const m=text.match(/(?:temporalites|resultats|analyses)[^.]{0,180}presente[^.]{0,100}conference du (\d{1,2}) ([a-z]+) (20\d{2})/)
+  if(!m||!FR.includes(m[2]))return null
+  const date=`${m[3]}-${String(FR.indexOf(m[2])+1).padStart(2,'0')}-${m[1].padStart(2,'0')}`
+  return Number.isFinite(Date.parse(date))&&new Date(date).toISOString().slice(0,10)===date?date:null
 }
 export function statisticalPeriod(title){
  const t=clean(title).normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase()

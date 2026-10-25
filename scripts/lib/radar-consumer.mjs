@@ -3,7 +3,7 @@ import { OFFICIAL_SOURCES } from '../../src/pages/broker-comparator/evidence.js'
 import { ALLOWED_MEDIA_HOSTS } from '../../src/data/allowed-media.js'
 import { createHash } from 'node:crypto'
 import { cleanText } from './purchasing-power-news.mjs'
-import { editorialExclusion, editorialTopic, normalizeEditorial, RADAR_TOPICS } from '../../src/lib/radar-policy.js'
+import { editorialExclusion, editorialTopic, normalizeEditorial, RADAR_TOPICS, frenchRevolutScope } from '../../src/lib/radar-policy.js'
 
 // Adapters enter the EXISTING durable publications queue. No financial registry
 // write, catalogue requirement, model call or notification side effect here.
@@ -87,7 +87,7 @@ export function parseConsumer(html,source,url,now,listing={}) {
   const paragraphs=plain ? article.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim()).filter(p=>p.length>90&&!/contacts? presse|a propos|à propos/i.test(p)) : [...article.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>cleanText(m[1])).filter(p=>p.length>90&&!/cookies|javascript|abonnez|newsletter|tous droits|politique de confidentialite/i.test(normalizeEditorial(p)))
   const summary=(paragraphs.slice(0,2).join(' ')||listing.description||'').slice(0,700)
   if(summary.length<70)throw Error('Résumé de l’article absent ; page accessible mais extraction non qualifiée')
-  if(source.id==='revolut-news'&&!/france|french|francais/.test(normalizeEditorial(title+' '+summary)))return{rejected:'Annonce Revolut sans portée française documentée',title}
+  if(source.id==='revolut-news'&&!frenchRevolutScope(title,summary))return{rejected:'Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas',title}
   const wording=normalizeEditorial(title+' '+summary)
   const novelty=(Boolean(source.format)&&/deploie|mobilis|maintient.*gratuit|porte a|commercialis|supprim/.test(wording))||/nouve|annonce|desormais|lance|ouvre|s ouvre|etend|evolu|change|hausse|baisse|augment|diminu|premiere fois|depass|arnaqu|en garde|rec(?:eiv|u)|licen[cs]e|integre|corrig|dement|rectificatif/.test(wording)
   const status=/dement|rectificatif|correction|corrige/.test(normalizeEditorial(title))?'Correction / démenti':/proposition de loi|projet de loi|en discussion|pourrait/.test(normalizeEditorial(title))?'Proposition / en discussion':novelty?'Annonce publiée':'Information sans nouveauté établie'
