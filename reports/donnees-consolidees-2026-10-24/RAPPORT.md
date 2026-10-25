@@ -1,88 +1,74 @@
-# Finalisation des données communes — bilan consolidé
+# Données communes — bilan consolidé actualisé
 
-État de la capture : 2026-10-24T20:41:03.560499+00:00. Ce document prolonge #887/#889/#920/#921/#922 et le retrait #923. Le suivi financier reste unique. **L’objectif d’automatisation complète n’est pas atteint ni certifié.** Des réparations ont été livrées et exercées ; des sources et des qualifications restent ouvertes.
+Capture du 2026-10-25T11:01:14.344510+00:00 : code `cee7add210c57dcb8c28d7b199ab2e5a6f131802`, données `1b3b0d92d1ed11910d910ef02796f9ac187696a4`. Le suivi reste celui du 24 octobre, prolongé des corrections et preuves du 25 ; aucun audit concurrent ni catalogue IA n’est créé. Les constats antérieurs gardent leurs preuves datées. **L’automatisation complète reste non démontrée.**
 
-## Résultats concrets
+## Réparations et usages rétablis
 
-| Chaîne | Résultat démontré | Réserve |
-| --- | --- | --- |
-| Annuaires et SoFi | Producteur ordinaire 40111462777 : 21 identités, quatre requêtes mutualisées, validation, enregistrement et publication. SoFi : seuls les espaces consécutifs changent ; société, classe, XNAS, ticker et USD conservés. | Déclenchement manuel ordinaire. Premier cron post-correctif non encore observé. Les neuf preuves de fonds partagées restent conservées. Aucun cours quotidien IA réactivé. |
-| Or Banque mondiale | 40108621544 : acquisition, validation, enregistrement ; données adoptées par une publication ultérieure après l’échec du premier test de calendrier. Valeur publique 4 319 USD/once, moyenne de septembre 2026, rapprochée du registre exact. | L’échec de publication initial n’est pas effacé. Une collecte inchangée renouvelle le contrôle, jamais le mois observé. |
-| INSEE / Pouvoir d’achat / Il y a X ans | Reprise automatique 40110829062 et passage 40115332183 : collecte, validation, enregistrement et publication. Contrôles persistés séparément des périodes ; trois séries de prix atomiques, IRL et SMIC indépendants. | L’or projeté conserve le contrôle Banque mondiale et un derivedAt distinct ; aucune réussite réseau déduite de la projection. |
-| Assurance-vie | 40108578843 : collecte/validation/enregistrement réparés, valeurs réellement adoptées par une publication ultérieure. | Premier échec de publication conservé ; pas de date financière renouvelée sur un simple accès documentaire. |
-| Indices | Neuf requalifications réparées : structure physique distincte de méthode optimisée ; synthétique refusé. Cycles ordinaires 40111859799 et 40117395020 publiés ; 40120104021 exerce le nouveau contrat. | 34 modèles **déjà disponibles** préservés ; pas neuf nouveaux actifs. Des positions ETF restent une approximation explicitement qualifiée, pas l’indice exact. Disponibilité d’un modèle ≠ collecte directe de chaque champ. |
-| Historiques mensuels / enregistrement | Incident initial workflow:update-market-monthly.yml, run 40090641233, étape Commit validated observations. Cycle ciblé 40117402200 : acquisition des identités, validation complète, enregistrement f900480 et données publiées. | Aucun prix sain à retenter : ce cycle ne prouve pas une nouvelle collecte de tous les cours. Sa validation de code restante a été annulée après adoption publique ; le run global n’est pas compté comme réussite. |
-| Publication | #932 reconnaît un préfixe de données déjà servi sur du code inchangé, sans certifier les scripts, workflows ou consommateurs non publiés. Reproduction réelle code2b/dataf900 puis data59a et tests avec véritables dépôts Git isolés. | Les demandes de nouveau code gardent tous leurs contrôles. La première occurrence naturelle du chemin corrigé après publication reste à observer si elle n’est pas documentée dans les preuves finales. |
-| Radar INSEE | 40122424700 : ancienne erreur Indice des prix publié absente ; lecteur commun sans erreur sur les registres consolidés. | Run global partiel : date officielle HANetf absente, HTTP403 et HTTP500 restent distincts. #930 répare HTTP304 et heures inconnues ; ne réutilise pas une date de publication comme contrôle source. |
+[#939](https://github.com/madmax91310/shinny-potato/pull/939) qualifie trois voies Amundi et corrige la conservation erronée d’un ancien niveau quotidien lorsque les mois sont inchangés. [#943](https://github.com/madmax91310/shinny-potato/pull/943) qualifie cinq voies iShares, distingue rendement réinvesti et prix hors distributions, et répare le débordement du libellé Communication dans le classement annuel étroit. Les ajustements sont fournis par l’émetteur, recalés sur une NAV par part à la même date et recoupés avec les calendriers et distributions officiels ; aucune NAV n’est présentée comme cours de bourse.
 
-Les PR #924, #927, #928, #925 et #932 sont fusionnées. #930 est préservée ; #931 complète l’ingestion avant fin de publication, sous la responsabilité du chantier supervision. La version publique d73c560 inclut #931 et #934 ; les parcours finaux et le déploiement réussi 40124897241 sont vérifiés.
+| Part exacte | Instrument existant | Fenêtres annuelles rétablies parmi les 79 | Devise de calcul |
+| --- | --- | --- | --- |
+| FR0011871110 | Amundi PEA Nasdaq-100 | 2021 | EUR |
+| FR0011871128 | Amundi PEA S&P 500 | 2021 | EUR |
+| FR0013416716 | Amundi Physical Gold ETC | 2025 | EUR, NAV native USD |
+| IE00B1XNHC34 | iShares Global Clean Energy | 2020 | EUR, NAV native USD |
+| IE00B2QWCY14 | iShares S&P SmallCap 600 | 2023, 2024, 2025 | EUR, NAV native USD |
+| IE00B4556L06 | iShares Physical Palladium | 2025 | USD |
+| IE00BJ5JP097 | iShares World Financials | 2023 | USD |
+| IE00BJ5JP436 | iShares World Communication Services | 2024 | USD |
 
-## Ce qui a changé dans les producteurs
+Des voies NAV annuelles existaient déjà pour certaines parts ; elles restent distinctes et ne sont pas recomptées comme nouveaux actifs. Pour ces fenêtres du parcours mensuel : calculateur (versement unique et DCA), Performance depuis, comparaison et classement annuel disposent de la voie mensuelle qualifiée. Les sélecteurs, calculs, textes, images et téléchargements concernés ont été exercés. Le classement conserve les couleurs fixes, ex æquo et années complètes. Les règles des portefeuilles et leurs voies NAV annuelles antérieures sont conservées ; aucun nouvel actif ni rôle automatique n’est admis dans ce lot.
 
-Les dates de tentative, contrôle réussi et observation sont séparées. Une lecture locale ou une requalification de cache ne devient pas un contrôle fournisseur. Les rapports déclarent leur périmètre, y compris les reprises ciblées, attentes normales et dérivations. Les identifiants qualification: ne peuvent pas effacer une panne réseau du même indice.
+Pour Il y a X ans, les quatre parts distribuantes utilisent leurs NAV historiques publiées hors distributions et un niveau courant de même convention ; le rendement réinvesti reste réservé aux calculs de performance. Les trois parts Amundi et le Palladium sans revenu utilisent les voies qualifiées correspondantes. Cela ne certifie aucune date quotidienne arbitraire : le produit utilise ses observations mensuelles et bornes réellement disponibles.
 
-L’enregistrement concurrent reconstruit uniquement ses projections déclarées puis rejoue les contrôles financiers. Une entrée source modifiée impose une recollecte ; aucun conflit financier n’est résolu aveuglément. Les runs terminaux annulés/ignorés ne gèlent plus une reprise ; plafonds et temporisations restent inchangés. Les chemins rares non observés en production restent qualifiés comme tels, même si leurs régressions isolées passent.
+Sur les **79 fenêtres**, le bilan passe de **52 refusées / 27 qualifiées** à **42 refusées / 37 qualifiées**, sur **25 parts** disposant d’au moins une de ces fenêtres qualifiées, contre 17 avant cette reprise. Les 79 causes originales sur 50 parts restent ouvertes. Les 90 comparaisons et 175 périodes non comparables antérieures restent conservées, sans seuil modifié. Les pièces et consommations courantes sont séparées dans [les 79 lignes](reconciliation-79-ecarts.csv).
 
-Un test calendaire dépendant de données vivantes a été remplacé par une fixture de date fixe ; les vrais contrôles 13F et offres restent exécutés. Aucun seuil de fraîcheur ou de qualité financière n’est augmenté.
+**Refus supplémentaire hors des 79 : Palladium, décembre 2014.** Les composants NAV et rendement officiels ne se rapprochent pas en unités. Seules les fenêtres qui utilisent ce mois sont refusées, notamment les années nécessitant cette borne. Les mois indépendamment qualifiés, dont 2025, restent disponibles. Un contrôle source réussi ne supprime pas cette qualification manquante. Une récupération ultérieure prouvée peut lever la restriction : le producteur enregistre aussi les ensembles de restrictions explicitement vides.
 
-## Matrice et limites de preuve
+## HSBC : explication, idempotence et limite
 
-La [matrice](matrice-donnees-usages.csv) rapproche **31712 contrats logiques champ/série × outil**, **23 outils consommateurs**, **3544 identifiants de profils** et **671 ISIN distincts**. Les profils contiennent alias et variantes : ne pas les lire comme autant d’instruments économiques. Deux autres entrées applicatives sont la supervision et Dilemme, dont les hypothèses éditoriales ne constituent pas des données vivantes à collecter.
+Les rapports fiscaux de la part IE00B4K6B022 publient 0,2214 EUR au 01/02/2024 et 1,2623 EUR au 08/08/2024 sans libeller explicitement le détachement. Deux sauts du fournisseur reproduisent chacun 1,2623 EUR, aux 01/08 et 08/08. Les avis publics Euronext comprennent un effet au 01/08 et deux avis au 08/08 ; l’annulation ou le remplacement du premier n’est pas démontré.
 
-Le contrôle automatique des preuves classe **0 A, 27987 B et 3725 non applicables** dans cette capture. **Ce n’est pas un taux réel d’automatisation.** Il exige une correspondance fine entre valeur présente, propriétaire du fichier dans la version exécutée, contrôle source ciblé, fraîcheur et reçu publié. Les journaux hérités ne permettent pas tous cette jointure. Les chaînes exercées du tableau précédent sont des preuves séparées ; leur succès global ne certifie pas tous les champs du fichier.
+| Recherche contrefactuelle, jamais appliquée | Rendement 2024 | Résidu face au NAV arrondi 11,6 % | Deuxième application |
+| --- | --- | --- | --- |
+| Retrait du facteur du 01/08 | 11,721920317 % | +0,121920317 point | Aucun changement |
+| Retrait du facteur du 08/08 | 11,599027126 % | −0,000972874 point | Aucun changement |
 
-La règle refuse notamment qu’un reçu global de publication de l’or certifie 3M, ou qu’un succès annuaires du même workflow certifie des prix non tentés. Une qualification locale, un simple label, des poids inconnus ou un champ annoncé sans valeur ne valent pas preuve financière. Les dates non redémontrées sont explicitement déclarées comme dates du registre ; une tentative globale n’est pas attribuée à chaque champ.
+L’égalité approchée avec le NAV ne décide pas quel facteur est erroné. La série officielle du portail HSBC comporte 4 269 observations dans un contexte XPAR/EUR, mais est libellée « Price », sans qualification suffisante NAV/rendement ; elle n’est pas raccordée comme substitut. Restent à prouver : détachement exact, relation entre avis, nature de Price et bornes de valorisation. [Calcul et hypothèses](preuves/autonomie-commune/hsbc-ajustement-2024.json), [avis publics](preuves/autonomie-commune/hsbc-notices-qualification-20261025.json), [série du portail](preuves/autonomie-commune/hsbc-portail-qualification-20261025.json).
 
-**B reste du travail non résolu** : absence de source, qualification financière, raccordement, fraîcheur ou preuve incomplète. Un B documentaire n’est pas une valeur fausse ni une nouvelle panne. Les données valides gardent leurs dates et les usages restent soumis à leurs contrôles existants ; seules les fenêtres démontrées non fiables sont refusées. Les blocages effectivement identifiés remontent via les contrats des producteurs et les lacunes nécessaires de Données à revoir. La réconciliation fine de tous les anciens journaux n’est pas achevée ; elle n’est pas présentée comme un succès fournisseur.
+## Matrice, pannes et preuves mutualisées
 
-La matrice contient unités, devises, méthodes, périodes, sources, contrôles, tentatives observées, correction attendue et preuve de publication. Les [chaînes](chaines-donnees.csv) mutualisent les références ; les [commandes des producteurs](producteurs-commandes.csv) donnent les scripts et appels déclarés, sans confondre déclaration et exécution.
+Le dénominateur courant est **31,718 contrats champ/série × outil**, **23 outils financiers**, **3,544 profils/identifiants** et **671 ISIN**. Les profils, alias et couples outil ne sont pas des actifs uniques. La [matrice](matrice-donnees-usages.csv) et le [bilan](matrice-bilan.json) distinguent les valeurs présentes des preuves fines jointes au producteur, au blob publié et au consommateur.
 
-## Les 79 divergences et usages financiers
+| Nature du diagnostic dans cette capture | Contrats |
+| --- | ---: |
+| non applicable | 3,725 |
+| preuve documentaire ou qualification incomplète | 27,946 |
+| raccordement manquant | 39 |
+| défaut réel de donnée ou de collecte | 8 |
 
-**79 → 79 cas ouverts sur 50 parts**. Les 90 comparaisons d’origine sur 53 parts et les 175 périodes non comparables sont conservées. Les 72 preuves quotidiennes déjà acquises et sept absences ne deviennent pas des causes expliquées.
+Cette classification ne certifie pas que tous les contrats documentaires fonctionnent : une qualification non démontrée reste ouverte. En particulier, un B ne devient ni panne certaine ni réussite automatique. Les fenêtres contestées et leurs causes financières restent suivies séparément, sans bloquer toutes les périodes d’une part.
 
-Les **27 fenêtres NAV distinctes sur 17 parts** restent qualifiées ; les **52 fenêtres de cotation contestées** restent refusées pour les usages concernés. Les périodes valides indépendantes restent disponibles. Les 79 lignes conservent outils, périodes, conventions, consommation initiale et pièce manquante. Une NAV fiable ne répare pas l’ancienne cotation.
+Les défauts de collecte ciblés dans cette vue concernent les compositions intégrales WisdomTree : quatre sources refusées et plusieurs consommateurs pour une même panne, pas une panne par champ. Les [contrôles mutualisés](collectes-controles.csv) regroupent workflow, exécution, rapport et liste exacte d’identifiants observés ; une portée de champs absente reste inconnue. Les succès d’un producteur entier et les consultations de cache ne prouvent pas tous ses champs.
 
-HSBC IE00B4K6B022 : rapports fiscaux officiels 2023/2024 retrouvés, distributions de 0,2214 EUR le 01/02/2024 et 1,2623 EUR le 08/08/2024. L’ajustement supplémentaire Yahoo du 01/08 reproduit le facteur de dividende à 1,35e-7 près : **2,7610055 points** expliqués ; résidu **0,121920317 point** face à 11,6 % NAV. Le cas reste ouvert. Aucun dividende ou prix de production supprimé ; PDF, empreintes et calcul reproductible conservés.
+## Exécutions, publication et limites
 
-ABTC conserve ses questions dates/devise/split. PALAT conserve la distinction dernier échange/clôture de valorisation. Les neuf bornes brutes Euronext déjà recoupées ne prouvent pas les ajustements ou les bornes NAV. Mining et Aerospace gardent leurs voies indépendantes ; aucune réparation de leurs anciennes cotations n’est annoncée.
+Les preuves GitHub et parcours réellement publics sont dans [les exécutions](preuves/reprise-20261025/github-validations.json) et [les consommateurs](preuves/reprise-20261025/consommateurs-publics.json). Elles distinguent tests isolés, collecte réelle dans GitHub, lancement manuel/push, passage planifié et adoption effective des valeurs. Les nouvelles données des producteurs ordinaires doivent être rapprochées des empreintes publiques ; une étape verte seule ne vaut pas publication.
 
-## Limites précises restantes
+La dernière liste des événements planifiés observables est conservée dans les preuves. Aucun premier cron post-correctif absent de cette liste n’est revendiqué. Les passages ordinaires lancés manuellement ou par push restent nommés comme tels. L’ancien échec mensuel après changement concurrent des entrées est conservé : le garde impose une nouvelle collecte, sans autoriser un écrasement périmé. Les dates de contrôle et de donnée ne sont pas confondues.
 
-- Copper et quatre compositions intégrales WisdomTree : voie officielle autorisée exploitable depuis GitHub encore nécessaire ; pas de nouveaux essais identiques 403 ni de recouvrement complet inventé.
-- PEA IE00B0M62S72 en conflit, IE0003R87OG3 inconnu : aucune conversion de l’inconnu en booléen par défaut.
-- FR0007054358 : continuité juridique entre 2001 et 2018 non démontrée ; périodes NAV annuelles 2020–2025 préservées.
-- Compositions économiques exactes, identités de positions, chiffres vivants non typés et politiques non qualifiées : reliquat conservé. Panier de substitution, top10 et positions complètes restent distincts, sans renormalisation silencieuse.
-- SCPI : échéance non annoncée = limite documentaire/attente normale. Délai interne de surveillance distinct de la publication émetteur ; aucune date inventée.
-- Conditions de réutilisation : inconnues conservées ; HTTP200 ne constitue pas une licence.
-- Preuves fines : certains corps d’artefacts sont inaccessibles depuis cet espace (403) ; métadonnées, captures disponibles et raisons de non-vérification conservées. Une lecture de code ou un test local ne devient pas une collecte fournisseur.
+Le run mensuel 40178244234 a effectivement contrôlé 665 séries ; huit disposent d’un périmètre de champs explicitement déclaré dans ce rapport, les autres périmètres de champs restent inconnus. Son acquisition et sa validation ont réussi, mais l’enregistrement a échoué après #945 : ces sorties ne sont pas déclarées publiées. Le correctif #946 traite les quatre lecteurs Radar indépendants et maintient reconstruction et revalidation ; La reprise complète 40181551320 a réussi auparavant : collecte réelle, build, enregistrement 0f44f94 et publication. Elle prouve la reprise, sans prétendre exercer une collision post-#946. Le correctif #946 est fusionné au commit 52f59a8 ; ses 30 scénarios Git et sa CI sont verts, mais une nouvelle collision réelle Radar n’a pas été provoquée en production.
 
-## Inventaires, actions et périmètre supprimé
+Le contrôle Healthcare a réellement vérifié les caractéristiques et la cotation Paris/EUR ; l’ancienne preuve London/USD reste datée, puisque la réponse officielle actuelle ne l’expose plus. Le run global partiel n’est pas qualifié de réussite générale. Le collecteur ETF peut également conserver son incident sectoriel CSPX lorsque seule la voie de repli déjà qualifiée fonctionne ; aucun seuil n’est relâché.
 
-Le suivi garde **8 600 origines sur 8 600**, 90 comparaisons et 19 actions. Statut des actions : **10 corrigées, 5 partielles, 1 bloquée, 1 déjà résolue et 2 périmètres supprimés**. L’ancien passage 12→11 venait de P2-04 rouvert pour stockage/validation IA ; après #923, P2-04 et P1-01 sortent du périmètre, sans être renommés données réparées.
+Les limites restantes comprennent : 42 fenêtres de ces 79 encore refusées ; sept preuves quotidiennes non qualifiées ; Copper et quatre compositions complètes WisdomTree sans voie autorisée démontrée dans GitHub ; deux états PEA inconnus/conflits ; continuité FR0007054358 non prouvée. Une échéance SCPI non annoncée reste une attente documentaire normale. Les composants économiques incomplets, les chiffres vivants et modules non vérifiés gardent leur motif dans le reliquat ; cette livraison ne les certifie pas.
 
-Les 138 références de modules du suivi comprennent neuf suppressions de périmètre et 92 vérifications en attente au sens du suivi. Les 119 lignes du premier inventaire et le reliquat initial de 81 modules restent traçables. Rôle réseau, orchestrateur ou auxiliaire et limites de branches restent dans [modules-suivis.csv](modules-suivis.csv). Les compteurs finaux du [bilan](bilan.json) font référence si les captures suivantes ajoutent des incidents.
+## Suivi et non-régressions
 
-Les **25 workflows planifiés** sont présents. Le registre comprend désormais **24 entrées : 23 planifiées et Deploy Pages**. Deux planifiés restent hors de ce registre : publication du moniteur et sonde Bitcoin. Avec Publish validated data non planifié, la table décrit **27 workflows** de collecte, contrôle, pilote ou publication. Les 20 lignes classées collecte/validation ne sont pas 20 fournisseurs ni une certification de toutes leurs branches. Le détail initial 25/22 et le détail actuel 25/24 sont conservés séparément.
+Les 8 600 origines restent réconciliées. Les 19 actions demeurent : **10 corrigées, 5 partielles, 1 bloquée, 1 déjà résolue et 2 périmètres supprimés**. Le passage antérieur 12→11 venait de P2-04 rouvert pour stockage/validation IA ; après #923, P2-04 et P1-01 sont retirées comme périmètre supprimé, sans être renommées données réparées. Les nouveaux usages NAV ne ferment pas globalement P0-02.
 
-Portefeuilles IA reste supprimé ; d7ab632 et la fusion #923 sont ancêtres de master. Aucun catalogue, moteur, cours, export, transaction ou workflow exclusif n’est restauré. Les trois utilitaires historiques restent inactifs. Sources, identités et historiques partagés sont conservés.
+Les 25 workflows communs planifiés sont préservés ; le registre de supervision contient 24 entrées (23 planifiées et Pages). Deux planifiés sont hors de ce registre : publication du moniteur et sonde Bitcoin ; avec la publication validée non planifiée, la table décrit 27 workflows, et non 27 fournisseurs. Les références de modules et vérifications non démontrées sont conservées dans le suivi.
 
-## Tests, production et procédure
+Les corrections #936/#937/#938 sont intégrées, avec les changements concurrents #940/#941/#942/#944/#945 ; #946 est fusionné et #947 est laissé à son propriétaire Radar. Les registres communs ne changent que pour les huit instruments qualifiés ; les autres actifs et règles de portefeuille restent préservés. Aucun élément exclusivement Portefeuilles IA n’est restauré. Les 82 téléchargements PNG des outils financiers en production sont documentés dans preuves/reprise-20261025/consommateurs-publics.json ; les 84 images incluent deux captures supplémentaires. Les tests couvrent absence de changement, observation hors ordre, fenêtres invalides/valides, devises et conventions, double dividende, restrictions partielles, reprise et rendu/export. Les builds gardent les budgets et 4 274 certificats de champs. Les scénarios synthétiques sont séparés des collectes fournisseur.
 
-1 000 tests Python du lot source réussis ; 104 tests de supervision lors de l’intégration, 16 tests ciblés de matrice et 14 du suivi. Les premiers trois échecs OCR étaient dus au modèle français absent ; la suite complète a été rejouée avec ce modèle. Ne pas additionner les suites recouvrantes comme des tests uniques.
-
-Les gates complets #924/#927/#928/#925/#932 et les builds associés sont consignés dans les preuves. Les scénarios isolés couvrent panne, vide, changement de structure, résultat partiel, absence de changement, maintien des dates, observation hors ordre, conflit Git, reprise et frontières de calendrier. Aucun défaut fournisseur n’a été provoqué en production.
-
-Parcours publics : neuf indices, 18 téléchargements PNG correspondant à l’aperçu sur 390/1280 pixels ; or, Pouvoir d’achat, assurance et retrait IA contrôlés. Les captures indiquent leur version, sans interception. Les contrôles du code final et les captures ultérieures complètent ces preuves ; un test antérieur n’est pas présenté comme portant sur une version future.
-
-Une commande de nettoyage de 40117402200 a continué après un assert d’égalité trop strict : le site avait déjà avancé de dataf900 à data59a. L’écart de procédure est consigné. Vérification immédiate : f900 ancêtre de 59a, trois blobs inchangés, identité conforme au manifeste public ; seules les validations restantes ont été annulées après réussite collecte/enregistrement/publication. Ce run global n’est jamais compté comme réussite. Le nouveau sélecteur utilise le préfixe et la frontière de code ; aucun gate du nouveau code n’est supprimé.
-
-**Publication de la capture : code `d73c56031078c11994644eaf53b8728159750698`, données `d73c56031078c11994644eaf53b8728159750698`**, build `2026-10-24T19:47:32Z`. Le script du rapport extrait les registres depuis ce commit publié, en lecture seule ; les projections ne se certifient pas elles-mêmes. Les corrections fusionnées après cette version restent « à vérifier en production » jusqu’à leur capture effective.
-
-## Coordination finale
-
-Les PR concurrentes #936 (Radar) et #937 (supervision) ont été rapprochées avant cette livraison. Le présent lot final ne modifie que le suivi et les preuves ; aucun fichier de leurs mécanismes en cours n’est réécrit. Leurs évolutions non publiées ne sont pas comptées dans la capture d73c560.
-
-## Téléchargements séparés
-
-[Livraison](LIVRAISON.md) · [Matrice donnée × outil](matrice-donnees-usages.csv) · [Chaînes](chaines-donnees.csv) · [Producteurs](producteurs-commandes.csv) · [Bilan par outil](bilan-par-outil.csv) · [Suivi unique](suivi-consolide.csv) · [19 actions](statut-19-actions.csv) · [79 divergences](reconciliation-79-ecarts.csv) · [Reliquat](restant-a-verifier.csv) · [Bilan](bilan.json).
+[Livraison](LIVRAISON.md) · [Matrice](matrice-donnees-usages.csv) · [Chaînes](chaines-donnees.csv) · [Contrôles mutualisés](collectes-controles.csv) · [Suivi unique](suivi-consolide.csv) · [19 actions](statut-19-actions.csv) · [79 divergences](reconciliation-79-ecarts.csv) · [Reliquat](restant-a-verifier.csv).

@@ -168,5 +168,61 @@
       "preuves/autonomie-commune/publication-prefixe-reproduction.json",
       "scripts/test-pages-snapshot.mjs"
     ]
+  },
+  {
+    "id": "correction:amundi-trois-voies-nav",
+    "axe": "fiabilité et raccordement",
+    "type": "voie indépendante qualifiée",
+    "donnees": "Trois parts existantes et trois fenêtres restaurées ; unités par part, revenus capitalisés et conversions explicites ; source ordinaire et parcours publics vérifiés. Les causes des cotations originales restent ouvertes.",
+    "probleme": "Fenêtres mensuelles refusées sans voie qualifiée active.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/pull/939",
+      "preuves/reprise-20261025/collecte-production-huit-nav.json",
+      "preuves/reprise-20261025/fenetres-79-publiees.json"
+    ]
+  },
+  {
+    "id": "correction:ishares-cinq-voies-nav",
+    "axe": "fiabilité et raccordement",
+    "type": "voie indépendante qualifiée",
+    "donnees": "Cinq parts existantes, sept fenêtres restaurées ; séries officielles de rendement, distributions et devises recoupées ; prix NAV hors distributions séparés pour les quatre distribuantes. Décembre 2014 Palladium reste refusé.",
+    "probleme": "Fenêtres contestées encore utilisées comme seule voie mensuelle.",
+    "productionValidated": true,
+    "preuves": [
+      "https://github.com/madmax91310/shinny-potato/pull/943",
+      "preuves/reprise-20261025/collecte-mensuelle-github-cinq-nav.json",
+      "preuves/reprise-20261025/collecte-production-huit-nav.json",
+      "preuves/reprise-20261025/fenetres-79-publiees.json"
+    ]
+  },
+  {
+    "id": "correction:renouvellement-nav-mois-inchanges",
+    "axe": "collecte et actualisation",
+    "type": "correction de chaîne commune",
+    "donnees": "Les nouveaux niveaux quotidiens et leurs preuves restent conservés lorsque les mois sont inchangés ; observations hors ordre refusées même après recalage. Prix/date avancés testés en isolation ; renouvellement réel de preuve et consommation publiés.",
+    "probleme": "Une ancienne observation pouvait remplacer la nouvelle NAV validée lorsque les points mensuels étaient identiques.",
+    "productionValidated": true,
+    "preuves": [
+      "scripts/test_monthly_control_renewal.py",
+      "https://github.com/madmax91310/shinny-potato/pull/939",
+      "https://github.com/madmax91310/shinny-potato/pull/943",
+      "preuves/reprise-20261025/palladium-reponse-nouvelle-memes-valeurs.json",
+      "preuves/reprise-20261025/reprise-mensuelle-enregistree.json"
+    ]
+  },
+  {
+    "id": "correction:enregistrement-mensuel-lecteurs-radar",
+    "axe": "enregistrement et publication",
+    "type": "correction de chaîne commune",
+    "donnees": "Indépendance limitée aux quatre fichiers Radar de #945 ; reconstruction et revalidation obligatoires. Correction en PR #946, pas encore démontrée par une reprise ordinaire publiée.",
+    "probleme": "Échec du run 40178244234 après modification concurrente de lecteurs Radar sans changement des entrées de collecte.",
+    "productionValidated": false,
+    "preuves": [
+      "scripts/test_observation_rebase.py",
+      "https://github.com/madmax91310/shinny-potato/pull/946",
+      "https://github.com/madmax91310/shinny-potato/actions/runs/40178244234"
+    ],
+    "verification": "Correctif #946 fusionné, 30 scénarios Git isolés et CI verte ; aucune collision Radar réelle post-correctif observée. La reprise complète 40181551320 a réussi avant #946."
   }
 ]

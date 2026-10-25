@@ -1,0 +1,6185 @@
+{
+  "checkedAt": "2026-10-25T08:52:05.606164+00:00",
+  "scope": {
+    "requestedIds": [
+      "ethereum",
+      "stoxx600",
+      "sp500",
+      "msciWorld",
+      "nasdaq100",
+      "soxx",
+      "silver",
+      "apple",
+      "microsoft",
+      "broadcom",
+      "tesla",
+      "msciEmerging",
+      "msciWorldSmallCap",
+      "msciAcwiImi",
+      "msciWorldExUsa",
+      "msciAcwi",
+      "berkshire",
+      "asml",
+      "costco",
+      "mcdonalds",
+      "airliquide",
+      "schneider",
+      "hermes",
+      "loreal",
+      "intel",
+      "paypal",
+      "cac40",
+      "lvmh",
+      "nvidia",
+      "amazon",
+      "google",
+      "meta",
+      "nestle",
+      "sap",
+      "visa",
+      "netflix",
+      "cocacola",
+      "euroMoney",
+      "euroGovShort",
+      "euroGov13",
+      "globalBondEur",
+      "euroInflationBond",
+      "euroCorporateBond",
+      "euroHighYieldBond",
+      "etfImie",
+      "etfVwce",
+      "etfEqualWeight",
+      "etfMinVol",
+      "etfWqdv",
+      "etfTdiv",
+      "etfEpra",
+      "etfCmod",
+      "etfSemi",
+      "etfLock",
+      "etfAvantisSmallValue",
+      "etcPlatinum",
+      "etcPalladium",
+      "etf_water_ishares",
+      "etf_agribusiness_ishares",
+      "etf_world_staples",
+      "etf_world_discretionary",
+      "etf_world_energy",
+      "etf_world_communication",
+      "etf_private_equity_ishares",
+      "etf_timber_ishares",
+      "etfIndustrials",
+      "etf_clean_energy",
+      "etf_financials",
+      "etf_gold_miners",
+      "etf_health",
+      "etf_infrastructure",
+      "etf_momentum",
+      "etf_quality",
+      "etf_robotics",
+      "etf_smallcap",
+      "etf_value",
+      "etfWorldMaterials",
+      "etfHealthcareInnovation",
+      "etfWorldUtilities",
+      "etfCloudWisdomtree",
+      "etfWorldMultifactor",
+      "etfIbondsEuro2028",
+      "etcSilverPhysical",
+      "etfSilverMiners",
+      "etfLifeStrategy20",
+      "etfLifeStrategy40",
+      "etfLifeStrategy60",
+      "etfLifeStrategy80",
+      "etfEmSmallCap",
+      "etfCopperMiners",
+      "etfEuropeConstruction",
+      "etfWorldTech",
+      "etfAiBigData",
+      "etfWorldExUs",
+      "etfEmExChina",
+      "walmart",
+      "oracle",
+      "salesforce",
+      "amd",
+      "qualcomm",
+      "texas-instruments",
+      "applied-materials",
+      "lam-research",
+      "micron",
+      "ibm",
+      "servicenow",
+      "intuit",
+      "palantir",
+      "goldman-sachs",
+      "bank-of-america",
+      "morgan-stanley",
+      "blackrock",
+      "american-express",
+      "charles-schwab",
+      "chevron",
+      "conocophillips",
+      "abbvie",
+      "merck",
+      "eli-lilly",
+      "abbott",
+      "thermo-fisher",
+      "ge-aerospace",
+      "honeywell",
+      "siemens",
+      "allianz",
+      "munich-re",
+      "deutsche-telekom",
+      "deutsche-boerse",
+      "airbus",
+      "safran",
+      "dassault-systemes",
+      "essilorluxottica",
+      "axa",
+      "bnp-paribas",
+      "santander",
+      "iberdrola",
+      "inditex",
+      "ferrari",
+      "infineon",
+      "adidas",
+      "bmw",
+      "bayer",
+      "danone",
+      "samsung",
+      "sk-hynix",
+      "thales",
+      "legrand",
+      "saint-gobain",
+      "michelin",
+      "novo-nordisk",
+      "novartis",
+      "astrazeneca",
+      "abb",
+      "sp-global",
+      "moodys",
+      "intuitive-surgical",
+      "deere",
+      "palo-alto-networks",
+      "linde",
+      "tsmc",
+      "sony",
+      "toyota",
+      "nintendo",
+      "tencent",
+      "hd",
+      "low",
+      "sbux",
+      "cl",
+      "mdlz",
+      "syk",
+      "unp",
+      "lmt",
+      "rsg",
+      "adp",
+      "adi",
+      "nem",
+      "etn",
+      "tt",
+      "regn",
+      "vrtx",
+      "zts",
+      "msci",
+      "fds",
+      "cdns",
+      "etfAmundiWater",
+      "etfAmundiLuxury",
+      "etfLgArtificialIntelligence",
+      "etfLgBattery",
+      "etfUsaSmallValue",
+      "etfWorldMidEqual",
+      "etfEmValue",
+      "etfEuroUltrashort",
+      "etfWorldMaterialsDws",
+      "etfIE00B4L5Y983",
+      "etfFR0013411998",
+      "etfIE00B53L3W79",
+      "etfIE00B5BMR087",
+      "etfIE00B579F325",
+      "etfIE00B42NKQ00",
+      "etfCH0454664001",
+      "etfLU1931975079",
+      "etfIE00BFZPF546",
+      "etfIE00BM67HK77",
+      "etfIE00BK95B138",
+      "etfIE0007Y8Y157",
+      "etfIE00B4JNQZ49",
+      "etfFR0013412012",
+      "etfFR0011550193",
+      "etfIE00BYPLS672",
+      "etfFR0013412004",
+      "etfFR0014017NX3",
+      "etfFR001400S9V0",
+      "etfIE00BYTRR863",
+      "etfIE00B5M1WJ87",
+      "etfFR001400U5Q4",
+      "etfIE00BZCQB185",
+      "etfFR0013380607",
+      "etfIE00BMW42413",
+      "etfIE00B4WXJJ64",
+      "etfIE000DQLYVB9",
+      "etfFR0013412038",
+      "etfIE00BK5BCH80",
+      "etfIE00BJ38QD84",
+      "etfLU2970735911",
+      "etfIE0003UVYC20",
+      "etfIE00B40B8R38",
+      "etfLU1737652823",
+      "etfIE00B6YX5D40",
+      "etfIE000M7V94E1",
+      "etfFR0010342592",
+      "etfIE00BZ163G84",
+      "etfIE00BKPSFC54",
+      "etfIE000RDRMSD1",
+      "etfIE00B8GKDB10",
+      "etfLU1834988518",
+      "etfIE00B2NPKV68",
+      "etfIE00B43HR379",
+      "etfIE00BYWQWR46",
+      "etfIE00B4KBBD01",
+      "etfFR001400ZGO4",
+      "etfIE00BK5BR733",
+      "etfIE00B5W4TY14",
+      "etfLU1834983550",
+      "etfIE00BZ56SW52",
+      "etfIE00BYXG2H39",
+      "etfIE000YYE6WK5",
+      "etfIE00BDFBTQ78",
+      "etfIE00B3T9LM79",
+      "etfIE00BDFL4P12",
+      "etfIE000YU9K6K2",
+      "etfIE00BKPX3K41",
+      "etfLU1834986900",
+      "etfIE00BK5BR626",
+      "etfIE00B3WJKG14",
+      "etfFR0013412020",
+      "etfIE0000N55FP4",
+      "etfIE00BM8R0J59",
+      "etfIE00B9CQXS71",
+      "etfIE00B6R52259",
+      "etfFR0010755611",
+      "etfFR0011440478",
+      "etfFR0011869320",
+      "etfFR0011871110",
+      "etfFR0011871128",
+      "etfIE00B1FZS350",
+      "etfIE00B1FZS913",
+      "etfIE00B44Z5B48",
+      "etfIE00B4L5YX21",
+      "etfIE00B52MJY50",
+      "etfIE00BKM4GZ66",
+      "etfLU1681043599",
+      "etfLU1681045370",
+      "etfLU1681047236",
+      "etfNL0009690239",
+      "etfIE00BF3N7094",
+      "etfDE000A27Z304",
+      "etfGB00BLD4ZL17",
+      "etfIE0002XZSHO1",
+      "etfIE00B469F816",
+      "etfIE00B4ND3602",
+      "etfIE00B53SZB19",
+      "etfIE00BJ5JP659",
+      "etfFR0010524777",
+      "etfGB00BJYDH287",
+      "etfGB00BLD4ZM24",
+      "etfJE00B1VS3770",
+      "etfFR0013416716",
+      "roche",
+      "ubs",
+      "zurich",
+      "swiss-re",
+      "bbva",
+      "unilever",
+      "diageo",
+      "relx",
+      "lseg",
+      "rolls-royce",
+      "bae-systems",
+      "rheinmetall",
+      "dhl",
+      "basf",
+      "enel",
+      "alibaba",
+      "jd",
+      "meituan",
+      "xiaomi",
+      "byd",
+      "catl",
+      "keyence",
+      "hitachi",
+      "mitsubishi-electric",
+      "tokyo-electron",
+      "advantest",
+      "mitsubishi-corp",
+      "softbank-group",
+      "recruit",
+      "reliance",
+      "hdfc-bank",
+      "icici-bank",
+      "infosys",
+      "tcs",
+      "dbs",
+      "csco",
+      "arista",
+      "dell",
+      "crowdstrike",
+      "fortinet",
+      "snps",
+      "klac",
+      "uber",
+      "airbnb",
+      "cme",
+      "ice",
+      "pfe",
+      "amgn",
+      "gilead",
+      "stockAN8068571086",
+      "etfIE0008471009",
+      "stockCH0038863350",
+      "stockCH0114405324",
+      "stockDE0007164600",
+      "stockFR0000120271",
+      "stockFR0000120578",
+      "stockFR0000124141",
+      "stockFR0000125486",
+      "stockFR0000133308",
+      "stockFR0010208488",
+      "stockIE00BFRT3W74",
+      "stockUS00724F1012",
+      "stockUS00846U1016",
+      "stockUS00971T1016",
+      "stockUS0311001004",
+      "stockUS0527691069",
+      "stockUS0536111091",
+      "stockUS0865161014",
+      "stockUS09857L1089",
+      "stockUS1011371077",
+      "stockUS1101221083",
+      "stockUS11133T1034",
+      "stockUS12514G1085",
+      "stockUS12541W2098",
+      "stockUS1491231015",
+      "stockUS1713401024",
+      "stockUS1924461023",
+      "stockUS1999081045",
+      "stockUS2310211063",
+      "stockUS23331A1097",
+      "stockUS2546871060",
+      "stockUS2566771059",
+      "stockUS25754A2015",
+      "stockUS2600031080",
+      "stockUS26875P1012",
+      "stockUS2786421030",
+      "stockUS2788651006",
+      "stockUS28176E1082",
+      "stockUS29414B1044",
+      "stockUS3021301094",
+      "stockUS30233Q1085",
+      "stockUS3032501047",
+      "stockUS3156161024",
+      "stockUS35671D8570",
+      "stockUS3666511072",
+      "stockUS3695501086",
+      "stockUS3724601055",
+      "stockUS3841091040",
+      "stockUS4262811015",
+      "stockUS4278661081",
+      "stockUS43300A2033",
+      "stockUS4404521001",
+      "stockUS4456581077",
+      "stockUS45073V1089",
+      "stockUS45168D1046",
+      "stockUS4523081093",
+      "stockUS46625H1005",
+      "stockUS4781601046",
+      "stockUS49338L1035",
+      "stockUS4943681035",
+      "stockUS5018892084",
+      "stockUS5261071071",
+      "stockUS5339001068",
+      "stockUS5500211090",
+      "stockUS5719032022",
+      "stockUS5732841060",
+      "stockUS5745991068",
+      "stockUS57636Q1040",
+      "stockUS5926881054",
+      "stockUS6098391054",
+      "stockUS64110D1046",
+      "stockUS6541061031",
+      "stockUS6556631025",
+      "stockUS6558441084",
+      "stockUS6668071029",
+      "stockUS6703461052",
+      "stockUS68902V1070",
+      "stockUS6935061076",
+      "stockUS7010941042",
+      "stockUS7043261079",
+      "stockUS70432V1026",
+      "stockUS7134481081",
+      "stockUS73278L1052",
+      "stockUS7427181091",
+      "stockUS7458671010",
+      "stockUS74762E1029",
+      "stockUS74834L1008",
+      "stockUS75513E1010",
+      "stockUS7611521078",
+      "stockUS7703231032",
+      "stockUS7757111049",
+      "stockUS7782961038",
+      "stockUS8064071025",
+      "stockUS83088M1027",
+      "stockUS8318652091",
+      "stockUS8330341012",
+      "stockUS8545021011",
+      "stockUS8725401090",
+      "stockUS87612E1064",
+      "stockUS8807701029",
+      "stockUS9022521051",
+      "stockUS90384S3031",
+      "stockUS9113121068",
+      "stockUS91324P1021",
+      "stockUS92343E1029",
+      "stockUS92343V1044",
+      "stockUS92345Y1064",
+      "stockUS9291601097",
+      "stockUS9297401088",
+      "stockUS94106L1098",
+      "stockUS9418481035",
+      "stockUS95082P1057",
+      "stockUS98419M1009",
+      "stockUS9884981013",
+      "stockUS9892071054",
+      "stockGB0009895292",
+      "brookfield",
+      "canadian-national-railway",
+      "enbridge",
+      "royal-bank-of-canada",
+      "shopify",
+      "toronto-dominion",
+      "givaudan",
+      "holcim",
+      "lonza",
+      "richemont",
+      "sika",
+      "kweichow-moutai",
+      "china-construction-bank",
+      "icbc",
+      "ping-an",
+      "deutsche-bank",
+      "mercedes-benz",
+      "volkswagen",
+      "siemens-energy",
+      "siemens-healthineers",
+      "dsv",
+      "orsted",
+      "novonesis",
+      "nordea",
+      "credit-agricole",
+      "carrefour",
+      "bouygues",
+      "pernod-ricard",
+      "kering",
+      "capgemini",
+      "publicis",
+      "societe-generale",
+      "renault",
+      "bat",
+      "hsbc",
+      "rio-tinto",
+      "gsk",
+      "shell",
+      "aia",
+      "hkex",
+      "accenture",
+      "medtronic",
+      "larsen-toubro",
+      "hindustan-unilever",
+      "sun-pharma",
+      "sbi",
+      "itc",
+      "axis-bank",
+      "bharti-airtel",
+      "generali",
+      "intesa-sanpaolo",
+      "eni",
+      "unicredit",
+      "glencore",
+      "itochu",
+      "shin-etsu",
+      "takeda",
+      "daiichi-sankyo",
+      "kddi",
+      "chugai",
+      "disco",
+      "nidec",
+      "ntt",
+      "fast-retailing",
+      "hoya",
+      "honda",
+      "smfg",
+      "mitsui",
+      "mufg",
+      "murata",
+      "kia",
+      "hyundai-motor",
+      "naver",
+      "netease",
+      "heineken",
+      "philips",
+      "stmicroelectronics",
+      "asm-international",
+      "wolters-kluwer",
+      "ing",
+      "adyen",
+      "prosus",
+      "stellantis",
+      "equinor",
+      "volvo",
+      "investor-ab",
+      "atlas-copco",
+      "uob",
+      "ocbc",
+      "t",
+      "applovin",
+      "boeing",
+      "csx",
+      "citigroup",
+      "cmcsa",
+      "dhr",
+      "emr",
+      "marvell",
+      "oxy",
+      "philip-morris",
+      "shw",
+      "tmus",
+      "3m",
+      "wells-fargo",
+      "etfDE0002635307",
+      "etfDE000A0H08Q4",
+      "etfIE0008470928",
+      "etfIE000C6ITGC8",
+      "etfIE000U9ODG19",
+      "etfIE00B02KXK85",
+      "etfIE00B0M62S72",
+      "etfIE00B0M63623",
+      "etfIE00B1YZSC51",
+      "etfIE00B2QWCY14",
+      "etfIE00B3VWMM18",
+      "etfIE00B4K48X80",
+      "etfIE00B52SFT06",
+      "etfIE00B53QG562",
+      "etfIE00BD1F4L37",
+      "etfIE00BD1F4M44",
+      "etfIE00BD1F4N50",
+      "etfIE00BGL86Z12",
+      "etfIE00BJ5JPG56",
+      "etfIE00BQN1K562",
+      "etfIE00BQN1K786",
+      "etfIE00BQN1K901",
+      "etfIE00BQT3WG13",
+      "etfIE00BYX2JD69",
+      "etfIE00BYZK4669",
+      "ab-inbev",
+      "bp",
+      "national-grid",
+      "kotak-mahindra",
+      "bajaj-finance",
+      "fdx",
+      "bhp",
+      "commonwealth-bank",
+      "csl",
+      "macquarie",
+      "etfFR0007054358",
+      "etfFR0007056841",
+      "etfFR0011869304",
+      "etfFR0011871078",
+      "etfFR0013346681",
+      "etfFR0013411980",
+      "etfGB00B15KXQ89",
+      "etfIE0002Y8CX98",
+      "etfIE0003XJA0J9",
+      "etfIE0009HF1MK9",
+      "etfIE000W8WMSL2",
+      "etfIE000XZSV718",
+      "etfIE00BDVPNG13",
+      "etfIE00BFY0GT14",
+      "etfIE00BKLF1R75",
+      "etfIE00BKWQ0Q14",
+      "etfIE00BMC38736",
+      "etfLU0908500753",
+      "etfLU1681038672",
+      "etfLU1681040223",
+      "etfLU1829219390",
+      "etfLU1834983634",
+      "etfLU2089238385",
+      "etfLU3038520774",
+      "etfLU3180074463",
+      "etfIE000L6ZMMC4",
+      "etfIE00BJ0KDQ92",
+      "etfIE00BK1PV551",
+      "etfIE00BTJRMP35",
+      "etfLU0274209237",
+      "etfLU0328475792",
+      "etfLU0380865021",
+      "etfLU1875395870",
+      "etfLU2196470426",
+      "etfLU2903252349",
+      "etfIE000NDWFGA5",
+      "etfIE00B3RBWM25",
+      "etfIE00B3VVMM84",
+      "etfIE00B3XXRP09",
+      "etfIE00B945VV12",
+      "etfIE00BFMXXD54",
+      "etfIE00BK5BQV03",
+      "etfIE00BK5BQX27",
+      "etfIE00BLCHJB90",
+      "etfIE00BMH5Y871",
+      "etfFR0011550185",
+      "etfIE0000QLH0G6",
+      "etfIE000716YHJ7",
+      "etfIE000QDFFK00",
+      "etfIE00B4K6B022",
+      "etfIE00BD4TXV59",
+      "stockUS45167R1041",
+      "cameco",
+      "nu",
+      "nebius",
+      "saab-b",
+      "ast-spacemobile",
+      "cloudflare",
+      "coinbase",
+      "constellation-energy",
+      "datadog",
+      "duolingo",
+      "ge-vernova",
+      "mercadolibre",
+      "strategy",
+      "reddit",
+      "robinhood",
+      "rocket-lab",
+      "snowflake",
+      "sofi",
+      "vertiv",
+      "zscaler",
+      "spotify"
+    ],
+    "expectedIds": [
+      "ethereum",
+      "stoxx600",
+      "sp500",
+      "msciWorld",
+      "nasdaq100",
+      "soxx",
+      "silver",
+      "apple",
+      "microsoft",
+      "broadcom",
+      "tesla",
+      "msciEmerging",
+      "msciWorldSmallCap",
+      "msciAcwiImi",
+      "msciWorldExUsa",
+      "msciAcwi",
+      "berkshire",
+      "asml",
+      "costco",
+      "mcdonalds",
+      "airliquide",
+      "schneider",
+      "hermes",
+      "loreal",
+      "intel",
+      "paypal",
+      "cac40",
+      "lvmh",
+      "nvidia",
+      "amazon",
+      "google",
+      "meta",
+      "nestle",
+      "sap",
+      "visa",
+      "netflix",
+      "cocacola",
+      "euroMoney",
+      "euroGovShort",
+      "euroGov13",
+      "globalBondEur",
+      "euroInflationBond",
+      "euroCorporateBond",
+      "euroHighYieldBond",
+      "etfImie",
+      "etfVwce",
+      "etfEqualWeight",
+      "etfMinVol",
+      "etfWqdv",
+      "etfTdiv",
+      "etfEpra",
+      "etfCmod",
+      "etfSemi",
+      "etfLock",
+      "etfAvantisSmallValue",
+      "etcPlatinum",
+      "etcPalladium",
+      "etf_water_ishares",
+      "etf_agribusiness_ishares",
+      "etf_world_staples",
+      "etf_world_discretionary",
+      "etf_world_energy",
+      "etf_world_communication",
+      "etf_private_equity_ishares",
+      "etf_timber_ishares",
+      "etfIndustrials",
+      "etf_clean_energy",
+      "etf_financials",
+      "etf_gold_miners",
+      "etf_health",
+      "etf_infrastructure",
+      "etf_momentum",
+      "etf_quality",
+      "etf_robotics",
+      "etf_smallcap",
+      "etf_value",
+      "etfWorldMaterials",
+      "etfHealthcareInnovation",
+      "etfWorldUtilities",
+      "etfCloudWisdomtree",
+      "etfWorldMultifactor",
+      "etfIbondsEuro2028",
+      "etcSilverPhysical",
+      "etfSilverMiners",
+      "etfLifeStrategy20",
+      "etfLifeStrategy40",
+      "etfLifeStrategy60",
+      "etfLifeStrategy80",
+      "etfEmSmallCap",
+      "etfCopperMiners",
+      "etfEuropeConstruction",
+      "etfWorldTech",
+      "etfAiBigData",
+      "etfWorldExUs",
+      "etfEmExChina",
+      "walmart",
+      "oracle",
+      "salesforce",
+      "amd",
+      "qualcomm",
+      "texas-instruments",
+      "applied-materials",
+      "lam-research",
+      "micron",
+      "ibm",
+      "servicenow",
+      "intuit",
+      "palantir",
+      "goldman-sachs",
+      "bank-of-america",
+      "morgan-stanley",
+      "blackrock",
+      "american-express",
+      "charles-schwab",
+      "chevron",
+      "conocophillips",
+      "abbvie",
+      "merck",
+      "eli-lilly",
+      "abbott",
+      "thermo-fisher",
+      "ge-aerospace",
+      "honeywell",
+      "siemens",
+      "allianz",
+      "munich-re",
+      "deutsche-telekom",
+      "deutsche-boerse",
+      "airbus",
+      "safran",
+      "dassault-systemes",
+      "essilorluxottica",
+      "axa",
+      "bnp-paribas",
+      "santander",
+      "iberdrola",
+      "inditex",
+      "ferrari",
+      "infineon",
+      "adidas",
+      "bmw",
+      "bayer",
+      "danone",
+      "samsung",
+      "sk-hynix",
+      "thales",
+      "legrand",
+      "saint-gobain",
+      "michelin",
+      "novo-nordisk",
+      "novartis",
+      "astrazeneca",
+      "abb",
+      "sp-global",
+      "moodys",
+      "intuitive-surgical",
+      "deere",
+      "palo-alto-networks",
+      "linde",
+      "tsmc",
+      "sony",
+      "toyota",
+      "nintendo",
+      "tencent",
+      "hd",
+      "low",
+      "sbux",
+      "cl",
+      "mdlz",
+      "syk",
+      "unp",
+      "lmt",
+      "rsg",
+      "adp",
+      "adi",
+      "nem",
+      "etn",
+      "tt",
+      "regn",
+      "vrtx",
+      "zts",
+      "msci",
+      "fds",
+      "cdns",
+      "etfAmundiWater",
+      "etfAmundiLuxury",
+      "etfLgArtificialIntelligence",
+      "etfLgBattery",
+      "etfUsaSmallValue",
+      "etfWorldMidEqual",
+      "etfEmValue",
+      "etfEuroUltrashort",
+      "etfWorldMaterialsDws",
+      "etfIE00B4L5Y983",
+      "etfFR0013411998",
+      "etfIE00B53L3W79",
+      "etfIE00B5BMR087",
+      "etfIE00B579F325",
+      "etfIE00B42NKQ00",
+      "etfCH0454664001",
+      "etfLU1931975079",
+      "etfIE00BFZPF546",
+      "etfIE00BM67HK77",
+      "etfIE00BK95B138",
+      "etfIE0007Y8Y157",
+      "etfIE00B4JNQZ49",
+      "etfFR0013412012",
+      "etfFR0011550193",
+      "etfIE00BYPLS672",
+      "etfFR0013412004",
+      "etfFR0014017NX3",
+      "etfFR001400S9V0",
+      "etfIE00BYTRR863",
+      "etfIE00B5M1WJ87",
+      "etfFR001400U5Q4",
+      "etfIE00BZCQB185",
+      "etfFR0013380607",
+      "etfIE00BMW42413",
+      "etfIE00B4WXJJ64",
+      "etfIE000DQLYVB9",
+      "etfFR0013412038",
+      "etfIE00BK5BCH80",
+      "etfIE00BJ38QD84",
+      "etfLU2970735911",
+      "etfIE0003UVYC20",
+      "etfIE00B40B8R38",
+      "etfLU1737652823",
+      "etfIE00B6YX5D40",
+      "etfIE000M7V94E1",
+      "etfFR0010342592",
+      "etfIE00BZ163G84",
+      "etfIE00BKPSFC54",
+      "etfIE000RDRMSD1",
+      "etfIE00B8GKDB10",
+      "etfLU1834988518",
+      "etfIE00B2NPKV68",
+      "etfIE00B43HR379",
+      "etfIE00BYWQWR46",
+      "etfIE00B4KBBD01",
+      "etfFR001400ZGO4",
+      "etfIE00BK5BR733",
+      "etfIE00B5W4TY14",
+      "etfLU1834983550",
+      "etfIE00BZ56SW52",
+      "etfIE00BYXG2H39",
+      "etfIE000YYE6WK5",
+      "etfIE00BDFBTQ78",
+      "etfIE00B3T9LM79",
+      "etfIE00BDFL4P12",
+      "etfIE000YU9K6K2",
+      "etfIE00BKPX3K41",
+      "etfLU1834986900",
+      "etfIE00BK5BR626",
+      "etfIE00B3WJKG14",
+      "etfFR0013412020",
+      "etfIE0000N55FP4",
+      "etfIE00BM8R0J59",
+      "etfIE00B9CQXS71",
+      "etfIE00B6R52259",
+      "etfFR0010755611",
+      "etfFR0011440478",
+      "etfFR0011869320",
+      "etfFR0011871110",
+      "etfFR0011871128",
+      "etfIE00B1FZS350",
+      "etfIE00B1FZS913",
+      "etfIE00B44Z5B48",
+      "etfIE00B4L5YX21",
+      "etfIE00B52MJY50",
+      "etfIE00BKM4GZ66",
+      "etfLU1681043599",
+      "etfLU1681045370",
+      "etfLU1681047236",
+      "etfNL0009690239",
+      "etfIE00BF3N7094",
+      "etfDE000A27Z304",
+      "etfGB00BLD4ZL17",
+      "etfIE0002XZSHO1",
+      "etfIE00B469F816",
+      "etfIE00B4ND3602",
+      "etfIE00B53SZB19",
+      "etfIE00BJ5JP659",
+      "etfFR0010524777",
+      "etfGB00BJYDH287",
+      "etfGB00BLD4ZM24",
+      "etfJE00B1VS3770",
+      "etfFR0013416716",
+      "roche",
+      "ubs",
+      "zurich",
+      "swiss-re",
+      "bbva",
+      "unilever",
+      "diageo",
+      "relx",
+      "lseg",
+      "rolls-royce",
+      "bae-systems",
+      "rheinmetall",
+      "dhl",
+      "basf",
+      "enel",
+      "alibaba",
+      "jd",
+      "meituan",
+      "xiaomi",
+      "byd",
+      "catl",
+      "keyence",
+      "hitachi",
+      "mitsubishi-electric",
+      "tokyo-electron",
+      "advantest",
+      "mitsubishi-corp",
+      "softbank-group",
+      "recruit",
+      "reliance",
+      "hdfc-bank",
+      "icici-bank",
+      "infosys",
+      "tcs",
+      "dbs",
+      "csco",
+      "arista",
+      "dell",
+      "crowdstrike",
+      "fortinet",
+      "snps",
+      "klac",
+      "uber",
+      "airbnb",
+      "cme",
+      "ice",
+      "pfe",
+      "amgn",
+      "gilead",
+      "stockAN8068571086",
+      "etfIE0008471009",
+      "stockCH0038863350",
+      "stockCH0114405324",
+      "stockDE0007164600",
+      "stockFR0000120271",
+      "stockFR0000120578",
+      "stockFR0000124141",
+      "stockFR0000125486",
+      "stockFR0000133308",
+      "stockFR0010208488",
+      "stockIE00BFRT3W74",
+      "stockUS00724F1012",
+      "stockUS00846U1016",
+      "stockUS00971T1016",
+      "stockUS0311001004",
+      "stockUS0527691069",
+      "stockUS0536111091",
+      "stockUS0865161014",
+      "stockUS09857L1089",
+      "stockUS1011371077",
+      "stockUS1101221083",
+      "stockUS11133T1034",
+      "stockUS12514G1085",
+      "stockUS12541W2098",
+      "stockUS1491231015",
+      "stockUS1713401024",
+      "stockUS1924461023",
+      "stockUS1999081045",
+      "stockUS2310211063",
+      "stockUS23331A1097",
+      "stockUS2546871060",
+      "stockUS2566771059",
+      "stockUS25754A2015",
+      "stockUS2600031080",
+      "stockUS26875P1012",
+      "stockUS2786421030",
+      "stockUS2788651006",
+      "stockUS28176E1082",
+      "stockUS29414B1044",
+      "stockUS3021301094",
+      "stockUS30233Q1085",
+      "stockUS3032501047",
+      "stockUS3156161024",
+      "stockUS35671D8570",
+      "stockUS3666511072",
+      "stockUS3695501086",
+      "stockUS3724601055",
+      "stockUS3841091040",
+      "stockUS4262811015",
+      "stockUS4278661081",
+      "stockUS43300A2033",
+      "stockUS4404521001",
+      "stockUS4456581077",
+      "stockUS45073V1089",
+      "stockUS45168D1046",
+      "stockUS4523081093",
+      "stockUS46625H1005",
+      "stockUS4781601046",
+      "stockUS49338L1035",
+      "stockUS4943681035",
+      "stockUS5018892084",
+      "stockUS5261071071",
+      "stockUS5339001068",
+      "stockUS5500211090",
+      "stockUS5719032022",
+      "stockUS5732841060",
+      "stockUS5745991068",
+      "stockUS57636Q1040",
+      "stockUS5926881054",
+      "stockUS6098391054",
+      "stockUS64110D1046",
+      "stockUS6541061031",
+      "stockUS6556631025",
+      "stockUS6558441084",
+      "stockUS6668071029",
+      "stockUS6703461052",
+      "stockUS68902V1070",
+      "stockUS6935061076",
+      "stockUS7010941042",
+      "stockUS7043261079",
+      "stockUS70432V1026",
+      "stockUS7134481081",
+      "stockUS73278L1052",
+      "stockUS7427181091",
+      "stockUS7458671010",
+      "stockUS74762E1029",
+      "stockUS74834L1008",
+      "stockUS75513E1010",
+      "stockUS7611521078",
+      "stockUS7703231032",
+      "stockUS7757111049",
+      "stockUS7782961038",
+      "stockUS8064071025",
+      "stockUS83088M1027",
+      "stockUS8318652091",
+      "stockUS8330341012",
+      "stockUS8545021011",
+      "stockUS8725401090",
+      "stockUS87612E1064",
+      "stockUS8807701029",
+      "stockUS9022521051",
+      "stockUS90384S3031",
+      "stockUS9113121068",
+      "stockUS91324P1021",
+      "stockUS92343E1029",
+      "stockUS92343V1044",
+      "stockUS92345Y1064",
+      "stockUS9291601097",
+      "stockUS9297401088",
+      "stockUS94106L1098",
+      "stockUS9418481035",
+      "stockUS95082P1057",
+      "stockUS98419M1009",
+      "stockUS9884981013",
+      "stockUS9892071054",
+      "stockGB0009895292",
+      "brookfield",
+      "canadian-national-railway",
+      "enbridge",
+      "royal-bank-of-canada",
+      "shopify",
+      "toronto-dominion",
+      "givaudan",
+      "holcim",
+      "lonza",
+      "richemont",
+      "sika",
+      "kweichow-moutai",
+      "china-construction-bank",
+      "icbc",
+      "ping-an",
+      "deutsche-bank",
+      "mercedes-benz",
+      "volkswagen",
+      "siemens-energy",
+      "siemens-healthineers",
+      "dsv",
+      "orsted",
+      "novonesis",
+      "nordea",
+      "credit-agricole",
+      "carrefour",
+      "bouygues",
+      "pernod-ricard",
+      "kering",
+      "capgemini",
+      "publicis",
+      "societe-generale",
+      "renault",
+      "bat",
+      "hsbc",
+      "rio-tinto",
+      "gsk",
+      "shell",
+      "aia",
+      "hkex",
+      "accenture",
+      "medtronic",
+      "larsen-toubro",
+      "hindustan-unilever",
+      "sun-pharma",
+      "sbi",
+      "itc",
+      "axis-bank",
+      "bharti-airtel",
+      "generali",
+      "intesa-sanpaolo",
+      "eni",
+      "unicredit",
+      "glencore",
+      "itochu",
+      "shin-etsu",
+      "takeda",
+      "daiichi-sankyo",
+      "kddi",
+      "chugai",
+      "disco",
+      "nidec",
+      "ntt",
+      "fast-retailing",
+      "hoya",
+      "honda",
+      "smfg",
+      "mitsui",
+      "mufg",
+      "murata",
+      "kia",
+      "hyundai-motor",
+      "naver",
+      "netease",
+      "heineken",
+      "philips",
+      "stmicroelectronics",
+      "asm-international",
+      "wolters-kluwer",
+      "ing",
+      "adyen",
+      "prosus",
+      "stellantis",
+      "equinor",
+      "volvo",
+      "investor-ab",
+      "atlas-copco",
+      "uob",
+      "ocbc",
+      "t",
+      "applovin",
+      "boeing",
+      "csx",
+      "citigroup",
+      "cmcsa",
+      "dhr",
+      "emr",
+      "marvell",
+      "oxy",
+      "philip-morris",
+      "shw",
+      "tmus",
+      "3m",
+      "wells-fargo",
+      "etfDE0002635307",
+      "etfDE000A0H08Q4",
+      "etfIE0008470928",
+      "etfIE000C6ITGC8",
+      "etfIE000U9ODG19",
+      "etfIE00B02KXK85",
+      "etfIE00B0M62S72",
+      "etfIE00B0M63623",
+      "etfIE00B1YZSC51",
+      "etfIE00B2QWCY14",
+      "etfIE00B3VWMM18",
+      "etfIE00B4K48X80",
+      "etfIE00B52SFT06",
+      "etfIE00B53QG562",
+      "etfIE00BD1F4L37",
+      "etfIE00BD1F4M44",
+      "etfIE00BD1F4N50",
+      "etfIE00BGL86Z12",
+      "etfIE00BJ5JPG56",
+      "etfIE00BQN1K562",
+      "etfIE00BQN1K786",
+      "etfIE00BQN1K901",
+      "etfIE00BQT3WG13",
+      "etfIE00BYX2JD69",
+      "etfIE00BYZK4669",
+      "ab-inbev",
+      "bp",
+      "national-grid",
+      "kotak-mahindra",
+      "bajaj-finance",
+      "fdx",
+      "bhp",
+      "commonwealth-bank",
+      "csl",
+      "macquarie",
+      "etfFR0007054358",
+      "etfFR0007056841",
+      "etfFR0011869304",
+      "etfFR0011871078",
+      "etfFR0013346681",
+      "etfFR0013411980",
+      "etfGB00B15KXQ89",
+      "etfIE0002Y8CX98",
+      "etfIE0003XJA0J9",
+      "etfIE0009HF1MK9",
+      "etfIE000W8WMSL2",
+      "etfIE000XZSV718",
+      "etfIE00BDVPNG13",
+      "etfIE00BFY0GT14",
+      "etfIE00BKLF1R75",
+      "etfIE00BKWQ0Q14",
+      "etfIE00BMC38736",
+      "etfLU0908500753",
+      "etfLU1681038672",
+      "etfLU1681040223",
+      "etfLU1829219390",
+      "etfLU1834983634",
+      "etfLU2089238385",
+      "etfLU3038520774",
+      "etfLU3180074463",
+      "etfIE000L6ZMMC4",
+      "etfIE00BJ0KDQ92",
+      "etfIE00BK1PV551",
+      "etfIE00BTJRMP35",
+      "etfLU0274209237",
+      "etfLU0328475792",
+      "etfLU0380865021",
+      "etfLU1875395870",
+      "etfLU2196470426",
+      "etfLU2903252349",
+      "etfIE000NDWFGA5",
+      "etfIE00B3RBWM25",
+      "etfIE00B3VVMM84",
+      "etfIE00B3XXRP09",
+      "etfIE00B945VV12",
+      "etfIE00BFMXXD54",
+      "etfIE00BK5BQV03",
+      "etfIE00BK5BQX27",
+      "etfIE00BLCHJB90",
+      "etfIE00BMH5Y871",
+      "etfFR0011550185",
+      "etfIE0000QLH0G6",
+      "etfIE000716YHJ7",
+      "etfIE000QDFFK00",
+      "etfIE00B4K6B022",
+      "etfIE00BD4TXV59",
+      "stockUS45167R1041",
+      "cameco",
+      "nu",
+      "nebius",
+      "saab-b",
+      "ast-spacemobile",
+      "cloudflare",
+      "coinbase",
+      "constellation-energy",
+      "datadog",
+      "duolingo",
+      "ge-vernova",
+      "mercadolibre",
+      "strategy",
+      "reddit",
+      "robinhood",
+      "rocket-lab",
+      "snowflake",
+      "sofi",
+      "vertiv",
+      "zscaler",
+      "spotify"
+    ],
+    "selection": "configured-universe"
+  },
+  "series": [
+    {
+      "id": "ethereum",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d15a3a7fd2f1dc61fe23b170b0545d0b508c2e48dd4b90897fe5c7e515ff3aad"
+    },
+    {
+      "id": "stoxx600",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3c33fdc2e7ae151c985317e366ce5f819d36ceb10911e26d2d16b026d4893cf9"
+    },
+    {
+      "id": "sp500",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "df6306b14c5a60569fcb06e2f9852056497a18eb8772a0dced6ee07d369dac74"
+    },
+    {
+      "id": "msciWorld",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "89d8eae27029e834d4911d62633f9f64368b8f87fc0425add9dd69fe3609e50d"
+    },
+    {
+      "id": "nasdaq100",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "14a3751ebd4e1171d8945b22d34a7278459524ae85bea85b0504c85b2b682ee8"
+    },
+    {
+      "id": "soxx",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "12b01bfca75b0bbbccc7a802a6f8753b7226456938c0475253eb86ed662e092d"
+    },
+    {
+      "id": "silver",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6860b4e025a0baffb3eb791aa6a04009dcf121ed23970ce50606e21fe86098da"
+    },
+    {
+      "id": "apple",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "adad1d389d3a6c92ef93739cf25dab9a64377079893ca1fe05e09c5afc2ddd0b"
+    },
+    {
+      "id": "microsoft",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "36415195f4437b463ad8e656d3fda207317102110570ea397ee3e299644df25f"
+    },
+    {
+      "id": "broadcom",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a70feeefe2695dcb3097885a4d2d39028df76efc5e0d0087006916c9f672ce56"
+    },
+    {
+      "id": "tesla",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "863e01da46fa3108ea3cf1bf1bbc974611b3c6c8b8d96a9f3d5e0b682c6dcf06"
+    },
+    {
+      "id": "msciEmerging",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0ec0bd861e8c16d6872fa5dc48c4cc1dc607188d64658ef9cb2122710121afdd"
+    },
+    {
+      "id": "msciWorldSmallCap",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dce67943590ece919f7c4f2cb35125f337d9d19d1f74a271340ada87b5173137"
+    },
+    {
+      "id": "msciAcwiImi",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d9aac69f84f9e5a8eceac656d15bdc1e4d6dac34ce2c7e464ac69619dca6e354"
+    },
+    {
+      "id": "msciWorldExUsa",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5a86ceab0d74448963c3f8580af9673cf59cac63d5e0a1d0446cc25b454a8cd3"
+    },
+    {
+      "id": "msciAcwi",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a9900386ff5ab728216301ec2ce4657d28ee7cf099676f1e5e240d3cec17449a"
+    },
+    {
+      "id": "berkshire",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "30eb56cc60cde562fb12dcc1aed285cfd5b2deae445e5c799a28090c4c920252"
+    },
+    {
+      "id": "asml",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0edb4774efb09d218d823709e36ca5ed5c9afb02b87ba7bbc9e1728b5824e4e0"
+    },
+    {
+      "id": "costco",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c1c06238dcbb45dde4e654f99069983c85024de5cb700ad385f6d749ef4a443"
+    },
+    {
+      "id": "mcdonalds",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6a5693a81d3b755a7c3d298bbfa301db35a8935d1ec08a67ae4e88150ae491f3"
+    },
+    {
+      "id": "airliquide",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4a0a6dc1fbb447abffddceba7fd7366c0cc86b0e1fa3bcc45c210b78ecf0bb65"
+    },
+    {
+      "id": "schneider",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dfb485482cbb3f2fc2750db17221fb173a9875ee61f42ecad7ee9e6a63b87409"
+    },
+    {
+      "id": "hermes",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "22b5b3d2fd94f6279a3cb1f2d38bd9eb895c50f098bacdf6ffb4af830caf2d3a"
+    },
+    {
+      "id": "loreal",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0601b02544471362b0e8922f20c629f8d7c5973d2edeb4555ac930e654e7718b"
+    },
+    {
+      "id": "intel",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "cc35831cb4a2c3fb36bfa866ba99cb87e1e06e72905acb3eda749fcc194f6ce7"
+    },
+    {
+      "id": "paypal",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d7d0468dd7a472e2dfe021e4c06da0d73587f65ec8ede7e121f628ad1ca68a20"
+    },
+    {
+      "id": "cac40",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9147fec76c0cf43b2b4d2573bc92ea5819cfc6200f033a3d9d29507ce94ce5b5"
+    },
+    {
+      "id": "lvmh",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "106a9c2d09fecf26a22a1f6b21c1e802dcda6f2e69e18b815d7d9ac333880a55"
+    },
+    {
+      "id": "nvidia",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "57de8851517de0fb4a9ee9992a6207297d52b70245f839a8ca699f70c6ccae38"
+    },
+    {
+      "id": "amazon",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a9a416b06e4135c7e2c565bedada6fb42baf17af02e216ff4a48b75f3ade68bf"
+    },
+    {
+      "id": "google",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c4b0e828ec184c64f65c687fa0fd350cf5b1d43965f03b3ddb3ebcfc3d74cedc"
+    },
+    {
+      "id": "meta",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "58472aa50e5a29b15df995facede0bbac426ffc813ea4c1f4341f5c6ed5df28a"
+    },
+    {
+      "id": "nestle",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0da04ef8ca20a17fcf60b95a2cf351bba9e13edb60537744530f7b2e4e4053bc"
+    },
+    {
+      "id": "sap",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "632a30a08523855eeb64aa6c50bb198dc67688bfeb37c051856944396b039565"
+    },
+    {
+      "id": "visa",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7edef29191bcdd16f9e98b42a1e19faa95f09755d6c10c72485111a04214071d"
+    },
+    {
+      "id": "netflix",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4150896e5da4c2e02c868b608c7ce70b87a6644b314ab1af6af0bacb49a667d6"
+    },
+    {
+      "id": "cocacola",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ba0f2b8d74b61bbc34f1916532cbdac10c83e3921bf0564c8171fd15f818abe6"
+    },
+    {
+      "id": "euroMoney",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6aa749ba6bcc028412cf5cb5edc003412df256ec8fbdb3fa04cd90bbe183e20e"
+    },
+    {
+      "id": "euroGovShort",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "172dfb3ce8542c9e01e660240a7026da098aa62b75c36505ee091313d88d0766"
+    },
+    {
+      "id": "euroGov13",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7138776d7cf990e87a4623c95256e0fee06dcc6657ca0550820cba5aa8c92db7"
+    },
+    {
+      "id": "globalBondEur",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4ca77746ad76b450e58be1f34d8c81716c8653d79dc2694f4d8c11646d085344"
+    },
+    {
+      "id": "euroInflationBond",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "76aa8d2d539424bbd56ea1809fb9ba836f1cdf0d7ad45eca58dde59d5705a2c1"
+    },
+    {
+      "id": "euroCorporateBond",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2ef0c45e8a78673597ef07e42f1be43bb46ffcd5e3d49b611ef3d09bae6b53d2"
+    },
+    {
+      "id": "euroHighYieldBond",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "023d6a2d4494011b8ea0d9233ce3001a1b2e3dd0e1e5feb6ab08c6ccc9a8387f"
+    },
+    {
+      "id": "etfImie",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b09c89d36a126a92598fa32de6475eb4209ea328fad7b00cfe9acadc0ce7a144"
+    },
+    {
+      "id": "etfVwce",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f619b24bf5e88a772de92b4356aff05894ae252675fbc27654007ae29ecf0284"
+    },
+    {
+      "id": "etfEqualWeight",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "57e59b738d44ec8866cec8806bfa71d44f0556da3b487dfb686c7591e0d59c0e"
+    },
+    {
+      "id": "etfMinVol",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "93c4100c866102576528ff0c5731925376bd03f85f445191c1178b835a039de5"
+    },
+    {
+      "id": "etfWqdv",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4073b68d169ddf687e96f93098f5bc35a43c86921d164d859f61361a18f25ea6"
+    },
+    {
+      "id": "etfTdiv",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e67b6c8bc3dc4b251e60366b88d43189f8673f2252dabfd5d73de5cba92b683c"
+    },
+    {
+      "id": "etfEpra",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "09286ff59dd5de1dadd2b78a6fc6a91781f6cf285181f6047cf8075eb67efad6"
+    },
+    {
+      "id": "etfCmod",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c1812e0bd5b5e40dcc04bb4325966fca1cd7cb46e80c994ac0ab2c6aefd05f61"
+    },
+    {
+      "id": "etfSemi",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "7d164204204a7bfcb1d01b670bbf6d47b492203b11e79475cc8b7f9beac59125"
+    },
+    {
+      "id": "etfLock",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "99eccc98093beb641cce158f9678364eff3a4a917cfd5cf983d7617965f7589d"
+    },
+    {
+      "id": "etfAvantisSmallValue",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0f83b65f4529b325ee47acd211dd7bb4750d94650f46ea52f9de10354528171c"
+    },
+    {
+      "id": "etcPlatinum",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c2c79d1664e62d48c24e24d4a9c0c2a765a057a19279dc7565c4581d56f2ee18"
+    },
+    {
+      "id": "etcPalladium",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "121ac330bb7ac657fb7d549cbf9ff82abfa33dcd9d67718ca74de2e3acf068c1",
+      "usageState": "partial",
+      "usageLimits": {
+        "historyExcludedMonths": [
+          "2014-12"
+        ]
+      },
+      "controlScope": {
+        "controlledInstrument": "IE00B4556L06",
+        "controlledFields": [
+          "isin",
+          "performance.chart.currencySymbol",
+          "performance.returns.annualNavCurrency",
+          "performance.chart.navData",
+          "performance.chart.performanceData",
+          "performance.returns.annualNav",
+          "useOfProfitsCode"
+        ],
+        "requestedStart": "2011-05-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etf_water_ishares",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fc81f04b5f8c74ab60c79168a7900702ca30579c1e267a92b9f77f252e97cde5"
+    },
+    {
+      "id": "etf_agribusiness_ishares",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a6868b446fe5388bd7178ec98feb101497594715f936d9020ff7da05a19a1bcb"
+    },
+    {
+      "id": "etf_world_staples",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "efbac280337ea2cd2e7e7b7e928f2fce603e76e55d5a3f9c4c75fe6f00f9f484"
+    },
+    {
+      "id": "etf_world_discretionary",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c9c9f46cc84f4fef89066025d1fbb5bef15eef52ab719ee95c2d04e14759e13"
+    },
+    {
+      "id": "etf_world_energy",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7d68999da0519c2c4fbfa107971475604f6e06536035e40242a75b695f2bd65e"
+    },
+    {
+      "id": "etf_world_communication",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4bb2bd9211610f7fb5140f40d19d2b8fda80b9f8394225df76fe596c2606b0c4",
+      "controlScope": {
+        "controlledInstrument": "IE00BJ5JP436",
+        "controlledFields": [
+          "isin",
+          "performance.chart.currencySymbol",
+          "performance.returns.annualNavCurrency",
+          "performance.chart.navData",
+          "performance.chart.performanceData",
+          "performance.returns.annualNav",
+          "performance.distributions.exDate",
+          "performance.distributions.totalDistribution"
+        ],
+        "requestedStart": "2022-05-01",
+        "controlledCalendarYears": [
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etf_private_equity_ishares",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1059d2673bcbe0b5f180146a31d6d4c78f590d2f3dee11edb3f57feff3589828"
+    },
+    {
+      "id": "etf_timber_ishares",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6741853a64c905b051ff3654a284845aa4fae1e3b0f0296425d1a4706c4e4fc0"
+    },
+    {
+      "id": "etfIndustrials",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "13a389239e552a5fd6a439695a7d73a89e8c6c09d813dd213b1ae52680a46899"
+    },
+    {
+      "id": "etf_clean_energy",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "66e1ce5a6be69a8db9a20edc8c231c1a7782d9a4a14d6200d259c5cbd2f99c31",
+      "controlScope": {
+        "controlledInstrument": "IE00B1XNHC34",
+        "controlledFields": [
+          "isin",
+          "performance.chart.currencySymbol",
+          "performance.returns.annualNavCurrency",
+          "performance.chart.navData",
+          "performance.chart.performanceData",
+          "performance.returns.annualNav",
+          "performance.distributions.exDate",
+          "performance.distributions.totalDistribution"
+        ],
+        "requestedStart": "2008-02-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etf_financials",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b45ff3855ae0f8692d1b3c043d265541a5e81e9c71b752e58619a351cd68ee9d",
+      "controlScope": {
+        "controlledInstrument": "IE00BJ5JP097",
+        "controlledFields": [
+          "isin",
+          "performance.chart.currencySymbol",
+          "performance.returns.annualNavCurrency",
+          "performance.chart.navData",
+          "performance.chart.performanceData",
+          "performance.returns.annualNav",
+          "performance.distributions.exDate",
+          "performance.distributions.totalDistribution"
+        ],
+        "requestedStart": "2021-05-01",
+        "controlledCalendarYears": [
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etf_gold_miners",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c7560c799a29da7aa1c6f89431498e8c1deedb58c98f1f933821731a4a65a644"
+    },
+    {
+      "id": "etf_health",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4c85f4f7f9a8ee6aaade060f4babfcf8389eb1e6964ac60729ae15e08fb28243"
+    },
+    {
+      "id": "etf_infrastructure",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "df312c2502e692f1fe361324147d1c0883fc6506d12e3b50c479681b28cf31f2"
+    },
+    {
+      "id": "etf_momentum",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4308cc18ab6805a647d94e367666503eb16004546053c0c9643b106c4c3082fc"
+    },
+    {
+      "id": "etf_quality",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6f88490cf376692f4d2c2489594bc973322bef778b0abaa25dae0a44c9f0ea16"
+    },
+    {
+      "id": "etf_robotics",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "1c633efe8e43158924dfd1232742881ba2d839fc97e9d877984f6dfcc350dca3"
+    },
+    {
+      "id": "etf_smallcap",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "560253918d5844af452ce5e55a11d450c705c3f37ea746bc751bddc81bf180b8"
+    },
+    {
+      "id": "etf_value",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dc5c4918182293ed2df2751e778cd4965a0fa6e956ee1a63ba454c832a8083ba"
+    },
+    {
+      "id": "etfWorldMaterials",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d5c8c917e7c168d5f6c1908dfe0c474abb450cbaaf8df99db3d347bd251e8327"
+    },
+    {
+      "id": "etfHealthcareInnovation",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "322c5c95f9ed982e82a270534da37f818c8d1a3d5db2316048eaa7ccfb21baf7"
+    },
+    {
+      "id": "etfWorldUtilities",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0cc5698dfc88d321ec61ee7eaf671375f57dda5e09c60cec3d0e06aa6b9919e7"
+    },
+    {
+      "id": "etfCloudWisdomtree",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "634c2f6d4e827a7f893a7d2747be6c0bf9ec172e69ec5d1c33f1d7685154b3ba"
+    },
+    {
+      "id": "etfWorldMultifactor",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "be18de844aab9330c6447bcdd0f552d536eec4edf2a1749e42c1220f1d940941"
+    },
+    {
+      "id": "etfIbondsEuro2028",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d36f236a3ba2a0b60a095af68938067e9598cc967aaed23b725385334d11a7cf"
+    },
+    {
+      "id": "etcSilverPhysical",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "111c431bf7adf5011b0cd1d0bf57e7ef8b67b351680cd8e99942ddf7b2d1916b"
+    },
+    {
+      "id": "etfSilverMiners",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e03e658ad34678440bea669652801660a5e385fe2d9208631f510d3f04538b9b"
+    },
+    {
+      "id": "etfLifeStrategy20",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "11f3186f185709a4d90ff2265f0c4c05d15ad1a37f1b4dd5454a1e743dd380de"
+    },
+    {
+      "id": "etfLifeStrategy40",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e744aa2c71af2228b84e4e21eb1fc99a902b1d1581a002274f4bbe36418202ba"
+    },
+    {
+      "id": "etfLifeStrategy60",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "95824263198bae941965c5b136d829b4d33a9a2c531cacb1a818a258f2156dca"
+    },
+    {
+      "id": "etfLifeStrategy80",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "71f7bbcac6e4f86a0db5d619c7304664e02332d63d1bb1853dafa65668161c56"
+    },
+    {
+      "id": "etfEmSmallCap",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5d4f109c163c470618183995a1dcb761e8e45ed978b2bf5a38aeb1f4b2f21e27"
+    },
+    {
+      "id": "etfCopperMiners",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "348dad25a7e2c2de0e1ee14a21439aae4820f1032fd111c8c963e6d9330c5fb6"
+    },
+    {
+      "id": "etfEuropeConstruction",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ce8cdd6712f909275ec00f4038978d2fee80eeb3ffd1e620e03e752acd2e7d3e"
+    },
+    {
+      "id": "etfWorldTech",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "be0820770298458c43533744e36a74ab315b3b1c60696b55e30eecf712a8811d"
+    },
+    {
+      "id": "etfAiBigData",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "cc4454461e2b7a45446d31e05d733e0e1be24b991036e8db31d119db7dc695c8"
+    },
+    {
+      "id": "etfWorldExUs",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "60012a97fab6e8651f279c057d19ebc9438b15695b6f9c246e5325ce4f40f8d5"
+    },
+    {
+      "id": "etfEmExChina",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c5c17b5a2dde118bf414aa03d1b4853192a8e7e36290de8985461d1733124a62"
+    },
+    {
+      "id": "walmart",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "15b03b4477af1580ad361dcdf9595d35d66c70fd19e7542aae77c91ea16497c2"
+    },
+    {
+      "id": "oracle",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "28d72645f67d618c278ef2cd22434112f7b25e16fa5ca7b28f93086c97529982"
+    },
+    {
+      "id": "salesforce",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "62a2208d478309c3cef4e530b01fbe879f0a0847bd4ee0457c50c8392b81d3ae"
+    },
+    {
+      "id": "amd",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c55e8c1a3616906a92ac3f85742047a9a4655500fe494402884dca43796b0794"
+    },
+    {
+      "id": "qualcomm",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1443e89a10854397f84b54ef8af2fdfd78873feaf47ad99c4377467defb5abde"
+    },
+    {
+      "id": "texas-instruments",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "599bebee2f97458e1e9d37450f64349ef6e4b094ff799c3269587b465782a82e"
+    },
+    {
+      "id": "applied-materials",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b0de67737046b5a8e4c68fed0427d408c7e050807388bfb0c7d1a476075f9592"
+    },
+    {
+      "id": "lam-research",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "23f0af93b38117b2be1a7a0265e16145e94136ded8164bc256be53fdc0188e12"
+    },
+    {
+      "id": "micron",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6b58f435b040989af3dfb0af89d241237d641a45e6e54bf13608fa4db103abb7"
+    },
+    {
+      "id": "ibm",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5e7e3f65a2f55f8c4742e022c507c6cc998ff6a06977ff594064774e39223988"
+    },
+    {
+      "id": "servicenow",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c37c78e694370df27d27f92614ec1d750e4271afc3b091afbb2d711e1db01e5e"
+    },
+    {
+      "id": "intuit",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0aad46426f9db73378895ba11f34a082b1b74f1b51b699d6a43fd25b5cdc16fd"
+    },
+    {
+      "id": "palantir",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a7539e1843b09256d73ae3f25a220341473d13d6806480ec5e0e7ffd9f0ecabe"
+    },
+    {
+      "id": "goldman-sachs",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e43ffa979270550a7786385d81991fe9a0de183dfcfa8817b57a00c686f6a8ee"
+    },
+    {
+      "id": "bank-of-america",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c47c769cc65bdaa2aa138ec237518ea3f2acda4c50799a5009e917ab5e97399"
+    },
+    {
+      "id": "morgan-stanley",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6d03209385500125e6aabb3b14edaa447092bafa92414175c59f0c1a0085a9a1"
+    },
+    {
+      "id": "blackrock",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0e3c40b3cf5c9ce20bb493725a16f8cfac4303b46f9bfde22439e5ccb386e6c4"
+    },
+    {
+      "id": "american-express",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ace7d163f0b3d02292422a9c80a0bffa77870dcf8e125bb721bed57c9b600201"
+    },
+    {
+      "id": "charles-schwab",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0724ad86b39af76139ef811636c014398116a0cfe39b844f8ab796c8c0414f74"
+    },
+    {
+      "id": "chevron",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5cdfd0990448896c6f227d620cc66b502a3a1d115fb7e5b9051b8c8e731d330b"
+    },
+    {
+      "id": "conocophillips",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "085369747af228087899a0d4d9f46ded3e46cf5e30dd1e90d7e8bfd03e13d958"
+    },
+    {
+      "id": "abbvie",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2b56959304fe39d0d2c6b6ddaa22265549f132db45e9959f3171b43190928f87"
+    },
+    {
+      "id": "merck",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "40ebd3694ed470f1b91aa68ee9950baabfca00ff24dcfe259af020cd04786aa7"
+    },
+    {
+      "id": "eli-lilly",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "71c771c2d19495a08d1fbc1526459cb6633d825f4678356495882a4093218621"
+    },
+    {
+      "id": "abbott",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9f01272be4e7a53e0bc24807a7471f059518dd17b0763ee11d9104530453cbe1"
+    },
+    {
+      "id": "thermo-fisher",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9f22d47c1730756746bde0aa35326361d32cdbeab786f6e2d779d0843e462ccb"
+    },
+    {
+      "id": "ge-aerospace",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ca36957ba6937b394a6ccb30bdcaf2e5af9d4bb38b7df008a27fc26e854633bc"
+    },
+    {
+      "id": "honeywell",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "96607e5ba152e12ef25ded2ce78d6828c029237d5656b836c120dc2440ca7a41"
+    },
+    {
+      "id": "siemens",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "578c8bf3746b0851f636af1aff447d4297212748c4ccbdddb2714b347940116c"
+    },
+    {
+      "id": "allianz",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "337f17659aab0fa9700946d2b4ecae6ae7faef79ad6da5958259f83d6aea0fdf"
+    },
+    {
+      "id": "munich-re",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0f0cf66bf260ffed4807bc7a2c82dd128564b7ec9c22d82e8621e39337328085"
+    },
+    {
+      "id": "deutsche-telekom",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9a54715d03425d31650302fa6e6164aaa98e580616a93a402574593bb32da897"
+    },
+    {
+      "id": "deutsche-boerse",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5b2594e89a44cda88c678285d16aa2974925af0176f7d767f78492ae30bb9b42"
+    },
+    {
+      "id": "airbus",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0d75a8eae442bf1effee304868bc588801752927e9412093b227cebc29c13bfa"
+    },
+    {
+      "id": "safran",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "abc27ba02ab2b33018d3cf0a98c43320de81cfa73be0268b5852af609ef3906c"
+    },
+    {
+      "id": "dassault-systemes",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b1a2a27b23b8f2edf596c91c1f8bf16c4b5f431c7a46e97c42c66883bfd52e65"
+    },
+    {
+      "id": "essilorluxottica",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0533424fbdbe76ebacb09582cbe05f182ef7ccf8ce6e09c87d56cdcb2863e896"
+    },
+    {
+      "id": "axa",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "53754bd1e3baa3372dee532c9ec1a5d9274cb487a9e000714543221f58469730"
+    },
+    {
+      "id": "bnp-paribas",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f311167f6c99bcae5270a6956e16ee68ecdd3ea532df6ea12be12beddacafe49"
+    },
+    {
+      "id": "santander",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e4cedb901ccb2b6b6bcfcd04f57bf63c2b8475d89a404878bbdd7a85060c5593"
+    },
+    {
+      "id": "iberdrola",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7ef72358406d8f6bd6d17f5d7f4cfe9e8322364826923052ccdb51cf48b079dd"
+    },
+    {
+      "id": "inditex",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9e5f7867b27964c839636369dbbfa40796cf640e7315f1232ca8deeb37a17688"
+    },
+    {
+      "id": "ferrari",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b43585ae9fb41d7ba451469d4c35638001a68643f980808ebea73213a72156be"
+    },
+    {
+      "id": "infineon",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7271242067e70f188ee40a3908b067c7f6449c3ef83debc45c49eb6054b46c2d"
+    },
+    {
+      "id": "adidas",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "22de78105586834cedc142d98175fa551cbbd0a3537e0a34191bd4f491072390"
+    },
+    {
+      "id": "bmw",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "942207c65b4c3659df1a7f1d576a801f4cb80d8ebba29e76095127af983d3c29"
+    },
+    {
+      "id": "bayer",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3602e8cd81945450371f28917ecb357a30d82a128ec032d419504c2d70d2fc28"
+    },
+    {
+      "id": "danone",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f34462684d479d85794799998109f0f7e09a7d105e7c518c874af9ae0ef8d353"
+    },
+    {
+      "id": "samsung",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0e5d37687b913ed737e464a27cba84f2765cdff577a06ec8efaadfb7007082b9"
+    },
+    {
+      "id": "sk-hynix",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "36af270d18a0b075083caf9d983c4812d3a2b3ed77c5d08f907366f016d9852d"
+    },
+    {
+      "id": "thales",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "763df4d003a2b2b69551856aa38c9d6251ce325da36dc34bd705132b7a66ad80"
+    },
+    {
+      "id": "legrand",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "bb9eedfa9cf4e1d672ecdf156e920cb2be924f7b8008ae67d0456264d7e9d1b3"
+    },
+    {
+      "id": "saint-gobain",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "224236ecb2e372a4a0da62b1a3ac13e737c49c80e4b39ca54c2c650cfaf5639e"
+    },
+    {
+      "id": "michelin",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e8f2eb7ab920f819f9f130822955b5548084e9ca14e82f98dde251d7407cedcf"
+    },
+    {
+      "id": "novo-nordisk",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "03bf44d622b70fdb6038b5f344c5b8ec42452cc8e64d1d7cec83f85bab5a1e51"
+    },
+    {
+      "id": "novartis",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "677c970e9e20fac48bce8aae32ccb6db10b9c17b838a1efa619a71101618b474"
+    },
+    {
+      "id": "astrazeneca",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9206028c2eaa5f12a2d61ea887cc8a87007f9b54236e4bbc33b675352578810f"
+    },
+    {
+      "id": "abb",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "61ff8fa9f8be6a57960bde5d742ebd71a71f97937411d7955137e899bdb273e3"
+    },
+    {
+      "id": "sp-global",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "77523a1de7721fc3eb5a55378be61fea07bbb950cc48667664c0f4b093d17b09"
+    },
+    {
+      "id": "moodys",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4215417edd1b33c380ac03705f53c299ddbba9f7947327ac54aa7dd12fdb5376"
+    },
+    {
+      "id": "intuitive-surgical",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9db94e5b546fe3b95c2a4fd5da11bc5d12c9753a6fd5a7b7ac1d90738885282c"
+    },
+    {
+      "id": "deere",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8eaa995b257f6a64c027a754a90c8b5ccda85178ad423404d20adcea779c308d"
+    },
+    {
+      "id": "palo-alto-networks",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "570b034428a7da1309b7961b2e1d0e45295fa505471d20ebf5ce277dedad1b71"
+    },
+    {
+      "id": "linde",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "adab8322a60c9fea6d6bab2fa582a63c4f37070da130b661a93917b177cf7255"
+    },
+    {
+      "id": "tsmc",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1ab8fb284625e1da15d4c2c4f9d1d10a13f4ab6f1bc10a7b9d1b65b5495c5efd"
+    },
+    {
+      "id": "sony",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "233434308aa82473b4e743f3c5ad1757364b7c8c77e89014b1ebca218eb290b1"
+    },
+    {
+      "id": "toyota",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a71adb9f88b09a380f4942c8e49866be16ba7eba024102ef81202d2c138f0fb0"
+    },
+    {
+      "id": "nintendo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0f595af4d2e82b36d486452866c8f3fb1a0aa3877e3a2fadeee569c0c35025d8"
+    },
+    {
+      "id": "tencent",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d6b57cdf4e83ac29a15d1e0cac473ee239e259d73f3cea77b50c045139f4b7da"
+    },
+    {
+      "id": "hd",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b77b358e5756bf2435b5cc070924f5f202212b2149e8d8190d7613acc571fa3e"
+    },
+    {
+      "id": "low",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a77221c983a43756cbc5083598f6888ef139fff57601184942c6f8a0b68142ed"
+    },
+    {
+      "id": "sbux",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d83d6f4333b14242b068d9be34f31eb21be69680bbfd290dbefeea2614509da1"
+    },
+    {
+      "id": "cl",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1ff681c9731f5ca7a5eefb8f2dea5e425db5f664f83eb7bce98afd28e5710b08"
+    },
+    {
+      "id": "mdlz",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b30f1f35dc687b35c751285175ef229bcb11b36d562c67778c41f5b2b7c4d3a8"
+    },
+    {
+      "id": "syk",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5c3e36dedd80b1a84c25c2efe9493d4326458c9b27ad30ae1b196662b52b8622"
+    },
+    {
+      "id": "unp",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "eb37b4e64349d3f9a966c5d3102fd124956e5fd408cad0746a03b6c00dbe0f52"
+    },
+    {
+      "id": "lmt",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b3cd6f5cddd3b71d2f0c2ecbb8db14d6763cbefdb7aab02a1b3264257b541353"
+    },
+    {
+      "id": "rsg",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7b716cf94171085df96661194039154ed68e7f38653eb74b00fde076dbb28c03"
+    },
+    {
+      "id": "adp",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "996e82b5c5fce71307180cd4e36737090884a3e8e338f8fce2de32c7ca032b68"
+    },
+    {
+      "id": "adi",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "99ae393b4df509562091fe8690de39196d844dc717612ba3fa49aa5d36904faa"
+    },
+    {
+      "id": "nem",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8bef449beb5cacd28234f7596f42a5f2ab6296207545c419f12248cfe0465e1b"
+    },
+    {
+      "id": "etn",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "42d70c56bb4fe10d4847fd563156d6c755094a6f5f4b3cfcf57fee3325027e5a"
+    },
+    {
+      "id": "tt",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5ad0bba724f19f2d00196692c3527d815ba8670744c5d66ec875929c64247ef9"
+    },
+    {
+      "id": "regn",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b1c3f690281d94c2df4bbc8484a84cd52c6eb0d6fc94eb792e00668aba426f43"
+    },
+    {
+      "id": "vrtx",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f99d91bdea52dc5dd0b0c6351a798562e1077ed0e42259053e30b18c913ebf5"
+    },
+    {
+      "id": "zts",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dee376eb86fc2d33581514f30cb37a1d8693ddc3f2585bb0d751eca11a2c4c06"
+    },
+    {
+      "id": "msci",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a486d8a187655ff2a03461736669dd784bb949c847da363da076d19a93016975"
+    },
+    {
+      "id": "fds",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8d05740abc50d20460e837495319eb3e070a7b02a76222fb8edb6a3e17a588cc"
+    },
+    {
+      "id": "cdns",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8113538a89c660b4059a69f31e6ba85211948692d554d070b1ea06a1137489ea"
+    },
+    {
+      "id": "etfAmundiWater",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "024eeafd87940c3076238a70f506097ebd548859139c98333329c02450a85ea5"
+    },
+    {
+      "id": "etfAmundiLuxury",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3af08a258002ff832ac77dade7212ceb59b022452507e53603c34f1e2bebccf5"
+    },
+    {
+      "id": "etfLgArtificialIntelligence",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "495fe5f16fb8bd9fc0437a5c22f111a9090e8fa59b197778319672a4b037fb36"
+    },
+    {
+      "id": "etfLgBattery",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f13edd61c0c5794b16db421abfa87cf023afe6c9cd94f48c3fd48ff1db0fa7fa"
+    },
+    {
+      "id": "etfUsaSmallValue",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4f2725fab1a374059e1a01c77a6d5b61630144f77b7ee892a5d3a4774ba73427"
+    },
+    {
+      "id": "etfWorldMidEqual",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b9a91158b420de5006723f05100b79009f809afe03478e04c2b2359a6ada7f80"
+    },
+    {
+      "id": "etfEmValue",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f5d3fea53ea3e3c93c726141853475d05fb4132efd6a3ee4e3b8df2357ccd0dc"
+    },
+    {
+      "id": "etfEuroUltrashort",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "747c06387df8c64d48715ca0b74a38b83a7e396265a83a1e3b09591adf5fa95f"
+    },
+    {
+      "id": "etfWorldMaterialsDws",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b8b231277aa997df8ad9e088a6936eeb4dfe878c4145fe3bb4ee5b3657f71049"
+    },
+    {
+      "id": "etfIE00B4L5Y983",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3673148bcc1782bb95d0a56ca6b48012b0766e5ed646bfa363db70b056c47126"
+    },
+    {
+      "id": "etfFR0013411998",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "bdb21cdb8d5c3c095f532265a0f67495a9476cbf47063b841d1c4f21578216ad"
+    },
+    {
+      "id": "etfIE00B53L3W79",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "951656ea13bd03ebe741873d7dfe2340bb45e53a77771dd93d79540d068ddf12"
+    },
+    {
+      "id": "etfIE00B5BMR087",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "97f497e6e333cf161a9b8731ce79dfc9edf3cc739fd680f05226a9af6709d311"
+    },
+    {
+      "id": "etfIE00B579F325",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "77dede082e80a4368c8c88f4891d8e0c5005816fc9aa9f5c7be1fa56b142e585"
+    },
+    {
+      "id": "etfIE00B42NKQ00",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "392f6084dc90882e31fb7a6d78bd7557b0dea14603ac87f027e976538ab98ce8"
+    },
+    {
+      "id": "etfCH0454664001",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "48eb078d9da1f3fa0c16f3e3da999d8052f3c0fca153dddc21c2aece97813db8"
+    },
+    {
+      "id": "etfLU1931975079",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "26fec1f394ce2b706000559be8c88469cf30ceeda98894214533bb8d90e517e7"
+    },
+    {
+      "id": "etfIE00BFZPF546",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "24ed63ee0c9bc8289a855fcbf6eab7a429d094e18e721d02dcbdaa3f8a978855"
+    },
+    {
+      "id": "etfIE00BM67HK77",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dbb701bd0cb3d66c8a5edf07c7886e75a90eba591ea5e9625961cec520edf480"
+    },
+    {
+      "id": "etfIE00BK95B138",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "397cbae17324b437aacd5bbac885ef17fd2284b0b847365e234efb9ef004792f"
+    },
+    {
+      "id": "etfIE0007Y8Y157",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5d563c1d16171c18119de729e4eb845fe7ee31baaaf2bb3bb9792066f655050f"
+    },
+    {
+      "id": "etfIE00B4JNQZ49",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ecbee94e6656ee9149cf4cea387557f027ba08d21a40d67fe0cae7b38192b0b8"
+    },
+    {
+      "id": "etfFR0013412012",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e7f243a7baa8ddf74b642fd9a9f6a93e33c672866c5b3f71c9bcdb38cff09814"
+    },
+    {
+      "id": "etfFR0011550193",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "67a0d980c36b13924c32facec8ebac48ffd38dfe4cd4b3480e985284ba149526"
+    },
+    {
+      "id": "etfIE00BYPLS672",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5ffc5ed4dbe04d18cd64113519b0656224d4bb002e18412658617724aa7e3580"
+    },
+    {
+      "id": "etfFR0013412004",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "641d13d02b6e4a5f856e253fb65735acb70871c2b7bd9cfc668c47bf4410cc23"
+    },
+    {
+      "id": "etfFR0014017NX3",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "474d89feacc00f6520fc2aeb3946e94dfd92f74496c8cd961080ad2e3c758cad"
+    },
+    {
+      "id": "etfFR001400S9V0",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d12754e4707624a82aa77972448b67506a434ccbc1f80a6f1121bd590b3323a4"
+    },
+    {
+      "id": "etfIE00BYTRR863",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b2d9c61751f7efc67c3d1db042308a1013ed7f4b3d80cb884ebf31dbf94ce184"
+    },
+    {
+      "id": "etfIE00B5M1WJ87",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a674fc05ee07bf20c1cb83472121274c47c0fb7f596a285764a797d68cf2e6e3"
+    },
+    {
+      "id": "etfFR001400U5Q4",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "858b88abff29b560359be740d55a2472a0bd78c89c13618d88c34fc56f83900f"
+    },
+    {
+      "id": "etfIE00BZCQB185",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8c89b7af507943e17c47a296379c3d9fa6ef90a8ed047b6eabc6210927c12186"
+    },
+    {
+      "id": "etfFR0013380607",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f56a179decb33cacad3d836feca882b8e8635a51f551fd48b08b4f8076b6ba66"
+    },
+    {
+      "id": "etfIE00BMW42413",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f79dcb15aafdc2a85f872d03145928bc9104a52d7f8e80d0584e406737522c4"
+    },
+    {
+      "id": "etfIE00B4WXJJ64",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2c75366883b16f106354e463be3c93f5116d43ce66c1d038845241d7891cf266"
+    },
+    {
+      "id": "etfIE000DQLYVB9",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "57a1252b81a675862ae62cb08f4f1d32601bdf44a56bdf3b8c3d7645022033be"
+    },
+    {
+      "id": "etfFR0013412038",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "394b09a36661fd2b373004d5c0ff1c214aae78ea584043a04254e4b5f3f3444a"
+    },
+    {
+      "id": "etfIE00BK5BCH80",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2812bcae9e02ef5b0b398fcecd34adc5282a07e5a4cfac96c77f09ecdc91b869"
+    },
+    {
+      "id": "etfIE00BJ38QD84",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dafcdf9560d77a534f5a0d2dbe1dfc5672179e06d69ec838ce652d52f579f278"
+    },
+    {
+      "id": "etfLU2970735911",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8713c3665d0ecf5493ac3e016a6f5f893fb500b6879d65670c69295ddcf3ef50"
+    },
+    {
+      "id": "etfIE0003UVYC20",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "cf37bd00224cb884ab586c55dd43bece21e8bfcae38258583522a410a796f9fa"
+    },
+    {
+      "id": "etfIE00B40B8R38",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "328bd49c0ca2ab8facdc806783380bdcd39bbd6e977aa0fd26b1d64847319ecf"
+    },
+    {
+      "id": "etfLU1737652823",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ddccf0eaab0abd300e5fa39d906d46c5910aa55ae318f58248c2ca61f2210573"
+    },
+    {
+      "id": "etfIE00B6YX5D40",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b171f62a6e74b555cef6a6eb0a89e2f09c78f508627b237da609e79f86050a0e"
+    },
+    {
+      "id": "etfIE000M7V94E1",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ac6496ad8e4a4de8e432fac8701e4931c01b6340bca41007fcd8eecdbff350c4"
+    },
+    {
+      "id": "etfFR0010342592",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "47069a0e7c523dff991d07d9e20c258cd6dc8212b53d9f393fb9dfc9374a5b94"
+    },
+    {
+      "id": "etfIE00BZ163G84",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4d2e20f12154d524765cd7d9714e69ad50825a326ace8cc093080df8c690655d"
+    },
+    {
+      "id": "etfIE00BKPSFC54",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "86ebde207b0c36cbc7bc1a873a4498bdc349a34bfb0cfbd460b85dd270570766"
+    },
+    {
+      "id": "etfIE000RDRMSD1",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e71bc4989ae4d2a0cbf4c63616c39e331183aa22286695345f22a869a3f913db"
+    },
+    {
+      "id": "etfIE00B8GKDB10",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "05dd8050ae716d36d9d3bf6d10f564439dc3f18d92c2eff1bdb0220225e808d9"
+    },
+    {
+      "id": "etfLU1834988518",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "1e3a74daceb410f7789b264cfeb4a149b2e54e56654d815b181535e87fc820ef"
+    },
+    {
+      "id": "etfIE00B2NPKV68",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5e755ad160bf9ff581e45bb3f42b88bf0c8fd58efd5471c1004264d4e4c5eb4e"
+    },
+    {
+      "id": "etfIE00B43HR379",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "424bcfa1fa59e1dfc58af021678193be49cb60dfbb2050e38fd05dc0c535441f"
+    },
+    {
+      "id": "etfIE00BYWQWR46",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9bef7101f22b3a36b5fd6794a0ac3f721c5542a7ab6006742637a05ef9388502"
+    },
+    {
+      "id": "etfIE00B4KBBD01",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2c79b1a9a77467faaefa6b062719e3b0113cbf561e7e907d7caa6695df8c0f94"
+    },
+    {
+      "id": "etfFR001400ZGO4",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "bc98a94398a6cf8958d9dd29dad8bfcebde20f343a6dfcb64ccaf3e92241fc16"
+    },
+    {
+      "id": "etfIE00BK5BR733",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f71306fee7b1bd7e1f5791781aa9732db1eed56b3db2ceb9e85f74fef41b2532"
+    },
+    {
+      "id": "etfIE00B5W4TY14",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a41ef5473e29af7ffffed4bfec583236a2b6fc5301e98f43e0cdb76b1731c90a"
+    },
+    {
+      "id": "etfLU1834983550",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "15e6cc3f20ce455bb39465e14e08bcb6537600d338e538c0e010e8f5fde9ae08"
+    },
+    {
+      "id": "etfIE00BZ56SW52",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dbe3e04d7e61ee02472fa9f6af89c55b2f8fc7f0484f9c9d2c7d7f2e10be004c"
+    },
+    {
+      "id": "etfIE00BYXG2H39",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8021c158302dde62231f711affa153df64a6ede08cad9138cb5ce11ef8b8d407"
+    },
+    {
+      "id": "etfIE000YYE6WK5",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ba3f230c7a3b6305946ed86fa45c95ca8970920e53e4f3cf01e24c3e65166dbc"
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "517ce2390cc5bc2bb1ec93244df4c8a1991227fb8461617fa55f44ebaa373430"
+    },
+    {
+      "id": "etfIE00B3T9LM79",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fc51166a82a1bec24526fc5594920246e303601f2aa94cdaf13870e5ec08d42e"
+    },
+    {
+      "id": "etfIE00BDFL4P12",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa212432d8714dce911ca61b0d7bb2ad85f3e5c3a05d400adf047ebfeb5d1f8b"
+    },
+    {
+      "id": "etfIE000YU9K6K2",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "a8b37d5101bb40f2497564f558d2db4249a961b254e927b417c0ce1237b6db6b"
+    },
+    {
+      "id": "etfIE00BKPX3K41",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5b14fda73d920cd77f01ba846149d8d1bc0ff3b1535a95839f6cadb29608ac43"
+    },
+    {
+      "id": "etfLU1834986900",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f1caaf3889b66783a22885071758d53cc2bcb5a18e0a743a22ec4004c3e12c36"
+    },
+    {
+      "id": "etfIE00BK5BR626",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f166af306a17a39bd69532e30db5ff866375201770e0dbf9afe9db3c681c50c"
+    },
+    {
+      "id": "etfIE00B3WJKG14",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "415ee31fdfd4bfd6269aa8a123ca4f07581aa65216727f5c5a6f3ff5db6117de"
+    },
+    {
+      "id": "etfFR0013412020",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4cebd0af9ec27b5254f80c676aae517bfc394427d5a0e2c51aa3b81ed4635ed6"
+    },
+    {
+      "id": "etfIE0000N55FP4",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9457548dd189256baaf741cb919d1bbfba35a19989d50eb2bda8d85e111d753b"
+    },
+    {
+      "id": "etfIE00BM8R0J59",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c846d70909c567a4ca9ec4dd08f56566ad176044516502a7fac88a026231a03d"
+    },
+    {
+      "id": "etfIE00B9CQXS71",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ec59ef3493506ee914019edc3227fc24828e9b21aa45315490723cbd35bec195"
+    },
+    {
+      "id": "etfIE00B6R52259",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f393abb4409e568e85f19caa7c2fa7826ad3050e84cb9398b2e9813f50363d0b"
+    },
+    {
+      "id": "etfFR0010755611",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "fea932bec46160e9ac095627c98a11609e2a781aadba9ec24326d52442f36b97"
+    },
+    {
+      "id": "etfFR0011440478",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f8c7dce461e7530868312b142bf61f3a4bf772a1e0b24ee3fa9562da6d470d34"
+    },
+    {
+      "id": "etfFR0011869320",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "75a2bfdb3e1e2ee69e8fb413f6e18dd5ecfe879651bbeea0f651cd40861fd047"
+    },
+    {
+      "id": "etfFR0011871110",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9b88a7e73385e1622016609d3f7a4a0b45763b761c61b29915a7e960d74384b0",
+      "controlScope": {
+        "controlledInstrument": "FR0011871110",
+        "controlledFields": [
+          "ISIN",
+          "CURRENCY",
+          "LAUNCH_DATE",
+          "DISTRIBUTION_POLICY",
+          "officialNav",
+          "countervalorisedAdjustedNAV",
+          "navCurrency",
+          "shareCalendarPerformance"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etfFR0011871128",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "76641ec78615c0c766d160ec014d5dd5c8135a1748e3715012bf2ef237dd1dbe",
+      "controlScope": {
+        "controlledInstrument": "FR0011871128",
+        "controlledFields": [
+          "ISIN",
+          "CURRENCY",
+          "LAUNCH_DATE",
+          "DISTRIBUTION_POLICY",
+          "officialNav",
+          "countervalorisedAdjustedNAV",
+          "navCurrency",
+          "shareCalendarPerformance"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etfIE00B1FZS350",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f92fe474afe4f7145f36c1262525c94bedc4e40bd211e17695de63a15d76b613"
+    },
+    {
+      "id": "etfIE00B1FZS913",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1dc698bce7d83ee4440cf960c26c87fa8d99b6a69da462a6aadb4144fb7bfc5c"
+    },
+    {
+      "id": "etfIE00B44Z5B48",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6d558e0de0f0715d36b9b681ea2eac9d92876fb0d902c54c69815b6c711efd40"
+    },
+    {
+      "id": "etfIE00B4L5YX21",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6bba88dc74c0ec60a6db98edd890dfbe50445927f1028574dedcb3c72271649d"
+    },
+    {
+      "id": "etfIE00B52MJY50",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9210aa1e012413c22a6bed6f68b7961c41c18b6c5a37f4ad9e982fae41d58a1a"
+    },
+    {
+      "id": "etfIE00BKM4GZ66",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0beda2a665b69424c351cb83005243740ab28ea41af112468fe0dd9499f858d0"
+    },
+    {
+      "id": "etfLU1681043599",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "631b86b79e8079ef14f34266f30aea7226f0cab574e2fb9461b1552944c5d2ae"
+    },
+    {
+      "id": "etfLU1681045370",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e53e9b815378942b5aa0731be14f1ac7d573d8b7f669c8b1b34bbf58b7861280"
+    },
+    {
+      "id": "etfLU1681047236",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0eb5f326d1ee27e0f4588653dada65a80fa53264dd255b14968a9381d1ffa057"
+    },
+    {
+      "id": "etfNL0009690239",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a9e20b20b69ded9b2f9d39e7a52d8a123c62b22c0de62b188d62c59ab8d4964a"
+    },
+    {
+      "id": "etfIE00BF3N7094",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0d85523564ad0d321268ffe9a5e4a6cb701c8a4938d10df898e67a874365b831"
+    },
+    {
+      "id": "etfDE000A27Z304",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e2d468f49f824ef0e5ef5eba40c429e4831ef77071f654143cfd43df4f75a6de"
+    },
+    {
+      "id": "etfGB00BLD4ZL17",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0805c675a93a334f2b4662b86f9573972d928fc0e07860e7e5949f3a493c4961"
+    },
+    {
+      "id": "etfIE0002XZSHO1",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "203f43b32c49e19d26b236f4c4ca18ee993e37e0fb919a8fc76478e8134f0be9"
+    },
+    {
+      "id": "etfIE00B469F816",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0ecb709dd3e7d8ab4fa9b9409c8651dcbd7178ffce618305b31182b6a5c99f52"
+    },
+    {
+      "id": "etfIE00B4ND3602",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2557b7be244c07ad1fe2ed79789c7515301d2f66a470ec7cdbfb6407e8c94455"
+    },
+    {
+      "id": "etfIE00B53SZB19",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "7303f9f036e289fe28cb27b01e2e1f9a744804906e042b5adecd15db7e6eeee8"
+    },
+    {
+      "id": "etfIE00BJ5JP659",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "31bc7290e14f84a8a079f8e0319c9d9944be74db09de87b203689b69258063bb"
+    },
+    {
+      "id": "etfFR0010524777",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5e1b9bd7021e1d9ec7ded162f86f970fd22849ffe875045a157e23d713a0ada7"
+    },
+    {
+      "id": "etfGB00BJYDH287",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8b02c4a2f60154b577977060e61ae63df3c723114605153a8a9569609d117fdb"
+    },
+    {
+      "id": "etfGB00BLD4ZM24",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "1773919e59c35a6fa9b75ff29f7486637f61581ce217da4c2d79388209fde597"
+    },
+    {
+      "id": "etfJE00B1VS3770",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "bf4370f25f28989e1354483c1509ae491db8d0bf0f31d9e044e422c4d94761f6"
+    },
+    {
+      "id": "etfFR0013416716",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2176914a3f4d0e17dc64b00e925fe76d9a9c0a904c082ea4444e58b349ab7133",
+      "controlScope": {
+        "controlledInstrument": "FR0013416716",
+        "controlledFields": [
+          "ISIN",
+          "CURRENCY",
+          "LAUNCH_DATE",
+          "DISTRIBUTION_POLICY",
+          "officialNav",
+          "countervalorisedAdjustedNAV",
+          "navCurrency",
+          "shareCalendarPerformance"
+        ],
+        "requestedStart": "2019-08-01",
+        "controlledCalendarYears": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "roche",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e80fa729b61261175fd64e249f58344ef20b6d95b0a37b027a97c8918e57a1bc"
+    },
+    {
+      "id": "ubs",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6ab82e1a88db2c10a594cf3c5e9b61fcf6ab00bab7e40614982c954661f4f01e"
+    },
+    {
+      "id": "zurich",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "41bce84b349720fdb54263b25a7b340c015c8e8eb3c963ab100d63c99d12e4f8"
+    },
+    {
+      "id": "swiss-re",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "bffec406a7d843f37ebddd8779c7881e32a4255d91d2274d4f20a091ce9df825"
+    },
+    {
+      "id": "bbva",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "cec3f252ebd681027faea72d2e63d8503ddc54e1e93a050aa135dc7b55238646"
+    },
+    {
+      "id": "unilever",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1091f4ae8f3891e84b5eef563d87744c00770a8b23ba404cab057119c0167fd0"
+    },
+    {
+      "id": "diageo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "76514505e509bdba469108804764f24002df3ac8ab1a7a32a2d791cdf1d6d2b2"
+    },
+    {
+      "id": "relx",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c5d697724dc1045b786317837e362f1c9c2fa25d54e7cb894dfd755abdd2f2a5"
+    },
+    {
+      "id": "lseg",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2672ce473c9a797f4f2db49340a231fda7821ae1a3296625ccddc87726d4ec4a"
+    },
+    {
+      "id": "rolls-royce",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "14378d68874401174be0ea039d98fd47df5fd8819623be6427dda75f5dddc8c6"
+    },
+    {
+      "id": "bae-systems",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ca04c8b60c7247ff734c9a7f42246394370bf78fd59cd51f026d6ed9c5a9804d"
+    },
+    {
+      "id": "rheinmetall",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8cf0589ebeeea66511a348333b9d9199feb75c47f9c7556d4f2b86b21a679fdf"
+    },
+    {
+      "id": "dhl",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e020a86af35aa2dbcfea9f76e0c4a9aaa0a4a09d680cfb45ce06f6c399608662"
+    },
+    {
+      "id": "basf",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "21ddf48590015b866657a2951a4393940f060d17d38d4efedefa047cc5da44cf"
+    },
+    {
+      "id": "enel",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "19c2c4429ddf1f5d97f17fac99b03614d1b9d74ff331e1ca46cc414756efcd99"
+    },
+    {
+      "id": "alibaba",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "998898b1ae5251d1d1a550ba88629aa65ae7f8dcd5ee98ffa9f524055673159b"
+    },
+    {
+      "id": "jd",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0ad4c080e1aa356bcba4df24cd57eaca6d5b383eccec77678e4197c8ccd682d3"
+    },
+    {
+      "id": "meituan",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "48dbebdf0dbe2e6d45129ac0f540dc89d369ef4685ef1bcf88e3dd237bde4bf8"
+    },
+    {
+      "id": "xiaomi",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0587d1fa381202ce844cb7661388d6099da2ab36e29b6ea9c94a71b13b97d377"
+    },
+    {
+      "id": "byd",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3fabc5b64b08ca6ccb31ef86c1cbba64b066c9f8cd541283aea5d3fd21a87412"
+    },
+    {
+      "id": "catl",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c23d52f896bc49c8a791d335d92650990a06911ca8394940d4fd3ef60863dc1"
+    },
+    {
+      "id": "keyence",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e472588810668e23427f2d0258ada0263f10764407d753e0575b4690792f4c09"
+    },
+    {
+      "id": "hitachi",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa0c1d3afe8bdf8fd73eb83f7cd62def33a00dea59910664d63ed44fd811ba08"
+    },
+    {
+      "id": "mitsubishi-electric",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "817a362bd111e79f7ab4cd46f5806a2714f77bc5832820ce0a3bf989b8cc21cd"
+    },
+    {
+      "id": "tokyo-electron",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "42436cdbd52d5c6bce59a165d1c6738e604a19f9dfffa127f586fc804ded7e22"
+    },
+    {
+      "id": "advantest",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6978a35c47136a0d1d6b7dfe3c8c265ccf9dc1b1285c09af341ec764e549c501"
+    },
+    {
+      "id": "mitsubishi-corp",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b1d4117aac8f0022f9580d6c5c4158a19f900ab12dc71e918422bf9022748358"
+    },
+    {
+      "id": "softbank-group",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "05a54d861a6f3c8dace955e59dfd89256112ed1f1a490ed37e7393e996082776"
+    },
+    {
+      "id": "recruit",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0d8585acc4ff35ab30b54489f833e82aba88413f9c44cfd62ab06ed8ffc46e0b"
+    },
+    {
+      "id": "reliance",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "bb12346d0aad54ae092d571a9b1c9c6f9347975e21af1ed3c75bb2bbe8b740ad"
+    },
+    {
+      "id": "hdfc-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e1a0353df9da9e5c20729c39a68f1174bfbe2f0448d66828f1a8e7d6f9d2d101"
+    },
+    {
+      "id": "icici-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4ee54966701e8d44d097b06ecef5b47d6b690a992bc6b4b6ada741c1921505f9"
+    },
+    {
+      "id": "infosys",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d90385fe01abc1b29abffdb80dfe2c373c8be789be05f4eb5c2b3464c731cf1d"
+    },
+    {
+      "id": "tcs",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f66de34961342d7d1030206bd48e9f8da95f01cd1fa3704f8c6ffe38cf16202b"
+    },
+    {
+      "id": "dbs",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dbdc992b6b2c0b4d9394c52dc2908d94f6c9430a9e61542545840e6befaa4938"
+    },
+    {
+      "id": "csco",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7bf65ba8ae11ae1b954a642c5f74be34bbe827426f0c553ee9839ab381e0f98c"
+    },
+    {
+      "id": "arista",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "23103612184670bc05def3bf39bd35a897ce1a0877243ebd968c49b100699ad1"
+    },
+    {
+      "id": "dell",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "31500f48f8f621485fc40897388ffd1bedf6d06342634a0a159a90bba4f3ea3e"
+    },
+    {
+      "id": "crowdstrike",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "87db16c67f7c291b40b16122aec5fffed3592c6c412bae222e8b7da911311e00"
+    },
+    {
+      "id": "fortinet",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "330c24d8f2d6488ee7b31d23764c241144a472c86a37fbcfe6cfe22e5cb90777"
+    },
+    {
+      "id": "snps",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "38ab93b9132bb644b1fc2af244394bfdb4504cb9dbf5af71ebcdddcd967cf0ba"
+    },
+    {
+      "id": "klac",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4d1e9dba2070edb84d27c5057779599aaef2dddc0937075659bab00f67fbdc67"
+    },
+    {
+      "id": "uber",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "eb5b2b933a0a7a668315c63b94d8c5f77bc13bb3f3ecde2e12ee12dbba76256e"
+    },
+    {
+      "id": "airbnb",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c580b3c382b6d0cc53e1502b2fa4534953173e9fb087ad035227cca2e41ca7cd"
+    },
+    {
+      "id": "cme",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3879c58d6b44058ca8cc9e8698965e127cf92cca86c6821b02d651d7d0b5ca59"
+    },
+    {
+      "id": "ice",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ee94725264724ed262eb568ccd8daebfcd3256e006eb4004c92a5321cc63f1dd"
+    },
+    {
+      "id": "pfe",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b10aaf01892935f5802f28aacb80171441757b6d08c402f92ad311c6d6bbd571"
+    },
+    {
+      "id": "amgn",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d304933486e825450e2d4c69e869c48de0fa75770d080efefbccd57c5f1fc86e"
+    },
+    {
+      "id": "gilead",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0d81a1aa68e17b3263339c440981e80c0d6a951d581ebcb1e881eb418af2bd07"
+    },
+    {
+      "id": "stockAN8068571086",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f0ed0ea0f438a8c9c7b8353bf96b89e67bbc49f67933dc41b35e1cce519858e4"
+    },
+    {
+      "id": "etfIE0008471009",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "10777700666b96750fcc4e6f5d0fd258955b38f1bc2455491cc0d6c2283ff7a9"
+    },
+    {
+      "id": "stockCH0038863350",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "97a1b395e9d9aaa4b4a091caa2580d4a0fe45ebd5cec488e0e3de5cdc361b785"
+    },
+    {
+      "id": "stockCH0114405324",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "75ac7532348e9263c59be7499f3c99f844a191566490ba9b1d095cf779c5dd69"
+    },
+    {
+      "id": "stockDE0007164600",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "52d5084e9caa9acbf4f3932c32c3f1e3b36bb47e9e92362631118148a97d06f8"
+    },
+    {
+      "id": "stockFR0000120271",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "71aaa03f33346d0f63ec0df292770a172cb142a86ee02b1b6ff29e3743199f6d"
+    },
+    {
+      "id": "stockFR0000120578",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f12f664521f2599859fd16718fcc07dff0c148577552e5aa2f8a0d94ea5c759"
+    },
+    {
+      "id": "stockFR0000124141",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "515200ce219411dcfe826f7f9bd006831bc248ad669512fd1181e55bc973bafe"
+    },
+    {
+      "id": "stockFR0000125486",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "16763a198b5f89ccb18486e08e2e25ac973d634f8e66eebfd88a873db7798934"
+    },
+    {
+      "id": "stockFR0000133308",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "95e702d44236dc583a04cd2db71025b7eb9cf4e95d2e48e230b3ef5a2d1cbb5d"
+    },
+    {
+      "id": "stockFR0010208488",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "46b808fc24c648ef1cd9d4586871e736bb511a6ccf98a64f021b8ab707941854"
+    },
+    {
+      "id": "stockIE00BFRT3W74",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "21c2deabad49c8ceaf6eabd14eabb338bae6f294122a9accb96c76b600fadcec"
+    },
+    {
+      "id": "stockUS00724F1012",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2c83b939aec614f9729676754e61a89dbfb907d39ed7ac03ea238f8794885f3f"
+    },
+    {
+      "id": "stockUS00846U1016",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "148584194818a8ae91bc9baec52d4fd6c41d7cf50b788ef30d7dfcfc1f04b69c"
+    },
+    {
+      "id": "stockUS00971T1016",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "91df5cdaffd3997c6d461afb8ba308416ce402077eb8d75175add7aff8a31e36"
+    },
+    {
+      "id": "stockUS0311001004",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9435acd52c0ad8115fbd0f1e91ee29b3a26dae8e6350d87121f7da234973e59d"
+    },
+    {
+      "id": "stockUS0527691069",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "fd15c3e21ab13211de2607748735001ccb46d31c3387ab4d6522599f32c922c0"
+    },
+    {
+      "id": "stockUS0536111091",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "72f18b02e912bd8c56868ea32b32f3491d07fa36484c3cfe5335b811877c8c5b"
+    },
+    {
+      "id": "stockUS0865161014",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "71b1f87f6f43330e1fc19aa7c8ce09fb75b65491c6736f4b6a84791bfb099e12"
+    },
+    {
+      "id": "stockUS09857L1089",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "116dee1c7b65b44cbc7c348548c6dfc44b5a7427df0a166c004b86c9ebfbbe37"
+    },
+    {
+      "id": "stockUS1011371077",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "43bff443e66de60afad5734b73549a07f86c03f322bc48b8021e94a0707c58a4"
+    },
+    {
+      "id": "stockUS1101221083",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b1acc944a5afda574d6e06945ec375b64a510a179b62d7e1de6008013366a63b"
+    },
+    {
+      "id": "stockUS11133T1034",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7f0b3067e51f4675c7a784479584193431452eeb479a3feada084db0c0f849e3"
+    },
+    {
+      "id": "stockUS12514G1085",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "56d2cacbdac5ded9c97278262c5cbe8047f9e9440fabab335e353c17dd886969"
+    },
+    {
+      "id": "stockUS12541W2098",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "05f8a6219155f61b0320a282e660d1252b901dc1c6c7896e4b98fa86b08e5875"
+    },
+    {
+      "id": "stockUS1491231015",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "18b58752668aab62af415ca8f8a8c739583f6826e658dbca00f687556f2f1c32"
+    },
+    {
+      "id": "stockUS1713401024",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "db524841781961d4868da7c19a21e9ca9fe830a729086c87ce792e88e512d9b8"
+    },
+    {
+      "id": "stockUS1924461023",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3a566dcfdfade5b4ccc413b6a479dbb2e878b24dbcc4a046cd92ce90c05d854e"
+    },
+    {
+      "id": "stockUS1999081045",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "93763d0e8517e036f7ad1956159773d602e0ee32ac1ae0e05a3e4494e84dc670"
+    },
+    {
+      "id": "stockUS2310211063",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "66a60b79d7d5f620b73b50062ad6806653c6e7332772a10792f283d7109783ba"
+    },
+    {
+      "id": "stockUS23331A1097",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f77e8625e9d22561f6f8ca69f11732c586db331952e6680419ce813e07cee7aa"
+    },
+    {
+      "id": "stockUS2546871060",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7143afde3810622a194b80f85a073bab553b9553dc591ffc68d784f5c51e2196"
+    },
+    {
+      "id": "stockUS2566771059",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d327b242cddeb5becf13e315411e36629f3fc5c2d67ba624a6deff1a5e301d29"
+    },
+    {
+      "id": "stockUS25754A2015",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "32b82eca138068a8db6dce1941082fb192f82fb88eb80815a44c212b2922e750"
+    },
+    {
+      "id": "stockUS2600031080",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "57cf3216a3c752c77d019941d88e1614c4a1767a828298a5fdf8cea0eb698a39"
+    },
+    {
+      "id": "stockUS26875P1012",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6583f27efad390653713f4625d28aeb70b09df528e09100dc55ebd839927b6b7"
+    },
+    {
+      "id": "stockUS2786421030",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0cca6dfda4d5c6e9a5d233380242c7c55fe5e709b88774dc52a31b8c0e16db47"
+    },
+    {
+      "id": "stockUS2788651006",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "30c20f4dcb0c3a09391ee0aeee5badb37e74150fe40a27a705b5b59daca03055"
+    },
+    {
+      "id": "stockUS28176E1082",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8e43117a7cb24705a1bfe3dc4f4c0903310359feb3e6e518623ec2b27c4aed69"
+    },
+    {
+      "id": "stockUS29414B1044",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0c9834fcbcdb756282322d42447ba9c91ef9743e482408537c2482e80ff1696f"
+    },
+    {
+      "id": "stockUS3021301094",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "42a10739dcb587b4b94a76e13e3e8ad406bdd79737ce2ee3b804c89a371ddc33"
+    },
+    {
+      "id": "stockUS30233Q1085",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6b9da9e1f00fca5e245d5255b8e6ecb5ee4dd9d037a24bb2cd42522b9b271fb5"
+    },
+    {
+      "id": "stockUS3032501047",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a954169817aa98e45cb96815fa9e36e62150571725f60de51db03bbc93a0a5b0"
+    },
+    {
+      "id": "stockUS3156161024",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ccd01aeca35d1f56b118a0143a76b9a20a69adb17c468ef7b29868fc09a70e5e"
+    },
+    {
+      "id": "stockUS35671D8570",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3615cdebcdb1d526d3dfd0b8fa8a826131e55c028b22641088e8ae24a4713c2c"
+    },
+    {
+      "id": "stockUS3666511072",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "21588b5ba79bc10a113514ac91a83fb64cf0859ab8630fbc910990d5d47163cf"
+    },
+    {
+      "id": "stockUS3695501086",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e0447dae0181ef3e162e2bd0d3a4be260ba7d7f7cb71f294d9e32046430d7a31"
+    },
+    {
+      "id": "stockUS3724601055",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "12d8bd2ad31e6fb063d079a9a4f6856f7c25fafdd43ab3d3990178d0311cc25f"
+    },
+    {
+      "id": "stockUS3841091040",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4d8343577fa717f2ecccaede51f5b3d3acfec3c97f1235a5f93af0c56b7acd05"
+    },
+    {
+      "id": "stockUS4262811015",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "12813f90fa48fefd9a54e2ac2b620579fe257245e594a9a57a7f00d5d1d0c661"
+    },
+    {
+      "id": "stockUS4278661081",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4884407ec598909506ccbfee7391104ed7f3797da0e1ade12721c43b9d1825bc"
+    },
+    {
+      "id": "stockUS43300A2033",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa8ee4a4885d5a7ea8f183027518cbbc6b3d2e1118c6273b4f1c2a2f0058b262"
+    },
+    {
+      "id": "stockUS4404521001",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b230d5e0becf3e7472cf789dc7ee0a557b4a0ed5a5acf8a1fc3255aa825578db"
+    },
+    {
+      "id": "stockUS4456581077",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "11b82d9497e2d51d0dd463a8cf35c497212cfbacd10f81c0f8cd30a40c8c894d"
+    },
+    {
+      "id": "stockUS45073V1089",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f4a7c1b3bc62a6b256b00132d6f1961000a454b98223cd5ff3bfa9a09e2d5dbe"
+    },
+    {
+      "id": "stockUS45168D1046",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "56935a6048a0da77fc87d80dd991eaca77c3f83757965be80aa3fb9d08803429"
+    },
+    {
+      "id": "stockUS4523081093",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "086c1d92a49761e245e273ac6791f2aed332df0b8c262fedf1ae3926cba7376e"
+    },
+    {
+      "id": "stockUS46625H1005",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7dcc78f660c1cbc144603ec9a4f0522c92b64d7b627d2a386df362c566204155"
+    },
+    {
+      "id": "stockUS4781601046",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5128e6018fd2d80f3c485f236da9214c8f533da7201a94fa308e5bced40390b4"
+    },
+    {
+      "id": "stockUS49338L1035",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "1f62384a9766fd9fc56d5a68da5a875b706ecf8d5509377bd05d51bf134f054c"
+    },
+    {
+      "id": "stockUS4943681035",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3ae2d2224ecf9100fb8afc03b9ae521c0df61bcb121b6245c01422e8402e73e4"
+    },
+    {
+      "id": "stockUS5018892084",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ab8a61552d8ab6cc7c7f613d3debb16151de33d85cf15e242ced51eae67fcd16"
+    },
+    {
+      "id": "stockUS5261071071",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dfe685e9e55669c4bdce0ec9a69c5a0d4fc4b6898e00bcc5ffc213ab6daf7568"
+    },
+    {
+      "id": "stockUS5339001068",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9ebf27df9fc5c9f39e58e861eb71366f34b56546fabef39b2278a55faf9122a0"
+    },
+    {
+      "id": "stockUS5500211090",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4ea49c927fd3ad4913df18717abd373a61e90a13fc11cfa8111b8c3df2a90a9e"
+    },
+    {
+      "id": "stockUS5719032022",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "356cd03e6e867595ba26b62514b8d681f5ddf41f75412603518259cbd1f9ea2d"
+    },
+    {
+      "id": "stockUS5732841060",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "662f887ec8b4975d312647e65d91bc949825d4f229751d610b628f48be8e783d"
+    },
+    {
+      "id": "stockUS5745991068",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f987b38b233906364eb8141dd80ea7660f5922efbfa92f2e46884ce091339d03"
+    },
+    {
+      "id": "stockUS57636Q1040",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fba1b0a5be5dc3fd61254a62d362a1a2fcfddf90eca12e308b78a07fd08ad047"
+    },
+    {
+      "id": "stockUS5926881054",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ec575f852322e5b8b37db7c2fe8a2c6777feb83a54990afa0d5d625b983ba4af"
+    },
+    {
+      "id": "stockUS6098391054",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f5ced7ca089862f4fb0e8b52f4c42c0b6000272351fbfaf09e26846aacda5d77"
+    },
+    {
+      "id": "stockUS64110D1046",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f88f71fc7d99282aa5284edb99384fe6b12b59b8f33342ea2380ef742685f357"
+    },
+    {
+      "id": "stockUS6541061031",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1143f489ecd4e1082fbf2483adfe7882909969d62dfe0545d7b2b6e058e494f4"
+    },
+    {
+      "id": "stockUS6556631025",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "260e791b46febab151155847a3b7d88c8b7353df9c58b35b433fdd788b0748f8"
+    },
+    {
+      "id": "stockUS6558441084",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "273b822e987bc33b5250f7d07e1f3c9dc7f0beb9bab61c3c438fbc4ba3e53bde"
+    },
+    {
+      "id": "stockUS6668071029",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b3b282f7da220e9c01ba7ec4034cbfdb9c787319949df78f19b011dc572cc573"
+    },
+    {
+      "id": "stockUS6703461052",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a69b3030dd4e6a64329713cba2fea8120d3f84197a72d54546f279aa62cce5d2"
+    },
+    {
+      "id": "stockUS68902V1070",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8fef4165ad291ca30ea72f62d550f296bcd9a3047d453c87f0085ffe9b4a62bf"
+    },
+    {
+      "id": "stockUS6935061076",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "875719841f7f16c0e000cf2c49ea90662a3bc69fc52041f0b8600f129e7acf44"
+    },
+    {
+      "id": "stockUS7010941042",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7110efa06f026d0e35f4fad562b9cffd66353957dacde3b9a5cbc0073c0cdbbf"
+    },
+    {
+      "id": "stockUS7043261079",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "01e692860dc0513308503c28e3c24ab5f240961fe175f536c617de6b0805dfb3"
+    },
+    {
+      "id": "stockUS70432V1026",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e68d011bd1b82bb1bd13a6f6ea29ad24a7bcaadf4a72c0551f2080ff7d4649ea"
+    },
+    {
+      "id": "stockUS7134481081",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d11e367da88430a895906d1cda02daf68ef724aeb2ec7b32e5ecc765e2270592"
+    },
+    {
+      "id": "stockUS73278L1052",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dbb6e045c255ff12268e070f24e95f5c7ecf19dfef0b3fcc0caf705cd0257e91"
+    },
+    {
+      "id": "stockUS7427181091",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6664e3e9169f66bc53ff9b94b5d840c03d71955fe7d8970380b48edfd1674343"
+    },
+    {
+      "id": "stockUS7458671010",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5430a2935c8dcd1e9a4da181c380f17d237a5a22acc1e01e70a119812b5c5d37"
+    },
+    {
+      "id": "stockUS74762E1029",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b4f5df4c30ea5850af089a198039c4ecb2d58a031a4478a245432f07db70bfb2"
+    },
+    {
+      "id": "stockUS74834L1008",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f05416cf9d7e8f699b015dcfc2bcc4890acb2ccde3f891ae0e08eae5b89da814"
+    },
+    {
+      "id": "stockUS75513E1010",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4a4f7ee59a52dffed7128b0c66bb75f01a7ab4a9e60509ce35dd0c6c07f56872"
+    },
+    {
+      "id": "stockUS7611521078",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "220feb35a0f1d579265024748538797b8daea5ba506557564e8a46f62ed76705"
+    },
+    {
+      "id": "stockUS7703231032",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f2bcac6439d9101811c348b407a786d61672f6d64864ba80eec31bd33728b24"
+    },
+    {
+      "id": "stockUS7757111049",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "59ca423a17afa13c532663f19765358ae7e647ada18f438b044a1c22e3eac853"
+    },
+    {
+      "id": "stockUS7782961038",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0a623e00472b3f9c097b72f6f2fae4a27a77741dcf3d4386786edb85e7ad3514"
+    },
+    {
+      "id": "stockUS8064071025",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "29c8f1f2097fcf8a936085a3b427fe20f8808e708b1f485882d07963361d1e25"
+    },
+    {
+      "id": "stockUS83088M1027",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "52c9c3cb54de539503d22ea0c58363ef3a7ef4211ff62e74b96c04fbb1cd002d"
+    },
+    {
+      "id": "stockUS8318652091",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e15cdb1f42f2abac7020473c91f7731572d1f535b1dffa89572475ed23e9dded"
+    },
+    {
+      "id": "stockUS8330341012",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "38774b7ec3dd9498ff73c85bae7ef3875c09dff9effa920f433e9307c8417c95"
+    },
+    {
+      "id": "stockUS8545021011",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "567ad466d1a3f332113c3ab36f4e7393961f73607c0d7e729407880bc1b80eda"
+    },
+    {
+      "id": "stockUS8725401090",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a0486cc80de76ab2967e9f239af12c736fa525dd6addcdeab948022b1a3318ec"
+    },
+    {
+      "id": "stockUS87612E1064",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e71a5255638728994905cc52a13b52df542bd97e34f160d2d3c3444116a29dcf"
+    },
+    {
+      "id": "stockUS8807701029",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6ab9c2d2cdcbc98754371275520e942d65009badae21b7321a3b47715babf05e"
+    },
+    {
+      "id": "stockUS9022521051",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dbc04ba32a3fb71196529fa31a660fbc22d75e84bb8be97b74852ee0cfd07884"
+    },
+    {
+      "id": "stockUS90384S3031",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "655d722eb2b7f579e8a2a5b4e0600b673603a3cfebda2d03f790d4d63875b659"
+    },
+    {
+      "id": "stockUS9113121068",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa2d9329f6be63aa8eccf23541fdbdd6e792ce80c8453ab1f66060e2f2d29d1b"
+    },
+    {
+      "id": "stockUS91324P1021",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "832a11aa0c5490b84834ff29c97a641dc4baac4d89992e3645ce9a0119d73341"
+    },
+    {
+      "id": "stockUS92343E1029",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fef56d04627856df526acb7a26675ea0bf7764aedf71274bb09b9ea0015f034d"
+    },
+    {
+      "id": "stockUS92343V1044",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b3353dcb59e75f75a0f821561e82cc16c5ea7d58f02eb3378fc832db6435440c"
+    },
+    {
+      "id": "stockUS92345Y1064",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d8df4cbcdffc534bf9b4a4ec9ca2bccbae5fa0ae9f0dfa291acdc309f13ea217"
+    },
+    {
+      "id": "stockUS9291601097",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b806cc327ad47a0748ae94c00b9a633d68db6092b327ee6547195a125b20e0a9"
+    },
+    {
+      "id": "stockUS9297401088",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "92bfcd8592a24572d831ca15a70c4e15bcb3834b4f3f521db9a63e10fa269425"
+    },
+    {
+      "id": "stockUS94106L1098",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "381cc4d078a2f7c6d16274483c224078e9acb6940b71cbd95d77f1708c1f7573"
+    },
+    {
+      "id": "stockUS9418481035",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2adad44dfedf75155fb9dcb55c247997d20d8675693991b75bad871adb23d75a"
+    },
+    {
+      "id": "stockUS95082P1057",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b7e53afd83db355110f2babeffe65112e61c6ce46561dec0904aef68a2de5d2f"
+    },
+    {
+      "id": "stockUS98419M1009",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "92111e21507052ccd15470ad48edd23db936eb73f3477f543daae5538c5c0bc4"
+    },
+    {
+      "id": "stockUS9884981013",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "36f489864c556f1f7f8039447ecba0e9b6ec35edcc38af0811a6f3d1c92755ee"
+    },
+    {
+      "id": "stockUS9892071054",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "7b686acd7b6d414b0e66e0cd8f19ea56e938e4b7c33792998a09e6f632110760"
+    },
+    {
+      "id": "stockGB0009895292",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d65fa81099bb6b0b37261df294e7bde22dd7b0d95f1d36773b5e201d937d8b2c"
+    },
+    {
+      "id": "brookfield",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0e8f267d37414a4b379b09e34de7a2f1028567dd6f1bf7e2520996cc7558a2f4"
+    },
+    {
+      "id": "canadian-national-railway",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a7b309c898702f95a3cccbf08bab8d31a46389952a0cc506cae17c73bbf89b7a"
+    },
+    {
+      "id": "enbridge",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a188ecf42977ff581de0b139c2fb1ace644b05b17a2925eb32702723125c9d0c"
+    },
+    {
+      "id": "royal-bank-of-canada",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2391c985fe2d5b277341fe907cea79b231e3696d5d707a1e02c8ed326cb1821b"
+    },
+    {
+      "id": "shopify",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d8ba24e150cee316a05bc6e0ba5e35c19e5e939f15571efc5dc56cdda53a5934"
+    },
+    {
+      "id": "toronto-dominion",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c6eb4731fd0e3bc169ca9c1f00911bdf132422ea80ac01200eefd3ba9ff751a0"
+    },
+    {
+      "id": "givaudan",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "65e9c004767786d12ee7a18100728e2842d69c8515164d890ffb81f91851690b"
+    },
+    {
+      "id": "holcim",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6b26c68a28dda7cd4b5e1add0657c12dfd8e0f89868e755a10698f75201615d4"
+    },
+    {
+      "id": "lonza",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b568cd6a44c1d441b2bb3ba9a8368d2f6ee2972a1fea470f16c19f31adc0c5d2"
+    },
+    {
+      "id": "richemont",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e11da657da34202c51bf9e66ec2714895dc517daa7227ed167eb35600e2570f6"
+    },
+    {
+      "id": "sika",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "455744c56ae75e5ad05a8b18b35c961978cb46d62a3d63996f115c88ca10489d"
+    },
+    {
+      "id": "kweichow-moutai",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b9692e0661118417df63c92a2870278488ae98640a8da58701355fa470bf662e"
+    },
+    {
+      "id": "china-construction-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "eb5be3bbd53fe230345248db4ff00585afd9bd249eac59cc38a5ce5c4b77a9c7"
+    },
+    {
+      "id": "icbc",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a8317d80ad7883251682218a9f393b75e8b5721fe24f78e5f51fc04d593dd007"
+    },
+    {
+      "id": "ping-an",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "adaeff360767fd75d3cef8808a382c3235f49a1be8fd3fc7aaaeed2d06beced7"
+    },
+    {
+      "id": "deutsche-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b963220d5b517f4e9cca08d52db11f3c51bf9bc1cab5008210c25c8c6295d8d9"
+    },
+    {
+      "id": "mercedes-benz",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e6f4c568f061a4fa865d8efe430a8df7762abb646ab9f39e9cbde1139041572e"
+    },
+    {
+      "id": "volkswagen",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "622001e56703b89e65ee3b6e0708bae4942ab25b436d7a9df0d7f3d62465fd2a"
+    },
+    {
+      "id": "siemens-energy",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "185625d33ff91808d13d37516c65552d94ca12fd4258df66a2cee90ed328b185"
+    },
+    {
+      "id": "siemens-healthineers",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "dd2dfb005515c87f017d807b85fbf6e6b5fce2ba8304016bda0e7beea6e78856"
+    },
+    {
+      "id": "dsv",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3796b54477262332dd1f1082f7265e0611df22dbe09bd2db3c9970545a8d631a"
+    },
+    {
+      "id": "orsted",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "29bbad8ed476f9895610e2a7b9cf69a7c715bedb9b1d2df088cf256c8ff0bb62"
+    },
+    {
+      "id": "novonesis",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5e61784c475b6faf1ee9136da2ee0702dcf0ae1ad8dd10492711bcda144f3129"
+    },
+    {
+      "id": "nordea",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "eb7238a5c45799c97961ca8bd1a2373a4d5a60c78d07458ab7885136fec0619a"
+    },
+    {
+      "id": "credit-agricole",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b013671728dbdcc407b5a04fabd23b9bcaeb2e59afb7441d6d2bcf3bde01a5a3"
+    },
+    {
+      "id": "carrefour",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "df61432568c3344baa1cff2f93413e61aaa5f5014e8475b311a2b70a8866f1ca"
+    },
+    {
+      "id": "bouygues",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9a1615360d6c753c5ed5ca7f720c2fd6b1ebd35168fa5574340ede439e88132c"
+    },
+    {
+      "id": "pernod-ricard",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "007f27b21559f27c06259386c7f96b33d63c43eb5ae40ba4e109c3972449b727"
+    },
+    {
+      "id": "kering",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fcc1b17a96738b69d1b7c8e9075bfcd43339e939c6b04ee4f680d689e13cd62c"
+    },
+    {
+      "id": "capgemini",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3fcd1d4482c6b77fea02522d7e110b235fe16893d9eab316ae05fa44d72136e7"
+    },
+    {
+      "id": "publicis",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "11e83c59c769d6e26f24e0d679be3c6c138e5abcb681e165f4b4fce55983840f"
+    },
+    {
+      "id": "societe-generale",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0ed19de04d5fce0ee1b889c2f6f85fdb1d436ff7a29bcf41390edd707d1be766"
+    },
+    {
+      "id": "renault",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "84420869da45c7310b6abb8e58ddc7b1f7ac8de80646de47eced08d4d78e0802"
+    },
+    {
+      "id": "bat",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7640423b9ff78db2da7f76f6902dab2774a4f6253ebd381d5e1d326401d024f4"
+    },
+    {
+      "id": "hsbc",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "719a58ce604f83cf5b8873ed20760bc4643bdc1e4e15edb259893506abf15a46"
+    },
+    {
+      "id": "rio-tinto",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9a03063d4eab7b3b5ae4d7b48cd3914d85d929dc255fd699afc0c40e4a81bb0f"
+    },
+    {
+      "id": "gsk",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9d6e86393651f90eec3ab88d4c5f7d937dd4eb7f0b60f5e081556403936163a5"
+    },
+    {
+      "id": "shell",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "08187054f11a65f6c2725b4f818600c1672b616837a6686880dfc762acebe2ca"
+    },
+    {
+      "id": "aia",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6e7d808257b86b8a27e2bdf36e88e310fc6c2e2eb3a2633078145b4efb770196"
+    },
+    {
+      "id": "hkex",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c81aecd02d2414f2323f7bd799f9c4616b0d089b572fa044fc99797e7c013ece"
+    },
+    {
+      "id": "accenture",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1da9509f474e1234d7b944a0b0a98e0eb339503ebce534b0a872b3a94db6e09e"
+    },
+    {
+      "id": "medtronic",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1fcde2e274c013a8ae67ff4cdbd9945fa7bc0663e3ab50f08b1f814453ac49ff"
+    },
+    {
+      "id": "larsen-toubro",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "9422997741146df16a7d5fefdfd7195fa9ff35c0e2d54954cffc128a6fdf7335"
+    },
+    {
+      "id": "hindustan-unilever",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ab3544352e3a408fb6d80c7037700af845eb78f4ce67b3fd8464bab91b87e860"
+    },
+    {
+      "id": "sun-pharma",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5d21694f2257047167a97b79e305c74f00221d28cc9eb2c58062d77159135815"
+    },
+    {
+      "id": "sbi",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6003765abd34caa88a8a544c45e19f61a27f55ecf70657408a48e854380ae9e7"
+    },
+    {
+      "id": "itc",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e08a9c0b3c8efec48296ecaea0e6a6e1a8973164272e7a7f0d7d4adbf91ab6cd"
+    },
+    {
+      "id": "axis-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "54720ccf8149914532e80810c54d19a8a92ec455b1c4905c2e59de956ae986d4"
+    },
+    {
+      "id": "bharti-airtel",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1eb35716630c93a078ec2a2c79c5d186a7a62256d25299d246a7bb6c8259e37f"
+    },
+    {
+      "id": "generali",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "91e67d9fd8bdf3c6643007e54317107ac3b7d11e2b5f51d717bad804c9780c06"
+    },
+    {
+      "id": "intesa-sanpaolo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f8bb94212024b58fe6e18660dbb725ccd4fe5c89512caef1eb46be7d613f64cd"
+    },
+    {
+      "id": "eni",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2f10f09d2614ebdb68a2532393e257bc49b7f93e44a0b2544a786414f620bd81"
+    },
+    {
+      "id": "unicredit",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0f1299d190b2e54c8b2c3e3dbdfb07aa26aae6aa1eb8099d8441e7d7d961d142"
+    },
+    {
+      "id": "glencore",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "1083913a5278ad9359f2da4924e2e337930d5f028a44899345f3236a2b4ba05c"
+    },
+    {
+      "id": "itochu",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a2632a1d13b4f2fa4f7c83d0f45eeffe4b152f005e0922d0c9ac988f0055d3f2"
+    },
+    {
+      "id": "shin-etsu",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7d7a5de8229d7cd068d750129a9529950300a01cd74b5e6b7391d8ae7aea3e6c"
+    },
+    {
+      "id": "takeda",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "52114a5a28b6c02b54946026b89ada951b82f00f3bd612a75ed4f652795a41f8"
+    },
+    {
+      "id": "daiichi-sankyo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "890e476828204c361d1f84886b5eb0a6201ba12c9f13c306735a648bff4e10af"
+    },
+    {
+      "id": "kddi",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a18193616a7ff42d55775acc1df3da4a3d9e85ca5167ab695aced6c4f084d3be"
+    },
+    {
+      "id": "chugai",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "43161962cab9c3a165e4a735ebcb15fa0b17ee9a0b95d557013de221f1370099"
+    },
+    {
+      "id": "disco",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "63b246a72ed2423f2b9f4940fda795cefdb310afef0f67d241ee7ac821f8a973"
+    },
+    {
+      "id": "nidec",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "af09c5a4842bfb6e05e2579ca616b52415ec3a5a60c54d6eb506fd356dac655a"
+    },
+    {
+      "id": "ntt",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2612f3e5e7b0c8f926af3e02e42be7442d0e5e3ba2c7d186f54c6004be5b84af"
+    },
+    {
+      "id": "fast-retailing",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "da706fa72f57f5d2e5b0aa1a4bfb8b32086d0532269c1ee0879c72d6b453ea29"
+    },
+    {
+      "id": "hoya",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "15c7799564f7b9d9635f6111f159c25f1aaf5ce64324ed78cb24184d22efc103"
+    },
+    {
+      "id": "honda",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "560aade837e317f1c8c579fb85ed1c60be701063136a0d143f85257777b99dd6"
+    },
+    {
+      "id": "smfg",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c38574845bc69f6817941724704886b135ae793e1edc06b23ad0c36584b4eae4"
+    },
+    {
+      "id": "mitsui",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d15920e87be40939e2d4b53aecf4f62e152140687f4a821da4a32a95883a5a2d"
+    },
+    {
+      "id": "mufg",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "89b277a7ce4dca304dc6fd8fc18d2287ca28294fcd07ca7c636330b660102236"
+    },
+    {
+      "id": "murata",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "c9d993db4cc0c6adfaa51ae17a514c35856391c8dc6c6e11ee0c731b0f7e0504"
+    },
+    {
+      "id": "kia",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0abd8b0e1fbb74dfeeddcdbb2b1a883a133b96ed5547e51ce9399c6a12735fb3"
+    },
+    {
+      "id": "hyundai-motor",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7c1474d1faa606b02b591fdfcdb58e70ddb1032182c654e1e66dbeb9d4604a9f"
+    },
+    {
+      "id": "naver",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "44faa5e455fd36e18be214a9277cdcae2272a901e33e8bcad0b70d0849348618"
+    },
+    {
+      "id": "netease",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b27b41b9750cfc2bddc7b845e39c2723f05ea26828dd737f0f7b3edd5dce3a75"
+    },
+    {
+      "id": "heineken",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2fc8bcd21376bef0f94d8b87a29000bf2e60dc9e168946f0acc0bb66dee2b703"
+    },
+    {
+      "id": "philips",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e3f93a8702ff24de8b88493cbe89b94127f9b9c8419ca95a10eadbe348526efc"
+    },
+    {
+      "id": "stmicroelectronics",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e0f1cbee1c22c6794eea9d8d920a69b91cbcb233ab46cdbdc3d10984716c11e9"
+    },
+    {
+      "id": "asm-international",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa7990b2308bc594b82107deb9a9e13599ae499fecb3996b921f0c3349e20f1f"
+    },
+    {
+      "id": "wolters-kluwer",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "4cdadc48ee19e64fef5d4a770aa1c0122e4a0b5bb6e7268894c92085585f6af8"
+    },
+    {
+      "id": "ing",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a821037e6482f82847737c269cd22bac369cf22a08526a1b26d22cf6a195490f"
+    },
+    {
+      "id": "adyen",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "808aff04bdfd8c63011752bedc69fd64b034a62646fba643bbdc5ebaa0cd157a"
+    },
+    {
+      "id": "prosus",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "67fd19c6a26c4e447bba9a142c36938b4a9ae992bc39de066c74f0163f3b82fd"
+    },
+    {
+      "id": "stellantis",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ec9374accf43cef65c138f0b1746b1a62c4ec5c5c2fd6532afdd624f8318a435"
+    },
+    {
+      "id": "equinor",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ddc291f54ec422dc8a7bdea4cadeac8c725c8d415e53b93d32e1df22a0c9272d"
+    },
+    {
+      "id": "volvo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "806b056750ee5e62530b2a08d097b87efca7365eee45bd951b4dd8d98c53b924"
+    },
+    {
+      "id": "investor-ab",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "3564eb6aefeb46eeedaa23f2f388e5a83fb02c9b6422ce0891cde91132817972"
+    },
+    {
+      "id": "atlas-copco",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "075a2e29f9fdbc61cf9e9e91883ae5652794dfcecacc31b939ae9c081f315280"
+    },
+    {
+      "id": "uob",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fbe5927a7098a6f18f297f92e17c19f40e91f3a15871280a27b4cbd41b84c8cf"
+    },
+    {
+      "id": "ocbc",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e5630e3b67428182c4d121d1ed48ad819a5cbe4d6dbbda59f373292f19f9623b"
+    },
+    {
+      "id": "t",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a2acaae1c7edf40a896ba85d0a717a71d2e51d04472b600d62ef97e02ba11430"
+    },
+    {
+      "id": "applovin",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "eb3612b4b44064c7cc5f50e6b4c6939bd37116384c8362023e5293fa59ef962f"
+    },
+    {
+      "id": "boeing",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "0b50ac4c021b877d82b001031b9ac2541407ba41c94e9618e93f4373070aca42"
+    },
+    {
+      "id": "csx",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8b16e5f801eca07c64500e9a7c91b8b85e0caa0afff53606df04e92de4fbc49e"
+    },
+    {
+      "id": "citigroup",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b4caeb25a7d79bf39c77798d5034810d58c4b4df6a48345af76ec14d9c9d58a7"
+    },
+    {
+      "id": "cmcsa",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "828152982adb4ac49108610c006c914e9171f55c5e2376139672e48c6e5f837c"
+    },
+    {
+      "id": "dhr",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "6eb9791e05598181bd4b63e8eb057ee62e0c7e1c8938c00b8215ee34a3e741a8"
+    },
+    {
+      "id": "emr",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "46917fbdc07b14b5a35785842acd618e8459e49e6cdebef73ee18245347f0fb4"
+    },
+    {
+      "id": "marvell",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ea17a7ba943de611f1a1bc636e1c39516740522e1de5f30fd953c1be28f78d14"
+    },
+    {
+      "id": "oxy",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7ff9fecd2e3989220af90619441696f00e63be79cd5f056382d044000875dcc3"
+    },
+    {
+      "id": "philip-morris",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "bab84d45e0f2d859abf8b24b7fbef1a346f40652fafee898a5ccba0e4549f48a"
+    },
+    {
+      "id": "shw",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8db31a4f53eed34a6587fd09dde61e20a612c3efcff6f109768fc42d3c30e9bc"
+    },
+    {
+      "id": "tmus",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "44759d579d523dbea1c7d63e67d3b2af91f76f8a6a6d6fb8dadc8ab58e4000ba"
+    },
+    {
+      "id": "3m",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "2a35a50e8bdb4377dbbbe4c8f268c1860388bea32bbb2da6efe216bb1be14998"
+    },
+    {
+      "id": "wells-fargo",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "e265ef6e91094016aa09bf32f38bf634341c264aa6faa1e72c9ae8c383d1b44a"
+    },
+    {
+      "id": "etfDE0002635307",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "216e3606611c03a9144e65364e53d5585139084c7f77470d5fb9592f6416012b"
+    },
+    {
+      "id": "etfDE000A0H08Q4",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "24932562a10f0c9794420940771ff0405ec6bf23a8ee9292257cf3391a453794"
+    },
+    {
+      "id": "etfIE0008470928",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c26dbe5e3ab95fc066fb950c413269aa3ae69426e76236f2a592b90307faedea"
+    },
+    {
+      "id": "etfIE000C6ITGC8",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "48ea58c83f76be69c4f3423a0940d0e87535218b333ea6ac23a6aa21104fd06f"
+    },
+    {
+      "id": "etfIE000U9ODG19",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3f30150536f951f3685df438720b3fe51703041514f73fcfa4ec399e156f8476"
+    },
+    {
+      "id": "etfIE00B02KXK85",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "cfe3df2a9f32a7c558f9ea3aeeb8c2e27ada8c1a6e6100bee98486ddf35e6b37"
+    },
+    {
+      "id": "etfIE00B0M62S72",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "8f2331155f06981375836f18c53f9fe65df7daed589bee51a2cd10199124aad5"
+    },
+    {
+      "id": "etfIE00B0M63623",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "10513003f82b223d232cffb0bc647c8d1186381283fe04ecff3bd45df0810429"
+    },
+    {
+      "id": "etfIE00B1YZSC51",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "264487b41c3c65218930aeb871c0e2b153819cb8b4e92770e5c9754a09c19198"
+    },
+    {
+      "id": "etfIE00B2QWCY14",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b49b1869beac515cbe30f4098cd490f88461eb404bfffd05b5afc8586b7afa58",
+      "controlScope": {
+        "controlledInstrument": "IE00B2QWCY14",
+        "controlledFields": [
+          "isin",
+          "performance.chart.currencySymbol",
+          "performance.returns.annualNavCurrency",
+          "performance.chart.navData",
+          "performance.chart.performanceData",
+          "performance.returns.annualNav",
+          "performance.distributions.exDate",
+          "performance.distributions.totalDistribution"
+        ],
+        "requestedStart": "2015-01-01",
+        "controlledCalendarYears": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ]
+      }
+    },
+    {
+      "id": "etfIE00B3VWMM18",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c4303fa377f53412ae2c5f531aef184041094dd0702b7a0856ac991311d05c62"
+    },
+    {
+      "id": "etfIE00B4K48X80",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4c9a7ecc0c25f8efb9bb3f6417262e069004a5dc0bffeec7f7b7f233c76da267"
+    },
+    {
+      "id": "etfIE00B52SFT06",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "768933796e3acd8fae5315bcb6e6dbad25e57921855185135e84924a4242a47e"
+    },
+    {
+      "id": "etfIE00B53QG562",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9cb2bacae620feb5e3b31196b2f79c84ab34a57f78467406e7b6d82c80c1cc77"
+    },
+    {
+      "id": "etfIE00BD1F4L37",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "c32f1cbada681c684501ba5b53914348dfc1fba4a6beb618f5234bb1c1c847cf"
+    },
+    {
+      "id": "etfIE00BD1F4M44",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9a4ec2bb15d7e4f948e413f3277a3fc0a03afbf7ea534aa709ec319997855cec"
+    },
+    {
+      "id": "etfIE00BD1F4N50",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8a2f14f35e54190e5cc654f999c0dd9003c182f89c39c6b81b7099148a397fd5"
+    },
+    {
+      "id": "etfIE00BGL86Z12",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b63b44613e3f0835934669f6064adfd83d98d8c68b06d05d7717adc3dc810f41"
+    },
+    {
+      "id": "etfIE00BJ5JPG56",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "989afed7bea2f713bbd0ef123291a1cd3c52d7d111db89be1c3450dad347f20f"
+    },
+    {
+      "id": "etfIE00BQN1K562",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "34b8c23cbee30e6053166f36563cf1ccca3d7c3e37f1c061f9dec494e00a8334"
+    },
+    {
+      "id": "etfIE00BQN1K786",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0ff9ff764069dce0f48e15088d4742baa323e83882b05991dc4e0390d1f4baf1"
+    },
+    {
+      "id": "etfIE00BQN1K901",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "ea30de3a2315e2549548c1621eee159c3605403716ddc9a4fad107346836b699"
+    },
+    {
+      "id": "etfIE00BQT3WG13",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4336734da037dd078e82bfad3d726a1ecafc0e17912dff2c44c4532e59626d6a"
+    },
+    {
+      "id": "etfIE00BYX2JD69",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "981c41963b9e556290b4ec35dbb82de01dc03fc53eadc6416c71927dfeb1a8fe"
+    },
+    {
+      "id": "etfIE00BYZK4669",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3da802c5eb46e9c990e97c4f33cb4237607f78576b78f24582a7c554fd7ee720"
+    },
+    {
+      "id": "ab-inbev",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b3fc26af01eae321c823c24627dd483952283a07499efe38cf998b236b0f9012"
+    },
+    {
+      "id": "bp",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "72cf6c009df271a7fdb9e6d4ba9000ecb51ca3bae26e1c345daf877c6035fa89"
+    },
+    {
+      "id": "national-grid",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "d14dbe66df3693e99f55b585851ba097bfaa85218195cf85aed2c35876a6b562"
+    },
+    {
+      "id": "kotak-mahindra",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b676b862f6caee3504ea1bf2e4738b96aafc4b6eda22cb6472469c6a2c59593b"
+    },
+    {
+      "id": "bajaj-finance",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ec59b04b47b04c7772904c6b8f1aa1aff1521d68921e9d484b1310b8cbb08d6d"
+    },
+    {
+      "id": "fdx",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a06a77cd48301f4abe1a6088e70ddbcd833e1573a7f2fd19fc12121c219d4b93"
+    },
+    {
+      "id": "bhp",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "641dc5cebbf5228d0dccf596777690734279f65a0f3d9420edcd030f4858aae0"
+    },
+    {
+      "id": "commonwealth-bank",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "350d5637a3c05a7e52c82624d14a99de572104f259f8167a74c134e47ab11f1e"
+    },
+    {
+      "id": "csl",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "f0f91db5eb0ead3b7c30dbdba0e89d39dc7ef33100436566b676756ea517f0d4"
+    },
+    {
+      "id": "macquarie",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "48d80ca5adfa9126ebf2bbfb66bcb3c3588fc17237938d86f1ca0955325132c7"
+    },
+    {
+      "id": "etfFR0007054358",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d6f3e2d8bd8907de0491aef7438339d8c79a7c09016c55a9ced5ce0386b0d452"
+    },
+    {
+      "id": "etfFR0007056841",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "b0f9de8c0a5f70c7ca3a2043289787f4b71f49a1deb0757c212086a446d7bad1"
+    },
+    {
+      "id": "etfFR0011869304",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "21c35fb880521a2a3036513eb2741566e2810828ebddd3b81d9f3dd77b243c78"
+    },
+    {
+      "id": "etfFR0011871078",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0c874902ed32802c0452cbdf1cb2a48be422c7d82c1c74aac2e044cdc3c9c909"
+    },
+    {
+      "id": "etfFR0013346681",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa1645ab7d4ff63c88f51787f92fc543064b14b8fa1181c405ae3b2949dbdfa9"
+    },
+    {
+      "id": "etfFR0013411980",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f821ba419048cc7763c227bcdc0df42684515995f0b626ef180cccab15cb9458"
+    },
+    {
+      "id": "etfGB00B15KXQ89",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8708d203d4e9ee0e1e206eef034bc014c75f52d158a9f65c50fd674c0f442b56"
+    },
+    {
+      "id": "etfIE0002Y8CX98",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "06dd0932e3f225590008fa5b18c2c01cf9e483b6616a305bd82478245fdf7f2a"
+    },
+    {
+      "id": "etfIE0003XJA0J9",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "796e1c97038da646190b32027e69acc3629b1fa99835d8a50acb76b02aa19d88"
+    },
+    {
+      "id": "etfIE0009HF1MK9",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "dfef1edb45ba40b53560d161aa472d5ccc75d5971812be020d2298fad4d7def4"
+    },
+    {
+      "id": "etfIE000W8WMSL2",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5a99b7f4fde61c5a7fe25c0cc57d5d5ae022595ee95c06eb75237b9d46d45573"
+    },
+    {
+      "id": "etfIE000XZSV718",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5c39adee5d6b2bc5aa0b4185684249b526a4744fb205c5428bdf051cc7978d98"
+    },
+    {
+      "id": "etfIE00BDVPNG13",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4dc7af040cb2b33c1d673e8c6a3a7c208bfd1320141e6b2c949a747e295394a0"
+    },
+    {
+      "id": "etfIE00BFY0GT14",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2ba993ba04ea7aa3c49a1261e64b833a612c778d199cd1c19381de4670a5a187"
+    },
+    {
+      "id": "etfIE00BKLF1R75",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "1213ed86a77017fa4222af41c8d3761d451d6ee79d1b24cd1696bd812d14a2b6"
+    },
+    {
+      "id": "etfIE00BKWQ0Q14",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "8d963219c5d2eb1f40f23a277e11d1d818c561c59f08ec08bc188df4fd2591c7"
+    },
+    {
+      "id": "etfIE00BMC38736",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "fc2f54d66cdd964472c7f79d50b204a7b27e88937b3369e88fc68379b16edffe"
+    },
+    {
+      "id": "etfLU0908500753",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "33afb9eb572f03fa454a1ad6a8a81c3a4d4fc50773b71874855fcfb6498ce458"
+    },
+    {
+      "id": "etfLU1681038672",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "52b45b3480fc539bf9afe2c858c059d0b6ee312501e9bed430e764368ef41b48"
+    },
+    {
+      "id": "etfLU1681040223",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e9af629ca6aae8c533db7610d038dd2c26321a331e938c13d6fa1db13039b808"
+    },
+    {
+      "id": "etfLU1829219390",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d7d798d5667235ab85a71f10357747a0fd1faaa67d5878a06c20dd94d4540fcb"
+    },
+    {
+      "id": "etfLU1834983634",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "4c0c0487c324d1fb88fc197f1086245c83f2a86c3732307758298297b73edcca"
+    },
+    {
+      "id": "etfLU2089238385",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "587fc4f13edac0bd45015f3c06b2801e14f753a9fb6715f5fdd0ffbab0551dea"
+    },
+    {
+      "id": "etfLU3038520774",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5c2d83e72995601514d33830dec3202aa5e65336863e540974810af584e7c8e7"
+    },
+    {
+      "id": "etfLU3180074463",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "f9e6332ea252d169f53c7383929d996730c7566d55ce5c1bb16e2dfc5a454e8c"
+    },
+    {
+      "id": "etfIE000L6ZMMC4",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "806b7c801429e3fdacc303a5d4b28d7c120725d63aba9fde4212fa7226442be3"
+    },
+    {
+      "id": "etfIE00BJ0KDQ92",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9f8e31662344ddc93b0d9b805ad2a7cb2020cf8593fe77bb76b80d9e5dfb2ca9"
+    },
+    {
+      "id": "etfIE00BK1PV551",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "af3ee95c994d91f15ddfa3d874cb16c204a7eeadbb5306e0731bd26b917b266f"
+    },
+    {
+      "id": "etfIE00BTJRMP35",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "13349b3cff649cd43309cda874bf4731c0d99bc975092ef1f104c5c5147b3ff6"
+    },
+    {
+      "id": "etfLU0274209237",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "2cc1e82be65590343d00e77e89370eeea6f20ec6ce815250c54f62079f81551f"
+    },
+    {
+      "id": "etfLU0328475792",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b05dfdf2cf17f0380aec0ace28e7ce02cc71e362944fca11c992f291fbd8ea98"
+    },
+    {
+      "id": "etfLU0380865021",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6c13d1d2696900998b88d1b51903d11038cb15b2533f5cb827037d67497ea14b"
+    },
+    {
+      "id": "etfLU1875395870",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "a9ebf676ce05615697b12353f38a0c92b35445049b0a8064348338dfae6a709b"
+    },
+    {
+      "id": "etfLU2196470426",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "88ac4fa50a62ba6b19d96db75ddbdd39141138a1f43a03d5b5907c83bebca789"
+    },
+    {
+      "id": "etfLU2903252349",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "cb5db8854ab33de0dbd4c4a29470311e75131695184ca4f05e34e39b52836f56"
+    },
+    {
+      "id": "etfIE000NDWFGA5",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "56f00a78ed59c89f9be15778c444812aa70ed586acb2a9831a2e402261221f6d"
+    },
+    {
+      "id": "etfIE00B3RBWM25",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "606da66e282f7319dfe568dec62a0e7a874b6cc55483a58d1f94e7ffad21936f"
+    },
+    {
+      "id": "etfIE00B3VVMM84",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "92d1ffb507e3a77fed0295c8dba72f887d8cf0a322b0cdfcb9e526f152b7c838"
+    },
+    {
+      "id": "etfIE00B3XXRP09",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "ce00f8d6b5c488b2797fc59dece5317a7e790af33eafbc759e592fe7846c2625"
+    },
+    {
+      "id": "etfIE00B945VV12",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "879d58d6e55b0a3f80b9a36234454e60ff428d6e42a4087f54ff0b1a31ed41e3"
+    },
+    {
+      "id": "etfIE00BFMXXD54",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "97c5ba33387129f2092e1ec588645ef41dea030a345e969df8d7ca6a97f85614"
+    },
+    {
+      "id": "etfIE00BK5BQV03",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "654fcd514be6b05d9ea1290a1828c4b427c56630d04d880d9789e7ec402c4ee7"
+    },
+    {
+      "id": "etfIE00BK5BQX27",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "9bb3659b9f7c28f8400805d1d4e6a1a68434653105145c5731c4504a547ffb44"
+    },
+    {
+      "id": "etfIE00BLCHJB90",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "bc9d88a964f96e58513a6928ed62599bd8136e1112eba2a9d4ac9155ac4ed464"
+    },
+    {
+      "id": "etfIE00BMH5Y871",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b8e63995245bb742d647fab1b484215c3c110d879ae9e3513f03348bd2470b13"
+    },
+    {
+      "id": "etfFR0011550185",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e8ed526e72a91480c65e4b4e405072433a410dcab2c5965ca59d93fd98209363"
+    },
+    {
+      "id": "etfIE0000QLH0G6",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "452412fce44c9acb8e62362581894cb90303c5090e47406662cd84e38e7b020a"
+    },
+    {
+      "id": "etfIE000716YHJ7",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "3a736e8eda5a0d396942664bd73cc268013f702c787950720fe4aa1ae1a9a202"
+    },
+    {
+      "id": "etfIE000QDFFK00",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "d7350b1794f8d5ed2e3a95ea0258e4ddeec93f4e12ce0b923f72fd250de7fbc3"
+    },
+    {
+      "id": "etfIE00B4K6B022",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "5e11955e668b1c562756623011aac697c12271b57b43fb40f85659c87899d2ba"
+    },
+    {
+      "id": "etfIE00BD4TXV59",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "337943e3d03bc994fb4157aa9fca20258a9769750919c9b8dead920fd17ef64c"
+    },
+    {
+      "id": "stockUS45167R1041",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "eaa248f3020686f4d4994abde2c38cce21a0845d7911995dc0d689f00d0910b2"
+    },
+    {
+      "id": "cameco",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7c2b0e7ac1384b58b75bd8a6f02878c88e938d1b27b8320efd807e745c22c7fa"
+    },
+    {
+      "id": "nu",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6386ad27c8dd1525700b36319a36e41a66362e0a673c1fa85309bc9214d5fe9f"
+    },
+    {
+      "id": "nebius",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "79d7e1a8ec30f19867a62ca3f26343dbb4039d1dcfb2e35bb0a4a466e0ef5a6d"
+    },
+    {
+      "id": "saab-b",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "16f8a2e1c78ddd5968b72995b921f32063f107fb455db45f3f50eea30840b53e"
+    },
+    {
+      "id": "ast-spacemobile",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "e5199001c9f3a54f1f7e7d3800cc4e9b102f8c5af6eaa63b54fb3e5bf2232ac3"
+    },
+    {
+      "id": "cloudflare",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "aa6109f1f96f0c6174d10859a0a9b6dac12bff98b7e92b6b5c3941a011fa1fd3"
+    },
+    {
+      "id": "coinbase",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "129c0b836988822db4960d1fa22c6956038d4f15de2fd23878da07d3bfab4f89"
+    },
+    {
+      "id": "constellation-energy",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "fcfe0b9ba5a3a9845d7256d7f8268a12598f2c5b6dde556f7dda32de858fdb9e"
+    },
+    {
+      "id": "datadog",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0e5ebc2925f1812df5aa47a58fcdf77394ca291411b6ede7307a85bbd0a8dd58"
+    },
+    {
+      "id": "duolingo",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "022dd2fa1a1d612a7190e3109b2f82a3875b433f00c65f07af363f418b79c3a7"
+    },
+    {
+      "id": "ge-vernova",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "20dfc87d9fb1d2270750706c40e329465325ce35aeb9b6362145452f46955949"
+    },
+    {
+      "id": "mercadolibre",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "7e563fa0e1eea939abf116ed8175bcb37b7474d05f69064970dcce058e98e42d"
+    },
+    {
+      "id": "strategy",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "5602de6b63a67b0b1ca51fe8e4f1a259373898d15c7205ce5feadfa3ba629728"
+    },
+    {
+      "id": "reddit",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "b382b841d66f2a78aff93398af7ee0b48be0b5693271d74c23dedc06f4873bd0"
+    },
+    {
+      "id": "robinhood",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "0f249f761da801e78d3c601d7bd1fa60f2131927892bc9e9d5e975470e43d8b9"
+    },
+    {
+      "id": "rocket-lab",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "40d930b6f8cd5b4d85e3ae8eec9f5066db8390c1f5741d0a419d9262332ed11e"
+    },
+    {
+      "id": "snowflake",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "48a7342ae8420334963959324710ccd439c8aeb370592817f05cbe055a768874"
+    },
+    {
+      "id": "sofi",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "6f50b2df18126838a5a524edf019be2046d92ce58393a5b5b379237a16ac12fd"
+    },
+    {
+      "id": "vertiv",
+      "status": "validated",
+      "sourceState": "succeeded",
+      "periodEnd": "2026-09",
+      "responseSha256": "41fbc07a7f264d27dd0d823676607b272e65a678bd19b9ef46c50e84cc38eb05"
+    },
+    {
+      "id": "zscaler",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "397629b692a6af3cd3780bbf1ebb2fe504cf8936fcd228e60fd1fd447a9345b7"
+    },
+    {
+      "id": "spotify",
+      "status": "validated",
+      "sourceState": "unchanged-verified",
+      "periodEnd": "2026-09",
+      "responseSha256": "976f5558025b0eefe6c3078a9c1c469e524e657a509178fc91f8979656d4d740"
+    }
+  ]
+}

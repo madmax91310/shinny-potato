@@ -1,24 +1,30 @@
 {
-  "generatedAt": "2026-10-24T20:41:03.560499+00:00",
-  "sourceCommit": "c0c83923ff76deb1cc25649c218f32867a1ac617",
+  "generatedAt": "2026-10-25T11:01:14.058032+00:00",
+  "sourceCommit": "1b3b0d92d1ed11910d910ef02796f9ac187696a4",
   "denominateur": "Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs",
-  "usages": 31712,
+  "usages": 31718,
   "outils": 23,
   "profils_identifiants_uniques": 3544,
   "parts_isin_uniques": 671,
   "statuts": {
     "A": 0,
-    "B": 27987,
+    "B": 27993,
     "non applicable": 3725
   },
   "types": {
     "reference": 2737,
     "live": 23110,
-    "history": 5194,
+    "history": 5200,
     "archive": 489,
     "simulation": 58,
     "unavailable": 36,
     "editorial": 88
+  },
+  "diagnostics": {
+    "non applicable": 3725,
+    "preuve documentaire ou qualification incomplète": 27946,
+    "raccordement manquant": 39,
+    "défaut réel de donnée ou de collecte": 8
   },
   "limites": "B reste non résolu ; les références/hypothèses/archives ne sont pas des pannes. Les fenêtres historiques contestées restent dans les 79 cas, indépendamment de cette vue."
 }

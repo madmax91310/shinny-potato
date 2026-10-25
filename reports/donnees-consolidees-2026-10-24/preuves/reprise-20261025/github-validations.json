@@ -1,0 +1,4451 @@
+[
+  {
+    "conclusion": "success",
+    "createdAt": "2026-10-25T09:39:33Z",
+    "databaseId": 40181551320,
+    "event": "workflow_dispatch",
+    "headSha": "cee7add210c57dcb8c28d7b199ab2e5a6f131802",
+    "jobs": [
+      {
+        "completedAt": "2026-10-25T10:26:16Z",
+        "conclusion": "success",
+        "databaseId": 121133504505,
+        "name": "refresh",
+        "startedAt": "2026-10-25T09:39:37Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Install issuer PDF parser",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m pip install beautifulsoup4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-income-nav-consumers.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-nasdaq-total-return.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Refresh exact issuer listing tables",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate shared identity consumers",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-equity-history-links.mjs",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Qualify missing equity histories",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Qualify missing exact-share monthly histories",
+            "number": 28,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+            "number": 29,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect observations: collect",
+            "number": 30,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Refresh exact ranking histories and ECB conversion",
+            "number": 31,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-equity-history-links.mjs",
+            "number": 32,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+            "number": 33,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+            "number": 34,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+            "number": 35,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+            "number": 36,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+            "number": 37,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:index-facts",
+            "number": 38,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-automated-indices.mjs",
+            "number": 39,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:calculator-series",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+            "number": 41,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+            "number": 42,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:data-catalog",
+            "number": 43,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:data-provenance",
+            "number": 44,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run verify:tweet-midi",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run build",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 47,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate collected observations",
+            "number": 48,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify histories reach all publication tools",
+            "number": 49,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Commit validated observations",
+            "number": 50,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 98,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.0.0",
+            "number": 99,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 100,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 101,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320/job/121133504505"
+      },
+      {
+        "completedAt": "2026-10-25T10:29:14Z",
+        "conclusion": "success",
+        "databaseId": 121143115826,
+        "name": "deploy / publish",
+        "startedAt": "2026-10-25T10:26:21Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-validated-data-publisher.mjs",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/prepare-validated-data.mjs",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record exact expected publication data",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"cee7add210c57dcb8c28d7b199ab2e5a6f131802\" --data \"0f44f947e0c05c923ef6c44de5fce1fd60ef8ad0\"",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-catalog",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Require the producer's exact validated observations after all generators",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Seal actual composite data",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record actual code and data identities",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/smoke-data-routes.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/configure-pages@v6.0.0",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-pages-artifact@v5.0.0",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Restore source identity for the publication order guard",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run bash scripts/check-pages-head.sh",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/deploy-pages@v5.0.1",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify actual public data",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 47,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320/job/121143115826"
+      },
+      {
+        "completedAt": "2026-10-25T10:29:14Z",
+        "conclusion": "skipped",
+        "databaseId": 121143723547,
+        "name": "report-failures",
+        "startedAt": "2026-10-25T10:29:15Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320/job/121143723547"
+      },
+      {
+        "completedAt": "2026-10-25T10:29:14Z",
+        "conclusion": "skipped",
+        "databaseId": 121143723664,
+        "name": "deploy / publish-code",
+        "startedAt": "2026-10-25T10:29:15Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320/job/121143723664"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-25T10:29:15Z",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40181551320"
+  },
+  {
+    "conclusion": "failure",
+    "createdAt": "2026-10-25T08:50:50Z",
+    "databaseId": 40178244234,
+    "event": "push",
+    "headSha": "4a022722185dc609df14f88de2f64210c1d40af4",
+    "jobs": [
+      {
+        "completedAt": "2026-10-25T09:38:45Z",
+        "conclusion": "failure",
+        "databaseId": 121123506998,
+        "name": "refresh",
+        "startedAt": "2026-10-25T08:50:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Install issuer PDF parser",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m pip install beautifulsoup4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-income-nav-consumers.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_qualification.py'",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_h10_fx.py'",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-nasdaq-total-return.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_data_automation.py'",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Refresh exact issuer listing tables",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate shared identity consumers",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-equity-history-links.mjs",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Qualify missing equity histories",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Qualify missing exact-share monthly histories",
+            "number": 28,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/export-monthly-baseline.mjs > \"$RUNNER_TEMP/baseline.json\"",
+            "number": 29,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect observations: collect",
+            "number": 30,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Refresh exact ranking histories and ECB conversion",
+            "number": 31,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-equity-history-links.mjs",
+            "number": 32,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs",
+            "number": 33,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs",
+            "number": 34,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+            "number": 35,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+            "number": 36,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+            "number": 37,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:index-facts",
+            "number": 38,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-automated-indices.mjs",
+            "number": 39,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:calculator-series",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-monthly-consumers.mjs",
+            "number": 41,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-etf-tool-connections.mjs",
+            "number": 42,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:data-catalog",
+            "number": 43,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:data-provenance",
+            "number": 44,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run verify:tweet-midi",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run build",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 47,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate collected observations",
+            "number": 48,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify histories reach all publication tools",
+            "number": 49,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "name": "Commit validated observations",
+            "number": 50,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 98,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Post Run actions/setup-python@v7.0.0",
+            "number": 99,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 100,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 101,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40178244234/job/121123506998"
+      },
+      {
+        "completedAt": "2026-10-25T09:38:45Z",
+        "conclusion": "skipped",
+        "databaseId": 121133339714,
+        "name": "deploy",
+        "startedAt": "2026-10-25T09:38:46Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40178244234/job/121133339714"
+      },
+      {
+        "completedAt": "2026-10-25T09:38:45Z",
+        "conclusion": "skipped",
+        "databaseId": 121133340146,
+        "name": "report-failures",
+        "startedAt": "2026-10-25T09:38:46Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40178244234/job/121133340146"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-25T09:38:46Z",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40178244234"
+  },
+  {
+    "conclusion": "success",
+    "createdAt": "2026-10-25T10:51:19Z",
+    "databaseId": 40186472319,
+    "event": "push",
+    "headSha": "52f59a81e49e33821027e3102745abc151096cb6",
+    "jobs": [
+      {
+        "completedAt": "2026-10-25T10:54:35Z",
+        "conclusion": "success",
+        "databaseId": 121148202692,
+        "name": "refresh",
+        "startedAt": "2026-10-25T10:51:22Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Install official NAV document parser",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 exchange_calendars==4.13.2",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_publication*.py'",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-anniversary-indices.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-publication-consumers.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect INSEE price levels, IRL and SMIC",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect completed official anniversary index months",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect completed anniversary levels",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-anniversary-indices.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-publication-consumers.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-household-benchmarks.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-purchasing-power-editorial.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run build",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts playwright-publication.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate collected observations",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Commit validated observations",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.0.0",
+            "number": 47,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 48,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 49,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319/job/121148202692"
+      },
+      {
+        "completedAt": "2026-10-25T10:59:04Z",
+        "conclusion": "success",
+        "databaseId": 121148869895,
+        "name": "deploy / publish",
+        "startedAt": "2026-10-25T10:56:09Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-validated-data-publisher.mjs",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/prepare-validated-data.mjs",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record exact expected publication data",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"cee7add210c57dcb8c28d7b199ab2e5a6f131802\" --data \"1b3b0d92d1ed11910d910ef02796f9ac187696a4\"",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-catalog",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Require the producer's exact validated observations after all generators",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Seal actual composite data",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record actual code and data identities",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/smoke-data-routes.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/configure-pages@v6.0.0",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-pages-artifact@v5.0.0",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Restore source identity for the publication order guard",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run bash scripts/check-pages-head.sh",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/deploy-pages@v5.0.1",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify actual public data",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 47,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319/job/121148869895"
+      },
+      {
+        "completedAt": "2026-10-25T10:59:04Z",
+        "conclusion": "skipped",
+        "databaseId": 121149747166,
+        "name": "deploy / publish-code",
+        "startedAt": "2026-10-25T10:59:05Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319/job/121149747166"
+      },
+      {
+        "completedAt": "2026-10-25T10:59:04Z",
+        "conclusion": "skipped",
+        "databaseId": 121149747684,
+        "name": "report-failures",
+        "startedAt": "2026-10-25T10:59:05Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319/job/121149747684"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-25T10:59:05Z",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472319"
+  },
+  {
+    "conclusion": "success",
+    "createdAt": "2026-10-25T10:51:19Z",
+    "databaseId": 40186472357,
+    "event": "push",
+    "headSha": "52f59a81e49e33821027e3102745abc151096cb6",
+    "jobs": [
+      {
+        "completedAt": "2026-10-25T10:53:20Z",
+        "conclusion": "success",
+        "databaseId": 121148202705,
+        "name": "refresh",
+        "startedAt": "2026-10-25T10:51:22Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install beautifulsoup4==4.15.0 Pillow==12.3.0",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_scpi.py'",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_corum.py'",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_corum_vector.py'",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_extended_scpi.py'",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_presentation_expansion.py'",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_publication_periods.py'",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Collect observations: collect",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: node scripts test-scpi.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run audit:data-catalog",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate observations: npm run build",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate collected observations",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Commit validated observations",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.0.0",
+            "number": 41,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 42,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 43,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357/job/121148202705"
+      },
+      {
+        "completedAt": "2026-10-25T10:56:05Z",
+        "conclusion": "success",
+        "databaseId": 121148613919,
+        "name": "deploy / publish",
+        "startedAt": "2026-10-25T10:53:24Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-validated-data-publisher.mjs",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/prepare-validated-data.mjs",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record exact expected publication data",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/compose-fallback-snapshot.mjs --published \"cee7add210c57dcb8c28d7b199ab2e5a6f131802\" --data \"ac257d33f06daeaa217a3ec32f82b88fb3a8c4ba\"",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-catalog",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Require the producer's exact validated observations after all generators",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Seal actual composite data",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record actual code and data identities",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/smoke-data-routes.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/configure-pages@v6.0.0",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-pages-artifact@v5.0.0",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Restore source identity for the publication order guard",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run bash scripts/check-pages-head.sh",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/deploy-pages@v5.0.1",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify actual public data",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 47,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357/job/121148613919"
+      },
+      {
+        "completedAt": "2026-10-25T10:56:05Z",
+        "conclusion": "skipped",
+        "databaseId": 121149165195,
+        "name": "deploy / publish-code",
+        "startedAt": "2026-10-25T10:56:06Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357/job/121149165195"
+      },
+      {
+        "completedAt": "2026-10-25T10:56:05Z",
+        "conclusion": "skipped",
+        "databaseId": 121149165761,
+        "name": "report-failures",
+        "startedAt": "2026-10-25T10:56:06Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357/job/121149165761"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-25T10:56:06Z",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40186472357"
+  },
+  {
+    "conclusion": "success",
+    "createdAt": "2026-10-25T10:22:01Z",
+    "databaseId": 40184473367,
+    "event": "pull_request",
+    "headSha": "2b63790f9499af91314c61e3bde9aabd0369c16c",
+    "jobs": [
+      {
+        "completedAt": "2026-10-25T10:22:55Z",
+        "conclusion": "success",
+        "databaseId": 121142246054,
+        "name": "current-snapshot",
+        "startedAt": "2026-10-25T10:22:08Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/resolve-pages-snapshot.mjs",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121142246054"
+      },
+      {
+        "completedAt": "2026-10-25T10:23:44Z",
+        "conclusion": "success",
+        "databaseId": 121142419676,
+        "name": "exposure-browser-check",
+        "startedAt": "2026-10-25T10:22:58Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-dca-exposures.mjs",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-exposure-scope.mjs",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121142419676"
+      },
+      {
+        "completedAt": "2026-10-25T10:24:23Z",
+        "conclusion": "success",
+        "databaseId": 121142419721,
+        "name": "python-checks",
+        "startedAt": "2026-10-25T10:22:58Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.0.0",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2 exchange_calendars==4.13.2",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_dca*py\"",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_broker_tariff*.py'",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python scripts/audit_broker_coverage.py",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_data*.py'",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_active_refresh.py'",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_source_documents.py'",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install Pillow==12.3.0",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_russell_composition.py'",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_sp_composition.py'",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-nasdaq-total-return.mjs",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_roadmap_assets.py'",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_qualified_roadmap.py'",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_document_etf.py'",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'",
+            "number": 28,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_qyld_qualification.py'",
+            "number": 29,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'",
+            "number": 30,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy.py'",
+            "number": 31,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_physical_etc.py'",
+            "number": 32,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_product_calendars.py'",
+            "number": 33,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'",
+            "number": 34,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'",
+            "number": 35,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'",
+            "number": 36,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python scripts/test_radar_review_583.py",
+            "number": 37,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'",
+            "number": 38,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'",
+            "number": 39,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+            "number": 41,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+            "number": 42,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_world_sector_indices.py'",
+            "number": 43,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'",
+            "number": 44,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_index_companies.py'",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_korea_companies.py'",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'",
+            "number": 47,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install -r scripts/company-requirements.txt",
+            "number": 48,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_scpi.py'",
+            "number": 49,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'",
+            "number": 50,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra",
+            "number": 51,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_vaneck_nav_routes.py'",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_corum.py'",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_corum_vector.py'",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'",
+            "number": 55,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_extended_scpi.py'",
+            "number": 56,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_insurance.py'",
+            "number": 57,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_publication_periods.py'",
+            "number": 58,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_presentation_expansion.py'",
+            "number": 59,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'",
+            "number": 60,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_support_expansion.py'",
+            "number": 61,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_publication*.py'",
+            "number": 62,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_investor_refresh.py\"",
+            "number": 63,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_data_automation.py\"",
+            "number": 64,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run pip install -r scripts/requirements-gold.txt",
+            "number": 65,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_gold_monthly.py\"",
+            "number": 66,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_pages_head.py\"",
+            "number": 67,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+            "number": 68,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_sec_transport.py'",
+            "number": 69,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_holdings_recovery.py'",
+            "number": 70,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_source_download_recovery.py'",
+            "number": 71,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'",
+            "number": 72,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_metadata_incidents.py'",
+            "number": 73,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_physical_holdings.py'",
+            "number": 74,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'",
+            "number": 75,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'",
+            "number": 76,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_security_candidate_names.py'",
+            "number": 77,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_lg_discovery.py'",
+            "number": 78,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'",
+            "number": 79,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_topix_holdings.py'",
+            "number": 80,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'",
+            "number": 81,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'",
+            "number": 82,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'",
+            "number": 83,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_pending_sources.py'",
+            "number": 84,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_audit_workflows.py'",
+            "number": 85,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'",
+            "number": 86,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'",
+            "number": 87,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_projection_recording.py'",
+            "number": 88,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+            "number": 89,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+            "number": 90,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+            "number": 91,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-income-nav-consumers.mjs",
+            "number": 92,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_adjustment_investigation.py'",
+            "number": 93,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_data_use_matrix.py'",
+            "number": 94,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+            "number": 95,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_validated_data_commit.py'",
+            "number": 96,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_data_publication.py'",
+            "number": 97,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_publication_safety.py'",
+            "number": 98,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.0.0",
+            "number": 194,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 195,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 196,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 197,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121142419721"
+      },
+      {
+        "completedAt": "2026-10-25T10:29:47Z",
+        "conclusion": "success",
+        "databaseId": 121142419727,
+        "name": "build",
+        "startedAt": "2026-10-25T10:22:58Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record the exact built snapshot",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-performance-rankings.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-required-data-gaps.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-index-proxy-identity.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-shared-listing-identities.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-tool-projections.mjs",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-light-registries.mjs",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-browser-shards.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-broker-automation.mjs",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-lifestrategy.mjs",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-resource-selections.mjs",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-exposure-classification.mjs",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-equity-exposure-qualification.mjs",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_exposure_sleeves.py\"",
+            "number": 28,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-global-audit.mjs",
+            "number": 29,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-portfolio-roadmap.mjs",
+            "number": 30,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs",
+            "number": 31,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-exposure-observations.mjs",
+            "number": 32,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs",
+            "number": 33,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-market-calendar-performance.mjs",
+            "number": 34,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-presentation-etf.mjs",
+            "number": 35,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-scpi.mjs",
+            "number": 36,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-insurance.mjs",
+            "number": 37,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run test:radar",
+            "number": 38,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-wealth-simulator.mjs",
+            "number": 39,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run python -m unittest discover -s scripts -p \"test_performance_currency.py\"",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-performance-currency.mjs",
+            "number": 41,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-cross-tool-currency.mjs",
+            "number": 42,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-annual-rollover.mjs",
+            "number": 43,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-inflation-consistency.mjs",
+            "number": 44,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-fx-consistency.mjs",
+            "number": 45,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run test:index-concentration",
+            "number": 46,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-automated-indices.mjs",
+            "number": 47,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-automated-index-sheets.mjs",
+            "number": 48,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-automation-gap-inventory.mjs",
+            "number": 49,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-consumer-usage.mjs",
+            "number": 50,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-financial-window-safety.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
+            "number": 51,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-etf-completeness.mjs",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-priority-issuer-consumers.mjs",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:portfolio-provenance",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-equity-duel-returns.mjs",
+            "number": 55,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:portfolio-duels",
+            "number": 56,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-equity-duels.mjs",
+            "number": 57,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-manual-equity-duels.mjs",
+            "number": 58,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:broker-evidence",
+            "number": 59,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-review",
+            "number": 60,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-data-review-reminder.mjs",
+            "number": 61,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:performance-consistency",
+            "number": 62,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:etf-annual-performance",
+            "number": 63,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:etf-completeness",
+            "number": 64,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:etf-consistency",
+            "number": 65,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-four-issuer-consumers.mjs",
+            "number": 66,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:instrument-listings",
+            "number": 67,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:instrument-catalog",
+            "number": 68,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/audit-support-enrichment.mjs",
+            "number": 69,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:calculator-series",
+            "number": 70,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-gold-consumers.mjs",
+            "number": 71,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-monthly-consumers.mjs",
+            "number": 72,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-equity-monthly.mjs",
+            "number": 73,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-investment-crisis.mjs",
+            "number": 74,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
+            "number": 75,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-investment-conclusions.mjs",
+            "number": 76,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-anniversary-indices.mjs",
+            "number": 77,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-existing-asset-formats.mjs",
+            "number": 78,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-publication-consumers.mjs",
+            "number": 79,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-household-benchmarks.mjs",
+            "number": 80,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:publishable-content",
+            "number": 81,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-etf-themes-coverage.mjs",
+            "number": 82,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-tweet-bank-validity.mjs",
+            "number": 83,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:source-inventory",
+            "number": 84,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-comparison-etf-details.mjs",
+            "number": 85,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-tweet-midi-shards.mjs",
+            "number": 86,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-tweet-midi-verifier.mjs",
+            "number": 87,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:investor-profiles",
+            "number": 88,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:household-statistics",
+            "number": 89,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-diversification-lot-one.mjs",
+            "number": 90,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-gaming-medical-reuse.mjs",
+            "number": 91,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-world-factors-step-one.mjs",
+            "number": 92,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-property-infrastructure-step-two.mjs",
+            "number": 93,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-data-reuse.mjs",
+            "number": 94,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-fee-impact-editorial.mjs",
+            "number": 95,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-catalog",
+            "number": 96,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:data-provenance",
+            "number": 97,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-index-comparison-copy.mjs",
+            "number": 98,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:index-facts",
+            "number": 99,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run audit:index-completeness",
+            "number": 100,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run verify:factsheet-tweets",
+            "number": 101,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-portfolio-editorial.mjs",
+            "number": 102,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-publication-preferences.mjs",
+            "number": 103,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-asset-selection.mjs",
+            "number": 104,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-portfolio-recipes.mjs",
+            "number": 105,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-generator-controls.mjs",
+            "number": 106,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-etf-routing-expansion.mjs",
+            "number": 107,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/audit-asset-tool-routing.mjs --write",
+            "number": 108,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-asset-routing-blockers.mjs",
+            "number": 109,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-publication-reliability.mjs",
+            "number": 110,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-historical-publications.mjs",
+            "number": 111,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run stress-test:portfolios",
+            "number": 112,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-observation-freshness.mjs",
+            "number": 113,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-automation-overview.mjs",
+            "number": 114,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-review-inbox.mjs",
+            "number": 115,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-monitoring-context.mjs",
+            "number": 116,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-format-loading.mjs",
+            "number": 117,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-history-pool-initialization.mjs",
+            "number": 118,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm run build",
+            "number": 119,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/build-app-inventory.mjs --check",
+            "number": 120,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-format-loading.mjs --built",
+            "number": 121,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-practical-sheets.mjs",
+            "number": 122,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-performance-links.mjs",
+            "number": 123,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-deploy-scope.mjs",
+            "number": 124,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs",
+            "number": 125,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-fallback-snapshot.mjs",
+            "number": 126,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-validated-data-publisher.mjs",
+            "number": 127,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-code-data-refresh.mjs",
+            "number": 128,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-browser-check-error.mjs",
+            "number": 129,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-freshness-policy.mjs",
+            "number": 130,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-benchmark-changes.mjs",
+            "number": 131,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Record the published commit for the data-only lane",
+            "number": 132,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 133,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 134,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 135,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 136,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/configure-pages@v6.0.0",
+            "number": 137,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-pages-artifact@v5.0.0",
+            "number": 138,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 275,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 276,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 277,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121142419727"
+      },
+      {
+        "completedAt": "2026-10-25T10:23:56Z",
+        "conclusion": "success",
+        "databaseId": 121142419757,
+        "name": "scope",
+        "startedAt": "2026-10-25T10:22:58Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Record the data snapshot requested for publication",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/classify-deploy-scope.mjs --published-url \"https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json\"",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121142419757"
+      },
+      {
+        "completedAt": "2026-10-25T10:36:48Z",
+        "conclusion": "success",
+        "databaseId": 121143834564,
+        "name": "tweet-midi-checks (2)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify every entry in this partition",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834564"
+      },
+      {
+        "completedAt": "2026-10-25T10:39:42Z",
+        "conclusion": "success",
+        "databaseId": 121143834569,
+        "name": "tweet-midi-checks (1)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify every entry in this partition",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834569"
+      },
+      {
+        "completedAt": "2026-10-25T10:42:18Z",
+        "conclusion": "success",
+        "databaseId": 121143834584,
+        "name": "browser-checks (2)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-review-product.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-review-recovery.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-removed-ai.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-official-nav.mjs",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-currency-consistency.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-routing-additions.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-model-portfolios.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-simple-exposure.mjs",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/run-browser-checks.mjs 2 4",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-etf-completeness.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-tool-links.mjs",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-equity-monthly.mjs",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 55,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834584"
+      },
+      {
+        "completedAt": "2026-10-25T10:39:44Z",
+        "conclusion": "success",
+        "databaseId": 121143834585,
+        "name": "tweet-midi-checks (3)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify every entry in this partition",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834585"
+      },
+      {
+        "completedAt": "2026-10-25T10:44:35Z",
+        "conclusion": "success",
+        "databaseId": 121143834589,
+        "name": "browser-checks (1)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-review-product.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-review-recovery.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-removed-ai.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-official-nav.mjs",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-currency-consistency.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-routing-additions.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-model-portfolios.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-simple-exposure.mjs",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/run-browser-checks.mjs 1 4",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-etf-completeness.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-tool-links.mjs",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-equity-monthly.mjs",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 55,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834589"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:22Z",
+        "conclusion": "success",
+        "databaseId": 121143834597,
+        "name": "browser-checks (3)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-review-product.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-review-recovery.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-removed-ai.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-official-nav.mjs",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-currency-consistency.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-routing-additions.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-model-portfolios.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-simple-exposure.mjs",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/run-browser-checks.mjs 3 4",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-etf-completeness.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-tool-links.mjs",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-equity-monthly.mjs",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 55,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834597"
+      },
+      {
+        "completedAt": "2026-10-25T10:39:39Z",
+        "conclusion": "success",
+        "databaseId": 121143834610,
+        "name": "tweet-midi-checks (0)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify every entry in this partition",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 9,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834610"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:51Z",
+        "conclusion": "success",
+        "databaseId": 121143834646,
+        "name": "browser-checks (0)",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-review-product.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-data-review-recovery.mjs",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-removed-ai.mjs",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-official-nav.mjs",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-currency-consistency.mjs",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-routing-additions.mjs",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/playwright-model-portfolios.mjs",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run node scripts/test-simple-exposure.mjs",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/run-browser-checks.mjs 0 4",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-etf-completeness.mjs",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-tool-links.mjs",
+            "number": 23,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-equity-monthly.mjs",
+            "number": 24,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+            "number": 25,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 26,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v7.0.1",
+            "number": 27,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 52,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 53,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 54,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 55,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834646"
+      },
+      {
+        "completedAt": "2026-10-25T10:31:01Z",
+        "conclusion": "success",
+        "databaseId": 121143834650,
+        "name": "smoke",
+        "startedAt": "2026-10-25T10:29:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.0.0",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/cache@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run npx playwright install --with-deps chromium",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run node scripts/smoke-data-routes.mjs",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/cache@v4",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.0.0",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 21,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121143834650"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:51Z",
+        "conclusion": "skipped",
+        "databaseId": 121147713306,
+        "name": "fallback-build",
+        "startedAt": "2026-10-25T10:48:51Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121147713306"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:51Z",
+        "conclusion": "skipped",
+        "databaseId": 121147713770,
+        "name": "advisory-checks",
+        "startedAt": "2026-10-25T10:48:51Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121147713770"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:51Z",
+        "conclusion": "skipped",
+        "databaseId": 121147713771,
+        "name": "deploy-fallback",
+        "startedAt": "2026-10-25T10:48:51Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121147713771"
+      },
+      {
+        "completedAt": "2026-10-25T10:48:51Z",
+        "conclusion": "skipped",
+        "databaseId": 121147713880,
+        "name": "deploy",
+        "startedAt": "2026-10-25T10:48:51Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367/job/121147713880"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-25T10:48:52Z",
+    "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40184473367"
+  }
+]

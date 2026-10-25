@@ -7,7 +7,7 @@
       "isin": "IE00B4K6B022",
       "currency": "EUR",
       "distributionDate": "01/02/2024",
-      "dateKind": "payment date, not evidence of ex-date",
+      "dateKind": "distribution date in tax report; ex-date not explicitly labelled",
       "amount": 0.2214,
       "evidence": "preuves/autonomie-commune/hsbc-distributions-2023.bin.gz",
       "uncompressedSha256": "44fd206a0ece6a040c15b627c9d21e75c13712dcb128ea3745113ca50fe9b3ea"
@@ -17,7 +17,7 @@
       "isin": "IE00B4K6B022",
       "currency": "EUR",
       "distributionDate": "08/08/2024",
-      "dateKind": "payment date, not evidence of ex-date",
+      "dateKind": "distribution date in tax report; ex-date not explicitly labelled",
       "amount": 1.2623,
       "evidence": "preuves/autonomie-commune/hsbc-distributions-2024.bin.gz",
       "uncompressedSha256": "b107897cd85573d435e7bfffa42f56f690266bd2530b084907b844545b8d6014"
@@ -74,10 +74,10 @@
       "qualified": false
     }
   },
-  "officialDateInterpretation": "Tax report notes explicitly define payment date. Neither tax report proves the 2024 ex-date. Both August factors must be distinguished.",
+  "officialDateInterpretation": "The tax table labels a distribution date; notes define payment date, but the table does not explicitly label an ex-date. Public Euronext notices name both August 1 and August 8. Cancellation/replacement of the earlier notice is unproven.",
   "causeClosed": false,
   "seriesRepaired": false,
   "runtimeQualificationChanged": false,
-  "finding": "Deux sauts ajustés reproduisent chacun 1,2623 EUR, aux 01/08 et 08/08. Le rapport fiscal date le paiement au 08/08, pas le détachement. Retrait hypothétique du saut du 08/08 : 11,599027 %, résidu -0,000973 point face au NAV arrondi 11,6 %. Le retrait du 01/08 publié précédemment laisse +0,121920 point. Ces deux hypothèses sont idempotentes sur la capture mais aucune ne prouve encore la date exacte à corriger.",
+  "finding": "Deux sauts ajustés reproduisent chacun 1,2623 EUR, aux 01/08 et 08/08. Le rapport fiscal indique une distribution au 08/08 sans libeller explicitement le détachement. Les résumés publics Euronext mentionnent les deux dates ; l’annulation/remplacement du premier avis reste à prouver. Retrait hypothétique du saut du 08/08 : 11,599027 %, résidu -0,000973 point face au NAV arrondi 11,6 %. Le retrait du 01/08 publié précédemment laisse +0,121920 point. Ces deux hypothèses sont idempotentes sur la capture mais aucune ne prouve encore la date exacte à corriger.",
   "missing": "Preuve officielle du détachement 2024 et qualification de la série Price du portail émetteur ; qualifier les clôtures de valorisation et dernières transactions (51,04 EUR Euronext contre 51,41 EUR Yahoo au 31/12), les bornes NAV quotidiennes et la convention de réinvestissement ; le résidu ne démontre pas une erreur NAV."
 }

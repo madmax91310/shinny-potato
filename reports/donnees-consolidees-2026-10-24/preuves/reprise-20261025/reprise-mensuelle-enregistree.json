@@ -1,0 +1,76 @@
+{
+  "run": 40181551320,
+  "event": "workflow_dispatch",
+  "retry_failed": false,
+  "recordedCommit": "0f44f947e0c05c923ef6c44de5fce1fd60ef8ad0",
+  "scope": "Collecte mensuelle ordinaire compl\u00e8te, validation, enregistrement et publication r\u00e9ussis ; ce run pr\u00e9c\u00e8de #946 et ne prouve pas le nouveau cas de course Radar.",
+  "palladium": {
+    "responseSha256": {
+      "unchanged": false,
+      "before": "57adc81071ed155dc2ab8d2c52e1e6f8818b8cf236b8e61683c7125e6dffde06",
+      "after": "121ac330bb7ac657fb7d549cbf9ff82abfa33dcd9d67718ca74de2e3acf068c1"
+    },
+    "latestLevel": {
+      "unchanged": false,
+      "before": {
+        "value": 30.370273,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "isin": "IE00B4556L06",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 30.370273,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-25",
+        "method": "Valeur liquidative officielle ajust\u00e9e : rendement r\u00e9investi publi\u00e9 de la part exacte, recal\u00e9 sur sa NAV \u00e0 date identique ; conversion BCE explicite si n\u00e9cessaire ; aucun dividende ajout\u00e9 une seconde fois",
+        "maxAgeDays": 7,
+        "sha256": "57adc81071ed155dc2ab8d2c52e1e6f8818b8cf236b8e61683c7125e6dffde06"
+      },
+      "after": {
+        "value": 30.370273,
+        "asOf": "2026-10-22",
+        "currency": "USD",
+        "isin": "IE00B4556L06",
+        "parser": "official-nav",
+        "valuationBasis": "fund-nav-total-return",
+        "nativeValue": 30.370273,
+        "nativeCurrency": "USD",
+        "fxAsOf": null,
+        "fxFactor": 1,
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+        ],
+        "checkedAt": "2026-10-25",
+        "method": "Valeur liquidative officielle ajust\u00e9e : rendement r\u00e9investi publi\u00e9 de la part exacte, recal\u00e9 sur sa NAV \u00e0 date identique ; conversion BCE explicite si n\u00e9cessaire ; aucun dividende ajout\u00e9 une seconde fois",
+        "maxAgeDays": 7,
+        "sha256": "121ac330bb7ac657fb7d549cbf9ff82abfa33dcd9d67718ca74de2e3acf068c1"
+      }
+    },
+    "historyExcludedMonths": {
+      "unchanged": true,
+      "before": [
+        "2014-12"
+      ],
+      "after": [
+        "2014-12"
+      ]
+    },
+    "points": {
+      "unchanged": true,
+      "before": 0,
+      "after": 0
+    },
+    "anniversaryPoints": {
+      "unchanged": true,
+      "before": 0,
+      "after": 0
+    }
+  }
+}
