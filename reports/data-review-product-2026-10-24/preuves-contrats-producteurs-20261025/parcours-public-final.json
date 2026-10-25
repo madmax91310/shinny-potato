@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-25T19:27:33.724Z",
+  "mode": "real public page, no mocked requests",
+  "buildInfo": {
+    "sha": "30b71f6bcec7182b9503a0594169fed7ed2e8d6f",
+    "dataSha": "2f06b068a8c827a736e11e2d64379a9540253291",
+    "lane": "validated-data",
+    "builtAt": "2026-10-25T19:13:04.421Z"
+  },
+  "monitorUrl": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+  "monitorCheckedAt": "2026-10-25T19:11:05.492974+00:00",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "cards": 40
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "cards": 40
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "individualContractQualifications": 0,
+  "current13F": {
+    "runId": 40219074040,
+    "collectionStatus": "success",
+    "recordingStatus": "success",
+    "publicationStatus": "not-run"
+  },
+  "actual13FRecordingRecoveryObserved": true,
+  "diagnosticExportRows": 2,
+  "exportCarriesScopeRegistry": true,
+  "postCorrection13FConsumed": {
+    "runId": 40223458923,
+    "sourceCodeSha": "978918439e668d2b2e30169e11979ec75931154e",
+    "unchangedVerified": 28,
+    "scopePlanVerified": true,
+    "reportSha256": "0c1c7b4e0e078281eaa434206e9230baf3f84443c3491e0f99e5daa8bfc292b3"
+  }
+}

@@ -220,3 +220,82 @@ La recette navigateur CI existante exerce aussi ce rapport 13F natif et ses vrai
 GitHub archivés : les 28 contrôles inchangés traversent le lecteur et le réducteur ; le
 refus d'enregistrement reste visible dans la boîte sur ordinateur et mobile. Cette
 recette locale passe, sans requête fournisseur ni écriture de production.
+
+## Livraison finale — contrats producteurs et consommation publique
+
+Les PR #950, #951, #952, #955, #956, #958 et #960 sont fusionnées. La CI complète de
+#960 (`40220697225`) passe : build, Python, smoke, quatre partitions navigateur et quatre
+partitions de publications. Le dernier code métier modifié passe aussi les **1 134 tests
+Python** locaux et la recette Chromium du vrai rapport 13F / refus d'enregistrement.
+Les travaux #953/#954/#957/#959 intégrés à master sont conservés, sans reprise de leurs
+fichiers dans ce dernier lot de preuves.
+
+Le bilan final conserve **37 cas initiaux**, tous avec un rapport versionné et un
+manifeste indépendant ingérés. **20 workflows** produisent **41 rapports versionnés
+distincts** ; les quatre rapports complémentaires déjà contractuels sont préservés.
+Deux rapports de qualification ont légitimement un périmètre vide déclaré : ils sont
+comptés dans les rapports, sans inventer de ligne d'actif. Le CSV contient maintenant
+**5 417 résultats sur 22 captures** : les 20 captures de référence et les deux compléments
+13F. Les répétitions temporelles des mêmes 28 gestionnaires ne sont pas des actifs
+supplémentaires. Les 43 observations de rapports versionnés correspondent à 41 couples
+workflow/fichier distincts. Ces unités natives ne certifient pas indépendamment chaque
+scalaire financier du catalogue.
+
+Répartition des 5 417 résultats : 3 653 réussites natives (dont validations locales),
+696 contrôles source inchangés, 732 non tentés, 260 différés, 49 attentes, neuf caches,
+huit non applicables et dix échecs individuels. Zéro erreur technique de contrat dans
+les 22 artefacts vérifiés ; omissions, doublons et hors-périmètre sont exercés en
+isolation et en CI. Le CSV conserve les déclarations originales, leurs tentatives
+GitHub et le type de capture ; les drapeaux `*_reported` ne reconstruisent pas une
+preuve source absente dans un ancien rapport.
+
+Le passage ordinaire **13F `40223458923`**, lancé manuellement après #960, a réellement
+émis 28 `unchanged-verified` avec le code **9789184**, après collecte/validation et
+avant enregistrement. Son rapport et son plan sont rapprochés par le moniteur publié :
+SHA natif `0c1c7b4e0e078281eaa434206e9230baf3f84443c3491e0f99e5daa8bfc292b3`,
+28 contrôles inchangés et une preuve technique de lecture supplémentaire, distincte
+des 28 résultats financiers. Les périodes restent au trimestre effectivement déclaré.
+Ce passage est manuel : il ne prouve pas un cron après le dernier ajustement 13F.
+
+La consommation publique est vérifiée sur mobile et ordinateur : code Pages **ddf584c**,
+moniteur contrôlé le 25/10 à **19:11:05 UTC**, rapport 13F corrigé présent dans les données
+réellement chargées, aucun contrat individuel courant manquant dans le centre de suivi,
+aucune erreur JavaScript ni requête échouée observée. L'export JSON garde les diagnostics
+et le registre des périmètres. Les versions sont distinctes : `ddf584c` est le code
+Pages réellement servi ; `9789184` est le code du producteur GitHub corrigé. Le correctif
+13F concerne le producteur et le lecteur, sans changement de calcul ou de maquette.
+
+Le contrôle public du 25/10 a d'abord conservé le refus d'enregistrement planifié 13F,
+puis observé sa reprise par l'exécution ordinaire **40219074040**, antérieure au dernier
+ajustement du contrat. Cette reprise n'est pas attribuée à notre correction de format.
+La collecte et l'enregistrement du passage corrigé sont réussis ; sa publication
+financière reste à vérifier dans son parent en cours. L'ingestion/publication de son
+rapport dans le moniteur est prouvée séparément. Une réussite de collecte ne vaut pas
+publication des registres financiers.
+
+Deux réserves de complétude restent historiques : `derived-index-observation.json`
+(mensuel) et `selected-index-observations.json` (indices). Les nouvelles exécutions
+ciblées sont déclarées, mais ne reconstituent pas les anciens périmètres inconnus.
+Ces réserves ne sont ni deux pannes ni deux producteurs encore sans contrat.
+Les sources WisdomTree/Radar et les deux champs de métadonnées en échec restent des
+incidents de données, séparés du contrat de remontée. Aucune convention, date financière,
+protection PEA, qualification de composition ni contrôle historique n'est assoupli.
+
+Les deux passages planifiés disponibles après #950 (Radar et 13F) sont documentés.
+L'ingestion exacte de l'ancien artefact Radar planifié reste non attestée ; les rapports
+courants de ce producteur sont ingérés. Pour les 18 autres workflows, aucun passage
+planifié postérieur à #950 n'était disponible au relevé ; leurs exécutions ordinaires
+push/manuelles sont prouvées. Aucune attente du prochain cron n'est déguisée en réussite.
+
+Un refus GitHub du moniteur (`40222263276`, HTTP 403 « The rule did not run because of
+a timeout ») est également conservé. Le rattrapage `40224502410` et l'événement ordinaire
+`40224605041` ont ensuite réussi et publié les preuves. Les règles GitHub n'ont pas été
+modifiées ; l'erreur n'est pas attribuée aux identifiants ni à une cause non démontrée.
+Les interruptions de runners précédentes gardent elles aussi leur diagnostic d'origine.
+
+Preuves séparées : `contrats-executes.csv`, `contrats-executes-bilan.json`,
+`production-contract-receipts.json`, `parcours-public-final.json`,
+`moniteur-consomme-public-final.json.gz`, `ci-960-validee.json`,
+`publication-pages-verifiee.json` et le dossier `13f-apres-correction/`, tous dans
+`preuves-contrats-producteurs-20261025/`. Le suivi principal reste
+`suivi-perimetre.csv` / `bilan.json` ; aucune liste de corrections concurrente créée.

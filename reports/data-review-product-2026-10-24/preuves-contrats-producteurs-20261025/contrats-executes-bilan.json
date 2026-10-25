@@ -1,23 +1,38 @@
 {
   "counts": {
     "workflows": 20,
-    "v1Reports": 41,
+    "executions": 22,
+    "distinctV1Reports": 41,
+    "v1Reports": 43,
     "legacyReportsPreserved": 4,
-    "outcomes": 5361,
+    "outcomes": 5417,
     "statuses": {
+      "unchanged-verified": 696,
       "not-attempted": 732,
-      "succeeded": 3625,
+      "succeeded": 3653,
       "not-applicable": 8,
       "cached": 9,
-      "unchanged-verified": 668,
       "failed": 10,
       "deferred": 260,
       "waiting": 49
     },
     "technicalErrors": 0
   },
-  "scope": "Unités de validation natives du producteur ; aucune certification indépendante de chaque scalaire financier. Exécutions ordinaires après #950, choisies pour exercer les contrats ; la publication financière et les exécutions courantes figurent séparément dans le bilan consolidé.",
+  "scope": "Unités de validation natives du producteur ; aucune certification indépendante de chaque scalaire financier. 20 captures de référence après #950 et deux compléments 13F (planifié et manuel après correctif), soit 22 captures ; les compteurs v1Reports désignent les observations de rapports, distinctV1Reports les couples workflow/fichier uniques ; la publication financière et les exécutions courantes figurent séparément dans le bilan consolidé.",
   "proofs": [
+    {
+      "workflow": "update-investor-13f.yml",
+      "runId": 40223458923,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 28,
+      "statuses": {
+        "unchanged-verified": 28
+      },
+      "technicalErrors": [],
+      "proofFile": "13f-apres-correction/40223458923-contracts.json.gz"
+    },
     {
       "workflow": "update-economic-data.yml",
       "runId": 40204788852,
@@ -295,6 +310,19 @@
       },
       "technicalErrors": [],
       "proofFile": "40204955299-contracts.json.gz"
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runId": 40212273808,
+      "trigger": "schedule",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 28,
+      "statuses": {
+        "succeeded": 28
+      },
+      "technicalErrors": [],
+      "proofFile": "planifie-13f/40212273808-contracts.json.gz"
     }
   ]
 }

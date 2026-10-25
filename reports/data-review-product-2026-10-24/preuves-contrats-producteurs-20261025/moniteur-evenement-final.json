@@ -1,0 +1,171 @@
+{
+  "checkedAt": "2026-10-25T19:31:53.637395+00:00",
+  "run": {
+    "id": 40224605041,
+    "event": "workflow_run",
+    "head_sha": "e0811c030f43f520822808793314c14b7c42296a",
+    "head_branch": "master",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-25T19:08:34Z",
+    "updated_at": "2026-10-25T19:11:21Z",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40224605041"
+  },
+  "jobs": [
+    {
+      "id": 121263534294,
+      "name": "publish",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T19:10:02Z",
+      "completed_at": "2026-10-25T19:11:20Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T19:10:03Z",
+          "completed_at": "2026-10-25T19:10:04Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T19:10:04Z",
+          "completed_at": "2026-10-25T19:10:15Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T19:10:15Z",
+          "completed_at": "2026-10-25T19:10:15Z"
+        },
+        {
+          "name": "Run pip install beautifulsoup4==4.15.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T19:10:15Z",
+          "completed_at": "2026-10-25T19:10:19Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T19:10:19Z",
+          "completed_at": "2026-10-25T19:10:22Z"
+        },
+        {
+          "name": "Run node scripts/test-monitoring-context.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T19:10:22Z",
+          "completed_at": "2026-10-25T19:10:24Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T19:10:24Z",
+          "completed_at": "2026-10-25T19:10:27Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_producer_report_contract.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T19:10:27Z",
+          "completed_at": "2026-10-25T19:10:28Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_revision.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T19:10:28Z",
+          "completed_at": "2026-10-25T19:10:28Z"
+        },
+        {
+          "name": "Record completed automation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T19:10:28Z",
+          "completed_at": "2026-10-25T19:11:14Z"
+        },
+        {
+          "name": "Initialise current statuses",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T19:11:14Z",
+          "completed_at": "2026-10-25T19:11:14Z"
+        },
+        {
+          "name": "Check silent collectors and data deadlines",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-25T19:11:14Z",
+          "completed_at": "2026-10-25T19:11:14Z"
+        },
+        {
+          "name": "Propose validation of changed official wording",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T19:11:14Z",
+          "completed_at": "2026-10-25T19:11:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-25T19:11:17Z",
+          "completed_at": "2026-10-25T19:11:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-25T19:11:17Z",
+          "completed_at": "2026-10-25T19:11:17Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T19:11:17Z",
+          "completed_at": "2026-10-25T19:11:18Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-25T19:11:18Z",
+          "completed_at": "2026-10-25T19:11:18Z"
+        }
+      ]
+    },
+    {
+      "id": 121263535370,
+      "name": "validate",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T19:10:00Z",
+      "completed_at": "2026-10-25T19:09:59Z",
+      "steps": []
+    }
+  ]
+}

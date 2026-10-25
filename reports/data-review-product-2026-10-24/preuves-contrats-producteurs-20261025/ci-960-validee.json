@@ -1,0 +1,3680 @@
+{
+  "checkedAt": "2026-10-25T19:31:50.427393+00:00",
+  "run": {
+    "id": 40220697225,
+    "event": "pull_request",
+    "head_sha": "b8b3c35441be888656deb87763a3830811a46731",
+    "head_branch": "docs/producer-contract-real-proofs-20261025",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-25T18:19:30Z",
+    "updated_at": "2026-10-25T18:52:07Z",
+    "html_url": "https://github.com/madmax91310/shinny-potato/actions/runs/40220697225"
+  },
+  "jobs": [
+    {
+      "id": 121251615744,
+      "name": "current-snapshot",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:20:18Z",
+      "completed_at": "2026-10-25T18:21:23Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:20:18Z",
+          "completed_at": "2026-10-25T18:20:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:20:19Z",
+          "completed_at": "2026-10-25T18:21:18Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:21:18Z",
+          "completed_at": "2026-10-25T18:21:20Z"
+        },
+        {
+          "name": "Run node scripts/resolve-pages-snapshot.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:21:20Z",
+          "completed_at": "2026-10-25T18:21:21Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:21:21Z",
+          "completed_at": "2026-10-25T18:21:21Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:21:21Z",
+          "completed_at": "2026-10-25T18:21:21Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:21:21Z",
+          "completed_at": "2026-10-25T18:21:21Z"
+        }
+      ]
+    },
+    {
+      "id": 121251889643,
+      "name": "exposure-browser-check",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:21:26Z",
+      "completed_at": "2026-10-25T18:22:22Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:21:27Z",
+          "completed_at": "2026-10-25T18:21:29Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:21:29Z",
+          "completed_at": "2026-10-25T18:21:39Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:21:39Z",
+          "completed_at": "2026-10-25T18:21:45Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:21:45Z",
+          "completed_at": "2026-10-25T18:21:47Z"
+        },
+        {
+          "name": "Run node scripts/build-dca-exposures.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:21:47Z",
+          "completed_at": "2026-10-25T18:21:50Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:21:50Z",
+          "completed_at": "2026-10-25T18:21:54Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:21:54Z",
+          "completed_at": "2026-10-25T18:22:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-exposure-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:22:07Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        }
+      ]
+    },
+    {
+      "id": 121251889646,
+      "name": "python-checks",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:21:25Z",
+      "completed_at": "2026-10-25T18:23:16Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:21:27Z",
+          "completed_at": "2026-10-25T18:21:27Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:21:27Z",
+          "completed_at": "2026-10-25T18:21:39Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:21:39Z",
+          "completed_at": "2026-10-25T18:21:51Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:21:51Z",
+          "completed_at": "2026-10-25T18:21:53Z"
+        },
+        {
+          "name": "Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:21:53Z",
+          "completed_at": "2026-10-25T18:21:54Z"
+        },
+        {
+          "name": "Run pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2 exchange_calendars==4.13.2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:21:54Z",
+          "completed_at": "2026-10-25T18:22:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_dca*py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:22:03Z",
+          "completed_at": "2026-10-25T18:22:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_broker_tariff*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:22:04Z",
+          "completed_at": "2026-10-25T18:22:12Z"
+        },
+        {
+          "name": "Run python scripts/audit_broker_coverage.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:22:12Z",
+          "completed_at": "2026-10-25T18:22:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T18:22:12Z",
+          "completed_at": "2026-10-25T18:22:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_active_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-25T18:22:12Z",
+          "completed_at": "2026-10-25T18:22:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_resilience.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-25T18:22:12Z",
+          "completed_at": "2026-10-25T18:22:13Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_documents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T18:22:13Z",
+          "completed_at": "2026-10-25T18:22:14Z"
+        },
+        {
+          "name": "Run pip install Pillow==12.3.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-25T18:22:14Z",
+          "completed_at": "2026-10-25T18:22:15Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_russell_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-25T18:22:15Z",
+          "completed_at": "2026-10-25T18:22:15Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sp_composition.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-25T18:22:15Z",
+          "completed_at": "2026-10-25T18:22:16Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-25T18:22:16Z",
+          "completed_at": "2026-10-25T18:22:16Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_automation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-25T18:22:16Z",
+          "completed_at": "2026-10-25T18:22:16Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-25T18:22:16Z",
+          "completed_at": "2026-10-25T18:22:16Z"
+        },
+        {
+          "name": "Run node scripts/test-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:22:16Z",
+          "completed_at": "2026-10-25T18:22:16Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_roadmap_assets.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-25T18:22:16Z",
+          "completed_at": "2026-10-25T18:22:17Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_roadmap.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-25T18:22:17Z",
+          "completed_at": "2026-10-25T18:22:17Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_bnp_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-25T18:22:17Z",
+          "completed_at": "2026-10-25T18:22:17Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_etf_field_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-25T18:22:17Z",
+          "completed_at": "2026-10-25T18:22:17Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-25T18:22:17Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_document_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qyld_qualification.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_etf.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:18Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-10-25T18:22:18Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_physical_etc.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_product_calendars.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_commodity_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_issuer_reliability.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python scripts/test_radar_review_583.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-10-25T18:22:20Z",
+          "completed_at": "2026-10-25T18:22:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-10-25T18:22:20Z",
+          "completed_at": "2026-10-25T18:22:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-10-25T18:22:20Z",
+          "completed_at": "2026-10-25T18:22:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_extensions.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-10-25T18:22:20Z",
+          "completed_at": "2026-10-25T18:22:20Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_world_sector_indices.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-10-25T18:22:20Z",
+          "completed_at": "2026-10-25T18:22:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_composition_gate.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-10-25T18:22:21Z",
+          "completed_at": "2026-10-25T18:22:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_index_companies.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-10-25T18:22:21Z",
+          "completed_at": "2026-10-25T18:22:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_korea_companies.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-10-25T18:22:21Z",
+          "completed_at": "2026-10-25T18:22:21Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_remaining_aum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-10-25T18:22:21Z",
+          "completed_at": "2026-10-25T18:22:21Z"
+        },
+        {
+          "name": "Run pip install -r scripts/company-requirements.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-10-25T18:22:21Z",
+          "completed_at": "2026-10-25T18:22:23Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_scpi.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-10-25T18:22:23Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_iroko_snapshot.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Run sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:33Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_vaneck_nav_routes.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:22:33Z",
+          "completed_at": "2026-10-25T18:22:37Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_corum.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:22:37Z",
+          "completed_at": "2026-10-25T18:22:37Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_corum_vector.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:22:37Z",
+          "completed_at": "2026-10-25T18:22:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:22:43Z",
+          "completed_at": "2026-10-25T18:22:43Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_extended_scpi.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-10-25T18:22:43Z",
+          "completed_at": "2026-10-25T18:22:44Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_insurance.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-10-25T18:22:44Z",
+          "completed_at": "2026-10-25T18:22:44Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication_periods.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-10-25T18:22:44Z",
+          "completed_at": "2026-10-25T18:22:44Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_presentation_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-10-25T18:22:44Z",
+          "completed_at": "2026-10-25T18:22:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-10-25T18:22:45Z",
+          "completed_at": "2026-10-25T18:22:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_support_expansion.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-10-25T18:22:45Z",
+          "completed_at": "2026-10-25T18:22:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-10-25T18:22:45Z",
+          "completed_at": "2026-10-25T18:22:48Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_investor_refresh.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-10-25T18:22:48Z",
+          "completed_at": "2026-10-25T18:22:48Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_data_automation.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-10-25T18:22:48Z",
+          "completed_at": "2026-10-25T18:22:48Z"
+        },
+        {
+          "name": "Run pip install -r scripts/requirements-gold.txt",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-10-25T18:22:48Z",
+          "completed_at": "2026-10-25T18:22:48Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_gold_monthly.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-10-25T18:22:48Z",
+          "completed_at": "2026-10-25T18:22:49Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_pages_head.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-10-25T18:22:49Z",
+          "completed_at": "2026-10-25T18:22:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-10-25T18:22:57Z",
+          "completed_at": "2026-10-25T18:22:58Z"
+        },
+        {
+          "name": "Verify producer result contracts and omission detection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-10-25T18:22:58Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_sec_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_holdings_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 71,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_download_recovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 72,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_metadata_incidents.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:22:59Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_physical_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75,
+          "started_at": "2026-10-25T18:22:59Z",
+          "completed_at": "2026-10-25T18:23:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 76,
+          "started_at": "2026-10-25T18:23:00Z",
+          "completed_at": "2026-10-25T18:23:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-10-25T18:23:00Z",
+          "completed_at": "2026-10-25T18:23:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_security_candidate_names.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-10-25T18:23:00Z",
+          "completed_at": "2026-10-25T18:23:00Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lg_discovery.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-10-25T18:23:00Z",
+          "completed_at": "2026-10-25T18:23:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 80,
+          "started_at": "2026-10-25T18:23:01Z",
+          "completed_at": "2026-10-25T18:23:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_topix_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 81,
+          "started_at": "2026-10-25T18:23:01Z",
+          "completed_at": "2026-10-25T18:23:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 82,
+          "started_at": "2026-10-25T18:23:01Z",
+          "completed_at": "2026-10-25T18:23:01Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 83,
+          "started_at": "2026-10-25T18:23:01Z",
+          "completed_at": "2026-10-25T18:23:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 84,
+          "started_at": "2026-10-25T18:23:02Z",
+          "completed_at": "2026-10-25T18:23:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_pending_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 85,
+          "started_at": "2026-10-25T18:23:02Z",
+          "completed_at": "2026-10-25T18:23:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_audit_workflows.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 86,
+          "started_at": "2026-10-25T18:23:02Z",
+          "completed_at": "2026-10-25T18:23:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_consolidated_data_followup.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 87,
+          "started_at": "2026-10-25T18:23:02Z",
+          "completed_at": "2026-10-25T18:23:02Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 88,
+          "started_at": "2026-10-25T18:23:02Z",
+          "completed_at": "2026-10-25T18:23:03Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_projection_recording.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 89,
+          "started_at": "2026-10-25T18:23:03Z",
+          "completed_at": "2026-10-25T18:23:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 90,
+          "started_at": "2026-10-25T18:23:04Z",
+          "completed_at": "2026-10-25T18:23:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 91,
+          "started_at": "2026-10-25T18:23:04Z",
+          "completed_at": "2026-10-25T18:23:04Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 92,
+          "started_at": "2026-10-25T18:23:04Z",
+          "completed_at": "2026-10-25T18:23:06Z"
+        },
+        {
+          "name": "Run node scripts/test-income-nav-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93,
+          "started_at": "2026-10-25T18:23:06Z",
+          "completed_at": "2026-10-25T18:23:10Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_hsbc_adjustment_investigation.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94,
+          "started_at": "2026-10-25T18:23:10Z",
+          "completed_at": "2026-10-25T18:23:10Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_use_matrix.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95,
+          "started_at": "2026-10-25T18:23:10Z",
+          "completed_at": "2026-10-25T18:23:10Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 96,
+          "started_at": "2026-10-25T18:23:10Z",
+          "completed_at": "2026-10-25T18:23:10Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_validated_data_commit.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 97,
+          "started_at": "2026-10-25T18:23:10Z",
+          "completed_at": "2026-10-25T18:23:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_data_publication.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 98,
+          "started_at": "2026-10-25T18:23:12Z",
+          "completed_at": "2026-10-25T18:23:12Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_publication_safety.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 99,
+          "started_at": "2026-10-25T18:23:12Z",
+          "completed_at": "2026-10-25T18:23:12Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 196,
+          "started_at": "2026-10-25T18:23:12Z",
+          "completed_at": "2026-10-25T18:23:12Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 197,
+          "started_at": "2026-10-25T18:23:12Z",
+          "completed_at": "2026-10-25T18:23:13Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 198,
+          "started_at": "2026-10-25T18:23:13Z",
+          "completed_at": "2026-10-25T18:23:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 199,
+          "started_at": "2026-10-25T18:23:13Z",
+          "completed_at": "2026-10-25T18:23:13Z"
+        }
+      ]
+    },
+    {
+      "id": 121251889648,
+      "name": "scope",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:21:26Z",
+      "completed_at": "2026-10-25T18:22:27Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:21:26Z",
+          "completed_at": "2026-10-25T18:21:27Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:21:27Z",
+          "completed_at": "2026-10-25T18:22:19Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:22:19Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Record the data snapshot requested for publication",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Run node scripts/classify-deploy-scope.mjs --published-url \"https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json\"",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        }
+      ]
+    },
+    {
+      "id": 121251889682,
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:21:25Z",
+      "completed_at": "2026-10-25T18:29:27Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:21:26Z",
+          "completed_at": "2026-10-25T18:21:28Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:21:28Z",
+          "completed_at": "2026-10-25T18:21:38Z"
+        },
+        {
+          "name": "Record the exact built snapshot",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:21:38Z",
+          "completed_at": "2026-10-25T18:21:38Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:21:38Z",
+          "completed_at": "2026-10-25T18:21:43Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:21:43Z",
+          "completed_at": "2026-10-25T18:21:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_ranking_sources.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:21:45Z",
+          "completed_at": "2026-10-25T18:21:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:21:45Z",
+          "completed_at": "2026-10-25T18:21:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_market_transport.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:21:45Z",
+          "completed_at": "2026-10-25T18:21:45Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:21:45Z",
+          "completed_at": "2026-10-25T18:21:46Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-rankings.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T18:21:46Z",
+          "completed_at": "2026-10-25T18:21:50Z"
+        },
+        {
+          "name": "Run node scripts/test-official-nav-consumers.mjs && node scripts/test-remainder-nav-consumers.mjs && node scripts/test-wfns-distribution-consumers.mjs && node scripts/test-remainder-financial.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-25T18:21:50Z",
+          "completed_at": "2026-10-25T18:21:52Z"
+        },
+        {
+          "name": "Run node scripts/test-audit-history-quality.mjs && node scripts/test-reusable-data-contracts.mjs && node scripts/test-soxx-conventions.mjs && node scripts/test-dated-records.mjs && node scripts/test-shared-history-art.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-25T18:21:52Z",
+          "completed_at": "2026-10-25T18:21:54Z"
+        },
+        {
+          "name": "Run node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T18:21:54Z",
+          "completed_at": "2026-10-25T18:21:57Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p 'test_qualified_listings.py'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-25T18:21:57Z",
+          "completed_at": "2026-10-25T18:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-required-data-gaps.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-25T18:21:57Z",
+          "completed_at": "2026-10-25T18:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-index-proxy-identity.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-25T18:21:57Z",
+          "completed_at": "2026-10-25T18:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-shared-listing-identities.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-25T18:21:57Z",
+          "completed_at": "2026-10-25T18:21:57Z"
+        },
+        {
+          "name": "Run node scripts/test-selected-data.mjs && node scripts/test-selected-records.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-25T18:21:57Z",
+          "completed_at": "2026-10-25T18:22:04Z"
+        },
+        {
+          "name": "Run node scripts/test-tool-projections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-25T18:22:04Z",
+          "completed_at": "2026-10-25T18:22:24Z"
+        },
+        {
+          "name": "Run node scripts/test-light-registries.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:22:24Z",
+          "completed_at": "2026-10-25T18:22:28Z"
+        },
+        {
+          "name": "Run node scripts/test-browser-shards.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-25T18:22:28Z",
+          "completed_at": "2026-10-25T18:22:28Z"
+        },
+        {
+          "name": "Run node scripts/test-broker-automation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-25T18:22:28Z",
+          "completed_at": "2026-10-25T18:22:29Z"
+        },
+        {
+          "name": "Run node scripts/test-lifestrategy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-25T18:22:29Z",
+          "completed_at": "2026-10-25T18:22:29Z"
+        },
+        {
+          "name": "Run node scripts/test-resource-selections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-25T18:22:29Z",
+          "completed_at": "2026-10-25T18:22:30Z"
+        },
+        {
+          "name": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-25T18:22:30Z",
+          "completed_at": "2026-10-25T18:22:35Z"
+        },
+        {
+          "name": "Run node scripts/test-exposure-classification.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:22:35Z",
+          "completed_at": "2026-10-25T18:22:35Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-exposure-qualification.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-25T18:22:35Z",
+          "completed_at": "2026-10-25T18:22:35Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_exposure_sleeves.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-10-25T18:22:35Z",
+          "completed_at": "2026-10-25T18:22:35Z"
+        },
+        {
+          "name": "Run node scripts/test-global-audit.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-10-25T18:22:35Z",
+          "completed_at": "2026-10-25T18:22:35Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-roadmap.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-10-25T18:22:35Z",
+          "completed_at": "2026-10-25T18:22:36Z"
+        },
+        {
+          "name": "Run node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-10-25T18:22:36Z",
+          "completed_at": "2026-10-25T18:22:36Z"
+        },
+        {
+          "name": "Run node scripts/test-exposure-observations.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-10-25T18:22:36Z",
+          "completed_at": "2026-10-25T18:22:37Z"
+        },
+        {
+          "name": "Run node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-10-25T18:22:37Z",
+          "completed_at": "2026-10-25T18:22:38Z"
+        },
+        {
+          "name": "Run node scripts/test-market-calendar-performance.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-10-25T18:22:38Z",
+          "completed_at": "2026-10-25T18:22:38Z"
+        },
+        {
+          "name": "Run node scripts/test-presentation-etf.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-10-25T18:22:38Z",
+          "completed_at": "2026-10-25T18:22:38Z"
+        },
+        {
+          "name": "Run node scripts/test-scpi.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-10-25T18:22:38Z",
+          "completed_at": "2026-10-25T18:22:39Z"
+        },
+        {
+          "name": "Run node scripts/test-insurance.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-10-25T18:22:39Z",
+          "completed_at": "2026-10-25T18:22:39Z"
+        },
+        {
+          "name": "Run npm run test:radar",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-10-25T18:22:39Z",
+          "completed_at": "2026-10-25T18:22:46Z"
+        },
+        {
+          "name": "Run node scripts/test-wealth-simulator.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-10-25T18:22:46Z",
+          "completed_at": "2026-10-25T18:22:46Z"
+        },
+        {
+          "name": "Run python -m unittest discover -s scripts -p \"test_performance_currency.py\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-10-25T18:22:46Z",
+          "completed_at": "2026-10-25T18:22:46Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-currency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-10-25T18:22:46Z",
+          "completed_at": "2026-10-25T18:22:48Z"
+        },
+        {
+          "name": "Run node scripts/test-cross-tool-currency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-10-25T18:22:48Z",
+          "completed_at": "2026-10-25T18:22:50Z"
+        },
+        {
+          "name": "Run node scripts/test-annual-rollover.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-10-25T18:22:50Z",
+          "completed_at": "2026-10-25T18:22:50Z"
+        },
+        {
+          "name": "Run node scripts/test-inflation-consistency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-10-25T18:22:50Z",
+          "completed_at": "2026-10-25T18:22:51Z"
+        },
+        {
+          "name": "Run node scripts/test-fx-consistency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-10-25T18:22:51Z",
+          "completed_at": "2026-10-25T18:22:51Z"
+        },
+        {
+          "name": "Run npm run test:index-concentration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-10-25T18:22:51Z",
+          "completed_at": "2026-10-25T18:22:52Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-indices.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-10-25T18:22:52Z",
+          "completed_at": "2026-10-25T18:22:52Z"
+        },
+        {
+          "name": "Run node scripts/test-automated-index-sheets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-10-25T18:22:52Z",
+          "completed_at": "2026-10-25T18:22:53Z"
+        },
+        {
+          "name": "Run node scripts/test-automation-gap-inventory.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-10-25T18:22:53Z",
+          "completed_at": "2026-10-25T18:22:54Z"
+        },
+        {
+          "name": "Run node scripts/test-consumer-usage.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-10-25T18:22:54Z",
+          "completed_at": "2026-10-25T18:22:58Z"
+        },
+        {
+          "name": "Run node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-instrument-metadata-retention.mjs && node scripts/test-review-reconciliation.mjs && node scripts/test-financial-window-safety.mjs && node scripts/test-asset-automation.mjs && node scripts/test-catalog-coverage.mjs && node scripts/test-published-coverage.mjs && node scripts/test-closed-pr-validation.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-10-25T18:22:58Z",
+          "completed_at": "2026-10-25T18:23:06Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:23:06Z",
+          "completed_at": "2026-10-25T18:23:07Z"
+        },
+        {
+          "name": "Run node scripts/test-priority-issuer-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:23:07Z",
+          "completed_at": "2026-10-25T18:23:08Z"
+        },
+        {
+          "name": "Run npm run audit:portfolio-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:23:08Z",
+          "completed_at": "2026-10-25T18:23:08Z"
+        },
+        {
+          "name": "Run node scripts/build-equity-duel-returns.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:23:08Z",
+          "completed_at": "2026-10-25T18:23:08Z"
+        },
+        {
+          "name": "Run npm run audit:portfolio-duels",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-10-25T18:23:08Z",
+          "completed_at": "2026-10-25T18:23:10Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-duels.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-10-25T18:23:10Z",
+          "completed_at": "2026-10-25T18:23:11Z"
+        },
+        {
+          "name": "Run node scripts/test-manual-equity-duels.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-10-25T18:23:11Z",
+          "completed_at": "2026-10-25T18:23:11Z"
+        },
+        {
+          "name": "Run npm run audit:broker-evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-10-25T18:23:11Z",
+          "completed_at": "2026-10-25T18:23:11Z"
+        },
+        {
+          "name": "Run npm run audit:data-review",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-10-25T18:23:11Z",
+          "completed_at": "2026-10-25T18:23:14Z"
+        },
+        {
+          "name": "Run node scripts/test-data-review-reminder.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-10-25T18:23:14Z",
+          "completed_at": "2026-10-25T18:23:17Z"
+        },
+        {
+          "name": "Run npm run audit:performance-consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-10-25T18:23:17Z",
+          "completed_at": "2026-10-25T18:23:17Z"
+        },
+        {
+          "name": "Run npm run audit:etf-annual-performance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-10-25T18:23:17Z",
+          "completed_at": "2026-10-25T18:23:17Z"
+        },
+        {
+          "name": "Run npm run audit:etf-completeness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-10-25T18:23:17Z",
+          "completed_at": "2026-10-25T18:23:18Z"
+        },
+        {
+          "name": "Run npm run audit:etf-consistency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-10-25T18:23:18Z",
+          "completed_at": "2026-10-25T18:23:19Z"
+        },
+        {
+          "name": "Run node scripts/test-four-issuer-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-10-25T18:23:19Z",
+          "completed_at": "2026-10-25T18:23:19Z"
+        },
+        {
+          "name": "Run npm run audit:instrument-listings",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-10-25T18:23:19Z",
+          "completed_at": "2026-10-25T18:23:20Z"
+        },
+        {
+          "name": "Run npm run audit:instrument-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-10-25T18:23:20Z",
+          "completed_at": "2026-10-25T18:23:20Z"
+        },
+        {
+          "name": "Run node scripts/audit-support-enrichment.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-10-25T18:23:20Z",
+          "completed_at": "2026-10-25T18:23:21Z"
+        },
+        {
+          "name": "Run npm run audit:calculator-series",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-10-25T18:23:21Z",
+          "completed_at": "2026-10-25T18:23:40Z"
+        },
+        {
+          "name": "Run node scripts/test-gold-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 71,
+          "started_at": "2026-10-25T18:23:40Z",
+          "completed_at": "2026-10-25T18:23:41Z"
+        },
+        {
+          "name": "Run node scripts/test-monthly-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 72,
+          "started_at": "2026-10-25T18:23:41Z",
+          "completed_at": "2026-10-25T18:23:46Z"
+        },
+        {
+          "name": "Run node scripts/test-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73,
+          "started_at": "2026-10-25T18:23:46Z",
+          "completed_at": "2026-10-25T18:23:50Z"
+        },
+        {
+          "name": "Run node scripts/test-investment-crisis.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74,
+          "started_at": "2026-10-25T18:23:50Z",
+          "completed_at": "2026-10-25T18:23:51Z"
+        },
+        {
+          "name": "Run node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75,
+          "started_at": "2026-10-25T18:23:51Z",
+          "completed_at": "2026-10-25T18:23:58Z"
+        },
+        {
+          "name": "Run node scripts/test-investment-conclusions.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 76,
+          "started_at": "2026-10-25T18:23:58Z",
+          "completed_at": "2026-10-25T18:24:04Z"
+        },
+        {
+          "name": "Run node scripts/test-anniversary-indices.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-10-25T18:24:04Z",
+          "completed_at": "2026-10-25T18:24:07Z"
+        },
+        {
+          "name": "Run node scripts/test-existing-asset-formats.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-10-25T18:24:07Z",
+          "completed_at": "2026-10-25T18:24:07Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-consumers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-10-25T18:24:07Z",
+          "completed_at": "2026-10-25T18:24:11Z"
+        },
+        {
+          "name": "Run node scripts/test-household-benchmarks.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 80,
+          "started_at": "2026-10-25T18:24:11Z",
+          "completed_at": "2026-10-25T18:24:11Z"
+        },
+        {
+          "name": "Run npm run audit:publishable-content",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 81,
+          "started_at": "2026-10-25T18:24:11Z",
+          "completed_at": "2026-10-25T18:24:12Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-themes-coverage.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 82,
+          "started_at": "2026-10-25T18:24:12Z",
+          "completed_at": "2026-10-25T18:24:12Z"
+        },
+        {
+          "name": "Run node scripts/test-tweet-bank-validity.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 83,
+          "started_at": "2026-10-25T18:24:12Z",
+          "completed_at": "2026-10-25T18:24:12Z"
+        },
+        {
+          "name": "Run npm run audit:source-inventory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 84,
+          "started_at": "2026-10-25T18:24:12Z",
+          "completed_at": "2026-10-25T18:24:13Z"
+        },
+        {
+          "name": "Run node scripts/test-comparison-etf-details.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 85,
+          "started_at": "2026-10-25T18:24:13Z",
+          "completed_at": "2026-10-25T18:24:14Z"
+        },
+        {
+          "name": "Run node scripts/test-tweet-midi-shards.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 86,
+          "started_at": "2026-10-25T18:24:14Z",
+          "completed_at": "2026-10-25T18:24:14Z"
+        },
+        {
+          "name": "Run node scripts/build-tweet-midi-verifier.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 87,
+          "started_at": "2026-10-25T18:24:14Z",
+          "completed_at": "2026-10-25T18:24:16Z"
+        },
+        {
+          "name": "Run npm run audit:investor-profiles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 88,
+          "started_at": "2026-10-25T18:24:16Z",
+          "completed_at": "2026-10-25T18:24:17Z"
+        },
+        {
+          "name": "Run npm run audit:household-statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 89,
+          "started_at": "2026-10-25T18:24:17Z",
+          "completed_at": "2026-10-25T18:24:18Z"
+        },
+        {
+          "name": "Run node scripts/test-diversification-lot-one.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 90,
+          "started_at": "2026-10-25T18:24:18Z",
+          "completed_at": "2026-10-25T18:24:19Z"
+        },
+        {
+          "name": "Run node scripts/test-gaming-medical-reuse.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 91,
+          "started_at": "2026-10-25T18:24:19Z",
+          "completed_at": "2026-10-25T18:24:20Z"
+        },
+        {
+          "name": "Run node scripts/test-world-factors-step-one.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 92,
+          "started_at": "2026-10-25T18:24:20Z",
+          "completed_at": "2026-10-25T18:24:20Z"
+        },
+        {
+          "name": "Run node scripts/test-property-infrastructure-step-two.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93,
+          "started_at": "2026-10-25T18:24:20Z",
+          "completed_at": "2026-10-25T18:24:21Z"
+        },
+        {
+          "name": "Run node scripts/test-data-reuse.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94,
+          "started_at": "2026-10-25T18:24:21Z",
+          "completed_at": "2026-10-25T18:24:21Z"
+        },
+        {
+          "name": "Run node scripts/test-fee-impact-editorial.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95,
+          "started_at": "2026-10-25T18:24:21Z",
+          "completed_at": "2026-10-25T18:24:22Z"
+        },
+        {
+          "name": "Run npm run audit:data-catalog",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 96,
+          "started_at": "2026-10-25T18:24:22Z",
+          "completed_at": "2026-10-25T18:24:25Z"
+        },
+        {
+          "name": "Run npm run audit:data-provenance",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 97,
+          "started_at": "2026-10-25T18:24:25Z",
+          "completed_at": "2026-10-25T18:24:26Z"
+        },
+        {
+          "name": "Run node scripts/test-index-comparison-copy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 98,
+          "started_at": "2026-10-25T18:24:26Z",
+          "completed_at": "2026-10-25T18:24:26Z"
+        },
+        {
+          "name": "Run npm run audit:index-facts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 99,
+          "started_at": "2026-10-25T18:24:26Z",
+          "completed_at": "2026-10-25T18:24:27Z"
+        },
+        {
+          "name": "Run npm run audit:index-completeness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 100,
+          "started_at": "2026-10-25T18:24:27Z",
+          "completed_at": "2026-10-25T18:24:27Z"
+        },
+        {
+          "name": "Run npm run verify:factsheet-tweets",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 101,
+          "started_at": "2026-10-25T18:24:27Z",
+          "completed_at": "2026-10-25T18:24:28Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-editorial.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 102,
+          "started_at": "2026-10-25T18:24:28Z",
+          "completed_at": "2026-10-25T18:24:32Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-preferences.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 103,
+          "started_at": "2026-10-25T18:24:32Z",
+          "completed_at": "2026-10-25T18:24:32Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-selection.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 104,
+          "started_at": "2026-10-25T18:24:32Z",
+          "completed_at": "2026-10-25T18:24:41Z"
+        },
+        {
+          "name": "Run node scripts/test-portfolio-recipes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 105,
+          "started_at": "2026-10-25T18:24:41Z",
+          "completed_at": "2026-10-25T18:25:33Z"
+        },
+        {
+          "name": "Run node scripts/test-generator-controls.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 106,
+          "started_at": "2026-10-25T18:25:33Z",
+          "completed_at": "2026-10-25T18:25:47Z"
+        },
+        {
+          "name": "Run node scripts/test-etf-routing-expansion.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 107,
+          "started_at": "2026-10-25T18:25:47Z",
+          "completed_at": "2026-10-25T18:25:47Z"
+        },
+        {
+          "name": "Run node scripts/audit-asset-tool-routing.mjs --write",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 108,
+          "started_at": "2026-10-25T18:25:47Z",
+          "completed_at": "2026-10-25T18:25:49Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-routing-blockers.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 109,
+          "started_at": "2026-10-25T18:25:49Z",
+          "completed_at": "2026-10-25T18:25:49Z"
+        },
+        {
+          "name": "Run node scripts/test-publication-reliability.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 110,
+          "started_at": "2026-10-25T18:25:49Z",
+          "completed_at": "2026-10-25T18:25:49Z"
+        },
+        {
+          "name": "Run node scripts/test-historical-publications.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 111,
+          "started_at": "2026-10-25T18:25:49Z",
+          "completed_at": "2026-10-25T18:25:57Z"
+        },
+        {
+          "name": "Run npm run stress-test:portfolios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 112,
+          "started_at": "2026-10-25T18:25:57Z",
+          "completed_at": "2026-10-25T18:28:00Z"
+        },
+        {
+          "name": "Run node scripts/test-observation-freshness.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 113,
+          "started_at": "2026-10-25T18:28:00Z",
+          "completed_at": "2026-10-25T18:28:01Z"
+        },
+        {
+          "name": "Run node scripts/test-automation-overview.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 114,
+          "started_at": "2026-10-25T18:28:01Z",
+          "completed_at": "2026-10-25T18:28:01Z"
+        },
+        {
+          "name": "Run node scripts/test-review-inbox.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 115,
+          "started_at": "2026-10-25T18:28:01Z",
+          "completed_at": "2026-10-25T18:28:08Z"
+        },
+        {
+          "name": "Run node scripts/test-monitoring-context.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 116,
+          "started_at": "2026-10-25T18:28:08Z",
+          "completed_at": "2026-10-25T18:28:10Z"
+        },
+        {
+          "name": "Run node scripts/test-producer-result-contracts.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 117,
+          "started_at": "2026-10-25T18:28:10Z",
+          "completed_at": "2026-10-25T18:28:10Z"
+        },
+        {
+          "name": "Run node scripts/test-format-loading.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 118,
+          "started_at": "2026-10-25T18:28:10Z",
+          "completed_at": "2026-10-25T18:28:24Z"
+        },
+        {
+          "name": "Run node scripts/test-history-pool-initialization.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 119,
+          "started_at": "2026-10-25T18:28:24Z",
+          "completed_at": "2026-10-25T18:28:24Z"
+        },
+        {
+          "name": "Run npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 120,
+          "started_at": "2026-10-25T18:28:24Z",
+          "completed_at": "2026-10-25T18:28:52Z"
+        },
+        {
+          "name": "Run node scripts/build-app-inventory.mjs --check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 121,
+          "started_at": "2026-10-25T18:28:52Z",
+          "completed_at": "2026-10-25T18:28:52Z"
+        },
+        {
+          "name": "Run node scripts/test-format-loading.mjs --built",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 122,
+          "started_at": "2026-10-25T18:28:52Z",
+          "completed_at": "2026-10-25T18:29:06Z"
+        },
+        {
+          "name": "Run node scripts/test-practical-sheets.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 123,
+          "started_at": "2026-10-25T18:29:06Z",
+          "completed_at": "2026-10-25T18:29:07Z"
+        },
+        {
+          "name": "Run node scripts/test-performance-links.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 124,
+          "started_at": "2026-10-25T18:29:07Z",
+          "completed_at": "2026-10-25T18:29:11Z"
+        },
+        {
+          "name": "Run node scripts/test-deploy-scope.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 125,
+          "started_at": "2026-10-25T18:29:11Z",
+          "completed_at": "2026-10-25T18:29:12Z"
+        },
+        {
+          "name": "Run node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 126,
+          "started_at": "2026-10-25T18:29:12Z",
+          "completed_at": "2026-10-25T18:29:12Z"
+        },
+        {
+          "name": "Run node scripts/test-fallback-snapshot.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 127,
+          "started_at": "2026-10-25T18:29:12Z",
+          "completed_at": "2026-10-25T18:29:13Z"
+        },
+        {
+          "name": "Run node scripts/test-validated-data-publisher.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 128,
+          "started_at": "2026-10-25T18:29:13Z",
+          "completed_at": "2026-10-25T18:29:13Z"
+        },
+        {
+          "name": "Run node scripts/test-code-data-refresh.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 129,
+          "started_at": "2026-10-25T18:29:13Z",
+          "completed_at": "2026-10-25T18:29:13Z"
+        },
+        {
+          "name": "Run node scripts/test-browser-check-error.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 130,
+          "started_at": "2026-10-25T18:29:13Z",
+          "completed_at": "2026-10-25T18:29:14Z"
+        },
+        {
+          "name": "Run node scripts/test-freshness-policy.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 131,
+          "started_at": "2026-10-25T18:29:14Z",
+          "completed_at": "2026-10-25T18:29:14Z"
+        },
+        {
+          "name": "Run node scripts/test-benchmark-changes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 132,
+          "started_at": "2026-10-25T18:29:14Z",
+          "completed_at": "2026-10-25T18:29:14Z"
+        },
+        {
+          "name": "Record the published commit for the data-only lane",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 133,
+          "started_at": "2026-10-25T18:29:14Z",
+          "completed_at": "2026-10-25T18:29:14Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 134,
+          "started_at": "2026-10-25T18:29:14Z",
+          "completed_at": "2026-10-25T18:29:20Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 135,
+          "started_at": "2026-10-25T18:29:20Z",
+          "completed_at": "2026-10-25T18:29:21Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 136,
+          "started_at": "2026-10-25T18:29:21Z",
+          "completed_at": "2026-10-25T18:29:23Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 137,
+          "started_at": "2026-10-25T18:29:23Z",
+          "completed_at": "2026-10-25T18:29:24Z"
+        },
+        {
+          "name": "Run actions/configure-pages@v6.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 138,
+          "started_at": "2026-10-25T18:29:24Z",
+          "completed_at": "2026-10-25T18:29:24Z"
+        },
+        {
+          "name": "Run actions/upload-pages-artifact@v5.0.0",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 139,
+          "started_at": "2026-10-25T18:29:24Z",
+          "completed_at": "2026-10-25T18:29:24Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 277,
+          "started_at": "2026-10-25T18:29:24Z",
+          "completed_at": "2026-10-25T18:29:24Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 278,
+          "started_at": "2026-10-25T18:29:24Z",
+          "completed_at": "2026-10-25T18:29:25Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 279,
+          "started_at": "2026-10-25T18:29:25Z",
+          "completed_at": "2026-10-25T18:29:25Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809369,
+      "name": "smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:30Z",
+      "completed_at": "2026-10-25T18:30:54Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:32Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:32Z",
+          "completed_at": "2026-10-25T18:29:45Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:45Z",
+          "completed_at": "2026-10-25T18:29:51Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:51Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:54Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:29:54Z",
+          "completed_at": "2026-10-25T18:29:56Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:29:56Z",
+          "completed_at": "2026-10-25T18:30:01Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:30:01Z",
+          "completed_at": "2026-10-25T18:30:05Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:30:05Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/smoke-data-routes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-25T18:30:51Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-25T18:30:51Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:30:51Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-25T18:30:51Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809401,
+      "name": "tweet-midi-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:29Z",
+      "completed_at": "2026-10-25T18:39:26Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:30Z",
+          "completed_at": "2026-10-25T18:29:31Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:35Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:35Z",
+          "completed_at": "2026-10-25T18:29:35Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:35Z",
+          "completed_at": "2026-10-25T18:39:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:39:25Z",
+          "completed_at": "2026-10-25T18:39:25Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:39:25Z",
+          "completed_at": "2026-10-25T18:39:25Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809410,
+      "name": "browser-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:30Z",
+      "completed_at": "2026-10-25T18:47:06Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:30Z",
+          "completed_at": "2026-10-25T18:29:33Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:33Z",
+          "completed_at": "2026-10-25T18:29:43Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:43Z",
+          "completed_at": "2026-10-25T18:29:48Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:48Z",
+          "completed_at": "2026-10-25T18:29:50Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:29:50Z",
+          "completed_at": "2026-10-25T18:29:50Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:29:50Z",
+          "completed_at": "2026-10-25T18:29:51Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:29:51Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:56Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:29:56Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-review-product.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:27Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-review-recovery.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-25T18:30:27Z",
+          "completed_at": "2026-10-25T18:30:51Z"
+        },
+        {
+          "name": "Run node scripts/playwright-removed-ai.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-25T18:30:51Z",
+          "completed_at": "2026-10-25T18:31:04Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-25T18:31:04Z",
+          "completed_at": "2026-10-25T18:31:27Z"
+        },
+        {
+          "name": "Run node scripts/playwright-official-nav.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-25T18:31:27Z",
+          "completed_at": "2026-10-25T18:31:59Z"
+        },
+        {
+          "name": "Run node scripts/playwright-currency-consistency.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-25T18:31:59Z",
+          "completed_at": "2026-10-25T18:32:11Z"
+        },
+        {
+          "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-10-25T18:32:11Z",
+          "completed_at": "2026-10-25T18:32:11Z"
+        },
+        {
+          "name": "Run node scripts/playwright-routing-additions.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-25T18:32:11Z",
+          "completed_at": "2026-10-25T18:32:11Z"
+        },
+        {
+          "name": "Run node scripts/playwright-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-25T18:32:11Z",
+          "completed_at": "2026-10-25T18:32:11Z"
+        },
+        {
+          "name": "Run node scripts/test-simple-exposure.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-10-25T18:32:11Z",
+          "completed_at": "2026-10-25T18:32:11Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 0 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:32:11Z",
+          "completed_at": "2026-10-25T18:44:40Z"
+        },
+        {
+          "name": "Run node scripts/playwright-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-25T18:44:40Z",
+          "completed_at": "2026-10-25T18:44:47Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-25T18:44:47Z",
+          "completed_at": "2026-10-25T18:44:57Z"
+        },
+        {
+          "name": "Run node scripts/playwright-tool-links.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-25T18:44:57Z",
+          "completed_at": "2026-10-25T18:45:23Z"
+        },
+        {
+          "name": "Run node scripts/playwright-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-25T18:45:23Z",
+          "completed_at": "2026-10-25T18:46:36Z"
+        },
+        {
+          "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-25T18:46:36Z",
+          "completed_at": "2026-10-25T18:47:03Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:47:03Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27,
+          "started_at": "2026-10-25T18:47:04Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:47:04Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:47:04Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:47:04Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:47:04Z",
+          "completed_at": "2026-10-25T18:47:04Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809412,
+      "name": "tweet-midi-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:33Z",
+      "completed_at": "2026-10-25T18:38:48Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:34Z",
+          "completed_at": "2026-10-25T18:29:35Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:35Z",
+          "completed_at": "2026-10-25T18:29:39Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:39Z",
+          "completed_at": "2026-10-25T18:29:40Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:40Z",
+          "completed_at": "2026-10-25T18:38:45Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:38:45Z",
+          "completed_at": "2026-10-25T18:38:46Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:38:46Z",
+          "completed_at": "2026-10-25T18:38:46Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809425,
+      "name": "tweet-midi-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:30Z",
+      "completed_at": "2026-10-25T18:39:27Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:32Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:32Z",
+          "completed_at": "2026-10-25T18:29:36Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:36Z",
+          "completed_at": "2026-10-25T18:29:38Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:38Z",
+          "completed_at": "2026-10-25T18:39:24Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:39:24Z",
+          "completed_at": "2026-10-25T18:39:24Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:39:24Z",
+          "completed_at": "2026-10-25T18:39:24Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809444,
+      "name": "browser-checks (1)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:30Z",
+      "completed_at": "2026-10-25T18:44:30Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:33Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:33Z",
+          "completed_at": "2026-10-25T18:29:44Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:44Z",
+          "completed_at": "2026-10-25T18:29:51Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:51Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:54Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:29:54Z",
+          "completed_at": "2026-10-25T18:29:56Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:29:56Z",
+          "completed_at": "2026-10-25T18:30:00Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:30:00Z",
+          "completed_at": "2026-10-25T18:30:05Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:30:05Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-review-product.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-review-recovery.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-removed-ai.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-official-nav.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-currency-consistency.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:16Z"
+        },
+        {
+          "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-25T18:30:16Z",
+          "completed_at": "2026-10-25T18:30:37Z"
+        },
+        {
+          "name": "Run node scripts/playwright-routing-additions.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-25T18:30:37Z",
+          "completed_at": "2026-10-25T18:31:23Z"
+        },
+        {
+          "name": "Run node scripts/playwright-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-25T18:31:23Z",
+          "completed_at": "2026-10-25T18:31:56Z"
+        },
+        {
+          "name": "Run node scripts/test-simple-exposure.mjs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-25T18:31:56Z",
+          "completed_at": "2026-10-25T18:32:28Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 1 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:32:28Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run node scripts/playwright-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 22,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run node scripts/playwright-tool-links.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 23,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run node scripts/playwright-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:24Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:44:24Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27,
+          "started_at": "2026-10-25T18:44:26Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:44:26Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:44:26Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:44:26Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:44:26Z",
+          "completed_at": "2026-10-25T18:44:26Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809502,
+      "name": "tweet-midi-checks (0)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:29Z",
+      "completed_at": "2026-10-25T18:36:26Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:30Z",
+          "completed_at": "2026-10-25T18:29:31Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:34Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:34Z",
+          "completed_at": "2026-10-25T18:29:34Z"
+        },
+        {
+          "name": "Verify every entry in this partition",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:34Z",
+          "completed_at": "2026-10-25T18:36:25Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:36:25Z",
+          "completed_at": "2026-10-25T18:36:25Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:36:25Z",
+          "completed_at": "2026-10-25T18:36:25Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809597,
+      "name": "browser-checks (3)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:30Z",
+      "completed_at": "2026-10-25T18:52:06Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:31Z",
+          "completed_at": "2026-10-25T18:29:33Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:33Z",
+          "completed_at": "2026-10-25T18:29:45Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:45Z",
+          "completed_at": "2026-10-25T18:29:51Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:51Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:54Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:29:54Z",
+          "completed_at": "2026-10-25T18:29:56Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:29:56Z",
+          "completed_at": "2026-10-25T18:30:01Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:30:01Z",
+          "completed_at": "2026-10-25T18:30:05Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:30:05Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-review-product.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-review-recovery.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-removed-ai.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-official-nav.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-currency-consistency.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-routing-additions.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/playwright-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/test-simple-exposure.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:34:31Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 3 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:34:31Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run node scripts/playwright-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 22,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run node scripts/playwright-tool-links.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 23,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run node scripts/playwright-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:01Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:52:01Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27,
+          "started_at": "2026-10-25T18:52:03Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:52:03Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:52:03Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:52:03Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:52:03Z",
+          "completed_at": "2026-10-25T18:52:03Z"
+        }
+      ]
+    },
+    {
+      "id": 121253809708,
+      "name": "browser-checks (2)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-25T18:29:33Z",
+      "completed_at": "2026-10-25T18:44:56Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-25T18:29:34Z",
+          "completed_at": "2026-10-25T18:29:35Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-25T18:29:35Z",
+          "completed_at": "2026-10-25T18:29:44Z"
+        },
+        {
+          "name": "Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-25T18:29:44Z",
+          "completed_at": "2026-10-25T18:29:49Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-25T18:29:49Z",
+          "completed_at": "2026-10-25T18:29:52Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-25T18:29:52Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:53Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-25T18:29:53Z",
+          "completed_at": "2026-10-25T18:29:55Z"
+        },
+        {
+          "name": "Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-25T18:29:55Z",
+          "completed_at": "2026-10-25T18:29:58Z"
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-25T18:29:58Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-review-product.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-review-recovery.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-removed-ai.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-data-automation-inventory.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-official-nav.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-currency-consistency.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-distinct-asset-routing.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-routing-additions.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/playwright-model-portfolios.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/test-simple-exposure.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:30:07Z"
+        },
+        {
+          "name": "Run node scripts/run-browser-checks.mjs 2 4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-25T18:30:07Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run node scripts/playwright-etf-completeness.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 22,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run node scripts/playwright-tool-links.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 23,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run node scripts/playwright-equity-monthly.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run node scripts/playwright-nasdaq-total-return.mjs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:53Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-25T18:44:53Z",
+          "completed_at": "2026-10-25T18:44:54Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27,
+          "started_at": "2026-10-25T18:44:54Z",
+          "completed_at": "2026-10-25T18:44:54Z"
+        },
+        {
+          "name": "Post Run actions/cache@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-10-25T18:44:54Z",
+          "completed_at": "2026-10-25T18:44:54Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-10-25T18:44:54Z",
+          "completed_at": "2026-10-25T18:44:54Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-10-25T18:44:54Z",
+          "completed_at": "2026-10-25T18:44:54Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-10-25T18:44:54Z",
+          "completed_at": "2026-10-25T18:44:55Z"
+        }
+      ]
+    },
+    {
+      "id": 121259281361,
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T18:52:07Z",
+      "completed_at": "2026-10-25T18:52:07Z",
+      "steps": []
+    },
+    {
+      "id": 121259281834,
+      "name": "fallback-build",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T18:52:07Z",
+      "completed_at": "2026-10-25T18:52:07Z",
+      "steps": []
+    },
+    {
+      "id": 121259281995,
+      "name": "deploy-fallback",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T18:52:07Z",
+      "completed_at": "2026-10-25T18:52:07Z",
+      "steps": []
+    },
+    {
+      "id": 121259282509,
+      "name": "advisory-checks",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-25T18:52:07Z",
+      "completed_at": "2026-10-25T18:52:07Z",
+      "steps": []
+    }
+  ]
+}
