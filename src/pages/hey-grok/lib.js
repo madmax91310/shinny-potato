@@ -1,6 +1,7 @@
 import parseTweet from 'twitter-text/dist/parseTweet.js'
 
 export const STORAGE_KEY = 'el-hey-grok-v1'
+export const emptyFilters = () => ({ subject: '', mechanic: '', search: '', publicOnly: false, debateOnly: false, unusedOnly: false, favoritesOnly: false })
 export const emptyPreferences = () => ({ favorites: [], used: [], drafts: {} })
 export const normalizeSearch = value => value.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('fr')
 
@@ -14,7 +15,9 @@ export function tweetStatus(text) {
 export function filterQuestions(questions, filters, preferences) {
   const search = normalizeSearch(filters.search.trim())
   return questions.filter(question =>
-    (!filters.category || question.category === filters.category) &&
+    (!filters.subject || question.subject === filters.subject) &&
+    (!filters.mechanic || question.mechanic === filters.mechanic) &&
+    (!filters.debateOnly || question.debate) &&
     (!filters.publicOnly || question.public) &&
     (!filters.unusedOnly || !preferences.used.includes(question.id)) &&
     (!filters.favoritesOnly || preferences.favorites.includes(question.id)) &&

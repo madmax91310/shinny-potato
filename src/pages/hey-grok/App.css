@@ -3,7 +3,6 @@
 .hg-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
 .hg-layout .workspace-panel { padding: 24px; min-width: 0; }
 .hg-scope h2 { font-size: 1.15rem; margin: 0 0 18px; }
-.hg-category > p { margin: 0 0 7px; font-size: .9rem; font-weight: 600; }
 .hg-filters { display: grid; gap: 16px; }
 .hg-filters > label, .hg-editor > label { display: grid; gap: 7px; font-size: .9rem; font-weight: 600; }
 .hg-scope input[type="search"], .hg-editor textarea { width: 100%; box-sizing: border-box; border: 1px solid #c9d2cd; border-radius: 10px; background: #fff; color: #243b33; padding: 12px; font: inherit; }
@@ -30,3 +29,12 @@
   .hg-list { max-height: 440px; }
   .hg-actions .workspace-button { flex: 1 1 100%; min-height: 44px; }
 }
+
+.hg-axes { display: grid; gap: 20px; }
+.hg-axis { min-width: 0; padding: 12px; border: 1px solid #dce2dd; border-radius: 10px; }
+.hg-axis summary { cursor: pointer; min-height: 44px; font-size: .9rem; }
+.hg-axis summary > span { font-weight: 600; }
+.hg-axis summary strong { display: block; padding-top: 6px; color: #267863; font-size: .95rem; }
+.hg-axis[open] .choice-picker { margin-top: 14px; }
+.hg-axis .choice-picker-grid { max-height: 190px; overflow-y: auto; }
+.hg-empty { padding: 12px 0; }
