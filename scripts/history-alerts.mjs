@@ -3,10 +3,26 @@ import POLICY from '../src/data/freshness-policy.json' with { type: 'json' }
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { calendarEligibility } from './automation-gap-inventory.mjs'
+import { RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
 
 const read = name => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url)))
 const monthNumber = value => /^\d{4}-(0[1-9]|1[0-2])$/.test(String(value)) ? Number(value.slice(0, 4)) * 12 + Number(value.slice(5)) - 1 : null
 const monthLabel = value => `${Math.floor(value / 12)}-${String(value % 12 + 1).padStart(2, '0')}`
+
+// A monthly series is not the ISIN-wide annual calendar, fee or listing.
+// Resolve its actual consumers before falling back to a legacy identity.
+export function historyConsumerTools({ id, dataId, record, cadence, entities, today, excludedMonths }) {
+  const series = cadence === 'monthly' && record.id && entities.filter(row => row.aliases?.includes(`history:${record.id}`))
+  const exact = series?.length ? series : cadence === 'monthly' && record.id && entities.filter(row => row.aliases?.some(alias => alias === record.id || alias === id))
+  const matches = exact?.length ? exact : entities.filter(row => row.aliases?.some(alias => alias === dataId || alias === id))
+  const tools = new Set(matches.flatMap(row => row.tools ?? []))
+  const ranking = cadence === 'monthly' && RANKING_ASSETS[record.id]
+  if (ranking && !['monthly-average', 'price-index', 'futures-price'].includes(ranking.basis)) tools.add('Qui a vraiment gagné ?')
+  if (excludedMonths && !excludedMonths.some(month => month.slice(5) === today.slice(5, 7)
+    && Number(today.slice(0, 4)) - Number(month.slice(0, 4)) >= 1
+    && Number(today.slice(0, 4)) - Number(month.slice(0, 4)) <= 10)) tools.delete('Il y a X ans')
+  return [...tools].sort()
+}
 
 // Only inspect the observed range. No invented pre-launch history, annual proxy,
 // current year or expected source publication date. Tail delays use the shared policy.
@@ -37,18 +53,18 @@ export function historyAlerts(today, entities = [], checks = {}) {
   const alerts = []
   function inspect(id, dataId, name, record, periods, cadence, policyKey, sources = []) {
     const check = inspectHistory({ periods, cadence, today, policy: POLICY.fields[policyKey], periodStart: record.periodStart, periodEnd: record.periodEnd, ...calendarEligibility(dataId, today) })
-    const matches = entities.filter(row => row.aliases?.some(alias => alias === dataId || alias === id))
-    const tools = [...new Set(matches.flatMap(row => row.tools ?? []))].sort()
+    const tools = historyConsumerTools({ id, dataId, record, cadence, entities, today })
     const sourceUrls = [...new Set([record.sourceUrl, record.source?.url, ...(record.sourceUrls ?? []), ...sources].filter(Boolean))]
     const base = { name, dataId, field: cadence === 'monthly' ? 'Historique mensuel' : 'Performances annuelles',
       impactScope: tools.length ? 'asset' : 'catalog', tools, sourceUrls, to: `/bibliotheque-donnees?q=${encodeURIComponent(dataId)}`,
       checkedAt: record.checkedAt ?? record.source?.checkedAt ?? null, asOf: check.asOf,
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
+    if (cadence === 'monthly' && record.id) base.to = entities.find(row => row.aliases?.includes(`history:${record.id}`))?.to ?? base.to
     checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
     const unqualified=record.historyExcludedMonths??[]
     if(unqualified.length){
       checks[id].periods=checks[id].periods.filter(period=>!unqualified.includes(period))
-      alerts.push({...base,id:`${id}:qualification`,kind:'history',invalidPeriods:unqualified,
+      alerts.push({...base,tools:historyConsumerTools({ id, dataId, record, cadence, entities, today, excludedMonths:unqualified }),id:`${id}:qualification`,kind:'history',invalidPeriods:unqualified,
         cause:`Composants officiels non rapprochés : ${unqualified.join(', ')}. Les fenêtres utilisant ces mois sont refusées ; les autres périodes restent qualifiables.`})
     }
     if(record.anniversaryExcludedMonths?.length)alerts.push({...base,id:`${id}:anniversary-qualification`,kind:'history',tools:['Il y a X ans'],invalidPeriods:record.anniversaryExcludedMonths,

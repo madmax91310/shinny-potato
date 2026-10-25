@@ -11,9 +11,19 @@ INDEPENDENT = {
 # Its new validated registry requires regeneration + financial checks; publication
 # observations do collect from it and must still recollect after any change.
 MARKET_PROJECTION_INPUTS = {'src/data/worldbank-gold-monthly.json'}
+# These exact Radar readers, their test and coverage note are not acquisition
+# inputs of the market producer (incident 40178244234 after #945). Its prepare
+# and validation hooks still rebuild projections and check the combined tree.
+# Do not generalise this to collector code, configurations or other producers.
+MARKET_READER_ONLY_CHANGES = {
+    'docs/editorial-radar-couverture-2026-10-25.md',
+    'scripts/lib/radar-consumer.mjs',
+    'scripts/lib/radar-publications.mjs',
+    'scripts/test-radar-coverage.mjs',
+}
 ALLOWED = {
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
-    'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | {'src/data/automated-scpi.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
+    'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     'scpi': INDEPENDENT | {'src/data/worldbank-gold-monthly.json','src/data/anniversary-levels.json',
                          'src/data/anniversary-index-history.json',

@@ -36,10 +36,20 @@ for(const{record:r}of report.series){
 }
 console.log('Five exact iShares parts: issuer income-return oracle, explicit FX, no double cash, and separate unadjusted anniversary NAV verified.')
 
-const {historyAlerts}=await import('./history-alerts.mjs')
+const {historyAlerts,historyConsumerTools}=await import('./history-alerts.mjs')
 const checks={},alerts=historyAlerts('2026-10-25',[],checks)
 const key='automated-etf-monthly:etcPalladium'
 assert.deepEqual(alerts.find(r=>r.id===key+':qualification').invalidPeriods,['2014-12'])
 assert(!checks[key].periods.includes('2014-12'))
 assert(checks[key].periods.includes('2015-12'))
 console.log('The unresolved December 2014 palladium component remains an explicit monitoring incident after a successful source control.')
+const entities=[{aliases:['history:etcPalladium','etcPalladium'],tools:['Calculateur','Performance depuis','Il y a X ans'],to:'/bibliotheque-donnees?id=history%3AetcPalladium'},
+ {aliases:['IE00B4556L06'],tools:['Présentation ETF','Duels de portefeuilles','Générateur de portefeuilles']}]
+const targeted=historyAlerts('2026-10-25',entities).find(r=>r.id===key+':qualification')
+assert.deepEqual(targeted.tools,['Calculateur','Performance depuis','Qui a vraiment gagné ?'])
+assert.equal(targeted.to,entities[0].to)
+const scope={id:key,dataId:'IE00B4556L06',record:report.series.find(r=>r.id==='etcPalladium').record,cadence:'monthly',entities,today:'2026-10-25'}
+assert(historyConsumerTools({...scope,excludedMonths:['2025-10']}).includes('Il y a X ans'))
+for(const months of [['2014-10'],['2025-09'],['2026-10']])assert(!historyConsumerTools({...scope,excludedMonths:months}).includes('Il y a X ans'))
+assert.deepEqual(historyConsumerTools({...scope,cadence:'annual'}),['Duels de portefeuilles','Générateur de portefeuilles','Présentation ETF'])
+console.log('The monthly qualification targets its actual series consumers; independent annual tools and unused anniversary months are preserved.')
