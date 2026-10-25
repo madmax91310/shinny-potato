@@ -4,6 +4,7 @@ import http.client
 import datetime as dt
 import base64
 import json
+import copy
 import hashlib
 import gzip
 import io
@@ -295,7 +296,7 @@ def report_shape(report):
 
 def include_configured_workflows(state):
     """An automation with no observed run is visible, never reported as successful."""
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     result.setdefault('schemaVersion', 1)
     entries = result.setdefault('workflows', {})
     retired = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
@@ -508,7 +509,7 @@ def refresh_scope_proofs(state, run, reports):
 
 def merge_proof_retry(state, run, reports):
     """Repair an immutable old proof without rolling back the current workflow snapshot."""
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     workflow = run['path'].split('/')[-1]
     row = result['workflows'][workflow]
     refresh_scope_proofs(result,run,reports)
@@ -662,7 +663,7 @@ def observe_running_workflows(state, registry, api, repo, now, read_reports):
     No completed workflow or source timestamp is invented. API/read failures retain
     the previous observations; terminal runs are handed back to the ordinary reducer.
     """
-    result=json.loads(json.dumps(state));current=timestamp(now)
+    result=copy.deepcopy(state);current=timestamp(now)
     last=timestamp(result.get('inFlightCheckedAt'))
     if last and 0<=(current-last).total_seconds()<300:return result,[]
     previous=result.get('inFlightRuns',{});active={};terminals=[];complete=True
@@ -757,7 +758,7 @@ def repair_publication_history(state, history):
     Do not replay data failures or change collection dates. A legacy timestamp
     is cleared only when its exact job is proven to have skipped publication.
     """
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     for workflow, row in result.get('workflows', {}).items():
         relevant = [(run, jobs) for run, jobs in history if run['path'].split('/')[-1] == workflow]
         dates = [date for run, jobs in relevant if (date := publication_summary(run, jobs)[1])]
@@ -780,7 +781,7 @@ def repair_publication_history(state, history):
 
 
 def update_status(state, run, jobs, reports=None):
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     workflow = run['path'].split('/')[-1]
     if workflow not in WORKFLOWS or run.get('head_branch') != 'master' or run.get('event') not in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') or run.get('status') != 'completed':
         return result
@@ -1036,7 +1037,7 @@ def reconcile_publication(state, build, manifest, compare):
     Fallback may exclude unknown assets: dataSha alone never certifies their publication.
     Collection incidents and failed checks remain visible after successful publication.
     """
-    result = json.loads(json.dumps(state))
+    result = copy.deepcopy(state)
     if (not isinstance(manifest, dict) or manifest.get('schemaVersion') != 1 or not isinstance(manifest.get('files'), dict)
             or not isinstance(build, dict) or not re.fullmatch(r'[a-f0-9]{40}', str(build.get('sha', '')))
             or not timestamp(build.get('builtAt'))
