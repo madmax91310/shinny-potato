@@ -60,7 +60,7 @@ const karim={...p,name:'Karim',emoji:'👦',age:32,job:'informaticien',income:25
  {asset:'europe',label:'STOXX Europe 600',emoji:'🇪🇺',weight:20,amount:100,isin:references.europe.isin},
  {asset:'emerging',label:'MSCI Emerging Markets',emoji:'🌏',weight:10,amount:50,isin:references.emerging.isin}],variable:false}
 assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2500€/mois\n📊 DCA de 500€ par mois'))
-assert(buildTweetText(karim).includes('Le World reste son placement principal.'))
+assert(!buildTweetText(karim).includes('Le World reste son placement principal.'))
 assert(!/undefined|NaN/.test(buildTweetText({...karim,age:null,job:'',income:0})))
 console.log('Donuts : total, couverture partielle, dates séparées et accroche validée.')
 

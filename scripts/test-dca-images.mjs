@@ -31,7 +31,7 @@ try {
   }
   await page.locator('.dca-publication-column .dca-simple-preview img').evaluate(async img=>img.decode())
   const records=await page.evaluate(async()=>{
-    const {PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
+    const {ALL_PROFILES: PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
     const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
     const original=CanvasRenderingContext2D.prototype.fillText
@@ -55,10 +55,10 @@ try {
       labels=[];boxes=[]
       const canvas=await renderDcaImage(profile,field)
       if(field==='all'&&!labels.includes('Répartition des actifs'))throw Error('Missing allocation donut')
-      if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
+      if(labels.some(l=>/fictif|simulé|inventé|polémique|controversial|problématique|risqué|provocateur|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(!labels.includes(['both','all'].includes(field)?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
       for(const line of profile.lines)if(profile.lines.length<=8&&field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
-      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
+      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved','debate-lucas','debate-ilyes','debate-lina','debate-adam','debate-jeanbaptiste','debate-matthias'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
       labels=[];boxes=[]
@@ -72,7 +72,7 @@ try {
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,420)
+  assert.equal(records.length,620)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   const preview=page.locator('.dca-publication-column .dca-simple-preview img')
@@ -131,7 +131,7 @@ try {
   await page.getByRole('group',{name:'Budget mensuel',exact:true}).locator('[data-option][data-value="small"]').click()
   await page.getByRole('group',{name:'Contient au moins',exact:true}).locator('[data-option][data-value="equity"]').click()
   await page.getByRole('group',{name:'Nombre de placements',exact:true}).locator('[data-option][data-value="4"]').click()
-  assert(await page.getByText('Aucun profil ne correspond à ces filtres.',{exact:true}).isVisible())
+  assert(await page.getByText('Aucun profil ne correspond à ces filtres dans cette sélection. Modifie les filtres ou change de sélection.',{exact:true}).isVisible())
   assert(await page.getByRole('button',{name:'Autre profil aléatoire',exact:true}).isDisabled())
   await page.getByRole('button',{name:'Effacer les filtres',exact:true}).click()
   await page.setViewportSize({width:390,height:844})
@@ -139,6 +139,6 @@ try {
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile has no horizontal overflow')
   await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
   assert.equal(await page.getByRole('group',{name:/Support position/}).count(),0,'No second ISIN confirmation')
-  console.log('420 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
+  console.log('620 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
 } finally {await browser?.close();server.kill('SIGTERM')}
 

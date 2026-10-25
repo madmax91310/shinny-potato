@@ -144,3 +144,10 @@
 .dca-simple .dca-prepared{margin:0}.dca-simple .dca-prepared>summary{line-height:1.5}.dca-simple .dca-prepared>.choice-picker{margin-top:16px}
 .dca-simple .dca-simple-line .dca-change-asset{display:block;font-size:.8rem;text-decoration:underline;text-align:left;padding:6px 0;min-height:36px}
 .dca-simple .dca-replace-asset{padding:16px;border:1px solid #ccd4dc;border-radius:12px;display:grid;gap:12px;min-width:0}
+/* The editor column can be narrow even on a wide desktop viewport. */
+.dca-simple #dca-compose{container-type:inline-size}
+@container(max-width:480px){
+ .dca-simple .dca-line-with-flow{grid-template-columns:minmax(0,1fr) 85px 32px}
+ .dca-simple .dca-line-with-flow>label:last-of-type{grid-column:1/3;grid-row:2}
+ .dca-simple .dca-line-with-flow>button{grid-column:3;grid-row:1/3}
+}

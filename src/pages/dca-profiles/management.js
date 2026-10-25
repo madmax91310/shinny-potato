@@ -1,7 +1,8 @@
 import { ASSETS } from './data.js'
 import { validateProfile, references } from './engine.js'
 const legacyAliases={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco'}
-export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
+export const profileSelection = profile => profile?.selection === 'controversial' ? 'controversial' : 'classic'
+export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,selection:profileSelection(profile),lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
 export const SAVED_KEY='el-dca-portfolios-v2'
 export const USED_KEY='el-dca-used-v1'
 const thematic=new Set(['timber','agribusiness','materials','utilities','healthcare','industrials','semiconductors','water','cybersecurity','infrastructure','reit'])
@@ -10,7 +11,8 @@ const clean = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g,'
 export function searchAssets(query,filter=''){const q=clean(query.trim());return Object.keys(ASSETS).filter(asset=>clean([ASSETS[asset][1],references[asset]?.name,references[asset]?.isin,...(references[asset]?.aliases||[]),...(references[asset]?.tickers||[])].join(' ')).includes(q)&&(!filter||(filter==='pea'?references[asset]?.pea===true:filter==='nonpea'?references[asset]?.pea===false:filter==='equity'?references[asset]?.kind==='equity':references[asset]?.kind!=='equity')))}
 export function filterProfiles(profiles,filters,used=[]){return profiles.filter(p=>{
  const budget=p.lines.reduce((s,l)=>s+l.amount,0)
- return (!filters.budget || (filters.budget==='small'?budget<=200:filters.budget==='medium'?budget>200&&budget<=500:filters.budget==='large'?budget>500&&budget<=1000:budget>1000))
+ return profileSelection(p)===(filters.selection || 'classic')
+ && (!filters.budget || (filters.budget==='small'?budget<=200:filters.budget==='medium'?budget>200&&budget<=500:filters.budget==='large'?budget>500&&budget<=1000:budget>1000))
  && (!filters.lines || p.lines.length===Number(filters.lines))
  && (!filters.kind || p.lines.some(l=>assetKind(l.asset)===filters.kind))
  && (!filters.unused || !used.includes(p.id))
