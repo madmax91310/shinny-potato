@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-25T21:17:03.908884+00:00",
+  "buildInfo": {
+    "sha": "53b039993341fb3846e7f5a82aa31f00be7759a7",
+    "dataSha": "5015fc398773ef76596f16f6ab5a2e12d42336c2",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-25T20:47:24.469Z"
+  },
+  "sourceRunId": 40233623691,
+  "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+  "expectedFiles": 29,
+  "matchingFiles": 28,
+  "mismatches": [
+    "public/data/investors/review-metadata.json"
+  ],
+  "completePublicMatch": false,
+  "qualification": "Expected receipt is not a successful delivery; pending code gate and exact public file mismatches preserved."
+}

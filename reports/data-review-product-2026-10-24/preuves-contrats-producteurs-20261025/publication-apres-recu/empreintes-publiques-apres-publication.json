@@ -1,0 +1,220 @@
+{
+  "checkedAt": "2026-10-25T21:37:42.857547+00:00",
+  "buildInfo": {
+    "sha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+    "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-25T21:33:35.771Z"
+  },
+  "sourceRunId": 40233623691,
+  "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+  "expectedFiles": 29,
+  "actualPublicFilesVerified": 29,
+  "allMatch": true,
+  "files": [
+    {
+      "file": "public/data/investors/ackman.json",
+      "expectedGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+      "actualPublicGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+      "manifestGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/aschenbrenner.json",
+      "expectedGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+      "actualPublicGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+      "manifestGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/baker-bros.json",
+      "expectedGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+      "actualPublicGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+      "manifestGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/berkshire.json",
+      "expectedGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+      "actualPublicGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+      "manifestGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/cathie-wood.json",
+      "expectedGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+      "actualPublicGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+      "manifestGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/dorsey.json",
+      "expectedGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+      "actualPublicGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+      "manifestGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/druckenmiller.json",
+      "expectedGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+      "actualPublicGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+      "manifestGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/einhorn.json",
+      "expectedGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+      "actualPublicGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+      "manifestGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/gates-trust.json",
+      "expectedGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+      "actualPublicGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+      "manifestGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/gavin-baker.json",
+      "expectedGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+      "actualPublicGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+      "manifestGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/gayner.json",
+      "expectedGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+      "actualPublicGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+      "manifestGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/gerstner.json",
+      "expectedGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+      "actualPublicGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+      "manifestGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/halvorsen.json",
+      "expectedGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+      "actualPublicGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+      "manifestGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/hohn.json",
+      "expectedGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+      "actualPublicGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+      "manifestGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/icahn.json",
+      "expectedGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+      "actualPublicGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+      "manifestGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/klarman.json",
+      "expectedGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+      "actualPublicGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+      "manifestGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/laffont.json",
+      "expectedGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+      "actualPublicGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+      "manifestGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/li-lu.json",
+      "expectedGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+      "actualPublicGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+      "manifestGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/loeb.json",
+      "expectedGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+      "actualPublicGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+      "manifestGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/marks.json",
+      "expectedGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+      "actualPublicGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+      "manifestGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/morfit.json",
+      "expectedGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+      "actualPublicGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+      "manifestGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/pabrai.json",
+      "expectedGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+      "actualPublicGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+      "manifestGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/renaissance.json",
+      "expectedGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+      "actualPublicGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+      "manifestGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/review-metadata.json",
+      "expectedGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+      "actualPublicGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+      "manifestGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/tepper.json",
+      "expectedGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+      "actualPublicGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+      "manifestGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/terry-smith.json",
+      "expectedGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+      "actualPublicGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+      "manifestGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/thiel.json",
+      "expectedGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+      "actualPublicGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+      "manifestGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/vinall.json",
+      "expectedGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+      "actualPublicGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+      "manifestGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+      "match": true
+    },
+    {
+      "file": "public/data/investors/watsa.json",
+      "expectedGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+      "actualPublicGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+      "manifestGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+      "match": true
+    }
+  ],
+  "qualification": "Actual public JSON bytes and sealed public manifest match every recorded source file, not only a successful workflow."
+}

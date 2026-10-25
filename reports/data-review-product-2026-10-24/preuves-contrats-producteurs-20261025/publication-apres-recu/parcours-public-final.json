@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-25T21:38:50.919Z",
+  "mode": "real public page, no mocked requests",
+  "buildInfo": {
+    "sha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+    "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-25T21:33:35.771Z"
+  },
+  "monitorUrl": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
+  "monitorCheckedAt": "2026-10-25T21:37:37.156203+00:00",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "cards": 40
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "cards": 40
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "individualContractQualifications": 0,
+  "current13F": {
+    "runId": 40233623691,
+    "collectionStatus": "success",
+    "recordingStatus": "success",
+    "publicationStatus": "success",
+    "publicationEvidence": {
+      "kind": "matching-public-source-fingerprints",
+      "checkedAt": "2026-10-25T21:37:17.412441+00:00",
+      "publishedAt": "2026-10-25T21:33:35.771Z",
+      "codeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+      "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+      "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+      "fileCount": 29
+    },
+    "receiptFileCount": 29
+  },
+  "actual13FRecordingRecoveryObserved": true,
+  "diagnosticExportRows": 0,
+  "exportCarriesScopeRegistry": true,
+  "actualMonitorBodySha256": "a3a670fbeb7d2ea74b123751b2fcb8fcd082558822ddc4b27e9c45279e425bf5",
+  "monitorImmutableCommit": "f4ece4778172beff55e4a5371a7425d8ccbe5b86"
+}

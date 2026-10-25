@@ -1,0 +1,160 @@
+{
+  "checkedAt": "2026-10-25T21:41:27.778340+00:00",
+  "afterMergedAt": "2026-10-25T14:59:19Z",
+  "publisherReceiptFixMergedAt": "2026-10-25T20:52:57Z",
+  "workflows": [
+    {
+      "workflow": "collect-etf-pilot.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:31:29Z"
+    },
+    {
+      "workflow": "onboard-assets.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": null
+    },
+    {
+      "workflow": "refresh-automated-index-sheets.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T11:57:30Z"
+    },
+    {
+      "workflow": "update-bitcoin-monthly.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-08T13:58:09Z"
+    },
+    {
+      "workflow": "update-economic-data.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T13:14:34Z"
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "post950Runs": [
+        {
+          "id": 40234172964,
+          "createdAt": "2026-10-25T21:09:44Z",
+          "headSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+          "conclusion": "success",
+          "status": "completed"
+        },
+        {
+          "id": 40220749965,
+          "createdAt": "2026-10-25T18:20:11Z",
+          "headSha": "30b71f6bcec7182b9503a0594169fed7ed2e8d6f",
+          "conclusion": "failure",
+          "status": "completed"
+        },
+        {
+          "id": 40204955299,
+          "createdAt": "2026-10-25T15:01:19Z",
+          "headSha": "e909dfc10a3c5b6811e647acea4610a367ce9161",
+          "conclusion": "failure",
+          "status": "completed"
+        }
+      ],
+      "post965Runs": [
+        40234172964
+      ],
+      "latestScheduledAt": "2026-10-25T21:09:44Z"
+    },
+    {
+      "workflow": "update-exposure-expansion.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:46:40Z"
+    },
+    {
+      "workflow": "update-inflation.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:35:09Z"
+    },
+    {
+      "workflow": "update-instrument-metadata.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T13:45:53Z"
+    },
+    {
+      "workflow": "update-insurance.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:38:29Z"
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "post950Runs": [
+        {
+          "id": 40212273808,
+          "createdAt": "2026-10-25T16:33:46Z",
+          "headSha": "16c5bde24ebd691f9f44b03d157e85474d88d1ae",
+          "conclusion": "failure",
+          "status": "completed"
+        }
+      ],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T16:33:46Z"
+    },
+    {
+      "workflow": "update-lifestrategy.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T10:03:57Z"
+    },
+    {
+      "workflow": "update-market-monthly.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T11:58:49Z"
+    },
+    {
+      "workflow": "update-non-bond-expansion.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:32:39Z"
+    },
+    {
+      "workflow": "update-practical-sheets.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T13:40:59Z"
+    },
+    {
+      "workflow": "update-presentation-actors.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:42:56Z"
+    },
+    {
+      "workflow": "update-publication-observations.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:43:54Z"
+    },
+    {
+      "workflow": "update-qualified-exposures.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:46:50Z"
+    },
+    {
+      "workflow": "update-regulatory-data.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T13:21:47Z"
+    },
+    {
+      "workflow": "update-scpi.yml",
+      "post950Runs": [],
+      "post965Runs": [],
+      "latestScheduledAt": "2026-10-25T12:37:55Z"
+    }
+  ],
+  "qualification": "Actual schedule events, not forecasts; manual production runs remain separate."
+}

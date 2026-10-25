@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-25T21:25:24.608419+00:00",
+  "monitorCommit": "82c87808af7f40b770e92249f4f97b2f10bc8630",
+  "monitorCheckedAt": "2026-10-25T21:11:43.096981+00:00",
+  "sourceRunId": 40233623691,
+  "sourceProofCaptured": true,
+  "matchedNativeReportEvidence": {
+    "scopeExplicit": true,
+    "scopePlanVerified": true,
+    "producerContract": "producer-results-v1",
+    "file": "investor-observations.json",
+    "sha256": "f48aae569e4df3c947f7bc5a8d9013fa5291651bd4c619e8a4584d34a81113c8",
+    "reportedAt": "2026-10-25T21:10:35.075089+00:00",
+    "schema": "investors",
+    "artifactId": 12614007952,
+    "sourcePhaseStartedAt": "2026-10-25T21:03:05Z",
+    "sourcePhaseCompletedAt": "2026-10-25T21:10:41Z",
+    "scopeRef": "13f02cf2d819dce9c0bff73263deb78841340090bd4f59b8233088bebf76b717",
+    "scopeSummary": {
+      "kind": "update-investor-13f",
+      "expectedIdsCount": 28,
+      "requestedIdsCount": 28,
+      "networkRequestedIdsCount": 28
+    }
+  },
+  "qualification": "Source report captured before parent publication completion. No recording/publication success inferred from collection alone."
+}

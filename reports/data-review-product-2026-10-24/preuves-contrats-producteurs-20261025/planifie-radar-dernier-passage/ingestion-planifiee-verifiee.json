@@ -1,0 +1,761 @@
+{
+  "checkedAt": "2026-10-25T21:42:55.977078+00:00",
+  "monitorCommit": "f4ece4778172beff55e4a5371a7425d8ccbe5b86",
+  "monitorCheckedAt": "2026-10-25T21:37:37.156203+00:00",
+  "sourceRunId": 40234172964,
+  "event": "schedule",
+  "artifactId": 12613534289,
+  "nativeReportSha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+  "nativePlanVerified": true,
+  "monitorReportEvidence": {
+    "scopeExplicit": true,
+    "scopePlanVerified": true,
+    "producerContract": "producer-results-v1",
+    "file": "feed.json",
+    "sha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+    "reportedAt": null,
+    "schema": "radar",
+    "artifactId": 12613534289,
+    "sourcePhaseStartedAt": "2026-10-25T21:09:48Z",
+    "sourcePhaseCompletedAt": "2026-10-25T21:10:31Z",
+    "runId": 40234172964,
+    "attempt": 1,
+    "recordedAt": "2026-10-25T21:10:32Z",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40234172964",
+    "successes": [
+      {
+        "id": "report-read:feed:run:40234172964:attempt:1",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "feed.json",
+          "sha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+          "reportedAt": null,
+          "schema": "radar",
+          "artifactId": 12613534289,
+          "sourcePhaseStartedAt": "2026-10-25T21:09:48Z",
+          "sourcePhaseCompletedAt": "2026-10-25T21:10:31Z",
+          "scopeRef": "ab77d2f9c5e6f5cd412526ad06914331da591f85c26f2db1585c9c76ef5161b1",
+          "scopeSummary": {
+            "kind": "editorial-radar-sources",
+            "expectedIdsCount": 62,
+            "requestedIdsCount": 0,
+            "networkRequestedIdsCount": 0
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "scopeRef": "ab77d2f9c5e6f5cd412526ad06914331da591f85c26f2db1585c9c76ef5161b1",
+    "scopeSummary": {
+      "kind": "editorial-radar-sources",
+      "expectedIdsCount": 62,
+      "requestedIdsCount": 0,
+      "networkRequestedIdsCount": 0
+    }
+  },
+  "monitorScope": {
+    "kind": "editorial-radar-sources",
+    "mode": "conditional",
+    "expectedIds": [
+      "radar-source:fortuneo-tariffs",
+      "radar-source:fortuneo-offers",
+      "radar-source:boursobank-offers",
+      "radar-source:boursobank-tariffs",
+      "radar-source:lbp-tariffs",
+      "radar-source:insee-studies",
+      "radar-source:bourse-direct-news",
+      "radar-source:energie-info",
+      "radar-source:afg",
+      "radar-source:amf-alerts",
+      "radar-source:moneyvox",
+      "radar-source:boursobank-news",
+      "radar-source:revolut-news",
+      "radar-source:bnp-bank",
+      "radar-source:credit-agricole-news",
+      "radar-source:sg-bank",
+      "radar-source:bpce-bank",
+      "radar-source:cm-cic",
+      "radar-source:lbp-bank",
+      "radar-source:saxo-news",
+      "radar-source:invesco",
+      "radar-source:spdr-news",
+      "radar-source:xetra",
+      "radar-source:bnp",
+      "radar-source:xtrackers",
+      "radar-source:hanetf",
+      "radar-source:notaires-paris",
+      "radar-source:credit-logement",
+      "radar-source:oll",
+      "radar-source:dvf",
+      "radar-source:insee-publications",
+      "radar-source:insee-conjoncture",
+      "radar-source:amundi",
+      "radar-source:wisdomtree",
+      "radar-source:bdf-credit",
+      "radar-source:bdf-savings",
+      "radar-source:bdf-debt",
+      "radar-source:dws",
+      "radar-source:drees",
+      "radar-source:dares",
+      "radar-source:service-public",
+      "radar-source:bercy",
+      "radar-source:vie-publique-actualites",
+      "radar-source:vie-publique-lois",
+      "radar-source:banque-france-credit",
+      "radar-source:cre-prix",
+      "radar-source:lcl-news",
+      "radar-source:degiro-news",
+      "radar-source:ibkr-news",
+      "radar-source:fortuneo-news",
+      "radar-source:trade-republic-news",
+      "radar-source:xtb-news",
+      "radar-source:insee-calendar",
+      "radar-source:fuel-dgec",
+      "radar-source:notaires-france",
+      "radar-source:ishares",
+      "radar-source:spdr",
+      "radar-source:vaneck",
+      "radar-source:ubs",
+      "radar-source:jpmorgan",
+      "radar-source:Communiqués Vanguard",
+      "radar-source:Communiqués Global X Europe"
+    ],
+    "requestedIds": [],
+    "items": [
+      {
+        "id": "radar-source:fortuneo-tariffs",
+        "instrument": "fortuneo-tariffs",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.fortuneo.fr/tarifs",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:fortuneo-offers",
+        "instrument": "fortuneo-offers",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:boursobank-offers",
+        "instrument": "boursobank-offers",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.boursobank.com/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:boursobank-tariffs",
+        "instrument": "boursobank-tariffs",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.boursobank.com/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:lbp-tariffs",
+        "instrument": "lbp-tariffs",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.labanquepostale.fr/particulier/footer/tarifs.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:insee-studies",
+        "instrument": "insee-studies",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.insee.fr/fr/solr/consultation",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bourse-direct-news",
+        "instrument": "bourse-direct-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://groupe.boursedirect.fr/feed",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:energie-info",
+        "instrument": "energie-info",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.energie-info.fr/feed/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:afg",
+        "instrument": "afg",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:amf-alerts",
+        "instrument": "amf-alerts",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:moneyvox",
+        "instrument": "moneyvox",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:boursobank-news",
+        "instrument": "boursobank-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:revolut-news",
+        "instrument": "revolut-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.revolut.com/fr-FR/news/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bnp-bank",
+        "instrument": "bnp-bank",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://group.bnpparibas/rss/news/communique-de-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:credit-agricole-news",
+        "instrument": "credit-agricole-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://presse.credit-agricole.com/fr/?lang=fra",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:sg-bank",
+        "instrument": "sg-bank",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.societegenerale.com/fr/communiques-de-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bpce-bank",
+        "instrument": "bpce-bank",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://newsroom.groupebpce.fr/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:cm-cic",
+        "instrument": "cm-cic",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:lbp-bank",
+        "instrument": "lbp-bank",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:saxo-news",
+        "instrument": "saxo-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.home.saxo/fr-fr/about-us/media-center",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:invesco",
+        "instrument": "invesco",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.invesco.com/uk/en/about-us/media-hub.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:spdr-news",
+        "instrument": "spdr-news",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:xetra",
+        "instrument": "xetra",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bnp",
+        "instrument": "bnp",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.bnpparibas-am.com/en/media-centre/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:xtrackers",
+        "instrument": "xtrackers",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://etf.dws.com/en-gb/about-us/press-releases/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:hanetf",
+        "instrument": "hanetf",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://hanetf.com/press-releases/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:notaires-paris",
+        "instrument": "notaires-paris",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:credit-logement",
+        "instrument": "credit-logement",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:oll",
+        "instrument": "oll",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:dvf",
+        "instrument": "dvf",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:insee-publications",
+        "instrument": "insee-publications",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.insee.fr/fr/flux/2",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:insee-conjoncture",
+        "instrument": "insee-conjoncture",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.insee.fr/fr/flux/3",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:amundi",
+        "instrument": "amundi",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.amundietf.fr/sitemap/sitemap.xml",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:wisdomtree",
+        "instrument": "wisdomtree",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bdf-credit",
+        "instrument": "bdf-credit",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bdf-savings",
+        "instrument": "bdf-savings",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bdf-debt",
+        "instrument": "bdf-debt",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:dws",
+        "instrument": "dws",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:drees",
+        "instrument": "drees",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:dares",
+        "instrument": "dares",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:service-public",
+        "instrument": "service-public",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:bercy",
+        "instrument": "bercy",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:vie-publique-actualites",
+        "instrument": "vie-publique-actualites",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:vie-publique-lois",
+        "instrument": "vie-publique-lois",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:banque-france-credit",
+        "instrument": "banque-france-credit",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:cre-prix",
+        "instrument": "cre-prix",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:lcl-news",
+        "instrument": "lcl-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://presse.credit-agricole.com/section/lcl?lang=fra",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:degiro-news",
+        "instrument": "degiro-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.degiro.fr/a-propos-de-degiro/nouvelles-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:ibkr-news",
+        "instrument": "ibkr-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.interactivebrokers.eu/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:fortuneo-news",
+        "instrument": "fortuneo-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.fortuneo.fr/espace-presse",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:trade-republic-news",
+        "instrument": "trade-republic-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://traderepublic.com/en-de/press",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:xtb-news",
+        "instrument": "xtb-news",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.xtb.com/fr/analyses-marches/actualites",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:insee-calendar",
+        "instrument": "insee-calendar",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.insee.fr/fr/information/1405540",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:fuel-dgec",
+        "instrument": "fuel-dgec",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:notaires-france",
+        "instrument": "notaires-france",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.notaires.fr/fr/actualites",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:ishares",
+        "instrument": "ishares",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.blackrock.com/corporate/newsroom/media/press-releases",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:spdr",
+        "instrument": "spdr",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:vaneck",
+        "instrument": "vaneck",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.vaneck.com/fr/fr/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:ubs",
+        "instrument": "ubs",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://www.ubs.com/global/en/media.html",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:jpmorgan",
+        "instrument": "jpmorgan",
+        "fields": [
+          "official HTTP access only"
+        ],
+        "sourceUrl": "https://am.jpmorgan.com/fr/fr/asset-management/adv/",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:Communiqués Vanguard",
+        "instrument": "Communiqués Vanguard",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      },
+      {
+        "id": "radar-source:Communiqués Global X Europe",
+        "instrument": "Communiqués Global X Europe",
+        "fields": [
+          "official publication listing"
+        ],
+        "sourceUrl": "https://globalxetfs.eu/news",
+        "selected": false,
+        "reason": "Normal wait outside Radar operating hours"
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-10-25T21:10:25.877666+00:00",
+    "planSha256": "e8cc5dc881ff9eb4b256aa31babba21967c08add34444da1c790eb7b6bfb117d",
+    "attemptedIds": [],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [],
+    "networkAttemptUnknownIds": [],
+    "runId": "40234172964",
+    "attempt": "1",
+    "selectionReason": null,
+    "nonce": "e6634d56-114d-4b9f-86f1-9eff044afa11"
+  },
+  "qualification": "Actual scheduled report after #965 ingested. Radar has its own publisher; this does not certify a scheduled invocation of the shared receipt workflow."
+}
