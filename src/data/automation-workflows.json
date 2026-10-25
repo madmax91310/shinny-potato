@@ -184,20 +184,7 @@
       "Collect observations: indices"
     ],
     "validationSteps": [
-      "Validate observations: node scripts test-automation-gap-inventory.mjs",
-      "Validate observations: node scripts test-priority-issuer-consumers.mjs",
-      "Validate observations: npm run audit:data-review",
-      "Validate observations: npm run audit:index-facts",
-      "Validate observations: npm run audit:index-completeness",
-      "Validate observations: node scripts test-automated-indices.mjs",
-      "Validate observations: node scripts test-automated-index-sheets.mjs",
-      "Validate observations: npm run audit:etf-annual-performance",
-      "Validate observations: npm run audit:etf-completeness",
-      "Validate observations: npm run audit:etf-consistency",
-      "Validate observations: node scripts test-four-issuer-consumers.mjs",
-      "Validate observations: npm run audit:calculator-series",
-      "Validate observations: node scripts test-comparison-etf-details.mjs",
-      "Validate observations: npm run build",
+      "Validate ETF observations and consumers",
       "Validate collected observations"
     ],
     "paths": [
@@ -675,3 +662,4 @@
     "publishes": true
   }
 }
+

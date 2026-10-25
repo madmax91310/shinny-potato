@@ -21,7 +21,12 @@ MARKET_READER_ONLY_CHANGES = {
     'scripts/lib/radar-publications.mjs',
     'scripts/test-radar-coverage.mjs',
 }
+# The ETF acquisition chain and its baseline do not read insurance products.
+# Coverage reports/build do: regenerate and validate those on the merged tree.
+# Keep this narrower than INDEPENDENT; other outputs have not been qualified.
+ETF_INDEPENDENT = {'src/data/automated-insurance.json'}
 ALLOWED = {
+    'etf': ETF_INDEPENDENT,
     'indices': INDEPENDENT | {'src/data/automated-scpi.json','src/data/worldbank-gold-monthly.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
     'market': INDEPENDENT | MARKET_PROJECTION_INPUTS | MARKET_READER_ONLY_CHANGES | {'src/data/automated-scpi.json','src/data/non-bond-monthly-records.json','src/data/non-bond-etf-records.json','src/data/non-bond-qualified-records.json','src/data/non-bond-levels.json','scripts/source-snapshots/non-bond-monthly-active.json','src/data/lifestrategy.json','src/data/automated-etf.json','src/data/automated-instrument-metadata.json','src/data/instrument-metadata-status.json','src/data/automated-presentation-actors.json','src/data/dca-complete-holdings.json','src/data/dca-holdings-status.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json'},
     'insurance': {'src/data/worldbank-gold-monthly.json','src/data/automated-broker-tariffs.json','src/data/automated-regulatory.json','src/data/automated-scpi.json','src/data/purchasing-power-observations.json','src/data/anniversary-levels.json','src/data/anniversary-index-history.json','scripts/source-snapshots/anniversary-indices.json'},
@@ -50,3 +55,4 @@ if __name__ == '__main__':
     p.add_argument('--upstream', default='HEAD^')
     a = p.parse_args()
     print('Independent upstream outputs; financial revalidation still required:', check(a.kind, a.base, a.upstream))
+
