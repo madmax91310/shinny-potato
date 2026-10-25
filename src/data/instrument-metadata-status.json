@@ -21034,7 +21034,7 @@
     }
   },
   "IE00BYZK4776": {
-    "checkedAt": "2026-10-24T13:27:36.271280+00:00",
+    "checkedAt": "2026-10-25T06:04:04.641644+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -21047,20 +21047,16 @@
     "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "<urlopen error timed out>"
       }
     ],
     "fields": {
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -21075,8 +21071,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -21091,8 +21087,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -21107,8 +21103,8 @@
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -21123,8 +21119,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -21139,8 +21135,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-24T13:27:36.271280+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "lastAttemptAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-25",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
