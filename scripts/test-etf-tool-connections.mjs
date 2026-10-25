@@ -57,7 +57,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
-  assert(annual.includes(asset.currency) && annual.includes(priceInstrument ? `cours de l’${asset.instrumentType}` : 'revenus réinvestis'))
+  assert(annual.includes(asset.currency) && annual.includes(priceInstrument ? `${asset.valuationBasis?'valeur liquidative':'cours'} de l’${asset.instrumentType}` : 'revenus réinvestis'))
   } else {
     assert(asset.points[0].date > `${clock.getUTCFullYear()-2}-12` || !qualifyHistoryWindow(asset,asset.points[0].date,asset.points.at(-1).date).qualified, `${id}: unexpected missing completed annual history`);
   }
