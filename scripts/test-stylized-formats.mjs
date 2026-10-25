@@ -1,14 +1,12 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
-import { mkdir, writeFile, readFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
-// The current paper renderer uses one shared background, not the retired per-asset art map.
-// All ASSET_ORDER identities are still rendered and checked below, including new indices.
-await readFile('public/asset-art/performance-cobalt/ivory-folds.webp')
+// The cobalt export is drawn with canvas primitives; it requires no background image.
 for (let count = 1; count <= 40; count++) {
   const layout = performanceLayout(count)
   assert.ok(layout.rows * layout.columns >= count)
@@ -96,10 +94,8 @@ try {
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
         if (!words.includes(`Cumul sur ${rows.length} an${rows.length > 1 ? 's' : ''}`)) throw new Error('Missing period summary')
         if (words.some(word => /sources?\s*:|MSCI ·|BCE|Yahoo|Les performances passées/i.test(word))) throw new Error('Source/footer returned on performance image')
-        const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
-        const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
-        if (!words.join(' ').includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
-        if (!words.includes(`${rows[0].year} — ${rows.at(-1).year} · EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        if (words.some(word => /variation du prix|conversion BCE|sans couverture de change/i.test(word))) throw new Error('Removed technical footer returned')
+        if (!words.includes(`${rows[0].year} à ${rows.at(-1).year} · EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
         const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
         for (const row of rows) {
           const annual = formatPerformancePct(row.pct)
@@ -110,8 +106,6 @@ try {
         if (!words.includes(percent)) throw new Error('Changed performance calculation')
       }
       const { getPerformanceEntries } = await import('/shinny-potato/src/pages/tweet-midi/engines/performance.js')
-      const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
-      const { performanceDisplayBasis } = await import('/shinny-potato/src/pages/tweet-midi/performanceCurrency.js')
       const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
       const worldYears = getAnnualReturnStartYears('msciWorld')
       const sampleYear = worldYears[Math.max(0,worldYears.length - 10)]
@@ -124,7 +118,7 @@ try {
         if (!rejected) throw new Error('Mixed net/gross comparison must be rejected')
       }
       for (const item of [
-        ...[1,2,5,6,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
+        ...[1,2,3,4,5,6,7,8,9,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
         ...(longId ? [{mode:'simple',assetId:longId,year:getAnnualReturnStartYears(longId)[0]}] : []),
         ...['EUR','USD'].map(currency => ({mode:'simple',assetId:'msciWorld',year:sampleYear,currency})),
         {mode:'simple',assetId:'sp500',year:getAnnualReturnStartYears('sp500')[0],currency:'EUR'},
@@ -139,11 +133,10 @@ try {
         const words = await check(name, () => renderPerformanceImage(item), true, item.assetId === 'msciWorld' && entries[0].returns.length === 10 && !item.currency ? 1600 : undefined)
         if (before !== JSON.stringify(item)) throw new Error('Selection mutated by renderer')
         for (const {asset,returns} of entries) {
-          if (!words.includes(`${returns[0].year} — ${returns.at(-1).year} · EN ${asset.currency}`)) throw new Error('Wrong displayed currency/period')
+          if (!words.includes(`${returns[0].year} à ${returns.at(-1).year} · EN ${asset.currency}`)) throw new Error('Wrong displayed currency/period')
           if (!words.includes(formatPerformancePct(cumulativePerformance(returns)))) throw new Error('Wrong converted total')
           for (const row of returns) if (!words.includes(String(row.year)) || !words.includes(formatPerformancePct(row.pct))) throw new Error('Wrong annual value')
-          const basis = performanceDisplayBasis(asset,performanceBasis(asset.id)).split(' · ').filter(part=>![asset.currency,asset.sourceCurrency].includes(part)).join(' · ')
-          if (!words.join(' ').includes(basis)) throw new Error('Lost official/converted return convention')
+          if (words.some(word => /variation du prix|conversion BCE|sans couverture de change/i.test(word))) throw new Error('Removed technical footer returned')
         }
         // Long share identities remain exact, with wrapping rather than ellipsis.
         for (const {asset} of entries) if (!words.join(' ').includes((asset.label || asset.tweetPhrase).replace(/^Indice\s+/i,''))) throw new Error('Asset name truncated')
