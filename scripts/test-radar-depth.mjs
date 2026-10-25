@@ -10,6 +10,7 @@ const fixture=n=>readFile(new URL(`./fixtures/radar-depth/${n}`,import.meta.url)
 const now=new Date('2026-10-25T12:00:00Z'),later=new Date(+now+3*3600000),source=OFFER_SOURCES[0]
 const raw='Conditions tarifaires au 6 août 2026\n'+await fixture('fortuneo-tariff.txt')
 const before=offerSnapshot(raw,source,now)
+assert.throws(()=>offerSnapshot('<html><h1>Conditions tarifaires</h1><p>Une page de remplacement</p></html>',source,now),'An HTML replacement of a PDF is not a new tariff')
 assert.equal(before.dates.effectiveAt,'2026-08-06')
 assert.ok(before.clauseCount>2)
 assert.equal(compareOfferSnapshots(null,before,source,before.sourceUrl),null,'First observation is a silent reference')

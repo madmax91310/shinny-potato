@@ -40,6 +40,7 @@ const financial=/compte|carte|mastercard|fosfo|gold|courtage|ordre|virement|retr
 // individual product from a multi-column table. Ambiguous duplicate keys drop out.
 export function offerSnapshot(content,source,now) {
   const pdf=!/<html\b/i.test(content)
+  if(source.kind==='tariff'&&!pdf || source.kind==='offers'&&pdf)throw Error('Type de document différent du contrat qualifié ; référence conservée')
   let clauses=[]
   if(pdf) {
     if(!/conditions tarifaires|brochure tarifaire/i.test(content))throw Error('PDF tarifaire non reconnu')
