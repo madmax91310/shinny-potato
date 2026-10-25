@@ -161,6 +161,47 @@ class DurableScope(unittest.TestCase):
             if native is not None:(Path(directory)/'practical-observation.json').write_text(native)
         with tempfile.TemporaryDirectory()as folder:
             return artifact_reports('test/repo',w,jobs(w),[{'name':REPORT_CONTRACTS[w]['artifact'],'id':1}],folder,download)
+    def test_ordinary_artifact_reader_forwards_the_independent_scope(self):
+        native=finished({'sources':{'A':{'status':'ok'},'B':{'status':'ok'}},'changed':[],'failed':[]},self.payload()['resultContract']['inputPlan'])
+        reports=self.observe_artifact(json.dumps(native))
+        evidence=[r['_reportEvidence']for r in reports if r.get('_reportEvidence')]
+        self.assertEqual(len(evidence),1);self.assertTrue(evidence[0]['scopePlanVerified'])
+        self.assertFalse(any(r.get('_scopeWarning')for r in reports))
+    def test_guarded_reader_rejects_a_different_independent_manifest(self):
+        p=self.payload()['resultContract']['inputPlan'];p['nonce']='another invocation'
+        native=finished({'sources':{'A':{'status':'ok'},'B':{'status':'ok'}},'changed':[],'failed':[]},p)
+        reports=self.observe_artifact(json.dumps(native))
+        self.assertTrue(any('independently recorded'in e.get('error','')for r in reports for e in r.get('errors',[])))
+        self.assertFalse(any(s['id'].startswith('practical:')for r in reports for s in r.get('successes',[])))
+    def test_same_immutable_report_can_gain_its_real_plan_without_renewing_source(self):
+        from publish_automation_status import update_status,read_report_safely
+        from test_automation_product import jobs,event
+        w='update-practical-sheets.yml';p=plan(('practical:A',));p.update(reportStem='practical-observation',cacheRequested=True,durablePlan=True)
+        native={'sources':{'A':{'status':'ok'}},'changed':[],'failed':[]}
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'practical-observation.json';path.write_text(json.dumps(finished(native,p)))
+            unverified=read_report(path,w);verified=read_report_safely(path,w,finished({},p,completed=False))
+        old=update_status({},event(w),jobs(w),[{'successes':[],'errors':[{'id':'practical:A','error':'Supplier 403'}]}])
+        old=update_status(old,event(w,101),jobs(w),[unverified]);before=copy.deepcopy(old['workflows'][w])
+        after=update_status(old,event(w,101),jobs(w),[verified])['workflows'][w]
+        self.assertEqual(after['reportQualifications'],{})
+        self.assertTrue(after['reportEvidenceHistory'][-1]['scopePlanVerified'])
+        self.assertTrue(after['reportEvidenceHistory'][-1]['scopeReadHistory'])
+        for field in ('completedAt','lastSuccessAt','lastCollectionSuccessAt','sourceChecks','dataFailures','collectionStatus','recordingStatus','publicationStatus'):
+            self.assertEqual(after.get(field),before.get(field),field)
+        self.assertTrue(after['reportQualificationHistory'][-1]['historicalLimitationPreserved'])
+    def test_historical_validation_replay_never_becomes_a_source_check(self):
+        from publish_automation_status import merge_proof_retry
+        from test_automation_product import event
+        w='update-practical-sheets.yml';state={'workflows':{w:{'runId':102,'dataFailures':{'A':{'cause':'Supplier 403','phase':'collection'}}}}}
+        reports=[{'successes':[{'id':'A','phase':'validation','sourceAttempted':False},{'id':'report-read:local'}],'errors':[]}]
+        after=merge_proof_retry(state,event(w,101),reports)['workflows'][w]
+        self.assertEqual(after['dataFailures']['A']['cause'],'Supplier 403')
+        self.assertNotIn('A',after.get('sourceChecks',{}));self.assertIn('A',after['validationChecks'])
+        self.assertTrue(any(k.startswith('report-read:local')for k in after['proofChecks']))
+        newer=event(w,102)['updated_at'];after['validationChecks']['A']['recordedAt']=newer
+        old=merge_proof_retry({'workflows':{w:after}},event(w,101),reports)['workflows'][w]
+        self.assertEqual(old['validationChecks']['A']['recordedAt'],newer)
     def test_missing_native_report_retains_individual_expected_scope(self):
         r=self.observe_artifact();omissions=[e for part in r for e in part.get('errors',[]) if e.get('kind')=='omission']
         self.assertEqual({e['expectedId']for e in omissions},{'practical:A','practical:B'})

@@ -436,7 +436,7 @@ def read_report(path, workflow, planned=None):
 def read_report_safely(path, workflow, planned=None):
     """An unusable artifact is an incident, not a reason to lose every other result."""
     try:
-        result = read_report(path, workflow)
+        result = read_report(path, workflow, planned)
         result.setdefault('successes', []).append({'id': 'report-read:' + path.stem, 'evidence':result.get('_reportEvidence')})
         return result
     except (ValueError, OSError, TypeError, KeyError, AttributeError) as error:
@@ -477,17 +477,51 @@ def attempt_artifacts(artifacts, run):
     return [a for a in artifacts if (created := timestamp(a.get('created_at'))) and start <= created <= end]
 
 
+def refresh_scope_proofs(state, run, reports):
+    """Reinterpret real frozen manifests, without renewing any source or job date."""
+    row=state['workflows'][run['path'].split('/')[-1]]
+    for report in reports:
+        evidence=report.get('_reportEvidence') or {}
+        if not evidence.get('scopePlanVerified') or report.get('_scopeWarning'):continue
+        history=row.setdefault('reportEvidenceHistory',[])
+        matching=[r for r in history if r.get('runId')==run['id'] and r.get('attempt')==run.get('run_attempt',1)
+                  and r.get('file')==evidence['file'] and r.get('sha256')==evidence['sha256']]
+        if not matching:continue
+        receipt=matching[-1]
+        if not receipt.get('scopePlanVerified'):
+            # Same source bytes; this is a new interpretation, not a new check.
+            receipt['scopeReadHistory']=receipt.get('scopeReadHistory',[])+[{
+                'scopePlanVerified':receipt.get('scopePlanVerified',False),
+                'scopeWarning':row.get('reportQualifications',{}).get(evidence['file'],{}).get('cause')}]
+            receipt.update(evidence,scopeVerifiedAt=dt.datetime.now(dt.timezone.utc).isoformat())
+        warning=row.get('reportQualifications',{}).get(evidence['file'])
+        full_current=(run['id']==row.get('runId') and evidence.get('scope',{}).get('mode')=='full'
+                      and evidence.get('scope',{}).get('expectedIds'))
+        if warning and (warning.get('evidence',{}).get('sha256')==evidence['sha256'] or full_current):
+            row.setdefault('reportQualificationHistory',[]).append({**warning,'file':evidence['file'],
+                'historicalLimitationPreserved':True,'currentScopeQualifiedBy':run['html_url'],
+                'qualificationKind':'independent-plan-reread','scopeVerifiedAt':receipt.get('scopeVerifiedAt',dt.datetime.now(dt.timezone.utc).isoformat())})
+            row['reportQualifications'].pop(evidence['file'])
+    return state
+
+
 def merge_proof_retry(state, run, reports):
     """Repair an immutable old proof without rolling back the current workflow snapshot."""
     result = json.loads(json.dumps(state))
     workflow = run['path'].split('/')[-1]
     row = result['workflows'][workflow]
+    refresh_scope_proofs(result,run,reports)
     failures = row.setdefault('proofFailures', {})
     checks = row.setdefault('proofChecks', {})
     for raw in reports:
         report = normalize_attempt_report(raw,run)
         evidence = report.get('_reportEvidence')
         for success in report.get('successes', []):
+            if success.get('sourceAttempted') is False and success.get('phase') in ('validation','qualification'):
+                local_checks=row.setdefault('validationChecks',{})
+                if timestamp(local_checks.get(success['id'],{}).get('recordedAt')) and timestamp(local_checks[success['id']]['recordedAt'])>timestamp(run['updated_at']):continue
+                local_checks[success['id']]={**success,'runUrl':run['html_url'],'recordedAt':run['updated_at'],'evidence':evidence}
+                continue  # Local replay never repairs a collection or publication failure.
             identifier = bind_attempt(success['id'], run)
             if technical_proof(identifier):
                 failures.pop(identifier, None)
@@ -531,7 +565,7 @@ def merge_proof_retry(state, run, reports):
                 row['dataFailures'][identifier] = {'name':error.get('name',identifier), 'cause':error['error'], 'field':error.get('field'),
                     'runUrl':run['html_url'], 'completedAt':(evidence or{}).get('sourcePhaseCompletedAt')or run['updated_at'],
                     'sourcePhaseCompletedAt':(evidence or{}).get('sourcePhaseCompletedAt'),'evidence':evidence,
-                    **{k:error[k]for k in ('sourceUrls','asOf','lastSuccessAt','attemptedAt')if k in error},'historicalDiscovery':True}
+                    **{k:error[k]for k in ('sourceUrls','asOf','lastSuccessAt','attemptedAt','phase','kind','sourceAttempted')if k in error},'historicalDiscovery':True}
         if evidence:
             history = row.setdefault('reportEvidenceHistory', [])
             if not any(r.get('runId') == run['id'] and r.get('attempt') == run.get('run_attempt',1) and r.get('file') == evidence['file'] for r in history):
@@ -539,7 +573,7 @@ def merge_proof_retry(state, run, reports):
                     'readAt':dt.datetime.now(dt.timezone.utc).isoformat(),'successes':report.get('successes',[]),'errors':report.get('errors',[])})
             if report.get('_scopeWarning'):
                 row.setdefault('reportQualifications',{})[evidence['file']]={'cause':report['_scopeWarning'],'runUrl':run['html_url'],'evidence':evidence,'attemptedAt':evidence.get('reportedAt')}
-    return result
+    return refresh_scope_proofs(result,run,reports)
 
 
 def artifact_reports(repo, workflow, jobs, artifacts, directory, download=download_status_artifact):
@@ -757,7 +791,9 @@ def update_status(state, run, jobs, reports=None):
     reports = normalized
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
-    if stamp < old_stamp or (stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert) or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
+    if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert:
+        return refresh_scope_proofs(result,run,reports)
+    if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
     failed = run['conclusion'] in ('failure', 'timed_out', 'startup_failure', 'action_required')
     data_failures = previous.get('dataFailures', {}).copy()
