@@ -5,16 +5,16 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
-        "status": "ok",
-        "articles": 10,
+        "checkedAt": "2026-10-25T13:35:36.060Z",
+        "status": "error",
+        "articles": 0,
         "relevant": 0
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,25 +23,25 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
-        "status": "ok",
-        "articles": 10,
+        "checkedAt": "2026-10-25T13:35:36.060Z",
+        "status": "error",
+        "articles": 0,
         "relevant": 0
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
-        "status": "ok",
-        "articles": 100,
+        "checkedAt": "2026-10-25T13:35:36.060Z",
+        "status": "error",
+        "articles": 0,
         "relevant": 0
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -1128,7 +1128,7 @@
         "publisher": "BPCE · Banque Populaire et Caisse d’Épargne",
         "publishedAt": "2026-10-21",
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T12:34:00.738Z",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
         "scope": "Annonce BPCE · Banque Populaire et Caisse d’Épargne · https://newsroom.groupebpce.fr/actualites/les-rendez-vous-de-l-epargne-de-bpce-l-observatoire-quels-arbitrages-en-matiere-de-placements-financiers-face-aux-chocs-quelle-place-des-crypto-actifs-dans-l-epargne-des-francais-9dd1d-7b707.html",
         "populationScope": "Par José Bardaji, directeur Études et Prospective du Groupe BPCE Eric Buffandeau, directeur adjoint Études et Prospective du Groupe BPCE et Marion Stephan, responsable des études socio-économiques du Groupe BPCE 1/ Les placements financiers face à un double choc en 2026 Les tendances observées sur l’épargne au cours des huit premiers mois de 2026, qui affirment la prégnance de la collecte d’assurance-vie, ne rencontrent-elles pas déjà des limites ?",
         "conditions": {
@@ -1157,7 +1157,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "3ee8902657e7f2df990104cd1217e00f0fec2b9003dccc7c5ec85da123b04a93",
+          "sourceHash": "01f0d4e0e5bc8ad212160c00811544960ff13217901fd0b9c25b64c93d5c7a29",
           "excerpt": "Par José Bardaji, directeur Études et Prospective du Groupe BPCE Eric Buffandeau, directeur adjoint Études et Prospective du Groupe BPCE et Marion Stephan, responsable des études socio-économiques du Groupe BPCE 1/ Les placements financiers face à un double choc en 2026 Les tendances observées sur l’épargne au cours des huit premiers mois de 2026, qui affirment la prégnance de la collecte d’assurance-vie, ne rencontrent-elles pas déjà des limites ? Au-delà, le choc sur le pouvoir d’achat et sur les taux longs français, outre la montée des incertitudes, ne risque-t-il pas de réduire les placements financiers sur la deuxième moitié de l’année ? 1.1 D’une prégnance de l’assurance vie… Les hypot",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1181,7 +1181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -1373,7 +1373,7 @@
         "publisher": "Crédit Mutuel Alliance Fédérale · réseaux et CIC",
         "publishedAt": "2026-10-19",
         "period": "2026-10-19",
-        "checkedAt": "2026-10-25T12:34:00.738Z",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
         "scope": "Annonce Crédit Mutuel Alliance Fédérale · réseaux et CIC · https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "populationScope": "Face aux violences et aux dégradations qui ont touché de nombreux commerces, mais aussi des particuliers et des agences bancaires, Crédit Mutuel Alliance Fédérale déclenche un dispositif solidaire d’urgence pour accompagner ses clients et sociétaires victimes de ces événements.",
         "conditions": {
@@ -1402,7 +1402,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "cd905f1b64ddfe8087161b08e0b9ad2a3c0910c1644f19cb5f2cdc0d1f92c541",
+          "sourceHash": "10b3c0cf46173889eb10762ed53fc3cb44c9620781733a87c2d7d3568f294bda",
           "excerpt": "Face aux violences et aux dégradations qui ont touché de nombreux commerces, mais aussi des particuliers et des agences bancaires, Crédit Mutuel Alliance Fédérale déclenche un dispositif solidaire d’urgence pour accompagner ses clients et sociétaires victimes de ces événements. Le groupe mutualiste, à travers les Assurances du Crédit Mutuel et les réseaux bancaires Crédit Mutuel et CIC , met en place des mesures exceptionnelles destinées à accélérer les indemnisations, alléger les charges supportées par les victimes et répondre aux besoins les plus urgents.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1426,7 +1426,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1460,7 +1460,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -2032,7 +2032,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T13:33:40.117Z",
+        "checkedAt": "2026-10-25T13:35:36.060Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -3097,7 +3097,7 @@
         "publisher": "Saxo Banque France",
         "publishedAt": "2026-04-23",
         "period": "2026-04-23",
-        "checkedAt": "2026-10-25T12:34:00.738Z",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
         "scope": "Annonce Saxo Banque France · https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-presente-saxo-elite-une-offre-de-services-dediee-a-sa-clientele-premium-23042026",
         "populationScope": "Saxo Banque, expert de l'investissement en ligne multi-actifs, annonce le lancement de Saxo Elite, une offre de services sur mesure conçue pour ses clients les plus exigeants.",
         "conditions": {
@@ -3126,7 +3126,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "71e4962cd5e0642c2feb982b7c5d5476c7d943bc005f37dece2d1c79aae0e074",
+          "sourceHash": "909499fe7057e54c0cc008a5d9d4f6ccc1c573050d64d4de9dcec5bd5017250a",
           "excerpt": "Saxo Banque, expert de l'investissement en ligne multi-actifs, annonce le lancement de Saxo Elite, une offre de services sur mesure conçue pour ses clients les plus exigeants. Saxo Elite s'adresse aux investisseurs et traders dont l'activité et les stratégies appellent un niveau d'accompagnement que les offres standard ne permettent pas d'atteindre. Face à des marchés plus complexes et à des besoins croissants en matière d'exécution et de conseil, cette nouvelle offre apporte une réponse concrète et structurée.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3286,7 +3286,7 @@
         "publisher": "BoursoBank Groupe · communiqués",
         "publishedAt": "2026-04-15",
         "period": "2026-04-15",
-        "checkedAt": "2026-10-25T12:34:00.738Z",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursofirst-l-offre-de-banque-privee-de-boursobank-atteint-2md-d-encours-et-s-enrichit-de-nouveaux-produits-et-services",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
         "topic": "banques",
@@ -3304,7 +3304,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "de879212e3441c574b88a4e9a6387c31e8e30f80ddfcdbb34505a57c213e7d3d",
+          "sourceHash": "a539bc3478c36fc54448c45b3476fffbe29e1a959b20749bc0ee82d86b3a0543",
           "excerpt": "Lancée fin 2024, l’offre patrimoniale BoursoFirst franchit le cap des 2 Md€ d’encours. Pour répondre au mieux aux attentes de ses clients patrimoniaux, BoursoBank complète BoursoFirst avec un nouveau livret sans plafond et rémunéré à 2,40 % 1 jusqu’au 31 décembre, un enrichissement de son assurance-vie luxembourgeoise, et de nouveaux contenus digitaux en vidéos et podcasts.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3336,7 +3336,7 @@
         "publisher": "BNP Paribas · groupe",
         "publishedAt": "2026-03-26",
         "period": "2026-03-26",
-        "checkedAt": "2026-10-25T12:34:00.738Z",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
         "scope": "Annonce BNP Paribas · groupe · https://group.bnpparibas/communique-de-presse/bnp-paribas-elargit-son-offre-bourse-aux-etn-crypto-actifs",
         "populationScope": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs.",
         "conditions": {
@@ -3370,7 +3370,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "05483b07b7befd96b65dd279d3043e5a97440896566119603ec171bad6426db7",
+          "sourceHash": "739f0aaa655c5d4a0a92f2665a41731715191e8574cc4b5315b2b11127520da0",
           "excerpt": "La Banque Commerciale en France de BNP Paribas élargit son offre bourse aux ETN (Exchange Traded Notes) crypto-actifs. Les clients particuliers en France pourront désormais investir dans 6 ETN crypto-actifs, indexés sur le Bitcoin ou l’Ether. - (source: group.bnpparibas)",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -4356,6 +4356,62 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-37c82ad71adb59f2074a",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+        "value": {
+          "title": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+          "summary": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur actifs numériques.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-1",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-1",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2025-01-10",
+        "period": "2025-01-10",
+        "checkedAt": "2026-10-25T13:35:36.065Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-1",
+        "populationScope": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur actifs numériques.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur actifs numériques.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-1",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/75013/fr/Crypto-actifs__l%27Autorite_des_marches_financiers_met_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_non_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "0dec8f69ae00382d308b759191c7234b633bd1b17fb413abdb7023dde17afedc",
+          "excerpt": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur actifs numériques.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-1dd82ae23ef7096224a0",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -4460,11 +4516,11 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T13:34:17.240Z",
+  "checkedAt": "2026-10-25T13:36:12.801Z",
   "sourceRevision": "e1159682f5535157e301dd6af1b509aa8b0e0256",
-  "observationCount": 7532,
+  "observationCount": 7534,
   "coverage": {
-    "etf": 310,
+    "etf": 311,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
@@ -4472,10 +4528,25 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 123,
-    "pouvoir-achat": 63
+    "pouvoir-achat": 64
   },
-  "newSignalCount": 1,
+  "newSignalCount": 0,
   "errors": [
+    {
+      "family": "pouvoir-achat",
+      "entity": "Service Public",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "Vie publique · actualités",
+      "reason": "Flux officiel indisponible (HTTP 403)."
+    },
+    {
+      "family": "pouvoir-achat",
+      "entity": "Vie publique · lois",
+      "reason": "Flux officiel indisponible (HTTP 403)."
+    },
     {
       "family": "etf",
       "entity": "WisdomTree · communiqués européens",
@@ -4498,11 +4569,6 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q1",
-      "reason": "Résumé statistique chiffré absent : extraction à adapter"
-    },
-    {
-      "family": "economie",
       "entity": "https://www.insee.fr/fr/statistiques/8733125",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
@@ -4519,6 +4585,11 @@
     {
       "family": "economie",
       "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q2",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2025-q1",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -76983,7 +77054,7 @@
       "url": "https://www.fortuneo.fr/tarifs",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"896c28858a5f6ac8c863a91d252438dc\"",
@@ -77008,7 +77079,7 @@
       "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"e9424cfe8a8eb988f5bc87f2856d4c00\"",
@@ -77033,7 +77104,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -77058,7 +77129,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -77083,7 +77154,7 @@
       "url": "https://www.insee.fr/fr/solr/consultation",
       "method": "insee-search",
       "depth": "API publique de recherche : deux pages de 30 études grand public par diffusion + 30 résultats logements anciens ; RSS indépendants",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 90,
       "archiveWarning": null,
       "etag": null,
@@ -77108,7 +77179,7 @@
       "url": "https://groupe.boursedirect.fr/feed",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
       "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
@@ -77133,7 +77204,7 @@
       "url": "https://www.energie-info.fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
       "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
@@ -77157,7 +77228,7 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
@@ -77181,7 +77252,7 @@
       "url": "https://www.amf-france.org/fr/flux-rss/display/28",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 196,
       "etag": "\"1792926370-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:06:10 GMT",
@@ -77190,13 +77261,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T13:59:08.980Z",
       "queue": {
-        "pending": 143,
-        "done": 15,
+        "pending": 142,
+        "done": 16,
         "error": 1,
         "rejected": 40
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -77206,7 +77277,7 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
@@ -77215,10 +77286,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T13:59:08.980Z",
       "queue": {
-        "pending": 14,
+        "pending": 13,
         "done": 13,
         "error": 0,
-        "rejected": 42
+        "rejected": 43
       },
       "extractionStatus": "validated",
       "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
@@ -77231,7 +77302,7 @@
       "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
       "method": "consumer-links",
       "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -77246,7 +77317,7 @@
         "rejected": 7
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:32:13.739Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -77256,7 +77327,7 @@
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
       "method": "consumer-coverage",
       "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 21,
       "archiveWarning": null,
       "etag": null,
@@ -77272,7 +77343,7 @@
         "rejected": 20
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:29:08.980Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "silentBaselines": 0
     },
     {
@@ -77281,7 +77352,7 @@
       "url": "https://presse.credit-agricole.com/fr/?lang=fra",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 6,
       "archiveWarning": null,
       "etag": null,
@@ -77306,7 +77377,7 @@
       "url": "https://www.societegenerale.com/fr/communiques-de-presse",
       "method": "consumer-coverage",
       "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 18,
       "archiveWarning": null,
       "etag": "\"1792922289-gzip\"",
@@ -77331,7 +77402,7 @@
       "url": "https://newsroom.groupebpce.fr/",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -77347,7 +77418,7 @@
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "silentBaselines": 0
     },
     {
@@ -77356,7 +77427,7 @@
       "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
       "method": "consumer-coverage",
       "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "archiveWarning": null,
       "etag": null,
@@ -77372,7 +77443,7 @@
         "rejected": 11
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:34:00.738Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "silentBaselines": 0
     },
     {
@@ -77381,7 +77452,7 @@
       "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
       "method": "consumer-coverage",
       "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 6,
       "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
       "etag": null,
@@ -77406,7 +77477,7 @@
       "url": "https://www.home.saxo/fr-fr/about-us/media-center",
       "method": "consumer-coverage",
       "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -77422,7 +77493,7 @@
         "rejected": 1
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:29:08.980Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "silentBaselines": 0
     },
     {
@@ -77431,7 +77502,7 @@
       "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
       "method": "extra-coverage",
       "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 43,
       "archiveWarning": null,
       "etag": null,
@@ -77441,13 +77512,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:34:00.738Z",
       "queue": {
-        "pending": 28,
-        "done": 15,
+        "pending": 27,
+        "done": 16,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T13:33:40.124Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "silentBaselines": 0
     },
     {
@@ -77456,7 +77527,7 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "method": "extra-coverage",
       "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "archiveWarning": null,
       "etag": "\"4b76f2afdbd23c07324a0a51943dd83c\"",
@@ -77481,7 +77552,7 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -77506,7 +77577,7 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
@@ -77531,7 +77602,7 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -77556,7 +77627,7 @@
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
@@ -77581,7 +77652,7 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 8,
       "etag": "\"1792934956-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:16 GMT",
@@ -77606,7 +77677,7 @@
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
@@ -77631,7 +77702,7 @@
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -77656,7 +77727,7 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
@@ -77681,7 +77752,7 @@
       "url": "https://www.insee.fr/fr/flux/2",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 13,
       "etag": null,
       "lastModified": null,
@@ -77690,10 +77761,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:29:08.980Z",
       "queue": {
-        "pending": 4,
+        "pending": 3,
         "done": 9,
         "error": 2,
-        "rejected": 6
+        "rejected": 7
       },
       "extractionStatus": "error",
       "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
@@ -77706,7 +77777,7 @@
       "url": "https://www.insee.fr/fr/flux/3",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 21,
       "etag": null,
       "lastModified": null,
@@ -77715,13 +77786,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:29:08.980Z",
       "queue": {
-        "pending": 5,
-        "done": 17,
+        "pending": 4,
+        "done": 18,
         "error": 0,
         "rejected": 6
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T11:52:20.897Z",
+      "lastExtractionSuccessAt": "2026-10-25T13:35:36.065Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -77731,7 +77802,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -77755,7 +77826,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "etag": "\"1792928831-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:11 GMT",
@@ -77780,7 +77851,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "etag": "\"1792934958-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:18 GMT",
@@ -77805,7 +77876,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 12,
       "etag": "\"1792934957-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 13:29:17 GMT",
@@ -77830,7 +77901,7 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
@@ -77855,7 +77926,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -77874,7 +77945,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -77893,7 +77964,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -77918,7 +77989,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T13:33:40.124Z",
+      "attemptedAt": "2026-10-25T13:35:36.065Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -77936,8 +78007,8 @@
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T13:33:40.114Z",
-      "lastSuccessAt": "2026-10-25T13:33:40.114Z",
+      "checkedAt": "2026-10-25T13:35:36.058Z",
+      "lastSuccessAt": "2026-10-25T13:35:36.058Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -77947,8 +78018,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T13:33:40.114Z",
-      "lastSuccessAt": "2026-10-25T13:33:40.114Z",
+      "checkedAt": "2026-10-25T13:35:36.058Z",
+      "lastSuccessAt": "2026-10-25T13:35:36.058Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -77957,16 +78028,16 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
-      "status": "ok",
-      "articles": 10,
+      "checkedAt": "2026-10-25T13:35:36.060Z",
+      "status": "error",
+      "articles": 0,
       "relevant": 0
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
+      "checkedAt": "2026-10-25T13:35:36.060Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -77975,25 +78046,25 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
-      "status": "ok",
-      "articles": 10,
+      "checkedAt": "2026-10-25T13:35:36.060Z",
+      "status": "error",
+      "articles": 0,
       "relevant": 0
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
-      "status": "ok",
-      "articles": 100,
+      "checkedAt": "2026-10-25T13:35:36.060Z",
+      "status": "error",
+      "articles": 0,
       "relevant": 0
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
+      "checkedAt": "2026-10-25T13:35:36.060Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -78002,7 +78073,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T13:33:40.117Z",
+      "checkedAt": "2026-10-25T13:35:36.060Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -78213,10 +78284,10 @@
   "metrics": {
     "collection": {
       "requests": 16,
-      "bytes": 2330612,
-      "notModified": 0,
-      "durationMs": 35004,
-      "checkedAt": "2026-10-25T13:33:40.124Z"
+      "bytes": 1252833,
+      "notModified": 2,
+      "durationMs": 25191,
+      "checkedAt": "2026-10-25T13:35:36.065Z"
     },
     "publicationDelays": [
       {
@@ -79110,6 +79181,11 @@
         "detectionToAvailabilityHours": 7.644106111111111
       },
       {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-1",
+        "publicationToDetectionHours": 15677.917039444445,
+        "detectionToAvailabilityHours": 7.6763119444444445
+      },
+      {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
         "publicationToDetectionHours": 3293.9170394444445,
         "detectionToAvailabilityHours": 1.294155
@@ -79315,6 +79391,11 @@
         "detectionToAvailabilityHours": 5.704733333333333
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/March-sees-cautious-investor%20sentiment-8-apr-2025.pdf",
+        "publicationToDetectionHours": 13567.856412222221,
+        "detectionToAvailabilityHours": 5.736939166666667
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -79386,13 +79467,5 @@
       "secondary": 360
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T13:34:28.427Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
