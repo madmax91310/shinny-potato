@@ -24,9 +24,17 @@ for(const row of report.matrix){
  assert(source && asset && RANKING_ASSETS[h.id],row.identity.name)
  assert.equal(source.isin,row.identity.isin)
  assert.equal(source.currency,asset.currency)
- assert.equal(source.field,'adjclose')
- assert.equal(daily[h.id].symbol,source.symbol)
- assert.equal(daily[h.id].listingEvidenceId,source.listingEvidenceId,'Monthly and daily consumers must retain the same exact listing evidence')
+ const official=source.parser==='official-nav'
+ if(official){
+  assert.equal(source.field,'nav-total-return');assert.equal(asset.valuationBasis,'fund-nav-total-return')
+  assert.equal(daily[h.id].isin,source.isin);assert.equal(daily[h.id].currency,source.currency)
+  assert.equal(proof[h.id].calendarProof.controlledInstrument,source.isin)
+  assert(proof[h.id].calendarProof.officialIncomeReinvestedChartChecks.length)
+ }else{
+  assert.equal(source.field,'adjclose')
+  assert.equal(daily[h.id].symbol,source.symbol)
+  assert.equal(daily[h.id].listingEvidenceId,source.listingEvidenceId,'Monthly and daily consumers must retain the same exact listing evidence')
+ }
  assert.equal(asset.points.length,h.months)
  // Independent source proof, rather than a calculation on the implementation's input alone.
  const observed=proof[h.id].proofRows
@@ -35,7 +43,7 @@ for(const row of report.matrix){
   const p=asset.points[i],r=observed[i]
   assert.equal(r.date.slice(0,7),p.date)
   assert(Math.abs(p.price-r.value)<.000001)
-  assert(Math.abs(r.close-(r.windowClose??r.monthlyClose))<=Math.max(.02,r.close*1e-7))
+  if(!official)assert(Math.abs(r.close-(r.windowClose??r.monthlyClose))<=Math.max(.02,r.close*1e-7))
  }
  const originalQualification=qualifyHistoryWindow(asset,h.start,h.end)
  const originalInputs={assetId:h.id,amountRaw:'1000',startYear:+h.start.slice(0,4),startMonth:+h.start.slice(5),overridePriceRaw:''}
