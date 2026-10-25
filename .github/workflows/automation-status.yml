@@ -80,6 +80,7 @@ jobs:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
   publish:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
@@ -104,6 +105,7 @@ jobs:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_producer_report_contract.py'
       - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
       - name: Record completed automation
         if: github.event_name == 'workflow_run'

@@ -16,6 +16,19 @@ def run(id, conclusion):
 
 
 class ReportFilesTests(unittest.TestCase):
+    def test_radar_companion_upload_preserves_its_explicit_report_directory(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=pathlib.Path(d)
+            (root/'editorial-radar').mkdir()
+            (root/'src/data').mkdir(parents=True)
+            for name in ('feed.json','feed.contract-plan.json'):
+                (root/'editorial-radar'/name).write_text('{}')
+            (root/'src/data/feed.json').write_text('{}')
+            found=report_files(d,'update-editorial-radar.yml')
+            self.assertEqual({p.relative_to(root).as_posix() for p in found},
+                             {'editorial-radar/feed.json','editorial-radar/feed.contract-plan.json'})
+            self.assertEqual(report_files(d),[],'Unrelated source snapshots are never reports')
+
     def test_metadata_report_is_found_beside_repository_snapshots(self):
         # upload-artifact roots temp + checkout paths at their common ancestor.
         with tempfile.TemporaryDirectory() as d:
