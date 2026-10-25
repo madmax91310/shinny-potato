@@ -18,7 +18,7 @@ La relecture a aussi porté sur les prémisses : aucun classement de marque n’
 
 ## Sélection « Ça va débattre »
 
-47 questions choisies manuellement après lecture, sur les 8 sujets et 19 mécaniques. Le champ `debate` est édité explicitement dans les données, sans note, seuil de popularité ni classement automatique. Le libellé ne promet aucune viralité.
+47 questions choisies manuellement après lecture, sur les 8 sujets et 20 mécaniques. Le champ `debate` est édité explicitement dans les données, sans note, seuil de popularité ni classement automatique. Le libellé ne promet aucune viralité.
 
 La sélection privilégie des renoncements compréhensibles immédiatement : louer plutôt qu’acheter (`immobilier-01`), temps contre salaire (`travail-01`), mariage contre confort (`budget-05`), désaccord entre amis (`societe-21`), et marques choisies sur la durée (`marques-02`). Les nouveaux choix couvrent notamment contre-arguments, procès, seuils personnels, allocation d’un budget, intérêts des parties et remplacement futur. Les contraintes ne donnent pas d’avance un vainqueur évident.
 
