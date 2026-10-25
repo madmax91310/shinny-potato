@@ -189,6 +189,9 @@ class AcquisitionIndependence(unittest.TestCase):
         self.assertIn('VALIDATED_DATA_CHECK: bash scripts/validate-etf-publication.sh check', workflow)
         self.assertIn('VALIDATED_DATA_PREPARE: bash scripts/validate-etf-publication.sh prepare', workflow)
         declared = json.loads(re.search(r"VALIDATED_DATA_DERIVED_PATHS: '([^']+)'", workflow)[1])
+        registry = json.loads((ROOT / 'src/data/automation-workflows.json').read_text())
+        self.assertEqual(registry['collect-etf-pilot.yml']['validationSteps'],
+                         ['Validate ETF observations and consumers', 'Validate collected observations'])
         self.assertEqual(declared, DERIVED)
         self.assertFalse(set(declared) & set(PRIMARY))
 
