@@ -190,6 +190,19 @@ class DurableScope(unittest.TestCase):
         for field in ('completedAt','lastSuccessAt','lastCollectionSuccessAt','sourceChecks','dataFailures','collectionStatus','recordingStatus','publicationStatus'):
             self.assertEqual(after.get(field),before.get(field),field)
         self.assertTrue(after['reportQualificationHistory'][-1]['historicalLimitationPreserved'])
+    def test_same_run_artifact_previously_hidden_by_its_directory_can_be_ingested(self):
+        from publish_automation_status import update_status,read_report_safely,report_error
+        from test_automation_product import jobs,event
+        w='update-practical-sheets.yml';p=plan(('practical:A',));p.update(reportStem='practical-observation',cacheRequested=True,durablePlan=True)
+        with tempfile.TemporaryDirectory()as folder:
+            path=Path(folder)/'practical-observation.json';path.write_text(json.dumps(finished({'sources':{'A':{'status':'ok'}},'changed':[],'failed':[]},p)))
+            actual=read_report_safely(path,w,finished({},p,completed=False))
+        old=update_status({},event(w),jobs(w),[{'successes':[],'errors':[{'id':'practical:A','error':'Supplier 403'}]}])
+        old=update_status(old,event(w,101),jobs(w),[report_error('artifact-read:practical-observations','Previously unread directory')])
+        before=copy.deepcopy(old['workflows'][w]);after=update_status(old,event(w,101),jobs(w),[actual])['workflows'][w]
+        self.assertTrue(after['reportEvidenceHistory'][-1]['scopePlanVerified'])
+        for key in ('dataFailures','sourceChecks','completedAt','lastCollectionSuccessAt','recordingStatus','publicationStatus'):
+            self.assertEqual(after.get(key),before.get(key),key)
     def test_historical_validation_replay_never_becomes_a_source_check(self):
         from publish_automation_status import merge_proof_retry
         from test_automation_product import event

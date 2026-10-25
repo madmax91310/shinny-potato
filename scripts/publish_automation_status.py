@@ -792,7 +792,7 @@ def update_status(state, run, jobs, reports=None):
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
     if stamp == old_stamp and previous.get('monitorVersion', 1) >= 3 and not retires_legacy_alert:
-        return refresh_scope_proofs(result,run,reports)
+        return merge_proof_retry(result,run,reports)
     if stamp < old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
     failed = run['conclusion'] in ('failure', 'timed_out', 'startup_failure', 'action_required')
