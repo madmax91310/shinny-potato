@@ -215,3 +215,8 @@ Ce passage supplémentaire est distinct des 20 captures de référence / 5 361 r
 du CSV initial : ses 28 résultats ne sont pas artificiellement ajoutés au nombre de
 producteurs uniques, ni utilisés pour réécrire les anciennes déclarations. Les comptes
 rendus originaux, leurs SHA et le résultat de la relecture sont conservés séparément.
+
+La recette navigateur CI existante exerce aussi ce rapport 13F natif et ses vrais jobs
+GitHub archivés : les 28 contrôles inchangés traversent le lecteur et le réducteur ; le
+refus d'enregistrement reste visible dans la boîte sur ordinateur et mobile. Cette
+recette locale passe, sans requête fournisseur ni écriture de production.
