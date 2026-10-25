@@ -6,10 +6,11 @@ import { spawn } from 'node:child_process'
 import { EXTRA_SOURCES } from './lib/radar-extra-sources.mjs'
 import { parsePublication, PUBLICATION_SOURCES } from './lib/radar-publications.mjs'
 import { mkdir, readFile } from 'node:fs/promises'
-import { advanceRadar } from './lib/editorial-radar.mjs'
+import { advanceRadar, validObservation } from './lib/editorial-radar.mjs'
 import { parsePurchasingFeed, PURCHASING_SOURCES } from './lib/purchasing-power-news.mjs'
 import { RADAR_URL } from '../src/pages/editorial-radar/client.js'
-const now=new Date(), day=now.toISOString().slice(0,10)
+// Keep captured publication scenarios deterministic across CI days and hours.
+const now=new Date('2026-10-25T12:00:00Z'), day=now.toISOString().slice(0,10)
 const row={family:'etf',entity:'FR001400U5Q4',label:'Amundi PEA Monde',field:'ter',fieldLabel:'Frais annuels',value:.2,sourceUrl:'https://www.amundietf.fr/product',scope:'Part FR001400U5Q4',period:day,checkedAt:day,unit:'% / an',tool:'/fiches-etf',priority:'high'}
 const initial=advanceRadar(null,[row],{now})
 let feed=advanceRadar(initial.state,[{...row,value:.15}],{now}).feed
@@ -21,6 +22,7 @@ try{
  for(let i=0;i<450;i++){try{if((await fetch(url)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
  browser=await chromium.launch({...process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{},args:['--no-sandbox']})
  const context=await browser.newContext({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write']}),page=await context.newPage(),errors=[]
+ await page.clock.setFixedTime(now)
  page.on('pageerror',e=>errors.push(e.message))
  let failure=false
  await context.route(RADAR_URL,route=>route.fulfill(failure?{status:503,body:'Unavailable'}:{contentType:'application/json',body:JSON.stringify(feed)}))
@@ -198,6 +200,7 @@ try{
   const doc=await readFile(`scripts/fixtures/radar-consumer/${example.case}.html`,'utf8')
   consumerRows.push(parseConsumer(doc,source,example.url,scenarioNow,listing.rows.find(row=>row.url===example.url)))
  }
+ assert.ok(official.every(row=>validObservation(row,scenarioNow)),'Fixture baseline and scenario clocks must agree')
  const consumerSeed=advanceRadar(null,official,{now:scenarioNow})
  feed=advanceRadar(consumerSeed.state,consumerRows,{now:scenarioNow}).feed
  feed.checkedAt=stamp;feed.events=feed.events.map(event=>({...event,detectedAt:stamp}))
