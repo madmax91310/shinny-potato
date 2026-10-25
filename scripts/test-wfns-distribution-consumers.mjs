@@ -10,22 +10,24 @@ import {derive,buildTweetText} from '../src/pages/investment-calculator/lib.js'
 import {getAnnualReturns} from '../src/pages/tweet-midi/data/performanceHistory.js'
 import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
 import {CATALOG as DUEL_ASSETS} from '../src/data/duel-assets.js'
-const a=ASSETS.etf_financials,old=JSON.parse(gunzipSync(fs.readFileSync('reports/wfns-dividend-2026-10-23/original-wfns-record.json.gz'))).active
-assert.equal(a.currency,'USD');assert.equal(a.isin,'IE00BJ5JP097');assert.equal(a.ticker,'WFNS');assert.equal(a.mic,'XAMS')
-assert.deepEqual(a.anniversaryPoints,old.anniversaryPoints.map(([date,price])=>({date,price})),'Raw price-only anniversary convention stays unchanged')
-const rawReturn=(a.points.find(p=>p.date==='2023-12').price/a.points.find(p=>p.date==='2022-12').price-1)*100
-assert(Math.abs(rawReturn-17.2979525156)<1e-8,'The proved omitted distribution correction is preserved')
-assert.throws(()=>periodReturn(RANKING_ASSETS.etf_financials,'2022-12','2023-12'),/rapprochement financier non résolu/)
-const eur=convertAsset(RANKING_ASSETS.etf_financials,'EUR',FX)
-assert.throws(()=>periodReturn(eur,'2022-12','2023-12'),/rapprochement financier non résolu/)
-for(const mode of ['lump','dca']){
- const disputed={assetId:'etf_financials',startYear:2022,startMonth:12,amountRaw:'100',mode,overridePriceRaw:''}
- assert.throws(()=>derive(disputed),/rapprochement financier non résolu/)
- const state={...disputed,startYear:2026,startMonth:1}
- const d=derive(state),p=a.points.filter(p=>p.date>='2026-01'),amount=mode==='lump'?100*p.at(-1).price/p[0].price:p.reduce((n,p)=>n+100/p.price,0)*p.at(-1).price
- assert(Math.abs(d.result.finalValue-amount)<1e-6);assert(!/NaN|undefined/.test(buildTweetText(state,d)))
+// The corrected exchange quote is retained as evidence; the active path is now
+// independently qualified official NAV. A migration never makes the old quote valid.
+const {qualifyHistoryWindow}=await import('../src/data/history-window-quality.js')
+const archived=JSON.parse(gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/ishares-reprise-20261025/original-exchange-quote-records.json.gz'))).etf_financials.record
+const oldPoints=Object.fromEntries(archived.points)
+assert.equal(archived.symbol,'WFNS.AS');assert.equal(archived.listingEvidenceId,'IE00BJ5JP097-XAMS-WFNS-USD')
+assert(Math.abs((oldPoints['2023-12']/oldPoints['2022-12']-1)*100-17.2979525156)<1e-8,'The proved old distribution correction is preserved unchanged')
+assert.equal(qualifyHistoryWindow(archived,'2022-12','2023-12').qualified,false)
+const a=ASSETS.etf_financials
+assert.equal(a.currency,'USD');assert.equal(a.isin,'IE00BJ5JP097');assert.equal(a.valuationBasis,'fund-nav-total-return')
+assert.equal(a.anniversaryValuationBasis,'fund-nav-price')
+for(const candidate of [RANKING_ASSETS.etf_financials,convertAsset(RANKING_ASSETS.etf_financials,'EUR',FX)])assert(Number.isFinite(periodReturn(candidate,'2022-12','2023-12')))
+for(const mode of ['lump','dca'])for(const start of ['2022-12','2026-01']){
+ const state={assetId:'etf_financials',startYear:+start.slice(0,4),startMonth:+start.slice(5),amountRaw:'100',mode,overridePriceRaw:''}
+ const d=derive(state),p=a.points.filter(p=>p.date>=start),expected=mode==='lump'?100*p.at(-1).price/p[0].price:p.reduce((n,p)=>n+100/p.price,0)*p.at(-1).price
+ assert(Math.abs(d.result.finalValue-expected)<1e-6);assert(!/NaN|undefined/.test(buildTweetText(state,d)))
 }
-console.log('WFNS: cash correction retained; disputed 2023 quotes still refused, qualified recent periods and independent annual NAV remain distinct.')
+console.log('WFNS: original cash repair and unresolved quote preserved; independent official income NAV restores 2023; anniversary keeps price-only NAV.')
 
 const amundi=ASSETS.etfFR0007054358, previousAmundi=JSON.parse(gunzipSync(fs.readFileSync('reports/amundi-distributions-2026-10-23/original-record.json.gz'))).active
 assert.equal(amundi.isin,'FR0007054358');assert.equal(amundi.currency,'EUR');assert.equal(amundi.ticker,'LYSX');assert.equal(amundi.mic,'XETR')

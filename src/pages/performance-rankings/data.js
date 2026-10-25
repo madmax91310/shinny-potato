@@ -118,6 +118,7 @@ export const CATEGORIES = [
 ]
 
 const SHORT = {
+  etf_world_communication: 'iShares Communication mondiale',
   etfIE00B4L5Y983: 'MSCI World', etfIE00B6R52259: 'MSCI ACWI', etfVwce: 'FTSE All-World', etfImie: 'ACWI IMI',
   etfFR0011550193: 'STOXX Europe 600', etfIE00B53L3W79: 'EURO STOXX 50', etfFR0013412038: 'MSCI Europe',
   etf_momentum: 'Momentum', etf_quality: 'Quality', etf_value: 'Value', etfMinVol: 'Minimum Volatility',

@@ -57,6 +57,7 @@ export function getAssetAvailableYears(assetId) {
 export function getHistoricalPrice(assetId, ym) {
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
+  if(ASSETS[assetId].anniversaryExcludedMonths?.includes(clampedYm))throw Error(`Valeur liquidative historique non qualifiée pour ${clampedYm}`);
   requireHistoryWindow(ASSETS[assetId], clampedYm, clampedYm);
   return interpolatePrice(ASSETS[assetId].anniversaryPoints ?? assetPoints(assetId), clampedYm);
 }
@@ -134,7 +135,7 @@ export function getAnnualReturns(assetId, startYear) {
 // nombre d'années fixe supposé disponible pour tous les actifs — filtré au plancher vérifié de
 // CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
 // de `new Date()` au moment du clic, pour rester exact indéfiniment).
-function isQualifiedMonth(assetId, ym) { return qualifyHistoryWindow(ASSETS[assetId], ym, ym).qualified; }
+function isQualifiedMonth(assetId, ym) { return !ASSETS[assetId].anniversaryExcludedMonths?.includes(ym) && qualifyHistoryWindow(ASSETS[assetId], ym, ym).qualified; }
 export function getValidYearsBackOptions(assetId, today) {
   const minDate = getAssetMinDate(assetId);
   const minIdx = ymIndex(minDate);
@@ -224,7 +225,10 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   icon: ASSETS[id].icon,
   currency: ASSETS[id].currency,
   sourceCredit: ASSETS[id].sourceCredit,
-  anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
+  anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id] ?? ASSETS[id]?.anniversaryVariant,
+  anniversaryValuationBasis: ASSETS[id]?.anniversaryValuationBasis,
+  historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
+  anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
   priceUnit: ASSETS[id].priceUnit,
   instrumentType: ASSETS[id].instrumentType,
   isin: ASSETS[id].isin,
@@ -243,7 +247,10 @@ export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
     points: asset.points, minDate: getAssetMinDate(id), returnNote: asset.returnNote, priceMethod: asset.priceMethod,
     id, label: asset.label, tweetPhrase: asset.tweetPhrase, icon: asset.icon,
     currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
-    anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
+    anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id] ?? ASSETS[id]?.anniversaryVariant,
+  anniversaryValuationBasis: ASSETS[id]?.anniversaryValuationBasis,
+  historyExcludedMonths: ASSETS[id]?.historyExcludedMonths,
+  anniversaryExcludedMonths: ASSETS[id]?.anniversaryExcludedMonths,
   })),
 ].filter(asset => getValidYearsBackOptions(asset.id, new Date()).length > 0);
 

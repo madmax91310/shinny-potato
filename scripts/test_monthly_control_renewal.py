@@ -24,5 +24,14 @@ class MonthlyControlRenewal(unittest.TestCase):
   stale={**incoming,'latestLevel':previous['latestLevel']}
   kept,failed=refresh({'series':[source]},merged,baseline,dt.datetime(2026,2,7,tzinfo=dt.timezone.utc),lambda *a:stale)
   self.assertEqual(kept,merged);self.assertEqual(failed['series'][0]['status'],'failed')
+  # A newly validated empty limit set supersedes a previous restriction.
+  old_limit={**merged['exact'],'historyExcludedMonths':['2025-12']}
+  cleared={**incoming,'historyExcludedMonths':[]}
+  renewed,ok=refresh({'series':[source]},{'exact':old_limit},baseline,dt.datetime(2026,2,7,tzinfo=dt.timezone.utc),lambda *a:cleared)
+  self.assertEqual(renewed['exact']['historyExcludedMonths'],[])
+  self.assertEqual(ok['series'][0]['sourceState'],'unchanged-verified')
+  changed=copy.deepcopy(stale);changed['points'][0][1]=99
+  kept,failed=refresh({'series':[source]},merged,baseline,dt.datetime(2026,2,7,tzinfo=dt.timezone.utc),lambda *a:changed)
+  self.assertEqual(kept,merged);self.assertEqual(failed['series'][0]['status'],'failed')
 
 if __name__=='__main__':unittest.main()

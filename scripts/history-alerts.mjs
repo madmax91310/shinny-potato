@@ -45,6 +45,14 @@ export function historyAlerts(today, entities = [], checks = {}) {
       checkedAt: record.checkedAt ?? record.source?.checkedAt ?? null, asOf: check.asOf,
       currency: record.currency ?? null, method: record.method ?? record.variant ?? null }
     checks[id] = {...base, periods:periods.filter(([,v])=>Number.isFinite(v)&&(cadence!=='monthly'||v>0)).map(([d])=>String(d)), responseSha256:record.responseSha256??record.sha256??null}
+    const unqualified=record.historyExcludedMonths??[]
+    if(unqualified.length){
+      checks[id].periods=checks[id].periods.filter(period=>!unqualified.includes(period))
+      alerts.push({...base,id:`${id}:qualification`,kind:'history',invalidPeriods:unqualified,
+        cause:`Composants officiels non rapprochés : ${unqualified.join(', ')}. Les fenêtres utilisant ces mois sont refusées ; les autres périodes restent qualifiables.`})
+    }
+    if(record.anniversaryExcludedMonths?.length)alerts.push({...base,id:`${id}:anniversary-qualification`,kind:'history',tools:['Il y a X ans'],invalidPeriods:record.anniversaryExcludedMonths,
+      cause:`NAV historiques non rapprochées pour Il y a X ans : ${record.anniversaryExcludedMonths.join(', ')}. La série de rendement réinvesti est traitée séparément.`})
     if (check.missingPeriods.length || check.invalidPeriods.length) alerts.push({ ...base, id: `${id}:gaps`, kind: 'history',
       missingPeriods: check.missingPeriods, invalidPeriods: check.invalidPeriods,
       cause: [check.missingPeriods.length && `Périodes absentes dans la plage documentée de l’historique : ${check.missingPeriods.join(', ')}.`, check.invalidPeriods.length && `Valeurs non exploitables : ${check.invalidPeriods.join(', ')}.`].filter(Boolean).join(' ') })
