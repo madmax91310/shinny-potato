@@ -286,6 +286,25 @@ class ProductContracts(unittest.TestCase):
         done,terminal=observe_running_workflows(unavailable,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:18:00Z',reports)
         self.assertFalse(done['inFlightRuns']);self.assertEqual(terminal[0]['status'],'completed');self.assertNotIn('inflight:101:1',done['observerErrors'])
 
+    def test_reader_revision_rechecks_cached_artifacts_once_without_a_source_refresh(self):
+        w='update-scpi.yml';run={**event(w,101),'status':'in_progress'}
+        phase={**jobs(w)[0],'completed_at':'2026-10-24T11:00:00Z'}
+        def api(path):
+            if '/jobs?'in path:return {'jobs':[phase]}
+            return {'workflow_runs':[run]if 'status=in_progress&'in path else[]}
+        state=update_status({},event(w,90),jobs(w),[{'successes':[],'errors':[{'id':'old','error':'Original supplier failure'}]}])
+        evidence={'file':'scpi-observation.json','sha256':'immutable','scopeExplicit':True,'scopePlanVerified':False,'producerContract':'producer-results-v1','scope':{'mode':'full','expectedIds':['old']}}
+        cached={'successes':[],'errors':[],'_reportEvidence':evidence,'_scopeWarning':'Independent manifest not forwarded'}
+        state=merge_proof_retry(state,run,[cached]);state['inFlightRuns']={'101:1':{'workflow':w,'run':run,'sourceProofCaptured':True,'proofReadFailed':False,'reports':[cached]}}
+        before=copy.deepcopy(state['workflows'][w]);calls=[]
+        def reports(*args):calls.append(1);return [{'successes':[],'errors':[],'_reportEvidence':{**evidence,'scopePlanVerified':True}}]
+        read,_=observe_running_workflows(state,{w:REGISTRY[w]},api,'test/repo',NOW,reports)
+        self.assertEqual(calls,[1]);self.assertTrue(read['workflows'][w]['reportEvidenceHistory'][-1]['scopePlanVerified'])
+        self.assertEqual(read['workflows'][w]['dataFailures'],before['dataFailures']);self.assertEqual(read['workflows'][w]['sourceChecks'],before['sourceChecks'])
+        self.assertEqual(read['workflows'][w]['reportQualifications'],{})
+        again,_=observe_running_workflows(read,{w:REGISTRY[w]},api,'test/repo','2026-10-24T12:06:00Z',reports)
+        self.assertEqual(calls,[1]);self.assertEqual(again['workflows'][w]['lastCollectionSuccessAt'],before['lastCollectionSuccessAt'])
+
     def test_composite_issuer_success_does_not_repair_an_unproved_branch(self):
         w='update-scpi.yml'
         old=update_status({},event(w),jobs(w),[{'errors':[{'id':'share:sectors-primary','error':'Empty primary branch'}]}])
