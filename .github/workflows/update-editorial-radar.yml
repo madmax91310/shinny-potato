@@ -154,7 +154,9 @@ jobs:
         if: always()
         with:
           name: radar-priority-source-qualification
-          path: ${{ runner.temp }}/radar-depth/report.json
+          path: |
+            ${{ runner.temp }}/radar-depth/report.json
+            ${{ runner.temp }}/radar-depth/trade-republic-entry.html
           retention-days: 35
           if-no-files-found: ignore
       - name: Check official purchasing-power feeds
