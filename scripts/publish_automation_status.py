@@ -495,7 +495,8 @@ def refresh_scope_proofs(state, run, reports):
                 'scopeWarning':row.get('reportQualifications',{}).get(evidence['file'],{}).get('cause')}]
             receipt.update(evidence,scopeVerifiedAt=dt.datetime.now(dt.timezone.utc).isoformat())
         warning=row.get('reportQualifications',{}).get(evidence['file'])
-        full_current=(run['id']==row.get('runId') and evidence.get('scope',{}).get('mode')=='full'
+        latest_scope_run=max([row.get('runId',0),*[r.get('runId',0)for r in history if r.get('file')==evidence['file']]])
+        full_current=(run['id']>=latest_scope_run and evidence.get('scope',{}).get('mode')=='full'
                       and evidence.get('scope',{}).get('expectedIds'))
         if warning and (warning.get('evidence',{}).get('sha256')==evidence['sha256'] or full_current):
             row.setdefault('reportQualificationHistory',[]).append({**warning,'file':evidence['file'],
@@ -572,7 +573,13 @@ def merge_proof_retry(state, run, reports):
                 history.append({**evidence,'runId':run['id'],'attempt':run.get('run_attempt',1),'runUrl':run['html_url'],
                     'readAt':dt.datetime.now(dt.timezone.utc).isoformat(),'successes':report.get('successes',[]),'errors':report.get('errors',[])})
             if report.get('_scopeWarning'):
-                row.setdefault('reportQualifications',{})[evidence['file']]={'cause':report['_scopeWarning'],'runUrl':run['html_url'],'evidence':evidence,'attemptedAt':evidence.get('reportedAt')}
+                warning={'cause':report['_scopeWarning'],'runUrl':run['html_url'],'evidence':evidence,'attemptedAt':evidence.get('reportedAt')}
+                newer_full=[r for r in history if r.get('file')==evidence['file'] and r.get('scopePlanVerified') and r.get('scope',{}).get('mode')=='full' and r.get('scope',{}).get('expectedIds') and r.get('runId',0)>run['id']]
+                if newer_full:
+                    archive=row.setdefault('reportQualificationHistory',[])
+                    if not any(r.get('evidence',{}).get('sha256')==evidence['sha256']for r in archive):
+                        archive.append({**warning,'file':evidence['file'],'historicalLimitationPreserved':True,'currentScopeQualifiedBy':max(newer_full,key=lambda r:r['runId']).get('runUrl')})
+                else:row.setdefault('reportQualifications',{})[evidence['file']]=warning
     return refresh_scope_proofs(result,run,reports)
 
 
@@ -646,6 +653,9 @@ def artifact_reports(repo, workflow, jobs, artifacts, directory, download=downlo
         return [report_error(key, 'Artefact illisible : ' + type(error).__name__ + ': ' + str(error)[:300])]
 
 
+PROOF_READER_VERSION = 2
+
+
 def observe_running_workflows(state, registry, api, repo, now, read_reports):
     """Observe source-phase failures while a parent waits for validation/publication.
 
@@ -699,14 +709,15 @@ def observe_running_workflows(state, registry, api, repo, now, read_reports):
             failures=[{'job':j['name'],'step':s['name']}for j in jobs if j.get('conclusion')in('failure','timed_out')for s in j.get('steps',[])if s.get('conclusion')in('failure','timed_out')]
             phase_jobs=[j for j in jobs if j['name']==registry[workflow]['collectionJob']or j['name'].startswith(registry[workflow]['collectionJob']+' (')]
             source_done=bool(phase_jobs)and all(j.get('conclusion')in('success','failure','timed_out')for j in phase_jobs)
-            reports=old.get('reports',[])
-            if source_done and (not old.get('sourceProofCaptured') or old.get('proofReadFailed')):
+            reports=old.get('reports',[]);proof_read=False
+            if source_done and (not old.get('sourceProofCaptured') or old.get('proofReadFailed') or old.get('proofReaderVersion')!=PROOF_READER_VERSION):
                 reports=read_reports(run,jobs)if registry[workflow].get('artifact') else[]
+                proof_read=True
                 if reports:result=merge_proof_retry(result,run,reports)
             proof_failed=any(technical_proof(e['id'])for r in reports for e in r.get('errors',[]))
             ends=[j['completed_at']for j in jobs if timestamp(j.get('completed_at'))]
             active[key]={'workflow':workflow,'run':run,'checkedAt':now,'sourceProofCaptured':source_done,
-                         'proofReadFailed':proof_failed,'reports':reports,'failures':failures,
+                         'proofReadFailed':proof_failed,'proofReaderVersion':PROOF_READER_VERSION if proof_read else old.get('proofReaderVersion'),'reports':reports,'failures':failures,
                          'phaseCompletedAt':max(ends,key=timestamp)if ends else None}
             result.setdefault('observerErrors',{}).pop('inflight:'+key,None)
         except (urllib.error.URLError,OSError,http.client.IncompleteRead,ValueError,KeyError,TypeError,AttributeError,subprocess.SubprocessError)as error:

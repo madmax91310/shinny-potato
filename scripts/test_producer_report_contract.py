@@ -215,6 +215,35 @@ class DurableScope(unittest.TestCase):
         newer=event(w,102)['updated_at'];after['validationChecks']['A']['recordedAt']=newer
         old=merge_proof_retry({'workflows':{w:after}},event(w,101),reports)['workflows'][w]
         self.assertEqual(old['validationChecks']['A']['recordedAt'],newer)
+    def test_latest_complete_source_scope_qualifies_reporting_before_publication(self):
+        from publish_automation_status import merge_proof_retry
+        from test_automation_product import event
+        w='update-practical-sheets.yml';ev={'file':'practical-observation.json','sha256':'current','scopeExplicit':True,'scopePlanVerified':True,'scope':{'mode':'full','expectedIds':['A']}}
+        state={'workflows':{w:{'runId':90,'recordingStatus':'failure','publicationStatus':'not-run','reportQualifications':{'practical-observation.json':{'cause':'Old unknown scope','evidence':{'sha256':'legacy'}}}}}}
+        reports=[{'successes':[],'errors':[],'_reportEvidence':ev}]
+        qualified=merge_proof_retry(state,event(w,101),reports)['workflows'][w]
+        self.assertEqual(qualified['reportQualifications'],{});self.assertEqual(qualified['recordingStatus'],'failure');self.assertEqual(qualified['publicationStatus'],'not-run')
+        qualified['reportQualifications']={'practical-observation.json':{'cause':'Newer source scope warning','evidence':{'sha256':'newer'}}}
+        qualified['reportEvidenceHistory'].append({**ev,'sha256':'newer','runId':102,'attempt':1})
+        older=merge_proof_retry({'workflows':{w:qualified}},event(w,101),reports)['workflows'][w]
+        self.assertEqual(older['reportQualifications']['practical-observation.json']['cause'],'Newer source scope warning')
+    def test_old_unscoped_report_remains_historical_after_a_new_complete_scope(self):
+        from publish_automation_status import merge_proof_retry
+        from test_automation_product import event
+        w='update-practical-sheets.yml';ev={'file':'practical-observation.json','sha256':'new','scopePlanVerified':True,'scope':{'mode':'full','expectedIds':['A']},'runId':101,'attempt':1}
+        state={'workflows':{w:{'runId':101,'reportEvidenceHistory':[ev],'reportQualifications':{}}}}
+        old={'successes':[],'errors':[],'_scopeWarning':'Original report never declared scope','_reportEvidence':{'file':ev['file'],'sha256':'old','scopeExplicit':False}}
+        after=merge_proof_retry(state,event(w,90),[old])['workflows'][w]
+        self.assertEqual(after['reportQualifications'],{});self.assertTrue(after['reportQualificationHistory'][-1]['historicalLimitationPreserved'])
+        self.assertFalse(after['reportEvidenceHistory'][-1].get('scopeExplicit'))
+    def test_pending_field_does_not_invent_an_absent_or_successful_source_attempt(self):
+        p=plan(('A:pea','A:pea:qualification'));p['producer']='collect_instrument_metadata';p['items'][1]['phase']='qualification'
+        native={'successes':[],'errors':[],'inactive':[{'id':'A:pea'}],'pending':{'A':['pea']}}
+        result=finished(native,p)['resultContract']
+        for row in result['outcomes']:
+            self.assertEqual(row['status'],'deferred');self.assertIsNone(row['operationAttempted']);self.assertIn('ne détaille pas',row['reason'])
+        self.assertIsNone(result['outcomes'][0]['sourceAttempted']);self.assertFalse(result['outcomes'][1]['sourceAttempted'])
+        self.assertEqual(result['scope']['networkRequestedIds'],[])
     def test_missing_native_report_retains_individual_expected_scope(self):
         r=self.observe_artifact();omissions=[e for part in r for e in part.get('errors',[]) if e.get('kind')=='omission']
         self.assertEqual({e['expectedId']for e in omissions},{'practical:A','practical:B'})
