@@ -120,7 +120,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
     const canonical=html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1]
     if(canonical && canonicalUrl(canonical)!==canonicalUrl(url))throw Error('Page canonique différente du document demandé')
   }
-  if(source.method.startsWith('consumer-') && !(source.method==='consumer-coverage' && /\bETF|UCITS/i.test(listing.title??tag(html,'h1')))) return parseConsumer(html,source,url,now,listing)
+  if(source.method.startsWith('consumer-') && !(source.method==='consumer-coverage' && /\bETF|UCITS/i.test(listing.title??tag(html,'h1')))) return parseConsumer(html,{...source,primaryHosts:PUBLICATION_SOURCES.filter(s=>s.evidenceLevel!=='journalistic').map(s=>s.host)},url,now,listing)
   if(source.requireUcits && !/\bUCITS\b/i.test(cleanText(html)))return {rejected:'Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France',title:listing.title}
   if(source.method==='consumer-coverage')source={...source,family:'etf'}
   if(source.id==='dvf'){
@@ -133,7 +133,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   const title = source.host === 'www.insee.fr' ? cleanText(html.match(/<span\b[^>]*class="titre-titre"[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '') : tag(html, 'h1') || listing.title
   if (!title || title.length > 700) throw new Error('Titre de publication absent ou anormal')
   if (editorialExclusion({label:title})) return {rejected:editorialExclusion({label:title}),title,publishedAt}
-  const base = { ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
+  const base = { ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, evidenceLevel:'official', sources:[{url,role:'official',label:source.name}], entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
   if (source.family === 'etf') {
     const parsed = parseEtfDocument(html, title)
     if(source.id==='xetra' && /listing|listed|trad/i.test(title+' '+cleanText(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''))) parsed.announcementEvidence={type:'trading',stage:'trading',label:'Cotation annoncée par Deutsche Börse',evidence:title}
@@ -264,6 +264,18 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       }
       item.nextAttemptAt = new Date(+now+(source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
     } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
+  }
+  // Existing first-party publication proofs remain valid: hydrate missing attribution metadata
+  // only for a previously extracted document on its registered official host.
+  // This neither changes values/dates nor creates a market event.
+  for(const document of Object.values(state.documents)) {
+    const observation=document.observation, owner=sources.find(source=>source.id===document.source)
+    if(observation?.discovery && !observation.evidenceLevel && observation.evidence?.sourceHash && owner && owner.evidenceLevel!=='journalistic'){
+      let host;try{host=new URL(observation.sourceUrl).hostname}catch{continue}
+      if(host!==owner.host)continue
+      observation.evidenceLevel='official'
+      observation.sources??=[{url:observation.sourceUrl,role:'official',label:owner.name}]
+    }
   }
   for(const document of Object.values(state.documents)) {
     const observation=document.observation

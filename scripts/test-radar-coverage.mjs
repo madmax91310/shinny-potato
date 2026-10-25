@@ -65,7 +65,7 @@ assert.equal(groupSignals(live.feed.events.concat(live.feed.events),+now).length
 assert.throws(()=>parsePublication('<html><link rel="canonical" href="https://group.bnpparibas/wrong"></html>',local,doc.listing.url,now,doc.listing),/canonique/)
 console.log('Coverage Radar: real bounded excerpts, separate dated cards, PDF listings, partial archive, national/regional clauses, unknown rates, semantic presentation guard, grouped ETF proof, US/UCITS rejection, housing conventions, persistence, outage recovery and silent migration verified. No notification sent.')
 
-const primary={...ca,publicationId:'original',sourceUrl:'https://example.org/original'},reproduction={...ca,publicationId:'copy',sourceUrl:'https://example.org/copy'}
+const primary={...ca,publicationId:'original',sourceUrl:'https://example.org/original',sources:[{url:'https://example.org/original',role:'official'}]},reproduction={...ca,publicationId:'copy',sourceUrl:'https://example.org/copy',sources:[{url:'https://example.org/copy',role:'official'}]}
 const copies={documents:{a:{observation:primary,discoveredAt:'2026-10-23'},b:{observation:reproduction,discoveredAt:'2026-10-24'}}}
 consolidateOfficialAnnouncements(copies);assert.equal(primary.eventKey,reproduction.eventKey);assert.equal(primary.sources.length,2)
 const separate={...ca,label:ca.label+' obligataires',publicationId:'distinct'}
@@ -101,3 +101,25 @@ assert.equal(planNotifications(fresh.newEvents,{acknowledged:[]},historicalNow,'
 const backfilled=advanceRadar(existing.state,[{...wero,backfill:true}],{now:historicalNow})
 assert.equal(backfilled.newEvents.length,1,'History records the subject even when alerting is silenced')
 for(const mode of ['major','digest'])assert.equal(planNotifications(backfilled.newEvents,{acknowledged:[]},historicalNow,mode).events.length,0)
+
+// Structural reconciliation fixture: the title/body come from the captured real
+// BNP release; this wrapper does not claim that a journalist published it.
+const mediaSource=CONSUMER_SOURCES.find(s=>s.id==='moneyvox')
+const linkedBody=body.replace('</main>',`<a href="${doc.listing.url}">Communiqué BNP Paribas</a></main>`)
+const media=parsePublication(linkedBody,mediaSource,'https://www.moneyvox.fr/banque/reconciliation-fixture',now,doc.listing)
+assert.ok(media.sources.some(s=>s.url===doc.listing.url&&s.role==='original-link-unverified'),'A newly qualified bank host can be retained as an explicit original, without being called confirmed')
+const notDue=new Date(+now+3600000).toISOString()
+const linkedSources={sources:Object.fromEntries([local,mediaSource].map(s=>[s.id,{lastSuccessAt:now.toISOString(),nextCheckAt:notDue,status:'ok'}])),documents:{[doc.listing.url]:{source:local.id,status:'done',discoveredAt:now.toISOString(),nextAttemptAt:notDue,observation:wero},[media.sourceUrl]:{source:mediaSource.id,status:'done',discoveredAt:now.toISOString(),nextAttemptAt:notDue,observation:media}}}
+const reconciled=await collectPublications(now,()=>assert.fail('Persisted proof must not refetch'),linkedSources,[local,mediaSource],0)
+assert.equal(reconciled.state.documents[media.sourceUrl].observation.eventKey,JSON.stringify([wero.family,wero.publicationId,wero.publishedAt]))
+assert.ok(reconciled.state.documents[media.sourceUrl].observation.sources.some(s=>s.role==='official-original-extracted'))
+assert.equal(ca.evidenceLevel,'official','Issuer publications carry the same explicit first-party level used by reconciliation')
+
+const caOwner=COVERAGE_SOURCES.find(s=>s.id==='credit-agricole-news'),legacy=structuredClone(ca)
+delete legacy.evidenceLevel;delete legacy.sources
+const legacyState={sources:{[caOwner.id]:{lastSuccessAt:now.toISOString(),nextCheckAt:notDue,status:'ok'}},documents:{[legacy.sourceUrl]:{source:caOwner.id,status:'done',discoveredAt:now.toISOString(),nextAttemptAt:notDue,observation:legacy}}}
+const upgraded=await collectPublications(now,()=>assert.fail('Retained official issuer proof must not be refetched'),legacyState,[caOwner],0)
+assert.equal(upgraded.observations[0].evidenceLevel,'official');assert.equal(upgraded.observations[0].publishedAt,ca.publishedAt);assert.equal(upgraded.observations[0].checkedAt,ca.checkedAt);assert.equal(upgraded.observations[0].entity,ca.entity);assert.equal(upgraded.observations[0].evidence.sourceHash,ca.evidence.sourceHash)
+
+const unrelated=parsePublication(linkedBody.replace(doc.listing.url,'https://unknown.invalid/article'),mediaSource,'https://www.moneyvox.fr/banque/reconciliation-fixture',now,doc.listing)
+assert.ok(!unrelated.sources.some(s=>s.url.includes('unknown.invalid')),'An unregistered domain cannot become an original or confirmation')
