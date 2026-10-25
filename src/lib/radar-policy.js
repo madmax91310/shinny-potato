@@ -8,6 +8,7 @@ export function editorialExclusion(event) {
   const title = normalizeEditorial(event.label ?? event.title ?? event.value?.title)
   // The principal subject controls scope. Incidental taxes/benefits in a
   // statistical study or a TTC price convention do not change that subject.
+  if (event.factType==='statistical-publication' && /industriels?|entreprises?|climat des affaires|production industrielle/.test(title) && !/salaries?|salaires?|remuneration|menages?|patrimoine|niveau.*vie|inegalite|logement|prix a la consommation|epargne|credit.*habitat|revenus?|pauvrete/.test(title)) return 'Étude centrée sur les entreprises, sans sujet principal concernant les ménages.'
   return excluded.test(title) ? 'Hors périmètre : fiscalité, prestations sociales ou aides au logement.' : null
 }
 export function editorialTopic(title, summary = '') {

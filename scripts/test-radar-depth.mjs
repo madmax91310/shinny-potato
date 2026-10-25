@@ -80,6 +80,13 @@ const json=JSON.parse(await fixture('insee-search.json'));json.numFounds=json.do
 const studies=await inseeDiscovery(JSON.stringify(json),INSEE_SEARCH,()=>assert.fail('No unbounded page'))
 assert.ok(studies.some(r=>r.url.endsWith('/9087193')),'Salary study discovered from search, not from a saved article list')
 assert.ok(studies.every(r=>!r.publishedAt),'Discovery hints do not replace the article’s publication date')
+const industryUrl='https://www.insee.fr/fr/statistiques/9095034'
+const industry=parsePublication(await fixture('insee-industry.html'),PUBLICATION_SOURCES.find(s=>s.id==='insee-publications'),industryUrl,now)
+assert.match(industry.rejected,/hors des thèmes ménages/,'Incidental household vocabulary cannot qualify an industrial survey')
+const legacyIndustry={...csa,id:'d'.repeat(24),label:industry.title,sourceUrl:industryUrl,publicationId:industryUrl,publishedAt:'2026-10-22',period:'2026-10-22',detectedAt:now.toISOString(),kind:'new',backfill:false}
+assert.equal(editorialState(legacyIndustry,+now),'excluded','Already retained industrial event is excluded without deleting history')
+assert.equal(planNotifications([legacyIndustry],{acknowledged:[]},now,'digest').events.length,0)
+assert.equal(editorialState({...legacyIndustry,label:'Les salaires dans l’industrie en 2025'},+now),'ready','A household salary study remains admissible')
 const foreign=parsePublication(await fixture('revolut-colombia.html'),PUBLICATION_SOURCES.find(s=>s.id==='revolut-news'),'https://www.revolut.com/fr-FR/news/colombia',now)
 assert.match(foreign.rejected,/mention incidente/)
 console.log('Radar depth: silent baselines, semantic changes, expiry, failure/recovery, durable receipts, CSA diffusion and INSEE discovery passed.')
