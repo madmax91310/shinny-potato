@@ -1,3 +1,4 @@
+import {COVERAGE_SOURCES} from './lib/radar-coverage.mjs'
 import {CONSUMER_SOURCES,parseConsumer} from './lib/radar-consumer.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
@@ -223,6 +224,41 @@ try{
  await mobile.getByText('Application annoncée : 2026-11-01',{exact:true}).waitFor()
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Consumer mobile has no overflow')
  await mobile.screenshot({path:'test-artifacts/radar/consumer-mobile.png',fullPage:true})
+ assert.deepEqual(errors,[])
+ // Newly connected real source excerpts: current UI, historical true dates.
+ const coverageManifest=JSON.parse(await readFile('scripts/fixtures/radar-coverage/manifest.json','utf8'))
+ const coverageRows=[]
+ for(const example of coverageManifest){
+  const source=COVERAGE_SOURCES.find(s=>s.id===example.source)
+  coverageRows.push(parsePublication(await readFile(`scripts/fixtures/radar-coverage/${source.id}.txt`,'utf8'),source,example.listing.url,new Date('2026-10-25T12:00:00Z'),example.listing))
+ }
+ const coverageSeed=advanceRadar(null,[...official,consumerRows[0]],{now:new Date('2026-10-25T12:00:00Z')})
+ feed=advanceRadar(coverageSeed.state,coverageRows,{now:new Date('2026-10-25T12:00:00Z')}).feed
+ feed.checkedAt=stamp
+ for(const device of [page,mobile]){
+  await device.goto(url+'radar-editorial')
+  await device.getByRole('button',{name:'Historique complet',exact:true}).click()
+  await device.locator('.radar-filter-panel > summary').click()
+  await device.getByRole('searchbox').fill('Matrimoine')
+  await device.getByRole('heading',{name:/SG lance le programme Matrimoine/}).first().waitFor()
+  await device.getByText('Conditions de l’annonce',{exact:true}).first().click()
+  await device.getByText('Clients concernés',{exact:true}).first().waitFor()
+  assert.ok(await device.getByText('Non documenté',{exact:true}).count()>0)
+  const sourceLink=device.locator('a[href="'+coverageRows.find(o=>o.publisher.startsWith('Société Générale')).sourceUrl+'"]')
+  assert.ok(await sourceLink.count()>0,'Direct original link preserved')
+  await device.getByRole('searchbox').fill('trois nouveaux ETF actifs')
+  await device.getByRole('heading',{name:/Amundi élargit/}).first().waitFor()
+  await device.getByText(/3 ETF annoncés ; noms non extractibles/).waitFor()
+  assert.ok(await device.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+  await device.screenshot({path:`test-artifacts/radar/coverage-${device===page?'desktop':'mobile'}.png`,fullPage:true})
+  await device.getByRole('button',{name:'Pouvoir d’achat',exact:true}).click()
+  await device.getByRole('searchbox').fill('Saxo Elite')
+  await device.getByRole('heading',{name:/Saxo Banque présente Saxo Elite/}).first().waitFor()
+  await device.getByText('Conditions de l’annonce',{exact:true}).first().click()
+  await device.getByText('Clients concernés',{exact:true}).first().waitFor()
+  assert.ok(await device.getByText('2026-04-23',{exact:true}).count()>0,'Old archive retains the original publication date')
+
+ }
  assert.deepEqual(errors,[])
  console.log('Radar navigateur : signaux, filtres, lecture persistante, copie, conservation après échec, fraîcheur et mobile validés.')
 }finally{await browser?.close();server.kill()}

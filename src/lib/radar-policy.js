@@ -25,8 +25,8 @@ export function editorialTopic(title, summary = '') {
     ['location', /loyers?|location|bailleurs?|locataires?|garantie locative/],
     ['immobilier', /immobili|prix au m|transactions.*logement|logements? anciens|logements? neufs/],
     ['statistiques', /niveaux? de vie|patrimoine|inegalites?|inflation|prix a la consommation|pauvrete|epargne des menages/],
-    ['epargne', /livrets?|epargne|assurance.vie|\bpea\b|compte.titres|liquidites/],
-    ['banques', /banqu|revolut|boursobank|fortuneo|bourse direct|trade republic|\bxtb\b|carte bancaire|neobanque/],
+    ['epargne', /fonds en euros|livrets?|epargne|assurance.vie|\bpea\b|compte.titres|liquidites/],
+    ['banques', /wero|offre bourse|matrimoine|credit mutuel|\bcic\b|caisse d epargne|banqu|revolut|boursobank|fortuneo|bourse direct|trade republic|\bxtb\b|carte bancaire|neobanque/],
   ]
   return rules.find(([,pattern]) => pattern.test(t))?.[0] ?? (/(?:montant|taux|frais|tarif|€|euros|rembours)/.test(s) ? rules.find(([,pattern]) => pattern.test(s))?.[0] : null) ?? null
 }

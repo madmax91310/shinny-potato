@@ -1,3 +1,4 @@
+import { COVERAGE_SOURCES, coverageDiscovery } from './radar-coverage.mjs'
 import { CONSUMER_SOURCES, discoverConsumer, parseConsumer } from './radar-consumer.mjs'
 import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { EXTRA_SOURCES, extraDiscovery, extraDate, extraSummary, tagContent, statisticalPeriod } from './radar-extra-sources.mjs'
@@ -5,9 +6,10 @@ import { housingTopic, housingConventions, qualifyDvfSales } from '../../src/lib
 import { createHash } from 'node:crypto'
 import { parseOfficialListing } from './purchasing-power-sources.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
-import { parseEtfDocument } from './radar-news.mjs'
+import { parseEtfDocument, documentText } from './radar-news.mjs'
 export const PUBLICATION_SOURCES = [
   ...CONSUMER_SOURCES,
+  ...COVERAGE_SOURCES,
   ...EXTRA_SOURCES,
   { id: 'insee-publications', name: 'INSEE · publications nationales', url: 'https://www.insee.fr/fr/flux/2', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
   { id: 'insee-conjoncture', name: 'INSEE · conjoncture et inflation', url: 'https://www.insee.fr/fr/flux/3', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
@@ -114,13 +116,19 @@ export function publicationDate(html, source) {
   return date
 }
 export function parsePublication(html, source, url, now = new Date(), listing = {}) {
-  if(source.method.startsWith('consumer-')) return parseConsumer(html,source,url,now,listing)
+  if(source.format && /<html\b/i.test(html)){
+    const canonical=html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1]
+    if(canonical && canonicalUrl(canonical)!==canonicalUrl(url))throw Error('Page canonique différente du document demandé')
+  }
+  if(source.method.startsWith('consumer-') && !(source.method==='consumer-coverage' && /\bETF|UCITS/i.test(listing.title??tag(html,'h1')))) return parseConsumer(html,source,url,now,listing)
+  if(source.requireUcits && !/\bUCITS\b/i.test(cleanText(html)))return {rejected:'Annonce sans statut UCITS documenté ; lancement américain non généralisé à la France',title:listing.title}
+  if(source.method==='consumer-coverage')source={...source,family:'etf'}
   if(source.id==='dvf'){
     const dataset=JSON.parse(html),resource=dataset.resources?.[0]
     if(dataset.slug!=='demandes-de-valeurs-foncieres'||!resource)throw Error('Livraison DVF invalide')
     return {family:'economie',entity:'dvf-dgfip',field:'release',fieldLabel:'Livraison de données DVF',factType:'dataset-release',label:`DVF : ${resource.title}`,value:{resources:dataset.resources.map(r=>({id:r.id,title:r.title,updatedAt:r.last_modified,checksum:r.checksum??null}))},sourceUrl:source.url,publicationId:`dvf:${resource.id}:${resource.last_modified}`,publishedAt:null,period:resource.title,referencePeriod:resource.title,checkedAt:now.toISOString(),scope:'France, couverture et exclusions DGFiP décrites dans la notice DVF',rule:'publication',discovery:true,summary:dataset.description.slice(0,1500),evidence:{sourceHash:hash(html),excerpt:resource.title,method:'Métadonnées API officielles ; last_modified ne prouve pas une date de publication statistique.'},housing:{...housingConventions(dataset.description,'dvf'),license:dataset.license,resourceUpdatedAt:resource.last_modified,localQualification:{...qualifyDvfSales([]),sampleSize:null,reason:'Aucun lot de transactions locales qualifié ; aucun prix local ni évolution mensuelle produit.'}},reason:'Nouvelle livraison ou révision de données brutes ; aucun prix local déduit du nom du fichier.',angle:'Attendre une série de transactions comparables et représentatives avant de calculer un prix local.'}
   }
-  const publishedAt = source.method.startsWith('extra-') ? extraDate(html,source,listing) : (source.id === 'dws' || source.id.startsWith('bdf-')) && listing.publishedAt ? listing.publishedAt : publicationDate(html, source)
+  const publishedAt = source.format ? extraDate(html,source,listing) : source.method.startsWith('extra-') ? extraDate(html,source,listing) : (source.id === 'dws' || source.id.startsWith('bdf-')) && listing.publishedAt ? listing.publishedAt : publicationDate(html, source)
   if (Date.parse(publishedAt) > +now) throw new Error('Publication datée dans le futur')
   const title = source.host === 'www.insee.fr' ? cleanText(html.match(/<span\b[^>]*class="titre-titre"[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '') : tag(html, 'h1') || listing.title
   if (!title || title.length > 700) throw new Error('Titre de publication absent ou anormal')
@@ -166,14 +174,24 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   state.documents ??= {}; state.sources ??= {}
   const requestContent = async (url, cached, limit = 2500000) => {
     metrics.requests++
-    const response = await request(url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: 'application/xml, text/html, application/rss+xml', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
+    const response = await request(url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: 'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
     if (response.status === 304) { metrics.notModified++; return { unchanged: true } }
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     if (response.url && new URL(response.url).hostname !== new URL(url).hostname) throw new Error('Redirection hors du domaine officiel')
     const bytes = await response.arrayBuffer()
     metrics.bytes += bytes.byteLength
     if (bytes.byteLength > limit) throw new Error(`Source trop volumineuse (${bytes.byteLength})`)
-    return { content: new TextDecoder(response.headers.get('content-type')?.match(/charset=([^; ]+)/i)?.[1] ?? 'utf-8').decode(bytes), etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') }
+    const pdf=Buffer.from(bytes).subarray(0,5).toString()==='%PDF-'
+    const extracted=pdf ? await documentText(new Response(bytes,{headers:response.headers})) : null
+    return { content: extracted ?? new TextDecoder(response.headers.get('content-type')?.match(/charset=([^; ]+)/i)?.[1] ?? 'utf-8').decode(bytes), etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') }
+  }
+  const discoveryRequest=async (...args)=>{
+    metrics.requests++
+    const response=await request(...args)
+    const bytes=await response.clone().arrayBuffer()
+    metrics.bytes+=bytes.byteLength
+    if(bytes.byteLength>2500000)throw Error('Inventaire auxiliaire trop volumineux')
+    return response
   }
   await Promise.all(sources.map(async source => {
     const old = state.sources[source.id] ?? {}, report = { ...old, id: source.id, name: source.name, url: source.url, method: source.method, depth: source.depth, attemptedAt: now.toISOString() }
@@ -183,18 +201,20 @@ export async function collectPublications(now = new Date(), request = fetch, pre
         const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000)
         if(result.unchanged && !old.lastSuccessAt)throw Error('Réponse 304 sans inventaire validé conservé')
         if (!result.unchanged) {
-          const rows = await extraDiscovery(result.content,source,request) ?? discoverPublications(result.content, source)
+          const rows = await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
+          report.archiveWarning=rows.archiveWarning??null
           for (const row of rows) {
             const existing=state.documents[row.url]
-            if(existing && (existing.title!==row.title || existing.description!==row.description || existing.publishedAt!==row.publishedAt)) {
+            if(existing && (existing.title!==row.title || existing.description!==row.description || existing.publishedAt!==row.publishedAt || (existing.listingRejection??null)!==(row.listingRejection??null))) {
               Object.assign(existing,row,{listingRejected:Boolean(row.listingRejection),nextAttemptAt:now.toISOString(),...(row.listingRejection ? {status:'rejected',reason:row.listingRejection}: {status:'pending'})})
             }
             state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
           }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
-        report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = 'ok'; delete report.error
+        report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = report.archiveWarning?'partial':'ok'; delete report.error
+        if(report.archiveWarning)errors.push({family:source.family,entity:source.name,reason:report.archiveWarning})
         report.nextCheckAt = new Date(+now+(source.method === 'sitemap' ? 1440 : source.cadenceMinutes ?? 60)*60000).toISOString()
       }
     } catch (error) { report.status = 'error'; report.error = error.message; errors.push({ family: source.family, entity: source.name, reason: error.message }) }
@@ -217,7 +237,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       // Xtrackers serves HTTP 500 without its canonical trailing slash.
       // Keep stable deduplication keys, but request the official route.
       const fetchUrl = source.id === 'xtrackers' ? url.replace(/\/$/, '') + '/' : url
-      const result = await requestContent(fetchUrl, item)
+      const result = await requestContent(fetchUrl, item, 5000000)
       if (result.unchanged) {
         if (item.observation) item.status = 'done'
         else if (item.reason) item.status = 'rejected'
@@ -231,7 +251,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           const newPublication=prior && observation.publishedAt>prior.publishedAt
           const newDatedCorrection=prior && observation.status==='Correction / démenti' && observation.correctionPublishedAt>=item.discoveredAt.slice(0,10) && JSON.stringify(observation.value)!==JSON.stringify(prior.value)
           if(newPublication || newDatedCorrection)item.backfill=false
-          observation.backfill=item.backfill??false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
+          observation.backfill=item.backfill??false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (Date.parse(item.availableAt)-Date.parse(item.discoveredAt))/3600000 }
         item.etag = result.etag; item.lastModified = result.lastModified
         // Search explicitly linked originals in our qualified source domains.
         // Discovery remains separate from confirmation; fetching occurs through
@@ -259,6 +279,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       break
     }
   }
+  consolidateOfficialAnnouncements(state)
   for (const report of reports) {
     const docs = Object.values(state.documents).filter(item => item.source === report.id)
     report.queue = Object.fromEntries(['pending','done','error','rejected'].map(status => [status, docs.filter(item => item.status === status).length]))
@@ -268,4 +289,31 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })
   state.metrics = { ...metrics, durationMs: Date.now()-started, checkedAt: now.toISOString() }
   return { state, metrics: state.metrics, sources: reports, errors, observations: Object.values(state.documents).flatMap(item => item.observation ? [item.observation] : []) }
+}
+
+// Exact reproduction only: same dated headline, issuer and event nature.
+// A theme, approximate wording or matching ISIN alone never merges releases.
+export function consolidateOfficialAnnouncements(state) {
+ const groups=new Map()
+ for(const document of Object.values(state.documents)){
+  const o=document.observation
+  if(o?.family!=='etf'||!o.documentHash||!o.publishedAt||!o.announcementEvidence||o.correctionOf)continue
+  const title=normal(o.label).replace(/[^a-z0-9]+/g,' ').trim()
+  if(title.split(' ').length<5||!/^(?:amundi|invesco|ishares|vanguard|xtrackers|wisdomtree|vaneck|ubs|jpmorgan|spdr|state street|global x)\b/.test(title))continue
+  const key=JSON.stringify([title,o.publishedAt,o.announcementEvidence.type])
+  const group=groups.get(key)??[];group.push(document);groups.set(key,group)
+ }
+ for(const group of groups.values()){
+  if(group.length<2)continue
+  const knownIsins=new Set(group.map(d=>(d.observation.products??[]).map(p=>p.isin).filter(Boolean).sort().join(',')).filter(Boolean))
+  if(knownIsins.size>1)continue // Same generic headline can still announce distinct products.
+  group.sort((a,b)=>(a.discoveredAt??'').localeCompare(b.discoveredAt??'')||a.observation.publicationId.localeCompare(b.observation.publicationId))
+  const primary=group.find(d=>d.observation.eventKey)?.observation??group[0].observation
+  const key=primary.eventKey??JSON.stringify([primary.family,primary.publicationId,primary.publishedAt])
+  for(const document of group){
+   const row=document.observation;row.eventKey=key
+   row.sources??=[{url:row.sourceUrl,label:row.publisher,role:'official'}]
+   for(const other of group.map(d=>d.observation))if(!row.sources.some(s=>s.url===other.sourceUrl))row.sources.push({url:other.sourceUrl,label:other.publisher,role:'official-matching-announcement',sourceHash:other.documentHash})
+  }
+ }
 }

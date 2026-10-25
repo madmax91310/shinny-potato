@@ -109,7 +109,7 @@ export function parseLaunchDetails(text) {
 export function extractProducts(text) {
   const products = []
   // A cell row or paragraph is a proof boundary. Global fees never fill products.
-  const blocks = /<\w/.test(text) ? [...text.matchAll(/<(tr|p)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(m => cleanText(m[2])) : text.split(/\n\s*\n/)
+  const blocks = /<\w/.test(text) ? [...text.matchAll(/<(tr|p)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(m => cleanText(m[2])) : text.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim())
   for (const block of blocks) {
     let names = [...new Set(block.replace(/[®™]/g,'').replace(/\s+/g, ' ').match(/\b(?:Amundi|Vanguard|iShares|Global X|Xtrackers|SPDR|Invesco|WisdomTree|VanEck|UBS|JPMorgan|JPM|BNP Paribas|HANetf|Trading Central|Sprott|YieldMax|Infrastructure Capital|Franklin|PIMCO|State Street) [A-Z][A-Za-z0-9 .&’'()–-]{2,140}?\bUCITS ETF\b/g) ?? [])]
     if(!names.length) names = [...new Set(block.replace(/\s+/g,' ').match(/\bBNP Paribas Easy [A-Z][A-Za-z -]{3,85}?(?=,|\sand\sBNP|\.)/g) ?? [])]
@@ -163,20 +163,24 @@ export function parseEtfDocument(htmlOrText, title) {
   else if(html) selected = htmlOrText.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1] ?? htmlOrText.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? htmlOrText
   const body = html ? selected.replace(/<(script|style|nav|header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi, '') : htmlOrText
   const text = html ? cleanText(body) : body
-  const paragraphs = html ? [...body.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m => cleanText(m[1])) : text.split(/\n\s*\n/)
+  const paragraphs = html ? [...body.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m => cleanText(m[1])) : text.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim())
   const initial = etfAnnouncement(title)
   // Require a statement in the body for indirect headlines. Keep its exact extract.
-  const excerpt = paragraphs.find(p => /(?:trois|deux|[1-9]) nouvelles solutions|nouveaux ETF|launch(?:es|ed)? .*ETF|lance .*ETF|lancement .*ETF|seront cotes|nouvelle cotation/i.test(p))
+  const excerpt = paragraphs.find(p => /(?:trois|deux|[1-9]) nouvelles solutions|nouveaux ETF|trois premiers ETF|launch(?:es|ed)? .*ETF|lance .*ETF|lancement .*ETF|seront cotes|nouvelle cotation/i.test(p))
   let announcementEvidence = initial?.stage === 'candidate' ? excerpt ? { type: 'announcement', stage: 'announced', label: 'Nouvelle offre annoncée par l’émetteur', evidence: excerpt } : initial : initial
-  const feeChange = paragraphs.find(p => /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(p))
-  if (!initial && feeChange && /(?:reduce|cut|lower|r[ée]duit|baisse).{0,60}(?:fees|frais)|(?:fees|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(title)) announcementEvidence = { type: 'characteristic-change', stage: 'changed', label: 'Modification de frais annoncée', evidence: feeChange }
+  const feeChange = paragraphs.find(p => /(?:reduc(?:e[sd]?|ing)|cut(?:s|ting)?|lower(?:s|ed|ing)?|r[ée]duit|baisse).{0,60}(?:fees?|frais)|(?:fees?|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(p))
+  if (!initial && feeChange && /(?:reduc(?:e[sd]?|ing)|cut(?:s|ting)?|lower(?:s|ed|ing)?|r[ée]duit|baisse).{0,60}(?:fees?|frais)|(?:fees?|frais).{0,60}(?:reduce|cut|lower|r[ée]dui|baisse)/i.test(title)) announcementEvidence = { type: 'characteristic-change', stage: 'changed', label: 'Modification de frais annoncée', evidence: feeChange }
   if(/(?:ETF|exchange.traded) share class|part (?:ETF|cotee).*(?:fonds existant)/i.test(text) && /launch|introduc|lanc/i.test(title+' '+text)) announcementEvidence = { type:'share-class',stage:'announced',label:'Nouvelle part ETF d’un fonds annoncée',evidence:paragraphs.find(p=>/share class|part ETF/i.test(p))??title }
   if(!announcementEvidence && /announc.*listing/i.test(text) && /ETF|exchange.traded/.test(text)) announcementEvidence={type:'trading',stage:'announced',label:'Cotation annoncée par l’émetteur',evidence:paragraphs.find(p=>/announc.*listing/i.test(p))??title}
+  const countStatement=paragraphs.find(p=>!/(?:\bnot\b|\bmay\b|\bcould\b|\bmight\b|pourrait|envisage|ne .{0,30}pas)/i.test(p)&&/(?:lancement de ses|launch of|launches|lance).{0,40}(?:trois|deux|cinq|three|two|five|[2-9]) (?:premiers |nouveaux |nouvelles |new |active |actifs |regional )*ETF/i.test(p))
+  const countWord=countStatement?.match(/\b(trois|deux|cinq|three|two|five|[2-9]) (?:premiers |nouveaux |nouvelles |new |active |actifs |regional )*ETF/i)?.[1]?.toLowerCase()
+  const announcedProductCount=countWord ? ({trois:3,deux:2,cinq:5,three:3,two:2,five:5}[countWord]??Number(countWord)) : null
+  if(!announcementEvidence && countStatement)announcementEvidence={type:'announcement',stage:'announced',label:'Nouvelle offre annoncée par l’émetteur',evidence:countStatement}
   const products = extractProducts(body)
   // Single-ISIN legacy extraction is still deliberately conservative.
   const launchDetails = parseLaunchDetails(html ? body.replace(/<\/(?:p|tr|div)>/gi, '\n').replace(/<[^>]*>/g, ' ') : text)
   const calendarEvidence = paragraphs.flatMap(p => p.split(/(?<=[.!?])\s+/)).find(p => /seront cot[ée]s|date de premi[eè]re cotation|first trading date/i.test(p)) ?? null
-  return { launchDetails, products, announcementEvidence, calendarEvidence, evidence: { excerpt: excerpt ?? feeChange ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
+  return { launchDetails, products, announcedProductCount, announcementEvidence, calendarEvidence, evidence: { method: html ? 'Corps du communiqué HTML officiel ; associations limitées aux paragraphes et lignes prouvés.' : 'Texte du document officiel ; PDF converti localement par pdftotext -layout dans le collecteur.', excerpt: excerpt ?? countStatement ?? feeChange ?? announcementEvidence?.evidence ?? '', sourceHash: createHash('sha256').update(htmlOrText).digest('hex') } }
 }
 export async function documentText(response) {
   const bytes = Buffer.from(await response.arrayBuffer())

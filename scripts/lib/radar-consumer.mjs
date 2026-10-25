@@ -1,3 +1,4 @@
+import { housingConventions } from '../../src/lib/radar-housing.js'
 import { OFFICIAL_SOURCES } from '../../src/pages/broker-comparator/evidence.js'
 import { ALLOWED_MEDIA_HOSTS } from '../../src/data/allowed-media.js'
 import { createHash } from 'node:crypto'
@@ -19,7 +20,7 @@ export function consumerRejection(title, summary='') {
   const exclusion=editorialExclusion({label:title})
   if(exclusion)return exclusion
   if(!editorialTopic(title,summary))return 'Sujet hors du périmètre des particuliers'
-  if(/podcast|webinaire|award|oscars|distingue|meilleurs .*20\d\d|anniversaire|celebre|journal de la bourse|3 infos|tout ce qui change|les dates de vos|mon locataire|resultat net|chiffre d affaires|titrisation|croquer|don en ligne/.test(normalizeEditorial(title)))return 'Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée'
+  if(/fondation|mecenat|partenaire titre|tour de la|agricultur|ecoles|scolaires|festival|tennis|cyclisme|footbal|octobre rose|partenariat.*(?:sport|cycl|tennis|football)|nomination|nominations|resultats (?:du|au)|feuille de route|organisation|partenariat.*(?:ia |cloud|musique|sport|roland)|laureat|prix bnp|podcast|webinaire|award|oscars|distingue|meilleurs .*20\d\d|anniversaire|celebre|journal de la bourse|3 infos|tout ce qui change|les dates de vos|mon locataire|resultat net|chiffre d affaires|titrisation|croquer|don en ligne/.test(normalizeEditorial(title)))return 'Communication institutionnelle, promotion de marque ou récapitulatif composite sans annonce financière utile isolée'
   return null
 }
 const primaryBrokerHosts=new Set(Object.values(OFFICIAL_SOURCES).flatMap(source=>{try{const url=new URL(source.url);return url.protocol==='https:'?[url.hostname]:[]}catch{return[]}}))
@@ -81,15 +82,17 @@ export function parseConsumer(html,source,url,now,listing={}) {
   if(!date&&listing.publishedAt&&Number.isFinite(Date.parse(listing.publishedAt)))date=new Date(listing.publishedAt).toISOString().slice(0,10)
   if(!date||!Number.isFinite(Date.parse(date))||new Date(date).toISOString().slice(0,10)!==date)throw Error('Date de publication non extractible ; lastmod et collecte non substitués')
   if(Date.parse(date)>+now)throw Error('Publication future, distincte d’une application future')
-  const article=(source.id==='boursobank-news'?html.match(/class="news-detail__description html"[^>]*>([\s\S]*?)<\/div>/)?.[1]:null)??html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]??html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''
-  const paragraphs=[...article.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>cleanText(m[1])).filter(p=>p.length>90&&!/cookies|javascript|abonnez|newsletter|tous droits|politique de confidentialite/i.test(normalizeEditorial(p)))
+  const plain=!/<(?:html|main|article)\b/i.test(html)
+  const article=plain ? html : (source.id==='boursobank-news'?html.match(/class="news-detail__description html"[^>]*>([\s\S]*?)<\/div>/)?.[1]:null)??html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1]??html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1]??''
+  const paragraphs=plain ? article.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim()).filter(p=>p.length>90&&!/contacts? presse|a propos|à propos/i.test(p)) : [...article.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>cleanText(m[1])).filter(p=>p.length>90&&!/cookies|javascript|abonnez|newsletter|tous droits|politique de confidentialite/i.test(normalizeEditorial(p)))
   const summary=(paragraphs.slice(0,2).join(' ')||listing.description||'').slice(0,700)
   if(summary.length<70)throw Error('Résumé de l’article absent ; page accessible mais extraction non qualifiée')
   if(source.id==='revolut-news'&&!/france|french|francais/.test(normalizeEditorial(title+' '+summary)))return{rejected:'Annonce Revolut sans portée française documentée',title}
   const wording=normalizeEditorial(title+' '+summary)
-  const novelty=/nouve|annonce|desormais|lance|ouvre|s ouvre|etend|evolu|change|hausse|baisse|augment|diminu|premiere fois|depass|arnaqu|en garde|rec(?:eiv|u)|licen[cs]e|integre|corrig|dement|rectificatif/.test(wording)
+  const novelty=(Boolean(source.format)&&/deploie|mobilis|maintient.*gratuit|porte a|commercialis|supprim/.test(wording))||/nouve|annonce|desormais|lance|ouvre|s ouvre|etend|evolu|change|hausse|baisse|augment|diminu|premiere fois|depass|arnaqu|en garde|rec(?:eiv|u)|licen[cs]e|integre|corrig|dement|rectificatif/.test(wording)
   const status=/dement|rectificatif|correction|corrige/.test(normalizeEditorial(title))?'Correction / démenti':/proposition de loi|projet de loi|en discussion|pourrait/.test(normalizeEditorial(title))?'Proposition / en discussion':novelty?'Annonce publiée':'Information sans nouveauté établie'
-  const dates=announcedDates(title+' '+summary)
+  const dates=announcedDates(title+' '+paragraphs.join(' '))
+  const conditions=source.format ? extractOfferConditions(paragraphs.join(' ')) : undefined
   const modified=html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/)?.[1]??html.match(/(?:property|name)=["']article:modified_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2})/)?.[1]
   if(status==='Correction / démenti' && modified && Number.isFinite(Date.parse(modified)) && new Date(modified).toISOString().slice(0,10)===modified && Date.parse(modified)<=+now && modified>=date)dates.correctionPublishedAt=modified
   const populationScope=source.id==='revolut-news'?'Périmètre français explicitement cité ; conditions décrites dans l’annonce':source.id==='bourse-direct-news'?'Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce':source.id==='boursobank-news'?'Clients BoursoBank dans les conditions du communiqué':source.id==='afg'?'Épargne salariale et retraite collective couvertes par l’enquête AFG':summary.split(/(?<=[.!?])\s+/)[0]
@@ -103,5 +106,17 @@ export function parseConsumer(html,source,url,now,listing={}) {
   const referencePeriod=referenceMonth ? `${reference[3]}-${String(referenceMonth).padStart(2,'0')}-${reference[1].padStart(2,'0')}` : null
   const statistical=source.id==='afg' && /enquete|resultats/.test(normalizeEditorial(summary))
   const excerpt=summary
-  return {family:source.family,entity:`publication-${hash(url).slice(0,20)}`,field:'announcement',fieldLabel:'Actualité des particuliers',label:title,value:{title,summary,status,...dates},sourceUrl:url,publicationId:url,publisher:source.name,publishedAt:date,period:date,checkedAt:now.toISOString(),scope:`Annonce ${source.name} · ${url}`,populationScope,topic,topicLabel:RADAR_TOPICS[topic],summary,status,...dates,evidenceLevel:source.evidenceLevel,sources,factType:statistical?'statistical-publication':'consumer-announcement',referencePeriod,evidence:{sourceHash:hash(html),excerpt,method:'Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse.'},discovery:true,rule:'announcement',maxAgeDays:400,tool:null,reason:`${RADAR_TOPICS[topic]} : annonce datée ; ${source.evidenceLevel==='journalistic'?'information journalistique attribuée, confirmation officielle non établie':'source identifiée'}. Public limité au périmètre cité.`,angle:`${title} — ${angles[topic]}`}
+  return {family:source.family,entity:`publication-${hash(url).slice(0,20)}`,field:'announcement',fieldLabel:'Actualité des particuliers',label:title,value:source.format?{status,...dates,facts:semanticOfferFacts(title+' '+paragraphs.join(' ')),...(status==='Correction / démenti'?{correction:hash(summary)}:{})}:{title,summary,status,...dates},sourceUrl:url,publicationId:url,publisher:source.name,publishedAt:date,period:date,checkedAt:now.toISOString(),scope:`Annonce ${source.name} · ${url}`,populationScope,...(conditions?{conditions}:{}),...(['credit','immobilier','location'].includes(topic)?{housing:housingConventions(title+' '+paragraphs.join(' '),source.id)}:{}),topic,topicLabel:RADAR_TOPICS[topic],summary,status,...dates,evidenceLevel:source.evidenceLevel,sources,factType:statistical?'statistical-publication':'consumer-announcement',referencePeriod,evidence:{sourceHash:hash(html),excerpt,method:(plain?'PDF officiel converti par pdftotext -layout ; titre et date de la carte officielle. ':'')+'Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse.'},discovery:true,rule:'announcement',maxAgeDays:400,tool:null,reason:`${RADAR_TOPICS[topic]} : annonce datée ; ${source.evidenceLevel==='journalistic'?'information journalistique attribuée, confirmation officielle non établie':'source identifiée'}. Public limité au périmètre cité.`,angle:`${title} — ${angles[topic]}`}
+}
+
+// Clauses are quoted with their subject intact. No rate is assigned globally to
+// a product, and absent conditions stay explicitly unknown.
+export function extractOfferConditions(text) {
+ const clauses=text.split(/(?<=[.!?;])\s+/).map(s=>s.trim()).filter(s=>s.length>15&&s.length<1200)
+ const patterns={clients:/clients?|particuliers|residents?|r[eé]serv[eé]|souscripteurs/i,pays:/france|fran[cç]ais|belgique|allemagne|r[eé]gion|d[eé]partement|caisse r[eé]gionale/i,formule:/formule|offre|abonnement|premium|elite/i,duree:/pendant|mois|dur[eé]e/i,plafond:/plafond|maximum|jusqu.[aà].*euros/i,versement:/versement|d[eé]p[oô]t minimum|minimum de/i,tauxPromotionnel:/promotion|bonifi[eé]|boost[eé]/i,tauxNormal:/taux (?:normal|standard|de base)|puis.*%/i,frais:/frais|commission|tarif/i}
+ return Object.fromEntries(Object.entries(patterns).map(([key,re])=>[key,clauses.filter(s=>re.test(s)).slice(0,3).join(' ')||null]))
+}
+export function semanticOfferFacts(text) {
+ const t=normalizeEditorial(text).replace(/\s+/g,' ')
+ return {amounts:[...new Set(t.match(/\b\d+(?:[ .,]\d+)*(?:\s*(?:%|euros?|€|mois|ans|jours))/g)??[])].sort(),pea:/\bpea\b/.test(t),eligible:/non eligible/.test(t)?false:/eligible/.test(t)?true:null,access:/r[eé]serv[eé]|reserve|sous condition/.test(t)?'conditional':null}
 }

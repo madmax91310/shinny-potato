@@ -21,6 +21,10 @@ on:
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'scripts/lib/radar-consumer.mjs'
+      - 'scripts/lib/radar-coverage.mjs'
+      - 'scripts/test-radar-coverage.mjs'
+      - 'scripts/check-radar-coverage.mjs'
+      - 'scripts/fixtures/radar-coverage/**'
       - 'scripts/test-radar-consumer.mjs'
       - 'scripts/fixtures/radar-consumer/**'
       - 'src/data/allowed-media.js'
@@ -60,6 +64,10 @@ on:
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'scripts/lib/radar-consumer.mjs'
+      - 'scripts/lib/radar-coverage.mjs'
+      - 'scripts/test-radar-coverage.mjs'
+      - 'scripts/check-radar-coverage.mjs'
+      - 'scripts/fixtures/radar-coverage/**'
       - 'scripts/test-radar-consumer.mjs'
       - 'scripts/fixtures/radar-consumer/**'
       - 'src/data/allowed-media.js'
@@ -116,8 +124,19 @@ jobs:
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs
       - run: node scripts/test-radar-consumer.mjs
+      - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Qualify public Radar source coverage (read-only)
+        run: node scripts/check-radar-coverage.mjs "$RUNNER_TEMP/radar-coverage"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-public-source-qualification
+          path: ${{ runner.temp }}/radar-coverage/report.json
+          retention-days: 35
+          if-no-files-found: ignore
       - name: Check official purchasing-power feeds
         run: node scripts/test-purchasing-power-news.mjs --live
       - name: Verify live DWS portfolios independently
@@ -158,6 +177,7 @@ jobs:
       - run: node scripts/test-radar-publications.mjs
       - run: node scripts/test-radar-extensions.mjs
       - run: node scripts/test-radar-consumer.mjs
+      - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.
