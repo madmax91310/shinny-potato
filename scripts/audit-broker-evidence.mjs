@@ -1,3 +1,4 @@
+import { ALLOWED_MEDIA_HOSTS } from '../src/data/allowed-media.js'
 import { PARTIAL_PUBLICATION_SCOPE } from '../src/pages/broker-comparator/publicationScope.js'
 import { brokerShortCopy } from '../src/pages/broker-comparator/shortCopy.js'
 import assert from 'node:assert/strict'
@@ -50,7 +51,7 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || namedDownload, `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
-const secondaryHosts = new Set(['rankia.fr','extraetf.com','www.ideal-investisseur.fr','www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com'])
+const secondaryHosts = new Set(ALLOWED_MEDIA_HOSTS)
 for (const [id, document] of Object.entries(SECONDARY_SOURCES)) {
   assert(secondaryHosts.has(new URL(document.url).hostname), `${id}: source externe non autorisée`)
   assert(['secondary-page', 'secondary-pdf'].includes(document.kind), `${id}: type externe absent`)

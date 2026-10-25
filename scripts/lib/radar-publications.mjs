@@ -1,3 +1,5 @@
+import { CONSUMER_SOURCES, discoverConsumer, parseConsumer } from './radar-consumer.mjs'
+import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { EXTRA_SOURCES, extraDiscovery, extraDate, extraSummary, tagContent, statisticalPeriod } from './radar-extra-sources.mjs'
 import { housingTopic, housingConventions, qualifyDvfSales } from '../../src/lib/radar-housing.js'
 import { createHash } from 'node:crypto'
@@ -5,6 +7,7 @@ import { parseOfficialListing } from './purchasing-power-sources.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
 import { parseEtfDocument } from './radar-news.mjs'
 export const PUBLICATION_SOURCES = [
+  ...CONSUMER_SOURCES,
   ...EXTRA_SOURCES,
   { id: 'insee-publications', name: 'INSEE · publications nationales', url: 'https://www.insee.fr/fr/flux/2', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
   { id: 'insee-conjoncture', name: 'INSEE · conjoncture et inflation', url: 'https://www.insee.fr/fr/flux/3', method: 'rss', host: 'www.insee.fr', family: 'economie', depth: 'Fenêtre RSS officielle' },
@@ -36,6 +39,8 @@ function official(value, source) {
 }
 export function discoverPublications(content, source) {
   if (/Request Rejected|Access Denied|captcha|Incapsula incident|Vérification de sécurité|Please enable JavaScript to view the page content/i.test(content) && content.length < 100000) throw new Error('Accès refusé ou page anti-robot, même si HTTP 200')
+  const consumer = discoverConsumer(content, source)
+  if (consumer) return consumer
   const rows = []
   if (source.id === 'bdf-credit') {
     const xml = parseOfficialListing(content, { id: 'banque-france-credit' })
@@ -109,6 +114,7 @@ export function publicationDate(html, source) {
   return date
 }
 export function parsePublication(html, source, url, now = new Date(), listing = {}) {
+  if(source.method.startsWith('consumer-')) return parseConsumer(html,source,url,now,listing)
   if(source.id==='dvf'){
     const dataset=JSON.parse(html),resource=dataset.resources?.[0]
     if(dataset.slug!=='demandes-de-valeurs-foncieres'||!resource)throw Error('Livraison DVF invalide')
@@ -118,6 +124,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   if (Date.parse(publishedAt) > +now) throw new Error('Publication datée dans le futur')
   const title = source.host === 'www.insee.fr' ? cleanText(html.match(/<span\b[^>]*class="titre-titre"[^>]*>([\s\S]*?)<\/span>/)?.[1] ?? '') : tag(html, 'h1') || listing.title
   if (!title || title.length > 700) throw new Error('Titre de publication absent ou anormal')
+  if (editorialExclusion({label:title})) return {rejected:editorialExclusion({label:title}),title,publishedAt}
   const base = { ...(housingTopic(title) || source.id.startsWith('bdf-credit') || ['notaires-paris','credit-logement','oll'].includes(source.id) ? {topic:'immobilier',housing:housingConventions(title+' '+cleanText(html.slice(html.indexOf('<h1'))),source.id)} : {}), family: source.family, entity: `publication-${hash(url).slice(0,20)}`, field: 'announcement', fieldLabel: 'Publication officielle', label: title, sourceUrl: url, publicationId: url, publisher: source.name, publishedAt, period: publishedAt, checkedAt: now.toISOString(), scope: `Publication officielle · ${source.name}`, discovery: true, rule: 'announcement', priority: 'high', maxAgeDays: 400 }
   if (source.family === 'etf') {
     const parsed = parseEtfDocument(html, title)
@@ -154,16 +161,19 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
 
 // Durable FIFO with exponential retry. No age-based deletion, and no lastmod as publication date.
 export async function collectPublications(now = new Date(), request = fetch, previous = {}, sources = PUBLICATION_SOURCES, budget = 12) {
+  const started = Date.now(), metrics = { requests: 0, bytes: 0, notModified: 0 }
   const state = structuredClone(previous), errors = [], reports = []
   state.documents ??= {}; state.sources ??= {}
   const requestContent = async (url, cached, limit = 2500000) => {
+    metrics.requests++
     const response = await request(url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: 'application/xml, text/html, application/rss+xml', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
-    if (response.status === 304) return { unchanged: true }
+    if (response.status === 304) { metrics.notModified++; return { unchanged: true } }
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     if (response.url && new URL(response.url).hostname !== new URL(url).hostname) throw new Error('Redirection hors du domaine officiel')
     const bytes = await response.arrayBuffer()
+    metrics.bytes += bytes.byteLength
     if (bytes.byteLength > limit) throw new Error(`Source trop volumineuse (${bytes.byteLength})`)
-    return { content: new TextDecoder().decode(bytes), etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') }
+    return { content: new TextDecoder(response.headers.get('content-type')?.match(/charset=([^; ]+)/i)?.[1] ?? 'utf-8').decode(bytes), etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') }
   }
   await Promise.all(sources.map(async source => {
     const old = state.sources[source.id] ?? {}, report = { ...old, id: source.id, name: source.name, url: source.url, method: source.method, depth: source.depth, attemptedAt: now.toISOString() }
@@ -171,19 +181,26 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       // Sitemap is large: daily check; RSS and listing every hour.
       if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now) {
         const result = await requestContent(source.url, old, source.method === 'sitemap' ? 25000000 : 2500000)
+        if(result.unchanged && !old.lastSuccessAt)throw Error('Réponse 304 sans inventaire validé conservé')
         if (!result.unchanged) {
           const rows = await extraDiscovery(result.content,source,request) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
-          for (const row of rows) state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: 'pending' }
+          for (const row of rows) {
+            const existing=state.documents[row.url]
+            if(existing && (existing.title!==row.title || existing.description!==row.description || existing.publishedAt!==row.publishedAt)) {
+              Object.assign(existing,row,{listingRejected:Boolean(row.listingRejection),nextAttemptAt:now.toISOString(),...(row.listingRejection ? {status:'rejected',reason:row.listingRejection}: {status:'pending'})})
+            }
+            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
+          }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
         report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = 'ok'; delete report.error
-        report.nextCheckAt = new Date(+now+(source.method === 'sitemap' ? 24 : 1)*3600000).toISOString()
+        report.nextCheckAt = new Date(+now+(source.method === 'sitemap' ? 1440 : source.cadenceMinutes ?? 60)*60000).toISOString()
       }
     } catch (error) { report.status = 'error'; report.error = error.message; errors.push({ family: source.family, entity: source.name, reason: error.message }) }
     state.sources[source.id] = report; reports.push(report)
   }))
-  const due = Object.entries(state.documents).filter(([, item]) => !item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now)
+  const due = Object.entries(state.documents).filter(([, item]) => !item.listingRejected && (!item.nextAttemptAt || Date.parse(item.nextAttemptAt) <= +now))
     .sort((a,b) => (a[1].attemptedAt ?? '').localeCompare(b[1].attemptedAt ?? '') || b[1].discoveredAt.localeCompare(a[1].discoveredAt))
   // Round-robin across sources: a prolific archive cannot starve the others.
   const start=(state.nextSourceIndex ?? 0)%sources.length
@@ -208,17 +225,47 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       }
       if (!result.unchanged) {
         const observation = parsePublication(result.content, source, url, now, item)
-        if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected }
-        else { observation.backfill = item.observation && observation.publishedAt > item.observation.publishedAt ? false : item.backfill ?? false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
+        if (observation.rejected) { item.status = 'rejected'; item.reason = observation.rejected; delete item.observation }
+        else {
+          const prior=item.observation
+          const newPublication=prior && observation.publishedAt>prior.publishedAt
+          const newDatedCorrection=prior && observation.status==='Correction / démenti' && observation.correctionPublishedAt>=item.discoveredAt.slice(0,10) && JSON.stringify(observation.value)!==JSON.stringify(prior.value)
+          if(newPublication || newDatedCorrection)item.backfill=false
+          observation.backfill=item.backfill??false; item.observation = observation; item.status = 'done'; item.availableAt ??= now.toISOString(); item.detectionDelayHours = (+new Date(item.discoveredAt)-Date.parse(observation.publishedAt))/3600000; item.availabilityDelayHours = (+now-Date.parse(item.discoveredAt))/3600000 }
         item.etag = result.etag; item.lastModified = result.lastModified
+        // Search explicitly linked originals in our qualified source domains.
+        // Discovery remains separate from confirmation; fetching occurs through
+        // the same bounded queue on a later pass, with normal failure recovery.
+        for(const reference of item.observation?.sources?.filter(row=>row.role==='original-link-unverified').slice(0,2) ?? []) {
+          let original;try{original=canonicalUrl(reference.url)}catch{continue}
+          const owner=sources.find(row=>row.host===new URL(original).hostname)
+          if(owner && new URL(original).pathname.split('/').filter(Boolean).length>=3 && !/\.(?:pdf|png|jpg)$/i.test(new URL(original).pathname))state.documents[original]??={url:original,source:owner.id,backfill:item.backfill,discoveredAt:now.toISOString(),attempts:0,status:'pending',discoveredVia:url}
+        }
       }
-      item.nextAttemptAt = new Date(+now+7*86400000).toISOString(); delete item.error
+      item.nextAttemptAt = new Date(+now+(source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
     } catch (error) { item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
+  }
+  for(const document of Object.values(state.documents)) {
+    const observation=document.observation
+    if(observation?.evidenceLevel!=='journalistic')continue
+    for(const reference of observation.sources.filter(row=>row.role==='original-link-unverified')) {
+      const primary=state.documents[canonicalUrl(reference.url)]?.observation
+      if(!primary || primary.evidenceLevel!=='official' || primary.publishedAt!==observation.publishedAt)continue
+      const words=text=>new Set(normal(text).match(/[a-z]{5,}/g)??[])
+      const primaryWords=words(primary.label), common=[...words(observation.label)].filter(word=>primaryWords.has(word))
+      if(common.length<3)continue
+      observation.eventKey=JSON.stringify([primary.family,primary.publicationId,primary.publishedAt])
+      reference.role='official-original-extracted'; reference.sourceHash=primary.evidence.sourceHash
+      break
+    }
   }
   for (const report of reports) {
     const docs = Object.values(state.documents).filter(item => item.source === report.id)
     report.queue = Object.fromEntries(['pending','done','error','rejected'].map(status => [status, docs.filter(item => item.status === status).length]))
+    report.extractionStatus=report.queue.error ? 'error' : report.queue.done ? 'validated' : report.queue.pending ? 'pending' : 'no-in-scope-publication'
+    report.lastExtractionSuccessAt=docs.filter(item=>item.observation).map(item=>item.observation.checkedAt).sort().at(-1)??null
   }
   for (const [url,item] of Object.entries(state.documents)) if (item.status === 'error' && !errors.some(error => error.entity === url)) errors.push({ family: sources.find(source => source.id === item.source)?.family ?? 'radar', entity: url, reason: item.error })
-  return { state, sources: reports, errors, observations: Object.values(state.documents).flatMap(item => item.observation ? [item.observation] : []) }
+  state.metrics = { ...metrics, durationMs: Date.now()-started, checkedAt: now.toISOString() }
+  return { state, metrics: state.metrics, sources: reports, errors, observations: Object.values(state.documents).flatMap(item => item.observation ? [item.observation] : []) }
 }

@@ -1,0 +1,2 @@
+// Existing broker-evidence allowlist, shared unchanged with editorial discovery.
+export const ALLOWED_MEDIA_HOSTS = ['rankia.fr','extraetf.com','www.ideal-investisseur.fr','www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com']

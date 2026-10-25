@@ -1,0 +1,1044 @@
+{
+  "checkedAt": "2026-10-24T20:18:35.327Z",
+  "durationMs": 24340,
+  "method": "Découverte automatique du point d’entrée puis deux documents au maximum par source ; état local vierge, aucun envoi ni publication. Ce contrôle ne prouve pas une collecte programmée.",
+  "sources": [
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 3,
+        "done": 2,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 290403,
+        "notModified": 0,
+        "durationMs": 6393,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "Prêt de titres : Bourse Direct étend son service aux PEA !",
+          "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
+          "publishedAt": "2026-10-12",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "epargne",
+          "summary": "Déjà accessible aux détenteurs d’un compte-titres ordinaire, le « Prêt de titres » s’ouvre désormais aux comptes PEA, plebiscités par la majorité des investisseurs. Pour les investisseurs concernés, il s’agit d’une possibilité supplémentaire de percevoir un revenu de titres qu’ils détiennent déjà, sans modifier leurs habitudes d’investissement. En autorisant Bourse Direct à utiliser leurs titres dans le cadre d’opérations de prêt, les clients peuvent percevoir une rémunération complémentaire chaque mois, grâce à leur compte-titres ordinaire mais aussi désormais leur PEA, PEA-PME ou PEA Jeunes.",
+          "evidenceLevel": "official",
+          "sourceHash": "3997f10ac591755bbeba4744428cb7a3386d4402d6d844b384a6a194acc9f8a8",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 80,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 3,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-12"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+          "url": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+          "publishedAt": "2026-10-06",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "banques",
+          "summary": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+          "evidenceLevel": "official",
+          "sourceHash": "3bb26f9774483ded5be8ab34e2766b3da86f72a5336220d210de9f7e7d8516ae",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-06"
+              }
+            ],
+            "reliability": {
+              "usable": false,
+              "reasons": [
+                "Nouveauté non établie"
+              ]
+            },
+            "state": "watch",
+            "type": "consumer-announcement",
+            "priority": false,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 6,
+        "done": 2,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 277401,
+        "notModified": 0,
+        "durationMs": 6725,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "Heures creuses : de nouveaux horaires à partir du 1er novembre 2026",
+          "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
+          "publishedAt": "2026-10-23",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "energie",
+          "summary": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
+          "evidenceLevel": "official",
+          "sourceHash": "775025d979d3318b7664310c8e890ca6228beac0ad6840742e907656bc9700fc",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 100,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 10,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-23"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": true
+          }
+        },
+        {
+          "title": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+          "url": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+          "publishedAt": "2026-10-12",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "energie",
+          "summary": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+          "evidenceLevel": "official",
+          "sourceHash": "facc2006bd12dcbb93e990ca19161da7e39e66beaea57ab4e7789720b7957bd8",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 93,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 3,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-12"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 0,
+        "done": 2,
+        "error": 0,
+        "rejected": 8
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 237947,
+        "notModified": 0,
+        "durationMs": 2923,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "L’épargne salariale et l’épargne retraite collective dépassent pour la première fois 250 milliards d’euros",
+          "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
+          "publishedAt": "2026-10-15",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "travail",
+          "summary": "L'épargne salariale et l'épargne retraite collective dépassent pour la première fois 250 milliards d'euros L’AFG dévoile les résultats de son enquête semestrielle sur l’épargne salariale et l’épargne retraite collective d’entreprise au 30 juin 2026. Ces chiffres témoignent de l’importance accordée à ces dispositifs, qui jouent un rôle clé en faveur du partage de la valeur au sein des entreprises, du financement de l’économie et de la préparation de l’avenir des salariés.",
+          "evidenceLevel": "professional-association",
+          "sourceHash": "2ba1c04bc0dcd47198b018f9c132b84135becace9e10ded25e99e748386a3b16",
+          "referencePeriod": "2026-06-30",
+          "factType": "statistical-publication",
+          "backfill": true,
+          "assessment": {
+            "score": 93,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 3,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-15"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+          "url": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+          "publishedAt": "2026-09-17",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "epargne",
+          "summary": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+          "evidenceLevel": "professional-association",
+          "sourceHash": "0118120c8bc0b82a2a41497e67d124c07ba61a44ce668d200f4f462718b4d61e",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-17"
+              }
+            ],
+            "reliability": {
+              "usable": false,
+              "reasons": [
+                "Nouveauté non établie"
+              ]
+            },
+            "state": "watch",
+            "type": "consumer-announcement",
+            "priority": false,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 196,
+      "etag": "\"1792869079-gzip\"",
+      "lastModified": "Sat, 24 Oct 2026 19:11:19 GMT",
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 64,
+        "done": 2,
+        "error": 0,
+        "rejected": 132
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 403902,
+        "notModified": 0,
+        "durationMs": 2527,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés",
+          "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
+          "publishedAt": "2026-10-22",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "securite",
+          "summary": "L'AMF et l'ACPR mettent en garde le public contre plusieurs acteurs proposant en France des investissements sur le marché des devises non régulé (Forex) et sur des produits dérivés sur crypto-actifs, sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites internet identifiés comme proposant des investissements sur le Forex et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "evidenceLevel": "official",
+          "sourceHash": "6154e4529b73ff4f7e50f212a44b785ba64f30580d87ef3c917c0e0c3cd7da2a",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 97,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-22"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir",
+          "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+          "publishedAt": "2026-08-19",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "securite",
+          "summary": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir L'Autorité des marchés financiers a identifié ces derniers jours la multiplication de faux sites d’information usurpant l’identité visuelle et le nom de médias français, ainsi que l’identité de personnalités afin de promouvoir les avantages d’une plateforme de trading frauduleuse, BitKeltTrade. L’AMF appelle les épargnants à la plus grande vigilance et à ne pas donner suite.",
+          "evidenceLevel": "official",
+          "sourceHash": "d8ef34ddc2c7f870b8aca5cfd7e21ea86824778088c4ab52ca87c4200d4b1112",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-08-19"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 23,
+        "done": 2,
+        "error": 0,
+        "rejected": 37
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 166602,
+        "notModified": 0,
+        "durationMs": 1549,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "Salaire minimum : une hausse du Smic avant le 1er janvier en discussion, selon Roland Lescure",
+          "url": "https://www.moneyvox.fr/votre-argent/actualites/110978/salaire-minimum-une-hausse-du-smic-avant-le-1er-janvier-en-discussion-selon-roland-lescure",
+          "publishedAt": "2026-10-24",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "travail",
+          "summary": "Une hausse anticipée du Smic, avant la revalorisation automatique du 1er janvier et dans un contexte de fortes revendications sur le pouvoir d'achat, &laquo; fait partie des débats &raquo;, a déclaré samedi le ministre de l'Economie Roland Lescure sur France Info. &laquo; Si l'inflation se poursuit (...) évidemment le Smic poursuivra son augmentation. Et sur le calendrier, on va évidemment en discuter, ça fait partie des paramètres qu'on doit mettre sur la table avec les partenaires sociaux &raquo;, a indiqué Roland Lescure le ministre de l'&Eacute;conomie, interrogé sur une potentielle hausse anticipée du salaire minimum.",
+          "evidenceLevel": "journalistic",
+          "sourceHash": "1d68a064e27ea8a4857196d39f402654e53f64b0d845622ff06ad261653136ff",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 100,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 10,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-24"
+              }
+            ],
+            "reliability": {
+              "usable": false,
+              "reasons": [
+                "Annonce encore incertaine ou proposition"
+              ]
+            },
+            "state": "watch",
+            "type": "consumer-announcement",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Stocks stratégiques de gazole : à quelle baisse de prix faut-il s'attendre",
+          "url": "https://www.moneyvox.fr/votre-argent/actualites/110977/stocks-strategiques-de-gazole-a-quelle-baisse-de-prix-faut-il-s-attendre",
+          "publishedAt": "2026-10-24",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "carburants",
+          "summary": "Un décret fixant les conditions économiques de la libération de stocks stratégiques de gazole annoncée début octobre par le Premier ministre Sébastien Lecornu a été publié samedi au Journal officiel et prévoit une répercussion sur les consommateurs à compter du 1er novembre. Concrètement, le texte autorise la vente de stocks stratégiques pour un volume maximum de 1,6 million de m3 - soit environ 10 millions de barils - jusqu'au 31 janvier, selon une répartition par distributeurs et à un prix qui seront fixés par arrêté. Le gouvernement espère ainsi diminuer de 12 à 18 centimes par litre le prix du gazole , qui oscille depuis début octobre entre 2,3 et 2,4 euros en moyenne, selon les chiffres",
+          "evidenceLevel": "journalistic",
+          "sourceHash": "104ee8b4b7b947a1ed3cb309506882c4b4be4dd9da9e227fc05f17c0080534ae",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 100,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 10,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-24"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 3,
+        "done": 2,
+        "error": 0,
+        "rejected": 7
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 273448,
+        "notModified": 0,
+        "durationMs": 2471,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "BoursoBank intègre Wero à ses solutions de paiement",
+          "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+          "publishedAt": "2026-06-10",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "banques",
+          "summary": "BoursoBank, 1ère banque en ligne française avec plus de 8,9 M de clients, annonce aujourd’hui son partenariat avec EPI (European Payments Initiative) en vue d’intégrer d’ici la fin de l’année 2026, Wero, la solution européenne de paiement instantané. Avec Wero, BoursoBank accompagne la croissance des usages de ses clients autour des virements instantanés via le numéro de téléphone mobile grâce à une infrastructure souveraine, unifiée à l’échelle européenne, et compétitive.",
+          "evidenceLevel": "official",
+          "sourceHash": "fb8b84a1c8cd3c5c1a3b7232c14cb8c8b08f0d6ad48abe2c74554701937df6bc",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-06-10"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "BoursoFirst, l'offre de banque privée de BoursoBank, atteint 2Md€ d'encours et s'enrichit de nouveaux produits et services",
+          "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursofirst-l-offre-de-banque-privee-de-boursobank-atteint-2md-d-encours-et-s-enrichit-de-nouveaux-produits-et-services",
+          "publishedAt": "2026-04-15",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "banques",
+          "summary": "Lancée fin 2024, l’offre patrimoniale BoursoFirst franchit le cap des 2 Md€ d’encours. Pour répondre au mieux aux attentes de ses clients patrimoniaux, BoursoBank complète BoursoFirst avec un nouveau livret sans plafond et rémunéré à 2,40 % 1 jusqu’au 31 décembre, un enrichissement de son assurance-vie luxembourgeoise, et de nouveaux contenus digitaux en vidéos et podcasts.",
+          "evidenceLevel": "official",
+          "sourceHash": "b6f52fd525f7f7b58d0626dd40d88a4c546f6f96abf21dd8e262be58d282af12",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-04-15"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-24T20:18:35.327Z",
+      "discovered": 10,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-24T20:18:35.327Z",
+      "lastSuccessAt": "2026-10-24T20:18:35.327Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-24T20:48:35.327Z",
+      "queue": {
+        "pending": 8,
+        "done": 1,
+        "error": 0,
+        "rejected": 1
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T20:18:35.327Z",
+      "qualification": "discovery-and-extraction-verified",
+      "metrics": {
+        "requests": 3,
+        "bytes": 891809,
+        "notModified": 0,
+        "durationMs": 1747,
+        "checkedAt": "2026-10-24T20:18:35.327Z"
+      },
+      "examples": [
+        {
+          "title": "Revolut receives French banking licence",
+          "url": "https://www.revolut.com/fr-FR/news/revolut_receives_french_banking_licence",
+          "publishedAt": "2026-08-10",
+          "checkedAt": "2026-10-24T20:18:35.327Z",
+          "topic": "banques",
+          "summary": "Revolut Bank S.A. (RBSA) has been granted a full banking licence, following a joint assessment by the Autorité de Contrôle Prudentiel et de Résolution (ACPR) and the European Central Bank (ECB), with the decision formally adopted by the ECB Governing Council, marking an historic milestone in Revolut's European journey. Revolut already serves about 30M customers across Western Europe, with close to 8 million joining in 2025 alone. The French banking licence strengthens the group's position as one of Europe's largest retail banks.",
+          "evidenceLevel": "official",
+          "sourceHash": "f9252fc51d5ca3bf46930c4d33cd3aba218fc3c3c74e8aace9e6cfbf1aaed647",
+          "referencePeriod": null,
+          "factType": "consumer-announcement",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-08-10"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,9 +1,10 @@
+import { editorialExclusion, consumerQuality } from './radar-policy.js'
 import { replicationWordingEvent } from './replication-method.js'
 // Shared by the UI and notifications: collecting a fact does not make it a post.
 export const EDITORIAL_DAYS = 14
 export const EDITORIAL_LIMIT = 5
 export const SCORE_RULES = Object.freeze({ audience: 30, impact: 25, novelty: 20, comparison: 15, freshness: 10, priority: 65, major: 85, sourceCap: 2, exposureCap: 1 })
-export const EDITORIAL_STATES = { ready: 'À exploiter', watch: 'À suivre', secondary: 'Variations secondaires' }
+export const EDITORIAL_STATES = { excluded: 'Hors périmètre', ready: 'À exploiter', watch: 'À suivre', secondary: 'Variations secondaires' }
 const normal = value => String(value ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
 
 // The collection date and a legacy `publication` label cannot establish a new
@@ -48,7 +49,15 @@ export function etfAnnouncement(title = '') {
   return null
 }
 
-export function editorialState(event) {
+export function editorialState(event, now = Date.now()) {
+  if (editorialExclusion(event) || event.editorialExcluded) return 'excluded'
+  if (event.supersededBy) return 'secondary'
+  if (event.factType === 'consumer-announcement' && event.topic === 'carburants') {
+    const cents=normal(event.label).match(/(?:hausse|baisse|augmentation|diminution) (?:de )?(\d+(?:[,.]\d+)?) centimes?/)
+    if(cents && Number(cents[1].replace(',','.'))<5)return 'secondary'
+  }
+  if (event.factType === 'consumer-announcement' && event.topic === 'etf' && /encours|\baum\b|actifs sous gestion/.test(normal(event.label)) && !/lance|frais|\bpea\b|nouvelle exposition/.test(normal(event.label)))return 'secondary'
+  if (event.factType === 'consumer-announcement') return consumerQuality(event,now).length ? 'watch' : 'ready'
   if (replicationWordingEvent(event) || event.status === 'wording-only') return 'secondary'
   if(['dataset-release','publication-watch'].includes(event.factType))return 'watch'
   const field = event.field ?? ''
@@ -88,9 +97,12 @@ export function factType(event) {
   if (event.family === 'economie' && event.publishedAt && event.evidence?.sourceHash) return 'statistical-publication'
   return 'characteristic-change'
 }
-export const FACT_LABELS = { 'dataset-release':'Livraison de données brutes', 'publication-watch':'Publication à qualifier', 'share-class':'Nouvelle part de fonds', 'france-distribution':'Commercialisation en France', 'statistical-publication': 'Publication statistique', 'regulatory-measure': 'Mesure réglementaire', 'product-announcement': 'Annonce de produit', listing: 'Nouvelle place de cotation', trading: 'Cotation ou négociation', 'first-trading': 'Première négociation', 'characteristic-change': 'Changement de caractéristique', 'source-revision': 'Révision de source', coverage: 'Nouvelle donnée raccordée' }
-export function reliability(event) {
+export const FACT_LABELS = { 'consumer-announcement':'Annonce concernant les particuliers', 'dataset-release':'Livraison de données brutes', 'publication-watch':'Publication à qualifier', 'share-class':'Nouvelle part de fonds', 'france-distribution':'Commercialisation en France', 'statistical-publication': 'Publication statistique', 'regulatory-measure': 'Mesure réglementaire', 'product-announcement': 'Annonce de produit', listing: 'Nouvelle place de cotation', trading: 'Cotation ou négociation', 'first-trading': 'Première négociation', 'characteristic-change': 'Changement de caractéristique', 'source-revision': 'Révision de source', coverage: 'Nouvelle donnée raccordée' }
+export function reliability(event, now = Date.now()) {
   const reasons = []
+  const exclusion = editorialExclusion(event)
+  if (exclusion) reasons.push(exclusion)
+  if (event.factType === 'consumer-announcement') reasons.push(...consumerQuality(event,now))
   try { if (new URL(event.sourceUrl).protocol !== 'https:') reasons.push('Source HTTPS manquante') } catch { reasons.push('Source manquante') }
   if (!event.scope || !event.period || !Number.isFinite(Date.parse(event.checkedAt))) reasons.push('Périmètre ou date de contrôle manquant')
   if (['source-conflict', 'wording-only'].includes(event.status)) reasons.push('Conflit ou libellé équivalent')
@@ -98,27 +110,29 @@ export function reliability(event) {
   return { usable: reasons.length === 0, reasons }
 }
 export function editorialAssessment(event, now = Date.now(), rules = SCORE_RULES) {
-  const state = editorialState(event), type = factType(event)
+  const state = editorialState(event,now), type = factType(event)
   const broadEtf = event.field==='announcement' && event.documentHash && event.products?.some(p => p.pea && /Éligible/.test(p.pea) || /(?:MSCI World|All.World|S&P 500|Euro Stoxx 50)/i.test(p.index ?? p.name))
-  const household = event.family === 'economie' || event.family === 'pouvoir-achat'
-  const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family)
+  const household = event.family === 'economie' || event.family === 'pouvoir-achat' && !(event.factType==='consumer-announcement' && ['banques','epargne','frais','etf'].includes(event.topic))
+  const savings = ['courtiers', 'epargne', 'assurance'].includes(event.family) || event.factType==='consumer-announcement' && ['banques','epargne','frais'].includes(event.topic)
   const composition = /^(top10|countries:|sectors:)/.test(event.field ?? '')
   const factors = {
     audience: [household ? 1 : broadEtf ? .7 : savings ? .7 : composition && state === 'ready' ? .65 : .35, broadEtf ? 'Grande exposition ou PEA documenté ; nombre de lecteurs concerné inconnu' : household ? 'Repère pour les ménages ou salariés ; effectif exact inconnu' : 'Public limité au produit ou au placement ; effectif inconnu'],
     impact: [household || savings ? 1 : broadEtf ? .8 : /ter|pea|fees|price/.test(event.field ?? '') ? .8 : composition && state === 'ready' ? .8 : .3, household ? 'Revenus, budget ou patrimoine' : savings ? 'Conditions concrètes de l’épargne' : composition ? 'Évolution de l’exposition, sans achat ni vente déduit' : 'Caractéristiques du placement'],
     novelty: [type === 'coverage' || type === 'source-revision' || state === 'secondary' ? 0 : 1, type === 'coverage' ? 'Extension de couverture' : type === 'source-revision' ? 'Révision sans nouvelle période' : state === 'secondary' ? 'Variation technique' : 'Publication ou changement documenté'],
-    comparison: [household || event.before !== null && event.before !== undefined ? 1 : event.products?.length ? .7 : null, household ? 'Permet de situer une situation ou un budget' : event.before !== null && event.before !== undefined ? 'Avant/après conservé avec périmètre' : event.products?.length ? 'Expositions nommées dans le communiqué' : 'Comparaison non documentée'],
+    comparison: [household || event.before !== null && event.before !== undefined ? 1 : event.products?.length || event.factType==='consumer-announcement' && event.angle ? .7 : null, household ? 'Permet de situer une situation ou un budget' : event.before !== null && event.before !== undefined ? 'Avant/après conservé avec périmètre' : event.products?.length ? 'Expositions nommées dans le communiqué' : event.factType==='consumer-announcement' && event.angle ? 'Angle pédagogique sourcé ; comparaison avant/après inconnue' : 'Comparaison non documentée'],
   }
   // Publication time takes precedence. A discovery today never rejuvenates an old document.
-  const publication = event.publishedAt ?? (event.field === 'announcement' ? event.period : null)
+  const publication = event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.publishedAt ?? (event.field === 'announcement' ? event.period : null)
   const age = publication ? (now-Date.parse(publication))/86400000 : NaN
   factors.freshness = [Number.isFinite(age) && age >= 0 ? age <= 2 ? 1 : age <= 7 ? .7 : age <= 14 ? .3 : 0 : null, publication ? `Publication : ${publication}` : 'Date de publication inconnue ; détection non substituée']
   const criteria = Object.entries(factors).map(([key, [factor, reason]]) => ({ key, points: factor === null ? 0 : Math.round(rules[key]*factor), maximum: rules[key], unknown: factor === null, reason }))
-  const score = criteria.reduce((total, row) => total+row.points, 0), quality = reliability(event)
-  return { score, criteria, reliability: quality, state, type, priority: quality.usable && state === 'ready' && score >= rules.priority, major: quality.usable && state === 'ready' && score >= rules.major && Number.isFinite(age) && age <= 2 }
+  const score = criteria.reduce((total, row) => total+row.points, 0), quality = reliability(event,now)
+  return { score, criteria, reliability: quality, state, type, priority: quality.usable && state === 'ready' && score >= rules.priority, major: quality.usable && state === 'ready' && score >= rules.major && Number.isFinite(age) && age >= 0 && age <= 2 }
 }
 export const editorialScore = (event, now) => editorialAssessment(event, now).score
 export function publicationKey(event) {
+  if (event.correctionOf) return JSON.stringify(['correction',event.correctionOf,event.id])
+  if (event.eventKey) return event.eventKey
   if (event.publicationId) return JSON.stringify([event.family, event.publicationId, event.publishedAt ?? event.period])
   return JSON.stringify([event.family, event.entity, event.period])
 }
@@ -126,7 +140,7 @@ export function publicationKey(event) {
 export function groupSignals(events, now = Date.now()) {
   const groups = new Map()
   for (const event of events) {
-    const state = editorialState(event), key = JSON.stringify([publicationKey(event), state])
+    const state = editorialState(event,now), key = JSON.stringify([publicationKey(event), state])
     if (!groups.has(key)) groups.set(key, { id: key, state, event, events: [] })
     groups.get(key).events.push(event)
   }
@@ -162,7 +176,7 @@ export function editorialAudience(event) {
 
 export function factualTitle(event) {
   if (event.family === 'economie' && event.unit && event.entity === 'salary-median') return `${event.label} : ${event.afterText} en ${event.period}`
-  if (event.factType === 'statistical-publication') return event.label
+  if (['statistical-publication','consumer-announcement'].includes(event.factType)) return event.label
   const filing = investorFilingType(event)
   if (filing === 'revision') return `${event.label} : relevé révisé pour la même période · ${event.period}`
   if (filing === 'unknown') return `${event.label} : période de déclaration à vérifier`

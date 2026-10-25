@@ -88,7 +88,7 @@ if (refresh) {
   result.state.sourceAccess = access
   result.feed.sources = [...publications.sources, ...news.sources, ...purchasing.sources, ...Object.values(access)]
   result.feed.documentQueue = Object.fromEntries(['pending','error','done'].map(status => [status, Object.values(launches.queue).filter(item => item.status === status).length]))
-  result.feed.metrics = { publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, publicationToDetectionHours: item.detectionDelayHours, detectionToAvailabilityHours: item.availabilityDelayHours })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
+  result.feed.metrics = { collection: publications.metrics, publicationDelays: Object.values(publications.state.documents).filter(item => item.observation).map(item => ({ url: item.url, publicationToDetectionHours: item.detectionDelayHours, detectionToAvailabilityHours: item.availabilityDelayHours })), classification: Object.fromEntries(['ready','watch','secondary'].map(status => [status, result.state.events.filter(event => editorialState(event) === status).length])) }
   result.feed.compositionPublicationLags = verification.deferred ?? []
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha

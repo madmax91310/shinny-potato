@@ -1,3 +1,5 @@
+> Évolution particuliers : [périmètre, exclusions, sources et recette](editorial-radar-particuliers.md). Les preuves ci-dessous décrivent le lot initial ; les nouveaux connecteurs ne sont pas encore déployés.
+
 # Radar éditorial — fonctionnement proposé le 24 octobre 2026
 
 Cette version est une évolution du Radar d’Épargnant Libre, à relire en PR avant fusion. Elle ne publie rien sur X. Le fonctionnement courant est déterministe : découverte, extraction, validation, classement et notification n’exigent aucun modèle génératif. Les ruptures de format nécessitent toujours une maintenance, signalée dans la supervision.
@@ -80,13 +82,13 @@ L’état conserve l’historique complet. Le flux conserve **tous** les sujets 
 
 ## Planification, notifications et reprise
 
-GitHub Actions ne garantit pas une exécution à la minute précise. Le cron UTC est `15 6-19 * * *` ; une garde `Europe/Paris` ne laisse passer les exécutions programmées que de 08 h à 20 h, heure locale. Ainsi, en été 06–18 UTC et en hiver 07–19 UTC. Le changement d’heure est couvert par les tests. Les retards du planificateur restent visibles via les dates de contrôle.
+GitHub Actions ne garantit pas une exécution à la minute précise. Le cron UTC proposé dans la PR particuliers est `7,37 6-19 * * *` (deux passages par heure) ; une garde `Europe/Paris` ne laisse passer les exécutions programmées que de 08 h à 20 h, heure locale. Ainsi, en été 06–18 UTC et en hiver 07–19 UTC. Le changement d’heure est couvert par les tests. Les retards du planificateur restent visibles via les dates de contrôle.
 
 Les passages programmés utilisent les dernières observations financières déjà validées, sans relancer la vérification DWS. Les `workflow_run` des collecteurs financiers conservent la voie lourde. Un échec de cette vérification conserve les faits précédents et signale une réserve, sans empêcher les nouvelles publications légères de paraître. Les collecteurs partagés, leurs calendriers et leurs validations financières ne sont pas modifiés.
 
 Le canal existant reste l’issue GitHub suivie, attribuée au propriétaire, avec mention dans les commentaires :
 
-- Événement majeur : fiable, exploitable, score ≥85, publication depuis ≤2 jours ; au plus deux groupes par passage et trois par jour de Paris.
+- Événement majeur : fiable, exploitable, score ≥85, publication depuis ≤2 jours ; au plus deux groupes par passage ; aucun plafond quotidien ne supprime le quatrième sujet. Le surplus reste en attente et admissible aux passages suivants ou au récapitulatif.
 - Récap quotidien : premier passage à partir de 19 h de Paris, jusqu’à cinq meilleurs nouveaux groupes exploitables depuis ≤14 jours, avec diversité de source/exposition ; un récap par date locale. Les alertes majeures restent possibles ensuite.
 - Les faits d’une même publication sont regroupés dans le même lot. Une publication déjà notifiée n’est pas renvoyée pour une reprise sur un autre canal ou un nouveau fait secondaire.
 - Les accusés sont enregistrés après un commentaire envoyé avec succès. Une description d’issue n’est pas un accusé. Après crash entre POST et commit, les marqueurs des commentaires du bot permettent la reprise sans doublon. Les erreurs restent en attente, sont persistées et exposées dans le flux.
