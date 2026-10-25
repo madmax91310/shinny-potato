@@ -1,3 +1,4 @@
+import { CONTROVERSIAL_SCENARIOS } from './controversial-profiles.js'
 import catalog from './catalog.json' with {type:'json'}
 // Scénarios éditoriaux fictifs : les revenus ne sont pas des statistiques salariales.
 // Les montants sont des objectifs mensuels, indépendants des cours des titres.
@@ -154,3 +155,11 @@ export const PROFILES = [
   profile("elodie", "👩‍💼", "Élodie", 38, "en couple, 1 enfant", "responsable d’exploitation transport", "à Lille", 3300, [["sp500",335],["europe",70],["water",45]], false, [77,14,9], "classic"),
   profile("bruno", "👨‍💼", "Bruno", 57, "marié, 2 enfants adultes", "gérant d’un cabinet d’assurance", "près de Vannes", 5800, [["world",750],["multifactor",400]], true, [67,33], "conviction"),
 ]
+
+// Catégorie de préparation uniquement ; les groupes éditoriaux historiques restent intacts.
+export const CONTROVERSIAL_PROFILES = CONTROVERSIAL_SCENARIOS.map(([id,name,age,job,income,positions]) => ({
+  ...profile(`debate-${id}`, ['Jade','Louise','Ambre','Rose','Lina','Mia','Louna','Nour','Eva','Romane','Margaux','Aya','Capucine','Agathe','Assia','Céleste','Yasmine','Maëlle','Alix','Aïcha','Bérénice','Solène','Flavie','Clarisse','Estelle'].includes(name) ? '👩' : '👨', name, age, '', job, '', income,
+    positions.map(([asset,,amount])=>[asset,amount]), false, positions.map(([,weight])=>weight)),
+  selection: 'controversial',
+}))
+export const ALL_PROFILES = [...PROFILES, ...CONTROVERSIAL_PROFILES]

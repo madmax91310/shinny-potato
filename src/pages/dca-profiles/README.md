@@ -42,3 +42,27 @@ Validation supplémentaire : `node scripts/test-dca-upgrade.mjs`, `python -m uni
 ## Images d’exposition
 
 Option « Expositions uniquement » : aucun pseudonyme, âge, activité, revenu ou montant de versement dans le PNG. Un nom vide est accepté dans ce mode. Choix géographie, secteurs ou les deux côte à côte, conservé dans les sauvegardes et brouillons. Chaque donut garde sa propre couverture et ses dates. Le mode avec identité reste disponible.
+
+## Sélections de préparation (25 octobre 2026)
+
+Les 100 scénarios historiques (`PROFILES`, y compris les 50 anciens groupes internes
+« conviction ») restent inchangés dans « Profils classiques ». Les 50 scénarios ajoutés
+sont définis dans `controversial-profiles.js`, exposés par `CONTROVERSIAL_PROFILES` et
+exclusivement accessibles via « Profils polémiques ». `ALL_PROFILES` réunit les deux
+banques pour l’interface ; `filterProfiles` applique la sélection avant les autres
+critères et retourne une liste vide sans repli. Effacer les filtres conserve la sélection.
+
+`selection` est une métadonnée interne, conservée dans les brouillons et sauvegardes.
+Son absence vaut `classic`, indépendamment de l’ancien `editorialGroup`. Restaurer un
+portefeuille restaure aussi sa sélection. Les règles historiques de cœur diversifié
+restent testées sur les 100 profils classiques ; elles ne s’appliquent pas aux nouveaux.
+Les supports sont ceux du catalogue existant, confirmés par ISIN dans `prepareProfile`.
+
+Les tweets conservent identité, salaire, DCA, poids détenus, versements, question et
+disclaimer ; les paragraphes automatiques de commentaire de l’allocation sont retirés.
+Aucune catégorie n’est transmise aux libellés publics. Le moteur de rendu PNG est inchangé.
+
+Contrôles supplémentaires : `node scripts/test-dca-selections.mjs` (également inclus dans
+`npm run test:dca`) et `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-dca-selections.mjs`.
+`test-dca-images.mjs` couvre les 150 profils dans les quatre mises en page existantes,
+ainsi que les cas limites historiques (620 rendus), avec contrôle des textes et débordements.

@@ -71,8 +71,8 @@ for(const p of PROFILES){
  if(p.editorialGroup==='classic')assert(p.holdings[0]>=68,p.id)
 }
 
-// Newly qualified direct holdings receive the same concentration explanation.
+// Les exports gardent uniquement la structure chiffrée et la question habituelle.
 for(const id of ['ines','manon','sophie']) {
  const p=PROFILES.find(p=>p.id===id)
- assert(buildTweetText(p).includes('actions détenues en direct'),id)
+ assert(!buildTweetText(p).includes('actions détenues en direct'),id)
 }

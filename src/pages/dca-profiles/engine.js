@@ -12,7 +12,7 @@ export function prepareProfile(profile) {
   const weights = profile.holdings?.length === profile.lines.length
     ? profile.holdings
     : profile.lines.map((_,i)=>i===0?100:0)
-  return {...profile, mode:'prepared',scope:'Portefeuille investi', approved:false,
+  return {...profile, selection:profile.selection === 'controversial' ? 'controversial' : 'classic', mode:'prepared',scope:'Portefeuille investi', approved:false,
     lines:profile.lines.map((line,i)=>({...line,weight:weights[i],isin:references[line.asset]?.isin ?? ''}))}
 }
 export function validateProfile(profile) {
