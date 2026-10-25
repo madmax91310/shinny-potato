@@ -899,22 +899,24 @@
     "checkedAt": "2026-10-25T07:13:06.876345+00:00"
   },
   "etcPalladium": {
-    "value": 30.1299991607666,
-    "asOf": "2026-10-23",
+    "value": 30.370273,
+    "asOf": "2026-10-22",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "IPDM.L",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "ff3855d74dc9fb2123cfb0cc2a743469cc58738d515326d22fdd91c427885dca",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B4556L06",
-    "ticker": "IPDM",
-    "mic": "XLON",
-    "listingEvidenceId": "IE00B4556L06-XLON-IPDM-USD",
-    "checkedAt": "2026-10-25T07:13:06.876345+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 30.370273,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle ajustée : rendement réinvesti publié de la part exacte, recalé sur sa NAV à date identique ; conversion BCE explicite si nécessaire ; aucun dividende ajouté une seconde fois",
+    "maxAgeDays": 7,
+    "sha256": "57adc81071ed155dc2ab8d2c52e1e6f8818b8cf236b8e61683c7125e6dffde06"
   },
   "etf_water_ishares": {
     "value": 76.80000305175781,
@@ -1007,22 +1009,24 @@
     "checkedAt": "2026-10-25T07:13:06.876345+00:00"
   },
   "etf_world_communication": {
-    "value": 7.798999786376953,
+    "value": 7.764556,
     "asOf": "2026-10-23",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "WCMS.AS",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "0c8bc13c97cee19ca5a707c1fcb0da6b0bc02b3c2011733154e607a203a2109c",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BJ5JP436",
-    "ticker": "WCMS",
-    "mic": "XAMS",
-    "listingEvidenceId": "IE00BJ5JP436-XAMS-WCMS-USD",
-    "checkedAt": "2026-10-25T07:13:06.876345+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 7.764556,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "4bb2bd9211610f7fb5140f40d19d2b8fda80b9f8394225df76fe596c2606b0c4"
   },
   "etf_private_equity_ishares": {
     "value": 26.655000686645508,
@@ -1079,40 +1083,45 @@
     "checkedAt": "2026-10-25T07:13:06.876345+00:00"
   },
   "etf_clean_energy": {
-    "value": 8.194000244140625,
+    "value": 8.239298668810864,
     "asOf": "2026-10-23",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "IQQH.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "1e72cc41f5499e6d61a5d442da0bcfa45f7e9f6d40f22d6af2e944a537a62c75",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B1XNHC34",
-    "ticker": "IQQH",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00B1XNHC34-XETR-IQQH-EUR",
-    "checkedAt": "2026-10-25T07:13:06.876345+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 9.222247,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-23",
+    "fxFactor": 0.893415527561869,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "66e1ce5a6be69a8db9a20edc8c231c1a7782d9a4a14d6200d259c5cbd2f99c31"
   },
   "etf_financials": {
-    "value": 8.32800006866455,
+    "value": 8.312877,
     "asOf": "2026-10-23",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "WFNS.AS",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "a97cd811f75b5fd16bc10eabba27db79ce9903a7ce63287c8b8474da1aa87da6",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00BJ5JP097",
-    "ticker": "WFNS",
-    "mic": "XAMS",
-    "listingEvidenceId": "IE00BJ5JP097-XAMS-WFNS-USD",
-    "checkedAt": "2026-10-25T07:13:06.876345+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 8.312877,
+    "nativeCurrency": "USD",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "b45ff3855ae0f8692d1b3c043d265541a5e81e9c71b752e58619a351cd68ee9d"
   },
   "etf_gold_miners": {
     "value": 81.15429286160993,
@@ -9357,22 +9366,25 @@
     "checkedAt": "2026-10-25T07:13:06.876345+00:00"
   },
   "etfIE00B2QWCY14": {
-    "value": 100.0,
+    "value": 100.05839274546591,
     "asOf": "2026-10-23",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "IUS3.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "0845b91f1401fde88fb28325aceef80078817e95443eb8aa2afcd28afcfd8e3e",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "IE00B2QWCY14",
-    "ticker": "IUS3",
-    "mic": "XETR",
-    "listingEvidenceId": "IE00B2QWCY14-XETR-IUS3-EUR",
-    "checkedAt": "2026-10-25T07:13:06.876345+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 111.995359,
+    "nativeCurrency": "USD",
+    "fxAsOf": "2026-10-23",
+    "fxFactor": 0.893415527561869,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-25",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "b49b1869beac515cbe30f4098cd490f88461eb404bfffd05b5afc8586b7afa58"
   },
   "etfIE00B3VWMM18": {
     "value": 349.8500061035156,

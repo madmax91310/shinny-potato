@@ -21,6 +21,8 @@ export function qualifyHistoryWindow(asset, start, end, { contiguous = true } = 
     const nested=qualifyHistoryWindow(line.asset,start,end,{contiguous})
     if(!nested.qualified)return nested
   }
+  const unqualified=asset.historyExcludedMonths?.find(month=>start<=month&&month<=end)
+  if(unqualified)return {qualified:false,code:'issuer-components-unreconciled',reason:`Composants officiels non rapprochés pour ${unqualified} ; seules les fenêtres utilisant ce mois sont refusées.`}
   const financial=unresolvedFinancialWindow(asset,start,end,convention)
   if(financial)return financial
   for(const rule of RESTRICTIONS){

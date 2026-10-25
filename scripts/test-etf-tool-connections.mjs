@@ -79,7 +79,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(latest.mic, asset.mic)
   assert.equal(latest.currency, asset.currency)
   assert.match(latest.method,asset.valuationBasis?/Valeur liquidative officielle/:/cours brut/)
-  assert.equal(latest.valuationBasis,asset.valuationBasis)
+  assert.equal(latest.valuationBasis,asset.anniversaryValuationBasis??asset.valuationBasis)
   assert.equal(resolveAnniversaryLevel(id, '', new Date(`${latest.asOf}T12:00:00Z`)).value, latest.value)
   const validYearsBack=getValidYearsBackOptions(id,new Date())
   if (!validYearsBack.length) continue

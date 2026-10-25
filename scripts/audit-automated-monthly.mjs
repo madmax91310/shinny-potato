@@ -69,7 +69,7 @@ for (const [id, record] of Object.entries(records)) {
     if (record.parser === 'msci') assert(Math.abs(row.value-row.monthlyValue)<=.0001);
     assert.deepEqual(asset.points[i], { date, price });
     if (record.anniversaryPoints?.length) {
-      assert.equal(record.anniversaryPoints[i][1], Math.round((record.parser==='official-nav'?row.value:row.close)*10**record.precision)/10**record.precision);
+      assert.equal(record.anniversaryPoints[i][1], Math.round((record.anniversaryValuationBasis==='fund-nav-price'?row.anniversaryValue:record.parser==='official-nav'?row.value:row.close)*10**record.precision)/10**record.precision);
       assert.deepEqual(ASSETS[id].anniversaryPoints[i], {date,price:record.anniversaryPoints[i][1]});
     }
   }

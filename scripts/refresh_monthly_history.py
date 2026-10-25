@@ -382,18 +382,19 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
             previous=current.get(source['id'])
             if previous:
                 if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
-                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom']):
+                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom','navHistoryKind']):
                     reject('Existing exact series identity changed')
+                # A stale response can also rescale historical adjusted levels.
+                # Date monotonicity is independent of whether the months changed.
+                prior_level=previous.get('latestLevel')or{}
+                next_level=active.get('latestLevel')or{}
+                if next_level and prior_level and next_level['asOf']<prior_level['asOf']:
+                    reject('Latest NAV observation would regress')
+                if active['checkedAt']<previous.get('checkedAt',''):
+                    reject('Source control date would regress')
                 if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):
-                    # Monthly prices can stay unchanged while the current daily NAV,
-                    # its date or the source proof changes. Keep the validated observation,
-                    # never replace it with the old snapshot merely because months agree.
-                    prior_level=previous.get('latestLevel')or{}
-                    next_level=active.get('latestLevel')or{}
-                    if next_level and prior_level and next_level['asOf']<prior_level['asOf']:
-                        reject('Latest NAV observation would regress')
-                    if active['checkedAt']<previous.get('checkedAt',''):
-                        reject('Source control date would regress')
+                    # Keep the newly validated daily observation and proof even
+                    # when completed monthly prices are unchanged.
                     active={**previous,**active}
             unchanged=bool(previous and previous['points']==active['points'] and previous.get('anniversaryPoints',[])==active.get('anniversaryPoints',[]))
             return {'id':source['id'],'status':'validated','sourceState':'unchanged-verified'if unchanged else'succeeded','record':active,'evidence':result}
@@ -412,6 +413,8 @@ def monitoring_report(report):
         {key: row[key] for key in ('id', 'status', 'sourceState', 'reason') if key in row} |
         ({'periodEnd': row['record']['periodEnd'],
           'responseSha256': row['evidence'].get('responseSha256'),
+          **({'usageState':'partial','usageLimits':{key:row['record'][key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if row['record'].get(key)}}
+             if any(row['record'].get(key)for key in ['historyExcludedMonths','anniversaryExcludedMonths'])else{}),
           **({'controlScope':{key:row['evidence']['calendarProof'][key]for key in ['controlledInstrument','controlledFields','requestedStart','controlledCalendarYears']}}
              if row['evidence'].get('calendarProof',{}).get('controlledFields')else{})}
          if row['status'] == 'validated' else {})

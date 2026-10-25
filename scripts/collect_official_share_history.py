@@ -144,7 +144,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             (capture/(hashes[url]+'.json.gz')).write_bytes(gzip.compress(body))
         return value
     kind=source['navProvider'];isin=source['isin'];native=source['navCurrency']
-    identity_from=source.get('identityFrom');calendar_precision=2;calendar_proof={}
+    identity_from=source.get('identityFrom');calendar_precision=2;calendar_proof={};anniversary_nav=None
     if kind=='amundi':
         from collect_amundi_etf import fetch_api, API
         from amundi_nav_history import request_payload, parse
@@ -161,12 +161,19 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     elif kind=='blackrock':
         query=urllib.parse.urlencode(dict(appSubType='ISHARES',appType='PRODUCT_PAGE',component='keyFundFacts,performance',locale='en_GB',portfolioId=source['productId'],targetSite='ishares-uk',userType='individual',excludeContent='true',includeConfig='true'))
         body=data(source['sourceUrl']+'?'+query);parsed=blackrock_nav(body,isin,native,now)
-        if parsed['distribution']!='Accumulating':raise ValueError('Raw NAV does not qualify a distributing share')
-        nav=parsed['nav'];years=parsed['years']
-        # With accumulation the official daily NAV and income-reinvested chart must agree.
-        checks=calendar_checks(parsed['totalReturn'],years,2,now,identity_from)
-        calendar_checks(nav,years,2,now,identity_from)
-        calendar_proof={'officialIncomeReinvestedChartChecks':checks,'shareInception':parsed['inception']}
+        years=parsed['years']
+        if source.get('navHistoryKind')=='official-income-reinvested-index':
+            from blackrock_income_history import qualify
+            nav,calendar_proof=qualify(body,parsed,source,now)
+            if parsed['distribution']=='Distributing':anniversary_nav=parsed['nav']
+            calendar_proof['shareInception']=parsed['inception']
+        else:
+            if parsed['distribution']!='Accumulating':raise ValueError('Raw NAV does not qualify a distributing share')
+            nav=parsed['nav']
+            # Accumulation keeps its independently checked raw-NAV path.
+            checks=calendar_checks(parsed['totalReturn'],years,2,now,identity_from)
+            calendar_checks(nav,years,2,now,identity_from)
+            calendar_proof={'officialIncomeReinvestedChartChecks':checks,'shareInception':parsed['inception']}
         credit='BlackRock iShares'
     elif kind=='dws':
         from collect_dws_etf import parse_product
@@ -264,7 +271,16 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     fx=json.loads((ROOT/'src/data/monthly-fx.json').read_text())
     points,proof_rows=monthly(nav,native,source['currency'],source['periodStart'],now,fx)
     points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in points]
-    eligible=[d for d in nav if d<now.date().isoformat()]
+    anniversary_points=points
+    if anniversary_nav:
+        prices,price_proofs=monthly(anniversary_nav,native,source['currency'],source['periodStart'],now,fx)
+        by_month={row['date'][:7]:row for row in price_proofs}
+        for row in proof_rows:
+            price=by_month[row['date'][:7]]
+            row.update(anniversaryValue=price['value'],anniversaryDate=price['date'])
+        anniversary_points=[[d,math.floor(v*10**source['precision']+.5)/10**source['precision']]for d,v in prices]
+    latest_values=anniversary_nav or nav
+    eligible=[d for d in latest_values if d<now.date().isoformat()]
     latest=max(eligible)
     daily_policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['series.dailyNav']
     if (now.date()-dt.date.fromisoformat(latest)).days>daily_policy['dataDays']:raise ValueError('Official latest NAV is stale')
@@ -277,16 +293,18 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         rates={d.isoformat():v for d,v in ecb_daily_usd(xml).items()};fx_date=max(d for d in rates if d<=latest)
         if (dt.date.fromisoformat(latest)-dt.date.fromisoformat(fx_date)).days>4:raise ValueError('Official daily NAV/FX dates incompatible')
         factor=1/rates[fx_date];urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
-    latest_level={'value':nav[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
-       'parser':'official-nav','valuationBasis':source['valuationBasis'],'nativeValue':nav[latest],'nativeCurrency':native,
+    latest_level={'value':latest_values[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
+       'parser':'official-nav','valuationBasis':'fund-nav-price'if anniversary_nav else source['valuationBasis'],'nativeValue':latest_values[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),
-       'method':'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
+       'method':'Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire'if anniversary_nav else source['method']if source.get('navHistoryKind')else'Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire',
        'maxAgeDays':daily_policy['dataDays'],'sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()}
-    result={**source,'points':points,'anniversaryPoints':points,'checkedAt':now.date().isoformat(),
+    result={**source,'points':points,'anniversaryPoints':anniversary_points,**({'anniversaryValuationBasis':'fund-nav-price','anniversaryVariant':'Valeurs liquidatives publiées · hors distributions'}if anniversary_nav else{}),'checkedAt':now.date().isoformat(),
             'periodEnd':points[-1][0],'sourceUrls':urls,'sourceCredit':credit,
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
-            'financialConvention':'exact-share accumulated net NAV; no exchange-price claim',
-            'calendarProof':{**calendar_proof,'checks':checks},'proofRows':proof_rows,
+            'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')else'exact-share accumulated net NAV; no exchange-price claim'),
+            'calendarProof':{**calendar_proof,'checks':checks},
+            **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if calendar_proof.get(key)}),
+            'proofRows':proof_rows,
             'responseSha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),
             'rawSourceHashes':hashes}
     return result

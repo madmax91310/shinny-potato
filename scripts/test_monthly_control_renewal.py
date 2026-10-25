@@ -24,5 +24,8 @@ class MonthlyControlRenewal(unittest.TestCase):
   stale={**incoming,'latestLevel':previous['latestLevel']}
   kept,failed=refresh({'series':[source]},merged,baseline,dt.datetime(2026,2,7,tzinfo=dt.timezone.utc),lambda *a:stale)
   self.assertEqual(kept,merged);self.assertEqual(failed['series'][0]['status'],'failed')
+  changed=copy.deepcopy(stale);changed['points'][0][1]=99
+  kept,failed=refresh({'series':[source]},merged,baseline,dt.datetime(2026,2,7,tzinfo=dt.timezone.utc),lambda *a:changed)
+  self.assertEqual(kept,merged);self.assertEqual(failed['series'][0]['status'],'failed')
 
 if __name__=='__main__':unittest.main()
