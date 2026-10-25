@@ -5,61 +5,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:06:04.018Z"
+        "attemptedAt": "2026-10-25T15:07:26.378Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3,
-        "attemptedAt": "2026-10-25T15:06:04.018Z"
+        "attemptedAt": "2026-10-25T15:07:26.379Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:06:04.019Z"
+        "attemptedAt": "2026-10-25T15:07:26.380Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:06:04.020Z"
+        "attemptedAt": "2026-10-25T15:07:26.381Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-25T15:06:04.020Z"
+        "attemptedAt": "2026-10-25T15:07:26.382Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-25T15:06:04.021Z"
+        "attemptedAt": "2026-10-25T15:07:26.383Z"
       }
     ],
     "items": [
@@ -590,7 +590,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-10-23",
         "period": "2026-10-23",
-        "checkedAt": "2026-10-25T13:32:13.739Z",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
         "populationScope": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires.",
         "topic": "energie",
@@ -609,7 +609,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "6892c6b1497d9b88860f4f77f5d18ea24b45720ccf9959a049e42592ea5586a3",
+          "sourceHash": "026a61cae6e121aacc3ff79d2c9cb86a1f4296e3699efd1969f8f25d8992ae2b",
           "excerpt": "À partir du 1er novembre 2026, les horaires des heures creuses évoluent pour 9,3 millions de foyers supplémentaires. Cette évolution, organisée par la Commission de régulation de l’énergie et mise en œuvre par Enedis, vise à mieux adapter les périodes de consommation aux besoins du réseau électrique et à la production d’électricité.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -1248,6 +1248,72 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-a6dbe0434c1a6d389e6e",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge",
+        "value": {
+          "title": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge",
+          "summary": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+        "publicationId": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-22",
+        "period": "2026-10-22",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+        "populationScope": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août.",
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/livret-zesto",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/compte-epargne-revolut",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/cashbee",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/livret/livret-monabanq-rentabilis",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "c2fd5dc9835cc0661d3d6d6b4f80d2cf0a6384cf86a8daaa1e87c626781fc469",
+          "excerpt": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-af066d5743d107c9f15d",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -1451,7 +1517,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -1696,7 +1762,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1730,7 +1796,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -2302,7 +2368,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -3309,7 +3375,7 @@
         "publisher": "Bourse Direct",
         "publishedAt": "2026-05-12",
         "period": "2026-05-12",
-        "checkedAt": "2026-10-25T13:37:25.217Z",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres-20260512",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
         "topic": "etf",
@@ -3556,7 +3622,7 @@
         "publisher": "BoursoBank Groupe · communiqués",
         "publishedAt": "2026-04-15",
         "period": "2026-04-15",
-        "checkedAt": "2026-10-25T13:35:36.065Z",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursofirst-l-offre-de-banque-privee-de-boursobank-atteint-2md-d-encours-et-s-enrichit-de-nouveaux-produits-et-services",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
         "topic": "banques",
@@ -3574,7 +3640,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "a539bc3478c36fc54448c45b3476fffbe29e1a959b20749bc0ee82d86b3a0543",
+          "sourceHash": "f5d81a668c7bf811dfaf27b3f2aa12cf544c61ea7b03aba786dc5f825b41e327",
           "excerpt": "Lancée fin 2024, l’offre patrimoniale BoursoFirst franchit le cap des 2 Md€ d’encours. Pour répondre au mieux aux attentes de ses clients patrimoniaux, BoursoBank complète BoursoFirst avec un nouveau livret sans plafond et rémunéré à 2,40 % 1 jusqu’au 31 décembre, un enrichissement de son assurance-vie luxembourgeoise, et de nouveaux contenus digitaux en vidéos et podcasts.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3668,7 +3734,7 @@
         "publisher": "BoursoBank Groupe · communiqués",
         "publishedAt": "2026-03-18",
         "period": "2026-03-18",
-        "checkedAt": "2026-10-25T13:37:25.217Z",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
         "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-enrichit-son-offre-en-matiere-d-education-financiere",
         "populationScope": "Clients BoursoBank dans les conditions du communiqué",
         "topic": "banques",
@@ -3686,7 +3752,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "ad2e3fe4e2e282bdcea1234c6c8e9b5f59d8ab72a870934f0630189343be8e5a",
+          "sourceHash": "ad66219ec6ad99307f2edeebb550fa2d2624ca150997e783ffff2cdc7687abdf",
           "excerpt": "A l’occasion de la Semaine de l’éducation financière, BoursoBank annonce de nouveaux dispositifs pédagogiques sur tous les canaux et sous tous les formats pour donner à chacun les moyens d’agir sur son argent : partenariats avec des finfluenceurs, podcasts, vidéos avec Le HuffPost, démultiplication des contenus du portail boursorama.com en formats courts et adaptés pour une diffusion sur les réseaux sociaux, et engagement renouvelé aux côtés du Baromètre ViveS « Les femmes et l’argent ». Autant d’initiatives complémentaires pour rendre la finance plus compréhensible et accessible à tous.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -4941,6 +5007,72 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-a3974fc9c1c6c183436d",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+        "value": {
+          "title": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
+          "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2024-07-10",
+        "period": "2024-07-10",
+        "checkedAt": "2026-10-25T15:07:26.384Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
+        "populationScope": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/73656/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_qui_proposent_en_France_des_investissements_sur_le_Forex_et_sur_des_produits_derives_sur_crypto-actifs_sans_y_etre_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-professionnels/fintech/mes-relations-avec-lamf/exercer-une-activite-de-prestataire-de-services-de-financement-participatif-psfp-en-france",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://acpr.banque-france.fr/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "8dcb5f8a91e1e5503c60ac118c556132bb23f782a1b7de7451cd47062e22623b",
+          "excerpt": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-1dd82ae23ef7096224a0",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -5045,19 +5177,19 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T15:06:23.574Z",
+  "checkedAt": "2026-10-25T15:07:46.295Z",
   "sourceRevision": "da49b5fd94be9411c5ba92ff88f58ee3f0aa4840",
-  "observationCount": 7556,
+  "observationCount": 7562,
   "coverage": {
-    "etf": 320,
+    "etf": 323,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 128,
-    "pouvoir-achat": 72
+    "economie": 129,
+    "pouvoir-achat": 74
   },
   "newSignalCount": 1,
   "errors": [
@@ -5083,12 +5215,12 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.insee.fr/fr/statistiques/8733125",
+      "entity": "https://www.insee.fr/fr/statistiques/8071406",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q1",
+      "entity": "https://www.insee.fr/fr/statistiques/8733125",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -5128,6 +5260,11 @@
     },
     {
       "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2024-q1",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
+      "family": "economie",
       "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t4",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
@@ -5152,17 +5289,136 @@
       "reason": "The operation was aborted due to timeout"
     },
     {
-      "family": "economie",
-      "entity": "https://www.insee.fr/fr/statistiques/8071406",
-      "reason": "Résumé statistique chiffré absent : extraction à adapter"
-    },
-    {
       "family": "etf",
       "entity": "IE00B3T9LM79",
       "reason": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22)."
     }
   ],
   "events": [
+    {
+      "topic": "epargne",
+      "topicLabel": "Épargne et placements",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+      "publishedAt": "2026-10-22",
+      "publicationId": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+      "evidence": {
+        "sourceHash": "c2fd5dc9835cc0661d3d6d6b4f80d2cf0a6384cf86a8daaa1e87c626781fc469",
+        "excerpt": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/livret-zesto",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/compte-epargne-revolut",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/cashbee",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/livret/livret-monabanq-rentabilis",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "bb2fc5a941798efd237f67ed",
+      "family": "pouvoir-achat",
+      "entity": "publication-a6dbe0434c1a6d389e6e",
+      "label": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T15:07:46.295Z",
+      "before": null,
+      "after": {
+        "title": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge",
+        "summary": "Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge · summary : Les épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-22",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T15:07:26.384Z",
+      "tool": null,
+      "angle": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge — Quelles conditions changent pour les détenteurs de cette épargne ?",
+      "draft": "Livret A, LDDS, LEP : pas d'effet taux en septembre, la collecte dans le rouge\n\nLes épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août. Les Français ont retiré 1,52 milliard d'euros de plus qu'il n'en ont déposé sur leurs petits livrets rouges le mois dernier. Le Livret de développement durable et solidaire ( LDDS ), produit d'épargne cousin du Livret A , a suivi la même trajectoire : il s'est dégarni d'environ 700 millions d'euros en septembre.\n\nPublication : 2026-10-22 · Annonce publiée\nLes épargnants ont encore pioché dans leurs Livrets A en septembre, plus qu'ils ne les ont garnis, selon les données publiées jeudi par la Caisse des dépôts (CDC), malgré un taux de rendement légèrement amélioré depuis le mois d'août.\n\nSource : https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+      "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 84,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-22"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
     {
       "topic": "banques",
       "topicLabel": "Banques et services",
@@ -78042,7 +78298,7 @@
       "status": "Entrée en vigueur annoncée",
       "sourceUrl": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
       "publishedAt": "2026-10-23",
-      "checkedAt": "2026-10-25T13:32:13.739Z",
+      "checkedAt": "2026-10-25T15:07:26.384Z",
       "note": "Date annoncée ; ne prouve pas une nouvelle publication ni son application effective."
     },
     {
@@ -78174,14 +78430,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:59:59.104Z",
       "queue": {
-        "pending": 37,
-        "done": 11,
+        "pending": 36,
+        "done": 12,
         "error": 0,
         "rejected": 33
       },
       "extractionStatus": "validated",
       "silentBaselines": 0,
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z"
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z"
     },
     {
       "id": "bourse-direct-news",
@@ -78204,7 +78460,7 @@
         "rejected": 5
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78229,7 +78485,7 @@
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "silentBaselines": 0
     },
     {
@@ -78271,13 +78527,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:29:59.104Z",
       "queue": {
-        "pending": 138,
-        "done": 20,
+        "pending": 137,
+        "done": 21,
         "error": 1,
         "rejected": 41
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78296,13 +78552,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:29:59.104Z",
       "queue": {
-        "pending": 9,
-        "done": 17,
+        "pending": 8,
+        "done": 18,
         "error": 0,
         "rejected": 44
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78327,7 +78583,7 @@
         "rejected": 7
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:04:40.083Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78522,13 +78778,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T16:59:59.104Z",
       "queue": {
-        "pending": 23,
-        "done": 20,
+        "pending": 21,
+        "done": 22,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "silentBaselines": 0
     },
     {
@@ -78796,13 +79052,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T15:59:59.104Z",
       "queue": {
-        "pending": 1,
-        "done": 21,
+        "pending": 0,
+        "done": 22,
         "error": 0,
         "rejected": 6
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -78821,13 +79077,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 49,
-        "done": 34,
+        "pending": 48,
+        "done": 35,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T15:06:04.021Z",
+      "lastExtractionSuccessAt": "2026-10-25T15:07:26.384Z",
       "silentBaselines": 0
     },
     {
@@ -78836,7 +79092,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T15:06:04.020Z",
+      "attemptedAt": "2026-10-25T15:07:26.382Z",
       "discovered": 12,
       "etag": "\"1792940404-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 15:00:04 GMT",
@@ -78936,7 +79192,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T15:06:04.027Z",
+      "attemptedAt": "2026-10-25T15:07:26.395Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -78955,7 +79211,7 @@
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T15:06:04.028Z",
+      "attemptedAt": "2026-10-25T15:07:26.396Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -78974,7 +79230,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T15:06:04.029Z",
+      "attemptedAt": "2026-10-25T15:07:26.397Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -78999,7 +79255,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T15:06:04.029Z",
+      "attemptedAt": "2026-10-25T15:07:26.398Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -79017,84 +79273,84 @@
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T15:06:04.013Z",
-      "lastSuccessAt": "2026-10-25T15:06:04.013Z",
+      "checkedAt": "2026-10-25T15:07:26.373Z",
+      "lastSuccessAt": "2026-10-25T15:07:26.373Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T15:06:04.013Z"
+      "attemptedAt": "2026-10-25T15:07:26.374Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T15:06:04.013Z",
-      "lastSuccessAt": "2026-10-25T15:06:04.013Z",
+      "checkedAt": "2026-10-25T15:07:26.373Z",
+      "lastSuccessAt": "2026-10-25T15:07:26.373Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-25T15:06:04.016Z"
+      "attemptedAt": "2026-10-25T15:07:26.375Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:06:04.018Z"
+      "attemptedAt": "2026-10-25T15:07:26.378Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3,
-      "attemptedAt": "2026-10-25T15:06:04.018Z"
+      "attemptedAt": "2026-10-25T15:07:26.379Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:06:04.019Z"
+      "attemptedAt": "2026-10-25T15:07:26.380Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:06:04.020Z"
+      "attemptedAt": "2026-10-25T15:07:26.381Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-25T15:06:04.020Z"
+      "attemptedAt": "2026-10-25T15:07:26.382Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T15:06:04.017Z",
+      "checkedAt": "2026-10-25T15:07:26.376Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-25T15:06:04.021Z"
+      "attemptedAt": "2026-10-25T15:07:26.383Z"
     },
     {
       "id": "ishares",
@@ -79302,10 +79558,10 @@
   "metrics": {
     "collection": {
       "requests": 16,
-      "bytes": 1936928,
+      "bytes": 1531072,
       "notModified": 0,
-      "durationMs": 16383,
-      "checkedAt": "2026-10-25T15:06:04.021Z"
+      "durationMs": 17633,
+      "checkedAt": "2026-10-25T15:07:26.384Z"
     },
     "publicationDelays": [
       {
@@ -80024,6 +80280,11 @@
         "detectionToAvailabilityHours": 21.631864166666666
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/changements-sur-le-fond-amundi-pea-obligations-d-tat-euro",
+        "publicationToDetectionHours": 17705.469252777777,
+        "detectionToAvailabilityHours": 21.654742777777777
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -80169,6 +80430,11 @@
         "detectionToAvailabilityHours": 9.1840775
       },
       {
+        "url": "https://www.moneyvox.fr/livret-a/actualites/110937/livret-a-ldds-lep-pas-effet-taux-en-septembre-la-collecte-dans-le-rouge",
+        "publicationToDetectionHours": 77.91703944444444,
+        "detectionToAvailabilityHours": 9.206956111111111
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -80267,6 +80533,11 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-0",
         "publicationToDetectionHours": 17909.917039444445,
         "detectionToAvailabilityHours": 9.1840775
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-7",
+        "publicationToDetectionHours": 20093.917039444445,
+        "detectionToAvailabilityHours": 9.206956111111111
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -80499,6 +80770,16 @@
         "detectionToAvailabilityHours": 7.244704722222222
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Fixed-income-etf-10-feb-2025_uk.pdf",
+        "publicationToDetectionHours": 14935.856412222221,
+        "detectionToAvailabilityHours": 7.2675833333333335
+      },
+      {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/Invesco-launches-us-equity-etf-with-climate-transition-30-jan-2025_uk.pdf",
+        "publicationToDetectionHours": 15199.856412222221,
+        "detectionToAvailabilityHours": 7.2675833333333335
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -80584,13 +80865,18 @@
         "detectionToAvailabilityHours": 3.3160716666666668
       },
       {
+        "url": "https://www.insee.fr/fr/statistiques/8379336",
+        "publicationToDetectionHours": 14531.785045277778,
+        "detectionToAvailabilityHours": 3.3389502777777778
+      },
+      {
         "url": "https://www.moneyvox.fr/epargne/credit-agricole/forfaits-bancaires",
         "publicationToDetectionHours": 38076.78327583333,
         "detectionToAvailabilityHours": 0.7289561111111111
       }
     ],
     "classification": {
-      "ready": 90,
+      "ready": 91,
       "watch": 35,
       "secondary": 360
     }
@@ -80602,64 +80888,64 @@
       {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-25T15:06:04.013Z",
-        "attemptedAt": "2026-10-25T15:06:04.013Z",
+        "checkedAt": "2026-10-25T15:07:26.373Z",
+        "attemptedAt": "2026-10-25T15:07:26.374Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-25T15:06:04.013Z",
-        "attemptedAt": "2026-10-25T15:06:04.016Z",
+        "checkedAt": "2026-10-25T15:07:26.373Z",
+        "attemptedAt": "2026-10-25T15:07:26.375Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.018Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.378Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.018Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.379Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.019Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.380Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.020Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.381Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.020Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.382Z",
         "status": "unchanged-verified",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.021Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.383Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
@@ -80668,14 +80954,14 @@
       {
         "id": "radar-source:revolut-news",
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
-        "attemptedAt": "2026-10-25T15:06:04.027Z",
+        "attemptedAt": "2026-10-25T15:07:26.395Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:wisdomtree",
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-25T15:06:04.028Z",
+        "attemptedAt": "2026-10-25T15:07:26.396Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
@@ -80683,14 +80969,14 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T15:06:04.029Z",
+        "attemptedAt": "2026-10-25T15:07:26.397Z",
         "error": "fetch failed",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-25T15:06:04.029Z",
+        "attemptedAt": "2026-10-25T15:07:26.398Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       }
@@ -80949,7 +81235,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-25T14:59:59.104Z",
-      "attemptedAt": "2026-10-25T15:06:04.020Z",
+      "attemptedAt": "2026-10-25T15:07:26.382Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-25T15:59:59.104Z"
@@ -81648,13 +81934,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-25T15:06:00.963153+00:00",
-      "nonce": "1716e45a-008e-44a5-892b-2644fcf49954",
+      "declaredAt": "2026-10-25T15:07:22.956238+00:00",
+      "nonce": "90d27804-4abf-4e44-a2d6-a8b63f3638f2",
       "codeSha": "da49b5fd94be9411c5ba92ff88f58ee3f0aa4840",
       "durablePlan": true,
-      "runId": "40205011570",
+      "runId": "40205140297",
       "attempt": "1",
-      "sha256": "9f7aaac8a105ce400a8e53b7832761e68496c6394ce2b03e0a6770a51fe1b4c5"
+      "sha256": "6efd381ec403fa1168b93f2e53bcb967c998f9f3071e84cca8244c53941af867"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -82337,8 +82623,8 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-25T15:06:00.963153+00:00",
-      "planSha256": "9f7aaac8a105ce400a8e53b7832761e68496c6394ce2b03e0a6770a51fe1b4c5",
+      "declaredAt": "2026-10-25T15:07:22.956238+00:00",
+      "planSha256": "6efd381ec403fa1168b93f2e53bcb967c998f9f3071e84cca8244c53941af867",
       "attemptedIds": [
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
@@ -82369,10 +82655,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40205011570",
+      "runId": "40205140297",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "1716e45a-008e-44a5-892b-2644fcf49954"
+      "nonce": "90d27804-4abf-4e44-a2d6-a8b63f3638f2"
     },
     "outcomes": [
       {
@@ -82537,7 +82823,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/fr-FR/news/",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:06:04.027Z",
+        "attemptedAt": "2026-10-25T15:07:26.395Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -82831,7 +83117,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:06:04.028Z",
+        "attemptedAt": "2026-10-25T15:07:26.396Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -82846,7 +83132,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-25T14:59:59.104Z",
-        "attemptedAt": "2026-10-25T15:06:04.020Z",
+        "attemptedAt": "2026-10-25T15:07:26.382Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-25T15:59:59.104Z",
@@ -82903,7 +83189,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-25T15:06:04.029Z",
+        "attemptedAt": "2026-10-25T15:07:26.397Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -82917,7 +83203,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-25T15:06:04.029Z",
+        "attemptedAt": "2026-10-25T15:07:26.398Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -82931,8 +83217,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.018Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.378Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -82945,8 +83231,8 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.018Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.379Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -82959,8 +83245,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.019Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.380Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -82973,8 +83259,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.020Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.381Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -82987,8 +83273,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.020Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.382Z",
         "status": "unchanged-verified",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83001,8 +83287,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.017Z",
-        "attemptedAt": "2026-10-25T15:06:04.021Z",
+        "checkedAt": "2026-10-25T15:07:26.376Z",
+        "attemptedAt": "2026-10-25T15:07:26.383Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83208,8 +83494,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.013Z",
-        "attemptedAt": "2026-10-25T15:06:04.013Z",
+        "checkedAt": "2026-10-25T15:07:26.373Z",
+        "attemptedAt": "2026-10-25T15:07:26.374Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83222,8 +83508,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-25T15:06:04.013Z",
-        "attemptedAt": "2026-10-25T15:06:04.016Z",
+        "checkedAt": "2026-10-25T15:07:26.373Z",
+        "attemptedAt": "2026-10-25T15:07:26.375Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -83256,13 +83542,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-25T15:06:36.259Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
