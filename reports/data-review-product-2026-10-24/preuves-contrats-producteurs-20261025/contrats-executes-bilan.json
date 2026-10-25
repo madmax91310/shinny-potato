@@ -1,24 +1,24 @@
 {
   "counts": {
     "workflows": 20,
-    "executions": 22,
+    "executions": 26,
     "distinctV1Reports": 41,
-    "v1Reports": 43,
+    "v1Reports": 47,
     "legacyReportsPreserved": 4,
-    "outcomes": 5417,
+    "outcomes": 5597,
     "statuses": {
-      "unchanged-verified": 696,
-      "not-attempted": 732,
-      "succeeded": 3653,
+      "unchanged-verified": 756,
+      "not-attempted": 794,
+      "succeeded": 3657,
       "not-applicable": 8,
       "cached": 9,
-      "failed": 10,
+      "failed": 14,
       "deferred": 260,
-      "waiting": 49
+      "waiting": 99
     },
     "technicalErrors": 0
   },
-  "scope": "Unités de validation natives du producteur ; aucune certification indépendante de chaque scalaire financier. 20 captures de référence après #950 et deux compléments 13F (planifié et manuel après correctif), soit 22 captures ; les compteurs v1Reports désignent les observations de rapports, distinctV1Reports les couples workflow/fichier uniques ; la publication financière et les exécutions courantes figurent séparément dans le bilan consolidé.",
+  "scope": "Unités de validation natives du producteur ; aucune certification indépendante de chaque scalaire financier. 20 captures de référence après #950 et compléments datés (Radar/13F planifiés et 13F après corrections), avec un run distinct par capture ; les compteurs v1Reports désignent les observations de rapports, distinctV1Reports les couples workflow/fichier uniques ; la publication financière et les exécutions courantes figurent séparément dans le bilan consolidé.",
   "proofs": [
     {
       "workflow": "update-investor-13f.yml",
@@ -323,6 +323,61 @@
       },
       "technicalErrors": [],
       "proofFile": "planifie-13f/40212273808-contracts.json.gz"
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "runId": 40220749965,
+      "trigger": "schedule",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 62,
+      "statuses": {
+        "waiting": 50,
+        "failed": 4,
+        "succeeded": 4,
+        "unchanged-verified": 4
+      },
+      "technicalErrors": [],
+      "proofFile": "planifie-radar-complement/40220749965-contracts.json.gz"
+    },
+    {
+      "workflow": "update-editorial-radar.yml",
+      "runId": 40234172964,
+      "trigger": "schedule",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 62,
+      "statuses": {
+        "not-attempted": 62
+      },
+      "technicalErrors": [],
+      "proofFile": "planifie-radar-dernier-passage/40234172964-contracts.json.gz"
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runId": 40233623691,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 28,
+      "statuses": {
+        "unchanged-verified": 28
+      },
+      "technicalErrors": [],
+      "proofFile": "publication-apres-recu/40233623691-contracts.json.gz"
+    },
+    {
+      "workflow": "update-investor-13f.yml",
+      "runId": 40232855300,
+      "trigger": "workflow_dispatch",
+      "reportsV1": 1,
+      "legacyReportsPreserved": 0,
+      "outcomes": 28,
+      "statuses": {
+        "unchanged-verified": 28
+      },
+      "technicalErrors": [],
+      "proofFile": "publication-garde-concurrente/40232855300-contracts.json.gz"
     }
   ]
 }

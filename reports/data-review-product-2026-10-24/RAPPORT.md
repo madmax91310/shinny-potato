@@ -333,3 +333,77 @@ de composition, build, ordre, smoke et déploiement restent intactes. Des scéna
 isolés vérifient les deux sorties anticipées et une panne réseau, ainsi que la présence
 du reçu avant la première consultation et l'absence de succès de publication inventé.
 La preuve GitHub de ce complément est encore en cours, pas déduite de ce changement.
+
+### Complément du publieur commun #965
+
+Le correctif **#965 / bc75f8f** est fusionné. Le passage ordinaire 13F
+**40233623691**, lancé manuellement depuis master après #963, a produit
+28 `unchanged-verified`, enregistré ses données en **3d2b078**, puis émis le reçu
+natif **12614351956** : **29 fichiers attendus**, SHA-256
+`3ee24ba53f4af6424ad6dc0909977a883ef5b9b83054ebaee32653ee7bace06f`.
+Le reçu est exporté malgré la sortie sans déploiement du premier job, qui demande
+le portail complet de code pour les consommateurs modifiés par #963. Ce chemin
+GitHub réel démontre la correction du compte rendu précédemment silencieux.
+
+Le premier essai **40232855300** avait également réussi ses 28 contrôles source,
+mais son enregistrement a été refusé : #963 avait changé les entrées applicatives
+pendant la collecte. La protection est conservée. Ce refus a été vérifié dans le
+moniteur public, sur mobile et ordinateur et dans l'export JSON ; une réussite
+source n'a clôturé ni l'échec d'enregistrement ni celui de publication. La reprise
+40233623691 recollecte depuis le nouveau master, sans republier aveuglément l'artefact
+précédent. Ce sont des lancements manuels ordinaires, pas des passages planifiés.
+
+Le rapprochement courant comprend **26 captures**, **5 597 résultats natifs**,
+**47 observations de rapports versionnés**, **41 couples workflow/rapport versionné
+distincts**, plus quatre rapports existants préservés, pour **20 workflows**.
+Les répétitions temporelles ne sont pas de nouveaux instruments : les 14 observations
+en échec concernent dix identités de résultat distinctes. Aucune erreur technique
+de périmètre dans les 26 captures ; les omissions, doublons et hors-périmètre sont
+exercés en isolation et en CI. Les groupes de champs désignent les contrôles natifs
+des adaptateurs, pas une certification indépendante de chaque scalaire financier.
+Les tentatives non détaillées restent inconnues, les caches ne prouvent aucun contrôle
+source, et les statuts différés ne deviennent pas des réussites.
+
+L'ingestion exacte des passages planifiés **Radar 40220749965** et
+**13F 40212273808** est maintenant rapprochée des octets natifs et du plan indépendant.
+L'ancien Radar 40204955299 conserve sa réserve d'ingestion propre. Le passage 13F
+planifié précède #960. Le Radar **40234172964**, planifié après #965, est également
+ingéré : hors horaires, ses 62 éléments sont explicitement non tentés, sans nouvelle
+réussite source ni clôture des incidents précédents. Son publieur est distinct du
+publieur commun. Aucun cron du dernier ajustement 13F ou du reçu commun #965/#966
+n’est déduit de ces preuves. Les deux anciens périmètres mensuel/indices inconnus
+restent conservés et non résolus, séparément des contrats individuels courants.
+
+Les contrôles ciblés du publieur, les 1 134 tests Python et le build sont réussis.
+Les recettes éditoriales des runs PR #965 puis de l'ancien master ont été annulées
+après les fusions ; elles ne sont pas comptées comme réussies. Le portail complet
+master **40233461192** a ensuite réussi : quatre lots navigateur, quatre lots tweets
+/exports, Python, build, smoke et vérification publique. La CI du 25/10 à 21:28
+rejoue explicitement l’omission malgré un workflow vert et les 28 contrôles 13F
+inchangés suivis d’un refus d’enregistrement.
+
+La livraison est désormais prouvée : code public **2d2fce4**, données **3d2b078**,
+**29/29 fichiers JSON réellement téléchargés identiques au reçu et au manifeste**.
+Le moniteur **f4ece477** a ingéré ce même reçu et qualifié la publication par
+`matching-public-source-fingerprints` ; les anciens incidents d’enregistrement et
+de publication 13F sont clôturés sur cette preuve, sans effacer leurs événements.
+Le parcours public mobile/ordinateur et l’export JSON passent : zéro qualification
+de rapport individuel courant, aucune erreur JS ni requête échouée observée.
+La revue documentaire des 84 champs/ usages 13F est conservée séparément : ce ne
+sont ni 84 pannes ni 84 résultats omis.
+
+**#966 / f1b4df1** prévient une collision de noms d’artefacts lors d’une validation
+de code imbriquée. Le reçu source déjà téléversé reste propriétaire de son nom ;
+le reçu complet local, tous les tests et contrôles restent produits. Une publication
+directe garde son téléversement habituel. Tests ciblés, CI **40236043582** et build
+local réussis. Le sous-portail du run 40233623691 a été sauté car la publication
+était déjà qualifiée : la branche de nouvelle validation sous #966 est donc testée
+en isolation/CI, sans prétendre l’avoir exercée contre les fournisseurs.
+
+Le compteur courant sépare désormais **zéro rapport individuel courant manquant**
+des **deux anciens périmètres inconnus toujours conservés**. Ce reclassement ne les
+déclare pas réparés. Dix identités de résultats en échec restent documentées dans
+les captures ; la présente mission ne certifie pas toutes les données du catalogue.
+Sur 20 workflows, deux possèdent un événement planifié après #950 ; les 18 autres
+restent démontrés par leurs passages ordinaires push/manuels. Le Radar tardif hors
+horaires ne constitue pas un passage planifié du nouveau reçu partagé.

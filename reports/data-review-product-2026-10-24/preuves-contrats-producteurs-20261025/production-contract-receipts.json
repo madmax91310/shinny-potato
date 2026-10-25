@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-25T19:19:16.647199+00:00",
-  "monitorCheckedAt": "2026-10-25T19:11:05.492974+00:00",
+  "checkedAt": "2026-10-25T21:39:50.026963+00:00",
+  "monitorCheckedAt": "2026-10-25T21:37:37.156203+00:00",
   "cases": [
     {
       "id": "scope:update-investor-13f.yml:investor-observations.json",
@@ -13,11 +13,11 @@
       "receipts": [
         {
           "file": "investor-observations.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40223458923",
-          "runId": 40223458923,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233623691",
+          "runId": 40233623691,
           "attempt": 1,
-          "sha256": "0c1c7b4e0e078281eaa434206e9230baf3f84443c3491e0f99e5daa8bfc292b3",
-          "planSha256": "4601680f78499f4d6984723a4b80105901300dcabcd5f1becc6126e9f6e7134a",
+          "sha256": "f48aae569e4df3c947f7bc5a8d9013fa5291651bd4c619e8a4584d34a81113c8",
+          "planSha256": "afca827aa4de7dfcb92ef031f6613d318f5e493cbde0aa706dfc61582ef1b250",
           "mode": "full",
           "expected": 28,
           "selected": 28,
@@ -28,17 +28,17 @@
       "githubProducerReports": [
         {
           "file": "investor-observations.json",
-          "runId": 40204838763,
+          "runId": 40233623691,
           "event": "workflow_dispatch",
-          "artifactId": 12603677002,
-          "rawSha256": "622b4d74c58308821dd6feef5bd6e6582b929d34cd27655826d4c26cf64a1344",
-          "planSha256": "7dc8177c54d8507667faf36ed80e8a1465de7967ba3405b5bda97c1e148d26f5",
-          "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+          "artifactId": 12614007952,
+          "rawSha256": "f48aae569e4df3c947f7bc5a8d9013fa5291651bd4c619e8a4584d34a81113c8",
+          "planSha256": "afca827aa4de7dfcb92ef031f6613d318f5e493cbde0aa706dfc61582ef1b250",
+          "executedCodeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
           "mode": "full",
           "expected": 28,
           "selected": 28,
           "emptyReason": null,
-          "proofFile": "40204838763-contracts.json.gz"
+          "proofFile": "publication-apres-recu/40233623691-contracts.json.gz"
         }
       ],
       "status": "contrat ordinaire master ingéré dans le moniteur"
@@ -343,11 +343,11 @@
       "receipts": [
         {
           "file": "funds-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-          "runId": 40205350724,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+          "runId": 40224701988,
           "attempt": 1,
-          "sha256": "1d59e25388c5437b87e14408f445ad903dc5346a7198e36558d18eae167f23e2",
-          "planSha256": "0f6bb7541dd906553b0485d1b2d6aa13eb7a789c7db239d879d35fbc1b81cd31",
+          "sha256": "9ac5cff045dc4ca3c00a5a93c1443698d6e5685b71fb05d12dd6191c5b3b2211",
+          "planSha256": "ee228f4b9a6528ba4f13083ba40afa7843c186b39f588499a14d9b0b89b2005c",
           "mode": "targeted",
           "expected": 10,
           "selected": 1,
@@ -384,11 +384,11 @@
       "receipts": [
         {
           "file": "households-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-          "runId": 40205350724,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+          "runId": 40224701988,
           "attempt": 1,
-          "sha256": "9a79135f91dcfdb051636662913d6be2901d309eeb15da8e292797c83e6724ea",
-          "planSha256": "25395b4cb3fbe89498b575861ad5920c677aaaf7f6c2e799f06d9b109145d22d",
+          "sha256": "7c32bf11d5f71caa089172bf98a91e2e945ca8d70ccc63efb532c1dc87ea9f90",
+          "planSha256": "45f5d55c1e02ced39c560dd4fb8e548b93c54d563a45cda5ab47c0fba46525de",
           "mode": "targeted",
           "expected": 10,
           "selected": 7,
@@ -425,16 +425,16 @@
       "receipts": [
         {
           "file": "savings-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-          "runId": 40205350724,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+          "runId": 40224701988,
           "attempt": 1,
-          "sha256": "9d543c4d1f3208658e968f85eee2d20dc72432c5c5e221ee05f28d225ec65c9e",
-          "planSha256": "012d0017250214c8e8e0d91633cea9b66614d0f6c5c3c2d406969d515b967347",
+          "sha256": "924289a98981ac7d4175c0b6076b49f20d9cc7701e4d0ee0034ad5375d480035",
+          "planSha256": "2f1af0a2050f1e8b578284ecfd967ad8deb481a22f010bc43e69d5533978656a",
           "mode": "targeted",
           "expected": 10,
           "selected": 1,
-          "successes": 1,
-          "errors": 1
+          "successes": 2,
+          "errors": 0
         }
       ],
       "githubProducerReports": [
@@ -466,11 +466,11 @@
       "receipts": [
         {
           "file": "scpi-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-          "runId": 40205350724,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+          "runId": 40224701988,
           "attempt": 1,
-          "sha256": "b08b343e1c6c2c2b46ddbda673098217cfce06119cd57855946fa8a9f419c05f",
-          "planSha256": "17e62fd93e80c986bf53306a4e3398be022d3988c52de8ab4a196c11bad31869",
+          "sha256": "a60376036881a7f15592b2b016b72c85608548c80205f0247c7d8b03765efc66",
+          "planSha256": "8ff4bc791ad0b1f9a9d032c77d8c5c0ea408faf72dc277a8e229df8dba6fcc2c",
           "mode": "targeted",
           "expected": 10,
           "selected": 1,
@@ -671,11 +671,11 @@
       "receipts": [
         {
           "file": "insurance-observation.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40210915187",
-          "runId": 40210915187,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40230154134",
+          "runId": 40230154134,
           "attempt": 1,
-          "sha256": "eb7297c8234c28aa3e6612b7f2857f380294744293b5ef2d210b1bdc7b5b26f9",
-          "planSha256": "7f6851442830101ec4cf0663a9e28d22f4063f4ce259285c861f7eb831c24483",
+          "sha256": "bb69f5dc53f17ce396a17e54cf8557466e877dc15b0bdd3a1c034d502766b0db",
+          "planSha256": "e748665753c7d704525da67f282741d337f4c12e41b308847e5056a1a23ad5ce",
           "mode": "full",
           "expected": 7,
           "selected": 7,
@@ -794,32 +794,32 @@
       "receipts": [
         {
           "file": "feed.json",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40221227769",
-          "runId": 40221227769,
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40236150320",
+          "runId": 40236150320,
           "attempt": 1,
-          "sha256": "c322f021a4b0e5afeeff71c6ff924185b19fbdedea3d099e6ef011c5045735ee",
-          "planSha256": "1463f9781ca568ebf18a8014a0233f826bef2e71799502125651ad3261ca38b4",
+          "sha256": "fa3873546102b7ac50213d40cc7d81d87749e3e07bed3f0f7c10bc64e9b53891",
+          "planSha256": "0bb28e386ca0afbbc116558c7d7aa1596c27d273b1b1cfb26676ba2190a9f095",
           "mode": "full",
           "expected": 62,
           "selected": 62,
-          "successes": 9,
+          "successes": 16,
           "errors": 7
         }
       ],
       "githubProducerReports": [
         {
           "file": "feed.json",
-          "runId": 40204955299,
+          "runId": 40234172964,
           "event": "schedule",
-          "artifactId": 12602908465,
-          "rawSha256": "6af8643d973ab2325f5bf427a563d15958d5bee263fb4b472143625e3f966f0d",
-          "planSha256": "77e83f4e042cdb22cae208b6e3163f159e7d1b13438b0ac22d16f01a903ed32e",
-          "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
-          "mode": "full",
-          "expected": 61,
-          "selected": 61,
+          "artifactId": 12613534289,
+          "rawSha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+          "planSha256": "e8cc5dc881ff9eb4b256aa31babba21967c08add34444da1c790eb7b6bfb117d",
+          "executedCodeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+          "mode": "conditional",
+          "expected": 62,
+          "selected": 0,
           "emptyReason": null,
-          "proofFile": "40204955299-contracts.json.gz"
+          "proofFile": "planifie-radar-dernier-passage/40234172964-contracts.json.gz"
         }
       ],
       "status": "contrat ordinaire master ingéré dans le moniteur"

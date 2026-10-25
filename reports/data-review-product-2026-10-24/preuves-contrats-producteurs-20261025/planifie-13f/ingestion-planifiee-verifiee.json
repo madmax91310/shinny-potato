@@ -1,0 +1,922 @@
+{
+  "checkedAt": "2026-10-25T20:59:50.312833+00:00",
+  "monitorCommit": "e42325adf327b39a862ab805b2087ae490e09aab",
+  "monitorCheckedAt": "2026-10-25T20:37:51.736022+00:00",
+  "sourceRunId": 40212273808,
+  "event": "schedule",
+  "artifactId": 12608571407,
+  "nativeReportSha256": "83c6359238a23c792ece6cccdf65ee9e5d426bf7992b159d67ea4c6a95cc89a6",
+  "nativePlanVerified": true,
+  "monitorReportEvidence": {
+    "scopeExplicit": true,
+    "scopePlanVerified": true,
+    "producerContract": "producer-results-v1",
+    "file": "investor-observations.json",
+    "sha256": "83c6359238a23c792ece6cccdf65ee9e5d426bf7992b159d67ea4c6a95cc89a6",
+    "reportedAt": "2026-10-25T17:56:23.110128+00:00",
+    "schema": "investors",
+    "artifactId": 12608571407,
+    "sourcePhaseStartedAt": "2026-10-25T17:48:53Z",
+    "sourcePhaseCompletedAt": "2026-10-25T17:56:29Z",
+    "runId": 40212273808,
+    "attempt": 1,
+    "recordedAt": "2026-10-25T17:56:30Z",
+    "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40212273808",
+    "successes": [
+      {
+        "id": "investor:morfit",
+        "instrument": "morfit",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:dorsey",
+        "instrument": "dorsey",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:vinall",
+        "instrument": "vinall",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:marks",
+        "instrument": "marks",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:watsa",
+        "instrument": "watsa",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:gavin-baker",
+        "instrument": "gavin-baker",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:einhorn",
+        "instrument": "einhorn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:halvorsen",
+        "instrument": "halvorsen",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:gerstner",
+        "instrument": "gerstner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:gayner",
+        "instrument": "gayner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:tepper",
+        "instrument": "tepper",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:ackman",
+        "instrument": "ackman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:berkshire",
+        "instrument": "berkshire",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:cathie-wood",
+        "instrument": "cathie-wood",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:thiel",
+        "instrument": "thiel",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:druckenmiller",
+        "instrument": "druckenmiller",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:loeb",
+        "instrument": "loeb",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:aschenbrenner",
+        "instrument": "aschenbrenner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:li-lu",
+        "instrument": "li-lu",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:gates-trust",
+        "instrument": "gates-trust",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:klarman",
+        "instrument": "klarman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:terry-smith",
+        "instrument": "terry-smith",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:pabrai",
+        "instrument": "pabrai",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:hohn",
+        "instrument": "hohn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:baker-bros",
+        "instrument": "baker-bros",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:icahn",
+        "instrument": "icahn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:laffont",
+        "instrument": "laffont",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "investor:renaissance",
+        "instrument": "renaissance",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true,
+        "status": "succeeded",
+        "periodEnd": "2026-06-30",
+        "operationAttempted": true,
+        "sourceAttempted": true
+      },
+      {
+        "id": "report-read:investor-observations:run:40212273808:attempt:1",
+        "evidence": {
+          "scopeExplicit": true,
+          "scopePlanVerified": true,
+          "producerContract": "producer-results-v1",
+          "file": "investor-observations.json",
+          "sha256": "83c6359238a23c792ece6cccdf65ee9e5d426bf7992b159d67ea4c6a95cc89a6",
+          "reportedAt": "2026-10-25T17:56:23.110128+00:00",
+          "schema": "investors",
+          "artifactId": 12608571407,
+          "sourcePhaseStartedAt": "2026-10-25T17:48:53Z",
+          "sourcePhaseCompletedAt": "2026-10-25T17:56:29Z",
+          "scopeRef": "5bdc40bc5c0b6d909eff1b78a81d776e83920e5a8c658dd66f93af8e26a3fd6a",
+          "scopeSummary": {
+            "kind": "update-investor-13f",
+            "expectedIdsCount": 28,
+            "requestedIdsCount": 28,
+            "networkRequestedIdsCount": 28
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "scopeRef": "5bdc40bc5c0b6d909eff1b78a81d776e83920e5a8c658dd66f93af8e26a3fd6a",
+    "scopeSummary": {
+      "kind": "update-investor-13f",
+      "expectedIdsCount": 28,
+      "requestedIdsCount": 28,
+      "networkRequestedIdsCount": 28
+    }
+  },
+  "monitorScope": {
+    "kind": "update-investor-13f",
+    "mode": "full",
+    "expectedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "requestedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "items": [
+      {
+        "id": "investor:morfit",
+        "instrument": "morfit",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:dorsey",
+        "instrument": "dorsey",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:vinall",
+        "instrument": "vinall",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:marks",
+        "instrument": "marks",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:watsa",
+        "instrument": "watsa",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gavin-baker",
+        "instrument": "gavin-baker",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:einhorn",
+        "instrument": "einhorn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:halvorsen",
+        "instrument": "halvorsen",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gerstner",
+        "instrument": "gerstner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gayner",
+        "instrument": "gayner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:tepper",
+        "instrument": "tepper",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:ackman",
+        "instrument": "ackman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:berkshire",
+        "instrument": "berkshire",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:cathie-wood",
+        "instrument": "cathie-wood",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:thiel",
+        "instrument": "thiel",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:druckenmiller",
+        "instrument": "druckenmiller",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:loeb",
+        "instrument": "loeb",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:aschenbrenner",
+        "instrument": "aschenbrenner",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:li-lu",
+        "instrument": "li-lu",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:gates-trust",
+        "instrument": "gates-trust",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:klarman",
+        "instrument": "klarman",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:terry-smith",
+        "instrument": "terry-smith",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:pabrai",
+        "instrument": "pabrai",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:hohn",
+        "instrument": "hohn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:baker-bros",
+        "instrument": "baker-bros",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:icahn",
+        "instrument": "icahn",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:laffont",
+        "instrument": "laffont",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      },
+      {
+        "id": "investor:renaissance",
+        "instrument": "renaissance",
+        "fields": [
+          "13F last successful check",
+          "positions date",
+          "report quarter",
+          "amendments"
+        ],
+        "selected": true
+      }
+    ],
+    "emptyReason": null,
+    "declaredAt": "2026-10-25T17:49:06.640905+00:00",
+    "planSha256": "2357a2d5c3627ba55ce6ec73cc611b83780a7db8a16738d5f1dfe1ee7d3e10ae",
+    "attemptedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "attemptUnknownIds": [],
+    "networkRequestedIds": [
+      "investor:morfit",
+      "investor:dorsey",
+      "investor:vinall",
+      "investor:marks",
+      "investor:watsa",
+      "investor:gavin-baker",
+      "investor:einhorn",
+      "investor:halvorsen",
+      "investor:gerstner",
+      "investor:gayner",
+      "investor:tepper",
+      "investor:ackman",
+      "investor:berkshire",
+      "investor:cathie-wood",
+      "investor:thiel",
+      "investor:druckenmiller",
+      "investor:loeb",
+      "investor:aschenbrenner",
+      "investor:li-lu",
+      "investor:gates-trust",
+      "investor:klarman",
+      "investor:terry-smith",
+      "investor:pabrai",
+      "investor:hohn",
+      "investor:baker-bros",
+      "investor:icahn",
+      "investor:laffont",
+      "investor:renaissance"
+    ],
+    "networkAttemptUnknownIds": [],
+    "runId": "40212273808",
+    "attempt": "1",
+    "selectionReason": "Parsed CLI selection and producer input configuration, before collection",
+    "nonce": "7104bc0f-8515-47c5-8b11-e40c236d468d"
+  },
+  "qualification": "Exact scheduled native report ingested. Original labels predate #960; source checks succeeded without a filing change, actual recording failure remains a distinct historical phase and was recovered by later ordinary runs. No post-#960 scheduled source run inferred."
+}

@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-25T21:48:59.289884+00:00",
+  "mode": "isolated replay of immutable actual scheduled report/jobs against an earlier actual monitor snapshot; no provider request or production write",
+  "runId": 40234172964,
+  "declaredExpected": 62,
+  "declaredSelected": 0,
+  "sourceAttempted": 0,
+  "explicitNotAttemptedResults": 62,
+  "normalReason": "Normal wait outside Radar operating hours",
+  "preservedPriorSourceFailureIds": [
+    "radar:etf",
+    "radar:economie",
+    "radar:pouvoir-achat",
+    "radar-source:revolut-news",
+    "radar-source:lbp-bank",
+    "radar-source:wisdomtree",
+    "radar-source:drees",
+    "radar-source:dares",
+    "radar-source:notaires-france",
+    "radar-source:vaneck"
+  ],
+  "financialSourceChecksUnchanged": true,
+  "qualification": "Successful scheduled job does not certify a source check or clear any previous source failure. Exact scheduled report ingestion is proved separately in the published monitor."
+}

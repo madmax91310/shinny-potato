@@ -439,7 +439,7 @@
     "Manual isolated qualification workflows and the observation-only Bitcoin pilot do not publish active data and are outside continuous producer supervision."
   ],
   "producerContracts": {
-    "checkedAt": "2026-10-25T19:19:16.647199+00:00",
+    "checkedAt": "2026-10-25T21:45:38.596286+00:00",
     "scope": "Complément des contrats individuels ; aucun nouvel audit financier",
     "initialReportQualifications": 35,
     "initialJobOnly": 2,
@@ -470,27 +470,27 @@
         "githubProducerReports": [
           {
             "file": "investor-observations.json",
-            "runId": 40204838763,
+            "runId": 40233623691,
             "event": "workflow_dispatch",
-            "artifactId": 12603677002,
-            "rawSha256": "622b4d74c58308821dd6feef5bd6e6582b929d34cd27655826d4c26cf64a1344",
-            "planSha256": "7dc8177c54d8507667faf36ed80e8a1465de7967ba3405b5bda97c1e148d26f5",
-            "executedCodeSha": "8371030f4955b0a69b4763cf76a81c8cd55de9db",
+            "artifactId": 12614007952,
+            "rawSha256": "f48aae569e4df3c947f7bc5a8d9013fa5291651bd4c619e8a4584d34a81113c8",
+            "planSha256": "afca827aa4de7dfcb92ef031f6613d318f5e493cbde0aa706dfc61582ef1b250",
+            "executedCodeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
             "mode": "full",
             "expected": 28,
             "selected": 28,
             "emptyReason": null,
-            "proofFile": "40204838763-contracts.json.gz"
+            "proofFile": "publication-apres-recu/40233623691-contracts.json.gz"
           }
         ],
         "productionReceipts": [
           {
             "file": "investor-observations.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40223458923",
-            "runId": 40223458923,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40233623691",
+            "runId": 40233623691,
             "attempt": 1,
-            "sha256": "0c1c7b4e0e078281eaa434206e9230baf3f84443c3491e0f99e5daa8bfc292b3",
-            "planSha256": "4601680f78499f4d6984723a4b80105901300dcabcd5f1becc6126e9f6e7134a",
+            "sha256": "f48aae569e4df3c947f7bc5a8d9013fa5291651bd4c619e8a4584d34a81113c8",
+            "planSha256": "afca827aa4de7dfcb92ef031f6613d318f5e493cbde0aa706dfc61582ef1b250",
             "mode": "full",
             "expected": 28,
             "selected": 28,
@@ -928,11 +928,11 @@
         "productionReceipts": [
           {
             "file": "funds-observation.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-            "runId": 40205350724,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+            "runId": 40224701988,
             "attempt": 1,
-            "sha256": "1d59e25388c5437b87e14408f445ad903dc5346a7198e36558d18eae167f23e2",
-            "planSha256": "0f6bb7541dd906553b0485d1b2d6aa13eb7a789c7db239d879d35fbc1b81cd31",
+            "sha256": "9ac5cff045dc4ca3c00a5a93c1443698d6e5685b71fb05d12dd6191c5b3b2211",
+            "planSha256": "ee228f4b9a6528ba4f13083ba40afa7843c186b39f588499a14d9b0b89b2005c",
             "mode": "targeted",
             "expected": 10,
             "selected": 1,
@@ -983,11 +983,11 @@
         "productionReceipts": [
           {
             "file": "households-observation.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-            "runId": 40205350724,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+            "runId": 40224701988,
             "attempt": 1,
-            "sha256": "9a79135f91dcfdb051636662913d6be2901d309eeb15da8e292797c83e6724ea",
-            "planSha256": "25395b4cb3fbe89498b575861ad5920c677aaaf7f6c2e799f06d9b109145d22d",
+            "sha256": "7c32bf11d5f71caa089172bf98a91e2e945ca8d70ccc63efb532c1dc87ea9f90",
+            "planSha256": "45f5d55c1e02ced39c560dd4fb8e548b93c54d563a45cda5ab47c0fba46525de",
             "mode": "targeted",
             "expected": 10,
             "selected": 7,
@@ -1038,16 +1038,16 @@
         "productionReceipts": [
           {
             "file": "savings-observation.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-            "runId": 40205350724,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+            "runId": 40224701988,
             "attempt": 1,
-            "sha256": "9d543c4d1f3208658e968f85eee2d20dc72432c5c5e221ee05f28d225ec65c9e",
-            "planSha256": "012d0017250214c8e8e0d91633cea9b66614d0f6c5c3c2d406969d515b967347",
+            "sha256": "924289a98981ac7d4175c0b6076b49f20d9cc7701e4d0ee0034ad5375d480035",
+            "planSha256": "2f1af0a2050f1e8b578284ecfd967ad8deb481a22f010bc43e69d5533978656a",
             "mode": "targeted",
             "expected": 10,
             "selected": 1,
-            "successes": 1,
-            "errors": 1
+            "successes": 2,
+            "errors": 0
           }
         ],
         "remainingReportQualifications": []
@@ -1093,11 +1093,11 @@
         "productionReceipts": [
           {
             "file": "scpi-observation.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40205350724",
-            "runId": 40205350724,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40224701988",
+            "runId": 40224701988,
             "attempt": 1,
-            "sha256": "b08b343e1c6c2c2b46ddbda673098217cfce06119cd57855946fa8a9f419c05f",
-            "planSha256": "17e62fd93e80c986bf53306a4e3398be022d3988c52de8ab4a196c11bad31869",
+            "sha256": "a60376036881a7f15592b2b016b72c85608548c80205f0247c7d8b03765efc66",
+            "planSha256": "8ff4bc791ad0b1f9a9d032c77d8c5c0ea408faf72dc277a8e229df8dba6fcc2c",
             "mode": "targeted",
             "expected": 10,
             "selected": 1,
@@ -1368,11 +1368,11 @@
         "productionReceipts": [
           {
             "file": "insurance-observation.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40210915187",
-            "runId": 40210915187,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40230154134",
+            "runId": 40230154134,
             "attempt": 1,
-            "sha256": "eb7297c8234c28aa3e6612b7f2857f380294744293b5ef2d210b1bdc7b5b26f9",
-            "planSha256": "7f6851442830101ec4cf0663a9e28d22f4063f4ce259285c861f7eb831c24483",
+            "sha256": "bb69f5dc53f17ce396a17e54cf8557466e877dc15b0bdd3a1c034d502766b0db",
+            "planSha256": "e748665753c7d704525da67f282741d337f4c12e41b308847e5056a1a23ad5ce",
             "mode": "full",
             "expected": 7,
             "selected": 7,
@@ -1517,31 +1517,31 @@
         "githubProducerReports": [
           {
             "file": "feed.json",
-            "runId": 40204955299,
+            "runId": 40234172964,
             "event": "schedule",
-            "artifactId": 12602908465,
-            "rawSha256": "6af8643d973ab2325f5bf427a563d15958d5bee263fb4b472143625e3f966f0d",
-            "planSha256": "77e83f4e042cdb22cae208b6e3163f159e7d1b13438b0ac22d16f01a903ed32e",
-            "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
-            "mode": "full",
-            "expected": 61,
-            "selected": 61,
+            "artifactId": 12613534289,
+            "rawSha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+            "planSha256": "e8cc5dc881ff9eb4b256aa31babba21967c08add34444da1c790eb7b6bfb117d",
+            "executedCodeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+            "mode": "conditional",
+            "expected": 62,
+            "selected": 0,
             "emptyReason": null,
-            "proofFile": "40204955299-contracts.json.gz"
+            "proofFile": "planifie-radar-dernier-passage/40234172964-contracts.json.gz"
           }
         ],
         "productionReceipts": [
           {
             "file": "feed.json",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40221227769",
-            "runId": 40221227769,
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/40236150320",
+            "runId": 40236150320,
             "attempt": 1,
-            "sha256": "c322f021a4b0e5afeeff71c6ff924185b19fbdedea3d099e6ef011c5045735ee",
-            "planSha256": "1463f9781ca568ebf18a8014a0233f826bef2e71799502125651ad3261ca38b4",
+            "sha256": "fa3873546102b7ac50213d40cc7d81d87749e3e07bed3f0f7c10bc64e9b53891",
+            "planSha256": "0bb28e386ca0afbbc116558c7d7aa1596c27d273b1b1cfb26676ba2190a9f095",
             "mode": "full",
             "expected": 62,
             "selected": 62,
-            "successes": 9,
+            "successes": 16,
             "errors": 7
           }
         ],
@@ -2577,27 +2577,55 @@
     "casesRealProducerVerified": 37,
     "casesPartiallyObserved": 0,
     "registeredReports": 45,
-    "currentReportQualifications": 2,
-    "productionMonitorCheckedAt": "2026-10-25T19:11:05.492974+00:00",
+    "currentReportQualifications": 0,
+    "productionMonitorCheckedAt": "2026-10-25T21:37:37.156203+00:00",
     "scheduledProofs": [
       {
         "file": "feed.json",
-        "runId": 40204955299,
+        "runId": 40234172964,
         "event": "schedule",
-        "artifactId": 12602908465,
-        "rawSha256": "6af8643d973ab2325f5bf427a563d15958d5bee263fb4b472143625e3f966f0d",
-        "planSha256": "77e83f4e042cdb22cae208b6e3163f159e7d1b13438b0ac22d16f01a903ed32e",
-        "executedCodeSha": "179c7a1570c64e12df95193a06d601ad8156a67e",
-        "mode": "full",
-        "expected": 61,
-        "selected": 61,
+        "artifactId": 12613534289,
+        "rawSha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+        "planSha256": "e8cc5dc881ff9eb4b256aa31babba21967c08add34444da1c790eb7b6bfb117d",
+        "executedCodeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+        "mode": "conditional",
+        "expected": 62,
+        "selected": 0,
         "emptyReason": null,
-        "proofFile": "40204955299-contracts.json.gz"
+        "proofFile": "planifie-radar-dernier-passage/40234172964-contracts.json.gz"
       }
     ],
-    "scheduledReportIngestionVerified": false,
-    "scheduledIngestedProofs": [],
-    "scheduledProofQualification": "Déclenchement schedule attesté dans GitHub ; ingestion de ces mêmes octets vérifiée séparément. Les autres exécutions sont push ou workflow_dispatch, pas des crons.",
+    "scheduledReportIngestionVerified": true,
+    "scheduledIngestedProofs": [
+      {
+        "runId": 40220749965,
+        "artifactId": 12608423484,
+        "reportSha256": "d106d3b04e8cb9d8badd22f7f8f2997e430fb9d557fa13ddb12c01680ef4b0e1",
+        "scopePlanVerified": true,
+        "monitorCommit": "e42325adf327b39a862ab805b2087ae490e09aab",
+        "proofFile": "preuves-contrats-producteurs-20261025/planifie-radar-complement/ingestion-planifiee-verifiee.json"
+      },
+      {
+        "runId": 40212273808,
+        "artifactId": 12608571407,
+        "reportSha256": "83c6359238a23c792ece6cccdf65ee9e5d426bf7992b159d67ea4c6a95cc89a6",
+        "scopePlanVerified": true,
+        "monitorCommit": "e42325adf327b39a862ab805b2087ae490e09aab",
+        "proofFile": "preuves-contrats-producteurs-20261025/planifie-13f/ingestion-planifiee-verifiee.json"
+      },
+      {
+        "runId": 40234172964,
+        "artifactId": 12613534289,
+        "reportSha256": "932027ccc7ba294e2193c9077ab7945b6c0432673da5d6afb77f957c7f824775",
+        "scopePlanVerified": true,
+        "monitorCommit": "f4ece4778172beff55e4a5371a7425d8ccbe5b86",
+        "proofFile": "preuves-contrats-producteurs-20261025/planifie-radar-dernier-passage/ingestion-planifiee-verifiee.json",
+        "selected": 0,
+        "outcomes": "62 not-attempted, normal wait outside operating hours",
+        "sourceSuccessInferred": false
+      }
+    ],
+    "scheduledProofQualification": "Deux workflows planifiés avec ingestion exacte documentée. Radar 40220749965 et 40234172964 (ce dernier : 62 non-tentatives hors horaires), 13F 40212273808 avant #960. Ancien Radar 40204955299 non attesté séparément. Aucun cron du dernier 13F ou du reçu commun #965/#966 inféré.",
     "proofInterpretation": {
       "currentContracts": "37/37 cas avec un rapport versionné et manifeste indépendant ingérés",
       "remainingQualifications": "Deux limites historiques conservées après reprises ciblées, pas deux contrats de producteur manquants",
@@ -2627,26 +2655,32 @@
         "publicationStatus": "not-run",
         "proofDirectory": "preuves-contrats-producteurs-20261025/planifie-13f",
         "ordinaryPostCorrectionReader": "Rapport natif corrigé émis par le passage manuel 40223458923, ingéré et consommé dans le moniteur public ; pas un nouveau passage planifié."
-      }
+      },
+      "latestProofFile": "preuves-contrats-producteurs-20261025/passages-planifies-actualises.json",
+      "scheduledWorkflowsAfterReceiptFixMerge": [
+        "update-editorial-radar.yml"
+      ],
+      "sharedPublisherReceiptScheduledExecutionObserved": false,
+      "afterReceiptFixQualification": "Radar 40234172964 is a scheduled event after the merge, with zero source attempts and its own publisher; it does not prove a scheduled execution of the shared receipt."
     },
     "currentExecutionContractsVerified": true,
     "currentPublicConsumerVerified": true,
     "nativeCaptureCounts": {
       "workflows": 20,
-      "executions": 22,
+      "executions": 26,
       "distinctV1Reports": 41,
-      "v1Reports": 43,
+      "v1Reports": 47,
       "legacyReportsPreserved": 4,
-      "outcomes": 5417,
+      "outcomes": 5597,
       "statuses": {
-        "unchanged-verified": 696,
-        "not-attempted": 732,
-        "succeeded": 3653,
+        "unchanged-verified": 756,
+        "not-attempted": 794,
+        "succeeded": 3657,
         "not-applicable": 8,
         "cached": 9,
-        "failed": 10,
+        "failed": 14,
         "deferred": 260,
-        "waiting": 49
+        "waiting": 99
       },
       "technicalErrors": 0
     },
@@ -2712,38 +2746,236 @@
       "financialPublication": "Parent completed success; intended public financial metadata matches source snapshot e0811c0; native filings unchanged. Dashboard publication classification remains distinct from this independent proof."
     },
     "latestPublishedVersions": {
+      "checkedAt": "2026-10-25T21:37:42.857547+00:00",
       "buildInfo": {
-        "sha": "e0811c030f43f520822808793314c14b7c42296a",
-        "dataSha": "2f06b068a8c827a736e11e2d64379a9540253291",
+        "sha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+        "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
         "lane": "validated-code-data",
-        "builtAt": "2026-10-25T19:40:34.768Z"
+        "builtAt": "2026-10-25T21:33:35.771Z"
       },
-      "dataCommitPaths": [
-        "src/data/automated-economic.json"
+      "sourceRunId": 40233623691,
+      "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+      "expectedFiles": 29,
+      "actualPublicFilesVerified": 29,
+      "allMatch": true,
+      "files": [
+        {
+          "file": "public/data/investors/ackman.json",
+          "expectedGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+          "actualPublicGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+          "manifestGitBlob": "3e5cddb233068f1f34bc1efd170940606dabc2f0",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/aschenbrenner.json",
+          "expectedGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+          "actualPublicGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+          "manifestGitBlob": "b2b67c373bc0e8041cd79e43d37b4a374693bd7d",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/baker-bros.json",
+          "expectedGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+          "actualPublicGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+          "manifestGitBlob": "1c5f7576ec3f81ee34c04b9a2e18c0205bde24e0",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/berkshire.json",
+          "expectedGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+          "actualPublicGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+          "manifestGitBlob": "669da0e8a9a13920b4f6330c0b298d64536d2ebe",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/cathie-wood.json",
+          "expectedGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+          "actualPublicGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+          "manifestGitBlob": "ed9c91960ba3abc6b69a33544317e9bb437576f4",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/dorsey.json",
+          "expectedGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+          "actualPublicGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+          "manifestGitBlob": "5af49d1916a538d155252d163d6e0781689aca2c",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/druckenmiller.json",
+          "expectedGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+          "actualPublicGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+          "manifestGitBlob": "b40c121f02a6b018888c46f2c75d40f5c06ebc87",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/einhorn.json",
+          "expectedGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+          "actualPublicGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+          "manifestGitBlob": "cd38c2583eb6556bd51cb1fe4297bf32872fa7f9",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/gates-trust.json",
+          "expectedGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+          "actualPublicGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+          "manifestGitBlob": "4549c7d63d11874dec88d07b5a378826f2311efc",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/gavin-baker.json",
+          "expectedGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+          "actualPublicGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+          "manifestGitBlob": "7fbabc9adf505dc4866e53a29d27ad8eb003aea5",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/gayner.json",
+          "expectedGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+          "actualPublicGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+          "manifestGitBlob": "01b3499b6794a7644053da6c2bbfd51db7daa5da",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/gerstner.json",
+          "expectedGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+          "actualPublicGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+          "manifestGitBlob": "50f85fe7fd2aaf1c0a8c4477ab77622be1eea186",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/halvorsen.json",
+          "expectedGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+          "actualPublicGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+          "manifestGitBlob": "28ab44f1a3cc6fb664749cb253feabe306a108ab",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/hohn.json",
+          "expectedGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+          "actualPublicGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+          "manifestGitBlob": "a9ba9585802d37fd02cdccf4e1b1ead5a96a8ccd",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/icahn.json",
+          "expectedGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+          "actualPublicGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+          "manifestGitBlob": "80ba2cb44ba110c89d1b9b5718295de0294330d5",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/klarman.json",
+          "expectedGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+          "actualPublicGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+          "manifestGitBlob": "36c49f8131c4f059a581a7d77da505b97114cfe6",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/laffont.json",
+          "expectedGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+          "actualPublicGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+          "manifestGitBlob": "0d516459048c43a083ab19f08d70676397632e2c",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/li-lu.json",
+          "expectedGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+          "actualPublicGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+          "manifestGitBlob": "dc2d8489e7e1b25fb7dd1d4639eeb394886dde00",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/loeb.json",
+          "expectedGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+          "actualPublicGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+          "manifestGitBlob": "ac8d85c37b82729faac13c7c926be6cc8e3fa0ca",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/marks.json",
+          "expectedGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+          "actualPublicGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+          "manifestGitBlob": "fe01b8b570233e4feb6999b0968fe8002c6275c2",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/morfit.json",
+          "expectedGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+          "actualPublicGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+          "manifestGitBlob": "78500300ac7bac9e89b401d2ddf99ec565afaf2a",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/pabrai.json",
+          "expectedGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+          "actualPublicGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+          "manifestGitBlob": "92fde4822555660dead1e3026b61b9885e10d30e",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/renaissance.json",
+          "expectedGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+          "actualPublicGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+          "manifestGitBlob": "11327fe1778e1154023a628cbebadd9b179ee878",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/review-metadata.json",
+          "expectedGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+          "actualPublicGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+          "manifestGitBlob": "2909c7d936308977c58c34ab45673c8941d17b31",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/tepper.json",
+          "expectedGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+          "actualPublicGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+          "manifestGitBlob": "c866c552fc8e1299caa17fce85999995396f9a95",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/terry-smith.json",
+          "expectedGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+          "actualPublicGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+          "manifestGitBlob": "523bf3c9569e8f995ad70d73c3ae543ab4b15127",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/thiel.json",
+          "expectedGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+          "actualPublicGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+          "manifestGitBlob": "f4b0330502182ba4ddafb5a1a7b6b6f0472c5c10",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/vinall.json",
+          "expectedGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+          "actualPublicGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+          "manifestGitBlob": "391bc42b1c4bb7d17332e826d57e4434efcb5870",
+          "match": true
+        },
+        {
+          "file": "public/data/investors/watsa.json",
+          "expectedGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+          "actualPublicGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+          "manifestGitBlob": "d2d64bd0d62e02dbe3f983c9f5f32aa5b4bcdf72",
+          "match": true
+        }
       ],
-      "publicFile": "public/data/investors/review-metadata.json",
-      "expectedGitBlobSha": "a24d0e565f092c12800b7a59e91b8fb478913251",
-      "actualPublicGitBlobSha": "a24d0e565f092c12800b7a59e91b8fb478913251",
-      "match": true,
-      "sourceRunId": 40223458923,
-      "qualification": "The actual producer publisher requested e0811c0 (job 121261677855); the public financial metadata file matches that source snapshot exactly. Native filing data was unchanged; no new observation quarter claimed.",
-      "checkedAt": "2026-10-25T19:57:34.099953+00:00",
-      "producerRequestedDataRef": "e0811c030f43f520822808793314c14b7c42296a",
-      "producerExpectedFileBlob": "a24d0e565f092c12800b7a59e91b8fb478913251",
-      "producerExpectedPublicFileMatch": true,
-      "publishedCodeIncludes960": true
+      "qualification": "Actual public JSON bytes and sealed public manifest match every recorded source file, not only a successful workflow."
     },
     "latestPublicBrowserVerification": {
-      "checkedAt": "2026-10-25T19:57:38.198Z",
+      "checkedAt": "2026-10-25T21:38:50.919Z",
       "mode": "real public page, no mocked requests",
       "buildInfo": {
-        "sha": "e0811c030f43f520822808793314c14b7c42296a",
-        "dataSha": "2f06b068a8c827a736e11e2d64379a9540253291",
+        "sha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+        "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
         "lane": "validated-code-data",
-        "builtAt": "2026-10-25T19:40:34.768Z"
+        "builtAt": "2026-10-25T21:33:35.771Z"
       },
       "monitorUrl": "https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json",
-      "monitorCheckedAt": "2026-10-25T19:44:37.869721+00:00",
+      "monitorCheckedAt": "2026-10-25T21:37:37.156203+00:00",
       "viewports": [
         {
           "name": "desktop",
@@ -2760,16 +2992,70 @@
       "failed": [],
       "individualContractQualifications": 0,
       "current13F": {
-        "runId": 40223458923,
+        "runId": 40233623691,
         "collectionStatus": "success",
         "recordingStatus": "success",
-        "publicationStatus": "not-run"
+        "publicationStatus": "success",
+        "publicationEvidence": {
+          "kind": "matching-public-source-fingerprints",
+          "checkedAt": "2026-10-25T21:37:17.412441+00:00",
+          "publishedAt": "2026-10-25T21:33:35.771Z",
+          "codeSha": "2d2fce4ab83643863dc0de5e3b91804aaccc439b",
+          "dataSha": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+          "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+          "fileCount": 29
+        },
+        "receiptFileCount": 29
       },
       "actual13FRecordingRecoveryObserved": true,
-      "diagnosticExportRows": 1,
-      "exportCarriesScopeRegistry": true
+      "diagnosticExportRows": 0,
+      "exportCarriesScopeRegistry": true,
+      "actualMonitorBodySha256": "a3a670fbeb7d2ea74b123751b2fcb8fcd082558822ddc4b27e9c45279e425bf5",
+      "monitorImmutableCommit": "f4ece4778172beff55e4a5371a7425d8ccbe5b86"
     },
-    "publicationProofGaps": [
+    "publicationProofGaps": [],
+    "scheduledMonitorObserved": {
+      "runId": 40228779174,
+      "event": "schedule",
+      "createdAt": "2026-10-25T20:01:16Z",
+      "conclusion": "success",
+      "qualification": "Passage planifié du moniteur, distinct des 20 workflows de données et du passage manuel 13F après correctif."
+    },
+    "publisherExpectedReceiptCorrection": {
+      "pullRequest": 965,
+      "mergeCommit": "bc75f8fa69960648f67a019fdfd4618a7f20b2d9",
+      "nativeProof": {
+        "checkedAt": "2026-10-25T21:13:14.197401+00:00",
+        "sourceRunId": 40233623691,
+        "sourceJobId": 121290422816,
+        "publisherJobId": 121292297864,
+        "artifactId": 12614351956,
+        "rawReceiptSha256": "3ee24ba53f4af6424ad6dc0909977a883ef5b9b83054ebaee32653ee7bace06f",
+        "receiptCommit": "3d2b0783bf67e308ff58114a0b0f0598bb1f0615",
+        "expectedFileCount": 29,
+        "nativeArtifactUploaded": true,
+        "publisherSourcePhase": "success, no new deployment; current=false/needs_code=true because #963 changed application consumers",
+        "qualification": "Expected recorded source files, not proof of successful public delivery. Full code gate preserved."
+      },
+      "publicationVerification": "Verified: all 29 actual public files and manifest match native receipt; same receipt ingested by published monitor and previous recording/publication incidents cleared.",
+      "publicProofFile": "preuves-contrats-producteurs-20261025/publication-apres-recu/empreintes-publiques-apres-publication.json",
+      "monitorProofFile": "preuves-contrats-producteurs-20261025/publication-apres-recu/ingestion-publication-verifiee.json"
+    },
+    "concurrentRecordingGuardProof": {
+      "sourceRunId": 40232855300,
+      "cause": "#963 changed application inputs during collection",
+      "sourceResults": "28 unchanged-verified",
+      "recording": "refused",
+      "productionDiagnosticVerified": true,
+      "retryRunId": 40233623691,
+      "retryKind": "manual ordinary producer from updated master, no artifact replay",
+      "retrySourceRecording": "success",
+      "proofDirectory": "preuves-contrats-producteurs-20261025/publication-garde-concurrente"
+    },
+    "historicalUnresolvedScopeQualifications": 2,
+    "historicalScopeQualificationDefinition": "derived-index-observation.json / selected-index-observations.json : anciens périmètres non reconstituables. Conservés, pas déclarés réparés par les reprises ciblées.",
+    "currentReportQualificationProof": "Parcours public après conflit : 0 qualification individuelle courante. Les deux périmètres historiques inconnus sont comptés séparément, pas supprimés.",
+    "resolvedPublicationProofGaps": [
       {
         "workflow": "update-investor-13f.yml",
         "classification": "raccordement de preuve de publication, pas défaut démontré des données",
@@ -2777,15 +3063,23 @@
         "currentMonitorStatus": "not-run",
         "problem": "Parent coalescé sans preuve de publication rattachée au diagnostic antérieur dans le moniteur observé.",
         "missingPiece": "Rattachement automatique du reçu/fingerprints de publication inchangée au parent source.",
-        "proofFile": "preuves-contrats-producteurs-20261025/publication-financiere-13f-finale.json"
+        "proofFile": "preuves-contrats-producteurs-20261025/publication-apres-recu/ingestion-publication-verifiee.json",
+        "resolvedByPR": 965,
+        "sourceRunId": 40233623691
       }
     ],
-    "scheduledMonitorObserved": {
-      "runId": 40228779174,
-      "event": "schedule",
-      "createdAt": "2026-10-25T20:01:16Z",
-      "conclusion": "success",
-      "qualification": "Passage planifié du moniteur, distinct des 20 workflows de données et du passage manuel 13F après correctif."
+    "nestedReceiptOwnership": {
+      "pullRequest": 966,
+      "mergeCommit": "f1b4df19617578e545f9aff2448e930fda4866da",
+      "validation": "CI ciblée 40236043582, tests Node et build local réussis; aucun portail financier supprimé",
+      "qualification": "Prévention d’une collision de noms dans le même run. Le sous-portail du run ordinaire 40233623691 a été sauté après publication déjà qualifiée, donc la branche de nouvelle validation imbriquée sous #966 est vérifiée en isolation/CI, pas présentée comme exercée en production."
+    },
+    "remainingFinancialUsageProofReviews": {
+      "workflow": "update-investor-13f.yml",
+      "incident": "field:proof:.github/workflows/update-investor-13f.yml",
+      "fields": 84,
+      "classification": "qualification documentaire par usage; chaîne fonctionne et preuve source/publication démontrée; ni panne ni 84 résultats omis",
+      "preserved": true
     }
   }
 }
