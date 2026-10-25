@@ -81,6 +81,11 @@ class DiagnosticSeparation(unittest.TestCase):
   state={'dataFailures':{'A:sectors':{'field':'sectors','cause':'network'}}}
   self.assertFalse(scoped_failures(state,{'A'},'aum'))
   self.assertEqual(len(scoped_failures(state,{'A'},'sectors')),1)
+ def test_full_portfolio_failure_does_not_mark_top_ten_as_failed(self):
+  from build_data_use_matrix import scoped_failures
+  state={'dataFailures':{'dca-holdings:A':{'field':'Composition complète','cause':'403'}}}
+  self.assertEqual(len(scoped_failures(state,{'A'},'completeHoldings')),1)
+  self.assertFalse(scoped_failures(state,{'A'},'holdings'))
  def test_all_instrument_failure_without_field_is_not_copied_to_every_field(self):
   from build_data_use_matrix import scoped_failures
   self.assertFalse(scoped_failures({'dataFailures':{'etf-observation-A':{'cause':'partial'}}},{'A'},'aum'))
