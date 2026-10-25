@@ -101,6 +101,7 @@ try {
   }
   // Corrupt records and denied storage: no silent reset, still usable.
   for (const mode of ['corrupt', 'denied', 'quota', 'clipboard']) {
+    console.log('Failure path:', mode)
     const context = await browser.newContext({ viewport: { width: 390, height: 900 } })
     await context.addInitScript(({ mode, key }) => {
       if (mode === 'corrupt') localStorage.setItem(key, 'unreadable')
@@ -112,7 +113,7 @@ try {
       }
     }, { mode, key: STORAGE_KEY })
     const page = await context.newPage()
-    page.on('pageerror', error => errors.push(error.message))
+    page.on('pageerror', error => { errors.push(error.message); console.error(mode, error.message) })
     await page.goto(base + '/hey-grok', { waitUntil: 'networkidle' })
     await page.getByRole('textbox', { name: 'Texte du tweet', exact: true }).fill('Hey @grok, que choisirais-tu ?')
     if (mode === 'clipboard') {
