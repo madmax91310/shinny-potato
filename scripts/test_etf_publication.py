@@ -114,6 +114,33 @@ if command == 'npm run build' and os.environ.get('ETF_TEST_RACE'):
             self.assertEqual(self.f.git(self.f.remote, 'show', 'master:' + path), 'second insurance update')
         self.assertEqual((self.f.root / 'checks').read_text().count('npm run build'), 2)
 
+    def test_observed_collision_without_hooks_reproduces_original_refusal(self):
+        self.f.advance_remote(INSURANCE)
+        before = self.f.git(self.f.remote, 'rev-parse', 'master')
+        result = self.publish(VALIDATED_DATA_CHECK='', VALIDATED_DATA_PREPARE='')
+        self.assert_refused(result, before)
+        self.assertIn('Remote inputs changed after collection', result.stderr)
+
+    def test_disjoint_etf_changes_are_refused_even_when_git_can_merge(self):
+        path = PRIMARY[2]
+        # Two financial records far apart: no textual Git conflict is needed
+        # for the acquisition guard to require recollection of the registry.
+        original = '\n'.join(['first record', *['unchanged'] * 20, 'last record']) + '\n'
+        (self.f.local / path).write_text(original)
+        self.f.git(self.f.local, 'add', path)
+        self.f.git(self.f.local, 'commit', '-m', 'two financial records')
+        self.f.git(self.f.local, 'push', 'origin', 'master')
+        self.f.git(self.f.other, 'pull', '--ff-only')
+        (self.f.local / path).write_text(original.replace('first record', 'collected first record'))
+        (self.f.other / path).write_text(original.replace('last record', 'concurrent last record'))
+        self.f.git(self.f.other, 'add', path)
+        self.f.git(self.f.other, 'commit', '-m', 'competing financial observation')
+        self.f.git(self.f.other, 'push', 'origin', 'master')
+        result = self.publish()
+        self.assert_refused(result, self.f.git(self.f.other, 'rev-parse', 'HEAD'))
+        self.assertNotIn('CONFLICT', result.stdout + result.stderr)
+        self.assertIn('Collection inputs may have changed', result.stderr)
+
     def test_failed_financial_revalidation_never_publishes(self):
         self.f.advance_remote(INSURANCE)
         before = self.f.git(self.f.remote, 'rev-parse', 'master')

@@ -256,7 +256,6 @@ jobs:
         id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
-      - run: node scripts/test-asset-field-coverage.mjs
       - run: node scripts/report-automation-coverage.mjs --write
       - name: Validate ETF observations and consumers
         run: bash scripts/validate-etf-publication.sh validate

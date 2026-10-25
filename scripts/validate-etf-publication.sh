@@ -21,6 +21,7 @@ if [[ "$mode" == prepare ]]; then
   node scripts/build-app-inventory.mjs
   exit 0
 fi
+node scripts/test-asset-field-coverage.mjs
 node scripts/test-automation-gap-inventory.mjs
 node scripts/test-priority-issuer-consumers.mjs
 npm run audit:data-review
