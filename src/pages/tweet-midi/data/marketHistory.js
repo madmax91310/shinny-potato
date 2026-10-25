@@ -187,7 +187,7 @@ export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
   if(asset.priceUnit==='points' && ['NETR','GRTR'].includes(asset.variant)) return performanceBasisLabel({currency:asset.currency,income:asset.variant==='NETR'?'net':'gross'});
-  if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · cours de l’${asset.instrumentType}`;
+  if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · ${asset.valuationBasis ? 'valeur liquidative' : 'cours'} de l’${asset.instrumentType}`;
   if (asset.priceMethod === 'adjusted') return performanceBasisLabel({ currency: asset.currency, income: 'reinvested' });
   if (assetId === 'or') return performanceBasisLabel({ currency: asset.currency, detail: 'moyennes mensuelles du prix de l’or' });
   if (assetId === 'silver') return performanceBasisLabel({ currency: asset.currency, detail: 'futures COMEX, hors frais et roulement' });

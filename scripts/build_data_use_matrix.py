@@ -47,7 +47,12 @@ def field_value_present(record,field,kind):
 def diagnostic_category(required, kind, field, raw, reasons, failures):
  """Separate demonstrated operational failures from a missing proof join."""
  if not required or kind in NON_LIVE:return 'non applicable'
- if failures:return 'défaut réel de donnée ou de collecte'
+ if failures:
+  # A retained listing's old documentary check is not a failed acquisition of
+  # the fresh listing actually returned by the source. Keep that gap visible.
+  documentary=field.get('key') in {'listings','pea','distribution','domicile','replicationMethod','currencyHedge'}
+  if not (documentary and all(str(p.get('cause','')).startswith('check-overdue;')or'qualification' in str(p.get('cause','')).lower()for p in failures)):
+   return 'défaut réel de donnée ou de collecte'
  if raw.get('requiresConnection') or field.get('state') in {'unconnected','not-connected','manual','manual-live'}:
   return 'raccordement manquant'
  if not reasons:return 'opérationnel démontré'
@@ -62,7 +67,7 @@ def scoped_failures(state, identities, field):
   matched=any(key in {i+':'+field,i+'|'+field,i+':'+field+':qualification'} for i in identities)
   # Instrument-wide report failures stay instrument-wide unless a field is explicit.
   matched=matched or (explicit==field and any(key.endswith('-'+i)for i in identities))
-  if matched:result.append({'id':key,'cause':proof.get('cause'),'runUrl':proof.get('runUrl'),'field':explicit})
+  if matched:result.append({'id':key,'cause':proof.get('cause'),'runUrl':proof.get('runUrl'),'field':explicit,'category':proof.get('category')})
  return result
 
 def matrix(inventory,monitor,manifest,today,root=ROOT,producer_contracts=None):

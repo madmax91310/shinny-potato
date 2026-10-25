@@ -17,7 +17,7 @@
         "parser": "official-nav",
         "field": "nav-total-return",
         "valuationBasis": "fund-nav-total-return",
-        "method": "VL ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
+        "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
         "navProvider": "amundi",
         "navCurrency": "USD",
         "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
@@ -737,7 +737,7 @@
             "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
           ],
           "checkedAt": "2026-10-25",
-          "method": "VL ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
+          "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
           "maxAgeDays": 7,
           "sha256": "2176914a3f4d0e17dc64b00e925fe76d9a9c0a904c082ea4444e58b349ab7133",
           "scaleProof": {

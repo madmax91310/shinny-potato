@@ -67,6 +67,11 @@ class DiagnosticSeparation(unittest.TestCase):
  def test_proof_gap_does_not_become_source_failure(self):
   from build_data_use_matrix import diagnostic_category
   self.assertEqual(diagnostic_category(True,'live',{'state':'connected'},{},['No per-field proof'],[]),'preuve documentaire ou qualification incomplète')
+ def test_retained_listing_proof_age_is_separate_from_failed_live_price(self):
+  from build_data_use_matrix import diagnostic_category
+  proof=[{'cause':'check-overdue; checked=2026-10-16'}]
+  self.assertEqual(diagnostic_category(True,'live',{'key':'listings','state':'connected'},{},['Legacy row proof'],proof),'preuve documentaire ou qualification incomplète')
+  self.assertEqual(diagnostic_category(True,'history',{'key':'monthly','state':'connected'},{},['Missing current month'],proof),'défaut réel de donnée ou de collecte')
  def test_connection_and_non_applicable_separate(self):
   from build_data_use_matrix import diagnostic_category
   self.assertEqual(diagnostic_category(True,'live',{}, {'requiresConnection':True},[],[]),'raccordement manquant')
