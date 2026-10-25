@@ -44,6 +44,27 @@ def field_value_present(record,field,kind):
  if field=='ter':candidates.append(characteristics.get('terPct'))
  return any(value(v)for v in candidates)
 
+def diagnostic_category(required, kind, field, raw, reasons, failures):
+ """Separate demonstrated operational failures from a missing proof join."""
+ if not required or kind in NON_LIVE:return 'non applicable'
+ if failures:return 'défaut réel de donnée ou de collecte'
+ if raw.get('requiresConnection') or field.get('state') in {'unconnected','not-connected','manual','manual-live'}:
+  return 'raccordement manquant'
+ if not reasons:return 'opérationnel démontré'
+ # Unknown identity/convention is a financial qualification block, not a network outage.
+ return 'preuve documentaire ou qualification incomplète'
+
+def scoped_failures(state, identities, field):
+ result=[]
+ for key, proof in (state.get('dataFailures') or {}).items():
+  if not isinstance(proof,dict):continue
+  explicit=proof.get('field')
+  matched=any(key in {i+':'+field,i+'|'+field,i+':'+field+':qualification'} for i in identities)
+  # Instrument-wide report failures stay instrument-wide unless a field is explicit.
+  matched=matched or (explicit==field and any(key.endswith('-'+i)for i in identities))
+  if matched:result.append({'id':key,'cause':proof.get('cause'),'runUrl':proof.get('runUrl'),'field':explicit})
+ return result
+
 def matrix(inventory,monitor,manifest,today,root=ROOT,producer_contracts=None):
  producer_contracts=producer_contracts_at_runs(monitor)if producer_contracts is None else producer_contracts
  registries={r['path']:r for r in inventory['registries']};policy=json.loads((root/'src/data/freshness-policy.json').read_text())['fields']
@@ -146,6 +167,11 @@ def matrix(inventory,monitor,manifest,today,root=ROOT,producer_contracts=None):
    if match:proofs.append('public/data/publication-manifest.json#'+match[0])
    proofs.extend(m.get('runUrl','')for w,m in sourceproof if m.get('runUrl'))
    row={'id_suivi':'usage:'+tool['path']+'|'+asset['id']+'|'+f['key'],'outil':tool['name'],'route':tool['path'],'actif_identifiant':asset['id'],'nom':asset['name'],'donnee':f['label'],'cle_champ':f['key'],'nature':kind,'requise':required,'statut_consommateur_declare':f['state'],'mode_declare_du_registre':r.get('mode','non identifié'),'unite':unit or'non qualifiée (voir blocage)','devise':f.get('currency'),'methode':f.get('method'),'perimetre':f.get('scope'),'registre':registry,'registre_source_demontre':match[0]if match else None,'sources':' | '.join(urls),'collecteurs':' | '.join(dict.fromkeys([*source_workflows,*workflows])),'declenchements':' | '.join(c for w in f.get('workflows',[])for c in w.get('crons',[])),'derniere_donnee':asof,'dernier_controle_reussi':checked,'niveau_preuve_controle':'source et reçu du producteur propriétaire joints'if sourceproof else'date déclarée du registre ; contrôle source non redémontré pour ce contrat','derniere_tentative_champ':f.get('lastAttemptAt')or f.get('attemptedAt')or'non démontrée séparément du contrôle réussi','tentatives_producteur_observees':json.dumps([{'workflow':w,'createdAt':m.get('createdAt'),'runUrl':m.get('runUrl'),'portee':'producteur entier ; pas preuve d’une tentative de ce champ'}for w,m in observed],ensure_ascii=False,separators=(',',':')),'correction_proposee':(f.get('nextAction')or raw.get('nextAction')or'Qualifier la pièce précise du blocage et joindre sa preuve source, son reçu publié et son consommateur')if state=='B'else'non applicable','derniere_execution_source':max((m.get('lastCollectionSuccessAt','')for w,m in sourceproof),default=''),'politique':policykey,'controle_max_jours':contract.get('checkDays'),'observation_max_jours':contract.get('dataDays'),'validation':'Contrats communs du champ et qualification des fenêtres ; pas certification indépendante de toutes les valeurs','producteur_source_demontre':' | '.join(w for w,m in sourceproof),'valeur_champ_presente':bool(match and field_value_present(match[1],field,kind)),'enregistrement':'blob publié vérifié'if match else'non démontré','publication_mecanisme':('publication du producteur vérifiée'if all(m.get('publicationStatus')=='success'for w,m in sourceproof)else'valeurs adoptées par une publication ultérieure ; échec de tentative conservé')if sourceproof else'non démontré','publication_code':manifest.get('codeSha')or manifest.get('codeCommit')or manifest.get('sha'),'publication_donnees':manifest.get('dataSha')or manifest.get('commit')or manifest.get('sha'),'conditions_acces_reutilisation':json.dumps(raw.get('sourceConditions')or f.get('sourceConditions')or{'registre':'src/data/data-source-conditions.json','qualification':'non vérifiée pour ce contrat ; accès HTTP ≠ licence'},ensure_ascii=False,separators=(',',':')),'consommateur':f.get('consumerCode')or' | '.join(r.get('runtimeConsumers',[])),'etat':state,'blocage':' ; '.join(dict.fromkeys(reason))if not nonlive else'Archive, référence, hypothèse ou capacité non requise pour cet usage','preuve':' | '.join(proofs)}
+   identities={asset['id'],asset['id'].split(':')[-1],f.get('sourceIdentity')};identities.discard(None)
+   failures=[failure for workflow,state in observed for failure in scoped_failures(state,identities,field)]
+   row['nature_ecart']=diagnostic_category(required,kind,f,raw,reason,failures)
+   row['defauts_demontres']=json.dumps(failures,ensure_ascii=False,separators=(',',':'))
+   row['portee_diagnostic']='Une lacune de preuve ne démontre pas une panne ; les défaillances non ciblées restent au niveau de leur collecte.'
    rows.append(row)
  assert len(rows)==inventory['consumerUsage']['summary']['usages']
  return rows
@@ -158,10 +184,19 @@ def main():
   definition={k:row[k]for k in shared};definition['consommateur']=definition['consommateur']if len(definition['consommateur'])<250 else'Graphe complet : public/data/data-automation-inventory.json#registries/'+str(row['registre'])
   key=hashlib.sha256(json.dumps(definition,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:20];definitions.setdefault(key,{'chaine':key,**definition})
   compact.append({k:v for k,v in row.items()if k not in shared}|{'chaine':key})
- for name,values in [('matrice-donnees-usages.csv',compact),('chaines-donnees.csv',list(definitions.values()))]:
+ scopes=collections.defaultdict(list)
+ for workflow,state in load(a.monitor).get('workflows',{}).items():
+  for identifier,proof in (state.get('sourceChecks')or{}).items():
+   if not isinstance(proof,dict):continue
+   evidence=proof.get('evidence')or{}
+   key=(workflow,proof.get('runUrl'),evidence.get('sha256'),evidence.get('file'))
+   scopes[key].append({'identifiant_controle':identifier,'checkedAt':proof.get('checkedAt'),'scopeRef':evidence.get('scopeRef')})
+ controls=[{'workflow':key[0],'execution':key[1],'rapport_sha256':key[2],'rapport':key[3],'identifiants_controles_exacts':json.dumps(value,ensure_ascii=False,separators=(',',':')),'limite':'Périmètre observé du journal. Un identifiant global d’instrument ne certifie pas tous ses champs ; aucun champ supplémentaire déduit.'}for key,value in scopes.items()]
+ for name,values in [('matrice-donnees-usages.csv',compact),('chaines-donnees.csv',list(definitions.values())),('collectes-controles.csv',controls)]:
+  if not values:continue
   with(a.output/name).open('w',encoding='utf-8-sig',newline='')as f:
    w=csv.DictWriter(f,fieldnames=list(values[0]),delimiter=';');w.writeheader();w.writerows(values)
 
- summary={'generatedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'denominateur':'Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs','usages':len(rows),'outils':len({r['route']for r in rows}),'profils_identifiants_uniques':len({r['actif_identifiant']for r in rows}),'parts_isin_uniques':len({m[0]for r in rows if(m:=re.search(r'[A-Z]{2}[A-Z0-9]{9}\d',r['actif_identifiant']))}),'statuts':{state:sum(r['etat']==state for r in rows)for state in ['A','B','non applicable']},'types':dict(collections.Counter(r['nature']for r in rows)),'limites':'B reste non résolu ; les références/hypothèses/archives ne sont pas des pannes. Les fenêtres historiques contestées restent dans les 79 cas, indépendamment de cette vue.'}
+ summary={'generatedAt':dt.datetime.now(dt.timezone.utc).isoformat(),'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'denominateur':'Contrats logiques de champ ou série × outil, issus des consommateurs actuels ; pas nombre de points de marché ni certification de toutes les valeurs','usages':len(rows),'outils':len({r['route']for r in rows}),'profils_identifiants_uniques':len({r['actif_identifiant']for r in rows}),'parts_isin_uniques':len({m[0]for r in rows if(m:=re.search(r'[A-Z]{2}[A-Z0-9]{9}\d',r['actif_identifiant']))}),'statuts':{state:sum(r['etat']==state for r in rows)for state in ['A','B','non applicable']},'types':dict(collections.Counter(r['nature']for r in rows)),'diagnostics':dict(collections.Counter(r['nature_ecart']for r in rows)),'limites':'B reste non résolu ; les références/hypothèses/archives ne sont pas des pannes. Les fenêtres historiques contestées restent dans les 79 cas, indépendamment de cette vue.'}
  (a.output/'matrice-bilan.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False))
 if __name__=='__main__':main()
