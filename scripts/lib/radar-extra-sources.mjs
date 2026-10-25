@@ -52,6 +52,18 @@ export async function extraDiscovery(content,source,request) {
     const title=tagContent(raw,'h3')||clean(raw)
     if(!title||title.length>700)continue
     const row={url,title}
+    if(source.id==='xetra'){
+      const date=clean(raw).match(/^([A-Za-z]{3}) (\d{1,2}), (20\d{2})\b/)
+      const month=date?MONTHS.findIndex(m=>m.startsWith(date[1].toLowerCase()))+1:0
+      if(month){
+        const day=`${date[3]}-${String(month).padStart(2,'0')}-${date[2].padStart(2,'0')}`
+        if(new Date(day).toISOString().slice(0,10)===day){
+          row.publishedAt=day
+          const clock=clean(raw).match(/\b(\d{1,2}):(\d{2}):(\d{2}) (AM|PM) (CEST|CET)\b/)
+          if(clock){const hour=Number(clock[1])%12+(clock[4]==='PM'?12:0);row.publishedInstant=`${day}T${String(hour).padStart(2,'0')}:${clock[2]}:${clock[3]}+0${clock[5]==='CEST'?2:1}:00`}
+        }
+      }
+    }
     if(source.id==='xtrackers'){
       const date=clean(block).match(/\b(\d{2})\/(\d{2})\/(20\d{2})\b/)
       if(!date)throw Error('Date de la table Xtrackers absente')

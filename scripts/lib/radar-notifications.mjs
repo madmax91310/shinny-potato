@@ -52,7 +52,7 @@ export function migrateNotificationPolicy(previous, ledger) {
 }
 export function planNotifications(events, ledger, now = new Date(), mode = 'digest') {
   const pending = pendingNotifications(events, ledger).filter(event => !(ledger.acknowledgedPublications ?? []).includes(publicationKey(event)))
-  const groups = groupSignals(pending, +now).filter(group => {
+  const groups = groupSignals(pending, +now, {notification:true}).filter(group => {
     const assessment = editorialAssessment(group.event, +now)
     const date = group.event.changeEvidence?.observedAt ?? (group.event.correctionOf && group.event.correctionPublishedAt ? group.event.correctionPublishedAt : group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt))
     const age = (+now-Date.parse(date))/86400000

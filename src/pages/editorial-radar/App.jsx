@@ -8,6 +8,8 @@ import Button from '../../design-system/Button'
 import { fetchRadar, FAMILIES, markRead, readIds, READ_EVENT, staleFeed, cacheSignalGroups } from './client.js'
 import './style.css'
 
+const GroupDetails = lazy(() => import('./GroupDetails.jsx'))
+const RelatedStages = lazy(() => import('./RelatedStages.jsx'))
 const RadarSourceDetails = lazy(() => import('./RadarSourceDetails.jsx'))
 const DraftEditor = lazy(() => import('./DraftEditor.jsx'))
 const CalendarDetails = lazy(() => import('./CalendarDetails.jsx'))
@@ -22,14 +24,16 @@ function Signal({ event, read, onRead }) {
   const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
   const filing = investorFilingType(event), canPublish = !filing || filing === 'publication'
   const [housingOpen,setHousingOpen]=useState(false), [scoreOpen,setScoreOpen]=useState(false)
-  const [draftOpen,setDraftOpen]=useState(false)
+  const [draftOpen,setDraftOpen]=useState(false),[stagesOpen,setStagesOpen]=useState(false)
   return <article id={`subject-${event.id}`} className={`radar-card ${read ? 'radar-card--read' : ''}`}>
     <div className="radar-card-top"><span className="radar-label">{FAMILIES[event.family]}</span>{!read && <span className="radar-unread">Non lu</span>}<time dateTime={event.detectedAt}>{date(event.detectedAt)}</time></div>
     <span className={`radar-maturity radar-maturity--${editorialState(event)}`}>{EDITORIAL_STATES[editorialState(event)]}</span>
     <h2>{event.title}</h2>
+    {event.extraction?.status==='partial'&&<p className="radar-warning">Extraction partielle : {event.extraction.reason} Les lignes non qualifiées restent en file.</p>}
+    {event.relatedStages?.length>0&&<details onToggle={e=>setStagesOpen(e.currentTarget.open)}><summary>Étapes liées et preuves</summary>{stagesOpen&&<Suspense fallback={<p>Chargement…</p>}><RelatedStages stages={event.relatedStages}/></Suspense>}</details>}
     {event.correctionPublishedAt&&<p>Correction sourcée : {event.correctionPublishedAt}</p>}
     {event.publicationDateNote&&<p className="radar-warning">{event.publicationDateNote}</p>}
-    <p className="radar-scope">{FACT_LABELS[factType(event)]} · Publication : {event.publishedAt ?? 'date non documentée'} · Collecte : {date(event.checkedAt)}</p>
+    <p className="radar-scope">{FACT_LABELS[factType(event)]} · {editorialAssessment(event).qualification.label} · Publication : {event.publishedAt ?? 'date non documentée'} · Collecte : {date(event.checkedAt)}</p>
     <details className="radar-score" onToggle={e=>setScoreOpen(e.currentTarget.open)}><summary>Intérêt éditorial : {editorialAssessment(event).score}/100</summary>{scoreOpen&&<Suspense fallback={<p>Chargement…</p>}><ScoreDetails assessment={editorialAssessment(event)}/></Suspense>}</details>
     {event.evidenceLevel && <p className="radar-scope">Preuve : {({official:'Source officielle', 'professional-association':'Organisme professionnel identifié',journalistic:'Information journalistique attribuée ; confirmation officielle non établie'})[event.evidenceLevel]}</p>}
     {event.effectiveAt && <p><strong>Application annoncée : {event.effectiveAt}</strong> · La date de publication reste {event.publishedAt ?? 'inconnue'}.</p>}
@@ -40,7 +44,7 @@ function Signal({ event, read, onRead }) {
     <p className="radar-entity">{event.family !== 'pouvoir-achat' && event.field !== 'announcement' && event.label} {/^[A-Z]{2}[A-Z0-9]{10}$/.test(event.entity) && <small>{event.entity}</small>}</p>
     {event.family === 'etf' && event.field === 'announcement' ? null : event.factType === 'statistical-publication' && event.summary ? <div className="radar-news-detail"><p><strong>Période des données : {event.referencePeriod ?? 'voir le résumé officiel'}</strong></p><blockquote>{event.summary}</blockquote></div> : event.family === 'pouvoir-achat' ? <div className="radar-news-detail"><p><strong>{event.topicLabel} · {event.status}</strong></p><p>{event.summary}</p>{event.originalLabel ? <details><summary>Lire le texte officiel</summary><p>{event.originalLabel}</p><p>{event.originalSummary}</p><p>{event.statusEvidence}</p></details> : event.statusEvidence && <p className="radar-scope">Formulation de la source : {event.statusEvidence}</p>}<p className="radar-scope">{event.publisher} · {event.changeEvidence ? `changement observé entre ${date(event.changeEvidence.beforeCheckedAt)} et ${date(event.changeEvidence.observedAt)} ; date d’annonce inconnue` : `publié le ${event.period}`}</p></div> : <div className="radar-comparison"><div><span>Avant · {event.beforePeriod ?? 'premier relevé'}</span><strong>{event.beforeText}</strong></div><div><span>Après · {event.period}</span><strong>{event.afterText}</strong></div></div>}
     {event.family !== 'pouvoir-achat' && <><p className="radar-scope">{event.scope}</p><p>{event.reason}</p></>}
-    {event.conditions && <Suspense fallback={null}><ConditionsDetails conditions={event.conditions}/></Suspense>}
+    {event.conditions && <Suspense fallback={null}><ConditionsDetails conditions={event.conditions} changes={event.changeEvidence?.changes}/></Suspense>}
     {event.housing && <details onToggle={e=>setHousingOpen(e.currentTarget.open)}><summary>Conventions immobilières et scénario</summary>{housingOpen&&<Suspense fallback={<p>Chargement…</p>}><HousingDetails housing={event.housing}/></Suspense>}</details>}
     {event.evidence?.excerpt && <details className="radar-proof"><summary>Preuves de l’extraction</summary><blockquote>{event.evidence.excerpt}</blockquote><p className="radar-scope">{event.evidence.method} · Empreinte de la source : {event.evidence.sourceHash}</p></details>}
     <div className="radar-angle"><strong>{canPublish ? 'Une piste pour ton post' : 'Point à vérifier'}</strong><p>{event.angle}</p></div>
@@ -48,18 +52,9 @@ function Signal({ event, read, onRead }) {
     {canPublish && <details className="radar-draft" onToggle={e=>{if(e.currentTarget.open)setDraftOpen(true)}}><summary>Préparer une publication</summary>{draftOpen&&<Suspense fallback={<p>Chargement…</p>}><DraftEditor event={event}/></Suspense>}</details>}
   </article>
 }
-function SignalGroup({ group, read, onRead }) {
-  if (group.events.length === 1) return <Signal event={group.event} read={read.includes(group.event.id)} onRead={onRead} />
-  const allRead = group.events.every(event => read.includes(event.id))
-  return <article className={`radar-card radar-group ${allRead ? 'radar-card--read' : ''}`}>
-    <div className="radar-card-top"><span className="radar-label">{FAMILIES[group.event.family]}</span><span className={`radar-maturity radar-maturity--${group.state}`}>{EDITORIAL_STATES[group.state]}</span></div>
-    <h2>{group.event.publicationId ? group.event.title : `${group.event.label} : ${group.events.length} changements regroupés`}</h2>
-    <p>{group.event.reason}</p>
-    {group.event.publicationId && <><p className="radar-scope">Période des données : {group.event.referencePeriod ?? group.event.period} · Publication : {group.event.publishedAt ?? 'non documentée'} · Collecte : {date(group.event.checkedAt)}</p><p>{editorialAudience(group.event)}</p><a href={group.event.sourceUrl} target="_blank" rel="noreferrer">Voir la publication officielle ↗</a></>}
-    <p>{group.event.eventKey ? 'Même événement, sources rapprochées sur une référence explicite' : group.event.publicationId ? 'Même publication officielle' : 'Même produit et même période'} : {group.event.period}. Chaque fait conserve sa source, son périmètre et son état de lecture.</p>
-    {group.events.map(event => <details className="radar-related" key={event.id}><summary>{event.title}</summary><Signal event={event} read={read.includes(event.id)} onRead={onRead} /></details>)}
-    <Button onClick={() => onRead(group.events.map(event => event.id))} disabled={allRead}>{allRead ? 'Lu' : 'Marquer le sujet comme lu'}</Button>
-  </article>
+function SignalGroup({group,read,onRead}) {
+  if(group.events.length===1)return <Signal event={group.event} read={read.includes(group.event.id)} onRead={onRead}/>
+  return <Suspense fallback={<p>Chargement du dossier…</p>}><GroupDetails group={group} read={read} onRead={onRead} renderSignal={(event,isRead)=><Signal event={event} read={isRead} onRead={onRead}/>}/></Suspense>
 }
 export default function App() {
   const subject = new URLSearchParams(window.location.search).get('subject')

@@ -1,3 +1,4 @@
+import { qualifyRadarFact } from './radar-qualification.js'
 // Editorial scope only. Never changes the shared financial registers.
 export const normalizeEditorial = value => String(value ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[’']/g, ' ')
 export const RADAR_TOPICS = {
@@ -9,7 +10,10 @@ export function editorialExclusion(event) {
   // The principal subject controls scope. Incidental taxes/benefits in a
   // statistical study or a TTC price convention do not change that subject.
   if (event.factType==='statistical-publication' && /industriels?|entreprises?|climat des affaires|production industrielle/.test(title) && !/salaries?|salaires?|remuneration|menages?|patrimoine|niveau.*vie|inegalite|logement|prix a la consommation|epargne|credit.*habitat|revenus?|pauvrete/.test(title)) return 'Étude centrée sur les entreprises, sans sujet principal concernant les ménages.'
-  return excluded.test(title) ? 'Hors périmètre : fiscalité, prestations sociales ou aides au logement.' : null
+  // Remove only a yield convention. The rest of the headline must still pass exclusions.
+  const principal = title.replace(/toutes taxes comprises|hors taxes|taxes incluses|taxes exclues/g,'').replace(/\b(?:avant|apres|hors|net d|nets d|brut d)\s+(?:l |les |des |d )?impots?\b/g, '')
+  if (qualifyRadarFact(event).nature === 'professional-financing') return 'Hors périmètre : financement professionnel, distinct du crédit immobilier des particuliers.'
+  return excluded.test(principal) ? 'Hors périmètre : fiscalité, prestations sociales ou aides au logement.' : null
 }
 export function editorialTopic(title, summary = '') {
   if (editorialExclusion({label:title})) return null
@@ -21,12 +25,12 @@ export function editorialTopic(title, summary = '') {
     ['energie', /electricite|\bgaz\b|heures creuses|heures pleines|tarifs? reglementes?|factures? d energie/],
     ['etf', /\betfs?\b|\bucits\b/],
     ['travail', /salaires?|remunerations?|\bsmic\b|epargne salariale|interessement|participation salariale|\bpee\b|per collectif|retraite collective/],
-    ['frais', /frais bancaires|frais de courtage|tarifs? bancaires|tenue de compte|frais de change|commissions? de courtage/],
+    ['frais', /agios|decouvert|frais bancaires|frais de courtage|tarifs? bancaires|tenue de compte|frais de change|commissions? de courtage/],
     ['credit', /credit.*(?:immobilier|habitat)|taux.*(?:emprunt|immobilier)|assurance emprunteur|\bptz\b|pret a taux zero/],
     ['location', /loyers?|location|bailleurs?|locataires?|garantie locative/],
     ['immobilier', /immobili|prix au m|transactions.*logement|logements? anciens|logements? neufs/],
-    ['statistiques', /niveaux? de vie|patrimoine|inegalites?|inflation|prix a la consommation|pauvrete|epargne des menages/],
-    ['epargne', /fonds en euros|livrets?|epargne|assurance.vie|\bpea\b|compte.titres|liquidites/],
+    ['statistiques', /niveaux? de vie|patrimoine|inegalites?|inflation|prix a la consommation|pauvrete|epargne des menages|pouvoir d achat|comportements des francais/],
+    ['epargne', /comptes? a terme|placements?|fonds en euros|livrets?|epargne|assurance.vie|\bpea\b|compte.titres|liquidites/],
     ['banques', /wero|offre bourse|matrimoine|credit mutuel|\bcic\b|caisse d epargne|banqu|revolut|boursobank|fortuneo|bourse direct|trade republic|\bxtb\b|carte bancaire|neobanque/],
   ]
   return rules.find(([,pattern]) => pattern.test(t))?.[0] ?? (/(?:montant|taux|frais|tarif|€|euros|rembours)/.test(s) ? rules.find(([,pattern]) => pattern.test(s))?.[0] : null) ?? null
