@@ -1,9 +1,10 @@
 import { lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './design-system/Layout'
-import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
+
+const Home = lazy(() => import('./pages/Home'))
 
 // Each tool and its data are fetched only when its route is opened.
 const HeyGrok = lazy(() => import('./pages/hey-grok/App'))

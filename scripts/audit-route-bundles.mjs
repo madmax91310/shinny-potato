@@ -13,9 +13,12 @@ export function staticFiles(key, files = new Set()) {
   return files
 }
 export const initialFiles = staticFiles('index.html')
+export const homeFiles = staticFiles('src/pages/Home.jsx')
+assert(manifest['src/pages/Home.jsx'].isDynamicEntry, 'Home must remain deferred on tool routes')
+assert(!initialFiles.has(manifest['src/pages/Home.jsx'].file), 'Home loads eagerly')
 export const toolChunks = Object.entries(manifest).filter(([key]) => /^src\/pages\/.+\/App\.jsx$/.test(key))
 assert.equal(toolChunks.length, new Set([...TOOLS.filter(tool => tool.status === 'disponible').map(tool => tool.bundle ?? tool.to), '/tweet-midi']).size)
-assert.deepEqual(new Set(manifest['index.html'].dynamicImports), new Set(toolChunks.map(([key]) => key)))
+assert.deepEqual(new Set(manifest['index.html'].dynamicImports), new Set(['src/pages/Home.jsx', ...toolChunks.map(([key]) => key)]))
 for (const [key, chunk] of toolChunks) {
   assert(chunk.isDynamicEntry, `${key} is not a dynamic entry`)
   assert(!initialFiles.has(chunk.file), `${key} loads eagerly`)

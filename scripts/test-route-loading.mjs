@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { TOOLS } from '../src/tools.js'
-import { initialFiles } from './audit-route-bundles.mjs'
+import { initialFiles, homeFiles } from './audit-route-bundles.mjs'
 
 const base = 'http://127.0.0.1:4312/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4312', '--strictPort'], { stdio: 'ignore' })
@@ -24,8 +24,8 @@ try {
     if (url.pathname.endsWith('.js')) requested.add(url.pathname.replace('/shinny-potato/', ''))
   })
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  assert.deepEqual(requested, initialFiles, 'Home fetched deferred code')
-  await page.getByRole('heading', { name: 'Mes outils de la semaine' }).waitFor()
+  assert.deepEqual(requested, new Set([...initialFiles, ...homeFiles]), 'Home fetched unrelated deferred code')
+  await page.getByRole('heading', { name: 'Mes outils' }).waitFor()
 
   // Hold a tool's JS to prove that Suspense leaves the shell visible and usable.
   let release
@@ -38,14 +38,14 @@ try {
     await started
     // A click must visibly acknowledge navigation even while the module waits.
     await page.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
-    assert(await page.getByRole('link', { name: '← Accueil', exact: true }).isVisible())
+    assert(await page.getByRole('link', { name: '← Tous les outils', exact: true }).isVisible())
   } finally { release() }
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
-  assert(requested.size > initialFiles.size, 'Navigation did not fetch deferred code')
+  assert(requested.size > new Set([...initialFiles, ...homeFiles]).size, 'Navigation did not fetch deferred code')
   assert(![...requested].some(file => /etf-issuer|market-monthly|instrument-returns/.test(file)), 'Fee tool must not fetch issuer holdings or historical returns')
   await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).click()
-  await page.getByRole('heading', { name: 'Mes outils de la semaine' }).waitFor()
+  await page.getByRole('heading', { name: 'Mes outils' }).waitFor()
   await page.goBack()
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
 
@@ -87,6 +87,7 @@ try {
     isolated.on('request', request => fetched.push(request.url()))
     await isolated.goto(`${base}${path}`, { waitUntil: 'networkidle' })
     await isolated.locator('main h1').first().waitFor()
+    assert(!fetched.some(url => url.endsWith(manifest['src/pages/Home.jsx'].file)), `${path} fetched home code`)
     assert(!fetched.some(url => /etf-issuer-part|history-assets-|automated-etf-monthly|non-bond-monthly/.test(url)), `${path} fetched unrelated financial payloads`)
     if (path === '/bibliotheque-donnees') {
       await isolated.getByRole('article', { name: 'Fiche de données' }).waitFor()

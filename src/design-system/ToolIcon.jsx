@@ -1,4 +1,8 @@
 const PATHS = {
+  '/classements-performances': 'M8 3h8v6a4 4 0 0 1-8 0V3M8 5H4v3a4 4 0 0 0 5 4m7-7h4v3a4 4 0 0 1-5 4M12 13v5m-5 3v-3h10v3H7',
+  '/le-dca-de': 'M3 5h18v15H3zM3 10h18m-13 4h3m4 0h3m-10 3h3',
+  '/simulateur-patrimoine': 'M3 21h18M5 17v-5h3v5m3 0V8h3v9m3 0V3h3v14',
+  '/fiches-pratiques': 'M5 3h14v18H5zM8 7h8m-8 4h8m-8 4h5',
   '/hey-grok': 'M3 4h18v13H9l-6 4V4m4 5h10M7 13h7',
   '/radar-editorial': 'M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5M12 12l8-8m-8 8v.01',
   '/presentations': 'M12 3l8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6l8-3M8 12l3 3 5-6',

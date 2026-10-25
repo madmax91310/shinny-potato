@@ -57,8 +57,11 @@ try{
   assert.equal(await page.locator('#dca-draft').inputValue(),'Brouillon conservé pendant le parcours')
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
  }
- await page.goto(base)
- await page.locator('.workspace-portfolio-card').screenshot({path:'test-artifacts/dca/home-card.png'})
+ await page.getByRole('link',{name:'← Tous les outils',exact:true}).click()
+ const homeCard=page.locator('.workspace-tool-card[href$="/le-dca-de"]')
+ await homeCard.getByRole('heading',{name:'Portefeuille & DCA',exact:true}).waitFor()
+ assert.equal(await homeCard.count(),1,'The portfolio tool appears once on the complete home')
+ await homeCard.screenshot({path:'test-artifacts/dca/home-card.png'})
  assert.deepEqual(errors,[])
  console.log('DCA analytics browser: holdings, contributions, comparison, image exports and responsive page verified.')
 }finally{await browser?.close();server.kill()}

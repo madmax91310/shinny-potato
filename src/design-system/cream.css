@@ -139,3 +139,9 @@
 .workspace-error button, .workspace-error a { min-height: 44px; padding: .75rem 1rem; border-radius: .5rem; }
 .workspace-error button { background: #24644e; color: white; border: 0; cursor: pointer; }
 .workspace-error a { color: #24644e; }
+
+/* Cobalt shell shared by direct tool links and the home. */
+.workspace .workspace-masthead { max-width: none; min-height: 60px; padding: 8px max(20px, calc((100% - 1064px) / 2)); background: #2458d3; border: 0; color: white; }
+.workspace .workspace-identity, .workspace .workspace-home-link { color: white; }
+.workspace .workspace-home-link:hover { background: #1948b6; }
+.workspace .workspace-masthead a:focus-visible { outline: 3px solid white; outline-offset: 2px; }

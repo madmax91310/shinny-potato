@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { TOOLS } from '../src/tools.js'
-import { EDITORIAL_WEEK } from '../src/data/editorial-calendar.js'
+import { checkCobaltHome } from './check-cobalt-home.mjs'
 
 const base = 'http://127.0.0.1:4324/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4324', '--strictPort'], { stdio: 'ignore' })
@@ -26,51 +26,23 @@ try {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  const scheduledEntries = EDITORIAL_WEEK.flatMap(day => [...day.midday, ...day.evening])
-  const scheduledPaths = new Set(scheduledEntries.map(entry => entry.path))
-  assert.equal(await page.locator('.workspace-tool-card').count(), scheduledEntries.length + TOOLS.filter(t => !t.hidden && !scheduledPaths.has(t.to)).length)
+  const snapshot = await checkCobaltHome(page)
+  // Keep the explicit approved schedule as well as comparing all registry notes,
+  // titles and exact hrefs in the shared check.
+  assert.deepEqual(snapshot, [
+    [0,'midday',['/performance-depuis']], [0,'evening',['/tweets-factsheets']],
+    [1,'midday',['/calculateur-investissement']], [1,'evening',['/le-dca-de']],
+    [2,'midday',['/classements-performances']], [2,'evening',['/comparatif-courtiers']],
+    [3,'midday',['/classements-performances']], [3,'evening',['/banque-tweets']],
+    [4,'midday',['/fiches-etf']], [4,'evening',[]],
+    [5,'midday',[]], [5,'evening',[]],
+    [6,'midday',['/portefeuilles-investisseurs']], [6,'evening',['/fiches-pratiques']],
+  ])
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
-  for (const [index, midday, evening] of [
-    [0, ['/performance-depuis'], ['/tweets-factsheets']],
-    [1, ['/calculateur-investissement'], ['/le-dca-de']],
-    [2, ['/classements-performances'], ['/comparatif-courtiers']],
-    [3, ['/classements-performances'], ['/banque-tweets']],
-    [4, ['/fiches-etf'], []],
-    [5, [], []],
-    [6, ['/portefeuilles-investisseurs'], ['/fiches-pratiques']],
-  ]) {
-    for (const [period, paths] of [['midday', midday], ['evening', evening]]) {
-      const actual = await page.locator(`[data-day="${index}"] [data-period="${period}"] .workspace-tool-card`).evaluateAll(cards => cards.map(card => '/' + new URL(card.href).pathname.split('/').at(-1)))
-      assert.deepEqual(actual, paths, `${index}: ${period}`)
-    }
-  }
-  assert.equal(await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count(), 0)
-  assert.equal(await page.locator('.home-period').count(), 14)
-  assert.equal(await page.locator('.home-week [data-period="midday"] > h3').filter({ hasText: /^Midi$/ }).count(), 7)
-  assert.equal(await page.locator('.home-week a[href$="/calculateur-investissement"]').count(), 1)
-  assert.equal(await page.locator('[data-day="4"] [data-period="evening"] .home-day-note').innerText(), 'Réservé à ton tweet du vendredi')
-  assert.equal(await page.locator('[data-day="5"] [data-period="midday"] .home-day-note').innerText(), 'Ton bilan de la semaine')
-  assert.equal(await page.locator('[data-day="5"] [data-period="evening"] .home-day-note').innerText(), 'Quote de ton bilan')
-  for (const day of [2, 3]) {
-    assert.equal(await page.locator(`[data-day="${day}"] [data-period="midday"] .workspace-tool-card h2`).innerText(), 'Qui a vraiment gagné ?')
-  }
-  assert.equal(await page.locator('.home-week').getByText(/alternance|alternative|facultatif|matin|récap/i).count(), 0)
-  assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Un format par créneau, le midi et le soir.')
-  for (const width of [320, 390]) {
-    await page.setViewportSize({ width, height: 844 })
-    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: horizontal overflow`)
-    const problems = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.flatMap(card => {
-      const title = card.querySelector('h2').getBoundingClientRect()
-      const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
-      const box = card.getBoundingClientRect()
-      return title.bottom > box.bottom || (day && (title.bottom > day.top || day.bottom > box.bottom)) ? [card.textContent] : []
-    }))
-    assert.deepEqual(problems, [], `${width}: cards cropped or title/day overlap`)
-  }
-  assert.deepEqual(await page.locator('.home-day-band h2').allTextContents(), ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
-  assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.filter(t=>!t.hidden).length)
-  assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(), 0, 'Abandoned analysis is absent from home and navigation')
+  assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(), 0)
+  await page.getByRole('button', {name:'Calendrier',exact:true}).click()
+  await page.getByRole('tab', {name:/^Mardi/}).click()
   // Scheduled DCA links open the publication, including after reload. Switching
   // modes updates the URL so browser back restores the selected tool.
   await page.locator('[data-day="1"] [data-period="evening"] .workspace-tool-card').click()
@@ -90,7 +62,7 @@ try {
     assert.equal(await page.locator('.workspace-mobile-menu').getByRole('link',{name:tool.title,exact:true,includeHidden:true}).count(),1)
     assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(),0)
   }
-  await page.goto(base+'/',{waitUntil:'networkidle'})
+  await page.goto(base+'/?vue=ensemble',{waitUntil:'networkidle'})
   // Short screens and enlarged text must grow cards instead of overlapping labels.
   for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
     await page.setViewportSize({ width, height })
@@ -111,7 +83,7 @@ try {
   await page.screenshot({ path: 'test-artifacts/weekly-publications/home-desktop.png', fullPage: true })
   await page.setViewportSize({ width: 390, height: 844 })
   for (const [path, title, badge] of formats) {
-    await page.goto(`${base}/`, { waitUntil: 'networkidle' })
+    await page.goto(`${base}/?vue=ensemble`, { waitUntil: 'networkidle' })
     await page.locator(`.workspace-tool-card[href$="${path}"]`).click()
     await page.getByRole('heading', { name: title, exact: true, level: 1 }).waitFor()
     assert.equal(await page.getByText('Étape 1 — Format', { exact: true }).count(), 0)
