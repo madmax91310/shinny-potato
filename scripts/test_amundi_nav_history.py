@@ -21,6 +21,18 @@ class AmundiNav(unittest.TestCase):
             self.assertEqual(set(years),{str(y)for y in range(2020,2026)})
             self.assertEqual(proof['incomeTreatment'],'Capitalisation')
             self.assertLessEqual(max(nav),proof['latestRawNav'])
+            self.assertEqual(nav[max(nav)],proof['scaleProof']['officialPerShareNav'])
+            self.assertNotEqual(nav[max(nav)],proof['scaleProof']['sourceAdjustedLevel'])
+            self.assertLess(nav[max(nav)],200)  # Actual share NAV, never a base-100 index >600.
+
+    def test_gold_uses_the_same_etc_usd_units_and_all_calendar_checks(self):
+        source={'isin':'FR0013416716','navCurrency':'USD','periodStart':'2019-08'}
+        nav,years,proof=parse(self.captures[source['isin']],source,NOW)
+        self.assertEqual(len(proof['officialIncomeReinvestedChartChecks']),6)
+        self.assertAlmostEqual(years['2025'],64.8)
+        self.assertEqual(nav[max(nav)],proof['scaleProof']['officialPerShareNav'])
+        self.assertAlmostEqual(proof['scaleProof']['factor'],.513455)
+
     def test_wrong_identity_currency_and_distribution(self):
         for field,value in [('ISIN','FR0011871128'),('CURRENCY','USD'),('DISTRIBUTION_POLICY','Distribution')]:
             body=copy.deepcopy(self.body);body['products'][0]['characteristics'][field]=value

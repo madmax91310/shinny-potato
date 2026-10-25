@@ -399,6 +399,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_removed_ai_scope.py'
       - run: python -m unittest discover -s scripts -p 'test_projection_recording.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
+      - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_hsbc_adjustment_investigation.py'
       - run: python -m unittest discover -s scripts -p 'test_data_use_matrix.py'
       - run: python -m unittest discover -s scripts -p 'test_exchange_listing_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'

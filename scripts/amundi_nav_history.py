@@ -70,7 +70,18 @@ def parse(body, source, now):
     expected = {int(y) for y in years if f'{int(y)-1}-12' >= source['periodStart']}
     if {c['year'] for c in checks} != expected:
         raise ValueError('Missing Amundi complete calendar-year bounds')
-    return adjusted, years, {'shareInception': inception.isoformat(),
+    # This endpoint's adjusted indicator is a rebased performance series, not
+    # a per-share price. Anchor its scale to the official NAV on the same date.
+    # Ratios retain the issuer's reinvestment/split convention; the current level
+    # must never show the base-100 series as the price of one share.
+    anchor=max(adjusted)
+    factor=nav[anchor]/adjusted[anchor]
+    normalized={day:value*factor for day,value in adjusted.items()}
+    normalized[anchor]=nav[anchor]
+    return normalized, years, {'shareInception': inception.isoformat(),
+                            'scaleProof': {'anchorDate':anchor,'officialPerShareNav':nav[anchor],
+                                           'sourceAdjustedLevel':adjusted[anchor],'factor':factor,
+                                           'method':'Official adjusted performance series scaled to the same-date exact-share NAV; current share units, not a raw historical quote'},
                             'controlledFields': ['ISIN','CURRENCY','LAUNCH_DATE','DISTRIBUTION_POLICY','officialNav','countervalorisedAdjustedNAV','navCurrency','shareCalendarPerformance'],
                             'controlledInstrument': source['isin'],
                             'requestedStart': source['periodStart']+'-01',
