@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -350,6 +350,72 @@
         "tool": null,
         "reason": "Marché immobilier : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Achat immobilier : les subtilités du compromis et de la promesse de vente — De quels biens, de quelle zone et de quelle période parle cette publication ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-725e0b68dee57e2f9023",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients",
+        "value": {
+          "title": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients",
+          "summary": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+        "publicationId": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+        "publisher": "MoneyVox · actualités",
+        "publishedAt": "2026-10-23",
+        "period": "2026-10-23",
+        "checkedAt": "2026-10-25T12:46:59.793Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+        "populationScope": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence.",
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://www.moneyvox.fr/epargne/credit-agricole/forfaits-bancaires",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/ultim-metal-boursorama",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/bforbank",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.moneyvox.fr/banque-en-ligne/sogexia",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": "2026-11-02",
+        "evidence": {
+          "sourceHash": "769443443a055f64042809dd8418eb30c0571bd0f27bde4598a79a4f6e8c7868",
+          "excerpt": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients — Quels services changent pour les clients français, et à quelle date ?",
         "backfill": true
       },
       {
@@ -966,7 +1032,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -1211,7 +1277,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -1245,7 +1311,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -1817,7 +1883,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T12:36:00.692Z",
+        "checkedAt": "2026-10-25T12:46:59.786Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -2453,7 +2519,7 @@
         "publisher": "Médiateur national de l’énergie",
         "publishedAt": "2026-08-21",
         "period": "2026-08-21",
-        "checkedAt": "2026-10-25T09:41:30.214Z",
+        "checkedAt": "2026-10-25T12:46:59.793Z",
         "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/factures-changement-consommateurs",
         "populationScope": "À compter du 1er janvier 2027 , plusieurs nouvelles mentions devront apparaître sur les factures d’électricité et de gaz.",
         "topic": "energie",
@@ -2476,7 +2542,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "d1466987cd1684f14e77d3795677cf71d06c8e16c0e03ddbf2fb620d892dbf5a",
+          "sourceHash": "352ec3d9feea26d4186ad799fb347a0161ce5c0e4acdacc3072015829328022e",
           "excerpt": "À compter du 1er janvier 2027 , plusieurs nouvelles mentions devront apparaître sur les factures d’électricité et de gaz. Elles permettront aux consommateurs de mieux comprendre le détail de leur facture et la base utilisée par leur fournisseur pour calculer leurs mensualités. la consommation annuelle historique ou prévisionnelle utilisée par le fournisseur pour ses estimations, pour le gaz comme pour l’électricité ;",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -2633,7 +2699,7 @@
         "publisher": "Saxo Banque France",
         "publishedAt": "2026-07-07",
         "period": "2026-07-07",
-        "checkedAt": "2026-10-25T10:59:43.654Z",
+        "checkedAt": "2026-10-25T12:46:59.793Z",
         "scope": "Annonce Saxo Banque France · https://www.home.saxo/fr-fr/content/commentaries/pr/press-release/saxo-banque-devoile-lacademie-du-pea-07072026",
         "populationScope": "780 000 Français ont investi en Bourse pour la première fois en 2025.",
         "conditions": {
@@ -2662,7 +2728,7 @@
         "factType": "consumer-announcement",
         "referencePeriod": null,
         "evidence": {
-          "sourceHash": "2aa8b74b2591a0c87c09d83a6c42eaf304455f2176d9b65dd7faa25a4916c4ec",
+          "sourceHash": "74bb5556c177f0dde2615fc623ad611b28003a004ab6c361738df94d92d4bf8e",
           "excerpt": "780 000 Français ont investi en Bourse pour la première fois en 2025. Une génération entière découvre les marchés financiers mais le niveau de culture financière stagne. Saxo Banque lance l'Académie du PEA, un programme 100 % gratuit et sans compte à ouvrir, pour combler ce fossé entre accès et compréhension. Le nombre de primo-investisseurs en Bourse ne cesse de croître en France. Selon l'Autorité des marchés financiers (AMF, mars 2026), ils étaient 780 000 à franchir le pas en 2025, contre 516 000 en 2024 et 329 000 en 2023 : plus du double en deux ans.",
           "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
         },
@@ -3321,7 +3387,7 @@
         "publisher": "Bourse Direct",
         "publishedAt": "2026-01-28",
         "period": "2026-01-28",
-        "checkedAt": "2026-10-25T10:59:43.654Z",
+        "checkedAt": "2026-10-25T12:46:59.793Z",
         "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/bourse-direct-renforce-lattractivite-de-son-offre-assurance-vie-et-de-son-plan-depargne-retraite-avec-des-rendements-2025-solides-20260128",
         "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
         "topic": "epargne",
@@ -3948,6 +4014,67 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-10a22ecc32129390f1a2",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+        "value": {
+          "title": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés",
+          "summary": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-2",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-2",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2025-05-06",
+        "period": "2025-05-06",
+        "checkedAt": "2026-10-25T12:46:59.793Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-2",
+        "populationScope": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-2",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/75910/fr/Crypto-actifs__l%27Autorite_des_marches_financiers_met_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_non_autorises.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "2b2e50d5f09764ecae734bf2c125ea58fb6db63f194ad130c38b0c12892dc0dd",
+          "excerpt": "Crypto-actifs : l’Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés L’Autorité des marchés financiers publie la liste des nouveaux sites internet proposant, illégalement en France, des crypto-actifs ou des services sur crypto-actifs.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Crypto-actifs : l'Autorité des marchés financiers met en garde le public contre les activités de plusieurs acteurs non autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-98143d0b07378a20502d",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -4001,30 +4128,30 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T12:36:16.693Z",
-  "sourceRevision": "d393a033e983b857e5dd40a01f9be999b0bacd8c",
-  "observationCount": 7508,
+  "checkedAt": "2026-10-25T12:47:18.054Z",
+  "sourceRevision": "60be76f20d4384824063afee6f07dd83542e2ce6",
+  "observationCount": 7513,
   "coverage": {
-    "etf": 300,
+    "etf": 302,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 118,
-    "pouvoir-achat": 56
+    "economie": 119,
+    "pouvoir-achat": 58
   },
   "newSignalCount": 2,
   "errors": [
     {
-      "family": "etf",
-      "entity": "WisdomTree · communiqués européens",
+      "family": "pouvoir-achat",
+      "entity": "Revolut · salle de presse France",
       "reason": "HTTP 403"
     },
     {
-      "family": "pouvoir-achat",
-      "entity": "Revolut · salle de presse France",
+      "family": "etf",
+      "entity": "WisdomTree · communiqués européens",
       "reason": "HTTP 403"
     },
     {
@@ -4039,7 +4166,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t1",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2022t4",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -4099,7 +4226,7 @@
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2022t4",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t1",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
@@ -4124,6 +4251,245 @@
     }
   ],
   "events": [
+    {
+      "topic": "banques",
+      "topicLabel": "Banques et services",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+      "publishedAt": "2026-10-23",
+      "publicationId": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+      "evidence": {
+        "sourceHash": "769443443a055f64042809dd8418eb30c0571bd0f27bde4598a79a4f6e8c7868",
+        "excerpt": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": "2026-11-02",
+      "populationScope": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://www.moneyvox.fr/epargne/credit-agricole/forfaits-bancaires",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/ultim-metal-boursorama",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/bforbank",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.moneyvox.fr/banque-en-ligne/sogexia",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "11d8a4d8570028551fc48ad7",
+      "family": "pouvoir-achat",
+      "entity": "publication-725e0b68dee57e2f9023",
+      "label": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T12:47:18.054Z",
+      "before": null,
+      "after": {
+        "title": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients",
+        "summary": "La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients · summary : La banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-23",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T12:46:59.793Z",
+      "tool": null,
+      "angle": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients — Quels services changent pour les clients français, et à quelle date ?",
+      "draft": "BNP Paribas : jusqu'à 350 euros d'avantages à saisir pour les nouveaux clients\n\nLa banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence. Des conditions doivent être remplies pour profiter de ces avantages, dont une date limite fixée au 2 novembre 2026. Si vous pensiez que les primes de bienvenue étaient réservées aux banques en ligne, détrompez-vous. Les banques traditionnelles savent elles aussi attirer de nouveaux clients avec des offres attractives. C'est le cas de BNP Paribas, qui propose jusqu'à 350 euros d'avantages offerts pour toute première ouverture d'un compte en ligne avec les services &laquo; Essentiels &raquo; de l'offre groupée de services Esprit Libre Référence et une carte Vis\n\nPublication : 2026-10-23 · Annonce publiée\nLa banque traditionnelle BNP Paribas propose deux primes de 80 euros et la gratuité pendant un an de son offre Esprit Libre Référence.\n\nSource : https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+      "reason": "Banques et services : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 84,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 7,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-23"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "sourceDeclaredPublicationDate": "2026-07-31",
+      "publicationDateNote": "La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.",
+      "housing": {
+        "duration": null,
+        "frequency": null,
+        "population": "emprunteurs décrits dans la source",
+        "method": null,
+        "priceBasis": null,
+        "measure": null,
+        "propertyType": null,
+        "market": null,
+        "geography": "France",
+        "rateType": null,
+        "rateScope": "nouveaux crédits",
+        "insurance": null,
+        "provisional": null,
+        "revision": false,
+        "sourceId": "credit-logement"
+      },
+      "evidence": {
+        "sourceHash": "55790d6c06266e6617d462bc1aa2817fda738b9df7a9b529fbe8fa6632347bdf",
+        "excerpt": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26",
+        "method": "Tableau officiel des taux fixes, colonnes et périodes conservées ; diffusion qualifiée seulement par une présentation explicitement datée."
+      },
+      "publicationId": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+      "publishedAt": null,
+      "referencePeriod": "2026-07",
+      "topic": "immobilier",
+      "summary": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26",
+      "publisher": "Observatoire Crédit Logement / CSA",
+      "factType": "publication-watch",
+      "backfill": true,
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+          "role": "official",
+          "label": "Observatoire Crédit Logement / CSA"
+        }
+      ],
+      "migratedEditorial": true,
+      "id": "dab8e64f2cb50387ddf55243",
+      "family": "economie",
+      "entity": "publication-7fca6e9969e1b15914f9",
+      "label": "Analyse marché immobilier juillet 2026",
+      "field": "publication",
+      "fieldLabel": "Publication officielle",
+      "title": "Analyse marché immobilier juillet 2026",
+      "kind": "change",
+      "priority": "high",
+      "detectedAt": "2026-10-25T12:47:18.054Z",
+      "before": "En juillet 2026, le taux moyen des crédits immobiliers s’établit à 3,30 % , contre 3,26 % le mois précédent. Il est de 3,24 % pour l’accession dans le neuf et de 3,28 % pour l’accession dans l’ancien .\n\nAprès une première phase de hausse en début d’année, suivie d’une période de stabilisation entre février et avril autour de 3,23 %, les taux ont renoué avec une trajectoire ascendante : +3 points de base en mai , +1 point en juin et +4 points en juillet , portant le taux moyen du marché à 3,30 %.\n\nL’allongement des durées reste ainsi le principal levier mobilisé pour faciliter le bouclage des plans de financement. En juillet, 51 % des prêts ont été consentis sur 25 ans ou plus , contre 46,8 % en moyenne en 2025 .",
+      "after": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26",
+      "beforeText": "En juillet 2026, le taux moyen des crédits immobiliers s’établit à 3,30 % , contre 3,26 % le mois précédent. Il est de 3,24 % pour l’accession dans le neuf et de 3,28 % pour l’accession dans l’ancien .\n\nAprès une première phase de hausse en début d’année, suivie d’une période de stabilisation entre février et avril autour de 3,23 %, les taux ont renoué avec une trajectoire ascendante : +3 points de base en mai , +1 point en juin et +4 points en juillet , portant le taux moyen du marché à 3,30 %.\n\nL’allongement des durées reste ainsi le principal levier mobilisé pour faciliter le bouclage des plans de financement. En juillet, 51 % des prêts ont été consentis sur 25 ans ou plus , contre 46,8 % en moyenne en 2025 .",
+      "afterText": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26",
+      "beforePeriod": "2026-07-31",
+      "period": "2026-07-31",
+      "scope": "Publication officielle · Observatoire Crédit Logement / CSA",
+      "unit": "",
+      "sourceUrl": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+      "previousSourceUrl": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+      "checkedAt": "2026-10-25T12:46:59.793Z",
+      "angle": "Partir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "draft": "Publication officielle : En juillet 2026, le taux moyen des crédits immobiliers s’établit à 3,30 % , contre 3,26 % le mois précédent. Il est de 3,24 % pour l’accession dans le neuf et de 3,28 % pour l’accession dans l’ancien .\n\nAprès une première phase de hausse en début d’année, suivie d’une période de stabilisation entre février et avril autour de 3,23 %, les taux ont renoué avec une trajectoire ascendante : +3 points de base en mai , +1 point en juin et +4 points en juillet , portant le taux moyen du marché à 3,30 %.\n\nL’allongement des durées reste ainsi le principal levier mobilisé pour faciliter le bouclage des plans de financement. En juillet, 51 % des prêts ont été consentis sur 25 ans ou plus , contre 46,8 % en moyenne en 2025 . → Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26.\n\nAnalyse marché immobilier juillet 2026\nPérimètre : Publication officielle · Observatoire Crédit Logement / CSA\nAncienne observation : 2026-07-31 · En juillet 2026, le taux moyen des crédits immobiliers s’établit à 3,30 % , contre 3,26 % le mois précédent. Il est de 3,24 % pour l’accession dans le neuf et de 3,28 % pour l’accession dans l’ancien .\n\nAprès une première phase de hausse en début d’année, suivie d’une période de stabilisation entre février et avril autour de 3,23 %, les taux ont renoué avec une trajectoire ascendante : +3 points de base en mai , +1 point en juin et +4 points en juillet , portant le taux moyen du marché à 3,30 %.\n\nL’allongement des durées reste ainsi le principal levier mobilisé pour faciliter le bouclage des plans de financement. En juillet, 51 % des prêts ont été consentis sur 25 ans ou plus , contre 46,8 % en moyenne en 2025 .\nObservation actuelle : 2026-07-31\n\nPartir du chiffre principal du résumé officiel et préciser la population, la période et les limites avant de comparer.",
+      "reason": "Publication statistique officielle : un repère pour comprendre les revenus, le patrimoine ou les dépenses. La portée reste celle du texte cité.",
+      "editorial": {
+        "score": 90,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": true,
+            "reason": "Date de publication inconnue ; détection non substituée"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "watch",
+        "type": "publication-watch",
+        "priority": false,
+        "major": false
+      }
+    },
     {
       "topic": "banques",
       "topicLabel": "Banques et services",
@@ -74525,7 +74891,7 @@
       "url": "https://www.fortuneo.fr/tarifs",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"896c28858a5f6ac8c863a91d252438dc\"",
@@ -74550,7 +74916,7 @@
       "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": "W/\"e9424cfe8a8eb988f5bc87f2856d4c00\"",
@@ -74575,7 +74941,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -74600,7 +74966,7 @@
       "url": "https://www.boursobank.com/",
       "method": "offer-watch",
       "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 1,
       "archiveWarning": null,
       "etag": null,
@@ -74625,7 +74991,7 @@
       "url": "https://www.insee.fr/fr/solr/consultation",
       "method": "insee-search",
       "depth": "API publique de recherche : deux pages de 30 études grand public par diffusion + 30 résultats logements anciens ; RSS indépendants",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 90,
       "archiveWarning": null,
       "etag": null,
@@ -74635,14 +75001,14 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T12:47:06.163Z",
       "queue": {
-        "pending": 47,
-        "done": 1,
+        "pending": 46,
+        "done": 2,
         "error": 0,
         "rejected": 33
       },
       "extractionStatus": "validated",
       "silentBaselines": 0,
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z"
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z"
     },
     {
       "id": "bourse-direct-news",
@@ -74650,7 +75016,7 @@
       "url": "https://groupe.boursedirect.fr/feed",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
       "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
@@ -74665,7 +75031,7 @@
         "rejected": 5
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -74675,7 +75041,7 @@
       "url": "https://www.energie-info.fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
       "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
@@ -74690,7 +75056,7 @@
         "rejected": 2
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "silentBaselines": 0
     },
     {
@@ -74699,7 +75065,7 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
@@ -74723,7 +75089,7 @@
       "url": "https://www.amf-france.org/fr/flux-rss/display/28",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 196,
       "etag": "\"1792926370-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:06:10 GMT",
@@ -74732,13 +75098,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T13:04:00.738Z",
       "queue": {
-        "pending": 146,
-        "done": 12,
+        "pending": 145,
+        "done": 13,
         "error": 1,
         "rejected": 39
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -74748,7 +75114,7 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
@@ -74758,12 +75124,12 @@
       "nextCheckAt": "2026-10-25T13:04:00.738Z",
       "queue": {
         "pending": 16,
-        "done": 9,
+        "done": 10,
         "error": 0,
         "rejected": 42
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -74773,7 +75139,7 @@
       "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
       "method": "consumer-links",
       "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -74798,7 +75164,7 @@
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
       "method": "consumer-coverage",
       "depth": "Fenêtre RSS officielle ; groupe international, aucune offre généralisée à la France",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 21,
       "archiveWarning": null,
       "etag": null,
@@ -74823,7 +75189,7 @@
       "url": "https://presse.credit-agricole.com/fr/?lang=fra",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; groupe, filiales et caisses distingués dans le texte",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 6,
       "archiveWarning": null,
       "etag": null,
@@ -74848,7 +75214,7 @@
       "url": "https://www.societegenerale.com/fr/communiques-de-presse",
       "method": "consumer-coverage",
       "depth": "Première page de cartes datées ; archive non exhaustive",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 18,
       "archiveWarning": null,
       "etag": "\"1792922289-gzip\"",
@@ -74873,7 +75239,7 @@
       "url": "https://newsroom.groupebpce.fr/",
       "method": "consumer-coverage",
       "depth": "Cartes datées de l’accueil ; offre limitée aux réseaux / clients explicitement cités",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -74898,7 +75264,7 @@
       "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse-et-actualites.html",
       "method": "consumer-coverage",
       "depth": "Première page de l’archive officielle ; fédérations et CIC seulement lorsque cités",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "archiveWarning": null,
       "etag": null,
@@ -74923,7 +75289,7 @@
       "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
       "method": "consumer-coverage",
       "depth": "Deux pages de six communiqués PDF datés",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 6,
       "archiveWarning": "Archive La Banque Postale page 2 : HTTP 403",
       "etag": null,
@@ -74948,7 +75314,7 @@
       "url": "https://www.home.saxo/fr-fr/about-us/media-center",
       "method": "consumer-coverage",
       "depth": "Articles français datés rendus dans le centre médias",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 4,
       "archiveWarning": null,
       "etag": null,
@@ -74964,7 +75330,7 @@
         "rejected": 1
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:34:00.738Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "silentBaselines": 0
     },
     {
@@ -74973,7 +75339,7 @@
       "url": "https://www.invesco.com/uk/en/about-us/media-hub.html",
       "method": "extra-coverage",
       "depth": "Table datée 2026 et archives rendues ; documents PDF officiels, sans catalogue",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 43,
       "archiveWarning": null,
       "etag": null,
@@ -74983,13 +75349,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T14:34:00.738Z",
       "queue": {
-        "pending": 33,
-        "done": 10,
+        "pending": 32,
+        "done": 11,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:34:00.738Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "silentBaselines": 0
     },
     {
@@ -74998,7 +75364,7 @@
       "url": "https://newsroom.statestreet.com/rss/pressrelease.aspx",
       "method": "extra-coverage",
       "depth": "Fenêtre RSS mondiale ; seuls les communiqués explicitement UCITS sont exploitables en Europe",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "archiveWarning": null,
       "etag": "\"4b76f2afdbd23c07324a0a51943dd83c\"",
@@ -75023,7 +75389,7 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -75048,7 +75414,7 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
@@ -75073,7 +75439,7 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
@@ -75098,7 +75464,7 @@
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
@@ -75123,7 +75489,7 @@
       "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
       "method": "extra-links",
       "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 8,
       "etag": "\"1792928831-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:11 GMT",
@@ -75148,7 +75514,7 @@
       "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
       "method": "extra-links",
       "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 6,
       "etag": null,
       "lastModified": null,
@@ -75163,7 +75529,7 @@
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:34:00.738Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "archiveWarning": null,
       "silentBaselines": 0
     },
@@ -75173,7 +75539,7 @@
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
@@ -75198,7 +75564,7 @@
       "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
       "method": "extra-dvf",
       "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 1,
       "etag": null,
       "lastModified": null,
@@ -75223,7 +75589,7 @@
       "url": "https://www.insee.fr/fr/flux/2",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 21,
       "etag": null,
       "lastModified": null,
@@ -75232,10 +75598,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T12:47:06.163Z",
       "queue": {
-        "pending": 9,
+        "pending": 8,
         "done": 9,
         "error": 2,
-        "rejected": 1
+        "rejected": 2
       },
       "extractionStatus": "error",
       "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z",
@@ -75248,7 +75614,7 @@
       "url": "https://www.insee.fr/fr/flux/3",
       "method": "rss",
       "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 28,
       "etag": null,
       "lastModified": null,
@@ -75257,10 +75623,10 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T12:47:06.163Z",
       "queue": {
-        "pending": 10,
+        "pending": 9,
         "done": 17,
         "error": 0,
-        "rejected": 1
+        "rejected": 2
       },
       "extractionStatus": "validated",
       "lastExtractionSuccessAt": "2026-10-25T11:52:20.897Z",
@@ -75273,7 +75639,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -75282,13 +75648,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 59,
-        "done": 24,
+        "pending": 58,
+        "done": 25,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T12:36:00.700Z",
+      "lastExtractionSuccessAt": "2026-10-25T12:46:59.793Z",
       "silentBaselines": 0
     },
     {
@@ -75297,7 +75663,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "etag": "\"1792928831-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:11 GMT",
@@ -75322,7 +75688,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "etag": "\"1792928832-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:12 GMT",
@@ -75347,7 +75713,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 12,
       "etag": "\"1792928832-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 11:47:12 GMT",
@@ -75372,7 +75738,7 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
@@ -75392,12 +75758,12 @@
       "silentBaselines": 0
     },
     {
-      "id": "wisdomtree",
-      "name": "WisdomTree · communiqués européens",
-      "url": "https://www.wisdomtree.com/fr/press-room",
-      "method": "links",
-      "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -75411,12 +75777,12 @@
       "silentBaselines": 0
     },
     {
-      "id": "revolut-news",
-      "name": "Revolut · salle de presse France",
-      "url": "https://www.revolut.com/fr-FR/news/",
-      "method": "consumer-links",
-      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -75435,7 +75801,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -75460,7 +75826,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T12:36:00.700Z",
+      "attemptedAt": "2026-10-25T12:46:59.793Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -75478,8 +75844,8 @@
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T12:36:00.687Z",
-      "lastSuccessAt": "2026-10-25T12:36:00.687Z",
+      "checkedAt": "2026-10-25T12:46:59.783Z",
+      "lastSuccessAt": "2026-10-25T12:46:59.783Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -75489,8 +75855,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T12:36:00.687Z",
-      "lastSuccessAt": "2026-10-25T12:36:00.687Z",
+      "checkedAt": "2026-10-25T12:46:59.783Z",
+      "lastSuccessAt": "2026-10-25T12:46:59.783Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -75499,7 +75865,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -75508,7 +75874,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -75517,7 +75883,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -75526,7 +75892,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -75535,7 +75901,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -75544,7 +75910,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T12:36:00.692Z",
+      "checkedAt": "2026-10-25T12:46:59.786Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -75755,10 +76121,10 @@
   "metrics": {
     "collection": {
       "requests": 16,
-      "bytes": 1918017,
-      "notModified": 1,
-      "durationMs": 14268,
-      "checkedAt": "2026-10-25T12:36:00.700Z"
+      "bytes": 2008386,
+      "notModified": 0,
+      "durationMs": 14738,
+      "checkedAt": "2026-10-25T12:46:59.793Z"
     },
     "publicationDelays": [
       {
@@ -76427,6 +76793,11 @@
         "detectionToAvailabilityHours": 19.130941666666665
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/investors-notice/distribution-de-dividendes-pour-plusieurs-etf-2024",
+        "publicationToDetectionHours": 16721.469252777777,
+        "detectionToAvailabilityHours": 19.314023055555555
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -76537,6 +76908,11 @@
         "detectionToAvailabilityHours": 6.683155
       },
       {
+        "url": "https://www.moneyvox.fr/banque-en-ligne/actualites/110941/bnp-paribas-jusqua-350-euros-avantages-a-saisir-pour-les-nouveaux-clients",
+        "publicationToDetectionHours": 53.91703944444444,
+        "detectionToAvailabilityHours": 6.866236388888889
+      },
+      {
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-plusieurs-acteurs-proposant-en-france-des-2",
         "publicationToDetectionHours": 77.91703944444444,
         "detectionToAvailabilityHours": 0
@@ -76595,6 +76971,11 @@
         "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-3",
         "publicationToDetectionHours": 10973.917039444445,
         "detectionToAvailabilityHours": 6.683155
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-lautorite-des-marches-financiers-met-en-garde-le-public-contre-les-activites-de-2",
+        "publicationToDetectionHours": 12893.917039444445,
+        "detectionToAvailabilityHours": 6.866236388888889
       },
       {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
@@ -76777,6 +77158,11 @@
         "detectionToAvailabilityHours": 4.710459444444444
       },
       {
+        "url": "https://www.invesco.com/content/dam/invesco/uk/en/pdf/press/2025/invesco-expanding-enhanced-equity-etf-range-with-regional-and-single-country%20exposures-19-sep-2025.pdf",
+        "publicationToDetectionHours": 9631.856412222221,
+        "detectionToAvailabilityHours": 4.926863611111111
+      },
+      {
         "url": "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/violences-urbaines.html",
         "publicationToDetectionHours": 151.85641222222222,
         "detectionToAvailabilityHours": 0
@@ -76810,21 +77196,18 @@
         "url": "https://www.insee.fr/fr/statistiques/9005576",
         "publicationToDetectionHours": 3083.785045277778,
         "detectionToAvailabilityHours": 0.8151491666666667
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/8995299",
+        "publicationToDetectionHours": 3611.785045277778,
+        "detectionToAvailabilityHours": 0.9982305555555555
       }
     ],
     "classification": {
-      "ready": 82,
-      "watch": 32,
+      "ready": 83,
+      "watch": 33,
       "secondary": 345
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T12:36:29.449Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
