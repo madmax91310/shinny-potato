@@ -72,7 +72,7 @@ export function discoverPublications(content, source) {
     if (!/<rss\b|<feed\b/i.test(content)) throw new Error('Flux structuré absent')
     for (const [, item] of content.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)) {
       const title = tag(item, 'title')
-      if (statisticalTopic(title+' '+tag(item,'description'))) rows.push({ url: official(tag(item, 'link'), source), title, hint: tag(item, 'pubDate') })
+      if (statisticalTopic(title)) rows.push({ url: official(tag(item, 'link'), source), title, hint: tag(item, 'pubDate') })
     }
   } else if (source.method === 'sitemap') {
     if (!/<urlset\b/i.test(content)) throw new Error('Sitemap officiel absent')
@@ -167,7 +167,7 @@ export function parsePublication(html, source, url, now = new Date(), listing = 
   if(diffusion&&Date.parse(diffusion)>+now)throw Error('Diffusion CSA future ; événement attendu distinct d’une publication parue')
   const metadataOnly = source.id==='credit-logement' && !diffusion || source.id==='oll' && !/[%€]|euros/i.test(summary)
   if (!summary || !/\d/.test(summary)) throw new Error('Résumé statistique chiffré absent : extraction à adapter')
-  if (!statisticalTopic(title+' '+summary)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }
+  if (!statisticalTopic(title)) return { rejected: 'Publication hors des thèmes ménages suivis', title, publishedAt }
   // A publication's edition year is not necessarily its statistical reference year.
   const years = [...new Set(summary.match(/\b20\d{2}\b/g) ?? [])].sort()
   const year = source.id === 'drees' ? null : statisticalPeriod(title)
