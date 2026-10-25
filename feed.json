@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0
@@ -351,7 +351,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -469,7 +469,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -503,7 +503,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -767,6 +767,62 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "publication-1022d1a6206dc983865b",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+        "value": {
+          "title": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+          "summary": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+        "publicationId": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+        "publisher": "Médiateur national de l’énergie",
+        "publishedAt": "2026-10-12",
+        "period": "2026-10-12",
+        "checkedAt": "2026-10-25T07:12:40.300Z",
+        "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+        "populationScope": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+            "role": "official",
+            "label": "Médiateur national de l’énergie"
+          },
+          {
+            "url": "https://comparateur.energie-info.fr",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.energie-info.fr/fiche_pratique/comment-comparer-les-offres-delectricite-et-de-gaz-naturel/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "e14fd34767f1ff278fc9a92c6c051099e41146e25906f3db2afbb86e7fc6f816",
+          "excerpt": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "publication-225cddaa892cab72a4dd",
         "field": "announcement",
         "fieldLabel": "Actualité des particuliers",
@@ -968,7 +1024,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-25T05:55:01.334Z",
+        "checkedAt": "2026-10-25T07:12:40.292Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -989,6 +1045,123 @@
         "summary": "Nouvelle publication des crédits aux particuliers. Consulter la source pour les taux des crédits à l’habitat, hors frais et assurance, et la période statistique.",
         "angle": "Préciser le public, la date et les conditions citées avant de comparer.",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-ce461627e4e3dd7a248e",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+        "value": {
+          "title": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+          "summary": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+        "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+        "publisher": "Bourse Direct",
+        "publishedAt": "2026-10-06",
+        "period": "2026-10-06",
+        "checkedAt": "2026-10-25T07:12:40.300Z",
+        "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+        "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+            "role": "official",
+            "label": "Bourse Direct"
+          },
+          {
+            "url": "https://groupe.boursedirect.fr/categorie/actualites",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "3bb26f9774483ded5be8ab34e2766b3da86f72a5336220d210de9f7e7d8516ae",
+          "excerpt": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026 — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-228a676849608a204fe6",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+        "value": {
+          "title": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+          "summary": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+        "publicationId": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+        "publisher": "AFG · épargne salariale",
+        "publishedAt": "2026-09-17",
+        "period": "2026-09-17",
+        "checkedAt": "2026-10-25T07:12:40.300Z",
+        "scope": "Annonce AFG · épargne salariale · https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+        "populationScope": "Épargne salariale et retraite collective couvertes par l’enquête AFG",
+        "topic": "epargne",
+        "topicLabel": "Épargne et placements",
+        "summary": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "professional-association",
+        "sources": [
+          {
+            "url": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+            "role": "professional-association",
+            "label": "AFG · épargne salariale"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/actualites/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/app/uploads/2026/09/OEE_Communique_de_presse_indice_patrimoniale.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.afg.asso.fr/fr/publication/oee-indice-performance-epargne-financiere-des-menages-17-septembre-2026/",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "0118120c8bc0b82a2a41497e67d124c07ba61a44ce668d200f4f462718b4d61e",
+          "excerpt": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026 — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": true
       },
       {
         "family": "pouvoir-achat",
@@ -1051,26 +1224,138 @@
         "summary": "Nouvelle publication des crédits aux particuliers. Consulter la source pour les taux des crédits à l’habitat, hors frais et assurance, et la période statistique.",
         "angle": "Qui peut en bénéficier, à partir de quand et sous quelles conditions ?",
         "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-65f6cc7572fc95487433",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir",
+        "value": {
+          "title": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir",
+          "summary": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir L'Autorité des marchés financiers a identifié ces derniers jours la multiplication de faux sites d’information usurpant l’identité visuelle et le nom de médias français, ainsi que l’identité de personnalités afin de promouvoir les avantages d’une plateforme de trading frauduleuse, BitKeltTrade. L’AMF appelle les épargnants à la plus grande vigilance et à ne pas donner suite.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+        "publisher": "AMF · communiqués",
+        "publishedAt": "2026-08-19",
+        "period": "2026-08-19",
+        "checkedAt": "2026-10-25T07:12:40.300Z",
+        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+        "populationScope": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir L'Autorité des marchés financiers a identifié ces derniers jours la multiplication de faux sites d’information usurpant l’identité visuelle et le nom de médias français, ainsi que l’identité de personnalités afin de promouvoir les avantages d’une plateforme de trading frauduleuse, BitKeltTrade.",
+        "topic": "securite",
+        "topicLabel": "Sécurité de l’argent",
+        "summary": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir L'Autorité des marchés financiers a identifié ces derniers jours la multiplication de faux sites d’information usurpant l’identité visuelle et le nom de médias français, ainsi que l’identité de personnalités afin de promouvoir les avantages d’une plateforme de trading frauduleuse, BitKeltTrade. L’AMF appelle les épargnants à la plus grande vigilance et à ne pas donner suite.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+            "role": "official",
+            "label": "AMF · communiqués"
+          },
+          {
+            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/79770/fr/L%27AMF_appelle_l%27attention_des_epargnants_sur_la_multiplication_des_arnaques_prenant_la_forme_de_faux_articles_de_presse_vantant_les_merites_de_pseudo_bons_plans_pour_s%27enrichir.pdf",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/faire-les-verifications",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          },
+          {
+            "url": "https://www.amf-france.org/fr/espace-epargnants/vous-avez-une-question-sur-un-produit-financier",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "d8ef34ddc2c7f870b8aca5cfd7e21ea86824778088c4ab52ca87c4200d4b1112",
+          "excerpt": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir L'Autorité des marchés financiers a identifié ces derniers jours la multiplication de faux sites d’information usurpant l’identité visuelle et le nom de médias français, ainsi que l’identité de personnalités afin de promouvoir les avantages d’une plateforme de trading frauduleuse, BitKeltTrade. L’AMF appelle les épargnants à la plus grande vigilance et à ne pas donner suite.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "L'AMF appelle l'attention des épargnants sur la multiplication des arnaques prenant la forme de faux articles de presse vantant les mérites de pseudo bons plans pour s’enrichir — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
+        "backfill": true
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-17bb6504cd20e604c06a",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "BoursoBank intègre Wero à ses solutions de paiement",
+        "value": {
+          "title": "BoursoBank intègre Wero à ses solutions de paiement",
+          "summary": "BoursoBank, 1ère banque en ligne française avec plus de 8,9 M de clients, annonce aujourd’hui son partenariat avec EPI (European Payments Initiative) en vue d’intégrer d’ici la fin de l’année 2026, Wero, la solution européenne de paiement instantané. Avec Wero, BoursoBank accompagne la croissance des usages de ses clients autour des virements instantanés via le numéro de téléphone mobile grâce à une infrastructure souveraine, unifiée à l’échelle européenne, et compétitive.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+        "publicationId": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+        "publisher": "BoursoBank Groupe · communiqués",
+        "publishedAt": "2026-06-10",
+        "period": "2026-06-10",
+        "checkedAt": "2026-10-25T07:12:40.300Z",
+        "scope": "Annonce BoursoBank Groupe · communiqués · https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+        "populationScope": "Clients BoursoBank dans les conditions du communiqué",
+        "topic": "banques",
+        "topicLabel": "Banques et services",
+        "summary": "BoursoBank, 1ère banque en ligne française avec plus de 8,9 M de clients, annonce aujourd’hui son partenariat avec EPI (European Payments Initiative) en vue d’intégrer d’ici la fin de l’année 2026, Wero, la solution européenne de paiement instantané. Avec Wero, BoursoBank accompagne la croissance des usages de ses clients autour des virements instantanés via le numéro de téléphone mobile grâce à une infrastructure souveraine, unifiée à l’échelle européenne, et compétitive.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+            "role": "official",
+            "label": "BoursoBank Groupe · communiqués"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "b5623007be34bd0b14add36f4bba3d8555f879c2050938cb07cbe60a21257ec2",
+          "excerpt": "BoursoBank, 1ère banque en ligne française avec plus de 8,9 M de clients, annonce aujourd’hui son partenariat avec EPI (European Payments Initiative) en vue d’intégrer d’ici la fin de l’année 2026, Wero, la solution européenne de paiement instantané. Avec Wero, BoursoBank accompagne la croissance des usages de ses clients autour des virements instantanés via le numéro de téléphone mobile grâce à une infrastructure souveraine, unifiée à l’échelle européenne, et compétitive.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "BoursoBank intègre Wero à ses solutions de paiement — Quels services changent pour les clients français, et à quelle date ?",
+        "backfill": true
       }
     ]
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-25T05:55:21.551Z",
-  "sourceRevision": "6059ecea165d37545b929816831d10dfe1e79c91",
-  "observationCount": 7417,
+  "checkedAt": "2026-10-25T07:13:08.145Z",
+  "sourceRevision": "10bcd54b2e4566101357e88130eb506aedd579b8",
+  "observationCount": 7428,
   "coverage": {
-    "etf": 268,
+    "etf": 271,
     "indices": 52,
     "courtiers": 8,
     "epargne": 10,
     "scpi": 8,
     "assurance": 7,
     "investisseurs": 28,
-    "economie": 106,
-    "pouvoir-achat": 9
+    "economie": 109,
+    "pouvoir-achat": 14
   },
-  "newSignalCount": 6,
+  "newSignalCount": 4,
   "errors": [
     {
       "family": "pouvoir-achat",
@@ -1084,28 +1369,23 @@
     },
     {
       "family": "economie",
-      "entity": "DREES",
-      "reason": "fetch failed"
-    },
-    {
-      "family": "economie",
       "entity": "DARES",
       "reason": "fetch failed"
     },
     {
       "family": "economie",
-      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t1",
+      "entity": "DREES",
+      "reason": "fetch failed"
+    },
+    {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2022t4",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
       "family": "economie",
       "entity": "https://www.insee.fr/fr/statistiques/8733125",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
-    },
-    {
-      "family": "etf",
-      "entity": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
-      "reason": "Date de publication officielle absente (hanetf)"
     },
     {
       "family": "etf",
@@ -1121,11 +1401,6 @@
       "family": "etf",
       "entity": "https://hanetf.com/press-releases/infrastructure-capital-expands-european-etf-range-with-launch-of-sp-500-option-income-etf",
       "reason": "Date de publication officielle absente (hanetf)"
-    },
-    {
-      "family": "etf",
-      "entity": "https://etf.dws.com/en-gb/about-us/press-releases/new-economist-impact-report-sponsored-by-xtrackers-by-dws-examines-how-institutional-investors-are-shaping-artificial-intelligence",
-      "reason": "HTTP 500"
     },
     {
       "family": "etf",
@@ -1198,6 +1473,11 @@
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
     },
     {
+      "family": "economie",
+      "entity": "https://www.banque-france.fr/fr/statistiques/comptes-nationaux-financiers/endettement-des-menages-et-des-snf-2023t1",
+      "reason": "Résumé statistique chiffré absent : extraction à adapter"
+    },
+    {
       "family": "etf",
       "entity": "IE00B3T9LM79",
       "reason": "Valeur contradictoire pour la même période (2026-10-22) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-22)."
@@ -1209,6 +1489,454 @@
     }
   ],
   "events": [
+    {
+      "launchDetails": {
+        "isin": "IE0009D15VO0",
+        "fees": "0.59%"
+      },
+      "products": [],
+      "announcementEvidence": {
+        "type": "launch",
+        "stage": "launched",
+        "label": "Lancement déclaré par l’émetteur",
+        "evidence": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform"
+      },
+      "calendarEvidence": null,
+      "evidence": {
+        "excerpt": "HANetf, Europe’s first and leading white-label UCITS ETF and ETC platform, is delighted to announce the launch of HAN Nasdaq-100 Daily Covered Call UCITS ETF (ticker: QQQI) .",
+        "sourceHash": "732fed66a26fd9c30b93437416bb600e5bd9a46ec6443a8ac338dc6f1e3f05a5"
+      },
+      "publicationId": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
+      "publishedAt": "2026-09-24",
+      "publisher": "HANetf · communiqués UCITS",
+      "backfill": true,
+      "documentUrl": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
+      "documentCheckedAt": "2026-10-25T07:12:40.300Z",
+      "documentHash": "732fed66a26fd9c30b93437416bb600e5bd9a46ec6443a8ac338dc6f1e3f05a5",
+      "id": "0a2660aa64c0b94119760af4",
+      "family": "etf",
+      "entity": "publication-e18e138c2559d0cb01da",
+      "label": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform",
+      "field": "announcement",
+      "fieldLabel": "Publication officielle",
+      "title": "Lancement déclaré par l’émetteur : Europe’s first covered call ETF with daily options expiries launches on HANetf platform",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-25T07:13:08.145Z",
+      "before": null,
+      "after": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform",
+      "beforeText": "Pas encore suivi",
+      "afterText": "Europe’s first covered call ETF with daily options expiries launches on HANetf platform",
+      "beforePeriod": null,
+      "period": "2026-09-24",
+      "scope": "Publication officielle · HANetf · communiqués UCITS",
+      "unit": "",
+      "sourceUrl": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "angle": "Comparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.",
+      "draft": "Une nouvelle donnée sourcée est disponible : Europe’s first covered call ETF with daily options expiries launches on HANetf platform.\n\nEurope’s first covered call ETF with daily options expiries launches on HANetf platform\nPérimètre : Publication officielle · HANetf · communiqués UCITS\nObservation actuelle : 2026-09-24\n\nComparer les expositions annoncées et les produits déjà disponibles. Une cotation ne prouve pas une disponibilité chez un courtier.",
+      "reason": "Communiqué officiel daté, noms et caractéristiques limités aux associations prouvées.",
+      "editorial": {
+        "score": 39,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 11,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 8,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Caractéristiques du placement"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 0,
+            "maximum": 15,
+            "unknown": true,
+            "reason": "Comparaison non documentée"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-09-24"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "product-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "banques",
+      "topicLabel": "Banques et services",
+      "publisher": "Bourse Direct",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+      "publishedAt": "2026-10-06",
+      "publicationId": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+      "evidence": {
+        "sourceHash": "3bb26f9774483ded5be8ab34e2766b3da86f72a5336220d210de9f7e7d8516ae",
+        "excerpt": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Clients Bourse Direct concernés par le produit cité ; conditions de l’annonce",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+          "role": "official",
+          "label": "Bourse Direct"
+        },
+        {
+          "url": "https://groupe.boursedirect.fr/categorie/actualites",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "1696c06006ac2c07308ed4a6",
+      "family": "pouvoir-achat",
+      "entity": "publication-ce461627e4e3dd7a248e",
+      "label": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:13:08.145Z",
+      "before": null,
+      "after": {
+        "title": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026",
+        "summary": "Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026 · summary : Pour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF. · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-10-06",
+      "scope": "Annonce Bourse Direct · https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+      "unit": "",
+      "sourceUrl": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "tool": null,
+      "angle": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026 — Quels services changent pour les clients français, et à quelle date ?",
+      "draft": "Mieux comprendre pour mieux investir : Bourse Direct se mobilisepour la World Investor Week 2026\n\nPour les débutants , les participants pourront découvrir le fonctionnement de la Bourse, les différents types de comptes et leur fiscalité, et adopter les bons réflexes avant de passer leurs premiers ordres. Pour ceux qui souhaitent structurer leur portefeuille , des sessions seront consacrées à l’évaluation d’une société par l’analyse fondamentale et à la diversification grâce aux ETF.\n\nPublication : 2026-10-06 · Information sans nouveauté établie\nClients Bourse Direct concernés par le produit cité ; conditions de l’annonce\n\nSource : https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+      "reason": "Banques et services : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 77,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-06"
+          }
+        ],
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "Médiateur national de l’énergie",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+      "publishedAt": "2026-10-12",
+      "publicationId": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+      "evidence": {
+        "sourceHash": "e14fd34767f1ff278fc9a92c6c051099e41146e25906f3db2afbb86e7fc6f816",
+        "excerpt": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+          "role": "official",
+          "label": "Médiateur national de l’énergie"
+        },
+        {
+          "url": "https://comparateur.energie-info.fr",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.energie-info.fr/fiche_pratique/comment-comparer-les-offres-delectricite-et-de-gaz-naturel/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "5e6ec933df0d4206bb2d6cb7",
+      "family": "pouvoir-achat",
+      "entity": "publication-1022d1a6206dc983865b",
+      "label": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:13:08.145Z",
+      "before": null,
+      "after": {
+        "title": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz",
+        "summary": "Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz · summary : Pour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-12",
+      "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+      "unit": "",
+      "sourceUrl": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "tool": null,
+      "angle": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Novembre 2026 : augmentation de 6,6% TTC du prix repère du gaz\n\nPour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.\n\nPublication : 2026-10-12 · Annonce publiée\nPour limiter l’impact de ces hausses sur les factures, le médiateur national de l’énergie recommande aux consommateurs de : Comparer régulièrement les offres de gaz et suivre l’évolution de leurs prix afin de repérer celles qui sont les plus adaptées à leur situation.\n\nSource : https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+      "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 93,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 3,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-12"
+          }
+        ],
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": false
+      }
+    },
+    {
+      "topic": "epargne",
+      "topicLabel": "Épargne et placements",
+      "publisher": "AFG · épargne salariale",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+      "publishedAt": "2026-09-17",
+      "publicationId": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+      "evidence": {
+        "sourceHash": "0118120c8bc0b82a2a41497e67d124c07ba61a44ce668d200f4f462718b4d61e",
+        "excerpt": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "referencePeriod": null,
+      "populationScope": "Épargne salariale et retraite collective couvertes par l’enquête AFG",
+      "evidenceLevel": "professional-association",
+      "sources": [
+        {
+          "url": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+          "role": "professional-association",
+          "label": "AFG · épargne salariale"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/actualites/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/app/uploads/2026/09/OEE_Communique_de_presse_indice_patrimoniale.pdf",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        },
+        {
+          "url": "https://www.afg.asso.fr/fr/publication/oee-indice-performance-epargne-financiere-des-menages-17-septembre-2026/",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": true,
+      "id": "c50ccfecbcd77ba951851e73",
+      "family": "pouvoir-achat",
+      "entity": "publication-228a676849608a204fe6",
+      "label": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-25T07:13:08.145Z",
+      "before": null,
+      "after": {
+        "title": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026",
+        "summary": "Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026 · summary : Indice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026. · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-09-17",
+      "scope": "Annonce AFG · épargne salariale · https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+      "unit": "",
+      "sourceUrl": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "tool": null,
+      "angle": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026 — Quelles conditions changent pour les détenteurs de cette épargne ?",
+      "draft": "Indice OEE de performance de l’épargne financière des ménages français – Communiqué de presse – 17 septembre 2026\n\nIndice OEE de performance de l'épargne financière des ménages français - Communiqué de presse - 17 septembre 2026 Le jeudi 17 septembre 2026, l’Observatoire de l’Épargne Européenne (OEE), dont la mission est de promouvoir la recherche sur l’épargne, publie la mise à jour de son indice de performance de l’épargne financière des ménages français, intégrant les données provisoires du deuxième trimestre 2026.\n\nPublication : 2026-09-17 · Information sans nouveauté établie\nÉpargne salariale et retraite collective couvertes par l’enquête AFG\n\nSource : https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+      "reason": "Épargne et placements : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 77,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 21,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Conditions concrètes de l’épargne"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 11,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-09-17"
+          }
+        ],
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
     {
       "topic": "securite",
       "topicLabel": "Sécurité de l’argent",
@@ -67478,7 +68206,7 @@
       "url": "https://www.amundietf.fr/sitemap/sitemap.xml",
       "method": "sitemap",
       "depth": "Toutes les URL françaises des actualités du sitemap",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 83,
       "etag": null,
       "lastModified": null,
@@ -67487,13 +68215,13 @@
       "status": "ok",
       "nextCheckAt": "2026-10-25T17:28:09.310Z",
       "queue": {
-        "pending": 71,
-        "done": 12,
+        "pending": 70,
+        "done": 13,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
       "id": "revolut-news",
@@ -67501,7 +68229,7 @@
       "url": "https://www.revolut.com/fr-FR/news/",
       "method": "consumer-links",
       "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -67519,22 +68247,22 @@
       "url": "https://www.afg.asso.fr/fr/feed/",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 10,
       "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
       "queue": {
-        "pending": 1,
-        "done": 1,
+        "pending": 0,
+        "done": 2,
         "error": 0,
         "rejected": 8
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
       "id": "moneyvox",
@@ -67542,14 +68270,14 @@
       "url": "https://www.moneyvox.fr/actu/rss.php",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 60,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
       "queue": {
         "pending": 23,
         "done": 1,
@@ -67560,27 +68288,73 @@
       "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 10,
+      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
+      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
+      "queue": {
+        "pending": 6,
+        "done": 2,
+        "error": 0,
+        "rejected": 2
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
       "id": "amf-alerts",
       "name": "AMF · communiqués",
       "url": "https://www.amf-france.org/fr/flux-rss/display/28",
       "method": "consumer-rss",
       "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 196,
       "etag": "\"1792904951-gzip\"",
       "lastModified": "Sun, 25 Oct 2026 05:09:11 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
       "queue": {
         "pending": 158,
-        "done": 1,
+        "done": 2,
         "error": 0,
         "rejected": 38
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
+      "queue": {
+        "pending": 4,
+        "done": 1,
+        "error": 0,
+        "rejected": 7
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
       "id": "xtrackers",
@@ -67588,22 +68362,22 @@
       "url": "https://etf.dws.com/en-gb/about-us/press-releases/",
       "method": "extra-links",
       "depth": "Table datée de la salle de presse ETF, année courante rendue",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
-        "done": 5,
-        "error": 5,
+        "done": 6,
+        "error": 4,
         "rejected": 0
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
       "id": "xetra",
@@ -67611,14 +68385,14 @@
       "url": "https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases",
       "method": "extra-links",
       "depth": "Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 10,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
         "done": 10,
@@ -67629,58 +68403,12 @@
       "lastExtractionSuccessAt": "2026-10-24T19:38:49.474Z"
     },
     {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
-      "queue": {
-        "pending": 5,
-        "done": 0,
-        "error": 0,
-        "rejected": 7
-      },
-      "extractionStatus": "pending",
-      "lastExtractionSuccessAt": null
-    },
-    {
-      "id": "dvf",
-      "name": "DVF · DGFiP / data.gouv.fr",
-      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
-      "method": "extra-dvf",
-      "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 1,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 0,
-        "done": 1,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T17:28:09.310Z"
-    },
-    {
       "id": "wisdomtree",
       "name": "WisdomTree · communiqués européens",
       "url": "https://www.wisdomtree.com/fr/press-room",
       "method": "links",
       "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -67693,50 +68421,137 @@
       "lastExtractionSuccessAt": null
     },
     {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 10,
-      "etag": "\"3fef15a887e5a62a5589289e1ecdbda6\"",
-      "lastModified": "Fri, 23 Oct 2026 12:33:05 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "id": "bdf-debt",
+      "name": "Banque de France · Endettement des ménages et des SNF",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 12,
+      "etag": "\"1792911970-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:06:10 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
-        "pending": 7,
-        "done": 1,
+        "pending": 0,
+        "done": 0,
+        "error": 12,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": null
+    },
+    {
+      "id": "bdf-savings",
+      "name": "Banque de France · Épargne des ménages",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 12,
+      "etag": "\"1792911971-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:06:11 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
         "error": 0,
-        "rejected": 2
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 12,
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 0,
+        "rejected": 0
       },
       "extractionStatus": "validated",
       "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
     },
     {
-      "id": "credit-logement",
-      "name": "Observatoire Crédit Logement / CSA",
-      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
-      "method": "extra-links",
-      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 6,
+      "id": "dvf",
+      "name": "DVF · DGFiP / data.gouv.fr",
+      "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
+      "method": "extra-dvf",
+      "depth": "Métadonnées des livraisons semestrielles ; aucun téléchargement massif horaire",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 1,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
-        "done": 6,
+        "done": 1,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T18:51:01.302Z"
+      "lastExtractionSuccessAt": "2026-10-24T17:28:09.310Z"
+    },
+    {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 10,
+      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
+      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T07:42:40.300Z",
+      "queue": {
+        "pending": 3,
+        "done": 2,
+        "error": 0,
+        "rejected": 5
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
+      "id": "dares",
+      "name": "DARES",
+      "url": "https://dares.travail-emploi.gouv.fr/",
+      "method": "links",
+      "depth": "Accueil public ; contrôle du contenu anti-robot",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "status": "error",
+      "error": "fetch failed",
+      "queue": {
+        "pending": 0,
+        "done": 0,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "no-in-scope-publication",
+      "lastExtractionSuccessAt": null
     },
     {
       "id": "drees",
@@ -67744,7 +68559,7 @@
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -67763,106 +68578,19 @@
       "lastExtractionSuccessAt": "2026-10-24T18:17:49.841Z"
     },
     {
-      "id": "insee-publications",
-      "name": "INSEE · publications nationales",
-      "url": "https://www.insee.fr/fr/flux/2",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 13,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 1,
-        "done": 11,
-        "error": 1,
-        "rejected": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
-    },
-    {
-      "id": "notaires-paris",
-      "name": "Notaires du Grand Paris · conjoncture",
-      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
-      "method": "extra-links",
-      "depth": "Première page des communications immobilières officielles",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 8,
-      "etag": "\"1792907703-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 05:55:03 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-24T18:57:18.721Z"
-    },
-    {
-      "id": "dares",
-      "name": "DARES",
-      "url": "https://dares.travail-emploi.gouv.fr/",
-      "method": "links",
-      "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "status": "error",
-      "error": "fetch failed",
-      "queue": {
-        "pending": 0,
-        "done": 0,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "no-in-scope-publication",
-      "lastExtractionSuccessAt": null
-    },
-    {
-      "id": "insee-conjoncture",
-      "name": "INSEE · conjoncture et inflation",
-      "url": "https://www.insee.fr/fr/flux/3",
-      "method": "rss",
-      "depth": "Fenêtre RSS officielle",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 21,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 9,
-        "done": 12,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
-    },
-    {
       "id": "oll",
       "name": "Observatoires locaux des loyers / ANIL",
       "url": "https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales",
       "method": "extra-links",
       "depth": "Première page des résultats locaux publiés ; aucune série locale reconstruite",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 12,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
         "done": 10,
@@ -67873,27 +68601,50 @@
       "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
     },
     {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 10,
-      "etag": "\"57d676c232c5d7c545b98305ed59d819-gzip\"",
-      "lastModified": "Mon, 19 Oct 2026 14:02:57 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "id": "insee-conjoncture",
+      "name": "INSEE · conjoncture et inflation",
+      "url": "https://www.insee.fr/fr/flux/3",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 21,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:25:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
-        "pending": 4,
-        "done": 1,
+        "pending": 8,
+        "done": 13,
         "error": 0,
-        "rejected": 5
+        "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
+      "id": "credit-logement",
+      "name": "Observatoire Crédit Logement / CSA",
+      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
+      "method": "extra-links",
+      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 6,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
+      "queue": {
+        "pending": 0,
+        "done": 6,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-24T18:51:01.302Z"
     },
     {
       "id": "bnp",
@@ -67901,14 +68652,14 @@
       "url": "https://www.bnpparibas-am.com/en/media-centre/",
       "method": "extra-bnp",
       "depth": "API publique de la page, deux pages de douze communiqués, sans catalogue",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 2,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
         "done": 2,
@@ -67919,73 +68670,50 @@
       "lastExtractionSuccessAt": "2026-10-24T17:29:42.869Z"
     },
     {
+      "id": "insee-publications",
+      "name": "INSEE · publications nationales",
+      "url": "https://www.insee.fr/fr/flux/2",
+      "method": "rss",
+      "depth": "Fenêtre RSS officielle",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 13,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
+      "queue": {
+        "pending": 0,
+        "done": 12,
+        "error": 1,
+        "rejected": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
+    },
+    {
       "id": "hanetf",
       "name": "HANetf · communiqués UCITS",
       "url": "https://hanetf.com/press-releases/",
       "method": "extra-links",
       "depth": "Communiqués rendus par le site, indépendants du catalogue",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 9,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
-        "done": 5,
-        "error": 4,
+        "done": 6,
+        "error": 3,
         "rejected": 0
       },
       "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-25T00:25:11.059Z"
-    },
-    {
-      "id": "bdf-credit",
-      "name": "Banque de France · Crédits aux particuliers",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 12,
-      "etag": "\"1792907704-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 0,
-        "done": 12,
-        "error": 0,
-        "rejected": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
-    },
-    {
-      "id": "bdf-debt",
-      "name": "Banque de France · Endettement des ménages et des SNF",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B5412505%5D=5412505&sub_theme%5B5412509%5D=5412509",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 12,
-      "etag": "\"1792907704-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
-      "queue": {
-        "pending": 1,
-        "done": 0,
-        "error": 11,
-        "rejected": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": null
+      "lastExtractionSuccessAt": "2026-10-25T07:12:40.300Z"
     },
     {
       "id": "dws",
@@ -67993,14 +68721,14 @@
       "url": "https://www.dws.com/en-gb/Our-Profile/media/media-releases/",
       "method": "dws-model",
       "depth": "Résultats du modèle officiel rendu ; archive limitée à ce modèle",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
       "discovered": 5,
       "etag": null,
       "lastModified": null,
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
         "pending": 0,
         "done": 5,
@@ -68011,35 +68739,35 @@
       "lastExtractionSuccessAt": "2026-10-24T18:20:35.936Z"
     },
     {
-      "id": "bdf-savings",
-      "name": "Banque de France · Épargne des ménages",
-      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7171%5D=7171&sub_theme%5B7176%5D=7176",
-      "method": "bdf-cards",
-      "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-25T05:55:01.342Z",
-      "discovered": 12,
-      "etag": "\"1792907704-gzip\"",
-      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
-      "checkedAt": "2026-10-25T05:55:01.342Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.342Z",
+      "id": "notaires-paris",
+      "name": "Notaires du Grand Paris · conjoncture",
+      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+      "method": "extra-links",
+      "depth": "Première page des communications immobilières officielles",
+      "attemptedAt": "2026-10-25T07:12:40.300Z",
+      "discovered": 8,
+      "etag": "\"1792912363-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 07:12:43 GMT",
+      "checkedAt": "2026-10-25T07:12:40.300Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.300Z",
       "status": "ok",
-      "nextCheckAt": "2026-10-25T06:55:01.342Z",
+      "nextCheckAt": "2026-10-25T08:12:40.300Z",
       "queue": {
-        "pending": 1,
-        "done": 11,
+        "pending": 0,
+        "done": 8,
         "error": 0,
         "rejected": 0
       },
       "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T05:55:01.342Z"
+      "lastExtractionSuccessAt": "2026-10-24T18:57:18.721Z"
     },
     {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-25T05:55:01.331Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.331Z",
+      "checkedAt": "2026-10-25T07:12:40.290Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.290Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -68049,8 +68777,8 @@
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-25T05:55:01.331Z",
-      "lastSuccessAt": "2026-10-25T05:55:01.331Z",
+      "checkedAt": "2026-10-25T07:12:40.290Z",
+      "lastSuccessAt": "2026-10-25T07:12:40.290Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle"
@@ -68059,7 +68787,7 @@
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -68068,7 +68796,7 @@
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3
@@ -68077,7 +68805,7 @@
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0
@@ -68086,7 +68814,7 @@
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0
@@ -68095,7 +68823,7 @@
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1
@@ -68104,7 +68832,7 @@
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-25T05:55:01.334Z",
+      "checkedAt": "2026-10-25T07:12:40.292Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0
@@ -68301,10 +69029,10 @@
   "metrics": {
     "collection": {
       "requests": 36,
-      "bytes": 6899109,
-      "notModified": 0,
-      "durationMs": 18176,
-      "checkedAt": "2026-10-25T05:55:01.342Z"
+      "bytes": 6094082,
+      "notModified": 4,
+      "durationMs": 26055,
+      "checkedAt": "2026-10-25T07:12:40.300Z"
     },
     "publicationDelays": [
       {
@@ -68463,6 +69191,11 @@
         "detectionToAvailabilityHours": 12.447786666666667
       },
       {
+        "url": "https://www.insee.fr/fr/statistiques/9013173",
+        "publicationToDetectionHours": 2921.469252777778,
+        "detectionToAvailabilityHours": 13.741941666666667
+      },
+      {
         "url": "https://www.data.gouv.fr/api/1/datasets/demandes-de-valeurs-foncieres/",
         "publicationToDetectionHours": null,
         "detectionToAvailabilityHours": 0
@@ -68526,6 +69259,11 @@
         "url": "https://www.insee.fr/fr/statistiques/9039020",
         "publicationToDetectionHours": 1385.4692527777777,
         "detectionToAvailabilityHours": 12.447786666666667
+      },
+      {
+        "url": "https://www.insee.fr/fr/statistiques/9036122",
+        "publicationToDetectionHours": 1721.4692527777777,
+        "detectionToAvailabilityHours": 13.741941666666667
       },
       {
         "url": "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/panoramas-de-la-drees/261014-les-retraites-et-les-retraites-edition-2026",
@@ -68688,6 +69426,11 @@
         "detectionToAvailabilityHours": 6.9504858333333335
       },
       {
+        "url": "https://hanetf.com/press-releases/europes-first-covered-call-etf-with-daily-options-expiries-launches-on-hanetf-platform",
+        "publicationToDetectionHours": 737.4692527777778,
+        "detectionToAvailabilityHours": 13.741941666666667
+      },
+      {
         "url": "https://hanetf.com/press-releases/sprott-and-hanetf-launch-first-pure-play-rare-earths-ex-china-ucits-etf",
         "publicationToDetectionHours": 761.4692527777778,
         "detectionToAvailabilityHours": 1.381108888888889
@@ -68741,6 +69484,11 @@
         "url": "https://etf.dws.com/en-gb/about-us/press-releases/dws-reduces-all-in-fee-for-the-xtrackers-ftse-all-world-ucits-etf-and-offers-the-most-cost-efficient-ucits-etf-for-broad-global-equity-indices",
         "publicationToDetectionHours": 3497.469252777778,
         "detectionToAvailabilityHours": 6.9504858333333335
+      },
+      {
+        "url": "https://etf.dws.com/en-gb/about-us/press-releases/new-economist-impact-report-sponsored-by-xtrackers-by-dws-examines-how-institutional-investors-are-shaping-artificial-intelligence",
+        "publicationToDetectionHours": 4145.469252777778,
+        "detectionToAvailabilityHours": 13.741941666666667
       },
       {
         "url": "https://etf.dws.com/en-gb/about-us/press-releases/dws-expands-its-range-of-synthetic-xtrackers-etfs",
@@ -68818,6 +69566,11 @@
         "detectionToAvailabilityHours": 12.447786666666667
       },
       {
+        "url": "https://www.amundietf.fr/fr/professionnels/a-propos/news/product/amundi-devoile-le-premier-european-strategic-autonomy-ucits-etf",
+        "publicationToDetectionHours": 8465.469252777777,
+        "detectionToAvailabilityHours": 13.741941666666667
+      },
+      {
         "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2026-q1",
         "publicationToDetectionHours": 1649.4692527777777,
         "detectionToAvailabilityHours": 0.02598861111111111
@@ -68873,9 +69626,19 @@
         "detectionToAvailabilityHours": 12.447786666666667
       },
       {
+        "url": "https://www.banque-france.fr/fr/statistiques/epargne/epargne-des-menages-2023t2",
+        "publicationToDetectionHours": 25913.469252777777,
+        "detectionToAvailabilityHours": 13.741941666666667
+      },
+      {
         "url": "https://www.afg.asso.fr/fr/lepargne-salariale-et-lepargne-retraite-collective-depassent-pour-la-premiere-fois-250-milliards-deuros",
         "publicationToDetectionHours": 245.91703944444444,
         "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://www.afg.asso.fr/fr/indice-oee-performance-epargne-financiere-cp-17-septembre-2026",
+        "publicationToDetectionHours": 917.9170394444444,
+        "detectionToAvailabilityHours": 1.294155
       },
       {
         "url": "https://www.moneyvox.fr/carte-bancaire/actualites/110536/les-16-chiffres-de-votre-carte-bancaire-cachent-un-secret-etonnant",
@@ -68888,29 +69651,41 @@
         "detectionToAvailabilityHours": 0
       },
       {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-appelle-lattention-des-epargnants-sur-la-multiplication-des-arnaques-prenant-la-forme-de-faux",
+        "publicationToDetectionHours": 1613.9170394444445,
+        "detectionToAvailabilityHours": 1.294155
+      },
+      {
+        "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
+        "publicationToDetectionHours": 3293.9170394444445,
+        "detectionToAvailabilityHours": 1.294155
+      },
+      {
         "url": "https://www.energie-info.fr/heures-creuses-de-nouveaux-horaires-a-partir-du-1er-novembre-2026",
         "publicationToDetectionHours": 53.91703944444444,
         "detectionToAvailabilityHours": 0
       },
       {
+        "url": "https://www.energie-info.fr/novembre-2026-publication-du-prix-repere-du-gaz-par-la-cre",
+        "publicationToDetectionHours": 317.91703944444447,
+        "detectionToAvailabilityHours": 1.294155
+      },
+      {
         "url": "https://groupe.boursedirect.fr/actualites/actualites/pret-de-titres-bourse-direct-etend-son-service-aux-pea-20261012",
         "publicationToDetectionHours": 317.91703944444447,
         "detectionToAvailabilityHours": 0
+      },
+      {
+        "url": "https://groupe.boursedirect.fr/actualites/actualites/mieux-comprendre-pour-mieux-investir-bourse-direct-se-mobilisepour-la-world-investor-week-2026-20261006",
+        "publicationToDetectionHours": 461.91703944444447,
+        "detectionToAvailabilityHours": 1.294155
       }
     ],
     "classification": {
-      "ready": 62,
-      "watch": 24,
+      "ready": 64,
+      "watch": 26,
       "secondary": 342
     }
   },
-  "compositionPublicationLags": [],
-  "notifications": {
-    "checkedAt": "2026-10-25T05:55:34.527Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
-  }
+  "compositionPublicationLags": []
 }
