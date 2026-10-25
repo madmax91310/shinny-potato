@@ -6652,7 +6652,9 @@
         "rawSourceHashes": {
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "f6e99957e135d6189f38015cc849759b9f8b06a309eaa0fad8a1af9dec7daa51",
           "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
-        }
+        },
+        "historyExcludedMonths": [],
+        "anniversaryExcludedMonths": []
       }
     },
     {
@@ -11033,7 +11035,9 @@
         "rawSourceHashes": {
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "e00a16308883445e02134cf872cfb3343366cf01ec45b49930d7a176efe36adf",
           "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml": "296ecf2e310a617b68415fc6ed95230950bb1ea7b0fecbc728eb0fc2c433a502"
-        }
+        },
+        "historyExcludedMonths": [],
+        "anniversaryExcludedMonths": []
       }
     },
     {
@@ -16193,7 +16197,8 @@
         },
         "historyExcludedMonths": [
           "2014-12"
-        ]
+        ],
+        "anniversaryExcludedMonths": []
       }
     },
     {
@@ -18238,7 +18243,9 @@
         "responseSha256": "b45ff3855ae0f8692d1b3c043d265541a5e81e9c71b752e58619a351cd68ee9d",
         "rawSourceHashes": {
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "687e75ad43f23f0254b58d20adca341c614eb16884c4d397e35748ddbc4a8c34"
-        }
+        },
+        "historyExcludedMonths": [],
+        "anniversaryExcludedMonths": []
       }
     },
     {
@@ -19926,10 +19933,12 @@
         "responseSha256": "4bb2bd9211610f7fb5140f40d19d2b8fda80b9f8394225df76fe596c2606b0c4",
         "rawSourceHashes": {
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true": "a611e1ce2e930e1e50799c9a0336095206b04a9c64f49051f49d84d42aa2d7ff"
-        }
+        },
+        "historyExcludedMonths": [],
+        "anniversaryExcludedMonths": []
       }
     }
   ],
-  "qualificationRecomputedAt": "2026-10-25T08:02:59.384310+00:00",
+  "qualificationRecomputedAt": "2026-10-25T08:20:08.355139+00:00",
   "sourceDatesRenewed": false
 }

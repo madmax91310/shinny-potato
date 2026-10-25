@@ -303,7 +303,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             'latestLevel':latest_level,'nativeValuationCurrency':native,'lastOfficialValuation':max(nav),
             'financialConvention':('exact-share issuer income-reinvested series scaled to same-date per-share NAV; no exchange-price claim'if source.get('navHistoryKind')else'exact-share accumulated net NAV; no exchange-price claim'),
             'calendarProof':{**calendar_proof,'checks':checks},
-            **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if calendar_proof.get(key)}),
+            **({key:calendar_proof[key]for key in ['historyExcludedMonths','anniversaryExcludedMonths']if key in calendar_proof}),
             'proofRows':proof_rows,
             'responseSha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),
             'rawSourceHashes':hashes}
