@@ -2604,6 +2604,26 @@
       "publicCode": "Vérification du nouveau code publié encore attendue ; la recette publique initiale constate une ancienne voie de repli.",
       "monitorCommit": "520a6f07d1e3486353ce8978a299e2cc0bc0fbff",
       "monitorProducerRun": 40215683385
+    },
+    "scheduledWorkflowEventsVerified": {
+      "proofFile": "preuves-contrats-producteurs-20261025/passages-planifies-verifies.json",
+      "workflowsChecked": 20,
+      "postFixObserved": [
+        "update-editorial-radar.yml",
+        "update-investor-13f.yml"
+      ],
+      "postFixNotYetAvailable": 18,
+      "additional13F": {
+        "runId": 40212273808,
+        "artifactId": 12608571407,
+        "nativeOutcomes": 28,
+        "nativeStatuses": "28 validated, changed=false ; contrat original succeeded",
+        "isolatedCurrentReader": "28 unchanged-verified, mêmes octets et mêmes périodes",
+        "recordingStatus": "failure",
+        "publicationStatus": "not-run",
+        "proofDirectory": "preuves-contrats-producteurs-20261025/planifie-13f",
+        "ordinaryPostCorrectionReader": "à vérifier dans GitHub"
+      }
     }
   }
 }

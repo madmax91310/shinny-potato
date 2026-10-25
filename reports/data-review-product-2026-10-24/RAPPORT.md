@@ -186,3 +186,32 @@ Lorsqu'un ancien rapport ne détaille pas la tentative d'un champ différé, la 
 courante conserve une tentative inconnue ; cette clarification ne réécrit pas le rapport
 natif archivé et ne renouvelle aucune preuve source. Le reçu du rattrapage ordinaire est
 disponible séparément dans `moniteur-reprise-ordinaire.json`.
+
+### Complément planifié 13F et distinction des contrôles inchangés
+
+La consultation des événements planifiés des **20 workflows** est conservée dans
+`passages-planifies-verifies.json`. Deux passages postérieurs à #950 sont disponibles :
+Radar `40204955299` et 13F `40212273808`. Pour les 18 autres, aucun passage planifié
+postérieur n'est encore disponible au relevé ; leurs preuves actuelles sont les push ou
+lancements manuels déjà décrits. Le raccordement mensuel de candidats n'a pas de passage
+planifié récent observable. Ces réserves ne sont ni des pannes ajoutées ni des crons
+inventés à partir d'une relance manuelle.
+
+Le passage 13F planifié a réellement récupéré et validé **28 relevés inchangés** ; son
+rapport et son manifeste sont archivés dans `planifie-13f/`. L'enregistrement a ensuite
+été refusé : « Remote inputs changed after collection ». Ce refus est conservé. La
+recette avec ses vrais jobs et le vrai réducteur restitue collecte/validation réussies,
+enregistrement échoué et publication non exécutée. Aucun contrôle commun assoupli.
+
+Le rapport natif déclarait déjà `status=validated` et `changed=false`, mais l'adaptateur
+perdait cette distinction et produisait `succeeded`. Le dernier correctif conserve
+`unchanged-verified` uniquement sur cette preuve explicite, jamais sur cache, échec ou
+absence d'indicateur de changement. Trois régressions ciblées vérifient ces situations,
+la conservation des périodes et l'absence de mutation du rapport natif. **1 134 tests
+Python et build passent.** La relecture isolée de ces mêmes octets restitue 28 contrôles
+inchangés, sans nouvelle collecte ni date source renouvelée.
+
+Ce passage supplémentaire est distinct des 20 captures de référence / 5 361 résultats
+du CSV initial : ses 28 résultats ne sont pas artificiellement ajoutés au nombre de
+producteurs uniques, ni utilisés pour réécrire les anciennes déclarations. Les comptes
+rendus originaux, leurs SHA et le résultat de la relecture sont conservés séparément.

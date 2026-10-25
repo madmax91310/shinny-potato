@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-25T18:11:04.773288+00:00",
+  "pythonTests": 1134,
+  "change": "Distinction des 13F validés sans changement, sur preuve native explicite uniquement",
+  "checks": [
+    {
+      "command": "TESSDATA_PREFIX=/tmp/producer-tessdata PYTHONPATH=scripts python -m unittest discover -s scripts -p 'test_*.py'",
+      "exitCode": 0,
+      "proofFile": "producer-final-13f-all-tests.log.gz",
+      "sha256": "6250ce1009155575aa3e0829ab19c502991824c7f225a7802d1ba3f3bd80ccac"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "proofFile": "producer-final-13f-build.log.gz",
+      "sha256": "af770fb5e821464b51ab7a8e2b31d375c9728d41ebe04a69d44a7f7835fda101"
+    }
+  ]
+}

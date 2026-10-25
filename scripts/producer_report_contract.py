@@ -85,6 +85,15 @@ def finish(native, plan, *, completed=True):
             if not isinstance(record,dict)or key not in record:continue
             identifier=prefix+record[key]
             if identifier not in found:continue
+            # 13F validates every fetched manager, including an unchanged filing.
+            # Keep that distinction only when the native source check proves it;
+            # missing change metadata and retained/cache rows cannot imply it.
+            if (plan['producer']=='update-investor-13f' and collection=='managers'
+                    and record.get('status')=='validated'
+                    and record.get('changed') is False
+                    and found[identifier]['status']=='succeeded'):
+                found[identifier].update(status='unchanged-verified',sourceAttempted=True,
+                                         reason='Contrôle source réussi ; relevé inchangé')
             for field in ('checkedAt','asOf','periodStart','periodEnd','currency','sourceUrl','sourceUrls','attemptedAt','lastSuccessAt'):
                 if field in record:found[identifier][field]=record[field]
             dates={field:value.get('asOf')for field,value in record.items() if isinstance(value,dict)and value.get('asOf')}
