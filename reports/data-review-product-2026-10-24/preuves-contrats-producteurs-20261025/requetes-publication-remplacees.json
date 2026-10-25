@@ -296,7 +296,158 @@
       ],
       "cancelRequestAccepted": true,
       "forceCancelAlreadySupersededPublicationAccepted": true
+    },
+    {
+      "runId": 40206170528,
+      "sourceJobId": 121207461292,
+      "sourceCompletedAt": "2026-10-25T15:17:49Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / tweet-midi-checks (3)",
+        "deploy / publish-code / tweet-midi-checks (1)",
+        "deploy / publish-code / tweet-midi-checks (0)",
+        "deploy / publish-code / browser-checks (1)",
+        "deploy / publish-code / browser-checks (3)",
+        "deploy / publish-code / browser-checks (0)",
+        "deploy / publish-code / browser-checks (2)",
+        "deploy / publish-code / tweet-midi-checks (2)"
+      ],
+      "qualifiedMonitorReports": [
+        {
+          "file": "actor-observation.json",
+          "sha256": "7e149a5e6a606630e9720d4f112e89328d670bf816f6bef115adb47cfed3b05d"
+        }
+      ],
+      "reason": "Ancienne demande de publication remplacée après collecte, enregistrement et ingestion. Le passage courant conserve ses contrôles complets ; #954/957 et collecteurs actifs préservés.",
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": true
+    },
+    {
+      "runId": 40206678702,
+      "sourceJobId": 121208993955,
+      "sourceCompletedAt": "2026-10-25T15:31:12Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "qualifiedMonitorReports": [
+        {
+          "file": "investor-observations.json",
+          "sha256": "018f43861cbd36aa47749bc022603f8180923597a2740025eb72adde5e6d79c4"
+        }
+      ],
+      "reason": "Ancienne demande de publication remplacée après collecte, enregistrement et ingestion. Le passage courant conserve ses contrôles complets ; #954/957 et collecteurs actifs préservés.",
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": false
+    },
+    {
+      "runId": 40210915187,
+      "sourceJobId": 121221745107,
+      "sourceCompletedAt": "2026-10-25T16:18:36Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "qualifiedMonitorReports": [
+        {
+          "file": "insurance-observation.json",
+          "sha256": "eb7297c8234c28aa3e6612b7f2857f380294744293b5ef2d210b1bdc7b5b26f9"
+        }
+      ],
+      "reason": "Ancienne demande de publication remplacée après collecte, enregistrement et ingestion. Le passage courant conserve ses contrôles complets ; #954/957 et collecteurs actifs préservés.",
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": false
+    },
+    {
+      "runId": 40210999385,
+      "sourceJobId": 121222001034,
+      "sourceCompletedAt": "2026-10-25T16:22:38Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "qualifiedMonitorReports": [
+        {
+          "file": "anniversary-indices-observation.json",
+          "sha256": "11aeba154cf139817d3d65da5eaf48e520263be9d24bb9fa63b3361834de3cb4"
+        },
+        {
+          "file": "anniversary-observation.json",
+          "sha256": "be0bac0333002de9a4e4e8db46143a6de0001479fa5517fd38c5399924f45987"
+        }
+      ],
+      "reason": "Ancienne demande de publication remplacée après collecte, enregistrement et ingestion. Le passage courant conserve ses contrôles complets ; #954/957 et collecteurs actifs préservés.",
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": false
+    },
+    {
+      "runId": 40211388717,
+      "sourceJobId": 121223167929,
+      "sourceCompletedAt": "2026-10-25T16:24:02Z",
+      "sourceConclusion": "success",
+      "recordingAndProofSteps": [
+        {
+          "name": "Run actions/upload-artifact@v7.0.1",
+          "conclusion": "success"
+        },
+        {
+          "name": "Commit validated observations",
+          "conclusion": "success"
+        }
+      ],
+      "remainingJobs": [
+        "deploy / publish-code / current-snapshot"
+      ],
+      "qualifiedMonitorReports": [
+        {
+          "file": "practical-observation.json",
+          "sha256": "aa6cbc19b0658ab90a98d6d9b49088b83ddaaca8bd420f3c61b7693dd5ea7635"
+        }
+      ],
+      "reason": "Ancienne demande de publication remplacée après collecte, enregistrement et ingestion. Le passage courant conserve ses contrôles complets ; #954/957 et collecteurs actifs préservés.",
+      "cancelRequestAccepted": true,
+      "forceCancelAlreadySupersededPublicationAccepted": false
     }
   ],
-  "lastVerifiedAt": "2026-10-25T17:37:37.264452+00:00"
+  "lastVerifiedAt": "2026-10-25T17:48:44.280139+00:00"
 }

@@ -1,0 +1,135 @@
+{
+  "conclusion": "success",
+  "event": "push",
+  "headSha": "354a6762c528581aef20caa670fa6f739e054f7d",
+  "jobs": [
+    {
+      "completedAt": "2026-10-25T17:38:32Z",
+      "conclusion": "success",
+      "databaseId": 121240685745,
+      "name": "publish",
+      "startedAt": "2026-10-25T17:35:00Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v7.0.1",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v7.0.0",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run pip install beautifulsoup4==4.15.0",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v7.0.0",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run node scripts/test-monitoring-context.mjs",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_automation*.py'",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_producer_report_contract.py'",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python -m unittest discover -s scripts -p 'test_source_revision.py'",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Record completed automation",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Initialise current statuses",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Check silent collectors and data deadlines",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Propose validation of changed official wording",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v7.0.0",
+          "number": 24,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v7.0.0",
+          "number": 25,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v7.0.1",
+          "number": 26,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 27,
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40215683385/job/121240685745"
+    },
+    {
+      "completedAt": "2026-10-25T17:34:57Z",
+      "conclusion": "skipped",
+      "databaseId": 121240686648,
+      "name": "validate",
+      "startedAt": "2026-10-25T17:34:57Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40215683385/job/121240686648"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/madmax91310/shinny-potato/actions/runs/40215683385",
+  "checkedAt": "2026-10-25T17:43:52.554289+00:00",
+  "publishedMonitorCommit": "520a6f07d1e3486353ce8978a299e2cc0bc0fbff",
+  "qualification": "Déclenchement push, checkout master par le producteur ordinaire ; pas un passage planifié."
+}

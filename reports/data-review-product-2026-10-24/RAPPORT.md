@@ -178,3 +178,11 @@ deux nouveaux producteurs sans contrat. Le passage planifié Radar `40204955299`
 attesté dans GitHub ; l'ingestion des mêmes octets précis n'est pas démontrée, contrairement
 aux rapports ordinaires actuels ingérés de ce producteur. Les 19 autres workflows ont été
 exercés par push ou lancement manuel : aucun futur cron n'est présenté comme observé.
+
+Les 20 captures de référence se répartissent en 14 déclenchements `push`, cinq
+`workflow_dispatch` et un `schedule`. Les colonnes de tentatives du CSV retranscrivent
+les déclarations originales des producteurs, pas une reconstruction a posteriori.
+Lorsqu'un ancien rapport ne détaille pas la tentative d'un champ différé, la relecture
+courante conserve une tentative inconnue ; cette clarification ne réécrit pas le rapport
+natif archivé et ne renouvelle aucune preuve source. Le reçu du rattrapage ordinaire est
+disponible séparément dans `moniteur-reprise-ordinaire.json`.
