@@ -8,7 +8,7 @@ import { qualifyRadarFact } from '../src/lib/radar-qualification.js'
 import { editorialState,editorialAssessment,groupSignals,recentEditorial } from '../src/lib/radar-editorial.js'
 import { extractProducts,parseEtfDocument } from './lib/radar-news.mjs'
 import { etfTableProducts } from './lib/radar-etf-table.mjs'
-import { OFFER_SOURCES,offerSnapshot,compareOfferSnapshots,offerDiscovery } from './lib/radar-offer-watch.mjs'
+import { OFFER_SOURCES,offerSnapshot,compareOfferSnapshots,offerDiscovery,offerDates } from './lib/radar-offer-watch.mjs'
 import { inseeDiscovery,INSEE_SEARCH,inseeQuery } from './lib/radar-insee-search.mjs'
 import { collectPublications,PUBLICATION_SOURCES } from './lib/radar-publications.mjs'
 import { relatePublications } from './lib/radar-relationships.mjs'
@@ -107,6 +107,10 @@ const reformatted=offerSnapshot(text.replace(/ : /g,'  :   '),source,now);assert
 assert.equal(compareOfferSnapshots({...initial,semanticVersion:undefined},edited,source,source.url),null,'Old parser references migrate silently')
 const lbp=OFFER_SOURCES.find(s=>s.id==='lbp-tariffs'),lbpLinks=offerDiscovery('<a href="/content/dam/lbp/documents/tarifs/2027/tarifs-particuliers-2027.pdf">Tarifs particuliers 2027</a><a href="/content/dam/lbp/documents/tarifs/2027/tarifs-outre-mer-2027.pdf">Tarifs DOM 2027</a>',lbp)
 assert.equal(lbpLinks.length,2);assert.notEqual(lbpLinks[0].referenceKey,lbpLinks[1].referenceKey)
+assert.equal(offerDates('Tarifs au 1er janvier 2027').effectiveAt,'2027-01-01')
+const initialEditions=await collectPublications(now,async requested=>new Response(requested===lbp.url?'<a href="/content/dam/lbp/documents/tarifs/2026/tarifs-particuliers-2026.pdf">Tarifs particuliers 2026</a><a href="/content/dam/lbp/documents/tarifs/2027/tarifs-particuliers-2027.pdf">Tarifs particuliers 2027</a>':requested.includes('/2027/')?text.replace('Carte Gold : frais de change 2 euros\n',''):text),{},[lbp],2)
+assert.equal(initialEditions.observations.length,0,'A cold inventory of two annual editions is silent, not a change between two observations')
+assert.equal(initialEditions.sources[0].silentBaselines,2);assert.equal(initialEditions.sources[0].queue.partial,0,'First independent editions are baselines, not extraction omissions')
 let calls=0
 const primary=PUBLICATION_SOURCES.find(s=>s.id==='insee-publications'),url='https://www.insee.fr/fr/statistiques/9087193'
 const salaryHtml=await readFile(new URL('./fixtures/radar-publications/insee.html',import.meta.url),'utf8')

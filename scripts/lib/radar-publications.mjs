@@ -284,12 +284,15 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       if (!result.unchanged) {
         if(source.method==='offer-watch') {
           const snapshot=offerSnapshot(result.content,source,now,item)
-          const previousReference=item.offerBaseline??state.offerReferences[snapshot.referenceKey]
+          const previousReference=item.offerBaseline??(item.backfill?undefined:state.offerReferences[snapshot.referenceKey])
           const ordered=!previousReference?.dates.effectiveAt || !snapshot.dates.effectiveAt || snapshot.dates.effectiveAt>=previousReference.dates.effectiveAt
           const omissions=unexplainedOfferOmissions(previousReference,snapshot)
           const change=(!item.offerBaseline&&item.backfill)||!ordered||omissions.length ? null : compareOfferSnapshots(previousReference,snapshot,source,url)
           if(item.offerBaseline&&item.offerBaseline.semanticVersion!==snapshot.semanticVersion)item.parserBaselineBeforeMigration??=item.offerBaseline
-          if(ordered&&!omissions.length)state.offerReferences[snapshot.referenceKey]=snapshot
+          const familyReference=state.offerReferences[snapshot.referenceKey]
+          const familyOrder=familyReference?.dates.effectiveAt??familyReference?.edition??''
+          const snapshotOrder=snapshot.dates.effectiveAt??snapshot.edition??''
+          if(ordered&&!omissions.length&&snapshotOrder>=familyOrder)state.offerReferences[snapshot.referenceKey]=snapshot
           if(change){item.observation=change;item.backfill=false;item.previousOfferVersion=previousReference}
           if(omissions.length){item.offerCoverage={status:'partial',reason:'Clauses non retrouvées : aucune suppression établie',omissions};item.latestOfferCandidate=snapshot;item.status='partial';item.partialReason=item.offerCoverage.reason}
           else {item.offerBaseline=snapshot;delete item.offerCoverage;delete item.latestOfferCandidate;item.status='done'}

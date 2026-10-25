@@ -49,7 +49,7 @@ export function offerDates(text) {
   const t=normalizeEditorial(text).replace(/\s+/g,' '),fr=['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre']
   const iso=raw=>{const m=raw.match(/^(\d{1,2})(?:er)?[ ./]+([a-z]+|\d{1,2})[ ./]+(20\d{2})$/);if(!m)return null;const month=/^\d+$/.test(m[2])?+m[2]:fr.indexOf(m[2])+1;const d=`${m[3]}-${String(month).padStart(2,'0')}-${m[1].padStart(2,'0')}`;return month>0&&Number.isFinite(Date.parse(d))&&new Date(d).toISOString().slice(0,10)===d?d:null}
   const date='(\\d{1,2}(?:er)?[ ./]+(?:[a-z]+|\\d{1,2})[ ./]+20\\d{2})'
-  const effective=[...t.matchAll(new RegExp(`(?:tarifs? applicables? au|conditions tarifaires au|a compter du|a partir du)\\s+${date}`,'g'))].map(m=>iso(m[1])).filter(Boolean)
+  const effective=[...t.matchAll(new RegExp(`(?:tarifs?(?: applicables?)? au|conditions tarifaires au|a compter du|a partir du)\\s+${date}`,'g'))].map(m=>iso(m[1])).filter(Boolean)
   const ends=[...t.matchAll(new RegExp(`(?:jusqu au|offre valable du ${date} au)\\s*${date}`,'g'))].map(m=>iso(m.at(-1))).filter(Boolean)
   const only=rows=>new Set(rows).size===1?rows[0]:null
   return {effectiveAt:only(effective),promotionEndsAt:only(ends)}
@@ -90,7 +90,7 @@ export function offerSnapshot(content,source,now,document={}) {
   }
   for(const key of ambiguous)rows.delete(key)
   if(rows.size<2)throw Error('Trop peu de clauses financières comparables : dernière référence conservée')
-  return {version:1,semanticVersion:2,sourceUrl:documentUrl,referenceKey:document.referenceKey??source.id,documentLabel:document.documentLabel??null,documentRegion:document.documentRegion??null,productContexts:[...new Set([...rows.values()].map(r=>r.product).filter(Boolean))],withdrawalEvidence:(pdf?content.split(/\r?\n/).map(clean):[...content.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>clean(m[1]))).filter(q=>q.length>15&&q.length<1000&&/supprim|retir|n.est plus|fin de l.offre|cesse/i.test(q)),checkedAt:now.toISOString(),sourceHash:hash(content),clauses:Object.fromEntries(rows),dates:pdf?offerDates(content.slice(0,3500)):{effectiveAt:null,promotionEndsAt:null},conditions:extractOfferConditions(clauses.join(' ')),clauseCount:rows.size}
+  return {version:1,semanticVersion:2,edition:document.documentLabel?.match(/\b20\d{2}\b/)?.[0]??null,sourceUrl:documentUrl,referenceKey:document.referenceKey??source.id,documentLabel:document.documentLabel??null,documentRegion:document.documentRegion??null,productContexts:[...new Set([...rows.values()].map(r=>r.product).filter(Boolean))],withdrawalEvidence:(pdf?content.split(/\r?\n/).map(clean):[...content.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>clean(m[1]))).filter(q=>q.length>15&&q.length<1000&&/supprim|retir|n.est plus|fin de l.offre|cesse/i.test(q)),checkedAt:now.toISOString(),sourceHash:hash(content),clauses:Object.fromEntries(rows),dates:pdf?offerDates(content.slice(0,3500)):{effectiveAt:null,promotionEndsAt:null},conditions:extractOfferConditions(clauses.join(' ')),clauseCount:rows.size}
 }
 export function compareOfferSnapshots(before,after,source,url) {
   if(!before||before.version!==after.version||before.semanticVersion!==after.semanticVersion||before.semanticVersion!==2||before.referenceKey!==after.referenceKey||before.documentRegion!==after.documentRegion)return null
