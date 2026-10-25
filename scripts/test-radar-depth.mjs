@@ -20,7 +20,10 @@ assert.equal(compareOfferSnapshots(before,offerSnapshot(raw.replaceAll('GRATUIT'
 const simulated=raw.replace(/^.*Tenue de compte.*GRATUIT.*$/gm,line=>line.replace('GRATUIT','2 €'))
 const after=offerSnapshot(simulated,source,later)
 const change=compareOfferSnapshots(before,after,source,before.sourceUrl)
-assert.ok(change);assert.equal(change.publishedAt,null);assert.equal(change.changeEvidence.changes.length,1)
+assert.ok(change);
+const restored=offerSnapshot(raw,source,new Date(+later+3600000)),repeated=offerSnapshot(simulated,source,new Date(+later+7200000))
+assert.notEqual(compareOfferSnapshots(restored,repeated,source,before.sourceUrl).publicationId,change.publicationId,'A genuinely reinstated condition is a new transition, not a duplicate of a past change')
+assert.equal(change.publishedAt,null);assert.equal(change.changeEvidence.changes.length,1)
 assert.equal(editorialState(change,+later),'ready')
 assert.equal(editorialAssessment({...change,changeEvidence:{...change.changeEvidence,changes:[{key:'special',before:'Frais document spécialisé : 2 €',after:'Frais document spécialisé : 2,10 €'}]}},+later).major,false,'A specialised clause does not automatically become a major alert')
 assert.equal(editorialState({...change,publishedAt:'2027-01-01'},+later),'watch')
