@@ -2768,6 +2768,24 @@
       "actual13FRecordingRecoveryObserved": true,
       "diagnosticExportRows": 1,
       "exportCarriesScopeRegistry": true
+    },
+    "publicationProofGaps": [
+      {
+        "workflow": "update-investor-13f.yml",
+        "classification": "raccordement de preuve de publication, pas défaut démontré des données",
+        "dataVerifiedPublic": true,
+        "currentMonitorStatus": "not-run",
+        "problem": "Parent coalescé sans preuve de publication rattachée au diagnostic antérieur dans le moniteur observé.",
+        "missingPiece": "Rattachement automatique du reçu/fingerprints de publication inchangée au parent source.",
+        "proofFile": "preuves-contrats-producteurs-20261025/publication-financiere-13f-finale.json"
+      }
+    ],
+    "scheduledMonitorObserved": {
+      "runId": 40228779174,
+      "event": "schedule",
+      "createdAt": "2026-10-25T20:01:16Z",
+      "conclusion": "success",
+      "qualification": "Passage planifié du moniteur, distinct des 20 workflows de données et du passage manuel 13F après correctif."
     }
   }
 }
