@@ -22,6 +22,11 @@ on:
       - 'src/lib/radar-policy.js'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
+      - 'scripts/lib/radar-offer-watch.mjs'
+      - 'scripts/lib/radar-insee-search.mjs'
+      - 'scripts/test-radar-depth.mjs'
+      - 'scripts/check-radar-depth.mjs'
+      - 'scripts/fixtures/radar-depth/**'
       - 'scripts/test-radar-coverage.mjs'
       - 'scripts/check-radar-coverage.mjs'
       - 'scripts/fixtures/radar-coverage/**'
@@ -65,6 +70,11 @@ on:
       - 'src/lib/radar-policy.js'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
+      - 'scripts/lib/radar-offer-watch.mjs'
+      - 'scripts/lib/radar-insee-search.mjs'
+      - 'scripts/test-radar-depth.mjs'
+      - 'scripts/check-radar-depth.mjs'
+      - 'scripts/fixtures/radar-depth/**'
       - 'scripts/test-radar-coverage.mjs'
       - 'scripts/check-radar-coverage.mjs'
       - 'scripts/fixtures/radar-coverage/**'
@@ -125,6 +135,7 @@ jobs:
       - run: node scripts/test-radar-extensions.mjs
       - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-coverage.mjs
+      - run: node scripts/test-radar-depth.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
@@ -135,6 +146,17 @@ jobs:
         with:
           name: radar-public-source-qualification
           path: ${{ runner.temp }}/radar-coverage/report.json
+          retention-days: 35
+          if-no-files-found: ignore
+      - name: Qualify priority banks, INSEE and housing (read-only)
+        run: node scripts/check-radar-depth.mjs "$RUNNER_TEMP/radar-depth"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-priority-source-qualification
+          path: |
+            ${{ runner.temp }}/radar-depth/report.json
+            ${{ runner.temp }}/radar-depth/trade-republic-entry.html
           retention-days: 35
           if-no-files-found: ignore
       - name: Check official purchasing-power feeds
@@ -178,6 +200,7 @@ jobs:
       - run: node scripts/test-radar-extensions.mjs
       - run: node scripts/test-radar-consumer.mjs
       - run: node scripts/test-radar-coverage.mjs
+      - run: node scripts/test-radar-depth.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.

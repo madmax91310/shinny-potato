@@ -30,9 +30,12 @@ export function editorialTopic(title, summary = '') {
   ]
   return rules.find(([,pattern]) => pattern.test(t))?.[0] ?? (/(?:montant|taux|frais|tarif|€|euros|rembours)/.test(s) ? rules.find(([,pattern]) => pattern.test(s))?.[0] : null) ?? null
 }
+export const frenchRevolutScope = (title,summary) => /france|french|francais/.test(normalizeEditorial(title)) || /french (?:customers|clients|residents)|clients? (?:francais|en france)|(?:disponible|lance|offre).{0,50}en france/.test(normalizeEditorial(summary))
 export function consumerQuality(event, now = Date.now()) {
   const reasons = []
-  if (!event.publishedAt || !Number.isFinite(Date.parse(event.publishedAt)) || Date.parse(event.publishedAt) > now) reasons.push('Date de publication absente ou future')
+  if (/^https:\/\/www\.revolut\.com\/fr-FR\/news\//.test(event.sourceUrl??'') && !frenchRevolutScope(event.label,event.summary)) reasons.push('Portée française de l’annonce Revolut non documentée')
+  const change=qualifiedOfferChange(event,now)
+  if (event.publishedAt ? !Number.isFinite(Date.parse(event.publishedAt)) || Date.parse(event.publishedAt) > now : !change) reasons.push('Date de publication absente ou future ; aucun changement entre deux versions qualifié')
   if (!event.evidence?.sourceHash || !event.evidence?.excerpt) reasons.push('Preuve d’extraction absente')
   if (!event.populationScope || !event.summary) reasons.push('Public ou fait non documenté')
   if (!['official', 'professional-association', 'journalistic'].includes(event.evidenceLevel)) reasons.push('Niveau de preuve non qualifié')
@@ -40,4 +43,8 @@ export function consumerQuality(event, now = Date.now()) {
   if (/rumeur|non confirme|pourrait|en discussion/i.test(`${event.status} ${event.label}`) && !event.correctionOf) reasons.push('Annonce encore incertaine ou proposition')
   if (event.status === 'Information sans nouveauté établie') reasons.push('Nouveauté non établie')
   return reasons
+}
+export function qualifiedOfferChange(event,now=Date.now()) {
+  const c=event.changeEvidence
+  return c?.version===1 && c.sourceUrl===event.sourceUrl && /^[a-f0-9]{64}$/.test(c.beforeHash??'') && /^[a-f0-9]{64}$/.test(c.afterHash??'') && c.beforeHash!==c.afterHash && Date.parse(c.beforeCheckedAt)<Date.parse(c.observedAt) && Date.parse(c.observedAt)<=now && c.afterHash===event.evidence?.sourceHash && Array.isArray(c.changes) && c.changes.length>0 && c.changes.every(row=>row.key&&row.before&&row.after&&row.before!==row.after)
 }

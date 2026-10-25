@@ -1,0 +1,2544 @@
+{
+  "checkedAt": "2026-10-25T10:58:14.485Z",
+  "environment": "local",
+  "durationMs": 45305,
+  "method": "Two real passes with disk reload and cached recheck; deterministic feed and simulated notification planning. Baseline is not a detected announcement. No send or publish action.",
+  "sources": [
+    {
+      "id": "fortuneo-tariffs",
+      "name": "Fortuneo · brochure tarifaire",
+      "url": "https://www.fortuneo.fr/tarifs",
+      "method": "offer-watch",
+      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
+      "attemptedAt": "2026-10-25T10:57:30.824Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": "W/\"896c28858a5f6ac8c863a91d252438dc\"",
+      "lastModified": "Thu, 22 Oct 2026 09:21:19 GMT",
+      "checkedAt": "2026-10-25T10:57:29.180Z",
+      "lastSuccessAt": "2026-10-25T10:57:29.180Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T12:57:29.180Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "qualification": "silent-reference-qualified-no-change-proven",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 920033,
+            "notModified": 0,
+            "durationMs": 1640,
+            "checkedAt": "2026-10-25T10:57:29.180Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T10:57:30.823Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [],
+      "baselines": [
+        {
+          "url": "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf",
+          "firstObservedAt": "2026-10-25T10:57:29.180Z",
+          "checkedAt": "2026-10-25T10:57:29.180Z",
+          "sourceHash": "f8b17cd40a7250873ed53e332a324a13fcba7c0cac8b3bb741039e109403b577",
+          "clauseCount": 116,
+          "dates": {
+            "effectiveAt": "2026-08-06",
+            "promotionEndsAt": null
+          },
+          "examples": [
+            "Compte bancaire 2 200 € de revenus nets mensuels",
+            "Compte bancaire 5 500 € de revenus",
+            "versement mensuel de 4 000 €"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.fortuneo.fr/files/tarifs_fortuneo.pdf",
+          "status": "done",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "fortuneo-offers",
+      "name": "Fortuneo · offres et conditions",
+      "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+      "method": "offer-watch",
+      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
+      "attemptedAt": "2026-10-25T10:57:32.209Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": "W/\"e9424cfe8a8eb988f5bc87f2856d4c00\"",
+      "lastModified": "Thu, 22 Oct 2026 09:21:19 GMT",
+      "checkedAt": "2026-10-25T10:57:30.827Z",
+      "lastSuccessAt": "2026-10-25T10:57:30.827Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T12:57:30.827Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "qualification": "silent-reference-qualified-no-change-proven",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 831232,
+            "notModified": 0,
+            "durationMs": 1379,
+            "checkedAt": "2026-10-25T10:57:30.827Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 0,
+            "checkedAt": "2026-10-25T10:57:32.208Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [],
+      "baselines": [
+        {
+          "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+          "firstObservedAt": "2026-10-25T10:57:30.827Z",
+          "checkedAt": "2026-10-25T10:57:30.827Z",
+          "sourceHash": "97db038412b38f6a921eddb3f14faa6743d0e7dbe8b4187f7ece440c262a86fc",
+          "clauseCount": 5,
+          "dates": {
+            "effectiveAt": null,
+            "promotionEndsAt": null
+          },
+          "examples": [
+            "30 , € offerts sous conditions 1 Fosfo CB Mastercard Pour une 1ère ouverture d'un compte de dépôt avec carte Fosfo CB Mastercard, suivie de 5 paiements réalisés au moyen de la carte souscrite dans les 90 jours maximum après la souscription effective. Avec le code opération : BIENVENUEFTO J'en profite Découvrir la carte Fosfo",
+            "80 , € offerts pour vous souhaiter la bienvenue Gold CB Mastercard - Fil rouge Pour une 1ʳᵉ ouverture d'un compte avec carte Gold CB Mastercard. En réalisant simplement 5 paiements dans les 90 jours. Voir conditions Avec le code opération : BIENVENUEFTO J'en profite Découvrir la carte Gold",
+            "Jusqu'à 100 , € en bons d'achat offerts sous conditions 1 Changement de domiciliation bancaire Transférez tout ou partie de vos opérations chez Fortuneo et recevez jusqu'à 100 € en bons d'achat pour l'utilisation du service gratuit neoChange de Fortuneo. Ouvrir un compte En savoir plus"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.fortuneo.fr/offres-speciales-fortuneo",
+          "status": "done",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "boursobank-tariffs",
+      "name": "BoursoBank · brochure tarifaire",
+      "url": "https://www.boursobank.com/",
+      "method": "offer-watch",
+      "depth": "Brochure officielle liée par le site ; suivi des lignes comparables, pas de couverture exhaustive des cellules",
+      "attemptedAt": "2026-10-25T10:57:34.559Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:57:32.210Z",
+      "lastSuccessAt": "2026-10-25T10:57:32.210Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T12:57:32.210Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "qualification": "silent-reference-qualified-no-change-proven",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 1162485,
+            "notModified": 0,
+            "durationMs": 2346,
+            "checkedAt": "2026-10-25T10:57:32.210Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 1,
+            "checkedAt": "2026-10-25T10:57:34.557Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [],
+      "baselines": [
+        {
+          "url": "https://www.boursorama.com/content/brochure_tarifaire/boursorama_bt.pdf",
+          "firstObservedAt": "2026-10-25T10:57:32.210Z",
+          "checkedAt": "2026-10-25T10:57:32.210Z",
+          "sourceHash": "11ce7f45c5f9222131b16d903a4edb4d284eb8722c3b167fb0545091d273a898",
+          "clauseCount": 102,
+          "dates": {
+            "effectiveAt": "2026-10-05",
+            "promotionEndsAt": null
+          },
+          "examples": [
+            "\u0007 bonnement à des produits offrant des alertes sur la situation du compte par SMS GRATUIT",
+            "\u0007 enue de compte GRATUIT",
+            "\u0007 irement (virement SEPA ou virement instantané) GRATUIT"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.boursorama.com/content/brochure_tarifaire/boursorama_bt.pdf",
+          "status": "done",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "boursobank-offers",
+      "name": "BoursoBank · offres et conditions",
+      "url": "https://www.boursobank.com/",
+      "method": "offer-watch",
+      "depth": "Page publique des offres ; clauses chiffrées et conditions, pas de lancement déduit de la première observation",
+      "attemptedAt": "2026-10-25T10:57:35.218Z",
+      "discovered": 1,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:57:34.560Z",
+      "lastSuccessAt": "2026-10-25T10:57:34.560Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T12:57:34.560Z",
+      "queue": {
+        "pending": 0,
+        "done": 1,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 1,
+      "lastExtractionSuccessAt": null,
+      "qualification": "silent-reference-qualified-no-change-proven",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 704088,
+            "notModified": 0,
+            "durationMs": 657,
+            "checkedAt": "2026-10-25T10:57:34.560Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 0,
+            "bytes": 0,
+            "notModified": 0,
+            "durationMs": 1,
+            "checkedAt": "2026-10-25T10:57:35.217Z"
+          },
+          "queue": {
+            "pending": 0,
+            "done": 1,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [],
+      "baselines": [
+        {
+          "url": "https://www.boursobank.com/",
+          "firstObservedAt": "2026-10-25T10:57:34.560Z",
+          "checkedAt": "2026-10-25T10:57:34.560Z",
+          "sourceHash": "54344ca12302e35d1ebc9001e5f853028864ee8a73828c1155943215a5b110df",
+          "clauseCount": 8,
+          "dates": {
+            "effectiveAt": null,
+            "promotionEndsAt": null
+          },
+          "examples": [
+            "Compte bancaire Un compte gratuit, une carte, des produits et des services innovants",
+            "Mobilité Épargne Retraite Transférez votre épargne retraite via un parcours 100 % en ligne",
+            "Mobilité Épargne Retraite Transférez votre épargne retraite via un parcours 100 % en ligne (3)"
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://www.boursobank.com/",
+          "status": "done",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "insee-studies",
+      "name": "INSEE · recherche des études parues",
+      "url": "https://www.insee.fr/fr/solr/consultation",
+      "method": "insee-search",
+      "depth": "API publique de recherche : deux pages de 30 études grand public par diffusion + 30 résultats logements anciens ; RSS indépendants",
+      "attemptedAt": "2026-10-25T10:57:51.512Z",
+      "discovered": 90,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:57:35.219Z",
+      "lastSuccessAt": "2026-10-25T10:57:35.219Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:57:35.219Z",
+      "queue": {
+        "pending": 54,
+        "done": 3,
+        "error": 0,
+        "rejected": 33
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-10-25T10:57:49.972Z",
+      "qualification": "discovery-extraction-persistence-qualified",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 5,
+            "bytes": 648819,
+            "notModified": 0,
+            "durationMs": 14747,
+            "checkedAt": "2026-10-25T10:57:35.219Z"
+          },
+          "queue": {
+            "pending": 56,
+            "done": 1,
+            "error": 0,
+            "rejected": 33
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 263254,
+            "notModified": 0,
+            "durationMs": 1538,
+            "checkedAt": "2026-10-25T10:57:49.972Z"
+          },
+          "queue": {
+            "pending": 54,
+            "done": 3,
+            "error": 0,
+            "rejected": 33
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Les salaires dans le secteur privé en 2025",
+          "url": "https://www.insee.fr/fr/statistiques/9087193",
+          "publishedAt": "2026-10-22",
+          "referencePeriod": "2025",
+          "summary": "En 2025, un salarié du secteur privé gagne en moyenne 2 797 euros net par mois en équivalent temps plein (EQTP). L’inflation poursuivant sa décrue en 2025 (+0,9 %, après +2,0 % en 2024), le salaire net moyen en euros constants progresse pour la deuxième année consécutive : +1,5 %, après +0,8 % en 2024.\n\nLa moitié des salariés du secteur privé perçoit moins de 2 238 euros net par mois en EQTP. Un salarié sur dix gagne moins de 1 519 euros, tandis qu’un sur dix perçoit plus de 4 441 euros.\n\nEn 2025, les salariés les mieux rémunérés en équivalent temps plein ont bénéficié de hausses de salaires plus élevées que ceux aux rémunérations les plus faibles. Cette évolution contraste avec celles des années récentes, au cours desquelles les revalorisations du Smic avaient préservé le pouvoir d’achat des bas salaires, l’inflation érodant celui des salaires plus élevés. Après trois années de net tassement de l’échelle salariale, puis une stabilisation en 2024, les disparités salariales augmentent légèrement en 2025.\n\nEn 2025, les femmes gagnent en moyenne 12,8 % de moins que les hommes en EQTP. Cet écart diminue de 0,3 point par rapport à l’année précédente, portant la baisse à 5,2 points en dix ans.",
+          "sourceHash": "c8fa22534ec48f0366fbf1db3dbaecb7669dec8d8863738785bfc857569962de",
+          "backfill": true,
+          "assessment": {
+            "score": 97,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 7,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-22"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "En quinze ans, des épisodes de pauvreté monétaire plus durables",
+          "url": "https://www.insee.fr/fr/statistiques/9058410",
+          "publishedAt": "2026-10-01",
+          "referencePeriod": null,
+          "summary": "En France hors outre-mer, une personne sur quatre est au moins une fois en situation de pauvreté monétaire entre 2021 et 2024. Cette proportion était quasi la même entre 2008 et 2011, soit près de quinze ans auparavant.\n\nCes épisodes de pauvreté sont souvent récurrents : 71 % des personnes en situation de pauvreté monétaire en 2023 le sont encore un an plus tard en 2024.\n\nD’une année sur l’autre, les sorties d’une situation de pauvreté monétaire sont minoritaires ; elles sont en outre loin d’être toutes pérennes : sur six personnes en situation de pauvreté en 2021, deux ne le sont plus l’année qui suit, mais une seule n’est plus en situation de pauvreté ni en 2024 ni aucune des années où elle a répondu à l’enquête entre 2022 et 2023.\n\nLa part de personnes en situation de pauvreté quatre années consécutives a presque doublé en l’espace de quinze ans : entre 2021 et 2024, 7 % des individus font l’expérience d’une situation de pauvreté continue, contre 4 % entre 2008 et 2011. Ainsi, la hausse de la pauvreté en quinze ans en France hors outre-mer traduit avant tout des situations de pauvreté de plus en plus chroniques, suggérant un accroissement des difficultés à sortir des situations de pauvreté.\n\nLes trajectoires continues de pauvreté monétaire sont plus fréquentes pour les personnes au chômage, les personnes peu ou pas diplômées et pour les jeunes. Elles sont également associées à de nombreuses privations.",
+          "sourceHash": "6bb7f820b576e9df4b93ac7857ed62b8b2d5ed5be9b4534ed949820f463c65e8",
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-01"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Au deuxième trimestre 2026, les prix des logements reculent de 1,0 %",
+          "url": "https://www.insee.fr/fr/statistiques/9050027",
+          "publishedAt": "2026-09-18",
+          "referencePeriod": "2026-Q2",
+          "summary": "Au deuxième trimestre 2026, les prix des logements (neufs et anciens) en France métropolitaine baissent : -1,0 % (données corrigées des variations saisonnières), après -0,2 % au premier trimestre 2026.\n\nLes prix des logements anciens diminuent (-1,0 % au deuxième trimestre 2026, après -0,2 % le trimestre précédent). Les prix des logements neufs sont quant à eux quasi stables (-0,1 %, après +0,4 %).",
+          "sourceHash": "60ae0d28cd88e937cc85545acf474f59aa215e3f04fcc5d8d576b71134e46905",
+          "housing": {
+            "duration": null,
+            "frequency": "quarterly",
+            "population": null,
+            "method": "Notaires-INSEE",
+            "priceBasis": "transaction",
+            "measure": "indice à qualité constante",
+            "propertyType": null,
+            "market": null,
+            "geography": "France, périmètre exact dans l’extrait",
+            "rateType": null,
+            "rateScope": null,
+            "insurance": null,
+            "provisional": true,
+            "revision": true,
+            "sourceId": "insee-studies"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-18"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "baselines": [],
+      "documents": [
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9089567",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9086929",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9087193",
+          "status": "done",
+          "publishedAt": "2026-10-22"
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9089590",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/7667330",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9084725",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9086100",
+          "status": "rejected",
+          "reason": "Publication hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9067920",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9069626",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9089026",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9086890",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9076416",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9071848",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9083686",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9080887",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9076174",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9081853",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9080209",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9058530",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8071406",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9070696",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9071507",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9074153",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9071284",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9073251",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9073361",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9066034",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9063458",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9063178",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9054971",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9050707",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9064263",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9068446",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9070881",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9058849",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9055031",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9055610",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9060625",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9061484",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9057871",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/1405510",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9058410",
+          "status": "done",
+          "publishedAt": "2026-10-01"
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9055697",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9054646",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051927",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051933",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9057688",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9056956",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051955",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051923",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051929",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9055026",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9056644",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051895",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051931",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051925",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051941",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051943",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051947",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9051949",
+          "status": "rejected",
+          "reason": "Étude hors des thèmes ménages suivis",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9050027",
+          "status": "done",
+          "publishedAt": "2026-09-18"
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9040119",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9021920",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/9005576",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8995299",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8893189",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8744988",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8745266",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8720902",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8689760",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8676615",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8674189",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8669035",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8640823",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8641135",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8635467",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8631079",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8592566",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8584534",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8576105",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8564081",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8384787",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8379336",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8342761",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8310045",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8295036",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8290502",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8286380",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8256855",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.insee.fr/fr/statistiques/8249727",
+          "status": "pending",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "bdf-credit",
+      "name": "Banque de France · Crédits aux particuliers",
+      "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
+      "method": "bdf-cards",
+      "depth": "Première page thématique ; liens datés, pagination non supposée",
+      "attemptedAt": "2026-10-25T10:57:53.557Z",
+      "discovered": 12,
+      "archiveWarning": null,
+      "etag": "\"1792907704-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 05:55:04 GMT",
+      "checkedAt": "2026-10-25T10:57:51.518Z",
+      "lastSuccessAt": "2026-10-25T10:57:51.518Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:57:51.518Z",
+      "queue": {
+        "pending": 8,
+        "done": 4,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-10-25T10:57:52.915Z",
+      "qualification": "discovery-extraction-persistence-qualified",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 1493714,
+            "notModified": 0,
+            "durationMs": 1396,
+            "checkedAt": "2026-10-25T10:57:51.518Z"
+          },
+          "queue": {
+            "pending": 10,
+            "done": 2,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 781701,
+            "notModified": 0,
+            "durationMs": 641,
+            "checkedAt": "2026-10-25T10:57:52.915Z"
+          },
+          "queue": {
+            "pending": 8,
+            "done": 4,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Crédits aux particuliers - 2026-08",
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+          "publishedAt": "2026-10-06",
+          "referencePeriod": "2026-08",
+          "summary": "En août, le taux d'intérêt moyen des nouveaux crédits à l'habitat (hors renégociations) augmente très légèrement pour atteindre 3,32 % (après 3,30 % en juillet), en hausse de 24 points de base depuis le début de l'année. La production CVS rebondit un peu à 12,2 Mds€, après 11,1 Mds le mois précédent. La production mensuelle CVS de crédits à la consommation (hors découverts et crédits renouvelables) s'établit à 5,5 Mds€ après 5,1 Mds€ en juillet. Le taux moyen diminue à 6,04 % après 6,10 % en juillet. La croissance annuelle des encours est stable à 2,1 %.\n\nNB : Le flux de -4 Mds€ en octobre 2025 correspond à la cession par un établissement de crédit d'un portefeuille de crédits à l'habitat à plusieurs entités non bancaires.\n\nMénages = Particuliers + entrepreneurs individuels + institutions sans but lucratif au service des ménages. Le taux de croissance annuel des encours de crédits à l'habitat aux ménages en France s'établit à 0,8 % en août 2026 et à +0,2 % pour les seuls particuliers. Le taux d'intérêt des nouveaux crédits à l'habitat (hors renégociations) aux ménages s'élève à 3,32 % en août 2026 ainsi que pour les seuls particuliers.",
+          "sourceHash": "a457ecbdb99c470e3c53d12c9bcd39bd5bca8f2fae44b1f627b0cd91c2b54650",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": "emprunteurs décrits dans la source",
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": "taux nominal",
+            "rateScope": "nouveaux crédits",
+            "insurance": "assurance exclue",
+            "provisional": true,
+            "revision": true,
+            "sourceId": "bdf-credit"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-06"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Crédits aux particuliers - 2026-07",
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
+          "publishedAt": "2026-09-07",
+          "referencePeriod": "2026-07",
+          "summary": "En juillet, le taux d'intérêt moyen des nouveaux crédits à l'habitat (hors renégociations) augmente légèrement atteignant 3,30 % (après 3,27 % en juin) et la production CVS baisse à 11 Mds€, après 13,2 Mds€ en juin, dans la zone basse de sa fourchette de fluctuation depuis le 4ème trimestre 2024. La production mensuelle CVS de crédits à la consommation (hors découverts et crédits renouvelables) s'établit à 5,2 Mds€ après 5,5 Mds€ en juin. Le taux moyen diminue à 6,07 % après 6,28 % en juin. La croissance annuelle des encours sur un an recule un peu à 2,1 % après 2,6% à fin juin.\n\nNB : Le flux de -4 Mds€ en octobre 2025 correspond à la cession par un établissement de crédit d'un portefeuille de crédits à l'habitat à plusieurs entités non bancaires.\n\nMénages = Particuliers + entrepreneurs individuels + institutions sans but lucratif au service des ménages. Le taux de croissance annuel des encours de crédits à l'habitat aux ménages en France s'établit à 0,8 % en juillet 2026 et à +0,2 % pour les seuls particuliers. Le taux d'intérêt des nouveaux crédits à l'habitat (hors renégociations) aux ménages s'élève à 3,30 % en juillet 2026 ainsi que pour les seuls particuliers.",
+          "sourceHash": "8ad7dc4fc92fdb63bdbde5c0ddea5cf13c82c1152e3feef5ca1a4e01180473e4",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": null,
+            "method": null,
+            "priceBasis": null,
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": "taux nominal",
+            "rateScope": "nouveaux crédits",
+            "insurance": "assurance exclue",
+            "provisional": true,
+            "revision": true,
+            "sourceId": "bdf-credit"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-07"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Crédits aux particuliers - 2026-06",
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-06",
+          "publishedAt": "2026-08-05",
+          "referencePeriod": "2026-06",
+          "summary": "En juin, la production CVS de crédits à l'habitat (hors renégociations) augmente pour atteindre 13,2 Mds€, après 11,4 Mds€ en mai, et le taux d'intérêt moyen progresse à 3,27 % (après 3,21 % en mai). La production oscille entre 10,9 et 13,2 Mds€ depuis fin 2025. La production mensuelle de crédits à la consommation (hors découverts et crédits renouvelables) s'établit à 5,5 Mds€ après 5 Mds€ en mai. Le taux moyen diminue à 6,27 % après 6,54 % en mai. La croissance des encours sur un an s'établit à 2,4 %.\n\nNB : Le flux de -4 Mds€ en octobre 2025 correspond à la cession par un établissement de crédit d'un portefeuille de crédits à l'habitat à plusieurs entités non bancaires.\n\nMénages = Particuliers + entrepreneurs individuels + institutions sans but lucratif au service des ménages. Le taux de croissance annuel des encours de crédits à l'habitat aux ménages en France s'établit à 0,8 % en juin 2026 et à +0,2 % pour les seuls particuliers. Le taux d'intérêt des nouveaux crédits à l'habitat (hors renégociations) aux ménages s'élève à 3,27 % en juin 2026 ainsi que pour les seuls particuliers.",
+          "sourceHash": "3180dcae524b2ecace75591af3ddf17859f0895f195c896d09c1e116f2f5d65a",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": "emprunteurs décrits dans la source",
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": "taux nominal",
+            "rateScope": "nouveaux crédits",
+            "insurance": "assurance exclue",
+            "provisional": true,
+            "revision": true,
+            "sourceId": "bdf-credit"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-08-05"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Crédits aux particuliers - 2026-05",
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-05",
+          "publishedAt": "2026-07-08",
+          "referencePeriod": "2026-05",
+          "summary": "En mai, la production CVS de crédits à l'habitat (hors renégociations) baisse légèrement à 11,4 Mds€, après 12,0 Mds€ en avril, le taux d'intérêt moyen de ces nouveaux crédits à l'habitat reste stable à 3,21 % (après 3,22 % en avril et mars). La production mensuelle de crédits à la consommation s'établit à 4,9 Mds€ après 5,8 Mds€ en avril. Le taux moyen est en progression, à 6,53 % après 6,37 % en avril. La croissance des encours sur un an s'établit à 2,2 %.\n\nNB : Le flux de -4 Mds€ en octobre 2025 correspond à la cession par un établissement de crédit d'un portefeuille de crédits à l'habitat à plusieurs entités non bancaires.\n\nMénages = Particuliers + entrepreneurs individuels + institutions sans but lucratif au service des ménages. Le taux de croissance annuel des encours de crédits à l'habitat aux ménages en France s'établit à 0,8 % en mai 2026 et à +0,2 % pour les seuls particuliers. Le taux d'intérêt des nouveaux crédits à l'habitat (hors renégociations) aux ménages s'élève à 3,21 % en mai 2026 ainsi que pour les seuls particuliers.",
+          "sourceHash": "49ef137dfaa6df93438fca6d87607aefd9c3ebbafe7401f8c0015162b3416eb5",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": "emprunteurs décrits dans la source",
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": "taux nominal",
+            "rateScope": "nouveaux crédits",
+            "insurance": "assurance exclue",
+            "provisional": true,
+            "revision": true,
+            "sourceId": "bdf-credit"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-08"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "baselines": [],
+      "documents": [
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
+          "status": "done",
+          "publishedAt": "2026-10-06"
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
+          "status": "done",
+          "publishedAt": "2026-09-07"
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-06",
+          "status": "done",
+          "publishedAt": "2026-08-05"
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-05",
+          "status": "done",
+          "publishedAt": "2026-07-08"
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-04",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-03",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-02",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-01",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-12",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-11",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-10",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2025-09",
+          "status": "pending",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "notaires-paris",
+      "name": "Notaires du Grand Paris · conjoncture",
+      "url": "https://paris.notaires.fr/fr/liste-communiques-de-presse",
+      "method": "extra-links",
+      "depth": "Première page des communications immobilières officielles",
+      "attemptedAt": "2026-10-25T10:58:08.021Z",
+      "discovered": 8,
+      "archiveWarning": null,
+      "etag": "\"1792925874-gzip\"",
+      "lastModified": "Sun, 25 Oct 2026 10:57:54 GMT",
+      "checkedAt": "2026-10-25T10:57:53.559Z",
+      "lastSuccessAt": "2026-10-25T10:57:53.559Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:57:53.559Z",
+      "queue": {
+        "pending": 4,
+        "done": 4,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-10-25T10:58:04.008Z",
+      "qualification": "discovery-extraction-persistence-qualified",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 304010,
+            "notModified": 0,
+            "durationMs": 10448,
+            "checkedAt": "2026-10-25T10:57:53.559Z"
+          },
+          "queue": {
+            "pending": 6,
+            "done": 2,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 192335,
+            "notModified": 0,
+            "durationMs": 4011,
+            "checkedAt": "2026-10-25T10:58:04.008Z"
+          },
+          "queue": {
+            "pending": 4,
+            "done": 4,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Conjoncture immobilière en Ile-de-France de mai à juillet 2026",
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+          "publishedAt": "2026-10-01",
+          "referencePeriod": "2026-05 / 2026-07",
+          "summary": "Entre mai et juillet 2026, 36 810 logements anciens ont été vendus en Île-de-France, soit une hausse de 5% par rapport à la même période de 2025. Cette progression concerne tous les types de logements, avec une augmentation annuelle de 6% des ventes d’appartements et de 3% de celles de maisons. Le volume de transactions dépasse de 16% le niveau observé en 2024, année où la dynamique de marché était fortement ralentie.\n\nLa hausse des ventes de logements atteint 4% en un an à Paris et en Grande Couronne, et 6% en Petite Couronne. Si tous les départements enregistrent une progression, elle reste globalement hétérogène, allant de 1% dans l’Essonne à 11% dans le Val-de-Marne. Les ventes d’appartements augmentent de 6% sur l’ensemble de la région mais les écarts sont assez marqués en fonction des départements , de -1% dans l’Essonne à +14% en un an dans le Val-de-Marne. Pour les maisons, l’activité augmente davantage en Petite Couronne (+7%) qu’en Grande Couronne (+2%). Les Hauts-de-Seine affichent la plus forte hausse (+10%), tandis que la Seine-et-Marne enregistre un léger repli (-1%).\n\nÀ fin juillet 2026, les prix des logements anciens franciliens sont quasiment équivalents à ceux de juillet 2025 (−0,6%). Les prix des appartements sont globalement stables (-0,4%) . Ils s’établissent à 6 150 €/m² en Île-de-France (-0,4% en un an), et atteignent 9 550 €/m² à Paris (-0,5%). Les variations annuelles restent également contenues en banlieue et s’échelonnent de -1,3% dans l’Essonne à +0,2% dans les Hauts-de-Seine.",
+          "sourceHash": "37e0bceb4a9e3afa9d825c2e47eb4accf13d7df00395f0f825ebfacd72e1683e",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": null,
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": "prix ou loyer par m², définition dans la source",
+            "propertyType": "maisons et appartements, catégories distinctes",
+            "market": "ancien",
+            "geography": "Île-de-France",
+            "rateType": null,
+            "rateScope": null,
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "notaires-paris"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-01"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Conjoncture immobilière en Ile-de-France au 2e trimestre 2026",
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-au-2e-trimestre-2026",
+          "publishedAt": "2026-09-08",
+          "referencePeriod": "2026-Q2",
+          "summary": "Au 2e trimestre 2026, le marché francilien des logements anciens confirme la lente reprise engagée depuis 2025 . Entre avril et juin, 31 750 ventes ont été enregistrées en Île de-France, soit une progression de 10% en un an et de 15% par rapport à la même période de 2024. Cette amélioration observée au cours du 2e trimestre 2026 doit toutefois être nuancée : après un début 2025 soutenu par l’anticipation de la hausse des droits de mutation dans plusieurs départements, l’activité s’était nettement tassée au 2e trimestre. Le rebond observé aujourd’hui traduit donc à la fois un effet de comparaison favorable et la poursuite d’un redressement réel, mais encore fragile.\n\nCôté prix, la stabilisation se confirme à l’échelle régionale. En un an, les prix des logements anciens en Île-de-France évoluent très peu (-0,3%) , avec une stabilité pour les appartements (+0,3%) et une légère correction pour les maisons (-1,5%).\n\nEntre avril et juin 2026, les volumes de ventes de logements anciens progressent de 10% sur un an en Île-de-France : cette hausse concerne aussi bien les appartements (+11%) que les maisons (+8%). Comparée à la même période de 2024, l’activité affiche un redressement encore plus marqué à 15%, avec une hausse de 14% pour les appartements et de 18% pour les maisons.",
+          "sourceHash": "4e67c0d6d1134e04b653cd8cc534fcae4c5ad3f8103fcc619bdcb8e00fa30855",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": null,
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": null,
+            "propertyType": "maisons et appartements, catégories distinctes",
+            "market": "ancien",
+            "geography": "Île-de-France",
+            "rateType": null,
+            "rateScope": null,
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "notaires-paris"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-09-08"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Conjoncture immobilière en Ile-de-France de mars à mai 2026",
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mars-mai-2026",
+          "publishedAt": "2026-07-30",
+          "referencePeriod": "2026-03 / 2026-05",
+          "summary": "Cette stabilité d’ensemble recouvre cependant des évolutions différentes selon les types de biens : les volumes de ventes d’appartements reculent de 2%, tandis que ceux des maisons progressent de 5 % en un an. En deux ans , l’activité affiche en revanche une nette hausse de 15%, avec +14 % pour les appartements et +20 % pour les maisons.\n\nEn un an, Paris enregistre un recul de 2% des volumes de ventes de logements, tandis que la Petite Couronne et la Grande Couronne sont stables. Les écarts départementaux restent toutefois plus marqués : pour l’ensemble des logements, les évolutions vont de -6% dans l’Essonne à +7% en Seine-et-Marne.\n\nLe marché des appartements est orienté à la baisse dans la plupart des secteurs, l’Essonne enregistrant le recul le plus important (-10%) alors que seule la Seine-et-Marne affiche une hausse (+5%). À l’inverse, les ventes de maisons progressent dans la majorité des départements, jusqu’à +11% dans les Hauts-de-Seine, et ne diminuent que légèrement dans l’Essonne (-1%).",
+          "sourceHash": "6fb2c5d8b6ceb0be170ade21dd511255edf962932a26bcde35d4d4528261d711",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": null,
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": "prix ou loyer par m², définition dans la source",
+            "propertyType": "maisons et appartements, catégories distinctes",
+            "market": "ancien",
+            "geography": "Île-de-France",
+            "rateType": null,
+            "rateScope": null,
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "notaires-paris"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-30"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Conjoncture immobilière en Ile-de-France de février à avril 2026",
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-fevrier-avril-2026",
+          "publishedAt": "2026-06-25",
+          "referencePeriod": "2026-02 / 2026-04",
+          "summary": "Entre février et avril 2026, 29 680 ventes de logements anciens ont été enregistrées en Île-de-France, soit une baisse de 3% par rapport à la même période de 2025 . Cette évolution doit toutefois être interprétée avec prudence : les premiers mois de 2025 avaient bénéficié d’un effet d’anticipation lié à la hausse des droits de mutation, qui avait temporairement soutenu les transactions.\n\nL’activité recule donc légèrement par rapport à un début d’année 2025 atypique, mais demeure engagée dans une lente trajectoire de reprise depuis 2025. Le recul observé concerne aussi bien les appartements (-3%) que les maisons (-1%) , dans une moindre mesure. Sur deux ans, les volumes demeurent en progression (+19%), avec une hausse de 17% pour les appartements et de 25% pour les maisons.\n\nLes évolutions par secteur géographique confirment l’effet de l’anticipation de la hausse des droits de mutations sur les volumes de 2025 (dès avril pour la capitale) : Paris enregistre un recul de 5%, la Grande Couronne de 3% et la Petite Couronne de 1%. Les écarts restent néanmoins importants selon les départements : alors que la Seine-et-Marne fait figure d’exception avec une progression des volumes, les Yvelines enregistrent les reculs les plus marqués, aussi bien pour les appartements que pour les maisons.",
+          "sourceHash": "ee775ff9f6447b80139b9e9cd679cced2b14239105310f35d1f621e59199413f",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": null,
+            "method": null,
+            "priceBasis": "transaction",
+            "measure": "prix ou loyer par m², définition dans la source",
+            "propertyType": "maisons et appartements, catégories distinctes",
+            "market": "ancien",
+            "geography": "Île-de-France",
+            "rateType": null,
+            "rateScope": null,
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "notaires-paris"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-06-25"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "baselines": [],
+      "documents": [
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mai-juillet-2026",
+          "status": "done",
+          "publishedAt": "2026-10-01"
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-au-2e-trimestre-2026",
+          "status": "done",
+          "publishedAt": "2026-09-08"
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-mars-mai-2026",
+          "status": "done",
+          "publishedAt": "2026-07-30"
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-en-ile-de-france-de-fevrier-avril-2026",
+          "status": "done",
+          "publishedAt": "2026-06-25"
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/le-marche-immobilier-francilien-au-1er-trimestre-2026-et-perspectives",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-francilienne-en-fevrier-2026",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-francilienne-en-janvier-2026",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://paris.notaires.fr/fr/presse/communication-immobiliere-mensuelle/conjoncture-immobiliere-francilienne-bilan-2025-4e-trimestre-et-perspectives",
+          "status": "pending",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "credit-logement",
+      "name": "Observatoire Crédit Logement / CSA",
+      "url": "https://lobservatoire.creditlogement.fr/analyses-mensuelles/",
+      "method": "extra-links",
+      "depth": "Publications mensuelles rendues, taux complémentaires avec méthode propre",
+      "attemptedAt": "2026-10-25T10:58:10.199Z",
+      "discovered": 6,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:58:08.022Z",
+      "lastSuccessAt": "2026-10-25T10:58:08.022Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:58:08.022Z",
+      "queue": {
+        "pending": 2,
+        "done": 4,
+        "error": 0,
+        "rejected": 0
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-10-25T10:58:09.488Z",
+      "qualification": "discovery-extraction-persistence-qualified",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 290232,
+            "notModified": 0,
+            "durationMs": 1465,
+            "checkedAt": "2026-10-25T10:58:08.022Z"
+          },
+          "queue": {
+            "pending": 4,
+            "done": 2,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 236299,
+            "notModified": 0,
+            "durationMs": 710,
+            "checkedAt": "2026-10-25T10:58:09.488Z"
+          },
+          "queue": {
+            "pending": 2,
+            "done": 4,
+            "error": 0,
+            "rejected": 0
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Analyse marché immobilier septembre 2026",
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+          "publishedAt": "2026-10-15",
+          "referencePeriod": "2026-09",
+          "sourceDeclaredPublicationDate": "2026-09-30",
+          "publicationDateNote": "Diffusion des résultats explicitement annoncée lors de la conférence ; métadonnée WordPress conservée séparément.",
+          "summary": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nMars 2026 · 3,22 · 3,04 · 3,21 · 3,27\nJuin 2026 · 3,25 · 3,12 · 3,22 · 3,30\nSeptembre 2026 · 3,40 · 3,21 · 3,39 · 3,45",
+          "sourceHash": "e455e7f080af612aab7c7fa0201a074e71b3d0aefbea8d3bfb0a65894ef0fc77",
+          "housing": {
+            "duration": null,
+            "frequency": "quarterly",
+            "population": null,
+            "method": null,
+            "priceBasis": null,
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": null,
+            "rateScope": "nouveaux crédits",
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "credit-logement"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 93,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 3,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-10-15"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        },
+        {
+          "title": "Analyse marché immobilier Août 2026",
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-aout-2026",
+          "publishedAt": null,
+          "referencePeriod": "2026-08",
+          "sourceDeclaredPublicationDate": "2026-08-31",
+          "publicationDateNote": "La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.",
+          "summary": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nAoût 2025 · 3,06 · 3,01 · 3,08 · 3,16\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nAoût 2026 · 3,31 · 3,14 · 3,27 · 3,35",
+          "sourceHash": "9ec8974a2baddc2e56fd8c4ce5d2e59b306ec289ace5a0848f8fdec9e50aebc5",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": "emprunteurs décrits dans la source",
+            "method": null,
+            "priceBasis": null,
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": null,
+            "rateScope": "nouveaux crédits",
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "credit-logement"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": true,
+                "reason": "Date de publication inconnue ; détection non substituée"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "watch",
+            "type": "publication-watch",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Analyse marché immobilier juillet 2026",
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+          "publishedAt": null,
+          "referencePeriod": "2026-07",
+          "sourceDeclaredPublicationDate": "2026-07-31",
+          "publicationDateNote": "La date de la métadonnée peut être celle du mois statistique ; date de diffusion non certifiée. Les données restent à suivre.",
+          "summary": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuillet 2025 · 3,07 · 2,99 · 3,05 · 3,11\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nJuillet 2026 · 3,30 · 3,11 · 3,16 · 3,26",
+          "sourceHash": "0a7bd9ab42a12684f0bfb3c80d42052dab277d9934a34710d50249cf732f14dd",
+          "housing": {
+            "duration": null,
+            "frequency": null,
+            "population": "emprunteurs décrits dans la source",
+            "method": null,
+            "priceBasis": null,
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": null,
+            "rateScope": "nouveaux crédits",
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "credit-logement"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": true,
+                "reason": "Date de publication inconnue ; détection non substituée"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "watch",
+            "type": "publication-watch",
+            "priority": false,
+            "major": false
+          }
+        },
+        {
+          "title": "Analyse marché immobilier juin 2026",
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juin-2026",
+          "publishedAt": "2026-07-16",
+          "referencePeriod": "2026-06",
+          "sourceDeclaredPublicationDate": "2026-06-30",
+          "publicationDateNote": "Diffusion des résultats explicitement annoncée lors de la conférence ; métadonnée WordPress conservée séparément.",
+          "summary": "Prêts du secteur concurrentiel aux particuliers, taux fixes (en %). Chaque ligne conserve ses durées distinctes.\nPrêts du secteur concurrentiel TAUX FIXES · Taux Moyen (en %) · sur 15 ans · sur 20 ans · sur 25 ans\nDécembre 2024 · 3,31 · 3,24 · 3,26 · 3,34\nJuin 2025 · 3,06 · 3,01 · 3,07 · 3,12\nDécembre 2025 · 3,16 · 3,09 · 3,17 · 3,25\nMars 2026 · 3,22 · 3,04 · 3,21 · 3,27\nJuin 2026 · 3,26 · 3,12 · 3,22 · 3,30",
+          "sourceHash": "ec66275befa4cce1b532d5700deddd7ff7abb7069599a329b85c25e80c691c00",
+          "housing": {
+            "duration": null,
+            "frequency": "quarterly",
+            "population": null,
+            "method": null,
+            "priceBasis": null,
+            "measure": null,
+            "propertyType": null,
+            "market": null,
+            "geography": "France",
+            "rateType": null,
+            "rateScope": "nouveaux crédits",
+            "insurance": null,
+            "provisional": null,
+            "revision": false,
+            "sourceId": "credit-logement"
+          },
+          "backfill": true,
+          "assessment": {
+            "score": 90,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 30,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Revenus, budget ou patrimoine"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 15,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Permet de situer une situation ou un budget"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-07-16"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "statistical-publication",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "baselines": [],
+      "documents": [
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-septembre-2026",
+          "status": "done",
+          "publishedAt": "2026-10-15"
+        },
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-aout-2026",
+          "status": "done",
+          "publishedAt": null
+        },
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juillet-2026",
+          "status": "done",
+          "publishedAt": null
+        },
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-juin-2026",
+          "status": "done",
+          "publishedAt": "2026-07-16"
+        },
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-mai-2026",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://lobservatoire.creditlogement.fr/publications/analyse-marche-immobilier-avril-2026",
+          "status": "pending",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    },
+    {
+      "id": "revolut-news",
+      "name": "Revolut · salle de presse France",
+      "url": "https://www.revolut.com/fr-FR/news/",
+      "method": "consumer-links",
+      "depth": "Articles rendus dans la première page France ; annonces étrangères écartées",
+      "attemptedAt": "2026-10-25T10:58:13.038Z",
+      "discovered": 10,
+      "archiveWarning": null,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-25T10:58:10.200Z",
+      "lastSuccessAt": "2026-10-25T10:58:10.200Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-25T11:28:10.200Z",
+      "queue": {
+        "pending": 6,
+        "done": 1,
+        "error": 0,
+        "rejected": 3
+      },
+      "extractionStatus": "validated",
+      "silentBaselines": 0,
+      "lastExtractionSuccessAt": "2026-10-25T10:58:10.200Z",
+      "qualification": "discovery-extraction-persistence-qualified",
+      "cacheVerified": true,
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 891818,
+            "notModified": 0,
+            "durationMs": 2114,
+            "checkedAt": "2026-10-25T10:58:10.200Z"
+          },
+          "queue": {
+            "pending": 8,
+            "done": 1,
+            "error": 0,
+            "rejected": 1
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 507589,
+            "notModified": 0,
+            "durationMs": 722,
+            "checkedAt": "2026-10-25T10:58:12.314Z"
+          },
+          "queue": {
+            "pending": 6,
+            "done": 1,
+            "error": 0,
+            "rejected": 3
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Revolut receives French banking licence",
+          "url": "https://www.revolut.com/fr-FR/news/revolut_receives_french_banking_licence",
+          "publishedAt": "2026-08-10",
+          "referencePeriod": null,
+          "summary": "Revolut Bank S.A. (RBSA) has been granted a full banking licence, following a joint assessment by the Autorité de Contrôle Prudentiel et de Résolution (ACPR) and the European Central Bank (ECB), with the decision formally adopted by the ECB Governing Council, marking an historic milestone in Revolut's European journey. Revolut already serves about 30M customers across Western Europe, with close to 8 million joining in 2025 alone. The French banking licence strengthens the group's position as one of Europe's largest retail banks.",
+          "sourceHash": "f9252fc51d5ca3bf46930c4d33cd3aba218fc3c3c74e8aace9e6cfbf1aaed647",
+          "backfill": true,
+          "assessment": {
+            "score": 77,
+            "criteria": [
+              {
+                "key": "audience",
+                "points": 21,
+                "maximum": 30,
+                "unknown": false,
+                "reason": "Public limité au produit ou au placement ; effectif inconnu"
+              },
+              {
+                "key": "impact",
+                "points": 25,
+                "maximum": 25,
+                "unknown": false,
+                "reason": "Conditions concrètes de l’épargne"
+              },
+              {
+                "key": "novelty",
+                "points": 20,
+                "maximum": 20,
+                "unknown": false,
+                "reason": "Publication ou changement documenté"
+              },
+              {
+                "key": "comparison",
+                "points": 11,
+                "maximum": 15,
+                "unknown": false,
+                "reason": "Angle pédagogique sourcé ; comparaison avant/après inconnue"
+              },
+              {
+                "key": "freshness",
+                "points": 0,
+                "maximum": 10,
+                "unknown": false,
+                "reason": "Publication : 2026-08-10"
+              }
+            ],
+            "reliability": {
+              "usable": true,
+              "reasons": []
+            },
+            "state": "ready",
+            "type": "consumer-announcement",
+            "priority": true,
+            "major": false
+          }
+        }
+      ],
+      "baselines": [],
+      "documents": [
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_receives_french_banking_licence",
+          "status": "done",
+          "publishedAt": "2026-08-10"
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_receives_central_bank_approval_for_the_acquisition_of_banco_cetelem_in_argentina",
+          "status": "rejected",
+          "reason": "Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_applies_for_swiss_banking_licence_and_commits_chf_150_million_investment",
+          "status": "rejected",
+          "reason": "Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_secures_bank_licence_in_colombia_accelerating_progress_towards_launch",
+          "status": "rejected",
+          "reason": "Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_receives_conditional_approval_from_u_s_office_of_the_comptroller_of_the_currency_to_form_a_national_bank",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_announces_launch_of_dedicated_ai_research_division_revolut_research",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_s_chief_banking_officer_sid_jajodia_joins_group_board_as_executive_director",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_partners_with_openai_to_bring_chatgpt_go_to_millions_of_customers",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_empowers_retail_investors_with_institutional_grade_private_markets_access",
+          "status": "pending",
+          "publishedAt": null
+        },
+        {
+          "url": "https://www.revolut.com/fr-FR/news/revolut_becomes_como_1907_s_official_front_of_shirt_partner",
+          "status": "pending",
+          "publishedAt": null
+        }
+      ],
+      "initialNotifications": 0
+    }
+  ],
+  "access": [
+    {
+      "url": "https://traderepublic.com/fr-fr/about",
+      "status": 404,
+      "finalUrl": "https://traderepublic.com/fr-fr/about",
+      "bytes": 26655,
+      "checkedAt": "2026-10-25T10:58:13.199Z",
+      "qualification": "access-only-not-a-qualified-connector"
+    },
+    {
+      "url": "https://traderepublic.com/en-fr/about",
+      "status": 404,
+      "finalUrl": "https://traderepublic.com/en-fr/about",
+      "bytes": 26655,
+      "checkedAt": "2026-10-25T10:58:13.341Z",
+      "qualification": "access-only-not-a-qualified-connector"
+    },
+    {
+      "url": "https://support.traderepublic.com/fr-fr",
+      "status": 404,
+      "finalUrl": "https://traderepublic.com/fr-fr/support",
+      "bytes": 26655,
+      "checkedAt": "2026-10-25T10:58:14.091Z",
+      "qualification": "access-only-not-a-qualified-connector"
+    },
+    {
+      "url": "https://www.revolut.com/sitemap-index.xml",
+      "status": 200,
+      "finalUrl": "https://www.revolut.com/sitemap-index.xml",
+      "bytes": 195,
+      "checkedAt": "2026-10-25T10:58:14.287Z",
+      "qualification": "access-only-not-a-qualified-connector"
+    },
+    {
+      "url": "https://www.revolut.com/sitemap-index-0.xml",
+      "status": 200,
+      "finalUrl": "https://www.revolut.com/sitemap-index-0.xml",
+      "bytes": 68169,
+      "checkedAt": "2026-10-25T10:58:14.485Z",
+      "qualification": "access-only-not-a-qualified-connector"
+    }
+  ]
+}

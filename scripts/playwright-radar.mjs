@@ -153,7 +153,7 @@ try{
  feed.checkedAt=stamp;feed.events=feed.events.map(event=>({...event,detectedAt:stamp}))
  await mobile.getByRole('button',{name:'Prioritaires',exact:true}).click()
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
- await mobile.getByRole('button',{name:'À suivre',exact:true}).click()
+ await mobile.getByRole('button',{name:housing.publishedAt?'Prioritaires':'À suivre',exact:true}).click()
  await mobile.getByRole('heading',{name:'Analyse marché immobilier septembre 2026',exact:true}).waitFor()
  await mobile.getByText('Conventions immobilières et scénario',{exact:true}).click()
  await mobile.getByText('Explorer un scénario théorique de budget immobilier',{exact:true}).click()
@@ -163,7 +163,7 @@ try{
  await mobile.screenshot({path:'test-artifacts/radar/housing-mobile.png',fullPage:true})
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
  await page.reload()
- await page.getByRole('button',{name:'À suivre',exact:true}).click()
+ await page.getByRole('button',{name:housing.publishedAt?'Prioritaires':'À suivre',exact:true}).click()
  await page.getByRole('heading',{name:'Analyse marché immobilier septembre 2026',exact:true}).waitFor()
  await page.getByText('Conventions immobilières et scénario',{exact:true}).click()
  await page.getByText('Explorer un scénario théorique de budget immobilier',{exact:true}).click()
@@ -258,6 +258,26 @@ try{
   await device.getByText('Clients concernés',{exact:true}).first().waitFor()
   assert.ok(await device.getByText('2026-04-23',{exact:true}).count()>0,'Old archive retains the original publication date')
 
+ }
+ assert.deepEqual(errors,[])
+ // Real CSA extract: explicit diffusion differs from the statistical month.
+ const qualifiedHousing=parsePublication(await readFile('scripts/fixtures/radar-depth/csa.html','utf8'),housingSource,housing.sourceUrl,scenarioNow)
+ feed=advanceRadar(coverageSeed.state,[qualifiedHousing],{now:scenarioNow}).feed
+ feed.checkedAt=stamp
+ feed.sources=[{id:'fortuneo-tariffs',name:'Fortuneo · brochure tarifaire',url:'https://www.fortuneo.fr/tarifs',status:'ok',lastSuccessAt:stamp,queue:{done:1},silentBaselines:1,depth:'Référence de comparaison, aucune annonce à l’initialisation.'}]
+ for(const device of [page,mobile]){
+  await device.goto(url+'radar-editorial')
+  await device.getByRole('button',{name:'Historique complet',exact:true}).click()
+  await device.locator('.radar-filter-panel > summary').click()
+  await device.getByRole('searchbox').fill('Analyse marché immobilier septembre')
+  await device.getByRole('heading',{name:'Analyse marché immobilier septembre 2026',exact:true}).waitFor()
+  await device.getByText(/Publication : 2026-10-15/).first().waitFor()
+  await device.getByText('Période des données : 2026-09',{exact:true}).waitFor()
+  await device.getByText(/Prêts du secteur concurrentiel aux particuliers/).first().waitFor()
+  await device.getByText('Sources de publications et file de traitement',{exact:true}).click()
+  await device.getByText(/référence.s. silencieuse.s., sans changement prouvé/).waitFor()
+  assert.ok(await device.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+  await device.screenshot({path:`test-artifacts/radar/depth-${device===page?'desktop':'mobile'}.png`,fullPage:true})
  }
  assert.deepEqual(errors,[])
  console.log('Radar navigateur : signaux, filtres, lecture persistante, copie, conservation après échec, fraîcheur et mobile validés.')

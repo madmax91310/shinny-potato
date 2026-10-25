@@ -3,7 +3,7 @@ import { OFFICIAL_SOURCES } from '../../src/pages/broker-comparator/evidence.js'
 import { ALLOWED_MEDIA_HOSTS } from '../../src/data/allowed-media.js'
 import { createHash } from 'node:crypto'
 import { cleanText } from './purchasing-power-news.mjs'
-import { editorialExclusion, editorialTopic, normalizeEditorial, RADAR_TOPICS } from '../../src/lib/radar-policy.js'
+import { editorialExclusion, editorialTopic, normalizeEditorial, RADAR_TOPICS, frenchRevolutScope } from '../../src/lib/radar-policy.js'
 
 // Adapters enter the EXISTING durable publications queue. No financial registry
 // write, catalogue requirement, model call or notification side effect here.
@@ -15,7 +15,7 @@ export const CONSUMER_SOURCES = [
   ['moneyvox','MoneyVox · actualités','https://www.moneyvox.fr/actu/rss.php','journalistic'],
 ].map(([id,name,url,evidenceLevel])=>({id,name,url,host:new URL(url).hostname,method:'consumer-rss',family:'pouvoir-achat',evidenceLevel,cadenceMinutes:30,depth:'Fenêtre RSS publiée ; aucun historique exhaustif supposé'}))
 CONSUMER_SOURCES.push({id:'boursobank-news',name:'BoursoBank Groupe · communiqués',url:'https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse',host:'www.boursobank-group.com',method:'consumer-links',path:'/fr/espace-presse/communiques-de-presse/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement'})
-CONSUMER_SOURCES.push({id:'revolut-news',name:'Revolut · salle de presse France',url:'https://www.revolut.com/fr-FR/news/',host:'www.revolut.com',method:'consumer-links',path:'/fr-FR/news/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Articles rendus dans la première page France ; annonces étrangères écartées'})
+CONSUMER_SOURCES.push({id:'revolut-news',parserVersion:2,name:'Revolut · salle de presse France',url:'https://www.revolut.com/fr-FR/news/',host:'www.revolut.com',method:'consumer-links',path:'/fr-FR/news/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Articles rendus dans la première page France ; annonces étrangères écartées'})
 export function consumerRejection(title, summary='') {
   const exclusion=editorialExclusion({label:title})
   if(exclusion)return exclusion
@@ -87,7 +87,7 @@ export function parseConsumer(html,source,url,now,listing={}) {
   const paragraphs=plain ? article.split(/\n\s*\n/).map(p=>p.replace(/\s+/g,' ').trim()).filter(p=>p.length>90&&!/contacts? presse|a propos|à propos/i.test(p)) : [...article.matchAll(/<(?:p|li)\b[^>]*>([\s\S]*?)<\/(?:p|li)>/gi)].map(m=>cleanText(m[1])).filter(p=>p.length>90&&!/cookies|javascript|abonnez|newsletter|tous droits|politique de confidentialite/i.test(normalizeEditorial(p)))
   const summary=(paragraphs.slice(0,2).join(' ')||listing.description||'').slice(0,700)
   if(summary.length<70)throw Error('Résumé de l’article absent ; page accessible mais extraction non qualifiée')
-  if(source.id==='revolut-news'&&!/france|french|francais/.test(normalizeEditorial(title+' '+summary)))return{rejected:'Annonce Revolut sans portée française documentée',title}
+  if(source.id==='revolut-news'&&!frenchRevolutScope(title,summary))return{rejected:'Annonce Revolut sans portée française documentée ; une mention incidente parmi les licences mondiales ne suffit pas',title}
   const wording=normalizeEditorial(title+' '+summary)
   const novelty=(Boolean(source.format)&&/deploie|mobilis|maintient.*gratuit|porte a|commercialis|supprim/.test(wording))||/nouve|annonce|desormais|lance|ouvre|s ouvre|etend|evolu|change|hausse|baisse|augment|diminu|premiere fois|depass|arnaqu|en garde|rec(?:eiv|u)|licen[cs]e|integre|corrig|dement|rectificatif/.test(wording)
   const status=/dement|rectificatif|correction|corrige/.test(normalizeEditorial(title))?'Correction / démenti':/proposition de loi|projet de loi|en discussion|pourrait/.test(normalizeEditorial(title))?'Proposition / en discussion':novelty?'Annonce publiée':'Information sans nouveauté établie'
