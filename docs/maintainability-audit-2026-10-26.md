@@ -264,3 +264,58 @@ réels : réussie. Un premier essai Home n'a pas obtenu son serveur dans le dél
 initial ; relancé avec un serveur preview explicitement démarré, sans modifier le
 contrôle. Le test SimpleExposure a d'abord nécessité `CHROMIUM_PATH=/usr/bin/chromium`.
 Le nouveau contrôle d'intégrité est raccordé aux shards CI existants.
+
+## Livraison, concurrence et limites
+
+- Arbre de travail principal propre après exclusion des seules sorties régénérées
+  au contrôle. Aucun fichier d'observations financières ni lockfile modifié.
+- État final : 469 modules JS/JSX, 1 307 imports JS dont 68 différés, aucun cycle ni
+  inversion interdite. Build : 27 entrées différées, JS initial 267,37 kB / gzip
+  87,47 kB (référence : 267,33 / 87,47) ; tous les budgets existants conservés.
+- `test-route-loading.mjs` rejoué sur le dernier code : accueil froid, navigation
+  retardée, retour arrière, liens Pages restaurés avec query/hash, rechargements et
+  ouverture des 25 outils visibles à 1280/390 : réussi. Lint : mêmes 13 warnings.
+- Contrôles financiers complémentaires réussis : partitions Tweet Midi,
+  `test-cross-tool-currency` (478 comparaisons ETF), `test-performance-currency`,
+  `test-fx-consistency` (27 changes annuels et 333 mois),
+  `test-financial-window-safety`, `test-reusable-data-contracts`.
+  Le contrôle de fenêtres a d'abord lu la projection suivie devenue ancienne après
+  nettoyage du build : échec sur l'admission consommateur. Après
+  `build-review-reconciliation.mjs`, il passe (79 comparaisons, 41 quotes refusées,
+  38 bases NAV indépendantes préservées), comme après le prébuild normal. Aucune
+  qualification ni donnée n'a été modifiée pour le faire passer.
+- Les trois modèles de présentation ont aussi été comparés au code de référence
+  sur les 29 fiches/offres : 87 objets strictement identiques, en plus des PNG.
+
+Des PR concurrentes sont apparues après le relevé initial vide. Deux raccordements
+ont été adaptés pour ne pas modifier les mêmes lignes : contrôle d'état radar au
+prébuild plutôt que sur la commande `test:radar`, et enregistrement des nouveaux
+contrôles navigateur à côté des actions de publication plutôt qu'en fin de liste.
+
+| Référence vérifiée | Vérification de compatibilité |
+| --- | --- |
+| master `37f08939e8f08d0633d579de30214b8176653e93` | Inclut #970 et deux actualisations de données ; simulation de fusion sans conflit. |
+| #970 `788f5cfebcfe2a94b42a3a2c6e2924f7eb8c65b3` | Réparation de sources radar, ensuite fusionnée ; tests de reprise et contrats d'état conservés. Aucun changement du collecteur ajouté à cette branche. |
+| #971 `8d0b821319e201cfdb5c837f4de3f6f248b120c7` | Visuels indices ; simulation et assemblage local sans conflit. |
+| #972 `8850ed1aae8b4ab562c436faec960378496cf837` | Récits de marchés ; simulation et assemblage local sans conflit. |
+| #973 `ca2c32c5c112cb711693104a2fc730cf226efb42` | Découverte/qualification radar ; fichiers disjoints et simulation de fusion sans conflit. |
+
+Un worktree jetable a assemblé cette branche, master 37f08939, #971 et #972 :
+contrôle d'architecture (471 modules), tests des préférences/favoris/banque,
+reprise des sources radar, sélection des récits, puis build complet, budgets et
+couverture publiée réussis. Aucun commit de cet assemblage n'a été poussé.
+Ces résultats portent sur les têtes ci-dessus ; ils ne certifient pas leurs futures
+révisions. Les changements des autres PR ne font pas partie de cette livraison.
+
+Restent hors de cette certification : lecture indépendante de toutes les sources
+financières, réparation des collectes et audit exhaustif de toutes les images de
+l'application. Les parcours « mobile » sont exécutés dans Chromium avec viewport
+mobile, pas sur matériel physique. Aucun poids à risque du Générateur n'a changé :
+son stress test n'est pas requis par ce diff. Les 32 imports inter-dossiers d'outils
+restants sont listables par le graphe ; plusieurs sont des façades, moteurs ou arts
+partagés justifiés, pas des duplications à supprimer automatiquement. Les scripts
+très nombreux et les écritures de projections au prébuild restent une contrainte
+à gérer, sans renommage massif ni réparation des workflows dans ce chantier.
+
+La PR exécute en plus le portail CI existant ; son statut est à lire sur GitHub.
+Aucune fusion sur master ni aucun déploiement n'est effectué par ce chantier.

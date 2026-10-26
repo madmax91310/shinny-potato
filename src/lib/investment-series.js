@@ -195,4 +195,3 @@ export function applyPriceOverride(result, points, overridePriceRaw, endYm) {
   const finalValue = result.finalValue * scale
   return { ...result, finalValue, series: [...result.series.slice(0, -1), finalValue] }
 }
-
