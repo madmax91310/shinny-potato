@@ -7,6 +7,9 @@ import{resolveAnniversaryLevel}from'../src/data/anniversary-levels.js'
 import{buildAnniversaireText,FORMATS,MODES}from'../src/pages/tweet-midi/lib.js'
 import{periodReturn}from'../src/pages/performance-rankings/engine.js'
 import FX from'../src/data/monthly-fx.json'with{type:'json'}
+import BASE_LEVELS from'../src/data/anniversary-levels.json'with{type:'json'}
+import NON_BOND_LEVELS from'../src/data/non-bond-levels.json'with{type:'json'}
+const currentLevels={...BASE_LEVELS,...NON_BOND_LEVELS}
 const folder='reports/donnees-consolidees-2026-10-24/preuves/ishares-reprise-20261025'
 const report=JSON.parse(fs.readFileSync(folder+'/nav.json'))
 for(const{record:r}of report.series){
@@ -21,8 +24,16 @@ for(const{record:r}of report.series){
  assert(annual)
  const expected=((1+Number(annual.value[column])/100)*factor(`${year}-12`)/factor(`${year-1}-12`)-1)*100
  assert(Math.abs(periodReturn(a,`${year-1}-12`,`${year}-12`)-expected)<(.005*factor(`${year}-12`)/factor(`${year-1}-12`)+.0001),'The calculation uses the issuer income-reinvested return, once, in the correct currency')
- const latest=resolveAnniversaryLevel(r.id,'',new Date(r.latestLevel.asOf+'T12:00:00Z'))
+ // The archived raw-source oracle and its observation share the same dated snapshot.
+ // A later live observation is correctly refused at this historical clock.
+ const latest=resolveAnniversaryLevel(r.id,'',new Date(r.latestLevel.asOf+'T12:00:00Z'),{[r.id]:r.latestLevel})
  assert(latest);assert.equal(latest.currency,a.currency)
+ const live=currentLevels[r.id];assert(live,'The current registry retains the exact part')
+ const liveDate=new Date(live.asOf+(live.asOf.length===7?'-01':'')+'T12:00:00Z')
+ const current=resolveAnniversaryLevel(r.id,'',liveDate)
+ assert(current);assert.equal(current.asOf,live.asOf);assert.equal(current.currency,a.currency)
+ assert.equal(current.valuationBasis,r.anniversaryValuationBasis??'fund-nav-total-return')
+ assert.equal(resolveAnniversaryLevel(r.id,'',new Date(liveDate.getTime()-86400000)),null,'A live observation cannot be used before its observation date')
  if(r.anniversaryValuationBasis){
   assert.equal(r.anniversaryValuationBasis,'fund-nav-price');assert.equal(latest.valuationBasis,'fund-nav-price')
   assert.equal(latest.nativeValue,rawNav[latest.asOf])

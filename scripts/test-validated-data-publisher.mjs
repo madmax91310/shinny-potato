@@ -28,8 +28,13 @@ for(const path of ['public/data/private.js','public/data/../private.json','publi
 // source becomes exempt merely because its name resembles a generated file.
 const {primaryDataPaths}=await import('./prepare-validated-data.mjs')
 const {readFileSync}=await import('node:fs')
+const {execFileSync}=await import('node:child_process')
 const derived=JSON.parse(readFileSync('scripts/validated-derived-data.json')).outputs
-const pipeline=JSON.parse(readFileSync('package.json')).scripts.prebuild
+const prebuild=JSON.parse(readFileSync('package.json')).scripts.prebuild
+assert(prebuild.split('&&').some(command=>command.trim()==='npm run generate:app'),'Prebuild must execute the named preparation pipeline')
+// Follow the public command instead of assuming every producer is inline in npm.
+// --list exposes the executed plan without rewriting inputs during this check.
+const pipeline=execFileSync('npm',['run','generate:app','--','--list'],{encoding:'utf8'}).split('\n').map(line=>line.trim())
 for(const [path,generator]of Object.entries(derived)){
  assert(pipeline.includes('node '+generator),`${path}: generator must run in prebuild`)
  assert(readFileSync(generator,'utf8').includes('/'+path.split('/').at(-1)),`${path}: output must be declared by its generator`)
@@ -46,7 +51,6 @@ console.log('Only nine explicit reproducible projections are rebuilt; every othe
 const {mkdtempSync,mkdirSync,writeFileSync,rmSync}=await import('node:fs')
 const {tmpdir}=await import('node:os')
 const {join}=await import('node:path')
-const {execFileSync}=await import('node:child_process')
 const {main:prepare}=await import('./prepare-validated-data.mjs')
 const root=mkdtempSync(join(tmpdir(),'publisher-expected-receipt-')),previousCwd=process.cwd(),previousFetch=globalThis.fetch
 const envKeys=['DATA_PRODUCER','REQUIRED_DATA_PATH','REQUIRED_DATA_RECEIPT','EXPECTED_DATA_RECEIPT','GITHUB_REPOSITORY','GITHUB_OUTPUT'],previousEnv=Object.fromEntries(envKeys.map(k=>[k,process.env[k]]))

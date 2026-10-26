@@ -3,10 +3,8 @@
 export { fmtEUR, fmtPct } from './format-currency.js'
 import { INFLATION_MONTHLY } from '../data/inflation-monthly.js'
 import { LIVRET_A, INFLATION } from '../data/history-parameters.js'
-export function ymIndex(ym) {
-  const [y, m] = ym.split('-')
-  return parseInt(y, 10) * 12 + (parseInt(m, 10) - 1)
-}
+import { ymIndex } from './history-dates.js'
+export { ymIndex } from './history-dates.js'
 
 export function indexToYm(idx) {
   const y = Math.floor(idx / 12)

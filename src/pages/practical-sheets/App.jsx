@@ -1,10 +1,11 @@
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
-import { copyPublicationText, notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { copyPublicationText, notifyPublication } from '../../design-system/publicationActions.js'
 import { INSURANCE } from '../../data/insurance.js'
 import { TOPICS, DEFAULT_SCENARIO } from './data.js'
 import { topicById, fundOptions, buildSheet, buildTweet, date } from './lib.js'
@@ -32,7 +33,7 @@ export default function App() {
  function download() {
   canvas.current?.toBlob(blob=>{
    if(!blob){notifyPublication('Impossible de préparer l’image.','error');return}
-   const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`epargnant-libre-${id}.png`;startPublicationDownload(link);setTimeout(()=>URL.revokeObjectURL(url),1000)
+   downloadPublicationBlob(blob, `epargnant-libre-${id}.png`)
   },'image/png')
  }
  const blocked=!!result.error || result.sheet?.blocked || !!imageError

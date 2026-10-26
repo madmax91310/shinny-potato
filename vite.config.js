@@ -1,20 +1,24 @@
-import { projectSelectedData } from './scripts/project-selected-data.mjs'
-import { projectLightRegistries } from './scripts/project-light-registries.mjs'
-import { projectToolData } from './scripts/project-tool-data.mjs'
-import { projectFeeCatalog } from './scripts/project-fee-catalog.mjs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import {splitEtfRecords,splitInstrumentMetadataRecords,splitCharacteristicMetadataRecords} from './scripts/split-etf-records.mjs'
 import { dataBytesReport, withDataMarks } from './scripts/data-bytes-plugin.mjs'
-const issuerParts=splitEtfRecords()
-const metadataParts=splitInstrumentMetadataRecords()
-const characteristicParts=splitCharacteristicMetadataRecords()
-const toolData = projectToolData()
+const base = '/shinny-potato/'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/shinny-potato/',
+export default defineConfig(async ({ isPreview }) => {
+  // Preview serves a validated dist; deriving financial inputs belongs to dev/build.
+  if (isPreview) return { base }
+  const [{projectSelectedData},{projectLightRegistries},{projectToolData},{projectFeeCatalog},split] = await Promise.all([
+    import('./scripts/project-selected-data.mjs'), import('./scripts/project-light-registries.mjs'),
+    import('./scripts/project-tool-data.mjs'), import('./scripts/project-fee-catalog.mjs'),
+    import('./scripts/split-etf-records.mjs'),
+  ])
+  const issuerParts=split.splitEtfRecords()
+  const metadataParts=split.splitInstrumentMetadataRecords()
+  const characteristicParts=split.splitCharacteristicMetadataRecords()
+  const toolData=projectToolData()
+  return {
+  base,
   build: {
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
@@ -41,4 +45,5 @@ export default defineConfig({
   // Data projections are marked so route budgets measure code, not monthly data growth.
   plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog()].map(withDataMarks), react(), tailwindcss(),
     ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin].map(withDataMarks), dataBytesReport()],
+  }
 })

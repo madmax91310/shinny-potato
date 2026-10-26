@@ -65,10 +65,15 @@ donne les constats, contrats, consommateurs et validations des lots.
 - Les séries de placement communes entrent par `src/lib/investment-series.js` ;
   conventions et qualification restent explicites chez l'appelant. Les modèles de
   présentation sont dans `presentation-shared/image-model.js`, le dessin dans `imageExport.js`.
+- Les règles de dates, d'inflation annuelle et de conversion des duels sont dans
+  `src/lib/history-dates.js`, `annual-inflation.js` et `duel-returns.js`. Les façades
+  existantes restent publiques ; les projections Vite importent ces règles explicitement.
 - Un outil garde sa sélection et sa rédaction spécifiques dans son dossier. Avant de
   mutualiser une règle, identifier ses consommateurs et prouver le même contrat financier.
 - Les observations viennent des collecteurs ; les projections viennent des `scripts/build-*`
   et plugins Vite. Modifier la source ou le générateur, jamais une projection à la main.
+  Les commandes `generate:dev` / `generate:app` et leurs prérequis sont décrits dans
+  [`scripts/README.md`](scripts/README.md#préparer-les-entrées-avant-les-contrôles).
 
 Pour ajouter ou modifier un outil : lire `CLAUDE.md`, mettre à jour registre/routes
 et liens existants, garder le chargement différé, puis vérifier le moteur et tous

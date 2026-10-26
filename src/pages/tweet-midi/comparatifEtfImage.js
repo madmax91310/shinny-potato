@@ -1,6 +1,6 @@
 import { isComparisonEtc } from '../etf-tweets/lib/comparisonPolicy.js'
 import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
-import { startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getComparisonComposition, COMPOSITION_LABELS, compositionEvidenceLabel } from '../etf-tweets/lib/comparisonComposition.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
@@ -72,7 +72,5 @@ export async function downloadComparatifEtfImage(theme) {
   const canvas = await renderComparatifEtfImage(theme)
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Échec de la génération du PNG')
-  const url = URL.createObjectURL(blob), link = document.createElement('a')
-  link.href = url; link.download = `comparatif-etf-${theme.id}.png`
-  document.body.append(link); startPublicationDownload(link); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+  downloadPublicationBlob(blob, `comparatif-etf-${theme.id}.png`)
 }

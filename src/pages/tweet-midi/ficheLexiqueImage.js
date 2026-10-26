@@ -1,6 +1,6 @@
 import { TERMES } from '../../data/financial-lexicon.js'
 import { loadArtImage } from './anniversaryArt.js'
-import { startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 
 // Chaque notion a un titre et une métaphore visuelle ; aucune donnée d'exemple.
 export const LEXIQUE_VISUALS = Object.freeze({
@@ -159,8 +159,5 @@ export async function downloadFicheLexiqueImage(item) {
   const visual=getLexiqueVisual(item), canvas=await renderFicheLexiqueImage(item)
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'))
   if(!blob)throw new Error('Export PNG impossible')
-  const url=URL.createObjectURL(blob),link=document.createElement('a')
-  link.href=url;link.download=`lexique-${visual.id}.png`
-  document.body.appendChild(link);startPublicationDownload(link);link.remove()
-  setTimeout(()=>URL.revokeObjectURL(url),1000)
+  downloadPublicationBlob(blob, `lexique-${visual.id}.png`)
 }

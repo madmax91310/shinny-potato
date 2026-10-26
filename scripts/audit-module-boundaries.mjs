@@ -7,6 +7,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const pureRoots = [
   'src/lib/investment-series.js',
   'src/lib/history-windows.js',
+  'src/lib/history-dates.js',
+  'src/lib/annual-inflation.js',
+  'src/lib/duel-returns.js',
   'src/pages/presentation-shared/image-model.js',
   'src/pages/performance-rankings/engine.js',
   'src/pages/dca-profiles/engine.js',
