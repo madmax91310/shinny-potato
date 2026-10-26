@@ -10,7 +10,7 @@ class LseListingReference(unittest.TestCase):
  def test_exact_london_usd_is_renewed_independently_of_paris_and_no_price_is_imported(self):
   rows=parse_listings(json.dumps(self.body).encode(),self.source,URL,'2026-10-26');self.assertEqual(len(rows),1)
   self.assertEqual(rows[0]['evidenceId'],'IE00BYZK4776-XLON-HEAL-USD');self.assertEqual(rows[0]['symbol'],'HEAL.L')
-  self.assertEqual(rows[0]['asOf'],'2026-10-26');self.assertNotIn('price',rows[0])
+  self.assertEqual(rows[0]['referenceDate'],'2026-10-26');self.assertNotIn('price',rows[0])
   values,errors=collect({**self.source,'urls':[URL]},dt.datetime(2026,10,26,tzinfo=dt.timezone.utc),fetch=lambda u:json.dumps(self.body).encode())
   self.assertEqual(set(values),{'listings'});self.assertEqual(errors,[])
  def test_other_share_venue_currency_unit_or_ticker_cannot_renew_this_listing(self):

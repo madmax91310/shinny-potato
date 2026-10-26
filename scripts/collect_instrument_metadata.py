@@ -559,7 +559,7 @@ def lse_listing_rows(body,source,url,checked):
     if len(expected)!=1:raise ValueError('LSE reference does not renew the configured exact listing')
     listing=expected[0]
     if listing.get('symbol')!=row['tidm']+'.L':raise ValueError('Inconsistent LSE listing symbol')
-    return [{k:listing[k]for k in ['ticker','mic','exchange','currency','symbol']}|{'asOf':as_of.isoformat(),
+    return [{k:listing[k]for k in ['ticker','mic','exchange','currency','symbol']}|{'referenceDate':as_of.isoformat(),
         'excerpt':source['isin']+' | '+json.dumps(row,ensure_ascii=False,sort_keys=True)}]
 
 def parse_listings(body,source,url,checked):
