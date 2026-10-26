@@ -1,0 +1,33 @@
+name: Verify Radar 990 mobile layout
+on:
+  push:
+    branches: [verify/radar-990-smoke]
+permissions:
+  contents: read
+jobs:
+  mobile-layout:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-hey-grok.mjs
+      - run: npm run test:radar:browser
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-990-layout
+          path: |
+            test-artifacts/hey-grok
+            test-artifacts/radar
+          if-no-files-found: ignore
