@@ -128,8 +128,8 @@ export function publicationMaterial(event, now=Date.now()) {
   const rapidEligible=sufficient&&!promotion&&!prospective&&!advice&&(!survey||nationalStatistic)&&(nationalStatistic||confirmed&&money&&significant)
   const nowReason=attention.signals.map(s=>s.text).join(' ') || (Number.isFinite(attention.age)&&attention.age>7?'Publication plus ancienne : contexte ou historique, sans regain de fraîcheur déduit de la collecte.':'Aucun indice d’actualité brûlante établi.')
   let angle=null,question=null
-  if(positioning){angle='Situer le chiffre dans la population et la période étudiées, en distinguant médiane et moyenne.';question='À quel point ce repère correspond-il à ta situation ?'}
-  else if(comparison||change){angle='Expliquer le changement documenté et les conditions qui permettent de comparer avant et après.';question=money?'Ce changement modifierait-il ton choix ?':null}
+  if(positioning){angle=`Où se situer par rapport à ${event.afterText?.length<100?event.afterText:'ce seuil'} ? Garder la population et la période de l’étude.`;question='À quel point ce repère correspond-il à ta situation ?'}
+  else if(comparison||change){angle=comparison?`${event.label} : que change le passage de ${event.beforeText} à ${event.afterText}, sous quelles conditions ?`:`${facts.find(f=>f.kind==='clause')?.text??mainFact} : qui est concerné et avec quelles limites ?`;question=money?'Ce changement modifierait-il ton choix ?':null}
   else if(event.products?.length){angle='Comparer les expositions et caractéristiques prouvées ; préciser les frais et accès encore inconnus.';question=choice?'Quelle différence documentée te paraît la plus utile ?':null}
   else if(survey){angle='Présenter les réponses des personnes interrogées, avec la méthode et le périmètre de l’enquête.';question='Te reconnais-tu dans les réponses de cette enquête ?'}
   else if(sufficient){angle='Présenter le fait sourcé, les personnes concernées et les conditions documentées.'}

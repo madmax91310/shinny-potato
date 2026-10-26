@@ -221,7 +221,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     for(const key of ['topic','topicLabel','conditions','evidenceLevel','factType','summary','referencePeriod','populationScope','publishedAt','sourceDeclaredPublicationDate','publicationDateNote','evidence','qualification'])if(row[key]!==undefined && !(key==='factType'&&event.factType==='source-revision'))event[key]=row[key]
   }
   for(const row of valid.filter(row=>row.evidenceLevel))for(const event of state.events)if(event.entity===row.entity && event.publicationId===row.publicationId && event.label===row.label && JSON.stringify(event.after)===JSON.stringify(row.value)) {
-    for(const key of ['sources','originalPublishedAt','independenceKey','analysisContribution','eventKey','originalPublishedAt','independenceKey','analysisContribution','dossierKey','relationship','productDossiers','qualification','extraction'])if(row[key]!==undefined)event[key]=row[key]
+    for(const key of ['sources','originalPublishedAt','independenceKey','analysisContribution','eventKey','dossierKey','relationship','productDossiers','qualification','extraction'])if(row[key]!==undefined)event[key]=row[key]
   }
   for (const correction of newEvents.filter(event=>event.correctionOf)) for (const prior of state.events) if (prior.id !== correction.id && prior.publicationId === correction.correctionOf) prior.supersededBy = correction.id
   const stagesByPublication=new Map()

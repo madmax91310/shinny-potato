@@ -144,3 +144,6 @@ assert.equal(recentEditorial(historicalFee,now),false,'A historical observation 
 
 assert.equal(publicationSelection([{...candidate,backfill:true}],{now:fresh}).selected.length,0,'An archive cannot fill À publier maintenant')
 assert.equal(publicationSelection([{...candidate,migratedEditorial:true}],{now:fresh}).selected.length,0,'Historical parser migrations remain accessible without being promoted now')
+
+assert.match(publicationMaterial(salary,now).angle,/2\s*238|2 238/,'The distribution angle uses the extracted threshold')
+assert.ok(publicationMaterial(fee,now).angle.includes(fee.beforeText)&&publicationMaterial(fee,now).angle.includes(fee.afterText),'A change angle keeps both proven values, without inventing a cost')
