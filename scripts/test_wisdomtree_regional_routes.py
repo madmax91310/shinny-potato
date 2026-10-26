@@ -16,7 +16,7 @@ class RegionalRoutes(unittest.TestCase):
    with self.assertRaises(ValueError):wisdomtree(page,share,NOW)
  def test_bounded_exact_routes_and_no_financial_retry(self):
   urls=wisdomtree_product_candidates(self.share['sourceUrl'])
-  self.assertEqual(len(urls),4);self.assertIn('/se/products/',urls[3]);self.assertIn('/ie/products/',urls[1]);self.assertIn('/nl/products/',urls[2])
+  self.assertEqual(len(urls),3);self.assertIn('/ie/products/',urls[1]);self.assertIn('/nl/products/',urls[2])
   for url in ['https://evil.test/gb/products/equities/fund','https://www.wisdomtree.com/gb/products/equities/fund?other=1']:
    self.assertEqual(wisdomtree_product_candidates(url),[url])
   bad=urllib.error.HTTPError(urls[0],403,'Forbidden',{},None)

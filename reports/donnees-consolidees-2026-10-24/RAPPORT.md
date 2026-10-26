@@ -24,7 +24,7 @@ Base master `4ea33c9`, aucune PR concurrente ouverte lors du rapprochement. #968
 | dca-holdings:IE000W8WMSL2 | qualification toujours bloquée | Même erreur actuelle de dates après retour d’accès, pas une réparation des positions. |
 | dca-holdings:IE00BDVPNG13 | qualification toujours bloquée | Même limite ; aucun seuil augmenté, anciennes données datées conservées. |
 
-La voie publique suédoise WisdomTree est un candidat de transport borné, vérifié localement pour la part Defence ; elle ne vaut pas preuve d’une collecte depuis GitHub. Cloud a réussi via la voie officielle du producteur ; les trois autres restent refusés. Les politiques mixtes « Capitalisation and/or distribution » des trois autres candidats Amundi investigués ne sont pas assimilées à une capitalisation certaine. Copper, HSBC, autres preuves quotidiennes et conflits non réparés restent dans le suivi antérieur.
+La page publique suédoise WisdomTree a été examinée pour Defence : HTTP 200, positions toujours au 15/10 et date des caractéristiques non qualifiable. Cette piste n’est donc pas ajoutée aux routes de production. Cloud a réussi via la voie officielle du producteur ; les trois autres restent refusés. Les politiques mixtes « Capitalisation and/or distribution » des trois autres candidats Amundi investigués ne sont pas assimilées à une capitalisation certaine. Copper, HSBC, autres preuves quotidiennes et conflits non réparés restent dans le suivi antérieur.
 
 ### Contrôles locaux
 
