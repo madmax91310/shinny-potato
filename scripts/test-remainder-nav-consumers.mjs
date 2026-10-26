@@ -20,6 +20,7 @@ proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-2
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/amundi-reprise-20261025/gold/nav.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/ishares-reprise-20261025/nav.json')).series)
 proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nav.json')).series)
+proofs.push(...JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nav-independent-identities.json')).series)
 for(const s of sources){
  const a=ASSETS[s.id],r=proofs.find(r=>r.id===s.id).record
  assert(ASSET_ORDER.includes(s.id)&&MARKET_ASSETS.some(a=>a.id===s.id)&&ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===s.id))
@@ -63,3 +64,20 @@ console.log(`${sources.length} existing shares: selectors, lump/DCA, text, annua
 assert.equal(DUEL_ASSETS.find(a=>a.id==='manual-IE00BQQP9F84')?.isin,'IE00BQQP9F84')
 assert.equal(PORTFOLIO_ASSETS.find(a=>a.id==='gold-miners-vaneck')?.manualOnly,false)
 console.log('Original GDX Duel URL and already qualified automatic role preserved.')
+
+// Independent NAV choices must not remove previously usable quote periods.
+const {gunzipSync}=await import('node:zlib')
+const oldQuotes=JSON.parse(gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/original-exchange-quote-records.json.gz')))
+const currentQuotes=JSON.parse(fs.readFileSync('src/data/automated-etf-monthly.json'))
+for(const id of ['etfFR0010342592','etfFR0007054358']){
+ assert.deepEqual(currentQuotes[id],oldQuotes[id].record,'Preserve the exact original quote, its adjustments and dates')
+ assert(ASSET_ORDER.includes(id)&&ASSET_ORDER.includes(id+'Nav'))
+ assert.equal(ASSETS[id+'Nav'].isin,ASSETS[id].isin)
+ assert.equal(ASSETS[id+'Nav'].ticker,undefined,'A NAV is never the exchange quote')
+ const year=id==='etfFR0010342592'?2024:2020,start=`${year-1}-12`,end=`${year}-12`
+ assert.equal(qualifyHistoryWindow(ASSETS[id],start,end).qualified,false)
+ assert.equal(qualifyHistoryWindow(ASSETS[id+'Nav'],start,end).qualified,true)
+}
+assert.equal(qualifyHistoryWindow(ASSETS.etfFR0007054358,'2017-12','2018-12').qualified,true)
+assert.equal(qualifyHistoryWindow(ASSETS.etfFR0007054358Nav,'2017-12','2018-12').qualified,false)
+console.log('Independent NAV choices restore refused windows without removing original qualified periods or hiding old quote restrictions.')

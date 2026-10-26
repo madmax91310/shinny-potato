@@ -3621,24 +3621,22 @@
     "sha256": "f1c7c2fb773d7810c9383333675bf05bfe889806833ae6de3f656e598379b470"
   },
   "etfFR0010342592": {
-    "value": 9.3918,
-    "asOf": "2026-10-22",
+    "value": 9.498000144958496,
+    "asOf": "2026-10-23",
     "currency": "EUR",
-    "isin": "FR0010342592",
-    "parser": "official-nav",
-    "valuationBasis": "fund-nav-total-return",
-    "nativeValue": 9.3918,
-    "nativeCurrency": "EUR",
-    "fxAsOf": null,
-    "fxFactor": 1,
-    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-    "sourceUrls": [
-      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
-    ],
-    "checkedAt": "2026-10-26",
-    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "parser": "yahoo",
+    "symbol": "LQQ.PA",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/LQQ.PA?period1=1791590400&period2=1792886400&interval=1d&events=splits",
+    "sha256": "7f8a07c74df87d15d9ce2b3ec4ab955656720edad75a3d844fb494ba68267407",
+    "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7,
-    "sha256": "2af3a8de2fd6cf74dcfd43927c08fc18517b3bfc0cd23c6923b9640a4a9744ac"
+    "isin": "FR0010342592",
+    "ticker": "LQQ",
+    "mic": "XPAR",
+    "listingEvidenceId": "FR0010342592-XPAR-LQQ-EUR",
+    "checkedAt": "2026-10-25T16:51:55.397106+00:00"
   },
   "etfIE00BZ163G84": {
     "value": 46.76499938964844,
@@ -9835,24 +9833,22 @@
     "checkedAt": "2026-10-25T16:51:55.397106+00:00"
   },
   "etfFR0007054358": {
-    "value": 69.3532,
-    "asOf": "2026-10-22",
+    "value": 69.19000244140625,
+    "asOf": "2026-10-23",
     "currency": "EUR",
-    "isin": "FR0007054358",
-    "parser": "official-nav",
-    "valuationBasis": "fund-nav-total-return",
-    "nativeValue": 69.3532,
-    "nativeCurrency": "EUR",
-    "fxAsOf": null,
-    "fxFactor": 1,
-    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-    "sourceUrls": [
-      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
-    ],
-    "checkedAt": "2026-10-26",
-    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "parser": "yahoo",
+    "symbol": "LYSX.DE",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/LYSX.DE?period1=1791590400&period2=1792886400&interval=1d&events=splits",
+    "sha256": "4f9befa88cf7dc4edb4590b3348a9f3bea0a419e044c1b3fbfb9809d85857caf",
+    "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7,
-    "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
+    "isin": "FR0007054358",
+    "ticker": "LYSX",
+    "mic": "XETR",
+    "listingEvidenceId": "FR0007054358-XETR-LYSX-EUR",
+    "checkedAt": "2026-10-25T16:51:55.397106+00:00"
   },
   "etfFR0007056841": {
     "value": 475.29998779296875,
@@ -11130,5 +11126,45 @@
     "ticker": "SPOT",
     "listingEvidenceId": "LU1778762911:New York Stock Exchange Inc.:SPOT:USD",
     "checkedAt": "2026-10-25T16:51:55.397106+00:00"
+  },
+  "etfFR0010342592Nav": {
+    "value": 9.3918,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "FR0010342592",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 9.3918,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2af3a8de2fd6cf74dcfd43927c08fc18517b3bfc0cd23c6923b9640a4a9744ac"
+  },
+  "etfFR0007054358Nav": {
+    "value": 69.3532,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "FR0007054358",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 69.3532,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
   }
 }
