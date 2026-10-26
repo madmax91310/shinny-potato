@@ -1,0 +1,32 @@
+name: Verify public Radar 990 (read-only)
+on:
+  push:
+    branches: [verify/radar-990-live]
+permissions:
+  contents: read
+jobs:
+  public-radar:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/verify-radar-990-live.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: public-radar-990
+          path: test-artifacts/radar-live
+          if-no-files-found: error
+          retention-days: 35
