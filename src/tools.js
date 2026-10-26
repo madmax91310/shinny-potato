@@ -4,6 +4,9 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/idees-classements', title: 'Idées de classements',
+    icon: '📝', accent: '#2458d3',
+    description: 'Un pense-bête de sujets à rechercher et à rédiger toi-même. Catégories, recherche et copie du titre.', status: 'disponible' },
   { to: '/hey-grok', title: 'Hey @Grok',
     icon: '💬', accent: '#2458d3',
     description: 'Des questions concrètes à copier ou adapter pour @grok. Nouvelle sélection, favoris, historique et questions personnelles.', status: 'disponible' },
@@ -158,6 +161,7 @@ export const TOOLS = [
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
+  '/idees-classements': 'Des sujets de classements à retrouver et à copier pour tes publications.',
   '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
@@ -190,12 +194,13 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/idees-classements', '/hey-grok', '/fiches-pratiques', '/radar-editorial', '/presentations', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })).filter(tool => !tool.hidden) }))
 
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
+  '/idees-classements',
   '/radar-editorial', '/fiches-pratiques',
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',
   '/france-100-menages', '/generateur-portefeuilles',

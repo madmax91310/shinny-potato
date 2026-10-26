@@ -1,4 +1,5 @@
 const PATHS = {
+  '/idees-classements': 'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
   '/classements-performances': 'M8 3h8v6a4 4 0 0 1-8 0V3M8 5H4v3a4 4 0 0 0 5 4m7-7h4v3a4 4 0 0 1-5 4M12 13v5m-5 3v-3h10v3H7',
   '/le-dca-de': 'M3 5h18v15H3zM3 10h18m-13 4h3m4 0h3m-10 3h3',
   '/simulateur-patrimoine': 'M3 21h18M5 17v-5h3v5m3 0V8h3v9m3 0V3h3v14',

@@ -13,6 +13,15 @@ Le comparateur d’indices reste un moteur interne sans route publique. Les mote
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
 
+## Idées de classements
+
+`/idees-classements` conserve les 51 sujets fournis dans six catégories. Recherche
+par mots-clés, filtre de catégorie et copie du titre exact, avec sélection manuelle
+si le presse-papiers est indisponible. C’est un pense-bête éditorial : les recherches,
+les classements et la rédaction restent manuels. La liste est indépendante des
+registres financiers, des collecteurs et de la banque de tweets. L’année 2025 du
+sujet sur les fonds euros fait partie du titre fourni et n’est pas actualisée.
+
 ## Hey @Grok
 
 `/hey-grok` prépare uniquement un tweet pour interpeller @grok, sans connexion à une IA, réponse fabriquée ni publication automatique. Explorer présente six cartes intégrales, avec thème, recherche, Nouvelle sélection, Ça va débattre et Non utilisés. Les anciennes catégories et mécaniques restent dans Plus de filtres. Le renouvellement respecte les filtres, préfère les questions non utilisées et signale l’épuisement sans recommencer automatiquement.
