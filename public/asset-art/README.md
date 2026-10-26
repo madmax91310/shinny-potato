@@ -85,6 +85,9 @@ pour les lignes historiques. Aucun rapprochement flou ni ticker ambigu. Les supp
 seuls portent l’ombre ; les marques conservent leurs couleurs et proportions. Les
 logos blancs ont un insert bleu ; les erreurs et délais de chargement produisent
 des initiales et restent réessayables. Le moteur attend les ressources avant de
-rendre l’aperçu ou le PNG. Le [bilan daté](../../reports/index-relief/README.md)
-distingue 48 logos existants, 22 ajouts et 133 entreprises encore en initiales, avec
-les aperçus réels, les ISIN et les preuves.
+rendre l’aperçu ou le PNG. Le [bilan historique #971](../../reports/index-relief/README.md)
+conserve les premiers compteurs. Le [complément vérifié](../../reports/index-logo-completion/README.md)
+recense 203 entreprises : 70 logos déjà disponibles, 132 ajouts officiels, et Berkshire
+Hathaway encore en initiales faute de fichier corporate officiel identifié. Les
+planches montrent les deux supports réels ; les provenances et transformations
+(identité, date, empreintes, extraction de SVG) sont conservées dans le registre.

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "berkshire",
+    "aliases": [
+      "BERKSHIRE HATHAWAY B",
+      "Berkshire Hathaway"
+    ],
+    "securities": [
+      "US0846707026"
+    ],
+    "primary": true,
+    "status": "initials-no-verified-official-image-asset",
+    "reason": "Le site corporate affiche uniquement un en-tête typographique HTML pour Berkshire Hathaway. Le seul fichier image de la page est celui de GEICO, explicitement rejeté car il représente une filiale. Les pages de garde du rapport annuel officiel ne fournissent pas d’image de marque autonome. Aucun fichier logo officiel exploitable identifié dans les sources consultées ; aucune vectorisation tierce, marque HomeServices ou reconstruction de texte utilisée.",
+    "attempts": [
+      {
+        "method": "attempts",
+        "url": "https://www.berkshirehathaway.com/",
+        "requested": "https://www.berkshirehathaway.com/",
+        "checkedAt": "2026-10-26T11:28:04Z",
+        "status": 200,
+        "error": null,
+        "title": "",
+        "sha256": "4d1c3bf2c0f66e0a20e058e80ae18efc8c10fa8719847bba45ed84cdd3603af0",
+        "partial": false,
+        "candidatesFound": 0
+      },
+      {
+        "method": "browser",
+        "url": "https://www.berkshirehathaway.com/",
+        "requested": null,
+        "checkedAt": "2026-10-26T11:40:37.909Z",
+        "status": null,
+        "error": null,
+        "title": "BERKSHIRE HATHAWAY INC.",
+        "sha256": null,
+        "partial": false,
+        "candidatesFound": 1
+      },
+      {
+        "method": "isolated-github-browser",
+        "checkedAt": "2026-10-26",
+        "url": "https://www.berkshirehathaway.com/",
+        "status": 200,
+        "finalUrl": "https://www.berkshirehathaway.com/",
+        "title": "BERKSHIRE HATHAWAY INC.",
+        "htmlSha256": "aac72df2352584c547bd149addaa08dea4befeffc5f86d42fba9a09343c996c9"
+      },
+      {
+        "method": "isolated-github-browser",
+        "checkedAt": "2026-10-26",
+        "url": "https://www.berkshirehathaway.com/",
+        "status": 200,
+        "finalUrl": "https://www.berkshirehathaway.com/",
+        "title": "BERKSHIRE HATHAWAY INC.",
+        "htmlSha256": "440c39aed444fcf9eedf22b186544a05e7ec3db4ab5463c9171672dfcca58224"
+      },
+      {
+        "method": "final-official-html-review",
+        "url": "https://www.berkshirehathaway.com/",
+        "status": 200,
+        "checkedAt": "2026-10-26",
+        "sha256": "4b2bf79f111701d5515bcdc074999acf9d71b663de20af20ff469edc72b3dcfa",
+        "result": "Corporate heading is HTML text. Only image is geicoimg.gif (GEICO subsidiary); rejected."
+      },
+      {
+        "method": "official-investor-report-cover-review",
+        "url": "https://www.berkshirehathaway.com/2025ar/2025ar.pdf",
+        "status": 200,
+        "checkedAt": "2026-10-26",
+        "sha256": "777a62551d4542ce62671df66c218247a398ecb0e66aaa8a5410daeb49b67fbf",
+        "result": "First two pages inspected with pdfimages -f 1 -l 2 -list: no embedded images. Corporate name is typeset text; no standalone logo identified. No logo recreated from fonts."
+      }
+    ],
+    "sourcesReviewed": [
+      "https://www.berkshirehathaway.com/",
+      "https://www.berkshirehathaway.com/2025ar/2025ar.pdf"
+    ],
+    "excludedSubsidiarySources": [
+      "https://www.berkshirehathaway.com/geicoimg.gif",
+      "https://www.bhhs.com/about/newsroom"
+    ]
+  }
+]

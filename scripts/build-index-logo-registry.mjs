@@ -15,7 +15,14 @@ const byName = new Map(), bySecurity = {}, bySheet = {}, companies = {}
 for (const [id, record] of Object.entries(aliases)) for (const name of record.aliases) {
   assert(!byName.has(name), `Duplicate reviewed alias ${name}`); byName.set(name, id)
 }
-const archived = process.argv.includes('--check') ? read('reports/index-relief/logo-coverage.json') : null
+const reportDir = 'reports/index-logo-completion'
+const baseline = read(`${reportDir}/before.json`)
+const knownSecurities = new Map()
+for (const [id, record] of Object.entries(aliases)) for (const isin of record.securities ?? []) {
+  assert(!knownSecurities.has(isin) || knownSecurities.get(isin) === id, `Conflicting reviewed security ${isin}`)
+  knownSecurities.set(isin, id)
+}
+const archived = process.argv.includes('--check') ? read(`${reportDir}/logo-coverage.json`) : null
 const uses = []
 for (const sheet of SHEETS) {
   const composition = getIndexConcentration(sheet.id)
@@ -25,12 +32,16 @@ for (const sheet of SHEETS) {
   ]
   bySheet[sheet.id] = {}
   for (const row of entries) {
-    const id = byName.get(row.name)
+    const securityIds = [...new Set((row.securities ?? []).map(isin => knownSecurities.get(isin)))]
+    const securityId = securityIds.length === 1 && securityIds[0] ? securityIds[0] : null
+    const nameId = byName.get(row.name)
+    assert(!securityId || !nameId || securityId === nameId, `Name/security conflict: ${row.name}`)
+    const id = row.securities?.length ? securityId : nameId
     assert(id, `Alias to review: ${sheet.id} / ${row.name}`)
     const source = added[id] ?? existing[id]
     if (!companies[id]) companies[id] = { id, aliases: aliases[id].aliases, securities: [], file: source?.file ?? null,
       provenance: source ? { page: source.page, source: source.source, sha256: source.sha256 } : null,
-      status: added[id] ? 'added' : existing[id] ? 'present' : 'initials' }
+      status: source ? (baseline.companies.some(c => c.id === id && c.file) ? 'present' : 'added') : 'initials' }
     bySheet[sheet.id][row.name] = id
     for (const security of row.securities ?? []) {
       assert(!bySecurity[security] || bySecurity[security] === id, `Conflicting security ${security}`)
@@ -44,15 +55,22 @@ for (const company of Object.values(companies)) if (company.file) {
   const bytes = readFileSync(`public/asset-art/${company.file}`)
   assert.equal(createHash('sha256').update(bytes).digest('hex'), company.provenance.sha256, `Unverified logo ${company.id}`)
   assert(company.provenance.source?.startsWith('https://'))
+  if (company.file.endsWith('.svg')) {
+    const svg = bytes.toString('utf8')
+    assert(!/<(?:script|foreignObject)\b/i.test(svg), `Active SVG ${company.id}`)
+    for (const match of svg.matchAll(/(?:xlink:)?href=["']([^"']+)/g)) {
+      assert(match[1].startsWith('#') || match[1].startsWith('data:image/'), `External SVG dependency ${company.id}`)
+    }
+  }
 }
 const runtime = {bySheet, bySecurity, companies:Object.fromEntries(Object.values(companies).map(c=>[c.id,{file:c.file, support:(added[c.id] ?? existing[c.id])?.support ?? 'light'}]))}
 const output = JSON.stringify(runtime)+'\n', path = 'src/pages/factsheet-tweets/companyLogoRegistry.json'
 if (process.argv.includes('--check')) assert.equal(readFileSync(path,'utf8'), output, 'Regenerate index logo registry')
 else {
   writeFileSync(path, output)
-  mkdirSync('reports/index-relief',{recursive:true})
+  mkdirSync(reportDir,{recursive:true})
   const counts = Object.fromEntries(['present','added','initials'].map(status=>[status,Object.values(companies).filter(c=>c.status===status).length]))
-  writeFileSync('reports/index-relief/logo-coverage.json', JSON.stringify({sheets:SHEETS.length,top10:SHEETS.filter(s=>getIndexConcentration(s.id).available).length,counts,companies:Object.values(companies),uses},null,2)+'\n')
-  writeFileSync('reports/index-relief/logo-coverage.csv','company,status,file,securities\n'+Object.values(companies).map(c=>[c.id,c.status,c.file??'',c.securities.join('|')].join(',')).join('\n')+'\n')
+  writeFileSync(`${reportDir}/logo-coverage.json`, JSON.stringify({sheets:SHEETS.length,top10:SHEETS.filter(s=>getIndexConcentration(s.id).available).length,counts,companies:Object.values(companies),uses},null,2)+'\n')
+  writeFileSync(`${reportDir}/logo-coverage.csv`,'company,status,file,securities\n'+Object.values(companies).map(c=>[c.id,c.status,c.file??'',c.securities.join('|')].join(',')).join('\n')+'\n')
 }
 console.log(`Index logos: ${Object.keys(companies).length} companies / ${uses.length} appearances; ${Object.values(companies).filter(c=>c.file).length} local logos`)
