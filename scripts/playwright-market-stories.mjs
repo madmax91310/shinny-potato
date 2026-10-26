@@ -34,6 +34,11 @@ try {
     await search.fill('aucun-récit-avec-ce-nom');
     await page.getByRole('status', { name: '' }).filter({ hasText: 'Aucun résultat' }).waitFor();
     await page.getByRole('button', { name: 'Effacer la recherche' }).click();
+    for (const [query, id] of [['Bogle', 'story:bogle-premier-indiciel-1976'], ['Premium Bonds', 'story:premium-bonds-1956'], ['Keynes', 'story:keynes-changer-methode']]) {
+      await search.fill(query);
+      assert(await page.locator(`[data-option][data-value="${id}"]`).count(), `Sujet retrouvable : ${query}`);
+    }
+    await search.fill('');
     for (const story of FACTS) {
       await page.locator(`[data-option][data-value="${story.id}"]`).click();
       if (width < 900) await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
