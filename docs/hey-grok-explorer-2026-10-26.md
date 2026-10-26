@@ -80,3 +80,24 @@ Les anciennes données ne contiennent ni date de marquage ni instantané au mome
 Le nouveau lecteur de snapshot réutilise le lecteur/écrivain validé commun `publication-preferences.js`. Les signatures et formes de retour existantes sont préservées. Une donnée illisible, un format futur inconnu ou un conflit observé entre lecture et écriture bloque la persistance sans effacer les octets existants. Quota et stockage refusé laissent les changements en mémoire avec un avertissement : ils ne garantissent pas une conservation après fermeture du navigateur. Les données restent locales à ce navigateur ; aucune synchronisation ni mesure de vues n’est ajoutée.
 
 Les preuves de recette, captures et commandes effectivement terminées figurent dans la PR. Le calendrier, les collecteurs, l’accueil général et les autres outils ne sont pas remaniés.
+
+## Recette exécutée et coordination
+
+La branche a été rebasée sur `6cec5f49`, incluant les correctifs DCA/collecte puis les PR #979 (accueil cobalt compact) et #980 (logos). Leurs modifications sont conservées. La PR concurrente #981 concerne les preuves de collecte et le monitoring, sans recouvrement avec ce chantier.
+
+| Contrôle réellement exécuté | Résultat |
+|---|---|
+| `node scripts/test-hey-grok.mjs` | 80 références, nombres, identifiants, archives, filtres, cycles, migration et stockage validés ; maximum pondéré : 217/280 |
+| `node scripts/test-publication-preferences.mjs` | Contrats communs préservés, lecture du snapshot et protection des données corrompues |
+| `node scripts/test-tweet-bank-storage.mjs` | Stockage de l’autre banque inchangé |
+| `npm run lint` | Réussi ; 13 avertissements préexistants hors chantier |
+| `npm run build` | Réussi avec contrôles préalables, budgets des routes et couverture des données publiées |
+| `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-hey-grok.mjs` | Parcours réels à 320, 390 et 1280 px, clavier/tactile émulé, erreurs de stockage et copie refusée |
+| `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-preference-integrity.mjs` | Intégrité des préférences des autres outils à 390 et 1440 px |
+| `CHROMIUM_PATH=/usr/bin/chromium PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/playwright-tools.mjs --navigation` | Navigation des outils à 320 et 390 px |
+
+Le parcours dédié contrôle notamment la copie exacte sans métadonnées ni usage implicite, les favoris hérités, les archives et brouillons, l’historique immuable et annulable, les filtres combinés, la sélection vide, Voir plus, le renouvellement et son épuisement explicite. Il vérifie aussi les modèles et leur confirmation avant remplacement, la création/modification/suppression des questions personnelles, les variantes indépendantes, les textes vides ou trop longs, emojis/liens/retours à la ligne et la conservation du brouillon après navigation et rechargement. Les cas JSON corrompu, accès refusé, quota, conflit observé et presse-papiers refusé sont reproduits. Aucun appel d’écriture HTTP ni erreur de page n’est observé.
+
+Les [résultats détaillés](reports/hey-grok-explorer-20261026/results.json) et les captures sont conservés dans le dépôt : [mobile 320 px](reports/hey-grok-explorer-20261026/mobile-320.png), [mobile 390 px](reports/hey-grok-explorer-20261026/mobile-390.png), [ordinateur 1280 px](reports/hey-grok-explorer-20261026/desktop-1280.png), [éditeur 390 px](reports/hey-grok-explorer-20261026/editor-390.png). Aucun débordement horizontal ni tweet tronqué. La première carte commence à 693 px au maximum sur le parcours mobile testé, avec les thèmes et filtres avancés repliés.
+
+La recette utilise Chromium réel avec tailles mobiles et événements tactiles émulés ; aucun appareil physique ni Safari n’a été testé. Les limites de dates historiques, de stockage local et de cycles limités à la session sont décrites ci-dessus. Aucune réponse financière n’est calculée ou certifiée par cet outil. Livraison pour revue, sans fusion ni déploiement.
