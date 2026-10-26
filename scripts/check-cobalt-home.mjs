@@ -17,9 +17,12 @@ export async function checkCobaltHome(page) {
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 })
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: horizontal overflow`)
+    const columns = await page.locator('.home-overview').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)
+    assert.equal(columns, 3, `${width}: three tools per row`)
     const problems = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.flatMap(card => {
       const title = card.querySelector('h2').getBoundingClientRect()
-      const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const dayBox = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const day = dayBox?.width > 1 ? dayBox : null
       const box = card.getBoundingClientRect()
       return box.width <= 0 || box.height < 44 || title.bottom > box.bottom || title.right > box.right || (day && (title.bottom > day.top || day.bottom > box.bottom || day.right > box.right)) ? [card.textContent] : []
     }))
