@@ -19,7 +19,7 @@ function reviewed(tweet, reviewedAt, maxAge = 30) {
 }
 const reviewedPedagogyIds = new Set(['pedagogy:world-sp500', 'pedagogy:dividendes-cto', 'pedagogy:projet-trois-ans', 'pedagogy:epargne-precaution', 'pedagogy:world-emergents', 'pedagogy:etf-frais', 'pedagogy:ordre-limite-etf', 'pedagogy:etf-change-euro', 'pedagogy:reequilibrer-portefeuille', 'pedagogy:investir-somme-en-plusieurs-fois', 'pedagogy:etf-obligataire-taux', 'pedagogy:world-ex-usa-chiffre', 'pedagogy:world-small-chiffre', 'pedagogy:world-acwi-imi-chiffre', 'pedagogy:world-acwi-chiffre', 'pedagogy:world-europe-chiffre', 'pedagogy:emergents-retirer-chine', 'pedagogy:world-quality-pays', 'pedagogy:oblig-courtes-longues-reel', 'pedagogy:em-dette-dollar-local'])
 const generalIds = new Set([2, 20, 28, 34, 39, 44])
-const personalIds = new Set(['story:profil-monsieur-tout-le-monde', 'story:bitcoin-3500-reflexions-proches', 'bilan:dca-septembre-530', 'story:pea-investir-pas-casino', 'bilan:pea-presque-10000-octobre-2026', 1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
+const personalIds = new Set(['story:dix-ans-moins-10000-patrimoine-79058', 'story:profil-monsieur-tout-le-monde', 'story:bitcoin-3500-reflexions-proches', 'bilan:dca-septembre-530', 'story:pea-investir-pas-casino', 'bilan:pea-presque-10000-octobre-2026', 1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
   // Liste explicite de textes historiques relus : la catégorie seule ne certifie rien.
