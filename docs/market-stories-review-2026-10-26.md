@@ -20,7 +20,7 @@ Les fonctions de la banque de tweets, ses identifiants et ses données locales n
 
 - **CAC 40 2000–2021** : 6 944,77 est un sommet en séance, pas le record de clôture. La comparaison correcte est 6 922,33 le 4 septembre 2000 / 6 927,03 le 2 novembre 2021. Les dividendes restent exclus.
 - **S&P 500 2008** : dépassement du record de clôture le 28 mars 2013, et non le 10 avril. Aucun résultat individuel de récupération n’en est déduit.
-- **Dow 1933** : +15,34 % au 15 mars se mesure contre le 3 mars, après une fermeture incluant huit séances normalement ouvrées. Le texte ne décrit plus un rendement sur une séance ordinaire.
+- **Dow 1933** : +15,34 % au 15 mars se mesure contre le 3 mars, après une fermeture de près de deux semaines. Le texte ne décrit plus un rendement sur une séance ordinaire.
 - **1929** : retrait des anciennes bornes ambiguës « 25 % en quatre séances » et du prétendu plus bas du XXe siècle. Le récit explique les achats à crédit sans inventer de victime individuelle.
 - **Newton** : instructions d’achat/vente documentées ; aucune pensée supposée ni citation apocryphe. Ajout de documents d’archives identifiés.
 - **CAC 40 mars 2020** : un cas réel de médiation remplace la seule description d’une chute. Le seuil de 8 € et les spécificités du stop on quote proviennent du rapport AMF ; aucun prix d’exécution ou montant de perte n’est inventé.
