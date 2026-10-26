@@ -358,4 +358,3 @@ Le médiateur rappelle aussi une particularité des warrants et certificats : ce
 L’AMF ne conclut pas à une exécution anormale dans ce dossier. Un nombre avait bien été saisi pour préparer la sortie ; il n’était pas une garantie sur la somme récupérée.
 
 Pas un conseil financier.
-
