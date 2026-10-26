@@ -1,13 +1,12 @@
 import { roundedComposition } from '../../data/index-concentration-core.js'
-import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 import { getIndexArt } from './visualIdentity.js'
 import { factsheetCurrency } from './performanceCurrency.js'
 import { companyLabel, plainLabel, sectorLabel, sortedRows } from './editorial.js'
+import { countryFlag, drawFlag, drawSector } from './reliefArt.js'
+import { companyLogo, companyInitials } from './companyLogos.js'
 
-// Approved magazine direction: emerald, editorial typography and decorative photos.
-// The illustration never carries a number or a financial observation.
-const W = 1600, PAD = 44, GAP = 24, USABLE = W - PAD * 2, GUTTER = 385
-const C = { ink: '#f8f3dd', green: '#123e30', paper: '#f6f1db', gold: '#9abdaa', rule: '#71998566', negative: '#a32f42', background: '#031e18', mint: '#c9e3ca' }
+const W = 1600, PAD = 38, GAP = 18, USABLE = W - PAD * 2
+const C = { ink: '#291016', navy: '#38170f', rule: '#673c342b', negative: '#d52e39', positive: '#064d4e', background: '#fff7e7', muted: '#603a30' }
 const font = (ctx, size, weight = 400, serif = false) => { ctx.font = `${weight} ${size}px ${serif === 'title' ? 'ExportEditorial, Georgia, serif' : serif ? 'Georgia, serif' : 'Arial, sans-serif'}` }
 function lines(ctx, value, width) {
   const out = []
@@ -48,9 +47,14 @@ function displayLabel(name) {
     .replace(/Consommation discrétionnaire|Consommation cyclique/i, 'Conso cyclique')
     .replace(/Consommation de base/i, 'Conso de base')
     .replace(/Services financiers/i, 'Finance')
+    .replace(/^Conso Cyclique$/i, 'Conso cyclique')
+    .replace(/^Conso non Cyclique$/i, 'Conso non cyclique')
 }
 // Only display aliases: no grouping of share classes or change to their weights.
 export function imageCompanyLabel(name) {
+  const labels = { 'ADVANCED MICRO DEVICES': 'AMD', 'SPACE EXPLORATION TECHNOLOGIES COR': 'SpaceX', 'AIR LIQUIDE SA': 'Air Liquide', 'SAFRAN SA': 'Safran', 'BNP PARIBAS': 'BNP Paribas' }
+  if (labels[name]) return labels[name]
+  if (name === 'SAMSUNG ELECTRONICS PREF') return 'Samsung Electronics (préférentielles)'
   return companyLabel(name)
     .replace(/^HSBC HOLDING PLC(?: GBP)?$/i, 'HSBC')
     .replace(/^ROCHE HLDG AG-GENUSS(?: CHF)?$/i, 'Roche')
@@ -58,157 +62,7 @@ export function imageCompanyLabel(name) {
     .replace(/^SHELL PLC(?: EUR)?$/i, 'Shell')
     .replace(/^NESTLE SA-REG$/i, 'Nestlé')
 }
-let grain
-function paper(ctx, height, width = W) {
-  ctx.fillStyle = C.background; ctx.fillRect(0, 0, width, height)
-  const glow = ctx.createRadialGradient(width * .85, 0, 0, width * .85, 0, width)
-  glow.addColorStop(0, '#1a493a'); glow.addColorStop(1, '#031e1800')
-  ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height)
-  // A restrained crescent echoes the approved cover without encoding data.
-  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, width, 300); ctx.clip()
-  ctx.strokeStyle = '#b9d7b51f'; ctx.lineWidth = 115
-  ctx.beginPath(); ctx.ellipse(width * .78, -130, width * .34, 365, -.25, 0, Math.PI * 2); ctx.stroke(); ctx.restore()
-  if (!grain) {
-    grain = document.createElement('canvas'); grain.width = grain.height = 96
-    const g = grain.getContext('2d'), data = g.createImageData(96, 96); let seed = 78
-    for (let i = 0; i < data.data.length; i += 4) {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
-      data.data[i] = data.data[i + 1] = data.data[i + 2] = seed & 256 ? 255 : 70
-      data.data[i + 3] = (seed >>> 24) % 7
-    }
-    g.putImageData(data, 0, 0)
-  }
-  ctx.fillStyle = ctx.createPattern(grain, 'repeat'); ctx.fillRect(0, 0, width, height)
-}
-function panel(ctx, x, y, width, height, light = false) {
-  ctx.beginPath(); ctx.roundRect(x, y, width, height, 35)
-  const wash = ctx.createLinearGradient(x, y, x + width, y + height)
-  wash.addColorStop(0, light ? '#fff9e8' : '#194b3a'); wash.addColorStop(1, light ? '#eae5cd' : '#06291f')
-  ctx.fillStyle = wash; ctx.fill(); ctx.strokeStyle = light ? '#e5e0cb' : '#9abdaa80'; ctx.lineWidth = 1.4; ctx.stroke()
-}
-function labelBlock(ctx, value, width, size) {
-  // Prefer slightly smaller whole words to an isolated final letter.
-  while (size > 24) {
-    font(ctx, size, 500)
-    if (String(value).split(/\s+/).every(word => ctx.measureText(word).width <= width)) break
-    size--
-  }
-  return block(ctx, value, width, size, 500)
-}
-function compositionBand(ctx, label, rows) {
-  const cellWidth = (USABLE - GUTTER - 12) / Math.max(1, rows.length)
-  const cells = rows.map(([name, value]) => ({
-    value: fit(ctx, percent(value), cellWidth - 26, rows.length === 1 ? 110 : 86, 48),
-    name: labelBlock(ctx, name, cellWidth - 32, rows.length === 1 ? 42 : 34),
-  }))
-  return { label, cells, cellWidth, height: Math.max(258, ...cells.map(cell => cell.value.height + cell.name.height + 72)) }
-}
-function illustration(ctx, art, index, y, height) {
-  const x = PAD + 112, width = GUTTER - 112
-  ctx.save(); ctx.beginPath(); ctx.roundRect(PAD, y, USABLE, height, 35); ctx.clip()
-  const sourceSide = art.width / 3, scale = Math.max(width / sourceSide, height / art.height)
-  const sw = width / scale, sh = height / scale
-  ctx.drawImage(art, index * sourceSide + (sourceSide - sw) / 2, (art.height - sh) / 2, sw, sh, x, y, width, height)
-  const fade = ctx.createLinearGradient(x, y, x + width, y)
-  fade.addColorStop(0, '#06291f20'); fade.addColorStop(.65, '#06291f10'); fade.addColorStop(1, '#06291f')
-  ctx.fillStyle = fade; ctx.fillRect(x, y, width, height)
-  ctx.restore()
-}
-function category(ctx, label, y, height) {
-  ctx.save(); ctx.translate(PAD + 40, y + height / 2); ctx.rotate(-Math.PI / 2)
-  const b = fit(ctx, label, height - 36, 34, 26, true)
-  draw(ctx, b, 0, -b.height / 2, 'center'); ctx.restore()
-}
-function heading(ctx, value, width) {
-  for (let size = 150; size >= 74; size -= 2) {
-    const b = block(ctx, value, width, size, 400, 'title')
-    if (b.lines.length <= 2) return b
-  }
-  return block(ctx, value, width, 74, 400, 'title')
-}
-export async function renderFactsheetImage(sheet) {
-  const [art] = await Promise.all([loadArtImage('index-magazine/editorial-triptych.webp'), loadEditorialFont()])
-  const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
-  if (!ctx) throw new Error('Impossible de créer l’image')
-  const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
-  const badgeW = count == null ? 0 : 252
-  const titleW = USABLE - (badgeW ? badgeW + 42 : 0)
-  const title = heading(ctx, sheet.index ?? sheet.title, titleW)
-  const subtitle = block(ctx, getIndexArt(sheet).description, titleW, 38, 700)
-  const headerH = Math.max(230, title.height + subtitle.height + 42)
-  const bands = [
-    compositionBand(ctx, 'PAYS', sortedRows(sheet.countries).filter(([name]) => !/autres|others/i.test(name)).slice(0, 4).map(([name, value]) => [displayLabel(name), value])),
-    compositionBand(ctx, 'SECTEURS', sortedRows(sheet.sectors).slice(0, 4).map(([name, value]) => [displayLabel(sectorLabel(name)), value])),
-    compositionBand(ctx, 'ENTREPRISES', sortedRows(sheet.holdings).slice(0, 4).map(([name, value]) => [((sheet.compositionOnly || sheet.concentration?.available) ? compositionCompanyLabel : imageCompanyLabel)(name), value])),
-  ]
-  const returns = sheet.returns.slice().sort((a, b) => a[0] - b[0])
-  // New complete years grow the strip in balanced rows instead of shrinking type.
-  const perRow = Math.min(5, Math.max(1, Math.ceil(returns.length / Math.ceil(Math.max(1, returns.length) / 5))))
-  const returnRows = []
-  for (let i = 0; i < returns.length; i += perRow) {
-    const entries = returns.slice(i, i + perRow), width = USABLE / entries.length
-    const cells = entries.map(([year, value]) => ({ year: block(ctx, year, width - 24, 32), value: fit(ctx, percent(value, true), width - 28, 70), negative: value < 0 }))
-    returnRows.push({ cells, width, height: Math.max(...cells.map(cell => cell.year.height + cell.value.height + 56)) })
-  }
-  const perfH = returns.length ? 65 + returnRows.reduce((sum, row) => sum + row.height, 0) + 16 : 0
-  const concentrationH = sheet.concentration?.available ? 168 : 0
-  const natural = PAD + headerH + 30 + concentrationH + bands.reduce((sum, band) => sum + band.height + GAP, 0) + perfH + 110
-  const H = Math.ceil(Math.max(1600, natural))
-  bands.forEach(band => { band.height += (H - natural) / bands.length })
-  canvas.width = W; canvas.height = H
-  paper(ctx, H)
-  draw(ctx, title, PAD + 10, PAD)
-  draw(ctx, subtitle, PAD + 10, PAD + title.height + 12)
-  if (badgeW) {
-    const x = W - PAD - badgeW
-    panel(ctx, x, PAD, badgeW, 208)
-    const number = fit(ctx, count.toLocaleString('fr-FR'), badgeW - 28, 97)
-    draw(ctx, number, x + badgeW / 2, PAD + 26, 'center', C.paper)
-    const caption = block(ctx, sheet.constituents == null ? 'sociétés visées' : 'titres', badgeW - 24, 27)
-    draw(ctx, caption, x + badgeW / 2, PAD + 148, 'center', C.paper)
-  }
-  let y = PAD + headerH + 30
-  if (concentrationH) {
-    panel(ctx, PAD, y, USABLE, 144)
-    draw(ctx, block(ctx, 'Poids des 10 premières entreprises', USABLE - 520, 46, 700), PAD + 28, y + 39, 'left', C.paper)
-    draw(ctx, fit(ctx, percent(sheet.concentration.topWeight), 460, 100), W - PAD - 28, y + 14, 'right', C.paper)
-    y += concentrationH
-  }
-  for (const [bandIndex, band] of bands.entries()) {
-    panel(ctx, PAD, y, USABLE, band.height); illustration(ctx, art, bandIndex, y, band.height); category(ctx, band.label, y, band.height)
-    const valueH = Math.max(...band.cells.map(cell => cell.value.height), 0)
-    const nameH = Math.max(...band.cells.map(cell => cell.name.height), 0)
-    const top = y + (band.height - valueH - nameH - 16) / 2
-    band.cells.forEach((cell, i) => {
-      const x = PAD + GUTTER + 16 + i * band.cellWidth, center = x + band.cellWidth / 2
-      if (i) { ctx.fillStyle = C.rule; ctx.fillRect(x, y + 34, 1, band.height - 68) }
-      draw(ctx, cell.value, center, top, 'center')
-      draw(ctx, cell.name, center, top + valueH + 16, 'center')
-    })
-    y += band.height + GAP
-  }
-  if (returns.length) {
-  panel(ctx, PAD, y, USABLE, perfH, true)
-  const currency = factsheetCurrency(sheet)
-  draw(ctx, block(ctx, `PERFORMANCES ANNUELLES${currency ? ` EN ${currency}` : ''}`, USABLE - 72, 31, 400, true), PAD + 36, y + 22, 'left', C.background)
-  let ry = y + 65
-  for (const row of returnRows) {
-    row.cells.forEach((cell, i) => {
-      const x = PAD + i * row.width, center = x + row.width / 2
-      if (i) { ctx.fillStyle = C.rule; ctx.fillRect(x, ry + 20, 1, row.height - 34) }
-      draw(ctx, cell.year, center, ry + 21, 'center', C.background)
-      draw(ctx, cell.value, center, ry + 30 + cell.year.height, 'center', cell.negative ? C.negative : C.background)
-    })
-    ry += row.height
-  }
-  }
-  draw(ctx, block(ctx, 'Épargnant Libre', USABLE, 39, 400, true), W / 2, H - 66, 'center')
-  return canvas
-}
-
-
-// No logo request participates in rendering: this canvas is self-contained.
-function compositionCompanyLabel(name) {
+export function compositionCompanyLabel(name) {
   const aliases = {
     'SIEMENS ENERGY AG': 'Siemens Energy', 'SIEMENS HEALTHINEERS AG': 'Siemens Healthineers',
     'AIRBUS SE-BERLIN': 'Airbus', 'AIRBUS SE PARIS': 'Airbus',
@@ -226,53 +80,170 @@ function compositionCompanyLabel(name) {
   return imageCompanyLabel(name)
 }
 
-export async function renderCompositionImage(sheet, composition) {
-  if (!composition?.available) throw new Error('Composition indisponible')
-  await loadEditorialFont()
-  const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
-  if (!ctx) throw new Error('Impossible de créer l’image')
-  const width = 1200, margin = 48, columnW = 534, gap = 36
-  const colors = ['#c4dec2','#73ac91','#e1d4a7','#4c967f','#acc7aa','#8aafba','#d1bba3','#528778','#adc3d0','#9aaf7c','#204d3e']
-  const values = roundedComposition(composition)
-  const entries = [...composition.top.map((row, i) => ({ name: compositionCompanyLabel(row.name), value: values[i], weight: row.weightPct, color: colors[i] })),
-    { name: 'Autres entreprises', value: values[10], weight: composition.otherWeight, color: colors[10] }]
-  const title = block(ctx, sheet.index ?? sheet.title, width - margin * 2, 80, 400, true)
-  const titleY = 38, donutTop = titleY + title.height + 22, diameter = 660
-  const legendTop = donutTop + diameter + 22
-  const rows = []
-  for (let i = 0; i < entries.length; i += 2) {
-    const cells = entries.slice(i, i + 2).map(entry => ({ ...entry,
-      label: block(ctx, `${entry.name} · ${percent(entry.value).replace(' %', '\u00a0%')}`, columnW - 40, 42, 400, true) }))
-    rows.push({ cells, height: Math.max(...cells.map(cell => cell.label.height)) + 26 })
+// Relief is composed dynamically: bevels, surface highlights and shadows carry no data.
+function paper(ctx, height, width = W) {
+  const wash=ctx.createLinearGradient(0,0,width,height)
+  wash.addColorStop(0,'#fff9ec');wash.addColorStop(.55,'#f7eed9');wash.addColorStop(1,'#fff9ec')
+  ctx.fillStyle=wash;ctx.fillRect(0,0,width,height)
+}
+function panel(ctx,x,y,width,height,style='peach',radius=55) {
+  const palettes={peach:['#ffd9b5','#f8b08d','#efa481'],lavender:['#e3d4f5','#c1a7e1','#b79bd5'],mint:['#c4f4e8','#94dad3','#82ccc5'],ivory:['#fffcf2','#fff5df','#e7d6b4']}
+  const colors=palettes[style]??palettes.peach
+  ctx.save();ctx.shadowColor='#6b40294f';ctx.shadowBlur=22;ctx.shadowOffsetY=16
+  const wash=ctx.createLinearGradient(x,y,x+width*.3,y+height)
+  colors.forEach((color,i)=>wash.addColorStop(i/2,color))
+  ctx.beginPath();ctx.roundRect(x,y,width,height,radius);ctx.fillStyle=wash;ctx.fill()
+  ctx.shadowColor='transparent';ctx.lineWidth=4
+  const edge=ctx.createLinearGradient(x,y,x,y+height)
+  edge.addColorStop(0,'#ffffffd9');edge.addColorStop(.45,'#ffffff40');edge.addColorStop(1,'#8b654066')
+  ctx.strokeStyle=edge;ctx.stroke()
+  ctx.save();ctx.beginPath();ctx.roundRect(x+5,y+5,width-10,height-10,radius-4);ctx.clip()
+  const shine=ctx.createLinearGradient(x,y,x,y+32)
+  shine.addColorStop(0,'#ffffffb0');shine.addColorStop(1,'#ffffff00')
+  ctx.fillStyle=shine;ctx.fillRect(x,y,width,32)
+  ctx.beginPath();ctx.roundRect(x+12,y+10,width-24,height-23,radius-10)
+  ctx.strokeStyle='#ffffff48';ctx.lineWidth=5;ctx.stroke();ctx.restore();ctx.restore()
+}
+function logoSupport(ctx, image, name, x, y, size) {
+  ctx.save()
+  ctx.shadowColor = '#001c4038'; ctx.shadowBlur = 10; ctx.shadowOffsetY = 5
+  ctx.beginPath(); ctx.roundRect(x, y, size, size, size * .23); ctx.fillStyle = '#f8fcff'; ctx.fill()
+  ctx.shadowColor = 'transparent'; ctx.lineWidth = 1.5; ctx.strokeStyle = '#d2e8fa'; ctx.stroke()
+  if (image) {
+    // A white mark keeps its native colour on a dark insert; never recolour it.
+    const dark = image.dataset?.support === 'dark'
+    if (dark) { ctx.beginPath(); ctx.roundRect(x + 4, y + 4, size - 8, size - 8, size * .19); ctx.fillStyle = '#123c70'; ctx.fill() }
+    const factor = Math.min(/\.(png|avif|webp)$/.test(image.src) ? 1 : Infinity, (size - 18) / image.width, (size - 18) / image.height)
+    const w = image.width * factor, h = image.height * factor
+    ctx.drawImage(image, x + (size - w) / 2, y + (size - h) / 2, w, h)
+  } else {
+    draw(ctx, block(ctx, companyInitials(name), size - 12, size * .34, 700), x + size / 2, y + size * .3, 'center', C.navy)
   }
-  const height = Math.ceil(legendTop + rows.reduce((sum, row) => sum + row.height, 0) + 82)
-  canvas.width = width; canvas.height = height
-  paper(ctx, height, width)
-  draw(ctx, title, width / 2, titleY, 'center')
-  const cx = width / 2, cy = donutTop + diameter / 2, outer = diameter / 2, inner = 210
-  let angle = -Math.PI / 2
-  for (const entry of entries) {
-    const end = angle + entry.weight / 100 * Math.PI * 2
-    if (end > angle) {
-      ctx.beginPath(); ctx.arc(cx, cy, outer, angle, end); ctx.arc(cx, cy, inner, end, angle, true); ctx.closePath()
-      ctx.fillStyle = entry.color; ctx.fill()
-      // Thin separators preserve very small slices, with their values in the legend.
-      ctx.strokeStyle = C.background; ctx.lineWidth = 1.5; ctx.stroke()
-    }
-    angle = end
+  ctx.restore()
+}
+function heading(ctx,value,width) { return fit(ctx,value,width,185,106,false) }
+export async function renderFactsheetImage(sheet) {
+  const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d')
+  if(!ctx)throw new Error('Impossible de créer l’image')
+  const holdings=sortedRows(sheet.holdings).slice(0,4)
+  const countries=sortedRows(sheet.countries).filter(([name])=>!/autres|others/i.test(name)).slice(0,4)
+  const [logos,flags]=await Promise.all([Promise.all(holdings.map(([name])=>companyLogo(sheet,name))),Promise.all(countries.map(([name])=>countryFlag(name)))])
+  const count=sheet.constituents??sheet.indexFacts?.targetConstituents
+  const badgeW=count==null?0:280,titleW=USABLE-(badgeW?badgeW+30:0)
+  const title=heading(ctx,sheet.index??sheet.title,titleW)
+  const subtitle=block(ctx,getIndexArt(sheet).description,titleW,51,700)
+  const headerH=Math.max(276,title.height+subtitle.height+24)
+  const definitions=[
+    {label:'PAYS',style:'peach',kind:'country',rows:countries.map(([name,value],i)=>({name:displayLabel(name),raw:name,value,image:flags[i]}))},
+    {label:'SECTEURS',style:'lavender',kind:'sector',rows:sortedRows(sheet.sectors).slice(0,4).map(([name,value])=>({name:displayLabel(sectorLabel(name)),raw:name,value}))},
+    {label:'ENTREPRISES',style:'mint',kind:'company',rows:holdings.map(([name,value],i)=>({name:((sheet.compositionOnly||sheet.concentration?.available)?compositionCompanyLabel:imageCompanyLabel)(name),raw:name,value,image:logos[i]}))},
+  ]
+  const bands=definitions.map(band=>{
+    const width=USABLE/Math.max(4,band.rows.length)
+    const cells=band.rows.map(row=>({...row,nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),valueBlock:fit(ctx,percent(row.value),width-28,99,76,false)}))
+    const nameH=Math.max(61,...cells.map(cell=>cell.nameBlock.height)),valueH=Math.max(118,...cells.map(cell=>cell.valueBlock.height))
+    return {...band,cells,width,nameH,valueH,height:Math.max(422,100+126+15+nameH+8+valueH+26)}
+  })
+  const returns=(sheet.returns??[]).slice().sort((a,b)=>a[0]-b[0])
+  const perRow=Math.min(5,Math.max(1,Math.ceil(returns.length/Math.ceil(Math.max(1,returns.length)/5))))
+  const returnRows=[]
+  for(let i=0;i<returns.length;i+=perRow){
+    const entries=returns.slice(i,i+perRow),width=USABLE/entries.length
+    const cells=entries.map(([year,value])=>({year:block(ctx,year,width-24,38,700),value:fit(ctx,Number.isFinite(value)?percent(value,true):'Indisponible',width-28,78,48,false),negative:value<0}))
+    returnRows.push({cells,width,height:Math.max(...cells.map(cell=>cell.year.height+cell.value.height+42))})
   }
-  const center = fit(ctx, percent(composition.topWeight), inner * 2 - 22, 86, 65)
-  draw(ctx, center, cx, cy - 62, 'center')
-  draw(ctx, block(ctx, 'Top 10', inner * 2 - 20, 45, 400, true), cx, cy + 54, 'center')
-  let y = legendTop
-  for (const row of rows) {
-    row.cells.forEach((entry, i) => {
-      const x = margin + i * (columnW + gap)
-      ctx.fillStyle = entry.color; ctx.beginPath(); ctx.roundRect(x, y + 10, 22, 30, 5); ctx.fill()
-      draw(ctx, entry.label, x + 38, y)
+  const perfTitle=block(ctx,`PERFORMANCES ANNUELLES${factsheetCurrency(sheet)?` EN ${factsheetCurrency(sheet)}`:''}`,USABLE-70,43,700)
+  const perfH=returns.length?perfTitle.height+28+returnRows.reduce((sum,row)=>sum+row.height,0)+16:0
+  const concentrationH=sheet.concentration?.available?150:0
+  const H=Math.ceil(PAD+headerH+GAP+concentrationH+bands.reduce((sum,band)=>sum+band.height+GAP,0)+perfH+86)
+  canvas.width=W;canvas.height=H;paper(ctx,H)
+  ctx.save();ctx.shadowColor='#572c2440';ctx.shadowBlur=5;ctx.shadowOffsetY=4
+  draw(ctx,title,PAD+14,PAD-4,'left',C.navy);ctx.restore()
+  draw(ctx,subtitle,PAD+16,PAD+title.height+3,'left',C.navy)
+  if(badgeW){
+    const x=W-PAD-badgeW
+    panel(ctx,x,PAD-5,badgeW,270,'peach',125)
+    draw(ctx,fit(ctx,count.toLocaleString('fr-FR'),badgeW-26,130,77,false),x+badgeW/2,PAD+40,'center',C.navy)
+    draw(ctx,block(ctx,sheet.constituents==null?'sociétés visées':'titres',badgeW-26,sheet.constituents==null?30:43,700),x+badgeW/2,PAD+180,'center',C.navy)
+  }
+  let y=PAD+headerH+GAP
+  if(concentrationH){
+    panel(ctx,PAD,y,USABLE,concentrationH-GAP,'ivory')
+    draw(ctx,block(ctx,'Poids des 10 premières entreprises',USABLE-500,40,700),PAD+32,y+39,'left',C.navy)
+    draw(ctx,fit(ctx,percent(sheet.concentration.topWeight),430,78,64,false),W-PAD-32,y+19,'right',C.navy);y+=concentrationH
+  }
+  for(const band of bands){
+    panel(ctx,PAD,y,USABLE,band.height,band.style)
+    draw(ctx,block(ctx,band.label,USABLE-80,54,700),PAD+54,y+27)
+    const offset=(USABLE-band.cells.length*band.width)/2
+    if(!band.cells.length)draw(ctx,block(ctx,'Données indisponibles',USABLE-100,48,700),W/2,y+200,'center',C.muted)
+    band.cells.forEach((cell,i)=>{
+      const center=PAD+offset+(i+.5)*band.width,iconY=y+105
+      if(band.kind==='country')drawFlag(ctx,cell.image,center-84,iconY+4,168,126)
+      else if(band.kind==='sector')drawSector(ctx,cell.raw,center-60,iconY,120)
+      else logoSupport(ctx,cell.image,cell.name,center-61,iconY-2,122)
+      draw(ctx,cell.nameBlock,center,y+241,'center',C.ink)
+      draw(ctx,cell.valueBlock,center,y+241+band.nameH+9,'center',band.kind==='company'?'#042d31':C.ink)
     })
-    y += row.height
+    y+=band.height+GAP
   }
-  draw(ctx, block(ctx, 'Épargnant Libre', width - 96, 36, 400, true), width / 2, height - 57, 'center')
+  if(returns.length){
+    panel(ctx,PAD,y,USABLE,perfH,'ivory')
+    draw(ctx,perfTitle,PAD+50,y+24,'left',C.navy);y+=perfTitle.height+30
+    for(const row of returnRows){
+      row.cells.forEach((cell,i)=>{
+        const x=PAD+i*row.width,center=x+row.width/2
+        if(i){ctx.fillStyle=C.rule;ctx.fillRect(x,y+15,1.5,row.height-24)}
+        draw(ctx,cell.year,center,y+10,'center',C.navy)
+        draw(ctx,cell.value,center,y+cell.year.height+18,'center',cell.negative?C.negative:C.positive)
+      });y+=row.height
+    }
+  }
+  draw(ctx,block(ctx,'Épargnant Libre',USABLE,39,700),W/2,H-60,'center',C.navy)
+  return canvas
+}
+
+export async function renderCompositionImage(sheet, composition) {
+  if(!composition?.available) throw new Error('Composition indisponible')
+  const logos=await Promise.all(composition.top.map(row=>companyLogo(sheet,row.name,row.securities)))
+  const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d')
+  if(!ctx)throw new Error('Impossible de créer l’image')
+  const width=1200,margin=44,columnW=538,gap=36
+  const colors=['#e49c7b','#b49bd3','#6abbb6','#f2c3a4','#8470ae','#94d6c4','#cea4be','#467f83','#dfc4ec','#c99764','#f3e5c6']
+  const values=roundedComposition(composition)
+  const entries=[...composition.top.map((row,i)=>({name:compositionCompanyLabel(row.name),value:values[i],weight:row.weightPct,color:colors[i],image:logos[i]})),
+    {name:'Autres entreprises',value:values[10],weight:composition.otherWeight,color:colors[10],other:true}]
+  const title=block(ctx,sheet.index??sheet.title,width-margin*2,76,700)
+  const titleY=38,donutTop=titleY+title.height+28,diameter=600
+  const legendTop=donutTop+diameter+60
+  const rows=[]
+  for(let i=0;i<entries.length;i+=2){
+    const cells=entries.slice(i,i+2).map(entry=>({...entry,label:block(ctx,entry.name,columnW-124,36,500),valueBlock:block(ctx,percent(entry.value),columnW-124,42,700)}))
+    rows.push({cells,height:Math.max(...cells.map(cell=>cell.label.height+cell.valueBlock.height+18),92)+26})
+  }
+  const height=Math.ceil(legendTop+rows.reduce((sum,row)=>sum+row.height,0)+90)
+  canvas.width=width;canvas.height=height;paper(ctx,height,width)
+  draw(ctx,title,width/2,titleY,'center',C.navy)
+  panel(ctx,margin,donutTop-8,width-margin*2,diameter+44,'lavender')
+  const cx=width/2,cy=donutTop+diameter/2+10,outer=diameter/2-20,inner=185
+  let angle=-Math.PI/2
+  for(const entry of entries){
+    const end=angle+entry.weight/100*Math.PI*2
+    if(end>angle){ctx.beginPath();ctx.arc(cx,cy,outer,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=entry.color;ctx.fill();ctx.strokeStyle='#84669a';ctx.lineWidth=1.5;ctx.stroke()}
+    angle=end
+  }
+  draw(ctx,fit(ctx,percent(composition.topWeight),inner*2-20,78,58,false),cx,cy-58,'center')
+  draw(ctx,block(ctx,'Top 10',inner*2-20,42,700),cx,cy+49,'center',C.navy)
+  let y=legendTop
+  for(const row of rows){
+    row.cells.forEach((entry,i)=>{
+      const x=margin+i*(columnW+gap)
+      ctx.fillStyle=entry.color;ctx.beginPath();ctx.roundRect(x,y+5,8,row.height-30,4);ctx.fill()
+      if(!entry.other)logoSupport(ctx,entry.image,entry.name,x+20,y+13,68)
+      draw(ctx,entry.valueBlock,x+104,y+3,'left',C.navy)
+      draw(ctx,entry.label,x+104,y+entry.valueBlock.height+12,'left',C.navy)
+    });y+=row.height
+  }
+  draw(ctx,block(ctx,'Épargnant Libre',width-88,34,700),width/2,height-57,'center',C.navy)
   return canvas
 }

@@ -75,3 +75,16 @@ https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land
 L’Antarctique est omis. La carte est décorative ; elle ne représente ni les poids
 ni les pays effectivement détenus par les fonds. Les chiffres restent calculés
 à partir des données du comparatif, sans texte incorporé dans l’image.
+
+## Coulisses des indices — relief pastel
+
+Les deux exports d’indices réutilisent les logos officiels ci-dessus et les ajouts
+répertoriés dans [`index-logos/sources.json`](index-logos/sources.json). Le raccordement
+partagé utilise les ISIN pour le Top 10 et des alias explicitement revus par indice
+pour les lignes historiques. Aucun rapprochement flou ni ticker ambigu. Les supports
+seuls portent l’ombre ; les marques conservent leurs couleurs et proportions. Les
+logos blancs ont un insert bleu ; les erreurs et délais de chargement produisent
+des initiales et restent réessayables. Le moteur attend les ressources avant de
+rendre l’aperçu ou le PNG. Le [bilan daté](../../reports/index-relief/README.md)
+distingue 48 logos existants, 22 ajouts et 133 entreprises encore en initiales, avec
+les aperçus réels, les ISIN et les preuves.

@@ -65,7 +65,7 @@ try {
         const sheet=SHEETS.find(s=>s.id===id)
         return (await renderFactsheetImage(sheet)).toDataURL()
       },id)
-      assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(expectedImage.split(',')[1],'base64')),'Primary preview renders the selected index in the approved magazine style')
+      assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(expectedImage.split(',')[1],'base64')),'Primary preview renders the selected index in the glacier glass style')
     }
 
     const [main]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
