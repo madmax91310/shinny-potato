@@ -129,3 +129,11 @@
 .tb-story-length { color: var(--tb-ink-dim); font-size: .85rem; line-height: 1.5; }
 .tb-evidence li, .tb-sources li { margin-bottom: 10px; line-height: 1.6; }
 .tb-tweet-text { font-size: 16px; }
+
+/* Personal tweets have an authenticated, durable store; archived drafts stay intact. */
+.tb-scope .tb-cloud { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin:20px 0; padding:22px; border:1px solid #5274b4; border-radius:18px; background:linear-gradient(125deg,#162d57,#111e36); color:#eaf1ff; }
+.tb-scope .tb-cloud h2 { margin:0 0 8px; font-size:1.15rem; }
+.tb-scope .tb-cloud p { margin:0; max-width:620px; color:#bbcae3; }
+.tb-scope .tb-cloud-actions { display:flex; gap:12px; flex-wrap:wrap; }
+.tb-scope .tb-cloud-actions a { display:inline-flex; align-items:center; min-height:44px; padding:10px 15px; border:1px solid #6b93ef; border-radius:10px; background:#285cce; color:#fff; text-decoration:none; }
+.tb-scope .tb-cloud-actions a:last-child { background:transparent; }

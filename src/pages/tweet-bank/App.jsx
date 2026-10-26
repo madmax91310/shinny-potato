@@ -265,6 +265,17 @@ export default function App() {
         subtitle={`${TWEETS.length} textes archivés — la fraîcheur du contenu et le repos de ${COOLDOWN_DAYS} jours sont contrôlés séparément.`}
       />
 
+      <section className="tb-cloud" aria-label="Mes tweets synchronisés">
+        <div>
+          <h2>Mes tweets, sur téléphone et PC</h2>
+          <p>Ajoute tes propres textes dans ton espace privé. Retrouve-les avec le même compte ChatGPT sur tes appareils.</p>
+        </div>
+        <div className="tb-cloud-actions">
+          <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/?new=1">＋ Ajouter un tweet</a>
+          <a href="https://epargnant-libre-mes-tweets.vvairat.chatgpt.site/">Voir mes tweets</a>
+        </div>
+      </section>
+
       <div className="tb-summary">
         <div className="tb-summary-cell">
           <div className="tb-summary-num">{TWEETS.length}</div>
