@@ -106,3 +106,17 @@ assert.equal(afterCorrection.observations[0].scope,recovered.observations[0].sco
 const correctionAgain=await collectPublications(new Date(+now+7*3600000),laterRequest,afterCorrection.state,[source],1)
 assert.equal(correctionAgain.observations[0].backfill,false,'Cleared backfill marker persists across normal producer passes')
 console.log('Post-backfill correction and stable observation scope verified.')
+
+// Actual public global listing: France remains a required scope, never inferred
+// from the listing locale. Old publication dates cannot become new alerts.
+const {gunzipSync}=await import('node:zlib')
+const recoveryRoot=new URL('../reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/',import.meta.url)
+const recoveredRevolut=CONSUMER_SOURCES.find(s=>s.id==='revolut-news')
+const recoveredLinks=discoverConsumer(gunzipSync(await readFile(new URL('revolut-listing.html.gz',recoveryRoot))).toString(),recoveredRevolut)
+const frenchLink=recoveredLinks.find(r=>r.url.endsWith('/revolut_receives_french_banking_licence'))
+assert(frenchLink)
+const recoveredFrench=parseConsumer(gunzipSync(await readFile(new URL('revolut-france.html.gz',recoveryRoot))).toString(),recoveredRevolut,frenchLink.url,now,frenchLink)
+assert.equal(recoveredFrench.publishedAt,'2026-08-10')
+assert.equal(editorialAssessment(asEvent(recoveredFrench),+now).major,false)
+assert.match(recoveredRevolut.depth,/couverture partielle/)
+console.log('Recovered official global Revolut listing: French article identified, original August date and partial coverage preserved.')

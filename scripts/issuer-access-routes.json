@@ -8,15 +8,23 @@
       "uk"
     ],
     "factsheetRegionsByDocument": {
-      "gdig-fact-sheet.pdf": ["dk", "nl", "uk"]
+      "gdig-fact-sheet.pdf": [
+        "dk",
+        "nl",
+        "uk"
+      ]
     },
     "note": "The French gate redirects US-based runners to the US site; Dutch and UK routes remain the defaults. The Danish GDIG route was independently qualified in GitHub on 2026-10-23 (run 40002490699), with exact ISIN, currency, dates and seven official calendar return checks. This document override does not extend the qualification to other funds."
   },
   "wisdomtree": {
     "ucitsFactsheet": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/{isin}",
     "appliesToIsinPrefix": "IE",
-    "productPageRegions": ["ie", "nl"],
-    "note": "The primary product route may answer HTTP 403. Irish and Dutch routes are bounded transport candidates for the same exact product; identity, base currency, listing currency, dates, weights and full-portfolio checks still qualify every response. Dataspan factsheets remain independent documents."
+    "productPageRegions": [
+      "ie",
+      "nl",
+      "se"
+    ],
+    "note": "The primary product route may answer HTTP 403. Irish, Dutch and Swedish routes are bounded transport candidates for the same exact product; identity, base currency, listing currency, dates, weights and full-portfolio checks still qualify every response. Dataspan factsheets remain independent documents."
   },
   "blackrock": {
     "characteristicsComponents": "keyFundFacts%2Clistings",

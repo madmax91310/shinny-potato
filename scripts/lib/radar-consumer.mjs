@@ -17,7 +17,7 @@ export const CONSUMER_SOURCES = [
   ['moneyvox','MoneyVox · actualités','https://www.moneyvox.fr/actu/rss.php','journalistic'],
 ].map(([id,name,url,evidenceLevel])=>({id,name,url,host:new URL(url).hostname,method:'consumer-rss',family:'pouvoir-achat',evidenceLevel,cadenceMinutes:30,depth:'Fenêtre RSS publiée ; aucun historique exhaustif supposé'}))
 CONSUMER_SOURCES.push({id:'boursobank-news',name:'BoursoBank Groupe · communiqués',url:'https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse',host:'www.boursobank-group.com',method:'consumer-links',path:'/fr/espace-presse/communiques-de-presse/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement'})
-CONSUMER_SOURCES.push({id:'revolut-news',parserVersion:2,name:'Revolut · salle de presse France',url:'https://www.revolut.com/fr-FR/news/',host:'www.revolut.com',method:'consumer-links',path:'/fr-FR/news/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Articles rendus dans la première page France ; annonces étrangères écartées'})
+CONSUMER_SOURCES.push({id:'revolut-news',parserVersion:3,name:'Revolut · annonces concernant la France',url:'https://www.revolut.com/news/',host:'www.revolut.com',method:'consumer-links',path:'/news/',family:'pouvoir-achat',evidenceLevel:'official',cadenceMinutes:30,depth:'Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées'})
 export function consumerRejection(title, summary='') {
   const exclusion=editorialExclusion({label:title})
   if(exclusion)return exclusion

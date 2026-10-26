@@ -23891,40 +23891,29 @@
     }
   },
   "IE00BYZK4776": {
-    "checkedAt": "2026-10-25T15:56:47.297611+00:00",
+    "checkedAt": "2026-10-26T07:55:11.252032+00:00",
     "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "currencyHedge"
     ],
-    "firstPendingAt": {
-      "currencyHedge": "2026-10-25T13:50:37.125793+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       }
     ],
     "fields": {
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23939,8 +23928,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23955,8 +23944,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23971,8 +23960,8 @@
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23985,10 +23974,10 @@
         "sourceErrors": []
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -23997,27 +23986,14 @@
           "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
           "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -29682,32 +29658,64 @@
     }
   },
   "IE00B0M62S72": {
-    "checkedAt": "2026-10-25T15:56:47.297611+00:00",
+    "checkedAt": "2026-10-26T07:55:11.252032+00:00",
     "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "listings"
-    ],
-    "pending": [
-      "pea",
+      "listings",
       "currencyHedge"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-25T13:50:37.125793+00:00"
+      "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+        "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+        "error": "Conflicting metadata sources: pea"
       },
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+        "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/Fonds/17300",
+        "error": "No public exact-share fund reference found"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/Fonds/17300",
+        "error": "No explicit supported metadata fields"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Recherche/RechercheRapide",
+        "error": "No public exact-share fund reference found"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Recherche/RechercheRapide",
+        "error": "No explicit supported metadata fields"
+      },
+      {
         "field": "pea",
         "qualificationRequired": true,
-        "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "error": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "sources": [
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+            "value": true,
+            "checkedAt": "2026-10-26",
+            "sha256": "27f4a6fa33ae675646969d9e2ff30c5909f6156e6c5bd48432bac54a41cf0b1d"
+          },
+          {
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+            "value": false,
+            "checkedAt": "2026-10-26",
+            "sha256": "6be1024b49decaaeb46f6647ee87cc72dbca90dcf2fee99aa28584d2e99c6751"
+          },
+          {
+            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+            "value": false,
+            "checkedAt": "2026-10-26",
+            "sha256": "b960b24e6409a84c6c43b0916b14da11a17e5fae3fe82608ac26d266f7a5ebe5"
+          },
           {
             "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
             "value": true,
@@ -29801,6 +29809,7 @@
         ],
         "category": "source-conflict",
         "reasons": [
+          "Conflicting current exact-share statements; no automatic value chosen.",
           "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
         ]
       }
@@ -29809,8 +29818,8 @@
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29826,8 +29835,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29843,8 +29852,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29860,7 +29869,7 @@
       "pea": {
         "status": "unobserved",
         "category": "source-conflict",
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -29871,23 +29880,39 @@
           "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
         ],
-        "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "sourceErrors": [
           {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+            "error": "Conflicting metadata sources: pea"
           },
           {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
+            "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/Fonds/17300",
+            "error": "No public exact-share fund reference found"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/Fonds/17300",
+            "error": "No explicit supported metadata fields"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Recherche/RechercheRapide",
+            "error": "No public exact-share fund reference found"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Recherche/RechercheRapide",
+            "error": "No explicit supported metadata fields"
+          },
+          {
+            "sourceUrl": null,
+            "error": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
           }
         ]
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-24",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29897,23 +29922,14 @@
           "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-25T15:56:47.297611+00:00",
-        "lastSuccessAt": "2026-10-25",
+        "lastAttemptAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-26",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
