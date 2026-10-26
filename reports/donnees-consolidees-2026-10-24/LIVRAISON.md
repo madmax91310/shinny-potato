@@ -1,16 +1,25 @@
-# Livraison en cours — 26 octobre 2026
+# Livraison consolidée — reprise du 26 octobre 2026
 
-La PR [#976](https://github.com/madmax91310/shinny-potato/pull/976) est fusionnée en `d221df0b` ; publication encore à vérifier à cette étape. Tous ses contrôles généraux sont réussis. Les quatre compositions WisdomTree restent refusées dans GitHub, y compris la nouvelle route Defence ; les tests locaux ne les transforment pas en automatismes rétablis.
+Les PR [#969](https://github.com/madmax91310/shinny-potato/pull/969), [#976](https://github.com/madmax91310/shinny-potato/pull/976) et [#977](https://github.com/madmax91310/shinny-potato/pull/977) sont fusionnées. #976 est publié et vérifié ; #977 est fusionné en `6952918e` et sa publication est encore en contrôle à cette capture. Les PR concurrentes #979/#980 sont ouvertes et leurs fichiers ne sont pas modifiés.
 
-- ACWI : répartition géographique/sectorielle réparée sur positions classifiées, vérifiée dans le collecteur GitHub et les exports desktop/mobile. Les deux tables primaires restent en erreur ; recouvrement complet non qualifié.
-- Euro Stoxx 50 II NAV : prix historiques hors distributions corrigés pour Il y a X ans, performances réinvesties préservées ; tests et PNG à six/sept ans.
-- HEAL : preuve exacte London/USD renouvelée localement et dans GitHub ; cours et conventions conservés, calculateur/Duels et quatre PNG vérifiés.
-- Or et mensuel : reprises ordinaires enregistrées/publiées vérifiées dans le moniteur ; protection contre les conflits master conservée.
-- Suivi dépendant : conservation de chaque cotation lors d’un résultat partiel, sans renouveler artificiellement les dates. 90 tests métadonnées, dont recette isolée du véritable producteur ; aucune panne volontaire en production.
+| Outil / chaîne | Résultat démontré | Limite conservée |
+| --- | --- | --- |
+| Présentation d’ETF / Actifs et exposition — ACWI IE00B6R52259 | Pays/secteurs reconstruits sur toutes les positions classifiées du fonds physique, sans renormalisation ; collecteur GitHub ordinaire 40316075629 ; quatre PNG publics ordinateur/mobile | Tables primaires nulles explicitement en erreur ; identité de 0,0001 % non qualifiée, recouvrement complet non admis |
+| Il y a X ans — FR0007054358Nav | Historique de prix hors distributions corrigé ; rendement réinvesti préservé ; six/sept ans vérifiés et douze PNG publics avec calculateur, DCA et Performance depuis | N’est pas un cours de bourse ; les cotations originales et réserves antérieures demeurent |
+| Calculateur / Duels — HEAL IE00BYZK4776 | Identité London/USD exacte renouvelée par la nouvelle référence officielle LSE ; Paris/EUR préservé ; quatre PNG publics ; dernier contrôle de cotation retiré des raccordements en retard | Les autres capacités et preuves par usage ne sont pas certifiées par cette seule identité |
+| Métadonnées partagées | Conservation des cotations par MIC/ticker/devise et de leurs propres dates lors d’une réponse partielle ; collecteur, projection et relecture d’archives corrigés | Cas partiel naturel non observé dans la recette GitHub ; scénarios défaillants vérifiés en isolation ; publication #977 encore à confirmer |
+| Or / historiques mensuels | Reprises ordinaires 40292128783 et 40316075107 : collecte, enregistrement et publication réussis ; refus antérieurs sur entrées incompatibles conservés | Lancement manuel/push ne prouve pas un premier cron post-correction |
+| Historiques des 79 cas suivis | Cinq fenêtres annuelles mensuelles supplémentaires qualifiées dans #969 ; 42/79 disposent désormais d’une voie utilisable, 37/79 restent refusées | 77 causes anciennes encore ouvertes et deux résidus ; une voie NAV ne démontre pas la cause d’une cotation divergente |
 
-Les 121 diagnostics initiaux restent identifiés individuellement dans [la qualification](preuves/reprise-20261026/qualification-perimetre-initial.csv). Les 79 cas financiers gardent leurs preuves : 42 fenêtres ont une voie mensuelle utilisable, 37 restent refusées ; 77 causes ouvertes et deux résidus ne sont pas clôturés par les voies alternatives. Les 19 actions ne sont pas recomptées artificiellement.
+**Réconciliation du périmètre :** 121 diagnostics initiaux conservés individuellement dans [la matrice de qualification](preuves/reprise-20261026/qualification-perimetre-initial.csv). Au relevé public après #976 : **120/121 encore présents**, 25 contrôles en retard contre 26 initialement ; la preuve HEAL a été renouvelée. Les 120 comprennent 70 raccordements/identités manquants, 29 pannes ou contrôles non renouvelés, 17 qualifications documentaires et quatre conflits. Ce sont les catégories des diagnostics initiaux, pas une certification nouvelle de toutes les chaînes. Les milliers de contrats consommateurs ne sont pas comptés comme autant de pannes. Le parcours public Données à revoir et ses exports ont été exercés sur ordinateur/mobile, sans simulation du moniteur.
 
-Le bilan du 25 octobre ci-dessous reste une capture historique.
+**Blocages :** les quatre compositions complètes WisdomTree restent HTTP 403 dans GitHub (dernière exécution ordinaire 40316075190). Defence a 42 identités qualifiées indépendamment, sans que cela rétablisse la collecte fournisseur ; Cloud localement publié n’est pas davantage une réussite GitHub. Copper, conflits PEA et fenêtres financières non qualifiées restent ouverts. La page QYLD rendue dans un véritable navigateur confirme 20 lignes et sept poids contradictoires pour un même top 10 daté, avec une performance intitulée USD Accumulating pour la part distribuante demandée : aucune table n’est sélectionnée arbitrairement.
+
+**Tests :** #976 : 1 157 tests Python, build et contrôles CI réussis ; #977 : 91 tests métadonnées, dont conservation partielle, panne, ordre des dates et les trois points d’entrée réels, build et contrôles CI réussis. Vingt PNG ont été téléchargés depuis la production pour les trois usages réparés ; les captures et preuves sont dans le dossier de reprise. Aucun seuil, maquette, donnée réelle de recette ou composant exclusivement Portefeuilles IA ajouté. #968 reste acquis ; les deux anciens périmètres inconnus sont historiques. Le chemin imbriqué #966 ne devient pas une preuve fournisseur.
+
+[Rapport détaillé](RAPPORT.md) · [Matrice initiale réconciliée](preuves/reprise-20261026/qualification-perimetre-initial.csv) · [79 cas](reconciliation-79-ecarts.csv) · [19 actions](statut-19-actions.csv) · [Reliquat](restant-a-verifier.csv). Le bilan des 19 actions reste **10 corrigées, cinq partielles, une bloquée, une déjà résolue et deux périmètres supprimés**. L’automatisation complète n’est pas annoncée.
+
+Les captures historiques ci-dessous restent conservées ; leurs compteurs ne remplacent pas le relevé actuel.
 
 ---
 

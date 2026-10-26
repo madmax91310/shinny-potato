@@ -117,6 +117,26 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(len(recovered['resolved']), 1)
         self.assertTrue(next(iter(recovered['active'].values()))['proofStatus']=='resolution-unproven')
 
+    def test_repaired_field_gap_needs_exact_new_proof_and_cannot_clear_usage(self):
+        identifier = 'gap:instrument:IE00BYZK4776:listings'
+        usage = 'gap:usage:IE00BYZK4776:catalog:6'
+        row = {'name':'HEAL','field':'Cotations','checkedAt':'2026-09-01','lastSuccessAt':'2026-09-01','kind':'review','cause':'London proof missing'}
+        context = {**CONTEXT,'fieldAlerts':[{**row,'id':identifier},{**row,'id':usage}]}
+        first = evaluate(STATE,context)
+        state = {**STATE,'monitoring':first}
+        proof = {'checkedAt':NOW,'sourceUrl':'https://apidata.londonstockexchange.com/nrdp/v1?tidm=HEAL','asOf':None}
+        current = {**CONTEXT,'fieldAlerts':[],'fieldChecks':{identifier:proof}}
+        healed = evaluate(state,current)
+        self.assertNotIn('field:'+identifier,healed['active'])
+        self.assertIn('field:'+usage,healed['active'])
+        self.assertEqual(healed['resolved'][0]['resolutionEvidence'],proof)
+        self.assertEqual(first['active']['field:'+identifier]['checkedAt'],'2026-09-01')
+        # A still-reported gap wins over a current field; no cache, stale proof,
+        # future timestamp or success for another instrument clears this case.
+        self.assertIn('field:'+identifier,evaluate(state,{**current,'fieldAlerts':context['fieldAlerts']})['active'])
+        for checks in [{}, {'gap:instrument:OTHER:listings':proof}, {identifier:{**proof,'checkedAt':'2026-09-01'}}, {identifier:{**proof,'checkedAt':'2027-01-01'}}]:
+            self.assertIn('field:'+identifier,evaluate(state,{**current,'fieldChecks':checks})['active'])
+
     def test_investor_report_does_not_clear_another_manager(self):
         def run(n): return {'id': n, 'path': 'update-investor-13f.yml', 'head_branch': 'master', 'event': 'schedule', 'status': 'completed', 'conclusion': 'failure', 'updated_at': f'2026-10-{n:02d}T08:00:00Z', 'html_url': 'https://github.com/test/repo/actions/runs/1'}
         report = {'readyToApply': False, 'managers': [{'slug': 'a', 'status': 'failed', 'reason': '429'}, {'slug': 'b', 'status': 'validated'}]}
