@@ -450,3 +450,18 @@ configuration asynchrone ; preview conserve le base path et sert l'artefact exis
 Les groupes de découpage et plugins de dev/build sont conservés. Le test Vite vérifie
 les deux branches ; le contrôle original des routes passe à froid, sans changer
 ses 100 essais de démarrage ni aucune assertion. Statut final CI/publication dans la PR.
+
+La CI a identifié un consommateur de projection oublié dans le premier passage :
+`test-tools-roadmap.mjs` charge un module data: et résout désormais l'import
+`duel-returns.js` par URL absolue, comme les autres dépendances de ce harnais.
+Les assertions de projection sans perte et de parité FX restent inchangées.
+L'intégration suivante conserve aussi #981 (Hey Grok) et #983 (banque de tweets),
+jusqu'au master `ac6c374b`.
+
+Un défaut préexistant du contrôle NAV est corrigé dans un commit de test séparé :
+sur le master `e329e285`, l'observation vivante palladium du 23 octobre était
+interrogée à l'horloge du 22 octobre du dossier de preuve archivé. Le refus était
+correct ; le test mélangeait deux instantanés. Les assertions financières sur les
+sources brutes utilisent maintenant leur observation archivée explicitement
+injectée ; le registre vivant reste contrôlé séparément à sa propre date et doit
+être refusé la veille. Aucun seuil, observation ou moteur financier n'est modifié.
