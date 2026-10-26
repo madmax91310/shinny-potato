@@ -24,10 +24,12 @@ graph['src/data/record.js'].edges = [{target:'src/pages/tool/App.jsx', dynamic:t
 graph['src/pages/tool/App.jsx'] = module([])
 assert(boundaryErrors(graph, ['src/lib/model.js']).some(error => error.startsWith('Shared module imports a page:')))
 assert(boundaryErrors(graph, ['src/lib/model.js']).some(error => error.startsWith('Calculation/model imports browser or UI code:')))
-for (const source of ['document.createElement("canvas")', 'localStorage.getItem("key")', 'globalThis.sessionStorage.getItem("key")', 'new Image()']) {
+for (const source of ['document.createElement("canvas")', 'localStorage.getItem("key")', 'globalThis.sessionStorage.getItem("key")', 'window.document.createElement("canvas")', 'window.localStorage.getItem("key")', 'new Image()']) {
   assert(inspectModule(source, 'browser.js').browserAccess.length, source)
 }
-const react = inspectModule("import {useState} from 'react'", 'react.js')
-assert(boundaryErrors({'src/lib/model.js':{...react,edges:[]}}, ['src/lib/model.js']).length)
+for (const specifier of ['react', 'react-dom/client', 'react-router', 'react-router-dom']) {
+  const ui = inspectModule(`import * as UI from '${specifier}'`, 'ui.js')
+  assert(boundaryErrors({'src/lib/model.js':{...ui,edges:[]}}, ['src/lib/model.js']).length, specifier)
+}
 assert.equal(inspectModule('const document = "label"; const data = {document: 1}', 'plain.js').browserAccess.length, 0)
 console.log('Architecture guard: real imports/re-exports, JSX, deferred/computed imports, cycles, inverted dependencies and transitive UI access verified.')

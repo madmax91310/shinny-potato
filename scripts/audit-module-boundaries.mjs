@@ -32,7 +32,7 @@ export function inspectModule(source, filename) {
       else computedImports.push(node.start)
     }
     if (node.type === 'MemberExpression' && node.object.type === 'Identifier' &&
-      (browserObjects.has(node.object.name) || node.object.name === 'globalThis' && browserObjects.has(node.property.name ?? node.property.value))) browserAccess.push(node.start)
+      (browserObjects.has(node.object.name) || ['globalThis', 'window'].includes(node.object.name) && browserObjects.has(node.property.name ?? node.property.value))) browserAccess.push(node.start)
     if (node.type === 'NewExpression' && node.callee.type === 'Identifier' && node.callee.name === 'Image') browserAccess.push(node.start)
     for (const value of Object.values(node)) {
       if (Array.isArray(value)) value.forEach(visit)
@@ -64,7 +64,7 @@ export function boundaryErrors(graph, pure = pureRoots) {
       if (seen.has(id) || !graph[id]) return
       seen.add(id)
       const module = graph[id], path = [...chain, id]
-      if (module.browserAccess.length || module.imports.some(edge => /^(react(?:-dom)?(?:\/|$))/.test(edge.specifier)) || id.startsWith('src/design-system/') || extname(id) === '.jsx') {
+      if (module.browserAccess.length || module.imports.some(edge => /^(?:react|react-dom|react-router|react-router-dom)(?:\/|$)/.test(edge.specifier)) || id.startsWith('src/design-system/') || extname(id) === '.jsx') {
         errors.push(`Calculation/model imports browser or UI code: ${path.join(' -> ')}`)
         return
       }
