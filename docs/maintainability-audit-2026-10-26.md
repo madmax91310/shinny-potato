@@ -495,3 +495,23 @@ gates effectivement exécutées et la sélection des instantanés, avant de chan
 à nouveau les workflows. Le coût des validations PR obsolètes est connu, mais ne
 justifie pas d'entraver le rattrapage du code en production. Les trois sujets
 initiaux sont traités ; cette contrainte de protocole est explicitement conservée.
+
+### Livraison et génération de la file de validation
+
+Après #985, un workflow concurrent ajouté par #987 (`test-tweet-bank-private.yml`)
+diffère toujours des définitions des anciennes demandes en attente. Leur sélection
+reste donc conservatrice malgré la restauration du workflow mensuel. Il ne faut
+ni retirer ce test concurrent ni relâcher la vérification des définitions exécutées.
+La file complète passe de génération `pages-validation-v3` à `pages-validation-v4`.
+Le premier instantané de cette génération exécute le même portail complet ; les
+collecteurs et pushes ultérieurs continuent à partager une seule file `max`.
+Aucun contrôle, producteur ou appelant n'est retiré et aucune collecte n'est annulée.
+
+Normal et secours conservent le verrou unique `pages-production` et les contrôles
+de filiation du code/des données réellement publiés. Un ancien résultat ne peut
+donc pas rétablir du code publié plus ancien. Le test des validations protège la
+nouvelle génération et le verrou commun des deux voies ; tests de sélection,
+rafraîchissement code/données, publication hors ordre et audit workflows réussis.
+Le résultat du portail complet et de la publication effective est consigné dans
+les PR de livraison. Le contrat de sélection des définitions reste un sujet de
+priorité moyenne pour une évolution ultérieure, pas une refonte absorbée ici.
