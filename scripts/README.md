@@ -249,6 +249,37 @@ un outil vide ou une valeur `NaN`/`undefined`/`Infinity`. Il ne vérifie aucun c
 une collecte légitime ne peut pas le casser, une donnée corrompue si. Il bloque toutes les
 publications.
 
+## Définition du portail Pages et instantané validé
+
+`.github/workflows/deploy-pages.yml` est l'unique liste exécutable des jobs du
+portail complet. Les collecteurs et la reprise historique
+`verify-etf-publication-954.yml` l'appellent ; cette dernière conserve sa file
+réservée, tandis que la publication reste sous le verrou commun `pages-production`.
+
+`scripts/pages-gate-definition.json` déclare le point d'entrée et la fermeture de
+ses workflows réutilisables **locaux**. Ajouter un appel local dans le portail
+exige d'y déclarer sa définition : une dépendance omise bloque la sélection.
+Les scripts, plans de génération, données et durées sont exécutés depuis le commit
+sélectionné ; ils ne sont pas des définitions de jobs figées par GitHub.
+
+`resolve-pages-snapshot.mjs` compare les blobs de cette fermeture au commit de
+workflow réellement chargé (`github.workflow_sha`, appels locaux) et au checkout
+souhaité. Il ne sélectionne master que si sa définition est compatible ; un
+workflow indépendant ne bloque plus cette adoption. Une définition inconnue ou
+incompatible n'autorise jamais la certification d'un nouveau code. Le reçu
+`validated-gate-definition` lie définition, empreinte et code exact ; le job de
+publication normale le revérifie **avant** de composer le préfixe de données
+admissible. Il ne certifie ni le code ultérieur ni une modification de workflow
+apparue pendant la collecte. Le secours garde ses propres règles de code déjà
+publié, sans qualifier le code défaillant.
+
+Contrôles ciblés : `node scripts/test-pages-gate-definition.mjs`,
+`node scripts/test-pages-snapshot.mjs`, `node scripts/test-code-data-refresh.mjs`,
+`node scripts/test-closed-pr-validation.mjs` et
+`python3 -m unittest discover -s scripts -p test_audit_workflows.py`.
+Le premier construit un historique Git isolé et simule le contexte runner ; les
+reçus et journaux Actions restent nécessaires pour observer la livraison réelle.
+
 ## Voie de secours, répétitions et textes officiels modifiés
 
 - `compose-fallback-snapshot.mjs --published <sha>` : bascule l'arbre sur le code publié puis
