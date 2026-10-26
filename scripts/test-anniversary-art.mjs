@@ -1,3 +1,4 @@
+import {mockRadarChrome,isRadarChromeRequest} from './lib/browser-radar-chrome.mjs'
 import { choose } from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
@@ -23,7 +24,8 @@ try {
   }
   browser = await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? {executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
   const page = await browser.newPage()
-  const requests=[]; page.on('request', request=>requests.push(request.url()))
+  await mockRadarChrome(page)
+  const requests=[]; page.on('request', request=>{if(!isRadarChromeRequest(request))requests.push(request.url())})
   await page.goto(base)
   await page.goto(`${base}tweet-midi`)
   await page.getByRole('button', {name:'Il y a X ans', exact:true}).click()

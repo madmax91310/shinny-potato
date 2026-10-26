@@ -25,7 +25,7 @@ export async function fetchRadar(signal) {
   const response = await fetch(RADAR_URL, { cache: 'no-store', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
   const feed = validateFeed(await response.json())
-  const { readableNews } = await import('./readableNews.js')
-  return { ...feed, events: feed.events.map(readableNews), ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews) } } : {}) }
+  const [{readableNews},{readableSignal}]=await Promise.all([import('./readableNews.js'),import('./presentation.js')])
+  return { ...feed, events: feed.events.map(readableNews).map(readableSignal), ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews) } } : {}) }
 }
 export function staleFeed(feed, now = Date.now()) { return !feed || now - Date.parse(feed.checkedAt) > 36 * 3600000 }

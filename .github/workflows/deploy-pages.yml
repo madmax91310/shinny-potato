@@ -511,6 +511,15 @@ jobs:
           path: test-artifacts/browser-durations-*.json
           if-no-files-found: ignore
           retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-publication-browser-${{ matrix.shard }}
+          path: |
+            test-artifacts/radar
+            test-artifacts/radar-audit
+          if-no-files-found: ignore
+          retention-days: 14
       # Visual exports are diagnostics: a green shard needs none, a red shard keeps
       # them a week (one shard can produce 2 GB of PNG exports).
       - uses: actions/upload-artifact@v7.0.1

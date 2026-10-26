@@ -175,81 +175,103 @@ class FakeAPI:
         return self.comments[-1]
 
 class NotificationTests(unittest.TestCase):
-    def test_one_issue_dedup_recovery_reopen_and_retry_receipt(self):
-        api = FakeAPI()
-        first = evaluate({})
-        sync_monitoring_issue(first, api, 'test/repo')
-        self.assertEqual(len(api.writes), 1)
-        sync_monitoring_issue(first, api, 'test/repo')
-        self.assertEqual(len(api.writes), 1)
-        resolved = evaluate({**STATE, 'monitoring': first})
-        api.fail_after_comment = True
-        with self.assertRaises(TimeoutError): sync_monitoring_issue(resolved, api, 'test/repo')
-        self.assertEqual(api.issue['state'], 'closed')
-        count = len(api.writes)
-        sync_monitoring_issue(resolved, api, 'test/repo')
-        self.assertEqual(len(api.writes), count)
-        reopened = evaluate({'monitoring': resolved})
-        sync_monitoring_issue(reopened, api, 'test/repo')
-        self.assertEqual(api.issue['state'], 'open')
-        self.assertEqual(sum(path == '/issues' for _, path, _ in api.writes), 1)
-        self.assertIn('retour(s) à la normale', api.comments[0]['body'])
-    def test_retry_after_body_patch_keeps_prior_notification_receipts(self):
-        api = FakeAPI()
-        first = evaluate({})
-        sync_monitoring_issue(first, api, 'test/repo')
-        resolved = evaluate({**STATE, 'monitoring': first})
-        api.fail_after_patch = True
-        with self.assertRaises(TimeoutError): sync_monitoring_issue(resolved, api, 'test/repo')
-        sync_monitoring_issue(resolved, api, 'test/repo')
-        self.assertIn('0 nouveau(x)', api.comments[0]['body'])
-        self.assertEqual(len(api.comments), 1)
+    def monitor(self, at=NOW, active=None, revision=1):
+        return {'checkedAt':at,'revision':revision,'active':active or {},'events':[]}
 
-    def test_flapping_checks_update_the_body_without_a_new_comment(self):
-        # Comments posted within the quiet period: a check that fails again, then a
-        # recovery, only rewrite the body and record their receipts there.
-        api = FakeAPI(created_at=NOW)
-        state = copy.deepcopy(STATE)
-        state['workflows']['x.yml'].update({'status': 'failure', 'publicationStatus': 'success', 'failures': [{'job': 'deploy / browser-checks (0)', 'step': 'Run node scripts/run-browser-checks.mjs 0 4'}]})
-        first = evaluate(state)
-        sync_monitoring_issue(first, api, 'test/repo')
-        self.assertEqual(len(api.comments), 0, 'La création de l’issue suffit')
-        state['workflows']['x.yml'].update({'status': 'success', 'failures': []})
-        partial = evaluate({**state, 'monitoring': first}, now='2026-10-14T09:00:00Z')
-        partial['active']['keep'] = {'id': 'keep', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'x', 'tools': []}
-        sync_monitoring_issue(partial, api, 'test/repo')
-        self.assertEqual(len(api.comments), 0)
-        self.assertIn(f"<!-- monitor-notified:{partial['revision']} -->", api.issue['body'])
-        again = evaluate({**state, 'monitoring': partial}, now='2026-10-14T10:00:00Z')
-        again['active']['keep'] = partial['active']['keep']
-        again['active']['flap'] = {'id': 'flap', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'y', 'tools': []}
-        again['revision'] += 1; again['events'].append({'revision': again['revision'], 'at': '2026-10-14T10:00:00Z', 'opened': ['flap'], 'resolved': []})
-        api.created_at = '2026-10-14T10:00:00Z'
-        sync_monitoring_issue(again, api, 'test/repo')
-        self.assertEqual(len(api.comments), 1, 'Premier contrôle en échec après une période sans commentaire')
-        flap = evaluate({**state, 'monitoring': again}, now='2026-10-14T10:15:00Z')
-        flap['active'].update({'keep': again['active']['keep'], 'flap2': {'id': 'flap2', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'y2', 'tools': []}})
-        flap['revision'] += 1; flap['events'].append({'revision': flap['revision'], 'at': '2026-10-14T10:15:00Z', 'opened': ['flap2'], 'resolved': []})
-        sync_monitoring_issue(flap, api, 'test/repo')
-        self.assertEqual(len(api.comments), 1, 'Un contrôle qui rechute pendant la période calme ne commente pas')
-        self.assertIn(f"<!-- monitor-notified:{flap['revision']} -->", api.issue['body'])
-        # A data incident is always worth a comment, whatever the spacing.
-        state['workflows']['x.yml']['dataFailures'] = {'index-world-composition': {'cause': 'Missing weights'}}
-        data = evaluate({**state, 'monitoring': flap}, now='2026-10-14T10:30:00Z')
-        sync_monitoring_issue(data, api, 'test/repo')
-        self.assertEqual(len(api.comments), 2)
-        self.assertIn('Nouveau : MSCI World', api.comments[1]['body'])
-        # After the quiet period, a check incident is reported again.
-        late = evaluate({**state, 'monitoring': data}, now='2026-10-14T20:00:00Z')
-        late['active']['late'] = {'id': 'late', 'kind': 'checks', 'name': 'Tardif', 'field': 'Contrôle', 'cause': 'z', 'tools': []}
-        late['revision'] += 1; late['events'].append({'revision': late['revision'], 'at': '2026-10-14T20:00:00Z', 'opened': ['late'], 'resolved': []})
-        sync_monitoring_issue(late, api, 'test/repo')
-        self.assertEqual(len(api.comments), 3)
+    def feed(self):
+        return {'id':'monitor:radar','name':'Flux Radar','kind':'unobserved','cause':'Lecture impossible','firstSeenAt':NOW,'tools':['Radar éditorial']}
+
+    def baseline(self,api):
+        initial=self.monitor(active={'monitor:radar':self.feed()})
+        sync_monitoring_issue(initial,api,'test/repo')
+        return initial
+
+    def test_initialization_is_silent_and_repeated_source_failures_keep_evidence(self):
+        api=FakeAPI()
+        state=copy.deepcopy(STATE)
+        state['workflows']['x.yml']['dataFailures']={'index-world-composition':{'cause':'HTTP 403'}}
+        first=evaluate(state)
+        sync_monitoring_issue(first,api,'test/repo')
+        for hour in range(9,20):
+            state['monitoring']=first
+            first=evaluate(state,now=f'2026-10-14T{hour:02}:00:00Z')
+            sync_monitoring_issue(first,api,'test/repo')
+        self.assertEqual(api.comments,[])
+        self.assertTrue(first['active'])
+        self.assertGreaterEqual(len(next(iter(first['active'].values()))['observations']),1)
+        writes=len(api.writes);sync_monitoring_issue(first,api,'test/repo')
+        self.assertEqual(len(api.writes),writes)
+
+    def test_global_feed_failure_crosses_criticality_even_without_revision_change(self):
+        api=FakeAPI();initial=self.baseline(api)
+        later={**initial,'checkedAt':'2026-10-14T09:05:00Z'}
+        sync_monitoring_issue(later,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+        self.assertIn('Flux global du Radar',api.comments[0]['body'])
+        sync_monitoring_issue({**later,'checkedAt':'2026-10-14T09:30:00Z'},api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+
+    def test_critical_reminders_spaced_24_hours(self):
+        api=FakeAPI();initial=self.baseline(api)
+        sync_monitoring_issue({**initial,'checkedAt':'2026-10-14T09:05:00Z'},api,'test/repo')
+        sync_monitoring_issue({**initial,'checkedAt':'2026-10-15T08:00:00Z'},api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+        sync_monitoring_issue({**initial,'checkedAt':'2026-10-15T09:06:00Z'},api,'test/repo')
+        self.assertEqual(len(api.comments),2)
+        self.assertIn('rappel espacé',api.comments[-1]['body'])
+        sync_monitoring_issue({**initial,'checkedAt':'2026-10-15T09:07:00Z'},api,'test/repo')
+        self.assertEqual(len(api.comments),2)
+
+    def test_response_lost_after_comment_recovers_receipt_without_resend(self):
+        api=FakeAPI();initial=self.baseline(api)
+        later={**initial,'checkedAt':'2026-10-14T09:05:00Z'}
+        api.fail_after_comment=True
+        with self.assertRaises(TimeoutError):sync_monitoring_issue(later,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+        sync_monitoring_issue(later,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+
+    def test_response_lost_after_body_patch_does_not_silence_pending_alert(self):
+        api=FakeAPI();initial=self.baseline(api)
+        later={**initial,'checkedAt':'2026-10-14T09:05:00Z','revision':2}
+        api.fail_after_patch=True
+        with self.assertRaises(TimeoutError):sync_monitoring_issue(later,api,'test/repo')
+        self.assertEqual(api.comments,[])
+        sync_monitoring_issue(later,api,'test/repo')
+        self.assertEqual(len(api.comments),1)
+
+    def test_material_coverage_escalation_not_attempt_or_single_source(self):
+        api=FakeAPI()
+        def row(source):return {'id':source,'workflow':'update-editorial-radar.yml','dataId':source,'name':source,'kind':'collection','firstSeenAt':NOW,'cause':'HTTP 403'}
+        active={'insee':row('insee'),'fortuneo':row('fortuneo')}
+        first=self.monitor(active=active);sync_monitoring_issue(first,api,'test/repo')
+        later=self.monitor('2026-10-14T10:01:00Z',active)
+        sync_monitoring_issue(later,api,'test/repo');self.assertEqual(len(api.comments),1)
+        same=copy.deepcopy(later);same['active']['insee']['runUrl']='https://github.com/new-attempt'
+        sync_monitoring_issue(same,api,'test/repo');self.assertEqual(len(api.comments),1)
+        active['credit-logement']=row('credit-logement')
+        sync_monitoring_issue(self.monitor('2026-10-14T10:05:00Z',active,2),api,'test/repo')
+        self.assertEqual(len(api.comments),2)
+
+    def test_recovery_updates_issue_and_history_without_recovery_spam(self):
+        api=FakeAPI();initial=self.baseline(api)
+        sync_monitoring_issue({**initial,'checkedAt':'2026-10-14T09:05:00Z'},api,'test/repo')
+        recovered=self.monitor('2026-10-14T10:00:00Z',revision=2)
+        sync_monitoring_issue(recovered,api,'test/repo')
+        self.assertEqual(api.issue['state'],'closed');self.assertEqual(len(api.comments),1)
+        writes=len(api.writes);sync_monitoring_issue(recovered,api,'test/repo')
+        self.assertEqual(len(api.writes),writes)
+
+    def test_old_critical_history_rolls_out_without_retroactive_burst(self):
+        api=FakeAPI()
+        api.issue={'number':1,'body':MARKER+'\n<!-- monitor-notified:99 -->','title':'Old','state':'open','user':{'login':'github-actions[bot]'}}
+        monitor=self.monitor('2026-10-15T08:00:00Z',{'monitor:radar':self.feed()},100)
+        sync_monitoring_issue(monitor,api,'test/repo')
+        self.assertEqual(api.comments,[])
+        self.assertIn('monitor-notification-state:',api.issue['body'])
 
     def test_healthy_first_pass_does_not_notify(self):
-        api = FakeAPI()
-        sync_monitoring_issue(evaluate(STATE), api, 'test/repo')
-        self.assertEqual(api.writes, [])
+        api=FakeAPI();sync_monitoring_issue(evaluate(STATE),api,'test/repo');self.assertEqual(api.writes,[])
 
 
 class AlertCenterTests(unittest.TestCase):
@@ -293,7 +315,7 @@ class AlertCenterTests(unittest.TestCase):
         context['historyAlerts'][0]['missingPeriods'].append('2026-08')
         worse = evaluate({**STATE, 'monitoring': first}, context)
         sync_monitoring_issue(worse, api, 'test/repo')
-        self.assertIn('Aggravation : A', api.comments[-1]['body'])
+        self.assertEqual(api.comments, [], 'Local data escalation remains in the incident history, without a critical global failure')
         count = len(api.writes)
         sync_monitoring_issue(worse, api, 'test/repo')
         self.assertEqual(len(api.writes), count)
@@ -301,11 +323,10 @@ class AlertCenterTests(unittest.TestCase):
         context['historyChecks']={'a':{'periods':['2026-07','2026-08']}}
         partial = evaluate({**STATE, 'monitoring': worse}, context)
         sync_monitoring_issue(partial, api, 'test/repo')
-        self.assertEqual(len(api.comments), 2)
-        self.assertIn('Résolu : A', api.comments[-1]['body'])
+        self.assertEqual(len(api.comments), 0)
         self.assertEqual(api.issue['state'], 'open')
         same = evaluate({**STATE, 'monitoring': partial}, context, now='2026-10-14T10:00:00Z')
         sync_monitoring_issue(same, api, 'test/repo')
-        self.assertEqual(len(api.comments), 2)
+        self.assertEqual(len(api.comments), 0)
 
 if __name__ == '__main__': unittest.main()

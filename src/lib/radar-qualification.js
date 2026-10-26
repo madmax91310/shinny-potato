@@ -16,6 +16,15 @@ export function qualifyRadarFact(event) {
   const population = professionalFinance ? 'Professionnels concernés par le financement ; aucune offre aux ménages déduite.' : professionalSurvey ? 'Professionnels interrogés ; leurs opinions ne mesurent pas les prix payés par les ménages.' : survey && household ? 'Personnes interrogées dans le périmètre de l’enquête ; intentions et réponses déclarées.' : event.populationScope ?? event.population ?? null
   return { version:1, nature, label:labels[nature], population, audience:professionalFinance || professionalSurvey ? 'professional' : household ? 'household' : 'unknown', impact:forecast || intentions || professionalSurvey ? 'prospective' : survey ? 'reported' : 'documented', reasons:[labels[nature], ...(population ? [population] : ['Population non documentée : aucun nombre de personnes déduit.'])] }
 }
+// A producer-proven difference between two comparable financial observations is
+// an observation date, never a fabricated announcement date. First collections,
+// catalogue additions and statistical revisions cannot satisfy this contract.
+export function observedChange(event) {
+  const c=event.financialChangeEvidence
+  if(!c||c.version!==1||event.kind!=='change'||event.before==null||event.before===event.after||c.scope!==event.scope||c.unit!==(event.unit??'')||c.before!==event.before||c.after!==event.after||!/^https:\/\//.test(c.beforeSourceUrl??'')||!/^https:\/\//.test(c.sourceUrl??'')||c.sourceUrl!==event.sourceUrl)return null
+  if(!/^(ter|pea|fee|rate|profile:|top10|countries:|sectors:)/.test(event.field??'')||!Number.isFinite(Date.parse(c.beforeCheckedAt))||!Number.isFinite(Date.parse(c.observedAt))||Date.parse(c.beforeCheckedAt)>Date.parse(c.observedAt)||!/^([a-f0-9]{24})$/.test(c.beforeHash??'')||!/^([a-f0-9]{24})$/.test(c.afterHash??'')||c.beforeHash===c.afterHash)return null
+  return c
+}
 export function publicationTime(event) {
-  return event.changeEvidence?.observedAt ?? (event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.publishedAt ?? (event.field === 'announcement' ? event.period : event.detectedAt))
+  return observedChange(event)?.observedAt ?? event.changeEvidence?.observedAt ?? (event.correctionOf && event.correctionPublishedAt ? event.correctionPublishedAt : event.originalPublishedAt ?? event.publishedAt ?? (event.field === 'announcement' ? event.period : null))
 }

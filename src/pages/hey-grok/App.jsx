@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { radarSuggestion } from './radar-suggestion.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { copyPublicationText } from '../../design-system/publicationActions'
@@ -13,6 +15,7 @@ import ManualCopy from './ManualCopy'
 import './App.css'
 
 export default function App() {
+  const incoming=radarSuggestion(useLocation().state)
   const { state, error, commit } = useGrokStore()
   const { filters, view, editor } = state.workspace
   const [editorOpen, setEditorOpen] = useState(false)
@@ -98,7 +101,8 @@ export default function App() {
     setUndoDelete(null); setNotice('Question personnelle restaurée.')
   }
   return <div className="hg-scope">
-    <PageHeader title="Hey @Grok" />
+    {incoming&&<aside className="hg-note" aria-label="Suggestion du Radar"><strong>Question proposée depuis le Radar</strong><p>{incoming.context}</p><p>Source publiée le {incoming.publishedAt??'jour non documenté'} · <a href={incoming.sourceUrl} target="_blank" rel="noreferrer">Consulter la preuve</a></p><Button disabled={Boolean(editor)} onClick={()=>{commit(previous=>({...previous,workspace:{...previous.workspace,editor:newEditor(null,incoming.text)}}));setEditorOpen(true)}}>Ouvrir la question dans l’éditeur</Button>{editor&&<p>Ton brouillon actuel est conservé. Termine-le ou annule-le explicitement avant d’importer cette question.</p>}</aside>}
+      <PageHeader title="Hey @Grok" />
     {error && <p className="hg-warning" role="alert">{error}</p>}
     <nav className="hg-nav" aria-label="Navigation Hey @Grok">{[['explorer', 'Explorer'], ['favoris', 'Favoris'], ['historique', 'Historique']].map(([id, label]) => <button key={id} type="button" aria-current={view === id ? 'page' : undefined} onClick={() => changeView(id)}>{label}</button>)}</nav>
     <div className="hg-toolbar"><Button onClick={() => openEditor()}>Créer ma question</Button><Button variant="ghost" aria-pressed={filters.personalOnly} onClick={showPersonal}>Mes questions</Button>{editor && <Button variant="secondary" onClick={() => setEditorOpen(true)}>Reprendre le brouillon</Button>}{Object.keys(state.drafts).length > 0 && <Button variant="ghost" aria-pressed={filters.draftsOnly} onClick={() => changeFilters({ draftsOnly: !filters.draftsOnly })}>Brouillons</Button>}</div>

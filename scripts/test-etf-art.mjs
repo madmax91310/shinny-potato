@@ -1,3 +1,4 @@
+import {mockRadarChrome,isRadarChromeRequest} from './lib/browser-radar-chrome.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -24,7 +25,8 @@ try {
   }
   browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
   const page = await browser.newPage()
-  const requests = []; page.on('request', r => requests.push(r.url()))
+  await mockRadarChrome(page)
+  const requests = []; page.on('request', r => {if(!isRadarChromeRequest(r))requests.push(r.url())})
   await page.goto(base)
   await mkdir('test-artifacts/etf-titanium', { recursive: true })
   const samples = new Set()

@@ -25,6 +25,13 @@ on:
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'src/lib/radar-qualification.js'
+      - 'src/lib/radar-material.js'
+      - 'src/lib/radar-fact-types.js'
+      - 'src/lib/radar-titles.js'
+      - 'src/lib/radar-overview.js'
+      - 'scripts/lib/radar-tool-actions.mjs'
+      - 'scripts/test-radar-publication-policy.mjs'
+      - 'scripts/fixtures/radar-publication/**'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
       - 'scripts/lib/radar-offer-watch.mjs'
@@ -87,6 +94,13 @@ on:
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'src/lib/radar-qualification.js'
+      - 'src/lib/radar-material.js'
+      - 'src/lib/radar-fact-types.js'
+      - 'src/lib/radar-titles.js'
+      - 'src/lib/radar-overview.js'
+      - 'scripts/lib/radar-tool-actions.mjs'
+      - 'scripts/test-radar-publication-policy.mjs'
+      - 'scripts/fixtures/radar-publication/**'
       - 'scripts/lib/radar-consumer.mjs'
       - 'scripts/lib/radar-coverage.mjs'
       - 'scripts/lib/radar-offer-watch.mjs'
@@ -151,6 +165,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      # Reuse the existing X text counter for qualified Grok suggestions.
+      - run: npm ci --omit=dev --ignore-scripts
       - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
@@ -163,10 +179,17 @@ jobs:
       - run: node scripts/test-radar-audit-fixes.mjs
       - run: node scripts/test-radar-source-recovery.mjs
       - run: node scripts/test-radar-notifications.mjs
+      - run: node scripts/test-radar-publication-policy.mjs "$RUNNER_TEMP/radar-publication-policy"
       - run: node scripts/test-purchasing-power-news.mjs
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - name: Qualify the six failed Radar sources (read-only)
         run: node scripts/check-radar-source-recovery.mjs "$RUNNER_TEMP/radar-source-recovery"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-publication-policy
+          path: ${{ runner.temp }}/radar-publication-policy
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -246,6 +269,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      # Reuse the existing X text counter for qualified Grok suggestions.
+      - run: npm ci --omit=dev --ignore-scripts
       - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
       - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
@@ -258,6 +283,7 @@ jobs:
       - run: node scripts/test-radar-audit-fixes.mjs
       - run: node scripts/test-radar-source-recovery.mjs
       - run: node scripts/test-radar-notifications.mjs
+      - run: node scripts/test-radar-publication-policy.mjs "$RUNNER_TEMP/radar-publication-policy"
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils

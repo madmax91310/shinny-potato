@@ -97,7 +97,7 @@ const wero=parsePublication(body,local,doc.listing.url,historicalNow,doc.listing
 const existing=advanceRadar(null,[{...wero,entity:'previous-bank-document',publicationId:'previous-bank-document'}],{now:historicalNow})
 const fresh=advanceRadar(existing.state,[{...wero,backfill:false}],{now:historicalNow})
 assert.equal(fresh.newEvents.length,1)
-assert.equal(planNotifications(fresh.newEvents,{acknowledged:[]},historicalNow,'major').events.length,1)
+assert.equal(planNotifications(fresh.newEvents,{acknowledged:[]},historicalNow,'digest').events.length,0,'A rollout headline without sufficient client conditions is no longer automatically a priority alert')
 const backfilled=advanceRadar(existing.state,[{...wero,backfill:true}],{now:historicalNow})
 assert.equal(backfilled.newEvents.length,1,'History records the subject even when alerting is silenced')
 for(const mode of ['major','digest'])assert.equal(planNotifications(backfilled.newEvents,{acknowledged:[]},historicalNow,mode).events.length,0)

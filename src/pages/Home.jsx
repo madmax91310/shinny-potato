@@ -5,6 +5,7 @@ import { HOME_TOOLS, TOOL_GROUPS } from '../tools'
 import { EDITORIAL_WEEK } from '../data/editorial-calendar'
 import { readLocalPreference, writeLocalPreference } from '../lib/publication-preferences.js'
 import './home.css'
+import RadarNow from './RadarNow.jsx'
 
 const VIEW_KEY = 'epargnant-libre:home-view'
 const FAVORITES_KEY = 'epargnant-libre:home-favorites'
@@ -100,6 +101,7 @@ export default function Home() {
       <p className="home-search-count" role="status">{searching ? `${results.length} outil${results.length === 1 ? '' : 's'} trouvé${results.length === 1 ? '' : 's'}` : ''}</p>
       {searching && <section className="home-panel" aria-label="Résultats de recherche">{results.length ? list(results) : <p className="home-day-note">Aucun outil ne correspond. Essaie un autre mot ou efface la recherche.</p>}</section>}
     </div>
+    {!searching && <RadarNow/>}
     {!searching && (view === 'overview' ? <div className="home-overview">
       <section className="home-panel home-favorites" aria-labelledby="home-favorites-title"><div className="home-section-heading"><h2 id="home-favorites-title">Mes favoris</h2><p>Une étoile pour les retrouver ici.</p></div>
         {favorites.length ? list(favorites.map(path => HOME_TOOLS.find(tool => tool.to === path))) : <p className="home-day-note">Ajoute tes outils avec leur étoile.</p>}

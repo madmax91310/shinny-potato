@@ -1,3 +1,4 @@
+import {mockRadarChrome,isRadarChromeRequest} from './lib/browser-radar-chrome.mjs'
 import assert from 'node:assert/strict'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
@@ -97,7 +98,8 @@ try {
     async function trackedPage() {
       const ctx = await context(options), page = await ctx.newPage()
       page.on('pageerror', error => failures.push(error.message))
-      page.on('request', request => assert.ok(request.url().startsWith(base) || /^(data:|blob:)/.test(request.url()), `External or incorrectly based URL: ${request.url()}`))
+      await mockRadarChrome(page)
+      page.on('request', request => {if(isRadarChromeRequest(request))return;assert.ok(request.url().startsWith(base) || /^(data:|blob:)/.test(request.url()), `External or incorrectly based URL: ${request.url()}`)})
       return { ctx, page }
     }
     for (const [caseIndex, id] of cases.entries()) {

@@ -1,3 +1,6 @@
+import { radarToolActions } from './lib/radar-tool-actions.mjs'
+import { publicationSelection } from '../src/lib/radar-editorial.js'
+import { makeRadarOverview } from '../src/lib/radar-overview.js'
 import { documentDelays } from './lib/radar-queue.mjs'
 import { recordRadarRun } from './lib/radar-run-metrics.mjs'
 import {producerContract,sourceResults} from './producer-result-contract.mjs'
@@ -68,7 +71,7 @@ if (ref) {
     ledger = JSON.parse(Buffer.from(notificationBlob.content, 'base64').toString('utf8'))
   }
 }
-const policyRollout=ledger?.editorialVersion!==2
+const policyRollout=ledger?.editorialVersion!==3
 ledger = migrateNotificationPolicy(previous, notificationState(previous, ledger))
 const refresh = !previousFeed || shouldRefreshRadar(previous, { eventName: process.env.GITHUB_EVENT_NAME, sourceRevision: process.env.RADAR_SOURCE_SHA })
 let result, nextTree, nextCommit
@@ -96,9 +99,11 @@ if (refresh) {
     verifiedCompositions: verification.verified.map(({ canonicalBody: _canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
   if(policyRollout) {
-    for(const event of result.newEvents)event.backfill=true
+    // Existing history was acknowledged above; source/parser backfills keep their own silent flags.
     result.state.editorialRolloutAt=new Date().toISOString()
   }
+  for(const event of result.state.events)event.toolActions=radarToolActions(event)
+  for(const event of result.feed.events)event.toolActions=radarToolActions(event)
   result.state.publications = publications.state
   result.state.purchasingCache = purchasing.cache
   result.state.documentQueue = launches.queue
@@ -133,7 +138,7 @@ if (refresh) {
     const blob = await api('git/blobs', 'POST', { content: `${proof.canonicalBody}\n`, encoding: 'utf-8' })
     tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
   }
-  for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['notifications.json', ledger]]) {
+  for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json', makeRadarOverview(result.feed,publicationSelection(result.feed.events))], ['notifications.json', ledger]]) {
     const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
     tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
   }
