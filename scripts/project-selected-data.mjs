@@ -47,7 +47,7 @@ export function projectSelectedData(){
  const index=Object.fromEntries(Object.entries(history.ASSETS).map(([id,{points,anniversaryPoints:_anniversaryPoints,...asset}])=>[id,{...asset,historyPending:true,points:[points[0],points.at(-1)]}]))
  const anniversarySource=readFileSync(new URL('../src/pages/tweet-midi/data/marketHistory.js',import.meta.url),'utf8')
  const source=readFileSync(new URL('../src/data/market-history.js',import.meta.url),'utf8')
- const calculatorCode=Object.entries(history).filter(([key])=>key!=='BASELINE_ASSETS').map(([key,value])=>{
+ const calculatorCode="import {INFLATION_MONTHLY} from './inflation-monthly.js';\n"+Object.entries(history).filter(([key])=>key!=='BASELINE_ASSETS').map(([key,value])=>{
   if(key==='ASSETS')return `export const ASSETS=${JSON.stringify(index)};`
   if(typeof value==='function')return source.match(new RegExp(`export function ${key}\\([\\s\\S]*?\\n}`))[0]
   return `export const ${key}=${value instanceof Set?`new Set(${JSON.stringify([...value])})`:JSON.stringify(value)};`

@@ -22,6 +22,7 @@ try {
   const loaded = await server.ssrLoadModule('/src/data/market-history.js')
   assert.equal(JSON.stringify(loaded.ASSETS), JSON.stringify(original.ASSETS))
   const calculator=await server.ssrLoadModule('/src/data/calculator-history.js')
+  assert.deepEqual(JSON.parse(JSON.stringify(calculator.derivedAnnualInflation())), original.derivedAnnualInflation(), 'Projected defaults must retain their dependencies')
   const annual=await server.ssrLoadModule('/src/pages/tweet-midi/data/performanceHistory.js')
   const records=new Map(Object.values(original.ASSETS).map(asset=>{const body=JSON.stringify(asset);return [createHash('sha256').update(body).digest('hex').slice(0,20),asset]}))
   const previousFetch=globalThis.fetch
