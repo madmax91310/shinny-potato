@@ -69,7 +69,8 @@ try {
     const style = enlarged ? await page.addStyleTag({ content: '.workspace--home .workspace-tool-card h2 { font-size: 20px !important; line-height: 1.25 !important; } .workspace--home .workspace-publication-day { font-size: 15px !important; line-height: 1.25 !important; }' }) : null
     const problems = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.flatMap(card => {
       const title = card.querySelector('h2').getBoundingClientRect()
-      const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const dayBox = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const day = dayBox?.width > 1 ? dayBox : null
       const box = card.getBoundingClientRect()
       return title.bottom > box.bottom || (day && (title.bottom > day.top || day.bottom > box.bottom || day.right > box.right)) ? [card.textContent] : []
     }))

@@ -15,7 +15,7 @@ const validFavorites = value => Array.isArray(value) && value.every(path => type
 
 function ToolList({ tools, favorites, toggleFavorite }) {
   return <div className="workspace-tool-grid">{tools.map(tool => <div className="home-tool-entry" key={tool.to}>
-    <Link className="workspace-tool-card" to={tool.to}>
+    <Link className="workspace-tool-card" to={tool.to} title={tool.summary || tool.description}>
       <span className="workspace-tool-icon"><ToolIcon to={tool.path ?? tool.to} /></span>
       <div><h2>{tool.title}</h2>{tool.publicationDay && <span className="workspace-publication-day">{tool.publicationDay}</span>}</div>
     </Link>
