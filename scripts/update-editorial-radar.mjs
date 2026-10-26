@@ -1,3 +1,5 @@
+import {makeRadarOverview} from '../src/lib/radar-overview.js'
+import {publicationSelection} from '../src/lib/radar-editorial.js'
 import { householdMetadata } from './lib/radar-households.mjs'
 import {readFileSync,readdirSync}from 'node:fs'
 import { mergeDatedRecords } from './lib/dated-records.mjs'
@@ -123,7 +125,7 @@ export async function run({ statePath, outputDir, now = new Date(), sourceRevisi
   if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes : aucun remplacement de l’historique radar.')
   const result = advanceRadar(previous, observations, { now, errors, sourceRevision })
   await mkdir(outputDir, { recursive: true })
-  for (const [name, value] of [['state.json', result.state], ['feed.json', result.feed]]) {
+  for (const [name, value] of [['state.json', result.state], ['feed.json', result.feed], ['summary.json',makeRadarOverview(result.feed,publicationSelection(result.feed.events,{now:+now}))]]) {
     const path = resolve(outputDir, name)
     await writeFile(`${path}.tmp`, `${JSON.stringify(value, null, 2)}\n`)
     await rename(`${path}.tmp`, path)

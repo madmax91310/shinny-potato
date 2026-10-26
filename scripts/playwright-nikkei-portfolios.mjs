@@ -5,10 +5,10 @@ import {chromium} from 'playwright'
 import {choose} from './card-selection.mjs'
 import {buildCustomDuel,buildTweet,formatCapital} from '../src/pages/portfolio-duels/lib.js'
 import {buildManualPortfolio,renderTweetText} from '../src/pages/portfolio-generator/engine.js'
-const id='manual-LU2196470426',port=4408,external=process.env.TEST_BASE_URL
+const id='manual-LU2196470426',port=Number(process.env.TEST_PORT??4408),external=process.env.TEST_BASE_URL
 const base=external??`http://127.0.0.1:${port}/shinny-potato`
 const out=process.env.TEST_OUTPUT_DIR??'/tmp/nikkei-manual-browser'
-const server=external?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
+const server=external?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port),'--strictPort'],{stdio:'ignore'})
 const browser=await chromium.launch({headless:true,...(process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY,bypass:'127.0.0.1,localhost'}}:{})})
 const results=[],errors=[],normal=s=>s.replace(/\s+/gu,' ').trim()
 try {
@@ -16,13 +16,14 @@ try {
  if(!external)for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
  for(const width of (process.env.TEST_VIEWPORT_WIDTH?[Number(process.env.TEST_VIEWPORT_WIDTH)]:[1280,390])){
   const context=await browser.newContext({viewport:{width,height:1000},ignoreHTTPSErrors:true,acceptDownloads:true,permissions:['clipboard-read','clipboard-write']})
-  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message))
+  const page=await context.newPage();page.on('pageerror',e=>{errors.push(e.message);console.error('BROWSER PAGE ERROR',e.message)})
+  page.on('console',message=>{if(message.type()==='error')console.error('BROWSER CONSOLE ERROR',message.text())})
   await page.addInitScript(()=>{window.__drawn=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(value,...args){window.__drawn.push(String(value));return original.call(this,value,...args)}})
   async function settings(){const b=page.getByRole('button',{name:'Réglages',exact:true});if(await b.isVisible())await b.click()}
   async function preview(){const b=page.getByRole('button',{name:'Aperçu',exact:true});if(await b.isVisible())await b.click()}
   async function savePng(name,button){const pending=page.waitForEvent('download');await button.click();const d=await pending;await d.saveAs(`${out}/${name}-${width}.png`);const data=await fs.readFile(`${out}/${name}-${width}.png`);assert.equal(data.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert(data.length>10000);return data.length}
   await page.goto(base+'/generateur-portefeuilles',{waitUntil:'networkidle'});await settings()
-  await page.getByRole('button',{name:/Composition manuelle/}).click()
+  try { await page.getByRole('button',{name:/Composition manuelle/}).click() } catch(error) { await fs.writeFile(`${out}/initial-failure-${width}.json`,JSON.stringify({base,errors,body:await page.locator('body').innerText()},null,2));await page.screenshot({path:`${out}/initial-failure-${width}.png`});throw error }
   await choose(page.locator('#pg-manual-profile'),'generaliste')
   await page.locator('.pg-manual-search').fill('LU2196470426')
   const option=page.locator('.pg-manual-available [data-option]').filter({hasText:'LU2196470426'})

@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto'
 // Proof-based relationships in the existing publication store. A dossier links
 // distinct stages; it never rewrites event IDs or equates a listing to a launch.
 const normal = value => String(value??'').normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()
@@ -11,24 +12,37 @@ export function relatePublications(state) {
   for(const d of docs){
     const o=d.observation
     if(o.evidenceLevel==='journalistic'&&o.relationship?.type==='reprise'){delete o.eventKey;delete o.dossierKey;delete o.relationship}
-    if(o.evidenceLevel!=='journalistic'||o.correctionOf||o.analysisContribution||/notre (?:analyse|enquete|calcul)|simulation|comparatif|decryptage|ce qu.on|pourquoi|comment /.test(normal(o.label)))continue
+    if(o.evidenceLevel!=='journalistic'||o.correctionOf)continue
+    const analysis=o.analysisContribution||/notre (?:analyse|enquete|calcul)|simulation|comparatif|decryptage|ce qu.on|pourquoi|comment /.test(normal(o.label))
     const linked=o.sources?.filter(r=>['original-link-unverified','official-original-extracted'].includes(r.role))??[]
     for(const primary of official){
-      if(primary.publishedAt!==o.publishedAt||primary.sourceUrl===o.sourceUrl)continue
+      if(primary.sourceUrl===o.sourceUrl||!primary.publishedAt||!o.publishedAt||Date.parse(o.publishedAt)<Date.parse(primary.publishedAt)||Date.parse(o.publishedAt)-Date.parse(primary.publishedAt)>14*86400000)continue
       const explicit=linked.some(r=>r.url.replace(/\/$/,'')===primary.sourceUrl.replace(/\/$/,''))
       const shared=[...scalarNumbers(prose(o))].filter(n=>scalarNumbers(prose(primary)).has(n))
       const namedStudy=/\binsee\b/.test(prose(o))&&/etude|chiffres|publication/.test(prose(o))&&primary.sourceUrl.startsWith('https://www.insee.fr/fr/statistiques/')&&shared.length>=2&&/\b20\d\d\b/.test(prose(o))
-      if(!explicit&&!namedStudy)continue
+      if(!explicit&&(!namedStudy||primary.publishedAt!==o.publishedAt))continue
       const primaryFacts=financialNumbers(primary.summary??primary.evidence.excerpt),mediaFacts=financialNumbers(o.summary??o.evidence.excerpt)
       if(/moitie|median/.test(prose(primary)))primaryFacts.add('50 %')
-      if(/sur dix/.test(prose(primary)))primaryFacts.add('10 %')
-      if([...mediaFacts].some(n=>!primaryFacts.has(n)))continue
+      if(/(?:un|1) sur dix/.test(prose(primary)))primaryFacts.add('10 %')
+      const added=[...mediaFacts].filter(n=>!primaryFacts.has(n))
+      if(analysis||added.length){
+        // Extra financial facts keep an analysis separate. Only a publisher
+        // group explicitly reviewed in the existing source configuration can
+        // contribute to the independent-treatment indicator.
+        if(o.analysisContribution&&explicit&&added.length&&o.independenceKey){
+          primary.sources??=[]
+          const row={url:o.sourceUrl,label:o.publisher,role:'independent-analysis',sourceHash:o.evidence.sourceHash,usefulBodyHash:createHash('sha256').update(prose(o)).digest('hex'),publishedAt:o.publishedAt,additionalFacts:added,independenceKey:o.independenceKey,independenceEvidence:'publisher-ownership-reviewed'}
+          primary.sources=primary.sources.filter(r=>r.url!==row.url).concat(row)
+          o.relationship={type:'independent-analysis',sourceUrl:primary.sourceUrl,sourceHash:primary.evidence.sourceHash,proof:'Citation dans le corps et calculs/analyses attribués avec faits financiers supplémentaires'}
+        }
+        continue
+      }
       // A citation with unrelated facts is not a reprise. Require corroborating
       // dated facts, or a matching named publication in the citation and title.
       const words=new Set(normal(primary.label).split(' ').filter(w=>w.length>=6)),common=normal(o.label).split(' ').filter(w=>words.has(w))
       if(shared.length<2 && common.length<2)continue
-      o.eventKey=sourceKey(primary);o.dossierKey=primary.dossierKey??sourceKey(primary)
-      o.relationship={type:'reprise',sourceUrl:primary.sourceUrl,sourceHash:primary.evidence.sourceHash,proof:explicit?'Citation dans le corps et faits de la publication corroborés':'Étude INSEE attribuée, même date, au moins deux chiffres corroborés',sharedFacts:shared}
+      o.eventKey=sourceKey(primary);o.dossierKey=primary.dossierKey??sourceKey(primary);o.originalPublishedAt=primary.publishedAt
+      o.relationship={type:'reprise',sourceUrl:primary.sourceUrl,sourceHash:primary.evidence.sourceHash,proof:explicit?'Citation dans le corps et faits de la publication originale corroborés ; date originale conservée':'Étude INSEE attribuée, même date, au moins deux chiffres corroborés',sharedFacts:shared}
       o.sources=[{url:primary.sourceUrl,role:'official-original-extracted',label:primary.publisher,sourceHash:primary.evidence.sourceHash},...(o.sources??[]).filter(r=>r.url!==primary.sourceUrl)]
       break
     }

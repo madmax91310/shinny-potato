@@ -13,7 +13,8 @@ export function editorialExclusion(event) {
   // Remove only a yield convention. The rest of the headline must still pass exclusions.
   const principal = title.replace(/toutes taxes comprises|hors taxes|taxes incluses|taxes exclues/g,'').replace(/\b(?:avant|apres|hors|net d|nets d|brut d)\s+(?:l |les |des |d )?impots?\b/g, '')
   if (qualifyRadarFact(event).nature === 'professional-financing') return 'Hors périmètre : financement professionnel, distinct du crédit immobilier des particuliers.'
-  return excluded.test(principal) ? 'Hors périmètre : fiscalité, prestations sociales ou aides au logement.' : null
+  const principalFiscal = /prime.*(?:carburant|transport)|(?:carburant|transport).*prime|exoneration|cotisations/.test(principal) && /plafond d.exoneration|exoneration (?:de la|des|d une) (?:prime|cotisations)|avantage fiscal|credit d.impot|reduction d.impot/.test(normalizeEditorial(event.summary??event.evidence?.excerpt).slice(0,500))
+  return excluded.test(principal) || principalFiscal ? 'Hors périmètre : fiscalité, prestations sociales ou aides au logement.' : null
 }
 export function editorialTopic(title, summary = '') {
   if (editorialExclusion({label:title})) return null

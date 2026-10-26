@@ -9,7 +9,9 @@ import {periodReturn} from '../src/pages/performance-rankings/engine.js'
 import {convertAsset} from '../src/pages/performance-rankings/series.js'
 import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
 import {QUALIFIED_FUND_CALENDARS,qualifiedFundCalendars} from '../src/data/qualified-annual-calendars.js'
-import {ANNUAL_PORTFOLIO_FUNDS,qualifyManualCurrencyCalendar,isQualifiedAnnualPortfolioFund} from '../src/data/annual-portfolio-funds.js'
+import {ANNUAL_PORTFOLIO_FUNDS,qualifyManualCurrencyCalendar,isQualifiedAnnualPortfolioFund,comparableAnnualNavReturns} from '../src/data/annual-portfolio-funds.js'
+import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
+import {getInstrumentComparatorReturns} from '../src/data/instrument-comparator-returns.js'
 import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
 import {buildManualPortfolio,renderTweetText,generatePortfolio} from '../src/pages/portfolio-generator/engine.js'
 import {CATALOG,buildCustomDuel,buildTweet as buildDuelTweet} from '../src/pages/portfolio-duels/lib.js'
@@ -102,5 +104,23 @@ assert.equal(rolled.asOf,'2025-12-31');assert.equal(rolled.nativeCalendarAsOf,'2
 assert.equal(qualifyManualCurrencyCalendar(native,{...FX,months:{}}),null)
 assert.equal(qualifyManualCurrencyCalendar(native,{...FX,sha256:''}),null)
 assert.equal(qualifyManualCurrencyCalendar(native,{...FX,checkedAt:'2100-01-01'}),null)
+const wrongMonth=structuredClone(FX);wrongMonth.months['2024-12'].asOf='2024-11-29'
+assert.deepEqual(Object.keys(qualifyManualCurrencyCalendar(native,wrongMonth).years),['2021','2022','2023'])
+const displayed=getInstrumentComparatorReturns(isin)
+const source={...getInstrumentAnnualPerformance(isin),isin,years:Object.fromEntries([2023,2024,2025].map(year=>[year,displayed['y'+year]]))}
+const comparable=comparableAnnualNavReturns(manual,source)
+assert.equal(comparable.sourceCurrency,'JPY');assert.equal(comparable.currency,'EUR')
+for(const year of [2023,2024,2025]){
+  const value=source.years[year]
+  const oracle=((1+value/100)*FX.months[`${year-1}-12`].rates.JPY/FX.months[`${year}-12`].rates.JPY-1)*100
+  assert(Math.abs(comparable.years[year]-oracle)<1e-10)
+  assert(Math.abs(comparable.years[year]-manual.calendarReturns[year])<.1,'Only the original display-rounding tolerance remains')
+}
+assert(Math.abs(source.years[2025]-manual.calendarReturns[2025])>14,'Reproduce the unconverted cross-tool audit failure')
+const altered=comparableAnnualNavReturns(manual,{...source,years:{...source.years,2025:source.years[2025]+1}})
+assert(Math.abs(altered.years[2025]-manual.calendarReturns[2025])>.1,'Conversion cannot hide a genuine changed return')
+for(const patch of [{isin:'other'},{basis:'market-price'},{currency:'USD'},{source:'https://example.test/other-share'},{checkedAt:'2000-01-01'}])assert.equal(comparableAnnualNavReturns(manual,{...source,...patch}),null)
+assert.equal(comparableAnnualNavReturns({...manual,nativeReturnCurrency:'USD'},source),null)
+assert.equal(comparableAnnualNavReturns(manual,source,missing),null)
 assert(!qualifyHistoryWindow(ASSETS.etfLU2196470426,start,end).qualified,'Independent manual recovery does not alter the original quote controls')
 console.log('Nikkei manual and Duels: five exact closed NAV years, independent EUR oracle, one ISIN/choice, no automatic admission, missing FX/stale/wrong source refusal and original quote protection verified.')

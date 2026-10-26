@@ -1,7 +1,8 @@
 import { getInstrumentName } from './instruments.js'
 import { QUALIFIED_FUND_CALENDARS, qualifiedFundCalendars, currentAnnualEvidence } from './qualified-annual-calendars.js'
 import FX from './monthly-fx.json' with { type: 'json' }
-import { monthlyCurrencyFactor, monthlyFxEvidence } from './history-currency.js'
+import { monthlyFxEvidence } from './history-currency.js'
+import { convertCalendarReturn } from './calendar-fx.js'
 import { latestCommonYears, HISTORICAL_YEARS } from './annual-window.js'
 import ANNUAL_RECOVERIES from './financial-source-repairs.json' with { type: 'json' }
 // No monthly prices, benchmark backfills or automatic-allocation permission are inferred here.
@@ -22,12 +23,11 @@ export function qualifyManualCurrencyCalendar(calendar, fx = FX, now = new Date(
   try {
     // Same December fixing convention and shared factor as annual comparisons.
     // Qualify each year separately: a missing fixing must not erase other years.
-    const factor = month => monthlyCurrencyFactor(month, route.native, route.currency, fx)
     const years = {}, currencyQualifications = {}
     for (const [year, value] of Object.entries(calendar.years)) {
       try {
-        const pct = ((1 + value / 100) * factor(`${year}-12`) / factor(`${Number(year) - 1}-12`) - 1) * 100
-        if (!Number.isFinite(pct) || pct <= -100) throw new Error('Rendement converti invalide.')
+        const pct = convertCalendarReturn(value, Number(year), route.native, route.currency, fx)
+        if (!Number.isFinite(pct) || pct <= -100) throw new Error(`Change BCE absent ou rendement invalide pour ${route.native}/${route.currency} en ${year}.`)
         years[year] = pct; currencyQualifications[year] = { qualified: true }
       } catch (error) { currencyQualifications[year] = { qualified: false, reason: error.message } }
     }
@@ -63,5 +63,23 @@ export function isQualifiedAnnualPortfolioFund(asset) {
  const source=ANNUAL_PORTFOLIO_FUNDS.find(a=>a.isin===asset?.isin)
  return Boolean(source && asset.annualManual && asset.manualOnly && asset.basis===source.basis && ['fund-nav','fund'].includes(source.basis)
   && asset.returnCurrency===source.returnCurrency && asset.source===source.source && asset.checkedAt===source.checkedAt
+  && asset.nativeReturnCurrency===source.nativeReturnCurrency && asset.fxCheckedAt===source.fxCheckedAt
+  && JSON.stringify(asset.fxSourceUrls)===JSON.stringify(source.fxSourceUrls)
   && JSON.stringify(asset.calendarReturns)===JSON.stringify(source.calendarReturns) && JSON.stringify(asset.r)===JSON.stringify(source.r))
+}
+
+// Normalize an already identified display of the same issuer calendar, never a
+// market quotation or an unexplained performance gap. No tolerance is applied.
+export function comparableAnnualNavReturns(asset, series, fx = FX) {
+  if (!isQualifiedAnnualPortfolioFund(asset) || !asset.nativeReturnCurrency
+    || series?.isin !== asset.isin || series.basis !== 'fund'
+    || series.currency !== asset.nativeReturnCurrency || series.source !== asset.source
+    || series.checkedAt !== asset.checkedAt) return null
+  const years = {}
+  for (const [year, value] of Object.entries(series.years ?? {})) {
+    const pct = convertCalendarReturn(value, Number(year), series.currency, asset.returnCurrency, fx)
+    if (!Number.isFinite(pct)) return null
+    years[year] = pct
+  }
+  return Object.keys(years).length ? { currency: asset.returnCurrency, sourceCurrency: series.currency, years } : null
 }

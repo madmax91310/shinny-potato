@@ -1,5 +1,6 @@
 """Incident lifecycle and one grouped GitHub notification, independent of Pages."""
 from automation_contracts import owns_failure, RETIREMENT_REASON
+from monitor_notifications import notification_state, notification_plan, state_marker, fingerprint
 import datetime as dt
 import hashlib
 import json
@@ -13,7 +14,6 @@ REMOVED_TOOL_NAMES = {r['toolName'] for r in RETIRED_WORKFLOWS.values() if r.get
 REMOVED_SCOPE_REASON = 'Périmètre supprimé : l’outil consommateur a été retiré. Aucune réparation de donnée déduite.'
 
 MARKER = '<!-- data-reliability-monitor:v1 -->'
-QUIET_HOURS = 6  # minimum spacing between comments that only report checks or recoveries
 
 def timestamp(value):
     try:
@@ -356,48 +356,35 @@ def sync_monitoring_issue(monitor, api, repo):
         return
     body = issue_body(monitor, repo)
     title = f"Fiabilité des données : {len(monitor['active'])} point(s) à examiner" if monitor['active'] else 'Fiabilité des données : retour à la normale'
-    receipt = f"<!-- monitor-notified:{monitor['revision']} -->"
-    if not issues:
-        api('/issues', 'POST', {'title': title, 'body': body + '\n' + receipt})
+    comments=[]
+    issue=max(issues,key=lambda i:i['number']) if issues else None
+    if issue:
+        for page in range(1,10000):
+            batch=api(f"/issues/{issue['number']}/comments?per_page=100&page={page}")
+            comments.extend(batch)
+            if len(batch)<100:break
+    notification=notification_state(issue.get('body','') if issue else '',comments,monitor)
+    rows,reminder=notification_plan(monitor,notification)
+    known={int(match) for text in [issue.get('body','') if issue else '',*(c.get('body','') for c in comments if c.get('user',{}).get('login')=='github-actions[bot]')]
+           for match in re.findall(r'<!-- monitor-notified:(\d+) -->',text)}
+    known.add(monitor['revision'])
+    def rendered():
+        return body+'\n'+state_marker(notification)+'\n'+'\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in sorted(known)[-30:])
+    payload={'title':title,'body':rendered(),'state':'open' if monitor['active'] else 'closed'}
+    if not issue:
+        api('/issues','POST',{'title':title,'body':payload['body']})
         return
-    issue = max(issues, key=lambda i: i['number'])
-    if receipt in (issue.get('body') or ''):
-        return
-    comments = []
-    for page in range(1, 10000):
-        batch = api(f"/issues/{issue['number']}/comments?per_page=100&page={page}")
-        comments.extend(batch)
-        if len(batch) < 100:
-            break
-    known = {int(match) for text in [issue.get('body') or '', *(c.get('body') or '' for c in comments if c.get('user', {}).get('login') == 'github-actions[bot]')]
-             for match in re.findall(r'<!-- monitor-notified:(\d+) -->', text)}
-    if monitor['revision'] in known:
-        return
-    changes = [e for e in monitor.get('events', []) if e['revision'] > max(known, default=-1)]
-    recovered = [r for event in changes for r in event['resolved']]
-    opened_ids = [id_ for e in changes for id_ in e['opened']]
-    opened_rows = [monitor['active'][id_] for id_ in opened_ids if id_ in monitor['active']]
-    escalated_ids = {id_ for e in changes for id_ in e.get('escalated', [])}
-    escalated_rows = [monitor['active'][id_] for id_ in sorted(escalated_ids) if id_ in monitor['active']]
-    # Notify subscribed readers on a new data incident, escalation or recovery.
-    # Plain advisory checks keep their quiet period; receipts survive retries.
-    material = any(row.get('kind') in ('collection', 'conflict', 'publication', 'freshness', 'history', 'anomaly', 'overdue', 'review') for row in opened_rows)
-    now = timestamp(monitor.get('checkedAt'))
-    last_comment = max([stamp for c in comments if c.get('user', {}).get('login') == 'github-actions[bot]'
-                        and (stamp := timestamp(c.get('created_at')))], default=None)
-    quiet = bool(now and last_comment and (now - last_comment).total_seconds() < QUIET_HOURS * 3600)
-    closing = not monitor['active']
-    recovered_data = any(row.get('originalKind',row.get('kind')) not in ('checks', 'unobserved') for row in recovered)
-    comment = (bool(opened_ids) and (material or not quiet)) or bool(escalated_rows) or recovered_data or closing
-    receipts = sorted(known | ({monitor['revision']} if not comment else set()))[-30:]
-    # Reconcile open/closed state and body before the notification receipt.
-    api(f"/issues/{issue['number']}", 'PATCH', {'title': title, 'body': body + '\n' + '\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in receipts), 'state': 'open' if monitor['active'] else 'closed'})
-    if not comment:
-        return
-    opened = len(opened_ids)
-    summary = [receipt, f"{opened} nouveau(x) point(s) ; {len(recovered)} retour(s) à la normale ; {len(monitor['active'])} point(s) encore actif(s)."]
-    summary += [f"- Nouveau : {safe(r['name'])} · {safe(r.get('field'))} · {safe(r.get('cause'))}" for r in opened_rows[:40]]
-    summary += [f"- Aggravation : {safe(r['name'])} · {safe(r.get('field'))} · {safe(r.get('cause'))}" for r in escalated_rows[:40]]
-    summary += [f"- Résolu : {safe(r['name'])} · {safe(r.get('field'))}." for r in recovered[:40]]
-    summary.append('Le détail regroupé figure dans le corps de cette issue et dans « Données à revoir ».')
-    api(f"/issues/{issue['number']}/comments", 'POST', {'body': '\n\n'.join(summary)})
+    if any(issue.get(key)!=value for key,value in payload.items()):
+        api(f"/issues/{issue['number']}",'PATCH',payload)
+    if not rows:return
+    summary=['Panne critique — rappel espacé' if reminder else 'Nouvelle panne critique ou aggravation significative',
+             f"{len(rows)} incident(s) critique(s). Les {len(monitor['active'])} points et leurs tentatives restent consultables dans le suivi."]
+    for row in rows:
+        summary.extend([f"- {safe(row['name'])} : {safe(row['criticalReason'])}",f"<!-- monitor-critical-receipt:{fingerprint(row)} -->"])
+    summary.extend([f"<!-- monitor-critical-at:{monitor['checkedAt']} -->",f"<!-- monitor-notified:{monitor['revision']} -->",
+                    f"[Consulter les preuves et les incidents](https://{repo.split('/')[0]}.github.io/{repo.split('/')[1]}/donnees-a-revoir). Aucun contrôle n’est déclaré réussi par cette politique de notification."])
+    api(f"/issues/{issue['number']}/comments",'POST',{'body':'\n\n'.join(summary)})
+    # Only a successful POST, or the receipt recovered from comments, records delivery.
+    notification['seen']=sorted(set(notification['seen'])|{fingerprint(row) for row in rows})
+    notification['lastSentAt']=monitor['checkedAt']
+    api(f"/issues/{issue['number']}",'PATCH',{'body':rendered()})

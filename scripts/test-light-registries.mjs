@@ -77,6 +77,21 @@ try {
   assert.throws(() => lintBindings(negative), error => error.status === 1 && error.stdout.includes('missingCanonicalHelper') && error.stdout.includes('no-undef'))
   await rm(negative)
   lintBindings(directory)
+  // Exercise the generated annual FX functions, including their default
+  // arguments: the light registry deliberately has no raw monthly FX binding.
+  const calendarCode=plugin.transform('', '/app/src/data/calendar-fx.js').code
+    .replace("'../lib/fx-rate.js'",JSON.stringify(new URL('../src/lib/fx-rate.js',import.meta.url).href))
+  const lightCalendar=await import('data:text/javascript;base64,'+Buffer.from(calendarCode).toString('base64'))
+  const fullCalendar=await import('../src/data/calendar-fx.js')
+  const fxFixture=JSON.parse(readFileSync(new URL('../src/data/monthly-fx.json',import.meta.url)))
+  for(const year of [2021,2022,2023,2024,2025])for(const currency of ['EUR','USD','JPY']){
+    assert.equal(lightCalendar.calendarRate(year,currency),fullCalendar.calendarRate(year,currency))
+    assert.equal(lightCalendar.convertCalendarReturn(28.24,year,currency,'EUR'),fullCalendar.convertCalendarReturn(28.24,year,currency,'EUR'))
+    assert.equal(lightCalendar.convertCalendarReturn(28.24,year,currency,'EUR',fxFixture),fullCalendar.convertCalendarReturn(28.24,year,currency,'EUR',fxFixture))
+  }
+  const missingFx=structuredClone(fxFixture);delete missingFx.months['2024-12']
+  assert.equal(lightCalendar.convertCalendarReturn(28.24,2025,'JPY','EUR',missingFx),null)
+  assert.equal(lightCalendar.convertCalendarReturn(30.51,2023,'JPY','EUR',missingFx),fullCalendar.convertCalendarReturn(30.51,2023,'JPY','EUR'))
   const projected = {}, canonical = {}
   for (const name of names) {
     const actual = await import(pathToFileURL(join(directory, `${name}.js`)))

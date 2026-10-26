@@ -5,6 +5,8 @@ import { FAMILIES } from '../src/data/index-comparisons.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { readFileSync } from 'node:fs'
 import monthly from '../src/data/monthly-duel-returns.json' with {type:'json'}
+import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
+import { comparableAnnualNavReturns } from '../src/data/annual-portfolio-funds.js'
 
 const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés
 // Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
@@ -27,6 +29,7 @@ for (const asset of ASSETS) {
 
 let compared = 0
 let documented = 0
+let currencyComparisons = 0
 let smallGaps = 0
 let failures = 0
 let notShared = 0
@@ -61,9 +64,22 @@ for (const family of FAMILIES) {
     }
     for (const asset of siblings) {
       compared++
-      const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs(perf['y' + year] - asset.r[i + 3]) }))
+      const displayedSource = getInstrumentAnnualPerformance(isin)
+      const issuerValues = getInstrumentComparatorReturns(isin)
+      // Only the explicitly qualified same NAV calendar can receive this
+      // conversion. The source currency must also be stated in the tool.
+      const visibleCurrency = {JPY:/yens|JPY/i,USD:/dollars|\$/i,EUR:/euros|€/i}[displayedSource?.currency]
+      const converted = visibleCurrency?.test(family.perfMethodNote ?? '') &&
+        [2023,2024,2025].every(year=>perf['y'+year]===issuerValues['y'+year])
+        ? comparableAnnualNavReturns(asset,{...displayedSource,isin,
+          years:Object.fromEntries([2023,2024,2025].map(year=>[year,perf['y'+year]]))}) : null
+      const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs((converted?.years[year] ?? perf['y' + year]) - asset.r[i + 3]) }))
       const large = gaps.filter(x => x.gap > (EXACT_ISSUERS.has(isin) ? 0.001 : MAX_UNEXPLAINED_GAP))
       if (!large.length) {
+        if (converted) {
+          currencyComparisons++
+          console.log(`[CHANGE RAPPROCHÉ ${converted.sourceCurrency}/${converted.currency}] ${isin} (${family.id}/${asset.id}) : `+gaps.map(x=>`${x.year} ${x.gap.toFixed(4)} pt`).join(', '))
+        }
         if (gaps.some(x => x.gap > 0.01)) {
           smallGaps++
           console.log('[ARRONDI < 0,1 pt] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + gaps.map(x => x.year + ' ' + x.gap.toFixed(2) + ' pt').join(', '))
@@ -108,4 +124,5 @@ if (unmatchedFunds.length) {
   for (const fund of unmatchedFunds) console.log(`  ${fund.family}/${fund.key} · ${fund.isin} · 2023–2025 ${fund.years.join(' / ')}`)
 }
 console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' différence(s) de base explicitées dans les deux outils ; ' + failures + ' échec(s).')
+console.log(currencyComparisons + ' comparaison(s) du même calendrier NAV rapprochée(s) dans une devise commune, seuils inchangés.')
 if (failures) process.exitCode = 1

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import {chooseSnapshot,alreadyPublished,planSnapshot} from './resolve-pages-snapshot.mjs'
 const old='a'.repeat(40), newer='b'.repeat(40), next='c'.repeat(40)
 const ancestor=(a,b)=>[old,newer,next].indexOf(a)<= [old,newer,next].indexOf(b)
-const base={requested:old,master:newer,ancestor,allowed:['src/data/active.json']}
+const base={compatibleGate:()=>true,requested:old,master:newer,ancestor,allowed:['src/data/active.json']}
 assert.equal(chooseSnapshot({...base,changed:()=>['src/data/active.json']}),newer)
 assert.equal(chooseSnapshot({...base,changed:()=>['src/pages/App.jsx']}),old)
 assert.equal(chooseSnapshot({...base,ancestor:()=>false,changed:()=>[]}),old)
@@ -13,7 +13,7 @@ assert.ok(!alreadyPublished(old,{},ancestor))
 console.log('Queued data coalesced; code boundaries and fallback publication identities preserved.')
 
 assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['src/pages/App.jsx']}),newer)
-assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['.github/workflows/deploy-pages.yml','src/pages/App.jsx']}),old)
+assert.equal(chooseSnapshot({...base,fullGate:true,compatibleGate:ref=>ref===old,changed:()=>['.github/workflows/deploy-pages.yml','src/pages/App.jsx']}),old)
 assert.equal(chooseSnapshot({...base,fullGate:true,ancestor:()=>false,changed:()=>[]}),old)
 
 
@@ -46,10 +46,14 @@ try{
  writeFileSync(join(directory,'collector.js'),'export const convention="new-code"\n');const unservedCode=commit()
  writeFileSync(join(directory,'active.json'),'{"marker":"later"}\n');const laterData=commit()
  const ancestry=(a,b)=>{try{git('merge-base','--is-ancestor',a,b);return true}catch{return false}}
- const evidence={changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),allowed:['active.json']}
+ const evidence={compatibleGate:()=>true,changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),allowed:['active.json']}
  assert.ok(alreadyPublished(data,{sha:code,dataSha:data},ancestry,evidence))
  assert.ok(!alreadyPublished(unservedCode,{sha:code,dataSha:laterData},ancestry,evidence),'a published data prefix never certifies its unserved collector code')
  assert.ok(!alreadyPublished(laterData,{sha:code,dataSha:data},ancestry,evidence))
  assert.deepEqual(planSnapshot({requested:data,master:laterData,info:{sha:code,dataSha:data},ancestor:ancestry,...evidence,fullGate:true}),{candidate:data,current:false})
 }finally{rmSync(directory,{recursive:true,force:true})}
 console.log('Real isolated Git: served data stops its duplicate gate; unserved code and missing data remain unqualified.')
+
+// An unrelated workflow is not part of the executing Pages gate.
+assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['.github/workflows/unrelated.yml'],compatibleGate:()=>true}),newer)
+assert.throws(()=>chooseSnapshot({...base,fullGate:true,changed:()=>[],compatibleGate:()=>false}),/definition/i,'A newer requested checkout cannot impersonate the workflow loaded by GitHub')
