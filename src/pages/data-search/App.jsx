@@ -1,4 +1,5 @@
-import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
+import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -50,10 +51,7 @@ export default function DataSearch() {
     setMessage('')
   }
   function download() {
-    const url = URL.createObjectURL(new Blob([exportDataRecord(selected)], { type: 'application/json' }))
-    const link = document.createElement('a')
-    link.href = url; link.download = `donnees-${selected.id.replaceAll(':', '-')}.json`; startPublicationDownload(link)
-    setTimeout(() => URL.revokeObjectURL(url), 1000)
+    downloadPublicationBlob(new Blob([exportDataRecord(selected)], { type: 'application/json' }), `donnees-${selected.id.replaceAll(':', '-')}.json`)
   }
   async function share() {
     try {

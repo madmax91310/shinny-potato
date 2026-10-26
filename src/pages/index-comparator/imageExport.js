@@ -1,4 +1,4 @@
-import { startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getIndexComparisonComposition } from '../../data/index-comparison-composition.js'
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
 import { asIndexComparisonPair } from '../../data/index-comparison-pairs.js'
@@ -29,8 +29,5 @@ export async function downloadIndexImage(family) {
   const canvas = await renderIndexImage(family)
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Impossible de générer le PNG')
-  const url = URL.createObjectURL(blob), link = document.createElement('a')
-  link.href = url; link.download = `comparateur-indices-${asIndexComparisonPair(family).pairId}.png`
-  document.body.append(link); startPublicationDownload(link); link.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
+  downloadPublicationBlob(blob, `comparateur-indices-${asIndexComparisonPair(family).pairId}.png`)
 }

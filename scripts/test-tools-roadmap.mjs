@@ -20,7 +20,7 @@ const {plugin} = projectToolData()
 const toUrl = code => `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`
 async function projected(path) {
   const code=plugin.transform('',path).code.replace(/'virtual:tool-data:[^']+'/g, match => JSON.stringify(toUrl(plugin.load(plugin.resolveId(match.slice(1,-1))))))
-    .replace("'./calendar-fx.js'", JSON.stringify(new URL('../src/data/calendar-fx.js', import.meta.url).href))
+    .replace("'../lib/duel-returns.js'", JSON.stringify(new URL('../src/lib/duel-returns.js', import.meta.url).href))
   return import(toUrl(code))
 }
 const projectedFacts=await projected('/app/src/pages/market-facts/data.js')

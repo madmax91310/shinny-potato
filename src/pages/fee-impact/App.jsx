@@ -1,4 +1,5 @@
-import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -52,12 +53,7 @@ export default function App() {
   function handleDownloadImage() {
     imageRef.current?.toBlob((blob) => {
       if (!blob) { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error'); return }
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = 'epargnant-libre-impact-des-frais.png'
-      startPublicationDownload(link)
-      setTimeout(() => URL.revokeObjectURL(url), 1000)
+      downloadPublicationBlob(blob, 'epargnant-libre-impact-des-frais.png')
     }, 'image/png')
   }
 

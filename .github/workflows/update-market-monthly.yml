@@ -61,10 +61,10 @@ permissions:
 jobs:
   refresh:
     concurrency:
-      # Serialize writers of automated-indices.json; keep PR validations independent.
+      # Never cancel production writers. A newer PR revision replaces its old check.
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
-      cancel-in-progress: false
-      queue: max
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+      queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
     runs-on: ubuntu-latest
     # A concurrent data commit requires a second exhaustive financial validation.
     timeout-minutes: 90

@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/build-index-company-compositions.mjs && node scripts/build-equity-history-links.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-tool-links.mjs && node scripts/build-data-review-inbox.mjs",
-    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-etf-presentation-quality.mjs && node scripts/build-index-company-compositions.mjs && node scripts/build-equity-history-links.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/report-exposure-coverage.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-app-inventory.mjs && node scripts/build-tool-links.mjs && node scripts/build-automation-targets.mjs && node scripts/report-asset-fields.mjs --write && node scripts/build-review-reconciliation.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/report-shared-market-data.mjs && node scripts/data-automation-inventory.mjs --write && node scripts/build-data-review-inbox.mjs && python3 scripts/data_publication.py manifest --output public/data/publication-manifest.json",
+    "predev": "npm run generate:dev",
+    "prebuild": "npm run audit:architecture && node scripts/test-dca-usage-storage.mjs && node scripts/test-radar-read-state.mjs && node scripts/test-hey-grok.mjs && node scripts/test-tweet-bank-storage.mjs && node scripts/test-export-resources.mjs && node scripts/test-etf-presentation-quality.mjs && npm run generate:app",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs && node scripts/audit-published-coverage.mjs",
     "lint": "oxlint",
@@ -59,7 +59,11 @@
     "audit:etf-presentations": "node scripts/test-etf-presentation-quality.mjs",
     "test:hey-grok": "node scripts/test-hey-grok.mjs",
     "test:hey-grok:browser": "node scripts/playwright-hey-grok.mjs",
-    "test:dca:usage-storage": "node scripts/test-dca-usage-storage.mjs"
+    "test:dca:usage-storage": "node scripts/test-dca-usage-storage.mjs",
+    "test:export-resources": "node scripts/test-export-resources.mjs",
+    "generate:app": "node scripts/prepare-app-inputs.mjs build",
+    "generate:dev": "node scripts/prepare-app-inputs.mjs dev",
+    "test:financial-windows": "node scripts/test-financial-window-safety.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

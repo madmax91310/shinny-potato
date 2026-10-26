@@ -383,3 +383,104 @@ premiers essais dev ont dépassé l’attente de démarrage locale et ont été 
 après disponibilité du serveur. CI complète et publication consignées dans la PR.
 Le contrôle protège un changement inter-onglets observé ; localStorage ne fournit
 pas de transaction atomique entre deux processus écrivant exactement simultanément.
+
+## Suite ciblée : projections, ressources d'export et préparation
+
+Base de cette branche : master `ab0f3b5d`, après #978 (correctif DCA livré séparément,
+CI 40321971594, Pages 40326309731 et scénario HTTPS desktop/mobile réussis).
+#977 reste un chantier de conservation des preuves de cotation : pas de modification
+de ses producteurs, observations ou workflows dans ces lots.
+
+| Priorité / constat confirmé | Preuve et consommateurs | Correction / contrat protégé |
+| --- | --- | --- |
+| Moyenne — `project-selected-data.mjs`, `project-tool-data.mjs`, fonctions d'historique extraites par regex | Le test Vite ajouté reproduit `ReferenceError: INFLATION_MONTHLY is not defined` sur le défaut de paramètre de la projection Calculateur ; l'adaptateur complet émettait la même fonction sans binding. Aucun appel UI direct à cet export. Calculateur/vidéo/crises, anniversaires, historique commun et duels consomment ces projections. | Deux petits commits fonctionnels distincts du refactoring rétablissent les bindings. Puis imports explicites des règles pures, façades conservées ; données et chargement par actif inchangés. |
+| Moyenne — `project-light-registries.mjs`, extraction sensible aux accolades/formatage | Une fonction exportée sur une ligne ne correspond pas à l'ancienne regex. 21 registres projetés, avec accès aux instruments, cotations, PEA, frais, change et métadonnées d'exposition. | Déclarations lues par AST, sans déplacer tous les registres. Le test compile une déclaration compacte et contrôle les bindings générés avec Oxlint existant, même hors des branches exercées ; témoin négatif obligatoire. Les imports restent explicitement bornés et les comparaisons canoniques restent actives. |
+| Moyenne — wrappers Blob, dont `anniversaryImage.downloadAnniversaryImage` | Injection d'un clic défaillant en navigateur avant correction : une URL créée, zéro révoquée, un lien conservé. Cinq formats Tweet Midi, export d'indices, courtier, frais, fiches pratiques, patrimoine, ménages, bibliothèque et téléchargements PNG communs. | `downloadBlob.js` possède URL/lien dans finally dès l'acquisition. Encodage/MIME/nom restent chez l'appelant ; 1s conservée, 60s pour les PNG mobiles. Le JSON direct de ReviewInbox garde ses messages et son clic direct, avec finally local. |
+| Moyenne — prérequis implicites des contrôles / longues chaînes npm | Après nettoyage des sorties, `test-financial-window-safety.mjs` échoue sur « Review screen reports actual consumer admission » ; en CI, un autre test régénérait le rapport avant lui. predev et prebuild dupliquent un ordre de producteurs. | Le contrôle isolé prépare le rapport avant d'importer les consommateurs/restrictions. `prepare-app-inputs.mjs` expose dev/build et un plan sans écriture ; les 10/19 commandes et leur ordre sont strictement conservés, arrêt au premier échec. Aucun collecteur ni mécanisme de publication réparé dans ce lot. |
+
+Avant : les mêmes règles exécutables étaient copiées dans des chaînes Vite depuis
+des fichiers financiers mêlant registres et fonctions. Après : `history-dates.js`
+possède conversion année-mois, plancher et options d'anniversaire ;
+`annual-inflation.js` possède la dérivation annuelle INSEE ; `duel-returns.js`
+possède la conversion EUR d'une ligne de duel. Les API de market-history,
+marketHistory, investment-series et duel-assets restent accessibles. Les deux
+adaptateurs Vite et le test de modules sélectionnés sont migrés ensemble.
+Les déclarations de registres légers restent une projection de source contrôlée par
+AST et bindings, pas une migration massive de leurs données vers de nouveaux modules.
+
+Le garde-fou d'architecture a refusé un cycle introduit pendant l'extraction :
+importer investment-series depuis le module de dates ramenait market-history via
+les paramètres. La conversion année-mois a été déplacée sans changement dans le
+module pur, puis réexportée au point historique. Aucun cycle nouveau n'est livré.
+
+Preuves locales : six corps de règles déplacés identiques par AST, autres fonctions
+de séries retenues identiques ; instantanés identiques sur 721 historiques et cinq
+dates de scénario, inflation et formatage inclus. Tests canoniques de projections,
+chaque calendrier annuel, cache/réessai et conversion EUR de chaque ligne de duel
+réussis. Les registres légers reconstruisent les valeurs et helpers canoniques.
+Douze téléchargements réels avant/après (six familles à 1440/390) ont mêmes octets,
+dimensions et noms. Seuls les IDs temporaires de formulaires ETF, déjà créés à chaque
+chargement, diffèrent ; ISIN, faits financiers et PNG sont identiques.
+
+Les unités d'export couvrent création URL/lien, affectation, append, clic,
+notification et nettoyage en échec ; elles protègent MIME, noms, octets et délais.
+Le scénario navigateur conserve le test rouge de fuite et vérifie le réessai réel.
+Build/budgets/couverture réussis : 27 outils différés, JS initial 267,43 kB / gzip
+87,51 kB (après #978 : 267,37 / 87,50), sans seuil modifié. Le contrôle financier
+isolé passe sans test préalable : 79 rapprochements, 41 cotations refusées et 38
+cas NAV indépendants préservés. Résultats finaux CI/publication consignés dans la PR.
+
+Examinés sans migration nécessaire : URL d'aperçu DCA possédée par son effet,
+URL vidéo possédée par son état et nettoyage au changement/démontage, URL de décodage
+d'illustration révoquée en finally ; aucune révocation courte de ces ressources
+persistantes n'est introduite. Les projections de constantes, compression et glues
+de chargement restent générées avec leurs contrats existants. Les 13 warnings lint
+préexistants ne sont pas une priorité de ce chantier. La validation ne recertifie
+pas toutes les sources financières ni tous les navigateurs mobiles.
+
+Intégration sans conflit sur master `6cec5f49`, incluant #979 (accueil Cobalt),
+#980 (logos d'indices) et les nouvelles métadonnées : changements concurrents conservés.
+Build/budgets/couverture, projections et bindings, moteurs DCA, contrôle financier
+isolé et recettes stockage/export desktop/mobile réussis sur cette intégration.
+Le test d'exports comprend aussi huit téléchargements consommateurs PNG/JSON/CSV
+par largeur ; les URL empruntées restent possédées par leur aperçu. Deux essais du contrôle des routes ont révélé une autre frontière implicite : Vite
+preview instancie les projections de données alors qu'il sert le dist compilé.
+`vite.config.js` charge désormais ces modules dans la branche dev/build de sa
+configuration asynchrone ; preview conserve le base path et sert l'artefact existant.
+Les groupes de découpage et plugins de dev/build sont conservés. Le test Vite vérifie
+les deux branches ; le contrôle original des routes passe à froid, sans changer
+ses 100 essais de démarrage ni aucune assertion. Statut final CI/publication dans la PR.
+
+La CI a identifié un consommateur de projection oublié dans le premier passage :
+`test-tools-roadmap.mjs` charge un module data: et résout désormais l'import
+`duel-returns.js` par URL absolue, comme les autres dépendances de ce harnais.
+Les assertions de projection sans perte et de parité FX restent inchangées.
+L'intégration suivante conserve aussi #981 (Hey Grok) et #983 (banque de tweets),
+jusqu'au master `ac6c374b`.
+
+Un défaut préexistant du contrôle NAV est corrigé dans un commit de test séparé :
+sur le master `e329e285`, l'observation vivante palladium du 23 octobre était
+interrogée à l'horloge du 22 octobre du dossier de preuve archivé. Le refus était
+correct ; le test mélangeait deux instantanés. Les assertions financières sur les
+sources brutes utilisent maintenant leur observation archivée explicitement
+injectée ; le registre vivant reste contrôlé séparément à sa propre date et doit
+être refusé la veille. Aucun seuil, observation ou moteur financier n'est modifié.
+
+Le contrôle de publication `test-validated-data-publisher.mjs` était aussi un
+consommateur de la chaîne npm initiale : il exigeait les noms des neuf générateurs
+dans le texte de prebuild. Il vérifie maintenant que prebuild appelle la commande
+nommée, puis interroge cette commande avec `--list` sans écriture et exige chaque
+générateur dans le plan effectif. Les neuf sorties autorisées, leurs producteurs,
+les sources obligatoires et les assertions de reçus restent strictement protégés.
+
+La validation mensuelle a confirmé une autre frontière de contrôle : sa file
+`max` et son interdiction inconditionnelle d'annuler conservaient chaque révision
+ancienne d'une même PR. Le premier passage a duré environ 45 minutes ; le dernier
+commit restait derrière les révisions déjà remplacées. Le groupe PR est déjà
+distinct du groupe de producteurs de production. Comme le portail Pages, seuls
+les événements `pull_request` utilisent maintenant remplacement et file `single`.
+Schedule, workflow_dispatch et workflow_call gardent annulation interdite et file
+`max` ; aucun collecteur, étape financière ou publication n'est modifié.
+Le test existant des validations de PR protège ces conditions et la séparation
+du groupe de production ; rouge avant modification, vert après, avec les onze
+tests Python d'audit des workflows. La recette CI confirme l'exécution effective.

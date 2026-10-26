@@ -1,17 +1,20 @@
 import assert from 'node:assert/strict'
 import {readFileSync}from 'node:fs'
-import {ASSETS}from '../src/data/market-history.js'
-import {qualifyHistoryWindow}from '../src/data/history-window-quality.js'
-import {derive}from '../src/pages/investment-calculator/lib.js'
-import {computeComparativeSeries}from '../src/pages/investment-calculator/videoExport.js'
-import {periodReturn}from '../src/pages/performance-rankings/engine.js'
-import {convertAsset,buildPortfolio}from '../src/pages/performance-rankings/series.js'
-import {getAnnualReturnStartYears,getHistoricalPrice,MARKET_ASSETS}from '../src/pages/tweet-midi/data/marketHistory.js'
-import {monthlyCalendarReturns}from './monthly-return-projection.mjs'
-import {selectionDates,qualifiedYearWindow,qualifiedMonthlyWindows}from '../src/pages/performance-rankings/selection-windows.js'
-import {RANKING_ASSETS}from '../src/pages/performance-rankings/data.js'
+import {execFileSync}from 'node:child_process'
+// Prepare before loading consumers: they import the generated restriction snapshot.
+execFileSync(process.execPath,['scripts/build-review-reconciliation.mjs'],{stdio:'inherit'})
+const {ASSETS}=await import('../src/data/market-history.js')
+const {qualifyHistoryWindow}=await import('../src/data/history-window-quality.js')
+const {derive}=await import('../src/pages/investment-calculator/lib.js')
+const {computeComparativeSeries}=await import('../src/pages/investment-calculator/videoExport.js')
+const {periodReturn}=await import('../src/pages/performance-rankings/engine.js')
+const {convertAsset,buildPortfolio}=await import('../src/pages/performance-rankings/series.js')
+const {getAnnualReturnStartYears,getHistoricalPrice,MARKET_ASSETS}=await import('../src/pages/tweet-midi/data/marketHistory.js')
+const {monthlyCalendarReturns}=await import('./monthly-return-projection.mjs')
+const {selectionDates,qualifiedYearWindow,qualifiedMonthlyWindows}=await import('../src/pages/performance-rankings/selection-windows.js')
+const {RANKING_ASSETS}=await import('../src/pages/performance-rankings/data.js')
 import FX from '../src/data/monthly-fx.json'with{type:'json'}
-import * as performance from '../src/pages/tweet-midi/data/performanceHistory.js'
+const performance=await import('../src/pages/tweet-midi/data/performanceHistory.js')
 const rows=JSON.parse(readFileSync('public/data/financial-reconciliation.json')).rows.filter(r=>r.open||r.residualOpen)
 let refused=0,nav=0
 for(const row of rows){

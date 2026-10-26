@@ -1,4 +1,5 @@
-import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { useCallback, useMemo, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -47,7 +48,7 @@ export default function App() {
   const renderImage = useCallback(()=>renderProjectionImage(plan,computation.scenarios),[plan,computation.scenarios])
   const patchPocket = (id,field,value) => change(next=>{next.portfolios[next.active].pockets.find(p=>p.id===id)[field]=value})
   const patchEvent = (index,field,value) => change(next=>{const e=next.portfolios[next.active].events[index];e[field]=value;if(field==='month')e.endMonth=Math.max(e.endMonth,value)})
-  function saveFile(content,name,type) {const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;startPublicationDownload(a);setTimeout(()=>URL.revokeObjectURL(url),1000)}
+  function saveFile(content,name,type) {downloadPublicationBlob(new Blob([content],{type}),name)}
   async function importFile(event) {
     const file=event.target.files?.[0];if(!file)return
     try {if(file.size>1e6)throw new Error('Fichier trop volumineux (1 Mo maximum).');const next=validatePlan(JSON.parse(await file.text()));setPlan(next);setDraft(null);setMessage('Simulation importée.')}catch(error){setMessage(error.message)}finally{event.target.value=''}

@@ -4,6 +4,7 @@ import * as exposures from '../src/data/portfolio-exposure-data.js'
 import * as cards from '../src/data/etf-cards.js'
 import * as publication from '../src/data/etf-publication-data.js'
 import { readFileSync } from 'node:fs'
+import { parseSync } from 'vite'
 import * as instruments from '../src/data/instruments.js'
 import * as facts from '../src/data/instrument-facts.js'
 import * as listings from '../src/data/instrument-listings.js'
@@ -20,6 +21,13 @@ import * as metrics from '../src/data/qualified-exposure-metrics.js'
 import * as qualified from '../src/data/qualified-exposure-sheets.js'
 import * as practical from '../src/data/practical-source-data.js'
 import * as preferredTickers from '../src/data/preferred-instrument-tickers.js'
+
+export function exportedFunctionDeclarations(source, filename) {
+  const parsed = parseSync(filename, source)
+  if (parsed.errors.length) throw Error(`Invalid canonical registry: ${filename}`)
+  return new Map(parsed.program.body.filter(node => node.type === 'ExportNamedDeclaration' && node.declaration?.type === 'FunctionDeclaration')
+    .map(node => [node.declaration.id.name, source.slice(node.start, node.end)]))
+}
 
 // Build-derived projections, never a second hand-maintained set of figures.
 // The browser receives resolved metadata without importing all issuer holdings.
@@ -40,6 +48,7 @@ export function projectLightRegistries() {
   const projections = new Map(definitions.map(([name, exports, imports]) => {
     if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}
     const source = readFileSync(new URL(`../src/data/${name}.js`, import.meta.url), 'utf8')
+    const functions = exportedFunctionDeclarations(source, `${name}.js`)
     const counts = new Map(),shapeCounts=new Map()
     const keysFor=value=>Object.keys(value).filter(k=>value[k]!==undefined)
     function visit(value) {
@@ -67,7 +76,7 @@ export function projectLightRegistries() {
     const code = Object.entries(exports).flatMap(([key, value]) => {
       if (name === 'instrument-facts' && key === 'getInstrumentListings') return []
       if (typeof value !== 'function') return `export const ${key} = ${serialize(value)};`
-      const declaration = source.match(new RegExp(`export function ${key}\\([\\s\\S]*?\\n}`))?.[0]
+      const declaration = functions.get(key)
       if (!declaration) throw new Error(`Missing canonical registry function: ${name}.${key}`)
       return declaration
     }).join('\n')

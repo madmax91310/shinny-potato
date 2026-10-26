@@ -1,5 +1,5 @@
 import { formatPerformancePct } from './performanceFormat.js'
-import { startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
 import { getPerformanceEntries, MODES } from './engines/performance.js'
 
 const W = 1600, INK = '#062354', BLUE = '#0846cf', PAPER = '#ffffff', RED = '#a7203d'
@@ -112,7 +112,5 @@ export async function downloadPerformanceImage(item) {
   const canvas = await renderPerformanceImage(item)
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Export PNG impossible')
-  const url = URL.createObjectURL(blob), link = document.createElement('a')
-  link.href = url; link.download = `performance-depuis-${item.currency || 'native'}-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
-  document.body.appendChild(link); startPublicationDownload(link); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+  downloadPublicationBlob(blob, `performance-depuis-${item.currency || 'native'}-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`)
 }

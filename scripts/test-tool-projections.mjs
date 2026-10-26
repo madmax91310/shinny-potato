@@ -1,17 +1,20 @@
 import assert from 'node:assert/strict'
 import {createHash} from 'node:crypto'
 import * as annualOriginal from '../src/pages/tweet-midi/data/marketHistory.js'
-import { createServer } from 'vite'
+import { createServer, loadConfigFromFile } from 'vite'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
 import * as bankOriginal from '../src/pages/tweet-bank/data.js'
 import * as original from '../src/data/market-history.js'
+import * as duelOriginal from '../src/data/duel-assets.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { projectReviewCatalog } from '../src/data/review-projection.js'
 import { describeDataField } from '../src/pages/data-search/lib.js'
 // Exercise Vite's bundled config, virtual modules and actual route components.
 // Direct imports alone cannot catch renamed closure references in a projection.
+const preview = await loadConfigFromFile({ command: 'serve', mode: 'production', isPreview: true })
+assert.deepEqual(preview.config, { base: '/shinny-potato/' }, 'Preview serves the existing artifact without data projection plugins')
 const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' })
 try {
   const bank = await server.ssrLoadModule('/src/pages/tweet-bank/data.js')
@@ -21,8 +24,17 @@ try {
   for (const tweet of bankOriginal.TWEETS) assert.equal(JSON.stringify(bank.getTweet(tweet.id)), JSON.stringify(tweet))
   const loaded = await server.ssrLoadModule('/src/data/market-history.js')
   assert.equal(JSON.stringify(loaded.ASSETS), JSON.stringify(original.ASSETS))
+  assert.deepEqual(JSON.parse(JSON.stringify(loaded.derivedAnnualInflation())), original.derivedAnnualInflation(), 'The full history projection retains the same default')
   const calculator=await server.ssrLoadModule('/src/data/calculator-history.js')
+  assert.deepEqual(JSON.parse(JSON.stringify(calculator.derivedAnnualInflation())), original.derivedAnnualInflation(), 'Projected defaults must retain their dependencies')
+  assert.deepEqual(Object.keys(calculator).sort(), [...Object.keys(original).filter(key=>key!=='BASELINE_ASSETS'), 'ensureCalculatorAsset'].sort(), 'Every projected export needs an explicit binding')
   const annual=await server.ssrLoadModule('/src/pages/tweet-midi/data/performanceHistory.js')
+  const duel=await server.ssrLoadModule('/src/data/duel-assets.js')
+  assert.equal(JSON.stringify(duel.CATALOG), JSON.stringify(duelOriginal.CATALOG))
+  for (const item of duelOriginal.CATALOG) {
+    const years = item.calendarReturns ? Object.keys(item.calendarReturns).map(Number) : item.values.map((_, index) => 2020 + index)
+    for (const year of years) assert.equal(duel.euroReturn(item, year), duelOriginal.euroReturn(item, year), `${item.id}/${year}: projected EUR return`)
+  }
   const records=new Map(Object.values(original.ASSETS).map(asset=>{const body=JSON.stringify(asset);return [createHash('sha256').update(body).digest('hex').slice(0,20),asset]}))
   const previousFetch=globalThis.fetch
   let requests=0
