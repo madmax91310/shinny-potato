@@ -748,6 +748,22 @@ def field_diagnostics(source, values, failures, old, now):
     return result
 
 
+def merge_field_observation(field, previous, observed):
+    """Retain each exact listing receipt when only another venue was observed."""
+    if previous and observed['checkedAt']<previous.get('checkedAt',''):
+        return previous
+    if field!='listings' or not previous:
+        return observed
+    key=lambda row:(row['mic'],row['ticker'],row['currency'])
+    rows={key(row):row for row in previous['value']}
+    for row in observed['value']:
+        prior=rows.get(key(row))
+        if prior is None or row['checkedAt']>=prior.get('checkedAt',''):
+            rows[key(row)]=row
+    # The containing receipt dates the attempted source, not every retained row.
+    # Consumers must keep using the individual row dates and source hashes.
+    return {**observed,'value':[rows[k]for k in sorted(rows)]}
+
 def select_sources(sources, requested):
     """Reject misspelled/empty explicit scopes before any request or write."""
     if requested is None:return sources
@@ -775,7 +791,7 @@ def main():
             errors.extend({**failure,'id':f"{isin}:{failure['field']}:qualification",'lastAttemptAt':now.isoformat()} for failure in failures if failure.get('qualificationRequired'))
             old=records.get(isin,{})
             for field,value in values.items():
-                if value['checkedAt']>=old.get(field,{}).get('checkedAt',''):old[field]=value
+                old[field]=merge_field_observation(field,old.get(field),value)
             records[isin]=old
             missing=[field for field in FIELDS if field not in values]
             prior=status.get(isin,{})

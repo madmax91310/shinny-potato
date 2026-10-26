@@ -1,0 +1,34 @@
+{
+  "productIds": [
+    "FR0011871110",
+    "FR0011871128",
+    "LU2089238385",
+    "FR0010342592"
+  ],
+  "context": {
+    "countryCode": "FRA",
+    "languageCode": "fr",
+    "userProfileName": "INSTIT"
+  },
+  "characteristics": [
+    "ISIN",
+    "CURRENCY",
+    "DISTRIBUTION_POLICY"
+  ],
+  "breakDown": {
+    "aggregationFields": []
+  },
+  "metrics": [],
+  "historics": [
+    {
+      "indicator": "dividendAmount",
+      "startDate": "2015-01-01",
+      "endDate": "2026-10-26"
+    },
+    {
+      "indicator": "dividendCurrency",
+      "startDate": "2015-01-01",
+      "endDate": "2026-10-26"
+    }
+  ]
+}
