@@ -7,7 +7,7 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
@@ -41,10 +41,17 @@ export default function App() {
   const imageFilename = `${sheet.id}-${factsheetCurrency(sheet) ?? 'native'}-dans-les-coulisses.png`
   const text = base.compositionOnly ? '' : drafts[draftKey] ?? buildFactsheetTweet(sheet)
   const concentration = useMemo(() => getIndexConcentration(selected), [selected])
-  const mainSheet = sheet
-  const renderMainImage = useCallback(() => {
-    const historical = factsheetInCurrency(factsheetInVariant(base, effectiveVariant), effectiveCurrency)
-    return renderFactsheetImage(historical)
+  // One immutable canvas per selection: preview, overlay and both download paths
+  // share the exact pixels, including when an official logo had to fall back.
+  const renderMainImage = useMemo(() => {
+    let pending
+    return () => {
+      if (!pending) {
+        const historical = factsheetInCurrency(factsheetInVariant(base, effectiveVariant), effectiveCurrency)
+        pending = renderFactsheetImage(historical).catch(error => { pending = undefined; throw error })
+      }
+      return pending
+    }
   }, [base, effectiveVariant, effectiveCurrency])
   const [compositionPreview, setCompositionPreview] = useState(null)
   const [compositionAttempt, setCompositionAttempt] = useState(0)
@@ -74,7 +81,7 @@ export default function App() {
 
   async function previewImage() {
     try {
-      const canvas = await renderFactsheetImage(mainSheet)
+      const canvas = await renderMainImage()
       if (selectedRef.current === draftKey) setImage({ url: canvas.toDataURL('image/png'), filename: imageFilename })
     } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
@@ -124,7 +131,7 @@ export default function App() {
       {!base.compositionOnly && <><div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
       <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [draftKey]: event.target.value })); setCopied(false) }} /></>}
       {base.compositionOnly && <p>La composition est disponible ici sans ajouter de série de performance ni de texte de tweet.</p>}
-      <WorkspaceActions>{!base.compositionOnly && <Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button>}<Button variant="secondary" onClick={async () => { try { const canvas = await renderFactsheetImage(mainSheet); if (selectedRef.current === draftKey) downloadImage(canvas, imageFilename) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[draftKey]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
+      <WorkspaceActions>{!base.compositionOnly && <Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button>}<Button variant="secondary" onClick={async () => { try { const canvas = await renderMainImage(); if (selectedRef.current === draftKey) downloadImage(canvas, imageFilename) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[draftKey]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
     </div>
     </ToolWorkspace>
     </section>
