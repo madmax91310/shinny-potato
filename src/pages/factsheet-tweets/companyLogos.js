@@ -1,5 +1,6 @@
 import registry from './companyLogoRegistry.json' with { type: 'json' }
 const images = new Map()
+const failedLoads = new Map()
 // Source names are explicitly reviewed and scoped to an index. Top 10 uses ISINs;
 // neither fuzzy names nor ambiguous ticker symbols participate in resolution.
 export function companyLogoIdentity(sheet, name, securities) {
@@ -21,14 +22,25 @@ export async function companyLogo(sheet, name, securities) {
       const finish = result => {
         if (finished) return
         finished = true; clearTimeout(timer)
-        if (!result) images.delete(identity.file)
+        if (!result) {
+          images.delete(identity.file)
+          failedLoads.set(identity.file, (failedLoads.get(identity.file) ?? 0) + 1)
+        } else failedLoads.delete(identity.file)
         resolve(result)
       }
       const timer = setTimeout(() => finish(null), 5000)
       image.dataset.support = identity.support
-      image.onload = () => finish(image)
+      image.onload = async () => {
+        try {
+          await image.decode()
+          finish(image.naturalWidth > 0 && image.naturalHeight > 0 ? image : null)
+        } catch { finish(null) }
+      }
       image.onerror = () => finish(null)
-      image.src = `${import.meta.env.BASE_URL}asset-art/${identity.file}`
+      // A decoded but empty SVG can remain in the browser's image cache.
+      // A subsequent render must be able to retry the actual local resource.
+      const attempt = failedLoads.get(identity.file) ?? 0
+      image.src = `${import.meta.env.BASE_URL}asset-art/${identity.file}${attempt ? `?logo-retry=${attempt}` : ''}`
     })
     images.set(identity.file, pending)
   }

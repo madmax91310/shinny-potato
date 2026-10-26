@@ -29,7 +29,7 @@ export async function verifyReliefLogos(browser, base) {
     CanvasRenderingContext2D.prototype.fillText=function(t,x,y,...args){
       const m=this.measureText(t);labels.push(String(t));boxes.push({text:String(t),l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,t:y-m.actualBoundingBoxAscent,b:y+m.actualBoundingBoxDescent,color:this.fillStyle});return original.call(this,t,x,y,...args)
     }
-    CanvasRenderingContext2D.prototype.drawImage=function(image,x,y,w,h,...args){if(image.src&&!image.src.includes('/index-flags/')&&Math.abs(w/h-image.width/image.height)>1e-6)throw new Error('Distorted logo '+image.src);if(/\.(png|avif|webp)$/.test(image.src??'')&&(w>image.width+.01||h>image.height+.01))throw new Error('Upscaled raster '+image.src);if(image.src&&!image.src.includes('/index-flags/'))imageBoxes.push({l:x,r:x+w,t:y,b:y+h,file:image.src});return drawImage.call(this,image,x,y,w,h,...args)}
+    CanvasRenderingContext2D.prototype.drawImage=function(image,x,y,w,h,...args){if(image.src&&!image.src.includes('/index-flags/')&&Math.abs(w/h-image.width/image.height)>1e-6)throw new Error('Distorted logo '+image.src);if(/\.(png|avif|webp)(?:[?#]|$)/.test(image.src??'')&&(w>image.width+.01||h>image.height+.01))throw new Error('Upscaled raster '+image.src);if(image.src&&!image.src.includes('/index-flags/'))imageBoxes.push({l:x,r:x+w,t:y,b:y+h,file:image.src});return drawImage.call(this,image,x,y,w,h,...args)}
     try{
       for(const s of SHEETS)for(const variant of ['native',...factsheetVariants(s)]){
         const version=factsheetInVariant(s,variant)
@@ -61,11 +61,12 @@ export async function verifyReliefLogos(browser, base) {
   })
   await page.close()
   const failures=[]
-  for(const mode of ['missing','corrupt','delayed','timeout']){
+  for(const mode of ['missing','corrupt','zero-size','delayed','timeout']){
     const p=await browser.newPage();await p.goto(base)
     await p.route('**/asset-art/official-logos/apple.svg',async route=>{
       if(mode==='missing')return route.fulfill({status:404,body:''})
       if(mode==='corrupt')return route.fulfill({contentType:'image/svg+xml',body:'not an SVG'})
+      if(mode==='zero-size')return route.fulfill({headers:{'cache-control':'no-store'},contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"></svg>'})
       await new Promise(resolve=>setTimeout(resolve,mode==='timeout'?6000:900))
       try{await route.continue()}catch{}
     })
@@ -77,14 +78,14 @@ export async function verifyReliefLogos(browser, base) {
       const start=performance.now()
       try{const canvas=await renderFactsheetImage(SHEETS.find(s=>s.id==='nasdaq-pea'));return {elapsed:performance.now()-start,files,png:canvas.toDataURL()}}finally{CanvasRenderingContext2D.prototype.drawImage=original}
     })}
-    const result=await render(),hasApple=result.files.some(f=>f.endsWith('/apple.svg'))
+    const result=await render(),hasApple=result.files.some(f=>new URL(f).pathname.endsWith('/apple.svg'))
     assert.equal(hasApple,mode==='delayed',mode)
     if(mode==='delayed')assert(result.elapsed>=800,'Logo not awaited')
     if(mode==='timeout')assert(result.elapsed<5800,'Logo timeout blocked export')
     await mkdir('test-artifacts/index-relief',{recursive:true})
     await writeFile(`test-artifacts/index-relief/logo-${mode}.png`,Buffer.from(result.png.split(',')[1],'base64'))
     await p.unroute('**/asset-art/official-logos/apple.svg')
-    const recovered=await render();assert(recovered.files.some(f=>f.endsWith('/apple.svg')),'Failed cache did not retry')
+    const recovered=await render();assert(recovered.files.some(f=>new URL(f).pathname.endsWith('/apple.svg')),`Failed cache did not retry (${mode})`)
     failures.push({mode,elapsed:result.elapsed,recovered:true})
     await p.close()
   }
