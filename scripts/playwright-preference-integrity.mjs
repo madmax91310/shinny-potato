@@ -44,6 +44,15 @@ for(const width of [1440,390]){
   await page.locator('[data-favorite-path="/le-dca-de"]').first().click()
   await page.waitForFunction(()=>JSON.parse(localStorage.getItem('epargnant-libre:home-favorites')).includes('/le-dca-de'))
   assert((await page.evaluate(()=>JSON.parse(localStorage.getItem('epargnant-libre:home-favorites')))).includes('/older-route'))
+  // A committed favorite must survive an immediate reload, without waiting on storage.
+  const favorite=page.getByRole('button',{name:'Favori : Impact des frais',exact:true})
+  for(let attempt=0;attempt<6;attempt++){
+   const active=await favorite.getAttribute('aria-pressed')==='true'
+   await favorite.click()
+   assert.equal(await page.locator('.home-favorites a[href$="/impact-frais"]').count(),active?0:1)
+   await page.reload({waitUntil:'networkidle'})
+   assert.equal(await favorite.getAttribute('aria-pressed'),String(!active))
+  }
   assert.deepEqual(errors,[])
   console.log(`Preference integrity ${width}px: Home, exposure draft, calculator, comparison, favorites/recents and interrupted migration preserve raw data; selection and unknown Home favorites retained.`)
  }finally{await browser.close()}

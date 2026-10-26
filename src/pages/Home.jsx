@@ -47,11 +47,16 @@ export default function Home() {
       navigate({ search: params.toString() }, { replace: true })
     }
   }, [search, navigate])
-  useEffect(() => { setPreferenceErrors(previous => ({...previous, view: !writeLocalPreference(VIEW_KEY, view, validView)})) }, [view])
+  useEffect(() => {
+    const saved = writeLocalPreference(VIEW_KEY, view, validView)
+    setPreferenceErrors(previous => ({...previous, view: !saved}))
+  }, [view])
   useEffect(() => {
     // Keep unavailable/older routes in storage even though this build cannot display them.
     const unknown = readLocalPreference(FAVORITES_KEY, [], validFavorites).filter(path => !HOME_TOOLS.some(tool => tool.to === path))
-    setPreferenceErrors(previous => ({...previous, favorites: !writeLocalPreference(FAVORITES_KEY, [...favorites, ...unknown], validFavorites)}))
+    // Persist in the effect itself: React may defer or replay state updater functions.
+    const saved = writeLocalPreference(FAVORITES_KEY, [...favorites, ...unknown], validFavorites)
+    setPreferenceErrors(previous => ({...previous, favorites: !saved}))
   }, [favorites])
   useEffect(() => {
     const element = toolbar.current

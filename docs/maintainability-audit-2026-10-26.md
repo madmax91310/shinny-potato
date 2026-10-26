@@ -319,3 +319,26 @@ très nombreux et les écritures de projections au prébuild restent une contrai
 
 La PR exécute en plus le portail CI existant ; son statut est à lire sur GitHub.
 Aucune fusion sur master ni aucun déploiement n'est effectué par ce chantier.
+
+### Retour du portail CI et correction de la régression Home
+
+Sur `6472b4ba`, le run `40305157069` termine avec build, Python, smoke,
+classements, validations des présentations/radar, quatre partitions exhaustives
+Tweet Midi et trois shards navigateur réussis. Le shard navigateur 3 échoue dans
+`playwright-cobalt-home.mjs:41` : un favori venant d'être ajouté n'est pas retrouvé
+après rechargement immédiat (`aria-pressed` false au lieu de true).
+
+Cette régression vient de notre adaptation Home, pas de l'état initial :
+`writeLocalPreference` avait été placé dans la fonction passée à
+`setPreferenceErrors`. React peut différer ou rejouer cette fonction ; l'écriture
+n'avait donc plus le même moment d'exécution que l'effet d'origine. Correction :
+calculer le résultat de sauvegarde directement dans l'effet, puis ne transmettre
+que ce résultat à la mise à jour d'état, pour la vue et les favoris.
+
+Le parcours Home complet passe après correction. Le test d'intégrité est renforcé
+avec six bascules suivies d'un rechargement immédiat par largeur, soit douze cas,
+sans attendre artificiellement l'écriture du stockage : tous passent, en plus des
+cas de corruption, migration et anciennes routes. Build et budgets passent ; lint
+reste à 13 avertissements préexistants. Aucune assertion de la recette existante,
+aucun seuil et aucune règle de données n'ont été assouplis. Le portail complet est
+relancé automatiquement sur le commit correctif ; son statut final reste sur la PR.
