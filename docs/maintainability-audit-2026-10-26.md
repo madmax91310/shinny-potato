@@ -1,0 +1,108 @@
+# Structure et maintenance — audit du 26 octobre 2026
+
+## Référence et méthode
+
+Référence : `4a9a696774c8a8fcb252989916b48a60ed318d3a` (`master`).
+Branche : `refactor/maintainability-audit-20261026`, clone initial propre.
+`CLAUDE.md` et sa référence `docs/claude/audit-application-2026-10-18.md` lus.
+Aucun `AGENTS.md` trouvé dans le dépôt ou les parents du workspace.
+`gh pr list --repo madmax91310/shinny-potato --state open --json number,title,headRefName,baseRefName,files` : aucune PR ouverte au démarrage.
+Les anciennes branches et les audits ne constituent pas des chantiers actifs établis.
+Les collecteurs continuent à écrire sur master : ne pas éditer leurs observations ni
+embarquer les projections produites par une simple vérification.
+
+L'examen porte sur les imports, les points d'entrée et leurs consommateurs, les
+contrats et les parcours. Les gros JSON d'observations ne sont pas relus en entier :
+leurs schémas, adaptateurs, générateurs et contrôles sont examinés.
+
+## Cartographie requalifiée
+
+| Zone | Responsabilité et dépendances |
+| --- | --- |
+| `src/tools.js`, `src/data/editorial-calendar.js` | Registre public, groupes, métadonnées et créneaux. Le calendrier courant du 20 octobre prime sur celui de l'audit du 18. |
+| `src/App.jsx`, `src/design-system/Layout.jsx` | Routes, aliases et navigation. `React.lazy` par outil et par format ; `/tweet-midi` reste un agrégat de compatibilité. AV/SCPI redirigent vers Présentations. |
+| `src/pages/<outil>/` | Sélection, état et UI dans les composants ; contrats financiers et rédaction dans `engine.js`, `lib.js` et modules métier ; rendus dans `image.js`, `canvasImage.js`, `*Art.js`. Ce découpage n'est pas partout complet. |
+| `src/data/` | Identité ISIN, cotations, frais, caractéristiques, PEA tri-état, conventions/provenances, observations collectées et adaptateurs. Aucun import de page trouvé. |
+| `src/lib/` | Conventions, change, fenêtres historiques, taux effectifs, qualification radar, ressources artistiques et préférences. Les hooks React sont explicitement nommés `use*`. |
+| `src/design-system/` | Sélecteurs, navigation, feedback, copie, téléchargement et espaces de publication. Deux dépendances vers des pages confirmées avant correction : `RadarCount` et `HistoricalContext`. |
+| `scripts/project-selected-data.mjs` | Projette historiques, fiches, expositions et actifs par sélection ; cache des promesses, suppression de l'entrée en échec pour réessayer, URLs par empreinte de contenu. Remplace des façades Node à la compilation. |
+| Autres plugins Vite | `project-light-registries`, `project-tool-data`, `project-fee-catalog`, `split-etf-records` : registres/observations chargés séparément. `data-bytes-plugin` et `audit-route-bundles` distinguent code et données. |
+| `scripts/build-*`, `report-*`, `audit-*`, `test-*`, `playwright-*` | Génération, rapport, validation, tests Node et recette navigateur. Les scripts sont nombreux mais leurs noms séparent généralement ces rôles ; pas de renommage global justifié. |
+| `.github/workflows/update-*`, collecteurs pilotes | Collecte → qualification et conservation du dernier état valide → `commit-validated-data.sh` → portail Pages. Ne pas absorber la réparation des sources dans ce chantier. |
+| `deploy-pages.yml` et scripts de publication | Snapshot exact, voie code/voie données, manifeste et reçus de publication, secours avec code publié et données compatibles. Un succès de collecte ne prouve pas une publication. |
+
+### Dépendances et conventions à préserver
+
+- Les registres d'identité/frais ne sont pas des historiques de performance. Fonds,
+  indice, cours brut, cours ajusté, net/brut et couverture de change restent distincts.
+- Calculateur et anniversaires partagent `investment-calculator/math.js` avant ce
+  chantier : interpolation, dates et séries de placement. Les anniversaires
+  qualifient leurs cours bruts et mois admissibles en amont ; la mutualisation
+  n'autorise pas un cours ajusté dans un récit de prix ancien.
+- Les façades Tweet Midi consomment volontairement les moteurs lexique,
+  purchasing-power et etf-tweets. Ces dépendances répondent à des contrats réels ;
+  les supprimer par copie créerait une divergence.
+- Présentations est un ensemble de trois familles ; `presentation-shared` partage
+  modèles et dessin. Avant correction AV, acteurs et rendu importent SCPI pour
+  trois fonctions communes de formatage/publication.
+- Les moteurs de classements, DCA, duels, patrimoine, calculateur et portefeuille
+  gardent leurs propres règles (flux, repondération, fenêtres, plafonds, fiscalité).
+  La ressemblance de boucles de capitalisation ne justifie pas leur fusion.
+- Le recensement initial des modules JS/JSX ne trouve aucun cycle d'import.
+  Les imports entre outils sont essentiellement les façades ci-dessus, l'art
+  partagé des historiques, les présentations, la maintenance des preuves courtiers
+  et le formatage des champs du catalogue. L'audit automatisé ajouté au chantier
+  fournit la liste actuelle exacte ; aucun interdit global inter-outils n'est imposé.
+
+### Source, génération, compatibilité, archives
+
+- Sources maintenues : modules métier et registres éditoriaux, configurations de
+  collecte et règles de qualification. Les observations `automated-*` sont des
+  sorties de collecteurs, pas des constantes à réécrire pour un refactoring.
+- Projections : JSON DCA, calendriers annuels, liens entre outils, rapports de
+  couverture, inbox et `public/data` dérivé. Corriger le générateur puis régénérer.
+  Le build initial modifie 23 fichiers suivis ; ce bruit est exclu des commits.
+- Modules virtuels et dossiers JSON versionnés : produits par les plugins Vite ;
+  examiner le contrat source ET le code projeté, pas seulement le fallback Node.
+- Compatibilité : anciennes routes, `__route`/404 Pages, façades publiques, clés
+  locales et identifiants restent stables. Dilemme masqué reste routé.
+- Archives/preuves : `scripts/source-snapshots`, `scripts/fixtures`, `reports`,
+  photos datées et archives investisseurs. Une absence d'import runtime ne prouve
+  pas qu'une preuve est supprimable. Aucun fichier déclaré mort sans preuve.
+
+### Stockage et asynchronisme
+
+Les préférences de publication sont facultatives et validées à la lecture ; les
+favoris de classements et portefeuilles DCA ont des contrats propres et refusent
+une écriture après lecture invalide. Ne pas les remplacer par un unique stockage
+JSON permissif. `useSelectedHistory`, `useSelectedRecords` et les chargements de
+présentation ignorent les réponses après démontage/changement. Les URL d'objets
+sont révoquées dans les exports inspectés ; délais de transfert et aperçu persistant
+ne sont pas le même contrat. La copie commune restaure focus/sélection et a un délai
+de repli ; la banque propose aussi une copie manuelle de son texte daté, à conserver.
+
+## Constats priorisés avant refactoring
+
+| Priorité / fichiers et symboles | Preuve et conséquence | Consommateurs | Correction et bénéfice | Risque / vérification |
+| --- | --- | --- | --- | --- |
+| Haute — `tweet-bank/App.jsx`, `loadDrafts`, `loadLastPub`, effets de sauvegarde | Une lecture JSON invalide retourne `{}` puis un effet l'écrit au montage : perte silencieuse des octets conservés. Défaut fonctionnel préexistant, distinct du refactoring. | Brouillons, vérifications éditoriales et dates de publication de la banque | Isoler le stockage, garder l'état de lecture et interdire toute écriture sur un espace illisible ; conserver les clés/formats. | Changement volontaire ; tests données anciennes, corruption, indisponibilité, rechargement et édition navigateur. Commit séparé. |
+| Moyenne — `investment-calculator/math.js`, imports des anniversaires et projection Vite | Un moteur réellement partagé appartient au dossier interne d'un seul consommateur ; le générateur encode ce chemin en plus des sources. | Calculateur, anniversaires, tests et projection | Point d'entrée commun de séries de placement, façade historique conservée ; aucune formule modifiée. | Convention brut/ajusté et taux ; comparaison des résultats avant/après, audits financiers, historique chargé/réessai et exports réels. |
+| Moyenne — `presentation-shared/imageExport.js`, modèles et canvas ; `scpi-presentation/lib.js`, `format/dateLabel/annualPublicationNote` | Tests Node de qualification et de modèles importent le module de dessin ; AV/acteurs dépendent du moteur SCPI seulement pour les libellés. | Trois familles de présentations et leurs tests | Modèles sans DOM séparés du dessin, libellés dans `presentation-shared`, réexports historiques. Les règles restent testables sans le canvas. | Textes/chiffres visuels ; comparaison PNG avant/après, tests modèles, anciens liens, changements de sélection et mobile. |
+| Moyenne — `RadarCount`, `HistoricalContext` | Le design-system importe `pages/editorial-radar/read-state.js` et `pages/tweet-midi/data/indexVariants.js` ; une évolution de page peut entrer dans le graphe initial. | Navigation, contexte historique, radar et anniversaires | État radar commun et registre léger de conventions, façades historiques ; garde-fou `data/lib/design-system → pages` interdit. | Clés/événements et libellés identiques, tests radar/préférences et budgets de routes. |
+| Moyenne — absence de contrôle de frontières source | Budgets Vite protègent les octets mais pas une nouvelle inversion ou un cycle de source. | Tout ajout futur de module commun | Contrôle ciblé des imports par AST, cycles et moteurs purs ; inventaire consultable. | Faux positifs ; analyser imports réels et tester le contrôle avec graphes positifs/négatifs, sans nouvelle dépendance. |
+| Basse — wrappers Blob/formatage/stockage semblables | Délais de révocation, forme de retour, erreurs et migrations diffèrent ; identité de contrat non établie partout. | Exports et préférences des outils | Aucune mutualisation globale justifiée ici. | Éviter une abstraction à options qui efface les différences. |
+
+## État initial des contrôles
+
+| Commande | Résultat à la référence |
+| --- | --- |
+| `npm ci` (Node 24.19.0) | Réussi, lockfile inchangé ; avertissement core-js 2 hérité. Pas de mise à jour. |
+| `npm run lint` | Exit 0, 13 avertissements préexistants (variables inutilisées, export composants, condition constante, expression). |
+| `npm run build` | Réussi, contrôles prébuild, budgets et couverture publiée inclus. 27 outils différés ; JS initial 267,33 kB / gzip 87,47 kB ; plus gros chunk 636,55 kB, conforme aux budgets différenciés actuels. |
+| `node scripts/test-selected-records.mjs` | Réussi : 691 historiques anniversaire, 672 expositions et catalogue reconstruits, cache/réessai, 70 présentations. |
+| `node scripts/test-publication-preferences.mjs` | Réussi : restauration, actif retiré, JSON invalide, stockage indisponible. |
+| `node scripts/test-wealth-simulator.mjs` | Réussi : 15 groupes de vérification. |
+| `node scripts/test-tweet-bank-validity.mjs` | Réussi : validité éditoriale, indépendante du défaut de persistance identifié. |
+
+Les contrôles navigateur et résultats par lot sont consignés ci-dessous au fil du
+chantier. Chromium disponible à `/usr/bin/chromium`, pas à l'ancien chemin `/opt/pw-browsers/chromium`.
