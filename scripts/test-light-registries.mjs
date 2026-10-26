@@ -2,8 +2,9 @@ import assert from 'node:assert/strict'
 import { mkdtemp, writeFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { pathToFileURL } from 'node:url'
-import { projectLightRegistries } from './project-light-registries.mjs'
+import { pathToFileURL, fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
+import { projectLightRegistries, exportedFunctionDeclarations } from './project-light-registries.mjs'
 import { projectSelectedData } from './project-selected-data.mjs'
 import { splitEtfRecords,splitInstrumentMetadataRecords,splitCharacteristicMetadataRecords } from './split-etf-records.mjs'
 import characteristicMetadata from '../src/data/instrument-characteristic-metadata.js'
@@ -44,6 +45,9 @@ for(const observations of Object.values(characteristics))assert(Object.keys(obse
 const names = ['etf-cards','etf-publication-data','commodity-publication-data','portfolio-exposure-data','qualified-exposure-metrics','qualified-exposure-sheets', 'instruments', 'instrument-facts', 'instrument-listings', 'instrument-pea', 'etf-ter', 'etf-ter-evidence',
   'portfolio-assets', 'portfolio-currencies', 'practical-source-data', 'instrument-reference-evidence','preferred-instrument-tickers']
 const directory = await mkdtemp(join(tmpdir(), 'light-registries-'))
+// A one-line body is semantically identical and must not break extraction.
+const compactFunction = exportedFunctionDeclarations('export function example(value) { return value + 1 }', 'fixture.js').get('example')
+assert.equal((await import('data:text/javascript;base64,' + Buffer.from(compactFunction).toString('base64'))).example(2), 3)
 const selectedRecords = new Map()
 projectSelectedData().generateBundle.call({emitFile:({fileName,source})=>{
  if(fileName.startsWith('data/portfolio/')) {const record=JSON.parse(source);selectedRecords.set(record.id,record)}
@@ -58,11 +62,21 @@ const restoreAssets = assets=>assets.map(asset=>{
 try {
   const plugin = projectLightRegistries()
   await writeFile(join(directory, 'package.json'), '{"type":"module"}')
-  for (const name of names) {
+  for (const name of [...names, 'history-visual-identities', 'calendar-fx', 'portfolio-admissions', 'certified-monthly-indices']) {
     const result = plugin.transform('', `/app/src/data/${name}.js`)
     assert(result?.code)
     await writeFile(join(directory, `${name}.js`), result.code)
   }
+  // Existing Oxlint checks every generated binding, even in branches not exercised
+  // by a particular ISIN fixture. This guard does not change the repository lint.
+  const config = join(directory, 'bindings.json')
+  await writeFile(config, JSON.stringify({ env: { browser: true }, rules: { 'no-undef': 'error' } }))
+  const lintBindings = path => execFileSync(process.execPath, [fileURLToPath(new URL('../node_modules/oxlint/bin/oxlint', import.meta.url)), '--config', config, '--no-ignore', '-A', 'all', '-D', 'no-undef', path], { encoding: 'utf8' })
+  const negative = join(directory, 'missing-binding.js')
+  await writeFile(negative, 'export function broken() { return missingCanonicalHelper() }')
+  assert.throws(() => lintBindings(negative), error => error.status === 1 && error.stdout.includes('missingCanonicalHelper') && error.stdout.includes('no-undef'))
+  await rm(negative)
+  lintBindings(directory)
   const projected = {}, canonical = {}
   for (const name of names) {
     const actual = await import(pathToFileURL(join(directory, `${name}.js`)))
