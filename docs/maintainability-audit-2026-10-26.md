@@ -106,3 +106,31 @@ de repli ; la banque propose aussi une copie manuelle de son texte daté, à con
 
 Les contrôles navigateur et résultats par lot sont consignés ci-dessous au fil du
 chantier. Chromium disponible à `/usr/bin/chromium`, pas à l'ancien chemin `/opt/pw-browsers/chromium`.
+
+## Lot 1 — moteur de séries commun
+
+Avant : `investment-calculator/math.js` détenait le moteur appelé par les anniversaires
+et encodé dans la projection Vite. Après : `src/lib/investment-series.js` détient ces
+fonctions sans React/DOM/stockage ; `math.js` garde son API par réexport. Aucun calcul
+ou paramètre n'est changé. Les qualifications restent chez les appelants.
+Consommateurs migrés : lib du Calculateur, données historiques et image anniversaire,
+projection anniversaire Vite et son test. L'agrégateur Tweet Midi importe désormais
+les deux formateurs depuis leur véritable module commun, sans passer par le calculateur.
+
+Vérifications réussies : build et budgets ; `test-selected-records`, `test-selected-data`,
+`test-investment-crisis`, `test-investment-conclusions` (1 398 scénarios),
+`test-inflation-consistency`, `test-monthly-consumers` (704 historiques),
+`test-anniversary-indices` et `audit:calculator-series`.
+`CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-selected-records.mjs` :
+historiques/expositions sélectionnés seulement, cache, échec/réessai sans perte de
+sélection, catalogue différé, ordinateur et mobile.
+Comparaison ponctuelle au moteur extrait du commit de référence : 64 jeux de paramètres,
+384 sorties/erreurs de séries strictement identiques ; cinq PNG et textes calculateur
+identiques octet par octet (Apple versement unique/DCA avec prix saisi, indice World,
+anniversaire simple et comparatif). Les scripts de comparaison et PNG sont conservés
+dans les artefacts de session, sans figer des valeurs vivantes dans les tests du dépôt.
+Le premier essai comparatif sur une période Livret A non couverte a échoué comme prévu ;
+la comparaison finale conserve aussi les contrats d'erreur, sans étendre la couverture.
+
+Recette initiale complémentaire : `test-route-loading.mjs` et
+`test-presentation-images.mjs`, Chromium réel, réussis avant refactoring de leurs zones.

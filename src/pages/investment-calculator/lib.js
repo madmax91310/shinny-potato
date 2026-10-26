@@ -8,8 +8,8 @@ import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
 import { ASSETS, LATEST_YM, MONTHS_FULL, INCONSISTENT_MONTHLY_DATA_IDS, getAssetMinDate } from '../../data/calculator-history.js'
 
-import { ymIndex,monthsBetween,clampYm,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeCustomSeries,pct,applyPriceOverride } from './math.js'
-export { ymIndex,indexToYm,monthsBetween,clampYm,interpolatePrice,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeLivretSeries,computeCustomSeries,currencySymbol,pct,applyPriceOverride } from './math.js'
+import { ymIndex,monthsBetween,clampYm,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeCustomSeries,pct,applyPriceOverride } from '../../lib/investment-series.js'
+export { ymIndex,indexToYm,monthsBetween,clampYm,interpolatePrice,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeLivretSeries,computeCustomSeries,currencySymbol,pct,applyPriceOverride } from '../../lib/investment-series.js'
 export function indexAnchorPoints(assetId, endYm) {
   return ASSETS[assetId].points.filter((point) => point.date.endsWith('-12') || point.date === endYm)
 }
