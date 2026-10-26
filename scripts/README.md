@@ -475,3 +475,33 @@ le rechargement immédiat, les anciens IDs, les lectures/écritures refusées et
 conflit entre onglets à deux largeurs ; il est enregistré dans les shards CI.
 Une lecture partiellement invalide permet seulement l'affichage des IDs reconnus,
 jamais une écriture filtrée. Aucun mécanisme de réinitialisation n'est ajouté.
+
+## Préparer les entrées avant les contrôles
+
+Depuis la racine du dépôt, `npm run generate:dev` et `npm run generate:app`
+exécutent les producteurs locaux dans `prepare-app-inputs.mjs` : mêmes commandes
+et ordre que les anciens predev/prebuild, processus séparés et arrêt au premier
+échec. `npm run dev` et `npm run build` les invoquent automatiquement. Ils ne
+collectent ni ne publient de données ; les workflows restent responsables de ces étapes.
+`node scripts/prepare-app-inputs.mjs build --list` affiche le plan sans écrire.
+
+| Entrée / produits | Consommateurs et prérequis |
+| --- | --- |
+| `generate:dev` : identités/historiques, classements, complétude, expositions/catalogue/shards DCA, liens et duels | Préparer avant les tests DCA, sélection/projection ou un Vite direct après modification d'observations. L'inbox dev réutilise les rapports existants, comme auparavant. |
+| `generate:app` : mêmes projections, puis couverture/inventaire, rapprochement financier, routage, inbox et manifeste public | Préparer les rapports complets avant contrôle de couverture/publication ; le build les prépare déjà. Les fichiers JSON/CSV/rapports produits ne sont pas des sources maintenues manuellement. |
+| `test:financial-windows` | Régénère son rapprochement avant de charger les consommateurs et leurs restrictions ; se lance seul sur un checkout propre, sans dépendre de l'ordre d'autres tests. Aucun seuil financier modifié. |
+
+Après une modification des projections Vite : `node scripts/test-light-registries.mjs`,
+`node scripts/test-selected-data.mjs`, `node scripts/test-selected-records.mjs` et
+`node scripts/test-tool-projections.mjs`, puis build/budgets et navigateur. Le premier
+contrôle vérifie les bindings de tous les registres légers avec Oxlint déjà présent,
+y compris les branches non exécutées par une fiche donnée. L'extraction restante des
+déclarations de registres passe par l'AST ; les règles historiques passent par des
+imports ordinaires. Conserver les façades et le chargement à la demande des séries.
+
+`npm run test:export-resources` protège acquisition/nettoyage et les délais 1s/60s.
+Après build, `node scripts/playwright-export-resources.mjs` injecte un clic défaillant
+dans l'export réel puis vérifie nettoyage, réessai et égalité aperçu/PNG à deux largeurs.
+L’appelant conserve encodage/MIME/nom ; `downloadBlob.js` possède seulement URL/lien.
+L'aperçu DCA, les vidéos et les images décodées gardent leur propriétaire et leur durée
+de vie ; l'export JSON à clic direct conserve l'absence de confirmation commune.
