@@ -474,13 +474,24 @@ générateur dans le plan effectif. Les neuf sorties autorisées, leurs producte
 les sources obligatoires et les assertions de reçus restent strictement protégés.
 
 La validation mensuelle a confirmé une autre frontière de contrôle : sa file
-`max` et son interdiction inconditionnelle d'annuler conservaient chaque révision
-ancienne d'une même PR. Le premier passage a duré environ 45 minutes ; le dernier
-commit restait derrière les révisions déjà remplacées. Le groupe PR est déjà
-distinct du groupe de producteurs de production. Comme le portail Pages, seuls
-les événements `pull_request` utilisent maintenant remplacement et file `single`.
-Schedule, workflow_dispatch et workflow_call gardent annulation interdite et file
-`max` ; aucun collecteur, étape financière ou publication n'est modifié.
-Le test existant des validations de PR protège ces conditions et la séparation
-du groupe de production ; rouge avant modification, vert après, avec les onze
-tests Python d'audit des workflows. La recette CI confirme l'exécution effective.
+`max` conserve chaque révision ancienne d'une même PR (premier passage : environ
+45 minutes). Un essai de remplacement des seules validations PR a bien annulé les
+trois anciennes révisions et démarré la dernière. Cet ajustement annexe n'est
+cependant pas conservé : `chooseSnapshot` refuse par prudence de faire adopter du
+code récent à une validation ancienne dès qu'un workflow quelconque diffère.
+L'édition du workflow mensuel empêchait donc les anciennes validations de production
+de prendre le nouveau contrôle NAV, même si le portail Pages était inchangé.
+
+Reproduction sur les chemins réellement changés de `5c11b153` à `953b18a1` : seul
+`update-market-monthly.yml` change parmi les workflows ; `fullGate:true` conserve
+alors l'ancien code. Rétablir ce fichier permet de sélectionner le code courant,
+avec tous les contrôles du portail complet. Le complément #985 restaure exactement
+la définition antérieure et protège file `max`, annulation interdite et groupe de
+production distinct. Les correctifs applicatifs, les plans de génération et leurs
+contrôles restent conservés ; aucune annulation de production ni seuil réduit.
+
+Reste de priorité moyenne : coordonner dans un chantier distinct la définition des
+gates effectivement exécutées et la sélection des instantanés, avant de changer
+à nouveau les workflows. Le coût des validations PR obsolètes est connu, mais ne
+justifie pas d'entraver le rattrapage du code en production. Les trois sujets
+initiaux sont traités ; cette contrainte de protocole est explicitement conservée.
