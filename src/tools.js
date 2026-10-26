@@ -5,8 +5,8 @@ import { INVESTORS } from './data/investor-roster.js'
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
   { to: '/hey-grok', title: 'Hey @Grok',
-    icon: '💬', accent: '#267863',
-    description: '280 questions pour interpeller @grok sur X, par sujet et mécanique. Texte modifiable, favoris et suivi local des usages.', status: 'disponible' },
+    icon: '💬', accent: '#2458d3',
+    description: 'Des questions concrètes à copier ou adapter pour @grok. Nouvelle sélection, favoris, historique et questions personnelles.', status: 'disponible' },
   { to: '/classements-performances', title: 'Qui a vraiment gagné ?',
     publicationDay: 'Publication ponctuelle', icon: '🏆', accent: '#76cdb7',
     description: 'Classe les actifs sur une année, année par année ou sur une période choisie. Quinze catégories, sélection manuelle, régularité historique, texte et image.', status: 'disponible' },
@@ -158,7 +158,7 @@ export const TOOLS = [
 ].map(tool => ({ ...tool, navLabel: tool.title, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
-  '/hey-grok': 'Une question mordante pour lancer la discussion sur X.',
+  '/hey-grok': 'Choisis une question concrète, adapte-la ou crée la tienne.',
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
