@@ -1,5 +1,6 @@
 """Bounded fresh-master dispatches; never replay an obsolete workflow snapshot."""
 from automation_status_storage import encode_status
+from automation_status_git import write_status
 import copy
 import datetime as dt
 import base64
@@ -109,9 +110,9 @@ def dispatch_recovery(api, ledger, plans):
 
 def persist_and_dispatch(api, path, payload, state, plans):
     """The conditional status write is the transaction boundary before dispatch."""
-    saved = api(f'/contents/{path}', 'PUT', payload)
+    saved = write_status(api, path, payload)
     if plans:
         dispatch_recovery(api, state['recovery'], plans)
         payload = {**payload, 'sha': saved['content']['sha'],
                    'content': encode_status(state)}
-        api(f'/contents/{path}', 'PUT', payload)
+        write_status(api, path, payload)

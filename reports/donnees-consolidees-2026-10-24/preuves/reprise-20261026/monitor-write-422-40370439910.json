@@ -1,0 +1,14 @@
+{
+  "run": 40370439910,
+  "job": 121739950599,
+  "event": "schedule",
+  "failedAt": "2026-10-26T17:41:15Z",
+  "stage": "monitor recording before recovery dispatch",
+  "error": "GitHub Contents API HTTP422: file too large; use a local clone and push",
+  "stateMeasuredJsonBytes": 49379804,
+  "requestBodyBytes": 62803576,
+  "uniqueProofScopes": 218,
+  "repair": "Large status: exact bytes through private Git index, expected file blob checked at fetched head, non-forced push; all incidents/scopes/dates retained. Small Contents API contract unchanged. No dispatch before durable reservation.",
+  "tests": "Real isolated bare Git repositories: UTF8/exact bytes, other files/index, stale CAS, concurrent advance, durable reservation, uncertain push, legacy small API",
+  "productionProof": "pending"
+}
