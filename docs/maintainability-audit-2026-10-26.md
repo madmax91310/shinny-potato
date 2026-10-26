@@ -465,3 +465,10 @@ correct ; le test mélangeait deux instantanés. Les assertions financières sur
 sources brutes utilisent maintenant leur observation archivée explicitement
 injectée ; le registre vivant reste contrôlé séparément à sa propre date et doit
 être refusé la veille. Aucun seuil, observation ou moteur financier n'est modifié.
+
+Le contrôle de publication `test-validated-data-publisher.mjs` était aussi un
+consommateur de la chaîne npm initiale : il exigeait les noms des neuf générateurs
+dans le texte de prebuild. Il vérifie maintenant que prebuild appelle la commande
+nommée, puis interroge cette commande avec `--list` sans écriture et exige chaque
+générateur dans le plan effectif. Les neuf sorties autorisées, leurs producteurs,
+les sources obligatoires et les assertions de reçus restent strictement protégés.
