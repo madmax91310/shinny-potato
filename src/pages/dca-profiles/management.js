@@ -4,7 +4,6 @@ const legacyAliases={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'l
 export const profileSelection = profile => profile?.selection === 'controversial' ? 'controversial' : 'classic'
 export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,selection:profileSelection(profile),lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
 export const SAVED_KEY='el-dca-portfolios-v2'
-export const USED_KEY='el-dca-used-v1'
 const thematic=new Set(['timber','agribusiness','materials','utilities','healthcare','industrials','semiconductors','water','cybersecurity','infrastructure','reit'])
 export function assetKind(asset){return ['btc','eth'].includes(asset)?'crypto':['gold','silver'].includes(asset)?'metal':thematic.has(asset)?'thematic':references[asset]?.kind==='equity'?'equity':'etf'}
 const clean = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
@@ -32,7 +31,4 @@ export function writeSaved(storage,items){
  if(items.length>50)throw Error('La limite de 50 portefeuilles enregistrés est atteinte.')
  if(!items.every(validSaved))throw Error('Corrige le portefeuille avant de l’enregistrer.')
  storage.setItem(SAVED_KEY,JSON.stringify({version:2,items}))
-}
-export function readUsed(storage){
- try{const ids=JSON.parse(storage.getItem(USED_KEY)||'[]');return Array.isArray(ids)?[...new Set(ids.filter(id=>typeof id==='string'&&id.length<100))]:[]}catch{return []}
 }

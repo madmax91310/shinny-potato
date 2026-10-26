@@ -467,3 +467,11 @@ observés entre onglets. Après build, `npm run test:tweet-bank-storage:browser`
 exerce restauration, édition/rechargement et stockage refusé/corrompu en desktop/mobile ;
 ce contrôle fait aussi partie des shards CI. Le module ne migre ni ne réinitialise
 les données : une lecture invalide garde les octets existants.
+
+`npm run test:dca:usage-storage` protège le tableau historique `el-dca-used-v1`
+dans `dca-profiles/usage-history.js`. Après un build terminé,
+`node scripts/playwright-dca-usage-storage.mjs` exerce le clic réel, les filtres,
+le rechargement immédiat, les anciens IDs, les lectures/écritures refusées et le
+conflit entre onglets à deux largeurs ; il est enregistré dans les shards CI.
+Une lecture partiellement invalide permet seulement l'affichage des IDs reconnus,
+jamais une écriture filtrée. Aucun mécanisme de réinitialisation n'est ajouté.
