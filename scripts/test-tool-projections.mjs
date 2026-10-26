@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import {createHash} from 'node:crypto'
 import * as annualOriginal from '../src/pages/tweet-midi/data/marketHistory.js'
-import { createServer } from 'vite'
+import { createServer, loadConfigFromFile } from 'vite'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
@@ -13,6 +13,8 @@ import { projectReviewCatalog } from '../src/data/review-projection.js'
 import { describeDataField } from '../src/pages/data-search/lib.js'
 // Exercise Vite's bundled config, virtual modules and actual route components.
 // Direct imports alone cannot catch renamed closure references in a projection.
+const preview = await loadConfigFromFile({ command: 'serve', mode: 'production', isPreview: true })
+assert.deepEqual(preview.config, { base: '/shinny-potato/' }, 'Preview serves the existing artifact without data projection plugins')
 const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' })
 try {
   const bank = await server.ssrLoadModule('/src/pages/tweet-bank/data.js')

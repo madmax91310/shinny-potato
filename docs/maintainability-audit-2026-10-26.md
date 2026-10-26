@@ -437,3 +437,16 @@ persistantes n'est introduite. Les projections de constantes, compression et glu
 de chargement restent générées avec leurs contrats existants. Les 13 warnings lint
 préexistants ne sont pas une priorité de ce chantier. La validation ne recertifie
 pas toutes les sources financières ni tous les navigateurs mobiles.
+
+Intégration sans conflit sur master `6cec5f49`, incluant #979 (accueil Cobalt),
+#980 (logos d'indices) et les nouvelles métadonnées : changements concurrents conservés.
+Build/budgets/couverture, projections et bindings, moteurs DCA, contrôle financier
+isolé et recettes stockage/export desktop/mobile réussis sur cette intégration.
+Le test d'exports comprend aussi huit téléchargements consommateurs PNG/JSON/CSV
+par largeur ; les URL empruntées restent possédées par leur aperçu. Deux essais du contrôle des routes ont révélé une autre frontière implicite : Vite
+preview instancie les projections de données alors qu'il sert le dist compilé.
+`vite.config.js` charge désormais ces modules dans la branche dev/build de sa
+configuration asynchrone ; preview conserve le base path et sert l'artefact existant.
+Les groupes de découpage et plugins de dev/build sont conservés. Le test Vite vérifie
+les deux branches ; le contrôle original des routes passe à froid, sans changer
+ses 100 essais de démarrage ni aucune assertion. Statut final CI/publication dans la PR.

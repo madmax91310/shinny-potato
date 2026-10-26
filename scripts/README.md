@@ -481,9 +481,14 @@ jamais une écriture filtrée. Aucun mécanisme de réinitialisation n'est ajout
 Depuis la racine du dépôt, `npm run generate:dev` et `npm run generate:app`
 exécutent les producteurs locaux dans `prepare-app-inputs.mjs` : mêmes commandes
 et ordre que les anciens predev/prebuild, processus séparés et arrêt au premier
-échec. `npm run dev` et `npm run build` les invoquent automatiquement. Ils ne
-collectent ni ne publient de données ; les workflows restent responsables de ces étapes.
+échec. `npm run dev` et `npm run build` les invoquent automatiquement. Ces commandes
+exécutent les dérivations locales ; les workflows assurent collecte et publication.
+Vite preview utilise le dist compilé : ses plugins de projection sont réservés à
+dev/build. Construire le dist avant les recettes navigateur sur preview.
 `node scripts/prepare-app-inputs.mjs build --list` affiche le plan sans écrire.
+Partir d'un checkout complet : les instantanés suivis dans Git font partie des
+entrées de certains producteurs. Après contrôle, exclure du commit les sorties
+régénérées sans modification de leur générateur (règle de `CLAUDE.md`).
 
 | Entrée / produits | Consommateurs et prérequis |
 | --- | --- |
