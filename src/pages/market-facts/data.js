@@ -3,23 +3,13 @@ import { HISTORY_FACTS } from '../../data/history-statistics.js';
 import { EDITORIAL, NEWTON_STORY } from './editorial.js';
 import { selectMonthlyMarketStories } from '../../data/market-story-selection.js';
 import STORIES from './stories.json' with { type: 'json' };
-// Bibliothèque de faits marquants et statistiques historiques sur les grands indices boursiers,
-// racontés dans des publications au ton humain. Contrairement au reste de l'app (qui calcule
-// depuis des séries de prix brutes, cf. investment-calculator/portfolio-generator), CHAQUE fait ici
-// est une statistique DÉJÀ PUBLIÉE par un institut de recherche reconnu — jamais recalculée
-// maison. Recherche menée le 22/09/2026 (WebSearch, résumés IA recoupés par une deuxième requête
-// indépendante en cas d'incertitude) : cf. commentaire de chaque fait pour la source exacte.
-// Plusieurs statistiques rencontrées lors de cette recherche n'ont volontairement PAS été retenues
-// faute de source primaire clairement identifiable ou faute de convergence entre sources
-// contradictoires (ex. répartition fine des bear markets par tranche d'ampleur, probabilité de
-// rebond après une année négative, "36 années sur 97" — chiffres trouvés mais non rattachables
-// avec certitude à un institut de la liste de référence) — cf. CLAUDE.md, section sourcing.
-//
-// CAC 40 : scope volontairement restreint à 2 repères ponctuels bien recoupés (record 2000-2021,
-// pire séance du 12/03/2020). Contrairement aux indices américains, aucun institut de recherche
-// dédié ne publie de séries statistiques longues sur le CAC 40 (fréquence des corrections, séries
-// d'années, fenêtres glissantes...) — Euronext ne publie que des factsheets descriptifs, Vernimmen
-// ne couvre que les dividendes. Pas d'ajout arbitraire pour "égaliser" avec les indices US.
+import ADDITIONS from './additions-20261026.json' with { type: 'json' };
+import REVIEWED_LEGACY from './reviewed-legacy.json' with { type: 'json' };
+import { MARKET_HISTORY_REVIEW } from '../../data/market-history-review.js';
+import { monthlyReference } from './lib.js';
+// Revue du 26/10/2026 : récits écrits et dossiers de preuves séparés des mesures.
+// RAW_FACTS conserve les données héritées ; REVIEWED_LEGACY corrige le texte publié,
+// ses conventions et ses sources sans remplacer les identifiants ni les moteurs partagés.
 
 export const FAMILIES = [
   { id: 'entreprises', label: '🏭 Entreprises et décisions', emoji: '🏭' },
@@ -28,10 +18,14 @@ export const FAMILIES = [
   { id: 'bulles-crises', label: '🫧 Bulles et crises', emoji: '🫧' },
   { id: 'devises-crises', label: '💱 Devises et dettes', emoji: '💱' },
   { id: 'mecanismes', label: '⚙️ Retournements et mécanismes', emoji: '⚙️' },
+  { id: 'investisseurs', label: '👤 Investisseurs et décisions', emoji: '👤' },
+  { id: 'indices', label: '🔀 Indices et anciennes vedettes', emoji: '🔀' },
+  { id: 'epargne', label: '💷 Épargne et placements', emoji: '💷' },
+  { id: 'reperes-historiques', label: '📐 Repères historiques et conventions', emoji: '📐' },
   { id: 'histoires', label: '📚 Histoires de marché', emoji: '📚' },
-  { id: 'obligations-historiques', label: '📊 Historiques obligataires', emoji: '📊' },
-  { id: 'actions-historiques', label: '📉 Historiques des actions', emoji: '📉' },
-  { id: 'indices-historiques', label: '🌐 Historiques des indices', emoji: '🌐' },
+  { id: 'obligations-historiques', label: '📊 Repères mensuels obligataires', emoji: '📊' },
+  { id: 'actions-historiques', label: '📉 Repères mensuels des actions', emoji: '📉' },
+  { id: 'indices-historiques', label: '🌐 Repères mensuels des indices', emoji: '🌐' },
   { id: "chocs", label: "⚡ Chocs et corrections", emoji: "⚡" },
   { id: "continuite", label: "📈 Continuité et séquences", emoji: "📈" },
   { id: "cac40", label: "🇫🇷 CAC 40", emoji: "🇫🇷" },
@@ -164,21 +158,22 @@ const RAW_FACTS = [
   },
 ];
 
-// T1 : retirer les statistiques sans récit et le doublon du lundi noir.
-// Les calculs mensuels restent dans leur registre partagé, mais seuls six angles
-// distincts sont proposés ici. Une simulation d'achats n'est pas une histoire.
 const publishedFacts = RAW_FACTS.map((fact) => ({ ...fact, ...EDITORIAL[fact.id] }));
 
 export function getFact(id) {
   return FACTS.find((f) => f.id === id);
 }
 
-// Les identifiants, textes et ordre relatif des contenus existants sont conservés.
-// Les nouveaux récits sont écrits et relus dans stories.json, jamais produits par les cours.
+// Aucun contenu retiré. Les histoires fixes ne sont jamais produites par les cours.
 export const FACTS = [
   publishedFacts.find(fact => fact.id === 'records-1987-pire-seance'),
   NEWTON_STORY,
   ...STORIES,
+  ...ADDITIONS,
   ...publishedFacts.filter(fact => fact.id !== 'records-1987-pire-seance'),
-  ...selectMonthlyMarketStories(HISTORY_FACTS),
-].map(fact=>({...fact,dataContract:reusableContract(fact,{derived:HISTORY_FACTS.some(row=>row.id===fact.id)})}));
+  ...selectMonthlyMarketStories(HISTORY_FACTS).map(selected => monthlyReference(
+    HISTORY_FACTS.find(fact => fact.id === selected.id),
+    MARKET_HISTORY_REVIEW[`history:${selected.id.replace('monthly-drawdown-', '')}`],
+  )),
+].map(fact => ({ ...fact, ...REVIEWED_LEGACY[fact.id] }))
+  .map(fact=>({...fact,dataContract:reusableContract(fact,{derived:HISTORY_FACTS.some(row=>row.id===fact.id)})}));

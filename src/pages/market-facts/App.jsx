@@ -9,6 +9,7 @@ import Button from '../../design-system/Button'
 import './market-facts.css'
 
 const byId = Object.fromEntries(FACTS.map((f) => [f.id, f]))
+const narratives = FACTS.filter(fact => fact.kind !== 'measured-reference')
 
 
 
@@ -21,13 +22,14 @@ function FactCard({ fact }) {
       </p>
       <p className="mf-fact-text">{buildTweetText(fact)}</p>
       <details className="mf-details">
-        <summary>{fact.sources ? 'Sources et réserves du récit' : 'Voir le fait complet et ses précisions'}</summary>
+        <summary>{fact.kind === 'measured-reference' ? 'Sources et conventions du repère' : 'Sources et réserves du récit'}</summary>
         {fact.sources ? <>
           <p>{fact.indices.join(' · ')} · {fact.period} · Relu le {fact.reviewedAt}</p>
+          {fact.note && <p>{fact.note}</p>}
           <ol className="mf-sources">
             {fact.sources.map(source => <li key={source.url}>
               <a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a>
-              <p>{source.organization} · {source.publishedAt || 'Date de publication non précisée'} · Consulté le {source.checkedAt}</p>
+              <p>{source.organization} · {source.publishedAt || 'Date de publication non précisée'} · {fact.id.startsWith('monthly-') ? 'Contrôle de la série' : 'Consulté le'} {source.checkedAt || 'non daté dans le registre'}</p>
               <ul>{source.facts.map(proof => <li key={proof}>{proof}</li>)}</ul>
             </li>)}
           </ol>
@@ -44,7 +46,7 @@ function FactCard({ fact }) {
 }
 
 export default function App() {
-  const [currentId, setCurrentId] = useState(FACTS.find(fact => fact.text)?.id ?? FACTS[0].id)
+  const [currentId, setCurrentId] = useState(narratives[0].id)
   const [copied, setCopied] = useState(false)
   const seenThisSession = useRef([currentId])
 
@@ -62,10 +64,10 @@ export default function App() {
   }
 
   function pickRandom() {
-    let pool = FACTS.filter((f) => !seenThisSession.current.includes(f.id))
+    let pool = narratives.filter((f) => !seenThisSession.current.includes(f.id))
     if (pool.length === 0) {
       seenThisSession.current = currentId ? [currentId] : []
-      pool = FACTS.filter((f) => f.id !== currentId)
+      pool = narratives.filter((f) => f.id !== currentId)
     }
     const candidates = pool.filter((f) => f.id !== currentId)
     const finalPool = candidates.length ? candidates : pool
@@ -85,7 +87,7 @@ export default function App() {
     <div className="mf-scope">
       <PageHeader
         title="Histoires de marchés"
-        subtitle={`${FACTS.filter(fact => fact.text).length} nouveaux récits documentés, prêts à copier. Les contenus historiques restent disponibles.`}
+        subtitle={`${narratives.length} histoires documentées, prêtes à relire et à copier. ${FACTS.length - narratives.length} repères historiques et mensuels restent accessibles dans la sélection.`}
       />
 
       <ToolWorkspace actions={<>
