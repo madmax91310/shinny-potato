@@ -1,0 +1,14 @@
+{
+  "run": 40366126458,
+  "job": 121724192702,
+  "instrument": "IE0002Y8CX98",
+  "stage": "source parser runtime",
+  "failure": "No module named 'bs4'",
+  "otherFailuresPreserved": [
+    "CSPX primary sectors",
+    "ACWI primary sectors/countries",
+    "QYLD Distributions not found"
+  ],
+  "repair": "Install beautifulsoup4==4.15.0 before ordinary collection and fail early on missing runtime",
+  "sourceRecovery": "not yet proved"
+}
