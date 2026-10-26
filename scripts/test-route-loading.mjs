@@ -143,6 +143,8 @@ try {
       const opening = await browser.newPage({ viewport: { width, height: 900 } })
       opening.on('pageerror', error => errors.push(`${tool.to}: ${error.message}`))
       await opening.goto(`${base}/`, { waitUntil: 'networkidle' })
+      // Network idleness does not guarantee that React committed the lazy Home.
+      await opening.getByRole('heading', { name: 'Mes outils', exact: true }).waitFor()
       const destination = await opening.locator('.workspace-tool-card').evaluateAll((cards, path) =>
         cards.find(card => new URL(card.href).pathname.endsWith(path))?.getAttribute('href'), tool.to)
       assert(destination, `Missing tool link: ${tool.to}`)

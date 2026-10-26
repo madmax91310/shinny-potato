@@ -155,3 +155,14 @@ octet aux captures initiales, ainsi que les quatre captures mobiles.
 Deux captures desktop complètes diffèrent uniquement par le positionnement des
 éléments fixes (navigation, barre d'actions et toast) lors de la capture en page
 longue après redimensionnement ; les pixels des exports sont inchangés.
+
+## Correction isolée du contrôle de routes
+
+Lors de la recette du lot 3, `test-route-loading.mjs` échoue une fois sur
+« Missing tool link: /fiches-etf » : sa boucle lit immédiatement les cartes après
+`networkidle`, sans attendre le rendu de Home chargé par `React.lazy`.
+La phase initiale du même script attendait déjà le titre de Home, mais pas cette
+boucle. Ajout de la même attente explicite avant la lecture ; toutes les assertions
+sur les liens, les budgets et les écrans sont conservées. Relance complète réussie
+sur les 25 outils visibles, ordinateur et mobile, et les liens directs Pages.
+Ce changement de synchronisation est committé séparément des déplacements de code.
