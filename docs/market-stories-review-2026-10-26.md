@@ -258,6 +258,8 @@ Réserves : Deux documents de l’entreprise, dont son rapport annuel 1994 prés
 
 ## Conventions, accès et sujets écartés
 
+Relecture finale : l’ouverture du War Loan décrit désormais l’annonce de l’État, établie par le communiqué du Trésor et l’avis du DMO. La mention d’un courrier est retirée : son mode de transmission aux détenteurs n’était pas démontré par ces pièces.
+
 Les rapports successifs d’un émetteur, un communiqué et son PDF, ou un rapport SEC et son miroir ne sont pas présentés comme des confirmations indépendantes. Les faits stables n’ont pas de nouvelle collecte quotidienne. Les mesures mensuelles restent alimentées par le registre partagé : leur date de contrôle demeure celle du registre, distincte de la relecture de leur présentation.
 
 Quatre archives de presse sont lisibles dans leur index mais ont refusé le téléchargement HTTP local (403/429) : Reuters via Yahoo, UPI, Le Parisien et Rochester Business Journal. Les faits chiffrés sont complétés selon les cas par les observations FRED/Nasdaq, le rapport SEC ou le second compte rendu de clôture. Les liens sont conservés, sans promettre un accès exempt de blocage ou d’abonnement. Le PDF IBM 1994 est scanné ; son tableau financier a été contrôlé dans l’index textuel du document. Le document historique IBM de 2002 est aussi téléchargé ; la chronologie secondaire Hursley qui répondait 503 a été remplacée par les comptes annuels.
