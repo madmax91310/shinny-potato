@@ -1,4 +1,5 @@
-import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
+import { downloadPublicationBlob } from '../../design-system/downloadBlob.js'
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -30,9 +31,7 @@ function Editor({ record, onSelect, design, onDesign }) {
     setError('')
   }
   function exportJson() {
-    const url = URL.createObjectURL(new Blob([JSON.stringify({ schemaVersion: 1, ...record, source: HOUSEHOLD_SOURCES[record.source], tweet }, null, 2)], { type: 'application/json' }))
-    const link = document.createElement('a'); link.href = url; link.download = `france-100-menages-${record.id}.json`; startPublicationDownload(link)
-    setTimeout(() => URL.revokeObjectURL(url), 1000)
+    downloadPublicationBlob(new Blob([JSON.stringify({ schemaVersion: 1, ...record, source: HOUSEHOLD_SOURCES[record.source], tweet }, null, 2)], { type: 'application/json' }), `france-100-menages-${record.id}.json`)
   }
   return <ToolWorkspace renderImage={() => imagePromise} imageAlt={`La France en 100 ménages : ${record.headline}`} actions={<><Button onClick={copy}>Copier le tweet</Button>{image.url && <Button as="a" variant="secondary" href={image.url} download={`france-100-menages-${record.id}-${design}.png`}>Télécharger le PNG</Button>}</>}>
     <div className="hh-controls tool-settings">
