@@ -159,7 +159,13 @@ def qualify_qyld(page, share, now, digest):
 def globalx(text, share, now):
     page=Page(text); tokens=page.tokens
     starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
-    start=only(starts,'Global X dated key-information block'); end=tokens.index('Distributions',start)
+    start=only(starts,'Global X dated key-information block')
+    # The issuer can omit the Distributions subsection while publishing exact
+    # dated identity, TER and fund AUM. Both known following section headings
+    # delimit those fields; never borrow facts from later performance/classes.
+    boundaries=[(tokens.index(label,start+1),label) for label in ('Distributions','Regulatory') if label in tokens[start+1:]]
+    if not boundaries:reject('Unqualified Global X key-information boundary')
+    end,boundary=min(boundaries)
     block='\n'.join(tokens[start:end])
     # Responsive markup may repeat the same trading identity. Conflicting
     # identities still fail; identical repeated labels are one observation.
@@ -177,6 +183,10 @@ def globalx(text, share, now):
     if share['currency']!='USD' or currency!='USD':reject('Wrong Global X USD share convention')
     digest=proof(text.encode());result=base(share,stamp,digest);result['characteristics']['terPct']=ter
     result['aum']={'amount':amount,'currency':currency,'scope':'fund','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest}
+    if boundary=='Regulatory':
+        result['sourceAttempts']=[{'url':share['sourceUrl'],'status':'validated','isin':share['isin'],
+            'scope':'dated Key Information only','boundary':boundary,'asOf':stamp,'sha256':digest,
+            'fields':['characteristics.terPct','aum']}]
     result['fieldQualification'] = qualify_qyld(page, share, now, digest)
     result['unavailable'] += [field+': '+value['reason'] for field,value in result['fieldQualification'].items()]
     return result
@@ -242,7 +252,7 @@ def collect_one(share, now):
                 if url==urls[-1]:raise
                 continue
             # A wrong identity, stale date or changed layout never selects another route.
-            if attempts:result['sourceAttempts']=[*attempts,{'url':url,'status':'validated'}]
+            if attempts:result['sourceAttempts']=[*attempts,*result.get('sourceAttempts',[{'url':url,'status':'validated'}])]
             return result
     else:
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
