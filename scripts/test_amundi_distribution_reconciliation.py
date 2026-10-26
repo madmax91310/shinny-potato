@@ -14,7 +14,10 @@ NOW = dt.datetime(2026, 10, 24, tzinfo=dt.timezone.utc)
 
 class AmundiHistoricalCash(unittest.TestCase):
     def setUp(self):
-        self.source = next(s for s in json.loads((ROOT / 'scripts/monthly-automation.json').read_text())['series'] if s['id'] == 'etfFR0007054358')
+        # Keep testing the original quote correction after the live source migrates
+        # to an independently qualified NAV; do not erase historical regressions.
+        archive_path = ROOT / 'reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/original-exchange-quote-records.json.gz'
+        self.source = json.loads(gzip.decompress(archive_path.read_bytes()))['etfFR0007054358']['configuration']
         self.reference = self.source['distributionEvidence']
         self.payload = json.loads(gzip.decompress((ROOT / self.reference['path']).read_bytes()))
         self.provenance = json.loads((ROOT / self.reference['metadataPath']).read_text())[0]

@@ -123,6 +123,20 @@ def configurations():
     return result + remainder
 
 
+def daily_nav_fx_factor(native, currency, latest, body):
+    """Same-date ECB cross for qualified native/output currencies; never a current quote."""
+    if (native,currency) not in {('USD','EUR'),('JPY','EUR')}:
+        raise ValueError('Unqualified daily NAV conversion')
+    from collect_ranking_sources import ecb_daily_rates
+    rates=ecb_daily_rates(body)
+    eligible=[day for day in rates if day.isoformat()<=latest]
+    if not eligible:raise ValueError('Missing official daily NAV/FX currency or date')
+    day=max(eligible)
+    if native not in rates[day] or currency not in rates[day]:raise ValueError('Missing official daily NAV/FX currency at the selected fixing')
+    if (dt.date.fromisoformat(latest)-day).days>4:raise ValueError('Official daily NAV/FX dates incompatible')
+    return day.isoformat(),rates[day][currency]/rates[day][native]
+
+
 def collect_one(source, now, json_fetch=get_json, document_fetch=download, capture=None):
     urls, hashes = [], {}
     def document(url):
@@ -286,13 +300,11 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
     if (now.date()-dt.date.fromisoformat(latest)).days>daily_policy['dataDays']:raise ValueError('Official latest NAV is stale')
     factor=1;fx_date=None
     if native!=source['currency']:
-        if (native,source['currency'])!=('USD','EUR'):raise ValueError('Unqualified daily NAV conversion')
-        from collect_ranking_sources import ECB,ecb_daily_usd
+        from collect_ranking_sources import ECB
         ECB=ECB.replace('eurofxref-hist.xml','eurofxref-hist-90d.xml')
         xml=get_text(ECB,('application/xml','text/xml'),2_000_000)
-        rates={d.isoformat():v for d,v in ecb_daily_usd(xml).items()};fx_date=max(d for d in rates if d<=latest)
-        if (dt.date.fromisoformat(latest)-dt.date.fromisoformat(fx_date)).days>4:raise ValueError('Official daily NAV/FX dates incompatible')
-        factor=1/rates[fx_date];urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
+        fx_date,factor=daily_nav_fx_factor(native,source['currency'],latest,xml)
+        urls.append(ECB);hashes[ECB]=hashlib.sha256(xml.encode()).hexdigest()
     latest_level={'value':latest_values[latest]*factor,'asOf':latest,'currency':source['currency'],'isin':isin,
        'parser':'official-nav','valuationBasis':'fund-nav-price'if anniversary_nav else source['valuationBasis'],'nativeValue':latest_values[latest],'nativeCurrency':native,
        'fxAsOf':fx_date,'fxFactor':factor,'sourceUrl':urls[0],'sourceUrls':urls,'checkedAt':now.date().isoformat(),

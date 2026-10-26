@@ -10229,22 +10229,25 @@
     "checkedAt": "2026-10-25T16:51:55.397106+00:00"
   },
   "etfLU2089238385": {
-    "value": 37.70000076293945,
-    "asOf": "2026-10-23",
+    "value": 37.94157413195431,
+    "asOf": "2026-10-22",
     "currency": "EUR",
-    "parser": "yahoo",
-    "symbol": "PRAJ.DE",
-    "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1791590400&period2=1792886400&interval=1d&events=splits",
-    "sha256": "0b94f4ef4828afd498c2ec99b642a615ceff1eadd1f2872afd851c909878ef53",
-    "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7,
     "isin": "LU2089238385",
-    "ticker": "PRAJ",
-    "mic": "XETR",
-    "listingEvidenceId": "LU2089238385-XETR-PRAJ-EUR",
-    "checkedAt": "2026-10-25T16:51:55.397106+00:00"
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 6676.5788,
+    "nativeCurrency": "JPY",
+    "fxAsOf": "2026-10-22",
+    "fxFactor": 0.005682786838665682,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "c7accd91c3f3ad0c11b252d4e4ae40ddccb5a3241da656cfaed6065bc0f1e76a"
   },
   "etfLU3038520774": {
     "value": 5.585999965667725,
@@ -11123,5 +11126,45 @@
     "ticker": "SPOT",
     "listingEvidenceId": "LU1778762911:New York Stock Exchange Inc.:SPOT:USD",
     "checkedAt": "2026-10-25T16:51:55.397106+00:00"
+  },
+  "etfFR0010342592Nav": {
+    "value": 9.3918,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "FR0010342592",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 9.3918,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "2af3a8de2fd6cf74dcfd43927c08fc18517b3bfc0cd23c6923b9640a4a9744ac"
+  },
+  "etfFR0007054358Nav": {
+    "value": 69.3532,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "FR0007054358",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 69.3532,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
   }
 }

@@ -410,6 +410,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_projection_recording.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_nav_daily_cross.py'
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
       - run: node scripts/test-income-nav-consumers.mjs
       - run: python -m unittest discover -s scripts -p 'test_hsbc_adjustment_investigation.py'
