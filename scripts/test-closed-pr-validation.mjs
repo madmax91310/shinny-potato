@@ -12,6 +12,10 @@ console.log('Closed PR cleanup cannot cancel master, publications, forks, other 
 
 const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
 assert.match(deploy,/group: pages-validation-v3-.*github\.ref/)
-assert.match(deploy,/cancel-in-progress: \$\{\{ github\.event_name == 'pull_request' \}\}/,'Only superseded PR validations may be cancelled; production validations remain serialized')
-
-assert.match(deploy,/queue: \$\{\{ github\.event_name == 'pull_request' && 'single' \|\| 'max' \}\}/,'PR replacement requires the single pending queue; production retains the max queue')
+for(const name of ['deploy-pages.yml','update-market-monthly.yml']){
+ const workflow=readFileSync(new URL('../.github/workflows/'+name,import.meta.url),'utf8')
+ assert.match(workflow,/cancel-in-progress: \$\{\{ github\.event_name == 'pull_request' \}\}/,`${name}: only superseded PR validations may be cancelled; production validations remain serialized`)
+ assert.match(workflow,/queue: \$\{\{ github\.event_name == 'pull_request' && 'single' \|\| 'max' \}\}/,`${name}: PR replacement requires the single pending queue; production retains the max queue`)
+}
+const monthly=readFileSync(new URL('../.github/workflows/update-market-monthly.yml',import.meta.url),'utf8')
+assert.match(monthly,/group: active-market-data-.*github\.event_name == 'pull_request'.*github\.ref.*\|\| 'production'/,'PR checks must never share the production writer group')

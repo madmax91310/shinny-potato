@@ -472,3 +472,15 @@ dans le texte de prebuild. Il vérifie maintenant que prebuild appelle la comman
 nommée, puis interroge cette commande avec `--list` sans écriture et exige chaque
 générateur dans le plan effectif. Les neuf sorties autorisées, leurs producteurs,
 les sources obligatoires et les assertions de reçus restent strictement protégés.
+
+La validation mensuelle a confirmé une autre frontière de contrôle : sa file
+`max` et son interdiction inconditionnelle d'annuler conservaient chaque révision
+ancienne d'une même PR. Le premier passage a duré environ 45 minutes ; le dernier
+commit restait derrière les révisions déjà remplacées. Le groupe PR est déjà
+distinct du groupe de producteurs de production. Comme le portail Pages, seuls
+les événements `pull_request` utilisent maintenant remplacement et file `single`.
+Schedule, workflow_dispatch et workflow_call gardent annulation interdite et file
+`max` ; aucun collecteur, étape financière ou publication n'est modifié.
+Le test existant des validations de PR protège ces conditions et la séparation
+du groupe de production ; rouge avant modification, vert après, avec les onze
+tests Python d'audit des workflows. La recette CI confirme l'exécution effective.
