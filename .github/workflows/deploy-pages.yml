@@ -469,6 +469,12 @@ jobs:
         if: matrix.shard == 0
       - run: node scripts/playwright-data-automation-inventory.mjs
         if: matrix.shard == 0
+      - run: node scripts/playwright-acwi-allocation-recovery.mjs
+        if: matrix.shard == 1
+      - run: node scripts/playwright-remainder-nav.mjs
+        env:
+          TEST_NAV_IDS: etfFR0007054358Nav
+        if: matrix.shard == 1
       - run: node scripts/playwright-official-nav.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-currency-consistency.mjs
