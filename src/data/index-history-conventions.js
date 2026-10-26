@@ -1,0 +1,22 @@
+// Libellés partagés sans dépendance aux séries historiques.
+export const ANNIVERSARY_INDEX_VARIANTS = {
+  msciAcwiImi: 'Net Return · USD · dividendes nets réinvestis',
+  msciAcwi: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldExUsa: 'Net Return · USD · dividendes nets réinvestis',
+  nasdaq100: 'Total Return · USD · dividendes bruts réinvestis',
+  cac40: 'Prix · EUR · hors dividendes',
+  sp500: 'Total Return · USD · dividendes bruts réinvestis',
+  stoxx600: 'Net Return · EUR · dividendes nets réinvestis',
+  msciWorld: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciEmerging: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciWorldSmallCap: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciEurope: 'Net Return · USD · dividendes nets réinvestis',
+  msciUsa: 'Net Return · USD · dividendes nets réinvestis',
+  msciIndia: 'Net Return · USD · dividendes nets réinvestis',
+  msciEmergingExChina: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldMomentum: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldQuality: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldValue: 'Net Return · USD · dividendes nets réinvestis',
+  russell2000: 'Total Return · USD · dividendes bruts réinvestis',
+  ftseAllWorld: 'Total Return · USD · dividendes bruts réinvestis',
+};

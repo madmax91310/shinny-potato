@@ -1,4 +1,4 @@
-import { currencySymbol } from '../investment-calculator/math.js'
+import { currencySymbol } from '../../lib/investment-series.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/history-parameters.js'

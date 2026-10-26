@@ -1,12 +1,12 @@
 import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/history-window-quality.js';
-import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
-export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
+import { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
+export { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
 import { performanceBasisLabel } from '../../../lib/performance-conventions.js';
 import {
   ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
-import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/math.js";
+import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../../lib/investment-series.js";
 
 import INDEX_HISTORY from '../../../data/anniversary-index-history.json' with { type: 'json' };
 const INDEX_ASSETS = Object.fromEntries(Object.entries(INDEX_HISTORY).map(([id, record]) => [id, {

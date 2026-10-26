@@ -7,35 +7,8 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './tweet-bank.css'
 
-// Pas de backend dans ce repo (SPA statique déployée sur GitHub Pages, cf. deploy-pages.yml) : la
-// date de dernière publication de chaque tweet est donc persistée en localStorage, seul mécanisme
-// disponible côté client pur — même logique que la génération vidéo du Calculateur ("100% côté
-// client, aucun service tiers"). Limite connue et acceptée : ces dates ne se synchronisent pas
-// entre appareils/navigateurs.
-const STORAGE_KEY = 'pc-tweet-bank-last-pub'
-const DRAFT_KEY = 'pc-tweet-bank-drafts-v1'
-function loadDrafts() {
-  try { const value = JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}'); return value && typeof value === 'object' && !Array.isArray(value) ? value : {} } catch { return {} }
-}
-
-function loadLastPub() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    const parsed = raw ? JSON.parse(raw) : {}
-    return parsed && typeof parsed === 'object' ? parsed : {}
-  } catch {
-    return {}
-  }
-}
-
-function saveLastPub(map) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(map))
-  } catch {
-    // localStorage indisponible (navigation privée stricte, quota...) : on continue sans persister,
-    // jamais une erreur bloquante pour un simple confort de suivi.
-  }
-}
+import { DRAFTS_KEY, LAST_PUBLICATION_KEY } from './storage.js'
+import { useBankRecord } from './useBankRecord.js'
 
 // Repli en cascade Clipboard API → execCommand → sélection manuelle — même pattern que les autres
 // outils de l'app (cf. etf-sheets/App.jsx, investment-calculator/App.jsx), jamais partagé entre
@@ -234,10 +207,8 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
 export default function App() {
   const [today, setToday] = useState(bankToday)
   useEffect(() => { const timer = setInterval(() => setToday(bankToday()), 60_000); return () => clearInterval(timer) }, [])
-  const [lastPub, setLastPub] = useState(loadLastPub)
-  const [drafts, setDrafts] = useState(loadDrafts)
-  const [saveError, setSaveError] = useState(false)
-  useEffect(() => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(drafts)); setSaveError(false) } catch { setSaveError(true) } }, [drafts])
+  const [lastPub, setLastPub, datesError] = useBankRecord(LAST_PUBLICATION_KEY)
+  const [drafts, setDrafts, draftsError] = useBankRecord(DRAFTS_KEY)
   function changeDraft(id, value) { setDrafts(previous => { const next = { ...previous }; if (value) next[id] = value; else delete next[id]; return next }) }
   const [filters, setFilters] = useState({
     month: null,
@@ -248,7 +219,6 @@ export default function App() {
     sortByAge: true,
   })
 
-  useEffect(() => saveLastPub(lastPub), [lastPub])
 
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }))
 
@@ -311,7 +281,8 @@ export default function App() {
       </div>
 
       <p>{TWEETS.filter(tweet => !contentValidity(tweet, drafts[tweet.id], today).ready).length} textes à vérifier ou actualiser. Le mois d’archive n’est pas une date de vérification des chiffres.</p>
-      {saveError && <p role="alert">La sauvegarde des brouillons est indisponible sur ce navigateur. Conserve tes modifications avant de quitter la page.</p>}
+      {draftsError && <p role="alert">La sauvegarde des brouillons est indisponible sur ce navigateur. {draftsError}</p>}
+      {datesError && <p role="alert">Le suivi des dates de publication ne peut pas être enregistré. {datesError}</p>}
       <div className="tb-controls">
         <input
           className="tb-search"

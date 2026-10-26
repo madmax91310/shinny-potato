@@ -13,6 +13,11 @@ updateAssetKeys(ASSET_FAVORITES_KEY,()=>[assetPreferenceKey(world)])
 assert.equal(updateAssetKeys(ASSET_FAVORITES_KEY,all=>[...all,assetPreferenceKey(world)]).length,1)
 for(let i=0;i<12;i++)updateAssetKeys(ASSET_RECENTS_KEY,all=>[`asset:${i}`,...all],8)
 assert.equal(updateAssetKeys(ASSET_RECENTS_KEY,all=>all,8).length,8)
+for(const raw of ['{broken','{"wrong":"shape"}']) {
+  values.set('epargnant-publication:v1:'+ASSET_FAVORITES_KEY,raw)
+  assert.equal(updateAssetKeys(ASSET_FAVORITES_KEY,()=>[assetPreferenceKey(world)]),null)
+  assert.equal(values.get('epargnant-publication:v1:'+ASSET_FAVORITES_KEY),raw)
+}
 globalThis.localStorage={getItem:()=>{throw Error('blocked')},setItem:()=>{throw Error('blocked')}}
 assert.doesNotThrow(()=>updateAssetKeys(ASSET_FAVORITES_KEY,()=>[assetPreferenceKey(world)]))
 console.log('Asset identities, multi-term search, accents, documented PEA, deduplication, recents bounds and blocked storage passed.')

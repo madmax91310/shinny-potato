@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { cachedSignalIds, readIds, READ_EVENT } from '../pages/editorial-radar/read-state.js'
+import { cachedSignalIds, readIds, READ_EVENT } from '../lib/radar-read-state.js'
 const unreadCount = () => { const read = new Set(readIds()); return cachedSignalIds().filter(id => !read.has(id)).length }
 // Other tools and exports stay local. Only the radar page fetches its feed.
 export default function RadarCount() {
