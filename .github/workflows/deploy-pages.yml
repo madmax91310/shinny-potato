@@ -12,7 +12,7 @@ on:
         required: true
         type: string
       validation_group:
-        description: Stable code commit shared by collectors requesting the same validation
+        description: Legacy code epoch accepted for compatibility; etf-publication-954 reserves the historical recovery queue
         required: false
         type: string
         default: ''
@@ -35,7 +35,7 @@ concurrency:
   # v4 isolates this gate generation from queued old definitions that cannot
   # adopt current code after unrelated workflow additions. Publishing still uses
   # the unchanged pages-production lock and published code/data ancestry checks.
-  group: pages-validation-v4-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+  group: ${{ inputs.validation_group == 'etf-publication-954' && 'pages-validation-etf-publication-954' || format('pages-validation-v4-{0}', github.event_name == 'pull_request' && github.ref || 'master') }}
   # Superseded PR revisions cannot publish; keep every production validation.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
   queue: ${{ github.event_name == 'pull_request' && 'single' || 'max' }}
@@ -58,7 +58,16 @@ jobs:
       - id: head
         env:
           PAGES_PRODUCTION: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+          PAGES_DEFINITION_SHA: ${{ github.workflow_sha }}
+          PAGES_GATE_RECEIPT: ${{ runner.temp }}/pages-gate-definition.json
         run: node scripts/resolve-pages-snapshot.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: steps.head.outputs.current == 'true'
+        with:
+          name: validated-gate-definition
+          path: ${{ runner.temp }}/pages-gate-definition.json
+          if-no-files-found: error
+          retention-days: 35
   # Data-only lane: when every file changed since the published commit is an
   # automation data path, the code already passed the full gate. Editorial and
   # visual browser checks then become advisory, so refreshed data is never held
@@ -239,7 +248,7 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: node scripts/test-deploy-scope.mjs
-      - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
+      - run: node scripts/test-pages-gate-definition.mjs && node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
       - run: node scripts/test-fallback-snapshot.mjs
       - run: node scripts/test-validated-data-publisher.mjs
       - run: node scripts/test-code-data-refresh.mjs
@@ -632,6 +641,12 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-gate-definition
+          path: ${{ runner.temp }}/gate-definition
+      - name: Verify the definition and code actually validated
+        run: node scripts/pages-gate-definition.mjs "$RUNNER_TEMP/gate-definition/pages-gate-definition.json" "${{ needs.build.outputs.commit_sha }}"
       - id: data
         env:
           VALIDATED_CODE_SHA: ${{ needs.build.outputs.commit_sha }}

@@ -11,7 +11,7 @@ assert.deepEqual(retiredRuns([{...run,pull_requests:[]}],pr,repo,[{state:'open',
 console.log('Closed PR cleanup cannot cancel master, publications, forks, other PRs, collectors or completed runs.')
 
 const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
-assert.match(deploy,/group: pages-validation-v4-.*github\.ref/)
+assert.match(deploy,/group:.*pages-validation-v4-.*github\.ref/)
 for(const name of ['deploy','deploy-fallback']){
  const publication=deploy.split('\n  '+name+':\n')[1]?.split(/\n  [a-z][a-z0-9-]*:\n/)[0]
  assert(publication,`${name}: publication lane remains declared`)

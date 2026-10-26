@@ -515,3 +515,69 @@ rafraîchissement code/données, publication hors ordre et audit workflows réus
 Le résultat du portail complet et de la publication effective est consigné dans
 les PR de livraison. Le contrat de sélection des définitions reste un sujet de
 priorité moyenne pour une évolution ultérieure, pas une refonte absorbée ici.
+
+
+## Clôture — définitions des workflows et sélection des instantanés
+
+Réexamen depuis `6e24d114e8708d5d64126d8808f2c3b05e44f9f8` (master,
+#992). #974, #978, #984, #985 et #989 sont effectivement fusionnées. Au démarrage,
+#990 reste ouverte ; son ajout de diagnostic navigateur dans `deploy-pages.yml`
+est distinct de ce lot et doit être conservé. Aucun fichier applicatif ou
+observation financière n'est modifié ici.
+
+### Constats confirmés avant correction
+
+| Priorité / fichiers et symboles | Preuve et conséquence | Consommateurs | Correction / vérification |
+| --- | --- | --- | --- |
+| Moyenne — `verify-etf-publication-954.yml`, jobs du portail | Copie exécutable du portail : 261 blocs de commandes contre 271 dans la référence. Tests Nikkei NAV/DWS, allocations partielles, identités et reçus producteurs ajoutés au portail absents de la copie. Une reprise pouvait donc publier après une qualification différente. | Reprise #954, portail et publication Pages | Appel au workflow de référence. Comparaison de chaque commande ancienne : toutes subsistent ; mêmes besoins, conditions, verrou et secours. Test interdisant une seconde liste de jobs dans la reprise. |
+| Moyenne — `resolve-pages-snapshot.mjs`, `chooseSnapshot` | Tout changement sous `.github/workflows/` bloquait master, même indépendant (#985/#989). Inversement, seul requested..master était examiné : `inputs.ref` pouvait déjà contenir une nouvelle définition sans correspondre à celle chargée au démarrage du collecteur. Le test d'adoption d'un workflow indépendant échoue avant correction (ancien SHA renvoyé). | Pushes master, collecteurs via `publish-validated-data.yml`, reprise | Fermeture explicite des définitions et comparaison à la définition effectivement chargée ; aucun paramètre de sélection de contrôles. Histoires Git isolées avec données, code et dépendance locale omise. |
+| Moyenne — frontière validation/publication | Le code est déjà figé ; il manquait une preuve explicite de la définition qui l'a qualifié. Un checkout à lui seul ne prouve pas la version des jobs exécutés. | `current-snapshot`, build et publication normale | Reçu immuable définition/code, revérifié avant composition code/données. Tests de code erroné, empreinte altérée, objet absent et master avancé entre validation et publication. |
+
+### Responsabilités après correction
+
+- Une seule définition exécutable : `deploy-pages.yml` ; la reprise reste un point
+  d'entrée avec sa file historique, sans copie de jobs. Le contrat JSON décrit
+  uniquement la fermeture des définitions locales chargées par GitHub.
+- `pages-gate-definition.mjs` qualifie les blobs des définitions et le reçu.
+  `resolve-pages-snapshot.mjs` choisit un commit compatible. Tous les jobs utilisent
+  ensuite ce commit exact, comme avant.
+- `prepare-code-data-refresh.mjs` conserve son rôle : sous le verrou de publication,
+  reprendre seulement le préfixe de données autorisé sans adopter du code non
+  validé. `check-pages-head.mjs`, les reçus producteurs et le secours conservent
+  leurs responsabilités. Aucun seuil ou permission n'est allégé.
+- Les scripts exécutés par les jobs viennent du commit sélectionné. Les confondre
+  avec les définitions figées empêcherait à nouveau toute adoption de code récent.
+
+### Points examinés sans correction nécessaire
+
+La séparation des voies code/données, la sélection du préfixe admissible, les
+reçus producteurs et les contrôles de filiation empêchent déjà une publication
+hors ordre : tests existants conservés. Les listes de chemins collecteurs et la
+propriété des sorties générées décrivent des contrats distincts, pas une copie des
+jobs à fusionner. Les workflows indépendants gardent leurs contrôles dédiés.
+Aucune modification de calcul, texte, image, stockage, route ou import applicatif
+n'est nécessaire dans ce dernier lot.
+
+### Bilan consolidé et limites
+
+Les lots précédents restent des corrections ciblées, pas une refonte complète :
+#974 clarifie moteurs, modèles et frontières et protège la persistance ; #978
+empêche l'écrasement silencieux d'un historique DCA illisible ; #984 remplace les
+extractions de source fragiles, nettoie les exports en cas d'exception et rend les
+prérequis de génération explicites. #985 restaure le workflow mensuel et #989
+isole opérationnellement une génération de file ; ce dernier lot traite la cause
+de coordination laissée ouverte par ces deux reprises.
+
+Dette restante : priorité basse, coût des validations PR mensuelles obsolètes
+(file conservée explicitement) ; priorité moyenne seulement si une exigence
+transactionnelle apparaît, localStorage n'offre pas de comparaison/écriture
+atomique entre deux onglets à l'instant exact. Les protections actuelles refusent
+les conflits observables, sans prétendre fournir une transaction multi-onglets.
+Les échecs des collectes externes et leur revue financière restent des chantiers
+séparés, pas des motifs de modifier observations ou seuils dans ce lot.
+
+Les courses sont testées avec de vrais commits dans un dépôt isolé, mais le
+contexte runner est simulé. La correspondance de `github.workflow_sha`, le reçu,
+la CI complète et la livraison Pages doivent être constatés dans GitHub Actions ;
+les liens de livraison et résultats finaux sont consignés dans la PR. Aucun test
+ne prétend provoquer toutes les courses dans l'infrastructure GitHub réelle.
