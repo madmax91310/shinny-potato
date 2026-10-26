@@ -1,0 +1,1 @@
+CREATE TABLE tweets (owner TEXT NOT NULL, id TEXT NOT NULL, text TEXT NOT NULL, category TEXT NOT NULL, formats TEXT NOT NULL, last_published TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL, updated_at TEXT NOT NULL, version INTEGER NOT NULL, PRIMARY KEY (owner, id));
