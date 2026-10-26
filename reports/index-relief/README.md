@@ -49,3 +49,7 @@ Pour compléter le registre : vérifier la source officielle, ajouter le fichier
 Les diagnostics complets sont produits sous `test-artifacts/index-ribbon`, `test-artifacts/index-relief` et `test-artifacts/index-concentration`. Les exports représentatifs ont été inspectés visuellement et comparés à la pièce jointe. Les logos officiels remplacent les marques illustrées de la référence ; les données de chaque indice et devise restent celles de l’outil.
 
 Les 50 drapeaux vectoriels locaux proviennent de flag-icons (licence MIT conservée dans `public/asset-art/index-flags/LICENSE`), avec URL et empreinte dans leur `sources.json`. Les pictogrammes de secteurs sont des tracés de canevas en relief ; ils ne représentent aucune marque.
+
+## Collecte indépendante observée pendant la PR
+
+Le [contrôle de collecte #40299234017](https://github.com/madmax91310/shinny-potato/actions/runs/40299234017) signale cinq qualifications partielles : ACWI IMI, Russell 2000, MSCI Emerging Markets, ACWI et S&P Euro Dividend Aristocrats. Les nouvelles dates de positions, pays et secteurs sont incompatibles ; les dernières compositions qualifiées sont conservées. Le job de collecte et ses vérifications obligatoires réussissent, son job de signalement reste rouge. Ce diagnostic financier est distinct des contrôles de rendu ; aucune date, qualification ou valeur n’est modifiée pour le masquer.

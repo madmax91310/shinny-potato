@@ -12,7 +12,7 @@ let browser
 const reports=[]
 try{
 for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,200))}
-browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:process.env.CI?{}:{executablePath:'/usr/bin/chromium'}),args:['--no-sandbox']})
+browser=await chromium.launch({headless:true,...(external&&process.env.HTTPS_PROXY?{proxy:{server:process.env.HTTPS_PROXY}}:{}),...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:process.env.CI?{}:{executablePath:'/usr/bin/chromium'}),args:['--no-sandbox']})
 await mkdir(out,{recursive:true})
 for(const mobile of [false,true]){
  const context=await browser.newContext(mobile?{...devices['iPhone 13'],acceptDownloads:true}:{viewport:{width:1280,height:900},acceptDownloads:true})
@@ -22,6 +22,7 @@ for(const mobile of [false,true]){
   CanvasRenderingContext2D.prototype.fillText=function(t,...args){const labels=texts.get(this.canvas)??[];labels.push(String(t));texts.set(this.canvas,labels);return original.call(this,t,...args)}
   HTMLCanvasElement.prototype.toDataURL=function(...args){const png=serialize.apply(this,args);window.__exports.push({png,labels:texts.get(this)??[]});return png}
  })
+ context.setDefaultTimeout(30000);context.setDefaultNavigationTimeout(45000)
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message))
  await page.route('**/asset-art/official-logos/apple.svg',async route=>{await new Promise(r=>setTimeout(r,1800));await route.continue()})
  await page.goto(`${base}tweets-factsheets`,{waitUntil:'domcontentloaded'})
