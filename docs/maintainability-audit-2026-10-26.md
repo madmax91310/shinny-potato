@@ -197,3 +197,31 @@ Requalification complémentaire : le registre courant expose 26 entrées, dont
 compatibilité. Analyse d'entreprise et sa collecte ne sont plus présentes : la
 fiche du 18 octobre n'est plus un inventaire courant. Les clés/aliases de données
 et archives de tests qui la mentionnent ne sont pas réactivés.
+
+## Lot 4 — correctif fonctionnel isolé : sauvegardes de la banque
+
+Reproduction Chromium sur le build précédant ce lot : deux clés contenant
+`{broken` deviennent toutes deux `{}` après la seule ouverture de la banque.
+Ce défaut existait avant le refactoring ; ce lot est un correctif volontaire.
+
+Avant : lecture permissive et effets de sauvegarde dans `tweet-bank/App.jsx`.
+Après : `storage.js` décrit les deux maps existantes, valide les champs consommés
+et conserve les champs/identifiants inconnus ; `useBankRecord.js` garde l'état de
+lecture et n'écrit jamais au montage. Un espace illisible reste verrouillé pour
+cette ouverture ; l'autre reste utilisable. En cas d'échec/quota, édition en mémoire
+et avertissement explicite. Une écriture observée depuis une autre page est refusée
+si les octets ne correspondent plus à la version lue. Ce contrôle local n'est pas
+une transaction atomique entre processus et n'annonce aucune synchronisation.
+Aucun nouveau format, aucune migration, aucune nouvelle clé, aucune réinitialisation.
+Les contrôles éditoriaux (texte/date vérifiés invalidés après édition) restent ceux
+existants. Les avertissements de panne/conflit sont le changement UI volontaire.
+
+`test-tweet-bank-storage.mjs` (prébuild) : formats anciens réellement écrits par
+l'application, métadonnées de revue, champs/IDs inconnus, corruption, accès refusé,
+quota et conflit observé : réussi. `playwright-tweet-bank-storage.mjs` (ajouté aux
+shards navigateur existants) : lecture sans écriture, édition/rechargement,
+validation éditoriale, dates, deux onglets, stockage corrompu/indisponible et
+indépendance des maps, en 1440 et 390 px : réussi.
+`playwright-tools.mjs --tweet-bank` : parcours existant réussi (repos, copie fidèle,
+textes pédagogiques et mobile). `test-tweet-bank-validity`, `test-browser-shards`,
+build et budgets : réussis ; lint garde les mêmes 13 avertissements initiaux.
