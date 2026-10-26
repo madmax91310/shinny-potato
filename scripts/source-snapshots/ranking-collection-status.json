@@ -1,17 +1,44 @@
 {
-  "checkedAt": "2026-10-25T12:00:15.823285+00:00",
-  "attemptedIds": [],
+  "checkedAt": "2026-10-26T09:05:25.476097+00:00",
+  "attemptedIds": [
+    "long-msciWorld",
+    "long-msciEmerging",
+    "long-msciWorldSmallCap",
+    "long-msciAcwi",
+    "long-msciWorldExUsa",
+    "long-sp500",
+    "long-apple",
+    "long-microsoft",
+    "long-nvidia",
+    "long-amazon",
+    "long-google",
+    "long-meta",
+    "long-euroGov13",
+    "long-euroCorporateBond",
+    "long-euroHighYieldBond",
+    "long-globalBondEur",
+    "gold-invesco-usd",
+    "long-msciEurope",
+    "long-msciUsa",
+    "world-net",
+    "emerging-net",
+    "japan-net",
+    "acwi-gross",
+    "aerospace-paris-eur",
+    "fx:TWD",
+    "fx:ECB"
+  ],
   "fxFailed": false,
   "crossFxFailed": false,
   "fxSources": {
     "TWD": {
       "id": "fx:TWD",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00",
-      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F25%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00",
+      "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F26%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
       "sourceAttempts": [
         {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-25",
+          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-26",
           "error": "The read operation timed out"
         },
         {
@@ -19,7 +46,7 @@
           "error": "The read operation timed out"
         },
         {
-          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F25%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
+          "sourceUrl": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=&from=01%2F01%2F1999&to=10%2F26%2F2026&filetype=csv&label=include&layout=seriescolumn&type=package",
           "status": "downloaded",
           "sha256": "16f582fc5a1e502aad4cf69a7a132a9ada3094d9af5f13d66c8ce6ed464d47ad"
         }
@@ -28,129 +55,129 @@
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     }
   },
   "series": [
     {
       "id": "acwi-gross",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "aerospace-paris-eur",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "emerging-net",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "gold-invesco-usd",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "japan-net",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-amazon",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-apple",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-euroCorporateBond",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-euroGov13",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-euroHighYieldBond",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-globalBondEur",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-google",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-meta",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-microsoft",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciAcwi",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciEmerging",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciEurope",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciUsa",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciWorld",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciWorldExUsa",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-msciWorldSmallCap",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-nvidia",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "long-sp500",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     },
     {
       "id": "world-net",
       "status": "validated",
-      "checkedAt": "2026-10-25T09:42:06.422546+00:00"
+      "checkedAt": "2026-10-26T09:05:25.476097+00:00"
     }
   ]
 }

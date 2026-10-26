@@ -1,10 +1,10 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-10-25 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-10-26 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 29) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 1 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -186,7 +186,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | Oui | Oui | missing | Oui / Oui | Complète | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
-| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
+| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Partiel / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | VanEck Space Innovators UCITS ETF | IE000YU9K6K2 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | VanEck Defense UCITS ETF | IE000YYE6WK5 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares China Large Cap UCITS ETF (Dist) | IE00B02KXK85 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
@@ -195,17 +195,17 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares European Property Yield UCITS ETF | IE00B0M63284 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares MSCI Taiwan UCITS ETF | IE00B0M63623 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares € Govt Bond 1-3yr UCITS ETF | IE00B14X4Q57 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
-| iShares Developed Markets Property Yield UCITS ETF USD (Dist) | IE00B1FZS350 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
+| iShares Developed Markets Property Yield UCITS ETF USD (Dist) | IE00B1FZS350 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Global Infrastructure UCITS ETF USD (Dist) | IE00B1FZS467 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist) | IE00B1FZS913 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares Listed Private Equity UCITS ETF | IE00B1TXHL60 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
-| iShares Global Water UCITS ETF | IE00B1TXK627 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares Global Water UCITS ETF | IE00B1TXK627 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Global Clean Energy Transition UCITS ETF | IE00B1XNHC34 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core MSCI Europe UCITS ETF Dist | IE00B1YZSC51 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Global Timber & Forestry UCITS ETF | IE00B27YCF74 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World Islamic UCITS ETF | IE00B27YCN58 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist) | IE00B2NPKV68 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | Oui | manual | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | IE00B3F81G20 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
 | iShares Core € Corp Bond UCITS ETF (Dist) | IE00B3F81R35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | IE00B3FH7618 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
@@ -216,7 +216,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | iShares S&P 500 Information Technology Sector UCITS ETF | IE00B3WJKG14 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard S&P 500 UCITS ETF Distributing | IE00B3XXRP09 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| iShares S&P 500 Consumer Staples Sector UCITS ETF | IE00B40B8R38 | Oui | Oui | automatic | Partiel / Partiel | Complète | Oui / Oui / Oui | — |
+| iShares S&P 500 Consumer Staples Sector UCITS ETF | IE00B40B8R38 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Energy Sector UCITS ETF | IE00B42NKQ00 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Health Care Sector UCITS ETF | IE00B43HR379 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World EUR Hedged UCITS ETF (Acc) | IE00B441G979 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -432,7 +432,7 @@ Actifs présentés sans historique automatique (Sans cotation : 1 · Historique 
 | Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi Core EUR Corporate Bond UCITS ETF | LU1931975079 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | LU2903252349 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi Core EUR High Yield Bond UCITS ETF | LU2970735911 | Oui | — | automatic | Sans objet / Sans objet | Partielle | — / — / Oui | — |
