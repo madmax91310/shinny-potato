@@ -198,11 +198,21 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
         from collect_dws_etf import parse_product
         body=data(source['sourceUrl']);facts=parse_product(body,{'isin':isin,'currency':native,'sourceUrl':source['sourceUrl']},now)
         if facts['distribution']!='Capitalizing':raise ValueError('DWS NAV reinvestment not qualified')
-        url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':'2015-06-26','endDate':now.date().isoformat(),'includeTax':'false'})
+        policy=source.get('dwsIdentityBasis')
+        if policy not in (None,'share-class-launch'):raise ValueError('Unqualified DWS identity policy')
+        if policy=='share-class-launch':
+            if not identity_from or facts['characteristics'].get('inceptionDate')!=identity_from or source['periodStart']<identity_from[:7]:
+                raise ValueError('DWS exact share launch identity changed')
+            start=identity_from
+        else:start='2015-06-26'
+        url=source['sourceUrl'].rsplit('/',1)[0]+'/historicaldata/download?'+urllib.parse.urlencode({'startDate':start,'endDate':now.date().isoformat(),'includeTax':'false'})
         nav=dws_nav(document(url),isin,native,now);years=facts['performance']['years'];credit='DWS Xtrackers'
-        notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
-        if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
-        calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
+        if policy=='share-class-launch':
+            calendar_proof={'identityFrom':identity_from,'identityBasis':policy,'incomeTreatment':facts['distribution']}
+        else:
+            notes=' '.join(t.get('text','') for tab in body['pdpResult']['pageSections']['performanceSection']['performanceTables']['tabs'] if tab['header']=='Calendar year' for t in tab.get('disclaimerHtml',[]))
+            if '26 June 2015' not in notes or 'Luxembourg' not in notes:raise ValueError('DWS merger identity evidence changed')
+            calendar_proof={'identityFrom':identity_from,'mergerNote':notes}
     elif kind=='ssga':
         from collect_ssga_etf import Inputs, parse_page
         page=document(source['sourceUrl']).decode(); parsed=Inputs(); parsed.feed(page)
@@ -336,6 +346,7 @@ def main():
     parser.add_argument('--migrate-quote-records',action='store_true',help='One-off reviewed migration; archive original quotes/configurations')
     args=parser.parse_args();now=dt.datetime.now(UTC);results=[]
     sources=[s for s in configurations()if not args.only or s['id']in args.only]
+    scope={'requestedIds':args.only or [s['id']for s in sources],'expectedIds':[s['id']for s in sources]}
     for source in sources:
         try:
             record=collect_one(source,now,capture=args.capture_dir)
@@ -344,7 +355,7 @@ def main():
         except Exception as error:
             results.append({'id':source['id'],'status':'failed','reason':str(error)})
             print(source['id'],'FAILED',str(error),flush=True)
-    report={'checkedAt':now.isoformat(),'series':results};write_json_atomic(args.output,report)
+    report={'checkedAt':now.isoformat(),'scope':scope,'series':results};write_json_atomic(args.output,report)
     if args.apply and any(r['status']=='failed'for r in results):raise SystemExit(1)
     if args.apply:
         # Some existing histories belong to the isolated non-bond producer.

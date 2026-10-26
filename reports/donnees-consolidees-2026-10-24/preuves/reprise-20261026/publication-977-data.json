@@ -1,0 +1,353 @@
+{
+  "buildInfo": {
+    "sha": "39c539520eb15543fb560ef5209e1b81069c0b2e",
+    "dataSha": "866d9fcd13a6e2152f03105860b17e2634568d8d",
+    "lane": "validated-code-data",
+    "builtAt": "2026-10-26T14:08:22.320Z"
+  },
+  "HEAL": {
+    "value": [
+      {
+        "ticker": "HEAL",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "symbol": "HEAL.L",
+        "referenceDate": "2026-10-26",
+        "excerpt": "IE00BYZK4776 | {\"bidStatus\": \"1\", \"calendarDate\": \"26/10/2026\", \"countryOfRegister\": \"IE\", \"currency\": \"USD\", \"description\": \"ISHARES HC INNO\", \"displayIssuerName\": \"iShares Plc\", \"displayissuercode\": \"ISHARESGROUPID\", \"exchangeMarketSize\": \"5000\", \"firstTradingDate\": \"12 September 2016\", \"instrumentId\": \"140821\", \"instrumentName\": \"ISHS HEALTHCARE INNVTION UCITS ETF ACC\", \"instrumentStatus\": \"0\", \"investmentFund\": \"false\", \"isinCode\": \"IE00BYZK4776\", \"issuerCode\": \"ISISMS\", \"issuerName\": \"Ishares Iv Plc\", \"issuerNameInstrumentName\": \"Ishares Iv Plc ISHS HEALTHCARE INNVTION UCITS ETF ACC\", \"issuerNameUrl\": \"ishares-iv-plc\", \"lotSize\": \"1\", \"mic\": \"XLON\", \"mifirIdentifier\": \"ETFS\", \"nextTradingDate\": null, \"parentIssuerName\": \"ISHARES\", \"parentissuercode\": \"ISHARESGROUPID\", \"sector\": \"UET5\", \"securityType\": \"SP\", \"sedol\": \"BYZK477\", \"segmentCode\": \"EUET\", \"tidm\": \"HEAL\", \"tradingAllowed\": \"1\", \"typology\": \"ETPs\", \"unitOfQuotation\": \"1\"}",
+        "sourceUrl": "https://apidata.londonstockexchange.com/nrdp/v1?tidm=HEAL",
+        "checkedAt": "2026-10-26",
+        "sha256": "9827ff3239428148200c615e63959307cca85a07ea2d4c828658597ec2f20916",
+        "evidenceId": "IE00BYZK4776-XLON-HEAL-USD"
+      },
+      {
+        "ticker": "HEAL",
+        "mic": "XPAR",
+        "exchange": "Euronext Paris",
+        "currency": "EUR",
+        "symbol": "HEAL.PA",
+        "excerpt": "IE00BYZK4776 | Nyse Euronext - Euronext Paris | HEAL | EUR | HEAL.PA",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-26",
+        "sha256": "136ae77f73bfa152152a9ccd803f0de6d8fdd37a096df60a8907728fea358c70",
+        "evidenceId": "IE00BYZK4776-XPAR-HEAL-EUR"
+      }
+    ],
+    "checkedAt": "2026-10-26",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "136ae77f73bfa152152a9ccd803f0de6d8fdd37a096df60a8907728fea358c70"
+  },
+  "ACWI": {
+    "countries": {
+      "asOf": "2026-10-23",
+      "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 64.67834
+        },
+        {
+          "name": "Japan",
+          "weightPct": 5.12389
+        },
+        {
+          "name": "Taiwan",
+          "weightPct": 3.26328
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.06419
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.05058
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.40532
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 2.1555
+        },
+        {
+          "name": "Korea (South)",
+          "weightPct": 2.13262
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.00894
+        },
+        {
+          "name": "France",
+          "weightPct": 1.91765
+        },
+        {
+          "name": "China",
+          "weightPct": 1.85366
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.39072
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.14934
+        },
+        {
+          "name": "Spain",
+          "weightPct": 0.82033
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 0.73406
+        },
+        {
+          "name": "Italy",
+          "weightPct": 0.63418
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.36581
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.36528
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.3538
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 0.34144
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.25542
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.24281
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.2347
+        },
+        {
+          "name": "Mexico",
+          "weightPct": 0.19356
+        },
+        {
+          "name": "Norway",
+          "weightPct": 0.1541
+        },
+        {
+          "name": "United Arab Emirates",
+          "weightPct": 0.13202
+        },
+        {
+          "name": "Malaysia",
+          "weightPct": 0.11765
+        },
+        {
+          "name": "Thailand",
+          "weightPct": 0.11246
+        },
+        {
+          "name": "Poland",
+          "weightPct": 0.11233
+        },
+        {
+          "name": "Austria",
+          "weightPct": 0.07373
+        },
+        {
+          "name": "Turkey",
+          "weightPct": 0.05688
+        },
+        {
+          "name": "Greece",
+          "weightPct": 0.05503
+        },
+        {
+          "name": "Indonesia",
+          "weightPct": 0.05418
+        },
+        {
+          "name": "Peru",
+          "weightPct": 0.05037
+        },
+        {
+          "name": "Kuwait",
+          "weightPct": 0.04992
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.04551
+        },
+        {
+          "name": "Qatar",
+          "weightPct": 0.04355
+        },
+        {
+          "name": "New Zealand",
+          "weightPct": 0.04031
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.03864
+        },
+        {
+          "name": "Hungary",
+          "weightPct": 0.03717
+        },
+        {
+          "name": "Philippines",
+          "weightPct": 0.03512
+        },
+        {
+          "name": "Colombia",
+          "weightPct": 0.0273
+        },
+        {
+          "name": "Czech Republic",
+          "weightPct": 0.00985
+        },
+        {
+          "name": "India",
+          "weightPct": 0.0085
+        },
+        {
+          "name": "European Union",
+          "weightPct": 0.0062
+        },
+        {
+          "name": "Egypt",
+          "weightPct": 0.00311
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.00059
+        },
+        {
+          "name": "Saudi Arabia",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Russian Federation",
+          "weightPct": 0.0
+        },
+        {
+          "name": "Other",
+          "weightPct": 0.0
+        }
+      ],
+      "portfolioWeightPct": 99.99994,
+      "positionCount": 1662,
+      "unidentifiedSecurityCount": 1,
+      "unidentifiedWeightPct": 0.0001,
+      "overlapQualified": false,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-26",
+      "modifiedAt": "2026-10-26"
+    },
+    "sectors": {
+      "asOf": "2026-10-23",
+      "basis": "fund",
+      "sourceComponent": "holdings.all",
+      "portfolioWeightPct": 99.99994,
+      "positionCount": 1662,
+      "unidentifiedSecurityCount": 1,
+      "unidentifiedWeightPct": 0.0001,
+      "overlapQualified": false,
+      "method": "Published GICS classification of every physical-fund position, including signed cash/derivatives; no renormalisation; security identity coverage is separate from allocation coverage",
+      "sha256": "d83c222af75fc976c87ae5deaa5fbbe9dcfb27f371bff2b732b9fcd666e326ae",
+      "rows": [
+        {
+          "name": "Energy",
+          "weightPct": 4.16224,
+          "label": "Energy"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 3.19911,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.22819,
+          "label": "Utilities"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 18.13914,
+          "label": "Financials"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 8.87278,
+          "label": "Health Care"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 9.84656,
+          "label": "Industrials"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.45372,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Communication",
+          "weightPct": 7.36951,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 4.88724,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.29946,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 31.17632,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.36567,
+          "label": "Cash and/or Derivatives"
+        }
+      ],
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-26",
+      "modifiedAt": "2026-10-26"
+    }
+  },
+  "EuroNav": {
+    "value": 69.3532,
+    "asOf": "2026-10-22",
+    "currency": "EUR",
+    "isin": "FR0007054358",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-price",
+    "nativeValue": 69.3532,
+    "nativeCurrency": "EUR",
+    "fxAsOf": null,
+    "fxFactor": 1,
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "sourceUrls": [
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    ],
+    "checkedAt": "2026-10-26T11:35:31.757978+00:00",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a"
+  }
+}

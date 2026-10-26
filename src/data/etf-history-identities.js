@@ -6,6 +6,7 @@ export const ETF_HISTORY_IDENTITIES = {
  // Independent NAV choices reuse the existing share artwork, never its quote history.
  etfFR0010342592Nav:{...automaticIdentities.etfFR0010342592},
  etfFR0007054358Nav:{...automaticIdentities.etfFR0007054358},
+ etfLU2196470426Nav:{...automaticIdentities.etfLU2196470426},
  etfUsaSmallValue:{icon:'🌎',scene:'world',title:'USA SMALL CAP VALUE',ticker:'ZPRV'},
  etfWorldMidEqual:{icon:'🌍',scene:'world',title:'WORLD MID CAP EQUAL WEIGHT',ticker:'IWSZ'},
  etfEmValue:{icon:'🌏',scene:'world',title:'EMERGENTS VALUE',ticker:'EMVL'},

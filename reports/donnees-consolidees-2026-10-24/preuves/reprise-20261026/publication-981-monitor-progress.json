@@ -1,0 +1,125 @@
+{
+  "at": "2026-10-26T15:10:05Z",
+  "buildInfo": {
+    "sha": "ddd55fad47e850b2374b3d1bcbc1f2f95ccabc2d",
+    "dataSha": "e329e285cafb8f9c032cae55d2daa4291bf91e6c",
+    "lane": "validated-data",
+    "builtAt": "2026-10-26T14:53:26.874Z"
+  },
+  "monitorAt": "2026-10-26T15:08:56.872951+00:00",
+  "HEALActive": false,
+  "HEALResolved": {
+    "id": "field:gap:instrument:IE00BYZK4776:listings",
+    "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+    "aliases": [
+      "IE00BYZK4776"
+    ],
+    "field": "Cotations",
+    "kind": "qualification",
+    "category": "automation-gap",
+    "impactScope": "asset",
+    "tools": [
+      "etf-sheets",
+      "practical-sheets",
+      "investment-calculator"
+    ],
+    "sourceUrls": [
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+      "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+      "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+      "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+    ],
+    "checkedAt": "2026-10-16",
+    "lastSuccessAt": "2026-10-16",
+    "attemptedAt": "2026-10-26T07:55:11.252032+00:00",
+    "asOf": null,
+    "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+    "to": "/donnees-a-revoir",
+    "firstSeenAt": "2026-10-24T15:48:49.350336+00:00",
+    "lastSeenAt": "2026-10-26T15:06:10.361072+00:00",
+    "observations": [
+      {
+        "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "attemptedAt": "2026-10-24T13:27:36.271280+00:00",
+        "lastSuccessAt": "2026-10-16",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+        ]
+      },
+      {
+        "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "attemptedAt": "2026-10-25T06:04:04.641644+00:00",
+        "lastSuccessAt": "2026-10-16",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+        ]
+      },
+      {
+        "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "attemptedAt": "2026-10-25T13:50:37.125793+00:00",
+        "lastSuccessAt": "2026-10-16",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+        ]
+      },
+      {
+        "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "attemptedAt": "2026-10-25T15:56:47.297611+00:00",
+        "lastSuccessAt": "2026-10-16",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+        ]
+      },
+      {
+        "cause": "Automatisation ou qualification incomplète : Certaines cotations ont été renouvelées, mais au moins une ancienne cotation reste sans nouvelle preuve exacte. Sa date initiale est conservée.",
+        "attemptedAt": "2026-10-26T07:55:11.252032+00:00",
+        "lastSuccessAt": "2026-10-16",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
+          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
+          "https://bourse.fortuneo.fr/api/search?term=IE00BYZK4776"
+        ]
+      }
+    ],
+    "originalKind": "review",
+    "proofStatus": "resolution-unproven",
+    "action": "Dernier incident connu conservé : obtenir une preuve ciblée de résolution ou de retrait du périmètre.",
+    "resolvedAt": "2026-10-26T15:07:36.328128+00:00",
+    "resolutionEvidence": {
+      "checkedAt": "2026-10-26",
+      "asOf": null,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    }
+  }
+}

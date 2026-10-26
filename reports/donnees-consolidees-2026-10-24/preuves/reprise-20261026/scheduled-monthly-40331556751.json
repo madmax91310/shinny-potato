@@ -1,0 +1,282 @@
+{
+  "run": 40331556751,
+  "event": "schedule",
+  "monthly": {
+    "checkedAt": "2026-10-26T13:35:07.810864+00:00",
+    "scope": {
+      "requestedIds": [],
+      "expectedIds": [],
+      "selection": "failed-or-missing"
+    },
+    "series": []
+  },
+  "rankingAttemptedIds": [],
+  "FXCacheRetainsOriginalDates": {
+    "TWD": "2026-10-26T11:37:15.687037+00:00",
+    "ECB": "2026-10-26T11:37:15.687037+00:00"
+  },
+  "listing": {
+    "checkedAt": "2026-10-26",
+    "validated": [
+      "FR0010524777",
+      "JE00B1VS3770",
+      "GB00BJYDH287",
+      "GB00BLD4ZM24",
+      "FR0013416716",
+      "SE0021921269",
+      "US18915M1071",
+      "US98980G1022",
+      "US19260Q1076",
+      "US75734B1008",
+      "NL0009805522",
+      "KYG6683N1034",
+      "US36828A1016",
+      "US7731211089",
+      "US8334451098",
+      "US23804L1035",
+      "US83406F1021",
+      "US21037T1097",
+      "US00217D1000",
+      "LU1778762911",
+      "US5949724083",
+      "US26603R1068",
+      "US92537N1081",
+      "CA13321L1085",
+      "US58733R1023",
+      "US7707001027"
+    ],
+    "failed": [],
+    "scope": {
+      "kind": "qualified-listings",
+      "requestedIds": [
+        "SE0021921269",
+        "US18915M1071",
+        "US98980G1022",
+        "US19260Q1076",
+        "US75734B1008",
+        "NL0009805522",
+        "KYG6683N1034",
+        "US36828A1016",
+        "US7731211089",
+        "US8334451098",
+        "US23804L1035",
+        "US83406F1021",
+        "US21037T1097",
+        "US00217D1000",
+        "LU1778762911",
+        "US5949724083",
+        "US26603R1068",
+        "US92537N1081",
+        "CA13321L1085",
+        "US58733R1023",
+        "US7707001027",
+        "FR0010524777",
+        "JE00B1VS3770",
+        "GB00BJYDH287",
+        "GB00BLD4ZM24",
+        "FR0013416716"
+      ],
+      "expectedIds": [
+        "SE0021921269",
+        "US18915M1071",
+        "US98980G1022",
+        "US19260Q1076",
+        "US75734B1008",
+        "NL0009805522",
+        "KYG6683N1034",
+        "US36828A1016",
+        "US7731211089",
+        "US8334451098",
+        "US23804L1035",
+        "US83406F1021",
+        "US21037T1097",
+        "US00217D1000",
+        "LU1778762911",
+        "US5949724083",
+        "US26603R1068",
+        "US92537N1081",
+        "CA13321L1085",
+        "US58733R1023",
+        "US7707001027",
+        "FR0010524777",
+        "JE00B1VS3770",
+        "GB00BJYDH287",
+        "GB00BLD4ZM24",
+        "FR0013416716"
+      ]
+    },
+    "outcomes": [
+      {
+        "id": "SE0021921269",
+        "sourceUrl": "https://api.nasdaq.com/api/nordic/screener/shares?category=MAIN_MARKET&tableonly=true&page=1&size=1000&segment=LARGE_CAP&segment=MID_CAP&segment=SPAC&segment=SMALL_CAP&lang=en",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US18915M1071",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US98980G1022",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US19260Q1076",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US75734B1008",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "NL0009805522",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "KYG6683N1034",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US36828A1016",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US7731211089",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US8334451098",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US23804L1035",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US83406F1021",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US21037T1097",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US00217D1000",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "LU1778762911",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US5949724083",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US26603R1068",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US92537N1081",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "CA13321L1085",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US58733R1023",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      },
+      {
+        "id": "US7707001027",
+        "sourceUrl": "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+        "asOf": "2026-10-26",
+        "checkedAt": "2026-10-26T13:34:58.104435+00:00",
+        "status": "succeeded",
+        "field": "listing-identity"
+      }
+    ]
+  },
+  "derivedIndexCount": 3,
+  "recording": "failed: upstream #982 changed nonqualified inputs; none of this run output published",
+  "existingRetry": 40334914943
+}

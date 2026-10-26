@@ -3,7 +3,7 @@ import {readFileSync,writeFileSync,existsSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {ASSETS} from '../src/data/market-history.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
-import {QUALIFIED_FUND_CALENDARS} from '../src/data/qualified-annual-calendars.js'
+import {PERFORMANCE_FUND_CALENDARS} from '../src/pages/tweet-midi/data/performanceHistory.js'
 const original=JSON.parse(readFileSync(new URL('../reports/reliquat-2026-10-23/reconciliation-90-ecarts.json',import.meta.url)))
 const proof=new URL('../reports/data-review-2026-10-23/preuves/financial-final-observation.json.gz',import.meta.url)
 const observed=existsSync(proof)?JSON.parse(gunzipSync(readFileSync(proof))):null
@@ -45,7 +45,7 @@ for(const row of rows.filter(r=>r.open||r.residualOpen)){
  const windows=Object.values(ASSETS).filter(a=>a.isin===row.isin).map(a=>({id:a.id,currency:a.currency,convention:a.historyConvention??a.priceMethod,
   start:a.points[0]?.date,end:a.points.at(-1)?.date,sourceUrls:a.sourceUrls??[],qualification:qualifyHistoryWindow(a,start,end)}))
  const nav=windows.filter(w=>w.convention==='fund-nav-total-return'&&w.qualification.qualified)
- const calendar=QUALIFIED_FUND_CALENDARS[row.isin]
+ const calendar=PERFORMANCE_FUND_CALENDARS[row.isin]
  const annualNav=Number.isFinite(calendar?.years[row.year])?{id:calendar.id,currency:calendar.currency,year:row.year,sourceUrls:calendar.sourceUrls}:null
  row.currentConsumer={integrationArchive:row.currentConsumer,windows,annualNav,
   route:nav.length?nav.map(w=>`${w.id} · ${w.currency} · ${w.convention}`).join(' ; '):annualNav?`${annualNav.id} · ${annualNav.currency} · calendrier annuel VL distinct`:'Fenêtre de cotation refusée ; aucun calcul admis sur cette période',

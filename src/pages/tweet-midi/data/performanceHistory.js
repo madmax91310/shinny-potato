@@ -1,7 +1,7 @@
 // Annual observations never become synthetic monthly prices or anniversary levels.
 import { ASSETS as MONTHLY_ASSETS } from '../../../data/market-history.js'
 import * as monthly from './marketHistory.js'
-import { QUALIFIED_FUND_CALENDARS, QUALIFIED_INDEX_CALENDARS } from '../../../data/qualified-annual-calendars.js'
+import { qualifiedFundCalendars, QUALIFIED_INDEX_CALENDARS } from '../../../data/qualified-annual-calendars.js'
 import { canonicalIndexHistoryId } from '../../../data/index-history-identities.js'
 import { returnConvention } from '../../../lib/return-convention.js'
 import { performanceBasisLabel } from '../../../lib/performance-conventions.js'
@@ -9,7 +9,10 @@ import { qualifyHistoryWindow }from '../../../data/history-window-quality.js'
 export { MONTHS_FULL } from '../../../data/market-history.js'
 const indexKey = a => `${canonicalIndexHistoryId(a.indexId ?? a.id)}|${a.currency}|${returnConvention(a)}`
 const existingIndices = new Set(monthly.MARKET_ASSETS.filter(a => a.priceUnit === 'points' && monthly.getAnnualReturnStartYears(a.id).length).map(a => indexKey({ ...a, detail: monthly.performanceBasis(a.id) })))
-const annual = [...Object.values(QUALIFIED_FUND_CALENDARS).filter(a => {
+// Performance entries already convert JPY through the shared year-end ECB
+// rates. Keep the issuer's native currency here, never its EUR quote currency.
+export const PERFORMANCE_FUND_CALENDARS = qualifiedFundCalendars({nativeCurrencies: ['EUR', 'USD', 'JPY']})
+const annual = [...Object.values(PERFORMANCE_FUND_CALENDARS).filter(a => {
  const matches=monthly.MARKET_ASSETS.filter(r=>r.isin===a.isin)
  return !matches.some(r=>monthly.getAnnualReturnStartYears(r.id).length)||matches.some(r=>Object.keys(a.years).some(y=>qualifyHistoryWindow(r,`${Number(y)-1}-12`,`${y}-12`).code==='financial-window-unconfirmed'))
 }).map(a=>({...a,label:`${a.label} · calendrier VL`})),

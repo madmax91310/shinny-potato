@@ -1,6 +1,11 @@
 name: Verify remainder exact-share NAV routes
 on:
   workflow_dispatch:
+    inputs:
+      only:
+        description: 'Exact configured remainder NAV IDs, separated by spaces; empty keeps the existing full qualification'
+        type: string
+        default: ''
   push:
     branches: [fix/reliquat-79-20261023]
     paths:
@@ -20,8 +25,19 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install beautifulsoup4
       - name: Collect exact shares, verify identity, income, currency and annual bounds
+        env:
+          NAV_ONLY: ${{ inputs.only }}
         run: |
-          python scripts/collect_official_share_history.py --only $(python -c 'import json; print(" ".join(r["id"] for r in json.load(open("scripts/official-nav-remainder-sources.json"))))') --output "$RUNNER_TEMP/nav.json" --capture-dir "$RUNNER_TEMP/nav-raw"
+          python - <<'PY'
+          import json, os, shlex, subprocess, sys
+          allowed = [r['id'] for r in json.load(open('scripts/official-nav-remainder-sources.json'))]
+          ids = shlex.split(os.environ.get('NAV_ONLY', '')) or allowed
+          if len(ids) != len(set(ids)) or any(i not in allowed for i in ids):
+              raise SystemExit('Unknown or repeated exact NAV target')
+          subprocess.run([sys.executable, 'scripts/collect_official_share_history.py', '--only', *ids,
+                          '--output', os.path.join(os.environ['RUNNER_TEMP'], 'nav.json'),
+                          '--capture-dir', os.path.join(os.environ['RUNNER_TEMP'], 'nav-raw')], check=True)
+          PY
       - name: Preserve real results even after a failure
         if: always()
         uses: actions/upload-artifact@v7.0.1

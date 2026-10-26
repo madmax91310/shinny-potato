@@ -3,7 +3,7 @@ import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js
 import assert from 'node:assert/strict'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { ETFS } from '../src/data/etf-cards.js'
-import { closedCalendarYears, currentAnnualEvidence, qualifyFundCalendar, qualifyIndexCalendar } from '../src/data/qualified-annual-calendars.js'
+import { closedCalendarYears, currentAnnualEvidence, qualifyFundCalendar, qualifyIndexCalendar, QUALIFIED_FUND_CALENDARS } from '../src/data/qualified-annual-calendars.js'
 import INDICES from '../src/data/automated-indices.json' with { type:'json' }
 import * as history from '../src/pages/tweet-midi/data/performanceHistory.js'
 import { derive as calculateInvestment } from '../src/pages/investment-calculator/lib.js'
@@ -11,6 +11,7 @@ import { CERTIFIED_INDEX_HISTORIES } from '../src/data/certified-monthly-indices
 import { ASSETS as MONTHLY } from '../src/data/market-history.js'
 import {qualifyHistoryWindow} from '../src/data/history-window-quality.js'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js'
+import { getPerformanceAssetId } from '../src/data/performance-links.js'
 import engine from '../src/pages/tweet-midi/engines/performance.js'
 import { projectLightRegistries } from './project-light-registries.mjs'
 import { annualProjection } from './project-selected-data.mjs'
@@ -53,6 +54,21 @@ for (const mutation of [
   {sourceUrl:42}, {checkedAt:'2026-10-22'}, {checkedAt:'2026-10-01'}, {checkedAt:'2026-99-30'}, {currency:'GBP'},
 ]) assert.equal(qualifyFundCalendar(isin,{...record,performance:{...record.performance,...mutation}},identity,now),null)
 assert.equal(qualifyFundCalendar(isin,{...record,productId:'IE00B5BMR087'},identity,now),null)
+// The performance consumer can convert native JPY; portfolio admissions keep
+// their existing EUR/USD contract and must not inherit this extra capability.
+const nativeRecord={...record,performance:{...record.performance,currency:'JPY'}}
+const performanceCurrencies={nativeCurrencies:['EUR','USD','JPY']}
+assert.equal(qualifyFundCalendar(isin,nativeRecord,identity,now),null)
+assert.equal(qualifyFundCalendar(isin,nativeRecord,identity,now,performanceCurrencies).currency,'JPY')
+for(const mutation of [{basis:'index'},{portfolioHistoryBasis:'proxy'},{checkedAt:'2026-10-22'},{currency:'GBP'}])
+ assert.equal(qualifyFundCalendar(isin,{...nativeRecord,performance:{...nativeRecord.performance,...mutation}},identity,now,performanceCurrencies),null)
+assert.equal(qualifyFundCalendar(isin,{...nativeRecord,productId:'IE00B5BMR087'},identity,now,performanceCurrencies),null)
+assert(!QUALIFIED_FUND_CALENDARS.LU2196470426,'No new portfolio admission from the performance-only currency capability')
+assert(history.getAnnualReturnStartYears('annual-LU2196470426').includes(2025))
+assert(engine.getSubjectsForFormat('performance-depuis').flatMap(group=>group.items).some(a=>a.id==='annual-LU2196470426'))
+assert.equal(getPerformanceAssetId('LU2196470426'),'annual-LU2196470426','The generated ISIN shortcut uses the qualified calendar')
+assert(!history.getAnnualReturnStartYears('annual-LU2196470426').includes(2020),'No complete launch year invented')
+assert.equal(qualifyHistoryWindow(MONTHLY.etfLU2196470426,'2024-12','2025-12').qualified,false,'Original contested quote remains refused')
 assert.deepEqual(closedCalendarYears({2020:1,2021:true,2022:-100,2023:Infinity,2026:5},now),{2020:1})
 assert.equal(currentAnnualEvidence('2026-10-21','2026-02-30','index.returns',now),false)
 const indexFixture={...INDICES['russell-1000'],returns:{...INDICES['russell-1000'].returns,asOf:'2026-09-30',currency:'USD',values:[[2025,5]],source:{url:'https://issuer.example/index.pdf',sha256:'a'.repeat(64),checkedAt:'2026-10-21'},variant:'NET'}}

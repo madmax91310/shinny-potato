@@ -520,5 +520,25 @@
       "2020-07-08",
       "2020-12-09"
     ]
+  },
+  {
+    "id": "etfLU2196470426Nav",
+    "isin": "LU2196470426",
+    "label": "Xtrackers Nikkei 225 UCITS ETF · VL",
+    "instrumentType": "ETF",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2020-10",
+    "precision": 8,
+    "collectAnniversary": true,
+    "parser": "official-nav",
+    "field": "nav-total-return",
+    "valuationBasis": "fund-nav-total-return",
+    "method": "Valeur liquidative officielle de la part exacte capitalisante, nette des frais du fonds ; devise native JPY et conversion BCE EUR explicite ; cotation originale conservée séparément",
+    "navProvider": "dws",
+    "navCurrency": "JPY",
+    "identityFrom": "2020-10-27",
+    "dwsIdentityBasis": "share-class-launch",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
   }
 ]
