@@ -11,7 +11,12 @@ assert.deepEqual(retiredRuns([{...run,pull_requests:[]}],pr,repo,[{state:'open',
 console.log('Closed PR cleanup cannot cancel master, publications, forks, other PRs, collectors or completed runs.')
 
 const deploy=readFileSync(new URL('../.github/workflows/deploy-pages.yml',import.meta.url),'utf8')
-assert.match(deploy,/group: pages-validation-v3-.*github\.ref/)
+assert.match(deploy,/group: pages-validation-v4-.*github\.ref/)
+for(const name of ['deploy','deploy-fallback']){
+ const publication=deploy.split('\n  '+name+':\n')[1]?.split(/\n  [a-z][a-z0-9-]*:\n/)[0]
+ assert(publication,`${name}: publication lane remains declared`)
+ assert.match(publication,/group: pages-production\s+cancel-in-progress: false/,`${name}: old and new gate generations must share the same uncancellable publication lock`)
+}
 assert.match(deploy,/cancel-in-progress: \$\{\{ github\.event_name == 'pull_request' \}\}/,'Only superseded PR validations may be cancelled; production validations remain serialized')
 assert.match(deploy,/queue: \$\{\{ github\.event_name == 'pull_request' && 'single' \|\| 'max' \}\}/,'PR replacement requires the single pending queue; production retains the max queue')
 const monthly=readFileSync(new URL('../.github/workflows/update-market-monthly.yml',import.meta.url),'utf8')
