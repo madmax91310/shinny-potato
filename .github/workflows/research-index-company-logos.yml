@@ -1,0 +1,25 @@
+name: Research official index company logos
+on:
+  push:
+    branches: [research/index-company-logo-sources-20261026]
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: playwright install chromium --with-deps
+      - run: python logo-research-collect.py
+      - name: Preserve candidates for human review only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add logo-research-results
+          git commit -m 'Preserve official logo candidates for human review'
+          git push origin HEAD
