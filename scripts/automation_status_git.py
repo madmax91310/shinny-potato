@@ -24,13 +24,14 @@ def write_status(api, path, payload, repo=None):
         raise ValueError('Invalid monitor file path')
     body = base64.b64decode(payload['content'], validate=True)
 
-    def git(*args, input=None, env=None, stage='command'):
+    def git(*args, input=None, env=None, stage='command', raw=False):
         result = subprocess.run(['git', *args], cwd=repo, input=input,
                                 capture_output=True, timeout=120, env=env)
         if result.returncode:
             # Remote URLs/authentication may occur in stderr. Do not expose them.
             raise RuntimeError(f'Monitor Git {stage} refused (exit {result.returncode}); no dispatch authorized')
-        return result.stdout.decode().strip()
+        output = result.stdout.decode()
+        return output if raw else output.strip()
 
     git('check-ref-format', 'refs/heads/' + branch, stage='branch validation')
     git('fetch', '--no-tags', '--depth=1', 'origin', 'refs/heads/' + branch, stage='fetch')
@@ -58,5 +59,12 @@ def write_status(api, path, payload, repo=None):
                  input=(payload['message'] + '\n').encode(), stage='commit')
     # No force/lease override: a concurrent advance refuses this transaction.
     # An uncertain push is never retried or followed by an unreserved dispatch.
-    git('push', 'origin', commit + ':refs/heads/' + branch, stage='push')
+    target = ':refs/heads/' + branch
+    pushed = git('push', '--porcelain', 'origin', commit + target, stage='push', raw=True)
+    # A second writer can create the identical commit. Git then reports success
+    # as "up to date"; it has not acquired this writer's reservation boundary.
+    # Require an acknowledged fast-forward, never authorize a duplicate POST.
+    if not any(line.startswith(' \t') and line.split('\t')[1].endswith(target)
+               for line in pushed.splitlines() if '\t' in line):
+        raise RuntimeError('Monitor reservation was not newly recorded; recompute before dispatch')
     return {'content': {'sha': blob}, 'commit': {'sha': commit}}
