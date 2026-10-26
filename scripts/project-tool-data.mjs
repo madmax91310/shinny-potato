@@ -62,7 +62,7 @@ export function projectToolData() {
     }).join('\n')
     return imports + '\nexport default ' + (array ? `[${parts.map((_,i) => `...p${i}`).join(',')}]` : `/* @__PURE__ */ Object.assign({},${parts.map((_,i) => `p${i}`).join(',')})`) + ';'
   }
-  const historyCode = Object.entries(history).map(([key, value]) => {
+  const historyCode = "import {INFLATION_MONTHLY} from './inflation-monthly.js';\n"+Object.entries(history).map(([key, value]) => {
     if (key === 'ASSETS' || key === 'BASELINE_ASSETS') {
       const id = `virtual:tool-data:${key}`
       modules.set(id, partition(`history-${key.toLowerCase()}`, Object.entries(value)))
