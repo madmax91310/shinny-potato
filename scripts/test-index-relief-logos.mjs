@@ -9,7 +9,7 @@ export async function verifyReliefLogos(browser, base) {
   const report=await page.evaluate(async()=>{
     const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
     const {factsheetCurrencies,factsheetInCurrency,factsheetVariants,factsheetInVariant}=await import('/shinny-potato/src/pages/factsheet-tweets/performanceCurrency.js')
-    const {renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
+    const {renderFactsheetImage,renderCompositionImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
     const {companyLogoIdentity}=await import('/shinny-potato/src/pages/factsheet-tweets/companyLogos.js')
     const {default:registry}=await import('/shinny-potato/src/pages/factsheet-tweets/companyLogoRegistry.json')
     const logos=[]
@@ -50,6 +50,12 @@ export async function verifyReliefLogos(browser, base) {
       // A missing/non-applicable observation is never converted to 0.00%.
       labels=[];await renderFactsheetImage({...sheet,countries:[],sectors:[],holdings:[],returns:[[2024,null]]})
       if(labels.includes('0,00 %')||labels.includes('2025')||!labels.includes('Indisponible'))throw new Error('Missing observations fabricated')
+      labels=[];await renderFactsheetImage({...sheet,countries:[],sectors:[],holdings:[['Une entreprise au nom exceptionnellement long entièrement visible',.001]],returns:[]})
+      if(!labels.includes('< 0,01 %')||labels.some(t=>t==='0,00 %'||t==='ment'))throw new Error('Tiny weight or long word')
+      const {getIndexConcentration}=await import('/shinny-potato/src/data/index-company-compositions.js')
+      const c=getIndexConcentration('world')
+      labels=[];await renderCompositionImage(sheet,{...c,top:c.top.map((r,i)=>({...r,weightPct:i===0?99.91:.001})),topWeight:99.919,otherWeight:.081})
+      if(labels.includes('0,00 %')||!labels.includes('< 0,01 %'))throw new Error('Tiny top-ten weight became zero')
     }finally{CanvasRenderingContext2D.prototype.fillText=original;CanvasRenderingContext2D.prototype.drawImage=drawImage}
     return {count,logos}
   })

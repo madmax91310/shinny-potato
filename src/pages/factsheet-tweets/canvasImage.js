@@ -139,8 +139,8 @@ export async function renderFactsheetImage(sheet) {
     {label:'ENTREPRISES',style:'mint',kind:'company',rows:holdings.map(([name,value],i)=>({name:((sheet.compositionOnly||sheet.concentration?.available)?compositionCompanyLabel:imageCompanyLabel)(name),raw:name,value,image:logos[i]}))},
   ]
   const bands=definitions.map(band=>{
-    const width=USABLE/Math.max(4,band.rows.length)
-    const cells=band.rows.map(row=>({...row,nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),valueBlock:fit(ctx,percent(row.value),width-28,99,76,false)}))
+    const width=USABLE/Math.max(1,band.rows.length)
+    const cells=band.rows.map(row=>({...row,nameBlock:block(ctx,row.name,width-32,band.kind==='sector'?40:49,700),valueBlock:fit(ctx,row.value>0&&row.value<.005?'< 0,01 %':percent(row.value),width-28,99,76,false)}))
     const nameH=Math.max(61,...cells.map(cell=>cell.nameBlock.height)),valueH=Math.max(118,...cells.map(cell=>cell.valueBlock.height))
     return {...band,cells,width,nameH,valueH,height:Math.max(422,100+126+15+nameH+8+valueH+26)}
   })
@@ -218,7 +218,7 @@ export async function renderCompositionImage(sheet, composition) {
   const legendTop=donutTop+diameter+60
   const rows=[]
   for(let i=0;i<entries.length;i+=2){
-    const cells=entries.slice(i,i+2).map(entry=>({...entry,label:block(ctx,entry.name,columnW-124,36,500),valueBlock:block(ctx,percent(entry.value),columnW-124,42,700)}))
+    const cells=entries.slice(i,i+2).map(entry=>({...entry,label:block(ctx,entry.name,columnW-124,36,500),valueBlock:block(ctx,entry.value===0&&entry.weight>0?'< 0,01 %':percent(entry.value),columnW-124,42,700)}))
     rows.push({cells,height:Math.max(...cells.map(cell=>cell.label.height+cell.valueBlock.height+18),92)+26})
   }
   const height=Math.ceil(legendTop+rows.reduce((sum,row)=>sum+row.height,0)+90)
