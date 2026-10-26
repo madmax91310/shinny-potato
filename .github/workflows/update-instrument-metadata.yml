@@ -145,6 +145,7 @@ jobs:
           name: metadata-qualified-records
           path: src/data
       - run: python -m unittest discover -s scripts -p 'test_metadata_targeted_scope.py'
+      - run: python -m unittest discover -s scripts -p 'test_lse_listing_reference.py'
       - run: node scripts/test-metadata-freshness-scope.mjs
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'

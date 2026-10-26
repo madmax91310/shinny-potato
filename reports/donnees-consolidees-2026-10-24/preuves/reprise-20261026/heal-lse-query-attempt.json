@@ -1,0 +1,19 @@
+{
+  "sourceUrl": "https://apidata.londonstockexchange.com/search/v1/query",
+  "payload": {
+    "type": "instrument",
+    "group": false,
+    "tradingVenue": "LSE",
+    "filterOptions": [
+      "currency",
+      "typology",
+      "marketCode",
+      "icbSectorName"
+    ],
+    "quickFilterText": "IE00BYZK4776"
+  },
+  "attemptedAt": "2026-10-26T10:39:42.990015+00:00",
+  "status": 200,
+  "bytes": 5237,
+  "sha256": "3c5ec33127aac6e1c20a8d700656939970d0a524b1e2f876485494dff62e0fcc"
+}
