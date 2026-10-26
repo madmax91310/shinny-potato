@@ -3,7 +3,10 @@
 .ri-intro { color: #526581; margin: 12px 0 24px; }
 .ri-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 310px); gap: 14px; }
 .ri-controls > div, .ri-controls > label, .ri-manual { display: grid; gap: 7px; min-width: 0; font-size: .88rem; color: #415775; }
-.ri-controls input, .ri-controls select, .ri-manual textarea { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bdcde9; border-radius: 10px; background: white; color: #182c4c; font: inherit; font-size: 16px; }
+.ri-controls input, .ri-category-picker, .ri-manual textarea { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bdcde9; border-radius: 10px; background: white; color: #182c4c; font: inherit; font-size: 16px; }
+.ri-category-picker { padding: 0; }
+.ri-category-picker summary { min-height: 44px; padding: 10px 12px; cursor: pointer; }
+.ri-category-picker .choice-picker { padding: 8px; }
 .ri-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; min-height: 60px; color: #526581; font-size: .85rem; }
 .ri-category { margin: 12px 0 28px; }
 .ri-category h2 { color: #1948b6; font-size: 1.05rem; margin: 0 0 12px; }

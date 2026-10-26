@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader.jsx'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button.jsx'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { normalizeSearch } from '../../data/search-text.js'
@@ -7,6 +8,7 @@ import { CATEGORIES } from './data.js'
 import './App.css'
 
 export default function RankingIdeas() {
+  const categoryMenu = useRef(null)
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('all')
   const [message, setMessage] = useState('')
@@ -27,7 +29,10 @@ export default function RankingIdeas() {
     <p className="ri-intro">Des sujets dans lesquels piocher pour tes publications sur X.</p>
     <div className="ri-controls">
       <label htmlFor="ri-search">Rechercher une idée<input id="ri-search" type="search" placeholder="ETF, dividendes, immobilier…" value={query} onChange={event => { setQuery(event.target.value); clearFeedback() }} /></label>
-      <div><label htmlFor="ri-category">Catégorie</label><select id="ri-category" value={category} onChange={event => { setCategory(event.target.value); clearFeedback() }}><option value="all">Toutes les catégories</option>{CATEGORIES.map(group => <option key={group.id} value={group.id}>{group.title}</option>)}</select></div>
+      <div><span>Catégorie</span><details className="ri-category-picker" ref={categoryMenu}>
+        <summary>{CATEGORIES.find(group => group.id === category)?.title ?? 'Toutes les catégories'}</summary>
+        <ChoicePicker aria-label="Catégorie" value={category} onChange={event => { setCategory(event.target.value); clearFeedback(); categoryMenu.current.open = false }}><option value="all">Toutes les catégories</option>{CATEGORIES.map(group => <option key={group.id} value={group.id}>{group.title}</option>)}</ChoicePicker>
+      </details></div>
     </div>
     <div className="ri-status"><p role="status">{count} idée{count !== 1 ? 's' : ''}{message && ` · ${message}`}</p>{(query || category !== 'all') && <Button variant="secondary" onClick={() => { setQuery(''); setCategory('all'); clearFeedback() }}>Tout afficher</Button>}</div>
     {manual && <label className="ri-manual">Titre à copier<textarea readOnly value={manual} onFocus={event => event.target.select()} /></label>}
