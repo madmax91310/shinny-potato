@@ -1,7 +1,7 @@
 import { OFFICIAL_ANNIVERSARY_LOGOS } from './officialAnniversaryLogos.js'
 import {withHistoryVisuals} from '../../data/history-visual-identities.js'
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
-import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
+import { ANNIVERSARY_INDEX_VARIANTS } from '../../data/index-history-conventions.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.

@@ -1,6 +1,6 @@
 export const RADAR_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/feed.json'
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
-export { cachedSignalIds, readIds, markRead, cacheSignalGroups, READ_EVENT } from './read-state.js'
+export { cachedSignalIds, readIds, markRead, cacheSignalGroups, READ_EVENT } from '../../lib/radar-read-state.js'
 export function validateFeed(feed) {
   if (feed?.schemaVersion !== 1 || !Number.isFinite(Date.parse(feed.checkedAt)) || !Array.isArray(feed.events) || !feed.coverage || !Array.isArray(feed.errors)) throw new Error('Le radar a renvoyé un format non reconnu.')
   const ids = new Set()

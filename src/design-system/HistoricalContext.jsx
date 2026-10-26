@@ -1,5 +1,5 @@
 import ChoicePicker from './ChoicePicker.jsx'
-import { ANNIVERSARY_INDEX_VARIANTS } from '../pages/tweet-midi/data/indexVariants.js'
+import { ANNIVERSARY_INDEX_VARIANTS } from '../data/index-history-conventions.js'
 import { loadHistoryRecord } from '../data/history-browser.js'
 import { useEffect, useState } from 'react'
 import { historicalWindows } from '../lib/history-windows.js'

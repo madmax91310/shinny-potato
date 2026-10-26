@@ -1,6 +1,6 @@
 import { qualifyHistoryWindow, requireHistoryWindow } from '../../../data/history-window-quality.js';
-import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
-export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
+import { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
+export { ANNIVERSARY_INDEX_VARIANTS } from '../../../data/index-history-conventions.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
 import { performanceBasisLabel } from '../../../lib/performance-conventions.js';
 import {

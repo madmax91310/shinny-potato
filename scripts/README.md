@@ -448,3 +448,15 @@ Voir `docs/publication-automation.md` pour les conventions, contrôles et limite
 ### Secours sectoriel iShares depuis le portefeuille intégral
 
 `ishares_sector_fallback.py` est activé par `sectorFallback` dans `etf-pilot.json` uniquement pour IE00B5BMR087, qualifié dans `reports/data-review-2026-10-23/preuves/sector-fallback/`. Une table primaire entièrement nulle ne devient pas une allocation : le collecteur contrôle séparément les positions physiques intégrales, l’ISIN, la devise, les trois dates (table, positions, compteur), les identités et le nombre de positions publié. La somme doit correspondre aux seuls arrondis des poids NAV à cinq décimales. Les liquidités et dérivés signés restent dans leur catégorie ; aucun poids n’est recalculé pour atteindre 100 %. Une table positive partielle, une date différente, une classification inconnue ou une couverture incomplète restent bloquées. L’échec primaire continue dans `collectionErrors`, même si l’agrégation qualifiée permet de publier la donnée. Tester avec `python3 -m unittest discover -s scripts -p test_ishares_sector_fallback.py` ; la preuve de disponibilité reste une exécution GitHub réelle.
+
+## Frontières des modules
+
+`npm run audit:architecture` teste le garde-fou puis analyse les imports JS/JSX
+avec le parseur fourni par Vite. Le prébuild l'exécute aussi : pas de cycle,
+pas d'import de page depuis `data/lib/design-system`, pas de dépendance UI ou
+navigateur dans les moteurs/modèles ciblés. Les imports calculés demandent toujours
+un examen du générateur et du bundle ; le script les signale sans les inventer.
+`node scripts/audit-module-boundaries.mjs --json` fournit le graphe courant sans
+écrire de projection dans le dépôt. `test-radar-read-state.mjs` protège les clés,
+formats et événements partagés entre radar et navigation, et fait partie de `test:radar`.
+Voir la cartographie et les limites dans `docs/maintainability-audit-2026-10-26.md`.

@@ -166,3 +166,34 @@ boucle. Ajout de la même attente explicite avant la lecture ; toutes les assert
 sur les liens, les budgets et les écrans sont conservées. Relance complète réussie
 sur les 25 outils visibles, ordinateur et mobile, et les liens directs Pages.
 Ce changement de synchronisation est committé séparément des déplacements de code.
+
+## Lot 3 — sens des dépendances et garde-fou
+
+Avant : navigation → page radar pour les clés/événements ; contexte historique →
+page Tweet Midi pour les conventions. Après : `src/lib/radar-read-state.js` et
+`src/data/index-history-conventions.js` possèdent ces contrats légers. Navigation,
+client radar, historique et art anniversaire consomment les propriétaires communs.
+Les deux anciens chemins sont des façades ; clés, formats, limites et événements
+restent identiques, sans migration de stockage.
+
+`npm run audit:architecture` analyse 467 modules, 1 303 imports JS dont 68 différés :
+zéro cycle et zéro inversion interdite. Les tests du garde-fou exercent imports,
+réexports, JSX, commentaires, imports différés/calculés, cycles et dépendances UI
+transitives. Le prébuild exécute ce contrôle en local et dans la CI existante.
+Le garde-fou ne prétend pas résoudre un chemin d'import arbitraire calculé à
+l'exécution ; les générateurs et budgets Vite restent complémentaires.
+
+`test-radar-read-state` (ajouté à `test:radar`), toute la suite `test:radar`,
+`test-anniversary-indices`, `test-format-loading` et recette Chromium radar :
+réussis. Build, budgets et lint réussis ; les mêmes 13 avertissements restent.
+JS initial : 267,36 kB / gzip 87,48 kB, contre 267,33 / 87,47 initialement ;
+27 points d'entrée différés inchangés. Aucun historique chargé systématiquement.
+La recette globale de routes passe après la correction de synchronisation isolée
+ci-dessus. README et documentation des scripts décrivent responsabilités,
+dépendances permises, ajout d'outil et commandes de vérification.
+
+Requalification complémentaire : le registre courant expose 26 entrées, dont
+25 visibles ; les 27 entrées différées du build incluent les points d'entrée de
+compatibilité. Analyse d'entreprise et sa collecte ne sont plus présentes : la
+fiche du 18 octobre n'est plus un inventaire courant. Les clés/aliases de données
+et archives de tests qui la mentionnent ne sont pas réactivés.
