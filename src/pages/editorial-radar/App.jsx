@@ -1,63 +1,22 @@
 import { editorialExclusion } from '../../lib/radar-policy.js'
-import { readableSignal, formatRadarDate } from './presentation.js'
-import { EDITORIAL_STATES, EDITORIAL_LIMIT, EDITORIAL_DAYS, FACT_LABELS, factType, editorialAssessment, selectEditorial, editorialState, editorialAudience, etfAnnouncement, groupSignals, recentEditorial, investorFilingType } from '../../lib/radar-editorial.js'
+import { publicationSelection } from '../../lib/radar-editorial.js'
+import PublicationCard from './PublicationCard.jsx'
+import { EDITORIAL_LIMIT, EDITORIAL_DAYS, groupSignals, recentEditorial } from '../../lib/radar-editorial.js'
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
-import { fetchRadar, FAMILIES, markRead, readIds, READ_EVENT, staleFeed, cacheSignalGroups } from './client.js'
+import { fetchRadar, markRead, readIds, READ_EVENT, staleFeed, cacheSignalGroups } from './client.js'
 import './style.css'
+import {useSearchParams} from 'react-router-dom'
 
-const GroupDetails = lazy(() => import('./GroupDetails.jsx'))
-const RelatedStages = lazy(() => import('./RelatedStages.jsx'))
 const RadarSourceDetails = lazy(() => import('./RadarSourceDetails.jsx'))
-const DraftEditor = lazy(() => import('./DraftEditor.jsx'))
 const CalendarDetails = lazy(() => import('./CalendarDetails.jsx'))
 const PurchasingNews = lazy(() => import('./PurchasingNews.jsx'))
 const RadarFilters = lazy(() => import('./RadarFilters.jsx'))
-const ScoreDetails = lazy(() => import('./ScoreDetails.jsx'))
-const EtfAnnouncement = lazy(() => import('./EtfAnnouncement.jsx'))
-const ConditionsDetails = lazy(() => import('./ConditionsDetails.jsx'))
-const HousingDetails = lazy(() => import('./HousingDetails.jsx'))
-const date = formatRadarDate
-function Signal({ event, read, onRead }) {
-  const announcement = event.announcementEvidence ?? etfAnnouncement(event.label)
-  const filing = investorFilingType(event), canPublish = !filing || filing === 'publication'
-  const [housingOpen,setHousingOpen]=useState(false), [scoreOpen,setScoreOpen]=useState(false)
-  const [draftOpen,setDraftOpen]=useState(false),[stagesOpen,setStagesOpen]=useState(false)
-  return <article id={`subject-${event.id}`} className={`radar-card ${read ? 'radar-card--read' : ''}`}>
-    <div className="radar-card-top"><span className="radar-label">{FAMILIES[event.family]}</span>{!read && <span className="radar-unread">Non lu</span>}<time dateTime={event.detectedAt}>{date(event.detectedAt)}</time></div>
-    <span className={`radar-maturity radar-maturity--${editorialState(event)}`}>{EDITORIAL_STATES[editorialState(event)]}</span>
-    <h2>{event.title}</h2>
-    {event.extraction?.status==='partial'&&<p className="radar-warning">Extraction partielle : {event.extraction.reason} Les lignes non qualifiées restent en file.</p>}
-    {event.relatedStages?.length>0&&<details onToggle={e=>setStagesOpen(e.currentTarget.open)}><summary>Étapes liées et preuves</summary>{stagesOpen&&<Suspense fallback={<p>Chargement…</p>}><RelatedStages stages={event.relatedStages}/></Suspense>}</details>}
-    {event.correctionPublishedAt&&<p>Correction sourcée : {event.correctionPublishedAt}</p>}
-    {event.publicationDateNote&&<p className="radar-warning">{event.publicationDateNote}</p>}
-    <p className="radar-scope">{FACT_LABELS[factType(event)]} · {editorialAssessment(event).qualification.label} · Publication : {event.publishedAt ?? 'date non documentée'} · Collecte : {date(event.checkedAt)}</p>
-    <details className="radar-score" onToggle={e=>setScoreOpen(e.currentTarget.open)}><summary>Intérêt éditorial : {editorialAssessment(event).score}/100</summary>{scoreOpen&&<Suspense fallback={<p>Chargement…</p>}><ScoreDetails assessment={editorialAssessment(event)}/></Suspense>}</details>
-    {event.evidenceLevel && <p className="radar-scope">Preuve : {({official:'Source officielle', 'professional-association':'Organisme professionnel identifié',journalistic:'Information journalistique attribuée ; confirmation officielle non établie'})[event.evidenceLevel]}</p>}
-    {event.effectiveAt && <p><strong>Application annoncée : {event.effectiveAt}</strong> · La date de publication reste {event.publishedAt ?? 'inconnue'}.</p>}
-    {event.promotionEndsAt && <p>Promotion temporaire jusqu’au {event.promotionEndsAt} ; conditions dans la source.</p>}
-    {event.sources?.length > 1 && <details><summary>Sources et documents cités</summary><ul>{event.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a> · {source.role}</li>)}</ul></details>}
-    <p className="radar-audience"><strong>Qui est concerné ?</strong> {editorialAudience(event)}</p>
-    {(announcement||event.products?.length>0)&&<Suspense fallback={<p>Chargement…</p>}><EtfAnnouncement event={event} announcement={announcement}/></Suspense>}
-    <p className="radar-entity">{event.family !== 'pouvoir-achat' && event.field !== 'announcement' && event.label} {/^[A-Z]{2}[A-Z0-9]{10}$/.test(event.entity) && <small>{event.entity}</small>}</p>
-    {event.family === 'etf' && event.field === 'announcement' ? null : event.factType === 'statistical-publication' && event.summary ? <div className="radar-news-detail"><p><strong>Période des données : {event.referencePeriod ?? 'voir le résumé officiel'}</strong></p><blockquote>{event.summary}</blockquote></div> : event.family === 'pouvoir-achat' ? <div className="radar-news-detail"><p><strong>{event.topicLabel} · {event.status}</strong></p><p>{event.summary}</p>{event.originalLabel ? <details><summary>Lire le texte officiel</summary><p>{event.originalLabel}</p><p>{event.originalSummary}</p><p>{event.statusEvidence}</p></details> : event.statusEvidence && <p className="radar-scope">Formulation de la source : {event.statusEvidence}</p>}<p className="radar-scope">{event.publisher} · {event.changeEvidence ? `changement observé entre ${date(event.changeEvidence.beforeCheckedAt)} et ${date(event.changeEvidence.observedAt)} ; date d’annonce inconnue` : `publié le ${event.period}`}</p></div> : <div className="radar-comparison"><div><span>Avant · {event.beforePeriod ?? 'premier relevé'}</span><strong>{event.beforeText}</strong></div><div><span>Après · {event.period}</span><strong>{event.afterText}</strong></div></div>}
-    {event.family !== 'pouvoir-achat' && <><p className="radar-scope">{event.scope}</p><p>{event.reason}</p></>}
-    {event.conditions && <Suspense fallback={null}><ConditionsDetails conditions={event.conditions} changes={event.changeEvidence?.changes}/></Suspense>}
-    {event.housing && <details onToggle={e=>setHousingOpen(e.currentTarget.open)}><summary>Conventions immobilières et scénario</summary>{housingOpen&&<Suspense fallback={<p>Chargement…</p>}><HousingDetails housing={event.housing}/></Suspense>}</details>}
-    {event.evidence?.excerpt && <details className="radar-proof"><summary>Preuves de l’extraction</summary><blockquote>{event.evidence.excerpt}</blockquote><p className="radar-scope">{event.evidence.method} · Empreinte de la source : {event.evidence.sourceHash}</p></details>}
-    <div className="radar-angle"><strong>{canPublish ? 'Une piste pour ton post' : 'Point à vérifier'}</strong><p>{event.angle}</p></div>
-    <div className="radar-actions"><a href={event.sourceUrl} target="_blank" rel="noreferrer">Voir la source ↗</a>{event.documentUrl && event.documentUrl !== event.sourceUrl && <a href={event.documentUrl} target="_blank" rel="noreferrer">Communiqué émetteur ↗</a>}{event.previousSourceUrl && event.previousSourceUrl !== event.sourceUrl && <a href={event.previousSourceUrl} target="_blank" rel="noreferrer">Source précédente ↗</a>}{event.tool && <Link to={event.tool}>Ouvrir l’outil</Link>}<Button onClick={() => onRead(event.id)} disabled={read}>{read ? 'Lu' : 'Marquer comme lu'}</Button></div>
-    {canPublish && <details className="radar-draft" onToggle={e=>{if(e.currentTarget.open)setDraftOpen(true)}}><summary>Préparer une publication</summary>{draftOpen&&<Suspense fallback={<p>Chargement…</p>}><DraftEditor event={event}/></Suspense>}</details>}
-  </article>
-}
-function SignalGroup({group,read,onRead}) {
-  if(group.events.length===1)return <Signal event={group.event} read={read.includes(group.event.id)} onRead={onRead}/>
-  return <Suspense fallback={<p>Chargement du dossier…</p>}><GroupDetails group={group} read={read} onRead={onRead} renderSignal={(event,isRead)=><Signal event={event} read={isRead} onRead={onRead}/>}/></Suspense>
-}
+const date=value=>value?new Intl.DateTimeFormat('fr-FR',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Paris'}).format(new Date(value)):'Non documenté'
 export default function App() {
-  const subject = new URLSearchParams(window.location.search).get('subject')
+  const [params]=useSearchParams()
+  const subject=params.get('subject')
   const [sourceOpen,setSourceOpen] = useState(false), [filtersOpen,setFiltersOpen]=useState(false), [calendarOpen,setCalendarOpen]=useState(false), [coverageOpen,setCoverageOpen]=useState(false)
   const [view, setView] = useState(subject ? 'history' : 'selection')
   const [feed, setFeed] = useState(null), [error, setError] = useState(''), [loading, setLoading] = useState(true)
@@ -65,7 +24,7 @@ export default function App() {
   const refresh = useCallback(async (signal) => {
     try {
       const next = await fetchRadar(signal)
-      cacheSignalGroups(groupSignals(next.events.filter(event => editorialState(event) === 'ready' && recentEditorial(event))).map(group => group.events.map(event => event.id)))
+      cacheSignalGroups(publicationSelection(next.events).ready.map(group=>group.readIds))
       setFeed(next); setError('')
     }
     catch (e) { if (e.name !== 'AbortError') setError(e.message) }
@@ -82,7 +41,8 @@ export default function App() {
   useEffect(() => {
     if (!subject || !feed) return
     const frame=requestAnimationFrame(()=>{
-      const target=document.getElementById(`subject-${subject}`)
+      const group=groupSignals(feed.events).find(g=>g.events.some(e=>e.id===subject))
+      const target=document.getElementById(`subject-${subject}`)??(group&&document.getElementById(`subject-${group.event.id}`))
       if(!target)return
       for(let node=target.parentElement;node;node=node.parentElement)if(node.tagName==='DETAILS')node.open=true
       target.scrollIntoView({block:'start'})
@@ -90,12 +50,10 @@ export default function App() {
     return()=>cancelAnimationFrame(frame)
   },[feed,subject])
   function onRead(ids) { if (!markRead(Array.isArray(ids) ? ids : [ids])) setMessage('La mémorisation sur cet appareil est indisponible.') }
-  const events = (feed?.events ?? []).filter(event => !event.editorialExcluded && !editorialExclusion(event)).map(readableSignal)
-  const groups = groupSignals(events)
-  const ready = groups.filter(group => group.state === 'ready' && group.assessment.reliability.usable && recentEditorial(group.event))
-  const selection = selectEditorial(ready.filter(group => group.assessment.priority))
-  const selectionIds = new Set(selection.selected.map(group => group.id))
-  const unread = ready.filter(group => group.events.some(event => !read.includes(event.id))).length
+  const events = (feed?.events ?? []).filter(event => !event.editorialExcluded && !editorialExclusion(event))
+  const {groups,ready,selected}=publicationSelection(events)
+  const selectionIds=new Set(selected.map(group=>group.id))
+  const unread = ready.filter(group => group.readIds.some(id=>!read.includes(id))).length
   const watches = groups.filter(group => group.state === 'watch' && recentEditorial(group.event)).length
   const secondary = groups.filter(group => group.state === 'secondary' && recentEditorial(group.event)).length
   const matchesNews = item => (topic === 'all' || item.topic === topic) && `${item.label} ${item.summary} ${item.status}`.toLocaleLowerCase('fr-FR').includes(search.toLocaleLowerCase('fr-FR'))
@@ -111,7 +69,7 @@ export default function App() {
   const displayedIds = displayed.flatMap(group => group.events.map(event => event.id))
   return <div className="radar-page">
     <PageHeader title="Radar éditorial" subtitle="Les changements concrets qui méritent un post." />
-    <section className="radar-overview" aria-label="État du radar"><div><strong>{unread}</strong><span>sujets à exploiter non lus</span></div><div><strong>{watches}</strong><span>sujets à suivre</span></div><div><strong>{secondary}</strong><span>variations secondaires</span></div></section>
+
     <div className="radar-status"><p>Dernier contrôle : {date(feed?.checkedAt)}. Veille toutes les 30 minutes de 8 h à 20 h (Europe/Paris), selon les délais du planificateur, et après les collectes raccordées.</p><Button onClick={() => refresh()}>Actualiser</Button></div>
     {loading && <p role="status">Chargement des derniers signaux…</p>}
     {error && <p role="alert" className="radar-warning">{error}{feed ? ' Les derniers signaux chargés restent affichés.' : ''}</p>}
@@ -123,9 +81,12 @@ export default function App() {
     {feed && !filtered.length && <section className="radar-empty"><h2>{events.length ? 'Aucun signal pour cette sélection' : 'Le radar est en veille'}</h2><p>{events.length ? 'Aucun sujet ne correspond à cette vue et à ces filtres. Les annonces à compléter et les variations secondaires restent accessibles dans leurs onglets.' : 'Le premier relevé sert de référence. Les prochains changements pertinents apparaîtront ici automatiquement.'}</p></section>}
     {subject && <p><a href={`#subject-${subject}`}>Aller au sujet de la notification</a> · Les filtres permettent de retrouver les autres sujets.</p>}
     {feed?.calendar?.length > 0 && <details className="radar-coverage" onToggle={e=>setCalendarOpen(e.currentTarget.open)}><summary>Calendrier des dates annoncées</summary>{calendarOpen&&<Suspense fallback={<p>Chargement…</p>}><CalendarDetails feed={feed}/></Suspense>}</details>}
-    <div className="radar-list">{displayed.map(group => <SignalGroup key={group.id} group={group} read={read} onRead={onRead} />)}</div>
+    <div className="radar-list">{displayed.map(group => <PublicationCard key={group.id} group={group} read={read} onRead={onRead} />)}</div>
     {family === 'pouvoir-achat' && view !== 'selection' && feed?.purchasingPower && <Suspense fallback={<p>Chargement de la veille…</p>}><PurchasingNews {...{feed,newsItems}}/></Suspense>}
     {view === 'selection' && ready.length > displayed.length && <Button onClick={() => setView('other')}>Voir les autres sujets exploitables ({ready.length - displayed.length})</Button>}
+    <details className="radar-coverage"><summary>Vue d’ensemble et diagnostics</summary>
+    <section className="radar-overview" aria-label="État du radar"><div><strong>{unread}</strong><span>sujets à exploiter non lus</span></div><div><strong>{watches}</strong><span>sujets à suivre</span></div><div><strong>{secondary}</strong><span>variations secondaires</span></div></section>
+    </details>
     {feed?.sources && <details className="radar-coverage" onToggle={e=>setSourceOpen(e.currentTarget.open)}><summary>Sources de publications et file de traitement</summary>{sourceOpen&&<Suspense fallback={<p>Chargement…</p>}><RadarSourceDetails feed={feed}/></Suspense>}</details>}
     {feed?.notifications && <p className={feed.notifications.status === 'error' ? 'radar-warning' : 'radar-scope'}>Notifications GitHub : {feed.notifications.status === 'error' ? 'en échec, reprise au prochain passage' : 'contrôle terminé'} · {feed.notifications.pending ?? 0} sujet(s) en attente. {feed.notifications.reason ?? ''} La réception sur téléphone dépend des réglages GitHub.</p>}
     <details className="radar-coverage" onToggle={e=>setCoverageOpen(e.currentTarget.open)}><summary>Ce que surveille le radar</summary>{coverageOpen&&<Suspense fallback={<p>Chargement…</p>}><RadarSourceDetails feed={feed} variant="coverage"/></Suspense>}</details>

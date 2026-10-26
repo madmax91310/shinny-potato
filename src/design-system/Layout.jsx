@@ -30,6 +30,7 @@ export default function Layout() {
     <a className="workspace-skip" href="#workspace-main">Aller au contenu</a>
     <header className="workspace-masthead">
       <Link to="/" className="workspace-identity">Épargnant Libre</Link>
+      <Link to="/radar-editorial" className="workspace-mobile-radar">Radar <RadarCount/></Link>
       {pathname !== '/' && <Link to="/?vue=ensemble" className="workspace-home-link">← Tous les outils</Link>}
     </header>
     <div className="workspace-body">

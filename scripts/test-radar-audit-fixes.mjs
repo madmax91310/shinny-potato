@@ -54,7 +54,7 @@ assert.equal(editorialState(forecast,+now),'watch');assert.ok(editorialAssessmen
 const promoters={...base,family:'economie',factType:'statistical-publication',label:'Les perspectives de mises en chantier baissent dans la promotion immobilière'}
 assert.equal(qualifyRadarFact(promoters).audience,'professional');assert.equal(editorialState(promoters,+now),'watch')
 assert.equal(editorialState({...base,label:'Le prêt à taux zéro Bpifrance pour les commerçants',summary:'Financement de la trésorerie des entreprises.'},+now),'excluded')
-assert.equal(editorialState({...base,label:'Le PTZ immobilier des primo-accédants',summary:'Financement du logement des particuliers.'},+now),'ready')
+assert.equal(editorialState({...base,label:'Le PTZ immobilier des primo-accédants',summary:'Financement du logement des particuliers.'},+now),'watch','Le PTZ reste dans le périmètre, mais un libellé générique sans chiffre ni changement ne suffit pas')
 const survey={...base,label:'Baromètre des difficultés des Français à épargner',summary:'Selon cette enquête, 28 % des personnes interrogées prévoient de réduire leur épargne ; 2 000 adultes en France métropolitaine.',topic:'statistiques'}
 assert.equal(qualifyRadarFact(survey).nature,'household-intentions');assert.equal(editorialState(survey,+now),'ready');assert.ok(!editorialAssessment(survey,+now).major)
 assert.equal(recentEditorial({...base,publishedAt:'2026-06-01'},+now),false,'Fresh collection never rejuvenates an archive')

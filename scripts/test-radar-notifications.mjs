@@ -3,9 +3,9 @@ import { advanceRadar } from './lib/editorial-radar.mjs'
 import { notificationState, notifyRadar, recentSignals, TRACKER_MARKER, RECENT_DAYS } from './lib/radar-notifications.mjs'
 
 const repo = 'madmax91310/shinny-potato', now = new Date('2026-10-09T15:00:00Z')
-const row = { family: 'indices', entity: 'russell-1000', label: 'Russell 1000', field: 'sectors:Tech', fieldLabel: 'Poids de la technologie', value: 30, threshold: 2, unit: '%', scope: 'Indice Russell 1000', period: '2026-09-30', checkedAt: '2026-10-08', sourceUrl: 'https://www.lseg.com/index-factsheet', tool: '/tweets-factsheets' }
+const row = { family: 'indices', entity: 'russell-1000', label: 'Russell 1000', field: 'sectors:Tech', fieldLabel: 'Poids de la technologie', value: 30, threshold: 2, unit: '%', scope: 'Indice Russell 1000', period: '2026-09-30', checkedAt: '2026-10-08', publishedAt:'2026-10-08',sourceUrl: 'https://www.lseg.com/index-factsheet', tool: '/tweets-factsheets' }
 const initial = advanceRadar(null, [row], { now })
-const changed = advanceRadar(initial.state, [{ ...row, value: 32, period: '2026-10-08' }], { now })
+const changed = advanceRadar(initial.state, [{ ...row, value: 35, period: '2026-10-08' }], { now })
 const event = changed.newEvents[0]
 const ledger = notificationState(initial.state, null, now)
 const bot = { login: 'github-actions[bot]' }
@@ -69,13 +69,13 @@ assert.ok(tracker.body.includes(TRACKER_MARKER))
 for (const pattern of [/Russell 1000/, /Autre indice/, /editorial-radar-event:/, /radar-data\/state\.json/]) assert.match(tracker.body, pattern)
 assert.equal(server.posted[1].length, 1, 'Un seul commentaire pour le lot')
 const announcement = server.posted[1][0].body
-for (const pattern of [/@madmax91310/, /30 %/, /32 %/, /2026-09-30/, /2026-10-08/, /2026-10-09T15:00:00.000Z/, /https:\/\/www.lseg.com\/index-factsheet/, /https:\/\/www.lseg.com\/previous/, /shinny-potato\/tweets-factsheets/, /editorial-radar-event:/]) assert.match(announcement, pattern)
+for (const pattern of [/@madmax91310/, /30 %/, /35 %/, /2026-09-30/, /2026-10-08/, /https:\/\/www.lseg.com\/index-factsheet/, /editorial-radar-event:/]) assert.match(announcement, pattern)
 const repeated = mock(); assert.equal((await send([event, second], result.ledger, repeated)).sent, 0); assert.equal(repeated.calls.length, 0)
 assert.deepEqual(ledger.acknowledged, [], 'Le registre précédent reste intact')
 
 // Failed sends remain pending even if the next run has no newEvents.
 await assert.rejects(send(changed.state.events, ledger, mock({ failPost: true })), /503/)
-const unchanged = advanceRadar(changed.state, [{ ...row, value: 32, period: '2026-10-08' }], { now })
+const unchanged = advanceRadar(changed.state, [{ ...row, value: 35, period: '2026-10-08' }], { now })
 assert.equal(unchanged.newEvents.length, 0)
 assert.equal((await send(unchanged.state.events, ledger, mock())).sent, 1)
 
@@ -107,19 +107,20 @@ assert.equal(repair.created.length, 0)
 await assert.rejects(send([event], ledger, mock({ hasIssues: false })), /activées/)
 await assert.rejects(send([event], ledger, { api: async () => { throw new Error('HTTP 403') } }), /403/)
 
-// Complete object values, safe links, no mentions injected by source text.
+// Non-actionable large objects remain archived; a valid title is escaped.
 const object = { ...event, after: { positions: Array.from({ length: 20 }, (_, i) => ({ ticker: `STOCK${i}` })) }, title: 'Titre @intruder <script>' }
-const objectServer = mock(); await send([object], ledger, objectServer)
-assert.match(objectServer.posted[1][0].body, /STOCK19/)
+assert.equal((await send([object],ledger,mock())).sent,0)
+assert.equal(object.after.positions.length,20)
+const objectServer=mock();await send([{...event,title:object.title}],ledger,objectServer)
 assert.doesNotMatch(objectServer.posted[1][0].body, /@intruder|<script>/)
 assert.doesNotMatch(objectServer.created[0].body, /@intruder|<script>/)
 const invalid = mock()
-await assert.rejects(send([event, { ...second, sourceUrl: 'javascript:alert(1)' }], ledger, invalid), /HTTPS/)
-assert.equal(invalid.created.length, 0)
+assert.equal((await send([event,{...second,sourceUrl:'javascript:alert(1)'}],ledger,invalid)).sent,1,'An invalid proof never becomes notifiable; the independent valid fact still sends')
+assert.doesNotMatch(invalid.posted[1][0].body,/javascript:/)
 // Very large batches are split into several comments; the body stays bounded.
 const many = Array.from({ length: 100 }, (_, i) => ({ ...event, id: i.toString(16).padStart(24, '0'), angle: 'Texte '.repeat(100) }))
 const large = mock(); assert.equal((await send(many, ledger, large)).sent, 100)
-assert.ok(large.posted[1].length > 1)
+assert.equal(large.posted[1].length,1,'One event with many facts produces one compact announcement')
 for (const comment of large.posted[1]) assert.ok(Buffer.byteLength(comment.body) <= 55000)
 assert.ok(Buffer.byteLength(large.created[0].body) <= 60000)
 assert.equal(new Set(large.created[0].body.match(/editorial-radar-event:[a-f0-9]{24}/g)).size, 100, 'Chaque signal notifié laisse un accusé dans la description')
@@ -129,12 +130,12 @@ console.log('Notifications radar : silence initial, seuils, issue suivie, preuve
 const huge = { ...event, after: { positions: Array.from({ length: 3000 }, (_, i) => ({ ticker: `STOCK${i}`, value: 123456789 })) } }
 const hugeServer = mock(), revision = 'a'.repeat(40)
 const hugeResult = await notifyRadar({ events: [huge, second], ledger, api: hugeServer.api, repo, evidenceRevision: revision, now })
-assert.equal(hugeResult.sent, 2)
+assert.equal(hugeResult.sent, 1)
 assert(hugeServer.posted[1].every(comment => Buffer.byteLength(comment.body) <= 55000))
-assert(hugeServer.posted[1].some(comment => comment.body.includes(`/blob/${revision}/state.json`)))
-assert(hugeServer.posted[1].some(comment => comment.body.includes(`editorial-radar-event:${huge.id}`)))
+assert(hugeServer.posted[1].some(comment => comment.body.includes('/radar-editorial?subject=')))
+assert(hugeServer.posted[1].some(comment => comment.body.includes(`editorial-radar-event:${second.id}`)))
 assert.equal(huge.after.positions.length, 3000, 'Full source evidence is not mutated')
-assert.equal((await send([huge, second], ledger, mock({ issues: hugeServer.created, comments: { 1: hugeServer.posted[1] } }))).recovered, 2)
+assert.equal((await send([huge, second], ledger, mock({ issues: hugeServer.created, comments: { 1: hugeServer.posted[1] } }))).recovered, 1)
 
 // Maintenance: signals leave the window, the tracked issue closes itself and reopens on
 // the next signal; an unchanged issue is never rewritten; earlier per-batch issues close.
@@ -159,7 +160,7 @@ assert.equal((await send([huge, second], ledger, mock({ issues: hugeServer.creat
   const nothing = mock()
   await notifyRadar({ events: [event, second], ledger: result.ledger, api: nothing.api, repo, now: later, maintain: true })
   assert.equal(nothing.created.length, 0, 'Aucune issue créée sans signal récent')
-  const fresh = { ...event, id: 'c'.repeat(24), detectedAt: later.toISOString() }
+  const fresh = { ...event, id: 'c'.repeat(24),before:event.after,after:40,beforeText:'35 %',afterText:'40 %',beforePeriod:event.period,period:later.toISOString().slice(0,10),publishedAt:later.toISOString().slice(0,10),detectedAt: later.toISOString() }
   const reopened = mock({ issues: [maintained.tracker()] })
   const reopenResult = await notifyRadar({ events: [event, second, fresh], ledger: result.ledger, api: reopened.api, repo, now: later, maintain: true })
   assert.equal(reopenResult.sent, 1)

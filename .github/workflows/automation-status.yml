@@ -39,6 +39,7 @@ on:
       - "scripts/fixtures/automation-reports/**"
       - "scripts/test_automation_status.py"
       - "scripts/automation_monitoring.py"
+      - "scripts/monitor_notifications.py"
       - "scripts/test_automation_monitoring.py"
       - "scripts/automation_recovery.py"
       - "scripts/github_automation_transport.py"
@@ -55,6 +56,7 @@ on:
       - 'scripts/automation-report-contracts.json'
       - 'scripts/fixtures/automation-reports/**'
       - 'scripts/automation_monitoring.py'
+      - 'scripts/monitor_notifications.py'
       - 'scripts/automation_recovery.py'
       - 'scripts/github_automation_transport.py'
       - 'scripts/build-monitoring-context.mjs'

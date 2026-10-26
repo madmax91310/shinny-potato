@@ -29,7 +29,7 @@ assert.equal(editorialAssessment({...change,changeEvidence:{...change.changeEvid
 assert.equal(editorialState({...change,publishedAt:'2027-01-01'},+later),'watch')
 assert.equal(editorialState({...change,changeEvidence:null},+later),'watch','Undated page alone never qualifies')
 assert.equal(editorialState({...change,promotionEndsAt:'2026-10-24'},+later),'watch')
-assert.match(editorialAssessment(change,+later).criteria.find(r=>r.key==='freshness').reason,/annonce non datée/)
+assert.match(editorialAssessment(change,+later).criteria.find(r=>r.key==='novelty').reason,/date d’annonce inconnue/)
 assert.equal(offerDates('Offre valable du 20.07.2026 au 31.10.2026.').promotionEndsAt,'2026-10-31')
 assert.equal(offerDates('Offre jusqu’au 31 février 2026').promotionEndsAt,null)
 const offer=offerSnapshot(await fixture('fortuneo-offers.html'),OFFER_SOURCES[1],now)

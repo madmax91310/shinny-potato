@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react'
-import { cachedSignalIds, readIds, READ_EVENT } from '../lib/radar-read-state.js'
-const unreadCount = () => { const read = new Set(readIds()); return cachedSignalIds().filter(id => !read.has(id)).length }
-// Other tools and exports stay local. Only the radar page fetches its feed.
+import { readIds } from '../lib/radar-read-state.js'
+import { overviewUnread } from '../lib/radar-overview.js'
+import useRadarOverview from '../lib/use-radar-overview.js'
 export default function RadarCount() {
-  const [count, setCount] = useState(unreadCount)
-  useEffect(() => {
-    const refresh = () => setCount(unreadCount())
-    window.addEventListener(READ_EVENT, refresh); window.addEventListener('storage', refresh)
-    return () => { window.removeEventListener(READ_EVENT, refresh); window.removeEventListener('storage', refresh) }
-  }, [])
-  return count ? <span className="radar-nav-count" title="Signaux non lus dans le dernier flux consulté" aria-label={`${count} signaux non lus`}>{count}</span> : null
+  const {status,data}=useRadarOverview()
+  const count=status==='ready'?overviewUnread(data,readIds()):null
+  const label=status==='loading'?'Radar : chargement des sujets non lus':status==='error'?'Radar indisponible : nombre de sujets non lus inconnu':`${count} sujets exploitables non lus`
+  return <span className={`radar-nav-count radar-nav-count--${status}`} title={label} aria-label={label}>{status==='loading'?'…':status==='error'?'?':count}</span>
 }

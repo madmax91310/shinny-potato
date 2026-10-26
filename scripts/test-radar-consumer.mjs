@@ -20,8 +20,8 @@ assert.equal(observations.find(row=>row.publisher.startsWith('AFG')).referencePe
 assert.equal(observations.find(row=>row.publisher.startsWith('AMF')).status,'Annonce publiée','Proposant des investissements is not a legislative proposition')
 assert.equal(observations.find(row=>row.publisher.startsWith('MoneyVox')).evidenceLevel,'journalistic')
 const asEvent=row=>({...row,id:'a'.repeat(24),after:row.value,before:null,detectedAt:now.toISOString(),kind:'new'})
-assert.equal(editorialAssessment(asEvent(energy),+now).major,true)
-assert.equal(editorialAssessment({...asEvent(pea),publishedAt:'2026-10-24'},+now).major,true,'A documented major new PEA service can alert without a numeric before/after')
+assert.equal(editorialState(asEvent(energy),+now),'ready');assert.equal(editorialAssessment(asEvent(energy),+now).major,false,'Coverage and a future date alone do not establish the new financial conditions for a rapid alert')
+assert.equal(editorialAssessment({...asEvent(pea),publishedAt:'2026-10-24'},+now).major,false,'An extension of securities lending is not automatically a major launch of a broadly accessible PEA')
 assert.equal(editorialAssessment(asEvent(observations.find(row=>row.publisher.startsWith('Revolut'))),+now).major,false,'Old discovery is never a fresh major alert')
 for(const title of ['Impôts : nouveau barème','Prime d’activité : revalorisation','APL : nouveau montant','Allocation chômage : nouveaux droits','Chèque énergie : dernière ligne droite','Loi de finances 2027','Fiscalité du PEA : nouvelle règle','Hausse des prestations sociales']){
  assert.ok(editorialExclusion({label:title}));assert.equal(editorialTopic(title,'Un taux de 5 % pour les particuliers'),null)
@@ -60,8 +60,10 @@ const corrected=correction.newEvents[0];assert.equal(corrected.correctionOf,url+
 assert.notEqual(publicationKey(corrected),publicationKey(first.state.events[0]??asEvent(energy)))
 const frozen=structuredClone(next.state);frozen.events.push({...next.newEvents[0],id:'b'.repeat(24),label:'APL : versement'})
 const migrated=advanceRadar(frozen,[],{now});assert.ok(migrated.state.events.some(e=>e.id==='b'.repeat(24)));assert.ok(!migrated.feed.events.some(e=>e.id==='b'.repeat(24)))
-const majors=Array.from({length:6},(_,i)=>({...asEvent(energy),id:String(i).padStart(24,'a'),entity:'news'+i,publicationId:url+'/'+i}))
-const capped=planNotifications(majors,{acknowledged:[],majorDay:'2026-10-24',majorGroups:99},now,'major')
+const quotaNow=new Date('2026-10-23T16:00:00Z')
+const statistical=JSON.parse(await readFile(new URL('./fixtures/radar-publication/cases.json',import.meta.url),'utf8')).events.find(e=>e.entity==='salary-median')
+const majors=Array.from({length:6},(_,i)=>({...statistical,backfill:false,migratedEditorial:false,checkedAt:quotaNow.toISOString(),id:String(i).padStart(24,'a'),entity:'news'+i,publicationId:url+'/'+i}))
+const capped=planNotifications(majors,{acknowledged:[],majorDay:'2026-10-24',majorGroups:99},quotaNow,'major')
 assert.equal(capped.events.length,2);assert.equal(capped.deferred,4);assert.match(capped.reason,/conservé/)
 assert.equal(groupSignals([majors[0],{...majors[0],id:'c'.repeat(24)}],+now).length,1)
 // Every API below is a local simulation. No credentials, remote API or user notification.
@@ -76,9 +78,9 @@ const api=async(path,method='GET',body)=>{
  if(path==='issues/1'&&method==='PATCH'){Object.assign(tracker,body);return tracker}
  throw Error(path)
 }
-const send=ledger=>notifyRadar({events:[asEvent(energy)],ledger,api,repo:'madmax91310/shinny-potato',now,mode:'major'})
+const send=ledger=>notifyRadar({events:[majors[0]],ledger,api,repo:'madmax91310/shinny-potato',now:quotaNow,mode:'major'})
 await assert.rejects(send({acknowledged:[]}),/503/);fail=false
-const sent=await send({acknowledged:[]});assert.equal(sent.sent,1);assert.match(comments[0].body,/radar-editorial\?subject=/);assert.match(comments[0].body,/Application annoncée : 2026-11-01/)
+const sent=await send({acknowledged:[]});assert.equal(sent.sent,1);assert.match(comments[0].body,/radar-editorial\?subject=/);assert.match(comments[0].body,/Statistique observée/)
 assert.equal((await send(sent.ledger)).sent,0)
 console.log('Consumer Radar: real excerpts, 12 themes, exclusions, dates, unknown evidence, expired promotions, duplicate discovery, persistent recovery, silent backfill, calendar, correction history, quota overflow and simulated notification receipts verified. No real notification sent.')
 // An explicit link is only consolidated after the original was extracted,
@@ -94,7 +96,7 @@ const separate=structuredClone(linkedState);separate.documents[mediaUrl].observa
 const unrelated=await collectPublications(now,()=>assert.fail('No request'),separate,[source,mediaSource],0)
 assert.equal(groupSignals(unrelated.observations.map(asEvent),+now).length,2)
 const oldCorrection={...asEvent(energy),id:'d'.repeat(24),publishedAt:'2026-01-01',status:'Correction / démenti',correctionOf:url,correctionPublishedAt:'2026-10-24'}
-assert.equal(planNotifications([oldCorrection],{acknowledged:[],acknowledgedPublications:[publicationKey(asEvent(energy))]},now,'major').events.length,1,'A dated material correction can alert after the original publication was acknowledged')
+assert.equal(planNotifications([oldCorrection],{acknowledged:[],acknowledgedPublications:[publicationKey(asEvent(energy))]},now,'digest').events.length,0,'A correction is retained but the date alone does not make a weak event a priority')
 console.log('Explicit original linkage, distinct publication dates and dated correction of an old event verified.')
 // A real later correction of an initially silent archive must not remain
 // permanently muted; the durable item flag also stays cleared on a later fetch.

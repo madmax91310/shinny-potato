@@ -1,3 +1,4 @@
+import {publicationTime} from '../../src/lib/radar-qualification.js'
 import { editorialExclusion } from '../../src/lib/radar-policy.js'
 import { replicationWordingEvent } from '../../src/lib/replication-method.js'
 import { createHash } from 'node:crypto'
@@ -46,17 +47,22 @@ export function notifiableEvents(events) {
   })
 }
 
-export function migrateNotificationPolicy(previous, ledger) {
-  if (ledger.editorialVersion === 2) return ledger
-  return { ...ledger, editorialVersion: 2, acknowledged: [...new Set([...ledger.acknowledged, ...(previous?.events ?? []).map(event => event.id)])] }
+export function migrateNotificationPolicy(previous, ledger, now=new Date()) {
+  if (ledger.editorialVersion === 3) return ledger
+  // Preserve already eligible surplus. Newly promoted historical items stay quiet.
+  const retained=(previous?.events??[]).filter(e=>e.editorial?.state==='ready'&&e.editorial?.reliability?.usable)
+  const retainedIds=new Set(retained.map(e=>e.id)),silent=(previous?.events??[]).filter(e=>!retainedIds.has(e.id)).map(e=>e.id)
+  return {...ledger,editorialVersion:3,acknowledged:[...new Set([...ledger.acknowledged,...silent])],policyMigration:{at:now.toISOString(),retainedPending:retained.filter(e=>!ledger.acknowledged.includes(e.id)).length,silentHistorical:silent.length}}
 }
 export function planNotifications(events, ledger, now = new Date(), mode = 'digest') {
-  const pending = pendingNotifications(events, ledger).filter(event => !(ledger.acknowledgedPublications ?? []).includes(publicationKey(event)))
+  const acknowledgedIds=new Set(ledger.acknowledged)
+  const knownKeys=new Set([...(ledger.acknowledgedPublications??[]),...events.filter(e=>acknowledgedIds.has(e.id)).map(publicationKey)])
+  const pending = pendingNotifications(events, ledger).filter(event => {const a=editorialAssessment(event,+now);return !knownKeys.has(publicationKey(event))&&a.reliability.usable&&a.material.status==='sufficient'})
   const groups = groupSignals(pending, +now, {notification:true}).filter(group => {
     const assessment = editorialAssessment(group.event, +now)
-    const date = group.event.changeEvidence?.observedAt ?? (group.event.correctionOf && group.event.correctionPublishedAt ? group.event.correctionPublishedAt : group.event.publishedAt ?? (group.event.field === 'announcement' ? group.event.period : group.event.detectedAt))
+    const date = publicationTime(group.event)
     const age = (+now-Date.parse(date))/86400000
-    return assessment.reliability.usable && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && !group.event.backfill && (mode !== 'major' || assessment.major)
+    return assessment.priority && assessment.material.status==='sufficient' && group.state === 'ready' && age >= 0 && age <= RECENT_DAYS && !group.event.migratedEditorial && !group.event.backfill && (mode !== 'major' || assessment.major)
   })
   // Two groups per run, no daily loss of a fourth major announcement.
   // Unsent IDs stay in state; the next run retries them, then the daily digest.
@@ -78,28 +84,23 @@ export function recentSignals(events, now = new Date()) {
 }
 
 function eventBody(event, repo, revision, compact = false, now = new Date()) {
-  const original = event
-  if (compact) event = Object.fromEntries(Object.entries(event).map(([key, value]) => [key, typeof value === 'string' && !['sourceUrl', 'previousSourceUrl', 'tool', 'id'].includes(key) && value.length > 600 ? value.slice(0, 600) + '…' : value]))
-  const radarUrl = `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/radar-editorial?subject=${event.id}`
-  const archive = `https://github.com/${repo}/blob/${revision}/state.json`
-  const archiveNote = `\nValeurs complètes conservées dans [l’historique du radar](${link(archive)}) ; identifiant : ${original.id}.\n`
-  const tool = typeof event.tool === 'string' && event.tool.startsWith('/') && !event.tool.startsWith('//') ? event.tool : null
-  const toolUrl = tool ? `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}${tool}` : null
-  const details = compact ? archiveNote : typeof event.before === 'object' && event.before !== null || typeof event.after === 'object'
-    ? `\n<details><summary>Valeurs complètes publiées</summary>\n\n<pre>${JSON.stringify({ before: event.before, after: event.after }, null, 2).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/@/g, '&#64;')}</pre>\n\n</details>\n` : ''
-  if (event.factType === 'consumer-announcement') return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n${text(event.summary)}\n\n- Public : ${text(event.populationScope ?? event.scope)}.\n- Publication : ${text(event.publishedAt ?? 'date inconnue')}${event.changeEvidence ? ` · Changement observé entre ${text(event.changeEvidence.beforeCheckedAt)} et ${text(event.changeEvidence.observedAt)} ; date d’annonce inconnue` : ''}${event.correctionPublishedAt ? ` · Correction : ${text(event.correctionPublishedAt)}` : ''} · ${text(event.status)}${event.effectiveAt ? ` · Application annoncée : ${text(event.effectiveAt)}` : ''}.\n- Preuve : ${text(event.evidenceLevel)} ; ${text(event.reason)}.\n- Priorité : ${editorialAssessment(original,+now).score}/100 ; ${editorialAssessment(original,+now).criteria.map(row => text(row.reason)).join(' ; ')}.\n- Angle : ${text(event.angle)}\n- [Source directe](${link(event.sourceUrl)}) · [Ouvrir ce sujet dans le Radar](${link(radarUrl)}).\n`
-  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Publication : ${text(event.publishedAt ?? 'date non documentée')} ; type : ${text(event.factType ?? 'changement')}.\n- Priorité : ${editorialAssessment(original,+now).score}/100. ${editorialAssessment(original,+now).criteria.map(row => `${text(row.reason)} (${row.points}/${row.maximum})`).join(' ; ')}.\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- [Ouvrir ce sujet dans le Radar](${link(radarUrl)}).\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
+  const assessment=editorialAssessment(event,+now),material=assessment.material
+  const radarUrl=`https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/radar-editorial?subject=${event.id}`
+  const facts=material.facts.slice(0,compact?1:3).map(f=>`- ${text(f.text)}`).join('\n')
+  return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n${text(material.mainFact)}\n\n**Pourquoi maintenant :** ${text(material.nowReason)}\n\n**Matière pour le tweet :**\n${facts}\n\n${text(assessment.qualification.label)} · Publication originale : ${text(event.originalPublishedAt??event.publishedAt??'date inconnue')}${event.effectiveAt?` · Application : ${text(event.effectiveAt)}`:''}.\n${material.population?`Public : ${text(material.population)}.\n`:''}${material.missing.length?`À préciser : ${material.missing.map(text).join(' ; ')}.\n`:''}\n[Ouvrir ce sujet dans le Radar](${link(radarUrl)}) · [Source](${link(event.sourceUrl)})\n`
 }
 
 // Sections for a list of events, split into bodies that respect GitHub's limit.
 function batches(events, repo, revision, header, now) {
   const result = []; let batch = [], body = header
-  for (const event of events) {
+  for (const group of groupSignals(events,+now,{notification:true})) {
+    const event=group.event
     let section = eventBody(event, repo, revision, false, now)
+    section+='\n'+group.events.filter(e=>e.id!==event.id).map(e=>marker(e.id)).join('\n')
     if (Buffer.byteLength(header + section) > BODY_LIMIT) section = eventBody(event, repo, revision, true, now)
     if (Buffer.byteLength(header + section) > BODY_LIMIT) throw new Error('Signal trop volumineux pour une issue GitHub ; historique conservé.')
     if (Buffer.byteLength(body + section) > BODY_LIMIT) { result.push({ events: batch, body }); batch = []; body = header }
-    batch.push(event); body += section
+    batch.push(...group.events); body += section
   }
   if (batch.length) result.push({ events: batch, body })
   return result
@@ -109,7 +110,7 @@ function batches(events, repo, revision, header, now) {
 // durable receipts of every notified signal; signals older than the window drop
 // out, and the issue closes itself when nothing recent remains.
 export function trackerBody({ recent, receipts, repo, revision, now }) {
-  const header = `${TRACKER_MARKER}\n# Radar éditorial\n\n${signals(recent.length)} sourcé${recent.length > 1 ? 's' : ''} détecté${recent.length > 1 ? 's' : ''} au cours des ${RECENT_DAYS} derniers jours (contrôle du ${text(now.toISOString().slice(0, 16).replace('T', ' '))} UTC). Les seuils du radar sont appliqués avant notification. Une nouvelle donnée suivie ne prouve pas un lancement ; ces signaux restent à interpréter avant publication.\n\nLes nouveaux signaux sont annoncés en commentaire ; cette description est mise à jour à chaque passage et les signaux sortis de la fenêtre disparaissent d’eux-mêmes. [Historique complet du radar](${link(`https://github.com/${repo}/blob/${revision}/state.json`)}).\n`
+  const header = `${TRACKER_MARKER}\n# Radar éditorial\n\n${signals(recent.length)} sourcé${recent.length > 1 ? 's' : ''} détecté${recent.length > 1 ? 's' : ''} au cours des ${RECENT_DAYS} derniers jours (contrôle du ${text(now.toISOString().slice(0, 10))} UTC). Les seuils du radar sont appliqués avant notification. Une nouvelle donnée suivie ne prouve pas un lancement ; ces signaux restent à interpréter avant publication.\n\nLes nouveaux signaux sont annoncés en commentaire ; cette description est mise à jour à chaque passage et les signaux sortis de la fenêtre disparaissent d’eux-mêmes. [Historique complet du radar](${link(`https://github.com/${repo}/blob/radar-data/state.json`)}).\n`
   const listed = recent.slice(0, MAX_LISTED)
   let body = header
   for (const event of listed) {
@@ -140,7 +141,7 @@ export function correctReplicationNotification(body, events) {
 export async function notifyRadar({ events, archiveEvents = events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false, mode = 'all' }) {
   if (!/^(?:[a-f0-9]{40}|radar-data)$/.test(evidenceRevision)) throw new Error('Révision de preuve invalide.')
   const allEvents = events
-  const plan = mode === 'all' ? null : planNotifications(events, ledger, now, mode)
+  const plan = planNotifications(events, ledger, now, mode==='all'?'digest':mode)
   if (plan) events = plan.events
   const pending = pendingNotifications(events, ledger)
   if (!pending.length && !maintain) return { ledger, issues: [], sent: 0, recovered: 0 }

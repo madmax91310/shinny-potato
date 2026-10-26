@@ -5,7 +5,7 @@ import { pendingNotifications } from './lib/radar-notifications.mjs'
 import { readableSignal, formatRadarDate } from '../src/pages/editorial-radar/presentation.js'
 import { advanceRadar } from './lib/editorial-radar.mjs'
 const now = new Date('2026-10-20T12:00:00Z')
-const event = { id: 'a', family: 'etf', entity: 'IE0002XZSHO1', label: 'ETF Monde', field: 'ter', fieldLabel: 'Frais annuels', kind: 'change', before: .2, after: .15, beforeText: '0,2 %', afterText: '0,15 %', period: '2026-10-19', detectedAt: now.toISOString() }
+const event = {scope:'Part exacte de l’ETF, frais annuels',beforePeriod:'2026-10-18',publishedAt:'2026-10-19',checkedAt:now.toISOString(),sourceUrl:'https://www.vanguard.fr/annonce',evidence:{sourceHash:'a'.repeat(64),excerpt:'Vanguard launches a UCITS ETF. Frais annuels documentés : 0,15 %.'}, id: 'a', family: 'etf', entity: 'IE0002XZSHO1', label: 'ETF Monde', field: 'ter', fieldLabel: 'Frais annuels', kind: 'change', before: .2, after: .15, beforeText: '0,2 %', afterText: '0,15 %', period: '2026-10-19', detectedAt: now.toISOString() }
 assert.equal(editorialState(event), 'ready')
 for (const field of ['aum', 'metric:priceEarnings', 'countries:United States', 'sectors:Technology', 'top10']) assert.equal(editorialState({ ...event, field }), 'secondary')
 assert.equal(editorialState({ ...event, kind: 'new' }), 'secondary', 'Catalogue discovery is not a launch')
@@ -19,7 +19,7 @@ const launch = { ...event, field: 'announcement', label: 'Vanguard launches a UC
 assert.equal(editorialState(launch), 'watch')
 assert.equal(editorialState({ ...launch, launchDetails: { isin: event.entity, fees: '0.15 %' } }), 'ready')
 assert.equal(editorialState({ ...launch, label: 'Vanguard will launch a UCITS ETF', launchDetails: { isin: event.entity, fees: '0.15 %' } }), 'watch')
-const news = { ...event, family: 'pouvoir-achat', kind: 'new', label: 'PTZ : nouveau plafond', summary: 'Plafond applicable de 100 000 euros.', status: 'Application indiquée' }
+const news = { ...event, family: 'pouvoir-achat', kind: 'new', label: 'PTZ : nouveau plafond', summary: 'Nouveau plafond applicable de 100 000 euros.', statusEvidence:'Le nouveau plafond est applicable.', status: 'Application indiquée' }
 assert.equal(editorialState(news), 'ready')
 assert.equal(editorialState({ ...news, status: 'Annonce' }), 'watch')
 assert.equal(editorialState({ ...news, summary: '', label: 'Épargne : une étude publiée' }), 'watch')

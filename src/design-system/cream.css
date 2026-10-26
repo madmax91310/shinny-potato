@@ -145,3 +145,9 @@
 .workspace .workspace-identity, .workspace .workspace-home-link { color: white; }
 .workspace .workspace-home-link:hover { background: #1948b6; }
 .workspace .workspace-masthead a:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+/* Current Radar overview, shared by navigation and the mobile masthead. */
+.workspace-mobile-radar{display:none}
+.radar-nav-count{display:inline-flex;align-items:center;justify-content:center;min-width:23px;height:23px;padding:0 5px;margin-left:auto;border-radius:20px;background:var(--ui-accent,#215d3d);color:white;font-size:11px}
+.radar-nav-count--loading,.radar-nav-count--error{background:var(--ui-muted,#667568)}
+@media(max-width:900px){.workspace .workspace-mobile-radar{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:3px 7px;color:inherit;white-space:nowrap}.workspace .workspace-masthead{flex-wrap:wrap}.workspace .workspace-home-link{margin-left:auto}}
