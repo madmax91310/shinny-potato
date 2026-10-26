@@ -357,6 +357,7 @@ jobs:
       - run: python scripts/test_radar_review_583.py
       - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_ishares_sector_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_partial_allocation_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
@@ -392,10 +393,13 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_holdings_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_source_download_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_lse_listing_reference.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
+      - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
+      - run: node scripts/test-issuer-product-routes.mjs
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
@@ -410,6 +414,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_projection_recording.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_control_renewal.py'
       - run: python -m unittest discover -s scripts -p 'test_amundi_nav_history.py'
+      - run: python -m unittest discover -s scripts -p 'test_amundi_anniversary_prices.py'
       - run: python -m unittest discover -s scripts -p 'test_nav_daily_cross.py'
       - run: python -m unittest discover -s scripts -p 'test_blackrock_income_history.py'
       - run: node scripts/test-income-nav-consumers.mjs
@@ -465,6 +470,12 @@ jobs:
         if: matrix.shard == 0
       - run: node scripts/playwright-data-automation-inventory.mjs
         if: matrix.shard == 0
+      - run: node scripts/playwright-acwi-allocation-recovery.mjs
+        if: matrix.shard == 1
+      - run: node scripts/playwright-remainder-nav.mjs
+        env:
+          TEST_NAV_IDS: etfFR0007054358Nav
+        if: matrix.shard == 1
       - run: node scripts/playwright-official-nav.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-currency-consistency.mjs

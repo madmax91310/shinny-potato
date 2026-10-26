@@ -158,6 +158,7 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             (capture/(hashes[url]+'.json.gz')).write_bytes(gzip.compress(body))
         return value
     kind=source['navProvider'];isin=source['isin'];native=source['navCurrency']
+    if source.get('anniversaryNavKind')is not None and (kind!='amundi'or source['anniversaryNavKind']!='official-price-excluding-distributions'):raise ValueError('Unqualified anniversary NAV convention')
     identity_from=source.get('identityFrom');calendar_precision=2;calendar_proof={};anniversary_nav=None
     if kind=='amundi':
         from collect_amundi_etf import fetch_api, API
@@ -171,6 +172,10 @@ def collect_one(source, now, json_fetch=get_json, document_fetch=download, captu
             (capture/(hashes[API]+'.json.gz')).write_bytes(gzip.compress(encoded))
             (capture/(hashes[API]+'.request.json')).write_text(json.dumps(payload,indent=2)+'\n')
         nav,years,calendar_proof=parse(body,source,now)
+        if source.get('anniversaryNavKind')=='official-price-excluding-distributions':
+            from amundi_nav_history import anniversary_price_history
+            anniversary_nav,price_proof=anniversary_price_history(body,source,now,nav)
+            calendar_proof.update(price_proof)
         credit='Amundi'
     elif kind=='blackrock':
         query=urllib.parse.urlencode(dict(appSubType='ISHARES',appType='PRODUCT_PAGE',component='keyFundFacts,performance',locale='en_GB',portfolioId=source['productId'],targetSite='ishares-uk',userType='individual',excludeContent='true',includeConfig='true'))

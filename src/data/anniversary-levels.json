@@ -11153,7 +11153,7 @@
     "currency": "EUR",
     "isin": "FR0007054358",
     "parser": "official-nav",
-    "valuationBasis": "fund-nav-total-return",
+    "valuationBasis": "fund-nav-price",
     "nativeValue": 69.3532,
     "nativeCurrency": "EUR",
     "fxAsOf": null,
@@ -11162,9 +11162,9 @@
     "sourceUrls": [
       "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     ],
-    "checkedAt": "2026-10-26T08:48:54.099923+00:00",
-    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
-    "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
+    "sha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a"
   }
 }

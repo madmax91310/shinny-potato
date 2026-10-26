@@ -1,5 +1,5 @@
 import {readFileSync,writeFileSync} from 'node:fs'
-import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint } from './issuer-routes.mjs'
+import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint, wisdomtreeProductCandidates } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
@@ -79,7 +79,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
  else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
  else if(share?.documentType==='wisdomtree-ucits'&&completeHoldings[isin]?.complete===true&&(
-  (completeHoldings[isin]?.sourceUrl===share.sourceUrl&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
+  (wisdomtreeProductCandidates(share.sourceUrl).includes(completeHoldings[isin]?.sourceUrl)&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported') ||
   (isin==='IE00BJGWQN72'&&completeHoldings[isin]?.sourceUrl==='https://www.wisdomtree.com/api/fund-holdings/3104137'&&completeHoldings[isin]?.identityMethod==='Exact issuer listing FIGI matched to independent ISIN query; unknown identities retained')
  ))holdings[isin]={isin,name,currency:share.currency,provider:share.provider,sourceUrl:share.sourceUrl,parser:'wisdomtree-complete'}
  else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',

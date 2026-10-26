@@ -88,7 +88,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' || steps.identifiers.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -116,10 +116,14 @@ jobs:
       - name: Validate staged source qualification
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_regional_routes.py'
+      - run: python -m unittest discover -s scripts -p 'test_independent_portfolio_identities.py'
+      - run: node scripts/test-issuer-product-routes.mjs
       - run: python -m unittest discover -s scripts -p 'test_security_candidate_names.py'
       - name: Validate public holdings API identities and complete weights
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - name: Refresh exact security identifier evidence
+        id: identifiers
+        continue-on-error: true
         run: python scripts/security_identifier_observations.py
       - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - name: Discover complete issuer portfolios without replacing qualified values on failure
@@ -161,6 +165,7 @@ jobs:
           node scripts/playwright-live-data-connections.mjs --physical
           node scripts/playwright-live-data-connections.mjs --new-issuers
           node scripts/playwright-live-data-connections.mjs --wisdomtree
+          node scripts/playwright-live-data-connections.mjs --defence
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

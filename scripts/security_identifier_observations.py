@@ -48,8 +48,11 @@ def qualified(row,now):
     policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())
     if not 0<=age<=policy['fields']['etf.staticCharacteristic']['checkDays']:raise ValueError('Expired identifier evidence')
     if len(jobs)!=len(response)or len(jobs)<2 or jobs[0].get('idType')!='ID_SEDOL' or not re.fullmatch(r'[A-Z0-9]{7}',jobs[0].get('idValue','')):raise ValueError('Unbound SEDOL evidence')
+    # Equity depositary receipts retain their own exact ISIN/FIGI; no
+    # equivalence with the underlying stock is inferred (SES FDR proof in
+    # reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/).
     def identifiers(result):
-        return {(r.get('figi'),r.get('shareClassFIGI'),r.get('securityType')) for r in result.get('data',[])if r.get('marketSector')=='Equity'and r.get('securityType') in ('Common Stock','ADR','NY Reg Shrs')and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('figi')or''))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('shareClassFIGI')or''))}
+        return {(r.get('figi'),r.get('shareClassFIGI'),r.get('securityType')) for r in result.get('data',[])if r.get('marketSector')=='Equity'and (r.get('securityType') in ('Common Stock','ADR','NY Reg Shrs') or (r.get('securityType')=='Receipt' and r.get('securityType2')=='Depositary Receipt'))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('figi')or''))and re.fullmatch(r'BBG[A-Z0-9]{9}',(r.get('shareClassFIGI')or''))}
     source=identifiers(response[0]);matches=set()
     for job,result in zip(jobs[1:],response[1:]):
         if job.get('idType')!='ID_ISIN'or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',job.get('idValue','')):raise ValueError('Invalid candidate ISIN')
@@ -57,16 +60,24 @@ def qualified(row,now):
     if len(matches)!=1:raise ValueError('Missing or ambiguous exact FIGI crosswalk')
     return jobs[0]['idValue'],matches.pop()
 
-def mappings(now):
-    if not PATH.exists():return {},{}
-    out={};proofs={}
-    for sedol,row in json.loads(PATH.read_text()).get('observations',{}).items():
+def requires_independent_identity(isin):
+    return isin in json.loads((ROOT/'scripts/security-identifier-candidates.json').read_text()).get('independentPortfolioFunds',[])
+
+def qualified_observations(now):
+    """Original, independently checked identity proofs; never portfolio dates."""
+    if not PATH.exists():return {}
+    out={}
+    for key,row in json.loads(PATH.read_text()).get('observations',{}).items():
         try:
-            key,isin=qualified(row,now)
-            if key!=sedol:raise ValueError('Wrong cache key')
-            out[key]=isin;proofs[f'{API}#SEDOL={key}']=row['sha256']
+            sedol,_=qualified(row,now)
+            if sedol==key:out[key]=row
         except (ValueError,KeyError,TypeError):continue
-    return out,proofs
+    return out
+
+def mappings(now):
+    observations=qualified_observations(now)
+    return ({key:qualified(row,now)[1]for key,row in observations.items()},
+            {f'{API}#SEDOL={key}':row['sha256']for key,row in observations.items()})
 
 def configured_candidates():
     """Seeds enable discovery, never grant identities or bypass independent queries."""
@@ -99,6 +110,12 @@ def refresh(now,max_requests=12):
     from data_automation import write_json_atomic
     cache=json.loads(PATH.read_text())if PATH.exists()else {'schemaVersion':1,'observations':{}}
     known,_=mappings(now)
+    policy=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+    # Renew in the existing control/recovery window, before an identity expires.
+    # Admission still uses the unchanged static-characteristic maximum age.
+    renewal_age=max(0,policy['etf.staticCharacteristic']['checkDays']-policy['etf.default']['checkDays'])
+    independent_known={key for key,row in qualified_observations(now).items()
+                       if (now-dt.datetime.fromisoformat(row['checkedAt'])).total_seconds()/86400<=renewal_age}
     for fund,url in IDENTITIES:
         try:
             values,_=identities(identity_document(url),fund,now);known.update(values)
@@ -117,13 +134,13 @@ def refresh(now,max_requests=12):
     pending=[]
     for share in shares:
         if share.get('documentType')!='wisdomtree-ucits':continue
-        try:pending.extend(rankings(product_page(share['sourceUrl'])[0])['ranking'])
+        try:pending.extend({**r,'requiresIndependentIdentity':requires_independent_identity(share['isin'])}for r in rankings(product_page(share['sourceUrl'])[0])['ranking'])
         except Exception as e:print('Identity discovery pending:',share['isin'],str(e)[:200])
     pending.sort(key=lambda row: row['descriptorB'] not in seeds)
-    attempts=0;seen=set()
+    attempts=0;seen=set();transport_failure=None
     for r in pending:
-        sedol=r['descriptorB'];values=sorted(candidate_isins(r['constituentName'],candidates) | seeds.get(sedol,set()))
-        if sedol in known or sedol in seen or not values or len(values)>3:continue
+        sedol=r['descriptorB'];values=sorted(candidate_isins(r['constituentName'],candidates) | seeds.get(sedol,set()) | ({known[sedol]} if r.get('requiresIndependentIdentity') and sedol in known else set()))
+        if (sedol in independent_known if r.get('requiresIndependentIdentity') else sedol in known) or sedol in seen or not values or len(values)>3:continue
         seen.add(sedol)
         old=cache['observations'].get(sedol,{})
         tested={job.get('idValue') for job in old.get('request',[])[1:]}
@@ -143,7 +160,9 @@ def refresh(now,max_requests=12):
             except ValueError as e:row['status']='qualification-required';row['error']=str(e)
             cache['observations'][sedol]=row
         except Exception as e:
-            print('Identifier service pending:',str(e)[:200]);break
+            transport_failure=f'{API} SEDOL={sedol}: {e}'
+            print('Identifier service failed:',transport_failure[:500]);break
     write_json_atomic(PATH,cache)
     print('Identifier crosswalk requests:',attempts,'qualified:',len(mappings(now)[0]))
+    if transport_failure:raise SystemExit(1)
 if __name__=='__main__':refresh(dt.datetime.now(dt.timezone.utc))
