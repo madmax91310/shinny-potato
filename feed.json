@@ -5,61 +5,61 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T14:35:16.862Z"
+        "attemptedAt": "2026-10-26T14:56:19.800Z"
       },
       {
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3,
-        "attemptedAt": "2026-10-26T14:35:16.863Z"
+        "attemptedAt": "2026-10-26T14:56:19.801Z"
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T14:35:16.863Z"
+        "attemptedAt": "2026-10-26T14:56:19.802Z"
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T14:35:16.864Z"
+        "attemptedAt": "2026-10-26T14:56:19.803Z"
       },
       {
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 12,
         "relevant": 1,
-        "attemptedAt": "2026-10-26T14:35:16.865Z"
+        "attemptedAt": "2026-10-26T14:56:19.804Z"
       },
       {
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "status": "ok",
         "articles": 7,
         "relevant": 0,
-        "attemptedAt": "2026-10-26T14:35:16.865Z"
+        "attemptedAt": "2026-10-26T14:56:19.805Z"
       }
     ],
     "items": [
@@ -121,6 +121,71 @@
         "tool": null,
         "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Assurance vie en unités de compte : les actions et les fonds obligataires datés ont le vent en poupe — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": false
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-52785d9bd456c6d89d87",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change",
+        "value": {
+          "title": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change",
+          "summary": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+          "status": "Annonce publiée"
+        },
+        "sourceUrl": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+        "publicationId": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+        "publisher": "MoneyVox · actualités",
+        "publishedInstant": "2026-10-26T15:53:13+01:00",
+        "publishedAt": "2026-10-26",
+        "period": "2026-10-26",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+        "populationScope": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "household",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "topic": "carburants",
+        "topicLabel": "Carburants",
+        "summary": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+        "status": "Annonce publiée",
+        "evidenceLevel": "journalistic",
+        "sources": [
+          {
+            "url": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+            "role": "journalistic",
+            "label": "MoneyVox · actualités"
+          },
+          {
+            "url": "https://boss.gouv.fr/portail/accueil/actualites.html",
+            "role": "original-link-unverified",
+            "label": "Document cité ; confirmation à contrôler"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "510955756c635111869dcf933493af88137d683d371176596b4b5c4cfebb08aa",
+          "excerpt": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+        "angle": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
         "backfill": false
       },
       {
@@ -301,6 +366,66 @@
         "tool": null,
         "reason": "Épargne et placements : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
         "angle": "Placement : un livret bancaire à taux boosté à 3,50% pendant 12 mois chez BforBank — Quelles conditions changent pour les détenteurs de cette épargne ?",
+        "backfill": false
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "publication-5b7f30e64a4893bc87cc",
+        "field": "announcement",
+        "fieldLabel": "Actualité des particuliers",
+        "label": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info",
+        "value": {
+          "title": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info",
+          "summary": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+          "status": "Information sans nouveauté établie"
+        },
+        "sourceUrl": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+        "publicationId": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+        "publisher": "Médiateur national de l’énergie",
+        "publishedInstant": "2026-10-26T14:46:00+00:00",
+        "publishedAt": "2026-10-26",
+        "period": "2026-10-26",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+        "populationScope": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau.",
+        "analysisContribution": false,
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "topic": "energie",
+        "topicLabel": "Électricité et gaz",
+        "summary": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+        "status": "Information sans nouveauté établie",
+        "evidenceLevel": "official",
+        "sources": [
+          {
+            "url": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+            "role": "official",
+            "label": "Médiateur national de l’énergie"
+          }
+        ],
+        "factType": "consumer-announcement",
+        "referencePeriod": null,
+        "evidence": {
+          "sourceHash": "5ccd5c38b34711d9fc05df5b441214871e4e6ff7f9c961b30a1074887ea55d70",
+          "excerpt": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+        },
+        "discovery": true,
+        "rule": "announcement",
+        "maxAgeDays": 400,
+        "tool": null,
+        "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+        "angle": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
         "backfill": false
       },
       {
@@ -2416,7 +2541,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-21",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "sourceUrl": "https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-lacompte-sur-salaire",
         "evidence": {
           "sourceHash": "447df7d50199119cd99beaa41f3566603822e9a349706019c2062555fcba3ae0",
@@ -2689,7 +2814,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "evidence": {
           "sourceHash": "00f277e111e376a479989c41e0a199d0355d43aa096977c07bccbbbe6af50af7",
@@ -2723,7 +2848,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "evidence": {
           "sourceHash": "86807bbf7a0482fd6eac53a9ee415275400b30c62837734d2702f0d206e0c1b2",
@@ -3450,7 +3575,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "evidence": {
           "sourceHash": "da5945b332a70816d0a1cdaf9121d0e58f2e49437e364abf7a6dbab3e7d8b29b",
@@ -7315,174 +7440,14 @@
         "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
         "angle": "L'AMF et l'ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
         "backfill": true
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "publication-2aa9acb64341b59faf13",
-        "field": "announcement",
-        "fieldLabel": "Actualité des particuliers",
-        "label": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
-        "value": {
-          "title": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés",
-          "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-          "status": "Annonce publiée"
-        },
-        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-11",
-        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-11",
-        "publisher": "AMF · communiqués",
-        "publishedInstant": "2023-07-07T10:12:33+02:00",
-        "publishedAt": "2023-07-07",
-        "period": "2023-07-07",
-        "checkedAt": "2026-10-25T21:35:24.713Z",
-        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-11",
-        "populationScope": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-        "analysisContribution": false,
-        "qualification": {
-          "version": 1,
-          "nature": "documented-announcement",
-          "label": "Annonce documentée",
-          "population": null,
-          "audience": "household",
-          "impact": "documented",
-          "reasons": [
-            "Annonce documentée",
-            "Population non documentée : aucun nombre de personnes déduit."
-          ]
-        },
-        "topic": "securite",
-        "topicLabel": "Sécurité de l’argent",
-        "summary": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-        "status": "Annonce publiée",
-        "evidenceLevel": "official",
-        "sources": [
-          {
-            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-et-lacpr-mettent-en-garde-le-public-contre-les-activites-de-plusieurs-acteurs-qui-proposent-en-11",
-            "role": "official",
-            "label": "AMF · communiqués"
-          },
-          {
-            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/70773/fr/L%27AMF_et_l%27ACPR_mettent_en_garde_le_public_contre_les_activites_de_plusieurs_acteurs_qui_proposent_en_France_des_investissements_sur_le_Forex_et_sur_des_produits_derives_sur_crypto-actifs_sans_y_etre_autorises.pdf",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/listes-noires-et-mises-en-garde",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://protectepargne.amf-france.org/",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://acpr.banque-france.fr/",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          }
-        ],
-        "factType": "consumer-announcement",
-        "referencePeriod": null,
-        "evidence": {
-          "sourceHash": "af672c38c4f988e72d30bffd451334b88ad10a6ab551deec7b73dcc82754d448",
-          "excerpt": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés Avec l’objectif de protéger les épargnants, l’Autorité des marchés financiers (AMF) et l’Autorité de contrôle prudentiel et de résolution (ACPR) mettent régulièrement à jour leurs listes noires de sites identifiés comme proposant des investissements sur le marché des changes non régulé (Forex) et sur des produits dérivés dont le sous-jacent est constitué de crypto-actifs, sans y être autorisés.",
-          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
-        },
-        "discovery": true,
-        "rule": "announcement",
-        "maxAgeDays": 400,
-        "tool": null,
-        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
-        "angle": "L’AMF et l’ACPR mettent en garde le public contre les activités de plusieurs acteurs qui proposent en France des investissements sur le Forex et sur des produits dérivés sur crypto-actifs sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
-        "backfill": true
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "publication-0eaa80cf27b8ff86ec1e",
-        "field": "announcement",
-        "fieldLabel": "Actualité des particuliers",
-        "label": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés",
-        "value": {
-          "title": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés",
-          "summary": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers (AMF) publie la liste mise à jour des sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
-          "status": "Annonce publiée"
-        },
-        "sourceUrl": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-les-acteurs-proposant-dinvestir-dans-des-biens-divers-sans-y-etre",
-        "publicationId": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-les-acteurs-proposant-dinvestir-dans-des-biens-divers-sans-y-etre",
-        "publisher": "AMF · communiqués",
-        "publishedInstant": "2023-07-07T10:13:25+02:00",
-        "publishedAt": "2023-07-07",
-        "period": "2023-07-07",
-        "checkedAt": "2026-10-25T21:02:33.239Z",
-        "scope": "Annonce AMF · communiqués · https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-les-acteurs-proposant-dinvestir-dans-des-biens-divers-sans-y-etre",
-        "populationScope": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers (AMF) publie la liste mise à jour des sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
-        "analysisContribution": false,
-        "qualification": {
-          "version": 1,
-          "nature": "documented-announcement",
-          "label": "Annonce documentée",
-          "population": null,
-          "audience": "household",
-          "impact": "documented",
-          "reasons": [
-            "Annonce documentée",
-            "Population non documentée : aucun nombre de personnes déduit."
-          ]
-        },
-        "topic": "securite",
-        "topicLabel": "Sécurité de l’argent",
-        "summary": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers (AMF) publie la liste mise à jour des sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
-        "status": "Annonce publiée",
-        "evidenceLevel": "official",
-        "sources": [
-          {
-            "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-met-en-garde-le-public-contre-les-acteurs-proposant-dinvestir-dans-des-biens-divers-sans-y-etre",
-            "role": "official",
-            "label": "AMF · communiqués"
-          },
-          {
-            "url": "https://www.amf-france.org/sites/institutionnel/files/pdf/70767/fr/L%27AMF_met_en_garde_le_public_contre_les_acteurs_proposant_d%27investir_dans_des_biens_divers_sans_y_etre_autorises_.pdf",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://protectepargne.amf-france.org/",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://www.amf-france.org",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          },
-          {
-            "url": "https://geco.amf-france.org/Bio/BIO/BIO_PDFS/LISTE_PRODUITS_BIENS_DIVERS/produits_biens_divers.pdf",
-            "role": "original-link-unverified",
-            "label": "Document cité ; confirmation à contrôler"
-          }
-        ],
-        "factType": "consumer-announcement",
-        "referencePeriod": null,
-        "evidence": {
-          "sourceHash": "608b62293163b045981283ba27932047212a33c43212235e9d4ac4d7b9d827e9",
-          "excerpt": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés L’Autorité des marchés financiers (AMF) publie la liste mise à jour des sites internet identifiés proposant en France d’investir dans des biens divers sans disposer des autorisations nécessaires.",
-          "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
-        },
-        "discovery": true,
-        "rule": "announcement",
-        "maxAgeDays": 400,
-        "tool": null,
-        "reason": "Sécurité de l’argent : annonce datée ; source identifiée. Public limité au périmètre cité.",
-        "angle": "L’AMF met en garde le public contre les acteurs proposant d’investir dans des biens divers sans y être autorisés — Comment reconnaître le risque signalé et quelles démarches recommande la source ?",
-        "backfill": true
       }
     ]
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-26T14:36:03.670Z",
-  "sourceRevision": "8eb7a05fd1c4bfebacc56277c9f33a1cb78e8feb",
-  "observationCount": 7770,
+  "checkedAt": "2026-10-26T14:56:45.031Z",
+  "sourceRevision": "e329e285cafb8f9c032cae55d2daa4291bf91e6c",
+  "observationCount": 7774,
   "coverage": {
     "etf": 384,
     "indices": 52,
@@ -7492,18 +7457,18 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 136,
-    "pouvoir-achat": 178
+    "pouvoir-achat": 182
   },
-  "newSignalCount": 0,
+  "newSignalCount": 2,
   "errors": [
-    {
-      "family": "etf",
-      "entity": "WisdomTree · communiqués européens",
-      "reason": "HTTP 403"
-    },
     {
       "family": "pouvoir-achat",
       "entity": "Revolut · annonces concernant la France",
+      "reason": "HTTP 403"
+    },
+    {
+      "family": "etf",
+      "entity": "WisdomTree · communiqués européens",
       "reason": "HTTP 403"
     },
     {
@@ -7590,36 +7555,6 @@
       "family": "economie",
       "entity": "https://www.insee.fr/fr/statistiques/8071406",
       "reason": "Résumé statistique chiffré absent : extraction à adapter"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BGV5VN51",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BTJRMP35",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HQ30",
-      "reason": "Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio"
     },
     {
       "family": "etf",
@@ -8068,6 +8003,269 @@
     }
   ],
   "events": [
+    {
+      "topic": "energie",
+      "topicLabel": "Électricité et gaz",
+      "publisher": "Médiateur national de l’énergie",
+      "status": "Information sans nouveauté établie",
+      "statusEvidence": "",
+      "summary": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+      "publishedAt": "2026-10-26",
+      "publicationId": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+      "evidence": {
+        "sourceHash": "5ccd5c38b34711d9fc05df5b441214871e4e6ff7f9c961b30a1074887ea55d70",
+        "excerpt": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "unknown",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "referencePeriod": null,
+      "populationScope": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau.",
+      "evidenceLevel": "official",
+      "sources": [
+        {
+          "url": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+          "role": "official",
+          "label": "Médiateur national de l’énergie"
+        }
+      ],
+      "backfill": false,
+      "id": "29a5d8217d572b4767a0bc06",
+      "family": "pouvoir-achat",
+      "entity": "publication-5b7f30e64a4893bc87cc",
+      "label": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-26T14:56:45.031Z",
+      "before": null,
+      "after": {
+        "title": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info",
+        "summary": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?",
+        "status": "Information sans nouveauté établie"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info · summary : Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ? · status : Information sans nouveauté établie",
+      "beforePeriod": null,
+      "period": "2026-10-26",
+      "scope": "Annonce Médiateur national de l’énergie · https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+      "unit": "",
+      "sourceUrl": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "tool": null,
+      "angle": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info — Quels contrats et horaires sont concernés ? Distinguer prix de l’énergie et facture totale.",
+      "draft": "Une question sur l’électricité ou le gaz ? Contactez le numéro vert énergie-info\n\nLe médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau. Comment procéder ?\n\nPublication : 2026-10-26 · Information sans nouveauté établie\nLe médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau.\n\nSource : https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+      "reason": "Électricité et gaz : annonce datée ; source identifiée. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 100,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-26"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau.",
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Le médiateur national de l’énergie peut m’aider à résoudre mes litiges avec mon fournisseur ou le gestionnaire de réseau."
+          ]
+        },
+        "reliability": {
+          "usable": false,
+          "reasons": [
+            "Nouveauté non établie"
+          ]
+        },
+        "state": "watch",
+        "type": "consumer-announcement",
+        "priority": false,
+        "major": false
+      }
+    },
+    {
+      "topic": "carburants",
+      "topicLabel": "Carburants",
+      "publisher": "MoneyVox · actualités",
+      "status": "Annonce publiée",
+      "statusEvidence": "",
+      "summary": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+      "publishedAt": "2026-10-26",
+      "publicationId": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+      "evidence": {
+        "sourceHash": "510955756c635111869dcf933493af88137d683d371176596b4b5c4cfebb08aa",
+        "excerpt": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+        "method": "Titre, date de publication et deux premiers paragraphes ; résumé limité à 700 caractères. Pas de confirmation officielle déduite d’un article de presse."
+      },
+      "factType": "consumer-announcement",
+      "qualification": {
+        "version": 1,
+        "nature": "documented-announcement",
+        "label": "Annonce documentée",
+        "population": null,
+        "audience": "household",
+        "impact": "documented",
+        "reasons": [
+          "Annonce documentée",
+          "Population non documentée : aucun nombre de personnes déduit."
+        ]
+      },
+      "referencePeriod": null,
+      "populationScope": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe.",
+      "evidenceLevel": "journalistic",
+      "sources": [
+        {
+          "url": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+          "role": "journalistic",
+          "label": "MoneyVox · actualités"
+        },
+        {
+          "url": "https://boss.gouv.fr/portail/accueil/actualites.html",
+          "role": "original-link-unverified",
+          "label": "Document cité ; confirmation à contrôler"
+        }
+      ],
+      "backfill": false,
+      "id": "644498bb75d1265ccbc18244",
+      "family": "pouvoir-achat",
+      "entity": "publication-52785d9bd456c6d89d87",
+      "label": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change",
+      "field": "announcement",
+      "fieldLabel": "Actualité des particuliers",
+      "title": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-26T14:56:45.031Z",
+      "before": null,
+      "after": {
+        "title": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change",
+        "summary": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.",
+        "status": "Annonce publiée"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change · summary : Un coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail. · status : Annonce publiée",
+      "beforePeriod": null,
+      "period": "2026-10-26",
+      "scope": "Annonce MoneyVox · actualités · https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+      "unit": "",
+      "sourceUrl": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "tool": null,
+      "angle": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change — Que sait-on du prix à la pompe, à quelle échelle et pour quels carburants ?",
+      "draft": "Carburant : jusqu'à 1 000 euros de prime pour les salariés, ce qui change\n\nUn coup de pouce supplémentaire face à la hausse des prix à la pompe. Deux décrets du 20 octobre, publiés au Journal officiel le lendemain, confirment le relèvement temporaire du plafond d'exonération de la prime carburant , également appelée prime de transport. Ce dispositif permet aux employeurs de prendre en charge tout ou partie des dépenses de carburant engagées par leurs salariés pour effectuer leurs trajets entre leur domicile et leur lieu de travail.\n\nPublication : 2026-10-26 · Annonce publiée\nUn coup de pouce supplémentaire face à la hausse des prix à la pompe.\n\nSource : https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+      "reason": "Carburants : annonce datée ; information journalistique attribuée, confirmation officielle non établie. Public limité au périmètre cité.",
+      "editorial": {
+        "score": 100,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 30,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Repère pour les ménages ou salariés ; effectif exact inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 25,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Revenus, budget ou patrimoine"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Permet de situer une situation ou un budget"
+          },
+          {
+            "key": "freshness",
+            "points": 10,
+            "maximum": 10,
+            "unknown": false,
+            "reason": "Publication : 2026-10-26"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": "Un coup de pouce supplémentaire face à la hausse des prix à la pompe.",
+          "audience": "household",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Un coup de pouce supplémentaire face à la hausse des prix à la pompe."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "consumer-announcement",
+        "priority": true,
+        "major": true
+      }
+    },
     {
       "topic": "epargne",
       "topicLabel": "Épargne et placements",
@@ -92139,161 +92337,6 @@
       "discoveryVersion": 3
     },
     {
-      "id": "bourse-direct-news",
-      "name": "Bourse Direct",
-      "url": "https://groupe.boursedirect.fr/feed",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T14:18:02.365Z",
-      "discovered": 10,
-      "etag": "\"b5958b71041f01bd77bc7f2180ff9fe5-gzip\"",
-      "lastModified": "Mon, 26 Oct 2026 14:01:25 GMT",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 5,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "energie-info",
-      "name": "Médiateur national de l’énergie",
-      "url": "https://www.energie-info.fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T14:18:02.366Z",
-      "discovered": 10,
-      "etag": "\"3b643b12eff7a180e42b2617811a4ce1\"",
-      "lastModified": "Mon, 26 Oct 2026 13:20:09 GMT",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 0,
-        "done": 8,
-        "error": 0,
-        "rejected": 2,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
-      "silentBaselines": 0,
-      "archiveWarning": null
-    },
-    {
-      "id": "afg",
-      "name": "AFG · épargne salariale",
-      "url": "https://www.afg.asso.fr/fr/feed/",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T14:18:02.366Z",
-      "discovered": 10,
-      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
-      "lastModified": null,
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 1,
-        "done": 2,
-        "error": 0,
-        "rejected": 8,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T21:35:24.713Z",
-      "silentBaselines": 0
-    },
-    {
-      "id": "amf-alerts",
-      "name": "AMF · communiqués",
-      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T14:18:02.367Z",
-      "discovered": 196,
-      "etag": "\"1793022544-gzip\"",
-      "lastModified": "Mon, 26 Oct 2026 13:49:04 GMT",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 55,
-        "done": 105,
-        "error": 1,
-        "rejected": 40,
-        "partial": 0
-      },
-      "extractionStatus": "error",
-      "lastExtractionSuccessAt": "2026-10-26T14:35:16.866Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "moneyvox",
-      "name": "MoneyVox · actualités",
-      "url": "https://www.moneyvox.fr/actu/rss.php",
-      "method": "consumer-rss",
-      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
-      "attemptedAt": "2026-10-26T14:18:02.367Z",
-      "discovered": 60,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 0,
-        "done": 33,
-        "error": 0,
-        "rejected": 47,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-26T14:18:02.344Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
-      "id": "boursobank-news",
-      "name": "BoursoBank Groupe · communiqués",
-      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "method": "consumer-links",
-      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
-      "attemptedAt": "2026-10-26T14:18:02.368Z",
-      "discovered": 12,
-      "etag": null,
-      "lastModified": null,
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "lastSuccessAt": "2026-10-26T14:18:02.344Z",
-      "status": "ok",
-      "nextCheckAt": "2026-10-26T14:48:02.344Z",
-      "queue": {
-        "pending": 0,
-        "done": 5,
-        "error": 0,
-        "rejected": 7,
-        "partial": 0
-      },
-      "extractionStatus": "validated",
-      "lastExtractionSuccessAt": "2026-10-25T22:12:38.605Z",
-      "archiveWarning": null,
-      "silentBaselines": 0
-    },
-    {
       "id": "bnp-bank",
       "name": "BNP Paribas · groupe",
       "url": "https://group.bnpparibas/rss/news/communique-de-presse",
@@ -92821,7 +92864,7 @@
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "method": "bdf-cards",
       "depth": "Première page thématique ; liens datés, pagination non supposée",
-      "attemptedAt": "2026-10-26T14:35:16.865Z",
+      "attemptedAt": "2026-10-26T14:56:19.804Z",
       "discovered": 12,
       "etag": "\"1793024289-gzip\"",
       "lastModified": "Mon, 26 Oct 2026 14:18:09 GMT",
@@ -92920,12 +92963,12 @@
       "silentBaselines": 0
     },
     {
-      "id": "wisdomtree",
-      "name": "WisdomTree · communiqués européens",
-      "url": "https://www.wisdomtree.com/fr/press-room",
-      "method": "links",
-      "depth": "Archive rendue par le serveur, sans pagination supposée",
-      "attemptedAt": "2026-10-26T14:35:16.881Z",
+      "id": "revolut-news",
+      "name": "Revolut · annonces concernant la France",
+      "url": "https://www.revolut.com/news/",
+      "method": "consumer-links",
+      "depth": "Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées",
+      "attemptedAt": "2026-10-26T14:56:19.832Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -92941,12 +92984,12 @@
       "failureKind": "access-denied"
     },
     {
-      "id": "revolut-news",
-      "name": "Revolut · annonces concernant la France",
-      "url": "https://www.revolut.com/news/",
-      "method": "consumer-links",
-      "depth": "Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées",
-      "attemptedAt": "2026-10-26T14:35:16.880Z",
+      "id": "wisdomtree",
+      "name": "WisdomTree · communiqués européens",
+      "url": "https://www.wisdomtree.com/fr/press-room",
+      "method": "links",
+      "depth": "Archive rendue par le serveur, sans pagination supposée",
+      "attemptedAt": "2026-10-26T14:56:19.833Z",
       "status": "error",
       "error": "HTTP 403",
       "queue": {
@@ -92960,6 +93003,83 @@
       "lastExtractionSuccessAt": null,
       "silentBaselines": 0,
       "failureKind": "access-denied"
+    },
+    {
+      "id": "afg",
+      "name": "AFG · épargne salariale",
+      "url": "https://www.afg.asso.fr/fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T14:56:19.829Z",
+      "discovered": 10,
+      "etag": "\"61cd6d80b32ba699bef2b239eedb34f7\"",
+      "lastModified": null,
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 1,
+        "done": 2,
+        "error": 0,
+        "rejected": 8,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T21:35:24.713Z",
+      "silentBaselines": 0
+    },
+    {
+      "id": "moneyvox",
+      "name": "MoneyVox · actualités",
+      "url": "https://www.moneyvox.fr/actu/rss.php",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T14:56:19.831Z",
+      "discovered": 60,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 0,
+        "done": 34,
+        "error": 0,
+        "rejected": 47,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T14:56:19.806Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "amf-alerts",
+      "name": "AMF · communiqués",
+      "url": "https://www.amf-france.org/fr/flux-rss/display/28",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T14:56:19.830Z",
+      "discovered": 196,
+      "etag": "\"1793022544-gzip\"",
+      "lastModified": "Mon, 26 Oct 2026 13:49:04 GMT",
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 53,
+        "done": 107,
+        "error": 1,
+        "rejected": 40,
+        "partial": 0
+      },
+      "extractionStatus": "error",
+      "lastExtractionSuccessAt": "2026-10-26T14:56:19.806Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
     },
     {
       "id": "dares",
@@ -92967,7 +93087,7 @@
       "url": "https://dares.travail-emploi.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-26T14:35:16.883Z",
+      "attemptedAt": "2026-10-26T14:56:19.839Z",
       "status": "error",
       "error": "Accès refusé ou page anti-robot, même si HTTP 200",
       "queue": {
@@ -92983,12 +93103,64 @@
       "failureKind": "access-denied"
     },
     {
+      "id": "boursobank-news",
+      "name": "BoursoBank Groupe · communiqués",
+      "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+      "method": "consumer-links",
+      "depth": "Première page rendue (12 communiqués au contrôle) ; pagination disponible, non parcourue intégralement",
+      "attemptedAt": "2026-10-26T14:56:19.831Z",
+      "discovered": 12,
+      "etag": null,
+      "lastModified": null,
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 7,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-25T22:12:38.605Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
+      "id": "energie-info",
+      "name": "Médiateur national de l’énergie",
+      "url": "https://www.energie-info.fr/feed/",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T14:56:19.828Z",
+      "discovered": 10,
+      "etag": "\"36b8376fc74c4f951f36c9b893b88646\"",
+      "lastModified": "Mon, 26 Oct 2026 14:49:47 GMT",
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 0,
+        "done": 9,
+        "error": 0,
+        "rejected": 2,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T14:56:19.806Z",
+      "silentBaselines": 0,
+      "archiveWarning": null
+    },
+    {
       "id": "drees",
       "name": "DREES",
       "url": "https://drees.solidarites-sante.gouv.fr/",
       "method": "links",
       "depth": "Accueil public ; contrôle du contenu anti-robot",
-      "attemptedAt": "2026-10-26T14:35:16.882Z",
+      "attemptedAt": "2026-10-26T14:56:19.838Z",
       "discovered": 3,
       "etag": null,
       "lastModified": "Sun, 25 Oct 2026 00:17:08 GMT",
@@ -93010,88 +93182,114 @@
       "failureKind": "temporary-unavailable"
     },
     {
+      "id": "bourse-direct-news",
+      "name": "Bourse Direct",
+      "url": "https://groupe.boursedirect.fr/feed",
+      "method": "consumer-rss",
+      "depth": "Fenêtre RSS publiée ; aucun historique exhaustif supposé",
+      "attemptedAt": "2026-10-26T14:56:19.826Z",
+      "discovered": 10,
+      "etag": "\"b5958b71041f01bd77bc7f2180ff9fe5-gzip\"",
+      "lastModified": "Mon, 26 Oct 2026 14:01:25 GMT",
+      "checkedAt": "2026-10-26T14:56:19.806Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.806Z",
+      "status": "ok",
+      "nextCheckAt": "2026-10-26T15:26:19.806Z",
+      "queue": {
+        "pending": 0,
+        "done": 5,
+        "error": 0,
+        "rejected": 5,
+        "partial": 0
+      },
+      "extractionStatus": "validated",
+      "lastExtractionSuccessAt": "2026-10-26T05:30:24.457Z",
+      "archiveWarning": null,
+      "silentBaselines": 0
+    },
+    {
       "id": "Communiqués Vanguard",
       "name": "Communiqués Vanguard",
       "url": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
       "status": "ok",
-      "checkedAt": "2026-10-26T14:35:16.858Z",
-      "lastSuccessAt": "2026-10-26T14:35:16.858Z",
+      "checkedAt": "2026-10-26T14:56:19.792Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.792Z",
       "discovered": 2,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-26T14:35:16.858Z"
+      "attemptedAt": "2026-10-26T14:56:19.792Z"
     },
     {
       "id": "Communiqués Global X Europe",
       "name": "Communiqués Global X Europe",
       "url": "https://globalxetfs.eu/news",
       "status": "ok",
-      "checkedAt": "2026-10-26T14:35:16.858Z",
-      "lastSuccessAt": "2026-10-26T14:35:16.858Z",
+      "checkedAt": "2026-10-26T14:56:19.792Z",
+      "lastSuccessAt": "2026-10-26T14:56:19.792Z",
       "discovered": 4,
       "method": "Modèle ou liste HTML officielle",
       "depth": "Archive rendue par la page officielle",
-      "attemptedAt": "2026-10-26T14:35:16.860Z"
+      "attemptedAt": "2026-10-26T14:56:19.797Z"
     },
     {
       "id": "service-public",
       "name": "Service Public",
       "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T14:35:16.862Z"
+      "attemptedAt": "2026-10-26T14:56:19.800Z"
     },
     {
       "id": "bercy",
       "name": "Ministère de l’Économie",
       "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 10,
       "relevant": 3,
-      "attemptedAt": "2026-10-26T14:35:16.863Z"
+      "attemptedAt": "2026-10-26T14:56:19.801Z"
     },
     {
       "id": "vie-publique-actualites",
       "name": "Vie publique · actualités",
       "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 10,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T14:35:16.863Z"
+      "attemptedAt": "2026-10-26T14:56:19.802Z"
     },
     {
       "id": "vie-publique-lois",
       "name": "Vie publique · lois",
       "url": "https://www.vie-publique.fr/lois-feeds.xml",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 100,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T14:35:16.864Z"
+      "attemptedAt": "2026-10-26T14:56:19.803Z"
     },
     {
       "id": "banque-france-credit",
       "name": "Banque de France · crédits aux particuliers",
       "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 12,
       "relevant": 1,
-      "attemptedAt": "2026-10-26T14:35:16.865Z"
+      "attemptedAt": "2026-10-26T14:56:19.804Z"
     },
     {
       "id": "cre-prix",
       "name": "CRE · prix de l’énergie",
       "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-      "checkedAt": "2026-10-26T14:35:16.860Z",
+      "checkedAt": "2026-10-26T14:56:19.798Z",
       "status": "ok",
       "articles": 7,
       "relevant": 0,
-      "attemptedAt": "2026-10-26T14:35:16.865Z"
+      "attemptedAt": "2026-10-26T14:56:19.805Z"
     },
     {
       "id": "ishares",
@@ -93298,24 +93496,24 @@
   },
   "metrics": {
     "collection": {
-      "requests": 9,
-      "bytes": 365920,
-      "notModified": 0,
+      "requests": 15,
+      "bytes": 713696,
+      "notModified": 2,
       "attemptedDocuments": 4,
       "queue": {
         "admitted": 4,
         "attempted": 4,
         "capacity": 4,
-        "p90DocumentMs": 15129,
-        "recentEligible": 0,
-        "recentFirstAttempted": 0,
+        "p90DocumentMs": 15284,
+        "recentEligible": 2,
+        "recentFirstAttempted": 2,
         "recentDeferred": 0,
-        "pending": 141,
-        "oldestWaitHours": 45.118765555555555,
+        "pending": 139,
+        "oldestWaitHours": 45.46958222222222,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       },
-      "durationMs": 43601,
-      "checkedAt": "2026-10-26T14:35:16.866Z"
+      "durationMs": 22695,
+      "checkedAt": "2026-10-26T14:56:19.806Z"
     },
     "publicationDelays": [
       {
@@ -96343,6 +96541,24 @@
         "publicationPrecision": "instant prouvé"
       },
       {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-amf-met-en-garde-le-public-contre-les-activites-de-plusieurs-12",
+        "publicationInstant": "2018-03-28T08:20:00.000Z",
+        "publicationToDetectionHours": 75189.58370611111,
+        "detectionToFirstAttemptHours": 33.021795555555556,
+        "detectionToAvailabilityHours": 33.021795555555556,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
+        "url": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lautorite-des-marches-financiers-met-en-garde-le-public-lencontre-dacteurs-proposant-dinvestir-dans-1",
+        "publicationInstant": "2018-03-15T13:25:00.000Z",
+        "publicationToDetectionHours": 75496.50037277778,
+        "detectionToFirstAttemptHours": 33.021795555555556,
+        "detectionToAvailabilityHours": 33.021795555555556,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
         "url": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse/boursobank-integre-wero-a-ses-solutions-de-paiement",
         "publicationInstant": null,
         "publicationToDetectionHours": null,
@@ -97232,11 +97448,29 @@
         "detectionToAvailabilityHours": 0,
         "recoveryHours": null,
         "publicationPrecision": "instant prouvé"
+      },
+      {
+        "url": "https://www.moneyvox.fr/votre-argent/actualites/110985/carburant-jusqua-1-000-euros-de-prime-pour-les-salaries-ce-qui-change",
+        "publicationInstant": "2026-10-26T14:53:13.000Z",
+        "publicationToDetectionHours": 0.05189055555555556,
+        "detectionToFirstAttemptHours": 0,
+        "detectionToAvailabilityHours": 0,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
+      },
+      {
+        "url": "https://www.energie-info.fr/une-question-sur-lenergie-contactez-le-numero-vert-energie-info",
+        "publicationInstant": "2026-10-26T14:46:00.000Z",
+        "publicationToDetectionHours": 0.17216833333333334,
+        "detectionToFirstAttemptHours": 0,
+        "detectionToAvailabilityHours": 0,
+        "recoveryHours": null,
+        "publicationPrecision": "instant prouvé"
       }
     ],
     "classification": {
-      "ready": 112,
-      "watch": 45,
+      "ready": 113,
+      "watch": 46,
       "secondary": 366
     },
     "scheduler": {
@@ -97280,8 +97514,8 @@
       ],
       "lastProducer": {
         "eventName": "workflow_run",
-        "runId": "40340851597",
-        "observedAt": "2026-10-26T14:36:04.805Z"
+        "runId": "40344244596",
+        "observedAt": "2026-10-26T14:56:46.443Z"
       },
       "lastScheduledRun": {
         "runId": "40324984642",
@@ -97734,10 +97968,37 @@
         "pending": 141,
         "oldestWaitHours": 45.118765555555555,
         "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+      },
+      {
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "eventName": "workflow_run",
+        "runId": "40344244596",
+        "requests": 15,
+        "bytes": 713696,
+        "durationMs": 22695,
+        "admitted": 4,
+        "attempted": 4,
+        "capacity": 4,
+        "p90DocumentMs": 15284,
+        "recentEligible": 2,
+        "recentFirstAttempted": 2,
+        "recentDeferred": 0,
+        "pending": 139,
+        "oldestWaitHours": 45.46958222222222,
+        "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
       }
     ]
   },
   "compositionPublicationLags": [
+    {
+      "entity": "IE00BLNMYC90",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
     {
       "entity": "IE0006WW1TQ4",
       "deferred": true,
@@ -97745,7 +98006,7 @@
       "activePeriod": "2026-10-22",
       "livePeriod": "2026-10-23",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-26T14:36:00.828898+00:00"
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
     },
     {
       "entity": "IE000L6ZMMC4",
@@ -97754,7 +98015,16 @@
       "activePeriod": "2026-10-22",
       "livePeriod": "2026-10-23",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-26T14:36:00.828898+00:00"
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
+    {
+      "entity": "IE00BGV5VN51",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
     },
     {
       "entity": "IE00BM67HK77",
@@ -97763,96 +98033,180 @@
       "activePeriod": "2026-10-22",
       "livePeriod": "2026-10-23",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-26T14:36:00.828898+00:00"
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
+    {
+      "entity": "IE00BM67HS53",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
+    {
+      "entity": "IE00BTJRMP35",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
+    {
+      "entity": "IE00BM67HV82",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
+    },
+    {
+      "entity": "IE00BM67HQ30",
+      "deferred": true,
+      "reason": "publication-lag",
+      "activePeriod": "2026-10-22",
+      "livePeriod": "2026-10-23",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
+      "checkedAt": "2026-10-26T14:56:43.184332+00:00"
     }
   ],
   "contractDiagnosticsAttempted": true,
   "contractResults": {
     "successes": [
       {
+        "id": "radar-source:afg",
+        "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.829Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:moneyvox",
+        "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.831Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:amf-alerts",
+        "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.830Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:boursobank-news",
+        "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.831Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:energie-info",
+        "sourceUrl": "https://www.energie-info.fr/feed/",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.828Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
+        "id": "radar-source:bourse-direct-news",
+        "sourceUrl": "https://groupe.boursedirect.fr/feed",
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.826Z",
+        "status": "succeeded",
+        "sourceAttempted": true
+      },
+      {
         "id": "radar-source:Communiqués Vanguard",
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
-        "checkedAt": "2026-10-26T14:35:16.858Z",
-        "attemptedAt": "2026-10-26T14:35:16.858Z",
+        "checkedAt": "2026-10-26T14:56:19.792Z",
+        "attemptedAt": "2026-10-26T14:56:19.792Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:Communiqués Global X Europe",
         "sourceUrl": "https://globalxetfs.eu/news",
-        "checkedAt": "2026-10-26T14:35:16.858Z",
-        "attemptedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.792Z",
+        "attemptedAt": "2026-10-26T14:56:19.797Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:service-public",
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.862Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.800Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:bercy",
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.863Z",
-        "status": "unchanged-verified",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.801Z",
+        "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-actualites",
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.863Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.802Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:vie-publique-lois",
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.864Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.803Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:banque-france-credit",
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.865Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.804Z",
         "status": "succeeded",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:cre-prix",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.865Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.805Z",
         "status": "succeeded",
         "sourceAttempted": true
       }
     ],
     "errors": [
       {
-        "id": "radar-source:wisdomtree",
-        "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
-        "attemptedAt": "2026-10-26T14:35:16.881Z",
+        "id": "radar-source:revolut-news",
+        "sourceUrl": "https://www.revolut.com/news/",
+        "attemptedAt": "2026-10-26T14:56:19.832Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
-        "id": "radar-source:revolut-news",
-        "sourceUrl": "https://www.revolut.com/news/",
-        "attemptedAt": "2026-10-26T14:35:16.880Z",
+        "id": "radar-source:wisdomtree",
+        "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
+        "attemptedAt": "2026-10-26T14:56:19.833Z",
         "error": "HTTP 403",
         "sourceAttempted": true
       },
       {
         "id": "radar-source:dares",
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
-        "attemptedAt": "2026-10-26T14:35:16.883Z",
+        "attemptedAt": "2026-10-26T14:56:19.839Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true
       },
@@ -97860,7 +98214,7 @@
         "id": "radar-source:drees",
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-26T14:35:16.882Z",
+        "attemptedAt": "2026-10-26T14:56:19.838Z",
         "error": "fetch failed",
         "sourceAttempted": true
       }
@@ -97914,54 +98268,6 @@
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-26T15:18:02.344Z"
-    },
-    {
-      "id": "radar-source:bourse-direct-news",
-      "sourceUrl": "https://groupe.boursedirect.fr/feed",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
-    },
-    {
-      "id": "radar-source:energie-info",
-      "sourceUrl": "https://www.energie-info.fr/feed/",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
-    },
-    {
-      "id": "radar-source:afg",
-      "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
-    },
-    {
-      "id": "radar-source:amf-alerts",
-      "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
-    },
-    {
-      "id": "radar-source:moneyvox",
-      "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
-    },
-    {
-      "id": "radar-source:boursobank-news",
-      "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
-      "checkedAt": "2026-10-26T14:18:02.344Z",
-      "status": "waiting",
-      "sourceAttempted": false,
-      "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z"
     },
     {
       "id": "radar-source:bnp-bank",
@@ -98127,7 +98433,7 @@
       "id": "radar-source:bdf-credit",
       "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
       "checkedAt": "2026-10-26T14:18:02.344Z",
-      "attemptedAt": "2026-10-26T14:35:16.865Z",
+      "attemptedAt": "2026-10-26T14:56:19.804Z",
       "status": "waiting",
       "sourceAttempted": false,
       "reason": "Prochain contrôle différé jusqu’au 2026-10-26T15:18:02.344Z"
@@ -98835,13 +99141,13 @@
       "mode": "full",
       "emptyReason": null,
       "retainNativeFailuresOnly": true,
-      "declaredAt": "2026-10-26T14:35:13.199449+00:00",
-      "nonce": "7f3dc611-bb63-4bb5-b701-e7009fb69642",
-      "codeSha": "8eb7a05fd1c4bfebacc56277c9f33a1cb78e8feb",
+      "declaredAt": "2026-10-26T14:56:15.893001+00:00",
+      "nonce": "79cc87e0-adf0-4f9a-a34c-e7312209b316",
+      "codeSha": "e329e285cafb8f9c032cae55d2daa4291bf91e6c",
       "durablePlan": true,
-      "runId": "40340851597",
+      "runId": "40344244596",
       "attempt": "1",
-      "sha256": "f54c52744e71c9281a52c5752de95d6f6a8ae86b4e950da9f5707ace4ce2881d"
+      "sha256": "4d18b7593938bba7ce9ad257e71df6475875c142cda27c7902c3ae2af491569c"
     },
     "scope": {
       "kind": "editorial-radar-sources",
@@ -99535,9 +99841,15 @@
         }
       ],
       "emptyReason": null,
-      "declaredAt": "2026-10-26T14:35:13.199449+00:00",
-      "planSha256": "f54c52744e71c9281a52c5752de95d6f6a8ae86b4e950da9f5707ace4ce2881d",
+      "declaredAt": "2026-10-26T14:56:15.893001+00:00",
+      "planSha256": "4d18b7593938bba7ce9ad257e71df6475875c142cda27c7902c3ae2af491569c",
       "attemptedIds": [
+        "radar-source:bourse-direct-news",
+        "radar-source:energie-info",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:moneyvox",
+        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
@@ -99553,6 +99865,12 @@
       ],
       "attemptUnknownIds": [],
       "networkRequestedIds": [
+        "radar-source:bourse-direct-news",
+        "radar-source:energie-info",
+        "radar-source:afg",
+        "radar-source:amf-alerts",
+        "radar-source:moneyvox",
+        "radar-source:boursobank-news",
         "radar-source:revolut-news",
         "radar-source:wisdomtree",
         "radar-source:drees",
@@ -99567,10 +99885,10 @@
         "radar-source:Communiqués Global X Europe"
       ],
       "networkAttemptUnknownIds": [],
-      "runId": "40340851597",
+      "runId": "40344244596",
       "attempt": "1",
       "selectionReason": null,
-      "nonce": "7f3dc611-bb63-4bb5-b701-e7009fb69642"
+      "nonce": "79cc87e0-adf0-4f9a-a34c-e7312209b316"
     },
     "outcomes": [
       {
@@ -99665,11 +99983,11 @@
         ],
         "sourceUrl": "https://groupe.boursedirect.fr/feed",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.826Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:energie-info",
@@ -99679,11 +99997,11 @@
         ],
         "sourceUrl": "https://www.energie-info.fr/feed/",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.828Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:afg",
@@ -99693,11 +100011,11 @@
         ],
         "sourceUrl": "https://www.afg.asso.fr/fr/feed/",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.829Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:amf-alerts",
@@ -99707,11 +100025,11 @@
         ],
         "sourceUrl": "https://www.amf-france.org/fr/flux-rss/display/28",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.830Z",
+        "status": "unchanged-verified",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:moneyvox",
@@ -99721,11 +100039,11 @@
         ],
         "sourceUrl": "https://www.moneyvox.fr/actu/rss.php",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.831Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:boursobank-news",
@@ -99735,11 +100053,11 @@
         ],
         "sourceUrl": "https://www.boursobank-group.com/fr/espace-presse/communiques-de-presse",
         "selected": true,
-        "checkedAt": "2026-10-26T14:18:02.344Z",
-        "status": "waiting",
-        "sourceAttempted": false,
-        "reason": "Prochain contrôle différé jusqu’au 2026-10-26T14:48:02.344Z",
-        "operationAttempted": false
+        "checkedAt": "2026-10-26T14:56:19.806Z",
+        "attemptedAt": "2026-10-26T14:56:19.831Z",
+        "status": "succeeded",
+        "sourceAttempted": true,
+        "operationAttempted": true
       },
       {
         "id": "radar-source:revolut-news",
@@ -99749,7 +100067,7 @@
         ],
         "sourceUrl": "https://www.revolut.com/news/",
         "selected": true,
-        "attemptedAt": "2026-10-26T14:35:16.880Z",
+        "attemptedAt": "2026-10-26T14:56:19.832Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -100043,7 +100361,7 @@
         ],
         "sourceUrl": "https://www.wisdomtree.com/fr/press-room",
         "selected": true,
-        "attemptedAt": "2026-10-26T14:35:16.881Z",
+        "attemptedAt": "2026-10-26T14:56:19.833Z",
         "error": "HTTP 403",
         "sourceAttempted": true,
         "status": "failed",
@@ -100058,7 +100376,7 @@
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
         "checkedAt": "2026-10-26T14:18:02.344Z",
-        "attemptedAt": "2026-10-26T14:35:16.865Z",
+        "attemptedAt": "2026-10-26T14:56:19.804Z",
         "status": "waiting",
         "sourceAttempted": false,
         "reason": "Prochain contrôle différé jusqu’au 2026-10-26T15:18:02.344Z",
@@ -100115,7 +100433,7 @@
         "sourceUrl": "https://drees.solidarites-sante.gouv.fr/",
         "selected": true,
         "checkedAt": "2026-10-25T00:25:11.059Z",
-        "attemptedAt": "2026-10-26T14:35:16.882Z",
+        "attemptedAt": "2026-10-26T14:56:19.838Z",
         "error": "fetch failed",
         "sourceAttempted": true,
         "status": "failed",
@@ -100129,7 +100447,7 @@
         ],
         "sourceUrl": "https://dares.travail-emploi.gouv.fr/",
         "selected": true,
-        "attemptedAt": "2026-10-26T14:35:16.883Z",
+        "attemptedAt": "2026-10-26T14:56:19.839Z",
         "error": "Accès refusé ou page anti-robot, même si HTTP 200",
         "sourceAttempted": true,
         "status": "failed",
@@ -100143,8 +100461,8 @@
         ],
         "sourceUrl": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.862Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.800Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100157,9 +100475,9 @@
         ],
         "sourceUrl": "https://www.economie.gouv.fr/rss/toutesactualites",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.863Z",
-        "status": "unchanged-verified",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.801Z",
+        "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
       },
@@ -100171,8 +100489,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/actualites-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.863Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.802Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100185,8 +100503,8 @@
         ],
         "sourceUrl": "https://www.vie-publique.fr/lois-feeds.xml",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.864Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.803Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100199,8 +100517,8 @@
         ],
         "sourceUrl": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.865Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.804Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100213,8 +100531,8 @@
         ],
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse.html",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.860Z",
-        "attemptedAt": "2026-10-26T14:35:16.865Z",
+        "checkedAt": "2026-10-26T14:56:19.798Z",
+        "attemptedAt": "2026-10-26T14:56:19.805Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100420,8 +100738,8 @@
         ],
         "sourceUrl": "https://www.vanguard.co.uk/professional/contact-us/press-releases",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.858Z",
-        "attemptedAt": "2026-10-26T14:35:16.858Z",
+        "checkedAt": "2026-10-26T14:56:19.792Z",
+        "attemptedAt": "2026-10-26T14:56:19.792Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100434,8 +100752,8 @@
         ],
         "sourceUrl": "https://globalxetfs.eu/news",
         "selected": true,
-        "checkedAt": "2026-10-26T14:35:16.858Z",
-        "attemptedAt": "2026-10-26T14:35:16.860Z",
+        "checkedAt": "2026-10-26T14:56:19.792Z",
+        "attemptedAt": "2026-10-26T14:56:19.797Z",
         "status": "succeeded",
         "sourceAttempted": true,
         "operationAttempted": true
@@ -100444,18 +100762,18 @@
     "issues": [],
     "unscopedFailures": [
       {
-        "id": "radar:etf",
-        "name": "Radar · etf",
-        "field": "Sources du radar",
-        "error": "HTTP 403 ; Vérification indépendante DWS impossible : ValueError: DWS countries: active aggregates differ from the full portfolio",
-        "phase": "validation",
-        "sourceAttempted": false
-      },
-      {
         "id": "radar:pouvoir-achat",
         "name": "Radar · pouvoir-achat",
         "field": "Sources du radar",
         "error": "HTTP 403 ; The operation was aborted due to timeout",
+        "phase": "validation",
+        "sourceAttempted": false
+      },
+      {
+        "id": "radar:etf",
+        "name": "Radar · etf",
+        "field": "Sources du radar",
+        "error": "HTTP 403",
         "phase": "validation",
         "sourceAttempted": false
       },
@@ -100468,13 +100786,5 @@
         "sourceAttempted": false
       }
     ]
-  },
-  "notifications": {
-    "checkedAt": "2026-10-26T14:36:15.133Z",
-    "mode": "major",
-    "sent": 0,
-    "pending": 0,
-    "status": "ok",
-    "recovered": 0
   }
 }
