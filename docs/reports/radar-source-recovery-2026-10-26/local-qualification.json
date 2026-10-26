@@ -1,0 +1,611 @@
+{
+  "checkedAt": "2026-10-26T09:08:42.152Z",
+  "runId": null,
+  "sourceRevision": null,
+  "method": "Two real bounded collection passes, disk reload, local notification planning and simulated outage preservation. External failures remain visible; not a scheduled-production or mobile-delivery proof.",
+  "sources": [
+    {
+      "id": "revolut-news",
+      "source": {
+        "id": "revolut-news",
+        "name": "Revolut · annonces concernant la France",
+        "url": "https://www.revolut.com/news/",
+        "method": "consumer-links",
+        "depth": "Première page mondiale officielle, filtrée sur une portée française explicite ; couverture partielle, annonces étrangères écartées",
+        "attemptedAt": "2026-10-26T09:07:39.015Z",
+        "discovered": 10,
+        "archiveWarning": null,
+        "etag": null,
+        "lastModified": null,
+        "checkedAt": "2026-10-26T09:07:31.710Z",
+        "lastSuccessAt": "2026-10-26T09:07:31.710Z",
+        "status": "ok",
+        "nextCheckAt": "2026-10-26T09:37:31.710Z",
+        "queue": {
+          "pending": 6,
+          "done": 1,
+          "error": 0,
+          "rejected": 3,
+          "partial": 0
+        },
+        "extractionStatus": "validated",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": "2026-10-26T09:07:31.710Z"
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 889559,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 8,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 7304,
+            "checkedAt": "2026-10-26T09:07:31.710Z"
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 500808,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 3490,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 6,
+              "oldestWaitHours": 0.0020291666666666665,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 1306,
+            "checkedAt": "2026-10-26T09:07:39.015Z"
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Revolut receives French banking licence",
+          "url": "https://www.revolut.com/news/revolut_receives_french_banking_licence",
+          "publishedAt": "2026-08-10",
+          "checkedAt": "2026-10-26T09:07:31.710Z",
+          "sourceHash": "6d797f098b1fa99fc840b2ea8bd9876400da082420738840e5b1e21152f35087",
+          "backfill": true
+        }
+      ],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    },
+    {
+      "id": "lbp-bank",
+      "source": {
+        "id": "lbp-bank",
+        "name": "La Banque Postale · communiqués",
+        "url": "https://www.labanquepostale.com/newsroom-publications.typo-pressrelease.html",
+        "method": "consumer-coverage",
+        "depth": "Deux pages de six communiqués PDF datés",
+        "attemptedAt": "2026-10-26T09:07:38.766Z",
+        "discovered": 12,
+        "archiveWarning": null,
+        "etag": null,
+        "lastModified": "Mon, 26 Oct 2026 03:08:30 GMT",
+        "checkedAt": "2026-10-26T09:07:31.720Z",
+        "lastSuccessAt": "2026-10-26T09:07:31.720Z",
+        "status": "ok",
+        "nextCheckAt": "2026-10-26T10:07:31.720Z",
+        "queue": {
+          "pending": 1,
+          "done": 4,
+          "error": 0,
+          "rejected": 7,
+          "partial": 0
+        },
+        "extractionStatus": "validated",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": "2026-10-26T09:07:38.766Z"
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 4,
+            "bytes": 547777,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 3,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 7046,
+            "checkedAt": "2026-10-26T09:07:31.720Z"
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 347602,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 578,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 1,
+              "oldestWaitHours": 0.001957222222222222,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 663,
+            "checkedAt": "2026-10-26T09:07:38.766Z"
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "La Banque Postale et Louvre Banque Privée commercialisent Euros Engagements Durables, une solution d’épargne de CNP Assurances conjuguant fonds en euros et investissement durable",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-louvre-fonds-euros-engagements-durables.pdf",
+          "publishedAt": "2026-09-07",
+          "checkedAt": "2026-10-26T09:07:31.720Z",
+          "sourceHash": "c9909f4eb115b3c12bba69a081da90d5afa63e8dde9587e13bd4b5e79b692b82",
+          "backfill": true
+        },
+        {
+          "title": "La Banque Postale présente l’édition 2026 du « Regard financier sur les Départements »",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-etude-regard-financier-departements-france.pdf",
+          "publishedAt": "2026-09-03",
+          "checkedAt": "2026-10-26T09:07:31.720Z",
+          "sourceHash": "a27c8cd2946ad658339e5c9850e5294f3902cdc39cccd13e3b50d8bce6c3df47",
+          "backfill": true
+        },
+        {
+          "title": "La Banque Postale se mobilise pour accompagner ses clients victimes des incendies",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/cp-lbp-incendies.pdf",
+          "publishedAt": "2026-07-30",
+          "checkedAt": "2026-10-26T09:07:38.766Z",
+          "sourceHash": "dd83f005cb77c86f0da15c1a41039f5ca9ed1894a3e48240aab5ddcd962fe773",
+          "backfill": true
+        },
+        {
+          "title": "Frais bancaires sur les successions : La Banque Postale maintient la gratuité pour les mineurs et porte à 10 000 € son seuil d’exonération pour les petites successions",
+          "url": "https://www.labanquepostale.com/content/dam/lbp/documents/communiques-de-presse/2026/info-presse-lbp-frais-succession.pdf",
+          "publishedAt": "2026-07-24",
+          "checkedAt": "2026-10-26T09:07:38.766Z",
+          "sourceHash": "9c343d0fc9f56edec2ea113d04dd2b0bfe9fcc4acb295720915acc1b3c0d00d1",
+          "backfill": true
+        }
+      ],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    },
+    {
+      "id": "hanetf",
+      "source": {
+        "id": "hanetf",
+        "name": "HANetf · communiqués UCITS",
+        "url": "https://hanetf.com/press-releases/",
+        "method": "extra-links",
+        "depth": "Communiqués rendus par le site, indépendants du catalogue",
+        "attemptedAt": "2026-10-26T09:08:08.771Z",
+        "discovered": 9,
+        "archiveWarning": null,
+        "etag": null,
+        "lastModified": null,
+        "discoveryVersion": 1,
+        "checkedAt": "2026-10-26T09:07:31.721Z",
+        "lastSuccessAt": "2026-10-26T09:07:31.721Z",
+        "status": "ok",
+        "nextCheckAt": "2026-10-26T10:07:31.721Z",
+        "queue": {
+          "pending": 5,
+          "done": 4,
+          "error": 0,
+          "rejected": 0,
+          "partial": 0
+        },
+        "extractionStatus": "validated",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": "2026-10-26T09:08:08.771Z"
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 858960,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 7,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 37049,
+            "checkedAt": "2026-10-26T09:07:31.721Z"
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 700922,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 18680,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 5,
+              "oldestWaitHours": 0.010291666666666666,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 33373,
+            "checkedAt": "2026-10-26T09:08:08.771Z"
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Trading Central expand UCITS range with two more quantamental equally weighted UCITS ETFs",
+          "url": "https://hanetf.com/press-releases/trading-central-expand-ucits-range-with-two-more-quantamental-equally-weighted-ucits-etfs",
+          "publishedAt": "2026-10-13",
+          "checkedAt": "2026-10-26T09:07:31.721Z",
+          "sourceHash": "1fc242b7bae5d34048032410c9a54b2a3dd1f6123e987d17f9cc7c8283d20c15",
+          "backfill": true
+        },
+        {
+          "title": "YieldMax® discloses latest distribution rates for its European products highlighting the covered call strategy’s income potential",
+          "url": "https://hanetf.com/press-releases/yieldmax-discloses-latest-distribution-rates-for-its-european-products-highlighting-the-covered-call-strategys-income-potential-october-2026",
+          "publishedAt": "2026-10-08",
+          "checkedAt": "2026-10-26T09:07:31.721Z",
+          "sourceHash": "aef0349329fb88e4a8699e9ef1ae633510112a53c71b4251c8126c4d31007583",
+          "backfill": true
+        },
+        {
+          "title": "YieldMax® Semiconductor Option Income UCITS ETF moves to weekly distributions as demand for frequent income grows",
+          "url": "https://hanetf.com/press-releases/yieldmax-semiconductor-option-income-ucits-etf-moves-to-weekly-distributions-as-demand-for-frequent-income-grows",
+          "publishedAt": "2026-10-01",
+          "checkedAt": "2026-10-26T09:08:08.771Z",
+          "sourceHash": "63eb645d1feba705d886008fd45af7e99b97480eaa8751b707cbb3394d813975",
+          "backfill": true
+        },
+        {
+          "title": "HANetf launches world’s first currency hedged Bitcoin ETCs allowing investors to gain Bitcoin exposure without US dollar risk",
+          "url": "https://hanetf.com/press-releases/hanetf-launches-worlds-first-currency-hedged-bitcoin-etcs-allowing-investors-to-gain-bitcoin-exposure-without-us-dollar-risk",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-26T09:08:08.771Z",
+          "sourceHash": "b2b17e32b787a4cbc4c57c38754751cd24c439783c181c18642f7832923e717b",
+          "backfill": true
+        }
+      ],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    },
+    {
+      "id": "wisdomtree",
+      "source": {
+        "id": "wisdomtree",
+        "name": "WisdomTree · communiqués européens",
+        "url": "https://www.wisdomtree.com/fr/press-room",
+        "method": "links",
+        "depth": "Archive rendue par le serveur, sans pagination supposée",
+        "attemptedAt": "2026-10-26T09:07:37.211Z",
+        "discovered": 22,
+        "archiveWarning": null,
+        "etag": null,
+        "lastModified": null,
+        "checkedAt": "2026-10-26T09:07:31.722Z",
+        "lastSuccessAt": "2026-10-26T09:07:31.722Z",
+        "status": "ok",
+        "nextCheckAt": "2026-10-26T10:07:31.722Z",
+        "queue": {
+          "pending": 18,
+          "done": 4,
+          "error": 0,
+          "rejected": 0,
+          "partial": 0
+        },
+        "extractionStatus": "validated",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": "2026-10-26T09:07:37.211Z"
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 3,
+            "bytes": 4432806,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 20,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 5488,
+            "checkedAt": "2026-10-26T09:07:31.722Z"
+          },
+          "errors": []
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 2808595,
+            "notModified": 0,
+            "attemptedDocuments": 2,
+            "queue": {
+              "admitted": 2,
+              "attempted": 2,
+              "capacity": 2,
+              "p90DocumentMs": 913,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 18,
+              "oldestWaitHours": 0.0015247222222222222,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 1145,
+            "checkedAt": "2026-10-26T09:07:37.211Z"
+          },
+          "errors": []
+        }
+      ],
+      "examples": [
+        {
+          "title": "Albemarle Street Partners to become WisdomTree Portfolio Solutions",
+          "url": "https://www.wisdomtree.com/fr/press-room/albemarle-street-partners-to-become-wisdomtree-portfolio-solutions",
+          "publishedAt": "2026-10-20",
+          "checkedAt": "2026-10-26T09:07:31.722Z",
+          "sourceHash": "b9b1035637996aad5dbbda90ace6e0d605522c7b2c1ffd13070005aecafd4f58",
+          "backfill": true
+        },
+        {
+          "title": "WisdomTree lance des ETF à rendement défini gérés activement",
+          "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-launches-actively-managed-defined-return-etfs",
+          "publishedAt": "2026-09-30",
+          "checkedAt": "2026-10-26T09:07:31.722Z",
+          "sourceHash": "f0e3814dbcb56d6242678e4d5e78f39785210ca0fce7ea880c331ee39b505e0b",
+          "backfill": true
+        },
+        {
+          "title": "WisdomTree Declares Third Quarter Dividend Distributions",
+          "url": "https://www.wisdomtree.com/fr/press-room/wisdomtree-declares-third-quarter-dividend-distributions-2026",
+          "publishedAt": "2026-09-24",
+          "checkedAt": "2026-10-26T09:07:37.211Z",
+          "sourceHash": "bf72d53d257462de2aad7eaf9db041716140b60080dbf5f67b26644476011eb6",
+          "backfill": true
+        },
+        {
+          "title": "Stratégies à rendement défini : croissance attendue en Europe",
+          "url": "https://www.wisdomtree.com/fr/press-room/defined-outcome-strategies-tipped-for-growth-in-europe",
+          "publishedAt": "2026-09-21",
+          "checkedAt": "2026-10-26T09:07:37.211Z",
+          "sourceHash": "ac582d787c2ca50144a5ccae2404402a0ec44d1e9969f838bfec43eeb96de1a3",
+          "backfill": true
+        }
+      ],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    },
+    {
+      "id": "drees",
+      "source": {
+        "id": "drees",
+        "name": "DREES",
+        "url": "https://drees.solidarites-sante.gouv.fr/",
+        "method": "links",
+        "depth": "Accueil public ; contrôle du contenu anti-robot",
+        "attemptedAt": "2026-10-26T09:07:37.707Z",
+        "status": "error",
+        "error": "HTTP 503",
+        "failureKind": "temporary-unavailable",
+        "queue": {
+          "pending": 0,
+          "done": 0,
+          "error": 0,
+          "rejected": 0,
+          "partial": 0
+        },
+        "extractionStatus": "no-in-scope-publication",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": null
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 0,
+            "notModified": 0,
+            "attemptedDocuments": 0,
+            "queue": {
+              "admitted": 0,
+              "attempted": 0,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 0,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 5984,
+            "checkedAt": "2026-10-26T09:07:31.723Z"
+          },
+          "errors": [
+            {
+              "family": "economie",
+              "entity": "DREES",
+              "reason": "HTTP 503"
+            }
+          ]
+        },
+        {
+          "metrics": {
+            "requests": 2,
+            "bytes": 0,
+            "notModified": 0,
+            "attemptedDocuments": 0,
+            "queue": {
+              "admitted": 0,
+              "attempted": 0,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 0,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 633,
+            "checkedAt": "2026-10-26T09:07:37.707Z"
+          },
+          "errors": [
+            {
+              "family": "economie",
+              "entity": "DREES",
+              "reason": "HTTP 503"
+            }
+          ]
+        }
+      ],
+      "examples": [],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    },
+    {
+      "id": "dares",
+      "source": {
+        "id": "dares",
+        "name": "DARES",
+        "url": "https://dares.travail-emploi.gouv.fr/",
+        "method": "links",
+        "depth": "Accueil public ; contrôle du contenu anti-robot",
+        "attemptedAt": "2026-10-26T09:07:35.574Z",
+        "status": "error",
+        "error": "Accès refusé ou page anti-robot, même si HTTP 200",
+        "failureKind": "access-denied",
+        "queue": {
+          "pending": 0,
+          "done": 0,
+          "error": 0,
+          "rejected": 0,
+          "partial": 0
+        },
+        "extractionStatus": "no-in-scope-publication",
+        "silentBaselines": 0,
+        "lastExtractionSuccessAt": null
+      },
+      "passes": [
+        {
+          "metrics": {
+            "requests": 1,
+            "bytes": 53181,
+            "notModified": 0,
+            "attemptedDocuments": 0,
+            "queue": {
+              "admitted": 0,
+              "attempted": 0,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 0,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 3848,
+            "checkedAt": "2026-10-26T09:07:31.724Z"
+          },
+          "errors": [
+            {
+              "family": "economie",
+              "entity": "DARES",
+              "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+            }
+          ]
+        },
+        {
+          "metrics": {
+            "requests": 1,
+            "bytes": 57417,
+            "notModified": 0,
+            "attemptedDocuments": 0,
+            "queue": {
+              "admitted": 0,
+              "attempted": 0,
+              "capacity": 2,
+              "p90DocumentMs": 5000,
+              "recentEligible": 0,
+              "recentFirstAttempted": 0,
+              "recentDeferred": 0,
+              "pending": 0,
+              "oldestWaitHours": 0,
+              "objective": "Première tentative au prochain passage admissible pour les publications récentes prioritaires, dans la capacité réservée ; surplus et dépassements visibles."
+            },
+            "durationMs": 197,
+            "checkedAt": "2026-10-26T09:07:35.574Z"
+          },
+          "errors": [
+            {
+              "family": "economie",
+              "entity": "DARES",
+              "reason": "Accès refusé ou page anti-robot, même si HTTP 200"
+            }
+          ]
+        }
+      ],
+      "examples": [],
+      "observationPreservationVerified": true,
+      "initialNotificationCount": 0
+    }
+  ]
+}
