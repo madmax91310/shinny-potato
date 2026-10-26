@@ -4,6 +4,8 @@ import { spawn } from 'node:child_process';
 import { chromium } from 'playwright';
 import stories from '../src/pages/market-facts/stories.json' with { type: 'json' };
 import { FACTS } from '../src/pages/market-facts/data.js';
+import { buildTweetText } from '../src/pages/market-facts/lib.js';
+const narratives = FACTS.filter(fact => fact.kind !== 'measured-reference');
 
 const base = 'http://127.0.0.1:4312/shinny-potato';
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4312', '--strictPort'], { stdio: 'pipe', detached: true });
@@ -32,11 +34,16 @@ try {
     await search.fill('aucun-récit-avec-ce-nom');
     await page.getByRole('status', { name: '' }).filter({ hasText: 'Aucun résultat' }).waitFor();
     await page.getByRole('button', { name: 'Effacer la recherche' }).click();
-    for (const story of stories) {
+    for (const [query, id] of [['Bogle', 'story:bogle-premier-indiciel-1976'], ['Premium Bonds', 'story:premium-bonds-1956'], ['Keynes', 'story:keynes-changer-methode']]) {
+      await search.fill(query);
+      assert(await page.locator(`[data-option][data-value="${id}"]`).count(), `Sujet retrouvable : ${query}`);
+    }
+    await search.fill('');
+    for (const story of FACTS) {
       await page.locator(`[data-option][data-value="${story.id}"]`).click();
       if (width < 900) await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
       await page.locator('.mf-fact-text').waitFor({ state: 'visible' });
-      assert.equal(await page.locator('.mf-fact-text').innerText(), story.text);
+      assert.equal(await page.locator('.mf-fact-text').innerText(), buildTweetText(story));
       const details = page.locator('.mf-details');
       if (!(await details.evaluate(node => node.open))) await details.locator('summary').click();
       const links = details.locator('a');
@@ -48,16 +55,17 @@ try {
       }
       assert((await details.innerText()).includes(story.reserves[0]));
       await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
-      assert.equal(await page.evaluate(() => navigator.clipboard.readText()), story.text, `${width}px ${story.id}`);
+      assert.equal(await page.evaluate(() => navigator.clipboard.readText()), buildTweetText(story), `${width}px ${story.id}`);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px débordement ${story.id}`);
       if (width < 900) await page.getByRole('button', { name: 'Réglages', exact: true }).click();
     }
-    // Le cycle repart de l'histoire initiale et couvre aussi les anciens contenus.
+    // Un repère reste accessible manuellement, mais ne remplace jamais une histoire tirée au sort.
     await page.reload({ waitUntil: 'networkidle' });
     const seen = new Set([await page.locator('.mf-card').getAttribute('data-story-id')]);
-    for (let index = 1; index < FACTS.length; index++) {
+    for (let index = 1; index < narratives.length; index++) {
       await page.getByRole('button', { name: '🔄 Histoire aléatoire', exact: true }).click();
       const id = await page.locator('.mf-card').getAttribute('data-story-id');
+      assert(narratives.some(fact => fact.id === id), `Le tirage doit proposer un récit relu : ${id}`);
       assert(!seen.has(id), `Répétition avant épuisement : ${id}`);
       seen.add(id);
     }
@@ -78,7 +86,7 @@ try {
     await popup.waitForURL(stories[0].sources[0].url, { waitUntil: 'commit' });
     await popup.close();
     assert.deepEqual(errors, []);
-    console.log(`${width}px : ${stories.length} lectures/copies exactes, preuves, recherche, ouverture source, aucun débordement ; cycle de ${seen.size} contenus sans répétition.`);
+    console.log(`${width}px : ${FACTS.length} lectures/copies exactes, preuves, recherche, ouverture source, aucun débordement ; cycle de ${seen.size} récits sans répétition.`);
     await context.close();
   }
 } finally {

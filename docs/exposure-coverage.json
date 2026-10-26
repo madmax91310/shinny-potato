@@ -1,9 +1,35 @@
 {
-  "checkedAt": "2026-10-25T15:06:14.657Z",
+  "checkedAt": "2026-10-26T09:39:59.898Z",
   "total": 672,
   "outside": 41,
-  "complete": 631,
-  "gaps": [],
+  "complete": 630,
+  "gaps": [
+    {
+      "asset": "IE000XZSV718",
+      "isin": "IE000XZSV718",
+      "name": "SPDR S&P 500 UCITS ETF Acc",
+      "kind": "etf",
+      "provider": "State Street",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-10-23"
+      }
+    }
+  ],
   "outsideAssets": [
     {
       "asset": "gold",

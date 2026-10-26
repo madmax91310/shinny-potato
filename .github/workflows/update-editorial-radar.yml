@@ -18,6 +18,10 @@ on:
       - 'scripts/lib/radar-households.mjs'
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
+      - 'scripts/lib/radar-source-health.mjs'
+      - 'scripts/test-radar-source-recovery.mjs'
+      - 'scripts/check-radar-source-recovery.mjs'
+      - 'scripts/fixtures/radar-source-recovery/**'
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'src/lib/radar-qualification.js'
@@ -76,6 +80,10 @@ on:
       - 'scripts/lib/radar-households.mjs'
       - 'scripts/lib/radar-schedule.mjs'
       - 'scripts/lib/radar-source-access.mjs'
+      - 'scripts/lib/radar-source-health.mjs'
+      - 'scripts/test-radar-source-recovery.mjs'
+      - 'scripts/check-radar-source-recovery.mjs'
+      - 'scripts/fixtures/radar-source-recovery/**'
       - 'scripts/lib/radar-extra-sources.mjs'
       - 'src/lib/radar-policy.js'
       - 'src/lib/radar-qualification.js'
@@ -153,9 +161,19 @@ jobs:
       - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-depth.mjs
       - run: node scripts/test-radar-audit-fixes.mjs
+      - run: node scripts/test-radar-source-recovery.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Qualify the six failed Radar sources (read-only)
+        run: node scripts/check-radar-source-recovery.mjs "$RUNNER_TEMP/radar-source-recovery"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: radar-six-source-recovery
+          path: ${{ runner.temp }}/radar-source-recovery/report.json
+          retention-days: 35
+          if-no-files-found: error
       - name: Qualify public Radar source coverage (read-only)
         run: node scripts/check-radar-coverage.mjs "$RUNNER_TEMP/radar-coverage"
       - uses: actions/upload-artifact@v7.0.1
@@ -238,6 +256,7 @@ jobs:
       - run: node scripts/test-radar-coverage.mjs
       - run: node scripts/test-radar-depth.mjs
       - run: node scripts/test-radar-audit-fixes.mjs
+      - run: node scripts/test-radar-source-recovery.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       # HTML and PDF official announcements; no retail availability inferred.

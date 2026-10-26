@@ -70,7 +70,15 @@ const {gunzipSync}=await import('node:zlib')
 const oldQuotes=JSON.parse(gunzipSync(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/original-exchange-quote-records.json.gz')))
 const currentQuotes=JSON.parse(fs.readFileSync('src/data/automated-etf-monthly.json'))
 for(const id of ['etfFR0010342592','etfFR0007054358']){
- assert.deepEqual(currentQuotes[id],oldQuotes[id].record,'Preserve the exact original quote, its adjustments and dates')
+ const quote=currentQuotes[id],baseline=oldQuotes[id].record,consumer=ASSETS[id]
+ // A later validated collection may refresh its receipt or extend/revise prices.
+ // The NAV overlay must leave the current exchange series and identity intact.
+ for(const key of ['id','isin','ticker','mic','currency','field','parser','symbol','method'])assert.equal(quote[key],baseline[key],`Original exchange identity/convention: ${key}`)
+ assert.deepEqual(consumer.points,quote.points.map(([date,price])=>({date,price})),'NAV overlay must preserve every current quote point')
+ assert.deepEqual(consumer.anniversaryPoints,quote.anniversaryPoints.map(([date,price])=>({date,price})),'NAV overlay must preserve current anniversary adjustments and dates')
+ assert.equal(consumer.checkedAt,quote.checkedAt,'Consumer must use the current source receipt, never an archived date')
+ assert.match(quote.responseSha256,/^[a-f0-9]{64}$/,'Current source receipt remains required')
+ assert(quote.checkedAt>=baseline.checkedAt&&quote.checkedAt<=new Date().toISOString().slice(0,10),'Current receipt must not be backdated or future-dated')
  assert(ASSET_ORDER.includes(id)&&ASSET_ORDER.includes(id+'Nav'))
  assert.equal(ASSETS[id+'Nav'].isin,ASSETS[id].isin)
  assert.equal(ASSETS[id+'Nav'].ticker,undefined,'A NAV is never the exchange quote')

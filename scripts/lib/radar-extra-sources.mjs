@@ -1,9 +1,10 @@
+import { htmlElement } from './radar-article-body.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
 export const EXTRA_SOURCES = [
   {id:'xetra',name:'Deutsche Börse / Xetra · cotations ETF',url:'https://www.cashmarket.deutsche-boerse.com/cash-en/Stay-Informed/newsroom/press-releases',method:'extra-links',host:'www.cashmarket.deutsche-boerse.com',family:'etf',path:'/cash-en/Stay-Informed/newsroom/press-releases/',depth:'Communiqués de cotation courants, tous émetteurs, sans catalogue ; une cotation ne prouve pas une création'},
   {id:'bnp',name:'BNP Paribas AM · communiqués',url:'https://www.bnpparibas-am.com/en/media-centre/',method:'extra-bnp',host:'www.bnpparibas-am.com',family:'etf',depth:'API publique de la page, deux pages de douze communiqués, sans catalogue'},
   {id:'xtrackers',name:'Xtrackers · salle de presse',url:'https://etf.dws.com/en-gb/about-us/press-releases/',method:'extra-links',host:'etf.dws.com',family:'etf',path:'/en-gb/about-us/press-releases/',depth:'Table datée de la salle de presse ETF, année courante rendue'},
-  {id:'hanetf',name:'HANetf · communiqués UCITS',url:'https://hanetf.com/press-releases/',method:'extra-links',host:'hanetf.com',family:'etf',path:'/press-releases/',depth:'Communiqués rendus par le site, indépendants du catalogue'},
+  {id:'hanetf',discoveryVersion:2,parserVersion:4,name:'HANetf · communiqués UCITS',url:'https://hanetf.com/press_releases-sitemap.xml',newsroomUrl:'https://hanetf.com/press-releases/',method:'extra-hanetf-sitemap',host:'hanetf.com',family:'etf',path:'/press-releases/',depth:'24 URL anglaises les plus récemment modifiées du sitemap officiel ; lastmod ne date pas la publication, vérifiée dans chaque communiqué'},
   {id:'notaires-paris',name:'Notaires du Grand Paris · conjoncture',url:'https://paris.notaires.fr/fr/liste-communiques-de-presse',method:'extra-links',host:'paris.notaires.fr',family:'economie',path:'/fr/presse/communication-immobiliere-',depth:'Première page des communications immobilières officielles'},
   {id:'credit-logement',parserVersion:2,name:'Observatoire Crédit Logement / CSA',url:'https://lobservatoire.creditlogement.fr/analyses-mensuelles/',method:'extra-links',host:'lobservatoire.creditlogement.fr',family:'economie',path:'/publications/analyse-marche-immobilier-',depth:'Publications mensuelles rendues, taux complémentaires avec méthode propre'},
   {id:'oll',name:'Observatoires locaux des loyers / ANIL',url:'https://www.observatoires-des-loyers.org/decouvrir-le-reseau/publications/publications-locales',method:'extra-links',host:'www.observatoires-des-loyers.org',family:'economie',path:'/decouvrir-le-reseau/publications/details/',depth:'Première page des résultats locaux publiés ; aucune série locale reconstruite'},
@@ -23,6 +24,17 @@ export async function extraDiscovery(content,source,request) {
     const data=JSON.parse(content)
     if(data.slug!=='demandes-de-valeurs-foncieres'||!Array.isArray(data.resources)||data.license!=='lov2')throw Error('Contrat de livraison DVF ou licence modifié')
     return [{url:source.url,title:data.title,dataset:data}]
+  }
+  if(source.method==='extra-hanetf-sitemap') {
+    if(!/<urlset\b/i.test(content)||!/<\/urlset>\s*$/i.test(content.replace(/<!--[\s\S]*?-->/g,'')))throw Error('Sitemap officiel HANetf absent ou tronqué')
+    const rows=[]
+    for(const [,block] of content.matchAll(/<url\b[^>]*>([\s\S]*?)<\/url>/gi)) {
+      const url=checkedOfficial(tagContent(block,'loc'),source)
+      if(!new URL(url).pathname.startsWith('/press-releases/')||new URL(url).pathname==='/press-releases/')continue
+      rows.push({url,hint:tagContent(block,'lastmod')})
+    }
+    if(!rows.length)throw Error('Liste officielle HANetf vide ou format modifié')
+    return [...new Map(rows.map(row=>[row.url,row])).values()].sort((a,b)=>b.hint.localeCompare(a.hint)||a.url.localeCompare(b.url)).slice(0,24)
   }
   if(source.id==='bnp'){
     const cfg=JSON.parse(content.match(/var ajax_params = (\{[^;]+\});/)?.[1]??'{}')
@@ -45,11 +57,14 @@ export async function extraDiscovery(content,source,request) {
     return [...new Map(rows.map(row=>[row.url,row])).values()]
   }
   const rows=[]
-  const blocks=source.id==='xtrackers'?[...content.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>m[1]):[content]
+  const hanCards=source.id==='hanetf' ? [...content.matchAll(/<div\b[^>]*class=["'][^"']*\bresource_card\b[^"']*["'][^>]*>/gi)].map(m=>htmlElement(content,m.index)).filter(Boolean) : []
+  if(source.id==='hanetf' && !hanCards.length)throw Error('Liste officielle HANetf vide ou format modifié')
+  const blocks=source.id==='hanetf'?hanCards:source.id==='xtrackers'?[...content.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>m[1]):[content]
   for(const block of blocks)for(const [,href,raw]of block.matchAll(/<a\b[^>]*href\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)){
     let url;try{url=checkedOfficial(href,source)}catch{continue}
     if(!new URL(url).pathname.startsWith(source.path)||new URL(url).pathname.replace(/\/$/,'')===source.path.replace(/\/$/,''))continue
-    const title=tagContent(raw,'h3')||clean(raw)
+    const title=(source.id==='hanetf'?clean(block.match(/<p\b[^>]*class=["'][^"']*\btitle-height\b[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]):null)||tagContent(raw,'h3')||clean(raw)
+    if(source.id==='hanetf' && /^(?:Read more|En savoir plus)$/i.test(title))throw Error('Titre officiel HANetf absent de la carte')
     if(!title||title.length>700)continue
     const row={url,title}
     if(source.id==='xetra'){

@@ -40,7 +40,7 @@ for (const fact of FACTS) {
   }
   requireFields(label, fact, ['text', 'category', 'period', 'reviewedAt'])
   if (!fact.text?.endsWith('Pas un conseil financier.')) failures.push(`${label} : mention financière absente`)
-  if (!Array.isArray(fact.sources) || fact.sources.length < 2) failures.push(`${label} : dossier de sources incomplet`)
+  if (!Array.isArray(fact.sources) || fact.sources.length < (fact.kind === 'measured-reference' ? 1 : 2)) failures.push(`${label} : dossier de sources incomplet`)
   const sources = Array.isArray(fact.sources) ? fact.sources : []
   if (new Set(sources.map(source => source.url)).size !== sources.length) failures.push(`${label} : source dupliquée`)
   for (const source of sources) {

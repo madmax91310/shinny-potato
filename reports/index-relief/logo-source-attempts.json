@@ -1,0 +1,319 @@
+[
+  {
+    "id": "alphabet",
+    "page": "https://abc.xyz/investor/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "broadcom",
+    "page": "https://investors.broadcom.com/",
+    "error": "HTTP Error 503: Service Unavailable"
+  },
+  {
+    "id": "micron",
+    "page": "https://investors.micron.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "siemens",
+    "page": "https://press.siemens.com/global/en",
+    "status": 200,
+    "candidates": [
+      "/profiles/c2_base/modules/c2cms_instance_logo/assets/sag-logo.png",
+      "/profiles/c2_base/modules/c2cms_instance_logo/assets/blank.gif"
+    ]
+  },
+  {
+    "id": "totalenergies",
+    "page": "https://totalenergies.com/investors",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "sanofi",
+    "page": "https://www.sanofi.com/en",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "amd",
+    "page": "https://www.amd.com/en.html",
+    "status": 200,
+    "candidates": [
+      "https://www.amd.com/content/dam/amd/en/images/logos/corporate/1913654-homepage-twa-og-image.jpg",
+      "/content/dam/code/images/header/amd-header-logo.svg",
+      "/content/dam/amd/en/images/logos/products/5329784-agentic-ai-ross-teaser.jpg",
+      "/content/dam/amd/en/images/illustrations/homepage/2026/4956600-homepage-logo-wall-background-enterprise-amd.jpg",
+      "/content/dam/amd/en/images/logos/partners/aws-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/oracle-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/google-cloud-vertical-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/2559150-microsoft-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/dell-technologies-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/lenovo-white-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/3120550-sonos-padded-logo.png",
+      "/content/dam/amd/en/images/logos/partners/subaru-logo-white-nonpadded.png"
+    ]
+  },
+  {
+    "id": "mastercard",
+    "page": "https://www.mastercard.com/us/en.html",
+    "status": 200,
+    "candidates": [
+      "/adobe/dynamicmedia/deliver/dm-aid--5c295fbf-944b-4415-b64e-c05d1d84c008/mastercard-logo-black-bg-1280x720.jpg?quality=82&amp;width={width}&amp;preferwebp=true",
+      "/adobe/dynamicmedia/deliver/dm-aid--5c295fbf-944b-4415-b64e-c05d1d84c008/mastercard-logo-black-bg-1280x720.jpg?quality=82&preferwebp=true"
+    ]
+  },
+  {
+    "id": "netflix",
+    "page": "https://ir.netflix.net/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "costco",
+    "page": "https://www.costco.com/",
+    "status": 200,
+    "candidates": [
+      "https://gdx-assets.costco.com/adobe/assets/urn%3Aaaid%3Aaem%3Ad894507a-7a53-440f-9236-44f2154bbe8b/as/instacart-logo-faq-20w09139.png?width=350&amp;height=350&amp;fit=constrain&amp;auto-format=false",
+      "https://gdx-assets.costco.com/adobe/assets/urn:aaid:aem:700b4244-1830-4bb4-8c15-89ec75777531/as/Costco-logo-HEX.avif",
+      "https://www.costco.com/f/-/logo-media-requests",
+      "https://www.costco.com/LogonForm?langId=-1&amp;storeId=10301&amp;catalogId=10701"
+    ]
+  },
+  {
+    "id": "berkshire",
+    "page": "https://www.berkshirehathaway.com/",
+    "error": "'utf-8' codec can't decode byte 0x9c in position 1: invalid start byte"
+  },
+  {
+    "id": "chevron",
+    "page": "https://www.chevron.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "caterpillar",
+    "page": "https://www.caterpillar.com/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "deutsche-telekom",
+    "page": "https://www.telekom.com/en",
+    "status": 200,
+    "candidates": [
+      "/etc.clientlibs/dxp/clientlibs/clientlib-site/resources/icons/sprite/icon-sprite.svg#icon-telekom-logo"
+    ]
+  },
+  {
+    "id": "deutsche-bank",
+    "page": "https://www.db.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "roche",
+    "page": "https://www.roche.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "hdfc",
+    "page": "https://www.hdfcbank.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "reliance",
+    "page": "https://www.ril.com/",
+    "status": 200,
+    "candidates": [
+      "https://rilstaticasset.akamaized.net/sites/default/files/images/ril-logo-social_media.jpg",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2022-09/logo-scroll.png",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2022-11/reliance-industries_logo1.png",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2023-01/ril-foundation-logo_0.jpg",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2026-08/merged_logos.png",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2025-04/ril_logo.jpg",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2026-06/logo_jio_white.jpg",
+      "https://rilstaticasset.akamaized.net/sites/default/files/images/logo-ft.png",
+      "https://rilstaticasset.akamaized.net/sites/default/files/2022-09/logo-ft.png"
+    ]
+  },
+  {
+    "id": "icici",
+    "page": "https://www.icicibank.com/",
+    "status": 200,
+    "candidates": [
+      "/content/dam/icicibank-revamp/images/icici-logo/icici-header-logo.png",
+      "/content/dam/icicibank-revamp/logo-hamb.svg",
+      "/content/dam/icicibank-revamp/images/askipal/super-audio-logo-new.svg",
+      "/content/dam/icicibank-revamp/images/askipal/super-search-logo-new.svg",
+      "/content/dam/icicibank-revamp/images/askipal/askipal-logo-new.svg",
+      "/content/dam/icicibank-revamp/images/footer-images/icici-footer-logo.svg"
+    ]
+  },
+  {
+    "id": "bharti-airtel",
+    "page": "https://www.airtel.com/",
+    "status": 200,
+    "candidates": [
+      "https://airtelcms.airtel.in/wp-content/uploads/2025/11/airtel-black-logo-150x150.png",
+      "https://airtelcms.airtel.in/wp-content/uploads/2025/11/airtel-black-logo-300x300.png"
+    ]
+  },
+  {
+    "id": "infosys",
+    "page": "https://www.infosys.com/",
+    "status": 200,
+    "candidates": [
+      "/content/dam/infosys-web/en/new-design25/assets/infy-logo-dark.svg"
+    ]
+  },
+  {
+    "id": "sk-hynix",
+    "page": "https://www.skhynix.com/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "toyota",
+    "page": "https://global.toyota/en/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "sony",
+    "page": "https://www.sony.com/en/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "shell",
+    "page": "https://www.shell.com/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "abbvie",
+    "page": "https://www.abbvie.com/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "linde",
+    "page": "https://www.linde.com/",
+    "status": 200,
+    "candidates": [
+      "https://assets.linde.com/-/media/shared/logo/linde-logo-desktop.png?r=67f656cb1f",
+      "https://assets.linde.com/-/media/shared/logo/linde-logo-tablet.png?r=81748ce8c1",
+      "https://assets.linde.com/-/media/shared/logo/linde-logo-mobile.png?r=e958be51ae"
+    ]
+  },
+  {
+    "id": "santander",
+    "page": "https://www.santander.com/en/home",
+    "status": 200,
+    "candidates": [
+      "/content/dam/santander-com/paises/san-logo.png.transform/rendition-xs/image.png",
+      "/content/dam/santander-com/images/logo/santander-logo-negative.svg",
+      "/content/dam/santander-com/images/Santander_Logo.svg"
+    ]
+  },
+  {
+    "id": "iberdrola",
+    "page": "https://www.iberdrola.com/",
+    "status": 200,
+    "candidates": [
+      "/documents/20125/1847680/logo+iberdrola.svg/2b3683cb-411f-8be9-854f-052fa71fb136?t=1684924262457",
+      "${logoImage}"
+    ]
+  },
+  {
+    "id": "nextera",
+    "page": "https://www.nexteraenergy.com/",
+    "status": 200,
+    "candidates": [
+      "/content/dam/nee/us/en/neecommon/images/logo.png",
+      "/content/dam/nee/us/en/images/newsroom/nee-newsroom-logo.jpg",
+      "/content/dam/nee/us/en/neecommon/images/x-logo-32x32.png"
+    ]
+  },
+  {
+    "id": "southern",
+    "page": "https://www.southerncompany.com/",
+    "status": 200,
+    "candidates": [
+      "/content/dam/southerncompany/logos/southern_company_logo_dark_text_horizontal.svg",
+      "/content/dam/southerncompany/logos/Southern%20RGB%20White%20Horizontal.png"
+    ]
+  },
+  {
+    "id": "enbridge",
+    "page": "https://www.enbridge.com/",
+    "status": 200,
+    "candidates": [
+      "https://www.enbridge.com/~/media/Enb/SocialMedia/logo-header-gray.png?rev=66d41787e5b5412ba6928fb36b385d69&hash=A0163DB9BE31295829319F49789D12B1",
+      "/sites/rebrand/img/svg/enb-logo-reversed.svg",
+      "/sites/rebrand/img/svg/enbridge-print-logo.png",
+      "/~/media/Enb/Images/Logos/Enbridge-Logo-Reversed-Tagline.png?rev=cf6ee1fdfb0f42dca127e9300b7f3fdf&amp;hash=4274CCBC08B2116A8177CA6431316699"
+    ]
+  },
+  {
+    "id": "medIATEK",
+    "page": "https://www.mediatek.com/",
+    "status": 200,
+    "candidates": [
+      "https://www.mediatek.com/hs-fs/hubfs/MediaTek%20Assets/Images/MediaTek-Logo.png?width=130&amp;height=16&amp;name=MediaTek-Logo.png",
+      "https://www.mediatek.com/hs-fs/hubfs/MediaTek%20Assets/Images/Static%20Images/DREAMFASTER_logo.png?width=1515&amp;height=114&amp;name=DREAMFASTER_logo.png",
+      "https://www.mediatek.com/hubfs/raw_assets/public/MediaTek_Mar_2024/images/mediatek-logo.svg"
+    ]
+  },
+  {
+    "id": "alibaba",
+    "page": "https://www.alibabagroup.com/en-US/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "hon-hai",
+    "page": "https://www.honhai.com/en-us/",
+    "status": 200,
+    "candidates": [
+      "https://image.honhai.com/upload/global/logo-en-us_202311301025578760108.svg"
+    ]
+  },
+  {
+    "id": "petrobras",
+    "page": "https://petrobras.com.br/",
+    "status": 200,
+    "candidates": [
+      "https://petrobras.com.br/documents/2677942/2678045/logo.svg/64b59d8a-d175-c374-189d-af798dea2241?version=1.0&amp;t=1686665076000",
+      "https://petrobras.com.br/documents/2677942/2678057/facebook-logo.svg/079f9b41-133e-863b-db1e-593ebc65ce50?version=1.0&amp;t=1686665370000"
+    ]
+  },
+  {
+    "id": "vale",
+    "page": "https://www.vale.com/",
+    "status": 200,
+    "candidates": [
+      "https://www.vale.com/documents/44618/9988240/Logotipo_Vale.svg.png/f4c0e958-ae3d-2133-68ff-5defa86d0b27?version=1.0&amp;t=1761247930630&amp;imagePreview=1"
+    ]
+  },
+  {
+    "id": "moderna",
+    "page": "https://www.modernatx.com/",
+    "status": 200,
+    "candidates": []
+  },
+  {
+    "id": "ge-aerospace",
+    "page": "https://www.geaerospace.com/",
+    "status": 200,
+    "candidates": [
+      "/themes/custom/aero_sub_theme/logo.svg",
+      "/themes/custom/aero_unified/assets/images/Logo.svg"
+    ]
+  },
+  {
+    "id": "ge-vernova",
+    "page": "https://www.gevernova.com/",
+    "status": 200,
+    "candidates": [
+      "https://www.gevernova.com/sites/default/files/2025-09/gev_logo.jpg",
+      "/themes/custom/ge_vernova_unified/logo.svg",
+      "/themes/custom/ge_vernova_unified/assets/images/ge_vernova_logo_181x41.svg"
+    ]
+  }
+]

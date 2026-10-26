@@ -1,3 +1,4 @@
+import { requestRadarSource, sourceFailureKind, assertRadarAccess } from './radar-source-health.mjs'
 import { unexplainedOfferOmissions } from './radar-offer-watch.mjs'
 import { consumerRejection } from './radar-consumer.mjs'
 import { articleBody,htmlElement } from './radar-article-body.mjs'
@@ -195,8 +196,7 @@ export async function collectPublications(now = new Date(), request = fetch, pre
   const parserVersion = source => source.method.startsWith('consumer-') || source.format || source.family==='etf' || source.method==='offer-watch' || source.id==='insee-studies' ? 3 : source.parserVersion
   sources=sources.map(source=>({...source,parserVersion:Math.max(source.parserVersion??0,parserVersion(source)??0)}))
   const requestContent = async (url, cached, limit = 2500000, body = null) => {
-    metrics.requests++
-    const response = await request(url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } })
+    const response = await requestRadarSource(request,url, { ...(body?{method:'POST',body:JSON.stringify(body)}:{}), signal: AbortSignal.timeout(25000), headers: { ...(body?{'Content-Type':'application/json'}:{}), 'User-Agent': 'EpargnantLibre-Radar/2.0', Accept: body?'application/json':'application/rss+xml, application/xml, application/json, text/html, application/pdf', ...(cached?.etag ? {'If-None-Match': cached.etag} : {}), ...(cached?.lastModified ? {'If-Modified-Since': cached.lastModified} : {}) } },()=>metrics.requests++)
     if (response.status === 304) { metrics.notModified++; return { unchanged: true } }
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     if (response.url && new URL(response.url).hostname !== new URL(url).hostname) throw new Error('Redirection hors du domaine officiel')
@@ -207,9 +207,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     const extracted=pdf ? await documentText(new Response(bytes,{headers:response.headers})) : null
     return { content: extracted ?? new TextDecoder(response.headers.get('content-type')?.match(/charset=([^; ]+)/i)?.[1] ?? 'utf-8').decode(bytes), etag: response.headers.get('etag'), lastModified: response.headers.get('last-modified') }
   }
-  const discoveryRequest=async (...args)=>{
-    metrics.requests++
-    const response=await request(...args)
+  const discoveryRequest=async (url,options)=>{
+    const response=await requestRadarSource(request,url,options,()=>metrics.requests++)
     const bytes=await response.clone().arrayBuffer()
     metrics.bytes+=bytes.byteLength
     if(bytes.byteLength>2500000)throw Error('Inventaire auxiliaire trop volumineux')
@@ -219,28 +218,33 @@ export async function collectPublications(now = new Date(), request = fetch, pre
     const old = state.sources[source.id] ?? {}, report = { ...old, id: source.id, name: source.name, url: source.url, method: source.method, depth: source.depth, attemptedAt: now.toISOString() }
     try {
       // Sitemap is large: daily check; RSS and listing every hour.
-      if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now || source.id==='insee-studies' && old.discoveryVersion!==3) {
-        const result = await requestContent(source.url, source.id==='insee-studies' && old.discoveryVersion!==3 ? null : old, source.method === 'sitemap' ? 25000000 : 2500000,source.method==='insee-search'?inseeQuery(0):null)
+      const discoveryVersion=source.discoveryVersion ?? (source.id==='insee-studies'?3:undefined)
+      const discoveryChanged=discoveryVersion!==undefined && old.discoveryVersion!==discoveryVersion
+      if (!old.nextCheckAt || Date.parse(old.nextCheckAt) <= +now || discoveryChanged) {
+        const result = await requestContent(source.url, discoveryChanged || old.archiveWarning ? null : old, source.method === 'sitemap' ? 25000000 : 2500000,source.method==='insee-search'?inseeQuery(0):null)
         if(result.unchanged && !old.lastSuccessAt)throw Error('Réponse 304 sans inventaire validé conservé')
         if (!result.unchanged) {
+          assertRadarAccess(result.content)
           const rows = offerDiscovery(result.content,source) ?? await inseeDiscovery(result.content,source,discoveryRequest) ?? await coverageDiscovery(result.content,source,discoveryRequest) ?? await extraDiscovery(result.content,source,discoveryRequest) ?? discoverPublications(result.content, source)
           report.discovered = rows.length
           report.archiveWarning=rows.archiveWarning??null
           for (const row of rows) {
             const existing=state.documents[row.url]
+            if(source.id==='hanetf' && !row.title)row.title=existing?.observation?.label??existing?.title
             if(existing && existing.source===source.id && (existing.title!==row.title || (existing.description??'')!==(row.description??'') || (existing.publishedAt??null)!==(row.publishedAt??null) || (existing.listingRejection??null)!==(row.listingRejection??null))) {
               Object.assign(existing,row,{listingRejected:Boolean(row.listingRejection),nextAttemptAt:now.toISOString(),...(row.listingRejection ? {status:'rejected',reason:row.listingRejection}: {status:'pending'})})
             }
-            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt || source.id==='insee-studies' && old.discoveryVersion!==3, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
+            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt || source.id==='hanetf' && discoveryChanged || source.id==='insee-studies' && old.discoveryVersion!==3, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
           }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
-        report.discoveryVersion=source.id==='insee-studies'?3:old.discoveryVersion
-        report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = report.archiveWarning?'partial':'ok'; delete report.error
+        report.discoveryVersion=discoveryVersion??old.discoveryVersion
+        report.checkedAt = now.toISOString(); report.lastSuccessAt = report.checkedAt; report.status = report.archiveWarning?'partial':'ok'; delete report.error; delete report.failureKind
+        if(report.archiveWarning)report.failureKind=sourceFailureKind(report.archiveWarning)
         if(report.archiveWarning)errors.push({family:source.family,entity:source.name,reason:report.archiveWarning})
         report.nextCheckAt = new Date(+now+(source.method === 'sitemap' ? 1440 : source.cadenceMinutes ?? 60)*60000).toISOString()
       }
-    } catch (error) { report.status = 'error'; report.error = error.message; errors.push({ family: source.family, entity: source.name, reason: error.message }) }
+    } catch (error) { report.status = 'error'; report.error = error.message; report.failureKind=sourceFailureKind(error); errors.push({ family: source.family, entity: source.name, reason: error.message }) }
     state.sources[source.id] = report; reports.push(report)
   }))
   const owners=new Map(sources.map(source=>[source.id,source]))
@@ -340,8 +344,8 @@ export async function collectPublications(now = new Date(), request = fetch, pre
       if(item.observation?.extraction?.status==='partial'){item.status='partial';item.partialReason=item.observation.extraction.reason;if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString()}
       else if(item.status==='partial'){if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString()}
       else if(wasError){item.recoveredAt=now.toISOString();item.failureHistory??=[];item.failureHistory.push({failedAt:item.firstFailureAt,recoveredAt:item.recoveredAt});item.failureHistory=item.failureHistory.slice(-20)}
-      item.nextAttemptAt = new Date(+now+(item.status==='partial' ? 2*3600000 : source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error
-    } catch (error) { if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString();item.lastFailureAt=now.toISOString(); item.status = 'error'; item.error = error.message; item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
+      item.nextAttemptAt = new Date(+now+(item.status==='partial' ? 2*3600000 : source.method==='offer-watch' ? source.cadenceMinutes*60000 : source.method.startsWith('consumer-') ? 3600000 : 7*86400000)).toISOString(); delete item.error; delete item.failureKind
+    } catch (error) { if(!wasError||!item.firstFailureAt)item.firstFailureAt=now.toISOString();item.lastFailureAt=now.toISOString(); item.status = 'error'; item.error = error.message; item.failureKind=sourceFailureKind(error); item.nextAttemptAt = new Date(+now+Math.min(24, 2**Math.min(item.attempts,5))*3600000).toISOString(); errors.push({ family: source.family, entity: url, reason: error.message }) }
     finally { state.documentDurationsMs.push(Date.now()-documentStarted);state.documentDurationsMs=state.documentDurationsMs.slice(-120);if(item.observation?.publishedInstant)item.publishedInstant=item.observation.publishedInstant;Object.assign(item,documentDelays(item)) }
   }
   // Existing first-party publication proofs remain valid: hydrate missing attribution metadata
