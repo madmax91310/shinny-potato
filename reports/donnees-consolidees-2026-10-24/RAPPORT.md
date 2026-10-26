@@ -1,6 +1,14 @@
 # Données communes — bilan consolidé actualisé
 
-## Suite opérationnelle #976 — fusionnée, publication à vérifier
+Capture complémentaire du 26/10 : #976 est réellement servi (code `21671ca1`, puis publication de données distincte), avec vingt exports PNG publics réussis. La relève mensuelle `40316075107` est réussie jusqu’à publication, commit de données `ab5041ff`, niveau Euro NAV `69,3532 EUR` au 22/10, convention `fund-nav-price` ; aucune date n’est avancée au 23/10 pour imiter les positions ACWI. La relève ETF `40316075629` confirme le secours ACWI du 23/10 ; la relève complète `40316075190` confirme les quatre refus fournisseurs WisdomTree. Voir [le bilan courant](LIVRAISON.md) pour distinguer ces preuves des captures historiques ci-dessous. La publication de #977 n’est pas encore affirmée à cette étape.
+
+## Raccord de preuve après réparation — complément ciblé
+
+La cotation HEAL est contrôlée au 26/10 et le diagnostic n’est plus produit par l’inventaire courant. Pourtant le moniteur public du 26/10 à 13:04 conserve `field:gap:instrument:IE00BYZK4776:listings` avec `resolution-unproven`. Reproduction sur les véritables état public et contexte courant : le générateur émet `instrument:IE00BYZK4776:listings`, tandis que le réducteur recherche `gap:instrument:IE00BYZK4776:listings`. Le complément partage la même preuve datée sous ces deux identités exactes, sans inventer une nouvelle réussite ni modifier le réducteur/l’interface. Une lacune encore émise reste active ; preuve absente, ancienne, future, échec fournisseur ou réussite d’un autre instrument ne la clôture pas. Les qualifications `gap:usage:` et les groupes `proof:` restent indépendants.
+
+La reproduction avant/après est conservée ; le après est une vérification isolée du vrai réducteur sur l’état public, pas encore une preuve de publication du moniteur. Les 16 tests du réducteur et la recette du générateur contrôlent ce raccord. Aucun autre incident HEAL, CSPX, ACWI, PEA ou WisdomTree n’est déclaré réparé par cet alias.
+
+## Suite opérationnelle #976 — publication vérifiée ; #977 en cours de publication
 
 La PR #969 est fusionnée (`acf80edd`) et sa publication a été vérifiée : déploiement 40294769898, code `acf80edd`, données `4a9a6967`, puis `01dd984b`. Les trois choix NAV ont été exercés en production : calculateur, DCA, Performance depuis et anniversaire à un an, avec douze téléchargements PNG. La recette à un an ne certifiait pas les niveaux de prix plus anciens : le correctif ci-dessous traite cette limite explicitement.
 

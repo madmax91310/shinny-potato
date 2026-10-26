@@ -1,0 +1,64 @@
+{
+  "buildInfo": {
+    "sha": "21671ca1e756820404552c99313ca5e5c754dd79",
+    "dataSha": "ab5041ff5c1e605f6a0c210529b9b9e52d6bacea",
+    "lane": "validated-data",
+    "builtAt": "2026-10-26T12:54:57.042Z"
+  },
+  "checks": [
+    {
+      "file": "src/data/anniversary-levels.json",
+      "expected": "7c37f10afd6c1742fc57faccfb6c96810951bb02",
+      "actual": "7c37f10afd6c1742fc57faccfb6c96810951bb02",
+      "match": true
+    },
+    {
+      "file": "src/data/auto-history-identities.json",
+      "expected": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
+      "actual": "9123f29ec47e10c9c277b693aa55955ceb9b4bdf",
+      "match": true
+    },
+    {
+      "file": "src/data/automated-etf-monthly.json",
+      "expected": "e6870053cb0a442a62d44a45325a7af378cab718",
+      "actual": "e6870053cb0a442a62d44a45325a7af378cab718",
+      "match": true
+    },
+    {
+      "file": "src/data/automated-indices.json",
+      "expected": "6599dd4435be3c49ac2574bd398c37d3a1ee58c4",
+      "actual": "6599dd4435be3c49ac2574bd398c37d3a1ee58c4",
+      "match": true
+    },
+    {
+      "file": "src/data/automated-monthly.json",
+      "expected": "29ddec57959aa1d069de925d2f8ceee1278fbd6a",
+      "actual": "29ddec57959aa1d069de925d2f8ceee1278fbd6a",
+      "match": true
+    },
+    {
+      "file": "src/data/monthly-fx.json",
+      "expected": "91cf2f5af7f5794890b48a627e7f1f68e955de51",
+      "actual": "91cf2f5af7f5794890b48a627e7f1f68e955de51",
+      "match": true
+    },
+    {
+      "file": "src/data/qualified-listing-records.json",
+      "expected": "c0982e3c1221be11a2f73a250c08e20e227ed2cb",
+      "actual": "c0982e3c1221be11a2f73a250c08e20e227ed2cb",
+      "match": true
+    },
+    {
+      "file": "src/data/ranking-histories.json",
+      "expected": "90dfbe8b53dac9de31d858a993eeb2365e03644a",
+      "actual": "90dfbe8b53dac9de31d858a993eeb2365e03644a",
+      "match": true
+    },
+    {
+      "file": "src/data/shared-listing-identities.json",
+      "expected": "bad01eda8c2c2b85647374a0bc0c5b4f99721616",
+      "actual": "bad01eda8c2c2b85647374a0bc0c5b4f99721616",
+      "match": true
+    }
+  ]
+}

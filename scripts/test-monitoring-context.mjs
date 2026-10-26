@@ -60,6 +60,20 @@ assert.equal(fields[1].kind,'freshness')
 assert.equal(fields[0].evaluatedAt,'2026-10-20')
 assert.deepEqual(fieldAlerts({checkedAt:'2026-10-20',rows:[rows[0]]},[{aliases:['A'],tools:['Portefeuille & DCA']}])[0].tools,['Portefeuille & DCA'])
 
+// A repaired connection must reach its retained inventory-gap incident using
+// exactly the original field identity and original source-check date.
+const {fieldChecks}=await import('./build-monitoring-context.mjs')
+const healed={type:'instrument',id:'IE00BYZK4776',field:'listings',present:true,state:'current',checkedAt:'2026-10-26',asOf:null,sourceUrl:'https://apidata.londonstockexchange.com/nrdp/v1?tidm=HEAL'}
+const checks=fieldChecks({rows:[...rows.slice(0,3),healed]})
+const key='instrument:IE00BYZK4776:listings'
+assert.strictEqual(checks[key],checks['gap:'+key],'Share the exact dated field proof, without a new source success')
+assert.deepEqual(checks['gap:'+key],{checkedAt:healed.checkedAt,asOf:null,sourceUrl:healed.sourceUrl})
+assert(!checks['gap:instrument:A:completeHoldings'],'Retained supplier failure cannot close an inventory gap')
+assert(!checks['gap:instrument:B:countries'],'Overdue check cannot close an inventory gap')
+assert(!checks['gap:instrument:C:undefined'],'An absent field has no resolution proof')
+assert(!checks['gap:usage:IE00BYZK4776:listings'],'A field proof does not certify every consumer')
+assert(!checks['proof:.github/workflows/update-instrument-metadata.yml'],'A field proof does not certify its whole producer')
+
 // An explicit unknown success cannot become a successful proof via checkedAt.
 const {incidentSuccessAt,INCIDENT_LABELS,incidentAction}=await import('../src/pages/data-review/incident-diagnostic.js')
 const failed={kind:'checks',lastSuccessAt:null,checkedAt:'2026-10-24',attemptedAt:'2026-10-24T06:00:00Z'}
