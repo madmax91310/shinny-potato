@@ -1,3 +1,4 @@
+import { assertRadarAccess } from './radar-source-health.mjs'
 import { cleanText } from './purchasing-power-news.mjs'
 import { consumerRejection } from './radar-consumer.mjs'
 
@@ -32,6 +33,21 @@ function urlFor(href,source) {
  if(url.protocol!=='https:'||url.hostname!==source.host||url.username||url.password||url.port)throw Error('Document hors domaine officiel')
  url.hash='';return url.href.replace(/\/$/,'')
 }
+function lbpPage(html,source) {
+ assertRadarAccess(html)
+ const rows=[]
+ for(const block of html.split(/<div\b[^>]*class="o-newslist__push__content"/).slice(1)) {
+  const href=block.match(/<a\b[^>]*href=["']([^"']+)["']/i)?.[1]
+  if(!href)continue
+  const url=urlFor(href,source)
+  if(!new URL(url).pathname.startsWith(source.path))continue
+  const title=tag(block,'h3')||tag(block,'h2')||tag(block,'a')
+  if(!title||title.length>700)throw Error('Titre de la carte officielle LBP absent')
+  rows.push({url,title,publishedAt:coverageDate(clean(block)),description:''})
+ }
+ if(!rows.length)throw Error('Liste officielle LBP vide ou format modifié')
+ return rows
+}
 export async function coverageDiscovery(content,source,request) {
  if(!source.format)return null
  let pages=[content],archiveWarning=null
@@ -42,12 +58,16 @@ export async function coverageDiscovery(content,source,request) {
   try {
    const response=await request(url,{signal:AbortSignal.timeout(20000)})
    if(!response.ok)throw Error(`HTTP ${response.status}`)
-   pages.push(await response.text())
+   if(response.url && new URL(response.url).hostname!==source.host)throw Error('Redirection hors du domaine officiel')
+   const archive=await response.text()
+   lbpPage(archive,source) // Validate depth before accepting it; a soft denial is not an empty healthy archive.
+   pages.push(archive)
   }catch(error){archiveWarning=`Archive La Banque Postale page 2 : ${error.message}`}
 
  }
  const rows=[]
  for(const html of pages) {
+  if(source.format==='lbp'){rows.push(...lbpPage(html,source));continue}
   if(source.format==='rss') {
    if(!/<rss\b/i.test(html)||!/<\/rss>\s*$/i.test(html))throw Error('Flux RSS absent ou tronqué')
    for(const [,item] of html.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi))rows.push({url:urlFor(tag(item,'link'),source),title:tag(item,'title'),description:tag(item,'description').slice(0,700),publishedAt:new Date(tag(item,'pubDate')).toISOString().slice(0,10)})
@@ -57,7 +77,6 @@ export async function coverageDiscovery(content,source,request) {
   let blocks
   if(source.format==='ca')blocks=html.split(/<div\b[^>]*class="[^"]*post-info\b/).slice(1)
   else if(source.format==='bpce')blocks=[...html.matchAll(/<h[23]\b[^>]*class="card-title"[^>]*>([\s\S]*?)(?=<h[23]\b[^>]*class="card-title"|$)/gi)].map(m=>m[0])
-  else if(source.format==='lbp')blocks=html.split(/<div\b[^>]*class="o-newslist__push__content"/).slice(1)
   else if(source.format==='cm')blocks=[...html.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/gi)].map(m=>m[1])
   else if(source.format==='invesco')blocks=[...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>m[1])
   else blocks=[...html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)].map(m=>m[0])

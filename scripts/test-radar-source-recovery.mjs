@@ -25,6 +25,10 @@ for(const [id,status,body,kind] of [
  assert.deepEqual(old.documents[rows[0].url].observation,saved,'Input state is immutable')
 }
 const lbp=source('lbp-bank'),pdf='<div class="o-newslist__push__content"><a href="/content/dam/lbp/documents/communiques-de-presse/2026/test.pdf"><h3>La Banque Postale lance une nouvelle épargne</h3></a><time>07/09/2026</time>'
+for(const body of ['<html>Vérification de sécurité</html>','<html><main>Unknown layout</main></html>']) {
+ const partial=await collectPublications(now,async url=>new Response(url===lbp.url?pdf:body),{},[lbp],0)
+ assert.equal(partial.sources[0].status,'partial');assert.equal(partial.sources[0].discovered,1);assert.ok(partial.sources[0].archiveWarning)
+}
 const partial=await collectPublications(now,async url=>new Response(url===lbp.url?pdf:'Forbidden',{status:url===lbp.url?200:403}),{},[lbp],0)
 assert.equal(partial.sources[0].status,'partial');assert.equal(partial.sources[0].failureKind,'access-denied');assert.equal(partial.sources[0].discovered,1)
 assert.match(partial.sources[0].archiveWarning,/page 2.*403/)
@@ -36,6 +40,8 @@ for(const mode of ['503','network']) {
  const r=await requestRadarSource(async()=>{if(++calls===1){if(mode==='network')throw TypeError('fetch failed');return new Response('down',{status:503})}return new Response('ok')},'https://official.example/',{},()=>attempts++)
  assert.equal(await r.text(),'ok');assert.equal(calls,2);assert.equal(attempts,2)
 }
+let timedCalls=0
+await assert.rejects(()=>requestRadarSource(async()=>{timedCalls++;throw Error('fetch failed')},'https://official.example/',{signal:AbortSignal.abort()}),/fetch failed/);assert.equal(timedCalls,1)
 let calls=0
 await assert.rejects(()=>requestRadarSource(async()=>{calls++;throw Error('Invalid JSON')},'https://official.example/',{}),/Invalid JSON/);assert.equal(calls,1)
 assert.equal(sourceFailureKind(Error('Bad schema')),'processing-error')
