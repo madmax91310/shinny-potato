@@ -230,10 +230,11 @@ export async function collectPublications(now = new Date(), request = fetch, pre
           report.archiveWarning=rows.archiveWarning??null
           for (const row of rows) {
             const existing=state.documents[row.url]
+            if(source.id==='hanetf' && !row.title)row.title=existing?.observation?.label??existing?.title
             if(existing && existing.source===source.id && (existing.title!==row.title || (existing.description??'')!==(row.description??'') || (existing.publishedAt??null)!==(row.publishedAt??null) || (existing.listingRejection??null)!==(row.listingRejection??null))) {
               Object.assign(existing,row,{listingRejected:Boolean(row.listingRejection),nextAttemptAt:now.toISOString(),...(row.listingRejection ? {status:'rejected',reason:row.listingRejection}: {status:'pending'})})
             }
-            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt || source.id==='insee-studies' && old.discoveryVersion!==3, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
+            state.documents[row.url] ??= { ...row, backfill: !old.lastSuccessAt || source.id==='hanetf' && discoveryChanged || source.id==='insee-studies' && old.discoveryVersion!==3, source: source.id, discoveredAt: now.toISOString(), attempts: 0, status: row.listingRejection ? 'rejected' : 'pending', ...(row.listingRejection ? {reason:row.listingRejection,listingRejected:true}: {}) }
           }
           report.etag = result.etag; report.lastModified = result.lastModified
         }
