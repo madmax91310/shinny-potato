@@ -10,10 +10,11 @@ const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
 const ishares=process.argv.includes('--ishares')
 const discovered=process.argv.includes('--discovered')
 const wisdomtree=process.argv.includes('--wisdomtree')
+const defence=process.argv.includes('--defence')
 const topix=process.argv.includes('--topix')
 const newIssuers=process.argv.includes('--new-issuers')
-const physical=ishares||process.argv.includes('--physical')||newIssuers||wisdomtree||discovered
-const selected=ishares?['IE00BYX2JD69','IE00BFY0GT14']:discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const physical=ishares||process.argv.includes('--physical')||newIssuers||wisdomtree||defence||discovered
+const selected=ishares?['IE00BYX2JD69','IE00BFY0GT14']:discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:defence?['IE0002Y8CX98','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 const lines=selected.map(isin=>{const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin);return {asset,isin,label:r.name,weight:50}})
 const expectedPair=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]]))).pairs[0]
 assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')

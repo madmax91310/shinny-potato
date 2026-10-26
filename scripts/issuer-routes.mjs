@@ -9,3 +9,9 @@ export function wisdomtreeFactsheet(isin) {
 export function blackrockCharacteristicsEndpoint(url) {
   return url.includes('blackrock.com/varnish-api/') ? url.replace(/component=[^&]+/, `component=${ROUTES.blackrock.characteristicsComponents}`) : url
 }
+
+// Same bounded public product routes as Python; no cross-product/host alias.
+export function wisdomtreeProductCandidates(url) {
+  const match=/^https:\/\/www\.wisdomtree\.com\/[a-z]{2}(\/products\/(?:equities|commodities)\/[a-z0-9-]+)$/.exec(url)
+  return match?[...new Set([url,...ROUTES.wisdomtree.productPageRegions.map(region=>`https://www.wisdomtree.com/${region}${match[1]}`),...(ROUTES.wisdomtree.productPageAliases?.[url]??[])])]:[url]
+}

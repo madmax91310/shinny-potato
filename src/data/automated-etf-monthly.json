@@ -200711,6 +200711,14 @@
     "navProvider": "amundi",
     "navCurrency": "EUR",
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "anniversaryNavKind": "official-price-excluding-distributions",
+    "anniversaryCashDates": [
+      "2018-12-12",
+      "2019-07-10",
+      "2019-12-11",
+      "2020-07-08",
+      "2020-12-09"
+    ],
     "points": [
       [
         "2018-10",
@@ -201100,107 +201108,107 @@
     "anniversaryPoints": [
       [
         "2018-10",
-        29.24684252
+        31.1195997
       ],
       [
         "2018-11",
-        29.0399887
+        30.89950045
       ],
       [
         "2018-12",
-        27.51550913
+        29.15169947
       ],
       [
         "2019-01",
-        29.0385424
+        30.76529884
       ],
       [
         "2019-02",
-        30.31588738
+        32.11860023
       ],
       [
         "2019-03",
-        30.86956245
+        32.7051992
       ],
       [
         "2019-04",
-        32.54286202
+        34.47800034
       ],
       [
         "2019-05",
-        30.84096458
+        32.67490078
       ],
       [
         "2019-06",
-        32.69859982
+        34.64299898
       ],
       [
         "2019-07",
-        32.67359375
+        33.58640019
       ],
       [
         "2019-08",
-        32.31890168
+        33.22179904
       ],
       [
         "2019-09",
-        33.69340229
+        34.63469925
       ],
       [
         "2019-10",
-        34.06317271
+        35.01479999
       ],
       [
         "2019-11",
-        35.0141074
+        35.99230107
       ],
       [
         "2019-12",
-        35.43317639
+        36.27070066
       ],
       [
         "2020-01",
-        34.49456156
+        35.30990004
       ],
       [
         "2020-02",
-        31.57546015
+        32.32180064
       ],
       [
         "2020-03",
-        26.48341905
+        27.10940036
       ],
       [
         "2020-04",
-        27.9149813
+        28.57480005
       ],
       [
         "2020-05",
-        29.27268907
+        29.96459959
       ],
       [
         "2020-06",
-        31.16310542
+        31.89969919
       ],
       [
         "2020-07",
-        30.68198698
+        30.80760008
       ],
       [
         "2020-08",
-        31.65490345
+        31.78449971
       ],
       [
         "2020-09",
-        30.91861917
+        31.04520105
       ],
       [
         "2020-10",
-        28.6552836
+        28.77259931
       ],
       [
         "2020-11",
-        33.82641361
+        33.9649001
       ],
       [
         "2020-12",
@@ -201483,6 +201491,8 @@
         71.3932
       ]
     ],
+    "anniversaryValuationBasis": "fund-nav-price",
+    "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
     "checkedAt": "2026-10-26",
     "periodEnd": "2026-09",
     "sourceUrls": [
@@ -201495,7 +201505,7 @@
       "currency": "EUR",
       "isin": "FR0007054358",
       "parser": "official-nav",
-      "valuationBasis": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-price",
       "nativeValue": 69.3532,
       "nativeCurrency": "EUR",
       "fxAsOf": null,
@@ -201505,9 +201515,9 @@
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ],
       "checkedAt": "2026-10-26",
-      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
+      "sha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a"
     },
     "nativeValuationCurrency": "EUR",
     "lastOfficialValuation": "2026-10-22",
@@ -201608,6 +201618,64 @@
           "publishedDecimalPlaces": 2
         }
       ],
+      "anniversaryPriceConvention": "Exact-share NAV price excluding cash distributions, adjusted to current share units using the official reinvested series; no second cash addition",
+      "anniversaryCashChecks": {
+        "2018-12-12": {
+          "previousSession": "2018-12-11",
+          "previousNav": 29.7649,
+          "exDateNav": 30.1478,
+          "observedIncomeFactor": 1.004312057817732,
+          "expectedIncomeFactor": 1.004312089107663,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2019-07-10": {
+          "previousSession": "2019-07-09",
+          "previousNav": 35.0275,
+          "exDateNav": 33.909,
+          "observedIncomeFactor": 1.0306703273789237,
+          "expectedIncomeFactor": 1.0306703235129318,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2019-12-11": {
+          "previousSession": "2019-12-10",
+          "previousNav": 35.7026,
+          "exDateNav": 35.7049,
+          "observedIncomeFactor": 1.0042010550567282,
+          "expectedIncomeFactor": 1.0042011040501444,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2020-07-08": {
+          "previousSession": "2020-07-07",
+          "previousNav": 32.8059,
+          "exDateNav": 31.8553,
+          "observedIncomeFactor": 1.0194629835551177,
+          "expectedIncomeFactor": 1.0194630092951564,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2020-12-09": {
+          "previousSession": "2020-12-08",
+          "previousNav": 34.3011,
+          "exDateNav": 34.1961,
+          "observedIncomeFactor": 1.0040940303489172,
+          "expectedIncomeFactor": 1.0040940341150013,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      "anniversaryExpectedCashDates": [
+        "2018-12-12",
+        "2019-07-10",
+        "2019-12-11",
+        "2020-07-08",
+        "2020-12-09"
+      ],
+      "anniversaryDeferredCashDates": [],
+      "anniversaryPriceControlledFields": [
+        "officialNav",
+        "countervalorisedAdjustedNAV",
+        "navCurrency",
+        "dividendAmount",
+        "dividendCurrency"
+      ],
       "checks": [
         {
           "year": 2020,
@@ -201671,9 +201739,9 @@
         }
       ]
     },
-    "responseSha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419",
+    "responseSha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a",
     "rawSourceHashes": {
-      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "23014f62a7fb4f40732ee339081a6fb67809608130093daed2d55e05eb842195"
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "d06366e87e518bf0a2ab76260e5fb3a0fcd8ebb1e0e107389df5d07fdd1bc3d5"
     }
   }
 }

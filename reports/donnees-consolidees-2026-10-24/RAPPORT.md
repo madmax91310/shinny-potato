@@ -1,5 +1,27 @@
 # Données communes — bilan consolidé actualisé
 
+## Suite opérationnelle après #969 — périmètre public conservé
+
+La PR #969 est fusionnée (`acf80edd`). Sa publication reste à vérifier : le dernier contrôle public de cette reprise servait encore le code `c5842dee` avec les données `de0c85fb`. Aucun rétablissement NAV n’est donc annoncé publiquement sur la seule fusion.
+
+Le relevé initial actuel conserve **121 raccordements**, dont **26 contrôles en retard**, **4 erreurs de collecte**, **26 connector-needed** ; **77 divergences ouvertes et deux résidus** restent distincts. Les 121 identifiants, champs, outils, raisons et dates sont conservés dans `preuves/reprise-20261026/perimetre-public-initial-121.csv`. Les contrats consommateurs non confirmés ne sont pas assimilés à des pannes. Les recoupements documentaires de courtiers restent distincts des données servant aux calculs.
+
+Réparation locale supplémentaire : **WisdomTree Europe Defence, IE0002Y8CX98**. Les 42 identités ont une preuve indépendante par FIGI commun entre la requête SEDOL et celle de l’ISIN exact. Les 35 nouvelles consultations complètent sept preuves existantes ; aucune identité n’est déduite d’un nom. SES est un certificat de dépôt sur actions, confirmé par l’émetteur/Euronext : son ISIN reste celui du certificat, sans équivalence de cours avec l’action sous-jacente. La qualification de ces identités utilise le contrat statique existant ; les dates des portefeuilles et le contrôle de contemporanéité des anciens rapprochements entre portefeuilles restent inchangés. Aucun seuil financier augmenté.
+
+Le producteur ordinaire local a recollecté, qualifié et enregistré les 42 positions du 15/10, poids publiés **100,0001 %**, sans renormalisation. Les références des preuves sont mutualisées dans le registre d’identités ; elles ne sont pas recopiées intégralement par portefeuille. La projection, le recouvrement détaillé, le nombre d’entreprises et les PNG ont été vérifiés sur mobile et ordinateur ; toute réserve d’arrondi du recouvrement reste visible. Les routes régionales bornées du même produit ne doivent pas faire disparaître une cible du prochain passage. La CI contrôle les preuves manquantes, périmées, erronées, une mauvaise cible, le type certificat, le renouvellement ordinaire et la conservation des dates en cas de panne. Une erreur réseau du renouvellement n’est plus absorbée : le contrôle échoue explicitement, les autres collecteurs continuent et les dernières preuves valides sont conservées. La collecte GitHub et sa publication restent à démontrer pour cette nouvelle voie.
+
+Résultats opérationnels supplémentaires et limites actuelles :
+
+- **Or** : reprise ordinaire GitHub `40292128783` réussie, collecte et publication ; reçu pour `src/data/worldbank-gold-monthly.json`, commit de données `de0c85fb`, empreinte `8fdb367be6b79e1980d536086395eebcf664e806`. L’ancien échec était une publication, pas une absence de collecte.
+- **Mensuel** : `40289981830` a revalidé après changement de master, puis refusé les conflits sur les séries dont la voie venait d’être modifiée. Protection préservée ; aucune sortie de l’ancien code publiée aveuglément. La relève `40294770129` repart du nouveau master.
+- **Encours/expositions en retard** : dix instruments ciblés ont des contrôles locaux réels réussis, regroupés dans deux rapports. Les compositions complètes ne sont pas certifiées par ces contrôles d’encours, pays, secteurs ou top 10. Les producteurs ordinaires ETF `40293100758` et expositions `40293709109` doivent encore prouver enregistrement et publication.
+- **Compositions WisdomTree** : Cloud est acquis localement dans #969 ; Defence est réparé localement dans cette suite ; AI/Quantum restent bloqués. La reprise GitHub `40294849344` est suivie sans transformer un cache en contrôle source.
+- **CSPX** : table sectorielle primaire réellement à zéro au 23/10 ; agrégation indépendante du portefeuille physique complet qualifiée à 99,9999 %, sans mise à l’échelle. Incident primaire conservé.
+- **ACWI IE00B6R52259** : pays/secteurs primaires réellement à zéro au 23/10. Le secours complet reste refusé : position monétaire, deux doubles cotations et une ligne `SINOPAC FIN HOLDINGS CO LTD DUMMY` de 0,0001 % sans ISIN. Aucune composition partielle présentée comme complète.
+- **QYLD** : page officielle relue ; la table de performance reste intitulée USD Accumulating tandis que la part demandée est distribuante. Les cours, calendriers déjà qualifiés et archives sont préservés ; aucun rendement glissant recertifié pour la mauvaise part.
+
+Les incidents Radar restent sous responsabilité distincte ; seule la correction Revolut déjà fusionnée dans #969 est suivie ici. #968 reste acquis, les deux anciens périmètres inconnus sont historiques et #966 reste CI uniquement. Les autres causes du périmètre initial restent dans le suivi, avec un reliquat explicitement non revérifié ; ce lot n’est pas une certification des 121 raccordements.
+
 ## Reprise du 26 octobre — réparations en validation
 
 Base master `4ea33c9`, aucune PR concurrente ouverte lors du rapprochement. #968 est acquis ; ses contrats, les deux anciens périmètres inconnus et la réserve CI de #966 restent inchangés.

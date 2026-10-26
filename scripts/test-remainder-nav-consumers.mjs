@@ -81,3 +81,16 @@ for(const id of ['etfFR0010342592','etfFR0007054358']){
 assert.equal(qualifyHistoryWindow(ASSETS.etfFR0007054358,'2017-12','2018-12').qualified,true)
 assert.equal(qualifyHistoryWindow(ASSETS.etfFR0007054358Nav,'2017-12','2018-12').qualified,false)
 console.log('Independent NAV choices restore refused windows without removing original qualified periods or hiding old quote restrictions.')
+
+// FR0007054358 paid cash historically despite its current accumulating policy.
+// Performance keeps reinvested returns; the anniversary consumer uses prices.
+const {getHistoricalPrice}=await import('../src/pages/tweet-midi/data/marketHistory.js')
+const euroNav=ASSETS.etfFR0007054358Nav
+const priceEvidence=JSON.parse(fs.readFileSync('reports/donnees-consolidees-2026-10-24/preuves/reprise-20261026/nav-anniversary-price-final.json')).series[0].record
+const october=priceEvidence.proofRows.find(r=>r.date.startsWith('2019-10'))
+assert.equal(euroNav.anniversaryValuationBasis,'fund-nav-price')
+assert(Math.abs(getHistoricalPrice(euroNav.id,'2019-10')-october.anniversaryValue)<1e-7)
+assert(Math.abs(euroNav.points.find(r=>r.date==='2019-10').price-october.value)<1e-7)
+assert(getHistoricalPrice(euroNav.id,'2019-10')-euroNav.points.find(r=>r.date==='2019-10').price>.9)
+assert.equal(ASSETS.etfFR0010342592Nav.anniversaryValuationBasis,undefined,'Do not replace the split-adjusted LQQ path with its unadjusted old-unit NAV')
+console.log('EURO STOXX 50 II: historical cash excluded from anniversary prices; reinvested performance and LQQ current share units preserved.')

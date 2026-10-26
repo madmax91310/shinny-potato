@@ -127,17 +127,33 @@ def parse_share(body, share, now):
         reject('Share AUM currency mismatch')
     exposure = components.get('exposureBreakdowns', {}).get('containersByNameMap', {})
     # Single-country funds may omit this component. Never invent a 100% allocation.
-    countries = (allocation(exposure['geography']['subContainersByNameMap']['countries'], now)
-                 if 'geography' in exposure else {'status': 'not-published', 'rows': []})
+    allocation_errors=[]
+    try:
+        countries = (allocation(exposure['geography']['subContainersByNameMap']['countries'], now)
+                     if 'geography' in exposure else {'status':'not-published','rows':[]})
+    except ValueError as error:
+        if not share.get('isolateAllocationFailures'):raise
+        countries={'status':'collection-error','rows':[]}
+        allocation_errors.append({'field':'countries-primary','url':product_data_url(share),'reason':str(error),'fallbackQualified':False})
     sector_failure=None
     try:
         sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
     except ValueError as error:
-        if str(error)!='Incomplete allocation' or share.get('sectorFallback')!='complete-physical-holdings' or not isinstance(body,dict):raise
-        from ishares_sector_fallback import sectors_from_complete_holdings
-        sectors=sectors_from_complete_holdings(body,share,now,exposure['sector'])
-        sectors['sourceUrl']=product_data_url(share)
-        sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':'Published sector table is all zero; separately qualified complete-holdings aggregation used without scaling','sha256':sectors['sha256'],'fallbackQualified':True}
+        try:
+            if str(error)!='Incomplete allocation' or not isinstance(body,dict):raise error
+            if share.get('sectorFallback')=='complete-physical-holdings':
+                from ishares_sector_fallback import sectors_from_complete_holdings as fallback
+            elif share.get('sectorFallback')=='physical-portfolio-allocation':
+                from ishares_sector_fallback import sectors_from_classified_positions as fallback
+            else:raise error
+            sectors=fallback(body,share,now,exposure['sector'])
+            sectors['sourceUrl']=product_data_url(share)
+            sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':'Published sector table is all zero; separately qualified physical-position aggregation used without scaling','sha256':sectors['sha256'],'fallbackQualified':True}
+        except ValueError as fallback_error:
+            if not share.get('isolateAllocationFailures'):raise
+            sectors={'status':'collection-error','rows':[]}
+            sector_failure={'field':'sectors-primary','url':product_data_url(share),'reason':str(error)+'; independent allocation unqualified: '+str(fallback_error),'fallbackQualified':False}
+    if sector_failure:allocation_errors.append(sector_failure)
 
     if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
     if sectors.get('rows'): sectors.setdefault('sourceComponent','exposureBreakdowns.sector')
@@ -146,7 +162,7 @@ def parse_share(body, share, now):
     if not types and not share.get('requireFullHistory', True):
         return {**share, 'characteristics': {**identity, 'terPct': ter}, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
-            'countries': countries, 'sectors': sectors, 'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
+            'countries': countries, 'sectors': sectors, 'rawComponents': components, **({'collectionErrors':allocation_errors} if allocation_errors else {})}
     if not isinstance(types, list) or types.count('annualNav') != 1:
         reject('Calendar NAV total return missing or ambiguous')
     position = types.index('annualNav')
@@ -182,7 +198,7 @@ def parse_share(body, share, now):
             'performance': {'currency': share['currency'], 'basis': 'fund',
                             'method': 'calendar-year NAV total return, income reinvested, fund fees included',
                             'years': dict(sorted(returns.items()))},
-            'rawComponents': components, **({'collectionErrors':[sector_failure]} if sector_failure else {})}
+            'rawComponents': components, **({'collectionErrors':allocation_errors} if allocation_errors else {})}
 
 
 def collect(config, baseline, now=None, fetch=get_text):
@@ -201,16 +217,22 @@ def collect(config, baseline, now=None, fetch=get_text):
         if share.get('collectHoldings'):
             from collect_etf_holdings import parse_holdings, collect_holdings
             try:
-                if isinstance(body, dict):
+                if share.get('sectorFallback')=='physical-portfolio-allocation':
+                    if not isinstance(body,dict):raise ValueError('Structured classified-position response required')
+                    from ishares_sector_fallback import classified_position_allocation
+                    result['holdings'],holdings_countries,_=classified_position_allocation(body,share,now)
+                elif isinstance(body, dict):
                     result['holdings'], holdings_countries = parse_holdings(body, share, now)
-                    result['holdings']['sourceUrl'] = holdings_countries['sourceUrl'] = url
                 else:
                     result['holdings'], holdings_countries = collect_holdings(result['rawComponents']['holdings'], share, now)
+                if isinstance(body,dict):result['holdings']['sourceUrl']=holdings_countries['sourceUrl']=url
                 # Keep a common holdings-based geography alongside the issuer table.
                 # DCA can combine this exact method across funds without conflating taxonomies.
                 result['countriesRisk'] = {**holdings_countries, 'basis': 'fund'}
                 if not result['countries'].get('rows'):
                     result['countries'] = holdings_countries
+                    for issue in result.get('collectionErrors',[]):
+                        if issue.get('field')=='countries-primary':issue['fallbackQualified']=True
             except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
                 result.setdefault('collectionErrors', []).append({'field': 'holdings', 'url': url, 'reason': str(error)})
         for field in share.get('requiredFields', []):
