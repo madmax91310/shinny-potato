@@ -183,7 +183,7 @@ transitives. Le prébuild exécute ce contrôle en local et dans la CI existante
 Le garde-fou ne prétend pas résoudre un chemin d'import arbitraire calculé à
 l'exécution ; les générateurs et budgets Vite restent complémentaires.
 
-`test-radar-read-state` (ajouté à `test:radar`), toute la suite `test:radar`,
+`test-radar-read-state` (exécuté au prébuild), toute la suite `test:radar`,
 `test-anniversary-indices`, `test-format-loading` et recette Chromium radar :
 réussis. Build, budgets et lint réussis ; les mêmes 13 avertissements restent.
 JS initial : 267,36 kB / gzip 87,48 kB, contre 267,33 / 87,47 initialement ;

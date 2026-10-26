@@ -458,5 +458,12 @@ navigateur dans les moteurs/modèles ciblés. Les imports calculés demandent to
 un examen du générateur et du bundle ; le script les signale sans les inventer.
 `node scripts/audit-module-boundaries.mjs --json` fournit le graphe courant sans
 écrire de projection dans le dépôt. `test-radar-read-state.mjs` protège les clés,
-formats et événements partagés entre radar et navigation, et fait partie de `test:radar`.
+formats et événements partagés entre radar et navigation, et est exécuté au prébuild.
 Voir la cartographie et les limites dans `docs/maintainability-audit-2026-10-26.md`.
+
+`npm run test:tweet-bank-storage` protège les deux formats locaux historiques de
+la banque (brouillons/revues et dates), leur intégrité après erreur et les conflits
+observés entre onglets. Après build, `npm run test:tweet-bank-storage:browser`
+exerce restauration, édition/rechargement et stockage refusé/corrompu en desktop/mobile ;
+ce contrôle fait aussi partie des shards CI. Le module ne migre ni ne réinitialise
+les données : une lecture invalide garde les octets existants.
