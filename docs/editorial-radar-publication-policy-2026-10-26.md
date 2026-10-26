@@ -184,3 +184,13 @@ couverture revendiquée. Les changements financiers composites sans clauses comp
 restent à qualifier. Le résumé devient disponible lors du premier producteur après un éventuel
 déploiement ; avant sa présence, le nouveau badge annonce son indisponibilité et non zéro.
 Aucun passage programmé avec ce code ni réception mobile n’est encore démontré.
+
+## Validation complémentaire avant fusion
+
+Les recettes globales d’export ont révélé la nouvelle requête du badge de navigation.
+Leurs visuels utilisent toujours exclusivement des ressources locales. Les trois recettes
+concernées simulent désormais **uniquement** le GET JSON du badge, indépendant des exports ;
+le contrôle d’origine de toutes les images, polices, scripts et autres URL reste actif.
+`test-browser-radar-chrome.mjs` vérifie que la même URL demandée comme image/script,
+un POST ou une autre URL ne bénéficie pas de cette simulation. Aucun appel utilisateur réel.
+La branche a été rebasée après #989 et #991, sans modifier leurs contrôles de publication.
