@@ -21,13 +21,21 @@ export function qualifyManualCurrencyCalendar(calendar, fx = FX, now = new Date(
     || !currentAnnualEvidence(calendar.checkedAt, calendar.asOf, 'etf.performance', now)) return null
   try {
     // Same December fixing convention and shared factor as annual comparisons.
-    // No interpolation or silently shortened calendar when FX is incomplete.
+    // Qualify each year separately: a missing fixing must not erase other years.
     const factor = month => monthlyCurrencyFactor(month, route.native, route.currency, fx)
-    const years = Object.fromEntries(Object.entries(calendar.years).map(([year, value]) => [year,
-      ((1 + value / 100) * factor(`${year}-12`) / factor(`${Number(year) - 1}-12`) - 1) * 100]))
-    if (Object.values(years).some(value => !Number.isFinite(value) || value <= -100)) return null
+    const years = {}, currencyQualifications = {}
+    for (const [year, value] of Object.entries(calendar.years)) {
+      try {
+        const pct = ((1 + value / 100) * factor(`${year}-12`) / factor(`${Number(year) - 1}-12`) - 1) * 100
+        if (!Number.isFinite(pct) || pct <= -100) throw new Error('Rendement converti invalide.')
+        years[year] = pct; currencyQualifications[year] = { qualified: true }
+      } catch (error) { currencyQualifications[year] = { qualified: false, reason: error.message } }
+    }
+    if (!Object.keys(years).length) return null
     const fxSourceUrls = monthlyFxEvidence([route.native, route.currency], fx).sourceUrls
-    return { ...calendar, years, currency: route.currency, originalCurrency: route.native,
+    return { ...calendar, years, currencyQualifications,
+      nativeCalendarAsOf: calendar.asOf, asOf: `${Math.max(...Object.keys(years).map(Number))}-12-31`,
+      currency: route.currency, originalCurrency: route.native,
       fxConverted: true, fxSourceUrls, manualCurrencyRoute: true,
       method: `${calendar.method} ; calendrier NAV de la part en JPY converti en EUR aux fixings mensuels BCE de décembre, une seule fois.`,
       sourceUrls: [...new Set([...calendar.sourceUrls, ...fxSourceUrls])], fxCheckedAt: fx.checkedAt }
@@ -43,7 +51,7 @@ export const ANNUAL_PORTFOLIO_FUNDS = [...Object.values(QUALIFIED_FUND_CALENDARS
   const recovery = ANNUAL_RECOVERIES[record.isin]?.annualCurrency === record.currency ? ANNUAL_RECOVERIES[record.isin] : null
   return [{ id: recovery?.annualManualId ?? (record.manualCurrencyRoute ? `manual-${record.isin}` : EXISTING_MANUAL_IDS[record.isin]) ?? `nav-${record.isin}`, isin: record.isin, name: getInstrumentName(record.isin,'portfolio'), cat, emoji: '📊', manualOnly: true,
     ...(recovery || record.manualCurrencyRoute ? { preferQualifiedAnnual: true } : {}),
-    ...(record.manualCurrencyRoute ? { nativeReturnCurrency: record.originalCurrency, fxSourceUrls: record.fxSourceUrls, fxCheckedAt: record.fxCheckedAt } : {}),
+    ...(record.manualCurrencyRoute ? { nativeReturnCurrency: record.originalCurrency, fxSourceUrls: record.fxSourceUrls, fxCheckedAt: record.fxCheckedAt, currencyQualifications: record.currencyQualifications } : {}),
     annualManual: true, distinctCandidate: true, basis: record.basis, source: record.sourceUrls[0], checkedAt: record.checkedAt,
     returnCurrency: record.currency, calendarReturns: record.years, r: HISTORICAL_YEARS.map(year => record.years[year] ?? null),
     confidenceNote: record.method,
