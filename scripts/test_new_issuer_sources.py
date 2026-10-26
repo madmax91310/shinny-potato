@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import unittest
 import urllib.error
+import html
 from unittest.mock import patch
 from collect_public_issuer import wisdomtree, bitwise, globalx, wisdomtree_factsheet, collect_one as public_collect
 from collect_lg_api import parse as lg, decode
@@ -72,6 +73,47 @@ class IssuerSources(unittest.TestCase):
         self.assertEqual(r['characteristics']['terPct'],.45)
         self.assertNotIn('holdings',r)
         with self.assertRaises(ValueError):globalx(text.replace(s['isin'],'IE00OTHER001'),s,NOW)
+
+    def globalx_current_block(self, tokens=None):
+        captured=json.loads((FIX/'qyld-key-info-regulatory.json').read_text())
+        rows=tokens if tokens is not None else captured['tokens']
+        text=''.join('<p>'+html.escape(t)+'</p>' for t in rows)
+        return globalx(text,share('IE00BM8R0J59'),dt.datetime(2026,10,26,tzinfo=UTC))
+
+    def test_globalx_missing_distribution_subsection_does_not_block_independent_fees_aum(self):
+        r=self.globalx_current_block()
+        self.assertEqual(r['characteristics']['terPct'],.45)
+        self.assertEqual((r['aum']['amount'],r['aum']['currency'],r['aum']['scope'],r['aum']['asOf']),
+                         (927145984.33,'USD','fund','2026-10-23'))
+        self.assertEqual(r['sourceAttempts'][0]['boundary'],'Regulatory')
+        self.assertEqual(r['sourceAttempts'][0]['fields'],['characteristics.terPct','aum'])
+        for field in ['performance','holdings','countries','sectors']:
+            self.assertNotIn(field,r)
+            self.assertNotEqual(r['fieldQualification'][field]['status'],'validated')
+
+    def test_globalx_other_share_currency_date_or_unknown_boundary_still_refused(self):
+        tokens=json.loads((FIX/'qyld-key-info-regulatory.json').read_text())['tokens']
+        mutations=[{'IE00BM8R0J59':'IE00OTHER001'}, {'$927,145,984.33':'€927,145,984.33'},
+                   {'As of 23 Oct 2026':'As of 23 Oct 2027'}, {'Regulatory':'Unknown section'}]
+        for values in mutations:
+            with self.subTest(values=values),self.assertRaises(ValueError):
+                self.globalx_current_block([values.get(t,t)for t in tokens])
+        missing=[t for t in tokens if t!='IE00BM8R0J59']
+        with self.assertRaises(ValueError):
+            self.globalx_current_block(missing+['Primary ISIN','IE00BM8R0J59','Fund AUM','$927,145,984.33'])
+
+    def test_globalx_unqualified_later_fields_preserve_previous_dated_values(self):
+        from refresh_additional_etf import refresh
+        s=share('IE00BM8R0J59');r=self.globalx_current_block()
+        old={'currency':'USD','productId':s['isin'],'sourceUrl':s['sourceUrl'],
+             'holdings':{'rows':[{'name':'Prior qualified scope','weightPct':1}], 'asOf':'2026-10-15','checkedAt':'2026-10-17'},
+             'aum':{'amount':900000000,'currency':'USD','scope':'fund','asOf':'2026-10-22','checkedAt':'2026-10-22'}}
+        merged,report=refresh({'instruments':[s]},{s['isin']:old},{s['isin']:{'currency':'USD'}},
+                             dt.datetime(2026,10,26,tzinfo=UTC),collect=lambda *args:r)
+        self.assertEqual(report['shares'][0]['status'],'validated')
+        self.assertEqual(merged[s['isin']]['aum']['amount'],927145984.33)
+        self.assertEqual(merged[s['isin']]['holdings'],old['holdings'])
+        self.assertNotIn('performance',merged[s['isin']])
 
     def test_lg_calendar_not_rolling_and_current_document_authority(self):
         payload=json.loads((FIX/'lg.json').read_text());s=share('IE00BF0M2Z96');r=lg(payload,s,NOW,'hash')
