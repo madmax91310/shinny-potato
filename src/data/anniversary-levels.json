@@ -11166,5 +11166,27 @@
     "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
     "maxAgeDays": 7,
     "sha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a"
+  },
+  "etfLU2196470426Nav": {
+    "value": 118.97149450173781,
+    "asOf": "2026-10-23",
+    "currency": "EUR",
+    "isin": "LU2196470426",
+    "parser": "official-nav",
+    "valuationBasis": "fund-nav-total-return",
+    "nativeValue": 20880.687,
+    "nativeCurrency": "JPY",
+    "fxAsOf": "2026-10-23",
+    "fxFactor": 0.005697681043815167,
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+    "sourceUrls": [
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-10-26&includeTax=false",
+      "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+    ],
+    "checkedAt": "2026-10-26",
+    "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+    "maxAgeDays": 7,
+    "sha256": "d8877c501778cf59627e38e47fd97f74f0b839156313aa7046263b105b55e7d4"
   }
 }

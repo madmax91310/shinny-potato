@@ -27,7 +27,7 @@ try {
  await fs.mkdir('test-artifacts/nikkei-annual',{recursive:true})
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:900})
-  await go('performance-depuis?asset=annual-LU2196470426')
+  await go('performance-depuis?isin=LU2196470426')
   const settings=page.locator('.workspace-view-switch').getByRole('button',{name:'Réglages',exact:true})
   if(await settings.isVisible())await settings.click()
   assert.equal(await page.locator('#subject-select').getAttribute('data-value'),'annual-LU2196470426')

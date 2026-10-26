@@ -1,0 +1,35 @@
+{
+  "mode": "local real browser against production build, no source mocking",
+  "viewports": [
+    1280,
+    390
+  ],
+  "annualCalendar": {
+    "images": 4,
+    "currencies": [
+      "EUR",
+      "USD"
+    ],
+    "route": "performance-depuis?isin=LU2196470426",
+    "assertions": [
+      "exact share selector",
+      "2025",
+      "actual converted return text",
+      "currency",
+      "PNG signature",
+      "no horizontal overflow"
+    ]
+  },
+  "monthlyNav": {
+    "images": 8,
+    "tools": [
+      "Calculateur lump",
+      "Calculateur DCA",
+      "Performance depuis",
+      "Il y a X ans"
+    ],
+    "errors": []
+  },
+  "supplierRun": 40364575719,
+  "publicPublication": "pending"
+}

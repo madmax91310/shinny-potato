@@ -1,3 +1,18 @@
+# Reprise ciblée — Nikkei 225, 26 octobre 2026
+
+Lot en validation, non encore annoncé publié. Master `9e59c99` et #984 intégrés ; #985 documentaire examiné sans recouvrement. #968, #976, #977 et #981 préservés.
+
+- Donnée réparée par une voie indépendante : `LU2196470426`, nouvelle série `etfLU2196470426Nav`, NAV capitalisée native JPY convertie en EUR par les changes mensuels BCE existants. Lancement exact le 27/10/2020 ; 72 mois complets disponibles d’octobre 2020 à septembre 2026. Dernière NAV le 23/10/2026, change quotidien du même jour pour l’anniversaire.
+- Preuve fournisseur réelle dans GitHub : [run 40364575719](https://github.com/madmax91310/shinny-potato/actions/runs/40364575719), lancement manuel ciblé sur un seul identifiant, artefact `12669867066`. Les cinq rendements annuels quotidiens recoupent la précision publiée. En 2025 : 28,242014835 % natif contre 28,24 % publié ; la devise du tableau est explicitement JPY. Aucun dividende ajouté à la part capitalisante.
+- Enregistrement initial : valeurs, dates et empreintes du rapport GitHub reprises sans retouche dans les registres communs. Le producteur mensuel ordinaire possède la nouvelle série et ses reprises ; son prochain passage planifié n’est pas encore observé pour cette voie.
+- Usages vérifiés localement : Calculateur / Et si tu avais investi (versement unique et DCA), Performance depuis, comparaison Qui a vraiment gagné et Il y a X ans. Le calendrier annuel était déjà disponible dans le classement annuel ; ce n’est pas un ajout. Le calendrier JPY est désormais utilisable par Performance depuis via sa conversion existante, sans admission nouvelle dans les portefeuilles.
+- Sur les **79 fenêtres suivies**, les moteurs réels passent de **42 à 43 fenêtres mensuelles qualifiées**, et de **78 à 79 pour Performance depuis**. **36 fenêtres sans voie mensuelle qualifiée restent ouvertes**. Les 77 anciennes causes inexpliquées et deux résidus ne sont pas clôturés. La cotation XNKY.DE 2025 reste refusée ; ses autres périodes valides restent conservées.
+- Tests : 1 168 tests Python avant la dernière régression de contrat, puis six tests ciblés DWS ; calculs/FX/qualifications et build avec 4 274 certificats réussis. Douze PNG téléchargés localement : quatre calendriers EUR/USD ordinateur/mobile, huit parcours NAV ordinateur/mobile. CI et consommation publique doivent encore être vérifiées avant clôture de ce lot.
+
+Preuves séparées : [collecte GitHub](preuves/reprise-20261026/nikkei-github-40364575719/nav.json), [provenance](preuves/reprise-20261026/nikkei-github-qualification.json), [79 usages avant](preuves/reprise-20261026/usages-79-moteurs-avant-nikkei.json), [79 usages après](preuves/reprise-20261026/usages-79-moteurs-apres-nikkei.json). Les captures et bilans antérieurs sont conservés ci-dessous comme états datés.
+
+---
+
 # Données communes — bilan consolidé actualisé
 
 Capture complémentaire du 26/10 : #976 est réellement servi (code `21671ca1`, puis publication de données distincte), avec vingt exports PNG publics réussis. La relève mensuelle `40316075107` est réussie jusqu’à publication, commit de données `ab5041ff`, niveau Euro NAV `69,3532 EUR` au 22/10, convention `fund-nav-price` ; aucune date n’est avancée au 23/10 pour imiter les positions ACWI. La relève ETF `40316075629` confirme le secours ACWI du 23/10 ; la relève complète `40316075190` confirme les quatre refus fournisseurs WisdomTree. Voir [le bilan courant](LIVRAISON.md) pour distinguer ces preuves des captures historiques ci-dessous. La publication de #977 n’est pas encore affirmée à cette étape.

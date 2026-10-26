@@ -1,0 +1,4811 @@
+{
+  "mode": "isolated actual engines; source tree ac6c374 + 11183d5; not 79 browser or source-provider revalidations",
+  "scope": 79,
+  "definitions": {
+    "monthly": "closed annual window through monthly history",
+    "calculator": "from previous December through latest actual available month, EUR, 1000 lump or monthly; no requested-start clamp accepted",
+    "performance": "actual offered year and generated contiguous years; native convention/currency retained",
+    "comparison": "monthly registry and closed window, EUR; pair compatibility and UI not newly tested here",
+    "calendar": "independent qualified annual calendar, exact year, native and existing EUR conversion; does not grant monthly usage"
+  },
+  "rows": [
+    {
+      "isin": "CH0454664001",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfCH0454664001",
+          "selected": true,
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-CH0454664001",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 114.17
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-CH0454664001",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 114.17000000000002,
+          "pct": 127.7965636731158
+        }
+      ]
+    },
+    {
+      "isin": "CH0454664001",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfCH0454664001",
+          "selected": true,
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-CH0454664001",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": -4.71
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfCH0454664001",
+          "ok": false,
+          "reason": "ABTC.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-CH0454664001",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -4.710000000000003,
+          "pct": -15.74742042553192
+        }
+      ]
+    },
+    {
+      "isin": "DE000A0H08P6",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfEuropeRetail",
+          "selected": true,
+          "ok": false,
+          "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfEuropeRetail",
+          "ok": false,
+          "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfEuropeRetail",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-DE000A0H08P6",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 37.81
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfEuropeRetail",
+          "ok": false,
+          "reason": "EXH8.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-DE000A0H08P6",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 37.81000000000001,
+          "pct": 37.81000000000001
+        }
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfDE000A27Z304",
+          "selected": true,
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 55.46
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2020-12 → 2021-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 55.46,
+          "pct": 68.43101359703338
+        }
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfDE000A27Z304",
+          "selected": true,
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 150.42
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 150.42,
+          "pct": 141.71762171945704
+        }
+      ]
+    },
+    {
+      "isin": "DE000A27Z304",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfDE000A27Z304",
+          "selected": true,
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 120.73
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfDE000A27Z304",
+          "ok": false,
+          "reason": "BTCE.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-DE000A27Z304",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 120.73,
+          "pct": 134.7739435941862
+        }
+      ]
+    },
+    {
+      "isin": "FR0007054358",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "monthly": [
+        {
+          "id": "etfFR0007054358",
+          "selected": true,
+          "ok": false,
+          "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12).",
+          "currency": "EUR"
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0007054358",
+          "ok": false,
+          "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2026-09)."
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2014.8687550390962,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 133604.7716766554,
+              "totalInvested": 82000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0007054358",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2020,
+          "endYear": 2025,
+          "firstReturnPct": -2.8447270967343172
+        },
+        {
+          "id": "annual-FR0007054358",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2020,
+          "endYear": 2025,
+          "firstReturnPct": -2.84
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0007054358",
+          "ok": false,
+          "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+        },
+        {
+          "id": "etfFR0007054358Nav",
+          "ok": true,
+          "currency": "EUR",
+          "pct": -2.844727096734323
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0007054358",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": -2.839999999999998,
+          "pct": -2.839999999999998
+        }
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfFR0010342592",
+          "selected": true,
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "EUR"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2026-09)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 3667.88694998172,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 176500.9834268899,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 67.05438658125338
+        },
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 67.05
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 67.05438658125338
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 67.05000000000001,
+          "pct": 67.05000000000001
+        }
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfFR0010342592",
+          "selected": true,
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "EUR"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2026-09)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 5189.198914069591,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 98480.72770391715,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 110.24194901463744
+        },
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 110.24
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 110.24194901463744
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 110.24000000000002,
+          "pct": 110.24000000000002
+        }
+      ]
+    },
+    {
+      "isin": "FR0010342592",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfFR0010342592",
+          "selected": true,
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2026-09)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2468.203390612741,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 56657.27836709195,
+              "totalInvested": 34000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 52.509175057305036
+        },
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 52.51
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0010342592",
+          "ok": false,
+          "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+        },
+        {
+          "id": "etfFR0010342592Nav",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 52.509175057305036
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0010342592",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 52.51000000000001,
+          "pct": 52.51000000000001
+        }
+      ]
+    },
+    {
+      "isin": "FR0010755611",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfFR0010755611",
+          "selected": true,
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-FR0010755611",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 81.38
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0010755611",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 81.38000000000001,
+          "pct": 81.38000000000001
+        }
+      ]
+    },
+    {
+      "isin": "FR0010755611",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfFR0010755611",
+          "selected": true,
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-FR0010755611",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 65.62
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0010755611",
+          "ok": false,
+          "reason": "CL2.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0010755611",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 65.62,
+          "pct": 65.62
+        }
+      ]
+    },
+    {
+      "isin": "FR0011550185",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfFR0011550185",
+          "selected": true,
+          "ok": false,
+          "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0011550185",
+          "ok": false,
+          "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0011550185",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-FR0011550185",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 38.2
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0011550185",
+          "ok": false,
+          "reason": "ESE.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0011550185",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 38.20000000000001,
+          "pct": 38.20000000000001
+        }
+      ]
+    },
+    {
+      "isin": "FR0011871110",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfFR0011871110",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0011871110",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2577.322005056389,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 125352.04603014441,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0011871110",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 36.590106357321076
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0011871110",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 36.590106357321076
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0011871110",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 36.59000000000001,
+          "pct": 36.59000000000001
+        }
+      ]
+    },
+    {
+      "isin": "FR0011871128",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfFR0011871128",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0011871128",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2336.820196857041,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 109665.16469601415,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0011871128",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 38.23046439578303
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0011871128",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 38.23046439578304
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0011871128",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 38.22999999999999,
+          "pct": 38.22999999999999
+        }
+      ]
+    },
+    {
+      "isin": "FR0013411998",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfFR0013411998",
+          "selected": true,
+          "ok": false,
+          "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0013411998",
+          "ok": false,
+          "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0013411998",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-FR0013411998",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 25.86
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0013411998",
+          "ok": false,
+          "reason": "PTPXH.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0013411998",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 25.859999999999992,
+          "pct": 25.859999999999992
+        }
+      ]
+    },
+    {
+      "isin": "FR0013412004",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfFR0013412004",
+          "selected": true,
+          "ok": false,
+          "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0013412004",
+          "ok": false,
+          "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0013412004",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-FR0013412004",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 35.75
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0013412004",
+          "ok": false,
+          "reason": "PALAT.PA : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0013412004",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 35.74999999999999,
+          "pct": 35.74999999999999
+        }
+      ]
+    },
+    {
+      "isin": "FR0013416716",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfFR0013416716",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfFR0013416716",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1460.4434131581925,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 24542.810767611136,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfFR0013416716",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 45.71454725453091
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfFR0013416716",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 45.7145472545309
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-FR0013416716",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 64.80000000000001,
+          "pct": 45.711251063829806
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "monthly": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "selected": true,
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-GB00B15KXQ89",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2018,
+          "endYear": 2025,
+          "firstReturnPct": -22.17
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2017-12 → 2018-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-GB00B15KXQ89",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -22.17,
+          "pct": -18.479022707423574
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "selected": true,
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-GB00B15KXQ89",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 6.16
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "ok": false,
+          "reason": "COPA.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-GB00B15KXQ89",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 6.16000000000001,
+          "pct": 8.20117500445079
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etc_wti_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 65.13
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 65.13,
+          "pct": 78.90784301606924
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "monthly": [
+        {
+          "id": "etc_wti_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2022,
+          "endYear": 2025,
+          "firstReturnPct": 29.33
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 29.32999999999999,
+          "pct": 37.332793924620276
+        }
+      ]
+    },
+    {
+      "isin": "GB00B15KXV33",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etc_wti_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": -2.65
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_wti_crude_oil",
+          "ok": false,
+          "reason": "CRUD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-GB00B15KXV33",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -2.649999999999997,
+          "pct": -6.033022624434392
+        }
+      ]
+    },
+    {
+      "isin": "IE000M7V94E1",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE000M7V94E1",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE000M7V94E1",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1416.1578983520797,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 23549.260576536526,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE000M7V94E1",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 49.3481650486207
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE000M7V94E1",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 49.34816504862069
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE000M7V94E1",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 68.9,
+          "pct": 49.336348936170225
+        }
+      ]
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 4663.278584695414,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 79550.26046228873,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 197.37016069593366
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 187.03621122016548
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE000RDRMSD1",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 197.37,
+          "pct": 187.03605610859725
+        }
+      ]
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1298.084192382551,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 26196.542177645937,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 27.429810074318745
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE000RDRMSD1",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 12.669642286135963
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE000RDRMSD1",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 27.43,
+          "pct": 12.669810212765963
+        }
+      ]
+    },
+    {
+      "isin": "IE000YU9K6K2",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2102.9171912693637,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 31074.28343156603,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 73.26819596938567
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE000YU9K6K2",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 73.26819596938567
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE000YU9K6K2",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 96,
+          "pct": 73.29736170212766
+        }
+      ]
+    },
+    {
+      "isin": "IE00B1XNHC34",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "monthly": [
+        {
+          "id": "etf_clean_energy",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_clean_energy",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1518.638738925461,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 86013.3601642411,
+              "totalInvested": 82000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_clean_energy",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2020,
+          "endYear": 2025,
+          "firstReturnPct": 119.93647597063446
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_clean_energy",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 119.93647597063446
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B1XNHC34",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 140.24,
+          "pct": 119.93775242441527
+        }
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1406.1732657335797,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 55906.700648521786,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 11.41503194190527
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 11.415031941905273
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 15.43000000000001,
+          "pct": 11.418676923076942
+        }
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1262.1037226527883,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 39335.2280838942,
+              "totalInvested": 34000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 14.915688919957383
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 14.915688919957383
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 8.040000000000003,
+          "pct": 14.914043700067392
+        }
+      ]
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1098.2866956764153,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 24926.33295956944,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": -6.672786617828274
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "pct": -6.672786617828274
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B2QWCY14",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 5.5500000000000105,
+          "pct": -6.675834042553186
+        }
+      ]
+    },
+    {
+      "isin": "IE00B42NKQ00",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2900.2424066767785,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 203341.6861917443,
+              "totalInvested": 94000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 11.186274964914537
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B42NKQ00",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 13.32409189498589
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B42NKQ00",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 11.189999999999989,
+          "pct": 13.327888552608137
+        }
+      ]
+    },
+    {
+      "isin": "IE00B43HR379",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "monthly": [
+        {
+          "id": "etfIE00B43HR379",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2434.352237802428,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 161467.13334799637,
+              "totalInvested": 106000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2018,
+          "endYear": 2025,
+          "firstReturnPct": 11.083035702639062
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 11.083035702639066
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 6.05,
+          "pct": 11.079270742358105
+        }
+      ]
+    },
+    {
+      "isin": "IE00B43HR379",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfIE00B43HR379",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2191.4707519508256,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 134118.8500666599,
+              "totalInvested": 94000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 22.66517850911797
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 22.66517850911798
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B43HR379",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 20.35,
+          "pct": 22.664011037920595
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4556L06",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etcPalladium",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etcPalladium",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1225.664885217507,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 21961.436888875807,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etcPalladium",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 72.04415024021324
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etcPalladium",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 52.1163129230277
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B4556L06",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 72.04000000000002,
+          "pct": 52.11264340425532
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4JNQZ49",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2120.6273326698247,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 94850.76436756812,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 45.68372944210456
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B4JNQZ49",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 45.68372944210455
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B4JNQZ49",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 34.46,
+          "pct": 45.67885043263289
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4K6B022",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfIE00B4K6B022",
+          "selected": true,
+          "ok": false,
+          "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B4K6B022",
+          "ok": false,
+          "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B4K6B022",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00B4K6B022",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 11.6
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B4K6B022",
+          "ok": false,
+          "reason": "50E.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B4K6B022",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 11.60000000000001,
+          "pct": 11.60000000000001
+        }
+      ]
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "year": 2016,
+      "start": "2015-12",
+      "end": "2016-12",
+      "monthly": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2015-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 4390.481340547949,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2015-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 400693.4169343713,
+              "totalInvested": 130000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2016,
+          "endYear": 2025,
+          "firstReturnPct": 11.551775977338373
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 11.551775977338362
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 8.010000000000005,
+          "pct": 11.555342946589509
+        }
+      ]
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "monthly": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 3935.8237931056074,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 349257.9437734844,
+              "totalInvested": 118000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2017,
+          "endYear": 2025,
+          "firstReturnPct": 28.643045708699077
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 28.643045708699066
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00B5W4TY14",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 46.36,
+          "pct": 28.64010339364629
+        }
+      ]
+    },
+    {
+      "isin": "IE00BD1F4L37",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "monthly": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 3344.904097096094,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 241678.30963962054,
+              "totalInvested": 118000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2017,
+          "endYear": 2025,
+          "firstReturnPct": 21.81598584092563
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 7.067648357308176
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BD1F4L37",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 21.819999999999993,
+          "pct": 7.071176519636446
+        }
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 3802.204751774592,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 203426.7053836643,
+              "totalInvested": 94000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 29.81603349012623
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 29.816033490126227
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 27.400000000000002,
+          "pct": 29.849563824105395
+        }
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2470.548030232692,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 126898.9590728013,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 19.054545732203078
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 19.05454573220309
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 9.899999999999999,
+          "pct": 19.069653893695925
+        }
+      ]
+    },
+    {
+      "isin": "IE00BDFBTQ78",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1945.3441053744066,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 30297.6078424825,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 68.44269491177263
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 68.44269491177263
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BDFBTQ78",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 90.5,
+          "pct": 68.4344255319149
+        }
+      ]
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "selected": true,
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BDVPNG13",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 47.74
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2018-12 → 2019-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BDVPNG13",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 47.74,
+          "pct": 50.5806480327577
+        }
+      ]
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "selected": true,
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BDVPNG13",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 55.14
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "ok": false,
+          "reason": "WTAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BDVPNG13",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 55.140000000000015,
+          "pct": 49.74870950226244
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etf_financials",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_financials",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1918.998864415554,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 65396.06496888729,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_financials",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 17.411812106524753
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_financials",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 13.331618817031043
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BJ5JP097",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 17.409999999999993,
+          "pct": 13.329869683257911
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJ5JP436",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etf_world_communication",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_world_communication",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1718.4184670183731,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 42678.83332467302,
+              "totalInvested": 34000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_world_communication",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 30.348468259807284
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_world_communication",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 38.64188798449035
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BJ5JP436",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 30.35000000000001,
+          "pct": 38.64351718163444
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "monthly": [
+        {
+          "id": "etfCloudWisdomtree",
+          "selected": true,
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BJGWQN72",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2020,
+          "endYear": 2025,
+          "firstReturnPct": 109.11
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2019-12 → 2020-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BJGWQN72",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 109.11,
+          "pct": 91.43849238040906
+        }
+      ]
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfCloudWisdomtree",
+          "selected": true,
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BJGWQN72",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 39.5
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfCloudWisdomtree",
+          "ok": false,
+          "reason": "WCLD.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BJGWQN72",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 39.5,
+          "pct": 34.65221719457012
+        }
+      ]
+    },
+    {
+      "isin": "IE00BK5BCD43",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "selected": true,
+          "ok": false,
+          "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "ok": false,
+          "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BK5BCD43",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 56.51
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "ok": false,
+          "reason": "AIAI.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BK5BCD43",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 56.50999999999999,
+          "pct": 51.07110045248868
+        }
+      ]
+    },
+    {
+      "isin": "IE00BK5BCH80",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "selected": true,
+          "ok": false,
+          "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "ok": false,
+          "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-IE00BK5BCH80",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 52.01
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BK5BCH80",
+          "ok": false,
+          "reason": "RENW.MI : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BK5BCH80",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 52.01,
+          "pct": 34.40271404255317
+        }
+      ]
+    },
+    {
+      "isin": "IE00BLNMYC90",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etfEqualWeight",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfEqualWeight",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1902.514357338809,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2020-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 92195.40744891165,
+              "totalInvested": 70000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfEqualWeight",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 39.65847324374819
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfEqualWeight",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 39.658473243748205
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BLNMYC90",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 28.89999999999999,
+          "pct": 39.65494437577255
+        }
+      ]
+    },
+    {
+      "isin": "IE00BQN1K562",
+      "year": 2016,
+      "start": "2015-12",
+      "end": "2016-12",
+      "monthly": [
+        {
+          "id": "etfIE00BQN1K562",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BQN1K562",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2015-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2104.8531515289637,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2015-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 202765.41666370642,
+              "totalInvested": 130000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BQN1K562",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2016,
+          "endYear": 2025,
+          "firstReturnPct": -1.2958882073392728
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BQN1K562",
+          "ok": true,
+          "currency": "EUR",
+          "pct": -1.2958882073392686
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BQN1K562",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": -1.3000000000000012,
+          "pct": -1.3000000000000012
+        }
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "monthly": [
+        {
+          "id": "etf_gold_miners",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 4314.76690535327,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 302943.2100101196,
+              "totalInvested": 106000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2018,
+          "endYear": 2025,
+          "firstReturnPct": -4.705042438516702
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "pct": -4.7050424385167045
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BQQP9F84",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -8.999999999999996,
+          "pct": -4.684454148471606
+        }
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etf_gold_miners",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 4527.801906590313,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 246332.67372514296,
+              "totalInvested": 94000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 42.84629155911669
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 42.8462915591167
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BQQP9F84",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 40.20000000000002,
+          "pct": 42.89567384724944
+        }
+      ]
+    },
+    {
+      "isin": "IE00BQQP9F84",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etf_gold_miners",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2389.771789085904,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 30522.28774506376,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 126.05101071233491
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etf_gold_miners",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 126.05101071233493
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BQQP9F84",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 155.7,
+          "pct": 126.08232340425532
+        }
+      ]
+    },
+    {
+      "isin": "IE00BQT3WG13",
+      "year": 2017,
+      "start": "2016-12",
+      "end": "2017-12",
+      "monthly": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1539.1455412338398,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2016-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 143975.40871024336,
+              "totalInvested": 118000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2017,
+          "endYear": 2025,
+          "firstReturnPct": 27.82214961610679
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 12.34664213319283
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BQT3WG13",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 27.82,
+          "pct": 12.344752772450596
+        }
+      ]
+    },
+    {
+      "isin": "IE00BSPLC298",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfSmallValueEurope",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfSmallValueEurope",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2309.935097353969,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2018-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 153067.13006120414,
+              "totalInvested": 94000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfSmallValueEurope",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 26.94658012980529
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfSmallValueEurope",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 26.946580129805287
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BSPLC298",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 26.950000000000006,
+          "pct": 26.950000000000006
+        }
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfUsaSmallValue",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1613.3614880405667,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 59783.98451043036,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 16.96811854109514
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 16.968118541095144
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BSPLC413",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 21.18,
+          "pct": 16.968857918552025
+        }
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfUsaSmallValue",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1379.3172944589464,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2023-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 41134.813250715975,
+              "totalInvested": 34000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 16.649708317553294
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 16.6497083175533
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BSPLC413",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 9.670000000000002,
+          "pct": 16.647752430455288
+        }
+      ]
+    },
+    {
+      "isin": "IE00BSPLC413",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfUsaSmallValue",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1182.443843497711,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 25478.842208442813,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 0.6961326504896197
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfUsaSmallValue",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 0.6961326504896226
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BSPLC413",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 13.890000000000002,
+          "pct": 0.6981455319148955
+        }
+      ]
+    },
+    {
+      "isin": "IE00BYWQWR46",
+      "year": 2020,
+      "start": "2019-12",
+      "end": "2020-12",
+      "monthly": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2755.7149547036142,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2019-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 130302.85376156047,
+              "totalInvested": 82000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2020,
+          "endYear": 2025,
+          "firstReturnPct": 68.14275802779528
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BYWQWR46",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 68.14275802779528
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BYWQWR46",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 83.70000000000002,
+          "pct": 68.17584548936517
+        }
+      ]
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "year": 2018,
+      "start": "2017-12",
+      "end": "2018-12",
+      "monthly": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 2294.5207501515024,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2017-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 180887.7916144986,
+              "totalInvested": 106000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2018,
+          "endYear": 2025,
+          "firstReturnPct": -9.202262615868339
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "currency": "EUR",
+          "pct": -4.896308781843572
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BYXG2H39",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -9.199999999999998,
+          "pct": -4.893938864628811
+        }
+      ]
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "selected": true,
+          "ok": true,
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1607.777883907353,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2022-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 68499.74224172342,
+              "totalInvested": 46000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 4.21957399047626
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfIE00BYXG2H39",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 0.5978258988615259
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-IE00BYXG2H39",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 4.2200000000000015,
+          "pct": 0.5982371040724077
+        }
+      ]
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etc_cocoa",
+          "selected": true,
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00B2QXZK10",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": 66.48
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00B2QXZK10",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 66.48,
+          "pct": 60.694631674208146
+        }
+      ]
+    },
+    {
+      "isin": "JE00B2QXZK10",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etc_cocoa",
+          "selected": true,
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00B2QXZK10",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 336.14
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_cocoa",
+          "ok": false,
+          "reason": "COCO.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00B2QXZK10",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 336.14,
+          "pct": 363.88940225238235
+        }
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2021,
+      "start": "2020-12",
+      "end": "2021-12",
+      "monthly": [
+        {
+          "id": "etc_brent_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2021,
+          "endYear": 2025,
+          "firstReturnPct": 63.87
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2020-12 → 2021-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 63.870000000000005,
+          "pct": 77.54271322620521
+        }
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "monthly": [
+        {
+          "id": "etc_brent_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2022,
+          "endYear": 2025,
+          "firstReturnPct": 39.5
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 39.5,
+          "pct": 48.13210200637541
+        }
+      ]
+    },
+    {
+      "isin": "JE00B78CGV99",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etc_brent_crude_oil",
+          "selected": true,
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": -2.59
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_brent_crude_oil",
+          "ok": false,
+          "reason": "BRNT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00B78CGV99",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -2.5900000000000034,
+          "pct": -5.975107692307702
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB334",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "monthly": [
+        {
+          "id": "etc_natural_gas",
+          "selected": true,
+          "ok": false,
+          "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_natural_gas",
+          "ok": false,
+          "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_natural_gas",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB334",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2022,
+          "endYear": 2025,
+          "firstReturnPct": 17.51
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_natural_gas",
+          "ok": false,
+          "reason": "NGAS.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB334",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 17.510000000000005,
+          "pct": 24.781385711606973
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "monthly": [
+        {
+          "id": "etc_coffee",
+          "selected": true,
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2022,
+          "endYear": 2025,
+          "firstReturnPct": -23.12
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -23.120000000000008,
+          "pct": -18.362752672042003
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etc_coffee",
+          "selected": true,
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 85.28
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 85.28,
+          "pct": 97.06843777071903
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB557",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etc_coffee",
+          "selected": true,
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 26.83
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_coffee",
+          "ok": false,
+          "reason": "COFF.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB557",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": 26.83,
+          "pct": 12.139308085106393
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "year": 2022,
+      "start": "2021-12",
+      "end": "2022-12",
+      "monthly": [
+        {
+          "id": "etc_wheat",
+          "selected": true,
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB664",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2022,
+          "endYear": 2025,
+          "firstReturnPct": -4.24
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2021-12 → 2022-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB664",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -4.239999999999999,
+          "pct": 1.6855203450215628
+        }
+      ]
+    },
+    {
+      "isin": "JE00BN7KB664",
+      "year": 2023,
+      "start": "2022-12",
+      "end": "2023-12",
+      "monthly": [
+        {
+          "id": "etc_wheat",
+          "selected": true,
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12).",
+          "currency": "USD"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-JE00BN7KB664",
+          "ok": true,
+          "currency": "USD",
+          "startYear": 2023,
+          "endYear": 2025,
+          "firstReturnPct": -27.69
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etc_wheat",
+          "ok": false,
+          "reason": "WEAT.L : rapprochement financier non résolu (2022-12 → 2023-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-JE00BN7KB664",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "USD",
+          "nativePct": -27.690000000000005,
+          "pct": -30.202854298642535
+        }
+      ]
+    },
+    {
+      "isin": "LU1737652823",
+      "year": 2024,
+      "start": "2023-12",
+      "end": "2024-12",
+      "monthly": [
+        {
+          "id": "etfLU1737652823",
+          "selected": true,
+          "ok": false,
+          "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfLU1737652823",
+          "ok": false,
+          "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfLU1737652823",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-LU1737652823",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2024,
+          "endYear": 2025,
+          "firstReturnPct": 7.62
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfLU1737652823",
+          "ok": false,
+          "reason": "10AJ.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-LU1737652823",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 7.6200000000000045,
+          "pct": 7.6200000000000045
+        }
+      ]
+    },
+    {
+      "isin": "LU1875395870",
+      "year": 2019,
+      "start": "2018-12",
+      "end": "2019-12",
+      "monthly": [
+        {
+          "id": "etfLU1875395870",
+          "selected": true,
+          "ok": false,
+          "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfLU1875395870",
+          "ok": false,
+          "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfLU1875395870",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        },
+        {
+          "id": "annual-LU1875395870",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2019,
+          "endYear": 2025,
+          "firstReturnPct": 19.46
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfLU1875395870",
+          "ok": false,
+          "reason": "XDJE.DE : rapprochement financier non résolu (2018-12 → 2019-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-LU1875395870",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "EUR",
+          "nativePct": 19.459999999999987,
+          "pct": 19.459999999999987
+        }
+      ]
+    },
+    {
+      "isin": "LU2089238385",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfLU2089238385",
+          "selected": true,
+          "ok": true,
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfLU2089238385",
+          "ok": true,
+          "values": {
+            "lump": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 1391.8020605010058,
+              "totalInvested": 1000
+            },
+            "dca": {
+              "start": "2024-12",
+              "end": "2026-09",
+              "currency": "EUR",
+              "finalValue": 27496.72629939504,
+              "totalInvested": 22000
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfLU2089238385",
+          "ok": true,
+          "currency": "EUR",
+          "startYear": 2025,
+          "endYear": 2025,
+          "firstReturnPct": 10.277337193862891
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfLU2089238385",
+          "ok": true,
+          "currency": "EUR",
+          "pct": 10.277337193862902
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-LU2089238385",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "JPY",
+          "nativePct": 24.50000000000001,
+          "pct": 10.277418653919291
+        }
+      ]
+    },
+    {
+      "isin": "LU2196470426",
+      "year": 2025,
+      "start": "2024-12",
+      "end": "2025-12",
+      "monthly": [
+        {
+          "id": "etfLU2196470426",
+          "selected": true,
+          "ok": false,
+          "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12).",
+          "currency": "EUR"
+        }
+      ],
+      "calculator": [
+        {
+          "id": "etfLU2196470426",
+          "ok": false,
+          "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2026-09)."
+        }
+      ],
+      "performance": [
+        {
+          "id": "etfLU2196470426",
+          "ok": false,
+          "reason": "Year not offered by Performance depuis"
+        }
+      ],
+      "comparison": [
+        {
+          "id": "etfLU2196470426",
+          "ok": false,
+          "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+        }
+      ],
+      "calendar": [
+        {
+          "id": "annual-LU2196470426",
+          "ok": true,
+          "currency": "EUR",
+          "nativeCurrency": "JPY",
+          "nativePct": 28.24,
+          "pct": 13.590170025530979
+        }
+      ]
+    }
+  ]
+}

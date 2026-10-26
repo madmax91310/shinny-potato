@@ -1,0 +1,184 @@
+{
+  "run": 40316075073,
+  "event": "push",
+  "collectorCode": "095ab2a30462ac75ebf981c02836f1e2f8a0020c",
+  "collectorCodeIncludes977": true,
+  "recordedDataCommit": "39c5395",
+  "globalPartial": true,
+  "counts": {
+    "updated": 258,
+    "successes": 2598,
+    "errors": 2,
+    "pending": 149
+  },
+  "HEAL": {
+    "value": [
+      {
+        "ticker": "HEAL",
+        "mic": "XLON",
+        "exchange": "London Stock Exchange",
+        "currency": "USD",
+        "symbol": "HEAL.L",
+        "referenceDate": "2026-10-26",
+        "excerpt": "IE00BYZK4776 | {\"bidStatus\": \"1\", \"calendarDate\": \"26/10/2026\", \"countryOfRegister\": \"IE\", \"currency\": \"USD\", \"description\": \"ISHARES HC INNO\", \"displayIssuerName\": \"iShares Plc\", \"displayissuercode\": \"ISHARESGROUPID\", \"exchangeMarketSize\": \"5000\", \"firstTradingDate\": \"12 September 2016\", \"instrumentId\": \"140821\", \"instrumentName\": \"ISHS HEALTHCARE INNVTION UCITS ETF ACC\", \"instrumentStatus\": \"0\", \"investmentFund\": \"false\", \"isinCode\": \"IE00BYZK4776\", \"issuerCode\": \"ISISMS\", \"issuerName\": \"Ishares Iv Plc\", \"issuerNameInstrumentName\": \"Ishares Iv Plc ISHS HEALTHCARE INNVTION UCITS ETF ACC\", \"issuerNameUrl\": \"ishares-iv-plc\", \"lotSize\": \"1\", \"mic\": \"XLON\", \"mifirIdentifier\": \"ETFS\", \"nextTradingDate\": null, \"parentIssuerName\": \"ISHARES\", \"parentissuercode\": \"ISHARESGROUPID\", \"sector\": \"UET5\", \"securityType\": \"SP\", \"sedol\": \"BYZK477\", \"segmentCode\": \"EUET\", \"tidm\": \"HEAL\", \"tradingAllowed\": \"1\", \"typology\": \"ETPs\", \"unitOfQuotation\": \"1\"}",
+        "sourceUrl": "https://apidata.londonstockexchange.com/nrdp/v1?tidm=HEAL",
+        "checkedAt": "2026-10-26",
+        "sha256": "9827ff3239428148200c615e63959307cca85a07ea2d4c828658597ec2f20916",
+        "evidenceId": "IE00BYZK4776-XLON-HEAL-USD"
+      },
+      {
+        "ticker": "HEAL",
+        "mic": "XPAR",
+        "exchange": "Euronext Paris",
+        "currency": "EUR",
+        "symbol": "HEAL.PA",
+        "excerpt": "IE00BYZK4776 | Nyse Euronext - Euronext Paris | HEAL | EUR | HEAL.PA",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-26",
+        "sha256": "136ae77f73bfa152152a9ccd803f0de6d8fdd37a096df60a8907728fea358c70",
+        "evidenceId": "IE00BYZK4776-XPAR-HEAL-EUR"
+      }
+    ],
+    "checkedAt": "2026-10-26",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sha256": "136ae77f73bfa152152a9ccd803f0de6d8fdd37a096df60a8907728fea358c70"
+  },
+  "errors": [
+    {
+      "id": "IE0003R87OG3:pea:qualification",
+      "field": "pea",
+      "error": "Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.",
+      "reasons": [
+        "Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication."
+      ],
+      "sourceUrls": []
+    },
+    {
+      "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+      "field": "pea",
+      "qualificationRequired": true,
+      "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut. | Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.",
+      "sources": [
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-19",
+          "sha256": "04bac2fea7e840f62bd628f45e1d6c913a2adf4b492704a5cf6b9d26f0bb5157"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-19",
+          "sha256": "9401633b001650af47c26b6edc85e74d4e9625f97d3bc10e02fc64e8a7c77b20"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-26",
+          "sha256": "27f4a6fa33ae675646969d9e2ff30c5909f6156e6c5bd48432bac54a41cf0b1d"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-26",
+          "sha256": "6be1024b49decaaeb46f6647ee87cc72dbca90dcf2fee99aa28584d2e99c6751"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-26",
+          "sha256": "b960b24e6409a84c6c43b0916b14da11a17e5fae3fe82608ac26d266f7a5ebe5"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-24",
+          "sha256": "b59886cd94bd971d4c597dcf7748c161ee4365313c23432c5f19c884e128485e"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-24",
+          "sha256": "535bb69664146fa4bd7ec2aeb7e7397ed04f2c011791527737d75c1f0f019594"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-24",
+          "sha256": "dc59d31a776745d6fc1253cfd1407f9a40672ae2f7178359baa08755a3ee3538"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-24",
+          "sha256": "2b370bc1b856bb4cf97fd6393529927c45a5d1c2cec04058f7e566bb62f1efaa"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-21",
+          "sha256": "7a5ae0b2a6a6c94b2fe34ae988b8e9d5213f210795e264f084b488344d7ef237"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-21",
+          "sha256": "b0d69f9fc74b56e52281e6119651416e1f1f371e5dd4ba4d844b3cee8cb8775a"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-21",
+          "sha256": "19eadb4f4aa1424bdd9de1917d039c9c9e6ec12a39bddcea23e2b2d87a4f2491"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-20",
+          "sha256": "535d92050fc34f9523c19495eb26326d5db330cfb58d7e70ae520d24f79b4ff1"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "9401633b001650af47c26b6edc85e74d4e9625f97d3bc10e02fc64e8a7c77b20"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "aac6344cb76e2383dab9d4299913a7565402470d9bad409f86a0d3d0227b8510"
+        },
+        {
+          "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+          "value": false,
+          "checkedAt": "2026-10-20",
+          "sha256": "72f5b96bfae45bb431a99d2a156ab5384e115d4a6659d076684c7be806294c1b"
+        },
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-19",
+          "sha256": "463d50019591782dad2313f284b2481376ae1935254d4df263c393dcc5fba1e9"
+        },
+        {
+          "sourceUrl": "https://www.quantalys.com/Fonds/17300",
+          "value": false,
+          "checkedAt": "2026-10-19",
+          "sha256": "d33a5892078468230edb48db1c8dadf863ffb9ffdb39d0e5b9448e475be9eeb5"
+        }
+      ],
+      "category": "source-conflict",
+      "reasons": [
+        "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication."
+      ],
+      "id": "IE00B0M62S72:pea:qualification",
+      "lastAttemptAt": "2026-10-26T13:17:08.395789+00:00",
+      "sourceUrls": [
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72"
+      ]
+    }
+  ],
+  "publicationVerified": false
+}

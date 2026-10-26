@@ -5305,6 +5305,24 @@
               "code": "financial-window-unconfirmed",
               "reason": "XNKY.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
             }
+          },
+          {
+            "id": "etfLU2196470426Nav",
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2020-10",
+            "end": "2026-09",
+            "sourceUrls": [
+              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+              "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download?startDate=2020-10-27&endDate=2026-10-26&includeTax=false",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2024-12",
+              "end": "2025-12"
+            }
           }
         ],
         "annualNav": {
@@ -5315,9 +5333,9 @@
             "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
           ]
         },
-        "route": "annual-LU2196470426 · JPY · calendrier annuel VL distinct",
+        "route": "etfLU2196470426Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2025 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"

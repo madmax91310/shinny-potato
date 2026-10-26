@@ -382,7 +382,7 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
             previous=current.get(source['id'])
             if previous:
                 if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
-                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom','navHistoryKind']):
+                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker','valuationBasis','navCurrency','navProvider','productId','identityFrom','navHistoryKind','dwsIdentityBasis']):
                     reject('Existing exact series identity changed')
                 # A stale response can also rescale historical adjusted levels.
                 # Date monotonicity is independent of whether the months changed.
