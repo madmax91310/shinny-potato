@@ -44,6 +44,13 @@ try {
   downloadImage('data:image/png;base64,AQID', 'mobile.png')
   assert.equal(blob.type, 'image/png'); assert.deepEqual([...new Uint8Array(await blob.arrayBuffer())], [1, 2, 3])
   assert.equal(filename, 'mobile.png'); assert(clicked && removed); assert.equal(timer.delay, 60000); timer.fn()
+  // A borrowed preview URL remains owned by its rendering effect.
+  URL.createObjectURL = () => { throw Error('Borrowed URL must not be copied') }
+  URL.revokeObjectURL = () => { throw Error('Borrowed URL must not be revoked') }
+  globalThis.setTimeout = () => { throw Error('Borrowed URL lifetime belongs to its caller') }
+  clicked = false; removed = false
+  downloadImage('blob:caller-owned-preview', 'borrowed.png')
+  assert(clicked && removed); assert.equal(filename, 'borrowed.png')
 } finally {
   URL.createObjectURL = original.create; URL.revokeObjectURL = original.revoke
   globalThis.setTimeout = original.timeout
