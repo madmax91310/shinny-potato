@@ -455,7 +455,7 @@ La CI a identifié un consommateur de projection oublié dans le premier passage
 `test-tools-roadmap.mjs` charge un module data: et résout désormais l'import
 `duel-returns.js` par URL absolue, comme les autres dépendances de ce harnais.
 Les assertions de projection sans perte et de parité FX restent inchangées.
-L'intégration suivante conserve aussi #981 (Hey Grok) et #983 (banque de tweets),
+L'intégration suivante conserve aussi #982 (Hey Grok) et #983 (banque de tweets),
 jusqu'au master `ac6c374b`.
 
 Un défaut préexistant du contrôle NAV est corrigé dans un commit de test séparé :
