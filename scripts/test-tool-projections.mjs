@@ -7,6 +7,7 @@ import { renderToString } from 'react-dom/server'
 import { MemoryRouter } from 'react-router-dom'
 import * as bankOriginal from '../src/pages/tweet-bank/data.js'
 import * as original from '../src/data/market-history.js'
+import * as duelOriginal from '../src/data/duel-assets.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { projectReviewCatalog } from '../src/data/review-projection.js'
 import { describeDataField } from '../src/pages/data-search/lib.js'
@@ -26,6 +27,12 @@ try {
   assert.deepEqual(JSON.parse(JSON.stringify(calculator.derivedAnnualInflation())), original.derivedAnnualInflation(), 'Projected defaults must retain their dependencies')
   assert.deepEqual(Object.keys(calculator).sort(), [...Object.keys(original).filter(key=>key!=='BASELINE_ASSETS'), 'ensureCalculatorAsset'].sort(), 'Every projected export needs an explicit binding')
   const annual=await server.ssrLoadModule('/src/pages/tweet-midi/data/performanceHistory.js')
+  const duel=await server.ssrLoadModule('/src/data/duel-assets.js')
+  assert.equal(JSON.stringify(duel.CATALOG), JSON.stringify(duelOriginal.CATALOG))
+  for (const item of duelOriginal.CATALOG) {
+    const years = item.calendarReturns ? Object.keys(item.calendarReturns).map(Number) : item.values.map((_, index) => 2020 + index)
+    for (const year of years) assert.equal(duel.euroReturn(item, year), duelOriginal.euroReturn(item, year), `${item.id}/${year}: projected EUR return`)
+  }
   const records=new Map(Object.values(original.ASSETS).map(asset=>{const body=JSON.stringify(asset);return [createHash('sha256').update(body).digest('hex').slice(0,20),asset]}))
   const previousFetch=globalThis.fetch
   let requests=0

@@ -1,6 +1,5 @@
 import * as tweetBank from '../src/pages/tweet-bank/data.js'
 import { compactHistory } from './compact-history.mjs'
-import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import * as marketFacts from '../src/pages/market-facts/data.js'
 import * as duel from '../src/data/duel-assets.js'
@@ -45,7 +44,6 @@ export function compactLiteral(value) {
 // No fetched copy or independently maintained financial value is introduced.
 export function projectToolData() {
   const modules = new Map(), groups = []
-  const historySource = readFileSync(new URL('../src/data/market-history.js', import.meta.url), 'utf8')
   function partition(name, values, array = false) {
     const parts = []; let part = [], bytes = 0
     for (const entry of values) {
@@ -62,19 +60,13 @@ export function projectToolData() {
     }).join('\n')
     return imports + '\nexport default ' + (array ? `[${parts.map((_,i) => `...p${i}`).join(',')}]` : `/* @__PURE__ */ Object.assign({},${parts.map((_,i) => `p${i}`).join(',')})`) + ';'
   }
-  const historyCode = "import {INFLATION_MONTHLY} from './inflation-monthly.js';\n"+Object.entries(history).map(([key, value]) => {
+  const historyCode = "import {assetHistoryMinDate} from '../lib/history-dates.js';export {derivedAnnualInflation} from '../lib/annual-inflation.js';export const getAssetMinDate=id=>assetHistoryMinDate(ASSETS,VERIFIED_MIN_DATE_OVERRIDES,id);\n"+Object.entries(history).map(([key, value]) => {
     if (key === 'ASSETS' || key === 'BASELINE_ASSETS') {
       const id = `virtual:tool-data:${key}`
       modules.set(id, partition(`history-${key.toLowerCase()}`, Object.entries(value)))
       return `export { default as ${key} } from '${id}';\nimport ${key} from '${id}';`
     }
-    if (typeof value === 'function') {
-      // Vite bundles its config and can rename closure bindings (ASSETS$1).
-      // Read the canonical function source, never stringify the bundled closure.
-      const declaration = historySource.match(new RegExp(`export function ${key}\\([\\s\\S]*?\\n}`))?.[0]
-      if (!declaration) throw new Error(`Missing canonical history function: ${key}`)
-      return declaration
-    }
+    if (typeof value === 'function') return ''
     return `export const ${key} = ${value instanceof Set ? `new Set(${JSON.stringify([...value])})` : JSON.stringify(value)};`
   }).join('\n')
   // These tools consume finished facts / annual series. Do not ship the raw
@@ -85,7 +77,6 @@ export function projectToolData() {
   modules.set(factsId, compactLiteral(marketFacts))
   const duelId = 'virtual:tool-data:duel-catalog'
   modules.set(duelId, compactLiteral({ CATALOG:duel.CATALOG, EUR_USD:duel.EUR_USD, FX_SOURCE:duel.FX_SOURCE, ROLES:duel.ROLES }))
-  const euroReturnSource = readFileSync(new URL('../src/data/duel-assets.js', import.meta.url), 'utf8').match(/export function euroReturn\([\s\S]*?\n}/)[0]
   const reviewId = 'virtual:tool-data:review'
   modules.set(reviewId, partition('review-metadata', projectReviewCatalog(DATA_CATALOG), true))
   const records = DATA_CATALOG.map(record => {
@@ -113,7 +104,7 @@ export function projectToolData() {
       const path = id.replaceAll('\\', '/').split('?')[0]
       if (path.endsWith('/src/pages/tweet-bank/data.js')) return { code: `import data from '${bankId}'; export const {TWEETS,MONTHS,CATEGORIES,FORMATS,GOLD_CATEGORIES,COOLDOWN_DAYS}=data; export function getTweet(id) { return TWEETS.find(t => t.id === id); }`, map:null }
       if (path.endsWith('/src/pages/market-facts/data.js')) return { code: `import data from '${factsId}'; export const {FACTS,FAMILIES}=data;`, map:null }
-      if (path.endsWith('/src/data/duel-assets.js')) return { code: `import { convertCalendarReturn } from './calendar-fx.js'; import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));\n${euroReturnSource}`, map:null }
+      if (path.endsWith('/src/data/duel-assets.js')) return { code: `export {euroReturn} from '../lib/duel-returns.js'; import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));`, map:null }
       if (path.endsWith('/src/data/market-history.js')) return { code: historyCode, map: null }
       if (path.endsWith('/src/data/review-catalog.js')) return { code: `export { default as REVIEW_CATALOG } from '${reviewId}';`, map: null }
       if (path.endsWith('/src/data/catalog-browser.js')) {

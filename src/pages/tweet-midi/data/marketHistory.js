@@ -7,6 +7,8 @@ import {
   ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
 import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../../lib/investment-series.js";
+import { createAnniversaryYearOptions } from '../../../lib/history-dates.js'
+export { ymForYearsBack, fmtYm } from '../../../lib/history-dates.js'
 
 import INDEX_HISTORY from '../../../data/anniversary-index-history.json' with { type: 'json' };
 const INDEX_ASSETS = Object.fromEntries(Object.entries(INDEX_HISTORY).map(([id, record]) => [id, {
@@ -136,27 +138,7 @@ export function getAnnualReturns(assetId, startYear) {
 // CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
 // de `new Date()` au moment du clic, pour rester exact indéfiniment).
 function isQualifiedMonth(assetId, ym) { return !ASSETS[assetId].anniversaryExcludedMonths?.includes(ym) && qualifyHistoryWindow(ASSETS[assetId], ym, ym).qualified; }
-export function getValidYearsBackOptions(assetId, today) {
-  const minDate = getAssetMinDate(assetId);
-  const minIdx = ymIndex(minDate);
-  const options = [];
-  for (let yearsBack = 1; yearsBack <= 10; yearsBack++) {
-    const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
-    const ym = past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
-    if (ymIndex(ym) >= minIdx && ymIndex(ym) <= ymIndex(getAssetMaxDate(assetId)) && isQualifiedMonth(assetId, ym)) options.push(yearsBack);
-  }
-  return options;
-}
-
-export function ymForYearsBack(yearsBack, today) {
-  const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
-  return past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
-}
-
-export function fmtYm(ym, { monthLabels }) {
-  const [y, m] = ym.split("-");
-  return `${monthLabels[Number(m) - 1]} ${y}`;
-}
+export const getValidYearsBackOptions = createAnniversaryYearOptions({ getAssetMinDate, getAssetMaxDate, isQualifiedMonth })
 
 // Mode Comparatif, Format B uniquement : la date de fin partagée par les deux actifs, pour que la
 // fenêtre de comparaison soit rigoureusement identique des deux côtés — jamais la propre dernière

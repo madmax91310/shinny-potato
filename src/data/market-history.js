@@ -1,7 +1,9 @@
 import { SHARED_QUALIFIED_HISTORIES } from './shared-qualified-histories.js'
 import { CERTIFIED_INDEX_HISTORIES } from './certified-monthly-indices.js'
 import { AUTOMATED_EQUITY_HISTORY } from './automated-equity-history.js'
-import { INFLATION_MONTHLY } from './inflation-monthly.js'
+import { derivedAnnualInflation } from '../lib/annual-inflation.js'
+import { assetHistoryMinDate } from '../lib/history-dates.js'
+export { derivedAnnualInflation } from '../lib/annual-inflation.js'
 import { indexMethodNote } from '../lib/performance-conventions.js'
 import EQUITY_LINKS from './equity-history-links.json' with { type: 'json' }
 import { applyMonthlyAutomation } from './monthly-automation.js'
@@ -644,7 +646,7 @@ export const ASSET_ORDER = [...new Set([
 // Le premier mois utilisable vient de la série sourcée elle-même.
 export const VERIFIED_MIN_DATE_OVERRIDES = {}
 export function getAssetMinDate(assetId) {
-  return VERIFIED_MIN_DATE_OVERRIDES[assetId] ?? ASSETS[assetId].points[0].date
+  return assetHistoryMinDate(ASSETS, VERIFIED_MIN_DATE_OVERRIDES, assetId)
 }
 export const SPARSE_MONTHLY_DATA_IDS = new Set([])
 
@@ -689,18 +691,6 @@ export const INFLATION_PUBLISHED = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9,
 // sont arrondies au dixième : l’écart avec le chiffre annuel officiel atteint 0,1 point
 // (scripts/test-inflation-consistency.mjs le borne). Elle ne sert qu’aux années complètes dont
 // l’INSEE n’a pas encore publié la moyenne annuelle, pour que janvier ne laisse aucun trou.
-export function derivedAnnualInflation(monthly = INFLATION_MONTHLY) {
-  const months = Object.keys(monthly).sort()
-  let level = 100
-  const levels = Object.fromEntries(months.map(month => [month, level *= 1 + monthly[month] / 100]))
-  const average = year => { const values = months.filter(month => month.startsWith(year)).map(month => levels[month]); return values.length === 12 ? values.reduce((a, b) => a + b, 0) / 12 : null }
-  const result = {}
-  for (const year of new Set(months.map(month => month.slice(0, 4)))) {
-    const current = average(year), previous = average(String(Number(year) - 1))
-    if (current && previous) result[year] = Math.round((current / previous - 1) * 1000) / 10
-  }
-  return result
-}
 export const INFLATION = { ...derivedAnnualInflation(), ...INFLATION_PUBLISHED }
 
 export const LATEST_YM = Object.values(ASSETS).map(asset => asset.points.at(-1).date).sort().at(-1) // Chaque outil borne ensuite sa période à l’actif choisi.
