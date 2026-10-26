@@ -3,18 +3,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ToolIcon from '../design-system/ToolIcon'
 import { HOME_TOOLS, TOOL_GROUPS } from '../tools'
 import { EDITORIAL_WEEK } from '../data/editorial-calendar'
+import { readLocalPreference, writeLocalPreference } from '../lib/publication-preferences.js'
 import './home.css'
 
 const VIEW_KEY = 'epargnant-libre:home-view'
 const FAVORITES_KEY = 'epargnant-libre:home-favorites'
 const DEFAULT_FAVORITES = ['/radar-editorial', '/le-dca-de', '/generateur-portefeuilles', '/banque-tweets']
 const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
-function readPreference(key, fallback) {
-  try { return JSON.parse(localStorage.getItem(key)) ?? fallback } catch { return fallback }
-}
-function savePreference(key, value) {
-  try { localStorage.setItem(key, JSON.stringify(value)) } catch { /* Preferences remain usable in memory. */ }
-}
+const validView = value => ['overview', 'calendar'].includes(value)
+const validFavorites = value => Array.isArray(value) && value.every(path => typeof path === 'string')
 
 function ToolList({ tools, favorites, toggleFavorite }) {
   return <div className="workspace-tool-grid">{tools.map(tool => <div className="home-tool-entry" key={tool.to}>
@@ -31,11 +28,12 @@ function ToolList({ tools, favorites, toggleFavorite }) {
 export default function Home() {
   const { search } = useLocation()
   const navigate = useNavigate()
-  const [view, setView] = useState(() => new URLSearchParams(search).get('vue') === 'ensemble' ? 'overview' : readPreference(VIEW_KEY, 'overview') === 'calendar' ? 'calendar' : 'overview')
+  const [view, setView] = useState(() => new URLSearchParams(search).get('vue') === 'ensemble' ? 'overview' : readLocalPreference(VIEW_KEY, 'overview', validView) === 'calendar' ? 'calendar' : 'overview')
   const [favorites, setFavorites] = useState(() => {
-    const stored = readPreference(FAVORITES_KEY, DEFAULT_FAVORITES)
+    const stored = readLocalPreference(FAVORITES_KEY, DEFAULT_FAVORITES, validFavorites)
     return Array.isArray(stored) ? [...new Set(stored)].filter(path => HOME_TOOLS.some(tool => tool.to === path)) : DEFAULT_FAVORITES
   })
+  const [preferenceErrors, setPreferenceErrors] = useState({})
   const [query, setQuery] = useState('')
   const today = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', timeZone: 'Europe/Paris' }).format(new Date())
   const [dayIndex, setDayIndex] = useState(() => Math.max(0, EDITORIAL_WEEK.findIndex(({ day }) => day.toLowerCase() === today)))
@@ -49,8 +47,12 @@ export default function Home() {
       navigate({ search: params.toString() }, { replace: true })
     }
   }, [search, navigate])
-  useEffect(() => { savePreference(VIEW_KEY, view) }, [view])
-  useEffect(() => { savePreference(FAVORITES_KEY, favorites) }, [favorites])
+  useEffect(() => { setPreferenceErrors(previous => ({...previous, view: !writeLocalPreference(VIEW_KEY, view, validView)})) }, [view])
+  useEffect(() => {
+    // Keep unavailable/older routes in storage even though this build cannot display them.
+    const unknown = readLocalPreference(FAVORITES_KEY, [], validFavorites).filter(path => !HOME_TOOLS.some(tool => tool.to === path))
+    setPreferenceErrors(previous => ({...previous, favorites: !writeLocalPreference(FAVORITES_KEY, [...favorites, ...unknown], validFavorites)}))
+  }, [favorites])
   useEffect(() => {
     const element = toolbar.current
     const observer = new ResizeObserver(() => {
@@ -74,6 +76,7 @@ export default function Home() {
     const bottom = toolbar.current.getBoundingClientRect().bottom + 8
     if (top < bottom) window.scrollBy(0, top - bottom)
   }}>
+    {Object.values(preferenceErrors).some(Boolean) && <p role="alert">Les préférences locales ne peuvent pas être enregistrées. Les données existantes sont conservées.</p>}
     <header className="home-heading"><h1>Mes outils</h1><p>Tout pour préparer tes publications.</p></header>
     <div className="home-toolbar" ref={toolbar}>
       <div className="home-view-switch" role="group" aria-label="Vue de l’accueil">

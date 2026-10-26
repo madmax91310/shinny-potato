@@ -86,6 +86,7 @@ de repli ; la banque propose aussi une copie manuelle de son texte daté, à con
 | Priorité / fichiers et symboles | Preuve et conséquence | Consommateurs | Correction et bénéfice | Risque / vérification |
 | --- | --- | --- | --- | --- |
 | Haute — `tweet-bank/App.jsx`, `loadDrafts`, `loadLastPub`, effets de sauvegarde | Une lecture JSON invalide retourne `{}` puis un effet l'écrit au montage : perte silencieuse des octets conservés. Défaut fonctionnel préexistant, distinct du refactoring. | Brouillons, vérifications éditoriales et dates de publication de la banque | Isoler le stockage, garder l'état de lecture et interdire toute écriture sur un espace illisible ; conserver les clés/formats. | Changement volontaire ; tests données anciennes, corruption, indisponibilité, rechargement et édition navigateur. Commit séparé. |
+| Haute — `publication-preferences.js`, effets de `SimpleExposure`, préférences Home et migration des favoris | La lecture validée retourne un repli, mais l'ancien écrivain remplace sans revalider les octets présents ; un montage suffit à effacer un brouillon illisible. La migration pouvait marquer comme terminé un transfert non enregistré. | Brouillon d'exposition, paramètres, favoris/recents et sélections communes | Protéger l'écriture à la frontière avec le validateur du consommateur ; préserver les namespaces Home ; n'acquitter une migration qu'après succès. | Correctif volontaire séparé ; tests de corruption, anciennes routes, migration interrompue et parcours normaux de tous les consommateurs. |
 | Moyenne — `investment-calculator/math.js`, imports des anniversaires et projection Vite | Un moteur réellement partagé appartient au dossier interne d'un seul consommateur ; le générateur encode ce chemin en plus des sources. | Calculateur, anniversaires, tests et projection | Point d'entrée commun de séries de placement, façade historique conservée ; aucune formule modifiée. | Convention brut/ajusté et taux ; comparaison des résultats avant/après, audits financiers, historique chargé/réessai et exports réels. |
 | Moyenne — `presentation-shared/imageExport.js`, modèles et canvas ; `scpi-presentation/lib.js`, `format/dateLabel/annualPublicationNote` | Tests Node de qualification et de modèles importent le module de dessin ; AV/acteurs dépendent du moteur SCPI seulement pour les libellés. | Trois familles de présentations et leurs tests | Modèles sans DOM séparés du dessin, libellés dans `presentation-shared`, réexports historiques. Les règles restent testables sans le canvas. | Textes/chiffres visuels ; comparaison PNG avant/après, tests modèles, anciens liens, changements de sélection et mobile. |
 | Moyenne — `RadarCount`, `HistoricalContext` | Le design-system importe `pages/editorial-radar/read-state.js` et `pages/tweet-midi/data/indexVariants.js` ; une évolution de page peut entrer dans le graphe initial. | Navigation, contexte historique, radar et anniversaires | État radar commun et registre léger de conventions, façades historiques ; garde-fou `data/lib/design-system → pages` interdit. | Clés/événements et libellés identiques, tests radar/préférences et budgets de routes. |
@@ -225,3 +226,41 @@ indépendance des maps, en 1440 et 390 px : réussi.
 `playwright-tools.mjs --tweet-bank` : parcours existant réussi (repos, copie fidèle,
 textes pédagogiques et mobile). `test-tweet-bank-validity`, `test-browser-shards`,
 build et budgets : réussis ; lint garde les mêmes 13 avertissements initiaux.
+
+## Lot 5 — correctif fonctionnel isolé : préférences et brouillon d'exposition
+
+La revue finale des écritures confirme une seconde occurrence du même défaut :
+`readPreference` validait à la lecture, mais `writePreference` pouvait écrire
+immédiatement le repli d'un composant sur les octets invalides. Le brouillon
+SimpleExposure et les favoris Home étaient concernés. La migration des favoris
+pouvait également enregistrer son marqueur après un transfert non sauvegardé.
+
+La primitive commune relit et valide maintenant le record existant avant de le
+remplacer ; elle retourne un succès explicite. Chaque consommateur transmet son
+validateur existant. Le préfixe `epargnant-publication:v1:` et les deux clés Home
+sans préfixe restent inchangés. Home réutilise la primitive, conserve les anciennes
+routes dans ses favoris enregistrés et affiche un avertissement en cas de panne.
+SimpleExposure affiche une erreur de sauvegarde et garde l'édition en mémoire.
+Les préférences facultatives gardent leur repli ; un record illisible reste intact.
+Aucune migration des valeurs ni règle financière nouvelle. Cette primitive ne
+remplace pas le stockage spécialisé de la banque, qui possède en plus un contrat
+de conflit observé et des messages spécifiques.
+
+Consommateurs migrés : Home, brouillon SimpleExposure, paramètres du Calculateur,
+subject/devise Tweet Midi, hook de sélection commune (ETF, indices et duels),
+favoris/récents des sélecteurs et leur ancienne migration. La validation reste
+hors des boucles de calcul. Les validateurs inline ne provoquent pas de nouvelle
+sauvegarde d'une sélection inchangée (`useEffectEvent`, déjà disponible dans la
+version React du dépôt).
+
+Vérifications : tests de préférences de publication et de sélecteur enrichis,
+build/budgets, lint (13 avertissements préexistants), navigateur d'intégrité sur
+Home/expositions/calculateur/comparatif/favoris/récents/migration en 1440 et 390 px,
+recette des sélecteurs (modes, recherche, PEA, favoris partagés, historique,
+rechargement), dossiers sélectionnés/cache/réessai, et SimpleExposure avec quatre
+exports réels : réussis. Recette Home complète : sept jours, hrefs exacts, recherche,
+préférences, stockage refusé, clavier, contrôles fixes, quatre largeurs et outils
+réels : réussie. Un premier essai Home n'a pas obtenu son serveur dans le délai
+initial ; relancé avec un serveur preview explicitement démarré, sans modifier le
+contrôle. Le test SimpleExposure a d'abord nécessité `CHROMIUM_PATH=/usr/bin/chromium`.
+Le nouveau contrôle d'intégrité est raccordé aux shards CI existants.

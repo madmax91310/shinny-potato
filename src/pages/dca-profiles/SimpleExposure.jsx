@@ -17,8 +17,9 @@ const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_POSITIONS&&d.
 export default function SimpleExposure({isin}){
  const [saved]=useState(()=>{const asset=Object.keys(references).find(key=>references[key]?.isin===isin&&ASSETS[key]);return asset?{lines:[newLine(asset,100)],field:'all',exposureLimit:4}:readPreference(draftKey,null,validDraft)})
  const [lines,setLines]=useState(()=>confirmLines(saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[])),[field,setField]=useState(saved?.field||'all')
+ const [saveError,setSaveError]=useState(false)
  const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4),[showAnalysis,setShowAnalysis]=useState(false),[showCompanies,setShowCompanies]=useState(saved?.showCompanies===true)
- useEffect(()=>{writePreference(draftKey,{lines,field,exposureLimit,showCompanies})},[lines,field,exposureLimit,showCompanies])
+ useEffect(()=>{setSaveError(!writePreference(draftKey,{lines,field,exposureLimit,showCompanies},validDraft))},[lines,field,exposureLimit,showCompanies])
  const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit,showCompanies}
  const records=useSelectedRecords(lines.map(line=>line.asset),exposureRecords)
  const analysis=analyzeProfile(profile)
@@ -28,6 +29,7 @@ export default function SimpleExposure({isin}){
  const image=useImageExport(profile,field,!reason)
  return <div className="dca-profiles-scope dca-simple">
   <PageHeader title="Actifs & expositions" subtitle="Saisis ton allocation, retrouve tes expositions et télécharge ton image."/>
+  {saveError&&<p role="alert">Le brouillon ne peut pas être enregistré. Les données locales existantes sont conservées ; garde tes modifications avant de quitter la page.</p>}
   <div className="dca-simple-grid">
    <section className="dca-simple-card" aria-label="Composer les expositions">
     <AllocationEditor lines={lines} onChange={setLines}/>

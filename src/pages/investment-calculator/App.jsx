@@ -264,7 +264,7 @@ function InvestmentWorkspace({ search }) {
     const date = preferredDate > maxDate ? maxDate : preferredDate
     return { ...INITIAL_STATE, assetId, startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5)) }
   })
-  useEffect(() => { writePreference('investment-settings', state) }, [state])
+  useEffect(() => { writePreference('investment-settings', state, validSavedSettings) }, [state])
   const history=useSelectedHistory(state.assetId)
   if(!history.ready)return <section className="ic-history-loading" aria-busy={!history.error}><p role="status">{history.error?'L’historique n’a pas pu être chargé.':'Chargement de l’historique…'}</p>{history.error&&<><Button onClick={history.retry}>Réessayer</Button><AssetPicker label="Choisir un actif" value={state.assetId} onChange={assetId=>setState({...state,assetId})} items={ASSET_ORDER.map(id=>({id,label:historyOptionLabel(id,ASSETS[id]),isin:ASSETS[id].isin,group:exposureGroup(ASSETS[id])}))}/></>}</section>
   return <InvestmentEditor state={state} setState={setState}/>

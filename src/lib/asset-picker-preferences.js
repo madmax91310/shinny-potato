@@ -7,7 +7,7 @@ export const validAssetKeys = value => Array.isArray(value) && value.length <= 2
 export const assetPreferenceKey = item => item.isin ? `isin:${item.isin}` : `asset:${item.preferenceId ?? item.id}`
 export function updateAssetKeys(key, update, limit = 200) {
   const next = [...new Set(update(readPreference(key, [], validAssetKeys)))].slice(0, limit)
-  writePreference(key, next)
+  if (!writePreference(key, next, validAssetKeys)) return null
   globalThis.dispatchEvent?.(new Event('asset-picker-preferences'))
   return next
 }
