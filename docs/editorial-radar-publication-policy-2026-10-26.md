@@ -156,7 +156,7 @@ sur plusieurs jours reste à mesurer après une future mise en production.
 Les mails/push d’échec de **GitHub Actions** sont un canal distinct des commentaires. Les
 préférences personnelles n’ont pas été modifiées : GitHub → Settings → Notifications →
 Actions permet notamment de limiter aux workflows échoués auxquels on participe et de choisir
-mail/push. Sur le dépôt, Watch → Custom → Issues/Actions ajuste les abonnements ; conserver
+mail/push. Sur le dépôt, Watch → Custom permet d’ajuster notamment les abonnements aux issues ; conserver
 l’abonnement au suivi éditorial si souhaité. Sur GitHub Mobile, vérifier compte, autorisations
 système, filtres et plages silencieuses. Un commentaire accepté par GitHub ne prouve jamais
 sa réception sur le téléphone. Aucune notification de test n’a été envoyée.
