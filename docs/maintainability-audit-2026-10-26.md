@@ -124,8 +124,8 @@ Vérifications réussies : build et budgets ; `test-selected-records`, `test-sel
 `CHROMIUM_PATH=/usr/bin/chromium node scripts/playwright-selected-records.mjs` :
 historiques/expositions sélectionnés seulement, cache, échec/réessai sans perte de
 sélection, catalogue différé, ordinateur et mobile.
-Comparaison ponctuelle au moteur extrait du commit de référence : 64 jeux de paramètres,
-384 sorties/erreurs de séries strictement identiques ; cinq PNG et textes calculateur
+Comparaison ponctuelle au moteur extrait du commit de référence : 32 jeux de paramètres,
+192 sorties/erreurs de séries strictement identiques ; cinq PNG et textes calculateur
 identiques octet par octet (Apple versement unique/DCA avec prix saisi, indice World,
 anniversaire simple et comparatif). Les scripts de comparaison et PNG sont conservés
 dans les artefacts de session, sans figer des valeurs vivantes dans les tests du dépôt.
@@ -134,3 +134,24 @@ la comparaison finale conserve aussi les contrats d'erreur, sans étendre la cou
 
 Recette initiale complémentaire : `test-route-loading.mjs` et
 `test-presentation-images.mjs`, Chromium réel, réussis avant refactoring de leurs zones.
+
+## Lot 2 — modèles et rendu des présentations
+
+Avant : modèles de sections/cartes/relief, choix des faits et qualifications,
+chargement des ressources et dessin dans `presentation-shared/imageExport.js` ;
+libellés communs détenus par le moteur SCPI. Après : `image-model.js` prépare les
+faits publiés sans DOM ; `imageExport.js` charge/dessine ; `labels.js` détient les
+libellés communs. Les règles d'assurance restent dans leur moteur spécialisé.
+Les exports historiques de `imageExport.js` et du moteur SCPI restent disponibles.
+Consommateurs migrés : AV (moteur et UI), acteurs (UI), modèles des trois familles,
+tests Node de présentations et test de modèles d'images. Aucun texte ni dessin modifié.
+
+`test-scpi.mjs`, `test-insurance.mjs`, `test-presentations.mjs`, build et budgets :
+réussis. `test-presentation-images.mjs` Chromium : toutes les familles et offres,
+conditions expirées, chiffres longs, bornes des textes, brouillon conservé,
+image téléchargée égale à l'aperçu, sélection, mobile 320/390 et réessai après
+échec de logo : réussi. Les 25 PNG distincts enregistrés sont identiques octet par
+octet aux captures initiales, ainsi que les quatre captures mobiles.
+Deux captures desktop complètes diffèrent uniquement par le positionnement des
+éléments fixes (navigation, barre d'actions et toast) lors de la capture en page
+longue après redimensionnement ; les pixels des exports sont inchangés.

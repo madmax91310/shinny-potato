@@ -8,7 +8,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { INSURANCE, ARCHIVED_INSURANCE } from '../../data/insurance.js'
-import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
+import { dateLabel, format, annualPublicationNote } from '../presentation-shared/labels.js'
 import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations, fundCeiling } from './lib.js'
 import '../scpi-presentation/style.css'
 

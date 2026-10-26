@@ -7,7 +7,7 @@ import { downloadImage } from '../../design-system/downloadImage.js'
 import { PRESENTATION_ACTORS, applyActorOffer, buildActorTweet } from '../../data/presentation-actors.js'
 import { usePresentationDraft } from '../presentation-shared/drafts.jsx'
 import { renderPresentationImage } from '../presentation-shared/imageExport.js'
-import { dateLabel } from '../scpi-presentation/lib.js'
+import { dateLabel } from '../presentation-shared/labels.js'
 export default function Actors({ family }) {
   const records = PRESENTATION_ACTORS.filter(row => row.family === family)
   const [id, setId, draft, setDraft] = usePresentationDraft(family, records[0].id)

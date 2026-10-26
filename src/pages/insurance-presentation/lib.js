@@ -1,4 +1,4 @@
-import { format, annualPublicationNote } from '../scpi-presentation/lib.js'
+import { format, annualPublicationNote } from '../presentation-shared/labels.js'
 export const fundReturn = row => row.return != null ? `${format(row.return)} %` : `${format(row.returnMin)} à ${format(row.returnMax)} % (${row.condition})`
 export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.${fund.guaranteeBasis ? ` ${fund.guaranteeBasis}` : ''}` : 'La garantie nette annuelle n’est pas chiffrée dans les pages collectées ; voir les conditions du fonds.'
 const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today

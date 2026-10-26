@@ -2,7 +2,7 @@ import {fieldQualification} from './lib/data-qualification.mjs'
 import assert from 'node:assert/strict'
 import { access } from 'node:fs/promises'
 import { PRESENTATION_ACTORS, ACTOR_FAMILIES, applyActorOffer, buildActorTweet } from '../src/data/presentation-actors.js'
-import { presentationReliefModel } from '../src/pages/presentation-shared/imageExport.js'
+import { presentationReliefModel } from '../src/pages/presentation-shared/image-model.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 assert.equal(TOOLS.filter(row=>row.to==='/presentations').length,1)
 assert.equal(HOME_TOOLS.filter(row=>row.to==='/presentations').length,1)
