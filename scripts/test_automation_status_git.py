@@ -132,6 +132,23 @@ class StatusGitTransport(unittest.TestCase):
         self.assertEqual(calls, [('/contents/automation-status.json', 'PUT', payload)])
         self.assertEqual(result['content']['sha'], 'new')
 
+    def test_identical_competing_commit_does_not_authorize_a_second_dispatch(self):
+        real_run = subprocess.run
+        calls = []
+        state = {'archive': 'é' * 600000, 'recovery': {'collector.yml': {
+            'status': 'reserved', 'attempts': [{'status': 'reserved', 'at': '2026-10-26T17:00:00Z'}]}}}
+
+        def competing(command, **kwargs):
+            if command[:2] == ['git', 'push']:
+                real_run(command, **kwargs)  # Another writer has persisted the identical commit.
+            return real_run(command, **kwargs)
+
+        with patch.object(transport, 'ROOT', self.repo), patch.object(transport.subprocess, 'run', side_effect=competing):
+            with self.assertRaisesRegex(RuntimeError, 'not newly recorded'):
+                persist_and_dispatch(lambda *args: calls.append(args), 'automation-status.json', self.payload(state), state, ['collector.yml'])
+        self.assertEqual(calls, [])
+        self.assertEqual(self.remote_json()['recovery']['collector.yml']['status'], 'reserved')
+
 
 if __name__ == '__main__':
     unittest.main()
