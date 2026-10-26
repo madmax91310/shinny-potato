@@ -1,6 +1,6 @@
 # Données communes — bilan consolidé actualisé
 
-## Suite opérationnelle après #969 — périmètre public conservé
+## Suite opérationnelle #976 — fusionnée, publication à vérifier
 
 La PR #969 est fusionnée (`acf80edd`) et sa publication a été vérifiée : déploiement 40294769898, code `acf80edd`, données `4a9a6967`, puis `01dd984b`. Les trois choix NAV ont été exercés en production : calculateur, DCA, Performance depuis et anniversaire à un an, avec douze téléchargements PNG. La recette à un an ne certifiait pas les niveaux de prix plus anciens : le correctif ci-dessous traite cette limite explicitement.
 
@@ -20,11 +20,15 @@ Résultats opérationnels supplémentaires et limites actuelles :
 - **ACWI IE00B6R52259** : pays/secteurs primaires réellement à zéro au 23/10. Réparation exécutée par le collecteur ordinaire local : allocations géographiques et sectorielles issues de toutes les positions classifiées, photographie du 23/10, poids 99,99994 %, sans renormalisation. Le nombre officiel de 1 662 positions actions et les identités de cotations sont contrôlés ; les deux doubles cotations sont conservées. La ligne `SINOPAC FIN HOLDINGS CO LTD DUMMY` de 0,0001 % sans ISIN reste signalée : les donuts sont admissibles, le recouvrement intégral ne l’est pas. Les deux tables primaires restent en erreur, avec secours qualifié séparé.
 - **QYLD** : page officielle relue ; la table de performance reste intitulée USD Accumulating tandis que la part demandée est distribuante. Les cours, calendriers déjà qualifiés et archives sont préservés ; aucun rendement glissant recertifié pour la mauvaise part.
 
-Les incidents Radar restent sous responsabilité distincte ; seule la correction Revolut déjà fusionnée dans #969 est suivie ici. #968 reste acquis, les deux anciens périmètres inconnus sont historiques et #966 reste CI uniquement. Les autres causes du périmètre initial restent dans le suivi, avec un reliquat explicitement non revérifié ; ce lot n’est pas une certification des 121 raccordements.
+Les incidents Radar restent sous responsabilité distincte ; seule la correction Revolut déjà fusionnée dans #969 est suivie ici. #968 reste acquis, les deux anciens périmètres inconnus sont historiques et #966 reste CI uniquement. Les 121 identifiants initiaux restent dans `qualification-perimetre-initial.csv` : 70 raccordements/identités manquants, 29 pannes ou contrôles de champs non renouvelés, 18 preuves documentaires incomplètes (dont HEAL désormais renouvelé dans GitHub) et quatre conflits. Cette qualification par fichiers et rapports ne prétend pas à une nouvelle exécution fournisseur de chaque source. Les premières années incomplètes, attentes et non-applicables sont hors de ces 121 actions.
 
 ### Renouvellement exact de la cotation Healthcare
 
-La nouvelle API publique du London Stock Exchange (`nrdp/v1?tidm=HEAL`), découverte dans la page officielle actuelle, confirme IE00BYZK4776 / HEAL / XLON / USD / unité 1. La réponse complète est conservée. Le collecteur ordinaire a réellement renouvelé la preuve London/USD le 26/10, distinctement de Paris/EUR ; aucune observation de cours n’est importée de cette API de référence. Le raccord est ajouté au registre commun des sources, avec refus des mauvaises parts, devises, places, unités et réponses vides. Les calculateurs et Duels conservent leur série HEAL.L. La collecte GitHub/publication de ce nouvel accès reste à vérifier.
+La nouvelle API publique du London Stock Exchange (`nrdp/v1?tidm=HEAL`), découverte dans la page officielle actuelle, confirme IE00BYZK4776 / HEAL / XLON / USD / unité 1. La réponse complète est conservée. Le collecteur ordinaire a réellement renouvelé la preuve London/USD le 26/10, distinctement de Paris/EUR ; aucune observation de cours n’est importée de cette API de référence. Le raccord est ajouté au registre commun des sources, avec refus des mauvaises parts, devises, places, unités et réponses vides. Les calculateurs et Duels conservent leur série HEAL.L. La collecte GitHub de PR 40310143492 confirme la même identité et la même empreinte de réponse. #976 est fusionnée en `d221df0b` ; la publication et l’ingestion du producteur ordinaire en production restent à vérifier.
+
+### Conservation des preuves lors des collectes partielles
+
+Un défaut de stockage est reproduit par le véritable point d’entrée, en isolation : une observation Paris seule remplaçait le champ global et effaçait la preuve London précédemment renouvelée. Le suivi dépendant de #976 fusionne maintenant les lignes par MIC/ticker/devise et refuse les régressions de leurs dates. Une ligne conservée garde sa source, son empreinte et sa date ; elle ne devient jamais un nouveau contrôle réussi. Les erreurs source restent dans les diagnostics et un échec total ne produit aucun résultat réussi. Les 90 tests métadonnées passent ; aucun incident fournisseur n’est clôturé par ce correctif de stockage.
 
 ### Correctif financier et preuves de cette suite
 
@@ -34,9 +38,11 @@ La nouvelle API publique du London Stock Exchange (`nrdp/v1?tidm=HEAL`), découv
 
 **Validation locale :** 1 157 tests Python réussis, tests de consommateurs NAV et routes exactes réussis, build intégré à master `93affb1` et budgets réussis. Navigateurs desktop/mobile : Defence et recouvrement prudent, ACWI fiche/expositions et quatre PNG ; Euro Stoxx NAV : six PNG incluant anniversaires six/sept ans. Les preuves locales ne remplacent pas la recette GitHub/publication encore attendue pour ce lot.
 
-Concurrence : #970/#971/#972/#973/#975 intégrées depuis master ; #974 examinée, moteur partagé et préférences laissés à son propriétaire. Aucun mécanisme Radar ni supervision n’est réécrit. Les 19 actions et 79 causes originales ne sont pas clôturées par ces réparations ponctuelles.
+Contrôle complémentaire mutualisé des quatre autres parts Amundi : les séries ajustée/brute ont été rapprochées dans les captures existantes (2 950, 2 950, 1 722 et 2 115 bornes quotidiennes). Pour LQQ, le 09/07/2026 montre un rapport d’unités ×200 ; l’API de dividendes publie aussi « 200 USD », qui ne constitue pas un dividende EUR qualifié et n’est jamais appliqué comme tel. Les trois autres réponses de dividendes sont nulles, sans les transformer seules en preuve d’absence historique de revenus. Les écarts numériques et captures sont conservés dans `amundi-other-anniversary-adjustments.json` et la requête mutualisée associée. Aucun seuil ni historique n’est modifié par cette investigation.
 
-## Reprise du 26 octobre — réparations en validation
+Concurrence : #970/#971/#972/#973/#975 intégrées depuis master ; #974 fusionnée avant #976, moteurs partagés et préférences intégrés depuis master et revalidés. Aucun mécanisme Radar ni supervision n’est réécrit. Les 19 actions et 79 causes originales ne sont pas clôturées par ces réparations ponctuelles.
+
+## Préparation de #969 — capture historique du 26 octobre
 
 Base master `4ea33c9`, aucune PR concurrente ouverte lors du rapprochement. #968 est acquis ; ses contrats, les deux anciens périmètres inconnus et la réserve CI de #966 restent inchangés.
 

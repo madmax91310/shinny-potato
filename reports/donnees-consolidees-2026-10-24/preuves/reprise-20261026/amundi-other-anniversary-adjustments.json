@@ -1,0 +1,288 @@
+[
+  {
+    "isin": "FR0011871110",
+    "sourceCapture": "amundi-reprise-20261025/sources/edf61a96f87cf4115a961e1074512ca47ccc0e9b9b42b57dfc61a6709674d19d.json.gz",
+    "controlledStart": "2015-01",
+    "bounds": 2950,
+    "maxDeviationFromOne": 1.9235573933351624e-05,
+    "jumpsAbove1eMinus5ForInvestigationOnly": [
+      {
+        "date": "2022-06-06",
+        "previousDate": "2022-06-03",
+        "rawPrevious": 46.4665,
+        "raw": 46.6632,
+        "adjustedPrevious": 464.66701509571317,
+        "adjusted": 466.627002505246,
+        "factor": 0.9999849536889113
+      },
+      {
+        "date": "2022-06-07",
+        "previousDate": "2022-06-06",
+        "rawPrevious": 46.6632,
+        "raw": 47.1436,
+        "adjustedPrevious": 466.627002505246,
+        "adjusted": 471.43697160721166,
+        "factor": 1.000012770802199
+      },
+      {
+        "date": "2022-06-21",
+        "previousDate": "2022-06-17",
+        "rawPrevious": 42.7744,
+        "raw": 43.3997,
+        "adjustedPrevious": 427.73725232324097,
+        "adjusted": 433.99721211083045,
+        "factor": 1.0000162640300159
+      },
+      {
+        "date": "2022-07-01",
+        "previousDate": "2022-06-30",
+        "rawPrevious": 43.6925,
+        "raw": 44.2701,
+        "adjustedPrevious": 436.9271932893667,
+        "adjusted": 442.6971562245729,
+        "factor": 0.9999862976842535
+      },
+      {
+        "date": "2022-07-05",
+        "previousDate": "2022-07-01",
+        "rawPrevious": 44.2701,
+        "raw": 45.6756,
+        "adjustedPrevious": 442.6971562245729,
+        "adjusted": 456.7570659072418,
+        "factor": 1.0000110162967901
+      },
+      {
+        "date": "2022-07-15",
+        "previousDate": "2022-07-14",
+        "rawPrevious": 46.7486,
+        "raw": 47.2111,
+        "adjustedPrevious": 467.48699698085744,
+        "adjusted": 472.10696730332774,
+        "factor": 0.9999893255394237
+      },
+      {
+        "date": "2022-07-18",
+        "previousDate": "2022-07-15",
+        "rawPrevious": 47.2111,
+        "raw": 46.2595,
+        "adjustedPrevious": 472.10696730332774,
+        "adjusted": 462.5970283927885,
+        "factor": 1.000012926763993
+      },
+      {
+        "date": "2022-07-19",
+        "previousDate": "2022-07-18",
+        "rawPrevious": 46.2595,
+        "raw": 47.4654,
+        "adjustedPrevious": 462.5970283927885,
+        "adjusted": 474.64695098711,
+        "factor": 0.9999807644260666
+      },
+      {
+        "date": "2022-07-22",
+        "previousDate": "2022-07-21",
+        "rawPrevious": 49.1645,
+        "raw": 48.1137,
+        "adjustedPrevious": 491.636841848315,
+        "adjusted": 481.1369092972465,
+        "factor": 1.0000164053368317
+      },
+      {
+        "date": "2022-07-25",
+        "previousDate": "2022-07-22",
+        "rawPrevious": 48.1137,
+        "raw": 47.9092,
+        "adjustedPrevious": 481.1369092972465,
+        "adjusted": 479.08692246584746,
+        "factor": 0.9999895902710596
+      },
+      {
+        "date": "2022-07-28",
+        "previousDate": "2022-07-27",
+        "rawPrevious": 49.4394,
+        "raw": 49.7249,
+        "adjustedPrevious": 494.38682418311856,
+        "adjusted": 497.2468058113144,
+        "factor": 1.0000101018596854
+      }
+    ],
+    "runtimeChanged": false,
+    "note": "Quantitative investigation only. Threshold is a reporting filter, never an admission change; null cash fields are not a standalone proof of no historical distributions."
+  },
+  {
+    "isin": "FR0011871128",
+    "sourceCapture": "amundi-reprise-20261025/sources/5e4aa356d7cfb93343861530f99fe7126dc3cb0f3ef68553fff82db549b03c6e.json.gz",
+    "controlledStart": "2015-01",
+    "bounds": 2950,
+    "maxDeviationFromOne": 2.677997601141513e-05,
+    "jumpsAbove1eMinus5ForInvestigationOnly": [
+      {
+        "date": "2022-06-03",
+        "previousDate": "2022-06-02",
+        "rawPrevious": 32.7374,
+        "raw": 32.1878,
+        "adjustedPrevious": 327.3740557499922,
+        "adjusted": 321.8839877350017,
+        "factor": 1.0000184322008268
+      },
+      {
+        "date": "2022-06-09",
+        "previousDate": "2022-06-08",
+        "rawPrevious": 32.2169,
+        "raw": 31.6923,
+        "adjustedPrevious": 322.173991327779,
+        "adjusted": 316.92392628612134,
+        "factor": 0.9999874300563371
+      },
+      {
+        "date": "2022-06-17",
+        "previousDate": "2022-06-16",
+        "rawPrevious": 29.3626,
+        "raw": 29.536,
+        "adjustedPrevious": 293.63363774893924,
+        "adjusted": 295.363659181714,
+        "factor": 0.999986377413752
+      },
+      {
+        "date": "2022-07-07",
+        "previousDate": "2022-07-06",
+        "rawPrevious": 31.7173,
+        "raw": 32.2729,
+        "adjustedPrevious": 317.1739293833431,
+        "adjusted": 322.7339982655558,
+        "factor": 1.0000125572542093
+      },
+      {
+        "date": "2022-07-08",
+        "previousDate": "2022-07-07",
+        "rawPrevious": 32.2729,
+        "raw": 32.2373,
+        "adjustedPrevious": 322.7339982655558,
+        "adjusted": 322.3739938055563,
+        "factor": 0.9999875954732047
+      },
+      {
+        "date": "2022-07-11",
+        "previousDate": "2022-07-08",
+        "rawPrevious": 32.2373,
+        "raw": 32.1499,
+        "adjustedPrevious": 322.3739938055563,
+        "adjusted": 321.50398302722454,
+        "factor": 1.0000124165353956
+      },
+      {
+        "date": "2022-07-14",
+        "previousDate": "2022-07-13",
+        "rawPrevious": 31.6298,
+        "raw": 31.8953,
+        "adjustedPrevious": 316.30391860501123,
+        "adjusted": 318.9539514355622,
+        "factor": 0.9999842711739845
+      },
+      {
+        "date": "2022-07-15",
+        "previousDate": "2022-07-14",
+        "rawPrevious": 31.8953,
+        "raw": 32.2399,
+        "adjustedPrevious": 318.9539514355622,
+        "adjusted": 322.40399417722296,
+        "factor": 1.0000125076387563
+      },
+      {
+        "date": "2022-07-19",
+        "previousDate": "2022-07-18",
+        "rawPrevious": 31.6057,
+        "raw": 32.3151,
+        "adjustedPrevious": 316.0639156316783,
+        "adjusted": 323.15400346888833,
+        "factor": 0.9999874136321762
+      },
+      {
+        "date": "2022-07-21",
+        "previousDate": "2022-07-20",
+        "rawPrevious": 32.6173,
+        "raw": 33.0079,
+        "adjustedPrevious": 326.17404088332756,
+        "adjusted": 330.08408932387647,
+        "factor": 1.0000122272632963
+      },
+      {
+        "date": "2022-07-25",
+        "previousDate": "2022-07-22",
+        "rawPrevious": 32.5769,
+        "raw": 32.6604,
+        "adjustedPrevious": 325.77403592777273,
+        "adjusted": 326.60404621054903,
+        "factor": 0.9999846831397967
+      },
+      {
+        "date": "2022-07-26",
+        "previousDate": "2022-07-25",
+        "rawPrevious": 32.6604,
+        "raw": 32.551,
+        "adjustedPrevious": 326.60404621054903,
+        "adjusted": 325.5140327066621,
+        "factor": 1.0000122473974282
+      },
+      {
+        "date": "2022-07-27",
+        "previousDate": "2022-07-26",
+        "rawPrevious": 32.551,
+        "raw": 33.4454,
+        "adjustedPrevious": 325.5140327066621,
+        "adjusted": 334.4541434633133,
+        "factor": 0.9999880402088178
+      },
+      {
+        "date": "2022-07-28",
+        "previousDate": "2022-07-27",
+        "rawPrevious": 33.4454,
+        "raw": 33.7385,
+        "adjustedPrevious": 334.4541434633133,
+        "adjusted": 337.3941798866416,
+        "factor": 1.0000267799760114
+      },
+      {
+        "date": "2022-07-29",
+        "previousDate": "2022-07-28",
+        "rawPrevious": 33.7385,
+        "raw": 34.0836,
+        "adjustedPrevious": 337.3941798866416,
+        "adjusted": 340.8402225787467,
+        "factor": 0.9999851803550787
+      }
+    ],
+    "runtimeChanged": false,
+    "note": "Quantitative investigation only. Threshold is a reporting filter, never an admission change; null cash fields are not a standalone proof of no historical distributions."
+  },
+  {
+    "isin": "LU2089238385",
+    "sourceCapture": "reprise-20261026/sources/f1f570b1965a8d4f3eb91200e7b5480b1bfa3b59c595bd71c60bdad15fc261b7.json.gz",
+    "controlledStart": "2020-02",
+    "bounds": 1722,
+    "maxDeviationFromOne": 1.0851575993342522e-07,
+    "jumpsAbove1eMinus5ForInvestigationOnly": [],
+    "runtimeChanged": false,
+    "note": "Quantitative investigation only. Threshold is a reporting filter, never an admission change; null cash fields are not a standalone proof of no historical distributions."
+  },
+  {
+    "isin": "FR0010342592",
+    "sourceCapture": "amundi-reprise-20261025/sources/5a6df2e11fb2dc53721163c788f5138aa14f8f2d43d45246af42c5c412c8d9ba.json.gz",
+    "controlledStart": "2018-05",
+    "bounds": 2115,
+    "maxDeviationFromOne": 198.99999999999997,
+    "jumpsAbove1eMinus5ForInvestigationOnly": [
+      {
+        "date": "2026-07-09",
+        "previousDate": "2026-07-08",
+        "rawPrevious": 1927.5596,
+        "raw": 9.9271,
+        "adjustedPrevious": 12741.293399448548,
+        "adjusted": 13123.754378921998,
+        "factor": 199.99999999999997
+      }
+    ],
+    "runtimeChanged": false,
+    "note": "Quantitative investigation only. Threshold is a reporting filter, never an admission change; null cash fields are not a standalone proof of no historical distributions."
+  }
+]

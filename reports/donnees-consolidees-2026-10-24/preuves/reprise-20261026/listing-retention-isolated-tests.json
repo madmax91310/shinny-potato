@@ -1,0 +1,13 @@
+{
+  "kind": "isolated regression tests; no production outage induced",
+  "metadataTests": 90,
+  "result": "passed",
+  "scenarios": [
+    "ordinary entrypoint partial Paris success retains exact London receipt",
+    "following failed source keeps receipt and has no successful source results",
+    "individual and whole-field observations received out of order",
+    "order invariance and original dates/hashes preserved"
+  ],
+  "before": "ordinary whole-field assignment discarded the unreturned listing",
+  "after": "merge by MIC/ticker/currency; retain each original receipt until an equal/newer exact observation arrives"
+}
