@@ -25,6 +25,11 @@ try {
     page.on('pageerror', error => errors.push(error.message))
     page.on('request', request => { if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method())) writes.push(request.method() + ' ' + request.url()) })
     await page.goto(base + '/hey-grok', { waitUntil: 'networkidle' })
+    if(width<700){
+      assert((await page.locator('.workspace-masthead').boundingBox()).height<=72,'Mobile masthead must stay on one row')
+      await expect(page.locator('.workspace-mobile-radar')).toBeVisible()
+      await expect(page.getByRole('link',{name:'← Tous les outils',exact:true})).toBeVisible()
+    }
     const cards = page.locator('.hg-cards > article')
     const nav = page.getByRole('navigation', { name: 'Navigation Hey @Grok' })
     const toolbar = page.locator('.hg-toolbar')

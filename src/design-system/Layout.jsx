@@ -31,7 +31,7 @@ export default function Layout() {
     <header className="workspace-masthead">
       <Link to="/" className="workspace-identity">Épargnant Libre</Link>
       <Link to="/radar-editorial" className="workspace-mobile-radar">Radar <RadarCount/></Link>
-      {pathname !== '/' && <Link to="/?vue=ensemble" className="workspace-home-link">← Tous les outils</Link>}
+      {pathname !== '/' && <Link to="/?vue=ensemble" className="workspace-home-link" aria-label="← Tous les outils">← Tous les outils</Link>}
     </header>
     <div className="workspace-body">
       <aside className="workspace-sidebar"><Navigation /></aside>

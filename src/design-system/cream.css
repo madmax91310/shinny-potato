@@ -151,3 +151,6 @@
 .radar-nav-count{display:inline-flex;align-items:center;justify-content:center;min-width:23px;height:23px;padding:0 5px;margin-left:auto;border-radius:20px;background:var(--ui-accent,#215d3d);color:white;font-size:11px}
 .radar-nav-count--loading,.radar-nav-count--error{background:var(--ui-muted,#667568)}
 @media(max-width:900px){.workspace .workspace-mobile-radar{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:3px 7px;color:inherit;white-space:nowrap}.workspace .workspace-masthead{flex-wrap:wrap}.workspace .workspace-home-link{margin-left:auto}}
+
+/* Keep mobile navigation on one row; the home action keeps its full accessible name. */
+@media(max-width:700px){.workspace .workspace-masthead{flex-wrap:nowrap;gap:8px;padding-inline:12px}.workspace .workspace-identity{font-size:16px;white-space:nowrap}.workspace .workspace-home-link{font-size:0;min-width:44px;justify-content:center;padding:0;margin-left:0}.workspace .workspace-home-link::before{content:"←";font-size:18px}}
