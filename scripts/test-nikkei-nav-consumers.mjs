@@ -85,7 +85,21 @@ assert.equal(qualifyManualCurrencyCalendar({...native,currency:'USD'}),null)
 assert.equal(qualifyManualCurrencyCalendar({...native,basis:'market-price'}),null)
 assert.equal(qualifyManualCurrencyCalendar({...native,checkedAt:'2000-01-01'}),null)
 const missing=structuredClone(FX);delete missing.months['2024-12']
-assert.equal(qualifyManualCurrencyCalendar(native,missing),null,'Incomplete FX cannot silently shorten the preferred calendar')
+const partial=qualifyManualCurrencyCalendar(native,missing)
+assert.deepEqual(Object.keys(partial.years),['2021','2022','2023'],'Valid independent years survive a missing fixing')
+for(const year of ['2024','2025']){
+  assert.equal(partial.currencyQualifications[year].qualified,false)
+  assert.match(partial.currencyQualifications[year].reason,/BCE absent/)
+  assert(!Object.hasOwn(partial.years,year),'Neither boundary is interpolated')
+}
+assert.equal(partial.asOf,'2023-12-31');assert.equal(partial.nativeCalendarAsOf,native.asOf)
+// Isolated rollover fixture: a newly closed issuer year does not invent a
+// December FX observation or remove the previously qualified five years.
+const rolled=qualifyManualCurrencyCalendar({...native,checkedAt:'2027-01-02',asOf:'2026-12-31',years:{...native.years,2026:20}},FX,new Date('2027-01-02T12:00:00Z'))
+assert.deepEqual(rolled.years,manual.calendarReturns)
+assert.equal(rolled.currencyQualifications[2026].qualified,false)
+assert.equal(rolled.asOf,'2025-12-31');assert.equal(rolled.nativeCalendarAsOf,'2026-12-31')
+assert.equal(qualifyManualCurrencyCalendar(native,{...FX,months:{}}),null)
 assert.equal(qualifyManualCurrencyCalendar(native,{...FX,sha256:''}),null)
 assert.equal(qualifyManualCurrencyCalendar(native,{...FX,checkedAt:'2100-01-01'}),null)
 assert(!qualifyHistoryWindow(ASSETS.etfLU2196470426,start,end).qualified,'Independent manual recovery does not alter the original quote controls')
