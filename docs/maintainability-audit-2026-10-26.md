@@ -342,3 +342,44 @@ cas de corruption, migration et anciennes routes. Build et budgets passent ; lin
 reste à 13 avertissements préexistants. Aucune assertion de la recette existante,
 aucun seuil et aucune règle de données n'ont été assouplis. Le portail complet est
 relancé automatiquement sur le commit correctif ; son statut final reste sur la PR.
+
+## Suite ciblée : historique d'usages DCA
+
+Référence : master `21671ca1e756820404552c99313ca5e5c754dd79`, arbre propre,
+branche dédiée `fix/dca-usage-history-integrity`. PR concurrente #977 : producteur
+de preuves de cotation, sans recoupement des modules DCA concernés.
+
+Constat haute priorité confirmé avant correction : `management.readUsed` convertit
+erreur JSON/accès en tableau vide et filtre silencieusement les entrées invalides ;
+`DcaApp.toggleUsed` écrit ensuite l'état mémoire sans relire le stockage. Le nouveau
+test navigateur échoue sur la référence : `{broken` devient `["julien"]` au clic.
+Ni calcul, ni texte de publication, ni donnée financière ou dessin n'est impliqué.
+
+Avant : lecture permissive dans `management.js`, état tableau et écriture directe
+dans `DcaApp.jsx`. Après : `usage-history.js` possède le contrat complet, lecture,
+validation et bascule persistée ; DcaApp transmet le résultat déjà enregistré à
+React. Les seuls consommateurs sont les libellés « utilisé », le filtre des profils
+et la bascule dans DcaApp ; aucun consommateur restant de `readUsed` supprimé.
+
+Le format reste un tableau non versionné sous `el-dca-used-v1` : IDs anciens/inconnus,
+doublons et chaînes historiquement admises restent conservés. Absence seule = vide.
+Une lecture invalide verrouille les écritures pour ce montage ; les IDs reconnus
+peuvent informer l'affichage. Aucun nettoyage, migration ou reset automatique.
+Chaque clic relit/valide les octets et les compare à l'instantané chargé avant
+d'écrire. Une erreur garde l'état antérieur et affiche un avertissement distinct ;
+quota temporaire : réessai possible. Même protection d'instantané que #974, sans
+réutiliser les fonctions banque (formats/keys spécifiques) ni préférences (pas de
+comparaison d'instantané). Pas de nouvelle abstraction commune.
+
+Contrôles : build/budgets/couverture initiaux réussis ; lint initial réussi avec
+13 avertissements existants. Test rouge avant correction conservé dans le relevé
+de PR. Tests unitaires couvrant formats valides/absents/partiellement invalides,
+JSON corrompu, getter localStorage refusé, getItem refusé, quota, réessai, corruption
+tardive et changements inter-onglets ; test navigateur intégré à la CI, avec
+rechargement immédiat et filtre réel. Après correction : build/budgets/couverture,
+lint (mêmes 13 avertissements), `npm run test:dca`, unités de stockage et navigateur
+1440/390 réussis ; parcours de sélection existant et 620 rendus DCA réussis. Les
+premiers essais dev ont dépassé l’attente de démarrage locale et ont été rejoués
+après disponibilité du serveur. CI complète et publication consignées dans la PR.
+Le contrôle protège un changement inter-onglets observé ; localStorage ne fournit
+pas de transaction atomique entre deux processus écrivant exactement simultanément.

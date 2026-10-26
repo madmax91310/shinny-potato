@@ -8,7 +8,8 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { ALL_PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, euro, pct } from './engine.js'
-import { filterProfiles, profileSelection, migrateProfile, readUsed, USED_KEY } from './management.js'
+import { filterProfiles, profileSelection, migrateProfile } from './management.js'
+import { readUsageHistory, toggleUsageHistory } from './usage-history.js'
 import AllocationEditor, { confirmLines } from './AllocationEditor.jsx'
 import ImageExport from './ImageExport.jsx'
 import ImageOptions from './ImageOptions.jsx'
@@ -31,7 +32,8 @@ export default function DcaApp(){
  const [profile,setProfile]=useState(initial.profile),[draft,setDraft]=useState(initial.draft),[field,setField]=useState(initial.field)
  const [feedback,setFeedback]=useState(''),[showAnalysis,setShowAnalysis]=useState(false),[portfolioReset,setPortfolioReset]=useState(0)
  const [filters,setFilters]=useState({selection:profileSelection(initial.profile),budget:'',lines:'',kind:'',unused:false})
- const [used,setUsed]=useState(()=>{try{return readUsed(localStorage)}catch{return []}})
+ const [usage,setUsage]=useState(()=>readUsageHistory())
+ const used=usage.ids
  const seen=useRef(new Set([profile.id])),preparedPicker=useRef(null)
  useEffect(()=>{
   if(initial.error)return
@@ -55,11 +57,16 @@ export default function DcaApp(){
   if(next)select(next)
  }
  function participate(){edit({mode:'participant',imageOnly:false})}
- function toggleUsed(){try{const next=used.includes(profile.id)?used.filter(id=>id!==profile.id):[...used,profile.id];localStorage.setItem(USED_KEY,JSON.stringify(next));setUsed(next)}catch{setFeedback('Le suivi ne peut pas être enregistré sur cet appareil.')}}
+ function toggleUsed(){
+  // Commit in the event, never in a React updater that may be deferred/replayed.
+  const next=toggleUsageHistory(usage,profile.id)
+  setUsage(next)
+ }
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  return <div className="dca-profiles-scope dca-simple">
  <PageHeader title="Le DCA d’un abonné" subtitle="Choisis un profil ou saisis une participation, puis récupère le texte et l’image."/>
  {initial.error&&<p role="alert">{initial.error}</p>}
+ {usage.error&&<p role="alert">{usage.error}</p>}
  <div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">
    <div className="dca-mode"><button aria-pressed={profile.mode==='prepared'} onClick={()=>{const next=filterProfiles(profiles,filters,used)[0];if(next)select(next);else setFeedback('Aucun profil ne correspond dans cette sélection. Modifie les filtres.')}}>Profils préparés</button><button aria-pressed={profile.mode==='participant'} onClick={participate}>Créer une participation</button></div>
