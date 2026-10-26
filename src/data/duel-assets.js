@@ -170,4 +170,3 @@ export const CATALOG = [...annualFunds, ...allAutomatedFunds, ...equityItems, ..
 })
 for (const item of CATALOG) item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values);
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
-
