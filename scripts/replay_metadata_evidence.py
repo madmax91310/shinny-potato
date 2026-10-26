@@ -4,7 +4,7 @@ import datetime as dt
 import hashlib
 import json
 from pathlib import Path
-from collect_instrument_metadata import ROOT, FIELDS, collect, field_diagnostics
+from collect_instrument_metadata import ROOT, FIELDS, collect, field_diagnostics, merge_field_observation
 from data_automation import UTC, write_json_atomic
 
 
@@ -80,8 +80,8 @@ def main():
         if source['isin'] in holds:source={**source,'qualificationHolds':[holds[source['isin']]]}
         values,errors=replay(source,documents)
         for field,value in values.items():
-            if value['checkedAt']>=records.get(source['isin'],{}).get(field,{}).get('checkedAt',''):
-                records.setdefault(source['isin'],{})[field]=value
+            record=records.setdefault(source['isin'],{})
+            record[field]=merge_field_observation(field,record.get(field),value)
         rows.append({'isin':source['isin'],'values':values,'errors':errors})
     write_json_atomic(a.records_output,records)
     if a.status_output:

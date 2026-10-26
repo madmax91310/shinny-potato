@@ -9,7 +9,7 @@ import hashlib
 import json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_instrument_metadata import ROOT, collect
+from collect_instrument_metadata import ROOT, collect, merge_field_observation
 from data_automation import UTC, write_json_atomic
 
 
@@ -48,8 +48,8 @@ def main():
         records=json.loads((ROOT/'src/data/automated-instrument-metadata.json').read_text())
         for row in rows:
             for field,value in row['values'].items():
-                if value['checkedAt']>=records.get(row['isin'],{}).get(field,{}).get('checkedAt',''):
-                    records.setdefault(row['isin'],{})[field]=value
+                record=records.setdefault(row['isin'],{})
+                record[field]=merge_field_observation(field,record.get(field),value)
         write_json_atomic(a.records_output,records)
     print(json.dumps({'instruments':len(rows),'observedFields':sum(len(r['values']) for r in rows),'documents':sum(len(r['documents']) for r in rows)}))
 

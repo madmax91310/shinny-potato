@@ -37,4 +37,26 @@ class ListingRetention(unittest.TestCase):
     stored=json.loads(records.read_text())[ISIN]['listings'];self.assertEqual(next(x for x in stored['value']if x['mic']=='XLON'),self.london)
     status=json.loads((root/'src/data/instrument-metadata-status.json').read_text())[ISIN];self.assertTrue(status['errors'])
    report=json.loads((root/'failed.json').read_text());self.assertFalse(report['successes'],'A failed source must not become an unchanged-verified success')
+ def test_probe_and_archive_projection_preserve_the_same_individual_receipts(self):
+  import importlib
+  for module_name in ['probe_instrument_metadata','replay_metadata_evidence']:
+   module=importlib.import_module(module_name)
+   for stale in [False,True]:
+    with self.subTest(module=module_name,stale=stale),tempfile.TemporaryDirectory()as temp:
+     root=Path(temp);(root/'scripts').mkdir();(root/'src/data').mkdir(parents=True)
+     (root/'scripts/instrument-metadata-sources.json').write_text(json.dumps({'instruments':[{'isin':ISIN,'urls':['https://example.test']}]}))
+     (root/'scripts/metadata-qualification-holds.json').write_text('{"instruments":[]}')
+     (root/'src/data/automated-instrument-metadata.json').write_text(json.dumps({ISIN:{'listings':self.previous}}))
+     observed={**self.observed,'checkedAt':'2026-10-25'}if stale else self.observed
+     output=root/'records.json'
+     if module_name=='probe_instrument_metadata':
+      args=['probe','--only',ISIN,'--output',str(root/'probe'),'--records-output',str(output)]
+      row={'isin':ISIN,'values':{'listings':observed},'documents':[]}
+      with patch.object(module,'ROOT',root),patch.object(sys,'argv',args),patch.object(module,'probe',return_value=row):module.main()
+     else:
+      args=['replay','--archives',str(root/'archive'),'--output',str(root/'replay.json'),'--records-output',str(output)]
+      with patch.object(module,'ROOT',root),patch.object(sys,'argv',args),patch.object(module,'load_documents',return_value={}),patch.object(module,'replay',return_value=({'listings':observed},[])):module.main()
+     stored=json.loads(output.read_text())[ISIN]['listings']
+     self.assertEqual(next(x for x in stored['value']if x['mic']=='XLON'),self.london)
+     if stale:self.assertEqual(stored,self.previous,'Replay cannot renew or regress the original source proof')
 if __name__=='__main__':unittest.main()
