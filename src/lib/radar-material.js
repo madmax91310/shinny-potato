@@ -125,7 +125,7 @@ export function publicationMaterial(event, now=Date.now()) {
   const accessChange=comparison&&typeof event.after==='boolean'&&event.before!==event.after&&event.field==='pea'
   const accessAnnouncement=confirmed&&/lance.{0,70}(?:pea|compte|iban|service bancaire)|nouveau.{0,30}(?:pea|iban|service bancaire)/.test(text)
   const significant=costEliminated||accessChange||accessAnnouncement||relativeChange>=.2&&relativeChange!==null
-  const rapidEligible=sufficient&&!promotion&&!prospective&&!advice&&(!survey||nationalStatistic)&&(nationalStatistic||confirmed&&money&&significant)
+  const rapidEligible=sufficient&&!promotion&&!prospective&&!advice&&(!survey||nationalStatistic)&&(nationalStatistic||confirmed&&(money||observed&&comparison)&&significant)
   const nowReason=attention.signals.map(s=>s.text).join(' ') || (Number.isFinite(attention.age)&&attention.age>7?'Publication plus ancienne : contexte ou historique, sans regain de fraîcheur déduit de la collecte.':'Aucun indice d’actualité brûlante établi.')
   let angle=null,question=null
   if(positioning){angle=`Où se situer par rapport à ${event.afterText?.length<100?event.afterText:'ce seuil'} ? Garder la population et la période de l’étude.`;question='À quel point ce repère correspond-il à ta situation ?'}

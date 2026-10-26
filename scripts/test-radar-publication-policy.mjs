@@ -149,3 +149,9 @@ assert.match(publicationMaterial(salary,now).angle,/2\s*238|2 238/,'The distri
 assert.ok(publicationMaterial(fee,now).angle.includes(fee.beforeText)&&publicationMaterial(fee,now).angle.includes(fee.afterText),'A change angle keeps both proven values, without inventing a cost')
 
 assert.equal(assess({...candidate,publishedAt:'2026-10-15',originalPublishedAt:null},now).priority,false,'An old study without a new development stays accessible without filling publish-now slots')
+
+// Declared classifier-only scenario, never a discovered article or sent alert.
+const observedRate={...candidate,label:'Taux des nouveaux crédits immobiliers observés en France',field:'loan-rate',populationScope:'Ménages emprunteurs en France',sourceUrl:'https://www.banque-france.fr/fr/statistiques/credit',summary:'Taux moyen observé des nouveaux crédits immobiliers, hors assurance.',unit:'%',beforeUnit:'%',before:3,after:3.6,beforeText:'3 %',afterText:'3,6 %',beforePeriod:'2026-08',period:'2026-09',publishedAt:'2026-10-26',originalPublishedAt:null,kind:'publication',comparisonCompatible:true,housing:{rateType:'nominal',rateScope:'nouveaux crédits'}}
+assert.equal(assess(observedRate,now).major,true,'A large observed comparable rate change is eligible beyond INSEE')
+assert.equal(assess({...observedRate,comparisonCompatible:false},now).major,false,'Unknown housing conventions cannot generate a major rate alert')
+assert.equal(assess({...observedRate,label:'Prévisions de taux immobiliers pour décembre'},now).major,false)
