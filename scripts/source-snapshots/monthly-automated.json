@@ -483092,7 +483092,7 @@
     "instrumentType": "ETF",
     "consumerScope": "catalog",
     "currency": "EUR",
-    "periodStart": "2019-01",
+    "periodStart": "2018-10",
     "precision": 8,
     "collectAnniversary": true,
     "parser": "official-nav",
@@ -483103,6 +483103,18 @@
     "navCurrency": "EUR",
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "points": [
+      [
+        "2018-10",
+        29.24684252
+      ],
+      [
+        "2018-11",
+        29.0399887
+      ],
+      [
+        "2018-12",
+        27.51550913
+      ],
       [
         "2019-01",
         29.0385424
@@ -483477,6 +483489,18 @@
       ]
     ],
     "anniversaryPoints": [
+      [
+        "2018-10",
+        29.24684252
+      ],
+      [
+        "2018-11",
+        29.0399887
+      ],
+      [
+        "2018-12",
+        27.51550913
+      ],
       [
         "2019-01",
         29.0385424
@@ -483874,7 +483898,7 @@
       "checkedAt": "2026-10-26",
       "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "a302269e75352ea6daa2e416bfced665ee7ad624bb8525f2b8d4c4919681cfae"
+      "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
     },
     "nativeValuationCurrency": "EUR",
     "lastOfficialValuation": "2026-10-22",
@@ -483899,7 +483923,7 @@
         "shareCalendarPerformance"
       ],
       "controlledInstrument": "FR0007054358",
-      "requestedStart": "2019-01-01",
+      "requestedStart": "2018-10-01",
       "controlledCalendarYears": [
         "2020",
         "2021",
@@ -484039,6 +484063,33 @@
       ]
     },
     "proofRows": [
+      {
+        "date": "2018-10-31",
+        "nav": 29.246842520861563,
+        "navCurrency": "EUR",
+        "value": 29.246842520861563,
+        "currency": "EUR",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2018-11-30",
+        "nav": 29.039988700109834,
+        "navCurrency": "EUR",
+        "value": 29.039988700109834,
+        "currency": "EUR",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
+      {
+        "date": "2018-12-31",
+        "nav": 27.515509133566535,
+        "navCurrency": "EUR",
+        "value": 27.515509133566535,
+        "currency": "EUR",
+        "fxAsOf": null,
+        "fxFactor": 1
+      },
       {
         "date": "2019-01-31",
         "nav": 29.038542404324243,
@@ -484877,9 +484928,9 @@
         "fxFactor": 1
       }
     ],
-    "responseSha256": "a302269e75352ea6daa2e416bfced665ee7ad624bb8525f2b8d4c4919681cfae",
+    "responseSha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419",
     "rawSourceHashes": {
-      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "94a277d1109a46035b3d14e1896ccd1c042da0c66115c44390af34bf6a4a2c28"
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "23014f62a7fb4f40732ee339081a6fb67809608130093daed2d55e05eb842195"
     }
   },
   "etfFR0007056841": {
