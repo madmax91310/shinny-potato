@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import { PRESENTATION_ACTORS, applyActorOffer } from '../src/data/presentation-actors.js'
 import { SCPI } from '../src/data/scpi.js'
 import { INSURANCE } from '../src/data/insurance.js'
-import { presentationImageModel, presentationReliefModel } from '../src/pages/presentation-shared/imageExport.js'
+import { presentationImageModel, presentationReliefModel } from '../src/pages/presentation-shared/image-model.js'
 
 const base='http://127.0.0.1:4334/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4334','--strictPort'],{stdio:'ignore'})

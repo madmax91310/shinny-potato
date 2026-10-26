@@ -89,11 +89,12 @@ class WorkflowContracts(unittest.TestCase):
             self.assertNotIn('run: exit 1', refresh)
             failures = "steps.collect.outcome == 'failure'"
             if filename == 'update-qualified-exposures.yml':
-                failures += " || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure'"
+                failures += " || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' || steps.identifiers.outcome == 'failure'"
                 for phase in ['sleeves','underliers']:
                     self.assertIn("id: "+phase+"\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
                 self.assertIn("id: holdings\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
                 self.assertIn("id: equities\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
+                self.assertIn("id: identifiers\n        continue-on-error: true", refresh)
             self.assertIn("collection_failed: ${{ " + failures + " }}", refresh)
             self.assertIn('needs: [refresh, deploy]', workflow)
             self.assertIn("if: always() && needs.refresh.outputs.collection_failed == 'true'", workflow)

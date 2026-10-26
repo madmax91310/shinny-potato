@@ -211,9 +211,16 @@ def collect_one(share, now):
             request.add_header('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
             request.add_header('Accept-Language','en-GB,en;q=0.9')
             return opener.open(request, **kwargs)
+        access_attempts=[]
         try:
-            text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
-        except (urllib.error.URLError,TimeoutError,ResponseFormatError) as error:
+            from issuer_routes import ROUTES
+            if ROUTES['wisdomtree'].get('productPageAliases',{}).get(share['sourceUrl']):
+                from collect_wisdomtree_holdings import product_page
+                text,route,access_attempts=product_page(share['sourceUrl'],fetch_page=lambda url,max_bytes:get_text(url,('text/html',),max_bytes,opener=open_page))
+                share={**share,'sourceUrl':route}
+            else:
+                text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
+        except (urllib.error.URLError,TimeoutError,ConnectionError,ResponseFormatError) as error:
             body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
             result=wisdomtree_factsheet(body,share,now)
             result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
@@ -241,6 +248,7 @@ def collect_one(share, now):
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
     result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
     if share['parser'] == 'wisdomtree-html':
+        if access_attempts:result['sourceAttempts']=[*access_attempts,{'sourceUrl':share['sourceUrl'],'status':'validated'}]
         try:
             body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
             document=wisdomtree_factsheet(body,share,now)

@@ -5,6 +5,8 @@ import {chromium} from 'playwright'
 import {choose} from './card-selection.mjs'
 import {ASSETS} from '../src/data/market-history.js'
 import {resolveAnniversaryLevel} from '../src/data/anniversary-levels.js'
+import {getHistoricalPrice,ymForYearsBack} from '../src/pages/tweet-midi/data/marketHistory.js'
+import {fmtEUR} from '../src/lib/format-currency.js'
 const requested=(process.env.TEST_NAV_IDS??'').split(',').filter(Boolean),width=Number(process.env.TEST_VIEWPORT_WIDTH??1280)
 const port=4396,base=process.env.TEST_BASE_URL??`http://127.0.0.1:${port}/shinny-potato`
 const server=process.env.TEST_BASE_URL?null:spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
@@ -36,6 +38,12 @@ try{
   assert(Math.abs(Number(await page.locator('#niveau-actuel').inputValue())-latest.value)<1e-6)
   const text=await page.locator('pre').innerText();assert(text.includes('VL')&&text.includes('Valeur liquidative du'));assert(!/NaN|undefined/.test(text))
   await png(id+'-anniversaire',page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}))
+  if(id==='etfFR0007054358Nav')for(const years of [6,7]){
+   await choose(page.locator('#secondary-select'),String(years));await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+   const past=getHistoricalPrice(id,ymForYearsBack(years,new Date()))
+   assert((await page.locator('pre').innerText()).includes(fmtEUR(past,'EUR')),'Historical price must exclude reinvested cash')
+   await png(id+'-anniversaire-'+years,page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}))
+  }
  }
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:out+'/anniversaire-mobile.png',fullPage:true});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));assert.deepEqual(errors,[])
  await fs.writeFile(out+'/results.json',JSON.stringify({results,errors},null,2));console.log(results.length,'official NAV PNG downloads verified')

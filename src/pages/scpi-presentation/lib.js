@@ -1,8 +1,5 @@
-export const format = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })
-export const dateLabel = value => value ? value.split('-').reverse().join('/') : null
-export const annualPublicationNote = publication => publication?.awaitingPublication
-  ? `Dernier exercice publié : ${publication.latestPublishedYear}. Les chiffres ${publication.expectedYear} restent en attente de publication.`
-  : ''
+import { format, dateLabel, annualPublicationNote } from '../presentation-shared/labels.js'
+export { format, dateLabel, annualPublicationNote } from '../presentation-shared/labels.js'
 export function allocation(rows, limit = 3) {
   const sorted = [...rows].sort((a, b) => b.value - a.value)
   const head = sorted.slice(0, limit).map(row => `${row.label} ${format(row.value)} %`)

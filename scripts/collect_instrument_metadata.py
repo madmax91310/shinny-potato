@@ -540,12 +540,36 @@ def invesco_characteristics(body, isin, url, today):
     return result
 
 
+def lse_listing_rows(body,source,url,checked):
+    """Exact exchange reference identity, never a quote or NAV observation."""
+    from urllib.parse import urlsplit,parse_qs
+    route=urlsplit(url);query=parse_qs(route.query)
+    if route.hostname!='apidata.londonstockexchange.com'or route.path!='/nrdp/v1'or set(query)!={'tidm'}or len(query['tidm'])!=1:
+        raise ValueError('Unqualified LSE reference route')
+    doc=json.loads(body);row=doc.get('data')
+    if doc.get('statusCode')!=200 or not isinstance(row,dict):raise ValueError('Missing LSE reference result')
+    if (row.get('isinCode')!=source['isin']or row.get('tidm')!=query['tidm'][0]or row.get('mic')!='XLON'
+        or row.get('typology')!='ETPs'or row.get('mifirIdentifier')!='ETFS'or row.get('unitOfQuotation')!='1'
+        or row.get('instrumentStatus')!='0'or row.get('tradingAllowed')!='1'):
+        raise ValueError('Wrong or unqualified exact LSE ETF identity')
+    try:as_of=dt.datetime.strptime(row['calendarDate'],'%d/%m/%Y').date()
+    except (KeyError,TypeError,ValueError)as error:raise ValueError('Missing LSE reference date')from error
+    if as_of>dt.date.fromisoformat(checked):raise ValueError('Future LSE reference date')
+    expected=[r for r in source.get('listings',[])if (r['mic'],r['ticker'],r['currency'])==('XLON',row['tidm'],row.get('currency'))]
+    if len(expected)!=1:raise ValueError('LSE reference does not renew the configured exact listing')
+    listing=expected[0]
+    if listing.get('symbol')!=row['tidm']+'.L':raise ValueError('Inconsistent LSE listing symbol')
+    return [{k:listing[k]for k in ['ticker','mic','exchange','currency','symbol']}|{'referenceDate':as_of.isoformat(),
+        'excerpt':source['isin']+' | '+json.dumps(row,ensure_ascii=False,sort_keys=True)}]
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
     from urllib.parse import urlsplit
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
+    if urlsplit(url).hostname=='apidata.londonstockexchange.com':
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"}for r in lse_listing_rows(body,source,url,checked)]
     if urlsplit(url).hostname=='dng-api.invesco.com' and urlsplit(url).path==f'/cache/v1/accounts/fr_FR/shareclasses/{isin}':
         return []  # Characteristics endpoint; the independent listing endpoint remains required.
     markets=EXCHANGE_MICS
@@ -646,7 +670,8 @@ def collect(source,now,fetch=download,on_document=None):
                 continue
             try:
                 from urllib.parse import urlsplit
-                if urlsplit(url).hostname=='dng-api.invesco.com':
+                if urlsplit(url).hostname=='apidata.londonstockexchange.com':fields={}
+                elif urlsplit(url).hostname=='dng-api.invesco.com':
                     fields=invesco_characteristics(body,source['isin'],url,now.date()) if '/fr_FR/' in urlsplit(url).path else {}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)

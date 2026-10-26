@@ -49,6 +49,31 @@ Le test navigateur nécessite Chromium (`npx playwright install chromium`). La C
 Les preuves et limites du comparatif courtiers sont documentées dans
 [la revue du 13 octobre](docs/broker-confirmation-review-2026-10-13.md).
 
+## Maintenir les frontières du code
+
+Le [relevé structurel du 26 octobre](docs/maintainability-audit-2026-10-26.md)
+donne les constats, contrats, consommateurs et validations des lots.
+
+- Les routes et métadonnées viennent de `src/tools.js` et `src/App.jsx` ; les
+  créneaux viennent de `src/data/editorial-calendar.js`. Conserver les anciens liens.
+- `src/data`, `src/lib` et `src/design-system` n'importent pas les pages.
+  Les moteurs de calcul n'importent ni composants, ni DOM, ni stockage.
+- Les séries de placement communes entrent par `src/lib/investment-series.js` ;
+  conventions et qualification restent explicites chez l'appelant. Les modèles de
+  présentation sont dans `presentation-shared/image-model.js`, le dessin dans `imageExport.js`.
+- Un outil garde sa sélection et sa rédaction spécifiques dans son dossier. Avant de
+  mutualiser une règle, identifier ses consommateurs et prouver le même contrat financier.
+- Les observations viennent des collecteurs ; les projections viennent des `scripts/build-*`
+  et plugins Vite. Modifier la source ou le générateur, jamais une projection à la main.
+
+Pour ajouter ou modifier un outil : lire `CLAUDE.md`, mettre à jour registre/routes
+et liens existants, garder le chargement différé, puis vérifier le moteur et tous
+les consommateurs de ses modules communs. `npm run audit:architecture` contrôle les
+cycles et frontières avant chaque build ; `--json` sur
+`scripts/audit-module-boundaries.mjs` liste les imports réels. Compléter par
+`npm run build`, les audits financiers pertinents, les parcours Chromium et les
+exports réels. Les budgets de routes ne remplacent pas ces vérifications.
+
 ## Déploiement
 
 Le workflow `.github/workflows/deploy-pages.yml` publie la branche `master` sur GitHub Pages après réussite des contrôles. Une pull request exécute les vérifications sans publication.

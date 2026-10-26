@@ -231,7 +231,9 @@
       "distribution": "Accumulating",
       "requireFullHistory": false,
       "collectHoldings": true,
-      "provider": "iShares"
+      "provider": "iShares",
+      "isolateAllocationFailures": true,
+      "sectorFallback": "physical-portfolio-allocation"
     },
     {
       "isin": "IE00B8FHGS14",

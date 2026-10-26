@@ -8,7 +8,7 @@ ROUTES = json.loads((pathlib.Path(__file__).with_name('issuer-access-routes.json
 def wisdomtree_product_candidates(url):
     match=re.fullmatch(r'https://www\.wisdomtree\.com/[a-z]{2}(/products/(?:equities|commodities)/[a-z0-9-]+)',url)
     if not match:return [url]
-    return list(dict.fromkeys([url,*['https://www.wisdomtree.com/'+region+match[1]for region in ROUTES['wisdomtree'].get('productPageRegions',[])]]))
+    return list(dict.fromkeys([url,*['https://www.wisdomtree.com/'+region+match[1]for region in ROUTES['wisdomtree'].get('productPageRegions',[])],*ROUTES['wisdomtree'].get('productPageAliases',{}).get(url,[])]))
 
 
 def vaneck_factsheet_candidates(url):

@@ -511,6 +511,14 @@
     "method": "Valeur liquidative officielle ajustée de la part exacte : série officielle de rendement réinvesti recalée sur la NAV publiée à la même date ; conversion BCE explicite si nécessaire ; ancienne cotation archivée",
     "navProvider": "amundi",
     "navCurrency": "EUR",
-    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "anniversaryNavKind": "official-price-excluding-distributions",
+    "anniversaryCashDates": [
+      "2018-12-12",
+      "2019-07-10",
+      "2019-12-11",
+      "2020-07-08",
+      "2020-12-09"
+    ]
   }
 ]

@@ -68,7 +68,7 @@ def identities(raw,expected,now):
     if len(out)<20:raise ValueError('Truncated identity workbook')
     return out,stamp
 
-def parse(page,share,now,mapping,identity_dates):
+def parse(page,share,now,mapping,identity_dates,*,identity_observations=None):
     from collect_public_issuer import wisdomtree
     facts=wisdomtree(page,share,now)
     if not re.search(r'Physical,?\s+Fully Replicated',BeautifulSoup(page,'html.parser').get_text(' ',strip=True),re.I):raise ValueError('Physical replication not confirmed')
@@ -77,7 +77,16 @@ def parse(page,share,now,mapping,identity_dates):
     stamps={document_date(r['dt'][:10],now)for r in items}
     if len(stamps)!=1 or any(r['rankClassificationID']!=1 or str(r['wtClassID'])!=str(data['entityId'])for r in items):raise ValueError('Mixed fund/date')
     stamp=stamps.pop();policy=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())
-    if not identity_dates or any(abs((dt.date.fromisoformat(d)-dt.date.fromisoformat(stamp)).days)>policy['fields']['etf.default']['checkDays']for d in identity_dates):raise ValueError('Identity dates incompatible')
+    independent=False
+    if identity_observations is not None:
+        from security_identifier_observations import qualified
+        required={r['descriptorB']for r in items}
+        if not required.issubset(identity_observations):raise ValueError('Incomplete independent identity evidence')
+        for key in required:
+            sedol,isin=qualified(identity_observations[key],now)
+            if sedol!=key or mapping.get(key)!=isin:raise ValueError('Wrong independent identity mapping')
+        independent=True
+    if not independent and (not identity_dates or any(abs((dt.date.fromisoformat(d)-dt.date.fromisoformat(stamp)).days)>policy['fields']['etf.default']['checkDays']for d in identity_dates)):raise ValueError('Identity dates incompatible')
     weights=[r['pctWeight']for r in items]
     if any(type(w)not in (int,float)or not math.isfinite(w)or not 0<=w<=1 for w in weights):raise ValueError('Invalid weights')
     checks=[r['wgtSumCheck']for r in items if 'wgtSumCheck'in r]
@@ -110,13 +119,13 @@ def collect(share,now):
     return result
 
 
-def product_page(url):
+def product_page(url,fetch_page=None):
     """Bounded public transport only; callers still qualify the exact product."""
     from issuer_routes import wisdomtree_product_candidates
     attempts=[]
     for route in wisdomtree_product_candidates(url):
         try:
-            page=public_page(route,max_bytes=12_000_000)
+            page=(fetch_page or public_page)(route,max_bytes=12_000_000)
             return page,route,attempts
         except (urllib.error.URLError,TimeoutError,ConnectionError)as error:
             if isinstance(error,urllib.error.HTTPError)and error.code not in (403,408,429,500,502,503,504):raise
@@ -128,6 +137,19 @@ def collect_rankings(share,now):
     from collect_physical_holdings import observation
     page,route,attempts=product_page(share['sourceUrl'])
     share={**share,'sourceUrl':route}
+    from security_identifier_observations import qualified_observations,qualified,API,requires_independent_identity
+    required={r['descriptorB']for r in rankings(page)['ranking']} if requires_independent_identity(share['isin']) else set()
+    static=qualified_observations(now) if required else {}
+    if requires_independent_identity(share['isin']) and required and required.issubset(static):
+        evidence={key:static[key]for key in required}
+        mapping={key:qualified(value,now)[1]for key,value in evidence.items()}
+        rows,stamp=parse(page,share,now,mapping,[],identity_observations=evidence)
+        proofs={f'{API}#SEDOL={key}':value['sha256']for key,value in evidence.items()}
+        return observation(rows,stamp,share['sourceUrl'],page,identitySourceHashes=proofs,
+          identityEvidenceRegistry='src/data/security-identifier-observations.json',
+          identityCheckedAt={key:value['checkedAt']for key,value in evidence.items()},identityMethod='Exact SEDOL to ISIN; identity-source weights never imported',
+          identityQualification='Independent common FIGI proofs under the existing static-identity freshness policy; portfolio date unchanged',
+          sourceUrls=[share['sourceUrl'],*proofs],accessAttempts=[*attempts,{'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}])
     mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)

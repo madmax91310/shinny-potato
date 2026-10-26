@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-26T08:30:15.475625+00:00",
+  "CSPX": {
+    "isin": "IE00B5BMR087",
+    "primarySectors": "all-zero, 12 rows, 2026-10-23",
+    "fallback": "qualified complete physical holdings, 99.9999% without renormalization",
+    "primaryIncident": "still open"
+  },
+  "ACWI": {
+    "isin": "IE00B6R52259",
+    "primaryCountries": "only Cash and/or Derivatives at 0%, 2026-10-23",
+    "primarySectors": "12 rows all zero, 2026-10-23",
+    "fallbackBlockers": [
+      "Money Market security IE00B50QMP13 at 0.14712%, distinct from equity",
+      "1662 equity positions, 1660 distinct ISINs; two evidenced dual listings",
+      "SINOPAC FIN HOLDINGS CO LTD DUMMY at 0.0001%, missing ISIN"
+    ],
+    "applicationChange": "none; qualification gates preserved",
+    "missingPiece": "Exact issuer identity for the dummy position and qualified consolidation of the two listings; classification of non-equity sleeve"
+  },
+  "ordinaryRecoveries": {
+    "gold": 40292128783,
+    "monthlyAlreadyRunning": 40289981830
+  }
+}

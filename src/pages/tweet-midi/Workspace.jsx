@@ -7,7 +7,7 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-labels.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { readPreference, writePreference } from "../../lib/publication-preferences.js";
 import { Link, useLocation } from 'react-router-dom';
 import { getPerformanceAssetId } from '../../data/performance-links.js';
@@ -72,7 +72,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
       : (getSimulationAssetId(params.get('asset')) ?? params.get('asset'))) : initialFormat === FORMATS.ANNIVERSAIRE && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === params.get('asset')) ? params.get('asset') : null;
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
-  const hasComparisonSubject = id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id));
+  const hasComparisonSubject = useCallback(id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id)), [getSubjectsForFormat, initialFormat]);
   const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
     ? requestedAsset : initialFormat === FORMATS.COMPARATIF_ETF
       ? (hasComparisonSubject(params.get('subject')) ? params.get('subject') : readPreference('comparison-subject', SUBJECT_ALEATOIRE, hasComparisonSubject))
@@ -80,7 +80,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
   const [subject, setSubject] = useState(initialSubject);
-  useEffect(() => { if (format === FORMATS.COMPARATIF_ETF) writePreference('comparison-subject', subject) }, [format, subject]);
+  useEffect(() => { if (format === FORMATS.COMPARATIF_ETF) writePreference('comparison-subject', subject, hasComparisonSubject) }, [format, subject, hasComparisonSubject]);
   const [subjectB, setSubjectB] = useState(SUBJECT_ALEATOIRE);
   const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
   const [current, setCurrent] = useState(() => pickForSelection({
@@ -520,7 +520,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               <div className="flex flex-wrap gap-2" role="group" aria-label="Devise des performances">
                 {['native', ...availableCurrencies].map(currency => <Button key={currency} type="button"
                   variant={effectiveCurrency === currency ? 'primary' : 'secondary'} aria-pressed={effectiveCurrency === currency}
-                  onClick={() => { setPerformanceCurrency(currency); writePreference('performance-currency', currency); setCopied(false) }}>
+                  onClick={() => { setPerformanceCurrency(currency); writePreference('performance-currency', currency, value => ['native', 'EUR', 'USD'].includes(value)); setCopied(false) }}>
                   {currency === 'native' ? 'Devise d’origine' : currency === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}
                 </Button>)}
               </div>

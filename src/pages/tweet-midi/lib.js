@@ -7,7 +7,7 @@ import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
 import { TERMES } from "../../data/financial-lexicon.js";
 import { MONTHS_FULL } from '../../data/market-history.js';
-import { fmtEUR, fmtPct } from "../investment-calculator/lib.js";
+import { fmtEUR, fmtPct } from "../../lib/format-currency.js";
 import {
   ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
   getHistoricalPrice, ymForYearsBack, fmtYm,

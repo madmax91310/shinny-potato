@@ -529742,6 +529742,14 @@
     "navProvider": "amundi",
     "navCurrency": "EUR",
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "anniversaryNavKind": "official-price-excluding-distributions",
+    "anniversaryCashDates": [
+      "2018-12-12",
+      "2019-07-10",
+      "2019-12-11",
+      "2020-07-08",
+      "2020-12-09"
+    ],
     "points": [
       [
         "2018-10",
@@ -530131,107 +530139,107 @@
     "anniversaryPoints": [
       [
         "2018-10",
-        29.24684252
+        31.1195997
       ],
       [
         "2018-11",
-        29.0399887
+        30.89950045
       ],
       [
         "2018-12",
-        27.51550913
+        29.15169947
       ],
       [
         "2019-01",
-        29.0385424
+        30.76529884
       ],
       [
         "2019-02",
-        30.31588738
+        32.11860023
       ],
       [
         "2019-03",
-        30.86956245
+        32.7051992
       ],
       [
         "2019-04",
-        32.54286202
+        34.47800034
       ],
       [
         "2019-05",
-        30.84096458
+        32.67490078
       ],
       [
         "2019-06",
-        32.69859982
+        34.64299898
       ],
       [
         "2019-07",
-        32.67359375
+        33.58640019
       ],
       [
         "2019-08",
-        32.31890168
+        33.22179904
       ],
       [
         "2019-09",
-        33.69340229
+        34.63469925
       ],
       [
         "2019-10",
-        34.06317271
+        35.01479999
       ],
       [
         "2019-11",
-        35.0141074
+        35.99230107
       ],
       [
         "2019-12",
-        35.43317639
+        36.27070066
       ],
       [
         "2020-01",
-        34.49456156
+        35.30990004
       ],
       [
         "2020-02",
-        31.57546015
+        32.32180064
       ],
       [
         "2020-03",
-        26.48341905
+        27.10940036
       ],
       [
         "2020-04",
-        27.9149813
+        28.57480005
       ],
       [
         "2020-05",
-        29.27268907
+        29.96459959
       ],
       [
         "2020-06",
-        31.16310542
+        31.89969919
       ],
       [
         "2020-07",
-        30.68198698
+        30.80760008
       ],
       [
         "2020-08",
-        31.65490345
+        31.78449971
       ],
       [
         "2020-09",
-        30.91861917
+        31.04520105
       ],
       [
         "2020-10",
-        28.6552836
+        28.77259931
       ],
       [
         "2020-11",
-        33.82641361
+        33.9649001
       ],
       [
         "2020-12",
@@ -530514,6 +530522,8 @@
         71.3932
       ]
     ],
+    "anniversaryValuationBasis": "fund-nav-price",
+    "anniversaryVariant": "Valeurs liquidatives publiées · hors distributions",
     "checkedAt": "2026-10-26",
     "periodEnd": "2026-09",
     "sourceUrls": [
@@ -530526,7 +530536,7 @@
       "currency": "EUR",
       "isin": "FR0007054358",
       "parser": "official-nav",
-      "valuationBasis": "fund-nav-total-return",
+      "valuationBasis": "fund-nav-price",
       "nativeValue": 69.3532,
       "nativeCurrency": "EUR",
       "fxAsOf": null,
@@ -530536,9 +530546,9 @@
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ],
       "checkedAt": "2026-10-26",
-      "method": "Valeur liquidative officielle de la part exacte, revenus capitalisés ; conversion BCE si nécessaire",
+      "method": "Valeur liquidative officielle publiée de la part exacte, hors distributions ; conversion BCE si nécessaire",
       "maxAgeDays": 7,
-      "sha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419"
+      "sha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a"
     },
     "nativeValuationCurrency": "EUR",
     "lastOfficialValuation": "2026-10-22",
@@ -530639,6 +530649,64 @@
           "publishedDecimalPlaces": 2
         }
       ],
+      "anniversaryPriceConvention": "Exact-share NAV price excluding cash distributions, adjusted to current share units using the official reinvested series; no second cash addition",
+      "anniversaryCashChecks": {
+        "2018-12-12": {
+          "previousSession": "2018-12-11",
+          "previousNav": 29.7649,
+          "exDateNav": 30.1478,
+          "observedIncomeFactor": 1.004312057817732,
+          "expectedIncomeFactor": 1.004312089107663,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2019-07-10": {
+          "previousSession": "2019-07-09",
+          "previousNav": 35.0275,
+          "exDateNav": 33.909,
+          "observedIncomeFactor": 1.0306703273789237,
+          "expectedIncomeFactor": 1.0306703235129318,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2019-12-11": {
+          "previousSession": "2019-12-10",
+          "previousNav": 35.7026,
+          "exDateNav": 35.7049,
+          "observedIncomeFactor": 1.0042010550567282,
+          "expectedIncomeFactor": 1.0042011040501444,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2020-07-08": {
+          "previousSession": "2020-07-07",
+          "previousNav": 32.8059,
+          "exDateNav": 31.8553,
+          "observedIncomeFactor": 1.0194629835551177,
+          "expectedIncomeFactor": 1.0194630092951564,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        },
+        "2020-12-09": {
+          "previousSession": "2020-12-08",
+          "previousNav": 34.3011,
+          "exDateNav": 34.1961,
+          "observedIncomeFactor": 1.0040940303489172,
+          "expectedIncomeFactor": 1.0040940341150013,
+          "qualification": "Cash amount and effective date corroborated by official adjusted NAV; current distribution policy is not extrapolated backwards"
+        }
+      },
+      "anniversaryExpectedCashDates": [
+        "2018-12-12",
+        "2019-07-10",
+        "2019-12-11",
+        "2020-07-08",
+        "2020-12-09"
+      ],
+      "anniversaryDeferredCashDates": [],
+      "anniversaryPriceControlledFields": [
+        "officialNav",
+        "countervalorisedAdjustedNAV",
+        "navCurrency",
+        "dividendAmount",
+        "dividendCurrency"
+      ],
       "checks": [
         {
           "year": 2020,
@@ -530710,7 +530778,9 @@
         "value": 29.246842520861563,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 31.119599703555743,
+        "anniversaryDate": "2018-10-31"
       },
       {
         "date": "2018-11-30",
@@ -530719,7 +530789,9 @@
         "value": 29.039988700109834,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 30.899500453718662,
+        "anniversaryDate": "2018-11-30"
       },
       {
         "date": "2018-12-31",
@@ -530728,7 +530800,9 @@
         "value": 27.515509133566535,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 29.15169946806899,
+        "anniversaryDate": "2018-12-31"
       },
       {
         "date": "2019-01-31",
@@ -530737,7 +530811,9 @@
         "value": 29.038542404324243,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 30.765298837554614,
+        "anniversaryDate": "2019-01-31"
       },
       {
         "date": "2019-02-28",
@@ -530746,7 +530822,9 @@
         "value": 30.315887375769442,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 32.118600226377325,
+        "anniversaryDate": "2019-02-28"
       },
       {
         "date": "2019-03-29",
@@ -530755,7 +530833,9 @@
         "value": 30.869562446999954,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 32.70519919502165,
+        "anniversaryDate": "2019-03-29"
       },
       {
         "date": "2019-04-30",
@@ -530764,7 +530844,9 @@
         "value": 32.54286201863343,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 34.47800034493026,
+        "anniversaryDate": "2019-04-30"
       },
       {
         "date": "2019-05-31",
@@ -530773,7 +530855,9 @@
         "value": 30.84096458182228,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 32.67490077797107,
+        "anniversaryDate": "2019-05-31"
       },
       {
         "date": "2019-06-28",
@@ -530782,7 +530866,9 @@
         "value": 32.69859981929409,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 34.642998984011925,
+        "anniversaryDate": "2019-06-28"
       },
       {
         "date": "2019-07-31",
@@ -530791,7 +530877,9 @@
         "value": 32.67359374828593,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 33.586400185318126,
+        "anniversaryDate": "2019-07-31"
       },
       {
         "date": "2019-08-30",
@@ -530800,7 +530888,9 @@
         "value": 32.318901679517026,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 33.22179903810407,
+        "anniversaryDate": "2019-08-30"
       },
       {
         "date": "2019-09-30",
@@ -530809,7 +530899,9 @@
         "value": 33.693402288718126,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 34.63469924954817,
+        "anniversaryDate": "2019-09-30"
       },
       {
         "date": "2019-10-31",
@@ -530818,7 +530910,9 @@
         "value": 34.06317270941065,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.01479999456414,
+        "anniversaryDate": "2019-10-31"
       },
       {
         "date": "2019-11-29",
@@ -530827,7 +530921,9 @@
         "value": 35.01410739937769,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.99230107061305,
+        "anniversaryDate": "2019-11-29"
       },
       {
         "date": "2019-12-31",
@@ -530836,7 +530932,9 @@
         "value": 35.43317639231151,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 36.27070066104453,
+        "anniversaryDate": "2019-12-31"
       },
       {
         "date": "2020-01-31",
@@ -530845,7 +530943,9 @@
         "value": 34.4945615563459,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.30990004372502,
+        "anniversaryDate": "2020-01-31"
       },
       {
         "date": "2020-02-28",
@@ -530854,7 +530954,9 @@
         "value": 31.57546014966389,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 32.32180063799488,
+        "anniversaryDate": "2020-02-28"
       },
       {
         "date": "2020-03-31",
@@ -530863,7 +530965,9 @@
         "value": 26.483419051604056,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 27.109400361582175,
+        "anniversaryDate": "2020-03-31"
       },
       {
         "date": "2020-04-30",
@@ -530872,7 +530976,9 @@
         "value": 27.914981297511485,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 28.574800051524385,
+        "anniversaryDate": "2020-04-30"
       },
       {
         "date": "2020-05-29",
@@ -530881,7 +530987,9 @@
         "value": 29.272689071705383,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 29.964599591868314,
+        "anniversaryDate": "2020-05-29"
       },
       {
         "date": "2020-06-30",
@@ -530890,7 +530998,9 @@
         "value": 31.163105417297615,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 31.899699189955705,
+        "anniversaryDate": "2020-06-30"
       },
       {
         "date": "2020-07-31",
@@ -530899,7 +531009,9 @@
         "value": 30.681986982820725,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 30.80760008424442,
+        "anniversaryDate": "2020-07-31"
       },
       {
         "date": "2020-08-31",
@@ -530908,7 +531020,9 @@
         "value": 31.65490345310519,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 31.784499707749276,
+        "anniversaryDate": "2020-08-31"
       },
       {
         "date": "2020-09-30",
@@ -530917,7 +531031,9 @@
         "value": 30.91861917176717,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 31.04520105344512,
+        "anniversaryDate": "2020-09-30"
       },
       {
         "date": "2020-10-30",
@@ -530926,7 +531042,9 @@
         "value": 28.655283599260475,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 28.772599307890886,
+        "anniversaryDate": "2020-10-30"
       },
       {
         "date": "2020-11-30",
@@ -530935,7 +531053,9 @@
         "value": 33.82641361040355,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 33.964900101712686,
+        "anniversaryDate": "2020-11-30"
       },
       {
         "date": "2020-12-31",
@@ -530944,7 +531064,9 @@
         "value": 34.4251992218737,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 34.4251992218737,
+        "anniversaryDate": "2020-12-31"
       },
       {
         "date": "2021-01-29",
@@ -530953,7 +531075,9 @@
         "value": 33.78229919441358,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 33.78229919441358,
+        "anniversaryDate": "2021-01-29"
       },
       {
         "date": "2021-02-26",
@@ -530962,7 +531086,9 @@
         "value": 35.31700100716332,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.31700100716332,
+        "anniversaryDate": "2021-02-26"
       },
       {
         "date": "2021-03-31",
@@ -530971,7 +531097,9 @@
         "value": 38.098100892793724,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.098100892793724,
+        "anniversaryDate": "2021-03-31"
       },
       {
         "date": "2021-04-30",
@@ -530980,7 +531108,9 @@
         "value": 38.81049974290448,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.81049974290448,
+        "anniversaryDate": "2021-04-30"
       },
       {
         "date": "2021-05-31",
@@ -530989,7 +531119,9 @@
         "value": 39.77180035084474,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 39.77180035084474,
+        "anniversaryDate": "2021-05-31"
       },
       {
         "date": "2021-06-30",
@@ -530998,7 +531130,9 @@
         "value": 40.042499510224296,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 40.042499510224296,
+        "anniversaryDate": "2021-06-30"
       },
       {
         "date": "2021-07-30",
@@ -531007,7 +531141,9 @@
         "value": 40.32950062607455,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 40.32950062607455,
+        "anniversaryDate": "2021-07-30"
       },
       {
         "date": "2021-08-31",
@@ -531016,7 +531152,9 @@
         "value": 41.383900538888604,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 41.383900538888604,
+        "anniversaryDate": "2021-08-31"
       },
       {
         "date": "2021-09-30",
@@ -531025,7 +531163,9 @@
         "value": 40.05450089180936,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 40.05450089180936,
+        "anniversaryDate": "2021-09-30"
       },
       {
         "date": "2021-10-29",
@@ -531034,7 +531174,9 @@
         "value": 42.120800214294334,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 42.120800214294334,
+        "anniversaryDate": "2021-10-29"
       },
       {
         "date": "2021-11-30",
@@ -531043,7 +531185,9 @@
         "value": 40.299798882822124,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 40.299798882822124,
+        "anniversaryDate": "2021-11-30"
       },
       {
         "date": "2021-12-31",
@@ -531052,7 +531196,9 @@
         "value": 42.637599532051176,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 42.637599532051176,
+        "anniversaryDate": "2021-12-31"
       },
       {
         "date": "2022-01-31",
@@ -531061,7 +531207,9 @@
         "value": 41.459500000000205,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 41.459500000000205,
+        "anniversaryDate": "2022-01-31"
       },
       {
         "date": "2022-02-28",
@@ -531070,7 +531218,9 @@
         "value": 39.00560000000006,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 39.00560000000006,
+        "anniversaryDate": "2022-02-28"
       },
       {
         "date": "2022-03-31",
@@ -531079,7 +531229,9 @@
         "value": 38.82640000000005,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.82640000000005,
+        "anniversaryDate": "2022-03-31"
       },
       {
         "date": "2022-04-29",
@@ -531088,7 +531240,9 @@
         "value": 38.03430000000003,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.03430000000003,
+        "anniversaryDate": "2022-04-29"
       },
       {
         "date": "2022-05-31",
@@ -531097,7 +531251,9 @@
         "value": 38.465800000000016,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.465800000000016,
+        "anniversaryDate": "2022-05-31"
       },
       {
         "date": "2022-06-30",
@@ -531106,7 +531262,9 @@
         "value": 35.09460000000002,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.09460000000002,
+        "anniversaryDate": "2022-06-30"
       },
       {
         "date": "2022-07-29",
@@ -531115,7 +531273,9 @@
         "value": 37.713200000000036,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 37.713200000000036,
+        "anniversaryDate": "2022-07-29"
       },
       {
         "date": "2022-08-31",
@@ -531124,7 +531284,9 @@
         "value": 35.789100000000026,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 35.789100000000026,
+        "anniversaryDate": "2022-08-31"
       },
       {
         "date": "2022-09-30",
@@ -531133,7 +531295,9 @@
         "value": 33.80550000000004,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 33.80550000000004,
+        "anniversaryDate": "2022-09-30"
       },
       {
         "date": "2022-10-31",
@@ -531142,7 +531306,9 @@
         "value": 36.87450000000005,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 36.87450000000005,
+        "anniversaryDate": "2022-10-31"
       },
       {
         "date": "2022-11-30",
@@ -531151,7 +531317,9 @@
         "value": 40.45540000000004,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 40.45540000000004,
+        "anniversaryDate": "2022-11-30"
       },
       {
         "date": "2022-12-30",
@@ -531160,7 +531328,9 @@
         "value": 38.74070000000005,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 38.74070000000005,
+        "anniversaryDate": "2022-12-30"
       },
       {
         "date": "2023-01-31",
@@ -531169,7 +531339,9 @@
         "value": 42.58030000000004,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 42.58030000000004,
+        "anniversaryDate": "2023-01-31"
       },
       {
         "date": "2023-02-28",
@@ -531178,7 +531350,9 @@
         "value": 43.38640000000004,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 43.38640000000004,
+        "anniversaryDate": "2023-02-28"
       },
       {
         "date": "2023-03-31",
@@ -531187,7 +531361,9 @@
         "value": 44.24620000000003,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 44.24620000000003,
+        "anniversaryDate": "2023-03-31"
       },
       {
         "date": "2023-04-28",
@@ -531196,7 +531372,9 @@
         "value": 45.007900000000014,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 45.007900000000014,
+        "anniversaryDate": "2023-04-28"
       },
       {
         "date": "2023-05-31",
@@ -531205,7 +531383,9 @@
         "value": 44.128600000000034,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 44.128600000000034,
+        "anniversaryDate": "2023-05-31"
       },
       {
         "date": "2023-06-30",
@@ -531214,7 +531394,9 @@
         "value": 46.04490000000005,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 46.04490000000005,
+        "anniversaryDate": "2023-06-30"
       },
       {
         "date": "2023-07-31",
@@ -531223,7 +531405,9 @@
         "value": 46.85920000000001,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 46.85920000000001,
+        "anniversaryDate": "2023-07-31"
       },
       {
         "date": "2023-08-31",
@@ -531232,7 +531416,9 @@
         "value": 45.06059999999999,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 45.06059999999999,
+        "anniversaryDate": "2023-08-31"
       },
       {
         "date": "2023-09-29",
@@ -531241,7 +531427,9 @@
         "value": 43.8043,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 43.8043,
+        "anniversaryDate": "2023-09-29"
       },
       {
         "date": "2023-10-31",
@@ -531250,7 +531438,9 @@
         "value": 42.643899999999995,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 42.643899999999995,
+        "anniversaryDate": "2023-10-31"
       },
       {
         "date": "2023-11-30",
@@ -531259,7 +531449,9 @@
         "value": 46.08149999999998,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 46.08149999999998,
+        "anniversaryDate": "2023-11-30"
       },
       {
         "date": "2023-12-29",
@@ -531268,7 +531460,9 @@
         "value": 47.554999999999964,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 47.554999999999964,
+        "anniversaryDate": "2023-12-29"
       },
       {
         "date": "2024-01-31",
@@ -531277,7 +531471,9 @@
         "value": 48.96469999999998,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 48.96469999999998,
+        "anniversaryDate": "2024-01-31"
       },
       {
         "date": "2024-02-29",
@@ -531286,7 +531482,9 @@
         "value": 51.43369999999995,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 51.43369999999995,
+        "anniversaryDate": "2024-02-29"
       },
       {
         "date": "2024-03-28",
@@ -531295,7 +531493,9 @@
         "value": 53.662499999999916,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 53.662499999999916,
+        "anniversaryDate": "2024-03-28"
       },
       {
         "date": "2024-04-30",
@@ -531304,7 +531504,9 @@
         "value": 52.41539999999992,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 52.41539999999992,
+        "anniversaryDate": "2024-04-30"
       },
       {
         "date": "2024-05-31",
@@ -531313,7 +531515,9 @@
         "value": 53.62339999999991,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 53.62339999999991,
+        "anniversaryDate": "2024-05-31"
       },
       {
         "date": "2024-06-28",
@@ -531322,7 +531526,9 @@
         "value": 52.71289999999992,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 52.71289999999992,
+        "anniversaryDate": "2024-06-28"
       },
       {
         "date": "2024-07-31",
@@ -531331,7 +531537,9 @@
         "value": 52.55129999999991,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 52.55129999999991,
+        "anniversaryDate": "2024-07-31"
       },
       {
         "date": "2024-08-30",
@@ -531340,7 +531548,9 @@
         "value": 53.48589999999992,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 53.48589999999992,
+        "anniversaryDate": "2024-08-30"
       },
       {
         "date": "2024-09-30",
@@ -531349,7 +531559,9 @@
         "value": 53.9738999999999,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 53.9738999999999,
+        "anniversaryDate": "2024-09-30"
       },
       {
         "date": "2024-10-31",
@@ -531358,7 +531570,9 @@
         "value": 52.197099999999935,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 52.197099999999935,
+        "anniversaryDate": "2024-10-31"
       },
       {
         "date": "2024-11-29",
@@ -531367,7 +531581,9 @@
         "value": 52.01979999999991,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 52.01979999999991,
+        "anniversaryDate": "2024-11-29"
       },
       {
         "date": "2024-12-31",
@@ -531376,7 +531592,9 @@
         "value": 53.021699999999925,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 53.021699999999925,
+        "anniversaryDate": "2024-12-31"
       },
       {
         "date": "2025-01-31",
@@ -531385,7 +531603,9 @@
         "value": 57.32769999999993,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 57.32769999999993,
+        "anniversaryDate": "2025-01-31"
       },
       {
         "date": "2025-02-28",
@@ -531394,7 +531614,9 @@
         "value": 59.30239999999989,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 59.30239999999989,
+        "anniversaryDate": "2025-02-28"
       },
       {
         "date": "2025-03-31",
@@ -531403,7 +531625,9 @@
         "value": 57.02289999999989,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 57.02289999999989,
+        "anniversaryDate": "2025-03-31"
       },
       {
         "date": "2025-04-30",
@@ -531412,7 +531636,9 @@
         "value": 56.38569999999989,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 56.38569999999989,
+        "anniversaryDate": "2025-04-30"
       },
       {
         "date": "2025-05-30",
@@ -531421,7 +531647,9 @@
         "value": 59.3799999999999,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 59.3799999999999,
+        "anniversaryDate": "2025-05-30"
       },
       {
         "date": "2025-06-30",
@@ -531430,7 +531658,9 @@
         "value": 58.717499999999895,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 58.717499999999895,
+        "anniversaryDate": "2025-06-30"
       },
       {
         "date": "2025-07-31",
@@ -531439,7 +531669,9 @@
         "value": 58.977799999999924,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 58.977799999999924,
+        "anniversaryDate": "2025-07-31"
       },
       {
         "date": "2025-08-29",
@@ -531448,7 +531680,9 @@
         "value": 59.344799999999935,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 59.344799999999935,
+        "anniversaryDate": "2025-08-29"
       },
       {
         "date": "2025-09-30",
@@ -531457,7 +531691,9 @@
         "value": 61.36219999999994,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 61.36219999999994,
+        "anniversaryDate": "2025-09-30"
       },
       {
         "date": "2025-10-31",
@@ -531466,7 +531702,9 @@
         "value": 62.90359999999991,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 62.90359999999991,
+        "anniversaryDate": "2025-10-31"
       },
       {
         "date": "2025-11-28",
@@ -531475,7 +531713,9 @@
         "value": 63.08129999999989,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 63.08129999999989,
+        "anniversaryDate": "2025-11-28"
       },
       {
         "date": "2025-12-31",
@@ -531484,7 +531724,9 @@
         "value": 64.4969999999999,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 64.4969999999999,
+        "anniversaryDate": "2025-12-31"
       },
       {
         "date": "2026-01-30",
@@ -531493,7 +531735,9 @@
         "value": 66.29489999999994,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 66.29489999999994,
+        "anniversaryDate": "2026-01-30"
       },
       {
         "date": "2026-02-27",
@@ -531502,7 +531746,9 @@
         "value": 68.48769999999996,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 68.48769999999996,
+        "anniversaryDate": "2026-02-27"
       },
       {
         "date": "2026-03-31",
@@ -531511,7 +531757,9 @@
         "value": 62.199299999999944,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 62.199299999999944,
+        "anniversaryDate": "2026-03-31"
       },
       {
         "date": "2026-04-30",
@@ -531520,7 +531768,9 @@
         "value": 66.12639999999996,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 66.12639999999996,
+        "anniversaryDate": "2026-04-30"
       },
       {
         "date": "2026-05-29",
@@ -531529,7 +531779,9 @@
         "value": 68.66349999999998,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 68.66349999999998,
+        "anniversaryDate": "2026-05-29"
       },
       {
         "date": "2026-06-30",
@@ -531538,7 +531790,9 @@
         "value": 71.86419999999998,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 71.86419999999998,
+        "anniversaryDate": "2026-06-30"
       },
       {
         "date": "2026-07-31",
@@ -531547,7 +531801,9 @@
         "value": 72.27479999999997,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 72.27479999999997,
+        "anniversaryDate": "2026-07-31"
       },
       {
         "date": "2026-08-31",
@@ -531556,7 +531812,9 @@
         "value": 73.01029999999996,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 73.01029999999996,
+        "anniversaryDate": "2026-08-31"
       },
       {
         "date": "2026-09-30",
@@ -531565,12 +531823,14 @@
         "value": 71.39319999999996,
         "currency": "EUR",
         "fxAsOf": null,
-        "fxFactor": 1
+        "fxFactor": 1,
+        "anniversaryValue": 71.39319999999996,
+        "anniversaryDate": "2026-09-30"
       }
     ],
-    "responseSha256": "714a6015439c692f4a3a1eaf91c8c6ca04eee477899e941ef1e9f210013e0419",
+    "responseSha256": "499aac79e4153f6632766097319f925f00e2a37312c7f8c1c5e5d75f8ac1647a",
     "rawSourceHashes": {
-      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "23014f62a7fb4f40732ee339081a6fb67809608130093daed2d55e05eb842195"
+      "https://www.amundietf.fr/mapi/ProductAPI/getProductsData": "d06366e87e518bf0a2ab76260e5fb3a0fcd8ebb1e0e107389df5d07fdd1bc3d5"
     }
   }
 }
