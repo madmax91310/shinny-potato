@@ -140,8 +140,9 @@ export function correctReplicationNotification(body, events) {
 
 export async function notifyRadar({ events, archiveEvents = events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data', now = new Date(), maintain = false, mode = 'all' }) {
   if (!/^(?:[a-f0-9]{40}|radar-data)$/.test(evidenceRevision)) throw new Error('Révision de preuve invalide.')
+  mode=mode==='all'?'digest':mode
   const allEvents = events
-  const plan = planNotifications(events, ledger, now, mode==='all'?'digest':mode)
+  const plan = planNotifications(events, ledger, now, mode)
   if (plan) events = plan.events
   const pending = pendingNotifications(events, ledger)
   if (!pending.length && !maintain) return { ledger, issues: [], sent: 0, recovered: 0 }

@@ -14,7 +14,9 @@ import {advanceRadar} from './lib/editorial-radar.mjs'
 const summaryUrl='https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/summary.json'
 const now=new Date('2026-10-26T16:00:00Z'),output='test-artifacts/radar'
 const capture=JSON.parse(await readFile('scripts/fixtures/radar-publication/cases.json','utf8'))
-const events=capture.events.map(e=>({...e,toolActions:radarToolActions(e,+now)}))
+// Display simulation of the ordinary (non-backfill) publication path. Dates and
+// facts stay frozen; this is not an assertion of live discovery or delivery.
+const events=capture.events.map(e=>({...e,backfill:false,migratedEditorial:false,toolActions:radarToolActions(e,+now)}))
 let feed={schemaVersion:1,checkedAt:now.toISOString(),sourceRevision:'frozen-real-publications',coverage:{},observationCount:events.length,errors:[],events}
 let failure=false,hold=false
 const summary=()=>makeRadarOverview(feed,publicationSelection(feed.events,{now:+now}))
@@ -39,6 +41,8 @@ try{
   hold=false
   const unread=overviewUnread(summary())
   await page.getByLabel(`${unread} sujets exploitables non lus`,{exact:true}).first().waitFor({state:'attached'})
+  await page.waitForFunction(()=>localStorage.getItem('epargnant-libre:home-favorites')!==null)
+  const savedFavorites=await page.evaluate(()=>localStorage.getItem('epargnant-libre:home-favorites'))
   const home=page.locator('.home-radar-now');await home.getByRole('heading',{name:'À publier maintenant',exact:true}).waitFor()
   assert.equal(await home.locator('li').count(),Math.min(3,summary().selection.length))
   assert.doesNotMatch(await home.innerText(),/pourquoi ouvrir une assurance|financer la dépendance|prime.*carburant/i)
@@ -77,12 +81,16 @@ try{
    await other.getByRole('textbox').first().waitFor()
    assert.match(await other.getByRole('textbox').first().inputValue(),/Hey @grok/)
    await other.goBack();await other.locator(`#subject-${salaryGroup.event.id}`).waitFor()
+   await other.locator(`#subject-${salaryGroup.event.id} > .radar-draft > summary`).click()
+   await other.getByRole('link',{name:/Préparer une question Hey/}).click()
+   assert.ok(await other.getByRole('button',{name:'Ouvrir la question dans l’éditeur',exact:true}).isDisabled(),'Incoming context cannot overwrite the current Grok draft')
   }
   // Same shared policy orders the Radar and home, with all weaker topics accessible.
   await other.goto(url+'radar-editorial')
   await other.locator('.radar-list > .radar-card').first().waitFor()
   const actual=await other.locator('.radar-list > .radar-card').evaluateAll(nodes=>nodes.map(n=>n.id.replace('subject-','')))
   assert.deepEqual(actual,summary().selection.map(row=>row.id))
+  await other.screenshot({path:`${output}/selection-${device}.png`,fullPage:true})
   await other.getByRole('button',{name:'Historique complet',exact:true}).click()
   await other.getByText('Filtrer les sujets',{exact:true}).click()
   await other.getByRole('searchbox').fill('Hello bank')
@@ -94,6 +102,20 @@ try{
   assert.equal(await other.getByRole('heading',{name:/Carburant : jusqu’à/}).count(),0)
   await other.getByRole('button',{name:'À suivre',exact:true}).click()
   await other.screenshot({path:`${output}/watch-${device}.png`,fullPage:true})
+  // Historical real fee change: the exact qualified catalogue ISIN opens its
+  // existing sheet; no invented observation date or financial record is added.
+  const fee=events.find(e=>e.id==='0862ef590bd97645ff84caae')
+  await other.goto(url+`radar-editorial?subject=${fee.id}`)
+  const feeCard=other.locator(`#subject-${fee.id}`);await feeCard.waitFor()
+  await feeCard.locator('.radar-draft > summary').click()
+  await feeCard.getByRole('link',{name:/Consulter la fiche/}).click()
+  assert.match(other.url(),/fiches-etf\?isin=IE00B14X4Q57/)
+  await other.locator('.es-card').getByText('ISIN : IE00B14X4Q57',{exact:true}).waitFor({state:'attached'})
+  const preview=other.getByRole('button',{name:'Aperçu',exact:true})
+  if(await preview.isVisible())await preview.click()
+  await other.locator('.es-card').getByText('ISIN : IE00B14X4Q57',{exact:true}).waitFor()
+  await other.goto(url+'radar-editorial')
+  await other.getByRole('heading',{name:'Radar éditorial',exact:true}).waitFor()
   // Failure keeps the last loaded feed while badge no longer pretends zero.
   failure=true;await page.evaluate(()=>window.dispatchEvent(new Event('focus')))
   await page.getByLabel('Radar indisponible : nombre de sujets non lus inconnu',{exact:true}).first().waitFor({state:'attached'})
@@ -108,6 +130,7 @@ try{
   feed={...feed,checkedAt:new Date(+now-48*3600000).toISOString()}
   await page.evaluate(()=>window.dispatchEvent(new Event('focus')))
   await page.getByLabel('Radar indisponible : nombre de sujets non lus inconnu',{exact:true}).first().waitFor({state:'attached'})
+  assert.equal(await page.evaluate(()=>localStorage.getItem('epargnant-libre:home-favorites')),savedFavorites,'Reading Radar does not rewrite home favorites')
   assert.deepEqual(errors,[])
   reports.push({device,homeWithoutRadarVisit:true,selectionMatches:true,loadingOutageZeroDistinct:true,crossTabRead:true,copy:true,notifications:'API simulated in unit tests; no send',errors})
   await context.close()

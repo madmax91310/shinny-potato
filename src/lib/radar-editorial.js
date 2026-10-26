@@ -154,7 +154,7 @@ export function recentEditorial(event, now = Date.now()) {
 export function publicationSelection(events,{now=Date.now(),limit=EDITORIAL_LIMIT}={}) {
   const groups=groupSignals(events,now)
   const ready=groups.filter(g=>g.state==='ready'&&g.assessment.reliability.usable&&recentEditorial(g.event,now))
-  return {groups,ready,...selectEditorial(ready.filter(g=>g.assessment.priority),limit)}
+  return {groups,ready,...selectEditorial(ready.filter(g=>g.assessment.priority&&!g.event.backfill&&!g.event.migratedEditorial),limit)}
 }
 
 

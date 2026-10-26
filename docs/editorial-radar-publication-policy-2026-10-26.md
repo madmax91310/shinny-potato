@@ -86,7 +86,8 @@ avant correction #959 contre un après ; aucune nouvelle mesure réelle sur une 
 ## Cartes, accueil et outils
 
 L’accueil conserve sa grille et son calendrier et ajoute « À publier maintenant » : zéro à
-trois sujets prioritaires non lus, sans remplissage. Sur mobile, les cartes défilent dans
+trois sujets prioritaires non lus, sans remplissage. Les reprises d’archives et migrations
+restent accessibles parmi les autres exploitables, sans occuper ces places. Sur mobile, les cartes défilent dans
 un bloc compact et un accès Radar reste visible menu fermé.
 
 Le badge compte les dossiers exploitables non lus, pas les erreurs. Il charge immédiatement
@@ -142,7 +143,7 @@ La supervision technique conserve incidents, essais, preuves et échecs dans le 
 « Données à revoir ». Elle cesse les commentaires à chaque nouvelle tentative/rétablissement
 local. Notification seulement pour une nouvelle panne critique ou extension significative :
 flux global illisible ≥1 h ; producteur Radar global en échec ≥2 h ; publication entière
-bloquée ≥6 h ; au moins deux familles prioritaires indisponibles ≥2 h. Rappel au plus après
+bloquée ≥6 h ; au moins deux familles prioritaires indisponibles ≥2 h. Rappels espacés d’au moins
 24 h, reçu durable et récupération après perte de réponse. Le déploiement de la politique
 initialise les anciens incidents sans rafale. Les détails HTTP seuls ne créent pas une nouvelle alerte.
 

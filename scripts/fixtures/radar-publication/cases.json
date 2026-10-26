@@ -887,6 +887,100 @@
         "priority": false,
         "major": false
       }
+    },
+    {
+      "id": "0862ef590bd97645ff84caae",
+      "family": "etf",
+      "entity": "IE00B14X4Q57",
+      "label": "iShares € Govt Bond 1-3yr UCITS ETF",
+      "field": "ter",
+      "fieldLabel": "Frais annuels",
+      "title": "iShares € Govt Bond 1-3yr UCITS ETF : frais annuels, 0,15 % / an → 0,1 % / an",
+      "kind": "change",
+      "priority": "high",
+      "detectedAt": "2026-10-21T17:35:08.613Z",
+      "before": 0.15,
+      "after": 0.1,
+      "beforeText": "0,15 % / an",
+      "afterText": "0,1 % / an",
+      "beforePeriod": "2026-10-13",
+      "period": "2026-10-21",
+      "scope": "Part IE00B14X4Q57",
+      "unit": "% / an",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "previousSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-21",
+      "tool": "/fiches-etf",
+      "angle": "À exposition comparable, quelles différences avec les autres ETF disponibles ?",
+      "draft": "Frais annuels : 0,15 % / an → 0,1 % / an.\n\niShares € Govt Bond 1-3yr UCITS ETF · IE00B14X4Q57\nPérimètre : Part IE00B14X4Q57\nAncienne observation : 2026-10-13\nObservation actuelle : 2026-10-21\n\nÀ exposition comparable, quelles différences avec les autres ETF disponibles ?",
+      "reason": "Toute modification confirmée des frais annuels est signalée.",
+      "factType": "characteristic-change",
+      "editorial": {
+        "score": 66,
+        "criteria": [
+          {
+            "key": "audience",
+            "points": 11,
+            "maximum": 30,
+            "unknown": false,
+            "reason": "Public limité au produit ou au placement ; effectif inconnu"
+          },
+          {
+            "key": "impact",
+            "points": 20,
+            "maximum": 25,
+            "unknown": false,
+            "reason": "Caractéristiques du placement"
+          },
+          {
+            "key": "novelty",
+            "points": 20,
+            "maximum": 20,
+            "unknown": false,
+            "reason": "Publication ou changement documenté"
+          },
+          {
+            "key": "comparison",
+            "points": 15,
+            "maximum": 15,
+            "unknown": false,
+            "reason": "Avant/après conservé avec périmètre"
+          },
+          {
+            "key": "freshness",
+            "points": 0,
+            "maximum": 10,
+            "unknown": true,
+            "reason": "Date de publication inconnue ; détection non substituée"
+          }
+        ],
+        "qualification": {
+          "version": 1,
+          "nature": "documented-announcement",
+          "label": "Annonce documentée",
+          "population": null,
+          "audience": "unknown",
+          "impact": "documented",
+          "reasons": [
+            "Annonce documentée",
+            "Population non documentée : aucun nombre de personnes déduit."
+          ]
+        },
+        "reliability": {
+          "usable": true,
+          "reasons": []
+        },
+        "state": "ready",
+        "type": "characteristic-change",
+        "priority": true,
+        "major": false
+      },
+      "priorEditorial": {
+        "score": 66,
+        "state": "ready",
+        "priority": true,
+        "major": false
+      }
     }
   ],
   "provenance": {

@@ -134,3 +134,13 @@ assert.equal(observedChange({...fee,financialChangeEvidence:{...fee.financialCha
 assert.equal(observedChange({...fee,financialChangeEvidence:{...fee.financialChangeEvidence,beforeHash:fee.financialChangeEvidence.afterHash}}),null)
 assert.equal(publicationTime({...fee,financialChangeEvidence:null,detectedAt:'2026-10-26'}),null)
 assert.equal(radarToolActions({...fee,entity:'IE0000000000'},now).some(a=>a.kind==='etf-sheet'),false,'No link to a sheet without an exact qualified product')
+const legacyMode=await notifyRadar({events:[candidate],ledger,api:server().api,repo:'madmax91310/shinny-potato',now:new Date(fresh),mode:'all'})
+assert.equal(legacyMode.ledger.lastDigest,'2026-10-23','The legacy entry point also obeys the one daily digest policy')
+assert.ok(legacyMode.ledger.acknowledgedPublications.includes(publicationKey(candidate)))
+
+const historicalFee=cases.find(e=>e.id==='0862ef590bd97645ff84caae')
+assert.equal(radarToolActions(historicalFee,now).find(a=>a.kind==='etf-sheet').to,'/fiches-etf?isin=IE00B14X4Q57')
+assert.equal(recentEditorial(historicalFee,now),false,'A historical observation without an announcement date is not rejuvenated during policy migration')
+
+assert.equal(publicationSelection([{...candidate,backfill:true}],{now:fresh}).selected.length,0,'An archive cannot fill À publier maintenant')
+assert.equal(publicationSelection([{...candidate,migratedEditorial:true}],{now:fresh}).selected.length,0,'Historical parser migrations remain accessible without being promoted now')
