@@ -252,7 +252,7 @@
             "end": "2026-09",
             "sourceUrls": [
               "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-23&includeTax=false",
+              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download?startDate=2015-06-26&endDate=2026-10-26&includeTax=false",
               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
@@ -326,18 +326,17 @@
           {
             "id": "etcPalladium",
             "currency": "USD",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2011-05",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1304208000&period2=1790812800&interval=1mo&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IPDM.L?period1=1440460800&period2=1441065600&interval=1d&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "IPDM.L : rapprochement financier non résolu (2024-12 → 2025-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2024-12",
+              "end": "2025-12"
             }
           }
         ],
@@ -349,9 +348,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00B4556L06 · USD · calendrier annuel VL distinct",
+        "route": "etcPalladium · USD · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2025 (USD), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -404,17 +403,17 @@
           {
             "id": "etf_world_communication",
             "currency": "USD",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2022-05",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/WCMS.AS?period1=1651363200&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "WCMS.AS : rapprochement financier non résolu (2023-12 → 2024-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2023-12",
+              "end": "2024-12"
             }
           }
         ],
@@ -426,9 +425,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00BJ5JP436 · USD · calendrier annuel VL distinct",
+        "route": "etf_world_communication · USD · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2024 (USD), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -481,18 +480,18 @@
           {
             "id": "etf_clean_energy",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2008-02",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1201824000&period2=1790812800&interval=1mo&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IQQH.DE?period1=1230163200&period2=1230768000&interval=1d&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "IQQH.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2019-12",
+              "end": "2020-12"
             }
           }
         ],
@@ -504,9 +503,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00B1XNHC34 · USD · calendrier annuel VL distinct",
+        "route": "etf_clean_energy · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2020 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2020 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -575,18 +574,17 @@
           {
             "id": "etf_financials",
             "currency": "USD",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2021-05",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/WFNS.AS?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits",
-              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "WFNS.AS : rapprochement financier non résolu (2022-12 → 2023-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2022-12",
+              "end": "2023-12"
             }
           }
         ],
@@ -598,9 +596,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00BJ5JP097 · USD · calendrier annuel VL distinct",
+        "route": "etf_financials · USD · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2023 (USD), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -2286,6 +2284,22 @@
               "code": "financial-window-unconfirmed",
               "reason": "LQQ.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
             }
+          },
+          {
+            "id": "etfFR0010342592Nav",
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2018-05",
+            "end": "2026-09",
+            "sourceUrls": [
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2020-12",
+              "end": "2021-12"
+            }
           }
         ],
         "annualNav": {
@@ -2296,9 +2310,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0010342592 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0010342592Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2021 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2363,6 +2377,22 @@
               "code": "financial-window-unconfirmed",
               "reason": "LQQ.PA : rapprochement financier non résolu (2022-12 → 2023-12)."
             }
+          },
+          {
+            "id": "etfFR0010342592Nav",
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2018-05",
+            "end": "2026-09",
+            "sourceUrls": [
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2022-12",
+              "end": "2023-12"
+            }
           }
         ],
         "annualNav": {
@@ -2373,9 +2403,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0010342592 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0010342592Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2023 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -2440,6 +2470,22 @@
               "code": "financial-window-unconfirmed",
               "reason": "LQQ.PA : rapprochement financier non résolu (2023-12 → 2024-12)."
             }
+          },
+          {
+            "id": "etfFR0010342592Nav",
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2018-05",
+            "end": "2026-09",
+            "sourceUrls": [
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2023-12",
+              "end": "2024-12"
+            }
           }
         ],
         "annualNav": {
@@ -2450,9 +2496,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0010342592 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0010342592Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2024 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -3701,18 +3747,17 @@
           {
             "id": "etfFR0011871110",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/PUST.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "PUST.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2020-12",
+              "end": "2021-12"
             }
           }
         ],
@@ -3724,9 +3769,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0011871110 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0011871110 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2021 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -3779,18 +3824,17 @@
           {
             "id": "etfFR0011871128",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/PSP5.PA?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "PSP5.PA : rapprochement financier non résolu (2020-12 → 2021-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2020-12",
+              "end": "2021-12"
             }
           }
         ],
@@ -3802,9 +3846,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0011871128 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0011871128 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2021 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2021 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -4088,17 +4132,18 @@
           {
             "id": "etfFR0013416716",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2019-08",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/GLDA.DE?period1=1564617600&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/GLDA.DE?period1=1564617600&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "GLDA.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2024-12",
+              "end": "2025-12"
             }
           }
         ],
@@ -4110,9 +4155,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0013416716 · USD · calendrier annuel VL distinct",
+        "route": "etfFR0013416716 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2025 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -4205,17 +4250,18 @@
           {
             "id": "etfIE00B2QWCY14",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "IUS3.DE : rapprochement financier non résolu (2022-12 → 2023-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2022-12",
+              "end": "2023-12"
             }
           }
         ],
@@ -4227,9 +4273,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00B2QWCY14 · USD · calendrier annuel VL distinct",
+        "route": "etfIE00B2QWCY14 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2023 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2023 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -4282,17 +4328,18 @@
           {
             "id": "etfIE00B2QWCY14",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "IUS3.DE : rapprochement financier non résolu (2023-12 → 2024-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2023-12",
+              "end": "2024-12"
             }
           }
         ],
@@ -4304,9 +4351,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00B2QWCY14 · USD · calendrier annuel VL distinct",
+        "route": "etfIE00B2QWCY14 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2024 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2024 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -4359,17 +4406,18 @@
           {
             "id": "etfIE00B2QWCY14",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2015-01",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/IUS3.DE?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "IUS3.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2024-12",
+              "end": "2025-12"
             }
           }
         ],
@@ -4381,9 +4429,9 @@
             "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2CfundamentalsAndRisk%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
           ]
         },
-        "route": "annual-IE00B2QWCY14 · USD · calendrier annuel VL distinct",
+        "route": "etfIE00B2QWCY14 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2025 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251920&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
@@ -4701,6 +4749,22 @@
               "code": "financial-window-unconfirmed",
               "reason": "LYSX.DE : rapprochement financier non résolu (2019-12 → 2020-12)."
             }
+          },
+          {
+            "id": "etfFR0007054358Nav",
+            "currency": "EUR",
+            "convention": "fund-nav-total-return",
+            "start": "2018-10",
+            "end": "2026-09",
+            "sourceUrls": [
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+            ],
+            "qualification": {
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2019-12",
+              "end": "2020-12"
+            }
           }
         ],
         "annualNav": {
@@ -4711,9 +4775,9 @@
             "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
           ]
         },
-        "route": "annual-FR0007054358 · EUR · calendrier annuel VL distinct",
+        "route": "etfFR0007054358Nav · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2020 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
+        "secured": "NAV indépendante qualifiée pour 2020 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -5074,24 +5138,32 @@
           {
             "id": "etfLU2089238385",
             "currency": "EUR",
-            "convention": "adjusted",
+            "convention": "fund-nav-total-return",
             "start": "2020-02",
             "end": "2026-09",
             "sourceUrls": [
-              "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1d&events=div%2Csplits",
-              "https://query2.finance.yahoo.com/v8/finance/chart/PRAJ.DE?period1=1580515200&period2=1790812800&interval=1mo&events=div%2Csplits"
+              "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+              "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
             ],
             "qualification": {
-              "qualified": false,
-              "code": "financial-window-unconfirmed",
-              "reason": "PRAJ.DE : rapprochement financier non résolu (2024-12 → 2025-12)."
+              "qualified": true,
+              "convention": "fund-nav-total-return",
+              "start": "2024-12",
+              "end": "2025-12"
             }
           }
         ],
-        "annualNav": null,
-        "route": "Fenêtre de cotation refusée ; aucun calcul admis sur cette période",
+        "annualNav": {
+          "id": "annual-LU2089238385",
+          "currency": "JPY",
+          "year": 2025,
+          "sourceUrls": [
+            "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+          ]
+        },
+        "route": "etfLU2089238385 · EUR · fund-nav-total-return",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées."
+        "secured": "NAV indépendante qualifiée pour 2025 (EUR), sans attribuer la divergence de cotation initiale."
       },
       "sourceUrls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -5235,10 +5307,17 @@
             }
           }
         ],
-        "annualNav": null,
-        "route": "Fenêtre de cotation refusée ; aucun calcul admis sur cette période",
+        "annualNav": {
+          "id": "annual-LU2196470426",
+          "currency": "JPY",
+          "year": 2025,
+          "sourceUrls": [
+            "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"
+          ]
+        },
+        "route": "annual-LU2196470426 · JPY · calendrier annuel VL distinct",
         "proof": "Registres canoniques et qualification de fenêtres ci-dessous ; références de l’intégration précédente conservées séparément.",
-        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées."
+        "secured": "Fenêtre de cotation contestée refusée pour 2025 ; dernières observations conservées. Calendrier annuel VL distinct disponible ; aucune cotation mensuelle déduite."
       },
       "sourceUrls": [
         "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium"

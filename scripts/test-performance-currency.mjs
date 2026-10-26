@@ -70,6 +70,30 @@ try {
 const [yen] = convertPerformanceEntries([{asset:{currency:'JPY'},returns:[{year:2025,pct:10}]}], 'EUR')
 assert.ok(Math.abs(yen.returns[0].pct - ((1.1 * calendarYears[2024].rates.JPY / calendarYears[2025].rates.JPY - 1) * 100)) < 1e-12)
 assert.throws(() => convertPerformanceEntries([{asset:{currency:'ZZZ'},returns:[{year:2025,pct:10}]}], 'EUR'), /change incomplet/)
+// Real exact-share calendar: the collector checks Total return (JPY), distinct
+// from the ETF's EUR quote. Reuse the existing ECB conversion exactly once.
+const nikkei={assetId:'annual-LU2196470426',year:2025}
+const [nikkeiNative]=engine.getPerformanceEntries(nikkei)
+assert.equal(nikkeiNative.asset.currency,'JPY')
+assert.equal(nikkeiNative.returns[0].pct,28.24)
+assert.deepEqual(engine.getPerformanceCurrencies(nikkei),['EUR','USD'])
+for(const target of ['EUR','USD']){
+ const [converted]=engine.getPerformanceEntries({...nikkei,currency:target})
+ const expected=((1+28.24/100)*calendarRate(2024,'JPY')/calendarRate(2025,'JPY')*calendarRate(2025,target)/calendarRate(2024,target)-1)*100
+ assert(Math.abs(converted.returns[0].pct-expected)<1e-10)
+ assert.equal(converted.asset.sourceCurrency,'JPY')
+ assert.equal(converted.asset.currency,target)
+ assert(engine.buildPerformanceDepuisText({...nikkei,currency:target}).includes(formatPerformancePct(expected)))
+}
+const missingYen=calendarYears[2024].rates.JPY
+try{
+ delete calendarYears[2024].rates.JPY
+ assert.throws(()=>engine.getPerformanceEntries({...nikkei,currency:'EUR'}),/change incomplet/)
+ assert.equal(engine.getPerformanceEntries(nikkei)[0].returns[0].pct,28.24,'Native year remains independently valid')
+}finally{calendarYears[2024].rates.JPY=missingYen}
+const nikkeiPair=engine.getPerformanceEntries({mode:'comparatif',assetIdA:nikkei.assetId,assetIdB:'annual-GB00B15KXQ89',year:2025,currency:'EUR'})
+assert.equal(nikkeiPair.length,2)
+assert(nikkeiPair.every(e=>e.asset.currency==='EUR'&&e.returns.length>=1&&e.returns[0].year===2025))
 const pair = engine.getPerformanceEntries({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'sp500', year: 2016, currency: 'USD' })
 assert.equal(pair.length, 2)
 assert.ok(pair.every(entry => entry.asset.currency === 'USD'))

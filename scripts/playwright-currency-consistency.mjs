@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { choose } from './card-selection.mjs'
+import fs from 'node:fs/promises'
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4387','--strictPort'],{stdio:'ignore'})
 let browser
 try {
@@ -21,6 +22,33 @@ try {
  await page.getByRole('button',{name:'Euros (EUR)',exact:true}).click()
  await page.getByText(/Net Return · EUR · dividendes nets réinvestis/).waitFor()
  await download(page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}))
+ // The same exact share was already offered as an annual JPY calendar by the
+ // ranking tool. Its performance selector must now use the existing conversion.
+ await fs.mkdir('test-artifacts/nikkei-annual',{recursive:true})
+ for(const width of [1280,390]){
+  await page.setViewportSize({width,height:900})
+  await go('performance-depuis?asset=annual-LU2196470426')
+  const settings=page.locator('.workspace-view-switch').getByRole('button',{name:'Réglages',exact:true})
+  if(await settings.isVisible())await settings.click()
+  assert.equal(await page.locator('#subject-select').getAttribute('data-value'),'annual-LU2196470426')
+  await choose(page.locator('#secondary-select'),'2025')
+  for(const [label,currency] of [['Euros (EUR)','EUR'],['Dollars (USD)','USD']]){
+   if(await settings.isVisible())await settings.click()
+   await page.getByRole('button',{name:label,exact:true}).click()
+   await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+   const text=await page.locator('pre').innerText()
+   assert(text.includes('2025')&&text.includes('VL')&&text.includes(currency))
+   assert(!/NaN|undefined/.test(text))
+   if(currency==='EUR')assert(text.includes('13,6'),'JPY total return must be converted, not relabelled EUR: '+text)
+   const preview=page.locator('.workspace-view-switch').getByRole('button',{name:'Aperçu',exact:true})
+   if(await preview.isVisible())await preview.click()
+   const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
+   const file=await pending,path=`test-artifacts/nikkei-annual/${currency}-${width}.png`;await file.saveAs(path)
+   const data=await fs.readFile(path);assert.equal(data.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert(data.length>10000)
+  }
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2))
+ }
+ await page.setViewportSize({width:1280,height:900})
  await go('tweets-factsheets')
  await choose(page.locator('#factsheet-subject'),'acwi')
  await choose(page.getByRole('group',{name:'Dividendes réinvestis',exact:true}),'NETR')
